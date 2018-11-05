@@ -10,6 +10,25 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        include: [path.resolve(__dirname, "src/app")],
+        loader: "babel-loader",
+
+        options: {
+          plugins: ["@babel/plugin-syntax-dynamic-import", "@babel/plugin-proposal-object-rest-spread"],
+
+          presets: [
+            [
+              "@babel/env",
+              {
+                modules: false
+              }
+            ]
+          ]
+        },
+
+        test: /\.js$/
+      }
     ]
   },
   plugins: [
