@@ -14,6 +14,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      titre1: "Competences pro",
+      hash: true,
       template: path.resolve(__dirname, 'src/public/index.html'),
       inject: 'head'
     })
