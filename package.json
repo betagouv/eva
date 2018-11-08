@@ -7,6 +7,10 @@
     "start": "webpack-dev-server --history-api-fallback --inline --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "10.11.x",
+    "npm": "6.4.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/betagouv/competences-pro.git"
