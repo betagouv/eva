@@ -4,7 +4,8 @@
   "description": "Évaluer en ligne les compétences pro à travers des mises en situation",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --history-api-fallback --inline --progress",
+    "devstart": "webpack-dev-server --history-api-fallback --inline --progress",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -36,5 +37,7 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
