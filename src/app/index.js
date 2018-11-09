@@ -1,4 +1,4 @@
-import '../style/app.scss';
+import '../styles/app.scss';
 
 class TestClass {
     constructor() {

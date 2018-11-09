@@ -2,6 +2,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/app/index.js'),
@@ -50,6 +52,18 @@ module.exports = {
           'css-loader',
           'sass-loader',
         ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: 'images/[name].[ext]?[sha512:hash:base64:7]',
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
@@ -58,8 +72,10 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new CopyWebpackPlugin([
+      {from:'src/images',to:'images'}
+    ]),
     new HtmlWebpackPlugin({
-      titre1: "Competences pro",
       hash: true,
       template: path.resolve(__dirname, 'src/public/index.html'),
       inject: 'head'
