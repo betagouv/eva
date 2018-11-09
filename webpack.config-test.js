@@ -23,6 +23,18 @@ var config = {
       {
         test: /\.(sa|sc|c)ss$/,
         loader: 'null-loader'
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: 'images/[name].[ext]',
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },

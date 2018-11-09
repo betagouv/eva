@@ -1,0 +1,63 @@
+import chai, { expect } from 'chai';
+import { uneVueStock } from '../../src/vues/stock.js';
+import { unMagasin } from "../aides/magasin.js";
+import { unContenantVrac } from "../aides/contenant.js";
+import jsdom from 'jsdom-global';
+
+describe('vue stock', function() {
+
+  beforeEach(function() {
+    jsdom('<div id="stock"></div>');
+  });
+
+  it('ajoute plusieurs contenants sur les étagères', function() {
+
+    let magasin = unMagasin().avecEnStock(
+        unContenantVrac("Nova Sky", 1).deType("moyen").aLaPosition(40, 80),
+        unContenantVrac("Nova Sky", 2).deType("moyen").aLaPosition(60, 80)
+      )
+      .construit();
+
+    uneVueStock({
+      contenants: {
+        "ContenantVrac": { "moyen": { largeur: 15, hauteur: 25 }
+        }
+      }
+    }).affiche('stock', magasin.contenants);
+
+    const etageres = document.getElementById('etageres');
+    expect(etageres).to.not.be.null;
+    expect(etageres.tagName).to.equal('IMG');
+
+    etageres.dispatchEvent(new Event('load'));
+
+    const contenantsAjoutes = document.getElementsByClassName('contenant');
+    expect(contenantsAjoutes.length).to.equal(2);
+
+    const contenants = document.getElementById('contenants');
+    expect(contenants).to.not.be.null;
+    expect(contenants.childNodes[0]).to.eql(contenantsAjoutes[0]);
+    expect(contenants.childNodes[1]).to.eql(contenantsAjoutes[1]);
+  });
+
+  it("recalcule la position des contenants si l'image est redimentionnée", function () {
+    let magasin = unMagasin().avecEnStock(
+        unContenantVrac("Nova Sky", 12).deType("moyen").aLaPosition(40, 80)
+      )
+      .construit();
+
+    let vue = uneVueStock({
+      contenants: {
+        "ContenantVrac": { "moyen": { largeur: 15, hauteur: 25 }
+        }
+      }
+    })
+    vue.affiche('stock', magasin.contenants);
+
+    const etageres = document.getElementById('etageres');
+    etageres.dispatchEvent(new Event('load'));
+    window.dispatchEvent(new Event('resize'));
+
+    expect(document.getElementsByClassName('contenant').length).to.equal(1);
+  });
+});

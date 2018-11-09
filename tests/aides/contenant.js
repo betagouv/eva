@@ -10,13 +10,9 @@ class Contenant {
     return this;
   }
 
-  surEtagere(numeroEtagere) {
-    this.hauteur = numeroEtagere;
-    return this;
-  }
-
-  aLaPosition(positionHorizontale) {
-    this.position = positionHorizontale;
+  aLaPosition(posX, posY) {
+    this.posX = posX;
+    this.posY = posY;
     return this;
   }
 }
