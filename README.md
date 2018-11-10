@@ -8,5 +8,13 @@ https://beta.gouv.fr/startup/competences-pro.html
 
 ```
 $ npm install
+$ npm run dev
+```
+
+## Deployement in production
+
+```
+$ npm install
+$ npm run build
 $ npm start
 ```
