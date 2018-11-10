@@ -4,14 +4,14 @@
 
 https://beta.gouv.fr/startup/competences-pro.html
 
-## Development setup
+## Mise en place pour le développement
 
 ```
 $ npm install
 $ npm run dev
 ```
 
-## Deployement in production
+## Déploiement en production
 
 ```
 $ npm install
