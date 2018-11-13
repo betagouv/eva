@@ -15,4 +15,4 @@ then
   docker rm -f ${nom_conteneur}
 fi
 
-docker run --name ${nom_conteneur} --rm -p 80:3000 ${nom_image_conteneur}
+docker run --name ${nom_conteneur} --detach -p 80:3000 ${nom_image_conteneur}
