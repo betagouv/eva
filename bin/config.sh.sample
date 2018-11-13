@@ -1,0 +1,5 @@
+# Ce fichier sert de modèle pour bin/config.sh
+
+adresse_machine_production=login_utilisateur@127.0.0.1  # le login est facultatif, par ex. 127.0.0.1
+repertoire_application=chemin/application/              # le chemin doit finir par un `/`
+port_ecoute=80                                          # le port sur lequel le serveur écoute
