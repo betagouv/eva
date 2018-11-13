@@ -1,4 +1,5 @@
 /public
+bin/config.sh
 dist/
 node_modules/
 test_build/
