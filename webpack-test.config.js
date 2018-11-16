@@ -16,6 +16,18 @@ var config = {
     fs: 'empty'
   },
 
+  watchOptions: {
+    ignored: /node_modules/
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        loader: 'null-loader'
+      }
+    ]
+  },
 
   plugins: [
     new WebpackShellPlugin({

@@ -1,10 +1,14 @@
 import '../styles/app.scss';
 
-class TestClass {
-    constructor() {
-        let msg = "Using ES2015+ syntax";
-        console.log(msg);
-    }
+export default class TestClass {
+
+  constructor(m) {
+    this.message = m;
+  }
+
+  donneMessage () {
+    return this.message;
+  }
+
 }
 
-let test = new TestClass();
