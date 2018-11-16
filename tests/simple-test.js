@@ -1,7 +1,8 @@
 var expect = require('chai').expect;
+import TestClass from '../src/app/index.js';
 
 describe('simple tests', function() {
   it('should pass', function() {
-    expect(false).to.be.true;
+    expect(new TestClass("hello").donneMessage()).to.equal("hello");
   });
 });
