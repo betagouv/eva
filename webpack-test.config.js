@@ -7,7 +7,7 @@ const WebpackShellPlugin = require('webpack-shell-plugin');
 var config = {
   entry: './all-tests.js',
   output: {
-    path: path.resolve(__dirname, 'testdist'),
+    path: path.resolve(__dirname, 'test_build'),
     filename: 'testBundle.js'
   },
   target: 'node',
@@ -31,7 +31,7 @@ var config = {
 
   plugins: [
     new WebpackShellPlugin({
-      onBuildExit: "mocha --colors testdist/testBundle.js"
+      onBuildExit: "mocha --colors test_build/testBundle.js"
     })
   ]
 };
