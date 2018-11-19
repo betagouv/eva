@@ -6,7 +6,7 @@
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development",
     "start": "node server.js",
-    "test": "webpack --watch --mode development --progress --colors --config webpack-test.config.js"
+    "test": "webpack --watch --mode development --progress --colors --config webpack.config-test.js&  mocha --watch --colors test_build/testBundle.js"
   },
   "engines": {
     "node": "10.11.x",
@@ -42,8 +42,7 @@
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
-    "webpack-node-externals": "^1.7.2",
-    "webpack-shell-plugin": "^0.5.0"
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "express": "^4.16.4"

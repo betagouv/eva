@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const WebpackShellPlugin = require('webpack-shell-plugin');
-
 
 var config = {
   entry: './all-tests.js',
@@ -28,12 +26,6 @@ var config = {
       }
     ]
   },
-
-  plugins: [
-    new WebpackShellPlugin({
-      onBuildExit: "mocha --colors test_build/testBundle.js"
-    })
-  ]
 };
 
 
