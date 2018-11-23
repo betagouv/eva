@@ -21,3 +21,7 @@ class MagasinEnDevenir {
 export function unMagasin () {
   return new MagasinEnDevenir();
 }
+
+export function unMagasinVide () {
+  return new MagasinEnDevenir().construit();
+}

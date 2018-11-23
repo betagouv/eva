@@ -1,0 +1,41 @@
+.affiche-saisie {
+  position: absolute;
+  top: 1.5rem;
+  left: 18.8rem;
+  padding: 0.7rem;
+  background-color: teal;
+  color: white;
+}
+
+.affiche-saisie:hover {
+  cursor: pointer;
+}
+
+.formulaire-saisie-inventaire {
+  position: absolute;
+  top: 15vh;
+  left: 33vw;
+  width: 33vw;
+  background: ivory;
+  border: solid black 1px;
+  display: none;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    padding: 0.7em;
+    color: black;
+  }
+
+  li:nth-child(odd) {
+    background: gainsboro;
+  }
+}
+
+.formulaire-saisie-inventaire.visible {
+  display: block;
+}
