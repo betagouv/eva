@@ -5,12 +5,12 @@ let jsdom = require('jsdom-global');
 describe('Le magasin', function () {
   let $;
 
-  before(function () {
+  beforeEach(function () {
     jsdom('<div id="magasin"></div>');
     $ = jQuery(window);
   });
 
-  after(function () {
+  afterEach(function () {
     jsdom();
   });
 
@@ -18,5 +18,11 @@ describe('Le magasin', function () {
     expect($('.stock').length).to.equal(0);
     afficheMagasin('#magasin', $);
     expect($('#magasin .stock').length).to.equal(1);
+  });
+
+  it("sait afficher un bouton pour saisir l'inventaire", function () {
+    expect($('.affiche-saisie').length).to.equal(0);
+    afficheMagasin('#magasin', $);
+    expect($('#magasin .affiche-saisie').length).to.equal(1);
   });
 });
