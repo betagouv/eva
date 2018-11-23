@@ -1,4 +1,3 @@
-import { expect } from "chai";
 import { unMagasin, desContenantsUnitaires, desContenantsVrac } from "../aides/magasin.js";
 
 describe("Le magasin", function () {

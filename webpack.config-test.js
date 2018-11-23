@@ -26,6 +26,10 @@ var config = {
       }
     ]
   },
+
+  plugins: [
+    new webpack.ProvidePlugin({ expect: ["chai", "expect"] })
+  ]
 };
 
 
