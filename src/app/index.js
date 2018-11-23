@@ -1,14 +1,7 @@
 import '../styles/app.scss';
 
-export default class TestClass {
+import { afficheMagasin } from "./init.js";
 
-  constructor(m) {
-    this.message = m;
-  }
-
-  donneMessage () {
-    return this.message;
-  }
-
-}
-
+jQuery(function () {
+  afficheMagasin("#magasin", jQuery);
+});

@@ -1,18 +1,15 @@
 $primary-color: #2e878a;
+
 body {
   color: $primary-color;
-  position: absolute;
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0
 }
 
-.stock {
-  position: relative;
-  height:90%;
-  background: url('../images/stock.png');
-  background-size: contain;
-  background-repeat: no-repeat;
+#magasin {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
-
