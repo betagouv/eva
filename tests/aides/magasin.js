@@ -21,11 +21,3 @@ class MagasinEnDevenir {
 export function unMagasin() {
   return new MagasinEnDevenir();
 }
-
-export function desContenantsUnitaires(nom, quantite) {
-  return { nom: nom, type: "ContenantUnitaire", quantite: quantite };
-}
-
-export function desContenantsVrac(nom, quantite) {
-  return { nom: nom, type: "ContenantVrac", quantite: quantite };
-}

@@ -1,13 +1,14 @@
 import { expect } from "chai";
-import { unMagasin, desContenantsUnitaires, desContenantsVrac } from "../aides/magasin.js";
+import { unMagasin } from "../aides/magasin.js";
+import { unContenantUnitaire, unContenantVrac } from "../aides/contenant.js";
 
 describe("Le magasin", function () {
 
   it("connaît les produits en stock", function () {
 
     let magasin = unMagasin().avecEnStock(
-      desContenantsUnitaires("Nova Sky", 12),
-      desContenantsUnitaires("Premium Terra", 3)
+      unContenantUnitaire("Nova Sky", 12),
+      unContenantUnitaire("Premium Terra", 3)
     ).construit();
 
     expect(magasin.produitsEnStock()).to.deep.equal([
@@ -18,8 +19,8 @@ describe("Le magasin", function () {
 
   it("additionne les quantités", function () {
     let magasin = unMagasin().avecEnStock(
-      desContenantsUnitaires("Nova Sky", 12),
-      desContenantsUnitaires("Nova Sky", 3)
+      unContenantUnitaire("Nova Sky", 12),
+      unContenantUnitaire("Nova Sky", 3)
     ).construit();
 
     expect(magasin.produitsEnStock()).to.deep.equal([
@@ -29,8 +30,8 @@ describe("Le magasin", function () {
 
   it("différencie les types de contenants", function () {
     let magasin = unMagasin().avecEnStock(
-      desContenantsUnitaires("Nova Sky", 12),
-      desContenantsVrac("Nova Sky", 3)
+      unContenantUnitaire("Nova Sky", 12),
+      unContenantVrac("Nova Sky", 3)
     ).construit();
 
     expect(magasin.produitsEnStock()).to.deep.equal([
