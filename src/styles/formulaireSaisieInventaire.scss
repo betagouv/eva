@@ -15,7 +15,6 @@
   position: absolute;
   top: 15vh;
   left: 33vw;
-  width: 33vw;
   background: ivory;
   border: solid black 1px;
 
@@ -32,5 +31,15 @@
 
   li:nth-child(odd) {
     background: gainsboro;
+  }
+
+  label {
+    display: inline-block;
+    width: 10rem;
+  }
+
+  input {
+    width: 4rem;
+    height: 1.2rem;
   }
 }
