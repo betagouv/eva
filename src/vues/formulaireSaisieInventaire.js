@@ -9,18 +9,18 @@ function basculeVisibilite ($element) {
 export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation) {
   let produits = magasin.produitsEnStock();
 
-  function creeItem (nomProduit) {
+  function creeItem (idProduit, nomProduit) {
     return $(`
       <li>
         <label>${nomProduit}</label>
-        <input type="text">
+        <input id="${idProduit}" type="text">
       </li>
     `);
   }
 
   function creeListe () {
     let $liste = $('<ul></ul>');
-    let items = produits.map(function (p) { return creeItem(p.nom); });
+    let items = Array.from(produits, ([id, p]) => { return creeItem(id, p.nom); });
     $liste.append(items);
     return $liste;
   }

@@ -9,16 +9,21 @@ function inventaireProduits ({ contenants }) {
     inventaire.set(clefProduit, inventaire.get(clefProduit) + c.quantite);
   });
 
-  return Array.from(inventaire).map(([clefProduit, quantite]) => {
+  var resultat = new Map();
+  var index = 0;
+  inventaire.forEach(function (quantite, clefProduit) {
     let produit = JSON.parse(clefProduit);
-    return { nom: produit.nom, type: produit.type, quantite: quantite };
+    resultat.set(index.toString(), { nom: produit.nom, type: produit.type, quantite: quantite });
+    index += 1;
   });
+
+  return resultat;
 }
 
 export function creeMagasin (unStock) {
-  let stock = unStock;
+  let produits = inventaireProduits(unStock);
 
   return {
-    produitsEnStock: () => inventaireProduits(stock)
+    produitsEnStock: () => { return produits; }
   };
 }
