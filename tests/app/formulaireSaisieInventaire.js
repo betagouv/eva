@@ -12,13 +12,43 @@ describe("Le formulaire de saisie d'inventaire", function () {
     $ = jQuery(window);
   });
 
-  it("s'affiche quand on clique sur le bouton", function () {
-    initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $);
-    expect($('#magasin .affiche-saisie').length).to.equal(1);
-    expect($('.formulaire-saisie-inventaire.visible').length).to.equal(0);
+  describe('quand on clique sur le bouton', function () {
+    beforeEach(function () {
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $);
+      expect($('#magasin .affiche-saisie').length).to.equal(1);
+    });
 
-    $('.affiche-saisie').click();
-    expect($('.formulaire-saisie-inventaire.visible').length).to.equal(1);
+    it('affiche un overlay extérieur pour commander sa fermeture', function () {
+      expect($('.overlay.invisible').length).to.equal(1);
+
+      $('.affiche-saisie').click();
+      expect($('.overlay.invisible').length).to.equal(0);
+    });
+
+    it("s'affiche", function () {
+      expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(1);
+
+      $('.affiche-saisie').click();
+      expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(0);
+    });
+  });
+
+  describe("quand on clique sur l'overlay", function () {
+    beforeEach(function () {
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $);
+      $('.affiche-saisie').click();
+      expect($('.overlay.invisible').length).to.equal(0);
+    });
+
+    it('efface le formulaire', function () {
+      $('.overlay').click();
+      expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(1);
+    });
+
+    it("s'efface (l'overlay)", function () {
+      $('.overlay').click();
+      expect($('.overlay.invisible').length).to.equal(1);
+    });
   });
 
   it('affiche les noms des produits à inventorier', function () {

@@ -1,7 +1,9 @@
+import '../styles/commun.scss';
 import '../styles/formulaireSaisieInventaire.scss';
+import '../styles/overlay.scss';
 
 export function creeFormulaireSaisieInventaire (produits, $) {
-  let $formulaireSaisie = $('<div class="formulaire-saisie-inventaire"></div>');
+  let $formulaireSaisie = $('<div class="formulaire-saisie-inventaire invisible"></div>');
   let $liste = $('<ul></ul>');
 
   produits.forEach(function (p) {
@@ -15,9 +17,22 @@ export function creeFormulaireSaisieInventaire (produits, $) {
 
 export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $) {
   let $boutonSaisie = $('<div class="affiche-saisie">Saisir inventaire</div>');
+  let $overlay = $('<div class="overlay invisible"></div>');
   let $formulaireSaisie = creeFormulaireSaisieInventaire(magasin.produitsEnStock(), $);
-  $boutonSaisie.click(function () { $formulaireSaisie.toggleClass('visible'); });
 
-  $formulaireSaisie.appendTo(pointInsertion);
+  function basculeVisibiliteFormulaire () {
+    basculeVisibilite($overlay);
+    basculeVisibilite($formulaireSaisie);
+  }
+
+  $boutonSaisie.click(basculeVisibiliteFormulaire);
+  $overlay.click(basculeVisibiliteFormulaire);
+
   $boutonSaisie.appendTo(pointInsertion);
+  $overlay.appendTo(pointInsertion);
+  $formulaireSaisie.appendTo(pointInsertion);
+}
+
+function basculeVisibilite ($element) {
+  $element.toggleClass('invisible');
 }
