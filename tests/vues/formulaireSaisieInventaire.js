@@ -57,7 +57,17 @@ describe("Le formulaire de saisie d'inventaire", function () {
     ).construit();
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
-    expect($('#magasin .formulaire-saisie-inventaire li').length).to.equal(1);
-    expect($('#magasin .formulaire-saisie-inventaire li').text()).to.equal('Nova Sky');
+    expect($('#magasin .formulaire-saisie-inventaire label').length).to.equal(1);
+    expect($('#magasin .formulaire-saisie-inventaire label').text()).to.equal('Nova Sky');
+  });
+
+  it('affiche pour chaque produit une zone de saisie', function () {
+    let magasin = unMagasin().avecEnStock(
+      unContenantUnitaire('Nova Sky', 12),
+      unContenantUnitaire('Terra Cola', 7)
+    ).construit();
+
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    expect($('#magasin .formulaire-saisie-inventaire input').length).to.equal(2);
   });
 });

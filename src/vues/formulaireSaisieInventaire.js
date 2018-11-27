@@ -22,26 +22,30 @@ function creeBoutonSaisie ($formulaireSaisie, $) {
 }
 
 function creeItem (nomProduit, $) {
-  return $('<li></li>').text(nomProduit);
+  return $(`
+    <li>
+      <label>${nomProduit}</label>
+      <input type="text">
+    </li>
+  `);
 }
 
 function creeListe (produits, $) {
   let $liste = $('<ul></ul>');
   let items = produits.map(function (p) { return creeItem(p.nom, $); });
   $liste.append(items);
-
   return $liste;
 }
 
-function creeFormulaireSaisieInventaire (produits, $) {
-  let $formulaireSaisie = $('<div class="formulaire-saisie-inventaire invisible"></div>');
+function creeFormulaire (produits, $) {
+  let $formulaireSaisie = $('<form class="formulaire-saisie-inventaire invisible"></form>');
   let $liste = creeListe(produits, $);
   $formulaireSaisie.append($liste);
   return $formulaireSaisie;
 }
 
 export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $) {
-  let $formulaireSaisie = creeFormulaireSaisieInventaire(magasin.produitsEnStock(), $);
+  let $formulaireSaisie = creeFormulaire(magasin.produitsEnStock(), $);
   let $boutonSaisie = creeBoutonSaisie($formulaireSaisie, $);
   $(pointInsertion).append($boutonSaisie, $formulaireSaisie);
 }
