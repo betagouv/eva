@@ -78,4 +78,22 @@ describe("Le formulaire de saisie d'inventaire", function () {
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
     expect($('#magasin .formulaire-saisie-inventaire .valide-saisie').length).to.equal(1);
   });
+
+  it("valide la saisie d'inventaire avec succès", function (done) {
+    let magasin = unMagasin().avecEnStock(
+      unContenantUnitaire('Nova Sky', 12)
+    ).construit();
+
+    let verifieValidite = function (saisieValide) {
+      expect(saisieValide).to.be(true);
+      done();
+    };
+
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, verifieValidite);
+    let $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
+    let $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
+
+    $zoneSaisieInventaire.val(12);
+    $boutonValidationSaisie.click();
+  });
 });

@@ -10,5 +10,7 @@ export function afficheMagasin (pointInsertion, $) {
     .affiche(donneesStock.contenants);
 
   let magasin = creeMagasin(donneesStock);
-  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $);
+  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function () {
+    window.alert('Bravo, vous avez réussi !'); // pour de faux
+  });
 }
