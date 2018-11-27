@@ -6,7 +6,7 @@ function basculeVisibilite ($element) {
   $element.toggleClass('invisible');
 }
 
-export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $) {
+export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation) {
   let produits = magasin.produitsEnStock();
 
   function creeItem (nomProduit) {
@@ -26,7 +26,9 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   }
 
   function creeBoutonValidation () {
-    return $('<button type="button" class="valide-saisie">Valider la saisie d\'inventaire</button>');
+    let $bouton = $('<button type="button" class="valide-saisie">Valider la saisie d\'inventaire</button>');
+    $bouton.click(function () { callbackValidation(true); }); // pour de faux
+    return $bouton;
   }
 
   function creeZoneValidation () {
