@@ -70,4 +70,12 @@ describe("Le formulaire de saisie d'inventaire", function () {
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
     expect($('#magasin .formulaire-saisie-inventaire input').length).to.equal(2);
   });
+
+  it('affiche un bouton pour valider la saisie', function () {
+    let magasin = unMagasinVide();
+    expect($('#magasin .formulaire-saisie-inventaire .valide-saisie').length).to.equal(0);
+
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    expect($('#magasin .formulaire-saisie-inventaire .valide-saisie').length).to.equal(1);
+  });
 });
