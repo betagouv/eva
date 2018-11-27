@@ -25,15 +25,27 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
     return $liste;
   }
 
+  function creeBoutonValidation () {
+    return $('<button type="button" class="valide-saisie">Valider la saisie d\'inventaire</button>');
+  }
+
+  function creeZoneValidation () {
+    let $zoneValidation = $('<div class="validation-inventaire"></div>');
+    let $bouton = creeBoutonValidation();
+    $zoneValidation.append($bouton);
+    return $zoneValidation;
+  }
+
   function creeFormulaire () {
     let $formulaireSaisie = $('<form class="formulaire-saisie-inventaire invisible"></form>');
     let $liste = creeListe();
-    $formulaireSaisie.append($liste);
+    let $zoneValidation = creeZoneValidation();
+    $formulaireSaisie.append($liste, $zoneValidation);
     return $formulaireSaisie;
   }
 
   function creeBoutonSaisie ($formulaireSaisie) {
-    let $boutonSaisie = $('<div class="affiche-saisie">Saisir inventaire</div>');
+    let $boutonSaisie = $('<button type="button" class="affiche-saisie">Saisir inventaire</button>');
     let $overlay = $('<div class="overlay invisible"></div>');
     let $elementsCombines = $boutonSaisie.add($overlay);
 

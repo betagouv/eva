@@ -1,21 +1,17 @@
 .affiche-saisie {
   position: absolute;
-  top: 1.5rem;
+  top: 1.2rem;
   left: 18.8rem;
   padding: 0.7rem;
   background-color: teal;
   color: white;
 }
 
-.affiche-saisie:hover {
-  cursor: pointer;
-}
-
 .formulaire-saisie-inventaire {
   position: absolute;
   top: 15vh;
   left: 33vw;
-  background: ivory;
+  background: white;
   border: solid black 1px;
 
   ul {
@@ -33,6 +29,10 @@
     background: gainsboro;
   }
 
+  li:nth-child(even) {
+    background: ivory;
+  }
+
   label {
     display: inline-block;
     width: 10rem;
@@ -42,4 +42,17 @@
     width: 4rem;
     height: 1.2rem;
   }
+
+  .validation-inventaire {
+    border-top: solid black 1px;
+
+    .valide-saisie {
+      position: relative;
+      margin: 0.7rem 0.7rem 0.7rem 2.6rem;
+      padding: 0.7rem;
+      background: teal;
+      color: white;
+    }
+  }
 }
+
