@@ -6,7 +6,8 @@
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development",
     "start": "node server.js",
-    "test": "webpack --watch --mode development --progress --colors --config webpack.config-test.js&  mocha --watch --colors test_build/testBundle.js"
+    "test": "npm run --silent lint && (webpack --watch --mode development --progress --colors --config webpack.config-test.js&  mocha --watch --colors test_build/testBundle.js)",
+    "lint": "semistandard"
   },
   "engines": {
     "node": "10.11.x",
@@ -39,6 +40,7 @@
     "null-loader": "^0.1.1",
     "sass": "^1.14.3",
     "sass-loader": "^7.1.0",
+    "semistandard": "^13.0.1",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.23.1",
@@ -49,5 +51,21 @@
   "dependencies": {
     "express": "^4.16.4",
     "jquery": "^3.3.1"
+  },
+  "semistandard": {
+    "globals": [
+      "$",
+      "after",
+      "before",
+      "describe",
+      "expect",
+      "it",
+      "jQuery"
+    ],
+    "ignore": [
+      "public/",
+      "test_build/",
+      "dist/"
+    ]
   }
 }
