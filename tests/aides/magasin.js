@@ -1,31 +1,31 @@
-import { creeMagasin } from "../../src/modeles/magasin.js";
+import { creeMagasin } from '../../src/modeles/magasin.js';
 
 class MagasinEnDevenir {
-  constructor() {
+  constructor () {
     this.contenants = [];
   }
 
-  avecEnStock(...desContenants) {
+  avecEnStock (...desContenants) {
     desContenants.forEach((c) => {
       this.contenants.push(c);
     });
     return this;
   }
 
-  construit() {
+  construit () {
     let stock = { contenants: this.contenants };
     return creeMagasin(stock);
   }
 }
 
-export function unMagasin() {
+export function unMagasin () {
   return new MagasinEnDevenir();
 }
 
-export function desContenantsUnitaires(nom, quantite) {
-  return { nom: nom, type: "ContenantUnitaire", quantite: quantite };
+export function desContenantsUnitaires (nom, quantite) {
+  return { nom: nom, type: 'ContenantUnitaire', quantite: quantite };
 }
 
-export function desContenantsVrac(nom, quantite) {
-  return { nom: nom, type: "ContenantVrac", quantite: quantite };
+export function desContenantsVrac (nom, quantite) {
+  return { nom: nom, type: 'ContenantVrac', quantite: quantite };
 }

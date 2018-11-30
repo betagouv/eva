@@ -1,7 +1,7 @@
 import '../styles/app.scss';
 
-import { afficheMagasin } from "./init.js";
+import { afficheMagasin } from './init.js';
 
 jQuery(function () {
-  afficheMagasin("#magasin", jQuery);
+  afficheMagasin('#magasin', jQuery);
 });

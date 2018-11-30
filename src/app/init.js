@@ -1,5 +1,5 @@
-import "../styles/stock.scss";
+import '../styles/stock.scss';
 
-export function afficheMagasin(pointInsertion, $) {
+export function afficheMagasin (pointInsertion, $) {
   $(pointInsertion).append('<div class="stock"></div>');
 }

@@ -28,10 +28,9 @@ var config = {
   },
 
   plugins: [
-    new webpack.ProvidePlugin({ jQuery: "jquery" }),
-    new webpack.ProvidePlugin({ expect: ["chai", "expect"] })
+    new webpack.ProvidePlugin({ jQuery: 'jquery' }),
+    new webpack.ProvidePlugin({ expect: ['chai', 'expect'] })
   ]
 };
-
 
 module.exports = config;
