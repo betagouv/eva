@@ -1,10 +1,10 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-const devMode = process.env.NODE_ENV !== 'production'
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/app/index.js'),
@@ -28,15 +28,15 @@ module.exports = {
   module: {
     rules: [
       {
-        include: [path.resolve(__dirname, "src/app")],
-        loader: "babel-loader",
+        include: [path.resolve(__dirname, 'src/app')],
+        loader: 'babel-loader',
 
         options: {
-          plugins: ["@babel/plugin-syntax-dynamic-import", "@babel/plugin-proposal-object-rest-spread"],
+          plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-object-rest-spread'],
 
           presets: [
             [
-              "@babel/env",
+              '@babel/env',
               {
                 modules: false
               }
@@ -51,8 +51,8 @@ module.exports = {
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader',
-        ],
+          'sass-loader'
+        ]
       },
       {
         test: /\.(png|jpg|gif)$/i,
@@ -71,20 +71,20 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      chunkFilename: '[id].css',
+      chunkFilename: '[id].css'
     }),
     new CopyWebpackPlugin([
-      {from:'src/images',to:'images'}
+      { from: 'src/images', to: 'images' }
     ]),
     new HtmlWebpackPlugin({
       hash: true,
       template: path.resolve(__dirname, 'src/public/index.html'),
       inject: 'head'
     }),
-    new webpack.ProvidePlugin({ jQuery: "jquery" })
+    new webpack.ProvidePlugin({ jQuery: 'jquery' })
   ],
   devServer: {
     contentBase: './src/public',
-    port: 7700,
+    port: 7700
   }
 };

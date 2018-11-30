@@ -1,4 +1,4 @@
-function inventaireProduits({ contenants: contenants }) {
+function inventaireProduits ({ contenants }) {
   var inventaire = new Map();
 
   contenants.forEach(function (c) {
@@ -7,7 +7,7 @@ function inventaireProduits({ contenants: contenants }) {
       inventaire.set(clefProduit, 0);
     }
     inventaire.set(clefProduit, inventaire.get(clefProduit) + c.quantite);
-  })
+  });
 
   return Array.from(inventaire).map(([clefProduit, quantite]) => {
     let produit = JSON.parse(clefProduit);
@@ -15,7 +15,7 @@ function inventaireProduits({ contenants: contenants }) {
   });
 }
 
-export function creeMagasin(unStock) {
+export function creeMagasin (unStock) {
   let stock = unStock;
 
   return {
