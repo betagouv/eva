@@ -2,4 +2,4 @@
 bin/config.sh
 dist/
 node_modules/
-test_build/
+tests_build/
