@@ -6,7 +6,8 @@
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development",
     "start": "node server.js",
-    "test": "npm run --silent lint && (webpack --watch --mode development --progress --colors --config webpack.config-test.js&  mocha --watch --colors test_build/testBundle.js)",
+    "test": "npm run --silent lint && (webpack --watch --mode development --progress --colors --config webpack.config-test.js&  mocha --watch --colors tests_build/testBundle.js)",
+    "push": "npm run --silent lint && webpack --mode production --progress --colors --config webpack.config-test.js && mocha --colors tests_build/testBundle.js && git push",
     "lint": "semistandard"
   },
   "engines": {

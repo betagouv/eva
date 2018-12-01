@@ -5,7 +5,7 @@ const nodeExternals = require('webpack-node-externals');
 var config = {
   entry: './all-tests.js',
   output: {
-    path: path.resolve(__dirname, 'test_build'),
+    path: path.resolve(__dirname, 'tests_build'),
     filename: 'testBundle.js'
   },
   target: 'node',
