@@ -11,8 +11,8 @@ describe('vue stock', function () {
 
   it('ajoute plusieurs contenants sur les étagères', function () {
     let stock = [
-      unContenantVrac('Nova Sky', 1).deType('moyen').aLaPosition(40, 80),
-      unContenantVrac('Nova Sky', 2).deType('moyen').aLaPosition(60, 80)
+      unContenantVrac('Nova Sky', 1).deCategorie('moyen').aLaPosition(40, 80),
+      unContenantVrac('Nova Sky', 2).deCategorie('moyen').aLaPosition(60, 80)
     ];
 
     uneVueStock({
@@ -37,7 +37,7 @@ describe('vue stock', function () {
 
   it("recalcule la position des contenants si l'image est redimentionnée", function () {
     let stock = [
-      unContenantVrac('Nova Sky', 12).deType('moyen').aLaPosition(40, 80)
+      unContenantVrac('Nova Sky', 12).deCategorie('moyen').aLaPosition(40, 80)
     ];
 
     let vue = uneVueStock({

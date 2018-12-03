@@ -5,8 +5,8 @@ class Contenant {
     this.quantite = quantite;
   }
 
-  deType (sousType) {
-    this.sousType = sousType;
+  deCategorie (categorie) {
+    this.categorie = categorie;
     return this;
   }
 
