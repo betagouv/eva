@@ -14,7 +14,7 @@ describe('vue contenant', function () {
         }
       }
     }).createElement(
-      unContenantVrac('Nova Sky', 12).deType('moyen').aLaPosition(40, 80),
+      unContenantVrac('Nova Sky', 12).deCategorie('moyen').aLaPosition(40, 80),
       { width: 1400, height: 1000 }
     );
 
