@@ -1,6 +1,7 @@
-class VueContenant {
+/* global alert */
 
-  constructor(topologie) {
+class VueContenant {
+  constructor (topologie) {
     this.topologie = topologie;
   }
 
@@ -8,7 +9,7 @@ class VueContenant {
     const vue = this;
 
     const left = contenant.posX / 100.0 * dimentionsEtageres.width;
-    const top = contenant.posY / 100.0  * dimentionsEtageres.height;
+    const top = contenant.posY / 100.0 * dimentionsEtageres.height;
     const width = this.topologie.contenants[contenant.type][contenant.sousType].largeur / 100 * dimentionsEtageres.width;
     const height = this.topologie.contenants[contenant.type][contenant.sousType].hauteur / 100 * dimentionsEtageres.height;
 
@@ -27,9 +28,9 @@ class VueContenant {
 
   ouvreContenant (contenant) {
     alert('Contient ' + contenant.quantite + ' ' + (contenant.type === 'ContenantVrac' ? 'litres' : 'bouteilles') + ' ' + 'de ' + contenant.nom);
-  };
+  }
 }
 
-export function uneVueContenant(topologie) {
+export function uneVueContenant (topologie) {
   return new VueContenant(topologie);
 }

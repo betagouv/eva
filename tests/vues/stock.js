@@ -1,30 +1,28 @@
-import chai, { expect } from 'chai';
+/* global Event */
+
 import { uneVueStock } from '../../src/vues/stock.js';
-import { unContenantVrac } from "../aides/contenant.js";
+import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
-describe('vue stock', function() {
-
-  beforeEach(function() {
+describe('vue stock', function () {
+  beforeEach(function () {
     jsdom('<div id="stock"></div>');
   });
 
-  it('ajoute plusieurs contenants sur les étagères', function() {
-
+  it('ajoute plusieurs contenants sur les étagères', function () {
     let stock = [
-        unContenantVrac("Nova Sky", 1).deType("moyen").aLaPosition(40, 80),
-        unContenantVrac("Nova Sky", 2).deType("moyen").aLaPosition(60, 80)
+      unContenantVrac('Nova Sky', 1).deType('moyen').aLaPosition(40, 80),
+      unContenantVrac('Nova Sky', 2).deType('moyen').aLaPosition(60, 80)
     ];
 
     uneVueStock({
       contenants: {
-        "ContenantVrac": { "moyen": { largeur: 15, hauteur: 25 }
+        'ContenantVrac': { 'moyen': { largeur: 15, hauteur: 25 }
         }
       }
     }).affiche('stock', stock);
 
     const etageres = document.getElementById('etageres');
-    expect(etageres).to.not.be.null;
     expect(etageres.tagName).to.equal('IMG');
 
     etageres.dispatchEvent(new Event('load'));
@@ -33,22 +31,21 @@ describe('vue stock', function() {
     expect(contenantsAjoutes.length).to.equal(2);
 
     const contenants = document.getElementById('contenants');
-    expect(contenants).to.not.be.null;
     expect(contenants.childNodes[0]).to.eql(contenantsAjoutes[0]);
     expect(contenants.childNodes[1]).to.eql(contenantsAjoutes[1]);
   });
 
   it("recalcule la position des contenants si l'image est redimentionnée", function () {
     let stock = [
-        unContenantVrac("Nova Sky", 12).deType("moyen").aLaPosition(40, 80)
+      unContenantVrac('Nova Sky', 12).deType('moyen').aLaPosition(40, 80)
     ];
 
     let vue = uneVueStock({
       contenants: {
-        "ContenantVrac": { "moyen": { largeur: 15, hauteur: 25 }
+        'ContenantVrac': { 'moyen': { largeur: 15, hauteur: 25 }
         }
       }
-    })
+    });
     vue.affiche('stock', stock);
 
     const etageres = document.getElementById('etageres');
