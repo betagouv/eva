@@ -12,4 +12,35 @@
     position: absolute;
     cursor: grab;
   }
+  .invisible {
+    display: none;
+  }
+
+  .visible {
+    position: absolute;
+    left: 33.33%;
+    top: 33.33%;
+    width: 33.33%;
+    height: 10rem;
+    color: black;
+    background: no-repeat center url('../images/etiquette.png');
+    background-size: contain;
+    font-size:1.4rem;
+
+    .type, .quantite {
+      position: absolute;
+      left: 0;
+      width:100%;
+      text-align: center;
+    }
+
+    .type {
+      top: 33%;
+    }
+
+    .quantite {
+      top: 55%;
+    }
+  }
+
 }

@@ -1,4 +1,5 @@
-import { uneVueContenant } from './contenant.js';
+import { VueContenant } from './contenant.js';
+import { VueContenu } from './contenu.js';
 const imageEtageres = require('../images/stock.png');
 
 class VueStock {
@@ -6,39 +7,41 @@ class VueStock {
     this.topologie = topologie;
   }
 
-  affiche (idMagasin, contenants) {
-    const vue = this;
+  init (pointInsertion) {
+    this.stock = document.createElement('div');
+    this.stock.id = 'stock';
+    this.stock.classList.add('stock');
+    document.querySelector(pointInsertion).appendChild(this.stock);
+    return this;
+  }
 
-    const magasin = document.getElementById(idMagasin);
+  affiche (contenants) {
+    const vue = this;
 
     const etageres = document.createElement('img');
     etageres.id = 'etageres';
     etageres.src = imageEtageres;
-    magasin.appendChild(etageres);
+    this.stock.appendChild(etageres);
+
+    const vueContenu = new VueContenu();
 
     const callback = function () {
-      vue.afficheLesContenants(idMagasin, contenants, etageres);
+      vueContenu.init(vue.stock.id);
+      vue.afficheLesContenants(contenants, etageres, vueContenu);
     };
     etageres.addEventListener('load', callback);
     window.addEventListener('resize', callback);
   }
 
-  afficheLesContenants (idMagasin, contenants, etageres) {
-    let existingContenantList = document.getElementById('contenants');
-    if (existingContenantList) {
-      existingContenantList.remove();
-    }
-
-    const contenantsElements = document.createElement('div');
-    contenantsElements.id = 'contenants';
-
-    const magasin = document.getElementById(idMagasin);
-    magasin.appendChild(contenantsElements);
-
-    const vueContenant = uneVueContenant(this.topologie);
+  afficheLesContenants (contenants, etageres, vueContenu) {
+    const vueContenant = new VueContenant(this.topologie);
+    vueContenant.init(this.stock);
     contenants.forEach(function (contenant) {
-      let element = vueContenant.createElement(contenant, etageres);
-      contenantsElements.appendChild(element);
+      vueContenant.afficheUnContenant(contenant, etageres,
+        function (event) {
+          vueContenu.affiche(contenant);
+          event.stopPropagation();
+        });
     });
   }
 }
