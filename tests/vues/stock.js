@@ -6,7 +6,7 @@ import jsdom from 'jsdom-global';
 
 describe('vue stock', function () {
   beforeEach(function () {
-    jsdom('<div id="stock"></div>');
+    jsdom('<div id="magasin"></div>');
   });
 
   it('ajoute plusieurs contenants sur les étagères', function () {
@@ -15,12 +15,14 @@ describe('vue stock', function () {
       unContenantVrac('Nova Sky', 2).deCategorie('moyen').aLaPosition(60, 80)
     ];
 
-    uneVueStock({
+    const vue = uneVueStock({
       contenants: {
         'ContenantVrac': { 'moyen': { largeur: 15, hauteur: 25 }
         }
       }
-    }).affiche('stock', stock);
+    });
+    vue.init('#magasin');
+    vue.affiche(stock);
 
     const etageres = document.getElementById('etageres');
     expect(etageres.tagName).to.equal('IMG');
@@ -40,13 +42,14 @@ describe('vue stock', function () {
       unContenantVrac('Nova Sky', 12).deCategorie('moyen').aLaPosition(40, 80)
     ];
 
-    let vue = uneVueStock({
+    const vue = uneVueStock({
       contenants: {
         'ContenantVrac': { 'moyen': { largeur: 15, hauteur: 25 }
         }
       }
     });
-    vue.affiche('stock', stock);
+    vue.init('#magasin');
+    vue.affiche(stock);
 
     const etageres = document.getElementById('etageres');
     etageres.dispatchEvent(new Event('load'));

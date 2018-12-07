@@ -8,8 +8,9 @@ import { uneVueStock } from '../vues/stock.js';
 import { initialiseFormulaireSaisieInventaire } from './formulaireSaisieInventaire.js';
 
 export function afficheMagasin (pointInsertion, $) {
-  $(pointInsertion).append('<div id="stock" class="stock"></div>');
-  uneVueStock(donneesVueStock).affiche('stock', donneesStock.contenants);
+  uneVueStock(donneesVueStock)
+    .init(pointInsertion)
+    .affiche(donneesStock.contenants);
 
   let magasin = creeMagasin(donneesStock);
   initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $);
