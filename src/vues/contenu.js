@@ -10,10 +10,14 @@ export class VueContenu {
     this.element.id = 'contenu';
     document.getElementById(pointInsertion).appendChild(this.element);
     this.element.classList.add('invisible');
-    const vue = this;
-    document.body.addEventListener('click', function () {
-      vue.element.classList.replace('visible', 'invisible');
-    });
+  }
+
+  cacher () {
+    this.element.classList.replace('visible', 'invisible');
+  }
+
+  estVisible () {
+    return this.element.classList.value.split(' ').includes('visible');
   }
 
   affiche (contenant) {
