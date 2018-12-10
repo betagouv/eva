@@ -1,5 +1,3 @@
-/* global Event */
-
 import { VueContenu } from '../../src/vues/contenu.js';
 import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
@@ -37,6 +35,14 @@ describe('vue contenu', function () {
     expect(nouvelElement).to.not.equal(element);
   });
 
+  it('sais se cacher', function () {
+    vue.affiche(unContenantVrac('Nova Sky', 1));
+    vue.cacher();
+
+    const element = document.getElementById('contenu');
+    checkVisibilite(false, element);
+  });
+
   it('affiche un contenu en vrac', function () {
     vue.affiche(unContenantVrac('Nova Sky', 1));
 
@@ -46,15 +52,6 @@ describe('vue contenu', function () {
     expect(element.querySelector('#nom').textContent).to.equal('Nova Sky');
     expect(element.querySelector('#quantite').textContent).to.equal('1');
     expect(element.querySelector('#unite').textContent).to.equal('litre');
-  });
-
-  it("recache le contenu quand on clique n'importe où", function () {
-    vue.affiche(unContenantVrac('Nova Sky', 1));
-
-    document.body.dispatchEvent(new Event('click'));
-
-    const element = document.getElementById('contenu');
-    checkVisibilite(false, element);
   });
 
   it('affiche un contenu en vrac de plusieurs litres', function () {

@@ -24,6 +24,9 @@ class VueStock {
     this.stock.appendChild(etageres);
 
     const vueContenu = new VueContenu();
+    document.body.addEventListener('click', function (event) {
+      vueContenu.cacher();
+    });
 
     const callback = function () {
       vueContenu.init(vue.stock.id);
@@ -39,7 +42,11 @@ class VueStock {
     contenants.forEach(function (contenant) {
       vueContenant.afficheUnContenant(contenant, etageres,
         function (event) {
-          vueContenu.affiche(contenant);
+          if (vueContenu.estVisible()) {
+            vueContenu.cacher();
+          } else {
+            vueContenu.affiche(contenant);
+          }
           event.stopPropagation();
         });
     });
