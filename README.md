@@ -74,3 +74,15 @@ Il est également possible de demander au linter d'accepter les dépendances dé
 
 // début du code source
 ```
+
+## Crochet de pre-commit
+
+Pour créer le crochet de pre-commit à partir du fichier d'exemple de git
+```
+$ cp .git/hook/pre-commit{.sample,}
+```
+
+Pour ajouter le lancement du script de pre-commit à la fin du crochet de pre-commit :
+```
+$ echo "exec /usr/local/bin/npm run pre-commit" >> .git/hook/pre-commit
+```
