@@ -19,31 +19,27 @@ describe('vue contenant', function () {
   };
 
   beforeEach(function () {
-    jsdom('<div id="stock"></div>');
-    const stock = document.getElementById('stock');
-    vue = new VueContenant(uneTopologie);
-    vue.init(stock);
+    jsdom('<div id="contenants"></div>');
+    const contenants = document.getElementById('contenants');
+    vue = new VueContenant(uneTopologie, contenants);
   });
 
   it('crée un contenant en fonction de la taille des étagères', function () {
-    vue.afficheUnContenant(
-      unModele,
-      { width: 1400, height: 1000 }
-    );
+    vue.affiche(unModele);
 
     const contenant = document.getElementById('contenants').firstChild;
     expect(contenant.classList.value).to.contain('contenant');
     expect(contenant.getAttribute('style')).to
-      .equal('left: ' + 1400 * 40 / 100 + 'px;' +
-        ' top: ' + 1000 * 80 / 100 + 'px;' +
-        ' height: ' + 1000 * 25 / 100 + 'px;' +
-        ' width: ' + 1400 * 15 / 100 + 'px;'
+      .equal('left: ' + 40 + '%;' +
+        ' top: ' + 80 + '%;' +
+        ' width: ' + 15 + '%;' +
+        ' height: ' + 25 + '%;'
       );
   });
 
   it("affiche le contenu d'un contenant quand on clique dessus", function () {
     let afficheContenu = false;
-    vue.afficheUnContenant(unModele, { width: 1400, height: 1000 },
+    vue.affiche(unModele,
       function () {
         afficheContenu = true;
       });

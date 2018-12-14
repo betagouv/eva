@@ -2,6 +2,12 @@
   position: relative;
   height:90%;
 
+  .contenants {
+    position:absolute;
+    top: 0;
+    left: 0;
+  }
+
   img {
     position: relative;
     max-height: 94%;
@@ -10,37 +16,6 @@
 
   .contenant {
     position: absolute;
-    cursor: grab;
+    cursor: pointer;
   }
-  .invisible {
-    display: none;
-  }
-
-  .visible {
-    position: absolute;
-    left: 33.33%;
-    top: 33.33%;
-    width: 33.33%;
-    height: 10rem;
-    color: black;
-    background: no-repeat center url('../images/etiquette.png');
-    background-size: contain;
-    font-size:1.4rem;
-
-    .type, .quantite {
-      position: absolute;
-      left: 0;
-      width:100%;
-      text-align: center;
-    }
-
-    .type {
-      top: 33%;
-    }
-
-    .quantite {
-      top: 55%;
-    }
-  }
-
 }

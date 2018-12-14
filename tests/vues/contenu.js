@@ -1,57 +1,43 @@
+/* global Event */
+
 import { VueContenu } from '../../src/vues/contenu.js';
 import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu', function () {
   let vue;
+  let pointInsertion;
 
   beforeEach(function () {
     jsdom('<div id="stock"></div>');
     vue = new VueContenu();
-    vue.init('stock');
+    pointInsertion = document.getElementById('stock');
+    vue.init(pointInsertion);
   });
-
-  function checkVisibilite (expectVisible, contenu) {
-    const classes = contenu.classList.value.split(' ');
-    if (expectVisible) {
-      expect(classes).to.not.contain('invisible');
-      expect(classes).to.contain('visible');
-    } else {
-      expect(classes).to.not.contain('visible');
-      expect(classes).to.contain('invisible');
-    }
-  }
 
   it("initialise un contenu invisible tant que le contenant n'est pas ouvert", function () {
     const element = document.getElementById('contenu');
-    expect(element.classList.value).to.contain('invisible');
+    expect(element.classList).to.contain('invisible');
   });
 
-  it("re-initialise l'element du dom si on refait l'initalisation de la vue", function () {
-    const element = document.getElementById('contenu');
-    vue.init('stock');
-
-    const nouvelElement = document.getElementById('contenu');
-    expect(nouvelElement).to.not.equal(element);
-  });
-
-  it('sais se cacher', function () {
+  it('sait se cacher', function () {
     vue.affiche(unContenantVrac('Nova Sky', 1));
-    vue.cacher();
-
     const element = document.getElementById('contenu');
-    checkVisibilite(false, element);
+    element.dispatchEvent(new Event('click'));
+
+    expect(element.classList).to.contain('invisible');
   });
 
   it('affiche un contenu en vrac', function () {
     vue.affiche(unContenantVrac('Nova Sky', 1));
 
     const element = document.getElementById('contenu');
-    checkVisibilite(true, element);
+    expect(element.classList).to.not.contain('invisible');
 
-    expect(element.querySelector('#nom').textContent).to.equal('Nova Sky');
-    expect(element.querySelector('#quantite').textContent).to.equal('1');
-    expect(element.querySelector('#unite').textContent).to.equal('litre');
+    const etiquette = element.querySelector('.etiquette');
+    expect(etiquette.querySelector('#nom').textContent).to.equal('Nova Sky');
+    expect(etiquette.querySelector('#quantite').textContent).to.equal('1');
+    expect(etiquette.querySelector('#unite').textContent).to.equal('litre');
   });
 
   it('affiche un contenu en vrac de plusieurs litres', function () {
