@@ -1,0 +1,38 @@
+.stock {
+
+  .contenu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .etiquette {
+    position: absolute;
+    left: 33.33%;
+    top: 33.33%;
+    width: 33.33%;
+    height: 10rem;
+    color: black;
+    background: url('../images/etiquette.png') no-repeat center/contain;
+    font-size: 1.4rem;
+
+    .type, .quantite {
+      position: absolute;
+      left: 0;
+      width:100%;
+      text-align: center;
+    }
+
+    .type {
+      top: 33%;
+    }
+
+    .quantite {
+      top: 55%;
+    }
+  }
+}

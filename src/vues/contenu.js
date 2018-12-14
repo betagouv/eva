@@ -1,33 +1,30 @@
 import pluralize from 'pluralize';
+import '../styles/contenu.scss';
 
 export class VueContenu {
   init (pointInsertion) {
-    this.element = document.getElementById('contenu');
-    if (this.element) {
-      this.element.remove();
-    }
     this.element = document.createElement('div');
     this.element.id = 'contenu';
-    document.getElementById(pointInsertion).appendChild(this.element);
+    pointInsertion.appendChild(this.element);
+    this.element.classList.add('contenu');
     this.element.classList.add('invisible');
-  }
-
-  cacher () {
-    this.element.classList.replace('visible', 'invisible');
-  }
-
-  estVisible () {
-    return this.element.classList.value.split(' ').includes('visible');
+    const vue = this;
+    this.element.addEventListener('click', function (event) {
+      vue.element.classList.add('invisible');
+      event.stopPropagation();
+    });
   }
 
   affiche (contenant) {
     this.element.innerHTML = `
-      <label class="type" id="nom">${contenant.nom}</label>
-      <div class="quantite">
-        <label id="quantite">${contenant.quantite}</label>
-        <label id="unite">${pluralize('litre', contenant.quantite)}</label>
+      <div class="etiquette">
+        <label class="type" id="nom">${contenant.nom}</label>
+        <div class="quantite">
+          <label id="quantite">${contenant.quantite}</label>
+          <label id="unite">${pluralize('litre', contenant.quantite)}</label>
+        </div>
       </div>
     `;
-    this.element.classList.replace('invisible', 'visible');
+    this.element.classList.remove('invisible');
   }
 }
