@@ -10,9 +10,8 @@ describe('vue contenu', function () {
 
   beforeEach(function () {
     jsdom('<div id="stock"></div>');
-    vue = new VueContenu();
     pointInsertion = document.getElementById('stock');
-    vue.init(pointInsertion);
+    vue = new VueContenu(pointInsertion);
   });
 
   it("initialise un contenu invisible tant que le contenant n'est pas ouvert", function () {

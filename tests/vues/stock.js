@@ -14,13 +14,12 @@ describe('vue stock', function () {
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
-    vue = new VueStock({
+    vue = new VueStock('#magasin', {
       contenants: {
         'ContenantVrac': { 'moyen': { largeur: 15, hauteur: 25 }
         }
       }
     });
-    vue.init('#magasin');
   });
 
   it('ajoute plusieurs contenants sur les étagères', function () {
