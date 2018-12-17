@@ -8,9 +8,8 @@ export class VueContenu {
     pointInsertion.appendChild(this.element);
     this.element.classList.add('contenu');
     this.element.classList.add('invisible');
-    const vue = this;
-    this.element.addEventListener('click', function (event) {
-      vue.element.classList.add('invisible');
+    this.element.addEventListener('click', (event) => {
+      this.element.classList.add('invisible');
       event.stopPropagation();
     });
   }

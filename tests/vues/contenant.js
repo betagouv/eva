@@ -21,11 +21,11 @@ describe('vue contenant', function () {
   beforeEach(function () {
     jsdom('<div id="contenants"></div>');
     const contenants = document.getElementById('contenants');
-    vue = new VueContenant(uneTopologie, contenants);
+    vue = new VueContenant(uneTopologie, contenants, unModele);
   });
 
-  it('crée un contenant en fonction de la taille des étagères', function () {
-    vue.affiche(unModele);
+  it('affiche un contenant en fonction du modèle et de la topologie', function () {
+    vue.affiche();
 
     const contenant = document.getElementById('contenants').firstChild;
     expect(contenant.classList.value).to.contain('contenant');
@@ -39,10 +39,9 @@ describe('vue contenant', function () {
 
   it("affiche le contenu d'un contenant quand on clique dessus", function () {
     let afficheContenu = false;
-    vue.affiche(unModele,
-      function () {
-        afficheContenu = true;
-      });
+    vue.affiche(function () {
+      afficheContenu = true;
+    });
 
     const contenant = document.getElementsByClassName('contenant')[0];
     contenant.dispatchEvent(new Event('click'));
