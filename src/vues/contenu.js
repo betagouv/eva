@@ -1,4 +1,5 @@
 import pluralize from 'pluralize';
+import '../styles/commun.scss';
 import '../styles/contenu.scss';
 
 export class VueContenu {
