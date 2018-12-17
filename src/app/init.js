@@ -1,14 +1,13 @@
-import '../styles/stock.scss';
+import '../styles/etageres.scss';
 
 import donneesStock from '../data/stock.json';
-import donneesVueStock from '../data/vueStock.json';
 import { creeMagasin } from '../modeles/magasin.js';
-import { VueStock } from '../vues/stock.js';
+import { VueEtageres } from '../vues/etageres.js';
 
 import { initialiseFormulaireSaisieInventaire } from './formulaireSaisieInventaire.js';
 
 export function afficheMagasin (pointInsertion, $) {
-  new VueStock(pointInsertion, donneesVueStock)
+  new VueEtageres(pointInsertion)
     .affiche(donneesStock.contenants);
 
   let magasin = creeMagasin(donneesStock);

@@ -15,9 +15,9 @@ describe('Le magasin', function () {
   });
 
   it("sait s'afficher dans une page web", function () {
-    expect($('.stock').length).to.equal(0);
+    expect($('.etageres').length).to.equal(0);
     afficheMagasin('#magasin', $);
-    expect($('#magasin .stock').length).to.equal(1);
+    expect($('#magasin .etageres').length).to.equal(1);
   });
 
   it("sait afficher un bouton pour saisir l'inventaire", function () {
