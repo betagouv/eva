@@ -3,16 +3,12 @@ import { VueContenu } from './contenu.js';
 const imageEtageres = require('../images/stock.png');
 
 export class VueStock {
-  constructor (topologie) {
+  constructor (pointInsertion, topologie) {
     this.topologie = topologie;
-  }
-
-  init (pointInsertion) {
     this.stock = document.createElement('div');
     this.stock.id = 'stock';
     this.stock.classList.add('stock');
     document.querySelector(pointInsertion).appendChild(this.stock);
-    return this;
   }
 
   creerElementContenants (dimensionsEtageres) {
@@ -40,8 +36,7 @@ export class VueStock {
     etageres.src = imageEtageres;
     this.stock.appendChild(etageres);
 
-    const vueContenu = new VueContenu();
-    vueContenu.init(this.stock);
+    const vueContenu = new VueContenu(this.stock);
 
     const callback = function () {
       const elementContenants = vue.creerElementContenants(etageres);

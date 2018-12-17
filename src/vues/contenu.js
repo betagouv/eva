@@ -2,7 +2,7 @@ import pluralize from 'pluralize';
 import '../styles/contenu.scss';
 
 export class VueContenu {
-  init (pointInsertion) {
+  constructor (pointInsertion) {
     this.element = document.createElement('div');
     this.element.id = 'contenu';
     pointInsertion.appendChild(this.element);

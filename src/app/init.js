@@ -8,8 +8,7 @@ import { VueStock } from '../vues/stock.js';
 import { initialiseFormulaireSaisieInventaire } from './formulaireSaisieInventaire.js';
 
 export function afficheMagasin (pointInsertion, $) {
-  new VueStock(donneesVueStock)
-    .init(pointInsertion)
+  new VueStock(pointInsertion, donneesVueStock)
     .affiche(donneesStock.contenants);
 
   let magasin = creeMagasin(donneesStock);
