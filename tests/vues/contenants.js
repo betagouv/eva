@@ -1,12 +1,14 @@
 /* global Event */
 
 import { VueContenants } from '../../src/vues/contenants.js';
+import { MockJournal } from '../aides/mockJournal.js';
 import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenants', function () {
   let vue;
   let imageEtageres;
+  let journal;
 
   const stock = [
     unContenantVrac('Nova Sky', 1).deCategorie('moyen').aLaPosition(40, 80),
@@ -17,7 +19,8 @@ describe('vue contenants', function () {
     jsdom('<div id="stock"></div>');
     const pointInsertion = document.getElementById('stock');
     imageEtageres = { width: 100, height: 50 };
-    vue = new VueContenants(pointInsertion, imageEtageres);
+    journal = new MockJournal();
+    vue = new VueContenants(pointInsertion, imageEtageres, journal);
   });
 
   it("crée un point d'insertion pour tous les contenants", function () {
@@ -47,5 +50,26 @@ describe('vue contenants', function () {
     expect(contenants.style.height).to.equal('50px');
     expect(contenants.childNodes[0]).to.equal(contenantsAjoutes[0]);
     expect(contenants.childNodes[1]).to.equal(contenantsAjoutes[1]);
+  });
+
+  it('affiche le contenu quand on clique sur un contenant', function () {
+    let contenantAffiche;
+    vue.afficheLesContenants(stock, { affiche: (contenant) => {
+      contenantAffiche = contenant;
+    } });
+
+    document.getElementsByClassName('contenant')[0]
+      .dispatchEvent(new Event('click'));
+
+    expect(contenantAffiche).to.equal(stock[0]);
+  });
+
+  it('journalise le contenant quand on clique dessus', function () {
+    vue.afficheLesContenants(stock, { affiche: () => {} });
+
+    document.getElementsByClassName('contenant')[0]
+      .dispatchEvent(new Event('click'));
+
+    expect(journal.getContenu()).to.eql([{ type: 'ouvrirContenant', valeur: stock[0] }]);
   });
 });

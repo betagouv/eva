@@ -3,7 +3,8 @@ import { VueContenu } from './contenu.js';
 const imageEtageres = require('../images/etageres.png');
 
 export class VueEtageres {
-  constructor (pointInsertion) {
+  constructor (pointInsertion, journal) {
+    this.journal = journal;
     this.element = document.createElement('div');
     this.element.id = 'etageres';
     this.element.classList.add('etageres');
@@ -17,7 +18,7 @@ export class VueEtageres {
     this.element.appendChild(etageres);
 
     const vueContenu = new VueContenu(this.element);
-    const vueContenants = new VueContenants(this.element, etageres);
+    const vueContenants = new VueContenants(this.element, etageres, this.journal);
 
     const callback = function () {
       vueContenants.afficheLesContenants(contenants, vueContenu);

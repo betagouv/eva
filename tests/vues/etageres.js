@@ -2,6 +2,7 @@
 
 import { VueEtageres } from '../../src/vues/etageres.js';
 import { unContenantVrac } from '../aides/contenant.js';
+import { MockJournal } from '../aides/mockJournal.js';
 import jsdom from 'jsdom-global';
 
 describe('vue etagères', function () {
@@ -14,12 +15,7 @@ describe('vue etagères', function () {
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
-    vue = new VueEtageres('#magasin', {
-      contenants: {
-        'ContenantVrac': { 'moyen': { largeur: 15, hauteur: 25 }
-        }
-      }
-    });
+    vue = new VueEtageres('#magasin', new MockJournal());
   });
 
   it('ajoute plusieurs contenants sur les étagères', function () {
@@ -32,17 +28,5 @@ describe('vue etagères', function () {
 
     const contenantsAjoutes = document.getElementsByClassName('contenant');
     expect(contenantsAjoutes.length).to.equal(2);
-  });
-
-  it('affiche le contenu quand on clique sur un contenant', function () {
-    vue.affiche(stock);
-
-    const etageres = document.getElementById('imageEtageres');
-    etageres.dispatchEvent(new Event('load'));
-
-    document.getElementsByClassName('contenant')[0]
-      .dispatchEvent(new Event('click'));
-
-    expect(document.getElementById('contenu').classList).to.not.contain('invisible');
   });
 });
