@@ -6,7 +6,7 @@ describe('Le magasin', function () {
   let $;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
+    jsdom('<div id="magasin"></div>', { url: 'http://localhost' });
     $ = jQuery(window);
   });
 

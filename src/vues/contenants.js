@@ -2,7 +2,8 @@ import { VueContenant } from './contenant.js';
 import topologie from '../data/topologieContenants.json';
 
 export class VueContenants {
-  constructor (pointInsertion, imageEtageres) {
+  constructor (pointInsertion, imageEtageres, journal) {
+    this.journal = journal;
     this.imageEtageres = imageEtageres;
     this.element = document.createElement('div');
     this.element.classList.add('contenants');
@@ -25,6 +26,7 @@ export class VueContenants {
       const vueContenant = new VueContenant(topologie, this.element, contenant);
       vueContenant.affiche((event) => {
         vueContenu.affiche(contenant);
+        this.journal.enregistre('ouvrirContenant', contenant);
         event.stopPropagation();
       });
     });
