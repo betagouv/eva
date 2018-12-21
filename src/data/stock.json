@@ -1,6 +1,4 @@
 {
-  "width": 1469,
-  "height": 1023,
   "contenants": [
     { "nom": "Vrac SKY", "type": "ContenantVrac", "categorie": "moyen", "quantite": 25, "posX": 7.3, "posY": 3.0 },
     { "nom": "Vrac TERRA", "type": "ContenantVrac", "categorie": "grand", "quantite": 33, "posX": 4.4, "posY": 56.0 },
