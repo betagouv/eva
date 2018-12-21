@@ -2,6 +2,7 @@
   "name": "competences-pro",
   "version": "0.0.1",
   "description": "Évaluer en ligne les compétences pro à travers des mises en situation",
+  "license": "AGPL-3.0-only",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development",

@@ -4,6 +4,9 @@
 
 https://beta.gouv.fr/startup/competences-pro.html
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
+
 ## Démarrer un serveur Webpack en local (mode développement)
 
 Installer `npm` si nécessaire, et exécuter la commande suivante.
@@ -46,8 +49,6 @@ $ bin/prod_deploy.sh
 
 ## Travailler avec le linter
 
-[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
-
 Quand on lance les tests, le linter `semistandard` est executé automatiquement avant de démarrer les tests en mode "watch".
 
 Pour demander au linter de tenter de corriger les problèmes lancer :
@@ -83,3 +84,7 @@ exec /usr/local/bin/npm run lint -- --silent
 ```
 
 Si vous êtes partis du template `.git/hooks/pre-commit.sample` vous pouvez simplement remplacer la ligne `exec git diff-index --check --cached $against --` car le linter fera le travail de vérification des espaces.
+
+## Licence
+
+Ce logiciel et son code source sont distribués sous [licence AGPL](https://www.gnu.org/licenses/why-affero-gpl.fr.html).
