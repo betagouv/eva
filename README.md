@@ -44,7 +44,7 @@ Ensuite, lancer le déploiement.
 $ bin/prod_deploy.sh
 ```
 
-## travailler avec le linter
+## Travailler avec le linter
 
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
 
@@ -74,3 +74,12 @@ Il est également possible de demander au linter d'accepter les dépendances dé
 
 // début du code source
 ```
+
+Tous les commits doivent passer le linter. À ce titre, nous recommandons
+d'ajouter la ligne suivante à la fin du script `.git/hooks/pre-commit`, à condition que votre script ne contienne pas déjà une commande `exec` :
+
+```
+exec /usr/local/bin/npm run lint -- --silent
+```
+
+Si vous êtes partis du template `.git/hooks/pre-commit.sample` vous pouvez simplement remplacer la ligne `exec git diff-index --check --cached $against --` car le linter fera le travail de vérification des espaces.
