@@ -7,7 +7,7 @@ import { initialiseFormulaireSaisieInventaire } from '../vues/formulaireSaisieIn
 import { Journal } from '../infra/journal.js';
 
 export function afficheMagasin (pointInsertion, $) {
-  new VueEtageres(pointInsertion, new Journal())
+  new VueEtageres(pointInsertion, new Journal(Date.now))
     .affiche(donneesStock.contenants);
 
   let magasin = creeMagasin(donneesStock);
