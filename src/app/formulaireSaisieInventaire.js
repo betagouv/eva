@@ -2,7 +2,7 @@ import '../styles/commun.scss';
 import '../styles/formulaireSaisieInventaire.scss';
 import '../styles/overlay.scss';
 
-export function creeFormulaireSaisieInventaire (produits, $) {
+function creeFormulaireSaisieInventaire (produits, $) {
   let $formulaireSaisie = $('<div class="formulaire-saisie-inventaire invisible"></div>');
   let $liste = $('<ul></ul>');
 
