@@ -30,4 +30,15 @@ describe('le depot du journal', function () {
     const lignes = JSON.parse(window.localStorage.getItem('journal'));
     expect(lignes.length).to.equal(2);
   });
+
+  it('retourne les lignes du journal', function () {
+    journal.enregistre({ cle: 'valeur' });
+    journal.enregistre({ cle: 'valeur2' });
+
+    expect(journal.evenements()).to.eql([
+      { 'cle': 'valeur' },
+      { 'cle': 'valeur2' }
+    ]
+    );
+  });
 });

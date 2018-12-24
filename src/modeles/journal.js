@@ -9,8 +9,12 @@ export class Journal {
       {
         date: this.maintenant(),
         type: 'ouvertureContenant',
-        valeur: contenant
+        description: contenant
       }
     );
+  }
+
+  evenements () {
+    return this.depot.evenements();
   }
 }

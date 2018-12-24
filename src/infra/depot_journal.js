@@ -9,7 +9,10 @@ export class DepotJournal {
 
   enregistre (ligne) {
     this.lignes.push(ligne);
-
     window.localStorage.setItem('journal', JSON.stringify(this.lignes));
+  }
+
+  evenements () {
+    return this.lignes;
   }
 }

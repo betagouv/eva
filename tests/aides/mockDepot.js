@@ -7,7 +7,7 @@ export class MockDepot {
     this.enregistrements.push(object);
   }
 
-  getContenu () {
+  evenements () {
     return this.enregistrements;
   }
 }
