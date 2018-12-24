@@ -22,18 +22,18 @@ describe('le journal', function () {
     journal.enregistreOuvertureContenant(stock[0]);
     journal.enregistreOuvertureContenant(stock[1]);
 
-    const enregistrement = mockDepot.getContenu();
+    const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(2);
     expect(enregistrement).to.eql([
       {
         date: 123,
         type: 'ouvertureContenant',
-        valeur: stock[0]
+        description: stock[0]
       },
       {
         date: 123,
         type: 'ouvertureContenant',
-        valeur: stock[1]
+        description: stock[1]
       }
     ]);
   });
