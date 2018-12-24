@@ -7,10 +7,13 @@ const webpack = require('webpack');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/app/index.js'),
+  entry: {
+    situationInventaire: path.resolve(__dirname, 'src/app/situationInventaire.js'),
+    restitutionSituationInventaire: path.resolve(__dirname, 'src/app/restitutionSituationInventaire.js')
+  },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'js/bundle.js',
+    filename: 'js/[name].js',
     publicPath: '/' // public URL of the output directory when referenced in a browser
   },
   optimization: {
@@ -78,7 +81,15 @@ module.exports = {
     ]),
     new HtmlWebpackPlugin({
       hash: true,
-      template: path.resolve(__dirname, 'src/public/index.html'),
+      template: path.resolve(__dirname, 'src/public/template_index.html'),
+      chunks: ['situationInventaire'],
+      inject: 'head'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'restitution.html',
+      hash: true,
+      template: path.resolve(__dirname, 'src/public/template_index.html'),
+      chunks: ['restitutionSituationInventaire'],
       inject: 'head'
     }),
     new webpack.ProvidePlugin({ jQuery: 'jquery' })
