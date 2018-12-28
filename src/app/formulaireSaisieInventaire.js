@@ -43,7 +43,5 @@ function creeFormulaireSaisieInventaire (produits, $) {
 export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $) {
   let $formulaireSaisie = creeFormulaireSaisieInventaire(magasin.produitsEnStock(), $);
   let $boutonSaisie = creeBoutonSaisie($formulaireSaisie, $);
-
-  $boutonSaisie.appendTo(pointInsertion);
-  $formulaireSaisie.appendTo(pointInsertion);
+  $(pointInsertion).append($boutonSaisie, $formulaireSaisie);
 }
