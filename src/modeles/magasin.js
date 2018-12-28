@@ -1,3 +1,5 @@
+import { nouvelInventaireReference } from './inventaireReference.js';
+
 function inventaireProduits ({ contenants }) {
   var inventaire = new Map();
 
@@ -24,6 +26,7 @@ export function creeMagasin (unStock) {
   let produits = inventaireProduits(unStock);
 
   return {
+    inventaireReference: () => { return nouvelInventaireReference(produits); },
     produitsEnStock: () => { return produits; }
   };
 }

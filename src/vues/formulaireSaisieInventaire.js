@@ -7,7 +7,9 @@ function basculeVisibilite ($element) {
 }
 
 export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation) {
+  const ID_FORMULAIRE_SAISIE = 'formulaire-saisie-inventaire';
   let produits = magasin.produitsEnStock();
+  let inventaireReference = magasin.inventaireReference();
 
   function creeItem (idProduit, nomProduit) {
     return $(`
@@ -25,9 +27,25 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
     return $liste;
   }
 
+  function extraisReponses () {
+    var reponses = new Map();
+
+    $(`#${ID_FORMULAIRE_SAISIE} input`).each(function () {
+      let $input = $(this);
+      reponses.set($input.attr('id'), { quantite: $input.val() });
+    });
+
+    return reponses;
+  }
+
   function creeBoutonValidation () {
     let $bouton = $('<button type="button" class="valide-saisie">Valider la saisie d\'inventaire</button>');
-    $bouton.click(function () { callbackValidation(true); }); // pour de faux
+    $bouton.click(function () {
+      let reponses = extraisReponses();
+      let saisieValide = inventaireReference.valide(reponses);
+      callbackValidation(saisieValide);
+    });
+
     return $bouton;
   }
 
@@ -39,7 +57,9 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   }
 
   function creeFormulaire () {
-    let $formulaireSaisie = $('<form class="formulaire-saisie-inventaire invisible"></form>');
+    let $formulaireSaisie = $(`
+      <form id="${ID_FORMULAIRE_SAISIE}" class="formulaire-saisie-inventaire invisible"></form>
+    `);
     let $liste = creeListe();
     let $zoneValidation = creeZoneValidation();
     $formulaireSaisie.append($liste, $zoneValidation);
