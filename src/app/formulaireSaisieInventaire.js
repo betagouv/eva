@@ -2,17 +2,27 @@ import '../styles/commun.scss';
 import '../styles/formulaireSaisieInventaire.scss';
 import '../styles/overlay.scss';
 
+function creeItem (nomProduit, $) {
+  return $('<li></li>').text(nomProduit);
+}
+
+function creeListe (produits, $) {
+  let $liste = $('<ul></ul>');
+  let items = produits.map(function (p) { return creeItem(p.nom, $); });
+  $liste.append(items);
+
+  return $liste;
+}
+
 function creeFormulaireSaisieInventaire (produits, $) {
   let $formulaireSaisie = $('<div class="formulaire-saisie-inventaire invisible"></div>');
-  let $liste = $('<ul></ul>');
-
-  produits.forEach(function (p) {
-    let $ligneProduit = $('<li></li>').text(p.nom);
-    $liste.append($ligneProduit);
-  });
-
+  let $liste = creeListe(produits, $);
   $formulaireSaisie.append($liste);
   return $formulaireSaisie;
+}
+
+function basculeVisibilite ($element) {
+  $element.toggleClass('invisible');
 }
 
 export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $) {
@@ -31,8 +41,4 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   $boutonSaisie.appendTo(pointInsertion);
   $overlay.appendTo(pointInsertion);
   $formulaireSaisie.appendTo(pointInsertion);
-}
-
-function basculeVisibilite ($element) {
-  $element.toggleClass('invisible');
 }
