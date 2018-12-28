@@ -9,8 +9,8 @@ describe('Le magasin', function () {
     ).construit();
 
     expect(magasin.produitsEnStock()).to.eql([
-      { 'nom': 'Nova Sky', 'type': 'ContenantUnitaire', 'quantite': 12 },
-      { 'nom': 'Premium Terra', 'type': 'ContenantUnitaire', 'quantite': 3 }
+      { nom: 'Nova Sky', type: 'ContenantUnitaire', quantite: 12 },
+      { nom: 'Premium Terra', type: 'ContenantUnitaire', quantite: 3 }
     ]);
   });
 
@@ -21,7 +21,7 @@ describe('Le magasin', function () {
     ).construit();
 
     expect(magasin.produitsEnStock()).to.eql([
-      { 'nom': 'Nova Sky', 'type': 'ContenantUnitaire', 'quantite': 15 }
+      { nom: 'Nova Sky', type: 'ContenantUnitaire', quantite: 15 }
     ]);
   });
 
@@ -32,8 +32,8 @@ describe('Le magasin', function () {
     ).construit();
 
     expect(magasin.produitsEnStock()).to.eql([
-      { 'nom': 'Nova Sky', 'type': 'ContenantUnitaire', 'quantite': 12 },
-      { 'nom': 'Nova Sky', 'type': 'ContenantVrac', 'quantite': 3 }
+      { nom: 'Nova Sky', type: 'ContenantUnitaire', quantite: 12 },
+      { nom: 'Nova Sky', type: 'ContenantVrac', quantite: 3 }
     ]);
   });
 });
