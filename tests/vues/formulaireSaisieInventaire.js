@@ -1,6 +1,6 @@
 import { unContenantUnitaire } from '../aides/contenant.js';
 import { unMagasin, unMagasinVide } from '../aides/magasin.js';
-import { initialiseFormulaireSaisieInventaire } from '../../src/app/formulaireSaisieInventaire.js';
+import { initialiseFormulaireSaisieInventaire } from '../../src/vues/formulaireSaisieInventaire.js';
 
 let jsdom = require('jsdom-global');
 
