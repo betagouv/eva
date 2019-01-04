@@ -27,7 +27,6 @@ export class VueContenants {
       vueContenant.affiche((event) => {
         vueContenu.affiche(contenant);
         this.journal.enregistreOuvertureContenant(contenant);
-        event.stopPropagation();
       });
     });
   }
