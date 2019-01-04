@@ -26,10 +26,6 @@ var config = {
   target: 'node',
   externals: [nodeExternals()],
 
-  watchOptions: {
-    ignored: /node_modules/
-  },
-
   module: {
     rules: [
       {
