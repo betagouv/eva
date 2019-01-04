@@ -1,6 +1,5 @@
-export class Journal {
-  constructor (maintenant) {
-    this.maintenant = maintenant;
+export class DepotJournal {
+  constructor () {
     this.lignes = JSON.parse(window.localStorage.getItem('journal'));
     if (!this.lignes) {
       this.lignes = [];
@@ -8,14 +7,8 @@ export class Journal {
     }
   }
 
-  enregistre (typeEvenement, valeur) {
-    this.lignes.push(
-      {
-        date: this.maintenant(),
-        type: typeEvenement,
-        valeur: valeur
-      }
-    );
+  enregistre (ligne) {
+    this.lignes.push(ligne);
 
     window.localStorage.setItem('journal', JSON.stringify(this.lignes));
   }

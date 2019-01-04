@@ -1,14 +1,13 @@
 /* global Event */
 
 import { VueContenants } from '../../src/vues/contenants.js';
-import { MockJournal } from '../aides/mockJournal.js';
 import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenants', function () {
   let vue;
   let imageEtageres;
-  let journal;
+  let contenantsJournalises;
 
   const stock = [
     unContenantVrac('Nova Sky', 1).deCategorie('moyen').aLaPosition(40, 80),
@@ -19,7 +18,12 @@ describe('vue contenants', function () {
     jsdom('<div id="stock"></div>');
     const pointInsertion = document.getElementById('stock');
     imageEtageres = { width: 100, height: 50 };
-    journal = new MockJournal();
+    contenantsJournalises = [];
+    let journal = {
+      enregistreOuvertureContenant: (contenant) => {
+        contenantsJournalises.push(contenant);
+      }
+    };
     vue = new VueContenants(pointInsertion, imageEtageres, journal);
   });
 
@@ -70,6 +74,6 @@ describe('vue contenants', function () {
     document.getElementsByClassName('contenant')[0]
       .dispatchEvent(new Event('click'));
 
-    expect(journal.getContenu()).to.eql([{ type: 'ouvrirContenant', valeur: stock[0] }]);
+    expect(contenantsJournalises).to.eql([stock[0]]);
   });
 });
