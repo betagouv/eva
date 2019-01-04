@@ -25,9 +25,6 @@ var config = {
   },
   target: 'node',
   externals: [nodeExternals()],
-  node: {
-    fs: 'empty'
-  },
 
   watchOptions: {
     ignored: /node_modules/
