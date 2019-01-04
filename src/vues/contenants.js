@@ -26,7 +26,7 @@ export class VueContenants {
       const vueContenant = new VueContenant(topologie, this.element, contenant);
       vueContenant.affiche((event) => {
         vueContenu.affiche(contenant);
-        this.journal.enregistre('ouvrirContenant', contenant);
+        this.journal.enregistreOuvertureContenant(contenant);
         event.stopPropagation();
       });
     });

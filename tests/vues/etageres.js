@@ -2,7 +2,6 @@
 
 import { VueEtageres } from '../../src/vues/etageres.js';
 import { unContenantVrac } from '../aides/contenant.js';
-import { MockJournal } from '../aides/mockJournal.js';
 import jsdom from 'jsdom-global';
 
 describe('vue etagères', function () {
@@ -15,7 +14,7 @@ describe('vue etagères', function () {
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
-    vue = new VueEtageres('#magasin', new MockJournal());
+    vue = new VueEtageres('#magasin');
   });
 
   it('ajoute plusieurs contenants sur les étagères', function () {
