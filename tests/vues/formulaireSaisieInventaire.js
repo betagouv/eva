@@ -12,10 +12,15 @@ describe("Le formulaire de saisie d'inventaire", function () {
     $ = jQuery(window);
   });
 
+  it("sait afficher un bouton pour saisir l'inventaire", function () {
+    expect($('.affiche-saisie').length).to.equal(0);
+    initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $);
+    expect($('#magasin .affiche-saisie').length).to.equal(1);
+  });
+
   describe('quand on clique sur le bouton', function () {
     beforeEach(function () {
       initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $);
-      expect($('#magasin .affiche-saisie').length).to.equal(1);
     });
 
     it('affiche un overlay extérieur pour commander sa fermeture', function () {

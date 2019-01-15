@@ -1,6 +1,24 @@
 import '../styles/app.scss';
+import '../styles/etageres.scss';
 
-import { afficheMagasin } from './init.js';
+import donneesStock from '../data/stock.json';
+
+import { DepotJournal } from '../infra/depot_journal.js';
+import { Journal } from '../modeles/journal.js';
+import { creeMagasin } from '../modeles/magasin.js';
+import { VueEtageres } from '../vues/etageres.js';
+import { initialiseFormulaireSaisieInventaire } from '../vues/formulaireSaisieInventaire.js';
+
+function afficheMagasin (pointInsertion, $) {
+  new VueEtageres(pointInsertion, new Journal(Date.now, new DepotJournal()))
+    .affiche(donneesStock.contenants);
+
+  let magasin = creeMagasin(donneesStock);
+  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (saisieValide) {
+    let message = saisieValide ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';
+    window.alert(message);
+  });
+}
 
 jQuery(function () {
   jQuery('body').append(`
@@ -8,5 +26,6 @@ jQuery(function () {
       <h1>Stock de boissons</h1>
     </div>
     `);
+
   afficheMagasin('#magasin', jQuery);
 });

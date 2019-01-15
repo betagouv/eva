@@ -17,6 +17,11 @@ describe('vue etagères', function () {
     vue = new VueEtageres('#magasin');
   });
 
+  it("sait s'afficher dans une page web", function () {
+    let elementsTrouves = document.querySelectorAll('#magasin .etageres');
+    expect(elementsTrouves.length).to.equal(1);
+  });
+
   it('ajoute plusieurs contenants sur les étagères', function () {
     vue.affiche(stock);
 
