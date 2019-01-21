@@ -13,10 +13,18 @@ describe('vue contenu unitaire', function () {
     element = document.getElementById('contenu-unitaire');
   });
 
-  it('affiche un contenu unitaire', function () {
+  it("sait s'afficher dans une page web", function () {
     vue.affiche(unContenantUnitaire('Nova Sky', 1));
 
     expect(element.classList).to.not.contain('invisible');
     expect(element.querySelector(':first-child').classList).to.contain('caisse');
+  });
+
+  it("sait afficher plusieurs bouteilles d'un certain type", function () {
+    vue.affiche(unContenantUnitaire('Nova Sky', 2));
+
+    const elementsBouteilles = element.querySelectorAll('.bouteille');
+    expect(Array.from(elementsBouteilles).map((node) => { return node.src; }))
+      .to.eql(['images/novasky.png', 'images/novasky.png']);
   });
 });
