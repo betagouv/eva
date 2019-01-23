@@ -7,11 +7,17 @@ import { DepotJournal } from '../infra/depot_journal.js';
 import { Journal } from '../modeles/journal.js';
 import { creeMagasin } from '../modeles/magasin.js';
 import { VueEtageres } from '../vues/etageres.js';
+import { VueFicheReferences } from '../vues/fiche_references.js';
 import { initialiseFormulaireSaisieInventaire } from '../vues/formulaireSaisieInventaire.js';
 
 function afficheMagasin (pointInsertion, $) {
-  new VueEtageres(pointInsertion, new Journal(Date.now, new DepotJournal()))
+  const lignePrincipale = document.createElement('div');
+  lignePrincipale.classList.add('ligne-principale');
+  lignePrincipale.id = 'ligne-principale';
+  document.querySelector(pointInsertion).appendChild(lignePrincipale);
+  new VueEtageres('#ligne-principale', new Journal(Date.now, new DepotJournal()))
     .affiche(donneesStock.contenants);
+  new VueFicheReferences('#ligne-principale').affiche();
 
   let magasin = creeMagasin(donneesStock);
   initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (saisieValide) {

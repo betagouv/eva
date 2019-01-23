@@ -13,3 +13,11 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.ligne-principale {
+  position: absolute;
+  height:90%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
