@@ -20,6 +20,12 @@ describe('vue contenu unitaire', function () {
     expect(element.querySelector(':first-child').classList).to.contain('caisse');
   });
 
+  it('sait afficher la couleur du contenant', function () {
+    vue.affiche(unContenantUnitaire('Nova Sky', 1).deCouleur('marron'));
+
+    expect(element.querySelector(':first-child').classList).to.contain('marron');
+  });
+
   it("sait afficher plusieurs bouteilles d'un certain type", function () {
     vue.affiche(unContenantUnitaire('Nova Sky', 2));
 

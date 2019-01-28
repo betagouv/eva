@@ -15,11 +15,12 @@ export class VueContenuUnitaire extends VueContenu {
   affiche (contenant) {
     super.affiche(contenant);
     this.element.innerHTML = `
-      <div class="caisse">
+      <div class="caisse ${contenant.couleur}">
         <div class="interieur">
         </div>
       </div>
     `;
+
     const elementInterieur = this.element.querySelector('.interieur');
 
     for (let i = 0; i < contenant.quantite; i++) {

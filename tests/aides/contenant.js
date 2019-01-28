@@ -10,6 +10,11 @@ class Contenant {
     return this;
   }
 
+  deCouleur (couleur) {
+    this.couleur = couleur;
+    return this;
+  }
+
   aLaPosition (posX, posY) {
     this.posX = posX;
     this.posY = posY;
