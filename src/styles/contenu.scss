@@ -1,30 +1,21 @@
 .etageres {
 
-  .contenu {
+  .calque {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     z-index: 100;
-    background: rgba(0, 0, 0, 0.8);
   }
 
   .caisse {
     position: absolute;
-    left: 33.33%;
-    top: 33.33%;
-    width: 20rem;
-    height: 18rem;
 
     .interieur {
-      position: absolute;
-      left: 3rem;
-      top: 5.5rem;
-      width: 14rem;
-      height: 7rem;
+      margin: 5.5rem 3rem 5.5rem 3rem;
       img {
-        max-height: 50%;
+        max-height: 3.5rem;
         padding-left: 0.2rem;
       }
     }
@@ -56,10 +47,6 @@
 
   .etiquette {
     position: absolute;
-    left: 33.33%;
-    top: 33.33%;
-    width: 33.33%;
-    height: 10rem;
     color: black;
     background: url('../images/etiquette.png') no-repeat center/contain;
     font-size: 1.4rem;

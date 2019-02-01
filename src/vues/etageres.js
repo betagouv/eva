@@ -17,8 +17,8 @@ export class VueEtageres {
     etageres.src = imageEtageres;
     this.element.appendChild(etageres);
 
-    const vuesContenus = new FabriqueVuesContenus(this.element);
     const vueContenants = new VueContenants(this.element, etageres, this.journal);
+    const vuesContenus = new FabriqueVuesContenus(vueContenants.element);
 
     const callback = function () {
       vueContenants.afficheLesContenants(contenants, vuesContenus);

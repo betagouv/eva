@@ -11,6 +11,7 @@ describe('vue contenu vrac', function () {
     let pointInsertion = document.getElementById('magasin');
     vue = new VueContenuVrac(pointInsertion);
     element = document.getElementById('contenu-vrac');
+    vue.element.animate = () => {};
   });
 
   it('affiche un contenu en vrac', function () {

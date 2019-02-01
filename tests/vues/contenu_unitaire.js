@@ -11,6 +11,7 @@ describe('vue contenu unitaire', function () {
     let pointInsertion = document.getElementById('magasin');
     vue = new VueContenuUnitaire(pointInsertion);
     element = document.getElementById('contenu-unitaire');
+    vue.element.animate = () => {};
   });
 
   it("sait s'afficher dans une page web", function () {

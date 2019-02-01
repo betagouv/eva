@@ -10,24 +10,24 @@ export class VueContenuUnitaire extends VueContenu {
     this.bouteilles.set("Lem'cola", require('../images/lemcola.png'));
     this.bouteilles.set('Terra Cola', require('../images/terracola.png'));
     this.bouteilles.set("O'cola", require('../images/ocola.png'));
+    this.element.classList.add('caisse');
+  }
+
+  getDimensions () {
+    return { height: '18rem', width: '20rem' };
   }
 
   affiche (contenant) {
     super.affiche(contenant);
-    this.element.innerHTML = `
-      <div class="caisse ${contenant.couleur}">
-        <div class="interieur">
-        </div>
-      </div>
-    `;
+    this.element.classList.remove(this.element.classList.item(1));
+    this.element.classList.add(contenant.couleur);
 
-    const elementInterieur = this.element.querySelector('.interieur');
-
+    this.elementInterieur.innerHTML = '';
     for (let i = 0; i < contenant.quantite; i++) {
       let bouteille = document.createElement('img');
       bouteille.classList.add('bouteille');
       bouteille.src = this.bouteilles.get(contenant.nom);
-      elementInterieur.appendChild(bouteille);
+      this.elementInterieur.appendChild(bouteille);
     }
   }
 }
