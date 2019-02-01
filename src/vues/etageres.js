@@ -19,10 +19,12 @@ export class VueEtageres {
 
     const vueContenants = new VueContenants(this.element, etageres, this.journal);
     const vuesContenus = new FabriqueVuesContenus(vueContenants.element);
+    vueContenants.afficheLesContenants(contenants, vuesContenus);
 
-    const callback = function () {
-      vueContenants.afficheLesContenants(contenants, vuesContenus);
-    };
-    etageres.addEventListener('load', callback);
+    etageres.addEventListener('load', () => {
+      setTimeout(() => {
+        vueContenants.resize();
+      }, 10);
+    });
   }
 }

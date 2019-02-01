@@ -21,7 +21,6 @@ export class VueContenants {
   }
 
   afficheLesContenants (contenants, vueContenu) {
-    this.resize();
     contenants.forEach((contenant) => {
       const vueContenant = new VueContenant(topologie, this.element, contenant);
       vueContenant.affiche((event) => {

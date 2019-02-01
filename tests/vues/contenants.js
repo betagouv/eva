@@ -50,8 +50,6 @@ describe('vue contenants', function () {
     expect(contenantsAjoutes.length).to.equal(2);
 
     const contenants = document.getElementById('contenants');
-    expect(contenants.style.width).to.equal('100px');
-    expect(contenants.style.height).to.equal('50px');
     expect(contenants.childNodes[0]).to.equal(contenantsAjoutes[0]);
     expect(contenants.childNodes[1]).to.equal(contenantsAjoutes[1]);
   });
