@@ -2,12 +2,23 @@ import '../styles/commun.scss';
 import '../styles/formulaireSaisieInventaire.scss';
 import '../styles/overlay.scss';
 
+const ID_FORMULAIRE_SAISIE = 'formulaire-saisie-inventaire';
+
 function basculeVisibilite ($element) {
   $element.toggleClass('invisible');
 }
 
+export function afficheCorrection ([idProduit, reponseCorrecte], $) {
+  let $marque = reponseCorrecte
+    ? $('<span class="reponse-correcte">✓</span>')
+    : $('<span class="reponse-incorrecte">✗</span>');
+  let selecteurEmplacementMarque = `#${ID_FORMULAIRE_SAISIE} input#${idProduit}`;
+
+  $(`${selecteurEmplacementMarque} + span[class^="reponse-"]`).remove();
+  $marque.insertAfter($(selecteurEmplacementMarque));
+}
+
 export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation) {
-  const ID_FORMULAIRE_SAISIE = 'formulaire-saisie-inventaire';
   let produits = magasin.produitsEnStock();
   let inventaireReference = magasin.inventaireReference();
 

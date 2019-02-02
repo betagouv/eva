@@ -8,7 +8,7 @@ import { Journal } from '../modeles/journal.js';
 import { creeMagasin } from '../modeles/magasin.js';
 import { VueEtageres } from '../vues/etageres.js';
 import { VueFicheReferences } from '../vues/fiche_references.js';
-import { initialiseFormulaireSaisieInventaire } from '../vues/formulaireSaisieInventaire.js';
+import { afficheCorrection, initialiseFormulaireSaisieInventaire } from '../vues/formulaireSaisieInventaire.js';
 
 function afficheMagasin (pointInsertion, $) {
   const lignePrincipale = document.createElement('div');
@@ -20,8 +20,11 @@ function afficheMagasin (pointInsertion, $) {
   new VueFicheReferences('#ligne-principale').affiche();
 
   let magasin = creeMagasin(donneesStock);
-  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (saisieValide) {
-    let message = saisieValide ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';
+  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (resultatValidation) {
+    let toutCorrect = Array.from(resultatValidation.values()).every(v => v);
+    let message = toutCorrect ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';
+
+    Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
     window.alert(message);
   });
 }

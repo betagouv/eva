@@ -10,12 +10,14 @@ function quantiteProduit (clefProduit, inventaire) {
 }
 
 function valide (reponses, inventaireReference) {
-  if (!ontLesMemesClefs(reponses, inventaireReference)) return false;
+  if (!ontLesMemesClefs(reponses, inventaireReference)) throw new Error();
 
-  let clefsProduits = Array.from(inventaireReference.keys());
-  return clefsProduits.every((clef) => {
-    return quantiteProduit(clef, reponses) === quantiteProduit(clef, inventaireReference);
+  let inventaire = Array.from(inventaireReference);
+  let resultat = inventaire.map(([k, v]) => {
+    let reponseCorrecte = (quantiteProduit(k, reponses) === quantiteProduit(k, inventaireReference));
+    return [k, reponseCorrecte];
   });
+  return new Map(resultat);
 }
 
 export function nouvelInventaireReference (inventaire) {

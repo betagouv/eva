@@ -1,6 +1,6 @@
 import { unContenantUnitaire } from '../aides/contenant.js';
 import { unMagasin, unMagasinVide } from '../aides/magasin.js';
-import { initialiseFormulaireSaisieInventaire } from '../../src/vues/formulaireSaisieInventaire.js';
+import { afficheCorrection, initialiseFormulaireSaisieInventaire } from '../../src/vues/formulaireSaisieInventaire.js';
 
 let jsdom = require('jsdom-global');
 
@@ -90,7 +90,9 @@ describe("Le formulaire de saisie d'inventaire", function () {
     ).construit();
 
     let verifieValidite = function (saisieValide) {
-      expect(saisieValide).to.be(true);
+      expect(Array.from(saisieValide)).to.eql([
+        ['0', true]
+      ]);
       done();
     };
 
@@ -100,5 +102,22 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
     $zoneSaisieInventaire.val(12);
     $boutonValidationSaisie.click();
+  });
+
+  it('sait afficher une maque correcte ou incorrecte', function () {
+    let magasin = unMagasin().avecEnStock(
+      unContenantUnitaire('Nova Sky', 12)
+    ).construit();
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, () => {});
+    expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(0);
+    expect($('.formulaire-saisie-inventaire span.reponse-incorrecte').length).to.equal(0);
+
+    afficheCorrection(['0', true], $);
+    expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(1);
+    expect($('.formulaire-saisie-inventaire span.reponse-incorrecte').length).to.equal(0);
+
+    afficheCorrection(['0', false], $);
+    expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(0);
+    expect($('.formulaire-saisie-inventaire span.reponse-incorrecte').length).to.equal(1);
   });
 });
