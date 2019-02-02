@@ -64,7 +64,8 @@
       "describe",
       "expect",
       "it",
-      "jQuery"
+      "jQuery",
+      "xit"
     ],
     "ignore": [
       "public/",
