@@ -12,7 +12,7 @@ describe("L'inventaire de référence", function () {
 
     let inventaireReference = nouvelInventaireReference(inventaire);
     let saisieValide = inventaireReference.valide(reponsesUtilisateur);
-    expect(saisieValide).to.be(true);
+    expect(Array.from(saisieValide)).to.eql([['0', true]]);
   });
 
   it('sait valider les réponses incorrectes', function () {
@@ -28,10 +28,13 @@ describe("L'inventaire de référence", function () {
 
     let inventaireReference = nouvelInventaireReference(inventaire);
     let saisieValide = inventaireReference.valide(reponsesUtilisateur);
-    expect(saisieValide).to.be(false);
+    expect(Array.from(saisieValide)).to.eql([
+      ['0', true],
+      ['1', false]
+    ]);
   });
 
-  it("déclare les réponses incorrectes quand le nombre de réponses diffère de celui de produits dans l'inventaire", function () {
+  it("lance une exception quand le nombre de réponses diffère de celui de produits dans l'inventaire", function () {
     let inventaire = new Map([
       ['0', { quantite: 12 }]
     ]);
@@ -42,8 +45,7 @@ describe("L'inventaire de référence", function () {
     ]);
 
     let inventaireReference = nouvelInventaireReference(inventaire);
-    let saisieValide = inventaireReference.valide(reponsesUtilisateur);
-    expect(saisieValide).to.be(false);
+    expect(() => { inventaireReference.valide(reponsesUtilisateur); }).to.throwError();
   });
 
   it("déclare les réponses incorrectes quand un identifiant produit n'est pas dans l'inventaire", function () {
@@ -58,7 +60,6 @@ describe("L'inventaire de référence", function () {
     ]);
 
     let inventaireReference = nouvelInventaireReference(inventaire);
-    let saisieValide = inventaireReference.valide(reponsesUtilisateur);
-    expect(saisieValide).to.be(false);
+    expect(() => { inventaireReference.valide(reponsesUtilisateur); }).to.throwError();
   });
 });
