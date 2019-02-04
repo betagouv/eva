@@ -1,5 +1,4 @@
 import { VueContenant } from './contenant.js';
-import topologie from '../data/topologieContenants.json';
 
 export class VueContenants {
   constructor (pointInsertion, imageEtageres, journal) {
@@ -22,7 +21,7 @@ export class VueContenants {
 
   afficheLesContenants (contenants, vueContenu) {
     contenants.forEach((contenant) => {
-      const vueContenant = new VueContenant(topologie, this.element, contenant);
+      const vueContenant = new VueContenant(this.element, contenant);
       vueContenant.affiche((event) => {
         vueContenu.affiche(contenant);
         this.journal.enregistreOuvertureContenant(contenant);

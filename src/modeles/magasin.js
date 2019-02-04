@@ -1,4 +1,5 @@
 import { nouvelInventaireReference } from './inventaireReference.js';
+import { Contenant } from './contenant.js';
 
 function inventaireProduits ({ contenants }) {
   var inventaire = new Map();
@@ -22,11 +23,19 @@ function inventaireProduits ({ contenants }) {
   return resultat;
 }
 
+function creerContenants (unStock) {
+  return unStock.contenants.map((contenant) => {
+    return new Contenant(contenant);
+  });
+}
+
 export function creeMagasin (unStock) {
-  let produits = inventaireProduits(unStock);
+  const produits = inventaireProduits(unStock);
+  const contenants = creerContenants(unStock);
 
   return {
     inventaireReference: () => { return nouvelInventaireReference(produits); },
-    produitsEnStock: () => { return produits; }
+    produitsEnStock: () => { return produits; },
+    contenants: () => { return contenants; }
   };
 }
