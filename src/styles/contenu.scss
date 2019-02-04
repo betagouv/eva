@@ -1,5 +1,19 @@
 .etageres {
 
+  .contenu {
+    transition: transform .2s;
+  }
+
+  .contenu.fermer {
+    transition-timing-function: ease-in;
+    transform: scale(1,1);
+  }
+
+  .contenu.ouvrir {
+    transition-timing-function: ease-out;
+    transform: scale(2,2);
+  }
+
   .calque {
     position: absolute;
     left: 0;
@@ -13,10 +27,14 @@
     position: absolute;
 
     .interieur {
-      margin: 5.5rem 3rem 5.5rem 3rem;
-      img {
-        max-height: 3.5rem;
-        padding-left: 0.2rem;
+      position: absolute;
+      top: 30%;
+      left: 16%;
+      width: 71%;
+      height: 40%;
+      .bouteille {
+        max-height: 49%;
+        padding-left: 0.1rem;
       }
     }
   }
@@ -49,7 +67,7 @@
     position: absolute;
     color: black;
     background: url('../images/etiquette.png') no-repeat center/contain;
-    font-size: 1.4rem;
+    font-size: 0.7rem;
 
     .type, .quantite {
       position: absolute;

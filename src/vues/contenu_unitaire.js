@@ -2,7 +2,7 @@ import { VueContenu } from './contenu.js';
 
 export class VueContenuUnitaire extends VueContenu {
   constructor (pointInsertion) {
-    super(pointInsertion, 'contenu-unitaire');
+    super(pointInsertion, 'contenu-unitaire', { hauteur: 21.5, largeur: 16.5 });
     this.bouteilles = new Map();
     this.bouteilles.set('Premium Terra', require('../images/premterra.png'));
     this.bouteilles.set('Nova Sky', require('../images/novasky.png'));
@@ -13,13 +13,9 @@ export class VueContenuUnitaire extends VueContenu {
     this.element.classList.add('caisse');
   }
 
-  getDimensions () {
-    return { height: '18rem', width: '20rem' };
-  }
-
   affiche (contenant) {
     super.affiche(contenant);
-    this.element.classList.remove(this.element.classList.item(1));
+    this.element.classList.remove('marron', 'bleu', 'jaune', 'gris', 'rouge', 'vert');
     this.element.classList.add(contenant.couleur);
 
     this.elementInterieur.innerHTML = '';
