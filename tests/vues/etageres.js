@@ -1,16 +1,9 @@
-/* global Event */
-
+import { Contenant } from '../../src/modeles/contenant.js';
 import { VueEtageres } from '../../src/vues/etageres.js';
-import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
 describe('vue etagères', function () {
   let vue;
-
-  const stock = [
-    unContenantVrac('Nova Sky', 1).aLaPosition(40, 80),
-    unContenantVrac('Nova Sky', 2).aLaPosition(60, 80)
-  ];
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
@@ -20,15 +13,19 @@ describe('vue etagères', function () {
   it("sait s'afficher dans une page web", function () {
     let elementsTrouves = document.querySelectorAll('#magasin .etageres');
     expect(elementsTrouves.length).to.equal(1);
-  });
 
-  it('ajoute plusieurs contenants sur les étagères', function () {
-    vue.affiche(stock);
+    vue.affiche([]);
 
     const etageres = document.getElementById('imageEtageres');
     expect(etageres.tagName).to.equal('IMG');
+  });
 
-    etageres.dispatchEvent(new Event('load'));
+  it('ajoute plusieurs contenants sur les étagères', function () {
+    const contenants = [
+      new Contenant({ idContenu: '0', quantite: 12 }),
+      new Contenant({ idContenu: '1', quantite: 7 })
+    ];
+    vue.affiche(contenants);
 
     const contenantsAjoutes = document.getElementsByClassName('contenant');
     expect(contenantsAjoutes.length).to.equal(2);

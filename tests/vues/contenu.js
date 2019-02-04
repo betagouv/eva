@@ -1,7 +1,7 @@
 /* global Event */
 
+import { Contenant } from '../../src/modeles/contenant.js';
 import { VueContenu } from '../../src/vues/contenu.js';
-import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu', function () {
@@ -11,7 +11,7 @@ describe('vue contenu', function () {
   beforeEach(function () {
     jsdom('<div id="stock"></div>');
     let pointInsertion = document.getElementById('stock');
-    vue = new VueContenu(pointInsertion, 'id', { hauteur: 10, largeur: 10 });
+    vue = new VueContenu(pointInsertion, 'id', { hauteur: 25, largeur: 45 });
     calque = document.getElementById('id');
   });
 
@@ -20,7 +20,10 @@ describe('vue contenu', function () {
   });
 
   it('sait se cacher', function (done) {
-    vue.affiche(unContenantVrac('Nova Sky', 1));
+    const contenant = new Contenant({ idProduit: '0', quantite: 1 });
+    vue.affiche(contenant);
+    expect(calque.classList).to.not.contain('invisible');
+
     calque.dispatchEvent(new Event('click'));
 
     setTimeout(() => {
@@ -30,6 +33,6 @@ describe('vue contenu', function () {
   });
 
   it("calcule la position du contenant ouvert pour qu'il soit centré sur le contenant fermé", function () {
-    expect(vue.position(10, 20, 30)).to.equal(5);
+    expect(vue.position(50, 2, 4)).to.equal(49);
   });
 });

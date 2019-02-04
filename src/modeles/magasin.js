@@ -1,11 +1,11 @@
 import { nouvelInventaireReference } from './inventaireReference.js';
 import { Contenant } from './contenant.js';
 
-function inventaireProduits ({ contenants }) {
+function inventaireProduits ({ contenants, contenus }) {
   var inventaire = new Map();
 
   contenants.forEach(function (c) {
-    let clefProduit = JSON.stringify({ nom: c.nom, type: c.type });
+    let clefProduit = c.idContenu;
     if (!inventaire.has(clefProduit)) {
       inventaire.set(clefProduit, 0);
     }
@@ -13,19 +13,18 @@ function inventaireProduits ({ contenants }) {
   });
 
   var resultat = new Map();
-  var index = 0;
   inventaire.forEach(function (quantite, clefProduit) {
-    let produit = JSON.parse(clefProduit);
-    resultat.set(index.toString(), { nom: produit.nom, type: produit.type, quantite: quantite });
-    index += 1;
+    let produit = contenus[clefProduit];
+    resultat.set(clefProduit, { nom: produit.nom, quantite: quantite });
   });
 
   return resultat;
 }
 
-function creerContenants (unStock) {
-  return unStock.contenants.map((contenant) => {
-    return new Contenant(contenant);
+function creerContenants ({ contenants, contenus }) {
+  return contenants.map((contenant) => {
+    const contenu = contenus[contenant.idContenu];
+    return new Contenant(contenant, contenu);
   });
 }
 

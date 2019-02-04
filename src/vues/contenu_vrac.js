@@ -9,8 +9,9 @@ export class VueContenuVrac extends VueContenu {
 
   affiche (contenant) {
     super.affiche(contenant);
+
     this.elementInterieur.innerHTML = `
-      <label class="type" id="nom">${contenant.nom}</label>
+      <label class="type" id="nom">${contenant.nomProduit()}</label>
       <div class="quantite">
         <label id="quantite">${contenant.quantite}</label>
         <label id="unite">${pluralize('litre', contenant.quantite)}</label>
