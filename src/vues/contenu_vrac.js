@@ -3,12 +3,8 @@ import { VueContenu } from './contenu.js';
 
 export class VueContenuVrac extends VueContenu {
   constructor (pointInsertion) {
-    super(pointInsertion, 'contenu-vrac');
+    super(pointInsertion, 'contenu-vrac', { hauteur: 12, largeur: 13 });
     this.element.classList.add('etiquette');
-  }
-
-  getDimensions () {
-    return { height: '10rem', width: '15rem' };
   }
 
   affiche (contenant) {
