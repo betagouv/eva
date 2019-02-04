@@ -8,23 +8,16 @@ describe('vue contenant', function () {
   let vue;
 
   let unModele = unContenantVrac('Nova Sky', 12)
-    .deCategorie('moyen')
-    .aLaPosition(40, 80);
-
-  let uneTopologie = {
-    contenants: {
-      'ContenantVrac': { 'moyen': { largeur: 15, hauteur: 25 }
-      }
-    }
-  };
+    .aLaPosition(40, 80)
+    .deDimension(15, 25);
 
   beforeEach(function () {
     jsdom('<div id="contenants"></div>');
     const contenants = document.getElementById('contenants');
-    vue = new VueContenant(uneTopologie, contenants, unModele);
+    vue = new VueContenant(contenants, unModele);
   });
 
-  it('affiche un contenant en fonction du modèle et de la topologie', function () {
+  it('affiche un contenant en fonction du modèle', function () {
     vue.affiche();
 
     const contenant = document.getElementById('contenants').firstChild;

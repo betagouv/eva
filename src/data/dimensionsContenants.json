@@ -1,0 +1,11 @@
+{
+  "formes": {
+      "moyenBaril" : { "largeur": 9.2, "hauteur": 17.6 },
+      "grandBaril" : { "largeur": 11, "hauteur": 22 },
+      "petitBaril" : { "largeur": 5.7, "hauteur": 11.5 },
+      "caisse": { "largeur": 16.3, "hauteur": 9.7 },
+      "grandCarton": { "largeur": 16, "hauteur": 15.4 },
+      "moyenCarton": { "largeur": 14, "hauteur": 13.9 },
+      "petitCarton": { "largeur": 9, "hauteur": 9.5 }
+  }
+}

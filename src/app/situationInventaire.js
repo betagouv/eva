@@ -11,15 +11,15 @@ import { VueFicheReferences } from '../vues/fiche_references.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from '../vues/formulaireSaisieInventaire.js';
 
 function afficheMagasin (pointInsertion, $) {
+  let magasin = creeMagasin(donneesStock);
   const lignePrincipale = document.createElement('div');
   lignePrincipale.classList.add('ligne-principale');
   lignePrincipale.id = 'ligne-principale';
   document.querySelector(pointInsertion).appendChild(lignePrincipale);
   new VueEtageres('#ligne-principale', new Journal(Date.now, new DepotJournal()))
-    .affiche(donneesStock.contenants);
+    .affiche(magasin.contenants());
   new VueFicheReferences('#ligne-principale').affiche();
 
-  let magasin = creeMagasin(donneesStock);
   initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (resultatValidation) {
     let toutCorrect = Array.from(resultatValidation.values()).every(v => v);
     let message = toutCorrect ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';

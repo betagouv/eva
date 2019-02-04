@@ -5,8 +5,9 @@ class Contenant {
     this.quantite = quantite;
   }
 
-  deCategorie (categorie) {
-    this.categorie = categorie;
+  deDimension (largeur, hauteur) {
+    this.largeur = largeur;
+    this.hauteur = hauteur;
     return this;
   }
 

@@ -8,8 +8,8 @@ describe('vue etagères', function () {
   let vue;
 
   const stock = [
-    unContenantVrac('Nova Sky', 1).deCategorie('moyen').aLaPosition(40, 80),
-    unContenantVrac('Nova Sky', 2).deCategorie('moyen').aLaPosition(60, 80)
+    unContenantVrac('Nova Sky', 1).aLaPosition(40, 80),
+    unContenantVrac('Nova Sky', 2).aLaPosition(60, 80)
   ];
 
   beforeEach(function () {
