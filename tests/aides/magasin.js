@@ -3,6 +3,14 @@ import { creeMagasin } from '../../src/modeles/magasin.js';
 class MagasinEnDevenir {
   constructor () {
     this.contenants = [];
+    this.contenus = {};
+  }
+
+  avecCommeReferences (...desContenus) {
+    desContenus.forEach(c => {
+      this.contenus[c.idProduit] = { nom: c.nom };
+    });
+    return this;
   }
 
   avecEnStock (...desContenants) {
@@ -13,7 +21,7 @@ class MagasinEnDevenir {
   }
 
   construit () {
-    let stock = { contenants: this.contenants };
+    let stock = { contenants: this.contenants, contenus: this.contenus };
     return creeMagasin(stock);
   }
 }

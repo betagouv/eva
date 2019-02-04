@@ -1,20 +1,20 @@
 /* global Event */
 
+import { Contenant } from '../../src/modeles/contenant.js';
 import { VueContenant } from '../../src/vues/contenant.js';
-import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenant', function () {
   let vue;
 
-  let unModele = unContenantVrac('Nova Sky', 12)
-    .aLaPosition(40, 80)
-    .deDimension(15, 25);
+  let contenant = new Contenant(
+    { quantite: 12, posX: 40, posY: 80, largeur: 15, hauteur: 25 }
+  );
 
   beforeEach(function () {
     jsdom('<div id="contenants"></div>');
-    const contenants = document.getElementById('contenants');
-    vue = new VueContenant(contenants, unModele);
+    const pointInsertion = document.getElementById('contenants');
+    vue = new VueContenant(pointInsertion, contenant);
   });
 
   it('affiche un contenant en fonction du modèle', function () {
@@ -30,15 +30,12 @@ describe('vue contenant', function () {
       );
   });
 
-  it("affiche le contenu d'un contenant quand on clique dessus", function () {
-    let afficheContenu = false;
+  it("affiche le contenu d'un contenant quand on clique dessus", function (done) {
     vue.affiche(function () {
-      afficheContenu = true;
+      done();
     });
 
     const contenant = document.getElementsByClassName('contenant')[0];
     contenant.dispatchEvent(new Event('click'));
-
-    expect(afficheContenu).to.be(true);
   });
 });

@@ -1,5 +1,5 @@
+import { Contenant } from '../../src/modeles/contenant.js';
 import { VueContenuUnitaire } from '../../src/vues/contenu_unitaire.js';
-import { unContenantUnitaire } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu unitaire', function () {
@@ -15,23 +15,26 @@ describe('vue contenu unitaire', function () {
   });
 
   it("sait s'afficher dans une page web", function () {
-    vue.affiche(unContenantUnitaire('Nova Sky', 1));
+    const contenant = new Contenant({ quantite: 1 }, { nom: 'Nova Sky', image: 'chemin_image' });
+    vue.affiche(contenant);
 
     expect(element.classList).to.not.contain('invisible');
     expect(element.querySelector(':first-child').classList).to.contain('caisse');
   });
 
   it('sait afficher la couleur du contenant', function () {
-    vue.affiche(unContenantUnitaire('Nova Sky', 1).deCouleur('marron'));
+    const contenant = new Contenant({ couleur: 'marron' }, { nom: 'Nova Sky', image: 'chemin_image' });
+    vue.affiche(contenant);
 
     expect(element.querySelector(':first-child').classList).to.contain('marron');
   });
 
   it("sait afficher plusieurs bouteilles d'un certain type", function () {
-    vue.affiche(unContenantUnitaire('Nova Sky', 2));
+    const contenant = new Contenant({ quantite: 2 }, { nom: 'Nova Sky', image: 'chemin_image' });
+    vue.affiche(contenant);
 
     const elementsBouteilles = element.querySelectorAll('.bouteille');
     expect(Array.from(elementsBouteilles).map((node) => { return node.src; }))
-      .to.eql(['images/novasky.png', 'images/novasky.png']);
+      .to.eql(['chemin_image', 'chemin_image']);
   });
 });

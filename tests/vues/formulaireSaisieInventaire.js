@@ -1,4 +1,4 @@
-import { unContenantUnitaire } from '../aides/contenant.js';
+import { Contenant } from '../../src/modeles/contenant.js';
 import { unMagasin, unMagasinVide } from '../aides/magasin.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from '../../src/vues/formulaireSaisieInventaire.js';
 
@@ -57,8 +57,10 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it('affiche les noms des produits à inventorier', function () {
-    let magasin = unMagasin().avecEnStock(
-      unContenantUnitaire('Nova Sky', 12)
+    let magasin = unMagasin().avecCommeReferences(
+      { idProduit: '0', nom: 'Nova Sky' }
+    ).avecEnStock(
+      new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
@@ -67,9 +69,12 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it('affiche pour chaque produit une zone de saisie', function () {
-    let magasin = unMagasin().avecEnStock(
-      unContenantUnitaire('Nova Sky', 12),
-      unContenantUnitaire('Terra Cola', 7)
+    let magasin = unMagasin().avecCommeReferences(
+      { idProduit: '0', nom: 'Nova Sky' },
+      { idProduit: '1', nom: 'Terra Cola' }
+    ).avecEnStock(
+      new Contenant({ idContenu: '0', quantite: 12 }),
+      new Contenant({ idContenu: '1', quantite: 7 })
     ).construit();
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
@@ -85,8 +90,10 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it("valide la saisie d'inventaire avec succès", function (done) {
-    let magasin = unMagasin().avecEnStock(
-      unContenantUnitaire('Nova Sky', 12)
+    let magasin = unMagasin().avecCommeReferences(
+      { idProduit: '0', nom: 'Nova Sky' }
+    ).avecEnStock(
+      new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
     let verifieValidite = function (saisieValide) {
@@ -105,8 +112,10 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it('sait afficher une maque correcte ou incorrecte', function () {
-    let magasin = unMagasin().avecEnStock(
-      unContenantUnitaire('Nova Sky', 12)
+    let magasin = unMagasin().avecCommeReferences(
+      { idProduit: '0', nom: 'Nova Sky' }
+    ).avecEnStock(
+      new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, () => {});
     expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(0);

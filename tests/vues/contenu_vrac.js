@@ -1,5 +1,5 @@
+import { Contenant } from '../../src/modeles/contenant.js';
 import { VueContenuVrac } from '../../src/vues/contenu_vrac.js';
-import { unContenantVrac } from '../aides/contenant.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu vrac', function () {
@@ -15,7 +15,8 @@ describe('vue contenu vrac', function () {
   });
 
   it('affiche un contenu en vrac', function () {
-    vue.affiche(unContenantVrac('Nova Sky', 1));
+    const contenant = new Contenant({ quantite: 1 }, { nom: 'Nova Sky' });
+    vue.affiche(contenant);
 
     expect(element.classList).to.not.contain('invisible');
     expect(element.querySelector(':first-child').classList).to.contain('etiquette');
@@ -26,7 +27,8 @@ describe('vue contenu vrac', function () {
   });
 
   it('affiche un contenu en vrac de plusieurs litres', function () {
-    vue.affiche(unContenantVrac('Nova Sky', 2));
+    const contenant = new Contenant({ quantite: 2 }, { nom: 'Nova Sky' });
+    vue.affiche(contenant);
 
     const etiquette = element.querySelector('.etiquette');
     expect(etiquette.querySelector('#quantite').textContent).to.equal('2');
