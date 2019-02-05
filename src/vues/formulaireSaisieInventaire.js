@@ -22,10 +22,11 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   let produits = magasin.produitsEnStock();
   let inventaireReference = magasin.inventaireReference();
 
-  function creeItem (idProduit, nomProduit) {
+  function creeItem (idProduit, produit) {
     return $(`
       <li>
-        <label>${nomProduit}</label>
+        <span class="image-produit" style="background-image: url(${produit.image})"></span>
+        <label>${produit.nom}</label>
         <input id="${idProduit}" type="text">
       </li>
     `);
@@ -33,7 +34,7 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
 
   function creeListe () {
     let $liste = $('<ul></ul>');
-    let items = Array.from(produits, ([id, p]) => { return creeItem(id, p.nom); });
+    let items = Array.from(produits, ([id, p]) => { return creeItem(id, p); });
     $liste.append(items);
     return $liste;
   }

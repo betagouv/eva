@@ -15,7 +15,7 @@ function inventaireProduits ({ contenants, contenus }) {
   var resultat = new Map();
   inventaire.forEach(function (quantite, clefProduit) {
     let produit = contenus[clefProduit];
-    resultat.set(clefProduit, { nom: produit.nom, quantite: quantite });
+    resultat.set(clefProduit, { nom: produit.nom, image: produit.image, quantite: quantite });
   });
 
   return resultat;
