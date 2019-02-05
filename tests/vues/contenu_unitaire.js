@@ -24,7 +24,7 @@ describe('vue contenu unitaire', function () {
   it('sait afficher la couleur du contenant', function () {
     vue.affiche(unContenantUnitaire('Nova Sky', 1).deCouleur('marron'));
 
-    expect(element.querySelector(':first-child').classList).to.contain('marron');
+    expect(element.querySelector(':first-child').style.backgroundImage).to.eql('url(../images/carton.png)');
   });
 
   it("sait afficher plusieurs bouteilles d'un certain type", function () {

@@ -25,6 +25,7 @@
 
   .caisse {
     position: absolute;
+    background: no-repeat center/contain;
 
     .interieur {
       position: absolute;
@@ -37,30 +38,6 @@
         padding-left: 0.1rem;
       }
     }
-  }
-
-  .marron {
-    background: url('../images/carton.png') no-repeat center/contain;
-  }
-
-  .bleu {
-    background: url('../images/boite_bleue.png') no-repeat center/contain;
-  }
-
-  .jaune {
-    background: url('../images/boite_jaune.png') no-repeat center/contain;
-  }
-
-  .gris {
-    background: url('../images/boite_grise.png') no-repeat center/contain;
-  }
-
-  .rouge {
-    background: url('../images/boite_rouge.png') no-repeat center/contain;
-  }
-
-  .vert {
-    background: url('../images/boite_verte.png') no-repeat center/contain;
   }
 
   .etiquette {
