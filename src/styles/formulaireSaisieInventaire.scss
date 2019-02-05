@@ -21,7 +21,7 @@
   }
 
   li {
-    padding: 0.7em;
+    padding: 0 0.7em 1.1em;
     color: black;
   }
 
@@ -33,9 +33,20 @@
     background: ivory;
   }
 
+  .image-produit {
+    display: inline-block;
+    width: 2rem;
+    height: 2.6rem;
+    position: relative;
+    top: 0.3rem;
+    background-repeat: no-repeat;
+    background-position: bottom left 50%;
+    background-size: 1rem auto;
+  }
+
   label {
     display: inline-block;
-    width: 10rem;
+    width: 9rem;
   }
 
   input {
@@ -48,7 +59,7 @@
 
     .valide-saisie {
       position: relative;
-      margin: 0.7rem 0.7rem 0.7rem 2.6rem;
+      margin: 0.7rem 0.7rem 0.7rem 4rem;
       padding: 0.7rem;
       background: teal;
       color: white;
