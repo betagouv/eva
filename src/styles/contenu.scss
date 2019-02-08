@@ -1,7 +1,8 @@
 .etageres {
 
   .contenu {
-    transition: transform .2s;
+    // Attention de maintenir la cohérence avec DELAY_FERMETURE_CONTENANT_MILLISEC
+    transition: transform .4s;
   }
 
   .contenu.fermer {

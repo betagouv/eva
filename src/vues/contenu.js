@@ -1,7 +1,11 @@
 import '../styles/commun.scss';
 import '../styles/contenu.scss';
 
-export class VueContenu {
+// Attention de maintenir la cohérence avec le temps
+// de la transition css (class contenu)
+const DELAY_FERMETURE_CONTENANT_MILLISEC = 400;
+
+class VueContenu {
   constructor (pointInsertion, id, dimensions) {
     this.dimensions = dimensions;
     this.calque = document.createElement('div');
@@ -13,7 +17,7 @@ export class VueContenu {
       this.element.classList.replace('ouvrir', 'fermer');
       setTimeout(() => {
         this.calque.classList.add('invisible');
-      }, 200);
+      }, DELAY_FERMETURE_CONTENANT_MILLISEC);
       event.stopPropagation();
     });
     this.element = document.createElement('div');
@@ -40,3 +44,5 @@ export class VueContenu {
     }, 50);
   }
 }
+
+export { DELAY_FERMETURE_CONTENANT_MILLISEC, VueContenu };
