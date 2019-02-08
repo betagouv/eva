@@ -1,7 +1,7 @@
 /* global Event */
 
 import { Contenant } from '../../src/modeles/contenant.js';
-import { VueContenu } from '../../src/vues/contenu.js';
+import { DELAY_FERMETURE_CONTENANT_MILLISEC, VueContenu } from '../../src/vues/contenu.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu', function () {
@@ -29,7 +29,7 @@ describe('vue contenu', function () {
     setTimeout(() => {
       expect(calque.classList).to.contain('invisible');
       done();
-    }, 200);
+    }, DELAY_FERMETURE_CONTENANT_MILLISEC);
   });
 
   it("calcule la position du contenant ouvert pour qu'il soit centré sur le contenant fermé", function () {
