@@ -10,8 +10,7 @@ describe('vue contenu vrac', function () {
     jsdom('<div id="magasin"></div>');
     let pointInsertion = document.getElementById('magasin');
     vue = new VueContenuVrac(pointInsertion);
-    element = document.getElementById('contenu-vrac');
-    vue.element.animate = () => {};
+    element = vue.element;
   });
 
   it('affiche un contenu en vrac', function () {
@@ -19,7 +18,7 @@ describe('vue contenu vrac', function () {
     vue.affiche(contenant);
 
     expect(element.classList).to.not.contain('invisible');
-    expect(element.querySelector(':first-child').classList).to.contain('etiquette');
+    expect(element.classList).to.contain('etiquette');
 
     expect(element.querySelector('#nom').textContent).to.equal('Nova Sky');
     expect(element.querySelector('#quantite').textContent).to.equal('1');
@@ -30,8 +29,7 @@ describe('vue contenu vrac', function () {
     const contenant = new Contenant({ quantite: 2 }, { nom: 'Nova Sky' });
     vue.affiche(contenant);
 
-    const etiquette = element.querySelector('.etiquette');
-    expect(etiquette.querySelector('#quantite').textContent).to.equal('2');
-    expect(etiquette.querySelector('#unite').textContent).to.equal('litres');
+    expect(element.querySelector('#quantite').textContent).to.equal('2');
+    expect(element.querySelector('#unite').textContent).to.equal('litres');
   });
 });
