@@ -3,6 +3,7 @@
   .contenu {
     // Attention de maintenir la cohérence avec DELAY_FERMETURE_CONTENANT_MILLISEC
     transition: transform .4s;
+    z-index: 100;
   }
 
   .contenu.fermer {
@@ -21,7 +22,7 @@
     top: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 100;
+    z-index: 101;
     cursor: pointer;
   }
 
