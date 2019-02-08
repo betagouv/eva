@@ -10,8 +10,7 @@ describe('vue contenu unitaire', function () {
     jsdom('<div id="magasin"></div>');
     let pointInsertion = document.getElementById('magasin');
     vue = new VueContenuUnitaire(pointInsertion);
-    element = document.getElementById('contenu-unitaire');
-    vue.element.animate = () => {};
+    element = vue.element;
   });
 
   it("sait s'afficher dans une page web", function () {
@@ -19,14 +18,14 @@ describe('vue contenu unitaire', function () {
     vue.affiche(contenant);
 
     expect(element.classList).to.not.contain('invisible');
-    expect(element.querySelector(':first-child').classList).to.contain('caisse');
+    expect(element.classList).to.contain('caisse');
   });
 
   it('sait afficher la couleur du contenant', function () {
     const contenant = new Contenant({ couleur: 'marron' }, { nom: 'Nova Sky', image: 'chemin_image' });
     vue.affiche(contenant);
 
-    expect(element.querySelector(':first-child').classList).to.contain('marron');
+    expect(element.classList).to.contain('marron');
   });
 
   it("sait afficher plusieurs bouteilles d'un certain type", function () {

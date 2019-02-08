@@ -17,12 +17,13 @@ class VueContenu {
       this.element.classList.replace('ouvrir', 'fermer');
       setTimeout(() => {
         this.calque.classList.add('invisible');
+        this.element.classList.add('invisible');
       }, DELAY_FERMETURE_CONTENANT_MILLISEC);
       event.stopPropagation();
     });
     this.element = document.createElement('div');
     this.element.classList.add('contenu', 'fermer');
-    this.calque.appendChild(this.element);
+    pointInsertion.appendChild(this.element);
 
     this.elementInterieur = document.createElement('div');
     this.elementInterieur.classList.add('interieur');
@@ -35,6 +36,7 @@ class VueContenu {
 
   affiche (contenant) {
     this.calque.classList.remove('invisible');
+    this.element.classList.remove('invisible');
     this.element.style.top = this.position(contenant.posY, contenant.hauteur, this.dimensions.hauteur) + '%';
     this.element.style.left = this.position(contenant.posX, contenant.largeur, this.dimensions.largeur) + '%';
     this.element.style.height = this.dimensions.hauteur + '%';
