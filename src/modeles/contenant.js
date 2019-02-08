@@ -1,4 +1,4 @@
-import dimensions from '../data/dimensionsContenants.json';
+import { formes } from '../data/stock.js';
 
 export class Contenant {
   constructor (donneesContenant, contenu) {
@@ -6,8 +6,8 @@ export class Contenant {
     this.contenu = contenu;
 
     if (this.forme) {
-      this.largeur = dimensions.formes[this.forme].largeur;
-      this.hauteur = dimensions.formes[this.forme].hauteur;
+      this.largeur = formes[this.forme].largeur;
+      this.hauteur = formes[this.forme].hauteur;
     }
   }
 
