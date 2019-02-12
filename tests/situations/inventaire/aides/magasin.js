@@ -1,4 +1,4 @@
-import { creeMagasin } from '../../src/modeles/magasin.js';
+import { creeMagasin } from 'inventaire/modeles/magasin.js';
 
 class MagasinEnDevenir {
   constructor () {

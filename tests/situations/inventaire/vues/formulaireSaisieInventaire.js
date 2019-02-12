@@ -1,6 +1,6 @@
-import { Contenant } from '../../src/modeles/contenant.js';
+import { Contenant } from 'inventaire/modeles/contenant.js';
+import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
 import { unMagasin, unMagasinVide } from '../aides/magasin.js';
-import { afficheCorrection, initialiseFormulaireSaisieInventaire } from '../../src/vues/formulaireSaisieInventaire.js';
 
 let jsdom = require('jsdom-global');
 

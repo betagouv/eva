@@ -1,4 +1,3 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
@@ -15,6 +14,11 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'js/[name].js',
     publicPath: '/' // public URL of the output directory when referenced in a browser
+  },
+  resolve: {
+    alias: {
+      inventaire: path.resolve(__dirname, 'src/situations/inventaire/')
+    }
   },
   optimization: {
     splitChunks: {
@@ -63,7 +67,8 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              name: 'images/[name].[ext]?[sha512:hash:base64:7]',
+              name: '[name].[ext]?[sha512:hash:base64:7]',
+              outputPath: 'images',
               limit: 8192
             }
           }
@@ -76,10 +81,8 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new CopyWebpackPlugin([
-      { from: 'src/images', to: 'images' }
-    ]),
     new HtmlWebpackPlugin({
+      filename: 'inventaire.html',
       hash: true,
       template: path.resolve(__dirname, 'src/public/template_index.html'),
       chunks: ['situationInventaire'],

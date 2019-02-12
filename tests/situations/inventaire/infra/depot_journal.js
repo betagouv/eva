@@ -1,4 +1,4 @@
-import { DepotJournal } from '../../src/infra/depot_journal.js';
+import { DepotJournal } from 'inventaire/infra/depot_journal.js';
 import jsdom from 'jsdom-global';
 
 describe('le depot du journal', function () {

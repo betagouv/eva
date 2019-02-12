@@ -8,6 +8,11 @@ var config = {
     path: path.resolve(__dirname, 'tests_build'),
     filename: 'testBundle.js'
   },
+  resolve: {
+    alias: {
+      inventaire: path.resolve(__dirname, 'src/situations/inventaire/')
+    }
+  },
   target: 'node',
   externals: [nodeExternals()],
   node: {

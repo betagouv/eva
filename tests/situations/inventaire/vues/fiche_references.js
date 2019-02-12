@@ -1,4 +1,4 @@
-import { VueFicheReferences } from '../../src/vues/fiche_references.js';
+import { VueFicheReferences } from 'inventaire/vues/fiche_references.js';
 import jsdom from 'jsdom-global';
 
 describe('vue fiche références produits', function () {

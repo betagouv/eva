@@ -1,6 +1,6 @@
-import { DepotJournal } from '../infra/depot_journal.js';
-import { Journal } from '../modeles/journal.js';
-import { VueJournal } from '../vues/journal.js';
+import { DepotJournal } from 'inventaire/infra/depot_journal.js';
+import { Journal } from 'inventaire/modeles/journal.js';
+import { VueJournal } from 'inventaire/vues/journal.js';
 
 jQuery(function () {
   jQuery('body').append(`

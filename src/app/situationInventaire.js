@@ -1,13 +1,13 @@
-import '../styles/app.scss';
-import '../styles/etageres.scss';
+import 'inventaire/styles/app.scss';
+import 'inventaire/styles/etageres.scss';
 
-import { contenants, contenus } from '../data/stock.js';
-import { DepotJournal } from '../infra/depot_journal.js';
-import { Journal } from '../modeles/journal.js';
-import { creeMagasin } from '../modeles/magasin.js';
-import { VueEtageres } from '../vues/etageres.js';
-import { VueFicheReferences } from '../vues/fiche_references.js';
-import { afficheCorrection, initialiseFormulaireSaisieInventaire } from '../vues/formulaireSaisieInventaire.js';
+import { contenants, contenus } from 'inventaire/data/stock.js';
+import { DepotJournal } from 'inventaire/infra/depot_journal.js';
+import { Journal } from 'inventaire/modeles/journal.js';
+import { creeMagasin } from 'inventaire/modeles/magasin.js';
+import { VueEtageres } from 'inventaire/vues/etageres.js';
+import { VueFicheReferences } from 'inventaire/vues/fiche_references.js';
+import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
 
 function afficheMagasin (pointInsertion, $) {
   let magasin = creeMagasin({ contenants, contenus });
