@@ -1,5 +1,5 @@
-import { Contenant } from '../../src/modeles/contenant.js';
-import { VueContenuVrac } from '../../src/vues/contenu_vrac.js';
+import { Contenant } from 'inventaire/modeles/contenant.js';
+import { VueContenuVrac } from 'inventaire/vues/contenu_vrac.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu vrac', function () {

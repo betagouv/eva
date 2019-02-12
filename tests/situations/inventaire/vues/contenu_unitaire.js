@@ -1,5 +1,5 @@
-import { Contenant } from '../../src/modeles/contenant.js';
-import { VueContenuUnitaire } from '../../src/vues/contenu_unitaire.js';
+import { Contenant } from 'inventaire/modeles/contenant.js';
+import { VueContenuUnitaire } from 'inventaire/vues/contenu_unitaire.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu unitaire', function () {

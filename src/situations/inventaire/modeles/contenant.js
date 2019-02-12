@@ -1,4 +1,4 @@
-import { formes } from '../data/stock.js';
+import { formes } from 'inventaire/data/stock.js';
 
 export class Contenant {
   constructor (donneesContenant, contenu) {

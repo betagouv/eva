@@ -1,5 +1,5 @@
-import '../styles/commun.scss';
-import '../styles/contenu.scss';
+import 'inventaire/styles/commun.scss';
+import 'inventaire/styles/contenu.scss';
 
 // Attention de maintenir la cohérence avec le temps
 // de la transition css (class contenu)

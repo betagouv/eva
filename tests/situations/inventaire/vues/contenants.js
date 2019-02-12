@@ -1,7 +1,7 @@
 /* global Event */
 
-import { Contenant } from '../../src/modeles/contenant.js';
-import { VueContenants } from '../../src/vues/contenants.js';
+import { Contenant } from 'inventaire/modeles/contenant.js';
+import { VueContenants } from 'inventaire/vues/contenants.js';
 import jsdom from 'jsdom-global';
 
 describe('vue contenants', function () {

@@ -1,4 +1,4 @@
-import { Contenant } from '../../src/modeles/contenant.js';
+import { Contenant } from 'inventaire/modeles/contenant.js';
 import { unMagasin } from '../aides/magasin.js';
 
 describe('Le magasin', function () {

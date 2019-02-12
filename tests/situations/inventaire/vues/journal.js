@@ -1,4 +1,4 @@
-import { VueJournal } from '../../src/vues/journal.js';
+import { VueJournal } from 'inventaire/vues/journal.js';
 import jsdom from 'jsdom-global';
 
 describe('vue journal', function () {

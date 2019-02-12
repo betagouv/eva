@@ -1,6 +1,6 @@
-import '../styles/commun.scss';
-import '../styles/formulaireSaisieInventaire.scss';
-import '../styles/overlay.scss';
+import 'inventaire/styles/commun.scss';
+import 'inventaire/styles/formulaireSaisieInventaire.scss';
+import 'inventaire/styles/overlay.scss';
 
 const ID_FORMULAIRE_SAISIE = 'formulaire-saisie-inventaire';
 

@@ -1,5 +1,5 @@
-import { Contenant } from '../../src/modeles/contenant.js';
-import { VueEtageres } from '../../src/vues/etageres.js';
+import { Contenant } from 'inventaire/modeles/contenant.js';
+import { VueEtageres } from 'inventaire/vues/etageres.js';
 import jsdom from 'jsdom-global';
 
 describe('vue etagères', function () {
