@@ -2,6 +2,12 @@ body {
   background: gainsboro;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .situation {
   margin: 2rem auto 0;
   width: 60rem;

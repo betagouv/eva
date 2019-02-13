@@ -7,6 +7,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
+    competencesPro: path.resolve(__dirname, 'src/app/index.js'),
     situationControle: path.resolve(__dirname, 'src/app/situationControle.js'),
     situationInventaire: path.resolve(__dirname, 'src/app/situationInventaire.js'),
     restitutionSituationInventaire: path.resolve(__dirname, 'src/app/restitutionSituationInventaire.js')
@@ -18,8 +19,11 @@ module.exports = {
   },
   resolve: {
     alias: {
+      accueil: path.resolve(__dirname, 'src/situations/accueil/'),
+      commun: path.resolve(__dirname, 'src/situations/commun/'),
       controle: path.resolve(__dirname, 'src/situations/controle/'),
-      inventaire: path.resolve(__dirname, 'src/situations/inventaire/')
+      inventaire: path.resolve(__dirname, 'src/situations/inventaire/'),
+      src: path.resolve(__dirname, 'src/')
     }
   },
   optimization: {
@@ -82,6 +86,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      hash: true,
+      template: path.resolve(__dirname, 'src/public/template_index.html'),
+      chunks: ['competencesPro'],
+      inject: 'head'
     }),
     new HtmlWebpackPlugin({
       filename: 'controle.html',
