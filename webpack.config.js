@@ -7,6 +7,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
+    situationControle: path.resolve(__dirname, 'src/app/situationControle.js'),
     situationInventaire: path.resolve(__dirname, 'src/app/situationInventaire.js'),
     restitutionSituationInventaire: path.resolve(__dirname, 'src/app/restitutionSituationInventaire.js')
   },
@@ -17,6 +18,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      controle: path.resolve(__dirname, 'src/situations/controle/'),
       inventaire: path.resolve(__dirname, 'src/situations/inventaire/')
     }
   },
@@ -80,6 +82,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'controle.html',
+      hash: true,
+      template: path.resolve(__dirname, 'src/public/template_index.html'),
+      chunks: ['situationControle'],
+      inject: 'head'
     }),
     new HtmlWebpackPlugin({
       filename: 'inventaire.html',
