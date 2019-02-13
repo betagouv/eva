@@ -1,4 +1,4 @@
-import 'controle/styles/app.scss';
+import 'commun/styles/commun.scss';
 
 jQuery(function () {
   jQuery('head').append('<title>Situation Contrôle</title>');

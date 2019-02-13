@@ -1,3 +1,4 @@
+import 'commun/styles/commun.scss';
 import 'inventaire/styles/commun.scss';
 import 'inventaire/styles/formulaireSaisieInventaire.scss';
 import 'inventaire/styles/overlay.scss';

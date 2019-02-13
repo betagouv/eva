@@ -10,6 +10,8 @@ var config = {
   },
   resolve: {
     alias: {
+      accueil: path.resolve(__dirname, 'src/situations/accueil/'),
+      commun: path.resolve(__dirname, 'src/situations/commun/'),
       inventaire: path.resolve(__dirname, 'src/situations/inventaire/')
     }
   },
