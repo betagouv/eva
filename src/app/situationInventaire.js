@@ -30,7 +30,7 @@ function afficheMagasin (pointInsertion, $) {
 
 jQuery(function () {
   jQuery('body').append(`
-    <div id="magasin">
+    <div id="magasin" class="situation">
       <h1>Stock de boissons</h1>
     </div>
     `);
