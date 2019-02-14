@@ -8,15 +8,15 @@ import { creeMagasin } from 'inventaire/modeles/magasin.js';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
 import { VueFicheReferences } from 'inventaire/vues/fiche_references.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
+import { initialiseFormulaireCommencer } from 'inventaire/vues/bouttonCommencer.js';
 
-function afficheMagasin (pointInsertion, $) {
+function afficheMagasin(pointInsertion, $) {
   let magasin = creeMagasin({ contenants, contenus });
   const lignePrincipale = document.createElement('div');
   lignePrincipale.classList.add('ligne-principale');
   lignePrincipale.id = 'ligne-principale';
   document.querySelector(pointInsertion).appendChild(lignePrincipale);
-  new VueEtageres('#ligne-principale', new Journal(Date.now, new DepotJournal()))
-    .affiche(magasin.contenants());
+  new VueEtageres('#ligne-principale', new Journal(Date.now, new DepotJournal())).affiche(magasin.contenants());
   new VueFicheReferences('#ligne-principale').affiche();
 
   initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (resultatValidation) {
@@ -28,12 +28,17 @@ function afficheMagasin (pointInsertion, $) {
   });
 }
 
+function Commencer() {
+  initialiseFormulaireCommencer('#magasin', jQuery, () => {
+    afficheMagasin('#magasin', jQuery)
+  });
+}
+
 jQuery(function () {
   jQuery('body').append(`
     <div id="magasin">
       <h1>Stock de boissons</h1>
     </div>
     `);
-
-  afficheMagasin('#magasin', jQuery);
+  Commencer();
 });
