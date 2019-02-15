@@ -1,0 +1,17 @@
+.bouton-centre {
+  position: absolute;
+  left: 45%;
+  top: 45%;
+  height: 4rem;
+  width: 4rem;
+  cursor: pointer;
+}
+
+.bouton-go {
+  background: url('../assets/go.png') no-repeat center/contain;
+}
+
+.bouton-lire-consigne-demarrage {
+  background: url('../assets/lire_consigne.png') no-repeat center/contain;
+  background-color: white;
+}
