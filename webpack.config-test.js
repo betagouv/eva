@@ -32,12 +32,13 @@ var config = {
         loader: 'null-loader'
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|mp3)$/i,
         use: [
           {
             loader: 'url-loader',
             options: {
-              name: 'images/[name].[ext]',
+              name: '[name].[ext]',
+              outputPath: 'assets',
               limit: 8192
             }
           }

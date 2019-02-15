@@ -34,14 +34,14 @@ const contenants = [
 ];
 
 const contenus = {
-  '0': { nom: 'Vrac SKY', image: require('inventaire/images/bidon_bleu.png') },
-  '1': { nom: 'Vrac TERRA', image: require('inventaire/images/bidon_vert.png') },
-  '2': { nom: 'Premium Terra', image: require('inventaire/images/premterra.png') },
-  '3': { nom: 'Nova Sky', image: require('inventaire/images/novasky.png') },
-  '4': { nom: "Gink'cola", image: require('inventaire/images/ginkcola.png') },
-  '5': { nom: "Lem'cola", image: require('inventaire/images/lemcola.png') },
-  '6': { nom: 'Terra Cola', image: require('inventaire/images/terracola.png') },
-  '7': { nom: "O'cola", image: require('inventaire/images/ocola.png') }
+  '0': { nom: 'Vrac SKY', image: require('inventaire/assets/bidon_bleu.png') },
+  '1': { nom: 'Vrac TERRA', image: require('inventaire/assets/bidon_vert.png') },
+  '2': { nom: 'Premium Terra', image: require('inventaire/assets/premterra.png') },
+  '3': { nom: 'Nova Sky', image: require('inventaire/assets/novasky.png') },
+  '4': { nom: "Gink'cola", image: require('inventaire/assets/ginkcola.png') },
+  '5': { nom: "Lem'cola", image: require('inventaire/assets/lemcola.png') },
+  '6': { nom: 'Terra Cola', image: require('inventaire/assets/terracola.png') },
+  '7': { nom: "O'cola", image: require('inventaire/assets/ocola.png') }
 };
 
 const formes = {

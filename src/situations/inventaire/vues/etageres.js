@@ -1,6 +1,6 @@
 import { VueContenants } from './contenants.js';
 import { FabriqueVuesContenus } from './fabrique_vues_contenus.js';
-const imageEtageres = require('inventaire/images/etageres.png');
+const imageEtageres = require('inventaire/assets/etageres.png');
 
 export class VueEtageres {
   constructor (pointInsertion, journal) {
