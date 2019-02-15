@@ -1,5 +1,5 @@
 import 'inventaire/styles/fiche_references.scss';
-const imageFicheReferences = require('inventaire/images/fiche_references.png');
+const imageFicheReferences = require('inventaire/assets/fiche_references.png');
 
 export class VueFicheReferences {
   constructor (pointInsertion) {

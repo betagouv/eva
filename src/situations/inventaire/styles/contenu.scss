@@ -28,6 +28,7 @@
 
   .caisse {
     position: absolute;
+    background: no-repeat center/contain;
 
     .interieur {
       position: absolute;
@@ -43,33 +44,33 @@
   }
 
   .marron {
-    background: url('../images/carton.png') no-repeat center/contain;
+    background-image: url('../assets/carton.png');
   }
 
   .bleu {
-    background: url('../images/boite_bleue.png') no-repeat center/contain;
+    background-image: url('../assets/boite_bleue.png');
   }
 
   .jaune {
-    background: url('../images/boite_jaune.png') no-repeat center/contain;
+    background-image: url('../assets/boite_jaune.png');
   }
 
   .gris {
-    background: url('../images/boite_grise.png') no-repeat center/contain;
+    background-image: url('../assets/boite_grise.png');
   }
 
   .rouge {
-    background: url('../images/boite_rouge.png') no-repeat center/contain;
+    background-image: url('../assets/boite_rouge.png');
   }
 
   .vert {
-    background: url('../images/boite_verte.png') no-repeat center/contain;
+    background-image: url('../assets/boite_verte.png');
   }
 
   .etiquette {
     position: absolute;
     color: black;
-    background: url('../images/etiquette.png') no-repeat center/contain;
+    background: url('../assets/etiquette.png') no-repeat center/contain;
     font-size: 0.7rem;
 
     .type, .quantite {

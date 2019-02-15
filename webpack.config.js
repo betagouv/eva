@@ -68,13 +68,13 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|mp3)$/i,
         use: [
           {
             loader: 'url-loader',
             options: {
               name: '[name].[ext]?[sha512:hash:base64:7]',
-              outputPath: 'images',
+              outputPath: 'assets',
               limit: 8192
             }
           }

@@ -16,6 +16,6 @@ describe('vue fiche références produits', function () {
 
     const element = pointInsertion.querySelector(':first-child');
     expect(element.classList).to.contain('fiche-references');
-    expect(element.src).to.equal('images/fiche_references.png');
+    expect(element.src).to.equal('assets/fiche_references.png');
   });
 });
