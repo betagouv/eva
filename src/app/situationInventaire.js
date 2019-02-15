@@ -8,6 +8,10 @@ import { creeMagasin } from 'inventaire/modeles/magasin.js';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
 import { VueFicheReferences } from 'inventaire/vues/fiche_references.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
+import { VueConsigne } from 'commun/vues/consigne.js';
+import { VueGo } from 'commun/vues/go.js';
+
+const sonConsigneDemarrage = require('inventaire/assets/consigne_demarrage.mp3');
 
 function afficheMagasin (pointInsertion, $) {
   let magasin = creeMagasin({ contenants, contenus });
@@ -26,6 +30,8 @@ function afficheMagasin (pointInsertion, $) {
     Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
     window.alert(message);
   });
+  const vueConsigne = new VueConsigne(pointInsertion, sonConsigneDemarrage);
+  new VueGo(pointInsertion, vueConsigne).afficher();
 }
 
 jQuery(function () {
