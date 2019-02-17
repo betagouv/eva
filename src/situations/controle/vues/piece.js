@@ -7,8 +7,9 @@ export function animationInitiale ($element) {
 }
 
 export class VuePiece {
-  constructor (piece) {
+  constructor (piece, dureeVie) {
     this.piece = piece;
+    this.dureeVie = dureeVie;
   }
 
   affiche (pointInsertion, $, callbackApparition) {
@@ -57,5 +58,9 @@ export class VuePiece {
     });
     $elementParent.append($piece);
     callbackApparition ? callbackApparition($piece) : $piece.show();
+
+    if (this.dureeVie) {
+      setTimeout(() => { $piece.fadeOut(100, () => { $piece.remove(); }); }, this.dureeVie);
+    }
   }
 }
