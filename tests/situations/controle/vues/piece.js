@@ -49,4 +49,37 @@ describe('Une pièce', function () {
     expect($('.piece').css('left')).to.eql('25px');
     expect($('.piece').css('top')).to.eql('5px');
   });
+
+  it("suit une séquence d'animation pour apparaître", function (done) {
+    let piece = new Piece({ x: 90, y: 40 });
+    let vuePiece = new VuePiece(piece);
+
+    vuePiece.affiche('#controle', $, function ($element) {
+      expect($element.hasClass('.piece'));
+      done();
+    });
+  });
+
+  it("interrompt la séquence d'animation quand sélection de la pièce", function (done) {
+    let piece = new Piece({ x: 90, y: 40 });
+    let vuePiece = new VuePiece(piece);
+
+    vuePiece.affiche('#controle', $, function ($element) {
+      $element.animate({ left: '80px' }, { duration: 0, complete: () => {
+        $element.animate({ left: '80px' }, { duration: 5, complete: () => {
+          $element.animate({ left: '10px' }, 0);
+        } });
+      } });
+    });
+
+    let $piece = $('.piece');
+    let evenementSelectionner = $.Event('mousedown', { clientX: 95, clientY: 55 });
+    $piece.trigger(evenementSelectionner);
+
+    setTimeout(() => {
+      expect($piece.css('left')).to.equal('80px');
+      expect(piece.position()).to.eql({ x: 80, y: 40 });
+      done();
+    }, 10);
+  });
 });

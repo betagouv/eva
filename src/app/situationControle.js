@@ -1,13 +1,13 @@
 import 'commun/styles/commun.scss';
 
 import { Piece } from 'controle/modeles/piece.js';
-import { VuePiece } from 'controle/vues/piece.js';
+import { VuePiece, animationInitiale } from 'controle/vues/piece.js';
 
 function afficheSituation (pointInsertion, $) {
   let piece = new Piece({ x: 87, y: 70 });
   let vuePiece = new VuePiece(piece);
 
-  vuePiece.affiche(pointInsertion, $);
+  vuePiece.affiche(pointInsertion, $, animationInitiale);
 }
 
 jQuery(function () {
