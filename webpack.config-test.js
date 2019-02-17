@@ -12,6 +12,7 @@ var config = {
     alias: {
       accueil: path.resolve(__dirname, 'src/situations/accueil/'),
       commun: path.resolve(__dirname, 'src/situations/commun/'),
+      controle: path.resolve(__dirname, 'src/situations/controle/'),
       inventaire: path.resolve(__dirname, 'src/situations/inventaire/')
     }
   },
