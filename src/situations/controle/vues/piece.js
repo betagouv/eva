@@ -1,11 +1,17 @@
 import 'controle/styles/piece.scss';
 
+export function animationInitiale ($element) {
+  $element.fadeIn(2000, function () {
+    $element.animate({ left: '50%', easing: 'linear' }, 3000);
+  });
+}
+
 export class VuePiece {
   constructor (piece) {
     this.piece = piece;
   }
 
-  affiche (pointInsertion, $) {
+  affiche (pointInsertion, $, callbackApparition) {
     function creeElementPiece (position, dimensionsElementParent) {
       let $piece = $('<div class="piece"></div>');
       metsAJourPosition($piece, position, dimensionsElementParent);
@@ -25,6 +31,12 @@ export class VuePiece {
     const $piece = creeElementPiece(this.piece.position(), dimensionsElementParent);
 
     $piece.mousedown(e => {
+      $piece.stop(true);
+      $piece.css('opacity', 1);
+      this.piece.changePosition({
+        x: 100 * parseInt($piece.css('left')) / $elementParent.width(),
+        y: 100 * parseInt($piece.css('top')) / $elementParent.height()
+      });
       this.piece.selectionne({
         x: 100 * e.clientX / $elementParent.width(),
         y: 100 * e.clientY / $elementParent.height()
@@ -44,6 +56,6 @@ export class VuePiece {
       metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
     });
     $elementParent.append($piece);
-    $piece.fadeIn(2000);
+    callbackApparition ? callbackApparition($piece) : $piece.show();
   }
 }
