@@ -65,11 +65,17 @@ describe('Une pièce', function () {
     let vuePiece = new VuePiece(piece);
 
     vuePiece.affiche('#controle', $, function ($element) {
-      $element.animate({ left: '80px' }, { duration: 0, complete: () => {
-        $element.animate({ left: '80px' }, { duration: 5, complete: () => {
-          $element.animate({ left: '10px' }, 0);
-        } });
-      } });
+      $element.animate({ left: '80px' }, {
+        duration: 0,
+        complete: () => {
+          $element.animate({ left: '80px' }, {
+            duration: 5,
+            complete: () => {
+              $element.animate({ left: '10px' }, 0);
+            }
+          });
+        }
+      });
     });
 
     let $piece = $('.piece');
@@ -81,5 +87,17 @@ describe('Une pièce', function () {
       expect(piece.position()).to.eql({ x: 80, y: 40 });
       done();
     }, 10);
+  });
+
+  it("disparaît au bout d'un certain temps", function (done) {
+    let piece = new Piece({ x: 90, y: 40 });
+    let vuePiece = new VuePiece(piece, 5);
+    vuePiece.affiche('#controle', $);
+    expect($('.piece').length).to.equal(1);
+
+    setTimeout(() => {
+      expect($('.piece').length).to.equal(0);
+      done();
+    }, 150);
   });
 });

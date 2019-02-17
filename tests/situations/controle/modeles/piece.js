@@ -17,9 +17,9 @@ describe('Une pièce', function () {
   it('notifie ses abonnés des changements de position', function (done) {
     let piece = new Piece({ x: 90, y: 50 });
     piece.quandChangementPosition(function ({ x, y }) {
-        expect(x).to.equal(35);
-        expect(y).to.equal(20);
-        done();
+      expect(x).to.equal(35);
+      expect(y).to.equal(20);
+      done();
     });
 
     piece.changePosition({ x: 35, y: 20 });

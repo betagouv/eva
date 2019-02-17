@@ -5,7 +5,7 @@ import { VuePiece, animationInitiale } from 'controle/vues/piece.js';
 
 function afficheSituation (pointInsertion, $) {
   let piece = new Piece({ x: 87, y: 70 });
-  let vuePiece = new VuePiece(piece);
+  let vuePiece = new VuePiece(piece, 5000);
 
   vuePiece.affiche(pointInsertion, $, animationInitiale);
 }

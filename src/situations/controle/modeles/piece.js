@@ -19,7 +19,7 @@ export class Piece {
 
   quandChangementPosition (nouvelAbonne) {
     this.abonnes.push(nouvelAbonne);
-  };
+  }
 
   estSelectionnee () {
     return this.selectionnee;
