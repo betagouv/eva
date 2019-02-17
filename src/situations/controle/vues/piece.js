@@ -6,17 +6,43 @@ export class VuePiece {
   }
 
   affiche (pointInsertion, $) {
-    function creeElementPiece ({ x, y }, largeurElementParent, hauteurElementParent) {
+    function creeElementPiece (position, dimensionsElementParent) {
       let $piece = $('<div class="piece"></div>');
-
-      $piece.css('left', x * largeurElementParent / 100);
-      $piece.css('top', y * hauteurElementParent / 100);
-
+      metsAJourPosition($piece, position, dimensionsElementParent);
       return $piece;
     }
 
+    function metsAJourPosition ($piece, { x, y }, { largeurParent, hauteurParent }) {
+      $piece.css('left', x * largeurParent / 100);
+      $piece.css('top', y * hauteurParent / 100);
+    }
+
     const $elementParent = $(pointInsertion);
-    const $piece = creeElementPiece(this.piece.position(), $elementParent.width(), $elementParent.height());
+    const dimensionsElementParent = {
+      largeurParent: $elementParent.width(),
+      hauteurParent: $elementParent.height()
+    };
+    const $piece = creeElementPiece(this.piece.position(), dimensionsElementParent);
+
+    $piece.mousedown(e => {
+      this.piece.selectionne({
+        x: 100 * e.clientX / $elementParent.width(),
+        y: 100 * e.clientY / $elementParent.height()
+      });
+    });
+
+    $piece.mouseup(e => { this.piece.deselectionne(); });
+
+    $elementParent.mousemove(e => {
+      this.piece.deplaceSiSelectionnee({
+        x: 100 * e.clientX / $elementParent.width(),
+        y: 100 * e.clientY / $elementParent.height()
+      });
+    });
+
+    this.piece.quandChangementPosition(function (nouvellePosition) {
+      metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
+    });
     $elementParent.append($piece);
     $piece.fadeIn(2000);
   }
