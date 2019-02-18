@@ -7,6 +7,14 @@ describe('Une pièce', function () {
     expect(piece.position()).to.eql({ x: 90, y: 50 });
   });
 
+  it('peut être conforme ou défectueuse', function () {
+    let pieceConforme = new Piece({ conforme: true });
+    let pieceDefectueuse = new Piece({ conforme: false });
+
+    expect(pieceConforme.estConforme()).to.be(true);
+    expect(pieceDefectueuse.estConforme()).to.be(false);
+  });
+
   it('peut changer de position', function () {
     let piece = new Piece({ x: 90, y: 50 });
 

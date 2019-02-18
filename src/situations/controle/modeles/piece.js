@@ -1,13 +1,18 @@
 export class Piece {
-  constructor ({ x, y }) {
+  constructor ({ x, y, conforme }) {
     this.x = x;
     this.y = y;
+    this.conforme = conforme;
     this.selectionnee = false;
     this.abonnes = [];
   }
 
   position () {
     return { x: this.x, y: this.y };
+  }
+
+  estConforme () {
+    return this.conforme;
   }
 
   changePosition ({ x, y }) {
