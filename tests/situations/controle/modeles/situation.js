@@ -6,6 +6,11 @@ describe('La situation « Contrôle »', function () {
     expect(situation.cadenceArriveePieces()).to.equal(1000);
   });
 
+  it("connaît la durée de vie d'une pièce", function () {
+    let situation = new Situation({ dureeViePiece: 42 });
+    expect(situation.dureeViePiece()).to.equal(42);
+  });
+
   it('sait reconnaître quand plus de pieces à venir', function () {
     let situation = new Situation({ scenario: [] });
     expect(situation.sequenceTerminee()).to.be(true);

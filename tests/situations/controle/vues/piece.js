@@ -19,6 +19,22 @@ describe('Une pièce', function () {
     expect($('.piece').length).to.equal(1);
   });
 
+  it('a une classe de conformité quand la piece est conforme', function () {
+    let piece = new Piece({ x: 90, y: 40, conforme: true });
+    let vuePiece = new VuePiece(piece);
+    vuePiece.affiche('#controle', $);
+    expect($('.piece').hasClass('conforme')).to.be(true);
+    expect($('.piece').hasClass('defectueuse')).to.be(false);
+  });
+
+  it('a une classe de défaut quand la piece est défectueuse', function () {
+    let piece = new Piece({ x: 90, y: 40, conforme: false });
+    let vuePiece = new VuePiece(piece);
+    vuePiece.affiche('#controle', $);
+    expect($('.piece').hasClass('conforme')).to.be(false);
+    expect($('.piece').hasClass('defectueuse')).to.be(true);
+  });
+
   it("se positionne correctement vis-à-vis de l'élément parent", function () {
     let piece = new Piece({ x: 90, y: 40 });
     let vuePiece = new VuePiece(piece);
@@ -91,13 +107,15 @@ describe('Une pièce', function () {
 
   it("disparaît au bout d'un certain temps", function (done) {
     let piece = new Piece({ x: 90, y: 40 });
-    let vuePiece = new VuePiece(piece, 5);
-    vuePiece.affiche('#controle', $);
-    expect($('.piece').length).to.equal(1);
 
-    setTimeout(() => {
+    let callbackAvantSuppression = (_, callbackSuppression) => {
+      callbackSuppression();
       expect($('.piece').length).to.equal(0);
       done();
-    }, 150);
+    };
+
+    let vuePiece = new VuePiece(piece, 5, callbackAvantSuppression);
+    vuePiece.affiche('#controle', $);
+    expect($('.piece').length).to.equal(1);
   });
 });

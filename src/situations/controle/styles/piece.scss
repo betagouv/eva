@@ -1,8 +1,13 @@
 .piece {
-  position: relative;
+  position: absolute;
   width: 10%;
   height: 25%;
 
-  background: lime;
-  display: none;
+  &.conforme {
+    background: limeGreen;
+  }
+
+  &.defectueuse {
+    background: salmon;
+  }
 }

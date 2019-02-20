@@ -1,20 +1,24 @@
 import 'controle/styles/piece.scss';
 
 export function animationInitiale ($element) {
-  $element.fadeIn(2000, function () {
-    $element.animate({ left: '50%', easing: 'linear' }, 3000);
-  });
+  $element.animate({ left: '-10%' }, 10000, 'linear');
+}
+
+export function animationFinale ($element, done) {
+  $element.fadeOut(500, () => { done($element); });
 }
 
 export class VuePiece {
-  constructor (piece, dureeVie) {
+  constructor (piece, dureeVie, callbackAvantSuppression) {
     this.piece = piece;
     this.dureeVie = dureeVie;
+    this.callbackAvantSuppression = callbackAvantSuppression || animationFinale;
   }
 
   affiche (pointInsertion, $, callbackApparition) {
-    function creeElementPiece (position, dimensionsElementParent) {
-      let $piece = $('<div class="piece"></div>');
+    function creeElementPiece (pieceConforme, position, dimensionsElementParent) {
+      let classeConformite = pieceConforme ? 'conforme' : 'defectueuse';
+      let $piece = $(`<div class="piece ${classeConformite}"></div>`);
       metsAJourPosition($piece, position, dimensionsElementParent);
       return $piece;
     }
@@ -29,7 +33,8 @@ export class VuePiece {
       largeurParent: $elementParent.width(),
       hauteurParent: $elementParent.height()
     };
-    const $piece = creeElementPiece(this.piece.position(), dimensionsElementParent);
+    const $piece = creeElementPiece(
+      this.piece.estConforme(), this.piece.position(), dimensionsElementParent);
 
     $piece.mousedown(e => {
       $piece.stop(true);
@@ -60,7 +65,9 @@ export class VuePiece {
     callbackApparition ? callbackApparition($piece) : $piece.show();
 
     if (this.dureeVie) {
-      setTimeout(() => { $piece.fadeOut(100, () => { $piece.remove(); }); }, this.dureeVie);
+      setTimeout(() => {
+        this.callbackAvantSuppression($piece, () => { $piece.remove(); });
+      }, this.dureeVie);
     }
   }
 }
