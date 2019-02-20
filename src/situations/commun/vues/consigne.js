@@ -2,6 +2,8 @@
 export class VueConsigne {
   constructor (pointInsertion, sonConsigneDemarrage) {
     this.element = document.createElement('audio');
+    this.element.type = 'audio/ogg';
+    this.element.preload = 'none';
     this.element.src = sonConsigneDemarrage;
     document.querySelector(pointInsertion).appendChild(this.element);
 

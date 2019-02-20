@@ -11,7 +11,7 @@ import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventa
 import { VueConsigne } from 'commun/vues/consigne.js';
 import { VueGo } from 'commun/vues/go.js';
 
-const sonConsigneDemarrage = require('inventaire/assets/consigne_demarrage.mp3');
+import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.ogg';
 
 function afficheMagasin (pointInsertion, $) {
   let magasin = creeMagasin({ contenants, contenus });
