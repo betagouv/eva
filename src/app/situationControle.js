@@ -5,12 +5,13 @@ import { VueSituation } from 'controle/vues/situation.js';
 
 function afficheSituation (pointInsertion, $) {
   let situation = new Situation({
-    scenario: [true],
-    positionApparitionPieces: { x: 87, y: 70 }
+    scenario: [true, false, true],
+    cadence: 3000,
+    positionApparitionPieces: { x: 100, y: 70 },
+    dureeViePiece: 12000
   });
   let vueSituation = new VueSituation(situation);
   vueSituation.affiche(pointInsertion, $);
-
 }
 
 jQuery(function () {

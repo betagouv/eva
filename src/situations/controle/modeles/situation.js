@@ -1,14 +1,19 @@
 import { Piece } from 'controle/modeles/piece.js';
 
 export class Situation {
-  constructor ({ cadence, scenario, positionApparitionPieces }) {
+  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces }) {
     this.cadence = cadence;
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;
+    this._dureeViePiece = dureeViePiece;
   }
 
   cadenceArriveePieces () {
     return this.cadence;
+  }
+
+  dureeViePiece () {
+    return this._dureeViePiece;
   }
 
   sequenceTerminee () {
