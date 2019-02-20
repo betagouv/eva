@@ -1,17 +1,16 @@
 import 'commun/styles/commun.scss';
 
 import { Situation } from 'controle/modeles/situation.js';
-import { VuePiece, animationInitiale } from 'controle/vues/piece.js';
+import { VueSituation } from 'controle/vues/situation.js';
 
 function afficheSituation (pointInsertion, $) {
   let situation = new Situation({
     scenario: [true],
     positionApparitionPieces: { x: 87, y: 70 }
   });
-  let piece = situation.pieceSuivante();
-  let vuePiece = new VuePiece(piece, 5000);
+  let vueSituation = new VueSituation(situation);
+  vueSituation.affiche(pointInsertion, $);
 
-  vuePiece.affiche(pointInsertion, $, animationInitiale);
 }
 
 jQuery(function () {
