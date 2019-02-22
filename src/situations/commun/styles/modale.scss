@@ -1,0 +1,27 @@
+.overlay {
+  .fenetre {
+    position: absolute;
+    top: 30%;
+    left: 34%;
+    height: 5rem;
+    background-color: white;
+    padding: 1rem;
+
+    label {
+      display: block;
+      width: 100%;
+    }
+
+    .buttons {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem;
+
+      button {
+        background-color: grey;
+      }
+    }
+  }
+}
