@@ -15,6 +15,8 @@ Installer `npm` si nécessaire, et exécuter la commande suivante.
 $ npm install && npm run dev
 ```
 
+Et se rendre sur l'adresse affichée dans la sortie standard (http://localhost:7700 par défaut)
+
 ## Démarrer l'application en local (mode production)
 
 Installer `npm` si nécessaire, et exécuter la commande suivante.
