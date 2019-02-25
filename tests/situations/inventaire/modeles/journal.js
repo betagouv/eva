@@ -13,6 +13,19 @@ describe('le journal', function () {
     journal = new Journal(mockMaintenant, mockDepot);
   });
 
+  it("enregistre l'appui sur le bouton de démarrage", function () {
+    journal.enregistreDemarrage();
+
+    const enregistrement = mockDepot.evenements();
+    expect(enregistrement.length).to.equal(1);
+    expect(enregistrement).to.eql([
+      {
+        date: 123,
+        type: 'demarrage'
+      }
+    ]);
+  });
+
   it("enregistre l'ouverture d'un contenant", function () {
     journal.enregistreOuvertureContenant(new Contenant({ idProduit: '9', quantite: 12 }, { nom: 'Nova Sky' }));
     journal.enregistreOuvertureContenant(new Contenant({ idProduit: '4', quantite: 7 }, { nom: 'Gink Cola' }));

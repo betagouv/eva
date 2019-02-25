@@ -4,6 +4,15 @@ export class Journal {
     this.depot = depot;
   }
 
+  enregistreDemarrage () {
+    this.depot.enregistre(
+      {
+        date: this.maintenant(),
+        type: 'demarrage'
+      }
+    );
+  }
+
   enregistreOuvertureContenant (contenant) {
     this.depot.enregistre(
       {

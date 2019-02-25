@@ -17,10 +17,11 @@ import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 function afficheMagasin (pointInsertion, $) {
   let magasin = creeMagasin({ contenants, contenus });
   const lignePrincipale = document.createElement('div');
+  const journal = new Journal(Date.now, new DepotJournal());
   lignePrincipale.classList.add('ligne-principale');
   lignePrincipale.id = 'ligne-principale';
   document.querySelector(pointInsertion).appendChild(lignePrincipale);
-  new VueEtageres('#ligne-principale', new Journal(Date.now, new DepotJournal()))
+  new VueEtageres('#ligne-principale', journal)
     .affiche(magasin.contenants());
   new VueFicheReferences('#ligne-principale').affiche();
 
@@ -33,7 +34,7 @@ function afficheMagasin (pointInsertion, $) {
   });
   new VueStop(pointInsertion, $).afficher();
   const vueConsigne = new VueConsigne(pointInsertion, sonConsigneDemarrage);
-  new VueGo(pointInsertion, vueConsigne).afficher();
+  new VueGo(pointInsertion, vueConsigne, journal).afficher();
 }
 
 jQuery(function () {

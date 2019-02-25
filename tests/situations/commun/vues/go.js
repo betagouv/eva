@@ -8,12 +8,16 @@ describe('vue Go', function () {
   let boutonGo;
   let boutonDemarrerConsigne;
   let mockVueConsigne = {
-    jouerConsigneDemarrage: () => {}
+    jouerConsigneDemarrage () {}
   };
+  let mockJournal;
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
-    vue = new VueGo('#magasin', mockVueConsigne);
+    mockJournal = {
+      enregistreDemarrage () {}
+    };
+    vue = new VueGo('#magasin', mockVueConsigne, mockJournal);
     overlay = document.querySelector('#magasin #overlay-go');
     boutonGo = overlay.querySelector('#go');
     boutonDemarrerConsigne = overlay.querySelector('#demarrer-consigne');
@@ -68,5 +72,12 @@ describe('vue Go', function () {
     boutonGo.dispatchEvent(new Event('click'));
 
     expect(overlay.classList).to.contain('invisible');
+  });
+
+  it("journalise l'événement lorsque le jeu est démarré", function (done) {
+    mockJournal.enregistreDemarrage = done;
+    vue.afficher();
+
+    boutonGo.dispatchEvent(new Event('click'));
   });
 });
