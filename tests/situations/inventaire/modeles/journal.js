@@ -58,4 +58,36 @@ describe('le journal', function () {
       }
     ]);
   });
+
+  it("enregistre la saisie d'inventaire", function () {
+    const detail = new Map();
+    detail.set('1', '42');
+    detail.set('2', '1');
+
+    journal.enregistreSaisieInventaire(true, detail);
+    journal.enregistreSaisieInventaire(false, detail);
+
+    const enregistrement = mockDepot.evenements();
+    expect(enregistrement.length).to.equal(2);
+    expect(enregistrement).to.eql([
+      {
+        date: 123,
+        type: 'saisieInventaire',
+        resultat: true,
+        reponses: {
+          1: 42,
+          2: 1
+        }
+      },
+      {
+        date: 123,
+        type: 'saisieInventaire',
+        resultat: false,
+        reponses: {
+          1: 42,
+          2: 1
+        }
+      }
+    ]);
+  });
 });

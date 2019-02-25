@@ -25,9 +25,11 @@ function afficheMagasin (pointInsertion, $) {
     .affiche(magasin.contenants());
   new VueFicheReferences('#ligne-principale').affiche();
 
-  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (resultatValidation) {
-    let toutCorrect = Array.from(resultatValidation.values()).every(v => v);
-    let message = toutCorrect ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';
+  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (resultatValidation, reponses) {
+    const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
+    const message = toutCorrect ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';
+
+    journal.enregistreSaisieInventaire(toutCorrect, reponses);
 
     Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
     window.alert(message);

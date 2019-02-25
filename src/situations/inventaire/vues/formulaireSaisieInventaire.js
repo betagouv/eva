@@ -52,11 +52,11 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   }
 
   function creeBoutonValidation () {
-    let $bouton = $('<button type="button" class="valide-saisie">Valider la saisie d\'inventaire</button>');
+    const $bouton = $('<button type="button" class="valide-saisie">Valider la saisie d\'inventaire</button>');
     $bouton.click(function () {
-      let reponses = extraisReponses();
-      let saisieValide = inventaireReference.valide(reponses);
-      callbackValidation(saisieValide);
+      const reponses = extraisReponses();
+      const saisieValide = inventaireReference.valide(reponses);
+      callbackValidation(saisieValide, reponses);
     });
 
     return $bouton;

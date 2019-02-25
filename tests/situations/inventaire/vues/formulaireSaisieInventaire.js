@@ -42,7 +42,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     });
 
     it("journalise l'événement", function (done) {
-      journal.enregistreOuvertureSaisieInventaire = () => done();
+      journal.enregistreOuvertureSaisieInventaire = done;
       $('.affiche-saisie').click();
     });
   });
@@ -65,9 +65,9 @@ describe("Le formulaire de saisie d'inventaire", function () {
     });
 
     it("n'enregistre pas une ouverture de saisie d'inventaire", function () {
-      const evenementOuvertureSaisieInventaire = 0;
+      let evenementOuvertureSaisieInventaire = 0;
       journal.enregistreOuvertureSaisieInventaire = () => {
-        enregistreOuvertureSaisieInventaire++;
+        evenementOuvertureSaisieInventaire++;
       };
       $('.overlay').click();
       expect(evenementOuvertureSaisieInventaire).to.eql(0);
@@ -126,9 +126,12 @@ describe("Le formulaire de saisie d'inventaire", function () {
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
-    let verifieValidite = function (saisieValide) {
+    let verifieValidite = function (saisieValide, reponses) {
       expect(Array.from(saisieValide)).to.eql([
         ['0', true]
+      ]);
+      expect(Array.from(reponses)).to.eql([
+        ['0', { quantite: '12' }]
       ]);
       done();
     };

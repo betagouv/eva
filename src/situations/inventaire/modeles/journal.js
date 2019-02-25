@@ -1,3 +1,11 @@
+function mapToObj (map) {
+  const obj = {};
+  for (let [clef, valeur] of map) {
+    obj[clef] = valeur;
+  }
+  return obj;
+}
+
 export class Journal {
   constructor (maintenant, depot) {
     this.maintenant = maintenant;
@@ -28,6 +36,17 @@ export class Journal {
       {
         date: this.maintenant(),
         type: 'ouvertureSaisieInventaire'
+      }
+    );
+  }
+
+  enregistreSaisieInventaire (resultat, reponses) {
+    this.depot.enregistre(
+      {
+        date: this.maintenant(),
+        type: 'saisieInventaire',
+        resultat,
+        reponses: mapToObj(reponses)
       }
     );
   }
