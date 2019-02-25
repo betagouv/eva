@@ -23,6 +23,15 @@ export class Journal {
     );
   }
 
+  enregistreOuvertureSaisieInventaire () {
+    this.depot.enregistre(
+      {
+        date: this.maintenant(),
+        type: 'ouvertureSaisieInventaire'
+      }
+    );
+  }
+
   evenements () {
     return this.depot.evenements();
   }

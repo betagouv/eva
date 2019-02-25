@@ -45,4 +45,17 @@ describe('le journal', function () {
       }
     ]);
   });
+
+  it("enregistre l'ouverture de la saisie d'inventaire", function () {
+    journal.enregistreOuvertureSaisieInventaire();
+
+    const enregistrement = mockDepot.evenements();
+    expect(enregistrement.length).to.equal(1);
+    expect(enregistrement).to.eql([
+      {
+        date: 123,
+        type: 'ouvertureSaisieInventaire'
+      }
+    ]);
+  });
 });

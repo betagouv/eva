@@ -31,7 +31,7 @@ function afficheMagasin (pointInsertion, $) {
 
     Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
     window.alert(message);
-  });
+  }, journal);
   new VueStop(pointInsertion, $).afficher();
   const vueConsigne = new VueConsigne(pointInsertion, sonConsigneDemarrage);
   new VueGo(pointInsertion, vueConsigne, journal).afficher();

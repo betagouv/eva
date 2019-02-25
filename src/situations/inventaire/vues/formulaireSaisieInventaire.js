@@ -19,7 +19,7 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
-export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation) {
+export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation, journal) {
   let produits = magasin.produitsEnStock();
   let inventaireReference = magasin.inventaireReference();
 
@@ -85,6 +85,9 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
     let $elementsCombines = $boutonSaisie.add($overlay);
 
     function basculeVisibiliteFormulaire () {
+      if ($overlay.hasClass('invisible')) {
+        journal.enregistreOuvertureSaisieInventaire();
+      }
       basculeVisibilite($overlay);
       basculeVisibilite($formulaireSaisie);
     }
