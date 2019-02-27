@@ -39,10 +39,10 @@ describe('le depot du journal', function () {
   });
 
   it('vérifie la conformité des données récupèrées', function () {
-    const donnees = journal.recupereDonnees({ autreCle: 'valeur2', description: { cle: 'valeur2' } });
+    const donnees = journal.recupereDonnees({ autreCle: 'valeur2', sessionId: 'ma session id', description: { cle: 'valeur2' } });
 
     expect(donnees['description']).to.equal('{"cle":"valeur2"}');
-    expect(donnees['session_id']).to.equal('fake session_id');
+    expect(donnees['session_id']).to.equal('ma session id');
     expect(donnees['situation']).to.equal('inventaire');
   });
 

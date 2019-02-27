@@ -6,11 +6,12 @@ describe('le journal', function () {
   let journal;
   let mockMaintenant;
   let mockDepot;
+  const sessionId = 42;
 
   beforeEach(function () {
     mockMaintenant = () => { return 123; };
     mockDepot = new MockDepot();
-    journal = new Journal(mockMaintenant, mockDepot);
+    journal = new Journal(mockMaintenant, sessionId, mockDepot);
   });
 
   it("enregistre l'appui sur le bouton de démarrage", function () {
@@ -21,6 +22,7 @@ describe('le journal', function () {
     expect(enregistrement).to.eql([
       {
         date: 123,
+        sessionId,
         type: 'demarrage'
       }
     ]);
@@ -34,6 +36,7 @@ describe('le journal', function () {
     expect(enregistrement).to.eql([
       {
         date: 123,
+        sessionId,
         type: 'stop'
       }
     ]);
@@ -48,11 +51,13 @@ describe('le journal', function () {
     expect(enregistrement).to.eql([
       {
         date: 123,
+        sessionId,
         type: 'ouvertureContenant',
         description: { idProduit: '9', quantite: 12, contenu: { nom: 'Nova Sky' } }
       },
       {
         date: 123,
+        sessionId,
         type: 'ouvertureContenant',
         description: { idProduit: '4', quantite: 7, contenu: { nom: 'Gink Cola' } }
       }
@@ -67,6 +72,7 @@ describe('le journal', function () {
     expect(enregistrement).to.eql([
       {
         date: 123,
+        sessionId,
         type: 'ouvertureSaisieInventaire'
       }
     ]);
@@ -85,6 +91,7 @@ describe('le journal', function () {
     expect(enregistrement).to.eql([
       {
         date: 123,
+        sessionId,
         type: 'saisieInventaire',
         resultat: true,
         reponses: {
@@ -94,6 +101,7 @@ describe('le journal', function () {
       },
       {
         date: 123,
+        sessionId,
         type: 'saisieInventaire',
         resultat: false,
         reponses: {

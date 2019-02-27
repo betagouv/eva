@@ -7,15 +7,17 @@ function mapToObj (map) {
 }
 
 export class Journal {
-  constructor (maintenant, depot) {
+  constructor (maintenant, session, depot) {
     this.maintenant = maintenant;
     this.depot = depot;
+    this.sessionId = session;
   }
 
   enregistreDemarrage () {
     this.depot.enregistre(
       {
         date: this.maintenant(),
+        sessionId: this.sessionId,
         type: 'demarrage'
       }
     );
@@ -25,6 +27,7 @@ export class Journal {
     this.depot.enregistre(
       {
         date: this.maintenant(),
+        sessionId: this.sessionId,
         type: 'stop'
       }
     );
@@ -34,6 +37,7 @@ export class Journal {
     this.depot.enregistre(
       {
         date: this.maintenant(),
+        sessionId: this.sessionId,
         type: 'ouvertureContenant',
         description: contenant
       }
@@ -44,6 +48,7 @@ export class Journal {
     this.depot.enregistre(
       {
         date: this.maintenant(),
+        sessionId: this.sessionId,
         type: 'ouvertureSaisieInventaire'
       }
     );
@@ -53,6 +58,7 @@ export class Journal {
     this.depot.enregistre(
       {
         date: this.maintenant(),
+        sessionId: this.sessionId,
         type: 'saisieInventaire',
         resultat,
         reponses: mapToObj(reponses)

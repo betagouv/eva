@@ -1,6 +1,8 @@
 import 'inventaire/styles/app.scss';
 import 'inventaire/styles/etageres.scss';
 
+import uuidv4 from 'uuid/v4';
+
 import { contenants, contenus } from 'inventaire/data/stock.js';
 import { DepotJournal } from 'inventaire/infra/depot_journal.js';
 import { Journal } from 'inventaire/modeles/journal.js';
@@ -15,9 +17,10 @@ import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation
 import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 
 function afficheMagasin (pointInsertion, $) {
-  let magasin = creeMagasin({ contenants, contenus });
+  const session = uuidv4();
+  const magasin = creeMagasin({ contenants, contenus });
   const lignePrincipale = document.createElement('div');
-  const journal = new Journal(Date.now, new DepotJournal());
+  const journal = new Journal(Date.now, session, new DepotJournal());
   lignePrincipale.classList.add('ligne-principale');
   lignePrincipale.id = 'ligne-principale';
   document.querySelector(pointInsertion).appendChild(lignePrincipale);
