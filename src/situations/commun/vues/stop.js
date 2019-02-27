@@ -2,7 +2,7 @@ import 'commun/styles/stop.scss';
 import { afficheFenetreModale } from 'commun/vues/modale.js';
 
 export class VueStop {
-  constructor (pointInsertion, $, retourAccueil = () => {
+  constructor (pointInsertion, $, journal, retourAccueil = () => {
     window.location.assign('/');
   }) {
     this.$pointInsertion = $(pointInsertion);
@@ -11,7 +11,7 @@ export class VueStop {
     this.$boutonStop.on('click', () => {
       afficheFenetreModale(this.$pointInsertion, $,
         'Voulez vous vraiment quitter la mission ?',
-        retourAccueil);
+        () => { journal.enregistreStop(); retourAccueil(); });
     });
   }
 

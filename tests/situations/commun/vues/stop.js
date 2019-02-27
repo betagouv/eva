@@ -5,11 +5,15 @@ describe('vue Stop', function () {
   let vue;
   let $;
   let retourAccueil = false;
+  let mockJournal;
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
     $ = jQuery(window);
-    vue = new VueStop('#magasin', $, () => {
+    mockJournal = {
+      enregistreStop () {}
+    };
+    vue = new VueStop('#magasin', $, mockJournal, () => {
       retourAccueil = true;
     });
   });
@@ -33,5 +37,12 @@ describe('vue Stop', function () {
     $('#OK-modale').click();
 
     expect(retourAccueil).to.equal(true);
+  });
+
+  it("Enregistre l'événément quand on confirme la modale", function (done) {
+    mockJournal.enregistreStop = done;
+    vue.afficher();
+    $('#magasin #stop').click();
+    $('#OK-modale').click();
   });
 });

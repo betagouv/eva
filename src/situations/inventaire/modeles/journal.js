@@ -21,6 +21,15 @@ export class Journal {
     );
   }
 
+  enregistreStop () {
+    this.depot.enregistre(
+      {
+        date: this.maintenant(),
+        type: 'stop'
+      }
+    );
+  }
+
   enregistreOuvertureContenant (contenant) {
     this.depot.enregistre(
       {
