@@ -18,4 +18,20 @@
     position: absolute;
     cursor: pointer;
   }
+
+  .barres {
+    position: absolute;
+    top:6%;
+    height: 93%;
+  }
+
+  .barre-1 {
+    left:3%;
+  }
+  .barre-2 {
+    left:33%;
+  }
+  .barre-3 {
+    left:65%;
+  }
 }

@@ -1,6 +1,7 @@
 import { VueContenants } from './contenants.js';
 import { FabriqueVuesContenus } from './fabrique_vues_contenus.js';
-const imageEtageres = require('inventaire/assets/etageres.png');
+import imageEtageres from 'inventaire/assets/etageres.png';
+import imageBarreDevant from 'inventaire/assets/barreDevant.png';
 
 export class VueEtageres {
   constructor (pointInsertion, journal) {
@@ -9,6 +10,13 @@ export class VueEtageres {
     this.element.id = 'etageres';
     this.element.classList.add('etageres');
     document.querySelector(pointInsertion).appendChild(this.element);
+  }
+
+  creerBarre (classCss) {
+    const barresDevants = document.createElement('img');
+    barresDevants.src = imageBarreDevant;
+    barresDevants.classList.add('barres', classCss);
+    return barresDevants;
   }
 
   affiche (contenants) {
@@ -20,6 +28,10 @@ export class VueEtageres {
     const vueContenants = new VueContenants(this.element, etageres, this.journal);
     const vuesContenus = new FabriqueVuesContenus(vueContenants.element);
     vueContenants.afficheLesContenants(contenants, vuesContenus);
+
+    for (let classCss of ['barre-1', 'barre-2', 'barre-3']) {
+      vueContenants.element.appendChild(this.creerBarre(classCss));
+    }
 
     etageres.addEventListener('load', () => {
       setTimeout(() => {
