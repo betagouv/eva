@@ -25,18 +25,26 @@ export class VueEtageres {
     etageres.src = imageEtageres;
     this.element.appendChild(etageres);
 
-    const vueContenants = new VueContenants(this.element, etageres, this.journal);
-    const vueContenu = new VueContenu(vueContenants.element);
+    const calque = document.createElement('div');
+    calque.classList.add('avant-plan');
+    this.element.appendChild(calque);
+
+    const vueContenants = new VueContenants(calque, this.journal);
+    const vueContenu = new VueContenu(calque);
     vueContenants.afficheLesContenants(contenants, vueContenu);
 
     for (let classCss of ['barre-1', 'barre-2', 'barre-3']) {
-      vueContenants.element.appendChild(this.creerBarre(classCss));
+      calque.appendChild(this.creerBarre(classCss));
     }
 
+    const resize = () => {
+      calque.style.width = etageres.width + 'px';
+      calque.style.height = etageres.height + 'px';
+    };
+
+    window.addEventListener('resize', resize);
     etageres.addEventListener('load', () => {
-      setTimeout(() => {
-        vueContenants.resize();
-      }, 10);
+      setTimeout(resize, 10);
     });
   }
 }

@@ -1,3 +1,5 @@
+/* global Event */
+
 import { Contenant } from 'inventaire/modeles/contenant.js';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
 import jsdom from 'jsdom-global';
@@ -29,5 +31,17 @@ describe('vue etagères', function () {
 
     const contenantsAjoutes = document.getElementsByClassName('contenant');
     expect(contenantsAjoutes.length).to.equal(2);
+  });
+
+  it("recalcule la taille de l'avant plan quand on redimensionne l'image", function () {
+    vue.affiche([]);
+    const imageEtageres = document.getElementById('imageEtageres');
+    imageEtageres.width = 50;
+    imageEtageres.height = 25;
+    window.dispatchEvent(new Event('resize'));
+
+    const claque = document.querySelector('.avant-plan');
+    expect(claque.style.width).to.equal('50px');
+    expect(claque.style.height).to.equal('25px');
   });
 });
