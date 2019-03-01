@@ -1,36 +1,45 @@
+const scene = {
+  hauteur: 1536,
+  largeur: 2048
+};
+
 const contenants = [
-  { idContenu: '0', type: 'ContenantVrac', forme: 'moyenBaril', quantite: 25, posX: 7.3, posY: 3.0 },
-  { idContenu: '1', type: 'ContenantVrac', forme: 'grandBaril', quantite: 33, posX: 4.4, posY: 56.0 },
-  { idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 8, posX: 52.8, posY: 87.0 },
-  { idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 13, posX: 59.6, posY: 87.5 },
-  { idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 7, posX: 86, posY: 87.0 },
-  { idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 3, posX: 81.7, posY: 89.0 },
-  { idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 4, posX: 91.2, posY: 88.5 },
-  { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 3, couleur: 'gris', posX: 18.4, posY: 11.2 },
-  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', couleur: 'gris', quantite: 8, posX: 18.4, posY: 3.0 },
-  { idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, couleur: 'marron', posX: 52.4, posY: 5.4 },
-  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, couleur: 'marron', posX: 70.8, posY: 11.7 },
-  { idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, couleur: 'marron', posX: 81.0, posY: 5.9 },
-  { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 6, couleur: 'gris', posX: 3.7, posY: 33.3 },
-  { idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 3, couleur: 'rouge', posX: 26.5, posY: 33.8 },
-  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 7, couleur: 'bleu', posX: 26.5, posY: 25.9 },
-  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 5, couleur: 'gris', posX: 52.4, posY: 33.8 },
-  { idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 1, couleur: 'gris', posX: 52.4, posY: 25.9 },
-  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 5, couleur: 'bleu', posX: 80.3, posY: 33.8 },
-  { idContenu: '7', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 3, couleur: 'marron', posX: 16.0, posY: 62.6 },
-  { idContenu: '5', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, couleur: 'marron', posX: 18.0, posY: 49.4 },
-  { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, couleur: 'gris', posX: 32.7, posY: 68.5 },
-  { idContenu: '5', type: 'ContenantUnitaire', forme: 'moyenCarton', quantite: 2, couleur: 'marron', posX: 51.7, posY: 64.5 },
-  { idContenu: '7', type: 'ContenantUnitaire', forme: 'moyenCarton', quantite: 2, couleur: 'marron', posX: 65.7, posY: 64.5 },
-  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, couleur: 'vert', posX: 80.3, posY: 69.9 },
-  { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 1, couleur: 'jaune', posX: 80.3, posY: 62.1 },
-  { idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, couleur: 'bleu', posX: 80.3, posY: 55.0 },
-  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 2, couleur: 'marron', posX: 3.4, posY: 89.2 },
-  { idContenu: '4', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 1, couleur: 'marron', posX: 12.6, posY: 89.2 },
-  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 4, couleur: 'marron', posX: 21.8, posY: 89.2 },
-  { idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 0, couleur: 'marron', posX: 31.0, posY: 89.2 },
-  { idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, couleur: 'marron', posX: 40.2, posY: 89.2 },
-  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 2, couleur: 'marron', posX: 66.7, posY: 89.2 }
+
+  { idContenu: '0', type: 'ContenantVrac', forme: 'grandBaril', quantite: 25, posX: 164, posY: 365 },
+  { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 3, couleur: 'gris', posX: 412, posY: 377 },
+  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 8, couleur: 'gris', posX: 412, posY: 293 },
+  { idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, couleur: 'marron', posX: 1155, posY: 386 },
+  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, couleur: 'marron', posX: 970, posY: 383 },
+  { idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, couleur: 'marron', posX: 674, posY: 387 },
+
+  { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 6, couleur: 'gris', posX: 166, posY: 680 },
+  { idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 3, couleur: 'rouge', posX: 405, posY: 690 },
+  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 7, couleur: 'bleu', posX: 440, posY: 600 },
+  { idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 1, couleur: 'gris', posX: 760, posY: 686 },
+  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 5, couleur: 'gris', posX: 760, posY: 605 },
+  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 5, couleur: 'bleu', posX: 1153, posY: 686 },
+
+  { idContenu: '1', type: 'ContenantVrac', forme: 'grandBaril', quantite: 33, posX: 63, posY: 1075 },
+  { idContenu: '7', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 3, couleur: 'marron', posX: 260, posY: 1100 },
+  { idContenu: '5', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, couleur: 'marron', posX: 260, posY: 940 },
+  { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, couleur: 'gris', posX: 460, posY: 1110 },
+  { idContenu: '5', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 2, couleur: 'marron', posX: 675, posY: 1100 },
+  { idContenu: '7', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 2, couleur: 'marron', posX: 960, posY: 1100 },
+  { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, couleur: 'vert', posX: 1235, posY: 1095 },
+  { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 1, couleur: 'jaune', posX: 1235, posY: 1010 },
+  { idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, couleur: 'bleu', posX: 1235, posY: 930 },
+
+  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 2, couleur: 'marron', posX: 40, posY: 1420 },
+  { idContenu: '4', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 1, couleur: 'marron', posX: 230, posY: 1420 },
+  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 4, couleur: 'marron', posX: 410, posY: 1420 },
+  { idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, couleur: 'marron', posX: 600, posY: 1420 },
+  { idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 0, couleur: 'marron', posX: 600, posY: 1330 },
+  { idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 8, posX: 860, posY: 1365 },
+  { idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 13, posX: 799, posY: 1407 },
+  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 2, couleur: 'marron', posX: 920, posY: 1420 },
+  { idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 7, posX: 1195, posY: 1366 },
+  { idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 3, posX: 1115, posY: 1419 },
+  { idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 4, posX: 1267, posY: 1407 }
 ];
 
 const contenus = {
@@ -45,13 +54,11 @@ const contenus = {
 };
 
 const formes = {
-  'moyenBaril': { 'largeur': 9.2, 'hauteur': 17.6 },
-  'grandBaril': { 'largeur': 11, 'hauteur': 22 },
-  'petitBaril': { 'largeur': 5.7, 'hauteur': 11.5 },
-  'caisse': { 'largeur': 16.3, 'hauteur': 9.7 },
-  'grandCarton': { 'largeur': 16, 'hauteur': 15.4 },
-  'moyenCarton': { 'largeur': 14, 'hauteur': 13.9 },
-  'petitCarton': { 'largeur': 9, 'hauteur': 9.5 }
+  'grandBaril': { 'largeur': 233, 'hauteur': 260, 'profondeur': 0 },
+  'petitBaril': { 'largeur': 117, 'hauteur': 128, 'profondeur': 0 },
+  'caisse': { 'largeur': 187, 'hauteur': 82, 'profondeur': 95 },
+  'grandCarton': { 'largeur': 269, 'hauteur': 158, 'profondeur': 90 },
+  'petitCarton': { 'largeur': 170, 'hauteur': 90, 'profondeur': 75 }
 };
 
-export { contenants, contenus, formes };
+export { scene, contenants, contenus, formes };

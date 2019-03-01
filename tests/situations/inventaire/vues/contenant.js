@@ -8,7 +8,7 @@ describe('vue contenant', function () {
   let vue;
 
   let contenant = new Contenant(
-    { quantite: 12, posX: 40, posY: 80, largeur: 15, hauteur: 25 }
+    { quantite: 12, posX: 40, posY: 80, largeur: 15, hauteur: 25, profondeurX: 10, profondeurY: 12 }
   );
 
   beforeEach(function () {
@@ -22,11 +22,15 @@ describe('vue contenant', function () {
 
     const contenant = document.getElementById('contenants').firstChild;
     expect(contenant.classList.value).to.contain('contenant');
-    expect(contenant.getAttribute('style')).to
-      .equal('left: ' + 40 + '%;' +
-        ' top: ' + 80 + '%;' +
-        ' width: ' + 15 + '%;' +
-        ' height: ' + 25 + '%;'
+    expect(contenant.getAttribute('d')).to
+      .eql(`M   40   80
+           v  -25
+           l  10  -6
+           h  15
+           v  25
+           l  -10  6
+           h  -15
+           Z`
       );
   });
 
