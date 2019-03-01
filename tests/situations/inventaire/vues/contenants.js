@@ -6,8 +6,8 @@ import jsdom from 'jsdom-global';
 
 describe('vue contenants', function () {
   let vue;
-  let imageEtageres;
   let contenantsJournalises;
+  let pointInsertion;
 
   let contenants = [
     new Contenant({ id: '0', idContenu: '0', quantite: 1, posX: 40, posY: 80 }, { nom: 'Nova Sky', image: 'chemin' }),
@@ -16,31 +16,18 @@ describe('vue contenants', function () {
 
   beforeEach(function () {
     jsdom('<div id="stock"></div>');
-    const pointInsertion = document.getElementById('stock');
-    imageEtageres = { width: 100, height: 50 };
+    pointInsertion = document.getElementById('stock');
     contenantsJournalises = [];
     let journal = {
       enregistreOuvertureContenant: (contenant) => {
         contenantsJournalises.push(contenant);
       }
     };
-    vue = new VueContenants(pointInsertion, imageEtageres, journal);
+    vue = new VueContenants(pointInsertion, journal);
   });
 
   it("crée un point d'insertion pour tous les contenants", function () {
-    const element = document.getElementById('contenants');
-
-    expect(element.classList).to.contain('contenants');
-  });
-
-  it("recalcule la taille de contenants quand on redimensionne l'image", function () {
-    imageEtageres.width = 50;
-    imageEtageres.height = 25;
-    window.dispatchEvent(new Event('resize'));
-
-    const element = document.querySelector('#contenants svg');
-    expect(element.getAttribute('width')).to.equal('50px');
-    expect(element.getAttribute('height')).to.equal('25px');
+    expect(pointInsertion.querySelector('svg')).not.to.be(null);
   });
 
   it('ajoute plusieurs contenants sur les étagères', function () {
@@ -49,9 +36,8 @@ describe('vue contenants', function () {
     const contenantsAjoutes = document.getElementsByClassName('contenant');
     expect(contenantsAjoutes.length).to.equal(2);
 
-    const elementContenants = document.querySelector('#contenants svg');
-    expect(elementContenants.childNodes[0]).to.equal(contenantsAjoutes[0]);
-    expect(elementContenants.childNodes[1]).to.equal(contenantsAjoutes[1]);
+    expect(vue.svg.childNodes[0]).to.equal(contenantsAjoutes[0]);
+    expect(vue.svg.childNodes[1]).to.equal(contenantsAjoutes[1]);
   });
 
   it('affiche le contenu quand on clique sur un contenant', function (done) {
