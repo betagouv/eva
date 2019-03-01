@@ -3,41 +3,66 @@ import jsdom from 'jsdom-global';
 
 describe('le depot du journal', function () {
   let journal;
+  let requetes = [];
 
   beforeEach(function () {
     jsdom('', { url: 'http://localhost' });
-    journal = new DepotJournal();
+    requetes = [];
+    journal = new DepotJournal({ ajax (params) { requetes.push(params); } });
   });
 
   it('enregistre les lignes du journal dans le localStorage', function () {
-    journal.enregistre({ cle: 'valeur' });
-    journal.enregistre({ autreCle: 'valeur2' });
+    journal.enregistre({ cle: 'valeur', description: { cle: 'valeur' } });
+    journal.enregistre({ autreCle: 'valeur2', description: { cle: 'valeur2' } });
 
     const lignes = JSON.parse(window.localStorage.getItem('journal'));
     expect(lignes.length).to.equal(2);
     expect(lignes).to.eql([
-      { cle: 'valeur' },
-      { autreCle: 'valeur2' }
+      { cle: 'valeur',
+        description: {
+          cle: 'valeur'
+        }
+      },
+      { autreCle: 'valeur2',
+        description: {
+          cle: 'valeur2'
+        }
+      }
     ]);
   });
 
-  it("vérifie s'il n'existe pas un journal au démarrage et le charge", function () {
-    journal.enregistre('typeEvenement', { cle: 'valeur' });
+  it('fait un POST des lignes du journal vers le serveur', function () {
+    journal.enregistre({ autreCle: 'valeur2', description: { cle: 'valeur2' } });
 
-    journal = new DepotJournal();
-    journal.enregistre('typeEvenement', { cle: 'valeur' });
+    expect(requetes.length).to.equal(1);
+    expect(requetes[0]['type']).to.equal('POST');
+  });
+
+  it("vérifie s'il n'existe pas un journal au démarrage et le charge", function () {
+    journal.enregistre({ type: 'typeEvenement', description: { cle: 'valeur' } });
+
+    journal = new DepotJournal({ ajax (params) { requetes.push(params); } });
+    journal.enregistre({ type: 'typeEvenement', description: { cle: 'valeur' } });
 
     const lignes = JSON.parse(window.localStorage.getItem('journal'));
     expect(lignes.length).to.equal(2);
   });
 
   it('retourne les lignes du journal', function () {
-    journal.enregistre({ cle: 'valeur' });
-    journal.enregistre({ cle: 'valeur2' });
+    journal.enregistre({ cle: 'valeur', description: { cle: 'valeur' } });
+    journal.enregistre({ cle: 'valeur2', description: { cle: 'valeur2' } });
 
     expect(journal.evenements()).to.eql([
-      { 'cle': 'valeur' },
-      { 'cle': 'valeur2' }
+      { 'cle': 'valeur',
+        'description': {
+          'cle': 'valeur'
+        }
+      },
+      { 'cle': 'valeur2',
+        'description': {
+          'cle': 'valeur2'
+        }
+      }
     ]
     );
   });
