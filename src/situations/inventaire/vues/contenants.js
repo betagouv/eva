@@ -5,9 +5,13 @@ export class VueContenants {
     this.journal = journal;
     this.imageEtageres = imageEtageres;
     this.element = document.createElement('div');
+    this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    this.svg.setAttribute('preserveAspectRatio', 'none');
+    this.svg.setAttribute('viewBox', '0 0 100 100');
     this.element.classList.add('contenants');
     this.element.id = 'contenants';
     pointInsertion.appendChild(this.element);
+    this.element.appendChild(this.svg);
 
     window.addEventListener('resize', () => {
       this.resize();
@@ -15,13 +19,13 @@ export class VueContenants {
   }
 
   resize () {
-    this.element.style.width = this.imageEtageres.width + 'px';
-    this.element.style.height = this.imageEtageres.height + 'px';
+    this.svg.setAttribute('width', this.imageEtageres.width + 'px');
+    this.svg.setAttribute('height', this.imageEtageres.height + 'px');
   }
 
   afficheLesContenants (contenants, vueContenu) {
     contenants.forEach((contenant) => {
-      const vueContenant = new VueContenant(this.element, contenant);
+      const vueContenant = new VueContenant(this.svg, contenant);
       vueContenant.affiche((event) => {
         vueContenu.affiche(contenant);
         this.journal.enregistreOuvertureContenant(contenant);

@@ -5,13 +5,15 @@ export class VueContenant {
   }
 
   affiche (cbOuvrirContenant) {
-    let element = document.createElement('div');
+    const element = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    element.setAttribute('d',
+      `M   ${this.contenant.posX}   ${this.contenant.posY}
+      h   ${this.contenant.largeur}
+      v  ${this.contenant.hauteur}
+      h -${this.contenant.largeur}
+      Z`);
+    element.setAttribute('fill-opacity', '0');
     element.classList.add('contenant');
-
-    element.style.left = this.contenant.posX + '%';
-    element.style.top = this.contenant.posY + '%';
-    element.style.width = this.contenant.largeur + '%';
-    element.style.height = this.contenant.hauteur + '%';
 
     element.addEventListener('click', cbOuvrirContenant);
 
