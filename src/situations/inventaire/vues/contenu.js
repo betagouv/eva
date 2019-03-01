@@ -37,7 +37,7 @@ class VueContenu {
   affiche (contenant) {
     this.calque.classList.remove('invisible');
     this.element.classList.remove('invisible');
-    this.element.style.top = this.position(contenant.posY, contenant.hauteur, this.dimensions.hauteur) + '%';
+    this.element.style.top = this.position(contenant.posY - contenant.hauteur, contenant.hauteur, this.dimensions.hauteur) + '%';
     this.element.style.left = this.position(contenant.posX, contenant.largeur, this.dimensions.largeur) + '%';
     this.element.style.height = this.dimensions.hauteur + '%';
     this.element.style.width = this.dimensions.largeur + '%';

@@ -38,9 +38,9 @@ describe('vue contenants', function () {
     imageEtageres.height = 25;
     window.dispatchEvent(new Event('resize'));
 
-    const element = document.getElementById('contenants');
-    expect(element.style.width).to.equal('50px');
-    expect(element.style.height).to.equal('25px');
+    const element = document.querySelector('#contenants svg');
+    expect(element.getAttribute('width')).to.equal('50px');
+    expect(element.getAttribute('height')).to.equal('25px');
   });
 
   it('ajoute plusieurs contenants sur les étagères', function () {
@@ -49,7 +49,7 @@ describe('vue contenants', function () {
     const contenantsAjoutes = document.getElementsByClassName('contenant');
     expect(contenantsAjoutes.length).to.equal(2);
 
-    const elementContenants = document.getElementById('contenants');
+    const elementContenants = document.querySelector('#contenants svg');
     expect(elementContenants.childNodes[0]).to.equal(contenantsAjoutes[0]);
     expect(elementContenants.childNodes[1]).to.equal(contenantsAjoutes[1]);
   });
