@@ -10,8 +10,8 @@ describe('vue contenants', function () {
   let contenantsJournalises;
 
   let contenants = [
-    new Contenant({ idContenu: '0', quantite: 1, posX: 40, posY: 80 }, { nom: 'Nova Sky', image: 'chemin' }),
-    new Contenant({ idContenu: '0', quantite: 2, posX: 60, posY: 80 }, { nom: 'Nova Sky', image: 'chemin' })
+    new Contenant({ id: '0', idContenu: '0', quantite: 1, posX: 40, posY: 80 }, { nom: 'Nova Sky', image: 'chemin' }),
+    new Contenant({ id: '1', idContenu: '0', quantite: 2, posX: 60, posY: 80 }, { nom: 'Nova Sky', image: 'chemin' })
   ];
 
   beforeEach(function () {
@@ -65,11 +65,12 @@ describe('vue contenants', function () {
   });
 
   it('journalise le contenant quand on clique dessus', function () {
+    contenants[0].id = 'id_contenant';
     vue.afficheLesContenants(contenants, { affiche: () => {} });
 
     document.getElementsByClassName('contenant')[0]
       .dispatchEvent(new Event('click'));
 
-    expect(contenantsJournalises).to.eql([contenants[0]]);
+    expect(contenantsJournalises).to.eql([{ contenant: 'id_contenant' }]);
   });
 });
