@@ -1,3 +1,4 @@
+import { config } from '../../../../config.json';
 
 export class DepotJournal {
   constructor ($ = require('jquery')) {
@@ -22,7 +23,7 @@ export class DepotJournal {
   envoiEvenementAuServeur (ligne) {
     this.$.ajax({
       type: 'POST',
-      url: '/api/evenements',
+      url: config.serveur_host + '/api/evenements',
       data: JSON.stringify(this.recupereDonnees(ligne)),
       contentType: 'application/json; charset=utf-8',
       retryTimeout: 60000,
