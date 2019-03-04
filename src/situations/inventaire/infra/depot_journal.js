@@ -30,7 +30,9 @@ export class DepotJournal {
       datePremierAppel: Date.now(),
       error: function (xhr) {
         if (Date.now() - this.datePremierAppel < this.retryTimeout) {
-          this.appel.ajax(this);
+          setTimeout(() => {
+            this.appel.ajax(this);
+          }, 5000);
         }
       }
     });
