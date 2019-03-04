@@ -5,7 +5,7 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development",
+    "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development --host 0.0.0.0",
     "start": "node server.js",
     "test": "./bin/test.sh",
     "lint": "semistandard"
