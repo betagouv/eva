@@ -4,6 +4,7 @@
     // Attention de maintenir la cohérence avec DELAY_FERMETURE_CONTENANT_MILLISEC
     transition: transform .4s;
     z-index: 100;
+    position: absolute;
   }
 
   .contenu.fermer {
@@ -24,68 +25,5 @@
     height: 100vh;
     z-index: 101;
     cursor: pointer;
-  }
-
-  .caisse {
-    position: absolute;
-    background: no-repeat center/contain;
-
-    .interieur {
-      position: absolute;
-      top: 30%;
-      left: 16%;
-      width: 71%;
-      height: 40%;
-      .bouteille {
-        max-height: 49%;
-        padding-left: 0.1rem;
-      }
-    }
-  }
-
-  .marron {
-    background-image: url('../assets/carton.png');
-  }
-
-  .bleu {
-    background-image: url('../assets/boite_bleue.png');
-  }
-
-  .jaune {
-    background-image: url('../assets/boite_jaune.png');
-  }
-
-  .gris {
-    background-image: url('../assets/boite_grise.png');
-  }
-
-  .rouge {
-    background-image: url('../assets/boite_rouge.png');
-  }
-
-  .vert {
-    background-image: url('../assets/boite_verte.png');
-  }
-
-  .etiquette {
-    position: absolute;
-    color: black;
-    background: url('../assets/etiquette.png') no-repeat center/contain;
-    font-size: 0.7rem;
-
-    .type, .quantite {
-      position: absolute;
-      left: 0;
-      width:100%;
-      text-align: center;
-    }
-
-    .type {
-      top: 33%;
-    }
-
-    .quantite {
-      top: 55%;
-    }
   }
 }

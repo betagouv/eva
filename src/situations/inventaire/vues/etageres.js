@@ -1,5 +1,5 @@
 import { VueContenants } from './contenants.js';
-import { FabriqueVuesContenus } from './fabrique_vues_contenus.js';
+import { VueContenu } from './contenu.js';
 import imageEtageres from 'inventaire/assets/etageres.png';
 import imageBarreDevant from 'inventaire/assets/barreDevant.png';
 
@@ -26,8 +26,8 @@ export class VueEtageres {
     this.element.appendChild(etageres);
 
     const vueContenants = new VueContenants(this.element, etageres, this.journal);
-    const vuesContenus = new FabriqueVuesContenus(vueContenants.element);
-    vueContenants.afficheLesContenants(contenants, vuesContenus);
+    const vueContenu = new VueContenu(vueContenants.element);
+    vueContenants.afficheLesContenants(contenants, vueContenu);
 
     for (let classCss of ['barre-1', 'barre-2', 'barre-3']) {
       vueContenants.element.appendChild(this.creerBarre(classCss));

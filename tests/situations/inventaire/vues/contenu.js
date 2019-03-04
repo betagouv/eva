@@ -7,12 +7,14 @@ import jsdom from 'jsdom-global';
 describe('vue contenu', function () {
   let vue;
   let calque;
+  let element;
 
   beforeEach(function () {
     jsdom('<div id="stock"></div>');
     let pointInsertion = document.getElementById('stock');
-    vue = new VueContenu(pointInsertion, 'id', { hauteur: 25, largeur: 45 });
-    calque = document.getElementById('id');
+    vue = new VueContenu(pointInsertion);
+    calque = document.getElementById('calque');
+    element = vue.element;
   });
 
   it("initialise un contenu invisible tant que le contenant n'est pas ouvert", function () {
@@ -34,5 +36,14 @@ describe('vue contenu', function () {
 
   it("calcule la position du contenant ouvert pour qu'il soit centré sur le contenant fermé", function () {
     expect(vue.position(50, 2, 4)).to.equal(49);
+  });
+
+  it("sait afficher l'image du contenant", function () {
+    const contenant = new Contenant({ image: 'image_contenant' }, { nom: 'Nova Sky' });
+    vue.affiche(contenant);
+
+    expect(calque.classList).to.not.contain('invisible');
+    const imageContenant = element.querySelector('img');
+    expect(imageContenant.src).to.eql('image_contenant');
   });
 });
