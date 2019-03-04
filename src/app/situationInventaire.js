@@ -10,7 +10,7 @@ import { VueFicheReferences } from 'inventaire/vues/fiche_references.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
 import { VueConsigne } from 'commun/vues/consigne.js';
 import { VueGo } from 'commun/vues/go.js';
-import { VueStop } from 'commun/vues/stop.js';
+import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
 
 import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 
@@ -34,10 +34,10 @@ function afficheMagasin (pointInsertion, $) {
     Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
     window.alert(message);
   }, journal);
-  new VueStop(pointInsertion, $, journal).afficher();
+  new ActionsCommunesSituation(pointInsertion, $, journal).afficheElementEnCommun();
   const vueConsigne = new VueConsigne(pointInsertion, sonConsigneDemarrage);
   new VueGo(pointInsertion, vueConsigne, journal).afficher();
-}
+ }
 
 jQuery(function () {
   jQuery('body').append(`
