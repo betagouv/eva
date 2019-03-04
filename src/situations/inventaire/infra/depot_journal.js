@@ -25,11 +25,15 @@ export class DepotJournal {
       url: 'http://localhost:3000/api/evenements',
       data: JSON.stringify(this.recupereDonnees(ligne)),
       contentType: 'application/json; charset=utf-8',
-      success: function (data, status, jqXHR) {
-        console.log('Succès');
-      },
-      error: function (jqXHR, status) {
-        console.log('Echec ' + status.code);
+      limiteEssai: 5,
+      compteurTentative: 0,
+      appel: this.$,
+      error: function (xhr) {
+        this.compteurTentative++;
+        console.log(this.compteurTentative);
+        if (this.compteurTentative <= this.limiteEssai) {
+          this.appel.ajax(this);
+        }
       }
     });
   }
