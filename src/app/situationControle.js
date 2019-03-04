@@ -1,7 +1,7 @@
 import 'commun/styles/commun.scss';
-
 import { Situation } from 'controle/modeles/situation.js';
 import { VueSituation } from 'controle/vues/situation.js';
+import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
 
 function afficheSituation (pointInsertion, $) {
   let situation = new Situation({
@@ -10,6 +10,7 @@ function afficheSituation (pointInsertion, $) {
     positionApparitionPieces: { x: 100, y: 70 },
     dureeViePiece: 12000
   });
+  new ActionsCommunesSituation(pointInsertion, $).afficheElementEnCommun();
   let vueSituation = new VueSituation(situation);
   vueSituation.affiche(pointInsertion, $);
 }
