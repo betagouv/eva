@@ -41,6 +41,6 @@ export class DepotJournal {
 
   recupereDonnees (ligne) {
     const { date, type, description } = ligne;
-    return { date, description: description.toString(), type_evenement: type, session_id: 'fake session_id', situation: 'inventaire' };
+    return { date, description: JSON.stringify(description), type_evenement: type, session_id: 'fake session_id', situation: 'inventaire' };
   }
 }
