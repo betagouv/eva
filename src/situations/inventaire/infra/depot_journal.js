@@ -23,7 +23,7 @@ export class DepotJournal {
   envoiEvenementAuServeur (ligne) {
     this.$.ajax({
       type: 'POST',
-      url: config.serveur_host + '/api/evenements',
+      url: config.hote_serveur + '/api/evenements',
       data: JSON.stringify(this.recupereDonnees(ligne)),
       contentType: 'application/json; charset=utf-8',
       retryTimeout: 60000,
@@ -40,12 +40,7 @@ export class DepotJournal {
   }
 
   recupereDonnees (ligne) {
-    var [date, type, description] = [ligne['date'], ligne['type'], ligne['description'].toString()];
-    var data = { date: date,
-      type_evenement: type,
-      description: description,
-      session_id: 'fake session_id',
-      situation: 'inventaire' };
-    return data;
+    const { date, type, description } = ligne;
+    return { date, description: description.toString(), type_evenement: type, session_id: 'fake session_id', situation: 'inventaire' };
   }
 }
