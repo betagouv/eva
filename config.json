@@ -1,5 +1,5 @@
 {
   "config": {
-    "serveur_host": "http://localhost:3000"
+    "hote_serveur": "http://localhost:3000"
   }
 }
