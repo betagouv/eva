@@ -38,6 +38,14 @@ describe('le depot du journal', function () {
     expect(requetes[0]['type']).to.equal('POST');
   });
 
+  it('vérifie la conformité des données récupèrées', function () {
+    const donnees = journal.recupereDonnees({ autreCle: 'valeur2', description: { cle: 'valeur2' } });
+
+    expect(donnees['description']).to.equal('{"cle":"valeur2"}');
+    expect(donnees['session_id']).to.equal('fake session_id');
+    expect(donnees['situation']).to.equal('inventaire');
+  });
+
   it("vérifie s'il n'existe pas un journal au démarrage et le charge", function () {
     journal.enregistre({ type: 'typeEvenement', description: { cle: 'valeur' } });
 
