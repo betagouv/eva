@@ -3,8 +3,6 @@ import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation
 
 describe('Affiche les éléments communs aux situations', function () {
   let vue;
-  let go;
-  let stop;
   let $;
 
   beforeEach(function () {
@@ -13,8 +11,8 @@ describe('Affiche les éléments communs aux situations', function () {
     vue = new ActionsCommunesSituation('#magasin', $);
   });
 
-  it('Affiche le bouton Stop ainsi que le bouton Go', function () {
-    vue.afficheElementEnCommun(go, stop);
+  it('Affiche les éléments en commun des situations (bouton stop)', function () {
+    vue.afficheElementEnCommun();
     expect($('#stop').length).to.equal(1);
   });
 });
