@@ -37,7 +37,7 @@ function afficheMagasin (pointInsertion, $) {
   new ActionsCommunesSituation(pointInsertion, $, journal).afficheElementEnCommun();
   const vueConsigne = new VueConsigne(pointInsertion, sonConsigneDemarrage);
   new VueGo(pointInsertion, vueConsigne, journal).afficher();
- }
+}
 
 jQuery(function () {
   jQuery('body').append(`
