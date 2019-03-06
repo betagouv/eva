@@ -7,7 +7,6 @@ else
   exit 1
 fi
 
-scp -r Dockerfile package-lock.json package.json server.js src webpack.config.js ${adresse_machine_production}:${repertoire_application}
+scp -r Dockerfile package-lock.json package.json server.js config.json src webpack.config.js ${adresse_machine_production}:${repertoire_application}
 
 echo "cd ${repertoire_application} && port_ecoute=${port_ecoute} && $(cat bin/deploy.sh)" | ssh ${adresse_machine_production}
-
