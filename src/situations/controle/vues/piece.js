@@ -1,5 +1,7 @@
 import 'controle/styles/piece.scss';
 
+export const DUREE_VIE_PIECE_INFINIE = undefined;
+
 export function animationInitiale ($element) {
   $element.animate({ left: '-10%' }, 10000, 'linear');
 }
@@ -9,13 +11,17 @@ export function animationFinale ($element, done) {
 }
 
 export class VuePiece {
-  constructor (piece, dureeVie, callbackAvantSuppression) {
+  constructor (piece,
+    dureeVie = DUREE_VIE_PIECE_INFINIE,
+    callbackApresApparition = animationInitiale,
+    callbackAvantSuppression = animationFinale) {
     this.piece = piece;
     this.dureeVie = dureeVie;
-    this.callbackAvantSuppression = callbackAvantSuppression || animationFinale;
+    this.callbackApresApparition = callbackApresApparition;
+    this.callbackAvantSuppression = callbackAvantSuppression;
   }
 
-  affiche (pointInsertion, $, callbackApparition) {
+  affiche (pointInsertion, $) {
     function creeElementPiece (pieceConforme, position, dimensionsElementParent) {
       let classeConformite = pieceConforme ? 'conforme' : 'defectueuse';
       let $piece = $(`<div class="piece ${classeConformite}"></div>`);
@@ -62,9 +68,9 @@ export class VuePiece {
       metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
     });
     $elementParent.append($piece);
-    callbackApparition ? callbackApparition($piece) : $piece.show();
+    $piece.show(() => { this.callbackApresApparition($piece); });
 
-    if (this.dureeVie) {
+    if (this.dureeVie !== DUREE_VIE_PIECE_INFINIE) {
       setTimeout(() => {
         this.callbackAvantSuppression($piece, () => { $piece.remove(); });
       }, this.dureeVie);
