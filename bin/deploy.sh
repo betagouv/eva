@@ -10,7 +10,7 @@ then port_ecoute=80
 fi
 
 mkdir -p ${dossier_distribution}
-cp -R package-lock.json package.json server.js src webpack.config.js ${dossier_distribution}
+cp -R package-lock.json package.json server.js config.json src webpack.config.js ${dossier_distribution}
 
 docker build -t ${nom_image_conteneur} --build-arg dossier_source=${dossier_distribution} .
 
