@@ -1,5 +1,6 @@
 import jsdom from 'jsdom-global';
 import { Situation } from 'controle/modeles/situation.js';
+import { DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece.js';
 import { VueSituation } from 'controle/vues/situation.js';
 
 describe('La situation « Contrôle »', function () {
@@ -12,21 +13,21 @@ describe('La situation « Contrôle »', function () {
 
   it('Affiche les pièces en séquence selon le scénario pré-établi', function (done) {
     const situation = new Situation({
-      cadence: 10,
+      cadence: 0,
       scenario: [true, false],
       positionApparitionPieces: { x: 10, y: 20 },
-      dureeViePiece: 20
+      dureeViePiece: DUREE_VIE_PIECE_INFINIE
     });
 
-    const vueSituation = new VueSituation(situation, () => { });
-    vueSituation.affiche('#situation-controle', $);
+    let nbPiecesAffichees = 0;
+    let classesAttendues = ['conforme', 'defectueuse'];
+    const vueSituation = new VueSituation(situation, ($piece) => {
+      const classeAttendue = classesAttendues.shift();
+      expect($piece.hasClass(classeAttendue)).to.be(true);
+      nbPiecesAffichees += 1;
+      if (nbPiecesAffichees >= 2) { done(); }
+    });
 
-    setTimeout(function () {
-      let $pieces = $('.piece');
-      expect($pieces.length).to.equal(2);
-      expect($pieces.eq(0).hasClass('conforme')).to.be(true);
-      expect($pieces.eq(1).hasClass('defectueuse')).to.be(true);
-      done();
-    }, 25);
+    vueSituation.affiche('#situation-controle', $);
   });
 });

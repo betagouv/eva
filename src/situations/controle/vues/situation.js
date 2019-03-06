@@ -1,9 +1,9 @@
-import { VuePiece, animationInitiale } from 'controle/vues/piece.js';
+import { VuePiece } from 'controle/vues/piece.js';
 
 export class VueSituation {
   constructor (situation, callbackApresCreationPiece) {
     this.situation = situation;
-    this.callbackApresCreationPiece = callbackApresCreationPiece || animationInitiale;
+    this.callbackApresCreationPiece = callbackApresCreationPiece;
   }
 
   affiche (pointInsertion, $) {
@@ -14,8 +14,10 @@ export class VueSituation {
       }
 
       let piece = this.situation.pieceSuivante();
-      let vuePiece = new VuePiece(piece, this.situation.dureeViePiece());
-      vuePiece.affiche(pointInsertion, $, this.callbackApresCreationPiece);
+      let vuePiece = new VuePiece(piece,
+        this.situation.dureeViePiece(),
+        this.callbackApresCreationPiece);
+      vuePiece.affiche(pointInsertion, $);
     }, this.situation.cadenceArriveePieces());
   }
 }
