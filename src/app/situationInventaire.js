@@ -37,6 +37,7 @@ function afficheMagasin (pointInsertion, $) {
 }
 
 jQuery(function () {
+  document.title = 'Situation Inventaire';
   jQuery('body').append(`
     <div id="magasin" class="situation">
       <h1>Stock de boissons</h1>

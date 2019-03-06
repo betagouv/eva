@@ -10,6 +10,7 @@ function afficheAccueil (situations, pointInsertion, $) {
 }
 
 jQuery(function () {
+  document.title = 'Compétences pro';
   jQuery('head').append('<title>Compétences pro</title>');
   jQuery('body').append('<div id="accueil" class="situation accueil"></div>');
 

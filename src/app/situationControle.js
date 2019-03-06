@@ -19,7 +19,7 @@ function afficheSituation (pointInsertion, $) {
 }
 
 jQuery(function () {
-  jQuery('head').append('<title>Situation Contrôle</title>');
+  document.title = 'Situation Contrôle';
   jQuery('body').append('<div id="situation-controle" class="situation"></div>');
 
   afficheSituation('#situation-controle', jQuery);
