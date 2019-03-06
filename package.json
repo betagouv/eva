@@ -6,7 +6,6 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development --host 0.0.0.0",
-    "start": "node server.js",
     "test": "./bin/test.sh",
     "lint": "semistandard"
   },
@@ -50,7 +49,6 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "express": "^4.16.4",
     "jquery": "^3.3.1",
     "pluralize": "^7.0.0",
     "uuid": "^3.3.2"

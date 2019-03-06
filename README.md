@@ -17,13 +17,15 @@ $ npm install && npm run dev
 
 Et se rendre sur l'adresse affichée dans la sortie standard (http://localhost:7700 par défaut)
 
-## Démarrer l'application en local (mode production)
+## Démarrer l'application avec docker (mode production)
 
-Installer `npm` si nécessaire, et exécuter la commande suivante.
+Installer `docker` si nécessaire, et exécuter la commande suivante.
 
 ```
-$ npm install && npm run build && npm start
+$ docker build -t competences-pro . && docker run --rm -ti -p 3000:80 competences-pro
 ```
+
+Et se rendre à l'adresse http://localhost:3000
 
 ## Déployer l'application sur une machine distante
 

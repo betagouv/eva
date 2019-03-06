@@ -1,13 +1,12 @@
-FROM node:10.13-jessie
-ARG dossier_source
+FROM node:10 as node
 
-WORKDIR /app
+WORKDIR /app/
 COPY package.json package-lock.json ./
 RUN npm install
 
-COPY ${dossier_source} ./
+COPY . ./
 RUN npm run build
 
-EXPOSE 3000
+FROM nginx
 
-CMD ["npm", "start"]
+COPY --from=node /app/public /usr/share/nginx/html/
