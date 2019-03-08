@@ -34,16 +34,37 @@ describe('vue contenu', function () {
     }, DELAY_FERMETURE_CONTENANT_MILLISEC);
   });
 
-  it("calcule la position du contenant ouvert pour qu'il soit centré sur le contenant fermé", function () {
-    expect(vue.position(50, 2, 4)).to.equal(49);
+  describe('position()', function () {
+    it("calcule la position du contenant ouvert pour qu'il soit centré sur le contenant fermé", function () {
+      expect(vue.position(50, 2, 4)).to.equal(49);
+    });
+
+    it('ne peut pas dépasser de la scène par le haut ou la gauche', function () {
+      expect(vue.position(0, 2, 50)).to.equal(0);
+    });
+
+    it('ne peut pas dépasser de la scène par le bas ou la droite', function () {
+      expect(vue.position(95, 2, 30)).to.equal(70);
+    });
   });
 
-  it("sait afficher l'image du contenant", function () {
-    const contenant = new Contenant({ image: 'image_contenant' }, { nom: 'Nova Sky' });
-    vue.affiche(contenant);
+  describe('affiche()', function () {
+    it("sait afficher l'image du contenant", function () {
+      const contenant = new Contenant({ image: 'image_contenant' }, { nom: 'Nova Sky' });
+      vue.affiche(contenant);
 
-    expect(calque.classList).to.not.contain('invisible');
-    const imageContenant = element.querySelector('img');
-    expect(imageContenant.src).to.eql('image_contenant');
+      expect(calque.classList).to.not.contain('invisible');
+      expect(element.src).to.eql('image_contenant');
+    });
+
+    it("calcule la hauteur du contenant ouvert en fonction de ses dimensions d'origine et de la scène", function () {
+      const contenant = new Contenant({ dimensionsOuvertes: { largeur: 4, hauteur: 6 } });
+
+      vue.dimensions = { largeur: 8 };
+      vue.affiche(contenant);
+
+      expect(vue.element.style.height).to.eql('16%');
+    });
   });
+
 });

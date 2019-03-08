@@ -9,12 +9,12 @@
 
   .contenu.fermer {
     transition-timing-function: ease-in;
-    transform: scale(1,1);
+    transform: scale(.5);
   }
 
   .contenu.ouvrir {
     transition-timing-function: ease-out;
-    transform: scale(2,2);
+    transform: scale(1);
   }
 
   .calque {
