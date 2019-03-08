@@ -6,10 +6,14 @@ let jsdom = require('jsdom-global');
 
 describe("Le formulaire de saisie d'inventaire", function () {
   let $;
+  let journal;
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
     $ = jQuery(window);
+    journal = {
+      enregistreOuvertureSaisieInventaire () {}
+    };
   });
 
   it("sait afficher un bouton pour saisir l'inventaire", function () {
@@ -20,7 +24,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   describe('quand on clique sur le bouton', function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, () => {}, journal);
     });
 
     it('affiche un overlay extérieur pour commander sa fermeture', function () {
@@ -36,11 +40,16 @@ describe("Le formulaire de saisie d'inventaire", function () {
       $('.affiche-saisie').click();
       expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(0);
     });
+
+    it("journalise l'événement", function (done) {
+      journal.enregistreOuvertureSaisieInventaire = done;
+      $('.affiche-saisie').click();
+    });
   });
 
   describe("quand on clique sur l'overlay", function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, () => {}, journal);
       $('.affiche-saisie').click();
       expect($('.overlay.invisible').length).to.equal(0);
     });
@@ -53,6 +62,15 @@ describe("Le formulaire de saisie d'inventaire", function () {
     it("s'efface (l'overlay)", function () {
       $('.overlay').click();
       expect($('.overlay.invisible').length).to.equal(1);
+    });
+
+    it("n'enregistre pas une ouverture de saisie d'inventaire", function () {
+      let evenementOuvertureSaisieInventaire = 0;
+      journal.enregistreOuvertureSaisieInventaire = () => {
+        evenementOuvertureSaisieInventaire++;
+      };
+      $('.overlay').click();
+      expect(evenementOuvertureSaisieInventaire).to.eql(0);
     });
   });
 
@@ -108,9 +126,12 @@ describe("Le formulaire de saisie d'inventaire", function () {
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
-    let verifieValidite = function (saisieValide) {
+    let verifieValidite = function (saisieValide, reponses) {
       expect(Array.from(saisieValide)).to.eql([
         ['0', true]
+      ]);
+      expect(Array.from(reponses)).to.eql([
+        ['0', { quantite: '12' }]
       ]);
       done();
     };

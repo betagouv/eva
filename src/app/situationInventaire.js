@@ -17,23 +17,26 @@ import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 function afficheMagasin (pointInsertion, $) {
   let magasin = creeMagasin({ contenants, contenus });
   const lignePrincipale = document.createElement('div');
+  const journal = new Journal(Date.now, new DepotJournal());
   lignePrincipale.classList.add('ligne-principale');
   lignePrincipale.id = 'ligne-principale';
   document.querySelector(pointInsertion).appendChild(lignePrincipale);
-  new VueEtageres('#ligne-principale', new Journal(Date.now, new DepotJournal()))
+  new VueEtageres('#ligne-principale', journal)
     .affiche(magasin.contenants());
   new VueFicheReferences('#ligne-principale').affiche();
 
-  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (resultatValidation) {
-    let toutCorrect = Array.from(resultatValidation.values()).every(v => v);
-    let message = toutCorrect ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';
+  initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (resultatValidation, reponses) {
+    const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
+    const message = toutCorrect ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';
+
+    journal.enregistreSaisieInventaire(toutCorrect, reponses);
 
     Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
     window.alert(message);
-  });
-  new VueStop(pointInsertion, $).afficher();
+  }, journal);
+  new VueStop(pointInsertion, $, journal).afficher();
   const vueConsigne = new VueConsigne(pointInsertion, sonConsigneDemarrage);
-  new VueGo(pointInsertion, vueConsigne).afficher();
+  new VueGo(pointInsertion, vueConsigne, journal).afficher();
 }
 
 jQuery(function () {

@@ -19,7 +19,7 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
-export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation) {
+export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation, journal) {
   let produits = magasin.produitsEnStock();
   let inventaireReference = magasin.inventaireReference();
 
@@ -52,11 +52,11 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   }
 
   function creeBoutonValidation () {
-    let $bouton = $('<button type="button" class="valide-saisie">Valider la saisie d\'inventaire</button>');
+    const $bouton = $('<button type="button" class="valide-saisie">Valider la saisie d\'inventaire</button>');
     $bouton.click(function () {
-      let reponses = extraisReponses();
-      let saisieValide = inventaireReference.valide(reponses);
-      callbackValidation(saisieValide);
+      const reponses = extraisReponses();
+      const saisieValide = inventaireReference.valide(reponses);
+      callbackValidation(saisieValide, reponses);
     });
 
     return $bouton;
@@ -85,6 +85,9 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
     let $elementsCombines = $boutonSaisie.add($overlay);
 
     function basculeVisibiliteFormulaire () {
+      if ($overlay.hasClass('invisible')) {
+        journal.enregistreOuvertureSaisieInventaire();
+      }
       basculeVisibilite($overlay);
       basculeVisibilite($formulaireSaisie);
     }

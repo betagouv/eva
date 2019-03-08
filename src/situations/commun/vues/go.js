@@ -1,7 +1,7 @@
 import 'commun/styles/go.scss';
 
 export class VueGo {
-  constructor (pointInsertion, vueConsigne) {
+  constructor (pointInsertion, vueConsigne, journal) {
     const elementPointInsertion = document.querySelector(pointInsertion);
     this.overlay = document.createElement('div');
     this.overlay.id = 'overlay-go';
@@ -17,6 +17,7 @@ export class VueGo {
     this.boutonGo.classList.add('invisible', 'bouton-centre', 'bouton-go');
     this.boutonGo.addEventListener('click', () => {
       this.overlay.classList.add('invisible');
+      journal.enregistreDemarrage();
     });
     this.overlay.appendChild(this.boutonGo);
 
