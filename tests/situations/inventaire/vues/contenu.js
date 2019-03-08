@@ -66,5 +66,4 @@ describe('vue contenu', function () {
       expect(vue.element.style.height).to.eql('16%');
     });
   });
-
 });
