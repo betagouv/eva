@@ -13,6 +13,7 @@ export class Contenant {
       this.hauteur = formes[this.forme].hauteur * 100 / scene.hauteur;
       this.profondeurX = formes[this.forme].profondeur * 100 / scene.largeur;
       this.profondeurY = formes[this.forme].profondeur * 100 / scene.hauteur;
+      this.dimensionsOuvertes = formes[this.forme].dimensionsOuvertes;
     }
   }
 
