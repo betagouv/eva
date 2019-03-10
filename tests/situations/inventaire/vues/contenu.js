@@ -50,7 +50,7 @@ describe('vue contenu', function () {
 
   describe('affiche()', function () {
     it("sait afficher l'image du contenant", function () {
-      const contenant = new Contenant({ image: 'image_contenant' }, { nom: 'Nova Sky' });
+      const contenant = new Contenant({ imageOuvert: 'image_contenant' }, { nom: 'Nova Sky' });
       vue.affiche(contenant);
 
       expect(calque.classList).to.not.contain('invisible');
