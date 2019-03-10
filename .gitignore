@@ -3,3 +3,4 @@ bin/config.sh
 dist/
 node_modules/
 tests_build/
+.DS_Store
