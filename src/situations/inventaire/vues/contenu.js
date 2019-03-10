@@ -34,27 +34,27 @@ class VueContenu {
     return positionCalculee;
   }
 
-  calculeDimensionsAdaptees (contenant) {
+  calculeHauteurAdaptee (contenant, largeur) {
     if (!contenant.dimensionsOuvertes) {
-      this.dimensions.hauteur = this.dimensions.largeur;
-      return;
+      return largeur;
     }
 
-    var largeurEnPx = this.dimensions.largeur * scene.largeur / 100;
-    var hauteurEnPixels = largeurEnPx * contenant.dimensionsOuvertes.hauteur / contenant.dimensionsOuvertes.largeur;
+    let proportionContenantOuvert = contenant.dimensionsOuvertes.hauteur / contenant.dimensionsOuvertes.largeur;
+    var largeurEnPixels = largeur * scene.largeur;
+    var hauteurEnPixels = largeurEnPixels * proportionContenantOuvert;
 
-    this.dimensions.hauteur = hauteurEnPixels / scene.hauteur * 100;
+    return hauteurEnPixels / scene.hauteur;
   }
 
   affiche (contenant) {
-    this.calculeDimensionsAdaptees(contenant);
+    this.dimensions.hauteur = this.calculeHauteurAdaptee(contenant, this.dimensions.largeur);
     this.calque.classList.remove('invisible');
     this.element.classList.remove('invisible');
     this.element.style.top = this.position(contenant.posY - contenant.hauteur, contenant.hauteur, this.dimensions.hauteur) + '%';
     this.element.style.left = this.position(contenant.posX, contenant.largeur, this.dimensions.largeur) + '%';
     this.element.style.height = this.dimensions.hauteur + '%';
     this.element.style.width = this.dimensions.largeur + '%';
-    this.element.src = contenant.image;
+    this.element.src = contenant.imageOuvert;
 
     setTimeout(() => {
       this.element.classList.replace('fermer', 'ouvrir');
