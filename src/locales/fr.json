@@ -1,0 +1,28 @@
+{
+  "situation": {
+    "stop": "Voulez vous vraiment quitter la mission ?",
+    "modale": {
+      "ok": "OK",
+      "annuler": "annuler"
+    },
+    "go": "GO !"
+  },
+  "inventaire": {
+    "titre": "Stock de boissons",
+    "saisie": "Saisir l'inventaire",
+    "valider_saisie": "Valider la saisie d'inventaire",
+    "resultat": {
+      "ok": "Bravo, vous avez réussi !",
+      "echec": "Ce n'est pas tout à fait ça… réessayez."
+    }
+  },
+  "controle": {
+    "titre": "Situation Contrôle"
+  },
+  "restitution_inventaire": {
+    "titre": "Restitution de la mise en situation"
+  },
+  "accueil": {
+    "titre": "Compétences pro"
+  }
+}

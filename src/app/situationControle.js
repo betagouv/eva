@@ -2,6 +2,8 @@ import 'controle/styles/app.scss';
 
 import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
 import { VueCadre } from 'commun/vues/cadre.js';
+import { initialise as initialiseInternationalisation, traduit } from 'commun/infra/internationalisation';
+
 import { Situation } from 'controle/modeles/situation.js';
 import { VueSituation } from 'controle/vues/situation.js';
 
@@ -21,9 +23,11 @@ function afficheSituation (pointInsertion, $) {
   }).afficheElementEnCommun();
 }
 
-jQuery(function () {
-  document.title = 'Situation Contrôle';
-  jQuery('body').append('<div id="situation-controle" class="conteneur"></div>');
+initialiseInternationalisation().then(function () {
+  jQuery(function () {
+    document.title = traduit('controle.titre');
+    jQuery('body').append('<div id="situation-controle" class="conteneur"></div>');
 
-  afficheSituation('#situation-controle', jQuery);
+    afficheSituation('#situation-controle', jQuery);
+  });
 });

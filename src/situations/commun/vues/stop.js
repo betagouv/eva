@@ -1,3 +1,5 @@
+import { traduit } from 'commun/infra/internationalisation';
+
 import 'commun/styles/stop.scss';
 import { afficheFenetreModale } from 'commun/vues/modale.js';
 
@@ -10,7 +12,7 @@ export class VueStop {
 
     this.$boutonStop.on('click', () => {
       afficheFenetreModale(this.$pointInsertion, $,
-        'Voulez vous vraiment quitter la mission ?',
+        traduit('situation.stop'),
         () => { journal.enregistreStop(); retourAccueil(); });
     });
   }

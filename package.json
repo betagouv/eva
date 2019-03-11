@@ -51,7 +51,6 @@
   "dependencies": {
     "i18next": "^15.0.6",
     "jquery": "^3.3.1",
-    "pluralize": "^7.0.0",
     "uuid": "^3.3.2"
   },
   "semistandard": {

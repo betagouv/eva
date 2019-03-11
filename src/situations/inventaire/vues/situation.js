@@ -1,3 +1,4 @@
+import { traduit } from 'commun/infra/internationalisation';
 import { contenants, contenus } from 'inventaire/data/stock.js';
 import { creeMagasin } from 'inventaire/modeles/magasin.js';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
@@ -14,7 +15,7 @@ export class VueSituation {
 
     initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, (resultatValidation, reponses) => {
       const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
-      const message = toutCorrect ? 'Bravo, vous avez réussi !' : 'Ce n\'est pas tout à fait ça… réessayez.';
+      const message = toutCorrect ? traduit('inventaire.resultat.ok') : traduit('inventaire.resultat.echec');
 
       this.journal.enregistreSaisieInventaire(toutCorrect, reponses);
 

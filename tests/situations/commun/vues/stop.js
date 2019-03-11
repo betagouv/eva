@@ -1,5 +1,11 @@
 import jsdom from 'jsdom-global';
 import { VueStop } from 'commun/vues/stop.js';
+import i18next from 'i18next';
+i18next.init({
+  lng: 'fr',
+  resources: {
+  }
+});
 
 describe('vue Stop', function () {
   let vue;
@@ -28,7 +34,7 @@ describe('vue Stop', function () {
 
     $('#magasin #stop').click();
     expect($('#fenetre-modale').length).to.equal(1);
-    expect($('label').text()).to.equal('Voulez vous vraiment quitter la mission ?');
+    expect($('label').text()).to.equal('situation.stop');
   });
 
   it("Redirige vers l'accueil quand on confirme la modale", function () {
