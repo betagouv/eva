@@ -11,7 +11,19 @@ describe('La situation « Contrôle »', function () {
     $ = jQuery(window);
   });
 
-  it('Affiche les pièces en séquence selon le scénario pré-établi', function (done) {
+  it('affiche le bac des pièces conformes et le bac des pièces défectueuses', function () {
+    const situation = new Situation({ scenario: [] });
+    const vueSituation = new VueSituation(situation, () => {});
+    expect($('#situation-controle .bac.pieces-conformes').length).to.equal(0);
+    expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(0);
+
+    vueSituation.affiche('#situation-controle', $);
+
+    expect($('#situation-controle .bac.pieces-conformes').length).to.equal(1);
+    expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(1);
+  });
+
+  it('affiche les pièces en séquence selon le scénario pré-établi', function (done) {
     const situation = new Situation({
       cadence: 0,
       scenario: [true, false],

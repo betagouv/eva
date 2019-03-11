@@ -1,3 +1,6 @@
+export const PIECE_CONFORME = true;
+export const PIECE_DEFECTUEUSE = false;
+
 export class Piece {
   constructor ({ x, y, conforme }) {
     this.x = x;
