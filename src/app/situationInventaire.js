@@ -9,6 +9,7 @@ import { VueCadre } from 'commun/vues/cadre.js';
 import { VueConsigne } from 'commun/vues/consigne.js';
 import { VueGo } from 'commun/vues/go.js';
 import { VueSituation } from 'inventaire/vues/situation.js';
+import { initialise as initialiseInternationalisation, traduit } from 'commun/infra/internationalisation';
 
 import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 
@@ -25,9 +26,10 @@ function afficheSituation (pointInsertion, $) {
   new VueGo(pointInsertion, vueConsigne, journal).afficher();
 }
 
-jQuery(function () {
-  document.title = 'Situation Inventaire';
-  jQuery('body').append(`<div id="magasin" class='conteneur'> </div>`);
-
-  afficheSituation('#magasin', jQuery);
+initialiseInternationalisation().then(function () {
+  jQuery(function () {
+    document.title = traduit('inventaire.titre');
+    jQuery('body').append(`<div id="magasin" class='conteneur'> </div>`);
+    afficheSituation('#magasin', jQuery);
+  });
 });
