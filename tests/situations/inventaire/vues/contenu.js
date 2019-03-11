@@ -38,14 +38,6 @@ describe('vue contenu', function () {
     it("calcule la position du contenant ouvert pour qu'il soit centré sur le contenant fermé", function () {
       expect(vue.position(50, 2, 4)).to.equal(49);
     });
-
-    it('ne peut pas dépasser de la scène par le haut ou la gauche', function () {
-      expect(vue.position(0, 2, 50)).to.equal(0);
-    });
-
-    it('ne peut pas dépasser de la scène par le bas ou la droite', function () {
-      expect(vue.position(95, 2, 30)).to.equal(70);
-    });
   });
 
   describe('affiche()', function () {
