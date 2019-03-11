@@ -26,10 +26,7 @@ class VueContenu {
   }
 
   position (position, dimensionFermee, dimensionOuvert) {
-    var positionCalculee = position + dimensionFermee / 2 - dimensionOuvert / 2;
-    positionCalculee = Math.max(positionCalculee, 0);
-    positionCalculee = Math.min(positionCalculee, 100 - dimensionOuvert);
-    return positionCalculee;
+    return position + dimensionFermee / 2 - dimensionOuvert / 2;
   }
 
   affiche (contenant) {
