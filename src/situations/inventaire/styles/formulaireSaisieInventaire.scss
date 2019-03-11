@@ -29,13 +29,12 @@
 
   .image-produit {
     display: inline-block;
-    width: 2rem;
-    height: 2.6rem;
     position: relative;
-    top: 0.3rem;
-    background-repeat: no-repeat;
-    background-position: bottom left 50%;
-    background-size: 1rem auto;
+    margin: 0 0.5rem 0 0.5rem;
+    top: 0.5rem;
+    width: 1.2rem;
+    height: 2.6rem;
+    background: no-repeat center/contain;
   }
 
   label {
