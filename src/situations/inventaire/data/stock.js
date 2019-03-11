@@ -54,11 +54,11 @@ const contenus = {
 };
 
 const formes = {
-  'grandBaril': { 'largeur': 233, 'hauteur': 260, 'profondeur': 0, dimensionsOuvertes: { largeur: 558, hauteur: 398 } },
-  'petitBaril': { 'largeur': 117, 'hauteur': 128, 'profondeur': 0, dimensionsOuvertes: { largeur: 558, hauteur: 398 } },
-  'caisse': { 'largeur': 187, 'hauteur': 82, 'profondeur': 95, dimensionsOuvertes: { largeur: 599, hauteur: 469 } },
-  'grandCarton': { 'largeur': 269, 'hauteur': 158, 'profondeur': 90, dimensionsOuvertes: { largeur: 831, hauteur: 618 } },
-  'petitCarton': { 'largeur': 170, 'hauteur': 90, 'profondeur': 75, dimensionsOuvertes: { largeur: 723, hauteur: 526 } }
+  'grandBaril': { 'largeur': 233, 'hauteur': 260, 'profondeur': 0, dimensionsOuvert: { largeur: 558, hauteur: 398 } },
+  'petitBaril': { 'largeur': 117, 'hauteur': 128, 'profondeur': 0, dimensionsOuvert: { largeur: 558, hauteur: 398 } },
+  'caisse': { 'largeur': 187, 'hauteur': 82, 'profondeur': 95, dimensionsOuvert: { largeur: 599, hauteur: 469 } },
+  'grandCarton': { 'largeur': 269, 'hauteur': 158, 'profondeur': 90, dimensionsOuvert: { largeur: 831, hauteur: 618 } },
+  'petitCarton': { 'largeur': 170, 'hauteur': 90, 'profondeur': 75, dimensionsOuvert: { largeur: 723, hauteur: 526 } }
 };
 
 export { scene, contenants, contenus, formes };
