@@ -10,11 +10,12 @@ function afficheSituation (pointInsertion, $) {
     positionApparitionPieces: { x: 100, y: 70 },
     dureeViePiece: 12000
   });
+  let vueSituation = new VueSituation(situation);
+  vueSituation.affiche(pointInsertion, $);
+
   new ActionsCommunesSituation(pointInsertion, $, {
     enregistreStop () {}
   }).afficheElementEnCommun();
-  let vueSituation = new VueSituation(situation);
-  vueSituation.affiche(pointInsertion, $);
 }
 
 jQuery(function () {
