@@ -8,9 +8,9 @@ const contenants = [
   { idContenu: '0', type: 'ContenantVrac', forme: 'grandBaril', quantite: 25, posX: 164, posY: 365, imageOuvert: require('inventaire/assets/vrac-sky-25.png') },
   { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 3, posX: 412, posY: 377, imageOuvert: require('inventaire/assets/caisse-1.png') },
   { idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 8, posX: 412, posY: 293, imageOuvert: require('inventaire/assets/caisse-2.png') },
-  { idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, posX: 1155, posY: 386, imageOuvert: require('inventaire/assets/gros-carton-1.png') },
-  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, posX: 970, posY: 383, imageOuvert: require('inventaire/assets/petit-carton-1.png') },
   { idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, posX: 674, posY: 387, imageOuvert: require('inventaire/assets/gros-carton-1.png') },
+  { idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, posX: 970, posY: 383, imageOuvert: require('inventaire/assets/petit-carton-1.png') },
+  { idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, posX: 1155, posY: 386, imageOuvert: require('inventaire/assets/gros-carton-1.png') },
 
   { idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 6, posX: 166, posY: 680, imageOuvert: require('inventaire/assets/caisse-3.png') },
   { idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 3, posX: 405, posY: 690, imageOuvert: require('inventaire/assets/caisse-5.png') },
