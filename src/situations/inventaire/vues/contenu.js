@@ -1,6 +1,5 @@
 import 'inventaire/styles/commun.scss';
 import 'inventaire/styles/contenu.scss';
-import { scene } from 'inventaire/data/stock.js';
 
 // Attention de maintenir la cohérence avec le temps
 // de la transition css (class contenu)
@@ -8,7 +7,6 @@ const DELAY_FERMETURE_CONTENANT_MILLISEC = 400;
 
 class VueContenu {
   constructor (pointInsertion) {
-    this.dimensions = { largeur: 33 };
     this.calque = document.createElement('div');
     this.calque.id = 'calque';
     pointInsertion.appendChild(this.calque);
@@ -27,33 +25,20 @@ class VueContenu {
     pointInsertion.appendChild(this.element);
   }
 
-  position (position, dimensionFermee, dimensionOuverte) {
-    var positionCalculee = position + dimensionFermee / 2 - dimensionOuverte / 2;
+  position (position, dimensionFermee, dimensionOuvert) {
+    var positionCalculee = position + dimensionFermee / 2 - dimensionOuvert / 2;
     positionCalculee = Math.max(positionCalculee, 0);
-    positionCalculee = Math.min(positionCalculee, 100 - dimensionOuverte);
+    positionCalculee = Math.min(positionCalculee, 100 - dimensionOuvert);
     return positionCalculee;
   }
 
-  calculeHauteurAdaptee (contenant, largeur) {
-    if (!contenant.dimensionsOuvertes) {
-      return largeur;
-    }
-
-    let proportionContenantOuvert = contenant.dimensionsOuvertes.hauteur / contenant.dimensionsOuvertes.largeur;
-    var largeurEnPixels = largeur * scene.largeur;
-    var hauteurEnPixels = largeurEnPixels * proportionContenantOuvert;
-
-    return hauteurEnPixels / scene.hauteur;
-  }
-
   affiche (contenant) {
-    this.dimensions.hauteur = this.calculeHauteurAdaptee(contenant, this.dimensions.largeur);
     this.calque.classList.remove('invisible');
     this.element.classList.remove('invisible');
-    this.element.style.top = this.position(contenant.posY - contenant.hauteur, contenant.hauteur, this.dimensions.hauteur) + '%';
-    this.element.style.left = this.position(contenant.posX, contenant.largeur, this.dimensions.largeur) + '%';
-    this.element.style.height = this.dimensions.hauteur + '%';
-    this.element.style.width = this.dimensions.largeur + '%';
+    this.element.style.top = this.position(contenant.posY - contenant.hauteur, contenant.hauteur, contenant.dimensionsOuvert.hauteur) + '%';
+    this.element.style.left = this.position(contenant.posX, contenant.largeur, contenant.dimensionsOuvert.largeur) + '%';
+    this.element.style.height = contenant.dimensionsOuvert.hauteur + '%';
+    this.element.style.width = contenant.dimensionsOuvert.largeur + '%';
     this.element.src = contenant.imageOuvert;
 
     setTimeout(() => {

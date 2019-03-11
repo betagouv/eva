@@ -22,7 +22,7 @@ describe('vue contenu', function () {
   });
 
   it('sait se cacher', function (done) {
-    const contenant = new Contenant({ idProduit: '0', quantite: 1 });
+    const contenant = new Contenant({ idProduit: '0', quantite: 1, dimensionsOuvert: { largeur: 33, hauteur: 33 } });
     vue.affiche(contenant);
     expect(calque.classList).to.not.contain('invisible');
 
@@ -50,20 +50,20 @@ describe('vue contenu', function () {
 
   describe('affiche()', function () {
     it("sait afficher l'image du contenant", function () {
-      const contenant = new Contenant({ imageOuvert: 'image_contenant' }, { nom: 'Nova Sky' });
+      const contenant = new Contenant({ imageOuvert: 'image_contenant', dimensionsOuvert: { largeur: 33, hauteur: 33 } }, { nom: 'Nova Sky' });
       vue.affiche(contenant);
 
       expect(calque.classList).to.not.contain('invisible');
       expect(element.src).to.eql('image_contenant');
     });
 
-    it("calcule la hauteur du contenant ouvert en fonction de ses dimensions d'origine et de la scène", function () {
-      const contenant = new Contenant({ dimensionsOuvertes: { largeur: 4, hauteur: 6 } });
+    it('affiche le contenant ouvert aux dimensions données en paramètres', function () {
+      const contenant = new Contenant({ dimensionsOuvert: { largeur: 30, hauteur: 20 } });
 
-      vue.dimensions = { largeur: 8 };
       vue.affiche(contenant);
 
-      expect(vue.element.style.height).to.eql('16%');
+      expect(vue.element.style.width).to.eql('30%');
+      expect(vue.element.style.height).to.eql('20%');
     });
   });
 });

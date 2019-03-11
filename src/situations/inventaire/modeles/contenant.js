@@ -1,19 +1,26 @@
 import { scene, formes } from 'inventaire/data/stock.js';
 
+function pourcentage (dimension, dimensionScene) {
+  return dimension / dimensionScene * 100;
+}
+
 export class Contenant {
   constructor (donneesContenant, contenu) {
     Object.assign(this, donneesContenant);
     this.contenu = contenu;
 
     if (this.forme) {
-      this.posX = this.posX * 100 / scene.largeur;
-      this.posY = this.posY * 100 / scene.hauteur;
+      this.posX = pourcentage(this.posX, scene.largeur);
+      this.posY = pourcentage(this.posY, scene.hauteur);
 
-      this.largeur = formes[this.forme].largeur * 100 / scene.largeur;
-      this.hauteur = formes[this.forme].hauteur * 100 / scene.hauteur;
-      this.profondeurX = formes[this.forme].profondeur * 100 / scene.largeur;
-      this.profondeurY = formes[this.forme].profondeur * 100 / scene.hauteur;
-      this.dimensionsOuvertes = formes[this.forme].dimensionsOuvertes;
+      this.largeur = pourcentage(formes[this.forme].largeur, scene.largeur);
+      this.hauteur = pourcentage(formes[this.forme].hauteur, scene.hauteur);
+      this.profondeurX = pourcentage(formes[this.forme].profondeur, scene.largeur);
+      this.profondeurY = pourcentage(formes[this.forme].profondeur, scene.hauteur);
+      this.dimensionsOuvert = {
+        hauteur: pourcentage(formes[this.forme].dimensionsOuvert.hauteur, scene.hauteur),
+        largeur: pourcentage(formes[this.forme].dimensionsOuvert.largeur, scene.largeur)
+      };
     }
   }
 
