@@ -1,5 +1,5 @@
+import { Journal } from 'commun/modeles/journal.js';
 import { Contenant } from 'inventaire/modeles/contenant.js';
-import { Journal } from 'inventaire/modeles/journal.js';
 import { MockDepot } from '../aides/mockDepot.js';
 
 describe('le journal', function () {

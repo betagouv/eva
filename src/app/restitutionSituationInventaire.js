@@ -1,7 +1,7 @@
 import uuidv4 from 'uuid/v4';
 
-import { DepotJournal } from 'inventaire/infra/depot_journal.js';
-import { Journal } from 'inventaire/modeles/journal.js';
+import { DepotJournal } from 'commun/infra/depot_journal.js';
+import { Journal } from 'commun/modeles/journal.js';
 import { VueJournal } from 'inventaire/vues/journal.js';
 
 jQuery(function () {
