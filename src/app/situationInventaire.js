@@ -1,17 +1,17 @@
+import uuidv4 from 'uuid/v4';
+
 import 'inventaire/styles/app.scss';
 import 'inventaire/styles/etageres.scss';
 
-import uuidv4 from 'uuid/v4';
-
+import { DepotJournal } from 'commun/infra/depot_journal.js';
+import { Journal } from 'commun/modeles/journal.js';
+import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
+import { VueConsigne } from 'commun/vues/consigne.js';
+import { VueGo } from 'commun/vues/go.js';
 import { contenants, contenus } from 'inventaire/data/stock.js';
-import { DepotJournal } from 'inventaire/infra/depot_journal.js';
-import { Journal } from 'inventaire/modeles/journal.js';
 import { creeMagasin } from 'inventaire/modeles/magasin.js';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
-import { VueConsigne } from 'commun/vues/consigne.js';
-import { VueGo } from 'commun/vues/go.js';
-import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
 
 import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 
