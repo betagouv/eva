@@ -19,8 +19,8 @@ describe('le journal', function () {
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.only.have.keys('date', 'sessionId', 'type', 'donnees');
-    expect(enregistrement[0]).to.have.property('type', 'demarrage');
+    expect(enregistrement[0]).to.only.have.keys('date', 'sessionId', 'nom', 'donnees');
+    expect(enregistrement[0]).to.have.property('nom', 'demarrage');
     expect(enregistrement[0]).to.have.property('date', 123);
     expect(enregistrement[0]).to.have.property('sessionId', sessionId);
   });
@@ -30,7 +30,7 @@ describe('le journal', function () {
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.have.property('type', 'stop');
+    expect(enregistrement[0]).to.have.property('nom', 'stop');
   });
 
   it("enregistre l'ouverture d'un contenant", function () {
@@ -39,7 +39,7 @@ describe('le journal', function () {
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(2);
-    expect(enregistrement[0]).to.have.property('type', 'ouvertureContenant');
+    expect(enregistrement[0]).to.have.property('nom', 'ouvertureContenant');
     expect(enregistrement[0].donnees).to.eql({ idProduit: '9', quantite: 12, contenu: { nom: 'Nova Sky' } });
     expect(enregistrement[1].donnees).to.eql({ idProduit: '4', quantite: 7, contenu: { nom: 'Gink Cola' } });
   });
@@ -49,7 +49,7 @@ describe('le journal', function () {
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.have.property('type', 'ouvertureSaisieInventaire');
+    expect(enregistrement[0]).to.have.property('nom', 'ouvertureSaisieInventaire');
   });
 
   it("enregistre la saisie d'inventaire", function () {
@@ -62,7 +62,7 @@ describe('le journal', function () {
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(2);
-    expect(enregistrement[0]).to.have.property('type', 'saisieInventaire');
+    expect(enregistrement[0]).to.have.property('nom', 'saisieInventaire');
     expect(enregistrement[0].donnees).to.eql({
       resultat: true,
       reponses: {

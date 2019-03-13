@@ -40,7 +40,7 @@ export class DepotJournal {
   }
 
   recupereDonnees (ligne) {
-    const { date, type, description, sessionId } = ligne;
-    return { date, description: JSON.stringify(description), type_evenement: type, session_id: sessionId, situation: 'inventaire' };
+    const { date, nom, donnees, sessionId } = ligne;
+    return { date, donnees: JSON.stringify(donnees), nom, session_id: sessionId, situation: 'inventaire' };
   }
 }
