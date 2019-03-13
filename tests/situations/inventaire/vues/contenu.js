@@ -21,9 +21,11 @@ describe('vue contenu', function () {
     expect(calque.classList).to.contain('invisible');
   });
 
-  it('sait se cacher', function (done) {
+  it("sait s'afficher puis se cacher", function (done) {
     const contenant = new Contenant({ idProduit: '0', quantite: 1, dimensionsOuvert: { largeur: 33, hauteur: 33 } });
     vue.affiche(contenant);
+    vue.element.dispatchEvent(new Event('load'));
+
     expect(calque.classList).to.not.contain('invisible');
 
     calque.dispatchEvent(new Event('click'));
@@ -41,11 +43,11 @@ describe('vue contenu', function () {
   });
 
   describe('affiche()', function () {
-    it("sait afficher l'image du contenant", function () {
+    it("sait afficher l'image du contenant ouvert", function () {
       const contenant = new Contenant({ imageOuvert: 'image_contenant', dimensionsOuvert: { largeur: 33, hauteur: 33 } }, { nom: 'Nova Sky' });
       vue.affiche(contenant);
+      vue.element.dispatchEvent(new Event('load'));
 
-      expect(calque.classList).to.not.contain('invisible');
       expect(element.src).to.eql('image_contenant');
     });
 
