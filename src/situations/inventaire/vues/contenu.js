@@ -30,17 +30,19 @@ class VueContenu {
   }
 
   affiche (contenant) {
-    this.calque.classList.remove('invisible');
-    this.element.classList.remove('invisible');
+    this.element.src = contenant.imageOuvert;
     this.element.style.top = this.position(contenant.posY - contenant.hauteur, contenant.hauteur, contenant.dimensionsOuvert.hauteur) + '%';
     this.element.style.left = this.position(contenant.posX, contenant.largeur, contenant.dimensionsOuvert.largeur) + '%';
     this.element.style.height = contenant.dimensionsOuvert.hauteur + '%';
     this.element.style.width = contenant.dimensionsOuvert.largeur + '%';
-    this.element.src = contenant.imageOuvert;
 
-    setTimeout(() => {
-      this.element.classList.replace('fermer', 'ouvrir');
-    }, 50);
+    this.element.addEventListener('load', () => {
+      this.calque.classList.remove('invisible');
+      this.element.classList.remove('invisible');
+      setTimeout(() => {
+        this.element.classList.replace('fermer', 'ouvrir');
+      }, 50);
+    });
   }
 }
 
