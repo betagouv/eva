@@ -33,12 +33,12 @@ export class Journal {
     this.enregistre('saisieInventaire', { resultat, reponses: mapToObj(reponses) });
   }
 
-  enregistre (type, donnees = {}) {
+  enregistre (nom, donnees = {}) {
     this.depot.enregistre(
       {
         date: this.maintenant(),
         sessionId: this.sessionId,
-        type,
+        nom,
         donnees
       }
     );
