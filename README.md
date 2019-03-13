@@ -25,31 +25,7 @@ Installer `docker` si nécessaire, et exécuter la commande suivante.
 $ docker build -t competences-pro . && docker run --rm -ti -p 3000:80 competences-pro
 ```
 
-Et se rendre à l'adresse http://localhost:3000
-
-## Déployer l'application sur une machine distante
-
-_Note : la machine distante doit être équipée de…_
-- _un démon SSH_
-- _Docker_
-
-
-Copier le fichier `bin/config.sh.sample` vers `bin/config.sh` (fichier non suivi par Git)
-```
-$ cp bin/config.sh.sample bin/config.sh
-```
-
-Éditer le fichier `bin/config.sh` pour renseigner
-- l'adresse de la machine distante, éventuellement précédée du login (si le
-  login n'est pas renseigné, les scripts de déploiement utiliseront le login de
-  l'utilisateur qui lance le script de déploiement), et
-- le répertoire cible dans lequel les fichiers nécessaires à l'installation de l'application seront copiés.
-- le port d'écoute du serveur (le serveur écoute par défaut sur le port `80`)
-
-Ensuite, lancer le déploiement.
-```
-$ bin/prod_deploy.sh
-```
+Une fois le message `Successfully tagged competences-pro:latest` affiché, se rendre à l'adresse http://localhost:3000
 
 ## Travailler avec le linter
 
