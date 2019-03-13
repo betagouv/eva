@@ -23,7 +23,8 @@ describe('le journal', function () {
       {
         date: 123,
         sessionId,
-        type: 'demarrage'
+        type: 'demarrage',
+        donnees: {}
       }
     ]);
   });
@@ -37,7 +38,8 @@ describe('le journal', function () {
       {
         date: 123,
         sessionId,
-        type: 'stop'
+        type: 'stop',
+        donnees: {}
       }
     ]);
   });
@@ -53,13 +55,13 @@ describe('le journal', function () {
         date: 123,
         sessionId,
         type: 'ouvertureContenant',
-        description: { idProduit: '9', quantite: 12, contenu: { nom: 'Nova Sky' } }
+        donnees: { idProduit: '9', quantite: 12, contenu: { nom: 'Nova Sky' } }
       },
       {
         date: 123,
         sessionId,
         type: 'ouvertureContenant',
-        description: { idProduit: '4', quantite: 7, contenu: { nom: 'Gink Cola' } }
+        donnees: { idProduit: '4', quantite: 7, contenu: { nom: 'Gink Cola' } }
       }
     ]);
   });
@@ -73,7 +75,8 @@ describe('le journal', function () {
       {
         date: 123,
         sessionId,
-        type: 'ouvertureSaisieInventaire'
+        type: 'ouvertureSaisieInventaire',
+        donnees: {}
       }
     ]);
   });
@@ -93,20 +96,24 @@ describe('le journal', function () {
         date: 123,
         sessionId,
         type: 'saisieInventaire',
-        resultat: true,
-        reponses: {
-          1: 42,
-          2: 1
+        donnees: {
+          resultat: true,
+          reponses: {
+            1: 42,
+            2: 1
+          }
         }
       },
       {
         date: 123,
         sessionId,
         type: 'saisieInventaire',
-        resultat: false,
-        reponses: {
-          1: 42,
-          2: 1
+        donnees: {
+          resultat: false,
+          reponses: {
+            1: 42,
+            2: 1
+          }
         }
       }
     ]);

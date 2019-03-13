@@ -14,54 +14,32 @@ export class Journal {
   }
 
   enregistreDemarrage () {
-    this.depot.enregistre(
-      {
-        date: this.maintenant(),
-        sessionId: this.sessionId,
-        type: 'demarrage'
-      }
-    );
+    this.enregistre('demarrage');
   }
 
   enregistreStop () {
-    this.depot.enregistre(
-      {
-        date: this.maintenant(),
-        sessionId: this.sessionId,
-        type: 'stop'
-      }
-    );
+    this.enregistre('stop');
   }
 
   enregistreOuvertureContenant (contenant) {
-    this.depot.enregistre(
-      {
-        date: this.maintenant(),
-        sessionId: this.sessionId,
-        type: 'ouvertureContenant',
-        description: contenant
-      }
-    );
+    this.enregistre('ouvertureContenant', contenant);
   }
 
   enregistreOuvertureSaisieInventaire () {
-    this.depot.enregistre(
-      {
-        date: this.maintenant(),
-        sessionId: this.sessionId,
-        type: 'ouvertureSaisieInventaire'
-      }
-    );
+    this.enregistre('ouvertureSaisieInventaire');
   }
 
   enregistreSaisieInventaire (resultat, reponses) {
+    this.enregistre('saisieInventaire', { resultat, reponses: mapToObj(reponses) });
+  }
+
+  enregistre (type, donnees = {}) {
     this.depot.enregistre(
       {
         date: this.maintenant(),
         sessionId: this.sessionId,
-        type: 'saisieInventaire',
-        resultat,
-        reponses: mapToObj(reponses)
+        type,
+        donnees
       }
     );
   }
