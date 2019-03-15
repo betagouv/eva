@@ -23,6 +23,7 @@ export class VueEtageres {
     const etageres = document.createElement('img');
     etageres.id = 'imageEtageres';
     etageres.src = imageEtageres;
+    etageres.classList.add('image-fond');
     this.element.appendChild(etageres);
 
     const calque = document.createElement('div');

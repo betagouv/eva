@@ -8,7 +8,6 @@ import { DepotJournal } from 'inventaire/infra/depot_journal.js';
 import { Journal } from 'inventaire/modeles/journal.js';
 import { creeMagasin } from 'inventaire/modeles/magasin.js';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
-import { VueFicheReferences } from 'inventaire/vues/fiche_references.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
 import { VueConsigne } from 'commun/vues/consigne.js';
 import { VueGo } from 'commun/vues/go.js';
@@ -19,14 +18,9 @@ import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 function afficheMagasin (pointInsertion, $) {
   const session = uuidv4();
   const magasin = creeMagasin({ contenants, contenus });
-  const lignePrincipale = document.createElement('div');
   const journal = new Journal(Date.now, session, new DepotJournal());
-  lignePrincipale.classList.add('ligne-principale');
-  lignePrincipale.id = 'ligne-principale';
-  document.querySelector(pointInsertion).appendChild(lignePrincipale);
-  new VueEtageres('#ligne-principale', journal)
+  new VueEtageres(pointInsertion, journal)
     .affiche(magasin.contenants());
-  new VueFicheReferences('#ligne-principale').affiche();
 
   initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, function (resultatValidation, reponses) {
     const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
