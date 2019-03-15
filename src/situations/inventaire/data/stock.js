@@ -33,14 +33,13 @@ const contenants = [
   { id: '21', idContenu: '4', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 1, posX: 230, posY: 1420, imageOuvert: require('inventaire/assets/petit-carton-3.png') },
   { id: '22', idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 4, posX: 410, posY: 1420, imageOuvert: require('inventaire/assets/petit-carton-4.png') },
   { id: '23', idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, posX: 600, posY: 1420, imageOuvert: require('inventaire/assets/petit-carton-5.png') },
-  { id: '24', idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 0, posX: 600, posY: 1330, imageOuvert: require('inventaire/assets/petit-carton-vide.png') },
-  { id: '25', idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 8, posX: 860, posY: 1365, imageOuvert: require('inventaire/assets/vrac-sky-8.png') },
-  { id: '26', idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 13, posX: 799, posY: 1407, imageOuvert: require('inventaire/assets/vrac-sky-13.png') },
-  { id: '27', idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 2, posX: 920, posY: 1420, imageOuvert: require('inventaire/assets/petit-carton-6.png') },
-  { id: '28', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 7, posX: 1195, posY: 1366, imageOuvert: require('inventaire/assets/vrac-terra-7.png') },
-  { id: '29', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 3, posX: 1115, posY: 1419, imageOuvert: require('inventaire/assets/vrac-terra-3.png') },
-  { id: '30', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 4, posX: 1267, posY: 1407, imageOuvert: require('inventaire/assets/vrac-terra-4.png') }
-
+  { id: '24', idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 0, posX: 590, posY: 1330, imageOuvert: require('inventaire/assets/petit-carton-vide.png') },
+  { id: '25', idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 8, posX: 770, posY: 1420, imageOuvert: require('inventaire/assets/vrac-sky-8.png') },
+  { id: '26', idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 13, posX: 880, posY: 1380, imageOuvert: require('inventaire/assets/vrac-sky-13.png') },
+  { id: '27', idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 2, posX: 955, posY: 1405, imageOuvert: require('inventaire/assets/petit-carton-6.png') },
+  { id: '28', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 7, posX: 1155, posY: 1395, imageOuvert: require('inventaire/assets/vrac-terra-7.png') },
+  { id: '29', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 3, posX: 1250, posY: 1417, imageOuvert: require('inventaire/assets/vrac-terra-3.png') },
+  { id: '30', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 4, posX: 1388, posY: 1365, imageOuvert: require('inventaire/assets/vrac-terra-4.png') }
 ];
 
 const contenus = {
