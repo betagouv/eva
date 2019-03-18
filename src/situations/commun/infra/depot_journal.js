@@ -24,7 +24,7 @@ export class DepotJournal {
     this.$.ajax({
       type: 'POST',
       url: config.hote_serveur + '/api/evenements',
-      data: JSON.stringify(this.recupereDonnees(ligne)),
+      data: JSON.stringify(this.recuperePayload(ligne)),
       contentType: 'application/json; charset=utf-8',
       retryTimeout: 60000,
       appel: this.$,
@@ -39,8 +39,8 @@ export class DepotJournal {
     });
   }
 
-  recupereDonnees (ligne) {
+  recuperePayload (ligne) {
     const { date, nom, donnees, sessionId } = ligne;
-    return { date, donnees: JSON.stringify(donnees), nom, session_id: sessionId, situation: 'inventaire' };
+    return { date, donnees, nom, session_id: sessionId, situation: 'inventaire' };
   }
 }
