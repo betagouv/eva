@@ -15,7 +15,7 @@ import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
-  const journal = new Journal(Date.now, session, new DepotJournal());
+  const journal = new Journal(Date.now, session, 'inventaire', new DepotJournal());
   const vueSituationInventaire = new VueSituation(journal);
   const vueCadre = new VueCadre(vueSituationInventaire);
   vueCadre.affiche(pointInsertion, $);
