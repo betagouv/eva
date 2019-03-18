@@ -7,10 +7,11 @@ function mapToObj (map) {
 }
 
 export class Journal {
-  constructor (maintenant, session, depot) {
+  constructor (maintenant, session, situation, depot) {
     this.maintenant = maintenant;
     this.depot = depot;
     this.sessionId = session;
+    this.situation = situation;
   }
 
   enregistreDemarrage () {
@@ -38,6 +39,7 @@ export class Journal {
       {
         date: this.maintenant(),
         sessionId: this.sessionId,
+        situation: this.situation,
         nom,
         donnees
       }

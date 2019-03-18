@@ -14,7 +14,7 @@ initialiseInternationalisation().then(function () {
       </div>
     `);
 
-    const journal = new Journal(Date.now, uuidv4(), new DepotJournal());
+    const journal = new Journal(Date.now, uuidv4(), 'inventaire', new DepotJournal());
     const vue = new VueJournal('#restitution', journal);
     vue.affiche();
   });

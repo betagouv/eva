@@ -7,11 +7,12 @@ describe('le journal', function () {
   let mockMaintenant;
   let mockDepot;
   const sessionId = 42;
+  const situation = 'inventaire';
 
   beforeEach(function () {
     mockMaintenant = () => { return 123; };
     mockDepot = new MockDepot();
-    journal = new Journal(mockMaintenant, sessionId, mockDepot);
+    journal = new Journal(mockMaintenant, sessionId, situation, mockDepot);
   });
 
   it("enregistre l'appui sur le bouton de démarrage", function () {
@@ -19,10 +20,11 @@ describe('le journal', function () {
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.only.have.keys('date', 'sessionId', 'nom', 'donnees');
+    expect(enregistrement[0]).to.only.have.keys('date', 'sessionId', 'nom', 'donnees', 'situation');
     expect(enregistrement[0]).to.have.property('nom', 'demarrage');
     expect(enregistrement[0]).to.have.property('date', 123);
     expect(enregistrement[0]).to.have.property('sessionId', sessionId);
+    expect(enregistrement[0]).to.have.property('situation', situation);
   });
 
   it("enregistre l'appui sur le bouton de stop", function () {

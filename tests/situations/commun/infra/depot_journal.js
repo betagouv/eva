@@ -40,11 +40,11 @@ describe('le depot du journal', function () {
 
   it('vérifie la conformité des données récupèrées', function () {
     const donnees = { cle: 'valeur2' };
-    const payload = journal.recuperePayload({ autreCle: 'valeur2', sessionId: 'ma session id', donnees });
+    const payload = journal.recuperePayload({ autreCle: 'valeur2', sessionId: 'ma session id', donnees, situation: 'controle' });
 
     expect(payload['donnees']).to.equal(donnees);
     expect(payload['session_id']).to.equal('ma session id');
-    expect(payload['situation']).to.equal('inventaire');
+    expect(payload['situation']).to.equal('controle');
   });
 
   it("vérifie s'il n'existe pas un journal au démarrage et le charge", function () {

@@ -40,7 +40,7 @@ export class DepotJournal {
   }
 
   recuperePayload (ligne) {
-    const { date, nom, donnees, sessionId } = ligne;
-    return { date, donnees, nom, session_id: sessionId, situation: 'inventaire' };
+    const { date, nom, donnees, sessionId, situation } = ligne;
+    return { date, donnees, nom, session_id: sessionId, situation };
   }
 }
