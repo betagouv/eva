@@ -1,8 +1,6 @@
 import uuidv4 from 'uuid/v4';
 
 import 'inventaire/styles/app.scss';
-import 'inventaire/styles/etageres.scss';
-import 'commun/styles/conteneur.scss';
 
 import { DepotJournal } from 'commun/infra/depot_journal.js';
 import { Journal } from 'commun/modeles/journal.js';

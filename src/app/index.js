@@ -1,8 +1,4 @@
 import 'accueil/styles/app.scss';
-import 'commun/styles/commun.scss';
-import 'commun/styles/bouton.scss';
-import 'commun/styles/conteneur.scss';
-
 
 import { situations } from 'src/situations.js';
 import { VueAccueil } from 'accueil/vues/accueil.js';
