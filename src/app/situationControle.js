@@ -1,17 +1,20 @@
 import 'commun/styles/commun.scss';
+
+import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
+import { VueCadre } from 'commun/vues/cadre.js';
 import { Situation } from 'controle/modeles/situation.js';
 import { VueSituation } from 'controle/vues/situation.js';
-import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
 
 function afficheSituation (pointInsertion, $) {
-  let situation = new Situation({
+  const situation = new Situation({
     scenario: [true, false, true],
     cadence: 3000,
     positionApparitionPieces: { x: 100, y: 70 },
     dureeViePiece: 12000
   });
-  let vueSituation = new VueSituation(situation);
-  vueSituation.affiche(pointInsertion, $);
+  const vueSituation = new VueSituation(situation);
+  const vueCadre = new VueCadre(vueSituation);
+  vueCadre.affiche(pointInsertion, $);
 
   new ActionsCommunesSituation(pointInsertion, $, {
     enregistreStop () {}
@@ -20,7 +23,7 @@ function afficheSituation (pointInsertion, $) {
 
 jQuery(function () {
   document.title = 'Situation Contrôle';
-  jQuery('body').append('<div id="situation-controle" class="situation"></div>');
+  jQuery('body').append('<div id="situation-controle"></div>');
 
   afficheSituation('#situation-controle', jQuery);
 });
