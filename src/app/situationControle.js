@@ -1,4 +1,5 @@
 import 'commun/styles/commun.scss';
+import 'commun/styles/conteneur.scss';
 
 import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
 import { VueCadre } from 'commun/vues/cadre.js';
@@ -23,7 +24,7 @@ function afficheSituation (pointInsertion, $) {
 
 jQuery(function () {
   document.title = 'Situation Contrôle';
-  jQuery('body').append('<div id="situation-controle"></div>');
+  jQuery('body').append('<div id="situation-controle" class="conteneur"></div>');
 
   afficheSituation('#situation-controle', jQuery);
 });

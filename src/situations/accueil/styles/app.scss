@@ -1,20 +1,5 @@
-.accueil {
-  a {
-    display: block;
-    padding: 1em;
-    color: white;
-    text-decoration: none;
-  }
-
+.conteneur {
   li {
-    margin: 1em;
-  }
-
-  li:nth-child(2n) {
-    background: seaGreen;
-  }
-
-  li:nth-child(2n+1) {
-    background: dodgerBlue;
+    margin: 2em 0;
   }
 }

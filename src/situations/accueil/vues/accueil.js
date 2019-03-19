@@ -7,7 +7,10 @@ export class VueAccueil {
     function creeElementSituation (situation) {
       return $(`
         <li>
-          <a href="${situation.chemin}">${situation.nom}</a>
+          <a href="${situation.chemin}" class='bouton'>
+            ${situation.nom}
+            <i class="fas fa-caret-right"></i>
+          </a>
         </li>
       `);
     }
@@ -20,6 +23,7 @@ export class VueAccueil {
     }
 
     const $situations = creeElementListe(this.situations);
+    $(pointInsertion).append('<h1>Compétences pro</h1>');
     $(pointInsertion).append($situations);
   }
 }
