@@ -1,9 +1,9 @@
 .cadre {
   position: relative;
-  margin: 2rem auto 0;
-  width: 60rem;
-  height: 40rem;
+  width: 100%;
+  height: 100%;
   border: solid 1px black;
   background: ivory;
   overflow: hidden;
+  box-sizing: border-box;
 }

@@ -2,6 +2,7 @@ import uuidv4 from 'uuid/v4';
 
 import 'inventaire/styles/app.scss';
 import 'inventaire/styles/etageres.scss';
+import 'commun/styles/conteneur.scss';
 
 import { DepotJournal } from 'commun/infra/depot_journal.js';
 import { Journal } from 'commun/modeles/journal.js';
@@ -28,7 +29,7 @@ function afficheSituation (pointInsertion, $) {
 
 jQuery(function () {
   document.title = 'Situation Inventaire';
-  jQuery('body').append(`<div id="magasin"> </div>`);
+  jQuery('body').append(`<div id="magasin" class='conteneur'> </div>`);
 
   afficheSituation('#magasin', jQuery);
 });

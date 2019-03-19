@@ -1,9 +1,27 @@
+@import "commun/styles/couleurs.scss";
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
-  background: gainsboro;
+  background: $couleur-fond;
+  display: flex;
+  font-family: Helvetica, Arial, sans-serif;
+  min-height: 100%;
+  align-items: center;
+  flex-direction: column-reverse;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: $couleur-texte;
 }
