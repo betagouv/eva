@@ -21,7 +21,7 @@ export class DepotJournal {
   envoiEvenementAuServeur (ligne) {
     this.$.ajax({
       type: 'POST',
-      url: `${process.env.HOTE_SERVEUR}/api/evenements`,
+      url: `${process.env.URL_SERVEUR}/api/evenements`,
       data: JSON.stringify(this.recuperePayload(ligne)),
       contentType: 'application/json; charset=utf-8',
       retryTimeout: 60000,
