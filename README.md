@@ -65,6 +65,10 @@ exec /usr/local/bin/npm run lint -- --silent
 
 Si vous êtes partis du template `.git/hooks/pre-commit.sample` vous pouvez simplement remplacer la ligne `exec git diff-index --check --cached $against --` car le linter fera le travail de vérification des espaces.
 
+## Suivre le développement
+
+Pour suivre les développements en cours, vous pouvez suivre le [projet github](https://github.com/orgs/betagouv/projects/2).
+
 ## Licence
 
 Ce logiciel et son code source sont distribués sous [licence AGPL](https://www.gnu.org/licenses/why-affero-gpl.fr.html).
