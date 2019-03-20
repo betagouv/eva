@@ -115,7 +115,8 @@ module.exports = {
       chunks: ['restitutionSituationInventaire'],
       inject: 'head'
     }),
-    new webpack.ProvidePlugin({ jQuery: 'jquery' })
+    new webpack.ProvidePlugin({ jQuery: 'jquery' }),
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'HOTE_SERVEUR'])
   ],
   devServer: {
     contentBase: './src/public',
