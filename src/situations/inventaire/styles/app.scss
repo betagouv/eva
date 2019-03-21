@@ -1,21 +1,9 @@
-@import 'inventaire/styles/etageres.scss';
+@import 'commun/styles/commun.scss';
 @import 'commun/styles/conteneur.scss';
+@import 'inventaire/styles/etageres.scss';
 
-$primary-color: #2e878a;
-
-body {
-  color: $primary-color;
-  padding: 0;
-  margin: 0
-
-}
-
-#magasin {
-
-  h1 {
-    height: 10%;
-    margin: 0;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
+.cadre.magasin {
+  background-image: url('../assets/fond-situation.png') ;
+  background-repeat: repeat-x;
+  background-size: contain;
 }
