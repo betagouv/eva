@@ -9,6 +9,7 @@ export class VueEtageres {
     this.element.id = 'etageres';
     this.element.classList.add('etageres');
     document.querySelector(pointInsertion).appendChild(this.element);
+    document.querySelector(pointInsertion).classList.add('magasin');
   }
 
   affiche (contenants) {
