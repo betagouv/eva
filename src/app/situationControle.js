@@ -4,7 +4,7 @@ import 'controle/styles/app.scss';
 
 import { DepotJournal } from 'commun/infra/depot_journal.js';
 import { Journal } from 'commun/modeles/journal.js';
-import { ActionsCommunesSituation } from 'commun/vues/actions_communes_situation.js';
+import { VueActions } from 'commun/vues/actions.js';
 import { VueCadre } from 'commun/vues/cadre.js';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
@@ -23,9 +23,10 @@ function afficheSituation (pointInsertion, $) {
   });
   const vueSituation = new VueSituation(situation);
   const vueCadre = new VueCadre(vueSituation);
-  vueCadre.affiche(pointInsertion, $);
+  const vueActions = new VueActions(journal);
 
-  new ActionsCommunesSituation(pointInsertion, $, journal).afficheElementEnCommun();
+  vueCadre.affiche(pointInsertion, $);
+  vueActions.affiche(pointInsertion, $);
 }
 
 initialiseInternationalisation().then(function () {

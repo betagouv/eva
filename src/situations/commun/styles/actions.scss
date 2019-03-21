@@ -1,0 +1,10 @@
+@import 'commun/styles/commun.scss';
+
+.actions {
+  height: 6.5rem;
+  background: $couleur-fond-actions;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
