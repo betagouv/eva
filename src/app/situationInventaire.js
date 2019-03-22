@@ -4,7 +4,6 @@ import 'inventaire/styles/app.scss';
 
 import { DepotJournal } from 'commun/infra/depot_journal.js';
 import { Journal } from 'commun/modeles/journal.js';
-import { VueActions } from 'commun/vues/actions.js';
 import { VueCadre } from 'commun/vues/cadre.js';
 import { VueConsigne } from 'commun/vues/consigne.js';
 import { VueGo } from 'commun/vues/go.js';
@@ -17,14 +16,12 @@ function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'inventaire', new DepotJournal());
   const vueSituationInventaire = new VueSituation(journal);
-  const vueCadre = new VueCadre(vueSituationInventaire);
-  const vueActions = new VueActions(journal);
+  const vueCadre = new VueCadre(vueSituationInventaire, journal);
   const vueConsigne = new VueConsigne(sonConsigneDemarrage);
   const vueGo = new VueGo(vueConsigne, journal);
 
   vueConsigne.affiche(pointInsertion);
   vueCadre.affiche(pointInsertion, $);
-  vueActions.affiche(pointInsertion, $);
   vueGo.affiche(pointInsertion);
 }
 
