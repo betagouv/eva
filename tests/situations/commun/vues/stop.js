@@ -1,5 +1,6 @@
 import jsdom from 'jsdom-global';
 import { VueStop } from 'commun/vues/stop.js';
+import EvenementStop from 'commun/modeles/evenement_stop';
 import i18next from 'i18next';
 i18next.init({
   lng: 'fr',
@@ -17,7 +18,7 @@ describe('vue Stop', function () {
     jsdom('<div id="magasin"></div>');
     $ = jQuery(window);
     mockJournal = {
-      enregistreStop () {}
+      enregistreEvenement () {}
     };
     vue = new VueStop('#magasin', $, mockJournal, () => {
       retourAccueil = true;
@@ -46,7 +47,10 @@ describe('vue Stop', function () {
   });
 
   it("Enregistre l'événément quand on confirme la modale", function (done) {
-    mockJournal.enregistreStop = done;
+    mockJournal.enregistreEvenement = (evenement) => {
+      expect(evenement).to.be.a(EvenementStop);
+      done();
+    };
     vue.afficher();
     $('#magasin #stop').click();
     $('#OK-modale').click();

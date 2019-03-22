@@ -34,14 +34,6 @@ describe('le journal', function () {
     expect(enregistrement[0]).to.have.property('situation', situation);
   });
 
-  it("enregistre l'appui sur le bouton de stop", function () {
-    journal.enregistreStop();
-
-    const enregistrement = mockDepot.evenements();
-    expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.have.property('nom', 'stop');
-  });
-
   it("enregistre l'ouverture d'un contenant", function () {
     journal.enregistreOuvertureContenant(new Contenant({ idProduit: '9', quantite: 12 }, { nom: 'Nova Sky' }));
     journal.enregistreOuvertureContenant(new Contenant({ idProduit: '4', quantite: 7 }, { nom: 'Gink Cola' }));
