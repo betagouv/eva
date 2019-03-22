@@ -1,4 +1,4 @@
-import { traduit } from 'commun/infra/internationalisation';
+import { traduction } from 'commun/infra/internationalisation';
 
 import 'commun/styles/go.scss';
 
@@ -15,7 +15,7 @@ export class VueGo {
 
     this.boutonGo = document.createElement('button');
     this.boutonGo.id = 'go';
-    this.boutonGo.textContent = traduit('situation.go');
+    this.boutonGo.textContent = traduction('situation.go');
     this.boutonGo.classList.add('invisible', 'bouton-centre', 'bouton-go');
     this.boutonGo.addEventListener('click', () => {
       this.overlay.classList.add('invisible');
