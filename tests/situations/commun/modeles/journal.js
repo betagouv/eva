@@ -33,14 +33,6 @@ describe('le journal', function () {
     expect(enregistrement[0]).to.have.property('situation', situation);
   });
 
-  it("enregistre l'ouverture de la saisie d'inventaire", function () {
-    journal.enregistreOuvertureSaisieInventaire();
-
-    const enregistrement = mockDepot.evenements();
-    expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.have.property('nom', 'ouvertureSaisieInventaire');
-  });
-
   it("enregistre la saisie d'inventaire", function () {
     const detail = new Map();
     detail.set('1', '42');

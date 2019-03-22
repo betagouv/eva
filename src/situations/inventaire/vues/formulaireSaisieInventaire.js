@@ -1,5 +1,6 @@
 import { traduction } from 'commun/infra/internationalisation';
 import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
+import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
 
 import 'commun/styles/commun.scss';
 import 'commun/styles/overlay.scss';
@@ -89,7 +90,7 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
 
     function basculeVisibiliteFormulaire () {
       if ($overlay.hasClass('invisible')) {
-        journal.enregistreOuvertureSaisieInventaire();
+        journal.enregistreEvenement(new EvenementOuvertureSaisieInventaire());
       }
       basculeVisibilite($overlay);
       basculeVisibilite($formulaireSaisie);

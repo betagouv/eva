@@ -1,5 +1,6 @@
 import { Contenant } from 'inventaire/modeles/contenant.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
+import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire.js';
 import { unMagasin, unMagasinVide } from '../aides/magasin.js';
 
 let jsdom = require('jsdom-global');
@@ -12,7 +13,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     jsdom('<div id="magasin"></div>');
     $ = jQuery(window);
     journal = {
-      enregistreOuvertureSaisieInventaire () {}
+      enregistreEvenement () {}
     };
   });
 
@@ -42,7 +43,10 @@ describe("Le formulaire de saisie d'inventaire", function () {
     });
 
     it("journalise l'événement", function (done) {
-      journal.enregistreOuvertureSaisieInventaire = done;
+      journal.enregistreEvenement = (evenement) => {
+        expect(evenement).to.be.a(EvenementOuvertureSaisieInventaire);
+        done();
+      };
       $('.affiche-saisie').click();
     });
   });
@@ -65,12 +69,12 @@ describe("Le formulaire de saisie d'inventaire", function () {
     });
 
     it("n'enregistre pas une ouverture de saisie d'inventaire", function () {
-      let evenementOuvertureSaisieInventaire = 0;
-      journal.enregistreOuvertureSaisieInventaire = () => {
-        evenementOuvertureSaisieInventaire++;
+      let evenements = 0;
+      journal.enregistreEvenement = () => {
+        evenements++;
       };
       $('.overlay').click();
-      expect(evenementOuvertureSaisieInventaire).to.eql(0);
+      expect(evenements).to.eql(0);
     });
   });
 

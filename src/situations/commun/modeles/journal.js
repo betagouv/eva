@@ -18,10 +18,6 @@ export class Journal {
     this.enregistre(evenement.nom(), evenement.donnees());
   }
 
-  enregistreOuvertureSaisieInventaire () {
-    this.enregistre('ouvertureSaisieInventaire');
-  }
-
   enregistreSaisieInventaire (resultat, reponses) {
     this.enregistre('saisieInventaire', { resultat, reponses: mapToObj(reponses) });
   }
