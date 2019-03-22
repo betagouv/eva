@@ -6,6 +6,17 @@
     position:absolute;
     top: 0;
     left: 0;
+
+    .contenants {
+      // Les trois premières propriétés sont indispensables pour que les
+      // deux dernières soit bien active sur Safari
+      // https://benfrain.com/attempting-to-fix-responsive-svgs-in-desktop-safari/
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   .image-fond {
