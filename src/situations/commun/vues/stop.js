@@ -1,4 +1,5 @@
 import { traduction } from 'commun/infra/internationalisation';
+import EvenementStop from 'commun/modeles/evenement_stop';
 import stop from 'commun/assets/stop.svg';
 
 import 'commun/styles/stop.scss';
@@ -15,7 +16,7 @@ export class VueStop {
     this.$boutonStop.on('click', () => {
       afficheFenetreModale(this.$pointInsertion, $,
         traduction('situation.stop'),
-        () => { journal.enregistreStop(); retourAccueil(); });
+        () => { journal.enregistreEvenement(new EvenementStop()); retourAccueil(); });
     });
   }
 
