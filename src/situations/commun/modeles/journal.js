@@ -1,11 +1,3 @@
-function mapToObj (map) {
-  const obj = {};
-  for (let [clef, valeur] of map) {
-    obj[clef] = valeur;
-  }
-  return obj;
-}
-
 export class Journal {
   constructor (maintenant, session, situation, depot) {
     this.maintenant = maintenant;
@@ -16,10 +8,6 @@ export class Journal {
 
   enregistreEvenement (evenement) {
     this.enregistre(evenement.nom(), evenement.donnees());
-  }
-
-  enregistreSaisieInventaire (resultat, reponses) {
-    this.enregistre('saisieInventaire', { resultat, reponses: mapToObj(reponses) });
   }
 
   enregistre (nom, donnees = {}) {
