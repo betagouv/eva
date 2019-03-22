@@ -2,12 +2,13 @@
 
 import { Contenant } from 'inventaire/modeles/contenant.js';
 import { VueContenants } from 'inventaire/vues/contenants.js';
+import EvenementOuvertureContenant from 'inventaire/modeles/evenement_ouverture_contenant';
 import jsdom from 'jsdom-global';
 
 describe('vue contenants', function () {
   let vue;
-  let contenantsJournalises;
   let pointInsertion;
+  let journal;
 
   let contenants = [
     new Contenant({ id: '0', idContenu: '0', quantite: 1, posX: 40, posY: 80 }, { nom: 'Nova Sky', image: 'chemin' }),
@@ -17,11 +18,8 @@ describe('vue contenants', function () {
   beforeEach(function () {
     jsdom('<div id="stock"></div>');
     pointInsertion = document.getElementById('stock');
-    contenantsJournalises = [];
-    let journal = {
-      enregistreOuvertureContenant: (contenant) => {
-        contenantsJournalises.push(contenant);
-      }
+    journal = {
+      enregistreEvenement () {}
     };
     vue = new VueContenants(pointInsertion, journal);
   });
@@ -50,13 +48,16 @@ describe('vue contenants', function () {
       .dispatchEvent(new Event('click'));
   });
 
-  it('journalise le contenant quand on clique dessus', function () {
+  it('journalise le contenant quand on clique dessus', function (done) {
+    journal.enregistreEvenement = (evenement) => {
+      expect(evenement).to.be.a(EvenementOuvertureContenant);
+      expect(evenement.donnees()).to.eql({ contenant: 'id_contenant' });
+      done();
+    };
     contenants[0].id = 'id_contenant';
     vue.afficheLesContenants(contenants, { affiche: () => {} });
 
     document.getElementsByClassName('contenant')[0]
       .dispatchEvent(new Event('click'));
-
-    expect(contenantsJournalises).to.eql([{ contenant: 'id_contenant' }]);
   });
 });
