@@ -1,6 +1,5 @@
 import { Journal } from 'commun/modeles/journal.js';
 import Evenement from 'commun/modeles/evenement.js';
-import { Contenant } from 'inventaire/modeles/contenant.js';
 import { MockDepot } from '../aides/mockDepot.js';
 
 describe('le journal', function () {
@@ -32,17 +31,6 @@ describe('le journal', function () {
     expect(enregistrement[0]).to.have.property('date', 123);
     expect(enregistrement[0]).to.have.property('sessionId', sessionId);
     expect(enregistrement[0]).to.have.property('situation', situation);
-  });
-
-  it("enregistre l'ouverture d'un contenant", function () {
-    journal.enregistreOuvertureContenant(new Contenant({ idProduit: '9', quantite: 12 }, { nom: 'Nova Sky' }));
-    journal.enregistreOuvertureContenant(new Contenant({ idProduit: '4', quantite: 7 }, { nom: 'Gink Cola' }));
-
-    const enregistrement = mockDepot.evenements();
-    expect(enregistrement.length).to.equal(2);
-    expect(enregistrement[0]).to.have.property('nom', 'ouvertureContenant');
-    expect(enregistrement[0].donnees).to.eql({ idProduit: '9', quantite: 12, contenu: { nom: 'Nova Sky' } });
-    expect(enregistrement[1].donnees).to.eql({ idProduit: '4', quantite: 7, contenu: { nom: 'Gink Cola' } });
   });
 
   it("enregistre l'ouverture de la saisie d'inventaire", function () {

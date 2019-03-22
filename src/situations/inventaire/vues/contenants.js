@@ -1,4 +1,5 @@
 import { VueContenant } from './contenant.js';
+import EvenementOuvertureContenant from 'inventaire/modeles/evenement_ouverture_contenant';
 
 export class VueContenants {
   constructor (pointInsertion, journal) {
@@ -15,7 +16,7 @@ export class VueContenants {
       const vueContenant = new VueContenant(this.svg, contenant);
       vueContenant.affiche((event) => {
         vueContenu.affiche(contenant);
-        this.journal.enregistreOuvertureContenant({ contenant: contenant.id });
+        this.journal.enregistreEvenement(new EvenementOuvertureContenant({ contenant: contenant.id }));
       });
     });
   }
