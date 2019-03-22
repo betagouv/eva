@@ -18,10 +18,6 @@ export class Journal {
     this.enregistre(evenement.nom(), evenement.donnees());
   }
 
-  enregistreDemarrage () {
-    this.enregistre('demarrage');
-  }
-
   enregistreStop () {
     this.enregistre('stop');
   }
