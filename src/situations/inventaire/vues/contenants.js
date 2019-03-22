@@ -8,6 +8,7 @@ export class VueContenants {
     this.svg.setAttribute('viewBox', '0 0 100 100');
     this.svg.style.width = '100%';
     this.svg.style.height = '100%';
+    this.svg.classList.add('avant-plan');
     pointInsertion.appendChild(this.svg);
   }
 
@@ -19,5 +20,10 @@ export class VueContenants {
         this.journal.enregistreOuvertureContenant({ contenant: contenant.id });
       });
     });
+  }
+
+  redimensionne (largeur, hauteur) {
+    this.svg.style.width = largeur + 'px';
+    this.svg.style.height = hauteur + 'px';
   }
 }

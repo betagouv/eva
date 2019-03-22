@@ -1,7 +1,6 @@
 import { VueContenants } from './contenants.js';
 import { VueContenu } from './contenu.js';
 import imageEtageres from 'inventaire/assets/etageres.png';
-import imageBarreDevant from 'inventaire/assets/barreDevant.png';
 
 export class VueEtageres {
   constructor (pointInsertion, journal) {
@@ -12,13 +11,6 @@ export class VueEtageres {
     document.querySelector(pointInsertion).appendChild(this.element);
   }
 
-  creerBarre (classCss) {
-    const barresDevants = document.createElement('img');
-    barresDevants.src = imageBarreDevant;
-    barresDevants.classList.add('barres', classCss);
-    return barresDevants;
-  }
-
   affiche (contenants) {
     const etageres = document.createElement('img');
     etageres.id = 'imageEtageres';
@@ -26,26 +18,17 @@ export class VueEtageres {
     etageres.classList.add('image-fond');
     this.element.appendChild(etageres);
 
-    const calque = document.createElement('div');
-    calque.classList.add('avant-plan');
-    this.element.appendChild(calque);
-
-    const vueContenants = new VueContenants(calque, this.journal);
-    const vueContenu = new VueContenu(calque);
+    const vueContenants = new VueContenants(this.element, this.journal);
+    const vueContenu = new VueContenu(this.element);
     vueContenants.afficheLesContenants(contenants, vueContenu);
 
-    for (let classCss of ['barre-1', 'barre-2', 'barre-3']) {
-      calque.appendChild(this.creerBarre(classCss));
-    }
-
-    const resize = () => {
-      calque.style.width = etageres.width + 'px';
-      calque.style.height = etageres.height + 'px';
+    const redimensionne = () => {
+      vueContenants.redimensionne(etageres.width, etageres.height);
     };
 
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', redimensionne);
     etageres.addEventListener('load', () => {
-      setTimeout(resize, 10);
+      setTimeout(redimensionne, 10);
     });
   }
 }
