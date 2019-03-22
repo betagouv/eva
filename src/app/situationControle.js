@@ -4,7 +4,6 @@ import 'controle/styles/app.scss';
 
 import { DepotJournal } from 'commun/infra/depot_journal.js';
 import { Journal } from 'commun/modeles/journal.js';
-import { VueActions } from 'commun/vues/actions.js';
 import { VueCadre } from 'commun/vues/cadre.js';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
@@ -22,11 +21,9 @@ function afficheSituation (pointInsertion, $) {
     dureeViePiece: 12000
   });
   const vueSituation = new VueSituation(situation);
-  const vueCadre = new VueCadre(vueSituation);
-  const vueActions = new VueActions(journal);
+  const vueCadre = new VueCadre(vueSituation, journal);
 
   vueCadre.affiche(pointInsertion, $);
-  vueActions.affiche(pointInsertion, $);
 }
 
 initialiseInternationalisation().then(function () {

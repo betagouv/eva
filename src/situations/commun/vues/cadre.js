@@ -1,13 +1,16 @@
 import 'commun/styles/cadre.scss';
+import { VueActions } from 'commun/vues/actions.js';
 
 export class VueCadre {
-  constructor (vueSituation) {
+  constructor (vueSituation, journal) {
     this.vueSituation = vueSituation;
+    this.vueActions = new VueActions(journal);
   }
 
   affiche (pointInsertion, $) {
-    const $cadre = $('<div class="cadre"></div>');
-    $(pointInsertion).append($cadre);
-    this.vueSituation.affiche('.cadre', $);
+    const $scene = $('<div class="scene"></div>');
+    $(pointInsertion).append($scene);
+    this.vueSituation.affiche('.scene', $);
+    this.vueActions.affiche(pointInsertion, $);
   }
 }
