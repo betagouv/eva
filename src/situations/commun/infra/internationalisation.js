@@ -13,6 +13,6 @@ export function initialise () {
   });
 }
 
-export function traduit (...args) {
+export function traduction (...args) {
   return i18next.t(...args);
 }

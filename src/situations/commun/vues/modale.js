@@ -1,4 +1,4 @@
-import { traduit } from 'commun/infra/internationalisation';
+import { traduction } from 'commun/infra/internationalisation';
 
 import 'commun/styles/overlay.scss';
 import 'commun/styles/modale.scss';
@@ -8,8 +8,8 @@ export function afficheFenetreModale ($pointInsertion, $, message, actionOk) {
     <div class="fenetre">
     <label>${message}</label>
     <div class="buttons">
-    <button id="OK-modale">${traduit('situation.modale.ok')}</button>
-    <button id="annuler-modale">${traduit('situation.modale.annuler')}</button>
+    <button id="OK-modale">${traduction('situation.modale.ok')}</button>
+    <button id="annuler-modale">${traduction('situation.modale.annuler')}</button>
     </div>
     </div>
     </div>`);

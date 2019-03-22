@@ -1,4 +1,4 @@
-import { traduit } from 'commun/infra/internationalisation';
+import { traduction } from 'commun/infra/internationalisation';
 
 import 'commun/styles/commun.scss';
 import 'commun/styles/overlay.scss';
@@ -54,7 +54,7 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   }
 
   function creeBoutonValidation () {
-    const $bouton = $(`<button type="button" class="valide-saisie">${traduit('inventaire.valider_saisie')}</button>`);
+    const $bouton = $(`<button type="button" class="valide-saisie">${traduction('inventaire.valider_saisie')}</button>`);
     $bouton.click(function () {
       const reponses = extraisReponses();
       const saisieValide = inventaireReference.valide(reponses);
@@ -82,7 +82,7 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   }
 
   function creeBoutonSaisie ($formulaireSaisie) {
-    let $boutonSaisie = $(`<button type="button" class="affiche-saisie">${traduit('inventaire.saisie')}</button>`);
+    let $boutonSaisie = $(`<button type="button" class="affiche-saisie">${traduction('inventaire.saisie')}</button>`);
     let $overlay = $('<div class="overlay invisible"></div>');
     let $elementsCombines = $boutonSaisie.add($overlay);
 
