@@ -14,6 +14,10 @@ export class Journal {
     this.situation = situation;
   }
 
+  enregistreEvenement (evenement) {
+    this.enregistre(evenement.nom(), evenement.donnees());
+  }
+
   enregistreDemarrage () {
     this.enregistre('demarrage');
   }
