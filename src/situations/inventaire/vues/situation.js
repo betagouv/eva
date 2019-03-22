@@ -1,6 +1,7 @@
 import { traduction } from 'commun/infra/internationalisation';
 import { contenants, contenus } from 'inventaire/data/stock.js';
 import { creeMagasin } from 'inventaire/modeles/magasin.js';
+import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
 
@@ -17,7 +18,7 @@ export class VueSituation {
       const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
       const message = toutCorrect ? traduction('inventaire.resultat.ok') : traduction('inventaire.resultat.echec');
 
-      this.journal.enregistreSaisieInventaire(toutCorrect, reponses);
+      this.journal.enregistreEvenement(new EvenementSaisieInventaire({ resultat: toutCorrect, reponses }));
 
       Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
       window.alert(message);
