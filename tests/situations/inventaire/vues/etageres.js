@@ -40,8 +40,8 @@ describe('vue etagères', function () {
     imageEtageres.height = 25;
     window.dispatchEvent(new Event('resize'));
 
-    const claque = document.querySelector('.avant-plan');
-    expect(claque.style.width).to.equal('50px');
-    expect(claque.style.height).to.equal('25px');
+    const avantPlan = document.querySelector('.avant-plan');
+    expect(avantPlan.style.width).to.equal('50px');
+    expect(avantPlan.style.height).to.equal('25px');
   });
 });
