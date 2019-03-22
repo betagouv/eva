@@ -34,18 +34,6 @@ describe('le journal', function () {
     expect(enregistrement[0]).to.have.property('situation', situation);
   });
 
-  it("enregistre l'appui sur le bouton de démarrage", function () {
-    journal.enregistreDemarrage();
-
-    const enregistrement = mockDepot.evenements();
-    expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.only.have.keys('date', 'sessionId', 'nom', 'donnees', 'situation');
-    expect(enregistrement[0]).to.have.property('nom', 'demarrage');
-    expect(enregistrement[0]).to.have.property('date', 123);
-    expect(enregistrement[0]).to.have.property('sessionId', sessionId);
-    expect(enregistrement[0]).to.have.property('situation', situation);
-  });
-
   it("enregistre l'appui sur le bouton de stop", function () {
     journal.enregistreStop();
 

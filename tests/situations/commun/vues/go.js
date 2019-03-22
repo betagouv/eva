@@ -2,6 +2,7 @@
 import jsdom from 'jsdom-global';
 import { VueGo } from 'commun/vues/go.js';
 import { traduction } from 'commun/infra/internationalisation';
+import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 describe('vue Go', function () {
   let vue;
@@ -15,7 +16,7 @@ describe('vue Go', function () {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     mockJournal = {
-      enregistreDemarrage () {}
+      enregistreEvenement () {}
     };
     vue = new VueGo(mockVueConsigne, mockJournal);
   });
@@ -93,7 +94,10 @@ describe('vue Go', function () {
   });
 
   it("journalise l'événement lorsque le jeu est démarré", function (done) {
-    mockJournal.enregistreDemarrage = done;
+    mockJournal.enregistreEvenement = (evenement) => {
+      expect(evenement).to.be.a(EvenementDemarrage);
+      done();
+    };
 
     vue.affiche('#pointInsertion', $);
 

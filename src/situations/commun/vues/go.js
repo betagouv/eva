@@ -3,6 +3,7 @@ import go from 'commun/assets/go.svg';
 import play from 'commun/assets/play.svg';
 
 import { traduction } from 'commun/infra/internationalisation';
+import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export class VueGo {
   constructor (vueConsigne, journal) {
@@ -20,7 +21,7 @@ export class VueGo {
 
     this.$boutonGo.on('click', () => {
       this.$overlay.addClass('invisible');
-      this.journal.enregistreDemarrage();
+      this.journal.enregistreEvenement(new EvenementDemarrage());
     });
     this.$overlay.append(this.$boutonGo);
 
