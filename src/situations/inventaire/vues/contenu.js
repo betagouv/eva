@@ -10,8 +10,7 @@ class VueContenu {
     this.calque = document.createElement('div');
     this.calque.id = 'calque';
     pointInsertion.appendChild(this.calque);
-    this.calque.classList.add('calque');
-    this.calque.classList.add('invisible');
+    this.calque.classList.add('calque', 'invisible');
     this.calque.addEventListener('click', (event) => {
       this.element.classList.replace('ouvrir', 'fermer');
       setTimeout(() => {

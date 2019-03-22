@@ -44,4 +44,10 @@ describe('vue etagères', function () {
     expect(avantPlan.style.width).to.equal('50px');
     expect(avantPlan.style.height).to.equal('25px');
   });
+
+  it("ajoute la vue contenu à l'interieur de l'avant plan pour que ses dimensions soient bien calculées par rapport à la taille de l'image", function () {
+    vue.affiche([]);
+
+    expect(document.querySelector('.avant-plan .contenu')).to.not.equal(null);
+  });
 });

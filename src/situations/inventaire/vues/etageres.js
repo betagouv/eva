@@ -18,12 +18,17 @@ export class VueEtageres {
     etageres.classList.add('image-fond');
     this.element.appendChild(etageres);
 
-    const vueContenants = new VueContenants(this.element, this.journal);
-    const vueContenu = new VueContenu(this.element);
+    const avantPlan = document.createElement('div');
+    avantPlan.classList.add('avant-plan');
+    this.element.appendChild(avantPlan);
+
+    const vueContenants = new VueContenants(avantPlan, this.journal);
+    const vueContenu = new VueContenu(avantPlan);
     vueContenants.afficheLesContenants(contenants, vueContenu);
 
     const redimensionne = () => {
-      vueContenants.redimensionne(etageres.width, etageres.height);
+      avantPlan.style.width = etageres.width + 'px';
+      avantPlan.style.height = etageres.height + 'px';
     };
 
     window.addEventListener('resize', redimensionne);
