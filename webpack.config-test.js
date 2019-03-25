@@ -44,6 +44,10 @@ var config = {
             }
           }
         ]
+      },
+      {
+        test: /\.(svg)(\?.*$|$)/,
+        loader: 'file-loader'
       }
     ]
   },
