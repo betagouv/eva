@@ -19,9 +19,10 @@ function afficheSituation (pointInsertion, $) {
   const vueSituationInventaire = new VueSituation(journal);
   const vueCadre = new VueCadre(vueSituationInventaire);
   const vueActions = new VueActions(journal);
-  const vueConsigne = new VueConsigne(pointInsertion, sonConsigneDemarrage);
+  const vueConsigne = new VueConsigne(sonConsigneDemarrage);
   const vueGo = new VueGo(vueConsigne, journal);
 
+  vueConsigne.affiche(pointInsertion);
   vueCadre.affiche(pointInsertion, $);
   vueActions.affiche(pointInsertion, $);
   vueGo.affiche(pointInsertion);
