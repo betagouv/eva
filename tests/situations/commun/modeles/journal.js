@@ -22,7 +22,7 @@ describe('le journal', function () {
   });
 
   it('enregistre un événement', function () {
-    journal.enregistreEvenement(new EvenementTest());
+    journal.enregistre(new EvenementTest());
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(1);

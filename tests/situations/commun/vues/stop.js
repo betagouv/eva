@@ -18,7 +18,7 @@ describe('vue Stop', function () {
     jsdom('<div id="magasin"></div>');
     $ = jQuery(window);
     mockJournal = {
-      enregistreEvenement () {}
+      enregistre () {}
     };
     vue = new VueStop('#magasin', $, mockJournal, () => {
       retourAccueil = true;
@@ -47,7 +47,7 @@ describe('vue Stop', function () {
   });
 
   it("Enregistre l'événément quand on confirme la modale", function (done) {
-    mockJournal.enregistreEvenement = (evenement) => {
+    mockJournal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementStop);
       done();
     };

@@ -18,7 +18,7 @@ export class VueSituation {
       const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
       const message = toutCorrect ? traduction('inventaire.resultat.ok') : traduction('inventaire.resultat.echec');
 
-      this.journal.enregistreEvenement(new EvenementSaisieInventaire({ resultat: toutCorrect, reponses }));
+      this.journal.enregistre(new EvenementSaisieInventaire({ resultat: toutCorrect, reponses }));
 
       Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
       window.alert(message);

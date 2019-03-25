@@ -19,7 +19,7 @@ describe('vue contenants', function () {
     jsdom('<div id="stock"></div>');
     pointInsertion = document.getElementById('stock');
     journal = {
-      enregistreEvenement () {}
+      enregistre () {}
     };
     vue = new VueContenants(pointInsertion, journal);
   });
@@ -49,7 +49,7 @@ describe('vue contenants', function () {
   });
 
   it('journalise le contenant quand on clique dessus', function (done) {
-    journal.enregistreEvenement = (evenement) => {
+    journal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementOuvertureContenant);
       expect(evenement.donnees()).to.eql({ contenant: 'id_contenant' });
       done();

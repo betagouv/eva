@@ -90,7 +90,7 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
 
     function basculeVisibiliteFormulaire () {
       if ($overlay.hasClass('invisible')) {
-        journal.enregistreEvenement(new EvenementOuvertureSaisieInventaire());
+        journal.enregistre(new EvenementOuvertureSaisieInventaire());
       }
       basculeVisibilite($overlay);
       basculeVisibilite($formulaireSaisie);
