@@ -1,6 +1,6 @@
-import { traduction } from 'commun/infra/internationalisation';
-
 import 'commun/styles/go.scss';
+import go from 'commun/assets/go.svg';
+import play from 'commun/assets/play.svg';
 
 export class VueGo {
   constructor (vueConsigne, journal) {
@@ -11,9 +11,11 @@ export class VueGo {
       event.stopPropagation();
     });
 
-    this.boutonGo = document.createElement('button');
+    this.boutonGo = document.createElement('div');
     this.boutonGo.id = 'go';
-    this.boutonGo.textContent = traduction('situation.go');
+    const imageGo = document.createElement('img');
+    imageGo.src = go;
+    this.boutonGo.appendChild(imageGo);
     this.boutonGo.classList.add('invisible', 'bouton-centre', 'bouton-go');
     this.boutonGo.addEventListener('click', () => {
       this.overlay.classList.add('invisible');
@@ -21,8 +23,11 @@ export class VueGo {
     });
     this.overlay.appendChild(this.boutonGo);
 
-    this.boutonDemarrerConsigne = document.createElement('button');
+    this.boutonDemarrerConsigne = document.createElement('div');
     this.boutonDemarrerConsigne.id = 'demarrer-consigne';
+    const imagePlay = document.createElement('img');
+    imagePlay.src = play;
+    this.boutonDemarrerConsigne.appendChild(imagePlay);
     this.boutonDemarrerConsigne.classList.add('bouton-centre', 'bouton-lire-consigne-demarrage');
     this.boutonDemarrerConsigne.addEventListener('click', () => {
       this.boutonDemarrerConsigne.classList.add('invisible');
