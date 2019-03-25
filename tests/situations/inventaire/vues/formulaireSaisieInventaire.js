@@ -13,7 +13,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     jsdom('<div id="magasin"></div>');
     $ = jQuery(window);
     journal = {
-      enregistreEvenement () {}
+      enregistre () {}
     };
   });
 
@@ -43,7 +43,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     });
 
     it("journalise l'événement", function (done) {
-      journal.enregistreEvenement = (evenement) => {
+      journal.enregistre = (evenement) => {
         expect(evenement).to.be.a(EvenementOuvertureSaisieInventaire);
         done();
       };
@@ -70,7 +70,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
     it("n'enregistre pas une ouverture de saisie d'inventaire", function () {
       let evenements = 0;
-      journal.enregistreEvenement = () => {
+      journal.enregistre = () => {
         evenements++;
       };
       $('.overlay').click();

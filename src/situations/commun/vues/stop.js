@@ -16,7 +16,7 @@ export class VueStop {
     this.$boutonStop.on('click', () => {
       afficheFenetreModale(this.$pointInsertion, $,
         traduction('situation.stop'),
-        () => { journal.enregistreEvenement(new EvenementStop()); retourAccueil(); });
+        () => { journal.enregistre(new EvenementStop()); retourAccueil(); });
     });
   }
 

@@ -21,7 +21,7 @@ export class VueGo {
 
     this.$boutonGo.on('click', () => {
       this.$overlay.addClass('invisible');
-      this.journal.enregistreEvenement(new EvenementDemarrage());
+      this.journal.enregistre(new EvenementDemarrage());
     });
     this.$overlay.append(this.$boutonGo);
 

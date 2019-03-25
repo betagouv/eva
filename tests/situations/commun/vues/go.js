@@ -16,7 +16,7 @@ describe('vue Go', function () {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     mockJournal = {
-      enregistreEvenement () {}
+      enregistre () {}
     };
     vue = new VueGo(mockVueConsigne, mockJournal);
   });
@@ -94,7 +94,7 @@ describe('vue Go', function () {
   });
 
   it("journalise l'événement lorsque le jeu est démarré", function (done) {
-    mockJournal.enregistreEvenement = (evenement) => {
+    mockJournal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementDemarrage);
       done();
     };

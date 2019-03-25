@@ -16,7 +16,7 @@ export class VueContenants {
       const vueContenant = new VueContenant(this.svg, contenant);
       vueContenant.affiche((event) => {
         vueContenu.affiche(contenant);
-        this.journal.enregistreEvenement(new EvenementOuvertureContenant({ contenant: contenant.id }));
+        this.journal.enregistre(new EvenementOuvertureContenant({ contenant: contenant.id }));
       });
     });
   }

@@ -6,18 +6,14 @@ export class Journal {
     this.situation = situation;
   }
 
-  enregistreEvenement (evenement) {
-    this.enregistre(evenement.nom(), evenement.donnees());
-  }
-
-  enregistre (nom, donnees = {}) {
+  enregistre (evenement) {
     this.depot.enregistre(
       {
         date: this.maintenant(),
         sessionId: this.sessionId,
         situation: this.situation,
-        nom,
-        donnees
+        nom: evenement.nom(),
+        donnees: evenement.donnees()
       }
     );
   }
