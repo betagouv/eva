@@ -1,17 +1,73 @@
+@import 'commun/styles/couleurs.scss';
+
 .bouton-centre {
+  background: rgba(255, 255, 255, 0.8);
+  width: 12.25rem;
+  height: 12.25rem;
   position: absolute;
-  left: 45%;
-  top: 45%;
-  height: 4rem;
-  width: 4rem;
+  left: 50%;
+  top: 50%;
+  margin-left: -6.125rem;
+  margin-top: -6.125rem;
+  border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 4rem;
+    width: 4rem;
+    margin-left: -2rem;
+    margin-top: -2rem;
+    border-radius: 1rem;
+    border: solid 3px $blanc;
+    box-shadow: inset 0px 0px 0px 3px $couleur-fond-bouton-vert-focus;
+    box-sizing: border-box;
+  }
+
+  img {
+    position: relative;
+    margin: auto;
+    height: 1.3rem;
+  }
 }
 
 .bouton-go {
-  background: url('../assets/go.png') no-repeat center/contain;
+  &:before {
+    background-color: $couleur-fond-bouton-bleu;
+    box-shadow: inset 0px 0px 0px 3px $couleur-fond-bouton-bleu-focus;
+  }
+
+  &:hover:before {
+    background-color: $couleur-fond-bouton-bleu-focus;
+    border-color: $couleur-fond-bouton-bleu-focus;
+  }
+
+  &:active:before {
+    background-color: $couleur-fond-bouton-bleu;
+    border-color: $couleur-fond-bouton-bleu;
+    box-shadow: inset 0px 0px 0px 3px $couleur-fond-bouton-bleu;
+  }
 }
 
 .bouton-lire-consigne-demarrage {
-  background: url('../assets/lire_consigne.png') no-repeat center/contain;
-  background-color: white;
+  &:before {
+    background-color: $couleur-fond-bouton-vert;
+  }
+
+  &:hover:before {
+    background-color: $couleur-fond-bouton-vert-focus;
+    border-color: $couleur-fond-bouton-vert-focus;
+  }
+
+  &:active:before {
+    background-color: $couleur-fond-bouton-vert;
+    border-color: $couleur-fond-bouton-vert;
+    box-shadow: inset 0px 0px 0px 3px $couleur-fond-bouton-vert;
+  }
+
 }

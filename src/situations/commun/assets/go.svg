@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="22px" viewBox="0 0 32 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>GO</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="HelveticaNeue-CondensedBold, Helvetica Neue" font-size="28" font-style="condensed" font-weight="bold" letter-spacing="1.575">
+        <g id="Button/Go" transform="translate(-24.000000, -29.000000)" fill="#FFFFFF">
+            <text id="GO">
+                <tspan x="23.357" y="50">GO</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

@@ -1,9 +1,7 @@
 @import 'commun/styles/conteneur.scss';
 @import 'commun/styles/commun.scss';
 @import 'commun/styles/bouton.scss';
-$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
-@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import 'commun/styles/font_awesome.scss';
 
 .conteneur {
   li {
