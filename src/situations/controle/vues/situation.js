@@ -11,9 +11,9 @@ export class VueSituation {
 
   affiche (pointInsertion, $) {
     function afficheBac (categorie, { x, y }) {
-      const bacPiecesDefectueuses = new Bac({ categorie: categorie, x: x, y: y, largeur: 30, hauteur: 40 });
-      const vueBacPiecesDefectueuses = new VueBac(bacPiecesDefectueuses);
-      vueBacPiecesDefectueuses.affiche(pointInsertion, $);
+      const bac = new Bac({ categorie: categorie, x: x, y: y, largeur: 30, hauteur: 40 });
+      const vueBac = new VueBac(bac);
+      vueBac.affiche(pointInsertion, $);
     }
 
     afficheBac(PIECE_CONFORME, { x: 10, y: 10 });
