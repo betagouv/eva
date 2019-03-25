@@ -4,80 +4,88 @@ import { VueGo } from 'commun/vues/go.js';
 
 describe('vue Go', function () {
   let vue;
-  let overlay;
-  let boutonGo;
-  let boutonDemarrerConsigne;
   let mockVueConsigne = {
     jouerConsigneDemarrage () {}
   };
   let mockJournal;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
+    jsdom('<div id="pointInsertion"></div>');
     mockJournal = {
       enregistreDemarrage () {}
     };
-    vue = new VueGo('#magasin', mockVueConsigne, mockJournal);
-    overlay = document.querySelector('#magasin #overlay-go');
-    boutonGo = overlay.querySelector('#go');
-    boutonDemarrerConsigne = overlay.querySelector('#demarrer-consigne');
+    vue = new VueGo(mockVueConsigne, mockJournal);
   });
 
-  it('affiche un bouton "lire la consigne"', function () {
+  it('affiche un bouton "lire la consigne" mais pas le bouton "go" au démarrage', function () {
+    vue.affiche('#pointInsertion');
+
+    const overlay = document.querySelector('#pointInsertion #overlay-go');
     expect(overlay.classList).to.contain('overlay');
 
-    vue.afficher();
-    expect(overlay.classList).to.not.contain('invisible');
+    const boutonDemarrerConsigne = overlay.querySelector('#demarrer-consigne');
     expect(boutonDemarrerConsigne.classList).to.not.contain('invisible');
+
+    const boutonGo = overlay.querySelector('#go');
+    expect(boutonGo.classList).to.contain('invisible');
   });
 
   it('démarre la lecture de la consigne quand on appuie sur le bouton', function (done) {
+    vue.affiche('#pointInsertion');
+
+    const boutonDemarrerConsigne = document.querySelector('#demarrer-consigne');
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
+      expect(boutonDemarrerConsigne.classList).to.contain('invisible');
       done();
     };
-    vue.afficher();
 
     boutonDemarrerConsigne.dispatchEvent(new Event('click'));
-
-    expect(boutonDemarrerConsigne.classList).to.contain('invisible');
   });
 
   it('affiche un overlay pendant la lecture de la consigne', function () {
+    vue.affiche('#pointInsertion');
+
+    const overlay = document.querySelector('#overlay-go');
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
       expect(overlay.classList).to.not.contain('invisible');
     };
-    vue.afficher();
+
+    const boutonDemarrerConsigne = document.querySelector('#demarrer-consigne');
+    boutonDemarrerConsigne.dispatchEvent(new Event('click'));
 
     expect(overlay.classList).to.not.contain('invisible');
   });
 
   it('affiche un bouton GO à la fin de la lecture de la consigne', function () {
+    vue.affiche('#pointInsertion');
+
+    const boutonGo = document.querySelector('#go');
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
       expect(boutonGo.classList).to.contain('invisible');
       actionFinConsigne();
     };
-    vue.afficher();
+    const boutonDemarrerConsigne = document.querySelector('#demarrer-consigne');
     boutonDemarrerConsigne.dispatchEvent(new Event('click'));
 
     expect(boutonGo.classList).to.not.contain('invisible');
   });
 
   it("masque l'overlay et le bouton une fois le jeu démarré", function () {
-    mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
-      expect(boutonGo.classList).to.contain('invisible');
-      actionFinConsigne();
-    };
-    vue.afficher();
+    vue.affiche('#pointInsertion');
+
+    const boutonGo = document.querySelector('#overlay-go #go');
 
     boutonGo.dispatchEvent(new Event('click'));
 
+    const overlay = document.querySelector('#overlay-go');
     expect(overlay.classList).to.contain('invisible');
   });
 
   it("journalise l'événement lorsque le jeu est démarré", function (done) {
     mockJournal.enregistreDemarrage = done;
-    vue.afficher();
 
-    boutonGo.dispatchEvent(new Event('click'));
+    vue.affiche('#pointInsertion');
+
+    document.querySelector('#go').dispatchEvent(new Event('click'));
   });
 });
