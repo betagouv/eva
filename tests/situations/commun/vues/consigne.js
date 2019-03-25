@@ -7,8 +7,9 @@ describe('vue consigne', function () {
   let vue;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
-    vue = new VueConsigne('#magasin', 'chemin_vers_la_consigne');
+    jsdom('<div id="pointInsertion"></div>');
+    vue = new VueConsigne('chemin_vers_la_consigne');
+    vue.affiche('#pointInsertion');
     vue.element.play = () => {
       return new Promise(function (resolve, reject) {
         resolve();
@@ -17,7 +18,7 @@ describe('vue consigne', function () {
   });
 
   it("sait s'insérer dans une page web ", function () {
-    let element = document.querySelector('#magasin #consigne');
+    let element = document.querySelector('#pointInsertion #consigne');
     expect(element).to.eql(vue.element);
     expect(vue.element.tagName).to.equal('AUDIO');
   });

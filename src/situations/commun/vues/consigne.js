@@ -1,10 +1,14 @@
 
 export class VueConsigne {
-  constructor (pointInsertion, sonConsigneDemarrage) {
+  constructor (sonConsigneDemarrage) {
+    this.sonConsigneDemarrage = sonConsigneDemarrage;
+  }
+
+  affiche (pointInsertion) {
     this.element = document.createElement('audio');
     this.element.type = 'audio/mp3';
     this.element.preload = 'none';
-    this.element.src = sonConsigneDemarrage;
+    this.element.src = this.sonConsigneDemarrage;
     document.querySelector(pointInsertion).appendChild(this.element);
 
     this.element.id = 'consigne';
