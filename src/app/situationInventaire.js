@@ -20,10 +20,11 @@ function afficheSituation (pointInsertion, $) {
   const vueCadre = new VueCadre(vueSituationInventaire);
   const vueActions = new VueActions(journal);
   const vueConsigne = new VueConsigne(pointInsertion, sonConsigneDemarrage);
+  const vueGo = new VueGo(vueConsigne, journal);
 
   vueCadre.affiche(pointInsertion, $);
   vueActions.affiche(pointInsertion, $);
-  new VueGo(pointInsertion, vueConsigne, journal).afficher();
+  vueGo.affiche(pointInsertion);
 }
 
 initialiseInternationalisation().then(function () {
