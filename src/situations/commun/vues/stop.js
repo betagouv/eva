@@ -1,4 +1,5 @@
 import { traduction } from 'commun/infra/internationalisation';
+import stop from 'commun/assets/stop.svg';
 
 import 'commun/styles/stop.scss';
 import { afficheFenetreModale } from 'commun/vues/modale.js';
@@ -9,6 +10,7 @@ export class VueStop {
   }) {
     this.$pointInsertion = $(pointInsertion);
     this.$boutonStop = $('<a id="stop" class="bouton-stop"></a>');
+    this.$boutonStop.append(`<img src='${stop}'>`);
 
     this.$boutonStop.on('click', () => {
       afficheFenetreModale(this.$pointInsertion, $,

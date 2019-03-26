@@ -1,4 +1,4 @@
-@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/bouton.scss';
 
 .bouton-centre {
   background: rgba(255, 255, 255, 0.8);
@@ -19,55 +19,16 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    height: 4rem;
-    width: 4rem;
     margin-left: -2rem;
     margin-top: -2rem;
-    border-radius: 1rem;
-    border: solid 3px $blanc;
-    box-shadow: inset 0px 0px 0px 3px $couleur-fond-bouton-vert-focus;
     box-sizing: border-box;
-  }
-
-  img {
-    position: relative;
-    margin: auto;
-    height: 1.3rem;
   }
 }
 
 .bouton-go {
-  &:before {
-    background-color: $couleur-fond-bouton-bleu;
-    box-shadow: inset 0px 0px 0px 3px $couleur-fond-bouton-bleu-focus;
-  }
-
-  &:hover:before {
-    background-color: $couleur-fond-bouton-bleu-focus;
-    border-color: $couleur-fond-bouton-bleu-focus;
-  }
-
-  &:active:before {
-    background-color: $couleur-fond-bouton-bleu;
-    border-color: $couleur-fond-bouton-bleu;
-    box-shadow: inset 0px 0px 0px 3px $couleur-fond-bouton-bleu;
-  }
+  @include bouton-carre-before($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
 }
 
 .bouton-lire-consigne-demarrage {
-  &:before {
-    background-color: $couleur-fond-bouton-vert;
-  }
-
-  &:hover:before {
-    background-color: $couleur-fond-bouton-vert-focus;
-    border-color: $couleur-fond-bouton-vert-focus;
-  }
-
-  &:active:before {
-    background-color: $couleur-fond-bouton-vert;
-    border-color: $couleur-fond-bouton-vert;
-    box-shadow: inset 0px 0px 0px 3px $couleur-fond-bouton-vert;
-  }
-
+  @include bouton-carre-before($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
 }
