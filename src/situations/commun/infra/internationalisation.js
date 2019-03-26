@@ -4,7 +4,7 @@ import locales from '../../../locales/fr.json';
 export function initialise () {
   return i18next.init({
     lng: 'fr',
-    debug: process.NODE_ENV !== 'production',
+    debug: process.env.NODE_ENV !== 'development',
     resources: {
       fr: {
         translation: locales
