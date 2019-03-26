@@ -4,7 +4,9 @@
     "modale": {
       "ok": "OK",
       "annuler": "annuler"
-    }
+    },
+    "ecouter-consigne": "Écoutez la consigne",
+    "go": "C'est à vous"
   },
   "inventaire": {
     "titre": "Stock de boissons",
