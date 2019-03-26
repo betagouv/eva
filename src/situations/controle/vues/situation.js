@@ -5,8 +5,24 @@ import { VuePiece } from 'controle/vues/piece.js';
 
 export class VueSituation {
   constructor (situation, callbackApresCreationPiece) {
+    function nouveauBac (categorie, { x, y }) {
+      return new Bac({ categorie, x, y, largeur: 30, hauteur: 40 });
+    }
+
+    function creeBacs () {
+      const bacs = [];
+      bacs.push(nouveauBac(PIECE_CONFORME, { x: 10, y: 10 }));
+      bacs.push(nouveauBac(PIECE_DEFECTUEUSE, { x: 10, y: 10 }));
+      return bacs;
+    }
+
     this.situation = situation;
     this.callbackApresCreationPiece = callbackApresCreationPiece;
+    this._bacs = creeBacs();
+  }
+
+  bacs () {
+    return this._bacs;
   }
 
   affiche (pointInsertion, $) {

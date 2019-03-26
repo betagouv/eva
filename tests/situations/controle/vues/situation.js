@@ -1,7 +1,13 @@
 import jsdom from 'jsdom-global';
+import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece.js';
 import { Situation } from 'controle/modeles/situation.js';
 import { DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece.js';
 import { VueSituation } from 'controle/vues/situation.js';
+
+function vueSituationMinimaliste () {
+  const situation = new Situation({ scenario: [] });
+  return new VueSituation(situation, () => {});
+}
 
 describe('La situation « Contrôle »', function () {
   let $;
@@ -12,8 +18,7 @@ describe('La situation « Contrôle »', function () {
   });
 
   it('affiche le bac des pièces conformes et le bac des pièces défectueuses', function () {
-    const situation = new Situation({ scenario: [] });
-    const vueSituation = new VueSituation(situation, () => {});
+    const vueSituation = vueSituationMinimaliste();
     expect($('#situation-controle .bac.pieces-conformes').length).to.equal(0);
     expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(0);
 
@@ -21,6 +26,15 @@ describe('La situation « Contrôle »', function () {
 
     expect($('#situation-controle .bac.pieces-conformes').length).to.equal(1);
     expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(1);
+  });
+
+  it('connaît les bacs associés à la vue', function () {
+    const vueSituation = vueSituationMinimaliste();
+    const bacs = vueSituation.bacs();
+
+    expect(bacs.length).to.equal(2);
+    expect(bacs[0].categorie()).to.equal(PIECE_CONFORME);
+    expect(bacs[1].categorie()).to.equal(PIECE_DEFECTUEUSE);
   });
 
   it('affiche les pièces en séquence selon le scénario pré-établi', function (done) {
