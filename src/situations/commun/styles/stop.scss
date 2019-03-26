@@ -1,6 +1,12 @@
+@import 'commun/styles/bouton.scss';
+
+$couleur-fond-bouton-rouge: #DE0B27;
+$couleur-fond-bouton-rouge-focus: #C2001A;
+
 .bouton-stop {
-  cursor: pointer;
-  height: 4rem;
-  width: 4rem;
-  background: url('../assets/stop.png') no-repeat center/contain;
+  @include bouton-carre($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
+
+  img {
+    height: .875rem;
+  }
 }
