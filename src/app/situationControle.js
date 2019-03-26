@@ -18,6 +18,7 @@ function afficheSituation (pointInsertion, $) {
     scenario: [true, false, true],
     cadence: 3000,
     positionApparitionPieces: { x: 100, y: 70 },
+    dimensionsPieces: { largeur: 10, hauteur: 25 },
     dureeViePiece: 12000
   });
   const vueSituation = new VueSituation(situation);

@@ -1,10 +1,11 @@
 import { Piece } from 'controle/modeles/piece.js';
 
 export class Situation {
-  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces }) {
+  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, dimensionsPieces }) {
     this.cadence = cadence;
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;
+    this.dimensionsPieces = dimensionsPieces;
     this._dureeViePiece = dureeViePiece;
   }
 
@@ -22,6 +23,12 @@ export class Situation {
 
   pieceSuivante () {
     const estConforme = this.scenario.shift();
-    return new Piece({ x: this.positionApparition.x, y: this.positionApparition.y, conforme: estConforme });
+    return new Piece({
+      x: this.positionApparition.x,
+      y: this.positionApparition.y,
+      hauteur: this.dimensionsPieces.hauteur,
+      largeur: this.dimensionsPieces.largeur,
+      conforme: estConforme
+    });
   }
 }

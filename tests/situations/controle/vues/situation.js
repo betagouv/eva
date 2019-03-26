@@ -42,6 +42,7 @@ describe('La situation « Contrôle »', function () {
       cadence: 0,
       scenario: [true, false],
       positionApparitionPieces: { x: 10, y: 20 },
+      dimensionsPieces: { largeur: 10, hauteur: 35 },
       dureeViePiece: DUREE_VIE_PIECE_INFINIE
     });
 
@@ -54,6 +55,26 @@ describe('La situation « Contrôle »', function () {
       if (nbPiecesAffichees >= 2) { done(); }
     });
 
+    vueSituation.affiche('#situation-controle', $);
+  });
+
+  it('est notifiée quand une pièce disparaît', function (done) {
+    const situation = new Situation({
+      cadence: 0,
+      scenario: [true],
+      positionApparitionPieces: { x: 10, y: 20 },
+      dimensionsPieces: { largeur: 10, hauteur: 35 },
+      dureeViePiece: 1
+    });
+
+    const verifiePositionEtDimensions = (position, dimensions) => {
+      expect(position).to.eql({ x: 10, y: 20 });
+      expect(dimensions).to.eql({ largeur: 10, hauteur: 35 });
+      done();
+    };
+
+    const vueSituation = new VueSituation(situation, () => {});
+    vueSituation.surDisparitionPiece(verifiePositionEtDimensions);
     vueSituation.affiche('#situation-controle', $);
   });
 });

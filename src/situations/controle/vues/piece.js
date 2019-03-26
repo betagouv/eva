@@ -28,16 +28,21 @@ export class VuePiece {
 
   notifieSuppression () {
     this.abonnes.forEach((a) => {
-      a.callbackDisparitionPiece(this.piece.position(), this.piece.dimensions());
+      a.unePieceADisparu(this.piece.position(), this.piece.dimensions());
     });
   }
 
   affiche (pointInsertion, $) {
-    function creeElementPiece (pieceConforme, position, dimensionsElementParent) {
+    function creeElementPiece (pieceConforme, position, dimensions, dimensionsElementParent) {
       let classeConformite = pieceConforme ? 'conforme' : 'defectueuse';
       let $piece = $(`<div class="piece ${classeConformite}"></div>`);
+      metsAJourDimensions($piece, dimensions, dimensionsElementParent);
       metsAJourPosition($piece, position, dimensionsElementParent);
       return $piece;
+    }
+
+    function metsAJourDimensions ($piece, { largeur, hauteur }, { largeurParent, hauteurParent }) {
+      $piece.width(largeur * largeurParent / 100).height(hauteur * hauteurParent / 100);
     }
 
     function metsAJourPosition ($piece, { x, y }, { largeurParent, hauteurParent }) {
@@ -51,7 +56,7 @@ export class VuePiece {
       hauteurParent: $elementParent.height()
     };
     const $piece = creeElementPiece(
-      this.piece.estConforme(), this.piece.position(), dimensionsElementParent);
+      this.piece.estConforme(), this.piece.position(), this.piece.dimensions(), dimensionsElementParent);
 
     $piece.mousedown(e => {
       $piece.stop(true);

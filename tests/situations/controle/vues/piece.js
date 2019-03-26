@@ -40,7 +40,7 @@ describe('Une pièce', function () {
   });
 
   it("se positionne correctement vis-à-vis de l'élément parent", function () {
-    const piece = new Piece({ x: 90, y: 40 });
+    const piece = new Piece({ x: 90, y: 40, largeur: 20, hauteur: 50 });
     const vuePiece = creeVueMinimale(piece);
 
     $('#controle').width(200).height(50);
@@ -48,6 +48,8 @@ describe('Une pièce', function () {
 
     expect($('.piece').css('left')).to.eql('180px');
     expect($('.piece').css('top')).to.eql('20px');
+    expect($('.piece').css('width')).to.eql('40px');
+    expect($('.piece').css('height')).to.eql('25px');
   });
 
   it('peut être déplacée', function () {
@@ -119,7 +121,7 @@ describe('Une pièce', function () {
     const vuePiece = new VuePiece(piece, 5, () => {}, () => {});
 
     const unAbonne = {
-      callbackDisparitionPiece: function (position, dimensions) {
+      unePieceADisparu: function (position, dimensions) {
         expect(position).to.eql({ x: 90, y: 40 });
         expect(dimensions).to.eql({ largeur: 10, hauteur: 35 });
         done();

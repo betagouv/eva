@@ -17,12 +17,17 @@ describe('La situation « Contrôle »', function () {
   });
 
   it('sait donner la piece suivante quand il y en encore à venir', function () {
-    let situation = new Situation({ scenario: [false], positionApparitionPieces: { x: 25, y: 50 } });
+    let situation = new Situation({
+      scenario: [false],
+      positionApparitionPieces: { x: 25, y: 50 },
+      dimensionsPieces: { largeur: 10, hauteur: 35 }
+    });
     expect(situation.sequenceTerminee()).to.be(false);
 
     let piece = situation.pieceSuivante();
     expect(situation.sequenceTerminee()).to.be(true);
     expect(piece.estConforme()).to.be(false);
     expect(piece.position()).to.eql({ x: 25, y: 50 });
+    expect(piece.dimensions()).to.eql({ largeur: 10, hauteur: 35 });
   });
 });

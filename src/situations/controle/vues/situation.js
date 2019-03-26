@@ -18,11 +18,20 @@ export class VueSituation {
 
     this.situation = situation;
     this.callbackApresCreationPiece = callbackApresCreationPiece;
+    this.callbackDisparitionPiece = () => {};
     this._bacs = creeBacs();
   }
 
   bacs () {
     return this._bacs;
+  }
+
+  surDisparitionPiece (callback) {
+    this.callbackDisparitionPiece = callback;
+  }
+
+  unePieceADisparu (position, dimensions) {
+    this.callbackDisparitionPiece(position, dimensions);
   }
 
   affiche (pointInsertion, $) {
@@ -43,6 +52,7 @@ export class VueSituation {
 
       let piece = this.situation.pieceSuivante();
       let vuePiece = new VuePiece(piece, this.situation.dureeViePiece(), this.callbackApresCreationPiece);
+      vuePiece.abonne(this);
       vuePiece.affiche(pointInsertion, $);
     }, this.situation.cadenceArriveePieces());
   }
