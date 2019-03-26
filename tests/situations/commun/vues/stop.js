@@ -38,21 +38,14 @@ describe('vue Stop', function () {
     expect($('label').text()).to.equal('situation.stop');
   });
 
-  it("Redirige vers l'accueil quand on confirme la modale", function () {
-    vue.afficher();
-    $('#magasin #stop').click();
-    $('#OK-modale').click();
-
-    expect(retourAccueil).to.equal(true);
-  });
-
-  it("Enregistre l'événément quand on confirme la modale", function (done) {
+  it("Enregistre l'événément et redirige vers l'accueil quand on confirme la modale", function (done) {
     mockJournal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementStop);
-      done();
+      return Promise.resolve();
     };
-    vue.afficher();
-    $('#magasin #stop').click();
-    $('#OK-modale').click();
+    vue.clickSurOk().then(() => {
+      expect(retourAccueil).to.equal(true);
+      done();
+    });
   });
 });
