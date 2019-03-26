@@ -1,4 +1,5 @@
 import { traduction } from 'commun/infra/internationalisation';
+import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
 
 import 'commun/styles/commun.scss';
 import 'commun/styles/overlay.scss';
@@ -82,7 +83,7 @@ export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $
   }
 
   function creeBoutonSaisie ($formulaireSaisie) {
-    let $boutonSaisie = $(`<button type="button" class="affiche-saisie">${traduction('inventaire.saisie')}</button>`);
+    let $boutonSaisie = $(`<img class="affiche-saisie" src="${boutonSaisie}">`);
     let $overlay = $('<div class="overlay invisible"></div>');
     let $elementsCombines = $boutonSaisie.add($overlay);
 
