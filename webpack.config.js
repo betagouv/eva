@@ -116,7 +116,7 @@ module.exports = {
       inject: 'head'
     }),
     new webpack.ProvidePlugin({ jQuery: 'jquery' }),
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'URL_SERVEUR'])
+    new webpack.EnvironmentPlugin(['URL_SERVEUR'])
   ],
   devServer: {
     contentBase: './src/public',
