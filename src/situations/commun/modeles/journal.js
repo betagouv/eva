@@ -7,7 +7,7 @@ export class Journal {
   }
 
   enregistre (evenement) {
-    this.depot.enregistre(
+    return this.depot.enregistre(
       {
         date: this.maintenant(),
         sessionId: this.sessionId,
