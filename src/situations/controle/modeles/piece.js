@@ -2,9 +2,11 @@ export const PIECE_CONFORME = true;
 export const PIECE_DEFECTUEUSE = false;
 
 export class Piece {
-  constructor ({ x, y, conforme }) {
+  constructor ({ x, y, largeur, hauteur, conforme }) {
     this.x = x;
     this.y = y;
+    this.largeur = largeur;
+    this.hauteur = hauteur;
     this.conforme = conforme;
     this.selectionnee = false;
     this.abonnes = [];
@@ -12,6 +14,10 @@ export class Piece {
 
   position () {
     return { x: this.x, y: this.y };
+  }
+
+  dimensions () {
+    return { largeur: this.largeur, hauteur: this.hauteur };
   }
 
   estConforme () {

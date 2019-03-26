@@ -113,4 +113,19 @@ describe('Une pièce', function () {
     vuePiece.affiche('#controle', $);
     expect($('.piece').length).to.equal(1);
   });
+
+  it('notifie ses abonnés avant de disparaître', function (done) {
+    const piece = new Piece({ x: 90, y: 40, largeur: 10, hauteur: 35 });
+    const vuePiece = new VuePiece(piece, 5, () => {}, () => {});
+
+    const unAbonne = {
+      callbackDisparitionPiece: function (position, dimensions) {
+        expect(position).to.eql({ x: 90, y: 40 });
+        expect(dimensions).to.eql({ largeur: 10, hauteur: 35 });
+        done();
+      }
+    };
+    vuePiece.abonne(unAbonne);
+    vuePiece.affiche('#controle', $);
+  });
 });

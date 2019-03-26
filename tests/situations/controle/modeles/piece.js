@@ -7,6 +7,12 @@ describe('Une pièce', function () {
     expect(piece.position()).to.eql({ x: 90, y: 50 });
   });
 
+  it('connaît ses dimensions', function () {
+    let piece = new Piece({ largeur: 10, hauteur: 35 });
+
+    expect(piece.dimensions()).to.eql({ largeur: 10, hauteur: 35 });
+  });
+
   it('peut être conforme ou défectueuse', function () {
     let pieceConforme = new Piece({ conforme: true });
     let pieceDefectueuse = new Piece({ conforme: false });

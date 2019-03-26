@@ -19,6 +19,17 @@ export class VuePiece {
     this.dureeVie = dureeVie;
     this.callbackApresApparition = callbackApresApparition;
     this.callbackAvantSuppression = callbackAvantSuppression;
+    this.abonnes = [];
+  }
+
+  abonne (unAbonne) {
+    this.abonnes.push(unAbonne);
+  }
+
+  notifieSuppression () {
+    this.abonnes.forEach((a) => {
+      a.callbackDisparitionPiece(this.piece.position(), this.piece.dimensions());
+    });
   }
 
   affiche (pointInsertion, $) {
@@ -73,6 +84,7 @@ export class VuePiece {
     if (this.dureeVie !== DUREE_VIE_PIECE_INFINIE) {
       setTimeout(() => {
         this.callbackAvantSuppression($piece, () => { $piece.remove(); });
+        this.notifieSuppression();
       }, this.dureeVie);
     }
   }
