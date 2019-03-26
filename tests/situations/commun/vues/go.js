@@ -8,9 +8,11 @@ describe('vue Go', function () {
     jouerConsigneDemarrage () {}
   };
   let mockJournal;
+  let $;
 
   beforeEach(function () {
     jsdom('<div id="pointInsertion"></div>');
+    $ = jQuery(window);
     mockJournal = {
       enregistreDemarrage () {}
     };
@@ -18,7 +20,7 @@ describe('vue Go', function () {
   });
 
   it('affiche un bouton "lire la consigne" mais pas le bouton "go" au démarrage', function () {
-    vue.affiche('#pointInsertion');
+    vue.affiche('#pointInsertion', $);
 
     const overlay = document.querySelector('#pointInsertion #overlay-go');
     expect(overlay.classList).to.contain('overlay');
@@ -31,7 +33,7 @@ describe('vue Go', function () {
   });
 
   it('démarre la lecture de la consigne quand on appuie sur le bouton', function (done) {
-    vue.affiche('#pointInsertion');
+    vue.affiche('#pointInsertion', $);
 
     const boutonDemarrerConsigne = document.querySelector('#demarrer-consigne');
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
@@ -43,7 +45,7 @@ describe('vue Go', function () {
   });
 
   it('affiche un overlay pendant la lecture de la consigne', function () {
-    vue.affiche('#pointInsertion');
+    vue.affiche('#pointInsertion', $);
 
     const overlay = document.querySelector('#overlay-go');
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
@@ -57,7 +59,7 @@ describe('vue Go', function () {
   });
 
   it('affiche un bouton GO à la fin de la lecture de la consigne', function () {
-    vue.affiche('#pointInsertion');
+    vue.affiche('#pointInsertion', $);
 
     const boutonGo = document.querySelector('#go');
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
@@ -71,7 +73,7 @@ describe('vue Go', function () {
   });
 
   it("masque l'overlay et le bouton une fois le jeu démarré", function () {
-    vue.affiche('#pointInsertion');
+    vue.affiche('#pointInsertion', $);
 
     const boutonGo = document.querySelector('#overlay-go #go');
 
@@ -84,7 +86,7 @@ describe('vue Go', function () {
   it("journalise l'événement lorsque le jeu est démarré", function (done) {
     mockJournal.enregistreDemarrage = done;
 
-    vue.affiche('#pointInsertion');
+    vue.affiche('#pointInsertion', $);
 
     document.querySelector('#go').dispatchEvent(new Event('click'));
   });

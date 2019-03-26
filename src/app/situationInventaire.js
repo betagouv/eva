@@ -22,7 +22,7 @@ function afficheSituation (pointInsertion, $) {
 
   vueConsigne.affiche(pointInsertion);
   vueCadre.affiche(pointInsertion, $);
-  vueGo.affiche(pointInsertion);
+  vueGo.affiche(pointInsertion, $);
 }
 
 initialiseInternationalisation().then(function () {
