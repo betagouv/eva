@@ -11,7 +11,7 @@ export class DepotJournal {
   enregistre (ligne) {
     this.lignes.push(ligne);
     window.localStorage.setItem('journal', JSON.stringify(this.lignes));
-    this.envoiEvenementAuServeur(ligne);
+    return this.envoiEvenementAuServeur(ligne);
   }
 
   evenements () {
@@ -19,7 +19,7 @@ export class DepotJournal {
   }
 
   envoiEvenementAuServeur (ligne) {
-    this.$.ajax({
+    return this.$.ajax({
       type: 'POST',
       url: `${process.env.URL_SERVEUR}/api/evenements`,
       data: JSON.stringify(this.recuperePayload(ligne)),
