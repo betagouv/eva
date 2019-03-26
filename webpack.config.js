@@ -68,7 +68,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|gif|mp3)$/i,
+        test: /\.(png|jpg|gif|mp3|svg|woff|woff2|ttf|eot)(\?.*$|$)/i,
         use: [
           {
             loader: 'url-loader',
@@ -79,10 +79,6 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.(svg|woff|woff2|ttf|eot)(\?.*$|$)/,
-        loader: 'file-loader'
       }
     ]
   },
