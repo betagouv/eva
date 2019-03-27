@@ -12,7 +12,7 @@ export class VueGo {
   }
 
   affiche (pointInsertion, $) {
-    this.$consigneTexte = $("<div class='consigne-texte'></div>");
+    this.$message = $("<div class='message'></div>");
 
     this.$overlay = $('<div id="overlay-go" class="overlay"></div>');
 
@@ -30,17 +30,17 @@ export class VueGo {
 
     this.$boutonDemarrerConsigne.on('click', () => {
       this.$boutonDemarrerConsigne.addClass('invisible');
-      this.$consigneTexte.text('');
+      this.$message.text('');
 
       this.vueConsigne.jouerConsigneDemarrage(() => {
         this.$boutonGo.removeClass('invisible');
-        this.$consigneTexte.text(traduction('situation.go'));
+        this.$message.text(traduction('situation.go'));
       });
     });
 
-    this.$consigneTexte.text(traduction('situation.ecouter-consigne'));
+    this.$message.text(traduction('situation.ecouter-consigne'));
     this.$overlay.append(this.$boutonDemarrerConsigne);
-    this.$overlay.append(this.$consigneTexte);
+    this.$overlay.append(this.$message);
     $(pointInsertion).append(this.$overlay);
   }
 }

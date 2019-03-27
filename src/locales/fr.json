@@ -5,8 +5,8 @@
       "ok": "OK",
       "annuler": "annuler"
     },
-    "ecouter-consigne": "Écoutez la consigne",
-    "go": "C'est à vous"
+    "ecouter-consigne": "Commencez par écouter la consigne",
+    "go": "Vous pouvez commencer"
   },
   "inventaire": {
     "titre": "Stock de boissons",

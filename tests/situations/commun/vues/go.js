@@ -35,8 +35,8 @@ describe('vue Go', function () {
     expect(boutonGo.classList).to.contain('invisible');
     expect(boutonGo.classList).to.contain('bouton-go');
 
-    const consigne = $('.consigne-texte', overlay);
-    expect(consigne.text()).to.eql(traduction('situation.ecouter-consigne'));
+    const $message = $('.message', overlay);
+    expect($message.text()).to.eql(traduction('situation.ecouter-consigne'));
   });
 
   it('démarre la lecture de la consigne quand on appuie sur le bouton', function (done) {
@@ -64,8 +64,8 @@ describe('vue Go', function () {
 
     expect(overlay.classList).to.not.contain('invisible');
 
-    const consigne = $('.consigne-texte', '#overlay-go');
-    expect(consigne.text()).to.eql('');
+    const $message = $('.message', '#overlay-go');
+    expect($message.text()).to.eql('');
   });
 
   it('affiche un bouton GO à la fin de la lecture de la consigne', function () {
@@ -80,8 +80,8 @@ describe('vue Go', function () {
     boutonDemarrerConsigne.dispatchEvent(new Event('click'));
 
     expect(boutonGo.classList).to.not.contain('invisible');
-    const consigne = $('.consigne-texte', '#overlay-go');
-    expect(consigne.text()).to.eql(traduction('situation.go'));
+    const $message = $('.message', '#overlay-go');
+    expect($message.text()).to.eql(traduction('situation.go'));
   });
 
   it("masque l'overlay et le bouton une fois le jeu démarré", function () {
