@@ -33,9 +33,9 @@
   @include bouton-carre-before($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
 }
 
-.consigne-texte {
+.message {
   position:absolute;
-  bottom:0;
+  top: 7rem;
   color: $blanc;
   text-align: center;
   width: 100%;
