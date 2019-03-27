@@ -15,7 +15,7 @@ export class VueGo {
 
     this.$overlay = $('<div id="overlay-go" class="overlay"></div>');
 
-    this.$boutonGo = $('<div id="go" class="invisible bouton-centre bouton-lire-consigne-demarrage"></div>');
+    this.$boutonGo = $('<div id="go" class="invisible bouton-centre bouton-go"></div>');
     this.$boutonGo.append(`<img src='${go}'>`);
 
     this.$boutonGo.on('click', () => {
