@@ -28,9 +28,11 @@ describe('vue Go', function () {
 
     const boutonDemarrerConsigne = overlay.querySelector('#demarrer-consigne');
     expect(boutonDemarrerConsigne.classList).to.not.contain('invisible');
+    expect(boutonDemarrerConsigne.classList).to.contain('bouton-lire-consigne-demarrage');
 
     const boutonGo = overlay.querySelector('#go');
     expect(boutonGo.classList).to.contain('invisible');
+    expect(boutonGo.classList).to.contain('bouton-go');
 
     const consigne = $('.consigne-texte', overlay);
     expect(consigne.text()).to.eql(traduction('situation.ecouter-consigne'));
