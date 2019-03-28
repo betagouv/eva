@@ -13,34 +13,37 @@ export class VueGo {
   }
 
   affiche (pointInsertion, $) {
+    this.$ = $;
     this.$message = $("<div class='message'></div>");
-
     this.$overlay = $('<div id="overlay-go" class="overlay"></div>');
 
-    this.$boutonGo = $('<div id="go" class="invisible bouton-centre bouton-go"></div>');
-    this.$boutonGo.append(`<img src='${go}'>`);
-
-    this.$boutonGo.on('click', () => {
-      this.$overlay.addClass('invisible');
-      this.journal.enregistre(new EvenementDemarrage());
+    this.$boutonGo = this.$bouton({
+      id: 'go', classe: 'bouton-go', image: go, visibilite: 'invisible',
+      click: () => {
+        this.$overlay.addClass('invisible');
+        this.journal.enregistre(new EvenementDemarrage());
+      }
     });
 
-    this.$boutonDemarrerConsigne = $('<div id="demarrer-consigne" class="bouton-centre bouton-lire-consigne-demarrage"></div>');
-    this.$boutonDemarrerConsigne.append(`<img src='${play}'>`);
-
-    this.$boutonDemarrerConsigne.on('click', () => {
-      this.$boutonDemarrerConsigne.addClass('invisible');
-      this.$boutonLectureEnCours.removeClass('invisible');
-      this.$message.text('');
-
-      this.vueConsigne.jouerConsigneDemarrage(() => {
-        this.$boutonGo.removeClass('invisible');
-        this.$message.text(traduction('situation.go'));
-      });
+    this.$boutonLectureEnCours = this.$bouton({
+      id: 'lecture-en-cours', classe: 'bouton-lecture-en-cours',
+      image: lectureEnCours, visibilite: 'invisible'
     });
 
-    this.$boutonLectureEnCours = $('<div id="lecture-en-cours" class="invisible bouton-centre bouton-lecture-en-cours"></div>');
-    this.$boutonLectureEnCours.append(`<img src='${lectureEnCours}'>`);
+    this.$boutonDemarrerConsigne = this.$bouton({
+      id: 'demarrer-consigne', classe: 'bouton-lire-consigne-demarrage',
+      image: play, visibilite: 'visible',
+      click: () => {
+        this.$boutonDemarrerConsigne.addClass('invisible');
+        this.$boutonLectureEnCours.removeClass('invisible');
+        this.$message.text('');
+
+        this.vueConsigne.jouerConsigneDemarrage(() => {
+          this.$boutonGo.removeClass('invisible');
+          this.$message.text(traduction('situation.go'));
+        });
+      }
+    });
 
     this.$message.text(traduction('situation.ecouter-consigne'));
     this.$overlay.append(this.$boutonDemarrerConsigne);
@@ -48,5 +51,13 @@ export class VueGo {
     this.$overlay.append(this.$boutonGo);
     this.$overlay.append(this.$message);
     $(pointInsertion).append(this.$overlay);
+  }
+
+  $bouton (parametres) {
+    const $ = this.$;
+    const $bouton = $(`<div id="${parametres.id}" class="${parametres.visibilite} bouton-centre ${parametres.classe}"></div>`);
+    $bouton.append(`<img src='${parametres.image}'>`);
+    $bouton.on('click', parametres.click);
+    return $bouton;
   }
 }
