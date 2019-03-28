@@ -1,4 +1,3 @@
-/* global Event */
 import jsdom from 'jsdom-global';
 import { VueGo } from 'commun/vues/go.js';
 import { traduction } from 'commun/infra/internationalisation';
@@ -21,82 +20,54 @@ describe('vue Go', function () {
     vue = new VueGo(mockVueConsigne, mockJournal);
   });
 
-  it('affiche un bouton "lire la consigne" mais pas le bouton "go" au démarrage', function () {
+  it('affiche un bouton "lire la consigne" et le texte associé', function () {
     vue.affiche('#pointInsertion', $);
 
     const overlay = document.querySelector('#pointInsertion #overlay-go');
     expect(overlay.classList).to.contain('overlay');
 
-    const boutonDemarrerConsigne = overlay.querySelector('#demarrer-consigne');
-    expect(boutonDemarrerConsigne.classList).to.not.contain('invisible');
-    expect(boutonDemarrerConsigne.classList).to.contain('bouton-lire-consigne-demarrage');
-
-    const boutonLectureEnCours = overlay.querySelector('#lecture-en-cours');
-    expect(boutonLectureEnCours.classList).to.contain('invisible');
-    expect(boutonLectureEnCours.classList).to.contain('bouton-lecture-en-cours');
-
-    const boutonGo = overlay.querySelector('#go');
-    expect(boutonGo.classList).to.contain('invisible');
-    expect(boutonGo.classList).to.contain('bouton-go');
-
+    const $bouton = $('.bouton-centre', overlay);
     const $message = $('.message', overlay);
+
+    expect($bouton.attr('class')).to.contain('bouton-lire-consigne-demarrage');
     expect($message.text()).to.eql(traduction('situation.ecouter-consigne'));
   });
 
   it('démarre la lecture de la consigne quand on appuie sur le bouton', function (done) {
     vue.affiche('#pointInsertion', $);
 
-    const boutonDemarrerConsigne = document.querySelector('#demarrer-consigne');
+    const $message = $('.message', '#overlay-go');
+    const $bouton = $('.bouton-centre', '#overlay-go');
+
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
-      expect(boutonDemarrerConsigne.classList).to.contain('invisible');
+      expect($bouton.attr('class')).to.contain('bouton-lecture-en-cours');
+      expect($message.text()).to.eql('');
       done();
     };
 
-    boutonDemarrerConsigne.dispatchEvent(new Event('click'));
-  });
-
-  it('affiche un overlay pendant la lecture de la consigne', function () {
-    vue.affiche('#pointInsertion', $);
-
-    const overlay = document.querySelector('#overlay-go');
-    mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
-      expect(overlay.classList).to.not.contain('invisible');
-    };
-
-    const boutonDemarrerConsigne = document.querySelector('#demarrer-consigne');
-    boutonDemarrerConsigne.dispatchEvent(new Event('click'));
-
-    expect(overlay.classList).to.not.contain('invisible');
-
-    const boutonLectureEnCours = overlay.querySelector('#lecture-en-cours');
-    expect(boutonLectureEnCours.classList).to.not.contain('invisible');
-
-    const $message = $('.message', '#overlay-go');
-    expect($message.text()).to.eql('');
+    $bouton.click();
   });
 
   it('affiche un bouton GO à la fin de la lecture de la consigne', function () {
     vue.affiche('#pointInsertion', $);
 
-    const boutonGo = document.querySelector('#go');
+    const $bouton = $('.bouton-centre', '#overlay-go');
+
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
-      expect(boutonGo.classList).to.contain('invisible');
       actionFinConsigne();
     };
-    const boutonDemarrerConsigne = document.querySelector('#demarrer-consigne');
-    boutonDemarrerConsigne.dispatchEvent(new Event('click'));
 
-    expect(boutonGo.classList).to.not.contain('invisible');
+    $bouton.click();
+
     const $message = $('.message', '#overlay-go');
     expect($message.text()).to.eql(traduction('situation.go'));
   });
 
   it("masque l'overlay et le bouton une fois le jeu démarré", function () {
     vue.affiche('#pointInsertion', $);
+    vue.afficheEtat(vue.etats.go);
 
-    const boutonGo = document.querySelector('#overlay-go #go');
-
-    boutonGo.dispatchEvent(new Event('click'));
+    $('.bouton-centre', '#overlay-go').click();
 
     const overlay = document.querySelector('#overlay-go');
     expect(overlay.classList).to.contain('invisible');
@@ -109,7 +80,8 @@ describe('vue Go', function () {
     };
 
     vue.affiche('#pointInsertion', $);
+    vue.afficheEtat(vue.etats.go);
 
-    document.querySelector('#go').dispatchEvent(new Event('click'));
+    $('.bouton-centre', '#overlay-go').click();
   });
 });
