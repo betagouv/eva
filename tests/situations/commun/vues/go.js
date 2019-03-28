@@ -84,4 +84,16 @@ describe('vue Go', function () {
 
     $('.bouton-centre', '#overlay-go').click();
   });
+
+  it('permet de passer directement au bouton go', function () {
+    vue.affiche('#pointInsertion', $);
+    const $overlay = $('#overlay-go');
+
+    const appuiSurS = $.Event('keydown');
+    appuiSurS.which = 'S'.charCodeAt();
+    $overlay.trigger(appuiSurS);
+
+    const $bouton = $('.bouton-centre', '#overlay-go');
+    expect($bouton.attr('class')).to.contain('bouton-go');
+  });
 });
