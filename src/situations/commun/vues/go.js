@@ -54,6 +54,7 @@ export class VueGo {
     this.$overlay.append(this.$message);
 
     $(pointInsertion).append(this.$overlay);
+    this.afficheEtatGoSiAppuiToucheS();
   }
 
   afficheEtat (parametres) {
@@ -62,5 +63,15 @@ export class VueGo {
     this.$bouton.off('click');
     this.$bouton.on('click', parametres.click);
     this.$message.text(parametres.texte);
+  }
+
+  afficheEtatGoSiAppuiToucheS () {
+    this.$overlay.attr('tabindex', 0);
+    this.$overlay.keydown((event) => {
+      if (event.which === 'S'.charCodeAt()) {
+        this.afficheEtat(this.etats.go);
+      }
+    });
+    this.$overlay.focus();
   }
 }
