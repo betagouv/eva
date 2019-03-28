@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Icn/LectureEnCours</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icn/LectureEnCours" fill="#FFFFFF">
+            <path d="M20,36 C17.790861,36 16,34.209139 16,32 C16,29.790861 17.790861,28 20,28 C22.209139,28 24,29.790861 24,32 C24,34.209139 22.209139,36 20,36 Z M32,36 C29.790861,36 28,34.209139 28,32 C28,29.790861 29.790861,28 32,28 C34.209139,28 36,29.790861 36,32 C36,34.209139 34.209139,36 32,36 Z M44,36 C41.790861,36 40,34.209139 40,32 C40,29.790861 41.790861,28 44,28 C46.209139,28 48,29.790861 48,32 C48,34.209139 46.209139,36 44,36 Z" id="dots"></path>
+        </g>
+    </g>
+</svg>

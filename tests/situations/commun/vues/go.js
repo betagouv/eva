@@ -31,6 +31,10 @@ describe('vue Go', function () {
     expect(boutonDemarrerConsigne.classList).to.not.contain('invisible');
     expect(boutonDemarrerConsigne.classList).to.contain('bouton-lire-consigne-demarrage');
 
+    const boutonLectureEnCours = overlay.querySelector('#lecture-en-cours');
+    expect(boutonLectureEnCours.classList).to.contain('invisible');
+    expect(boutonLectureEnCours.classList).to.contain('bouton-lecture-en-cours');
+
     const boutonGo = overlay.querySelector('#go');
     expect(boutonGo.classList).to.contain('invisible');
     expect(boutonGo.classList).to.contain('bouton-go');
@@ -63,6 +67,9 @@ describe('vue Go', function () {
     boutonDemarrerConsigne.dispatchEvent(new Event('click'));
 
     expect(overlay.classList).to.not.contain('invisible');
+
+    const boutonLectureEnCours = overlay.querySelector('#lecture-en-cours');
+    expect(boutonLectureEnCours.classList).to.not.contain('invisible');
 
     const $message = $('.message', '#overlay-go');
     expect($message.text()).to.eql('');
