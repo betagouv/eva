@@ -1,7 +1,9 @@
 import { Piece } from 'controle/modeles/piece.js';
+import SituationCommune from 'commun/modeles/situation.js';
 
-export class Situation {
+export class Situation extends SituationCommune {
   constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces }) {
+    super();
     this.cadence = cadence;
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;

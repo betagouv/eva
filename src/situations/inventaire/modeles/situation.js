@@ -1,3 +1,4 @@
+import SituationCommune from 'commun/modeles/situation.js';
 import { nouvelInventaireReference } from './inventaireReference.js';
 import { Contenant } from './contenant.js';
 
@@ -28,13 +29,18 @@ function creerContenants ({ contenants, contenus }) {
   });
 }
 
-export function creeSituation (unStock) {
-  const produits = inventaireProduits(unStock);
-  const contenants = creerContenants(unStock);
+export class Situation extends SituationCommune {
+  constructor (unStock) {
+    super();
+    this.produits = inventaireProduits(unStock);
+    this.contenants = creerContenants(unStock);
+  }
 
-  return {
-    inventaireReference: () => { return nouvelInventaireReference(produits); },
-    produitsEnStock: () => { return produits; },
-    contenants: () => { return contenants; }
-  };
+  inventaireReference () {
+    return nouvelInventaireReference(this.produits);
+  }
+
+  produitsEnStock () {
+    return this.produits;
+  }
 }

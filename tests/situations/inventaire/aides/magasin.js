@@ -1,4 +1,4 @@
-import { creeSituation } from 'inventaire/modeles/situation.js';
+import { Situation } from 'inventaire/modeles/situation.js';
 
 class MagasinEnDevenir {
   constructor () {
@@ -22,7 +22,7 @@ class MagasinEnDevenir {
 
   construit () {
     let stock = { contenants: this.contenants, contenus: this.contenus };
-    return creeSituation(stock);
+    return new Situation(stock);
   }
 }
 
