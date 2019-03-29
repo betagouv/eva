@@ -11,7 +11,7 @@ export class VueSituation {
 
   affiche (pointInsertion, $) {
     new VueEtageres(pointInsertion, this.journal)
-      .affiche(this.situation.contenants());
+      .affiche(this.situation.contenants);
 
     initialiseFormulaireSaisieInventaire(this.situation, pointInsertion, $, (resultatValidation, reponses) => {
       const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
