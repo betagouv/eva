@@ -2,6 +2,7 @@ import jsdom from 'jsdom-global';
 import { VueGo } from 'commun/vues/go.js';
 import { traduction } from 'commun/infra/internationalisation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
+import Situation from 'commun/modeles/situation.js';
 
 describe('vue Go', function () {
   let vue;
@@ -9,6 +10,7 @@ describe('vue Go', function () {
     jouerConsigneDemarrage () {}
   };
   let mockJournal;
+  let situation;
   let $;
 
   beforeEach(function () {
@@ -17,7 +19,8 @@ describe('vue Go', function () {
     mockJournal = {
       enregistre () {}
     };
-    vue = new VueGo(mockVueConsigne, mockJournal);
+    situation = new Situation();
+    vue = new VueGo(mockVueConsigne, situation, mockJournal);
   });
 
   it('affiche un bouton "lire la consigne" et le texte associé', function () {
@@ -71,6 +74,14 @@ describe('vue Go', function () {
 
     const overlay = document.querySelector('#overlay-go');
     expect(overlay.classList).to.contain('invisible');
+  });
+
+  it('notifie la situation du démarrage', function (done) {
+    vue.affiche('#pointInsertion', $);
+    vue.afficheEtat(vue.etats.go);
+    situation.observe(new EvenementDemarrage(), done);
+
+    $('.bouton-centre', '#overlay-go').click();
   });
 
   it("journalise l'événement lorsque le jeu est démarré", function (done) {
