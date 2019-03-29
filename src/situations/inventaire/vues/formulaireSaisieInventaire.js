@@ -23,9 +23,9 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
-export function initialiseFormulaireSaisieInventaire (magasin, pointInsertion, $, callbackValidation, journal) {
-  let produits = magasin.produitsEnStock();
-  let inventaireReference = magasin.inventaireReference();
+export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, callbackValidation, journal) {
+  let produits = situation.produitsEnStock();
+  let inventaireReference = situation.inventaireReference();
 
   function creeItem (idProduit, produit) {
     return $(`

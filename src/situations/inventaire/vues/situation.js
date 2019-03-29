@@ -1,20 +1,19 @@
 import { traduction } from 'commun/infra/internationalisation';
-import { contenants, contenus } from 'inventaire/data/stock.js';
-import { creeMagasin } from 'inventaire/modeles/magasin.js';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
 
 export class VueSituation {
-  constructor (journal) {
+  constructor (situation, journal) {
     this.journal = journal;
+    this.situation = situation;
   }
 
   affiche (pointInsertion, $) {
-    const magasin = creeMagasin({ contenants, contenus });
-    new VueEtageres(pointInsertion, this.journal).affiche(magasin.contenants());
+    new VueEtageres(pointInsertion, this.journal)
+      .affiche(this.situation.contenants());
 
-    initialiseFormulaireSaisieInventaire(magasin, pointInsertion, $, (resultatValidation, reponses) => {
+    initialiseFormulaireSaisieInventaire(this.situation, pointInsertion, $, (resultatValidation, reponses) => {
       const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
       const message = toutCorrect ? traduction('inventaire.resultat.ok') : traduction('inventaire.resultat.echec');
 
