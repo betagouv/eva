@@ -1,5 +1,6 @@
 import { Bac } from 'controle/modeles/bac';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
+import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import { VueBac } from 'controle/vues/bac';
 import { VuePiece } from 'controle/vues/piece';
 
@@ -33,7 +34,9 @@ export class VueSituation {
 
     this._bacs.forEach(afficheBac);
 
-    this.demarre(pointInsertion, $);
+    this.situation.observe(EvenementDemarrage, () => {
+      this.demarre(pointInsertion, $);
+    });
   }
 
   demarre (pointInsertion, $) {

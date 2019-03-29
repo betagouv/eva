@@ -1,6 +1,7 @@
 import jsdom from 'jsdom-global';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { Situation } from 'controle/modeles/situation';
+import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import { DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece';
 import { VueSituation } from 'controle/vues/situation';
 
@@ -55,5 +56,6 @@ describe('La situation « Contrôle »', function () {
     });
 
     vueSituation.affiche('#situation-controle', $);
+    situation.notifie(new EvenementDemarrage());
   });
 });
