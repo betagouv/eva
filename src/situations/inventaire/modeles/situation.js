@@ -28,7 +28,7 @@ function creerContenants ({ contenants, contenus }) {
   });
 }
 
-export function creeMagasin (unStock) {
+export function creeSituation (unStock) {
   const produits = inventaireProduits(unStock);
   const contenants = creerContenants(unStock);
 

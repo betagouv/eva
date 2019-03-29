@@ -2,6 +2,9 @@ import uuidv4 from 'uuid/v4';
 
 import 'inventaire/styles/app.scss';
 
+import { contenants, contenus } from 'inventaire/data/stock.js';
+import { creeSituation } from 'inventaire/modeles/situation.js';
+
 import { DepotJournal } from 'commun/infra/depot_journal.js';
 import { Journal } from 'commun/modeles/journal.js';
 import { VueCadre } from 'commun/vues/cadre.js';
@@ -15,7 +18,8 @@ import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'inventaire', new DepotJournal());
-  const vueSituationInventaire = new VueSituation(journal);
+  const situation = creeSituation({ contenants, contenus });
+  const vueSituationInventaire = new VueSituation(situation, journal);
   const vueCadre = new VueCadre(vueSituationInventaire, journal);
   const vueConsigne = new VueConsigne(sonConsigneDemarrage);
   const vueGo = new VueGo(vueConsigne, journal);
