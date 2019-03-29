@@ -10,7 +10,7 @@
   },
   "inventaire": {
     "titre": "Stock de boissons",
-    "valider_saisie": "Valider la saisie d'inventaire",
+    "valider_saisie": "Vérifier",
     "resultat": {
       "ok": "Bravo, vous avez réussi !",
       "echec": "Ce n'est pas tout à fait ça… réessayez."

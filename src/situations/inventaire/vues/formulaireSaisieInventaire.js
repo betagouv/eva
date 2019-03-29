@@ -30,9 +30,11 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   function creeItem (idProduit, produit) {
     return $(`
       <li>
-        <span class="image-produit" style="background-image: url(${produit.image})"></span>
         <label>${produit.nom}</label>
         <input id="${idProduit}" type="text">
+        <div class="image-produit">
+          <img src='${produit.image}' class="produit-${idProduit}">
+        </div>
       </li>
     `);
   }
@@ -87,6 +89,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     let $boutonSaisie = $(`<img class="affiche-saisie" src="${boutonSaisie}">`);
     let $overlay = $('<div class="overlay invisible"></div>');
     let $elementsCombines = $boutonSaisie.add($overlay);
+    $overlay.append($formulaireSaisie);
 
     function basculeVisibiliteFormulaire () {
       if ($overlay.hasClass('invisible')) {
@@ -97,11 +100,12 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     }
 
     $elementsCombines.click(basculeVisibiliteFormulaire);
+    $formulaireSaisie.click((e) => { e.stopPropagation(); });
 
     return $elementsCombines;
   }
 
   let $formulaireSaisie = creeFormulaire();
   let $boutonSaisie = creeBoutonSaisie($formulaireSaisie);
-  $(pointInsertion).append($boutonSaisie, $formulaireSaisie);
+  $(pointInsertion).append($boutonSaisie);
 }

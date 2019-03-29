@@ -1,3 +1,5 @@
+@import "commun/styles/couleurs.scss";
+
 .affiche-saisie {
   cursor: pointer;
   position: absolute;
@@ -7,54 +9,88 @@
 }
 
 .formulaire-saisie-inventaire {
-  position: absolute;
-  top: 0;
-  left: 33%;
-  background: white;
-  border: solid black 1px;
+  background: $blanc;
+  border: solid $couleur-fond-bouton-bleu 0.625rem;
+  width: 85%;
+  margin: auto;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 0 0.125rem $noir,
+              0 0 0 .75rem $couleur-bordure-modale-reponse;
+  padding: 1.75rem 1.75rem 4.75rem;
+  position: relative;
+
+  ul {
+    columns: 2;
+  }
 
   li {
-    padding: 0 0.7em 1em;
-    color: black;
-  }
+    display: flex;
+    align-items: center;
 
-  li:nth-child(odd) {
-    background: gainsboro;
-  }
-
-  li:nth-child(even) {
-    background: ivory;
+    &:nth-child(1n + 5) {
+      label {
+        flex: initial;
+      }
+    }
   }
 
   .image-produit {
     display: inline-block;
-    position: relative;
-    margin: 0 0.5rem 0 0.5rem;
-    top: 0.5rem;
-    width: 1.2rem;
-    height: 2.6rem;
-    background: no-repeat center/contain;
+    vertical-align: bottom;
+    height: 2.5rem;
+    width: 4.2rem;
+    text-align: center;
+
+    img {
+      max-height: 100%;
+      vertical-align: bottom;
+
+    }
+
+    .produit-5, .produit-4, .produit-7 {
+      transform: scale(1.5);
+    }
+
   }
+
 
   label {
     display: inline-block;
     width: 9rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    text-align: right;
+    width: 8.7rem;
+    flex: 1;
   }
 
   input {
-    width: 4rem;
-    height: 1.2rem;
+    width: 6.3rem;
+    height: 2.5rem;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 .0625rem .1875rem 0 rgba(0, 0, 0, 0.5);
+    border: solid .0625rem $couleur-bordure-input;
+    background-color: $couleur-fond-input;
+    margin: 1.25rem 0 1.25rem 1.25rem;
   }
 
   .validation-inventaire {
-    border-top: solid black 1px;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: -.625rem;
+    left: 0;
 
     .valide-saisie {
-      position: relative;
-      margin: 0.7rem 0.7rem 0.7rem 4rem;
-      padding: 0.7rem;
-      background: teal;
-      color: white;
+      background: $couleur-fond-bouton-bleu;
+      color: $blanc;
+      padding: .7rem 1.375rem;
+      text-transform: uppercase;
+      border-radius: .625rem;
+      font-weight: 500;
+      letter-spacing: .025rem;
+      font-size: 1.125rem;
+      outline: none;
     }
   }
 
