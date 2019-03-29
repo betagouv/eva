@@ -87,7 +87,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
     expect($('#magasin .formulaire-saisie-inventaire .image-produit').length).to.equal(1);
-    expect($('.image-produit').css('background-image')).to.equal('url(cheminImageNovaSky)');
+    expect($('.image-produit img').attr('src')).to.equal('cheminImageNovaSky');
   });
 
   it('affiche les noms des produits à inventorier', function () {
