@@ -18,10 +18,11 @@ function afficheSituation (pointInsertion, $) {
     scenario: [true, false, true],
     cadence: 3000,
     positionApparitionPieces: { x: 100, y: 70 },
-    dureeViePiece: 12000
+    dureeViePiece: 12000,
+    consigneAudio: ''
   });
   const vueSituation = new VueSituation(situation);
-  const vueCadre = new VueCadre(vueSituation, journal);
+  const vueCadre = new VueCadre(vueSituation, situation, journal);
 
   vueCadre.affiche(pointInsertion, $);
 }

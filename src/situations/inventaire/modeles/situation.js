@@ -30,10 +30,11 @@ function creerContenants ({ contenants, contenus }) {
 }
 
 export class Situation extends SituationCommune {
-  constructor (unStock) {
+  constructor (unStock, consigneAudio) {
     super();
     this.produits = inventaireProduits(unStock);
     this.contenants = creerContenants(unStock);
+    this.consigneAudio = consigneAudio;
   }
 
   inventaireReference () {
