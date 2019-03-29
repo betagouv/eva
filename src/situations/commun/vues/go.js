@@ -7,7 +7,7 @@ import { traduction } from 'commun/infra/internationalisation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export class VueGo {
-  constructor (vueConsigne, journal) {
+  constructor (vueConsigne, situation, journal) {
     this.vueConsigne = vueConsigne;
     this.journal = journal;
 
@@ -38,6 +38,7 @@ export class VueGo {
         click: () => {
           this.$overlay.addClass('invisible');
           this.journal.enregistre(new EvenementDemarrage());
+          situation.notifie(new EvenementDemarrage());
         }
       }
     };
