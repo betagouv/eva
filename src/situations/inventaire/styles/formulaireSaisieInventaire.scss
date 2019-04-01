@@ -96,11 +96,23 @@
     }
   }
 
-  .reponse-correcte {
-    color: green;
+  .saisie {
+    position: relative;
   }
 
-  .reponse-incorrecte {
-    color: red;
+  .reponse {
+    position: absolute;
+    top: 50%;
+    right: .625rem;
+    transform: translateY(-50%);
+    font-size: 1.125rem;
+
+    &.reponse-correcte {
+      color: $souleur-reponse-correcte;
+    }
+
+    &.reponse-incorrecte {
+      color: $souleur-reponse-incorrecte;
+    }
   }
 }
