@@ -64,6 +64,9 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     $bouton.click(function () {
       const reponses = extraisReponses();
       const saisieValide = inventaireReference.valide(reponses);
+
+      Array.from(saisieValide).forEach(correction => afficheCorrection(correction, $));
+
       callbackValidation(saisieValide, reponses);
     });
 

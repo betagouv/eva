@@ -1,7 +1,7 @@
 import { traduction } from 'commun/infra/internationalisation';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
-import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
+import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export class VueSituation {
@@ -19,12 +19,11 @@ export class VueSituation {
       .affiche(this.situation.contenants);
 
     initialiseFormulaireSaisieInventaire(this.situation, pointInsertion, $, (resultatValidation, reponses) => {
-      const toutCorrect = Array.from(resultatValidation.values()).every(v => v);
-      const message = toutCorrect ? traduction('inventaire.resultat.ok') : traduction('inventaire.resultat.echec');
+      const reussite = Array.from(resultatValidation.values()).every(v => v);
 
-      this.journal.enregistre(new EvenementSaisieInventaire({ resultat: toutCorrect, reponses }));
+      this.journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation, reponses }));
 
-      Array.from(resultatValidation).forEach((correction) => { afficheCorrection(correction, $); });
+      const message = traduction(reussite ? 'inventaire.resultat.ok' : 'inventaire.resultat.echec');
       window.alert(message);
     }, this.journal);
   }
