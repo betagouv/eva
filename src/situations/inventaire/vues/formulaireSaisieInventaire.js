@@ -15,11 +15,11 @@ function basculeVisibilite ($element) {
 
 export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   let $marque = reponseCorrecte
-    ? $('<span class="reponse-correcte">✓</span>')
-    : $('<span class="reponse-incorrecte">✗</span>');
+    ? $('<span class="reponse reponse-correcte">✓</span>')
+    : $('<span class="reponse reponse-incorrecte">✗</span>');
   let selecteurEmplacementMarque = `#${ID_FORMULAIRE_SAISIE} input#${idProduit}`;
 
-  $(`${selecteurEmplacementMarque} + span[class^="reponse-"]`).remove();
+  $(`${selecteurEmplacementMarque} + .reponse`).remove();
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
@@ -31,7 +31,9 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     return $(`
       <li>
         <label>${produit.nom}</label>
-        <input id="${idProduit}" type="text" placeholder= "${traduction('inventaire.placeholder')}">
+        <span class='saisie'>
+          <input id="${idProduit}" type="text" placeholder= "${traduction('inventaire.placeholder')}">
+        </span>
         <div class="image-produit">
           <img src='${produit.image}' class="${produit.forme}">
         </div>
