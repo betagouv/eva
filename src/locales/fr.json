@@ -11,6 +11,7 @@
   "inventaire": {
     "titre": "Stock de boissons",
     "valider_saisie": "Vérifier",
+    "placeholder": "Qté",
     "resultat": {
       "ok": "Bravo, vous avez réussi !",
       "echec": "Ce n'est pas tout à fait ça… réessayez."
