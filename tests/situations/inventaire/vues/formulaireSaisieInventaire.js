@@ -58,12 +58,12 @@ describe("Le formulaire de saisie d'inventaire", function () {
       expect($('.overlay.invisible').length).to.equal(0);
     });
 
-    it('efface le formulaire', function () {
+    it('cache le formulaire', function () {
       $('.overlay').click();
       expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(1);
     });
 
-    it("s'efface (l'overlay)", function () {
+    it("cache l'overlay", function () {
       $('.overlay').click();
       expect($('.overlay.invisible').length).to.equal(1);
     });
@@ -148,7 +148,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     $boutonValidationSaisie.click();
   });
 
-  it('sait afficher une maque correcte ou incorrecte', function () {
+  it('sait afficher une marque correcte ou incorrecte', function () {
     let magasin = unMagasin().avecCommeReferences(
       { idProduit: '0', nom: 'Nova Sky' }
     ).avecEnStock(
