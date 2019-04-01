@@ -72,7 +72,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              name: '[name].[ext]?[sha512:hash:base64:7]',
+              name: '[name]_[sha512:hash:base64:7].[ext]',
               outputPath: 'assets',
               limit: 8192
             }

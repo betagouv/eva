@@ -2,12 +2,13 @@ import { Piece } from 'controle/modeles/piece';
 import SituationCommune from 'commun/modeles/situation';
 
 export class Situation extends SituationCommune {
-  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces }) {
+  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, consigneAudio }) {
     super();
     this.cadence = cadence;
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
+    this.consigneAudio = consigneAudio;
   }
 
   cadenceArriveePieces () {

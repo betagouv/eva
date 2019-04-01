@@ -9,6 +9,7 @@ import { initialise as initialiseInternationalisation, traduction } from 'commun
 
 import { Situation } from 'controle/modeles/situation';
 import { VueSituation } from 'controle/vues/situation';
+import sonConsigneDemarrage from 'controle/assets/consigne_demarrage.mp3';
 
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
@@ -19,7 +20,7 @@ function afficheSituation (pointInsertion, $) {
     cadence: 3000,
     positionApparitionPieces: { x: 100, y: 70 },
     dureeViePiece: 12000,
-    consigneAudio: ''
+    consigneAudio: sonConsigneDemarrage
   });
   const vueSituation = new VueSituation(situation);
   const vueCadre = new VueCadre(vueSituation, situation, journal);
