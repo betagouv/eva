@@ -7,9 +7,8 @@ import { traduction } from 'commun/infra/internationalisation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export class VueGo {
-  constructor (vueConsigne, situation, journal) {
+  constructor (vueConsigne, situation) {
     this.vueConsigne = vueConsigne;
-    this.journal = journal;
 
     this.etats = {
       aDemarrer: {
@@ -37,7 +36,6 @@ export class VueGo {
         classe: 'bouton-go',
         click: () => {
           this.$overlay.addClass('invisible');
-          this.journal.enregistre(new EvenementDemarrage());
           situation.notifie(new EvenementDemarrage());
         }
       }

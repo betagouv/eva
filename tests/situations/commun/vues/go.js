@@ -9,18 +9,14 @@ describe('vue Go', function () {
   let mockVueConsigne = {
     jouerConsigneDemarrage () {}
   };
-  let mockJournal;
   let situation;
   let $;
 
   beforeEach(function () {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
-    mockJournal = {
-      enregistre () {}
-    };
     situation = new Situation();
-    vue = new VueGo(mockVueConsigne, situation, mockJournal);
+    vue = new VueGo(mockVueConsigne, situation);
   });
 
   it('affiche un bouton "lire la consigne" et le texte associé', function () {
@@ -79,19 +75,9 @@ describe('vue Go', function () {
   it('notifie la situation du démarrage', function (done) {
     vue.affiche('#pointInsertion', $);
     vue.afficheEtat(vue.etats.go);
-    situation.observe(new EvenementDemarrage(), done);
-
-    $('.bouton-centre', '#overlay-go').click();
-  });
-
-  it("journalise l'événement lorsque le jeu est démarré", function (done) {
-    mockJournal.enregistre = (evenement) => {
-      expect(evenement).to.be.a(EvenementDemarrage);
+    situation.observe(new EvenementDemarrage(), () => {
       done();
-    };
-
-    vue.affiche('#pointInsertion', $);
-    vue.afficheEtat(vue.etats.go);
+    });
 
     $('.bouton-centre', '#overlay-go').click();
   });
