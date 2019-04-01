@@ -9,8 +9,7 @@ module.exports = {
   entry: {
     competencesPro: path.resolve(__dirname, 'src/app/index.js'),
     situationControle: path.resolve(__dirname, 'src/app/situationControle.js'),
-    situationInventaire: path.resolve(__dirname, 'src/app/situationInventaire.js'),
-    restitutionSituationInventaire: path.resolve(__dirname, 'src/app/restitutionSituationInventaire.js')
+    situationInventaire: path.resolve(__dirname, 'src/app/situationInventaire.js')
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -106,13 +105,6 @@ module.exports = {
       hash: true,
       template: path.resolve(__dirname, 'src/public/template_index.html'),
       chunks: ['situationInventaire'],
-      inject: 'head'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'restitution.html',
-      hash: true,
-      template: path.resolve(__dirname, 'src/public/template_index.html'),
-      chunks: ['restitutionSituationInventaire'],
       inject: 'head'
     }),
     new webpack.ProvidePlugin({ jQuery: 'jquery' }),

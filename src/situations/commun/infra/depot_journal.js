@@ -1,24 +1,9 @@
 export class DepotJournal {
   constructor ($ = require('jquery')) {
-    this.lignes = JSON.parse(window.localStorage.getItem('journal'));
-    if (!this.lignes) {
-      this.lignes = [];
-      window.localStorage.setItem('journal', JSON.stringify(this.lignes));
-    }
     this.$ = $;
   }
 
   enregistre (ligne) {
-    this.lignes.push(ligne);
-    window.localStorage.setItem('journal', JSON.stringify(this.lignes));
-    return this.envoiEvenementAuServeur(ligne);
-  }
-
-  evenements () {
-    return this.lignes;
-  }
-
-  envoiEvenementAuServeur (ligne) {
     return this.$.ajax({
       type: 'POST',
       url: `${process.env.URL_SERVEUR}/api/evenements`,
