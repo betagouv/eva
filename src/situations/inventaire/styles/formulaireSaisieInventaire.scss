@@ -68,6 +68,12 @@
     border: solid .0625rem $couleur-bordure-input;
     background-color: $couleur-fond-input;
     margin: 1.25rem 0 1.25rem 1.25rem;
+    font-size: 1.125rem;
+    padding: .625rem .5rem;
+
+    &::placeholder {
+      color: $couleur-placeholder;
+    }
   }
 
   .validation-inventaire {
