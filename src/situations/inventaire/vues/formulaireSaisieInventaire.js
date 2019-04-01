@@ -33,7 +33,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
         <label>${produit.nom}</label>
         <input id="${idProduit}" type="text">
         <div class="image-produit">
-          <img src='${produit.image}' class="produit-${idProduit}">
+          <img src='${produit.image}' class="${produit.forme}">
         </div>
       </li>
     `);
