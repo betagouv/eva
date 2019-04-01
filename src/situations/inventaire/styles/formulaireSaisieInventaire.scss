@@ -35,19 +35,15 @@
   }
 
   .image-produit {
-    display: inline-block;
-    vertical-align: bottom;
     height: 2.5rem;
     width: 4.2rem;
     text-align: center;
 
     img {
       max-height: 100%;
-      vertical-align: bottom;
-
     }
 
-    .produit-5, .produit-4, .produit-7 {
+    .grandeBouteille {
       transform: scale(1.5);
     }
 
