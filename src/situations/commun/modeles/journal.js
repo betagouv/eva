@@ -17,8 +17,4 @@ export class Journal {
       }
     );
   }
-
-  evenements () {
-    return this.depot.evenements();
-  }
 }
