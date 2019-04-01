@@ -2,11 +2,16 @@ import { traduction } from 'commun/infra/internationalisation';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 import { VueEtageres } from 'inventaire/vues/etageres.js';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
+import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export class VueSituation {
   constructor (situation, journal) {
     this.journal = journal;
     this.situation = situation;
+
+    situation.observe(new EvenementDemarrage(), (evenement) => {
+      this.journal.enregistre(evenement);
+    });
   }
 
   affiche (pointInsertion, $) {

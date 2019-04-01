@@ -4,9 +4,13 @@ import Evenement from 'commun/modeles/evenement_stop';
 describe('toutes les situations', function () {
   it("peuvent être notifié d'un evement", function (done) {
     const uneSituation = new Situation();
-    uneSituation.observe(new Evenement(), done);
+    const unEvenement = new Evenement();
+    uneSituation.observe(new Evenement(), (evenement) => {
+      expect(evenement).to.equal(unEvenement);
+      done();
+    });
 
-    uneSituation.notifie(new Evenement());
+    uneSituation.notifie(unEvenement);
   });
 
   it("peuvent enregistrer plusieurs observateurs d'un evenement", function () {

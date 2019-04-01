@@ -16,6 +16,6 @@ export default class Situation {
   }
 
   notifie (evenement) {
-    this.observateurs(evenement.nom()).forEach(action => action());
+    this.observateurs(evenement.nom()).forEach(action => action(evenement));
   }
 }
