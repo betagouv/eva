@@ -1,22 +1,18 @@
 import Evenement from 'commun/modeles/evenement';
 
-function mapToObj (map) {
-  const obj = {};
-  for (let [clef, valeur] of map) {
-    obj[clef] = valeur;
-  }
-  return obj;
-}
-
 export default class EvenementSaisieInventaire extends Evenement {
   nom () {
     return 'saisieInventaire';
   }
 
   donnees () {
+    const reponses = {};
+    this._donnees.reponses.forEach((reponse, produit) => {
+      reponses[produit] = { ...reponse, reussite: this._donnees.resultatValidation.get(produit) };
+    });
     return {
-      resultat: this._donnees.resultat,
-      reponses: mapToObj(this._donnees.reponses)
+      reussite: this._donnees.reussite,
+      reponses
     };
   }
 }
