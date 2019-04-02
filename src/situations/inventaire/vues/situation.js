@@ -20,11 +20,20 @@ export class VueSituation {
 
     initialiseFormulaireSaisieInventaire(this.situation, pointInsertion, $, (resultatValidation, reponses) => {
       const reussite = Array.from(resultatValidation.values()).every(v => v);
-
+      if (reussite) {
+        this.vueSucces($);
+      }
       this.journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation, reponses }));
 
-      const message = traduction(reussite ? 'inventaire.resultat.ok' : 'inventaire.resultat.echec');
+      const message = reussite ? traduction('inventaire.resultat.ok') : traduction('inventaire.resultat.echec');
       window.alert(message);
     }, this.journal);
+  }
+
+  vueSucces ($) {
+    var boutonStop = $('#stop');
+    var boutonTerminer = $("<a class='bouton-terminer'></a>");
+    boutonStop.replaceWith(boutonTerminer);
+    $('.actions').append(`<div class='message-succes'> C'est réussi, bravo !</div>`);
   }
 }
