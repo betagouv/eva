@@ -1,7 +1,7 @@
-import { Bac } from 'controle/modeles/bac.js';
-import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece.js';
-import { VueBac } from 'controle/vues/bac.js';
-import { VuePiece } from 'controle/vues/piece.js';
+import { Bac } from 'controle/modeles/bac';
+import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
+import { VueBac } from 'controle/vues/bac';
+import { VuePiece } from 'controle/vues/piece';
 
 export class VueSituation {
   constructor (situation, callbackApresCreationPiece) {

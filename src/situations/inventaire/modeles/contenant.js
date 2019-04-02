@@ -1,4 +1,4 @@
-import { scene, formes } from 'inventaire/data/stock.js';
+import { scene, formes } from 'inventaire/data/stock';
 
 function pourcentage (dimension, dimensionScene) {
   return dimension / dimensionScene * 100;

@@ -1,7 +1,7 @@
 import 'accueil/styles/app.scss';
 
-import { situations } from 'src/situations.js';
-import { VueAccueil } from 'accueil/vues/accueil.js';
+import { situations } from 'src/situations';
+import { VueAccueil } from 'accueil/vues/accueil';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
 function afficheAccueil (situations, pointInsertion, $) {

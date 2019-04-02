@@ -1,5 +1,5 @@
 import jsdom from 'jsdom-global';
-import { afficheFenetreModale } from 'commun/vues/modale.js';
+import { afficheFenetreModale } from 'commun/vues/modale';
 
 describe('fenetre modale', function () {
   let $;

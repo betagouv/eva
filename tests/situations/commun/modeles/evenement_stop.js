@@ -1,4 +1,4 @@
-import EvenementStop from 'commun/modeles/evenement_stop.js';
+import EvenementStop from 'commun/modeles/evenement_stop';
 
 describe("l'événement de stop", function () {
   it('retourne son nom', function () {

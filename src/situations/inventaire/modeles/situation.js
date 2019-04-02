@@ -1,6 +1,6 @@
-import SituationCommune from 'commun/modeles/situation.js';
-import { nouvelInventaireReference } from './inventaireReference.js';
-import { Contenant } from './contenant.js';
+import SituationCommune from 'commun/modeles/situation';
+import { nouvelInventaireReference } from './inventaireReference';
+import { Contenant } from './contenant';
 
 function inventaireProduits ({ contenants, contenus }) {
   var inventaire = new Map();

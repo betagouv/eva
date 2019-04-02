@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 
-import { VueCadre } from 'commun/vues/cadre.js';
+import { VueCadre } from 'commun/vues/cadre';
 
 function uneVue (callbackAffichage = () => {}) {
   return { affiche: callbackAffichage };

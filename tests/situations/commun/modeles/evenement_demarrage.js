@@ -1,4 +1,4 @@
-import EvenementDemarrage from 'commun/modeles/evenement_demarrage.js';
+import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 describe("l'événement de demarrage", function () {
   it('retourne son nom', function () {

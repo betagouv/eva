@@ -3,7 +3,7 @@ import EvenementStop from 'commun/modeles/evenement_stop';
 import stop from 'commun/assets/stop.svg';
 
 import 'commun/styles/stop.scss';
-import { afficheFenetreModale } from 'commun/vues/modale.js';
+import { afficheFenetreModale } from 'commun/vues/modale';
 
 export class VueStop {
   constructor (pointInsertion, $, journal, retourAccueil = () => {

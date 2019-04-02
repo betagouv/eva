@@ -1,4 +1,4 @@
-import { Situation } from 'inventaire/modeles/situation.js';
+import { Situation } from 'inventaire/modeles/situation';
 
 class MagasinEnDevenir {
   constructor () {

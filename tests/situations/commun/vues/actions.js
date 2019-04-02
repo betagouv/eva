@@ -1,5 +1,5 @@
 import jsdom from 'jsdom-global';
-import { VueActions } from 'commun/vues/actions.js';
+import { VueActions } from 'commun/vues/actions';
 
 describe('Affiche les éléments communs aux situations', function () {
   let vueActions;

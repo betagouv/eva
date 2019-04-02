@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
-import { Piece } from 'controle/modeles/piece.js';
-import { VuePiece, DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece.js';
+import { Piece } from 'controle/modeles/piece';
+import { VuePiece, DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece';
 
 function creeVueMinimale (piece) {
   return new VuePiece(piece, DUREE_VIE_PIECE_INFINIE, () => {}, () => {});

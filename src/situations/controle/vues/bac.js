@@ -1,6 +1,6 @@
 import 'controle/styles/bac.scss';
 
-import { PIECE_CONFORME } from 'controle/modeles/piece.js';
+import { PIECE_CONFORME } from 'controle/modeles/piece';
 
 export class VueBac {
   constructor (bac) {
