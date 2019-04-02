@@ -75,7 +75,7 @@ describe('vue Go', function () {
   it('notifie la situation du démarrage', function (done) {
     vue.affiche('#pointInsertion', $);
     vue.afficheEtat(vue.etats.go);
-    situation.observe(new EvenementDemarrage(), () => {
+    situation.observe(EvenementDemarrage, () => {
       done();
     });
 

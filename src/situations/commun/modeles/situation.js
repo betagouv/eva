@@ -4,18 +4,18 @@ export default class Situation {
     this.evenements = new Map();
   }
 
-  observateurs (nomEvenement) {
-    if (!this.evenements.has(nomEvenement)) {
-      this.evenements.set(nomEvenement, []);
+  observateurs (classe) {
+    if (!this.evenements.has(classe)) {
+      this.evenements.set(classe, []);
     }
-    return this.evenements.get(nomEvenement);
+    return this.evenements.get(classe);
   }
 
-  observe (evenement, action) {
-    this.observateurs(evenement.nom()).push(action);
+  observe (classe, action) {
+    this.observateurs(classe).push(action);
   }
 
   notifie (evenement) {
-    this.observateurs(evenement.nom()).forEach(action => action(evenement));
+    this.observateurs(evenement.constructor).forEach(action => action(evenement));
   }
 }
