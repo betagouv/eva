@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
-import { unMagasinVide } from '../aides/magasin.js';
-import { VueSituation } from 'inventaire/vues/situation.js';
+import { unMagasinVide } from '../aides/magasin';
+import { VueSituation } from 'inventaire/vues/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 describe('La situation « Inventaire »', function () {

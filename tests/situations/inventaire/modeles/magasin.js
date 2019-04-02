@@ -1,5 +1,5 @@
-import { Contenant } from 'inventaire/modeles/contenant.js';
-import { unMagasin } from '../aides/magasin.js';
+import { Contenant } from 'inventaire/modeles/contenant';
+import { unMagasin } from '../aides/magasin';
 
 describe('Le magasin', function () {
   it('connaît les produits en stock', function () {

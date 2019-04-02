@@ -1,7 +1,7 @@
 /* global Event */
 
-import { Contenant } from 'inventaire/modeles/contenant.js';
-import { VueEtageres } from 'inventaire/vues/etageres.js';
+import { Contenant } from 'inventaire/modeles/contenant';
+import { VueEtageres } from 'inventaire/vues/etageres';
 import jsdom from 'jsdom-global';
 
 describe('vue etagères', function () {

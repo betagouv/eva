@@ -2,13 +2,13 @@ import uuidv4 from 'uuid/v4';
 
 import 'controle/styles/app.scss';
 
-import { DepotJournal } from 'commun/infra/depot_journal.js';
-import { Journal } from 'commun/modeles/journal.js';
-import { VueCadre } from 'commun/vues/cadre.js';
+import { DepotJournal } from 'commun/infra/depot_journal';
+import { Journal } from 'commun/modeles/journal';
+import { VueCadre } from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
-import { Situation } from 'controle/modeles/situation.js';
-import { VueSituation } from 'controle/vues/situation.js';
+import { Situation } from 'controle/modeles/situation';
+import { VueSituation } from 'controle/vues/situation';
 
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();

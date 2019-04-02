@@ -1,5 +1,5 @@
-import { Bac } from 'controle/modeles/bac.js';
-import { PIECE_CONFORME } from 'controle/modeles/piece.js';
+import { Bac } from 'controle/modeles/bac';
+import { PIECE_CONFORME } from 'controle/modeles/piece';
 
 describe('un bac', function () {
   it('connaît ses dimensions', function () {

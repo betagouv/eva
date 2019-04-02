@@ -1,4 +1,4 @@
-import { Situation } from 'controle/modeles/situation.js';
+import { Situation } from 'controle/modeles/situation';
 
 describe('La situation « Contrôle »', function () {
   it('connaît la cadence à laquelle arrivent les pièces', function () {

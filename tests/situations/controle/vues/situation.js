@@ -1,8 +1,8 @@
 import jsdom from 'jsdom-global';
-import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece.js';
-import { Situation } from 'controle/modeles/situation.js';
-import { DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece.js';
-import { VueSituation } from 'controle/vues/situation.js';
+import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
+import { Situation } from 'controle/modeles/situation';
+import { DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece';
+import { VueSituation } from 'controle/vues/situation';
 
 function vueSituationMinimaliste () {
   const situation = new Situation({ scenario: [] });

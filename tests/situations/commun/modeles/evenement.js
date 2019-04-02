@@ -1,4 +1,4 @@
-import Evenement from 'commun/modeles/evenement.js';
+import Evenement from 'commun/modeles/evenement';
 
 describe("l'événement", function () {
   it("renvoit une exception lorsqu'on lui demande son nom", function () {

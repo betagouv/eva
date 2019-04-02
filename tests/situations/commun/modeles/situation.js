@@ -1,4 +1,4 @@
-import Situation from 'commun/modeles/situation.js';
+import Situation from 'commun/modeles/situation';
 import Evenement from 'commun/modeles/evenement_stop';
 
 describe('toutes les situations', function () {

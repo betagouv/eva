@@ -1,8 +1,8 @@
 import jsdom from 'jsdom-global';
 
-import { Bac } from 'controle/modeles/bac.js';
-import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece.js';
-import { VueBac } from 'controle/vues/bac.js';
+import { Bac } from 'controle/modeles/bac';
+import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
+import { VueBac } from 'controle/vues/bac';
 
 describe("La vue d'un bac", function () {
   let $;

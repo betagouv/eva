@@ -2,15 +2,15 @@ import uuidv4 from 'uuid/v4';
 
 import 'inventaire/styles/app.scss';
 
-import { contenants, contenus } from 'inventaire/data/stock.js';
-import { Situation } from 'inventaire/modeles/situation.js';
+import { contenants, contenus } from 'inventaire/data/stock';
+import { Situation } from 'inventaire/modeles/situation';
 
-import { DepotJournal } from 'commun/infra/depot_journal.js';
-import { Journal } from 'commun/modeles/journal.js';
-import { VueCadre } from 'commun/vues/cadre.js';
-import { VueConsigne } from 'commun/vues/consigne.js';
-import { VueGo } from 'commun/vues/go.js';
-import { VueSituation } from 'inventaire/vues/situation.js';
+import { DepotJournal } from 'commun/infra/depot_journal';
+import { Journal } from 'commun/modeles/journal';
+import { VueCadre } from 'commun/vues/cadre';
+import { VueConsigne } from 'commun/vues/consigne';
+import { VueGo } from 'commun/vues/go';
+import { VueSituation } from 'inventaire/vues/situation';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
 import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';

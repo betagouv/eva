@@ -1,5 +1,5 @@
 import jsdom from 'jsdom-global';
-import { VueStop } from 'commun/vues/stop.js';
+import { VueStop } from 'commun/vues/stop';
 import EvenementStop from 'commun/modeles/evenement_stop';
 import i18next from 'i18next';
 i18next.init({
