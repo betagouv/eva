@@ -1,7 +1,7 @@
-import { Contenant } from 'inventaire/modeles/contenant.js';
-import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire.js';
-import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire.js';
-import { unMagasin, unMagasinVide } from '../aides/magasin.js';
+import { Contenant } from 'inventaire/modeles/contenant';
+import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
+import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
+import { unMagasin, unMagasinVide } from '../aides/magasin';
 
 let jsdom = require('jsdom-global');
 

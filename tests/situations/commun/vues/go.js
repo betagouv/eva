@@ -1,8 +1,8 @@
 import jsdom from 'jsdom-global';
-import { VueGo } from 'commun/vues/go.js';
+import { VueGo } from 'commun/vues/go';
 import { traduction } from 'commun/infra/internationalisation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
-import Situation from 'commun/modeles/situation.js';
+import Situation from 'commun/modeles/situation';
 
 describe('vue Go', function () {
   let vue;

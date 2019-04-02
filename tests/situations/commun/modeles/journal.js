@@ -1,6 +1,6 @@
-import { Journal } from 'commun/modeles/journal.js';
-import Evenement from 'commun/modeles/evenement.js';
-import { MockDepot } from '../aides/mockDepot.js';
+import { Journal } from 'commun/modeles/journal';
+import Evenement from 'commun/modeles/evenement';
+import { MockDepot } from '../aides/mockDepot';
 
 describe('le journal', function () {
   let journal;

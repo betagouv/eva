@@ -1,4 +1,4 @@
-import { Piece } from 'controle/modeles/piece.js';
+import { Piece } from 'controle/modeles/piece';
 
 describe('Une pièce', function () {
   it('a une position de départ', function () {

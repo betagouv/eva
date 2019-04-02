@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 
-import { VueAccueil } from 'accueil/vues/accueil.js';
+import { VueAccueil } from 'accueil/vues/accueil';
 
 describe('La vue accueil', function () {
   let $;

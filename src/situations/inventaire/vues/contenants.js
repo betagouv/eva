@@ -1,4 +1,4 @@
-import { VueContenant } from './contenant.js';
+import { VueContenant } from './contenant';
 import EvenementOuvertureContenant from 'inventaire/modeles/evenement_ouverture_contenant';
 
 export class VueContenants {

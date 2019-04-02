@@ -1,8 +1,8 @@
 import uuidv4 from 'uuid/v4';
 
-import { DepotJournal } from 'commun/infra/depot_journal.js';
-import { Journal } from 'commun/modeles/journal.js';
-import { VueJournal } from 'inventaire/vues/journal.js';
+import { DepotJournal } from 'commun/infra/depot_journal';
+import { Journal } from 'commun/modeles/journal';
+import { VueJournal } from 'inventaire/vues/journal';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
 initialiseInternationalisation().then(function () {

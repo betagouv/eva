@@ -1,7 +1,7 @@
 /* global Event */
 
-import { Contenant } from 'inventaire/modeles/contenant.js';
-import { VueContenants } from 'inventaire/vues/contenants.js';
+import { Contenant } from 'inventaire/modeles/contenant';
+import { VueContenants } from 'inventaire/vues/contenants';
 import EvenementOuvertureContenant from 'inventaire/modeles/evenement_ouverture_contenant';
 import jsdom from 'jsdom-global';
 

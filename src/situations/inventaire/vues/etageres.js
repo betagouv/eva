@@ -1,5 +1,5 @@
-import { VueContenants } from './contenants.js';
-import { VueContenu } from './contenu.js';
+import { VueContenants } from './contenants';
+import { VueContenu } from './contenu';
 import imageEtageres from 'inventaire/assets/etageres.png';
 
 export class VueEtageres {

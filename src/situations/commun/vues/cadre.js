@@ -1,5 +1,5 @@
 import 'commun/styles/cadre.scss';
-import { VueActions } from 'commun/vues/actions.js';
+import { VueActions } from 'commun/vues/actions';
 
 export class VueCadre {
   constructor (vueSituation, journal) {

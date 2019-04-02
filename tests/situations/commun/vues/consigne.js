@@ -1,6 +1,6 @@
 /* global Event */
 
-import { VueConsigne } from 'commun/vues/consigne.js';
+import { VueConsigne } from 'commun/vues/consigne';
 import jsdom from 'jsdom-global';
 
 describe('vue consigne', function () {
