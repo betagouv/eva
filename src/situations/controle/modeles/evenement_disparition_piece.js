@@ -1,8 +1,8 @@
 import Evenement from 'commun/modeles/evenement';
 
 export default class EvenementDisparitionPiece extends Evenement {
-  constructor () {
-    super();
+  constructor (donneesPiece) {
+    super(donneesPiece);
     this._nom = 'disparitionPiece';
   }
 
