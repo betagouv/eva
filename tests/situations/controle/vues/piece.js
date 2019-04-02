@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 import { Piece } from 'controle/modeles/piece';
-import { VuePiece, DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece';
+import { VuePiece, DUREE_VIE_PIECE_INFINIE, DISPARITION_PIECE } from 'controle/vues/piece';
 
 function creeVueMinimale (piece) {
   return new VuePiece(piece, DUREE_VIE_PIECE_INFINIE, () => {}, () => {});
@@ -112,5 +112,17 @@ describe('Une pièce', function () {
     const vuePiece = new VuePiece(piece, 5, () => {}, callbackAvantSuppression);
     vuePiece.affiche('#controle', $);
     expect($('.piece').length).to.equal(1);
+  });
+
+  it('émet un événement à sa disparition', function (done) {
+    const piece = new Piece({ x: 90, y: 40 });
+    const vuePiece = new VuePiece(piece, 5, () => {}, (_, done) => done());
+
+    vuePiece.on(DISPARITION_PIECE, (e) => {
+      expect(e).to.eql({ position: { x: 90, y: 40 } });
+      done();
+    });
+
+    vuePiece.affiche('#controle', $);
   });
 });
