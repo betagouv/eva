@@ -22,7 +22,7 @@ function afficheSituation (pointInsertion, $) {
     dureeViePiece: 12000,
     consigneAudio: sonConsigneDemarrage
   });
-  const vueSituation = new VueSituation(situation);
+  const vueSituation = new VueSituation(situation, journal);
   const vueCadre = new VueCadre(vueSituation, situation, journal);
 
   vueCadre.affiche(pointInsertion, $);

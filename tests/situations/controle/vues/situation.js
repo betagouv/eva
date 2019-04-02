@@ -1,13 +1,15 @@
 import jsdom from 'jsdom-global';
+
+import { Journal } from 'commun/modeles/journal';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { Situation } from 'controle/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
-import { DUREE_VIE_PIECE_INFINIE } from 'controle/vues/piece';
+import { DISPARITION_PIECE, DUREE_VIE_PIECE_INFINIE, VuePiece } from 'controle/vues/piece';
 import { VueSituation } from 'controle/vues/situation';
 
-function vueSituationMinimaliste () {
+function vueSituationMinimaliste (journal) {
   const situation = new Situation({ scenario: [] });
-  return new VueSituation(situation, () => {});
+  return new VueSituation(situation, journal, () => {});
 }
 
 describe('La situation « Contrôle »', function () {
@@ -46,9 +48,11 @@ describe('La situation « Contrôle »', function () {
       dureeViePiece: DUREE_VIE_PIECE_INFINIE
     });
 
+    const journal = new Journal();
+
     let nbPiecesAffichees = 0;
     let classesAttendues = ['conforme', 'defectueuse'];
-    const vueSituation = new VueSituation(situation, ($piece) => {
+    const vueSituation = new VueSituation(situation, journal, ($piece) => {
       const classeAttendue = classesAttendues.shift();
       expect($piece.hasClass(classeAttendue)).to.be(true);
       nbPiecesAffichees += 1;
@@ -57,5 +61,31 @@ describe('La situation « Contrôle »', function () {
 
     vueSituation.affiche('#situation-controle', $);
     situation.notifie(new EvenementDemarrage());
+  });
+
+  it('écoute les événements de disparition de pièce', function (done) {
+    const situation = new Situation({
+      cadence: 0,
+      scenario: [true],
+      positionApparitionPieces: { x: 10, y: 20 },
+      dureeViePiece: 5
+    });
+
+    const journal = {
+      enregistre (e) {
+        expect(e.donnees()).to.eql({ position: { x: 45, y: 5 } });
+        done();
+      }
+    };
+
+    const vueSituation = new VueSituation(situation, journal, () => {});
+
+    vueSituation.creeVuePiece = (piece) => {
+      const vuePiece = new VuePiece(piece, 5, () => {}, () => {});
+      setTimeout(() => { vuePiece.emit(DISPARITION_PIECE, { position: { x: 45, y: 5 } }); });
+      return vuePiece;
+    };
+    vueSituation.affiche('#situation-controle', $);
+    vueSituation.demarre('#situation-controle', $);
   });
 });

@@ -1,11 +1,12 @@
 import { Bac } from 'controle/modeles/bac';
+import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_piece';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import { VueBac } from 'controle/vues/bac';
-import { VuePiece } from 'controle/vues/piece';
+import { VuePiece, DISPARITION_PIECE } from 'controle/vues/piece';
 
 export class VueSituation {
-  constructor (situation, callbackApresCreationPiece) {
+  constructor (situation, journal, callbackApresCreationPiece) {
     function nouveauBac (categorie, { x, y }) {
       return new Bac({ categorie, x, y, largeur: 30, hauteur: 40 });
     }
@@ -18,12 +19,17 @@ export class VueSituation {
     }
 
     this.situation = situation;
+    this.journal = journal;
     this.callbackApresCreationPiece = callbackApresCreationPiece;
     this._bacs = creeBacs();
   }
 
   bacs () {
     return this._bacs;
+  }
+
+  creeVuePiece (piece) {
+    return new VuePiece(piece, this.situation.dureeViePiece(), this.callbackApresCreationPiece);
   }
 
   affiche (pointInsertion, $) {
@@ -47,7 +53,8 @@ export class VueSituation {
       }
 
       const piece = this.situation.pieceSuivante();
-      const vuePiece = new VuePiece(piece, this.situation.dureeViePiece(), this.callbackApresCreationPiece);
+      let vuePiece = this.creeVuePiece(piece);
+      vuePiece.on(DISPARITION_PIECE, (e) => this.journal.enregistre(new EvenementDisparitionPiece(e)));
       vuePiece.affiche(pointInsertion, $);
     };
     afficheProchainePiece();
