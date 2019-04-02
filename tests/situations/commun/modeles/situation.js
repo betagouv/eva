@@ -5,7 +5,7 @@ describe('toutes les situations', function () {
   it("peuvent être notifié d'un evement", function (done) {
     const uneSituation = new Situation();
     const unEvenement = new Evenement();
-    uneSituation.observe(new Evenement(), (evenement) => {
+    uneSituation.observe(Evenement, (evenement) => {
       expect(evenement).to.equal(unEvenement);
       done();
     });
@@ -16,10 +16,10 @@ describe('toutes les situations', function () {
   it("peuvent enregistrer plusieurs observateurs d'un evenement", function () {
     const uneSituation = new Situation();
     let notifications = 0;
-    uneSituation.observe(new Evenement(), () => {
+    uneSituation.observe(Evenement, () => {
       notifications++;
     });
-    uneSituation.observe(new Evenement(), () => {
+    uneSituation.observe(Evenement, () => {
       notifications++;
     });
 

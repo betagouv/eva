@@ -9,7 +9,7 @@ export class VueSituation {
     this.journal = journal;
     this.situation = situation;
 
-    situation.observe(new EvenementDemarrage(), (evenement) => {
+    situation.observe(EvenementDemarrage, (evenement) => {
       this.journal.enregistre(evenement);
     });
   }
