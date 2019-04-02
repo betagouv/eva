@@ -1,7 +1,10 @@
+import EventEmitter from 'events';
+
 import 'controle/styles/piece.scss';
 import { imagePieceConforme, imagesPiecesNonConformes } from 'controle/data/pieces';
 
 export const DUREE_VIE_PIECE_INFINIE = undefined;
+export const DISPARITION_PIECE = 'disparition';
 
 export function animationInitiale ($element) {
   $element.animate({ left: '-10%' }, 10000, 'linear');
@@ -11,11 +14,13 @@ export function animationFinale ($element, done) {
   $element.fadeOut(500, () => { done($element); });
 }
 
-export class VuePiece {
+export class VuePiece extends EventEmitter {
   constructor (piece,
     dureeVie = DUREE_VIE_PIECE_INFINIE,
     callbackApresApparition = animationInitiale,
     callbackAvantSuppression = animationFinale) {
+    super();
+
     this.piece = piece;
     this.dureeVie = dureeVie;
     this.callbackApresApparition = callbackApresApparition;
@@ -84,7 +89,10 @@ export class VuePiece {
 
     if (this.dureeVie !== DUREE_VIE_PIECE_INFINIE) {
       setTimeout(() => {
-        this.callbackAvantSuppression($piece, () => { $piece.remove(); });
+        this.callbackAvantSuppression($piece, () => {
+          $piece.remove();
+          this.emit(DISPARITION_PIECE, { position: this.piece.position() });
+        });
       }, this.dureeVie);
     }
   }
