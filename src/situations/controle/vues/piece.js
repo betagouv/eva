@@ -1,4 +1,5 @@
 import 'controle/styles/piece.scss';
+import { imagePieceConforme, imagesPiecesNonConformes } from 'controle/data/pieces';
 
 export const DUREE_VIE_PIECE_INFINIE = undefined;
 
@@ -24,9 +25,19 @@ export class VuePiece {
   affiche (pointInsertion, $) {
     function creeElementPiece (pieceConforme, position, dimensionsElementParent) {
       let classeConformite = pieceConforme ? 'conforme' : 'defectueuse';
-      let $piece = $(`<div class="piece ${classeConformite}"></div>`);
+      let $piece = $(`<img class="piece ${classeConformite}" src="${imagePiece(pieceConforme)}">`);
       metsAJourPosition($piece, position, dimensionsElementParent);
       return $piece;
+    }
+
+    function imagePiece (pieceConforme) {
+      if (pieceConforme) return imagePieceConforme;
+
+      return imageNonConformeAuHasard();
+    }
+
+    function imageNonConformeAuHasard () {
+      return imagesPiecesNonConformes[Math.floor(Math.random() * imagesPiecesNonConformes.length)];
     }
 
     function metsAJourPosition ($piece, { x, y }, { largeurParent, hauteurParent }) {
@@ -55,6 +66,7 @@ export class VuePiece {
       });
     });
 
+    $piece.on('dragstart', function (event) { event.preventDefault(); });
     $piece.mouseup(e => { this.piece.deselectionne(); });
 
     $elementParent.mousemove(e => {
