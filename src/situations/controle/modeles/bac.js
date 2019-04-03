@@ -1,8 +1,8 @@
 export class Bac {
   constructor ({ categorie, x, y, largeur, hauteur }) {
     this._categorie = categorie;
-    this._dimensions = { largeur: largeur, hauteur: hauteur };
-    this._position = { x: x, y: y };
+    this._dimensions = { largeur, hauteur };
+    this._position = { x, y };
   }
 
   dimensions () {
