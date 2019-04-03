@@ -3,6 +3,7 @@ import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inven
 import { VueEtageres } from 'inventaire/vues/etageres';
 import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
+import { VueFin } from 'commun/vues/fin.js';
 
 export class VueSituation {
   constructor (situation, journal) {
@@ -21,7 +22,7 @@ export class VueSituation {
     initialiseFormulaireSaisieInventaire(this.situation, pointInsertion, $, (resultatValidation, reponses) => {
       const reussite = Array.from(resultatValidation.values()).every(v => v);
       if (reussite) {
-        this.vueSucces($);
+        this.afficheVueFin($);
       }
       this.journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation, reponses }));
 
@@ -30,12 +31,9 @@ export class VueSituation {
     }, this.journal);
   }
 
-  vueSucces ($) {
-    var boutonStop = $('#stop');
-    var boutonTerminer = $("<a href='/' class='bouton-terminer'>Terminer</a>");
-    boutonStop.replaceWith(boutonTerminer);
+  afficheVueFin () {
+    new VueFin().affiche('.actions', $);
     $('.formulaire-saisie-inventaire').addClass('succes-saisie-inventaire');
     $('.validation-inventaire').remove();
-    $('.actions').append(`<div class='message-succes'> C'est réussi, bravo !</div>`);
   }
 }
