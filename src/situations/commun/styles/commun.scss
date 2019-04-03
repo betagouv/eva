@@ -33,10 +33,10 @@ h1 {
 
 .lien-source-code {
   position: absolute;
-  right: 25px;
-  top: 25px;
-  color: rgba(22, 76, 146, 0.4);
+  right: 1.5rem;
+  top: 1.5rem;
+  color: $couleur-fond-lien-source-code;
   &:hover {
-    color: rgba(22, 76, 146, 0.5);
+    color: $couleur-fond-lien-source-code-hover;
   }
 }
