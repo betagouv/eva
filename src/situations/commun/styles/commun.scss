@@ -1,4 +1,5 @@
 @import "commun/styles/couleurs.scss";
+@import 'commun/styles/font_awesome.scss';
 
 html, body {
   height: 100%;
@@ -28,4 +29,14 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
   color: $couleur-texte;
+}
+
+#lienCodeSource {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  color: rgba(22, 76, 146, 0.4);
+  &:hover {
+    color: rgba(22, 76, 146, 0.5);
+  }
 }
