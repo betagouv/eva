@@ -33,15 +33,24 @@ export class VueSituation {
 
     this._bacs.forEach(afficheBac);
 
-    let identifiantIntervalle = setInterval(() => {
+    this.demarre(pointInsertion, $);
+  }
+
+  demarre (pointInsertion, $) {
+    const afficheProchainePiece = () => {
       if (this.situation.sequenceTerminee()) {
-        clearInterval(identifiantIntervalle);
+        clearInterval(this.identifiantIntervalle);
         return;
       }
 
-      let piece = this.situation.pieceSuivante();
-      let vuePiece = new VuePiece(piece, this.situation.dureeViePiece(), this.callbackApresCreationPiece);
+      const piece = this.situation.pieceSuivante();
+      const vuePiece = new VuePiece(piece, this.situation.dureeViePiece(), this.callbackApresCreationPiece);
       vuePiece.affiche(pointInsertion, $);
-    }, this.situation.cadenceArriveePieces());
+    };
+    afficheProchainePiece();
+    this.identifiantIntervalle = setInterval(
+      afficheProchainePiece,
+      this.situation.cadenceArriveePieces()
+    );
   }
 }
