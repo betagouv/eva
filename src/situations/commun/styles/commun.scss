@@ -1,4 +1,5 @@
 @import "commun/styles/couleurs.scss";
+@import 'commun/styles/font_awesome.scss';
 
 html, body {
   height: 100%;
@@ -34,3 +35,13 @@ h1 {
   display: none !important;
 }
 
+.lien-source-code {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  color: $couleur-principale-bouton;
+  opacity: 0.3;
+  &:hover {
+    opacity: 0.5;
+  }
+}
