@@ -12,7 +12,7 @@ export class VueSituation {
     function creeBacs () {
       const bacs = [];
       bacs.push(nouveauBac(PIECE_CONFORME, { x: 10, y: 10 }));
-      bacs.push(nouveauBac(PIECE_DEFECTUEUSE, { x: 10, y: 10 }));
+      bacs.push(nouveauBac(PIECE_DEFECTUEUSE, { x: 60, y: 10 }));
       return bacs;
     }
 
@@ -26,14 +26,12 @@ export class VueSituation {
   }
 
   affiche (pointInsertion, $) {
-    function afficheBac (categorie, { x, y }) {
-      const bac = new Bac({ categorie: categorie, x: x, y: y, largeur: 30, hauteur: 40 });
+    function afficheBac (bac) {
       const vueBac = new VueBac(bac);
       vueBac.affiche(pointInsertion, $);
     }
 
-    afficheBac(PIECE_CONFORME, { x: 10, y: 10 });
-    afficheBac(PIECE_DEFECTUEUSE, { x: 60, y: 10 });
+    this._bacs.forEach(afficheBac);
 
     let identifiantIntervalle = setInterval(() => {
       if (this.situation.sequenceTerminee()) {
