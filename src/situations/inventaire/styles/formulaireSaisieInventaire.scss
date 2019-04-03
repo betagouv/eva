@@ -5,9 +5,16 @@
 .affiche-saisie {
   cursor: pointer;
   position: absolute;
-  height: 20%;
-  top: 40%;
-  right: 6.5%;
+  height: 10%;
+  top: 47%;
+  right: 3.5%;
+  background-color: $blanc;
+  width: 13%;
+  border: 8px solid $couleur-fond-bouton-bleu;
+  border-radius: 13px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0px 6px 10px $couleur-ombre;
 }
 
 .formulaire-saisie-inventaire {
