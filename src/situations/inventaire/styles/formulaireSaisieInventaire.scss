@@ -108,11 +108,14 @@
     font-size: 1.125rem;
 
     &.reponse-correcte {
-      color: $souleur-reponse-correcte;
+      color: $couleur-reponse-correcte;
     }
 
     &.reponse-incorrecte {
-      color: $souleur-reponse-incorrecte;
+      color: $couleur-reponse-incorrecte;
     }
+  }
+  &.succes-saisie-inventaire {
+    border-color: $couleur-reponse-correcte;
   }
 }

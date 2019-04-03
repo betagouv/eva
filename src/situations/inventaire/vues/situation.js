@@ -32,8 +32,10 @@ export class VueSituation {
 
   vueSucces ($) {
     var boutonStop = $('#stop');
-    var boutonTerminer = $("<a class='bouton-terminer'></a>");
+    var boutonTerminer = $("<a href='/' class='bouton-terminer'>Terminer</a>");
     boutonStop.replaceWith(boutonTerminer);
+    $('.formulaire-saisie-inventaire').addClass('succes-saisie-inventaire');
+    $('.validation-inventaire').remove();
     $('.actions').append(`<div class='message-succes'> C'est réussi, bravo !</div>`);
   }
 }

@@ -1,9 +1,0 @@
-@import 'commun/styles/bouton.scss';
-
-.bouton-terminer {
-  @include bouton-carre($couleur-fond-bouton-terminer, $couleur-fond-bouton-terminer-focus);
-
-  img {
-    height: .875rem;
-  }
-}
