@@ -16,10 +16,7 @@ import { scenario } from 'controle/data/pieces';
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'controle', new DepotJournal());
-<<<<<<< HEAD
-=======
-console.log(scenario);
->>>>>>> intègre la séquence de biscuit préféfinie
+
   const situation = new Situation({
     scenario: scenario,
     cadence: 3000,

@@ -17,7 +17,7 @@ describe('La situation « Contrôle »', function () {
   });
 
   it('sait donner la piece suivante quand il y en encore à venir', function () {
-    let situation = new Situation({ scenario: [false], positionApparitionPieces: { x: 25, y: 50 } });
+    let situation = new Situation({ scenario: [{ conforme: false }], positionApparitionPieces: { x: 25, y: 50 } });
     expect(situation.sequenceTerminee()).to.be(false);
 
     let piece = situation.pieceSuivante();

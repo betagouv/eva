@@ -45,7 +45,7 @@ describe('La situation « Contrôle »', function () {
   it('affiche les pièces en séquence selon le scénario pré-établi', function (done) {
     const situation = new Situation({
       cadence: 0,
-      scenario: [true, false],
+      scenario: [{ conforme: true }, { conforme: false }],
       positionApparitionPieces: { x: 10, y: 20 },
       dureeViePiece: DUREE_VIE_PIECE_INFINIE
     });

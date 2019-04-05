@@ -39,6 +39,13 @@ describe('Une pièce', function () {
     expect($('.piece').hasClass('defectueuse')).to.be(true);
   });
 
+  it("affiche l'image de la piece", function () {
+    const piece = new Piece({ x: 90, y: 40, conforme: false, image: 'image-url' });
+    const vuePiece = creeVueMinimale(piece);
+    vuePiece.affiche('#controle', $);
+    expect($('.piece').attr('src')).to.eql('image-url');
+  });
+
   it("se positionne correctement vis-à-vis de l'élément parent", function () {
     const piece = new Piece({ x: 90, y: 40 });
     const vuePiece = creeVueMinimale(piece);

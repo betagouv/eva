@@ -24,7 +24,10 @@ export class Situation extends SituationCommune {
   }
 
   pieceSuivante () {
-    const estConforme = this.scenario.shift();
-    return new Piece({ x: this.positionApparition.x, y: this.positionApparition.y, conforme: estConforme });
+    const donneesPiece = this.scenario.shift();
+    return new Piece({ x: this.positionApparition.x,
+      y: this.positionApparition.y,
+      conforme: donneesPiece.conforme,
+      image: donneesPiece.image });
   }
 }
