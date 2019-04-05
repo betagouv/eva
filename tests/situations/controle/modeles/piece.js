@@ -1,4 +1,4 @@
-import { Piece } from 'controle/modeles/piece';
+import { Piece, CHANGEMENT_POSITION } from 'controle/modeles/piece';
 
 describe('Une pièce', function () {
   it('a une position de départ', function () {
@@ -24,7 +24,7 @@ describe('Une pièce', function () {
 
   it('notifie ses abonnés des changements de position', function (done) {
     let piece = new Piece({ x: 90, y: 50 });
-    piece.quandChangementPosition(function ({ x, y }) {
+    piece.on(CHANGEMENT_POSITION, ({ x, y }) => {
       expect(x).to.equal(35);
       expect(y).to.equal(20);
       done();

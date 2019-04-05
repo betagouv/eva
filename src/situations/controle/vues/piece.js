@@ -2,6 +2,8 @@ import EventEmitter from 'events';
 
 import 'controle/styles/piece.scss';
 
+import { CHANGEMENT_POSITION } from 'controle/modeles/piece';
+
 export const DUREE_VIE_PIECE_INFINIE = undefined;
 export const DISPARITION_PIECE = 'disparition';
 
@@ -68,7 +70,7 @@ export class VuePiece extends EventEmitter {
       });
     });
 
-    this.piece.quandChangementPosition(function (nouvellePosition) {
+    this.piece.on(CHANGEMENT_POSITION, (nouvellePosition) => {
       metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
     });
     $elementParent.append($piece);
