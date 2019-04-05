@@ -20,16 +20,17 @@ describe('La situation « Contrôle »', function () {
     $ = jQuery(window);
   });
 
-  it('affiche le bac des pièces conformes et le bac des pièces défectueuses', function () {
+  it('affiche les bacs et le tapis', function () {
     const vueSituation = vueSituationMinimaliste();
     expect($('#situation-controle .bac.pieces-conformes').length).to.equal(0);
     expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(0);
 
     vueSituation.affiche('#situation-controle', $);
 
+    expect($('#situation-controle').hasClass('controle')).to.be(true);
     expect($('#situation-controle .bac.pieces-conformes').length).to.equal(1);
     expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(1);
-    expect($('#situation-controle').hasClass('controle')).to.be(true);
+    expect($('#situation-controle .tapis').length).to.equal(1);
   });
 
   it('connaît les bacs associés à la vue', function () {

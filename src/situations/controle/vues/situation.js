@@ -38,7 +38,9 @@ export class VueSituation {
       vueBac.affiche(pointInsertion, $);
     }
 
+    $(pointInsertion).append('<div class="tapis"></div>');
     $(pointInsertion).addClass('controle');
+
     this._bacs.forEach(afficheBac);
 
     this.situation.observe(EvenementDemarrage, () => {
