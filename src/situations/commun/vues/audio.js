@@ -17,7 +17,7 @@ export default class VueAudio {
     });
   }
 
-  joue (actionFinConsigne, logErreur = (erreur) => {
+  joue (actionFinConsigne = () => {}, logErreur = (erreur) => {
     console.error('Erreur à la lecture de la consigne : ' + erreur);
   }) {
     Promise.resolve(this.element.play())

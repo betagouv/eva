@@ -25,7 +25,7 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
-export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal) {
+export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal, audios) {
   let produits = situation.produitsEnStock();
   let inventaireReference = situation.inventaireReference();
   let reussite = false;
@@ -35,7 +35,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
       <li>
         <label>${produit.nom}</label>
         <span class='saisie'>
-          <input id="${idProduit}" type="text" placeholder= "${traduction('inventaire.placeholder')}">
+          <input id="${idProduit}" type="text" autocomplete=off placeholder= "${traduction('inventaire.placeholder')}">
         </span>
         <div class="image-produit">
           <img src='${produit.image}' class="${produit.forme}">
@@ -73,8 +73,11 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
       reussite = Array.from(saisieValide.values()).every(v => v);
       journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation: saisieValide, reponses }));
       if (reussite) {
+        audios.bravo.joue();
         afficheVueSucces();
         situation.notifie(new EvenementFin());
+      } else {
+        audios.essayeEncore.joue();
       }
     });
 
@@ -125,7 +128,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     return $elementsCombines;
   }
 
-  let $formulaireSaisie = creeFormulaire();
-  let $boutonSaisie = creeBoutonSaisie($formulaireSaisie);
+  const $formulaireSaisie = creeFormulaire();
+  const $boutonSaisie = creeBoutonSaisie($formulaireSaisie);
   $(pointInsertion).append($boutonSaisie);
 }
