@@ -1,6 +1,8 @@
 import { Contenant } from 'inventaire/modeles/contenant';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
+import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
+
 import { unMagasin, unMagasinVide } from '../aides/magasin';
 
 let jsdom = require('jsdom-global');
@@ -25,7 +27,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   describe('quand on clique sur le bouton', function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, () => {}, journal);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
     });
 
     it('affiche un overlay extérieur pour commander sa fermeture', function () {
@@ -53,7 +55,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   describe("quand on clique sur l'overlay", function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, () => {}, journal);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
       $('.affiche-saisie').click();
       expect($('.overlay.invisible').length).to.equal(0);
     });
@@ -129,31 +131,29 @@ describe("Le formulaire de saisie d'inventaire", function () {
     expect($('#magasin .formulaire-saisie-inventaire .valide-saisie').length).to.equal(1);
   });
 
-  it("valide la saisie d'inventaire avec succès", function (done) {
+  it("valide la saisie d'inventaire avec succès", function () {
     let magasin = unMagasin().avecCommeReferences(
       { idProduit: '0', nom: 'Nova Sky' }
     ).avecEnStock(
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
-    let verifieValidite = function (saisieValide, reponses) {
-      expect($('.valide-saisie').length).to.equal(0);
-      expect($('.succes-saisie-inventaire').length).to.equal(1);
-      expect(Array.from(saisieValide)).to.eql([
-        ['0', true]
-      ]);
-      expect(Array.from(reponses)).to.eql([
-        ['0', { quantite: '12' }]
-      ]);
-      done();
+    let evenement;
+
+    journal.enregistre = (e) => {
+      evenement = e;
     };
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, verifieValidite);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
     let $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
     let $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
 
     $zoneSaisieInventaire.val(12);
     $boutonValidationSaisie.click();
+    expect(evenement).to.be.a(EvenementSaisieInventaire);
+    expect($('.valide-saisie').length).to.equal(0);
+    expect($('.succes-saisie-inventaire').length).to.equal(1);
+    expect(evenement.donnees()).to.eql({ reussite: true, reponses: { '0': { quantite: '12', reussite: true } } });
   });
 
   it('sait afficher une marque correcte ou incorrecte', function () {
@@ -162,7 +162,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     ).avecEnStock(
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, () => {});
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
     expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(0);
     expect($('.formulaire-saisie-inventaire span.reponse-incorrecte').length).to.equal(0);
 

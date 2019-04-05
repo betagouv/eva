@@ -1,6 +1,7 @@
 import { traduction } from 'commun/infra/internationalisation';
 import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
+import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 
 import 'commun/styles/commun.scss';
 import 'commun/styles/overlay.scss';
@@ -23,7 +24,7 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
-export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, callbackValidation, journal) {
+export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal) {
   let produits = situation.produitsEnStock();
   let inventaireReference = situation.inventaireReference();
   let reussite = false;
@@ -69,10 +70,10 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
       Array.from(saisieValide).forEach(correction => afficheCorrection(correction, $));
 
       reussite = Array.from(saisieValide.values()).every(v => v);
+      journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation: saisieValide, reponses }));
       if (reussite) {
         afficheVueSucces();
       }
-      callbackValidation(saisieValide, reponses);
     });
 
     return $bouton;
