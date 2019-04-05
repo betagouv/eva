@@ -3,7 +3,7 @@ import 'commun/styles/stop.scss';
 
 import { VueStop } from 'commun/vues/stop';
 
-export class VueActions {
+export default class VueActions {
   constructor (journal) {
     this.journal = journal;
   }
