@@ -14,4 +14,8 @@ export class VueActions {
     stop.affiche();
     $(pointInsertion).append($actions);
   }
+
+  cache ($) {
+    $('.actions').addClass('invisible');
+  }
 }

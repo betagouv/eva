@@ -20,4 +20,10 @@ describe('Affiche les éléments communs aux situations', function () {
     vueActions.affiche('#magasin', $);
     expect($('#stop', '.actions').length).to.equal(1);
   });
+
+  it('cache le conteneur', function () {
+    vueActions.affiche('#magasin', $);
+    vueActions.cache($);
+    expect($('.actions.invisible').length).to.equal(1);
+  });
 });
