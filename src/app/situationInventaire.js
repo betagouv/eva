@@ -18,8 +18,8 @@ function afficheSituation (pointInsertion, $) {
   const journal = new Journal(Date.now, session, 'inventaire', new DepotJournal());
   const situation = new Situation({ contenants, contenus }, sonConsigneDemarrage);
 
-  const vueSituationInventaire = new VueSituation(situation, journal);
-  const vueCadre = new VueCadre(vueSituationInventaire, situation, journal);
+  const vueSituation = new VueSituation(situation, journal);
+  const vueCadre = new VueCadre(vueSituation, situation, journal);
 
   vueCadre.affiche(pointInsertion, $);
 }
@@ -27,7 +27,6 @@ function afficheSituation (pointInsertion, $) {
 initialiseInternationalisation().then(function () {
   jQuery(function () {
     document.title = traduction('inventaire.titre');
-    jQuery('body').append(`<div id="magasin" class='conteneur'> </div>`);
-    afficheSituation('#magasin', jQuery);
+    afficheSituation('body', jQuery);
   });
 });

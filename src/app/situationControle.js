@@ -14,7 +14,6 @@ import sonConsigneDemarrage from 'controle/assets/consigne_demarrage.mp3';
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'controle', new DepotJournal());
-
   const situation = new Situation({
     scenario: [true, false, true],
     cadence: 3000,
@@ -22,6 +21,7 @@ function afficheSituation (pointInsertion, $) {
     dureeViePiece: 12000,
     consigneAudio: sonConsigneDemarrage
   });
+
   const vueSituation = new VueSituation(situation, journal);
   const vueCadre = new VueCadre(vueSituation, situation, journal);
 
@@ -31,8 +31,6 @@ function afficheSituation (pointInsertion, $) {
 initialiseInternationalisation().then(function () {
   jQuery(function () {
     document.title = traduction('controle.titre');
-    jQuery('body').append('<div id="situation-controle" class="conteneur"></div>');
-
-    afficheSituation('#situation-controle', jQuery);
+    afficheSituation('body', jQuery);
   });
 });
