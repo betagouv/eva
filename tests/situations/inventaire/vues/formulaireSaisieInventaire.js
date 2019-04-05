@@ -1,3 +1,4 @@
+import EvenementFin from 'commun/modeles/evenement_fin';
 import { Contenant } from 'inventaire/modeles/contenant';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
@@ -154,6 +155,17 @@ describe("Le formulaire de saisie d'inventaire", function () {
     expect($('.valide-saisie').length).to.equal(0);
     expect($('.succes-saisie-inventaire').length).to.equal(1);
     expect(evenement.donnees()).to.eql({ reussite: true, reponses: { '0': { quantite: '12', reussite: true } } });
+  });
+
+  it("envoie l'événement fin a la réussite", function (done) {
+    const magasin = unMagasinVide();
+
+    magasin.observe(EvenementFin, () => {
+      done();
+    });
+
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 
   it('sait afficher une marque correcte ou incorrecte', function () {
