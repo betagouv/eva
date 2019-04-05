@@ -26,12 +26,12 @@ describe('vue Stop', function () {
   });
 
   it("sait s'insérer dans une page web", function () {
-    vue.afficher();
+    vue.affiche();
     expect(document.querySelector('#magasin #stop').classList).to.not.contain('invisible');
   });
 
   it('ouvre une fenêtre de confirmation avant de stopper', function () {
-    vue.afficher();
+    vue.affiche();
 
     $('#magasin #stop').click();
     expect($('#fenetre-modale').length).to.equal(1);

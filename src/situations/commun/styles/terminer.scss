@@ -1,0 +1,30 @@
+@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/bouton.scss';
+
+.message-succes {
+  position:absolute;
+  color: $noir;
+  text-align: center;
+  width: 100%;
+  line-height: 6.5rem;
+  font-size: 2.25rem;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.bouton-terminer {
+  padding: .625rem .9375rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: .125rem solid $couleur-fond-bouton-terminer-focus;
+  cursor: pointer;
+  color: $blanc;
+  background-color: $couleur-fond-bouton-terminer;
+  &:active {
+    border-color: $couleur-fond-bouton-terminer;
+  }
+  &:hover,
+  &:focus {
+    background-color: $couleur-fond-bouton-terminer-focus;
+  }
+}

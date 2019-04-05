@@ -1,5 +1,7 @@
 import jsdom from 'jsdom-global';
 
+import EvenementFin from 'commun/modeles/evenement_fin';
+import SituationCommune from 'commun/modeles/situation';
 import { VueCadre } from 'commun/vues/cadre';
 
 function uneVue (callbackAffichage = () => {}) {
@@ -13,9 +15,12 @@ describe('Une vue du cadre', function () {
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
-    situation = {
-      consigneAudio: 'chemin_vers_la_consigne_audio'
-    };
+    situation = new class extends SituationCommune {
+      constructor () {
+        super();
+        this.consigneAudio = 'chemin_vers_la_consigne_audio';
+      }
+    }();
   });
 
   it("Crée l'élément cadre", function () {
@@ -63,5 +68,13 @@ describe('Une vue du cadre', function () {
     vueCadre.affiche('#point-insertion', $);
 
     expect($('#cadre #overlay-go').length).to.equal(1);
+  });
+
+  it('affiche la vue terminer', function () {
+    const vueCadre = new VueCadre(uneVue(), situation);
+    vueCadre.affiche('#point-insertion', $);
+    situation.notifie(new EvenementFin());
+    expect($('.actions').length).to.equal(2);
+    expect($('.actions.invisible').length).to.equal(1);
   });
 });

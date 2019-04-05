@@ -25,7 +25,7 @@ export class VueStop {
     });
   }
 
-  afficher () {
+  affiche () {
     this.$pointInsertion.append(this.$boutonStop);
   }
 
