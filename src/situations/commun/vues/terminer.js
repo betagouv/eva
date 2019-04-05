@@ -1,6 +1,6 @@
 import { traduction } from 'commun/infra/internationalisation';
 
-import 'commun/styles/fin.scss';
+import 'commun/styles/terminer.scss';
 
 export default class VueTerminer {
   affiche (pointInsertion, $) {
