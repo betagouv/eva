@@ -1,11 +1,13 @@
+import { traduction } from 'commun/infra/internationalisation';
+
 import 'commun/styles/fin.scss';
 
-export class VueTerminer {
-  afficher (pointInsertion, $) {
-    var boutonStop = $('#stop');
-    var boutonTerminer = $("<a href='/' class='bouton-terminer'>Terminer</a>");
-    boutonStop.remove();
-    $(pointInsertion).append(boutonTerminer);
-    $(pointInsertion).append(`<div class='message-succes'> C'est réussi, bravo !</div>`);
+export default class VueTerminer {
+  affiche (pointInsertion, $) {
+    const $actions = $('<div class="actions"></div>');
+    const boutonTerminer = $(`<a href='/' class='bouton-terminer'>${traduction('situation.terminer')}</a>`);
+    $actions.append(boutonTerminer);
+    $actions.append(`<div class='message-succes'>${traduction('situation.reussite')}</div>`);
+    $(pointInsertion).append($actions);
   }
 }

@@ -6,16 +6,14 @@
       "annuler": "annuler"
     },
     "ecouter-consigne": "Commencez par écouter la consigne",
-    "go": "Vous pouvez commencer"
+    "go": "Vous pouvez commencer",
+    "terminer": "Terminer",
+    "reussite": "C'est réussi, bravo !"
   },
   "inventaire": {
     "titre": "Stock de boissons",
     "valider_saisie": "Vérifier",
-    "placeholder": "Qté",
-    "resultat": {
-      "ok": "Bravo, vous avez réussi !",
-      "echec": "Ce n'est pas tout à fait ça… réessayez."
-    }
+    "placeholder": "Qté"
   },
   "controle": {
     "titre": "Chaîne de fabrication"
