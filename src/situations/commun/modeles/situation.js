@@ -1,21 +1,25 @@
+import EventEmitter from 'events';
 
-export default class Situation {
+export const NON_DEMARRE = 'nonDémarré';
+export const LECTURE_CONSIGNE = 'lectureConsigne';
+export const CONSIGNE_ECOUTEE = 'consigneEcoutée';
+export const DEMARRE = 'démarré';
+export const FINI = 'fini';
+
+export const CHANGEMENT_ETAT = 'changementEtat';
+
+export default class Situation extends EventEmitter {
   constructor () {
-    this.evenements = new Map();
+    super();
+    this._etat = NON_DEMARRE;
   }
 
-  observateurs (classe) {
-    if (!this.evenements.has(classe)) {
-      this.evenements.set(classe, []);
-    }
-    return this.evenements.get(classe);
+  etat () {
+    return this._etat;
   }
 
-  observe (classe, action) {
-    this.observateurs(classe).push(action);
-  }
-
-  notifie (evenement) {
-    this.observateurs(evenement.constructor).forEach(action => action(evenement));
+  modifieEtat (etat) {
+    this._etat = etat;
+    this.emit(CHANGEMENT_ETAT, etat);
   }
 }

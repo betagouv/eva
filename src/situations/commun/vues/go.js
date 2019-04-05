@@ -1,10 +1,10 @@
 import 'commun/styles/go.scss';
+import { DEMARRE } from 'commun/modeles/situation';
 import go from 'commun/assets/go.svg';
 import play from 'commun/assets/play.svg';
 import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 
 import { traduction } from 'commun/infra/internationalisation';
-import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export class VueGo {
   constructor (vueConsigne, situation) {
@@ -36,7 +36,7 @@ export class VueGo {
         classe: 'bouton-go',
         click: () => {
           this.$overlay.addClass('invisible');
-          situation.notifie(new EvenementDemarrage());
+          situation.modifieEtat(DEMARRE);
         }
       }
     };

@@ -1,8 +1,7 @@
 import jsdom from 'jsdom-global';
 import { VueGo } from 'commun/vues/go';
 import { traduction } from 'commun/infra/internationalisation';
-import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
-import Situation from 'commun/modeles/situation';
+import Situation, { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 
 describe('vue Go', function () {
   let vue;
@@ -75,7 +74,8 @@ describe('vue Go', function () {
   it('notifie la situation du démarrage', function (done) {
     vue.affiche('#pointInsertion', $);
     vue.afficheEtat(vue.etats.go);
-    situation.observe(EvenementDemarrage, () => {
+    situation.on(CHANGEMENT_ETAT, (etat) => {
+      expect(etat).to.eql(DEMARRE);
       done();
     });
 
