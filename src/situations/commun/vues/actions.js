@@ -11,7 +11,7 @@ export class VueActions {
   affiche (pointInsertion, $) {
     const $actions = $('<div class="actions"></div>');
     const stop = new VueStop($actions, $, this.journal);
-    stop.afficher();
+    stop.affiche();
     $(pointInsertion).append($actions);
   }
 }
