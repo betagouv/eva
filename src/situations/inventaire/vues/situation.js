@@ -3,7 +3,7 @@ import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inven
 import { VueEtageres } from 'inventaire/vues/etageres';
 import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
-import { VueFin } from 'commun/vues/fin.js';
+import { VueTerminer } from 'commun/vues/terminer.js';
 
 export class VueSituation {
   constructor (situation, journal) {
@@ -31,8 +31,9 @@ export class VueSituation {
     }, this.journal);
   }
 
-  afficheVueFin () {
-    new VueFin().affiche('.actions', $);
+  afficheVueFin ($) {
+    new VueTerminer().afficher('.actions', $);
+    $('input').prop('disabled', true);
     $('.formulaire-saisie-inventaire').addClass('succes-saisie-inventaire');
     $('.validation-inventaire').remove();
   }

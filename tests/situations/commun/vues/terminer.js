@@ -1,18 +1,23 @@
 import jsdom from 'jsdom-global';
-import { VueFin } from 'commun/vues/fin.js';
+import { VueTerminer } from 'commun/vues/terminer.js';
 
 describe('Affiche les éléments liés à la fin de la situation', function () {
-  let vueFin;
+  let vueTerminer;
   let $;
 
   beforeEach(function () {
     jsdom('<div class="actions"></div>');
     $ = jQuery(window);
-    vueFin = new VueFin();
+    vueTerminer = new VueTerminer();
   });
 
   it('affiche le message de succés', function () {
-    vueFin.affiche('.actions', $);
+    vueTerminer.afficher('.actions', $);
     expect($('.message-succes').length).to.equal(1);
+  });
+
+  it('affiche le bouton terminer', function () {
+    vueTerminer.afficher('.actions', $);
+    expect($('.bouton-terminer').length).to.equal(1);
   });
 });
