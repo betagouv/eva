@@ -1,4 +1,4 @@
-import EvenementFin from 'commun/modeles/evenement_fin';
+import { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 import { Contenant } from 'inventaire/modeles/contenant';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
@@ -160,7 +160,8 @@ describe("Le formulaire de saisie d'inventaire", function () {
   it("envoie l'événement fin a la réussite", function (done) {
     const magasin = unMagasinVide();
 
-    magasin.observe(EvenementFin, () => {
+    magasin.on(CHANGEMENT_ETAT, (etat) => {
+      expect(etat).to.eql(FINI);
       done();
     });
 

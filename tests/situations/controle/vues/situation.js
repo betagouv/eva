@@ -1,9 +1,9 @@
 import jsdom from 'jsdom-global';
 
 import { Journal } from 'commun/modeles/journal';
+import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { Situation } from 'controle/modeles/situation';
-import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import { DISPARITION_PIECE, DUREE_VIE_PIECE_INFINIE, VuePiece } from 'controle/vues/piece';
 import { VueSituation } from 'controle/vues/situation';
 
@@ -62,7 +62,7 @@ describe('La situation « Contrôle »', function () {
     });
 
     vueSituation.affiche('#point-insertion', $);
-    situation.notifie(new EvenementDemarrage());
+    situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
   it('écoute les événements de disparition de pièce', function (done) {

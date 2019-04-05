@@ -1,7 +1,6 @@
 import jsdom from 'jsdom-global';
 
-import EvenementFin from 'commun/modeles/evenement_fin';
-import SituationCommune from 'commun/modeles/situation';
+import SituationCommune, { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 import { VueCadre } from 'commun/vues/cadre';
 
 function uneVue (callbackAffichage = () => {}) {
@@ -73,7 +72,7 @@ describe('Une vue du cadre', function () {
   it('affiche la vue terminer', function () {
     const vueCadre = new VueCadre(uneVue(), situation);
     vueCadre.affiche('#point-insertion', $);
-    situation.notifie(new EvenementFin());
+    situation.emit(CHANGEMENT_ETAT, FINI);
     expect($('.actions').length).to.equal(2);
     expect($('.actions.invisible').length).to.equal(1);
   });

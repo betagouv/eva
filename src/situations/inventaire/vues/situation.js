@@ -1,3 +1,4 @@
+import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import { VueEtageres } from 'inventaire/vues/etageres';
 import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
@@ -7,8 +8,10 @@ export class VueSituation {
     this.journal = journal;
     this.situation = situation;
 
-    situation.observe(EvenementDemarrage, (evenement) => {
-      this.journal.enregistre(evenement);
+    situation.on(CHANGEMENT_ETAT, (etat) => {
+      if (etat === DEMARRE) {
+        this.journal.enregistre(new EvenementDemarrage());
+      }
     });
   }
 

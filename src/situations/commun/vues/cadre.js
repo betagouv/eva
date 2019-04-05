@@ -1,5 +1,5 @@
 import 'commun/styles/cadre.scss';
-import EvenementFin from 'commun/modeles/evenement_fin';
+import { FINI, CHANGEMENT_ETAT } from 'commun/modeles/situation';
 import { VueActions } from 'commun/vues/actions';
 import { VueConsigne } from 'commun/vues/consigne';
 import { VueGo } from 'commun/vues/go';
@@ -26,9 +26,11 @@ export class VueCadre {
     this.vueActions.affiche(selecteurCadre, $);
     this.vueConsigne.affiche(selecteurCadre);
     this.vueGo.affiche(selecteurCadre, $);
-    this.situation.observe(EvenementFin, () => {
-      this.vueActions.cache($);
-      this.vueTerminer.affiche(selecteurCadre, $);
+    this.situation.on(CHANGEMENT_ETAT, (etat) => {
+      if (etat === FINI) {
+        this.vueActions.cache($);
+        this.vueTerminer.affiche(selecteurCadre, $);
+      }
     });
   }
 }

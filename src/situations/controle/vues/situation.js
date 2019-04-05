@@ -1,7 +1,7 @@
 import { Bac } from 'controle/modeles/bac';
+import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_piece';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
-import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import { VueBac } from 'controle/vues/bac';
 import { VuePiece, DISPARITION_PIECE } from 'controle/vues/piece';
 
@@ -43,8 +43,10 @@ export class VueSituation {
 
     this._bacs.forEach(afficheBac);
 
-    this.situation.observe(EvenementDemarrage, () => {
-      this.demarre(pointInsertion, $);
+    this.situation.on(CHANGEMENT_ETAT, (etat) => {
+      if (etat === DEMARRE) {
+        this.demarre(pointInsertion, $);
+      }
     });
   }
 

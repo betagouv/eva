@@ -1,5 +1,5 @@
 import { traduction } from 'commun/infra/internationalisation';
-import EvenementFin from 'commun/modeles/evenement_fin';
+import { FINI } from 'commun/modeles/situation';
 import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
@@ -74,7 +74,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
       journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation: saisieValide, reponses }));
       if (reussite) {
         afficheVueSucces();
-        situation.notifie(new EvenementFin());
+        situation.modifieEtat(FINI);
       }
     });
 
