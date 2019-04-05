@@ -10,7 +10,7 @@ describe('La situation « Inventaire »', function () {
   let vue;
 
   beforeEach(function () {
-    jsdom('<div id="situation"></div>');
+    jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
     mockJournal = {
       enregistre: () => {}
@@ -20,11 +20,11 @@ describe('La situation « Inventaire »', function () {
   });
 
   it('affiche les étagères', function () {
-    expect($('#situation .etageres').length).to.equal(0);
+    expect($('#point-insertion .etageres').length).to.equal(0);
 
-    vue.affiche('#situation', $);
+    vue.affiche('#point-insertion', $);
 
-    expect($('#situation .etageres').length).to.equal(1);
+    expect($('#point-insertion .etageres').length).to.equal(1);
   });
 
   it("incrit le journal à l'événement démarrage", function (done) {

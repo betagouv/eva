@@ -16,21 +16,21 @@ describe('La situation « Contrôle »', function () {
   let $;
 
   beforeEach(function () {
-    jsdom('<div id="situation-controle"></div>');
+    jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
   });
 
   it('affiche les bacs et le tapis', function () {
     const vueSituation = vueSituationMinimaliste();
-    expect($('#situation-controle .bac.pieces-conformes').length).to.equal(0);
-    expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(0);
+    expect($('#point-insertion .bac.pieces-conformes').length).to.equal(0);
+    expect($('#point-insertion .bac.pieces-defectueuses').length).to.equal(0);
 
-    vueSituation.affiche('#situation-controle', $);
+    vueSituation.affiche('#point-insertion', $);
 
-    expect($('#situation-controle').hasClass('controle')).to.be(true);
-    expect($('#situation-controle .bac.pieces-conformes').length).to.equal(1);
-    expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(1);
-    expect($('#situation-controle .tapis').length).to.equal(1);
+    expect($('#point-insertion').hasClass('controle')).to.be(true);
+    expect($('#point-insertion .bac.pieces-conformes').length).to.equal(1);
+    expect($('#point-insertion .bac.pieces-defectueuses').length).to.equal(1);
+    expect($('#point-insertion .tapis').length).to.equal(1);
   });
 
   it('connaît les bacs associés à la vue', function () {
@@ -61,7 +61,7 @@ describe('La situation « Contrôle »', function () {
       if (nbPiecesAffichees >= 2) { done(); }
     });
 
-    vueSituation.affiche('#situation-controle', $);
+    vueSituation.affiche('#point-insertion', $);
     situation.notifie(new EvenementDemarrage());
   });
 
@@ -87,7 +87,7 @@ describe('La situation « Contrôle »', function () {
       setTimeout(() => { vuePiece.emit(DISPARITION_PIECE, { position: { x: 45, y: 5 } }); });
       return vuePiece;
     };
-    vueSituation.affiche('#situation-controle', $);
-    vueSituation.demarre('#situation-controle', $);
+    vueSituation.affiche('#point-insertion', $);
+    vueSituation.demarre('#point-insertion', $);
   });
 });
