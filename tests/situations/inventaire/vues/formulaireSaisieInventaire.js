@@ -132,7 +132,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it("valide la saisie d'inventaire avec succès", function () {
-    let magasin = unMagasin().avecCommeReferences(
+    const magasin = unMagasin().avecCommeReferences(
       { idProduit: '0', nom: 'Nova Sky' }
     ).avecEnStock(
       new Contenant({ idContenu: '0', quantite: 12 })
@@ -145,8 +145,8 @@ describe("Le formulaire de saisie d'inventaire", function () {
     };
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
-    let $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
-    let $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
+    const $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
+    const $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
 
     $zoneSaisieInventaire.val(12);
     $boutonValidationSaisie.click();
