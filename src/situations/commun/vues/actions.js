@@ -9,13 +9,13 @@ export class VueActions {
   }
 
   affiche (pointInsertion, $) {
-    const $actions = $('<div class="actions"></div>');
-    const stop = new VueStop($actions, $, this.journal);
+    this.$actions = $('<div class="actions"></div>');
+    const stop = new VueStop(this.$actions, $, this.journal);
     stop.affiche();
-    $(pointInsertion).append($actions);
+    $(pointInsertion).append(this.$actions);
   }
 
-  cache ($) {
-    $('.actions').addClass('invisible');
+  cache () {
+    this.$actions.addClass('invisible');
   }
 }

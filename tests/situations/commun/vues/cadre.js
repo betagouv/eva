@@ -1,6 +1,8 @@
+/* global HTMLMediaElement */
+
 import jsdom from 'jsdom-global';
 
-import SituationCommune, { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
+import SituationCommune, { CHANGEMENT_ETAT, NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI } from 'commun/modeles/situation';
 import { VueCadre } from 'commun/vues/cadre';
 
 function uneVue (callbackAffichage = () => {}) {
@@ -55,18 +57,29 @@ describe('Une vue du cadre', function () {
     expect($('#cadre .actions').length).to.equal(1);
   });
 
-  it('affiche la consigne audio', function () {
+  it("affiche le bouton play dans l'état NON_DEMARRE", function () {
+    situation.modifieEtat(NON_DEMARRE);
     const vueCadre = new VueCadre(uneVue(), situation);
     vueCadre.affiche('#point-insertion', $);
 
-    expect($('#cadre #consigne').length).to.equal(1);
+    expect($('#cadre .bouton-lire-consigne-demarrage').length).to.equal(1);
   });
 
-  it("affiche l'overlay de démarrage", function () {
+  it("affiche la consigne dans l'état LECTURE_CONSIGNE", function () {
+    situation.modifieEtat(LECTURE_CONSIGNE);
+    HTMLMediaElement.prototype.play = () => {};
     const vueCadre = new VueCadre(uneVue(), situation);
     vueCadre.affiche('#point-insertion', $);
 
-    expect($('#cadre #overlay-go').length).to.equal(1);
+    expect($('#cadre .bouton-lecture-en-cours').length).to.equal(1);
+  });
+
+  it("affiche le bouton go dans l'état CONSIGNE_ECOUTEE", function () {
+    situation.modifieEtat(CONSIGNE_ECOUTEE);
+    const vueCadre = new VueCadre(uneVue(), situation);
+    vueCadre.affiche('#point-insertion', $);
+
+    expect($('#cadre .bouton-go').length).to.equal(1);
   });
 
   it('affiche la vue terminer', function () {

@@ -1,32 +1,28 @@
+import { CONSIGNE_ECOUTEE } from 'commun/modeles/situation';
+import VueActionOverlay from './action_overlay';
+import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 
-export class VueConsigne {
-  constructor (sonConsigneDemarrage) {
-    this.sonConsigneDemarrage = sonConsigneDemarrage;
+export default class VueConsigne extends VueActionOverlay {
+  constructor (situation) {
+    super(lectureEnCours, '', 'bouton-lecture-en-cours');
+    this.situation = situation;
+    this.audio = document.createElement('audio');
+    this.audio.type = 'audio/mp3';
+    this.audio.preload = 'none';
+    this.audio.src = situation.consigneAudio;
   }
 
-  affiche (pointInsertion) {
-    this.element = document.createElement('audio');
-    this.element.type = 'audio/mp3';
-    this.element.preload = 'none';
-    this.element.src = this.sonConsigneDemarrage;
-    document.querySelector(pointInsertion).appendChild(this.element);
-
-    this.element.id = 'consigne';
-    this.element.addEventListener('ended', () => {
-      this.actionFinConsigne();
-    });
-  }
-
-  jouerConsigneDemarrage (actionFinConsigne, logErreur = (erreur) => {
-    console.error('Erreur à la lecture de la consigne : ' + erreur);
-  }) {
-    Promise.resolve(this.element.play())
-      .then(() => {
-        this.actionFinConsigne = actionFinConsigne;
-      })
+  affiche (pointInsertion, $) {
+    super.affiche(pointInsertion, $);
+    this.$overlay.append(this.audio);
+    $(this.audio).on('ended', this.lectureTermine.bind(this));
+    return Promise.resolve(this.audio.play())
       .catch(e => {
-        logErreur(e.message);
-        actionFinConsigne();
+        this.lectureTermine();
       });
+  }
+
+  lectureTermine () {
+    this.situation.modifieEtat(CONSIGNE_ECOUTEE);
   }
 }
