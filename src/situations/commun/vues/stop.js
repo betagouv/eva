@@ -5,7 +5,7 @@ import stop from 'commun/assets/stop.svg';
 import 'commun/styles/stop.scss';
 import { afficheFenetreModale } from 'commun/vues/modale';
 
-export class VueStop {
+export default class VueStop {
   constructor (pointInsertion, $, journal, retourAccueil = () => {
     window.location.assign('/');
   }) {

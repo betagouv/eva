@@ -1,7 +1,7 @@
 import 'commun/styles/actions.scss';
 import 'commun/styles/stop.scss';
 
-import { VueStop } from 'commun/vues/stop';
+import VueStop from 'commun/vues/stop';
 
 export default class VueActions {
   constructor (journal) {
