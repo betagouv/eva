@@ -31,6 +31,7 @@ export default class VueCadre {
     this.$ = $;
     this.afficheEtat(this.situation.etat());
     this.situation.on(CHANGEMENT_ETAT, this.afficheEtat.bind(this));
+    this.previentLaFermetureDeLaSituation($);
   }
 
   afficheEtat (etat) {
@@ -46,5 +47,14 @@ export default class VueCadre {
     if (etat === FINI) {
       this.vueActions.cache();
     }
+  }
+
+  previentLaFermetureDeLaSituation ($) {
+    $(window).on('beforeunload', (e) => {
+      if (![NON_DEMARRE, FINI].includes(this.situation.etat())) {
+        e.preventDefault();
+        return '';
+      }
+    });
   }
 }

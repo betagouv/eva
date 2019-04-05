@@ -2,7 +2,7 @@
 
 import jsdom from 'jsdom-global';
 
-import SituationCommune, { CHANGEMENT_ETAT, NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI } from 'commun/modeles/situation';
+import SituationCommune, { CHANGEMENT_ETAT, NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI } from 'commun/modeles/situation';
 import VueCadre from 'commun/vues/cadre';
 
 function uneVue (callbackAffichage = () => {}) {
@@ -88,5 +88,27 @@ describe('Une vue du cadre', function () {
     situation.emit(CHANGEMENT_ETAT, FINI);
     expect($('.actions').length).to.equal(2);
     expect($('.actions.invisible').length).to.equal(1);
+  });
+
+  it('demande une confirmation pour quitter la page lorsque la situation est démarré', function () {
+    const vueCadre = new VueCadre(uneVue(), situation);
+    vueCadre.affiche('#point-insertion', $);
+    [LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE].forEach((etat) => {
+      situation.modifieEtat(etat);
+      const event = $.Event('beforeunload');
+      $(window).trigger(event);
+      expect(event.isDefaultPrevented()).to.be.ok();
+    });
+  });
+
+  it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
+    const vueCadre = new VueCadre(uneVue(), situation);
+    vueCadre.affiche('#point-insertion', $);
+    [FINI, NON_DEMARRE].forEach((etat) => {
+      situation.modifieEtat(etat);
+      const event = $.Event('beforeunload');
+      $(window).trigger(event);
+      expect(event.isDefaultPrevented()).to.not.be.ok();
+    });
   });
 });
