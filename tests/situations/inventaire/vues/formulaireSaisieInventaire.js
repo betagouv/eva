@@ -131,6 +131,8 @@ describe("Le formulaire de saisie d'inventaire", function () {
     ).construit();
 
     let verifieValidite = function (saisieValide, reponses) {
+      expect($('.valide-saisie').length).to.equal(0);
+      expect($('.succes-saisie-inventaire').length).to.equal(1);
       expect(Array.from(saisieValide)).to.eql([
         ['0', true]
       ]);

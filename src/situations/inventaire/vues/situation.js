@@ -33,8 +33,5 @@ export class VueSituation {
 
   afficheVueFin ($) {
     new VueTerminer().afficher('.actions', $);
-    $('input').prop('disabled', true);
-    $('.formulaire-saisie-inventaire').addClass('succes-saisie-inventaire');
-    $('.validation-inventaire').remove();
   }
 }

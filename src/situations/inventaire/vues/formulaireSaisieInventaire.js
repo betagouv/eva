@@ -67,10 +67,20 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
       Array.from(saisieValide).forEach(correction => afficheCorrection(correction, $));
 
+      const reussite = Array.from(saisieValide.values()).every(v => v);
+      if (reussite) {
+        afficheVueSucces();
+      }
       callbackValidation(saisieValide, reponses);
     });
 
     return $bouton;
+  }
+
+  function afficheVueSucces () {
+    $('.valide-saisie').remove();
+    $('.formulaire-saisie-inventaire').addClass('succes-saisie-inventaire');
+    $('input').prop('disabled', true);
   }
 
   function creeZoneValidation () {
