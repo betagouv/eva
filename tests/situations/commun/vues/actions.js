@@ -23,7 +23,7 @@ describe('Affiche les éléments communs aux situations', function () {
 
   it('cache le conteneur', function () {
     vueActions.affiche('#magasin', $);
-    vueActions.cache($);
+    vueActions.cache();
     expect($('.actions.invisible').length).to.equal(1);
   });
 });

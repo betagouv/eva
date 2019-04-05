@@ -1,8 +1,9 @@
 import 'commun/styles/cadre.scss';
-import { FINI, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import { NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, CHANGEMENT_ETAT } from 'commun/modeles/situation';
 import { VueActions } from 'commun/vues/actions';
-import { VueConsigne } from 'commun/vues/consigne';
-import { VueGo } from 'commun/vues/go';
+import VueJoue from 'commun/vues/joue';
+import VueConsigne from 'commun/vues/consigne';
+import VueGo from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
 
 export class VueCadre {
@@ -10,9 +11,11 @@ export class VueCadre {
     this.vueSituation = vueSituation;
     this.situation = situation;
     this.vueActions = new VueActions(journal);
-    this.vueConsigne = new VueConsigne(situation.consigneAudio);
-    this.vueGo = new VueGo(this.vueConsigne, situation, journal);
-    this.vueTerminer = new VueTerminer();
+    this.etats = new Map();
+    this.etats.set(NON_DEMARRE, VueJoue);
+    this.etats.set(LECTURE_CONSIGNE, VueConsigne);
+    this.etats.set(CONSIGNE_ECOUTEE, VueGo);
+    this.etats.set(FINI, VueTerminer);
   }
 
   affiche (pointInsertion, $) {
@@ -22,15 +25,26 @@ export class VueCadre {
     $cadre.append($('<div class="scene"></div>'));
     this.vueSituation.affiche('.scene', $);
 
-    const selecteurCadre = '#cadre';
-    this.vueActions.affiche(selecteurCadre, $);
-    this.vueConsigne.affiche(selecteurCadre);
-    this.vueGo.affiche(selecteurCadre, $);
-    this.situation.on(CHANGEMENT_ETAT, (etat) => {
-      if (etat === FINI) {
-        this.vueActions.cache($);
-        this.vueTerminer.affiche(selecteurCadre, $);
-      }
-    });
+    this.selecteurCadre = '#cadre';
+    this.vueActions.affiche(this.selecteurCadre, $);
+
+    this.$ = $;
+    this.afficheEtat(this.situation.etat());
+    this.situation.on(CHANGEMENT_ETAT, this.afficheEtat.bind(this));
+  }
+
+  afficheEtat (etat) {
+    if (this.etat) {
+      this.etat.cache();
+      this.etat = null;
+    }
+    const Classe = this.etats.get(etat);
+    if (Classe) {
+      this.etat = new Classe(this.situation);
+      this.etat.affiche(this.selecteurCadre, this.$);
+    }
+    if (etat === FINI) {
+      this.vueActions.cache();
+    }
   }
 }
