@@ -11,11 +11,17 @@ import { Situation } from 'controle/modeles/situation';
 import { VueSituation } from 'controle/vues/situation';
 import sonConsigneDemarrage from 'controle/assets/consigne_demarrage.mp3';
 
+import { scenario } from 'controle/data/pieces';
+
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'controle', new DepotJournal());
+<<<<<<< HEAD
+=======
+console.log(scenario);
+>>>>>>> intègre la séquence de biscuit préféfinie
   const situation = new Situation({
-    scenario: [true, false, true],
+    scenario: scenario,
     cadence: 3000,
     positionApparitionPieces: { x: 100, y: 70 },
     dureeViePiece: 12000,
