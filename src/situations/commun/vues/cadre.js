@@ -1,7 +1,7 @@
 import 'commun/styles/cadre.scss';
 import EvenementFin from 'commun/modeles/evenement_fin';
+import VueAudio from 'commun/vues/audio';
 import { VueActions } from 'commun/vues/actions';
-import { VueConsigne } from 'commun/vues/consigne';
 import { VueGo } from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
 
@@ -10,7 +10,7 @@ export class VueCadre {
     this.vueSituation = vueSituation;
     this.situation = situation;
     this.vueActions = new VueActions(journal);
-    this.vueConsigne = new VueConsigne(situation.consigneAudio);
+    this.vueConsigne = new VueAudio(situation.consigneAudio);
     this.vueGo = new VueGo(this.vueConsigne, situation, journal);
     this.vueTerminer = new VueTerminer();
   }

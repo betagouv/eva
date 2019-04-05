@@ -1,14 +1,14 @@
 
-export class VueConsigne {
-  constructor (sonConsigneDemarrage) {
-    this.sonConsigneDemarrage = sonConsigneDemarrage;
+export default class VueAudio {
+  constructor (son) {
+    this.son = son;
   }
 
   affiche (pointInsertion) {
     this.element = document.createElement('audio');
     this.element.type = 'audio/mp3';
     this.element.preload = 'none';
-    this.element.src = this.sonConsigneDemarrage;
+    this.element.src = this.son;
     document.querySelector(pointInsertion).appendChild(this.element);
 
     this.element.id = 'consigne';
@@ -17,7 +17,7 @@ export class VueConsigne {
     });
   }
 
-  jouerConsigneDemarrage (actionFinConsigne, logErreur = (erreur) => {
+  joue (actionFinConsigne, logErreur = (erreur) => {
     console.error('Erreur à la lecture de la consigne : ' + erreur);
   }) {
     Promise.resolve(this.element.play())

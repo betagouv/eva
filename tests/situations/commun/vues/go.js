@@ -6,8 +6,8 @@ import Situation from 'commun/modeles/situation';
 
 describe('vue Go', function () {
   let vue;
-  let mockVueConsigne = {
-    jouerConsigneDemarrage () {}
+  let mockVueAudio = {
+    joue () {}
   };
   let situation;
   let $;
@@ -16,7 +16,7 @@ describe('vue Go', function () {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     situation = new Situation();
-    vue = new VueGo(mockVueConsigne, situation);
+    vue = new VueGo(mockVueAudio, situation);
   });
 
   it('affiche un bouton "lire la consigne" et le texte associé', function () {
@@ -40,7 +40,7 @@ describe('vue Go', function () {
     const $overlay = $('#overlay-go');
     expect($overlay.attr('class')).to.not.contain('clair');
 
-    mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
+    mockVueAudio.joue = (actionFinConsigne) => {
       expect($bouton.attr('class')).to.contain('bouton-lecture-en-cours');
       expect($overlay.attr('class')).to.contain('clair');
       expect($message.text()).to.eql('');
@@ -55,7 +55,7 @@ describe('vue Go', function () {
 
     const $bouton = $('.bouton-centre', '#overlay-go');
 
-    mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
+    mockVueAudio.joue = (actionFinConsigne) => {
       actionFinConsigne();
     };
 

@@ -18,7 +18,7 @@ export class VueGo {
         click: () => {
           this.afficheEtat(this.etats.lectureEnCours);
 
-          this.vueConsigne.jouerConsigneDemarrage(() => {
+          this.vueConsigne.joue(() => {
             this.afficheEtat(this.etats.go);
           });
         }

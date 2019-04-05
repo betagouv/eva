@@ -1,14 +1,14 @@
 /* global Event */
 
-import { VueConsigne } from 'commun/vues/consigne';
+import VueAudio from 'commun/vues/audio';
 import jsdom from 'jsdom-global';
 
-describe('vue consigne', function () {
+describe('vue audio', function () {
   let vue;
 
   beforeEach(function () {
     jsdom('<div id="pointInsertion"></div>');
-    vue = new VueConsigne('chemin_vers_la_consigne');
+    vue = new VueAudio('chemin_vers_le_fichier_son');
     vue.affiche('#pointInsertion');
     vue.element.play = () => {
       return new Promise(function (resolve, reject) {
@@ -23,24 +23,24 @@ describe('vue consigne', function () {
     expect(vue.element.tagName).to.equal('AUDIO');
   });
 
-  it('sait jouer la consigne de démarrage', (done) => {
-    vue.jouerConsigneDemarrage(() => {
+  it('sait jouer son fichier son', (done) => {
+    vue.joue(() => {
       done();
     });
-    expect(vue.element.src).to.equal('chemin_vers_la_consigne');
+    expect(vue.element.src).to.equal('chemin_vers_le_fichier_son');
     setTimeout(() => {
       vue.element.dispatchEvent(new Event('ended'));
     });
   });
 
-  it('affiche directement le bouton Go si la consigne ne peut pas être jouée', function (done) {
+  it('passe directement a la suite si le son ne peut pas être jouée', function (done) {
     vue.element.play = () => {
       return new Promise(function (resolve, reject) {
         reject(new Error('Le fichier audio ne peut pas être joué'));
       });
     };
 
-    vue.jouerConsigneDemarrage(() => {
+    vue.joue(() => {
       done();
     }, (erreur) => {
       expect(erreur).to.equal('Le fichier audio ne peut pas être joué');
