@@ -2,10 +2,11 @@ export const PIECE_CONFORME = true;
 export const PIECE_DEFECTUEUSE = false;
 
 export class Piece {
-  constructor ({ x, y, conforme }) {
+  constructor ({ x, y, conforme, image }) {
     this.x = x;
     this.y = y;
     this.conforme = conforme;
+    this.image = image;
     this.selectionnee = false;
     this.abonnes = [];
   }

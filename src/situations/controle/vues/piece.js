@@ -1,7 +1,6 @@
 import EventEmitter from 'events';
 
 import 'controle/styles/piece.scss';
-import { imagePieceConforme, imagesPiecesNonConformes } from 'controle/data/pieces';
 
 export const DUREE_VIE_PIECE_INFINIE = undefined;
 export const DISPARITION_PIECE = 'disparition';
@@ -28,21 +27,11 @@ export class VuePiece extends EventEmitter {
   }
 
   affiche (pointInsertion, $) {
-    function creeElementPiece (pieceConforme, position, dimensionsElementParent) {
-      let classeConformite = pieceConforme ? 'conforme' : 'defectueuse';
-      let $piece = $(`<img class="piece ${classeConformite}" src="${imagePiece(pieceConforme)}">`);
-      metsAJourPosition($piece, position, dimensionsElementParent);
+    function creeElementPiece (piece, dimensionsElementParent) {
+      let classeConformite = piece.estConforme() ? 'conforme' : 'defectueuse';
+      let $piece = $(`<img class="piece ${classeConformite}" src="${piece.image}">`);
+      metsAJourPosition($piece, piece.position(), dimensionsElementParent);
       return $piece;
-    }
-
-    function imagePiece (pieceConforme) {
-      if (pieceConforme) return imagePieceConforme;
-
-      return imageNonConformeAuHasard();
-    }
-
-    function imageNonConformeAuHasard () {
-      return imagesPiecesNonConformes[Math.floor(Math.random() * imagesPiecesNonConformes.length)];
     }
 
     function metsAJourPosition ($piece, { x, y }, { largeurParent, hauteurParent }) {
@@ -55,8 +44,7 @@ export class VuePiece extends EventEmitter {
       largeurParent: $elementParent.width(),
       hauteurParent: $elementParent.height()
     };
-    const $piece = creeElementPiece(
-      this.piece.estConforme(), this.piece.position(), dimensionsElementParent);
+    const $piece = creeElementPiece(this.piece, dimensionsElementParent);
 
     $piece.mousedown(e => {
       $piece.stop(true);
