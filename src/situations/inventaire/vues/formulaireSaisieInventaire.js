@@ -26,6 +26,7 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
 export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, callbackValidation, journal) {
   let produits = situation.produitsEnStock();
   let inventaireReference = situation.inventaireReference();
+  let reussite = false;
 
   function creeItem (idProduit, produit) {
     return $(`
@@ -67,7 +68,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
       Array.from(saisieValide).forEach(correction => afficheCorrection(correction, $));
 
-      const reussite = Array.from(saisieValide.values()).every(v => v);
+      reussite = Array.from(saisieValide.values()).every(v => v);
       if (reussite) {
         afficheVueSucces();
       }
@@ -107,6 +108,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     $overlay.append($formulaireSaisie);
 
     function basculeVisibiliteFormulaire () {
+      if (reussite) return;
       if ($overlay.hasClass('invisible')) {
         journal.enregistre(new EvenementOuvertureSaisieInventaire());
       }
