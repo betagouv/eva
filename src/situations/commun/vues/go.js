@@ -61,6 +61,11 @@ export class VueGo {
     this.$bouton.html(`<img src='${parametres.image}'>`);
     this.$bouton.off('click');
     this.$bouton.on('click', parametres.click);
+    if (parametres.texte.length === 0) {
+      this.$overlay.addClass('clair');
+    } else {
+      this.$overlay.removeClass('clair');
+    }
     this.$message.text(parametres.texte);
   }
 

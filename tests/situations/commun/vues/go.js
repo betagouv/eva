@@ -37,9 +37,12 @@ describe('vue Go', function () {
 
     const $message = $('.message', '#overlay-go');
     const $bouton = $('.bouton-centre', '#overlay-go');
+    const $overlay = $('#overlay-go');
+    expect($overlay.attr('class')).to.not.contain('clair');
 
     mockVueConsigne.jouerConsigneDemarrage = (actionFinConsigne) => {
       expect($bouton.attr('class')).to.contain('bouton-lecture-en-cours');
+      expect($overlay.attr('class')).to.contain('clair');
       expect($message.text()).to.eql('');
       done();
     };
@@ -60,6 +63,7 @@ describe('vue Go', function () {
 
     const $message = $('.message', '#overlay-go');
     expect($message.text()).to.eql(traduction('situation.go'));
+    expect($('#overlay-go').attr('class')).to.not.contain('clair');
   });
 
   it("masque l'overlay et le bouton une fois le jeu démarré", function () {
