@@ -6,7 +6,7 @@ import VueConsigne from 'commun/vues/consigne';
 import VueGo from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
 
-export class VueCadre {
+export default class VueCadre {
   constructor (vueSituation, situation, journal) {
     this.vueSituation = vueSituation;
     this.situation = situation;
