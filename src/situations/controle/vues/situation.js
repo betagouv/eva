@@ -8,13 +8,13 @@ import { VuePiece, DISPARITION_PIECE } from 'controle/vues/piece';
 export class VueSituation {
   constructor (situation, journal, callbackApresCreationPiece) {
     function nouveauBac (categorie, { x, y }) {
-      return new Bac({ categorie, x, y, largeur: 30, hauteur: 40 });
+      return new Bac({ categorie, x, y, largeur: 24.2, hauteur: 44 });
     }
 
     function creeBacs () {
       const bacs = [];
-      bacs.push(nouveauBac(PIECE_CONFORME, { x: 10, y: 10 }));
-      bacs.push(nouveauBac(PIECE_DEFECTUEUSE, { x: 60, y: 10 }));
+      bacs.push(nouveauBac(PIECE_CONFORME, { x: 15.6, y: 12 }));
+      bacs.push(nouveauBac(PIECE_DEFECTUEUSE, { x: 60, y: 12 }));
       return bacs;
     }
 
@@ -38,6 +38,7 @@ export class VueSituation {
       vueBac.affiche(pointInsertion, $);
     }
 
+    $(pointInsertion).addClass('controle');
     this._bacs.forEach(afficheBac);
 
     this.situation.observe(EvenementDemarrage, () => {
