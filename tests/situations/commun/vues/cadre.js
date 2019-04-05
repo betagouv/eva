@@ -11,20 +11,27 @@ describe('Une vue du cadre', function () {
   let situation;
 
   beforeEach(function () {
-    jsdom('<div id="une-situation"></div>');
+    jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
     situation = {
       consigneAudio: 'chemin_vers_la_consigne_audio'
     };
   });
 
-  it("Affiche une scene comme point d'insertion de la vue situation", function () {
-    const vueSituation = uneVue();
-    const vueCadre = new VueCadre(vueSituation, situation);
-    expect($('#une-situation .scene').length).to.equal(0);
+  it("Crée l'élément cadre", function () {
+    const vueCadre = new VueCadre(uneVue(), situation);
+    expect($('#point-insertion #cadre').length).to.equal(0);
 
-    vueCadre.affiche('#une-situation', $);
-    expect($('#une-situation .scene').length).to.equal(1);
+    vueCadre.affiche('#point-insertion', $);
+    expect($('#point-insertion #cadre.conteneur').length).to.equal(1);
+  });
+
+  it("Affiche une scene comme point d'insertion de la vue situation", function () {
+    const vueCadre = new VueCadre(uneVue(), situation);
+    expect($('#cadre .scene').length).to.equal(0);
+
+    vueCadre.affiche('#point-insertion', $);
+    expect($('#cadre .scene').length).to.equal(1);
   });
 
   it('affiche une situation donnée', function (done) {
@@ -34,27 +41,27 @@ describe('Une vue du cadre', function () {
       done();
     });
     const vueCadre = new VueCadre(vueSituation, situation);
-    vueCadre.affiche('#une-situation', $);
+    vueCadre.affiche('#point-insertion', $);
   });
 
   it("affiche la barre d'action", function () {
     const vueCadre = new VueCadre(uneVue(), situation);
-    vueCadre.affiche('#une-situation', $);
+    vueCadre.affiche('#point-insertion', $);
 
-    expect($('.actions').length).to.equal(1);
+    expect($('#cadre .actions').length).to.equal(1);
   });
 
   it('affiche la consigne audio', function () {
     const vueCadre = new VueCadre(uneVue(), situation);
-    vueCadre.affiche('#une-situation', $);
+    vueCadre.affiche('#point-insertion', $);
 
-    expect($('#consigne').length).to.equal(1);
+    expect($('#cadre #consigne').length).to.equal(1);
   });
 
   it("affiche l'overlay de démarrage", function () {
     const vueCadre = new VueCadre(uneVue(), situation);
-    vueCadre.affiche('#une-situation', $);
+    vueCadre.affiche('#point-insertion', $);
 
-    expect($('#overlay-go').length).to.equal(1);
+    expect($('#cadre #overlay-go').length).to.equal(1);
   });
 });

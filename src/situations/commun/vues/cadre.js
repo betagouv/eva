@@ -12,12 +12,15 @@ export class VueCadre {
   }
 
   affiche (pointInsertion, $) {
-    const $scene = $('<div class="scene"></div>');
-    $(pointInsertion).append($scene);
-    this.vueSituation.affiche('.scene', $);
-    this.vueActions.affiche(pointInsertion, $);
+    const $cadre = $('<div id="cadre" class="conteneur"></div>');
+    $(pointInsertion).append($cadre);
 
-    this.vueConsigne.affiche(pointInsertion);
-    this.vueGo.affiche(pointInsertion, $);
+    $cadre.append($('<div class="scene"></div>'));
+    this.vueSituation.affiche('.scene', $);
+
+    const selecteurCadre = '#cadre';
+    this.vueActions.affiche(selecteurCadre, $);
+    this.vueConsigne.affiche(selecteurCadre);
+    this.vueGo.affiche(selecteurCadre, $);
   }
 }
