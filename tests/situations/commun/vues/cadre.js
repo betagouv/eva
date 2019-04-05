@@ -3,7 +3,7 @@
 import jsdom from 'jsdom-global';
 
 import SituationCommune, { CHANGEMENT_ETAT, NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI } from 'commun/modeles/situation';
-import { VueCadre } from 'commun/vues/cadre';
+import VueCadre from 'commun/vues/cadre';
 
 function uneVue (callbackAffichage = () => {}) {
   return { affiche: callbackAffichage };

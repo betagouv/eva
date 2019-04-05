@@ -4,7 +4,7 @@ import 'controle/styles/app.scss';
 
 import { DepotJournal } from 'commun/infra/depot_journal';
 import { Journal } from 'commun/modeles/journal';
-import { VueCadre } from 'commun/vues/cadre';
+import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
 import { Situation } from 'controle/modeles/situation';
