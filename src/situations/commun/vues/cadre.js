@@ -1,6 +1,6 @@
 import 'commun/styles/cadre.scss';
 import { NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, CHANGEMENT_ETAT } from 'commun/modeles/situation';
-import { VueActions } from 'commun/vues/actions';
+import VueActions from 'commun/vues/actions';
 import VueJoue from 'commun/vues/joue';
 import VueConsigne from 'commun/vues/consigne';
 import VueGo from 'commun/vues/go';
