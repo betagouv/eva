@@ -29,6 +29,7 @@ describe('La situation « Contrôle »', function () {
 
     expect($('#situation-controle .bac.pieces-conformes').length).to.equal(1);
     expect($('#situation-controle .bac.pieces-defectueuses').length).to.equal(1);
+    expect($('#situation-controle').hasClass('controle')).to.be(true);
   });
 
   it('connaît les bacs associés à la vue', function () {
