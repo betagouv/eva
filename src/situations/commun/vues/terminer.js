@@ -10,4 +10,6 @@ export default class VueTerminer {
     $actions.append(`<div class='message-succes'>${traduction('situation.reussite')}</div>`);
     $(pointInsertion).append($actions);
   }
+
+  cache () {}
 }
