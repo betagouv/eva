@@ -4,6 +4,7 @@ import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_pi
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { VueBac } from 'controle/vues/bac';
 import { VuePiece, DISPARITION_PIECE } from 'controle/vues/piece';
+import VueTapis from 'controle/vues/tapis';
 
 export class VueSituation {
   constructor (situation, journal, callbackApresCreationPiece) {
@@ -22,6 +23,7 @@ export class VueSituation {
     this.journal = journal;
     this.callbackApresCreationPiece = callbackApresCreationPiece;
     this._bacs = creeBacs();
+    this.tapis = new VueTapis(situation);
   }
 
   bacs () {
@@ -38,10 +40,10 @@ export class VueSituation {
       vueBac.affiche(pointInsertion, $);
     }
 
-    $(pointInsertion).append('<div class="tapis"></div>');
     $(pointInsertion).addClass('controle');
 
     this._bacs.forEach(afficheBac);
+    this.tapis.affiche(pointInsertion, $);
 
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {
