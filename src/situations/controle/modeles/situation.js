@@ -2,6 +2,7 @@ import { Piece } from 'controle/modeles/piece';
 import SituationCommune from 'commun/modeles/situation';
 
 export const NOUVELLE_PIECE = 'nouvellePiece';
+export const DISPARITION_PIECE = 'disparitionPiece';
 
 export class Situation extends SituationCommune {
   constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, consigneAudio }) {
@@ -45,14 +46,22 @@ export class Situation extends SituationCommune {
         return;
       }
 
-      const piece = this.pieceSuivante();
-      this._piecesEnCours.push(piece);
-      this.emit(NOUVELLE_PIECE, piece);
+      this.faitApparaitreLaNouvellePiece();
     };
     afficheProchainePiece();
     this.identifiantIntervalle = setInterval(
       afficheProchainePiece,
       this.cadence
     );
+  }
+
+  faitApparaitreLaNouvellePiece () {
+    const piece = this.pieceSuivante();
+    this._piecesEnCours.push(piece);
+    this.emit(NOUVELLE_PIECE, piece);
+    setTimeout(() => {
+      this._piecesEnCours.splice(this._piecesEnCours.indexOf(piece), 1);
+      piece.emit(DISPARITION_PIECE);
+    }, this.dureeViePiece());
   }
 }

@@ -1,10 +1,10 @@
 import { Bac } from 'controle/modeles/bac';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_piece';
-import { NOUVELLE_PIECE } from 'controle/modeles/situation';
+import { NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { VueBac } from 'controle/vues/bac';
-import { VuePiece, DISPARITION_PIECE } from 'controle/vues/piece';
+import { VuePiece } from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 
 export class VueSituation {
@@ -32,7 +32,7 @@ export class VueSituation {
   }
 
   creeVuePiece (piece) {
-    return new VuePiece(piece, this.situation.dureeViePiece(), this.callbackApresCreationPiece);
+    return new VuePiece(piece, this.callbackApresCreationPiece);
   }
 
   affiche (pointInsertion, $) {
@@ -56,8 +56,8 @@ export class VueSituation {
   demarre (pointInsertion, $) {
     this.situation.on(NOUVELLE_PIECE, (piece) => {
       const vuePiece = this.creeVuePiece(piece);
-      vuePiece.on(DISPARITION_PIECE, (e) => this.journal.enregistre(new EvenementDisparitionPiece(e)));
       vuePiece.affiche(pointInsertion, $);
+      piece.on(DISPARITION_PIECE, (e) => this.journal.enregistre(new EvenementDisparitionPiece({ position: piece.position() })));
     });
     this.situation.demarre();
   }

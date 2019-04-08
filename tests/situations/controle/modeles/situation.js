@@ -1,10 +1,11 @@
-import { Situation, NOUVELLE_PIECE } from 'controle/modeles/situation';
+import { Situation, NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
 
 function creeSituationMinimale () {
   return new Situation({
     cadence: 0,
     scenario: [{ conforme: false }],
-    positionApparitionPieces: { x: 25, y: 50 }
+    positionApparitionPieces: { x: 25, y: 50 },
+    dureeViePiece: 1
   });
 }
 
@@ -45,6 +46,17 @@ describe('La situation « Contrôle »', function () {
     const situation = creeSituationMinimale();
     situation.on(NOUVELLE_PIECE, () => {
       done();
+    });
+    situation.demarre();
+  });
+
+  it('enleve la piece des pieces en cours apres le temps défini', function (done) {
+    const situation = creeSituationMinimale();
+    situation.on(NOUVELLE_PIECE, (piece) => {
+      piece.on(DISPARITION_PIECE, () => {
+        expect(situation.piecesEnCours().length).to.eql(0);
+        done();
+      });
     });
     situation.demarre();
   });

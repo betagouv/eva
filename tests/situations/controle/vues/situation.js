@@ -1,10 +1,8 @@
 import jsdom from 'jsdom-global';
 
-import { Journal } from 'commun/modeles/journal';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { Situation } from 'controle/modeles/situation';
-import { DISPARITION_PIECE, DUREE_VIE_PIECE_INFINIE, VuePiece } from 'controle/vues/piece';
 import { VueSituation } from 'controle/vues/situation';
 
 function vueSituationMinimaliste (journal) {
@@ -47,10 +45,12 @@ describe('La situation « Contrôle »', function () {
       cadence: 0,
       scenario: [{ conforme: true, image: 'image-conforme' }, { conforme: false, image: 'image-defectueuse' }],
       positionApparitionPieces: { x: 10, y: 20 },
-      dureeViePiece: DUREE_VIE_PIECE_INFINIE
+      dureeViePiece: 1
     });
 
-    const journal = new Journal();
+    const journal = {
+      enregistre () {}
+    };
 
     let nbPiecesAffichees = 0;
     let imagesAttendues = ['image-conforme', 'image-defectueuse'];
@@ -65,7 +65,7 @@ describe('La situation « Contrôle »', function () {
     situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
-  it('écoute les événements de disparition de pièce', function (done) {
+  it('écoute les événements de disparition de pièce pour enregistrer dans le journal', function (done) {
     const situation = new Situation({
       cadence: 0,
       scenario: [true],
@@ -75,18 +75,13 @@ describe('La situation « Contrôle »', function () {
 
     const journal = {
       enregistre (e) {
-        expect(e.donnees()).to.eql({ position: { x: 45, y: 5 } });
+        expect(e.donnees()).to.eql({ position: { x: 10, y: 20 } });
         done();
       }
     };
 
     const vueSituation = new VueSituation(situation, journal, () => {});
 
-    vueSituation.creeVuePiece = (piece) => {
-      const vuePiece = new VuePiece(piece, 5, () => {}, () => {});
-      setTimeout(() => { vuePiece.emit(DISPARITION_PIECE, { position: { x: 45, y: 5 } }); });
-      return vuePiece;
-    };
     vueSituation.affiche('#point-insertion', $);
     vueSituation.demarre('#point-insertion', $);
   });

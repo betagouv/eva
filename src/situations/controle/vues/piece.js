@@ -3,9 +3,7 @@ import EventEmitter from 'events';
 import 'controle/styles/piece.scss';
 
 import { CHANGEMENT_POSITION } from 'controle/modeles/piece';
-
-export const DUREE_VIE_PIECE_INFINIE = undefined;
-export const DISPARITION_PIECE = 'disparition';
+import { DISPARITION_PIECE } from 'controle/modeles/situation';
 
 export function animationInitiale ($element) {
   $element.animate({ left: '-10%' }, 10000, 'linear');
@@ -17,13 +15,11 @@ export function animationFinale ($element, done) {
 
 export class VuePiece extends EventEmitter {
   constructor (piece,
-    dureeVie = DUREE_VIE_PIECE_INFINIE,
     callbackApresApparition = animationInitiale,
     callbackAvantSuppression = animationFinale) {
     super();
 
     this.piece = piece;
-    this.dureeVie = dureeVie;
     this.callbackApresApparition = callbackApresApparition;
     this.callbackAvantSuppression = callbackAvantSuppression;
   }
@@ -76,13 +72,10 @@ export class VuePiece extends EventEmitter {
     $elementParent.append($piece);
     $piece.show(() => { this.callbackApresApparition($piece); });
 
-    if (this.dureeVie !== DUREE_VIE_PIECE_INFINIE) {
-      setTimeout(() => {
-        this.callbackAvantSuppression($piece, () => {
-          $piece.remove();
-          this.emit(DISPARITION_PIECE, { position: this.piece.position() });
-        });
-      }, this.dureeVie);
-    }
+    this.piece.on(DISPARITION_PIECE, () => {
+      this.callbackAvantSuppression($piece, () => {
+        $piece.remove();
+      });
+    });
   }
 }
