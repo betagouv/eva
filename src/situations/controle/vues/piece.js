@@ -28,8 +28,7 @@ export class VuePiece extends EventEmitter {
 
   affiche (pointInsertion, $) {
     function creeElementPiece (piece, dimensionsElementParent) {
-      let classeConformite = piece.estConforme() ? 'conforme' : 'defectueuse';
-      let $piece = $(`<img class="piece ${classeConformite}" src="${piece.image}">`);
+      let $piece = $(`<img class="piece" src="${piece.image}">`);
       metsAJourPosition($piece, piece.position(), dimensionsElementParent);
       return $piece;
     }
