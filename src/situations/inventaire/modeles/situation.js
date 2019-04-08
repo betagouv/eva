@@ -15,13 +15,11 @@ function inventaireProduits ({ contenants, contenus }) {
 
   var resultat = new Map();
   inventaire.forEach(function (quantite, clefProduit) {
-    const { nom, image, forme, position } = contenus[clefProduit];
-    resultat.set(clefProduit, { nom, image, quantite, forme, position });
+    const { nom, image, forme } = contenus[clefProduit];
+    resultat.set(clefProduit, { nom, image, quantite, forme });
   });
 
-  return new Map([...resultat.entries()].sort( (a, b) => {
-    return a[1].position - b[1].position;
-  } ));
+  return resultat;
 }
 
 function creerContenants ({ contenants, contenus }) {

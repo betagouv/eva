@@ -43,14 +43,14 @@ const contenants = [
 ];
 
 const contenus = {
-  '0': { nom: 'Vrac SKY', image: require('inventaire/assets/bidon_bleu.png'), forme: 'bidon', position: 7 },
-  '1': { nom: 'Vrac TERRA', image: require('inventaire/assets/bidon_vert.png'), forme: 'bidon', position: 8 },
-  '2': { nom: 'Premium Terra', image: require('inventaire/assets/premterra.png'), forme: 'petiteBouteille', position: 6 },
-  '3': { nom: 'Nova Sky', image: require('inventaire/assets/novasky.png'), forme: 'petiteBouteille', position: 5 },
-  '4': { nom: "Gink'cola", image: require('inventaire/assets/ginkcola.png'), forme: 'grandeBouteille', position: 2 },
-  '5': { nom: "Lem'cola", image: require('inventaire/assets/lemcola.png'), forme: 'grandeBouteille', position: 3 },
-  '6': { nom: 'Terra Cola', image: require('inventaire/assets/terracola.png'), forme: 'boiteConserve', position: 4 },
-  '7': { nom: "O'cola", image: require('inventaire/assets/ocola.png'), forme: 'grandeBouteille', position: 1 }
+  '0': { nom: 'Vrac SKY', image: require('inventaire/assets/bidon_bleu.png'), forme: 'bidon' },
+  '1': { nom: 'Vrac TERRA', image: require('inventaire/assets/bidon_vert.png'), forme: 'bidon' },
+  '2': { nom: 'Premium Terra', image: require('inventaire/assets/premterra.png'), forme: 'petiteBouteille' },
+  '3': { nom: 'Nova Sky', image: require('inventaire/assets/novasky.png'), forme: 'petiteBouteille' },
+  '4': { nom: "Gink'cola", image: require('inventaire/assets/ginkcola.png'), forme: 'grandeBouteille' },
+  '5': { nom: "Lem'cola", image: require('inventaire/assets/lemcola.png'), forme: 'grandeBouteille' },
+  '6': { nom: 'Terra Cola', image: require('inventaire/assets/terracola.png'), forme: 'boiteConserve' },
+  '7': { nom: "O'cola", image: require('inventaire/assets/ocola.png'), forme: 'grandeBouteille' }
 };
 
 const formes = {
