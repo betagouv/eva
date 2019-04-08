@@ -12,7 +12,8 @@
   "inventaire": {
     "placeholder": "Qté",
     "titre": "Stock de boissons",
-    "valider_saisie": "Vérifier"
+    "valider_saisie": "Vérifier",
+    "retour_stock": "Retour au stock"
   },
   "situation": {
     "ecouter-consigne": "Commencez par écouter la consigne",
