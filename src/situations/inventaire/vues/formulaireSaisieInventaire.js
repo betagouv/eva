@@ -96,7 +96,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
   function creeFormulaire () {
     let $formulaireSaisie = $(`
-      <form id="${ID_FORMULAIRE_SAISIE}" class="formulaire-saisie-inventaire invisible"></form>
+      <form id="${ID_FORMULAIRE_SAISIE}" autocomplete="off" class="formulaire-saisie-inventaire invisible"></form>
     `);
     let $liste = creeListe();
     let $zoneValidation = creeZoneValidation();

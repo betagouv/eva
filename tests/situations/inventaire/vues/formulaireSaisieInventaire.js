@@ -45,6 +45,10 @@ describe("Le formulaire de saisie d'inventaire", function () {
       expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(0);
     });
 
+    it("désactive l'auto completion navigateur pour éviter que les réussites précédentes ne soient proposés", function () {
+      expect($('.formulaire-saisie-inventaire').attr('autocomplete')).to.equal('off');
+    });
+
     it("journalise l'événement", function (done) {
       journal.enregistre = (evenement) => {
         expect(evenement).to.be.a(EvenementOuvertureSaisieInventaire);
