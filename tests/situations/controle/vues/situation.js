@@ -45,7 +45,7 @@ describe('La situation « Contrôle »', function () {
   it('affiche les pièces en séquence selon le scénario pré-établi', function (done) {
     const situation = new Situation({
       cadence: 0,
-      scenario: [{ conforme: true }, { conforme: false }],
+      scenario: [{ conforme: true, image: 'image-conforme' }, { conforme: false, image: 'image-defectueuse' }],
       positionApparitionPieces: { x: 10, y: 20 },
       dureeViePiece: DUREE_VIE_PIECE_INFINIE
     });
@@ -53,10 +53,10 @@ describe('La situation « Contrôle »', function () {
     const journal = new Journal();
 
     let nbPiecesAffichees = 0;
-    let classesAttendues = ['conforme', 'defectueuse'];
+    let imagesAttendues = ['image-conforme', 'image-defectueuse'];
     const vueSituation = new VueSituation(situation, journal, ($piece) => {
-      const classeAttendue = classesAttendues.shift();
-      expect($piece.hasClass(classeAttendue)).to.be(true);
+      const imageAttendue = imagesAttendues.shift();
+      expect($piece.attr('src')).to.be(imageAttendue);
       nbPiecesAffichees += 1;
       if (nbPiecesAffichees >= 2) { done(); }
     });

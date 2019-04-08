@@ -23,22 +23,6 @@ describe('Une pièce', function () {
     expect($('.piece').length).to.equal(1);
   });
 
-  it('a une classe de conformité quand la piece est conforme', function () {
-    const piece = new Piece({ x: 90, y: 40, conforme: true });
-    const vuePiece = creeVueMinimale(piece);
-    vuePiece.affiche('#controle', $);
-    expect($('.piece').hasClass('conforme')).to.be(true);
-    expect($('.piece').hasClass('defectueuse')).to.be(false);
-  });
-
-  it('a une classe de défaut quand la piece est défectueuse', function () {
-    const piece = new Piece({ x: 90, y: 40, conforme: false });
-    const vuePiece = creeVueMinimale(piece);
-    vuePiece.affiche('#controle', $);
-    expect($('.piece').hasClass('conforme')).to.be(false);
-    expect($('.piece').hasClass('defectueuse')).to.be(true);
-  });
-
   it("affiche l'image de la piece", function () {
     const piece = new Piece({ x: 90, y: 40, conforme: false, image: 'image-url' });
     const vuePiece = creeVueMinimale(piece);
