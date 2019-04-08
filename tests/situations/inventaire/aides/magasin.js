@@ -8,7 +8,7 @@ class MagasinEnDevenir {
 
   avecCommeReferences (...desContenus) {
     desContenus.forEach(c => {
-      this.contenus[c.idProduit] = { nom: c.nom, image: c.image, forme: c.forme };
+      this.contenus[c.idProduit] = { nom: c.nom, image: c.image, forme: c.forme, position: c.position };
     });
     return this;
   }
