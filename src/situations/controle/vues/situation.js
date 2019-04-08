@@ -6,6 +6,7 @@ import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { VueBac } from 'controle/vues/bac';
 import { VuePiece } from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
+import VueFondSonore from 'controle/vues/fond_sonore';
 
 export class VueSituation {
   constructor (situation, journal) {
@@ -24,6 +25,7 @@ export class VueSituation {
     this.journal = journal;
     this._bacs = creeBacs();
     this.tapis = new VueTapis(situation);
+    this.fondSonore = new VueFondSonore(situation);
   }
 
   bacs () {
@@ -44,6 +46,7 @@ export class VueSituation {
 
     this._bacs.forEach(afficheBac);
     this.tapis.affiche(pointInsertion, $);
+    this.fondSonore.affiche(pointInsertion, $);
 
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {

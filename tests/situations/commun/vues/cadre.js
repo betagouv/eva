@@ -68,6 +68,7 @@ describe('Une vue du cadre', function () {
   it("affiche la consigne dans l'état LECTURE_CONSIGNE", function () {
     situation.modifieEtat(LECTURE_CONSIGNE);
     HTMLMediaElement.prototype.play = () => {};
+    HTMLMediaElement.prototype.pause = () => {};
     const vueCadre = new VueCadre(uneVue(), situation);
     vueCadre.affiche('#point-insertion', $);
 
