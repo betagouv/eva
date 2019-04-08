@@ -62,6 +62,13 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     return reponses;
   }
 
+  function creeBoutonRetourStock () {
+    let $zoneRetour = $('<div class="retour-stock"></div>');
+    const $bouton = $(`<button type="button" class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</button>`);
+    $zoneRetour.append($bouton);
+    return $zoneRetour;
+  }
+
   function creeBoutonValidation () {
     const $bouton = $(`<button type="button" class="valide-saisie">${traduction('inventaire.valider_saisie')}</button>`);
     $bouton.click(function () {
@@ -131,4 +138,5 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   const $formulaireSaisie = creeFormulaire();
   const $boutonSaisie = creeBoutonSaisie($formulaireSaisie);
   $(pointInsertion).append($boutonSaisie);
+  $('.formulaire-saisie-inventaire').append(creeBoutonRetourStock());
 }
