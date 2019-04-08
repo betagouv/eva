@@ -1,6 +1,7 @@
 import { Bac } from 'controle/modeles/bac';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_piece';
+import { NOUVELLE_PIECE } from 'controle/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { VueBac } from 'controle/vues/bac';
 import { VuePiece, DISPARITION_PIECE } from 'controle/vues/piece';
@@ -53,21 +54,11 @@ export class VueSituation {
   }
 
   demarre (pointInsertion, $) {
-    const afficheProchainePiece = () => {
-      if (this.situation.sequenceTerminee()) {
-        clearInterval(this.identifiantIntervalle);
-        return;
-      }
-
-      const piece = this.situation.pieceSuivante();
-      let vuePiece = this.creeVuePiece(piece);
+    this.situation.on(NOUVELLE_PIECE, (piece) => {
+      const vuePiece = this.creeVuePiece(piece);
       vuePiece.on(DISPARITION_PIECE, (e) => this.journal.enregistre(new EvenementDisparitionPiece(e)));
       vuePiece.affiche(pointInsertion, $);
-    };
-    afficheProchainePiece();
-    this.identifiantIntervalle = setInterval(
-      afficheProchainePiece,
-      this.situation.cadenceArriveePieces()
-    );
+    });
+    this.situation.demarre();
   }
 }

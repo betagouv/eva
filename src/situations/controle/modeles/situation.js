@@ -1,6 +1,8 @@
 import { Piece } from 'controle/modeles/piece';
 import SituationCommune from 'commun/modeles/situation';
 
+export const NOUVELLE_PIECE = 'nouvellePiece';
+
 export class Situation extends SituationCommune {
   constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, consigneAudio }) {
     super();
@@ -9,6 +11,7 @@ export class Situation extends SituationCommune {
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
     this.consigneAudio = consigneAudio;
+    this._piecesEnCours = [];
   }
 
   cadenceArriveePieces () {
@@ -29,5 +32,27 @@ export class Situation extends SituationCommune {
       y: this.positionApparition.y,
       conforme: donneesPiece.conforme,
       image: donneesPiece.image });
+  }
+
+  piecesEnCours () {
+    return this._piecesEnCours;
+  }
+
+  demarre () {
+    const afficheProchainePiece = () => {
+      if (this.sequenceTerminee()) {
+        clearInterval(this.identifiantIntervalle);
+        return;
+      }
+
+      const piece = this.pieceSuivante();
+      this._piecesEnCours.push(piece);
+      this.emit(NOUVELLE_PIECE, piece);
+    };
+    afficheProchainePiece();
+    this.identifiantIntervalle = setInterval(
+      afficheProchainePiece,
+      this.cadence
+    );
   }
 }

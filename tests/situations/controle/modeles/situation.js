@@ -1,4 +1,12 @@
-import { Situation } from 'controle/modeles/situation';
+import { Situation, NOUVELLE_PIECE } from 'controle/modeles/situation';
+
+function creeSituationMinimale () {
+  return new Situation({
+    cadence: 0,
+    scenario: [{ conforme: false }],
+    positionApparitionPieces: { x: 25, y: 50 }
+  });
+}
 
 describe('La situation « Contrôle »', function () {
   it('connaît la cadence à laquelle arrivent les pièces', function () {
@@ -24,5 +32,20 @@ describe('La situation « Contrôle »', function () {
     expect(situation.sequenceTerminee()).to.be(true);
     expect(piece.estConforme()).to.be(false);
     expect(piece.position()).to.eql({ x: 25, y: 50 });
+  });
+
+  it('démarre la situation et ajoute la piece dans les pieces en cours', function () {
+    const situation = creeSituationMinimale();
+    expect(situation.piecesEnCours().length).to.eql(0);
+    situation.demarre();
+    expect(situation.piecesEnCours().length).to.eql(1);
+  });
+
+  it("démarre la situation et déclenche un événement a l'ajout de la piece dans les pieces en cours", function (done) {
+    const situation = creeSituationMinimale();
+    situation.on(NOUVELLE_PIECE, () => {
+      done();
+    });
+    situation.demarre();
   });
 });
