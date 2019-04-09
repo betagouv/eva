@@ -1,12 +1,15 @@
 import jsdom from 'jsdom-global';
 
-import { NON_DEMARRE, FINI } from 'commun/modeles/situation';
 import { Piece, PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
-import { Situation, NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
+import { Situation } from 'controle/modeles/situation';
 import { VueSituation } from 'controle/vues/situation';
 
+class SituationDeTest extends Situation {
+  demarre () {}
+}
+
 function vueSituationMinimaliste (journal) {
-  const situation = new Situation({ scenario: [] });
+  const situation = new SituationDeTest({ scenario: [] });
   return new VueSituation(situation, journal);
 }
 
@@ -50,6 +53,7 @@ describe('La situation « Contrôle »', function () {
   });
 
   it('écoute les événements de disparition de pièce pour enregistrer dans le journal', function (done) {
+    $.fx.off = true;
     const journal = {
       enregistre (e) {
         expect(e.donnees()).to.eql({ position: { x: 10, y: 20 } });
@@ -58,29 +62,11 @@ describe('La situation « Contrôle »', function () {
     };
     const piece = new Piece({});
     const vueSituation = vueSituationMinimaliste(journal);
-    vueSituation.situation.demarre = () => {};
 
     vueSituation.affiche('#point-insertion', $);
     vueSituation.demarre('#point-insertion', $);
-    vueSituation.situation.emit(NOUVELLE_PIECE, piece);
+    vueSituation.situation.ajoutePiece(piece);
     piece.changePosition({ x: 10, y: 20 });
-    piece.emit(DISPARITION_PIECE);
-  });
-
-  it('passe la situation en fini une fois que toutes les pieces ont disparu', function () {
-    const journal = { enregistre (e) {} };
-    const piece = new Piece({});
-    const vueSituation = vueSituationMinimaliste(journal);
-    vueSituation.situation.demarre = () => {};
-
-    vueSituation.affiche('#point-insertion', $);
-    vueSituation.demarre('#point-insertion', $);
-    vueSituation.situation.emit(NOUVELLE_PIECE, piece);
-    vueSituation.situation.piecesEnCours().push(piece);
-    piece.emit(DISPARITION_PIECE);
-    expect(vueSituation.situation.etat()).to.eql(NON_DEMARRE);
-    vueSituation.situation.piecesEnCours().pop();
-    piece.emit(DISPARITION_PIECE);
-    expect(vueSituation.situation.etat()).to.eql(FINI);
+    vueSituation.situation.faisDisparaitrePiece(piece);
   });
 });

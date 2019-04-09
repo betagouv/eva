@@ -1,4 +1,6 @@
+import { FINI } from 'commun/modeles/situation';
 import { Situation, NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
+import { Piece } from 'controle/modeles/piece';
 
 function creeSituationMinimale () {
   return new Situation({
@@ -37,9 +39,9 @@ describe('La situation « Contrôle »', function () {
 
   it('démarre la situation et ajoute la piece dans les pieces en cours', function () {
     const situation = creeSituationMinimale();
-    expect(situation.piecesEnCours().length).to.eql(0);
+    expect(situation.piecesAffichees().length).to.eql(0);
     situation.demarre();
-    expect(situation.piecesEnCours().length).to.eql(1);
+    expect(situation.piecesAffichees().length).to.eql(1);
   });
 
   it("démarre la situation et déclenche un événement a l'ajout de la piece dans les pieces en cours", function (done) {
@@ -54,10 +56,23 @@ describe('La situation « Contrôle »', function () {
     const situation = creeSituationMinimale();
     situation.on(NOUVELLE_PIECE, (piece) => {
       piece.on(DISPARITION_PIECE, () => {
-        expect(situation.piecesEnCours().length).to.eql(0);
+        expect(situation.piecesAffichees().length).to.eql(0);
         done();
       });
     });
     situation.demarre();
+  });
+
+  it('passe la situation en fini une fois que toutes les pieces ont disparu', function () {
+    const piece1 = new Piece({});
+    const piece2 = new Piece({});
+    const situation = new Situation({ scenario: [] });
+
+    situation.ajoutePiece(piece1);
+    situation.ajoutePiece(piece2);
+    situation.faisDisparaitrePiece(piece1);
+    expect(situation.etat()).to.not.eql(FINI);
+    situation.faisDisparaitrePiece(piece2);
+    expect(situation.etat()).to.eql(FINI);
   });
 });
