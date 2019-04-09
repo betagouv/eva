@@ -57,7 +57,9 @@ export class VueSituation {
     this.situation.on(NOUVELLE_PIECE, (piece) => {
       const vuePiece = this.creeVuePiece(piece);
       vuePiece.affiche(pointInsertion, $);
-      piece.on(DISPARITION_PIECE, (e) => this.journal.enregistre(new EvenementDisparitionPiece({ position: piece.position() })));
+      piece.on(DISPARITION_PIECE, (e) => {
+        this.journal.enregistre(new EvenementDisparitionPiece({ position: piece.position() }));
+      });
     });
     this.situation.demarre();
   }
