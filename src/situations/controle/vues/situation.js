@@ -1,5 +1,5 @@
 import { Bac } from 'controle/modeles/bac';
-import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
+import { CHANGEMENT_ETAT, DEMARRE, FINI } from 'commun/modeles/situation';
 import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_piece';
 import { NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
@@ -59,6 +59,9 @@ export class VueSituation {
       vuePiece.affiche(pointInsertion, $);
       piece.on(DISPARITION_PIECE, (e) => {
         this.journal.enregistre(new EvenementDisparitionPiece({ position: piece.position() }));
+        if (this.situation.piecesEnCours().length === 0 && this.situation.sequenceTerminee()) {
+          this.situation.modifieEtat(FINI);
+        }
       });
     });
     this.situation.demarre();
