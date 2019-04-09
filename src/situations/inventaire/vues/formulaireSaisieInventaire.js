@@ -62,10 +62,10 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     return reponses;
   }
 
-  function creeBoutonRetourStock () {
-    let $zoneRetour = $('<div class="retour-stock"></div>');
-    const $bouton = $(`<button type="button" class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</button>`);
-    $zoneRetour.append($bouton);
+  function creeZoneRetourStock () {
+    let $zoneRetour = $('<div class="retour-stock invisible"></div>');
+    const $boutonRetour = $(`<button type="button" class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</button>`);
+    $zoneRetour.append($boutonRetour);
     return $zoneRetour;
   }
 
@@ -117,7 +117,12 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   function creeBoutonSaisie ($formulaireSaisie) {
     const $boutonSaisie = $(`<img class="affiche-saisie" src="${boutonSaisie}">`);
     const $overlay = $('<div class="overlay invisible"></div>');
-    const $elementsCombines = $boutonSaisie.add($overlay);
+    const $zoneRetour = creeZoneRetourStock();
+    const $boutonRetour = $zoneRetour.children();
+
+    const $elementsCombines = $boutonSaisie.add($overlay).add($zoneRetour);
+    const $elementCliquables = $boutonSaisie.add($overlay).add($boutonRetour);
+
     $overlay.append($formulaireSaisie);
 
     function basculeVisibiliteFormulaire () {
@@ -126,10 +131,10 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
         journal.enregistre(new EvenementOuvertureSaisieInventaire());
       }
       basculeVisibilite($overlay);
+      basculeVisibilite($zoneRetour);
       basculeVisibilite($formulaireSaisie);
     }
-
-    $elementsCombines.click(basculeVisibiliteFormulaire);
+    $elementCliquables.click(basculeVisibiliteFormulaire);
     $formulaireSaisie.click((e) => { e.stopPropagation(); });
 
     return $elementsCombines;
@@ -138,5 +143,4 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   const $formulaireSaisie = creeFormulaire();
   const $boutonSaisie = creeBoutonSaisie($formulaireSaisie);
   $(pointInsertion).append($boutonSaisie);
-  $('.formulaire-saisie-inventaire').append(creeBoutonRetourStock());
 }

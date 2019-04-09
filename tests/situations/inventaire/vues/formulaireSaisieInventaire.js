@@ -59,6 +59,18 @@ describe("Le formulaire de saisie d'inventaire", function () {
     });
   });
 
+  describe('quand on clique sur le bouton de retour au stock', function () {
+    beforeEach(function () {
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
+      $('.affiche-saisie').click();
+    });
+
+    it('cache le formulaire', function () {
+      $('.bouton-retour-stock').click();
+      expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(1);
+    });
+  });
+
   describe("quand on clique sur l'overlay", function () {
     beforeEach(function () {
       initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
