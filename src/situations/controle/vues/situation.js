@@ -1,5 +1,6 @@
 import { Bac } from 'controle/modeles/bac';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
+import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_piece';
 import { NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
@@ -50,6 +51,7 @@ export class VueSituation {
 
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {
+        this.journal.enregistre(new EvenementDemarrage());
         this.demarre(pointInsertion, $);
       }
     });
