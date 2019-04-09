@@ -8,7 +8,7 @@ import { VuePiece } from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 
 export class VueSituation {
-  constructor (situation, journal, callbackApresCreationPiece) {
+  constructor (situation, journal) {
     function nouveauBac (categorie, { x, y }) {
       return new Bac({ categorie, x, y, largeur: 24.2, hauteur: 44 });
     }
@@ -22,7 +22,6 @@ export class VueSituation {
 
     this.situation = situation;
     this.journal = journal;
-    this.callbackApresCreationPiece = callbackApresCreationPiece;
     this._bacs = creeBacs();
     this.tapis = new VueTapis(situation);
   }
@@ -32,7 +31,7 @@ export class VueSituation {
   }
 
   creeVuePiece (piece) {
-    return new VuePiece(piece, this.callbackApresCreationPiece);
+    return new VuePiece(piece);
   }
 
   affiche (pointInsertion, $) {

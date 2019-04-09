@@ -7,7 +7,7 @@ import { VueSituation } from 'controle/vues/situation';
 
 function vueSituationMinimaliste (journal) {
   const situation = new Situation({ scenario: [] });
-  return new VueSituation(situation, journal, () => {});
+  return new VueSituation(situation, journal);
 }
 
 describe('La situation « Contrôle »', function () {
