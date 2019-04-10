@@ -1,0 +1,18 @@
+@import './bouton.scss';
+
+.barre-dev {
+  border-top: 1px solid black;
+  background-color: gray;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+
+  .bouton-go {
+    @include bouton-carre($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+  }
+
+  .bouton-fini {
+    @include bouton-carre($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+  }
+}
