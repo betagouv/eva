@@ -65,12 +65,19 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeZoneRetourStock () {
-    let $zoneRetour = $('<div class="retour-stock invisible"></div>');
+    let $zoneRetour = $('<div class="retour-stock"></div>');
     const $boutonRetour = $(`<button type="button" class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</button>`);
 
     $zoneRetour.append(`<img src='${fleche}'>`);
     $zoneRetour.append($boutonRetour);
     return $zoneRetour;
+  }
+
+  function retourStock ($formulaireSaisie) {
+    $('.bouton-retour-stock').click(function () {
+      basculeVisibilite($formulaireSaisie);
+      basculeVisibilite($formulaireSaisie.parent());
+    });
   }
 
   function creeBoutonValidation () {
@@ -114,19 +121,17 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     `);
     const $liste = creeListe();
     const $zoneValidation = creeZoneValidation();
-    $formulaireSaisie.append($liste, $zoneValidation);
+    const $zoneRetour = creeZoneRetourStock();
+
+    $formulaireSaisie.append($liste, $zoneValidation, $zoneRetour);
     return $formulaireSaisie;
   }
 
   function creeBoutonSaisie ($formulaireSaisie) {
     const $boutonSaisie = $(`<img class="affiche-saisie" src="${boutonSaisie}">`);
     const $overlay = $('<div class="overlay invisible"></div>');
-    const $zoneRetour = creeZoneRetourStock();
-    const $boutonRetour = $zoneRetour.children();
 
-    const $elementsCombines = $boutonSaisie.add($overlay).add($zoneRetour);
-    const $elementCliquables = $boutonSaisie.add($overlay).add($boutonRetour);
-
+    let $elementsCombines = $boutonSaisie.add($overlay);
     $overlay.append($formulaireSaisie);
 
     function basculeVisibiliteFormulaire () {
@@ -135,10 +140,9 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
         journal.enregistre(new EvenementOuvertureSaisieInventaire());
       }
       basculeVisibilite($overlay);
-      basculeVisibilite($zoneRetour);
       basculeVisibilite($formulaireSaisie);
     }
-    $elementCliquables.click(basculeVisibiliteFormulaire);
+    $elementsCombines.click(basculeVisibiliteFormulaire);
     $formulaireSaisie.click((e) => { e.stopPropagation(); });
 
     return $elementsCombines;
@@ -147,4 +151,5 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   const $formulaireSaisie = creeFormulaire();
   const $boutonSaisie = creeBoutonSaisie($formulaireSaisie);
   $(pointInsertion).append($boutonSaisie);
+  retourStock($formulaireSaisie);
 }
