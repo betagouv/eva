@@ -21,7 +21,8 @@ export function afficheSituation (nomSituation, modeleSituation, VueSituation, c
     const ressourcesSituation = contexte.keys().map(contexte);
     chargeurRessources.charge(ressourcesSituation);
 
-    const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, chargeurRessources);
+    const barreDev = process.env.NODE_ENV !== 'production';
+    const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, chargeurRessources, barreDev);
     vueCadre.affiche(pointInsertion, $);
   }
 

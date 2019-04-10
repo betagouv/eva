@@ -120,4 +120,18 @@ describe('Une vue du cadre', function () {
       expect(event.isDefaultPrevented()).to.not.be.ok();
     });
   });
+
+  it("crée la barre d'outils de dev", function () {
+    const vueCadre = new VueCadre(uneVue(), situation, {}, chargeurRessources, true);
+    vueCadre.affiche('#point-insertion', $);
+
+    expect($('.barre-dev').length).to.equal(1);
+  });
+
+  it("ne crée pas la barre d'outils de dev", function () {
+    const vueCadre = new VueCadre(uneVue(), situation, {}, chargeurRessources, false);
+    vueCadre.affiche('#point-insertion', $);
+
+    expect($('.barre-dev').length).to.equal(0);
+  });
 });
