@@ -118,7 +118,7 @@ module.exports = {
     }),
     ...templatesSituations,
     new webpack.ProvidePlugin({ jQuery: 'jquery' }),
-    new webpack.EnvironmentPlugin(['URL_SERVEUR']),
+    new webpack.EnvironmentPlugin(['URL_SERVEUR', 'AFFICHE_BARRE_DEV']),
     new FaviconsWebpackPlugin('./src/public/favicon.svg')
   ],
   devServer: {

@@ -7,12 +7,14 @@ import VueJoue from 'commun/vues/joue';
 import VueConsigne from 'commun/vues/consigne';
 import VueGo from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
+import VueBarreDev from 'commun/vues/barre_dev';
 
 export default class VueCadre {
-  constructor (vueSituation, situation, journal, depotRessources) {
+  constructor (vueSituation, situation, journal, depotRessources, barreDev) {
     this.vueSituation = vueSituation;
     this.situation = situation;
     this.depotRessources = depotRessources;
+    this.barreDev = barreDev;
     this.vueActions = new VueActions(situation, journal, this.depotRessources);
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
@@ -48,6 +50,10 @@ export default class VueCadre {
     this.situation.on(CHANGEMENT_ETAT, afficheEtat);
     this.previensLaFermetureDeLaSituation($);
     this.previensLeClickDroit($);
+    if (this.barreDev) {
+      const barreDev = new VueBarreDev(this.situation);
+      barreDev.affiche(pointInsertion, $);
+    }
 
     return this.depotRessources.chargement().then(() => {
       this.vueSituation.affiche('.scene', $);
