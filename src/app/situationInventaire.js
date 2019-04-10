@@ -10,6 +10,7 @@ import { Journal } from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import { VueSituation } from 'inventaire/vues/situation';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
+import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
 import consigne from 'inventaire/assets/consigne_demarrage.mp3';
 import reussite from 'inventaire/assets/reussite.mp3';
@@ -17,7 +18,7 @@ import echec from 'inventaire/assets/echec.mp3';
 
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
-  const journal = new Journal(Date.now, session, 'inventaire', new DepotJournal());
+  const journal = new Journal(Date.now, session, 'inventaire', new DepotJournal(), new RegistreUtilisateur());
 
   const situation = new Situation({ contenants, contenus },
     { consigne, reussite, echec });

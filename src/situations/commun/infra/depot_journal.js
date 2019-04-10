@@ -3,11 +3,11 @@ export class DepotJournal {
     this.$ = $;
   }
 
-  enregistre (ligne) {
+  enregistre (payload) {
     return this.$.ajax({
       type: 'POST',
       url: `${process.env.URL_SERVEUR}/api/evenements`,
-      data: JSON.stringify(this.recuperePayload(ligne)),
+      data: JSON.stringify(payload),
       contentType: 'application/json; charset=utf-8',
       retryTimeout: 60000,
       appel: this.$,
@@ -20,10 +20,5 @@ export class DepotJournal {
         }
       }
     });
-  }
-
-  recuperePayload (ligne) {
-    const { date, nom, donnees, sessionId, situation } = ligne;
-    return { date, donnees, nom, session_id: sessionId, situation };
   }
 }
