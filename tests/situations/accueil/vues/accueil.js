@@ -4,6 +4,7 @@ import { VueAccueil } from 'accueil/vues/accueil';
 
 describe('La vue accueil', function () {
   let $;
+  const registreUtilisateur = { consulte () {} };
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
@@ -15,7 +16,7 @@ describe('La vue accueil', function () {
       { nom: 'ABC', chemin: 'abc.html' },
       { nom: 'XYZ', chemin: 'xyz.html' }
     ];
-    const vueAccueil = new VueAccueil(situations);
+    const vueAccueil = new VueAccueil(situations, registreUtilisateur);
 
     vueAccueil.affiche('#accueil', $);
 
@@ -27,5 +28,11 @@ describe('La vue accueil', function () {
 
     expect($liens.eq(1).text()).to.contain('XYZ');
     expect($liens.eq(1).attr('href')).to.equal('xyz.html');
+  });
+
+  it("affiche le formulaire d'identification", function () {
+    const vueAccueil = new VueAccueil([], registreUtilisateur);
+    vueAccueil.affiche('#accueil', $);
+    expect($('#accueil #formulaire-identification').length).to.equal(1);
   });
 });
