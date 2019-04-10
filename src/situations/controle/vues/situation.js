@@ -61,7 +61,10 @@ export class VueSituation {
 
       const piece = this.situation.pieceSuivante();
       let vuePiece = this.creeVuePiece(piece);
-      vuePiece.on(DISPARITION_PIECE, (e) => this.journal.enregistre(new EvenementDisparitionPiece(e)));
+      vuePiece.on(DISPARITION_PIECE, (e) => {
+        vuePiece.verificationPositionPiece($);
+        this.journal.enregistre(new EvenementDisparitionPiece(e));
+      });
       vuePiece.affiche(pointInsertion, $);
     };
     afficheProchainePiece();

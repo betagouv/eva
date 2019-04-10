@@ -24,6 +24,7 @@ export class VuePiece extends EventEmitter {
     this.dureeVie = dureeVie;
     this.callbackApresApparition = callbackApresApparition;
     this.callbackAvantSuppression = callbackAvantSuppression;
+    this.dernierePositionConnue = '';
   }
 
   affiche (pointInsertion, $) {
@@ -59,7 +60,10 @@ export class VuePiece extends EventEmitter {
     });
 
     $piece.on('dragstart', function (event) { event.preventDefault(); });
-    $piece.mouseup(e => { this.piece.deselectionne(); });
+    $piece.mouseup(e => {
+      this.dernierePositionConnue = $piece[0].getBoundingClientRect();
+      this.piece.deselectionne();
+    });
 
     $elementParent.mousemove(e => {
       this.piece.deplaceSiSelectionnee({
@@ -71,6 +75,7 @@ export class VuePiece extends EventEmitter {
     this.piece.quandChangementPosition(function (nouvellePosition) {
       metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
     });
+
     $elementParent.append($piece);
     $piece.show(() => { this.callbackApresApparition($piece); });
 
@@ -81,6 +86,53 @@ export class VuePiece extends EventEmitter {
           this.emit(DISPARITION_PIECE, { position: this.piece.position() });
         });
       }, this.dureeVie);
+    }
+  }
+
+  verificationPositionPiece ($) {
+    function estDansLeBacConforme (coordonneesPiece, $) {
+      let coordonneesBacConforme = $('.pieces-conformes')[0].getBoundingClientRect();
+      const etat = !(coordonneesPiece.right < coordonneesBacConforme.left ||
+                    coordonneesPiece.left > coordonneesBacConforme.right ||
+                    coordonneesPiece.bottom < coordonneesBacConforme.top ||
+                    coordonneesPiece.top > coordonneesBacConforme.bottom);
+      return etat;
+    }
+
+    function estDansLeBacNonConforme (coordonneesPiece, $) {
+      let coordonneesBacNonConforme = $('.pieces-defectueuses')[0].getBoundingClientRect();
+      const etat = !(coordonneesPiece.right < coordonneesBacNonConforme.left ||
+                    coordonneesPiece.left > coordonneesBacNonConforme.right ||
+                    coordonneesPiece.bottom < coordonneesBacNonConforme.top ||
+                    coordonneesPiece.top > coordonneesBacNonConforme.bottom);
+      return etat;
+    }
+
+    function verifieLeBacConforme (bacConforme, verifieConformiteBiscuit) {
+      if (bacConforme && verifieConformiteBiscuit) {
+        return true;
+      } else if (bacConforme && !verifieConformiteBiscuit) {
+        return false;
+      }
+    }
+
+    function verifieLeBacNonConforme (bacNonConforme, verifieConformiteBiscuit) {
+      if (bacNonConforme && !verifieConformiteBiscuit) {
+        return true;
+      } else if (bacNonConforme && verifieConformiteBiscuit) {
+        return false;
+      }
+    }
+
+    const bacConforme = estDansLeBacConforme(this.dernierePositionConnue, $);
+    const bacNonConforme = estDansLeBacNonConforme(this.dernierePositionConnue, $);
+    const etatBiscuit = this.piece.image.search('biscuit-normal');
+    const verifieConformiteBiscuit = (etatBiscuit !== -1);
+
+    if (bacConforme) {
+      verifieLeBacConforme(bacConforme, verifieConformiteBiscuit);
+    } else if (bacNonConforme) {
+      verifieLeBacNonConforme(bacNonConforme, verifieConformiteBiscuit);
     }
   }
 }

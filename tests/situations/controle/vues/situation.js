@@ -68,7 +68,7 @@ describe('La situation « Contrôle »', function () {
   it('écoute les événements de disparition de pièce', function (done) {
     const situation = new Situation({
       cadence: 0,
-      scenario: [true],
+      scenario: [{ conforme: true, image: 'image-conforme' }],
       positionApparitionPieces: { x: 10, y: 20 },
       dureeViePiece: 5
     });
