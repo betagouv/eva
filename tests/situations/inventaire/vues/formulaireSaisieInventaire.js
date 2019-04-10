@@ -8,6 +8,11 @@ import { unMagasin, unMagasinVide } from '../aides/magasin';
 
 let jsdom = require('jsdom-global');
 
+const mockAudios = {
+  reussite: { play: () => {} },
+  echec: { play: () => {} }
+};
+
 describe("Le formulaire de saisie d'inventaire", function () {
   let $;
   let journal;
@@ -60,7 +65,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   describe("quand on clique sur l'overlay", function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal, mockAudios);
       $('.affiche-saisie').click();
       expect($('.overlay.invisible').length).to.equal(0);
     });
@@ -149,7 +154,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       evenement = e;
     };
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, mockAudios);
     const $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
     const $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
 
@@ -169,7 +174,27 @@ describe("Le formulaire de saisie d'inventaire", function () {
       done();
     });
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, mockAudios);
+    $('.formulaire-saisie-inventaire .valide-saisie').click();
+  });
+
+  it("joue l'audio en cas de réussite", function (done) {
+    const magasin = unMagasinVide();
+
+    const audios = { reussite: { play: done } };
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, audios);
+    $('.formulaire-saisie-inventaire .valide-saisie').click();
+  });
+
+  it("joue l'audio en cas de erreur", function (done) {
+    let magasin = unMagasin().avecCommeReferences(
+      { idProduit: '0', nom: 'Nova Sky' }
+    ).avecEnStock(
+      new Contenant({ idContenu: '0', quantite: 12 })
+    ).construit();
+
+    const audios = { echec: { play: done } };
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, audios);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 
