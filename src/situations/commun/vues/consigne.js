@@ -6,15 +6,11 @@ export default class VueConsigne extends VueActionOverlay {
   constructor (situation) {
     super(lectureEnCours, '', 'bouton-lecture-en-cours');
     this.situation = situation;
-    this.audio = document.createElement('audio');
-    this.audio.type = 'audio/mp3';
-    this.audio.preload = 'none';
-    this.audio.src = situation.consigneAudio;
+    this.audio = new window.Audio(situation.consigneAudio);
   }
 
   affiche (pointInsertion, $) {
     super.affiche(pointInsertion, $);
-    this.$overlay.append(this.audio);
     $(this.audio).on('ended', this.lectureTermine.bind(this));
     return Promise.resolve(this.audio.play())
       .catch(e => {
