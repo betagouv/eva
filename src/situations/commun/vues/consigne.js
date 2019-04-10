@@ -6,7 +6,7 @@ export default class VueConsigne extends VueActionOverlay {
   constructor (situation) {
     super(lectureEnCours, '', 'bouton-lecture-en-cours');
     this.situation = situation;
-    this.audio = new window.Audio(situation.consigneAudio);
+    this.audio = situation.consigneAudio;
   }
 
   affiche (pointInsertion, $) {

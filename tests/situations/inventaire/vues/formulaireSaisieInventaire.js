@@ -1,3 +1,5 @@
+/* global HTMLMediaElement */
+
 import { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 import { Contenant } from 'inventaire/modeles/contenant';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
@@ -7,11 +9,6 @@ import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inven
 import { unMagasin, unMagasinVide } from '../aides/magasin';
 
 let jsdom = require('jsdom-global');
-
-const mockAudios = {
-  reussite: { play: () => {} },
-  echec: { play: () => {} }
-};
 
 describe("Le formulaire de saisie d'inventaire", function () {
   let $;
@@ -23,6 +20,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     journal = {
       enregistre () {}
     };
+    HTMLMediaElement.prototype.play = () => {};
   });
 
   it("sait afficher un bouton pour saisir l'inventaire", function () {
@@ -65,7 +63,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   describe("quand on clique sur l'overlay", function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal, mockAudios);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
       $('.affiche-saisie').click();
       expect($('.overlay.invisible').length).to.equal(0);
     });
@@ -154,7 +152,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       evenement = e;
     };
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, mockAudios);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
     const $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
     const $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
 
@@ -174,27 +172,27 @@ describe("Le formulaire de saisie d'inventaire", function () {
       done();
     });
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, mockAudios);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 
   it("joue l'audio en cas de réussite", function (done) {
     const magasin = unMagasinVide();
-
-    const audios = { reussite: { play: done } };
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, audios);
+    magasin.reussite = { play: done };
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 
   it("joue l'audio en cas de erreur", function (done) {
-    let magasin = unMagasin().avecCommeReferences(
+    const magasin = unMagasin().avecCommeReferences(
       { idProduit: '0', nom: 'Nova Sky' }
     ).avecEnStock(
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
-    const audios = { echec: { play: done } };
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, audios);
+    magasin.echec = { play: done };
+
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 

@@ -25,7 +25,7 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
-export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal, audios) {
+export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal) {
   const produits = situation.produitsEnStock();
   const inventaireReference = situation.inventaireReference();
   let reussite = false;
@@ -73,11 +73,11 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
       reussite = Array.from(saisieValide.values()).every(v => v);
       journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation: saisieValide, reponses }));
       if (reussite) {
-        audios.reussite.play();
+        situation.reussite.play();
         afficheVueSucces();
         situation.modifieEtat(FINI);
       } else {
-        audios.echec.play();
+        situation.echec.play();
       }
     });
 

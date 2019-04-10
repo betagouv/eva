@@ -19,7 +19,7 @@ describe('Une vue du cadre', function () {
     situation = new class extends SituationCommune {
       constructor () {
         super();
-        this.consigneAudio = 'chemin_vers_la_consigne_audio';
+        this.consigneAudio = { play: () => {} };
       }
     }();
   });
@@ -67,7 +67,6 @@ describe('Une vue du cadre', function () {
 
   it("affiche la consigne dans l'état LECTURE_CONSIGNE", function () {
     situation.modifieEtat(LECTURE_CONSIGNE);
-    HTMLMediaElement.prototype.play = () => {};
     HTMLMediaElement.prototype.pause = () => {};
     const vueCadre = new VueCadre(uneVue(), situation);
     vueCadre.affiche('#point-insertion', $);
