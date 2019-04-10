@@ -1,7 +1,11 @@
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
+
 import { VueEtageres } from 'inventaire/vues/etageres';
 import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
+
+import sonReussite from 'inventaire/assets/reussite.mp3';
+import sonEchec from 'inventaire/assets/echec.mp3';
 
 export class VueSituation {
   constructor (situation, journal) {
@@ -19,6 +23,14 @@ export class VueSituation {
     new VueEtageres(pointInsertion, this.journal)
       .affiche(this.situation.contenants);
 
-    initialiseFormulaireSaisieInventaire(this.situation, pointInsertion, $, this.journal);
+    const reussite = new window.Audio(sonReussite);
+    const echec = new window.Audio(sonEchec);
+
+    initialiseFormulaireSaisieInventaire(this.situation,
+      pointInsertion,
+      $,
+      this.journal,
+      { reussite, echec }
+    );
   }
 }

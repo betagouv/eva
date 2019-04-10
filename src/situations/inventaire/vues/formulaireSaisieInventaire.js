@@ -73,8 +73,11 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
       reussite = Array.from(saisieValide.values()).every(v => v);
       journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation: saisieValide, reponses }));
       if (reussite) {
+        audios.reussite.play();
         afficheVueSucces();
         situation.modifieEtat(FINI);
+      } else {
+        audios.echec.play();
       }
     });
 
