@@ -13,16 +13,10 @@ describe('vue consigne', function () {
     situation = new class extends Situation {
       constructor () {
         super();
-        this.consigneAudio = 'chemin_vers_la_consigne';
+        this.consigneAudio = { play: () => Promise.resolve() };
       }
     }();
     vue = new VueConsigne(situation);
-    vue.audio.play = () => Promise.resolve();
-  });
-
-  it("cree l'audio de la consigne", () => {
-    vue.affiche('#pointInsertion', $);
-    expect(vue.audio.src).to.equal('chemin_vers_la_consigne');
   });
 
   it("change l'état a CONSIGNE_ECOUTEE une fois terminé", () => {

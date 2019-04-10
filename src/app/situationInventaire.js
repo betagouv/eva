@@ -11,12 +11,16 @@ import VueCadre from 'commun/vues/cadre';
 import { VueSituation } from 'inventaire/vues/situation';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
-import sonConsigneDemarrage from 'inventaire/assets/consigne_demarrage.mp3';
+import consigne from 'inventaire/assets/consigne_demarrage.mp3';
+import reussite from 'inventaire/assets/reussite.mp3';
+import echec from 'inventaire/assets/echec.mp3';
 
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'inventaire', new DepotJournal());
-  const situation = new Situation({ contenants, contenus }, sonConsigneDemarrage);
+
+  const situation = new Situation({ contenants, contenus },
+    { consigne, reussite, echec });
 
   const vueSituation = new VueSituation(situation, journal);
   const vueCadre = new VueCadre(vueSituation, situation, journal);

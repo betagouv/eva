@@ -5,13 +5,13 @@ export const NOUVELLE_PIECE = 'nouvellePiece';
 export const DISPARITION_PIECE = 'disparitionPiece';
 
 export class Situation extends SituationCommune {
-  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, consigneAudio }) {
+  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, sonConsigne }) {
     super();
     this.cadence = cadence;
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
-    this.consigneAudio = consigneAudio;
+    this.consigneAudio = new window.Audio(sonConsigne);
     this._piecesAffichees = [];
   }
 

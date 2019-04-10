@@ -22,7 +22,10 @@ class MagasinEnDevenir {
 
   construit () {
     let stock = { contenants: this.contenants, contenus: this.contenus };
-    return new Situation(stock);
+    return new Situation(stock,
+      { consigne: 'chemin_son_consigne',
+        reussite: 'chemin_son_reussite',
+        echec: 'chemin_son_echec' });
   }
 }
 
