@@ -125,4 +125,18 @@ describe('Une vue du cadre', function () {
     $('#cadre').trigger(contextmenu);
     expect(contextmenu.isDefaultPrevented()).to.be(true);
   });
+
+  it("crée la barre d'outils de dev", function () {
+    const vueCadre = new VueCadre(uneVue(), situation, {}, depotRessources, true);
+    vueCadre.affiche('#point-insertion', $);
+
+    expect($('.barre-dev').length).to.equal(1);
+  });
+
+  it("ne crée pas la barre d'outils de dev", function () {
+    const vueCadre = new VueCadre(uneVue(), situation, {}, depotRessources, false);
+    vueCadre.affiche('#point-insertion', $);
+
+    expect($('.barre-dev').length).to.equal(0);
+  });
 });
