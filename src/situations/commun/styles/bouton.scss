@@ -21,6 +21,12 @@
     box-shadow: inset 0px 0px 0px 3px $couleur-fond;
   }
 
+  &[disabled] {
+    opacity: .5;
+    background-color: $couleur-fond;
+    cursor: default;
+  }
+
   img {
     position: relative;
     margin: auto;

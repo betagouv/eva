@@ -2,7 +2,7 @@ import 'commun/styles/barre_dev.scss';
 
 import go from '../assets/play.svg';
 
-import { DEMARRE, FINI } from '../modeles/situation';
+import { CHANGEMENT_ETAT, ATTENTE_DEMARRAGE, DEMARRE, FINI } from '../modeles/situation';
 
 export default class VueBareDev {
   constructor (situation) {
@@ -21,5 +21,15 @@ export default class VueBareDev {
     });
     $div.append($go, $fini);
     $(pointInsertion).append($div);
+    this.situation.on(CHANGEMENT_ETAT, () => {
+      this.metAJourEtat(pointInsertion, $);
+    });
+  }
+
+  metAJourEtat (pointInsertion, $) {
+    const etat = this.situation.etat();
+
+    $('.bouton-go', pointInsertion).prop('disabled', etat !== ATTENTE_DEMARRAGE);
+    $('.bouton-fini', pointInsertion).prop('disabled', etat === FINI);
   }
 }
