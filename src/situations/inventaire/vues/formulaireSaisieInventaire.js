@@ -16,18 +16,18 @@ function basculeVisibilite ($element) {
 }
 
 export function afficheCorrection ([idProduit, reponseCorrecte], $) {
-  let $marque = reponseCorrecte
+  const $marque = reponseCorrecte
     ? $('<span class="reponse reponse-correcte">✓</span>')
     : $('<span class="reponse reponse-incorrecte">✗</span>');
-  let selecteurEmplacementMarque = `#${ID_FORMULAIRE_SAISIE} input#${idProduit}`;
+  const selecteurEmplacementMarque = `#${ID_FORMULAIRE_SAISIE} input#${idProduit}`;
 
   $(`${selecteurEmplacementMarque} + .reponse`).remove();
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
-export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal) {
-  let produits = situation.produitsEnStock();
-  let inventaireReference = situation.inventaireReference();
+export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal, audios) {
+  const produits = situation.produitsEnStock();
+  const inventaireReference = situation.inventaireReference();
   let reussite = false;
 
   function creeItem (idProduit, produit) {
@@ -45,8 +45,8 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeListe () {
-    let $liste = $('<ul></ul>');
-    let items = Array.from(produits, ([id, p]) => { return creeItem(id, p); });
+    const $liste = $('<ul></ul>');
+    const items = Array.from(produits, ([id, p]) => { return creeItem(id, p); });
     $liste.append(items);
     return $liste;
   }
@@ -55,7 +55,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     var reponses = new Map();
 
     $(`#${ID_FORMULAIRE_SAISIE} input`).each(function () {
-      let $input = $(this);
+      const $input = $(this);
       reponses.set($input.attr('id'), { quantite: $input.val() });
     });
 
@@ -88,8 +88,8 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeZoneValidation () {
-    let $zoneValidation = $('<div class="validation-inventaire"></div>');
-    let $bouton = creeBoutonValidation();
+    const $zoneValidation = $('<div class="validation-inventaire"></div>');
+    const $bouton = creeBoutonValidation();
     $zoneValidation.append($bouton);
     return $zoneValidation;
   }
@@ -98,16 +98,16 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     let $formulaireSaisie = $(`
       <form id="${ID_FORMULAIRE_SAISIE}" autocomplete="off" class="formulaire-saisie-inventaire invisible"></form>
     `);
-    let $liste = creeListe();
-    let $zoneValidation = creeZoneValidation();
+    const $liste = creeListe();
+    const $zoneValidation = creeZoneValidation();
     $formulaireSaisie.append($liste, $zoneValidation);
     return $formulaireSaisie;
   }
 
   function creeBoutonSaisie ($formulaireSaisie) {
-    let $boutonSaisie = $(`<img class="affiche-saisie" src="${boutonSaisie}">`);
-    let $overlay = $('<div class="overlay invisible"></div>');
-    let $elementsCombines = $boutonSaisie.add($overlay);
+    const $boutonSaisie = $(`<img class="affiche-saisie" src="${boutonSaisie}">`);
+    const $overlay = $('<div class="overlay invisible"></div>');
+    const $elementsCombines = $boutonSaisie.add($overlay);
     $overlay.append($formulaireSaisie);
 
     function basculeVisibiliteFormulaire () {
@@ -125,7 +125,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     return $elementsCombines;
   }
 
-  let $formulaireSaisie = creeFormulaire();
-  let $boutonSaisie = creeBoutonSaisie($formulaireSaisie);
+  const $formulaireSaisie = creeFormulaire();
+  const $boutonSaisie = creeBoutonSaisie($formulaireSaisie);
   $(pointInsertion).append($boutonSaisie);
 }
