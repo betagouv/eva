@@ -1,6 +1,9 @@
+import FormulaireIdentification from './formulaire_identification';
+
 export class VueAccueil {
-  constructor (situations) {
+  constructor (situations, registreUtilisateur) {
     this.situations = situations;
+    this.registreUtilisateur = registreUtilisateur;
   }
 
   affiche (pointInsertion, $) {
@@ -21,9 +24,10 @@ export class VueAccueil {
       $liste.append(...$elementsSituation);
       return $liste;
     }
-
+    const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     const $situations = creeElementListe(this.situations);
     $(pointInsertion).append('<h1>Compétences pro</h1>');
+    formulaireIdentification.affiche(pointInsertion, $);
     $(pointInsertion).append($situations);
   }
 }
