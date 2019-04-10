@@ -6,6 +6,7 @@ import { DepotJournal } from 'commun/infra/depot_journal';
 import { Journal } from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
+import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
 import { Situation } from 'controle/modeles/situation';
 import { VueSituation } from 'controle/vues/situation';
@@ -15,7 +16,7 @@ import { scenario } from 'controle/data/pieces';
 
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
-  const journal = new Journal(Date.now, session, 'controle', new DepotJournal());
+  const journal = new Journal(Date.now, session, 'controle', new DepotJournal(), new RegistreUtilisateur());
 
   const situation = new Situation({
     scenario: scenario,
