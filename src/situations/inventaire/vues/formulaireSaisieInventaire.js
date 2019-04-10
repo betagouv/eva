@@ -1,6 +1,8 @@
 import { traduction } from 'commun/infra/internationalisation';
 import { FINI } from 'commun/modeles/situation';
 import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
+import fleche from 'commun/assets/fleche.svg';
+
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 
@@ -65,6 +67,8 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   function creeZoneRetourStock () {
     let $zoneRetour = $('<div class="retour-stock invisible"></div>');
     const $boutonRetour = $(`<button type="button" class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</button>`);
+
+    $zoneRetour.append(`<img src='${fleche}'>`);
     $zoneRetour.append($boutonRetour);
     return $zoneRetour;
   }
