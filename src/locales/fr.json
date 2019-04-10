@@ -1,24 +1,28 @@
 {
-  "situation": {
-    "stop": "Voulez vous vraiment quitter la mission ?",
-    "modale": {
-      "ok": "OK",
-      "annuler": "annuler"
+  "accueil": {
+    "identification": {
+      "button": "OK",
+      "label": "Entrez votre nom ou pseudo"
     },
-    "ecouter-consigne": "Commencez par écouter la consigne",
-    "go": "Vous pouvez commencer",
-    "terminer": "Terminer",
-    "reussite": "C'est réussi, bravo !"
-  },
-  "inventaire": {
-    "titre": "Stock de boissons",
-    "valider_saisie": "Vérifier",
-    "placeholder": "Qté"
+    "titre": "Compétences pro"
   },
   "controle": {
     "titre": "Chaîne de fabrication"
   },
-  "accueil": {
-    "titre": "Compétences pro"
+  "inventaire": {
+    "placeholder": "Qté",
+    "titre": "Stock de boissons",
+    "valider_saisie": "Vérifier"
+  },
+  "situation": {
+    "ecouter-consigne": "Commencez par écouter la consigne",
+    "go": "Vous pouvez commencer",
+    "modale": {
+      "annuler": "annuler",
+      "ok": "OK"
+    },
+    "reussite": "C'est réussi, bravo !",
+    "stop": "Voulez vous vraiment quitter la mission ?",
+    "terminer": "Terminer"
   }
 }
