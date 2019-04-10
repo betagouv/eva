@@ -125,14 +125,14 @@
 }
 .retour-stock {
   position: absolute;
-  top: 2.187rem;
+  top: -.8rem;
   left: 0;
   text-align: center;
   width: 100%;
   img {
     width: 1.25rem;
     position: relative;
-    top: 0.31rem;
+    top: 0.26rem;
     left: 2.5rem;
     cursor: pointer;
   }
@@ -148,7 +148,6 @@
     border-top: 0.125rem solid $couleur-bordure-modale-reponse;
     outline: none;
     color: $noir;
-    transition : color 200ms ease-out;
     padding-left: 2.5rem;
   }
 }
