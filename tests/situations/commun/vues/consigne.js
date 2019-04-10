@@ -20,10 +20,8 @@ describe('vue consigne', function () {
     vue.audio.play = () => Promise.resolve();
   });
 
-  it("cree l'élément audio de la consigne", () => {
+  it("cree l'audio de la consigne", () => {
     vue.affiche('#pointInsertion', $);
-    const audio = document.querySelector('#pointInsertion audio');
-    expect(audio).to.eql(vue.audio);
     expect(vue.audio.src).to.equal('chemin_vers_la_consigne');
   });
 
