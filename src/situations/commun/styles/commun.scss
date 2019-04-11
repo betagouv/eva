@@ -37,11 +37,27 @@ h1 {
 
 .lien-source-code {
   position: absolute;
-  right: 1.5rem;
-  top: 1.5rem;
-  color: $couleur-principale-bouton;
-  opacity: 0.3;
+  right: 3.5rem;
+  top: 0;
+  color: $couleur-bordure-bouton;
+  height: 5rem;
+  width: 0;
+  padding: 0;
+  border-left: 1.5rem solid $blanc;
+  border-right: 1.5rem solid $blanc;
+  border-bottom: 1.5rem solid transparent;
+  font-size: 2.3rem;
+  transition: .2s;
+  opacity: .7;
+  & i {
+    margin-left: -1.1rem;
+    margin-top: 0.7rem;
+    transition: .2s;
+  }
   &:hover {
-    opacity: 0.5;
+    height: 6rem;
+    & i {
+      margin-top: 1.7rem;
+    }
   }
 }
