@@ -11,7 +11,7 @@ function afficheAccueil (situations, pointInsertion, $) {
 initialiseInternationalisation().then(function () {
   jQuery(function () {
     document.title = traduction('accueil.titre');
-    jQuery('body').append('<div id="accueil" class="conteneur"></div>');
+    jQuery('body').prepend('<div id="accueil" class="conteneur"></div>');
     afficheAccueil(situations(), '#accueil', jQuery);
   });
 });

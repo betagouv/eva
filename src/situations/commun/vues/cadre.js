@@ -20,7 +20,7 @@ export default class VueCadre {
 
   affiche (pointInsertion, $) {
     const $cadre = $('<div id="cadre" class="conteneur"></div>');
-    $(pointInsertion).append($cadre);
+    $(pointInsertion).prepend($cadre);
 
     $cadre.append($('<div class="scene"></div>'));
     this.vueSituation.affiche('.scene', $);
