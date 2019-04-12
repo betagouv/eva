@@ -16,21 +16,15 @@ export class VueSituation {
     }
 
     function creeBacs () {
-      const bacs = [];
-      bacs.push(nouveauBac(PIECE_CONFORME, { x: 15.6, y: 12 }));
-      bacs.push(nouveauBac(PIECE_DEFECTUEUSE, { x: 60, y: 12 }));
-      return bacs;
+      situation.ajouteBac(nouveauBac(PIECE_CONFORME, { x: 15.6, y: 12 }));
+      situation.ajouteBac(nouveauBac(PIECE_DEFECTUEUSE, { x: 60, y: 12 }));
     }
+    creeBacs();
 
     this.situation = situation;
     this.journal = journal;
-    this._bacs = creeBacs();
     this.tapis = new VueTapis(situation);
     this.fondSonore = new VueFondSonore(situation);
-  }
-
-  bacs () {
-    return this._bacs;
   }
 
   creeVuePiece (piece) {
@@ -45,7 +39,7 @@ export class VueSituation {
 
     $(pointInsertion).addClass('controle');
 
-    this._bacs.forEach(afficheBac);
+    this.situation.bacs().forEach(afficheBac);
     this.tapis.affiche(pointInsertion, $);
     this.fondSonore.affiche(pointInsertion, $);
 

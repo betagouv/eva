@@ -41,9 +41,9 @@ describe('La situation « Contrôle »', function () {
     expect($('#point-insertion .tapis').length).to.equal(1);
   });
 
-  it('connaît les bacs associés à la vue', function () {
+  it('enregistre les bacs associés à la situation', function () {
     const vueSituation = vueSituationMinimaliste();
-    const bacs = vueSituation.bacs();
+    const bacs = vueSituation.situation.bacs();
 
     expect(bacs.length).to.equal(2);
     expect(bacs[0].categorie()).to.equal(PIECE_CONFORME);
