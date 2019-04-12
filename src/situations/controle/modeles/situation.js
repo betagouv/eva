@@ -16,6 +16,7 @@ export class Situation extends SituationCommune {
     this.consigneAudio = new window.Audio(sonConsigne);
     this.audioFondSonore = new window.Audio(sonFondSonore);
     this._piecesAffichees = [];
+    this._bacs = [];
   }
 
   cadenceArriveePieces () {
@@ -32,6 +33,14 @@ export class Situation extends SituationCommune {
 
   nAPlusRienAFaire () {
     return this._piecesAffichees.length === 0 && this.sequenceTerminee();
+  }
+
+  bacs () {
+    return this._bacs;
+  }
+
+  ajouteBac (bac) {
+    this._bacs.push(bac);
   }
 
   pieceSuivante () {

@@ -1,5 +1,6 @@
 import { FINI } from 'commun/modeles/situation';
 import { Situation, NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
+import { Bac } from 'controle/modeles/bac';
 import { Piece } from 'controle/modeles/piece';
 
 function creeSituationMinimale () {
@@ -74,5 +75,11 @@ describe('La situation « Contrôle »', function () {
     expect(situation.etat()).to.not.eql(FINI);
     situation.faisDisparaitrePiece(piece2);
     expect(situation.etat()).to.eql(FINI);
+  });
+
+  it('on peut lui ajouter des bacs', function () {
+    const situation = new Situation({ scenario: [] });
+    situation.ajouteBac(new Bac({}));
+    expect(situation.bacs().length).to.eql(1);
   });
 });
