@@ -68,7 +68,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     let $zoneRetour = $('<div class="retour-stock"></div>');
     const $boutonRetour = $(`<button type="button" class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</button>`);
 
-    $zoneRetour.append(`<i class="fas fa-arrow-left"></i>`);
+    $boutonRetour.append(`<i class="fas fa-arrow-left"></i>`);
     $zoneRetour.append($boutonRetour);
     return $zoneRetour;
   }
