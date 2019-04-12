@@ -56,4 +56,15 @@ describe("La vue d'un bac", function () {
     expect($('.bac.pieces-defectueuses').length).to.equal(1);
     expect($('.bac.pieces-conformes').length).to.equal(0);
   });
+
+  it("s'abonne au changement d'état survolé", function () {
+    const bac = new Bac({});
+    const vue = new VueBac(bac);
+    vue.affiche('#controle', $);
+    expect($('.bac.survole').length).to.equal(0);
+    bac.passeEnEtatSurvole();
+    expect($('.bac.survole').length).to.equal(1);
+    bac.reinitialiseEtatSurvole();
+    expect($('.bac.survole').length).to.equal(0);
+  });
 });
