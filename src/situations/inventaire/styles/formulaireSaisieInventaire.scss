@@ -129,12 +129,12 @@
   left: 0;
   text-align: center;
   width: 100%;
-  img {
-    width: 1.25rem;
-    position: relative;
-    top: 0.26rem;
-    left: 2.5rem;
-    cursor: pointer;
+ .fa-arrow-left {
+   position: relative;
+   left: 2.25rem;
+   top: 0.125rem;
+   font-size: 1.25rem;
+   cursor: pointer;
   }
 
   .bouton-retour-stock {

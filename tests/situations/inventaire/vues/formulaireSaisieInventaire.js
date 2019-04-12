@@ -141,14 +141,20 @@ describe("Le formulaire de saisie d'inventaire", function () {
     expect($('#magasin .formulaire-saisie-inventaire input').length).to.equal(2);
   });
 
-  it('affiche un bouton pour valider la saisie et retourner au stock', function () {
+  it('affiche un bouton pour valider la saisie', function () {
     let magasin = unMagasinVide();
-    expect($('#magasin .formulaire-saisie-inventaire .valide-saisie').length).to.equal(0);
-    expect($('.retour-stock').length).to.equal(0);
+    expect($('.formulaire-saisie-inventaire .valide-saisie').length).to.equal(0);
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
-    expect($('#magasin .formulaire-saisie-inventaire .valide-saisie').length).to.equal(1);
-    expect($('.retour-stock').length).to.equal(1);
+    expect($('.formulaire-saisie-inventaire .valide-saisie').length).to.equal(1);
+  });
+
+  it('affiche un bouton pour retourner au stock', function () {
+    let magasin = unMagasinVide();
+    expect($('.formulaire-saisie-inventaire .retour-stock').length).to.equal(0);
+
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    expect($('.formulaire-saisie-inventaire .retour-stock').length).to.equal(1);
   });
 
   it("valide la saisie d'inventaire avec succès", function () {
