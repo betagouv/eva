@@ -1,4 +1,5 @@
 import { Situation } from 'inventaire/modeles/situation';
+import MockAudio from '../../commun/aides/mock_audio';
 
 class MagasinEnDevenir {
   constructor () {
@@ -22,6 +23,8 @@ class MagasinEnDevenir {
 
   construit () {
     let stock = { contenants: this.contenants, contenus: this.contenus };
+
+    window.Audio = MockAudio;
     return new Situation(stock,
       { consigne: 'chemin_son_consigne',
         reussite: 'chemin_son_reussite',

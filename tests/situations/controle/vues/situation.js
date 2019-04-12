@@ -3,8 +3,13 @@ import jsdom from 'jsdom-global';
 import { Piece, PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { Situation } from 'controle/modeles/situation';
 import { VueSituation } from 'controle/vues/situation';
+import MockAudio from '../../commun/aides/mock_audio';
 
 class SituationDeTest extends Situation {
+  constructor (donnees) {
+    super(donnees);
+    this.audioFondSonore = new MockAudio();
+  }
   demarre () {}
 }
 

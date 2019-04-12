@@ -1,6 +1,8 @@
 import { Piece } from 'controle/modeles/piece';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
+import sonFondSonore from 'controle/assets/fond_sonore.mp3';
+
 export const NOUVELLE_PIECE = 'nouvellePiece';
 export const DISPARITION_PIECE = 'disparitionPiece';
 
@@ -12,6 +14,7 @@ export class Situation extends SituationCommune {
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
     this.consigneAudio = new window.Audio(sonConsigne);
+    this.audioFondSonore = new window.Audio(sonFondSonore);
     this._piecesAffichees = [];
   }
 

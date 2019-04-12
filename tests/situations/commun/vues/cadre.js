@@ -1,9 +1,8 @@
-/* global HTMLMediaElement */
-
 import jsdom from 'jsdom-global';
 
 import SituationCommune, { CHANGEMENT_ETAT, NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI } from 'commun/modeles/situation';
 import VueCadre from 'commun/vues/cadre';
+import MockAudio from '../../commun/aides/mock_audio';
 
 function uneVue (callbackAffichage = () => {}) {
   return { affiche: callbackAffichage };
@@ -19,7 +18,7 @@ describe('Une vue du cadre', function () {
     situation = new class extends SituationCommune {
       constructor () {
         super();
-        this.consigneAudio = { play: () => {} };
+        this.consigneAudio = new MockAudio();
       }
     }();
   });
@@ -67,7 +66,6 @@ describe('Une vue du cadre', function () {
 
   it("affiche la consigne dans l'état LECTURE_CONSIGNE", function () {
     situation.modifieEtat(LECTURE_CONSIGNE);
-    HTMLMediaElement.prototype.pause = () => {};
     const vueCadre = new VueCadre(uneVue(), situation);
     vueCadre.affiche('#point-insertion', $);
 

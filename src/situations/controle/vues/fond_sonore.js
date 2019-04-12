@@ -1,12 +1,11 @@
 import 'controle/styles/tapis.scss';
 
 import { DEMARRE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
-import fondSonore from 'controle/assets/fond_sonore.mp3';
 
 export default class VueFondSonore {
   constructor (situation) {
     this.situation = situation;
-    this.audio = new window.Audio(fondSonore);
+    this.audio = situation.audioFondSonore;
     this.audio.loop = true;
   }
 

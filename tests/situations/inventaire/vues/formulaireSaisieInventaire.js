@@ -1,5 +1,3 @@
-/* global HTMLMediaElement */
-
 import { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 import { Contenant } from 'inventaire/modeles/contenant';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
@@ -16,11 +14,11 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
+
     $ = jQuery(window);
     journal = {
       enregistre () {}
     };
-    HTMLMediaElement.prototype.play = () => {};
   });
 
   it("sait afficher un bouton pour saisir l'inventaire", function () {
@@ -178,7 +176,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   it("joue l'audio en cas de réussite", function (done) {
     const magasin = unMagasinVide();
-    magasin.reussite = { play: done };
+    magasin.reussite.play = done;
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
@@ -190,7 +188,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
-    magasin.echec = { play: done };
+    magasin.echec.play = done;
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
