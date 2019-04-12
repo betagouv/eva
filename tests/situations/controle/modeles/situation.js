@@ -82,4 +82,41 @@ describe('La situation « Contrôle »', function () {
     situation.ajouteBac(new Bac({}));
     expect(situation.bacs().length).to.eql(1);
   });
+
+  describe('avec un bac et une pièce sélectionnée', function () {
+    let piece;
+    let bac;
+    let situation;
+
+    beforeEach(function () {
+      piece = new Piece({});
+      bac = new Bac({});
+      situation = new Situation({ scenario: [] });
+
+      situation.ajouteBac(bac);
+      situation.ajoutePiece(piece);
+
+      piece.selectionne({ x: 0, y: 0 });
+    });
+
+    it("il change l'état survolé du bac", function (done) {
+      bac.contient = () => true;
+      bac.passeEnEtatSurvole = done;
+
+      piece.deplaceSiSelectionnee({ x: 0, y: 0 });
+    });
+
+    it("réinitialise l'état survolé du bac", function (done) {
+      bac.contient = () => false;
+      bac.reinitialiseEtatSurvole = done;
+
+      piece.deplaceSiSelectionnee({ x: 0, y: 0 });
+    });
+
+    it('réinitialise au changement de sélection', function (done) {
+      bac.reinitialiseEtatSurvole = done;
+
+      piece.deselectionne();
+    });
+  });
 });

@@ -1,4 +1,4 @@
-import { Piece } from 'controle/modeles/piece';
+import { Piece, CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
 export const NOUVELLE_PIECE = 'nouvellePiece';
@@ -77,6 +77,8 @@ export class Situation extends SituationCommune {
   ajoutePiece (piece) {
     this._piecesAffichees.push(piece);
     this.emit(NOUVELLE_PIECE, piece);
+    piece.on(CHANGEMENT_POSITION, () => this.detecteSurvol(piece));
+    piece.on(CHANGEMENT_SELECTION, () => this.reinitialiseBacs(piece));
   }
 
   faisDisparaitrePiece (piece) {
@@ -84,6 +86,22 @@ export class Situation extends SituationCommune {
     piece.emit(DISPARITION_PIECE);
     if (this.nAPlusRienAFaire()) {
       this.modifieEtat(FINI);
+    }
+  }
+
+  detecteSurvol (piece) {
+    this.bacs().forEach((bac) => {
+      if (bac.contient(piece)) {
+        bac.passeEnEtatSurvole();
+      } else {
+        bac.reinitialiseEtatSurvole();
+      }
+    });
+  }
+
+  reinitialiseBacs (piece) {
+    if (!piece.estSelectionnee()) {
+      this.bacs().forEach(bac => bac.reinitialiseEtatSurvole());
     }
   }
 }
