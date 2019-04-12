@@ -1,6 +1,7 @@
 import 'controle/styles/bac.scss';
 
 import { PIECE_CONFORME } from 'controle/modeles/piece';
+import { CHANGEMENT_ETAT_SURVOLE } from 'controle/modeles/bac';
 
 export class VueBac {
   constructor (bac) {
@@ -22,13 +23,18 @@ export class VueBac {
       largeurParent: $elementParent.width(),
       hauteurParent: $elementParent.height()
     };
-    const $bac = creeElementBac(
+    this.$bac = creeElementBac(
       this.bac.categorie(),
       this.bac.position(),
       this.bac.dimensions(),
       dimensionsElementParent
     );
 
-    $elementParent.append($bac);
+    $elementParent.append(this.$bac);
+    this.bac.on(CHANGEMENT_ETAT_SURVOLE, (etat) => this.changeEtatSurvole(etat));
+  }
+
+  changeEtatSurvole (etatSurvole) {
+    this.$bac.toggleClass('survole', etatSurvole);
   }
 }
