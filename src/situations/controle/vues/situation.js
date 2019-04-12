@@ -1,13 +1,14 @@
 import { Bac } from 'controle/modeles/bac';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_piece';
+import { NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { VueBac } from 'controle/vues/bac';
-import { VuePiece, DISPARITION_PIECE } from 'controle/vues/piece';
+import { VuePiece } from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 
 export class VueSituation {
-  constructor (situation, journal, callbackApresCreationPiece) {
+  constructor (situation, journal) {
     function nouveauBac (categorie, { x, y }) {
       return new Bac({ categorie, x, y, largeur: 24.2, hauteur: 44 });
     }
@@ -21,7 +22,6 @@ export class VueSituation {
 
     this.situation = situation;
     this.journal = journal;
-    this.callbackApresCreationPiece = callbackApresCreationPiece;
     this._bacs = creeBacs();
     this.tapis = new VueTapis(situation);
   }
@@ -31,7 +31,7 @@ export class VueSituation {
   }
 
   creeVuePiece (piece) {
-    return new VuePiece(piece, this.situation.dureeViePiece(), this.callbackApresCreationPiece);
+    return new VuePiece(piece);
   }
 
   affiche (pointInsertion, $) {
@@ -53,21 +53,13 @@ export class VueSituation {
   }
 
   demarre (pointInsertion, $) {
-    const afficheProchainePiece = () => {
-      if (this.situation.sequenceTerminee()) {
-        clearInterval(this.identifiantIntervalle);
-        return;
-      }
-
-      const piece = this.situation.pieceSuivante();
-      let vuePiece = this.creeVuePiece(piece);
-      vuePiece.on(DISPARITION_PIECE, (e) => this.journal.enregistre(new EvenementDisparitionPiece(e)));
+    this.situation.on(NOUVELLE_PIECE, (piece) => {
+      const vuePiece = this.creeVuePiece(piece);
       vuePiece.affiche(pointInsertion, $);
-    };
-    afficheProchainePiece();
-    this.identifiantIntervalle = setInterval(
-      afficheProchainePiece,
-      this.situation.cadenceArriveePieces()
-    );
+      piece.on(DISPARITION_PIECE, (e) => {
+        this.journal.enregistre(new EvenementDisparitionPiece({ position: piece.position() }));
+      });
+    });
+    this.situation.demarre();
   }
 }

@@ -1,14 +1,17 @@
+import EventEmitter from 'events';
+
 export const PIECE_CONFORME = true;
 export const PIECE_DEFECTUEUSE = false;
+export const CHANGEMENT_POSITION = 'changementPosition';
 
-export class Piece {
+export class Piece extends EventEmitter {
   constructor ({ x, y, conforme, image }) {
+    super();
     this.x = x;
     this.y = y;
     this.conforme = conforme;
     this.image = image;
     this.selectionnee = false;
-    this.abonnes = [];
   }
 
   position () {
@@ -23,11 +26,7 @@ export class Piece {
     this.x = x;
     this.y = y;
 
-    this.abonnes.forEach(a => a({ x: x, y: y }));
-  }
-
-  quandChangementPosition (nouvelAbonne) {
-    this.abonnes.push(nouvelAbonne);
+    this.emit(CHANGEMENT_POSITION, { x, y });
   }
 
   estSelectionnee () {

@@ -1,5 +1,8 @@
 import { Piece } from 'controle/modeles/piece';
-import SituationCommune from 'commun/modeles/situation';
+import SituationCommune, { FINI } from 'commun/modeles/situation';
+
+export const NOUVELLE_PIECE = 'nouvellePiece';
+export const DISPARITION_PIECE = 'disparitionPiece';
 
 export class Situation extends SituationCommune {
   constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, consigneAudio }) {
@@ -9,6 +12,7 @@ export class Situation extends SituationCommune {
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
     this.consigneAudio = consigneAudio;
+    this._piecesAffichees = [];
   }
 
   cadenceArriveePieces () {
@@ -23,11 +27,54 @@ export class Situation extends SituationCommune {
     return this.scenario.length === 0;
   }
 
+  nAPlusRienAFaire () {
+    return this._piecesAffichees.length === 0 && this.sequenceTerminee();
+  }
+
   pieceSuivante () {
     const donneesPiece = this.scenario.shift();
     return new Piece({ x: this.positionApparition.x,
       y: this.positionApparition.y,
       conforme: donneesPiece.conforme,
       image: donneesPiece.image });
+  }
+
+  piecesAffichees () {
+    return this._piecesAffichees;
+  }
+
+  demarre () {
+    const afficheProchainePiece = () => {
+      if (this.sequenceTerminee()) {
+        clearInterval(this.identifiantIntervalle);
+        return;
+      }
+
+      this.faisApparaitreLaNouvellePiece();
+    };
+    afficheProchainePiece();
+    this.identifiantIntervalle = setInterval(
+      afficheProchainePiece,
+      this.cadence
+    );
+  }
+
+  faisApparaitreLaNouvellePiece () {
+    const piece = this.pieceSuivante();
+    this.ajoutePiece(piece);
+    setTimeout(() => this.faisDisparaitrePiece(piece), this.dureeViePiece());
+  }
+
+  ajoutePiece (piece) {
+    this._piecesAffichees.push(piece);
+    this.emit(NOUVELLE_PIECE, piece);
+  }
+
+  faisDisparaitrePiece (piece) {
+    this._piecesAffichees.splice(this._piecesAffichees.indexOf(piece), 1);
+    piece.emit(DISPARITION_PIECE);
+    if (this.nAPlusRienAFaire()) {
+      this.modifieEtat(FINI);
+    }
   }
 }

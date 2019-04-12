@@ -1,15 +1,16 @@
 import jsdom from 'jsdom-global';
 
-import { Journal } from 'commun/modeles/journal';
-import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
-import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
+import { Piece, PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { Situation } from 'controle/modeles/situation';
-import { DISPARITION_PIECE, DUREE_VIE_PIECE_INFINIE, VuePiece } from 'controle/vues/piece';
 import { VueSituation } from 'controle/vues/situation';
 
+class SituationDeTest extends Situation {
+  demarre () {}
+}
+
 function vueSituationMinimaliste (journal) {
-  const situation = new Situation({ scenario: [] });
-  return new VueSituation(situation, journal, () => {});
+  const situation = new SituationDeTest({ scenario: [] });
+  return new VueSituation(situation, journal);
 }
 
 describe('La situation « Contrôle »', function () {
@@ -42,52 +43,30 @@ describe('La situation « Contrôle »', function () {
     expect(bacs[1].categorie()).to.equal(PIECE_DEFECTUEUSE);
   });
 
-  it('affiche les pièces en séquence selon le scénario pré-établi', function (done) {
-    const situation = new Situation({
-      cadence: 0,
-      scenario: [{ conforme: true, image: 'image-conforme' }, { conforme: false, image: 'image-defectueuse' }],
-      positionApparitionPieces: { x: 10, y: 20 },
-      dureeViePiece: DUREE_VIE_PIECE_INFINIE
-    });
-
-    const journal = new Journal();
-
-    let nbPiecesAffichees = 0;
-    let imagesAttendues = ['image-conforme', 'image-defectueuse'];
-    const vueSituation = new VueSituation(situation, journal, ($piece) => {
-      const imageAttendue = imagesAttendues.shift();
-      expect($piece.attr('src')).to.be(imageAttendue);
-      nbPiecesAffichees += 1;
-      if (nbPiecesAffichees >= 2) { done(); }
-    });
+  it('demarre la situation', function (done) {
+    const journal = { enregistre (e) {} };
+    const vueSituation = vueSituationMinimaliste(journal);
+    vueSituation.demarre = done();
 
     vueSituation.affiche('#point-insertion', $);
-    situation.emit(CHANGEMENT_ETAT, DEMARRE);
+    vueSituation.demarre('#point-insertion', $);
   });
 
-  it('écoute les événements de disparition de pièce', function (done) {
-    const situation = new Situation({
-      cadence: 0,
-      scenario: [true],
-      positionApparitionPieces: { x: 10, y: 20 },
-      dureeViePiece: 5
-    });
-
+  it('écoute les événements de disparition de pièce pour enregistrer dans le journal', function (done) {
+    $.fx.off = true;
     const journal = {
       enregistre (e) {
-        expect(e.donnees()).to.eql({ position: { x: 45, y: 5 } });
+        expect(e.donnees()).to.eql({ position: { x: 10, y: 20 } });
         done();
       }
     };
+    const piece = new Piece({});
+    const vueSituation = vueSituationMinimaliste(journal);
 
-    const vueSituation = new VueSituation(situation, journal, () => {});
-
-    vueSituation.creeVuePiece = (piece) => {
-      const vuePiece = new VuePiece(piece, 5, () => {}, () => {});
-      setTimeout(() => { vuePiece.emit(DISPARITION_PIECE, { position: { x: 45, y: 5 } }); });
-      return vuePiece;
-    };
     vueSituation.affiche('#point-insertion', $);
     vueSituation.demarre('#point-insertion', $);
+    vueSituation.situation.ajoutePiece(piece);
+    piece.changePosition({ x: 10, y: 20 });
+    vueSituation.situation.faisDisparaitrePiece(piece);
   });
 });

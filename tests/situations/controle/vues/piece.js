@@ -1,9 +1,10 @@
 import jsdom from 'jsdom-global';
+import { DISPARITION_PIECE } from 'controle/modeles/situation';
 import { Piece } from 'controle/modeles/piece';
-import { VuePiece, DUREE_VIE_PIECE_INFINIE, DISPARITION_PIECE } from 'controle/vues/piece';
+import { VuePiece } from 'controle/vues/piece';
 
 function creeVueMinimale (piece) {
-  return new VuePiece(piece, DUREE_VIE_PIECE_INFINIE, () => {}, () => {});
+  return new VuePiece(piece, () => {}, () => {});
 }
 
 describe('Une pièce', function () {
@@ -63,7 +64,7 @@ describe('Une pièce', function () {
 
   it("suit une séquence d'animation pour apparaître", function (done) {
     const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = new VuePiece(piece, DUREE_VIE_PIECE_INFINIE, function ($element) {
+    const vuePiece = new VuePiece(piece, function ($element) {
       expect($element.hasClass('.piece'));
       done();
     });
@@ -76,7 +77,7 @@ describe('Une pièce', function () {
     const sequenceAnimation = function ($element) {
       $element.animate({ left: '80px' }, 0).delay(5).animate({ left: '10px' }, 0);
     };
-    const vuePiece = new VuePiece(piece, DUREE_VIE_PIECE_INFINIE, sequenceAnimation);
+    const vuePiece = new VuePiece(piece, sequenceAnimation);
 
     vuePiece.affiche('#controle', $);
 
@@ -91,7 +92,7 @@ describe('Une pièce', function () {
     }, 10);
   });
 
-  it("disparaît au bout d'un certain temps", function (done) {
+  it("au moment de l'événement DISPARITION_PIECE, disparait", function (done) {
     const piece = new Piece({ x: 90, y: 40 });
 
     const callbackAvantSuppression = (_, callbackSuppression) => {
@@ -100,20 +101,9 @@ describe('Une pièce', function () {
       done();
     };
 
-    const vuePiece = new VuePiece(piece, 5, () => {}, callbackAvantSuppression);
+    const vuePiece = new VuePiece(piece, () => {}, callbackAvantSuppression);
     vuePiece.affiche('#controle', $);
     expect($('.piece').length).to.equal(1);
-  });
-
-  it('émet un événement à sa disparition', function (done) {
-    const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = new VuePiece(piece, 5, () => {}, (_, done) => done());
-
-    vuePiece.on(DISPARITION_PIECE, (e) => {
-      expect(e).to.eql({ position: { x: 90, y: 40 } });
-      done();
-    });
-
-    vuePiece.affiche('#controle', $);
+    piece.emit(DISPARITION_PIECE);
   });
 });
