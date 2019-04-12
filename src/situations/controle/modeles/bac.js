@@ -38,4 +38,13 @@ export class Bac extends EventEmitter {
   etatSurvole () {
     return this._survole;
   }
+
+  contient (piece) {
+    const { x, y } = piece.position();
+    function estEntre (positionPiece, positionBac, tailleBac) {
+      return positionPiece >= positionBac && positionPiece <= positionBac + tailleBac;
+    }
+    return estEntre(x, this._position.x, this._dimensions.largeur) &&
+        estEntre(y, this._position.y, this._dimensions.hauteur);
+  }
 }
