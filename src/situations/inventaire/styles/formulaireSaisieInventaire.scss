@@ -1,4 +1,6 @@
-@import "commun/styles/couleurs.scss";
+@import 'commun/styles/bouton.scss';
+@import 'commun/styles/font_awesome.scss';
+
 
 .affiche-saisie {
   cursor: pointer;
@@ -89,16 +91,10 @@
     left: 0;
 
     .valide-saisie {
-      background: $couleur-fond-bouton-bleu;
-      color: $blanc;
-      padding: .7rem 1.375rem;
-      text-transform: uppercase;
-      border-radius: .625rem .625rem 0 0;
-      font-weight: 500;
-      letter-spacing: .025rem;
+      @include bouton-allonge($couleur-fond-bouton-bleu, $blanc);
       font-size: 1.125rem;
-      outline: none;
-      transition : background 200ms ease-out;
+      border-radius: .625rem .625rem 0 0;
+
       &:hover { background: $couleur-bordure-bouton-focus }
     }
   }
@@ -125,30 +121,25 @@
 }
 .retour-stock {
   position: absolute;
-  top: -.8rem;
+  top: -.75rem;
   left: 0;
-  text-align: center;
   width: 100%;
+  text-align: center;
+
  .fa-arrow-left {
-   position: relative;
-   font-size: 1.25rem;
-   right: 11.25rem;
-   top: 0.125rem;
-   cursor: pointer;
+   padding-right: .625rem
   }
 
   .bouton-retour-stock {
-    padding: .3rem 0rem .9rem 1.375rem;
+    @include bouton-allonge($couleur-bordure-modale-reponse, $couleur-texte-bouton-retour);
+    font-size: 1rem;
+    padding-top: 0;
     border-radius: 0 0 .625rem .625rem;
-    width: 14.12rem;
-    text-transform: uppercase;
-    background: $couleur-bordure-modale-reponse;
-    font-weight: 600;
+    display: inline-block;
     border: 0.125rem solid $noir;
     border-top: 0.125rem solid $couleur-bordure-modale-reponse;
-    outline: none;
-    color: $couleur-grise-text-bouton-retour;
-    padding-left: 2.7rem;
+    cursor: pointer;
+
     &:hover {
       color: $noir;
       &i {

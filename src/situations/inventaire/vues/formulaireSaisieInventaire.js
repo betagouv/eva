@@ -1,8 +1,6 @@
 import { traduction } from 'commun/infra/internationalisation';
 import { FINI } from 'commun/modeles/situation';
 import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
-import 'commun/styles/font_awesome.scss';
-
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 
@@ -66,9 +64,9 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
   function creeZoneRetourStock () {
     let $zoneRetour = $('<div class="retour-stock"></div>');
-    const $boutonRetour = $(`<button type="button" class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</button>`);
+    const $boutonRetour = $(`<a class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</a>`);
 
-    $boutonRetour.append(`<i class="fas fa-arrow-left"></i>`);
+    $boutonRetour.prepend(`<i class="fas fa-arrow-left"></i>`);
     $zoneRetour.append($boutonRetour);
     return $zoneRetour;
   }
@@ -123,7 +121,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     const $zoneValidation = creeZoneValidation();
     const $zoneRetour = creeZoneRetourStock();
 
-    $formulaireSaisie.append($liste, $zoneValidation, $zoneRetour);
+    $formulaireSaisie.append($zoneRetour, $liste, $zoneValidation);
     return $formulaireSaisie;
   }
 
