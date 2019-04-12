@@ -3,6 +3,7 @@ import EventEmitter from 'events';
 export const PIECE_CONFORME = true;
 export const PIECE_DEFECTUEUSE = false;
 export const CHANGEMENT_POSITION = 'changementPosition';
+export const CHANGEMENT_SELECTION = 'changementSelection';
 
 export class Piece extends EventEmitter {
   constructor ({ x, y, conforme, image }) {
@@ -35,11 +36,16 @@ export class Piece extends EventEmitter {
 
   selectionne ({ x, y }) {
     this.decalageSelection = { dx: x - this.x, dy: y - this.y };
-    this.selectionnee = true;
+    this.changeSelection(true);
   }
 
   deselectionne () {
-    this.selectionnee = false;
+    this.changeSelection(false);
+  }
+
+  changeSelection (selectionne) {
+    this.selectionnee = selectionne;
+    this.emit(CHANGEMENT_SELECTION, selectionne);
   }
 
   deplaceSiSelectionnee ({ x, y }) {
