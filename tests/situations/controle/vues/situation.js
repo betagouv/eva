@@ -13,7 +13,7 @@ import MockAudio from '../../commun/aides/mock_audio';
 class SituationDeTest extends Situation {
   constructor (donnees) {
     super(donnees);
-    this.audioFondSonore = new MockAudio();
+    this.audios.fondSonore = new MockAudio();
   }
   demarre () {}
 }

@@ -13,7 +13,9 @@ describe('vue consigne', function () {
     situation = new class extends Situation {
       constructor () {
         super();
-        this.consigneAudio = { play: () => Promise.resolve() };
+        this.audios = {
+          consigne: { play: () => Promise.resolve() }
+        };
       }
     }();
     vue = new VueConsigne(situation);

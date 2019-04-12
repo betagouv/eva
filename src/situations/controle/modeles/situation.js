@@ -16,8 +16,10 @@ export class Situation extends SituationCommune {
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
-    this.consigneAudio = new window.Audio(sonConsigne);
-    this.audioFondSonore = new window.Audio(sonFondSonore);
+    this.audios = {
+      consigne: new window.Audio(sonConsigne),
+      fondSonore: new window.Audio(sonFondSonore)
+    };
     this._piecesAffichees = [];
     this._bacs = [];
   }

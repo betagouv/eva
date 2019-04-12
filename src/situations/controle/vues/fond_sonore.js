@@ -5,7 +5,7 @@ import { DEMARRE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
 export default class VueFondSonore {
   constructor (situation) {
     this.situation = situation;
-    this.audio = situation.audioFondSonore;
+    this.audio = situation.audios.fondSonore;
     this.audio.loop = true;
   }
 
