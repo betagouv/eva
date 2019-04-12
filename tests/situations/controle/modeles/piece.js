@@ -1,4 +1,4 @@
-import { Piece, CHANGEMENT_POSITION } from 'controle/modeles/piece';
+import { Piece, CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
 
 describe('Une pièce', function () {
   it('a une position de départ', function () {
@@ -48,6 +48,12 @@ describe('Une pièce', function () {
 
     piece.deselectionne();
     expect(piece.estSelectionnee()).to.be(false);
+  });
+
+  it("notifie lorsqu'elle est sélectionné ou non", function (done) {
+    const piece = new Piece({ x: 90, y: 50 });
+    piece.on(CHANGEMENT_SELECTION, () => done());
+    piece.selectionne({ x: 95, y: 65 });
   });
 
   it('peut être déplacée quand sélectionnée', function () {
