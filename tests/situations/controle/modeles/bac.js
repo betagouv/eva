@@ -1,5 +1,5 @@
 import { Bac, CHANGEMENT_ETAT_SURVOLE } from 'controle/modeles/bac';
-import { PIECE_CONFORME } from 'controle/modeles/piece';
+import { Piece, PIECE_CONFORME } from 'controle/modeles/piece';
 
 describe('un bac', function () {
   it('connaît ses dimensions', function () {
@@ -42,5 +42,23 @@ describe('un bac', function () {
     expect(changementEtatSurvole).to.equal(1);
     bac.reinitialiseEtatSurvole();
     expect(changementEtatSurvole).to.equal(2);
+  });
+
+  it('il sait si une pièce est posé dessus', function () {
+    const bac = new Bac({ x: 10, y: 20, largeur: 10, hauteur: 20 });
+    const piece = new Piece({ x: 13, y: 30 });
+    expect(bac.contient(piece)).to.be(true);
+  });
+
+  it("il sait si une pièce n'est pas posé dessus", function () {
+    const bac = new Bac({ x: 10, y: 20, largeur: 10, hauteur: 20 });
+    const piece = new Piece({ x: 5, y: 5 });
+    expect(bac.contient(piece)).to.be(false);
+  });
+
+  it("il sait si une autre pièce n'est pas posé dessus", function () {
+    const bac = new Bac({ x: 10, y: 20, largeur: 10, hauteur: 20 });
+    const piece = new Piece({ x: 15, y: 45 });
+    expect(bac.contient(piece)).to.be(false);
   });
 });
