@@ -1,28 +1,9 @@
 .bac {
   position: absolute;
-  border: 5px dashed;
-  opacity: .5;
-  border-radius: 1.25rem;
 
-  &.pieces-conformes {
-    background: palegreen;
-    border-color: limegreen;
-    background-image: repeating-linear-gradient(-45deg,
-      transparent,
-      transparent 20px,
-      rgba(0, 0, 0, 0.1) 20px,
-      rgba(0, 0, 0, 0.1) 40px
-    );
-  }
-
-  &.pieces-defectueuses {
-    background: lightcoral;
-    border-color: crimson;
-    background-image: repeating-linear-gradient(45deg,
-      transparent,
-      transparent 20px,
-      rgba(0, 0, 0, 0.1) 20px,
-      rgba(0, 0, 0, 0.1) 40px
-    );
+  &.survole {
+    background: white;
+    opacity: .5;
+    border-radius: 1.25rem;
   }
 }
