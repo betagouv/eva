@@ -36,9 +36,11 @@ export class Situation extends SituationCommune {
     super();
     this.produits = inventaireProduits(unStock);
     this.contenants = creerContenants(unStock);
-    this.consigneAudio = new window.Audio(sons.consigne);
-    this.reussite = new window.Audio(sons.reussite);
-    this.echec = new window.Audio(sons.echec);
+    this.audios = {
+      consigne: new window.Audio(sons.consigne),
+      reussite: new window.Audio(sons.reussite),
+      echec: new window.Audio(sons.echec)
+    };
   }
 
   inventaireReference () {

@@ -18,7 +18,9 @@ describe('Une vue du cadre', function () {
     situation = new class extends SituationCommune {
       constructor () {
         super();
-        this.consigneAudio = new MockAudio();
+        this.audios = {
+          consigne: new MockAudio()
+        };
       }
     }();
   });
