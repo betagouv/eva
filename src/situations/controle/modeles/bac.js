@@ -47,4 +47,8 @@ export class Bac extends EventEmitter {
     return estEntre(x, this._position.x, this._dimensions.largeur) &&
         estEntre(y, this._position.y, this._dimensions.hauteur);
   }
+
+  correspondALaCategorie (piece) {
+    return piece.estConforme() === this.categorie();
+  }
 }
