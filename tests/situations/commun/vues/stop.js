@@ -1,6 +1,7 @@
 import jsdom from 'jsdom-global';
 import VueStop from 'commun/vues/stop';
 import EvenementStop from 'commun/modeles/evenement_stop';
+import Situation, { STOPPEE } from 'commun/modeles/situation';
 
 import i18next from 'i18next';
 i18next.init({
@@ -14,6 +15,7 @@ describe('vue Stop', function () {
   let $;
   let retourAccueil = false;
   let mockJournal;
+  let situation;
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
@@ -21,7 +23,8 @@ describe('vue Stop', function () {
     mockJournal = {
       enregistre () {}
     };
-    vue = new VueStop(mockJournal, () => {
+    situation = new Situation();
+    vue = new VueStop(situation, mockJournal, () => {
       retourAccueil = true;
     });
   });
@@ -45,6 +48,7 @@ describe('vue Stop', function () {
       return Promise.resolve();
     };
     vue.clickSurOk().then(() => {
+      expect(situation.etat()).to.eql(STOPPEE);
       expect(retourAccueil).to.equal(true);
       done();
     });

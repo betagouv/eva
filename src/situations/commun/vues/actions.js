@@ -4,7 +4,8 @@ import 'commun/styles/stop.scss';
 import VueStop from 'commun/vues/stop';
 
 export default class VueActions {
-  constructor (journal) {
+  constructor (situation, journal) {
+    this.situation = situation;
     this.journal = journal;
   }
 
@@ -12,7 +13,7 @@ export default class VueActions {
     this.$actions = $('<div class="actions"></div>');
     $(pointInsertion).append(this.$actions);
 
-    const stop = new VueStop(this.journal);
+    const stop = new VueStop(this.situation, this.journal);
     stop.affiche('.actions', $);
   }
 

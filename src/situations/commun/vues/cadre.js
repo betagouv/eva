@@ -10,7 +10,7 @@ export default class VueCadre {
   constructor (vueSituation, situation, journal) {
     this.vueSituation = vueSituation;
     this.situation = situation;
-    this.vueActions = new VueActions(journal);
+    this.vueActions = new VueActions(situation, journal);
     this.etats = new Map();
     this.etats.set(NON_DEMARRE, VueJoue);
     this.etats.set(LECTURE_CONSIGNE, VueConsigne);

@@ -5,6 +5,7 @@ export const LECTURE_CONSIGNE = 'lectureConsigne';
 export const CONSIGNE_ECOUTEE = 'consigneEcoutée';
 export const DEMARRE = 'démarré';
 export const FINI = 'fini';
+export const STOPPEE = 'stoppée';
 
 export const CHANGEMENT_ETAT = 'changementEtat';
 
