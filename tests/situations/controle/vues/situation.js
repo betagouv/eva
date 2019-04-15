@@ -2,8 +2,11 @@ import jsdom from 'jsdom-global';
 
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
+import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
+import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
+import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import { Piece, PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
-import { Situation } from 'controle/modeles/situation';
+import { Situation, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
 import { VueSituation } from 'controle/vues/situation';
 import MockAudio from '../../commun/aides/mock_audio';
 
@@ -71,21 +74,45 @@ describe('La situation « Contrôle »', function () {
     vueSituation.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
-  it('écoute les événements de disparition de pièce pour enregistrer dans le journal', function (done) {
-    $.fx.off = true;
-    const journal = {
-      enregistre (e) {
-        expect(e.donnees()).to.eql({ position: { x: 10, y: 20 } });
-        done();
-      }
-    };
-    const piece = new Piece({});
-    const vueSituation = vueSituationMinimaliste(journal);
+  describe('avec une situation démarrée, une pièce et un journal', function () {
+    let journal;
+    let piece;
+    let vueSituation;
 
-    vueSituation.affiche('#point-insertion', $);
-    vueSituation.demarre('#point-insertion', $);
-    vueSituation.situation.ajoutePiece(piece);
-    piece.changePosition({ x: 10, y: 20 });
-    vueSituation.situation.faisDisparaitrePiece(piece);
+    beforeEach(function () {
+      journal = {};
+      piece = new Piece({ conforme: true });
+      vueSituation = vueSituationMinimaliste(journal);
+
+      vueSituation.affiche('#point-insertion', $);
+      vueSituation.demarre('#point-insertion', $);
+    });
+
+    it('écoute les événements PIECE_BIEN_PLACEE pour les enregistrer dans le journal', function (done) {
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceBienPlacee);
+        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        done();
+      };
+      vueSituation.situation.emit(PIECE_BIEN_PLACEE, piece);
+    });
+
+    it('écoute les événements PIECE_MAL_PLACEE pour les enregistrer dans le journal', function (done) {
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceMalPlacee);
+        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        done();
+      };
+      vueSituation.situation.emit(PIECE_MAL_PLACEE, piece);
+    });
+
+    it('écoute les événements PIECE_RATEE pour les enregistrer dans le journal', function (done) {
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceRatee);
+        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        done();
+      };
+      vueSituation.situation.emit(PIECE_RATEE, piece);
+    });
   });
 });
