@@ -7,6 +7,7 @@ export const NOUVELLE_PIECE = 'nouvellePiece';
 export const DISPARITION_PIECE = 'disparitionPiece';
 export const PIECE_BIEN_PLACEE = 'pieceBienPlacée';
 export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
+export const PIECE_RATEE = 'pieceRatée';
 
 export class Situation extends SituationCommune {
   constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, sonConsigne }) {
@@ -90,13 +91,14 @@ export class Situation extends SituationCommune {
     this._piecesAffichees.splice(this._piecesAffichees.indexOf(piece), 1);
     piece.emit(DISPARITION_PIECE);
 
-    this.bacs().forEach((bac) => {
-      if (bac.contient(piece)) {
-        const evenement = bac.correspondALaCategorie(piece) ? PIECE_BIEN_PLACEE : PIECE_MAL_PLACEE;
+    const bac = this.bacs().find((bac) => bac.contient(piece));
+    if (bac) {
+      const evenement = bac.correspondALaCategorie(piece) ? PIECE_BIEN_PLACEE : PIECE_MAL_PLACEE;
 
-        this.emit(evenement, piece);
-      }
-    });
+      this.emit(evenement, piece);
+    } else {
+      this.emit(PIECE_RATEE, piece);
+    }
 
     if (this.nAPlusRienAFaire()) {
       this.modifieEtat(FINI);

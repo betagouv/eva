@@ -116,6 +116,15 @@ describe('La situation « Contrôle »', function () {
       });
       situation.faisDisparaitrePiece(piece);
     });
+
+    it("déclenche l'événement PIECE_RATEE à la disparition", function (done) {
+      bac.contient = () => false;
+
+      situation.on(PIECE_RATEE, (piece) => {
+        done();
+      });
+      situation.faisDisparaitrePiece(piece);
+    });
   });
 
   describe('avec un bac et une pièce sélectionnée', function () {
