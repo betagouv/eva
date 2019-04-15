@@ -3,6 +3,8 @@ import { FINI } from 'commun/modeles/situation';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 
+import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
+
 import 'commun/styles/commun.scss';
 import 'commun/styles/overlay.scss';
 import 'inventaire/styles/commun.scss';
@@ -122,7 +124,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeBoutonSaisie ($formulaireSaisie) {
-    const $boutonSaisie = $(`<button class="affiche-saisie">RÉPONDRE</button>`);
+    const $boutonSaisie = $(`<button class="affiche-saisie"><img src="${boutonSaisie}"></button>`);
     const $overlay = $('<div class="overlay invisible"></div>');
     const $elementsCombines = $boutonSaisie.add($overlay);
     $overlay.append($formulaireSaisie);
