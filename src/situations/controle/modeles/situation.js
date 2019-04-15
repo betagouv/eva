@@ -5,6 +5,8 @@ import sonFondSonore from 'controle/assets/fond_sonore.mp3';
 
 export const NOUVELLE_PIECE = 'nouvellePiece';
 export const DISPARITION_PIECE = 'disparitionPiece';
+export const PIECE_BIEN_PLACEE = 'pieceBienPlacée';
+export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
 
 export class Situation extends SituationCommune {
   constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, sonConsigne }) {
@@ -87,6 +89,15 @@ export class Situation extends SituationCommune {
   faisDisparaitrePiece (piece) {
     this._piecesAffichees.splice(this._piecesAffichees.indexOf(piece), 1);
     piece.emit(DISPARITION_PIECE);
+
+    this.bacs().forEach((bac) => {
+      if (bac.contient(piece)) {
+        const evenement = bac.correspondALaCategorie(piece) ? PIECE_BIEN_PLACEE : PIECE_MAL_PLACEE;
+
+        this.emit(evenement, piece);
+      }
+    });
+
     if (this.nAPlusRienAFaire()) {
       this.modifieEtat(FINI);
     }
