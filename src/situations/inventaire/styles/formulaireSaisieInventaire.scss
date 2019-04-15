@@ -3,19 +3,21 @@
 
 
 .affiche-saisie {
-  outline: none;
-  cursor: pointer;
   position: absolute;
-  height: 10%;
-  top: 47%;
-  right: 3.5%;
-  background-color: $blanc;
-  width: 13%;
-  border: 8px solid $couleur-fond-bouton-bleu;
-  border-radius: 13px;
-  font-weight: bold;
+  background: $blanc;
+  outline: none;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 3.8%;
+  border: .5rem solid $couleur-fond-bouton-bleu;
+  border-radius: .75rem;
   font-size: 1rem;
-  box-shadow: 0px 6px 10px $couleur-ombre;
+  box-shadow: 0 .5rem .625rem 0 $couleur-ombre;
+  padding: .7rem .875rem;
+
+  &:hover {
+    border-color: $couleur-bordure-bouton-focus;
+  }
 }
 
 .formulaire-saisie-inventaire {
