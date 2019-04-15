@@ -1,8 +1,10 @@
 import { Bac } from 'controle/modeles/bac';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
-import EvenementDisparitionPiece from 'controle/modeles/evenement_disparition_piece';
-import { NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
+import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
+import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
+import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
+import { NOUVELLE_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { VueBac } from 'controle/vues/bac';
 import { VuePiece } from 'controle/vues/piece';
@@ -55,10 +57,15 @@ export class VueSituation {
     this.situation.on(NOUVELLE_PIECE, (piece) => {
       const vuePiece = this.creeVuePiece(piece);
       vuePiece.affiche(pointInsertion, $);
-      piece.on(DISPARITION_PIECE, (e) => {
-        this.journal.enregistre(new EvenementDisparitionPiece({ position: piece.position() }));
-      });
     });
+    const envoiEvenementPiece = (Classe) => {
+      return (piece) => {
+        this.journal.enregistre(new Classe({ piece: { conforme: piece.estConforme() } }));
+      };
+    };
+    this.situation.on(PIECE_BIEN_PLACEE, envoiEvenementPiece(EvenementPieceBienPlacee));
+    this.situation.on(PIECE_MAL_PLACEE, envoiEvenementPiece(EvenementPieceMalPlacee));
+    this.situation.on(PIECE_RATEE, envoiEvenementPiece(EvenementPieceRatee));
     this.situation.demarre();
   }
 }
