@@ -6,27 +6,25 @@ import 'commun/styles/stop.scss';
 import { afficheFenetreModale } from 'commun/vues/modale';
 
 export default class VueStop {
-  constructor (pointInsertion, $, journal, retourAccueil = () => {
+  constructor (journal, retourAccueil = () => {
     window.location.assign('/');
   }) {
     this.journal = journal;
     this.retourAccueil = retourAccueil;
-    this.$pointInsertion = $(pointInsertion);
+  }
+
+  affiche (pointInsertion, $) {
     this.$boutonStop = $('<a id="stop" class="bouton-stop"></a>');
     this.$boutonStop.append(`<img src='${stop}'>`);
-
     this.$boutonStop.on('click', () => {
       afficheFenetreModale(
-        this.$pointInsertion,
+        $(pointInsertion),
         $,
         traduction('situation.stop'),
         this.clickSurOk.bind(this)
       );
     });
-  }
-
-  affiche () {
-    this.$pointInsertion.append(this.$boutonStop);
+    $(pointInsertion).append(this.$boutonStop);
   }
 
   clickSurOk () {

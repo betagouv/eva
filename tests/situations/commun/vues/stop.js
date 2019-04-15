@@ -21,25 +21,25 @@ describe('vue Stop', function () {
     mockJournal = {
       enregistre () {}
     };
-    vue = new VueStop('#magasin', $, mockJournal, () => {
+    vue = new VueStop(mockJournal, () => {
       retourAccueil = true;
     });
   });
 
   it("sait s'insérer dans une page web", function () {
-    vue.affiche();
+    vue.affiche('#magasin', $);
     expect(document.querySelector('#magasin #stop').classList).to.not.contain('invisible');
   });
 
   it('ouvre une fenêtre de confirmation avant de stopper', function () {
-    vue.affiche();
+    vue.affiche('#magasin', $);
 
     $('#magasin #stop').click();
     expect($('#fenetre-modale').length).to.equal(1);
     expect($('label').text()).to.equal('situation.stop');
   });
 
-  it("Enregistre l'événément et redirige vers l'accueil quand on confirme la modale", function (done) {
+  it("enregistre l'événement et redirige vers l'accueil quand on confirme la modale", function (done) {
     mockJournal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementStop);
       return Promise.resolve();
