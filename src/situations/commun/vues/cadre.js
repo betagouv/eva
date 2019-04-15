@@ -1,5 +1,5 @@
 import 'commun/styles/cadre.scss';
-import { NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import { NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, CHANGEMENT_ETAT, STOPPEE } from 'commun/modeles/situation';
 import VueActions from 'commun/vues/actions';
 import VueJoue from 'commun/vues/joue';
 import VueConsigne from 'commun/vues/consigne';
@@ -51,7 +51,7 @@ export default class VueCadre {
 
   previentLaFermetureDeLaSituation ($) {
     $(window).on('beforeunload', (e) => {
-      if (![NON_DEMARRE, FINI].includes(this.situation.etat())) {
+      if (![NON_DEMARRE, FINI, STOPPEE].includes(this.situation.etat())) {
         e.preventDefault();
         return '';
       }
