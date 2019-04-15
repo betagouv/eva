@@ -1,5 +1,5 @@
 import { FINI } from 'commun/modeles/situation';
-import { Situation, NOUVELLE_PIECE, DISPARITION_PIECE } from 'controle/modeles/situation';
+import { Situation, NOUVELLE_PIECE, DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'controle/modeles/situation';
 import { Bac } from 'controle/modeles/bac';
 import { Piece } from 'controle/modeles/piece';
 
@@ -81,6 +81,41 @@ describe('La situation « Contrôle »', function () {
     const situation = new Situation({ scenario: [] });
     situation.ajouteBac(new Bac({}));
     expect(situation.bacs().length).to.eql(1);
+  });
+
+  describe('avec un bac et une pièce', function () {
+    let piece;
+    let bac;
+    let situation;
+
+    beforeEach(function () {
+      piece = new Piece({});
+      bac = new Bac({});
+      situation = creeSituationMinimale();
+
+      situation.ajouteBac(bac);
+      situation.ajoutePiece(piece);
+    });
+
+    it("déclenche l'événement PIECE_BIEN_PLACEE à la disparition", function (done) {
+      bac.contient = () => true;
+      bac.correspondALaCategorie = () => true;
+
+      situation.on(PIECE_BIEN_PLACEE, (piece) => {
+        done();
+      });
+      situation.faisDisparaitrePiece(piece);
+    });
+
+    it("déclenche l'événement PIECE_MAL_PLACEE à la disparition", function (done) {
+      bac.contient = () => true;
+      bac.correspondALaCategorie = () => false;
+
+      situation.on(PIECE_MAL_PLACEE, (piece) => {
+        done();
+      });
+      situation.faisDisparaitrePiece(piece);
+    });
   });
 
   describe('avec un bac et une pièce sélectionnée', function () {
