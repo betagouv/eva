@@ -39,7 +39,8 @@ export class VueSituation {
       vueBac.affiche(pointInsertion, $);
     }
 
-    $(pointInsertion).addClass('controle');
+    const $situation = $(pointInsertion);
+    $situation.addClass('controle');
 
     this.situation.bacs().forEach(afficheBac);
     this.tapis.affiche(pointInsertion, $);
@@ -50,6 +51,16 @@ export class VueSituation {
         this.journal.enregistre(new EvenementDemarrage());
         this.demarre(pointInsertion, $);
       }
+    });
+
+    $situation.mousemove(e => {
+      const piecesAffichees = this.situation.piecesAffichees();
+      piecesAffichees.forEach(p => {
+        p.deplaceSiSelectionnee({
+          x: 100 * e.clientX / $situation.width(),
+          y: 100 * e.clientY / $situation.height()
+        });
+      });
     });
   }
 

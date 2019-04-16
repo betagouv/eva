@@ -74,6 +74,21 @@ describe('La situation « Contrôle »', function () {
     vueSituation.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
+  it('déplace les pièces sélectionnées', function () {
+    const piece = new Piece({ x: 95, y: 55 });
+    const vueSituation = vueSituationMinimaliste();
+    const $pointInsertion = $('#point-insertion');
+
+    piece.selectionne({ x: 95, y: 55 });
+    $pointInsertion.width(50).height(200);
+    vueSituation.affiche('#point-insertion', $);
+    vueSituation.situation.ajoutePiece(piece);
+
+    $pointInsertion.trigger($.Event('mousemove', { clientX: 30, clientY: 20 }));
+
+    expect(piece.position()).to.eql({ x: 60, y: 10 });
+  });
+
   describe('avec une situation démarrée, une pièce et un journal', function () {
     let journal;
     let piece;
