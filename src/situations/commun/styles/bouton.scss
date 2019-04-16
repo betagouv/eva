@@ -92,3 +92,10 @@
   outline: none;
   transition : background 200ms ease-out;
 }
+
+@mixin bouton-modale($couleur-fond, $couleur-texte, $couleur-focus) {
+  @include bouton-allonge($couleur-fond, $couleur-texte);
+  padding: .7rem 2.375rem;
+  font-weight: normal;
+  &:hover { background-color: $couleur-focus }
+}

@@ -1,26 +1,61 @@
+@import 'commun/styles/bouton.scss';
+@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/commun.scss';
+
 .overlay {
+  &.modale-stop {
+    background: $noir;
+    label {
+      display: block;
+      width: 100%;
+      color: $blanc;
+      line-height: 6.5rem;
+      font-size: 2.25rem;
+      font-weight: bold;
+      position: relative;
+      bottom: 7rem;
+      text-align: center;
+    }
+    .buttons {
+      display: block;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      button {
+        margin: 0 1.875rem;
+      }
+      .modal-ok {
+        @include bouton-modale($couleur-fond-bouton-vert, $blanc, $couleur-fond-bouton-vert-focus)
+      }
+
+      .modal-annuler {
+        @include bouton-modale($couleur-reponse-incorrecte, $blanc, $couleur-fond-bouton-rouge-focus)
+      }
+    }
+  }
+
   .fenetre {
     position: absolute;
     top: 30%;
     left: 34%;
     height: 5rem;
-    background-color: white;
+    background-color: $blanc;
     padding: 1rem;
+    .formulaire-saisie-inventaire {
+      label {
+        display: block;
+        width: 100%;
+      }
 
-    label {
-      display: block;
-      width: 100%;
-    }
-
-    .buttons {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: 1rem;
-
-      button {
-        background-color: grey;
+      .buttons {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 1rem;
+        button {
+          background-color: grey;
+        }
       }
     }
   }

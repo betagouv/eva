@@ -1,4 +1,4 @@
-import 'inventaire/styles/commun.scss';
+import 'commun/styles/commun.scss';
 import 'inventaire/styles/contenu.scss';
 
 // Attention de maintenir la cohérence avec le temps
