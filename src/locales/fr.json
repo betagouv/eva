@@ -19,8 +19,8 @@
     "ecouter-consigne": "Commencez par écouter la consigne",
     "go": "Vous pouvez commencer",
     "modale": {
-      "annuler": "annuler",
-      "ok": "OK"
+      "annuler": "NON",
+      "ok": "OUI"
     },
     "reussite": "C'est réussi, bravo !",
     "stop": "Voulez vous vraiment quitter la mission ?",

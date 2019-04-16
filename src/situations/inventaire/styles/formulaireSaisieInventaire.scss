@@ -1,7 +1,6 @@
 @import 'commun/styles/bouton.scss';
 @import 'commun/styles/font_awesome.scss';
 
-
 .affiche-saisie {
   position: absolute;
   background: $blanc;
@@ -31,6 +30,22 @@
   padding: 4.75rem 1.75rem;
   position: relative;
   transition : border 500ms ease-out;
+
+  label {
+    display: block;
+    width: 100%;
+  }
+
+  .buttons {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    button {
+      background-color: grey;
+    }
+  }
 
   &.succes-saisie-inventaire {
     border-color: $couleur-reponse-correcte;

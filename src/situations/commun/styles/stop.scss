@@ -1,4 +1,5 @@
 @import 'commun/styles/bouton.scss';
+@import 'commun/styles/couleurs.scss';
 
 $couleur-fond-bouton-rouge: #DE0B27;
 $couleur-fond-bouton-rouge-focus: #C2001A;
@@ -8,5 +9,39 @@ $couleur-fond-bouton-rouge-focus: #C2001A;
 
   img {
     height: .875rem;
+  }
+}
+
+
+.overlay {
+  &.modale-stop {
+    background: $noir;
+    label {
+      display: block;
+      width: 100%;
+      color: $blanc;
+      line-height: 6.5rem;
+      font-size: 2.25rem;
+      font-weight: bold;
+      position: relative;
+      bottom: 7rem;
+      text-align: center;
+    }
+    .buttons {
+      display: block;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      button {
+        margin: 0 1.875rem;
+      }
+      .modal-ok {
+        @include bouton-modale($couleur-fond-bouton-vert, $blanc, $couleur-fond-bouton-vert-focus)
+      }
+
+      .modal-annuler {
+        @include bouton-modale($couleur-reponse-incorrecte, $blanc, $couleur-fond-bouton-rouge-focus)
+      }
+    }
   }
 }
