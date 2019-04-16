@@ -42,21 +42,39 @@ describe('Une pièce', function () {
     expect($('.piece').css('top')).to.eql('20px');
   });
 
-  it('peut être déplacée', function () {
+  it('peut être sélectionnée', function () {
     const piece = new Piece({ x: 90, y: 40 });
     const vuePiece = creeVueMinimale(piece);
     vuePiece.affiche('#controle', $);
+
+    expect(piece.estSelectionnee()).to.be(false);
+    $('.piece').trigger($.Event('mousedown', { clientX: 95, clientY: 55 }));
+    expect(piece.estSelectionnee()).to.be(true);
+  });
+
+  it('peut être désélectionnée', function () {
+    const piece = new Piece({ x: 90, y: 40 });
+    piece.selectionne({ x: 95, y: 55 });
+
+    const vuePiece = creeVueMinimale(piece);
+    vuePiece.affiche('#controle', $);
+
+    expect(piece.estSelectionnee()).to.be(true);
+    $('.piece').trigger($.Event('mouseup'));
+    expect(piece.estSelectionnee()).to.be(false);
+  });
+
+  it('peut être bougée', function () {
+    const piece = new Piece({ x: 90, y: 40 });
+    const vuePiece = creeVueMinimale(piece);
+
+    $('#controle').width(100).height(100);
+    vuePiece.affiche('#controle', $);
+
     expect($('.piece').css('left')).to.eql('90px');
     expect($('.piece').css('top')).to.eql('40px');
 
-    const $piece = $('.piece');
-    const $elementParent = $('#controle');
-    const evenementSelectionner = $.Event('mousedown', { clientX: 95, clientY: 55 });
-    const evenementGlisser = $.Event('mousemove', { clientX: 30, clientY: 20 });
-    const evenementDeposer = $.Event('mouseup');
-    $piece.trigger(evenementSelectionner);
-    $elementParent.trigger(evenementGlisser);
-    $piece.trigger(evenementDeposer);
+    piece.changePosition({ x: 25, y: 5 });
 
     expect($('.piece').css('left')).to.eql('25px');
     expect($('.piece').css('top')).to.eql('5px');

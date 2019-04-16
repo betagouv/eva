@@ -59,13 +59,6 @@ export class VuePiece extends EventEmitter {
     $piece.on('dragstart', function (event) { event.preventDefault(); });
     $piece.mouseup(e => { this.piece.deselectionne(); });
 
-    $elementParent.mousemove(e => {
-      this.piece.deplaceSiSelectionnee({
-        x: 100 * e.clientX / $elementParent.width(),
-        y: 100 * e.clientY / $elementParent.height()
-      });
-    });
-
     this.piece.on(CHANGEMENT_POSITION, (nouvellePosition) => {
       metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
     });
