@@ -12,6 +12,9 @@ describe('la barre de developpement', () => {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     situation = new Situation();
+    situation.audios = {
+      test: new window.Audio()
+    };
     vue = new BarreDev(situation);
     vue.affiche('#pointInsertion', $);
   });
@@ -33,6 +36,24 @@ describe('la barre de developpement', () => {
     expect($('#pointInsertion .bouton-go').prop('disabled')).to.not.be.ok();
     situation.modifieEtat(DEMARRE);
     expect($('#pointInsertion .bouton-go').attr('disabled')).to.be.ok();
+  });
+
+  it('affiche un bouton muet', () => {
+    expect($('#pointInsertion .barre-dev .bouton-muet').length).to.eql(1);
+  });
+
+  it("l'appui sur le bouton muet, rend muet tout les sons de la situation", () => {
+    expect($('#pointInsertion .bouton-muet').text()).to.equal('situation.barre-dev.muet');
+    $('#pointInsertion .bouton-muet').click();
+    expect(situation.audios.test.muted).to.be(true);
+    expect($('#pointInsertion .bouton-muet').text()).to.equal('situation.barre-dev.sonore');
+  });
+
+  it('au ré-appui sur le bouton muet, rend non muet tout les sons de la situation', () => {
+    $('#pointInsertion .bouton-muet').click();
+    expect(situation.audios.test.muted).to.be(true);
+    $('#pointInsertion .bouton-muet').click();
+    expect(situation.audios.test.muted).to.be(false);
   });
 
   it('affiche un bouton fini', () => {

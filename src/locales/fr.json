@@ -16,6 +16,10 @@
     "retour_stock": "Retour au stock"
   },
   "situation": {
+    "barre-dev": {
+      "muet": "Rendre muet",
+      "sonore": "Rendre sonore"
+    },
     "ecouter-consigne": "Commencez par écouter la consigne",
     "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
     "chargement": "Chargement en cours",
