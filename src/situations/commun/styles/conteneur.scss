@@ -3,4 +3,9 @@
   height: 41.875rem;
   margin: auto;
   position: relative;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
