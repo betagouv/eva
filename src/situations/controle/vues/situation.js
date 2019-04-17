@@ -39,8 +39,8 @@ export class VueSituation {
       vueBac.affiche(pointInsertion, $);
     }
 
-    const $situation = $(pointInsertion);
-    $situation.addClass('controle');
+    this.$situation = $(pointInsertion);
+    this.$situation.addClass('controle');
 
     this.situation.bacs().forEach(afficheBac);
     this.tapis.affiche(pointInsertion, $);
@@ -53,14 +53,12 @@ export class VueSituation {
       }
     });
 
-    $situation.mousemove(e => {
-      const piecesAffichees = this.situation.piecesAffichees();
-      piecesAffichees.forEach(p => {
-        p.deplaceSiSelectionnee({
-          x: 100 * e.clientX / $situation.width(),
-          y: 100 * e.clientY / $situation.height()
-        });
-      });
+    this.$situation.mousemove(e => {
+      if (e.buttons === 1) {
+        this.deplacePiecesSelectionnees(e);
+      } else {
+        this.deselectionneToutesLesPieces();
+      }
     });
   }
 
@@ -78,5 +76,22 @@ export class VueSituation {
     this.situation.on(PIECE_MAL_PLACEE, envoiEvenementPiece(EvenementPieceMalPlacee));
     this.situation.on(PIECE_RATEE, envoiEvenementPiece(EvenementPieceRatee));
     this.situation.demarre();
+  }
+
+  deplacePiecesSelectionnees (e) {
+    const piecesAffichees = this.situation.piecesAffichees();
+    piecesAffichees.forEach(p => {
+      p.deplaceSiSelectionnee({
+        x: 100 * e.clientX / this.$situation.width(),
+        y: 100 * e.clientY / this.$situation.height()
+      });
+    });
+  }
+
+  deselectionneToutesLesPieces () {
+    const piecesAffichees = this.situation.piecesAffichees();
+    piecesAffichees.forEach(p => {
+      p.deselectionne();
+    });
   }
 }
