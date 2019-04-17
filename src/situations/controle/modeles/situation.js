@@ -93,6 +93,10 @@ export class Situation extends SituationCommune {
     this._piecesAffichees.splice(this._piecesAffichees.indexOf(piece), 1);
     piece.emit(DISPARITION_PIECE);
 
+    if (piece.estSelectionnee()) {
+      this.bacs().forEach((bac) => bac.reinitialiseEtatSurvole());
+    }
+
     const bac = this.bacs().find((bac) => bac.contient(piece));
     if (bac) {
       const evenement = bac.correspondALaCategorie(piece) ? PIECE_BIEN_PLACEE : PIECE_MAL_PLACEE;
