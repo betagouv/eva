@@ -2,4 +2,8 @@
   display: block;
   position: absolute;
   width: 10%;
+
+  &.selectionnee {
+    z-index: 100;
+  }
 }

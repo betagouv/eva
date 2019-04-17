@@ -106,4 +106,13 @@ describe('Une pièce', function () {
     expect($('.piece').length).to.equal(1);
     piece.emit(DISPARITION_PIECE);
   });
+
+  it("rajoute la classe selectionne lorsqu'elle est sélectionné", function () {
+    const piece = new Piece({});
+    const vuePiece = creeVueMinimale(piece);
+    vuePiece.affiche('#controle', $);
+    expect($('.piece.selectionnee').length).to.equal(0);
+    piece.selectionne({ x: 0, y: 0 });
+    expect($('.piece.selectionnee').length).to.equal(1);
+  });
 });

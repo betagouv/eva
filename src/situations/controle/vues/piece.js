@@ -2,7 +2,7 @@ import EventEmitter from 'events';
 
 import 'controle/styles/piece.scss';
 
-import { CHANGEMENT_POSITION } from 'controle/modeles/piece';
+import { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
 import { DISPARITION_PIECE } from 'controle/modeles/situation';
 
 export function animationInitiale ($element) {
@@ -68,6 +68,9 @@ export class VuePiece extends EventEmitter {
 
     this.piece.on(CHANGEMENT_POSITION, (nouvellePosition) => {
       metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
+    });
+    this.piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
+      $piece.toggleClass('selectionnee', selectionnee);
     });
     $elementParent.append($piece);
     $piece.show(() => { this.callbackApresApparition($piece); });
