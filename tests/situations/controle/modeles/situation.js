@@ -162,5 +162,20 @@ describe('La situation « Contrôle »', function () {
 
       piece.deselectionne();
     });
+
+    it("réinitialise l'état survolé des bacs lors de la disparition de la pièce", function (done) {
+      bac.reinitialiseEtatSurvole = done;
+
+      situation.faisDisparaitrePiece(piece);
+    });
+
+    it("ne réinitialise pas l'état survolé des bacs lorsque la pièce n'est pas sélectionné", function () {
+      let nbReinitialiseEtatSurvole = 0;
+      piece.deselectionne();
+      bac.reinitialiseEtatSurvole = () => nbReinitialiseEtatSurvole++;
+
+      situation.faisDisparaitrePiece(piece);
+      expect(nbReinitialiseEtatSurvole).to.equal(0);
+    });
   });
 });
