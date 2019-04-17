@@ -31,21 +31,6 @@
   position: relative;
   transition : border 500ms ease-out;
 
-  label {
-    display: block;
-    width: 100%;
-  }
-
-  .buttons {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 1rem;
-    button {
-      background-color: grey;
-    }
-  }
 
   &.succes-saisie-inventaire {
     border-color: $couleur-reponse-correcte;
@@ -80,7 +65,6 @@
     }
 
   }
-
 
   label {
     display: inline-block;
