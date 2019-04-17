@@ -2,8 +2,10 @@
   display: block;
   position: absolute;
   width: 10%;
+  cursor: grab;
 
   &.selectionnee {
     z-index: 100;
+    cursor: grabbing;
   }
 }
