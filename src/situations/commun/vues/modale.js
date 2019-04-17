@@ -1,7 +1,6 @@
 import { traduction } from 'commun/infra/internationalisation';
 
 import 'commun/styles/overlay.scss';
-import 'commun/styles/modale.scss';
 
 export function afficheFenetreModale ($pointInsertion, $, message, actionOk) {
   const $modale = $(`<div id="fenetre-modale" class="overlay modale-stop">
