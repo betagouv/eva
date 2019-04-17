@@ -39,24 +39,27 @@ h1 {
   position: absolute;
   right: 3.5rem;
   top: 0;
-  color: $couleur-bordure-bouton;
-  height: 5rem;
   width: 0;
+  height: 5rem;
   padding: 0;
+  color: $couleur-bordure-bouton;
   border-left: 1.5rem solid $blanc;
   border-right: 1.5rem solid $blanc;
   border-bottom: 1.5rem solid transparent;
   font-size: 2.3rem;
-  transition: .2s;
+  transition: height .2s;
   opacity: .7;
-  & i {
+
+  i {
     margin-left: -1.1rem;
     margin-top: 0.7rem;
-    transition: .2s;
+    transition: margin-top .2s;
   }
+
   &:hover {
     height: 6rem;
-    & i {
+
+    i {
       margin-top: 1.7rem;
     }
   }
