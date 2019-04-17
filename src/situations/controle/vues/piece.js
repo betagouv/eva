@@ -77,6 +77,7 @@ export class VuePiece extends EventEmitter {
     $piece.show(() => { this.callbackApresApparition($piece); });
 
     this.piece.on(DISPARITION_PIECE, () => {
+      $piece.addClass('desactiver');
       this.callbackAvantSuppression($piece, () => {
         $piece.remove();
       });

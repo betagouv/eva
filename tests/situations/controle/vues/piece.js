@@ -107,6 +107,22 @@ describe('Une pièce', function () {
     piece.emit(DISPARITION_PIECE);
   });
 
+  it("rajoute la classe desactiver au moment de l'événement DISPARITION_PIECE", function (done) {
+    const piece = new Piece({});
+
+    const callbackAvantSuppression = (_, callbackSuppression) => {
+      callbackSuppression();
+      expect($('.piece').length).to.equal(0);
+      done();
+    };
+
+    const vuePiece = new VuePiece(piece, () => {}, callbackAvantSuppression);
+    vuePiece.affiche('#controle', $);
+    expect($('.desactiver').length).to.equal(0);
+    piece.emit(DISPARITION_PIECE);
+    expect($('.desactiver').length).to.equal(1);
+  });
+
   it("rajoute la classe selectionne lorsqu'elle est sélectionné", function () {
     const piece = new Piece({});
     const vuePiece = creeVueMinimale(piece);
