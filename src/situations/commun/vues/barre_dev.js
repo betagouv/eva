@@ -6,8 +6,9 @@ import { CHANGEMENT_ETAT, ATTENTE_DEMARRAGE, DEMARRE, FINI } from '../modeles/si
 import { traduction } from '../infra/internationalisation';
 
 export default class VueBareDev {
-  constructor (situation) {
+  constructor (situation, preferencesDev) {
     this.situation = situation;
+    this.preferencesDev = preferencesDev;
   }
 
   affiche (pointInsertion, $) {
@@ -17,7 +18,7 @@ export default class VueBareDev {
       this.situation.modifieEtat(DEMARRE);
     });
 
-    const $muet = $(`<button class="bouton-muet">${traduction('situation.barre-dev.muet')}</button>`);
+    const $muet = $(`<button class="bouton-muet"></button>`);
     $muet.on('click', () => { this.basculeEtatMuet(pointInsertion, $); });
 
     const $fini = $('<button class="bouton-fini">FIN</button>');
@@ -26,6 +27,8 @@ export default class VueBareDev {
     });
     $div.append($go, $muet, $fini);
     $(pointInsertion).append($div);
+
+    this.metAJourEtatMuet(pointInsertion, $, this.etatMuet());
     this.situation.on(CHANGEMENT_ETAT, () => {
       this.metAJourEtat(pointInsertion, $);
     });
@@ -39,12 +42,26 @@ export default class VueBareDev {
   }
 
   basculeEtatMuet (pointInsertion, $) {
+    const muet = !this.etatMuet();
+    this.preferencesDev.enregistreEtatMuet(muet);
+    this.metAJourEtatMuet(pointInsertion, $, muet);
+  }
+
+  etatMuet () {
+    const muet = this.preferencesDev.consulteEtatMuet();
+    if (muet === null) {
+      return false;
+    } else {
+      return muet === 'true';
+    }
+  }
+
+  metAJourEtatMuet (pointInsertion, $, muet) {
     const audios = this.situation.audios;
-    let muet;
     Object.keys(audios).forEach((audio) => {
-      audios[audio].muted = !audios[audio].muted;
-      muet = audios[audio].muted;
+      audios[audio].muted = muet;
     });
-    $('.bouton-muet', pointInsertion).text(traduction(muet ? 'situation.barre-dev.sonore' : 'situation.barre-dev.muet'));
+    const chaine = muet ? 'situation.barre-dev.sonore' : 'situation.barre-dev.muet';
+    $('.bouton-muet', pointInsertion).text(traduction(chaine));
   }
 }

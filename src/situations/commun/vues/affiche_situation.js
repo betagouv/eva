@@ -2,6 +2,7 @@ import uuidv4 from 'uuid/v4';
 
 import DepotJournal from 'commun/infra/depot_journal';
 import ChargeurRessources from 'commun/infra/chargeur_ressources';
+import PreferencesDev from 'commun/infra/preferences_dev';
 import Journal from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
@@ -21,8 +22,8 @@ export function afficheSituation (nomSituation, modeleSituation, VueSituation, c
     const ressourcesSituation = contexte.keys().map(contexte);
     chargeurRessources.charge(ressourcesSituation);
 
-    const barreDev = process.env.NODE_ENV !== 'production';
-    const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, chargeurRessources, barreDev);
+    const preferencesDev = process.env.NODE_ENV !== 'production' ? new PreferencesDev() : null;
+    const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, chargeurRessources, preferencesDev);
     vueCadre.affiche(pointInsertion, $);
   }
 

@@ -14,7 +14,9 @@ describe('Une vue du cadre', function () {
   let chargeurRessources;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
+    jsdom('<div id="point-insertion"></div>', {
+      url: 'https://example.org/'
+    });
     $ = jQuery(window);
     chargeurRessources = { chargement: () => Promise.resolve() };
     situation = new class extends SituationCommune {

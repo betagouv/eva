@@ -8,6 +8,7 @@ import VueConsigne from 'commun/vues/consigne';
 import VueGo from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
 import VueBarreDev from 'commun/vues/barre_dev';
+import PreferencesDev from '../infra/preferences_dev';
 
 export default class VueCadre {
   constructor (vueSituation, situation, journal, chargeurRessources, barreDev) {
@@ -41,7 +42,7 @@ export default class VueCadre {
     this.previensLaFermetureDeLaSituation($);
 
     if (this.barreDev) {
-      const barreDev = new VueBarreDev(this.situation);
+      const barreDev = new VueBarreDev(this.situation, new PreferencesDev());
       barreDev.affiche(pointInsertion, $);
     }
   }
