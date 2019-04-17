@@ -70,6 +70,7 @@ export class VuePiece extends EventEmitter {
       metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
     });
     this.piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
+      $elementParent.append($piece);
       $piece.toggleClass('selectionnee', selectionnee);
     });
     $elementParent.append($piece);

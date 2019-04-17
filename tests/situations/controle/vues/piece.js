@@ -115,4 +115,14 @@ describe('Une pièce', function () {
     piece.selectionne({ x: 0, y: 0 });
     expect($('.piece.selectionnee').length).to.equal(1);
   });
+
+  it("réordonne la pièce sélectionnée pour la placer en dernier dans l'élément parent", function () {
+    const piece = new Piece({});
+    const vuePiece = creeVueMinimale(piece);
+    vuePiece.affiche('#controle', $);
+    $('#controle').append(`<div class="element"></div>`);
+    expect($('.piece').index()).to.equal(0);
+    piece.selectionne({ x: 0, y: 0 });
+    expect($('.piece').index()).to.equal(1);
+  });
 });
