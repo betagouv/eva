@@ -3,6 +3,7 @@ import uuidv4 from 'uuid/v4';
 import 'controle/styles/app.scss';
 
 import DepotJournal from 'commun/infra/depot_journal';
+import DepotRessources from 'commun/infra/depot_ressources';
 import Journal from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
@@ -17,6 +18,8 @@ import { scenario } from 'controle/data/pieces';
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'controle', new DepotJournal(), new RegistreUtilisateur());
+  const depotRessources = new DepotRessources();
+  depotRessources.charge(require.context('controle/assets', true, /\.png$/), 'controle');
 
   const situation = new Situation({
     scenario: scenario,
@@ -27,7 +30,7 @@ function afficheSituation (pointInsertion, $) {
   });
 
   const vueSituation = new VueSituation(situation, journal);
-  const vueCadre = new VueCadre(vueSituation, situation, journal);
+  const vueCadre = new VueCadre(vueSituation, situation, journal, depotRessources);
 
   vueCadre.affiche(pointInsertion, $);
 }

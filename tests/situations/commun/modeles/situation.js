@@ -1,9 +1,9 @@
-import Situation, { NON_DEMARRE, LECTURE_CONSIGNE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import Situation, { CHARGEMENT, LECTURE_CONSIGNE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
 
 describe('une situation', function () {
-  it('a un état non démaré par défaut', function () {
+  it('a un état chargement par défaut', function () {
     const uneSituation = new Situation();
-    expect(uneSituation.etat()).to.eql(NON_DEMARRE);
+    expect(uneSituation.etat()).to.eql(CHARGEMENT);
   });
 
   it('peut changer son état', function () {

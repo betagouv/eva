@@ -42,6 +42,15 @@
   }
 }
 
+.bouton-chargement {
+  @include bouton-carre-before($couleur-fond-bouton-vert, $couleur-fond-bouton-vert, $couleur-fond-bouton-vert);
+  cursor: default;
+
+  img {
+    height: 4rem;
+  }
+}
+
 .message {
   position:absolute;
   top: 7rem;
