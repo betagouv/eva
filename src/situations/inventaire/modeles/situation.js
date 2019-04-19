@@ -31,7 +31,7 @@ function creerContenants ({ contenants, contenus }) {
   });
 }
 
-export class Situation extends SituationCommune {
+export default class Situation extends SituationCommune {
   constructor (unStock, sons) {
     super();
     this.produits = inventaireProduits(unStock);
