@@ -1,4 +1,4 @@
-export class VueContenant {
+export default class VueContenant {
   constructor (pointInsertion, contenant) {
     this.pointInsertion = pointInsertion;
     this.contenant = contenant;
