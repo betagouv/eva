@@ -1,4 +1,4 @@
-import { VueContenants } from './contenants';
+import VueContenants from './contenants';
 import { VueContenu } from './contenu';
 import imageEtageres from 'inventaire/assets/etageres.png';
 
