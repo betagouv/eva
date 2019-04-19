@@ -1,4 +1,4 @@
-import { DepotJournal } from 'commun/infra/depot_journal';
+import DepotJournal from 'commun/infra/depot_journal';
 import jsdom from 'jsdom-global';
 
 describe('le depot du journal', function () {
