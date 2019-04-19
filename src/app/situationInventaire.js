@@ -3,7 +3,7 @@ import uuidv4 from 'uuid/v4';
 import 'inventaire/styles/app.scss';
 
 import { contenants, contenus } from 'inventaire/data/stock';
-import { Situation } from 'inventaire/modeles/situation';
+import Situation from 'inventaire/modeles/situation';
 
 import DepotJournal from 'commun/infra/depot_journal';
 import Journal from 'commun/modeles/journal';

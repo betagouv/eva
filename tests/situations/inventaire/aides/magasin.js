@@ -1,4 +1,4 @@
-import { Situation } from 'inventaire/modeles/situation';
+import Situation from 'inventaire/modeles/situation';
 import MockAudio from '../../commun/aides/mock_audio';
 
 class MagasinEnDevenir {
