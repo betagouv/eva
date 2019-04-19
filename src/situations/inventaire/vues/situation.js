@@ -4,7 +4,7 @@ import VueEtageres from 'inventaire/vues/etageres';
 import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
-export class VueSituation {
+export default class VueSituation {
   constructor (situation, journal) {
     this.journal = journal;
     this.situation = situation;
