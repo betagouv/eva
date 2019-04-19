@@ -17,6 +17,7 @@
   },
   "situation": {
     "ecouter-consigne": "Commencez par écouter la consigne",
+    "chargement": "Chargement en cours...",
     "go": "Vous pouvez commencer",
     "modale": {
       "annuler": "NON",

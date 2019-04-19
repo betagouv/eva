@@ -8,4 +8,8 @@
   outline: none;
   display: flex;
   align-items: center;
+
+  &.opaque {
+    background: black;
+  }
 }

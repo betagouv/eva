@@ -27,7 +27,7 @@ function afficheSituation (pointInsertion, $) {
     { consigne, reussite, echec });
 
   const vueSituation = new VueSituation(situation, journal, depotRessources);
-  const vueCadre = new VueCadre(vueSituation, situation, journal);
+  const vueCadre = new VueCadre(vueSituation, situation, journal, depotRessources);
 
   vueCadre.affiche(pointInsertion, $);
 }
