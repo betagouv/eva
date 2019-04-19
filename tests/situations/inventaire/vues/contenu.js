@@ -1,7 +1,7 @@
 /* global Event */
 
 import Contenant from 'inventaire/modeles/contenant';
-import { DELAY_FERMETURE_CONTENANT_MILLISEC, VueContenu } from 'inventaire/vues/contenu';
+import VueContenu, { DELAY_FERMETURE_CONTENANT_MILLISEC } from 'inventaire/vues/contenu';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu', function () {
