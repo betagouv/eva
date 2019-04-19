@@ -2,7 +2,7 @@ import VueContenants from './contenants';
 import VueContenu from './contenu';
 import imageEtageres from 'inventaire/assets/etageres.png';
 
-export class VueEtageres {
+export default class VueEtageres {
   constructor (pointInsertion, journal) {
     this.journal = journal;
     this.element = document.createElement('div');
