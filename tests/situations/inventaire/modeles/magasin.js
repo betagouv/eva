@@ -1,4 +1,4 @@
-import { Contenant } from 'inventaire/modeles/contenant';
+import Contenant from 'inventaire/modeles/contenant';
 import { unMagasin } from '../aides/magasin';
 
 describe('Le magasin', function () {
