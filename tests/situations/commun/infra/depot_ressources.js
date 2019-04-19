@@ -22,4 +22,29 @@ describe('le depot de ressources', function () {
     const image2 = depot.image('identifiant-repertoire/monimage.png');
     expect(image1).to.not.equal(image2);
   });
+
+  it('resout la promesse lorsque toutes les ressources sont chargées', function (done) {
+    const images = [];
+    window.Image = class {
+      constructor () {
+        images.push(this);
+      }
+    };
+    depot.charge(require.context('./ressources'), 'identifiant-repertoire');
+    images[0].onload();
+    images[1].onload();
+    depot.chargement().then(() => done());
+  });
+
+  it('resout la promesse lorsque une ressource est en erreur', function (done) {
+    const images = [];
+    window.Image = class {
+      constructor () {
+        images.push(this);
+      }
+    };
+    depot.charge(require.context('./ressources'), 'identifiant-repertoire');
+    images[0].onerror();
+    depot.chargement().catch(done);
+  });
 });
