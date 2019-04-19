@@ -4,7 +4,7 @@ function pourcentage (dimension, dimensionScene) {
   return dimension / dimensionScene * 100;
 }
 
-export class Contenant {
+export default class Contenant {
   constructor (donneesContenant, contenu) {
     Object.assign(this, donneesContenant);
     this.contenu = contenu;

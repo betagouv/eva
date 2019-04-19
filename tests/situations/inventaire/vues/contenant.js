@@ -1,6 +1,6 @@
 /* global Event */
 
-import { Contenant } from 'inventaire/modeles/contenant';
+import Contenant from 'inventaire/modeles/contenant';
 import { VueContenant } from 'inventaire/vues/contenant';
 import jsdom from 'jsdom-global';
 
