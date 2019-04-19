@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -108,7 +109,8 @@ module.exports = {
       inject: 'head'
     }),
     new webpack.ProvidePlugin({ jQuery: 'jquery' }),
-    new webpack.EnvironmentPlugin(['URL_SERVEUR'])
+    new webpack.EnvironmentPlugin(['URL_SERVEUR']),
+    new FaviconsWebpackPlugin('./src/public/favicon.svg')
   ],
   devServer: {
     contentBase: './src/public',
