@@ -1,7 +1,7 @@
 import VueContenant from './contenant';
 import EvenementOuvertureContenant from 'inventaire/modeles/evenement_ouverture_contenant';
 
-export class VueContenants {
+export default class VueContenants {
   constructor (pointInsertion, journal) {
     this.journal = journal;
     this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
