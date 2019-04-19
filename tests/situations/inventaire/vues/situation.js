@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 import { unMagasinVide } from '../aides/magasin';
-import { VueSituation } from 'inventaire/vues/situation';
+import VueSituation from 'inventaire/vues/situation';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
