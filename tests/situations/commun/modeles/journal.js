@@ -1,4 +1,4 @@
-import { Journal } from 'commun/modeles/journal';
+import Journal from 'commun/modeles/journal';
 import Evenement from 'commun/modeles/evenement';
 import { MockDepot } from '../aides/mockDepot';
 

@@ -1,4 +1,4 @@
-export class Journal {
+export default class Journal {
   constructor (maintenant, session, situation, depot, registre) {
     this.maintenant = maintenant;
     this.depot = depot;

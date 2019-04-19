@@ -6,7 +6,7 @@ import { contenants, contenus } from 'inventaire/data/stock';
 import { Situation } from 'inventaire/modeles/situation';
 
 import DepotJournal from 'commun/infra/depot_journal';
-import { Journal } from 'commun/modeles/journal';
+import Journal from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import { VueSituation } from 'inventaire/vues/situation';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
