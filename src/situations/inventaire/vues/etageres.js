@@ -1,5 +1,5 @@
 import VueContenants from './contenants';
-import { VueContenu } from './contenu';
+import VueContenu from './contenu';
 import imageEtageres from 'inventaire/assets/etageres.png';
 
 export class VueEtageres {

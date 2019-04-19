@@ -3,9 +3,9 @@ import 'inventaire/styles/contenu.scss';
 
 // Attention de maintenir la cohérence avec le temps
 // de la transition css (class contenu)
-const DELAY_FERMETURE_CONTENANT_MILLISEC = 400;
+export const DELAY_FERMETURE_CONTENANT_MILLISEC = 400;
 
-class VueContenu {
+export default class VueContenu {
   constructor (pointInsertion) {
     this.calque = document.createElement('div');
     this.calque.id = 'calque';
@@ -44,5 +44,3 @@ class VueContenu {
     });
   }
 }
-
-export { DELAY_FERMETURE_CONTENANT_MILLISEC, VueContenu };
