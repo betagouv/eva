@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 
-import SituationCommune, { CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT, NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI, STOPPEE } from 'commun/modeles/situation';
+import SituationCommune, { CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI, STOPPEE } from 'commun/modeles/situation';
 import VueCadre from 'commun/vues/cadre';
 import MockAudio from '../../commun/aides/mock_audio';
 
@@ -67,8 +67,8 @@ describe('Une vue du cadre', function () {
     expect($('#cadre .bouton-chargement').length).to.equal(1);
   });
 
-  it("affiche le bouton play dans l'état NON_DEMARRE", function () {
-    situation.modifieEtat(NON_DEMARRE);
+  it("affiche le bouton play dans l'état ATTENTE_DEMARRAGE", function () {
+    situation.modifieEtat(ATTENTE_DEMARRAGE);
     const vueCadre = new VueCadre(uneVue(), situation, {}, depotsRessources);
     vueCadre.affiche('#point-insertion', $);
 
@@ -113,7 +113,7 @@ describe('Une vue du cadre', function () {
   it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
     const vueCadre = new VueCadre(uneVue(), situation, {}, depotsRessources);
     vueCadre.affiche('#point-insertion', $);
-    [CHARGEMENT, ERREUR_CHARGEMENT, FINI, NON_DEMARRE, STOPPEE].forEach((etat) => {
+    [CHARGEMENT, ERREUR_CHARGEMENT, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
       situation.modifieEtat(etat);
       const event = $.Event('beforeunload');
       $(window).trigger(event);
