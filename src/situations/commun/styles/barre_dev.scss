@@ -10,5 +10,7 @@
 
   button {
     @include bouton-carre($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+    width: auto;
+    min-width: 4rem;
   }
 }
