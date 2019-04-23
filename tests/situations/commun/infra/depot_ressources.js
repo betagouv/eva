@@ -23,7 +23,7 @@ describe('le depot de ressources', function () {
     expect(image1).to.not.equal(image2);
   });
 
-  it('resout la promesse lorsque toutes les ressources sont chargées', function (done) {
+  it('résout la promesse lorsque toutes les ressources sont chargées', function (done) {
     const images = [];
     window.Image = class {
       constructor () {
@@ -36,7 +36,7 @@ describe('le depot de ressources', function () {
     depot.chargement().then(() => done());
   });
 
-  it('resout la promesse lorsque une ressource est en erreur', function (done) {
+  it('rejette la promesse lorsque une ressource est en erreur', function (done) {
     const images = [];
     window.Image = class {
       constructor () {
