@@ -1,6 +1,7 @@
 import EventEmitter from 'events';
 
 export const CHARGEMENT = 'chargement';
+export const ERREUR_CHARGEMENT = 'erreurDeChargement';
 export const NON_DEMARRE = 'nonDémarré';
 export const LECTURE_CONSIGNE = 'lectureConsigne';
 export const CONSIGNE_ECOUTEE = 'consigneEcoutée';

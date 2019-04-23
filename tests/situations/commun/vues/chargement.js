@@ -1,7 +1,7 @@
 import jsdom from 'jsdom-global';
 
 import VueChargement from 'commun/vues/chargement';
-import Situation, { CHARGEMENT, NON_DEMARRE } from 'commun/modeles/situation';
+import Situation, { CHARGEMENT, NON_DEMARRE, ERREUR_CHARGEMENT } from 'commun/modeles/situation';
 import { traduction } from 'commun/infra/internationalisation';
 
 describe('vue chargement', function () {
@@ -25,12 +25,18 @@ describe('vue chargement', function () {
     expect($('#pointInsertion .message').text()).to.eql(traduction('situation.chargement'));
   });
 
-  it('passe la situation en NON_DEMARRE une fois le chargement terminé', function (done) {
+  it('passe la situation en NON_DEMARRE une fois le chargement terminé', function () {
     expect(situation.etat()).to.equal(CHARGEMENT);
-    vue.affiche('#pointInsertion', $);
-    depotRessources.chargement().then(() => {
+    return vue.affiche('#pointInsertion', $).then(() => {
       expect(situation.etat()).to.equal(NON_DEMARRE);
-      done();
+    });
+  });
+
+  it('passe la situation en ERREUR_CHARGEMENT si toutes les ressources ne sont pas chargées', function () {
+    expect(situation.etat()).to.equal(CHARGEMENT);
+    depotRessources.chargement = () => Promise.reject(new Error('test'));
+    return vue.affiche('#pointInsertion', $).then(() => {
+      expect(situation.etat()).to.equal(ERREUR_CHARGEMENT);
     });
   });
 });

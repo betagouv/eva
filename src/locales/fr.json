@@ -17,6 +17,7 @@
   },
   "situation": {
     "ecouter-consigne": "Commencez par écouter la consigne",
+    "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
     "chargement": "Chargement en cours...",
     "go": "Vous pouvez commencer",
     "modale": {
