@@ -16,7 +16,7 @@ describe('la barre de developpement', () => {
     situation.audios = {
       test: new window.Audio()
     };
-    preferencesDev = { enregistreEtatMuet () {}, consulteEtatMuet () {} };
+    preferencesDev = { enregistreEtatMuet () {}, consulteEtatMuet () {}, consulteEtatConfirmationQuitterEnCours () {} };
     vue = new BarreDev(situation, preferencesDev);
   });
 
@@ -95,5 +95,23 @@ describe('la barre de developpement', () => {
     expect($('#pointInsertion .bouton-fini').prop('disabled')).to.not.be.ok();
     situation.modifieEtat(FINI);
     expect($('#pointInsertion .bouton-fini').attr('disabled')).to.be.ok();
+  });
+
+  it('affiche un bouton pour ne pas avoir la confirmation de quitter la situation', () => {
+    vue.affiche('#pointInsertion', $);
+    expect($('#pointInsertion .barre-dev .bouton-confirmation').length).to.eql(1);
+  });
+
+  it("l'appui sur le bouton confirmation enregistre l'état dans les préférences", () => {
+    let enregistrement = 0;
+    preferencesDev.consulteEtatConfirmationQuitterEnCours = () => enregistrement === 1 ? false : null;
+    preferencesDev.enregistreEtatConfirmationQuitterEnCours = () => enregistrement++;
+    vue.affiche('#pointInsertion', $);
+    expect($('#pointInsertion .bouton-confirmation').text()).to.equal('situation.barre-dev.pas-confirmation');
+    expect(vue.confirmationQuitterEnCours()).to.be(true);
+    $('#pointInsertion .bouton-confirmation').click();
+    expect(vue.confirmationQuitterEnCours()).to.be(false);
+    expect($('#pointInsertion .bouton-confirmation').text()).to.equal('situation.barre-dev.confirmation');
+    expect(enregistrement).to.equal(1);
   });
 });

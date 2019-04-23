@@ -2,6 +2,7 @@ import jsdom from 'jsdom-global';
 
 import SituationCommune, { CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI, STOPPEE } from 'commun/modeles/situation';
 import VueCadre from 'commun/vues/cadre';
+import PreferencesDev from 'commun/infra/preferences_dev';
 import MockAudio from '../../commun/aides/mock_audio';
 
 function uneVue (callbackAffichage = () => {}) {
@@ -123,15 +124,26 @@ describe('Une vue du cadre', function () {
     });
   });
 
+  it("ne demande pas une confirmation pour quitter la page lorsque la situation a une barre de dev qui l'interdit", function () {
+    const preferencesDev = new PreferencesDev();
+    preferencesDev.consulteEtatConfirmationQuitterEnCours = () => false;
+    const vueCadre = new VueCadre(uneVue(), situation, {}, chargeurRessources, preferencesDev);
+    vueCadre.affiche('#point-insertion', $);
+    situation.modifieEtat(DEMARRE);
+    const event = $.Event('beforeunload');
+    $(window).trigger(event);
+    expect(event.isDefaultPrevented()).to.not.be.ok();
+  });
+
   it("crée la barre d'outils de dev", function () {
-    const vueCadre = new VueCadre(uneVue(), situation, {}, chargeurRessources, true);
+    const vueCadre = new VueCadre(uneVue(), situation, {}, chargeurRessources, new PreferencesDev());
     vueCadre.affiche('#point-insertion', $);
 
     expect($('.barre-dev').length).to.equal(1);
   });
 
   it("ne crée pas la barre d'outils de dev", function () {
-    const vueCadre = new VueCadre(uneVue(), situation, {}, chargeurRessources, false);
+    const vueCadre = new VueCadre(uneVue(), situation, {}, chargeurRessources, null);
     vueCadre.affiche('#point-insertion', $);
 
     expect($('.barre-dev').length).to.equal(0);

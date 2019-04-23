@@ -8,14 +8,13 @@ import VueConsigne from 'commun/vues/consigne';
 import VueGo from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
 import VueBarreDev from 'commun/vues/barre_dev';
-import PreferencesDev from '../infra/preferences_dev';
 
 export default class VueCadre {
-  constructor (vueSituation, situation, journal, chargeurRessources, barreDev) {
+  constructor (vueSituation, situation, journal, chargeurRessources, preferencesDev) {
     this.vueSituation = vueSituation;
     this.situation = situation;
     this.chargeurRessources = chargeurRessources;
-    this.barreDev = barreDev;
+    this.preferencesDev = preferencesDev;
     this.vueActions = new VueActions(situation, journal);
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
@@ -41,9 +40,9 @@ export default class VueCadre {
     this.situation.on(CHANGEMENT_ETAT, this.afficheEtat.bind(this));
     this.previensLaFermetureDeLaSituation($);
 
-    if (this.barreDev) {
-      const barreDev = new VueBarreDev(this.situation, new PreferencesDev());
-      barreDev.affiche(pointInsertion, $);
+    if (this.preferencesDev) {
+      this.barreDev = new VueBarreDev(this.situation, this.preferencesDev);
+      this.barreDev.affiche(pointInsertion, $);
     }
   }
 
@@ -64,6 +63,9 @@ export default class VueCadre {
 
   previensLaFermetureDeLaSituation ($) {
     $(window).on('beforeunload', (e) => {
+      if (this.barreDev && !this.barreDev.confirmationQuitterEnCours()) {
+        return;
+      }
       if (![CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, FINI, STOPPEE].includes(this.situation.etat())) {
         e.preventDefault();
         return '';

@@ -17,7 +17,9 @@
   },
   "situation": {
     "barre-dev": {
+      "confirmation": "Avoir une confirmation en quittant",
       "muet": "Rendre muet",
+      "pas-confirmation": "Désactiver la confirmation en quittant",
       "sonore": "Rendre sonore"
     },
     "ecouter-consigne": "Commencez par écouter la consigne",
