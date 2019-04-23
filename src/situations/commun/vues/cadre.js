@@ -1,7 +1,8 @@
 import 'commun/styles/cadre.scss';
-import { CHARGEMENT, NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, STOPPEE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import { CHARGEMENT, ERREUR_CHARGEMENT, NON_DEMARRE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, STOPPEE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
 import VueActions from 'commun/vues/actions';
 import VueChargement from 'commun/vues/chargement';
+import VueErreurChargement from 'commun/vues/erreur_chargement';
 import VueJoue from 'commun/vues/joue';
 import VueConsigne from 'commun/vues/consigne';
 import VueGo from 'commun/vues/go';
@@ -15,6 +16,7 @@ export default class VueCadre {
     this.vueActions = new VueActions(situation, journal);
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
+    this.vuesEtats.set(ERREUR_CHARGEMENT, VueErreurChargement);
     this.vuesEtats.set(NON_DEMARRE, VueJoue);
     this.vuesEtats.set(LECTURE_CONSIGNE, VueConsigne);
     this.vuesEtats.set(CONSIGNE_ECOUTEE, VueGo);
@@ -54,7 +56,7 @@ export default class VueCadre {
 
   previensLaFermetureDeLaSituation ($) {
     $(window).on('beforeunload', (e) => {
-      if (![CHARGEMENT, NON_DEMARRE, FINI, STOPPEE].includes(this.situation.etat())) {
+      if (![CHARGEMENT, ERREUR_CHARGEMENT, NON_DEMARRE, FINI, STOPPEE].includes(this.situation.etat())) {
         e.preventDefault();
         return '';
       }

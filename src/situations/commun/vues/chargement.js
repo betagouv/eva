@@ -1,4 +1,4 @@
-import { NON_DEMARRE } from 'commun/modeles/situation';
+import { ERREUR_CHARGEMENT, NON_DEMARRE } from 'commun/modeles/situation';
 import VueActionOverlay from 'commun/vues/action_overlay';
 
 import go from 'commun/assets/lecture-en-cours.svg';
@@ -14,8 +14,11 @@ export default class VueChargement extends VueActionOverlay {
   affiche (pointInsertion, $) {
     super.affiche(pointInsertion, $);
     this.$overlay.addClass('opaque');
-    this.depotRessources.chargement().then(() => {
+
+    return this.depotRessources.chargement().then(() => {
       this.situation.modifieEtat(NON_DEMARRE);
+    }).catch(() => {
+      this.situation.modifieEtat(ERREUR_CHARGEMENT);
     });
   }
 }
