@@ -1,4 +1,4 @@
-import { ERREUR_CHARGEMENT, NON_DEMARRE } from 'commun/modeles/situation';
+import { ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE } from 'commun/modeles/situation';
 import VueActionOverlay from 'commun/vues/action_overlay';
 
 import go from 'commun/assets/lecture-en-cours.svg';
@@ -16,7 +16,7 @@ export default class VueChargement extends VueActionOverlay {
     this.$overlay.addClass('opaque');
 
     return this.depotRessources.chargement().then(() => {
-      this.situation.modifieEtat(NON_DEMARRE);
+      this.situation.modifieEtat(ATTENTE_DEMARRAGE);
     }).catch(() => {
       this.situation.modifieEtat(ERREUR_CHARGEMENT);
     });
