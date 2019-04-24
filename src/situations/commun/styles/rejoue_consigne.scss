@@ -1,0 +1,11 @@
+@import 'commun/styles/bouton.scss';
+@import 'commun/styles/couleurs.scss';
+
+.bouton-relecture-consigne {
+  @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
+  img {
+    position: relative;
+    margin: auto;
+    height: 1.3rem;
+  }
+}

@@ -2,19 +2,23 @@ import 'commun/styles/actions.scss';
 import 'commun/styles/stop.scss';
 
 import VueStop from 'commun/vues/stop';
+import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
 
 export default class VueActions {
   constructor (situation, journal) {
     this.situation = situation;
     this.journal = journal;
+    this.consigne = situation.audios.consigne;
   }
 
   affiche (pointInsertion, $) {
     this.$actions = $('<div class="actions"></div>');
-    $(pointInsertion).append(this.$actions);
+    const stop = new VueStop(this.journal);
+    const rejoueConsigne = new VueRejoueConsigne(this.consigne);
 
-    const stop = new VueStop(this.situation, this.journal);
-    stop.affiche('.actions', $);
+    stop.affiche(this.$actions, $);
+    rejoueConsigne.affiche(this.$actions, $);
+    $(pointInsertion).append(this.$actions);
   }
 
   cache () {
