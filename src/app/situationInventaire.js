@@ -6,7 +6,7 @@ import { contenants, contenus } from 'inventaire/data/stock';
 import Situation from 'inventaire/modeles/situation';
 
 import DepotJournal from 'commun/infra/depot_journal';
-import DepotRessources from 'commun/infra/depot_ressources';
+import ChargeurRessources from 'commun/infra/chargeur_ressources';
 import Journal from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import VueSituation from 'inventaire/vues/situation';
@@ -20,14 +20,14 @@ import echec from 'inventaire/assets/echec.mp3';
 function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'inventaire', new DepotJournal(), new RegistreUtilisateur());
-  const depotRessources = new DepotRessources();
-  depotRessources.charge(require.context('inventaire/assets', true, /\.png$/), 'inventaire');
+  const chargeurRessources = new ChargeurRessources();
+  chargeurRessources.charge(require.context('inventaire/assets', true, /\.png$/), 'inventaire');
 
   const situation = new Situation({ contenants, contenus },
     { consigne, reussite, echec });
 
   const vueSituation = new VueSituation(situation, journal);
-  const vueCadre = new VueCadre(vueSituation, situation, journal, depotRessources);
+  const vueCadre = new VueCadre(vueSituation, situation, journal, chargeurRessources);
 
   vueCadre.affiche(pointInsertion, $);
 }

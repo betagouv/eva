@@ -8,14 +8,14 @@ describe('vue chargement', function () {
   let situation;
   let $;
   let vue;
-  let depotRessources;
+  let chargeurRessources;
 
   beforeEach(() => {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     situation = new Situation();
-    depotRessources = { chargement () { return Promise.resolve(); } };
-    vue = new VueChargement(situation, depotRessources);
+    chargeurRessources = { chargement () { return Promise.resolve(); } };
+    vue = new VueChargement(situation, chargeurRessources);
   });
 
   it('affiche les informations', () => {
@@ -34,7 +34,7 @@ describe('vue chargement', function () {
 
   it('passe la situation en ERREUR_CHARGEMENT si toutes les ressources ne sont pas chargées', function () {
     expect(situation.etat()).to.equal(CHARGEMENT);
-    depotRessources.chargement = () => Promise.reject(new Error('test'));
+    chargeurRessources.chargement = () => Promise.reject(new Error('test'));
     return vue.affiche('#pointInsertion', $).then(() => {
       expect(situation.etat()).to.equal(ERREUR_CHARGEMENT);
     });
