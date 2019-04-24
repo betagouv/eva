@@ -1,4 +1,4 @@
-export default class DepotRessources {
+export default class ChargeurRessources {
   constructor () {
     this.images = {};
     this.promesses = [];
