@@ -9,7 +9,6 @@ describe('La situation « Inventaire »', function () {
   let mockJournal;
   let situation;
   let vue;
-  let depotRessources;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
@@ -17,9 +16,8 @@ describe('La situation « Inventaire »', function () {
     mockJournal = {
       enregistre: () => {}
     };
-    depotRessources = { image () { return new window.Image(); } };
     situation = unMagasinVide();
-    vue = new VueSituation(situation, mockJournal, depotRessources);
+    vue = new VueSituation(situation, mockJournal);
   });
 
   it('affiche les étagères', function () {
