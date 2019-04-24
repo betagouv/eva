@@ -11,11 +11,11 @@ export default class VueCadre {
     this.vueSituation = vueSituation;
     this.situation = situation;
     this.vueActions = new VueActions(situation, journal);
-    this.etats = new Map();
-    this.etats.set(NON_DEMARRE, VueJoue);
-    this.etats.set(LECTURE_CONSIGNE, VueConsigne);
-    this.etats.set(CONSIGNE_ECOUTEE, VueGo);
-    this.etats.set(FINI, VueTerminer);
+    this.vuesEtats = new Map();
+    this.vuesEtats.set(NON_DEMARRE, VueJoue);
+    this.vuesEtats.set(LECTURE_CONSIGNE, VueConsigne);
+    this.vuesEtats.set(CONSIGNE_ECOUTEE, VueGo);
+    this.vuesEtats.set(FINI, VueTerminer);
   }
 
   affiche (pointInsertion, $) {
@@ -31,25 +31,25 @@ export default class VueCadre {
     this.$ = $;
     this.afficheEtat(this.situation.etat());
     this.situation.on(CHANGEMENT_ETAT, this.afficheEtat.bind(this));
-    this.previentLaFermetureDeLaSituation($);
+    this.previensLaFermetureDeLaSituation($);
   }
 
   afficheEtat (etat) {
-    if (this.etat) {
-      this.etat.cache();
-      this.etat = null;
+    if (this.vueCourante) {
+      this.vueCourante.cache();
+      this.vueCourante = null;
     }
-    const Classe = this.etats.get(etat);
-    if (Classe) {
-      this.etat = new Classe(this.situation);
-      this.etat.affiche(this.selecteurCadre, this.$);
+    const ClasseVue = this.vuesEtats.get(etat);
+    if (ClasseVue) {
+      this.vueCourante = new ClasseVue(this.situation);
+      this.vueCourante.affiche(this.selecteurCadre, this.$);
     }
     if (etat === FINI) {
       this.vueActions.cache();
     }
   }
 
-  previentLaFermetureDeLaSituation ($) {
+  previensLaFermetureDeLaSituation ($) {
     $(window).on('beforeunload', (e) => {
       if (![NON_DEMARRE, FINI, STOPPEE].includes(this.situation.etat())) {
         e.preventDefault();
