@@ -7,16 +7,15 @@ export default class Journal {
     this.registreUtilisateur = registre;
   }
 
-  enregistre (evenement) {
-    return this.depot.enregistre(
-      {
-        date: this.maintenant(),
-        session_id: this.sessionId,
-        situation: this.situation,
-        nom: evenement.nom(),
-        donnees: evenement.donnees(),
-        utilisateur: this.registreUtilisateur.consulte()
-      }
-    );
+  enregistre (evenement, timeout) {
+    const payLoad = {
+      date: this.maintenant(),
+      session_id: this.sessionId,
+      situation: this.situation,
+      nom: evenement.nom(),
+      donnees: evenement.donnees(),
+      utilisateur: this.registreUtilisateur.consulte()
+    };
+    return this.depot.enregistre(payLoad, timeout);
   }
 }

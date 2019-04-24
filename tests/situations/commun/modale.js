@@ -25,10 +25,37 @@ describe('fenetre modale', function () {
     $('#OK-modale').click();
   });
 
+  it("supprime la fenêtre quand l'action Ok est finie", function () {
+    const promesseOk = Promise.resolve();
+    afficheFenetreModale($('#point-insertion'), $, 'message', () => {
+      return promesseOk;
+    });
+
+    $('#OK-modale').click();
+    return promesseOk.then(() => {
+      expect($('#fenetre-modale').length).to.equal(0);
+    });
+  });
+
+  it("supprime la fenêtre quand l'action ok est fini même si ce n'est pas une promessse", function () {
+    afficheFenetreModale($('#point-insertion'), $, 'message', () => { });
+
+    $('#OK-modale').click();
+    return Promise.resolve().then(() => {
+      expect($('#fenetre-modale').length).to.equal(0);
+    });
+  });
+
   it('supprime la fenêtre modal quand on clique sur annuler', () => {
     afficheFenetreModale($('#point-insertion'), $, 'message', () => {});
 
     $('#annuler-modale').click();
     expect($('#fenetre-modale').length).to.equal(0);
+  });
+
+  it("affiche un sablier après l'appuie sur OK", function () {
+    afficheFenetreModale($('#point-insertion'), $, 'message', () => {});
+    $('#OK-modale').click();
+    expect($('#fenetre-modale').hasClass('attendre')).to.be.ok();
   });
 });
