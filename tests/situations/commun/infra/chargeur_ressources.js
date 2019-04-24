@@ -10,17 +10,8 @@ describe('le chargeur de ressources', function () {
   });
 
   it("permet de charger toutes les ressources d'un répertoire", function () {
-    chargeur.charge(require.context('./ressources'), 'identifiant-repertoire');
-    const image = chargeur.image('identifiant-repertoire/monimage.png');
-    expect(image).to.be.a(window.Image);
-    expect(image.src).to.equal('http://localhost/assets/monimage.png');
-  });
-
-  it('retourne une instance différente à chaque appel', function () {
-    chargeur.charge(require.context('./ressources'), 'identifiant-repertoire');
-    const image1 = chargeur.image('identifiant-repertoire/monimage.png');
-    const image2 = chargeur.image('identifiant-repertoire/monimage.png');
-    expect(image1).to.not.equal(image2);
+    chargeur.charge(require.context('./ressources'));
+    expect(chargeur.promesses.length).to.equal(2);
   });
 
   it('résout la promesse lorsque toutes les ressources sont chargées', function (done) {
@@ -30,7 +21,7 @@ describe('le chargeur de ressources', function () {
         images.push(this);
       }
     };
-    chargeur.charge(require.context('./ressources'), 'identifiant-repertoire');
+    chargeur.charge(require.context('./ressources'));
     images[0].onload();
     images[1].onload();
     chargeur.chargement().then(() => done());
@@ -43,7 +34,7 @@ describe('le chargeur de ressources', function () {
         images.push(this);
       }
     };
-    chargeur.charge(require.context('./ressources'), 'identifiant-repertoire');
+    chargeur.charge(require.context('./ressources'));
     images[0].onerror();
     chargeur.chargement().catch(done);
   });
