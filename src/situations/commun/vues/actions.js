@@ -6,8 +6,8 @@ import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
 
 export default class VueActions {
   constructor (situation, journal) {
-    this.situation = situation;
     this.journal = journal;
+    this.situation = situation;
     this.consigne = situation.audios.consigne;
   }
 
