@@ -16,9 +16,10 @@ describe('Affiche les éléments communs aux situations', function () {
     expect($('.actions').length).to.equal(1);
   });
 
-  it('Affiche les éléments en commun des situations (bouton stop)', function () {
+  it('Affiche les éléments en commun des situations (bouton stop, bouton rejoue consigne)', function () {
     vueActions.affiche('#magasin', $);
     expect($('#stop', '.actions').length).to.equal(1);
+    expect($('#rejoue-consigne', '.actions').length).to.equal(1);
   });
 
   it('cache le conteneur', function () {
