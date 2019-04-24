@@ -1,10 +1,10 @@
 import VueContenants from './contenants';
 import VueContenu from './contenu';
+import imageEtageres from 'inventaire/assets/etageres.png';
 
 export default class VueEtageres {
-  constructor (pointInsertion, journal, depotRessources) {
+  constructor (pointInsertion, journal) {
     this.journal = journal;
-    this.depotRessources = depotRessources;
     this.element = document.createElement('div');
     this.element.id = 'etageres';
     this.element.classList.add('etageres');
@@ -13,8 +13,9 @@ export default class VueEtageres {
   }
 
   affiche (contenants) {
-    const etageres = this.depotRessources.image('inventaire/etageres.png');
+    const etageres = document.createElement('img');
     etageres.id = 'imageEtageres';
+    etageres.src = imageEtageres;
     etageres.classList.add('image-fond');
     this.element.appendChild(etageres);
 

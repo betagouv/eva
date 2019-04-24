@@ -5,10 +5,9 @@ import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaire
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export default class VueSituation {
-  constructor (situation, journal, depotRessources) {
+  constructor (situation, journal) {
     this.journal = journal;
     this.situation = situation;
-    this.depotRessources = depotRessources;
 
     situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {
@@ -18,7 +17,7 @@ export default class VueSituation {
   }
 
   affiche (pointInsertion, $) {
-    new VueEtageres(pointInsertion, this.journal, this.depotRessources)
+    new VueEtageres(pointInsertion, this.journal)
       .affiche(this.situation.contenants);
 
     initialiseFormulaireSaisieInventaire(this.situation,

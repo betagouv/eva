@@ -6,29 +6,20 @@ import jsdom from 'jsdom-global';
 
 describe('vue etagères', function () {
   let vue;
-  let depotRessources;
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
-    depotRessources = { image () { return new window.Image(); } };
-    vue = new VueEtageres('#magasin', {}, depotRessources);
+    vue = new VueEtageres('#magasin');
   });
 
   it("sait s'afficher dans une page web", function () {
-    depotRessources.image = (chemin) => {
-      expect(chemin).to.equal('inventaire/etageres.png');
-      const image = new window.Image();
-      image.src = 'mon-image-etageres.png';
-      return image;
-    };
-
-    const elementsTrouves = document.querySelectorAll('#magasin .etageres');
+    let elementsTrouves = document.querySelectorAll('#magasin .etageres');
     expect(elementsTrouves.length).to.equal(1);
 
     vue.affiche([]);
 
     const etageres = document.getElementById('imageEtageres');
-    expect(etageres.src).to.equal('mon-image-etageres.png');
+    expect(etageres.tagName).to.equal('IMG');
   });
 
   it('ajoute plusieurs contenants sur les étagères', function () {
