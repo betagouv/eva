@@ -32,8 +32,8 @@ export default class VueStop {
   clickSurOk () {
     this.situation.modifieEtat(STOPPEE);
     return this.journal
-      .enregistre(new EvenementStop())
-      .then(() => {
+      .enregistre(new EvenementStop(), 1000)
+      .finally(() => {
         this.retourAccueil();
       });
   }

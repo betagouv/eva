@@ -13,8 +13,10 @@ export function afficheFenetreModale ($pointInsertion, $, message, actionOk) {
   $pointInsertion.append($modale);
 
   $('#OK-modale').on('click', () => {
-    actionOk();
-    $modale.remove();
+    $modale.addClass('attendre');
+    Promise.resolve(actionOk()).finally(() => {
+      $modale.remove();
+    });
   });
 
   $('#annuler-modale').on('click', () => {

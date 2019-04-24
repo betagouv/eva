@@ -18,7 +18,7 @@ describe('vue Stop', function () {
   let situation;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
+    jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
     mockJournal = {
       enregistre () {}
@@ -30,27 +30,41 @@ describe('vue Stop', function () {
   });
 
   it("sait s'insérer dans une page web", function () {
-    vue.affiche('#magasin', $);
-    expect(document.querySelector('#magasin #stop').classList).to.not.contain('invisible');
+    vue.affiche('#point-insertion', $);
+    expect(document.querySelector('#point-insertion #stop').classList).to.not.contain('invisible');
   });
 
   it('ouvre une fenêtre de confirmation avant de stopper', function () {
-    vue.affiche('#magasin', $);
+    vue.affiche('#point-insertion', $);
 
-    $('#magasin #stop').click();
+    $('#point-insertion #stop').click();
     expect($('#fenetre-modale').length).to.equal(1);
     expect($('label').text()).to.equal('situation.stop');
   });
 
-  it("enregistre l'événement et redirige vers l'accueil quand on confirme la modale", function (done) {
+  it("enregistre l'événement et redirige vers l'accueil quand on confirme la modale", function () {
     mockJournal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementStop);
       return Promise.resolve();
     };
-    vue.clickSurOk().then(() => {
+    return vue.clickSurOk().then(() => {
       expect(situation.etat()).to.eql(STOPPEE);
       expect(retourAccueil).to.equal(true);
-      done();
+    });
+  });
+
+  it("Redirige vers l'accueil même si l'enregistrement échoue", function (done) {
+    retourAccueil = false;
+    mockJournal.enregistre = (evenement) => {
+      return Promise.reject(new Error('serveur non joignable'));
+    };
+    vue.clickSurOk().finally(() => {
+      try {
+        expect(retourAccueil).to.equal(true);
+        done();
+      } catch (e) {
+        done(e);
+      }
     });
   });
 });
