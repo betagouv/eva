@@ -19,7 +19,7 @@ function afficheSituation (pointInsertion, $) {
   const session = uuidv4();
   const journal = new Journal(Date.now, session, 'controle', new DepotJournal(), new RegistreUtilisateur());
   const chargeurRessources = new ChargeurRessources();
-  chargeurRessources.charge(require.context('controle/assets', true, /\.png$/), 'controle');
+  chargeurRessources.charge(require.context('controle/assets', true, /\.png$/));
 
   const situation = new Situation({
     scenario: scenario,
