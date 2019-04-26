@@ -1,6 +1,6 @@
 import FormulaireIdentification from './formulaire_identification';
 
-export class VueAccueil {
+export default class VueAccueil {
   constructor (situations, registreUtilisateur) {
     this.situations = situations;
     this.registreUtilisateur = registreUtilisateur;
