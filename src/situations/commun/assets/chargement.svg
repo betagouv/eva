@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Icn/LectureEnCours</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+       <style type="text/css"><![CDATA[
+       @keyframes circle1 {
+         0% {
+           transform: scale(0);
+         }
+         9% {
+           transform: scale(0);
+         }
+         36% {
+           transform: scale(1);
+         }
+       }
+       @keyframes circle2 {
+         0% {
+           transform: scale(0);
+         }
+         36% {
+           transform: scale(0);
+         }
+         63% {
+           transform: scale(1);
+         }
+       }
+       @keyframes circle3 {
+         0% {
+           transform: scale(0);
+         }
+         63% {
+           transform: scale(0);
+         }
+         90% {
+           transform: scale(1);
+         }
+       }
+       .circle {
+         animation: 1.5s 0s ease infinite;
+       }
+       #circle1 {
+         transform-origin: 17px 32px;
+         animation-name: circle1;
+       }
+       #circle2 {
+         transform-origin: 33px 32px;
+         animation-name: circle2;
+       }
+       #circle3 {
+         transform-origin: 49px 32px;
+         animation-name: circle3;
+       }
+    ]]></style>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icn/LectureEnCours" fill="#FFFFFF">
+            <circle class="circle" id="circle1" r="5" cx="17" cy="32" />
+            <circle class="circle" id="circle2" r="5" cx="33" cy="32" />
+            <circle class="circle" id="circle3" r="5" cx="49" cy="32" />
+        </g>
+    </g>
+</svg>

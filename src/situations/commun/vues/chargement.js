@@ -1,12 +1,12 @@
 import { ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE } from 'commun/modeles/situation';
 import VueActionOverlay from 'commun/vues/action_overlay';
 
-import go from 'commun/assets/lecture-en-cours.svg';
+import chargement from 'commun/assets/chargement.svg';
 import { traduction } from 'commun/infra/internationalisation';
 
 export default class VueChargement extends VueActionOverlay {
   constructor (situation, chargeurRessources) {
-    super(go, traduction('situation.chargement'), 'bouton-chargement');
+    super(chargement, traduction('situation.chargement'), 'bouton-chargement');
     this.situation = situation;
     this.chargeurRessources = chargeurRessources;
   }
