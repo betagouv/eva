@@ -2,7 +2,7 @@
 @import 'commun/styles/couleurs.scss';
 
 .bouton-stop {
-  @include bouton-carre($couleur-reponse-incorrecte, $couleur-fond-bouton-rouge-focus);
+  @include bouton-carre($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
 
   img {
     height: .875rem;
