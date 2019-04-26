@@ -6,7 +6,7 @@ import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import { NOUVELLE_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
-import { VueBac } from 'controle/vues/bac';
+import VueBac from 'controle/vues/bac';
 import { VuePiece } from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 import VueFondSonore from 'controle/vues/fond_sonore';
