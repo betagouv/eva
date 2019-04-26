@@ -1,4 +1,4 @@
-export class MockDepot {
+export default class MockDepot {
   constructor () {
     this.enregistrements = [];
   }
