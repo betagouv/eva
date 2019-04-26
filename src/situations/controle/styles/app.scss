@@ -2,8 +2,8 @@
 @import 'commun/styles/conteneur.scss';
 
 .scene.controle {
-  background-image: url('../assets/fond-situation.png'), url('../assets/fond-repetable.png') ;
-  background-repeat: no-repeat, repeat-x;
+  background-image: url('../assets/fond-situation.png') ;
+  background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
