@@ -5,8 +5,9 @@
   position: absolute;
   background: $blanc;
   outline: none;
-  bottom: 15%;
-  right: 13.3%;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 3.8%;
   border: .5rem solid $couleur-fond-bouton-bleu;
   border-radius: .75rem;
   font-size: 1rem;
