@@ -8,7 +8,7 @@ import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
-import { Situation } from 'controle/modeles/situation';
+import Situation from 'controle/modeles/situation';
 import VueSituation from 'controle/vues/situation';
 import sonConsigne from 'controle/assets/consigne_demarrage.mp3';
 
