@@ -9,7 +9,7 @@ export const PIECE_BIEN_PLACEE = 'pieceBienPlacée';
 export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
 export const PIECE_RATEE = 'pieceRatée';
 
-export class Situation extends SituationCommune {
+export default class Situation extends SituationCommune {
   constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, sonConsigne }) {
     super();
     this.cadence = cadence;

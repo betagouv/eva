@@ -1,7 +1,7 @@
 import jsdom from 'jsdom-global';
 
 import { DEMARRE, FINI } from 'commun/modeles/situation';
-import { Situation } from 'controle/modeles/situation';
+import Situation from 'controle/modeles/situation';
 import VueTapis from 'controle/vues/tapis';
 
 describe('La vue du tapis', () => {

@@ -1,7 +1,7 @@
 import jsdom from 'jsdom-global';
 
 import { DEMARRE, FINI } from 'commun/modeles/situation';
-import { Situation } from 'controle/modeles/situation';
+import Situation from 'controle/modeles/situation';
 import VueFondSonore from 'controle/vues/fond_sonore';
 
 describe('Le fond sonore', () => {
