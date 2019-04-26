@@ -1,11 +1,19 @@
 @import 'commun/styles/bouton.scss';
-@import 'commun/styles/couleurs.scss';
 
 .bouton-relecture-consigne {
   @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
+  cursor: pointer;
   img {
-    position: relative;
-    margin: auto;
     height: 1.3rem;
+  }
+}
+
+
+.bouton-relecture-en-cours {
+  @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert, $couleur-fond-bouton-vert);
+  cursor: default;
+  box-shadow: none;
+  img {
+    height: 3.5rem;
   }
 }
