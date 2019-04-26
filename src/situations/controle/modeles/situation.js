@@ -1,4 +1,4 @@
-import { Piece, CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
+import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
 import sonFondSonore from 'controle/assets/fond_sonore.mp3';

@@ -1,4 +1,4 @@
-import { Piece, CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
+import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
 
 describe('Une pièce', function () {
   it('a une position de départ', function () {
