@@ -53,7 +53,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
     "i18next": "^15.0.6",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "uuid": "^3.3.2"
   },
   "semistandard": {
