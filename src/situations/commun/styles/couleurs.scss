@@ -19,6 +19,7 @@ $couleur-fond-bouton-vert-focus: #0B8538;
 $couleur-fond-bouton-bleu: #12AFFF;
 $couleur-fond-bouton-bleu-focus: #0996DF;
 $couleur-ombre: rgba(0,0,0,0.31);
+$couleur-fond-bouton-rouge: #DE0B27;
 $couleur-fond-bouton-rouge-focus: #C2001A;
 // actions
 $couleur-fond-actions: #ebebeb;
@@ -29,4 +30,4 @@ $couleur-bordure-input: #979797;
 $couleur-fond-input: #fafafa;
 $couleur-placeholder: #bfbfbf;
 $couleur-reponse-correcte: #00b12a;
-$couleur-reponse-incorrecte: #DE0B27;
+$couleur-reponse-incorrecte: $couleur-fond-bouton-rouge;
