@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 export const CHANGEMENT_ETAT_SURVOLE = 'changementEtatSurvole';
 
-export class Bac extends EventEmitter {
+export default class Bac extends EventEmitter {
   constructor ({ categorie, x, y, largeur, hauteur }) {
     super();
     this._categorie = categorie;

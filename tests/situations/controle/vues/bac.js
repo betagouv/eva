@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 
-import { Bac } from 'controle/modeles/bac';
+import Bac from 'controle/modeles/bac';
 import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { VueBac } from 'controle/vues/bac';
 
