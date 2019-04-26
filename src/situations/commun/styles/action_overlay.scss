@@ -43,7 +43,8 @@
 }
 
 .bouton-chargement {
-  @include bouton-carre-before($couleur-fond-bouton-vert, $couleur-fond-bouton-vert, $couleur-fond-bouton-vert);
+  background: transparent;
+  @include bouton-carre-before(transparent, transparent, transparent);
   cursor: default;
 
   img {
