@@ -21,7 +21,7 @@ function afficheSituation (pointInsertion, $) {
   const situation = new Situation({
     scenario: scenario,
     cadence: 5000,
-    positionApparitionPieces: { x: 100, y: 70 },
+    positionApparitionPieces: { x: 100, y: 64.5 },
     dureeViePiece: 12000,
     sonConsigne: sonConsigne
   });
