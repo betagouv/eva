@@ -14,12 +14,12 @@ import VueFondSonore from 'controle/vues/fond_sonore';
 export class VueSituation {
   constructor (situation, journal) {
     function nouveauBac (categorie, { x, y }) {
-      return new Bac({ categorie, x, y, largeur: 24.2, hauteur: 44 });
+      return new Bac({ categorie, x, y, largeur: 22.8, hauteur: 41.65 });
     }
 
     function creeBacs () {
-      situation.ajouteBac(nouveauBac(PIECE_CONFORME, { x: 15.6, y: 12 }));
-      situation.ajouteBac(nouveauBac(PIECE_DEFECTUEUSE, { x: 60, y: 12 }));
+      situation.ajouteBac(nouveauBac(PIECE_CONFORME, { x: 15.97, y: 8 }));
+      situation.ajouteBac(nouveauBac(PIECE_DEFECTUEUSE, { x: 61.18, y: 8 }));
     }
     creeBacs();
 

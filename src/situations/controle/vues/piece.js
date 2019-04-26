@@ -6,7 +6,7 @@ import { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piec
 import { DISPARITION_PIECE } from 'controle/modeles/situation';
 
 export function animationInitiale ($element) {
-  $element.animate({ left: '-10%' }, 10000, 'linear');
+  $element.animate({ left: '-' + $element.css('width') }, 10000, 'linear');
 }
 
 export function animationFinale ($element, done) {
