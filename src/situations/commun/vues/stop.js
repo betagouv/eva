@@ -16,17 +16,18 @@ export default class VueStop {
   }
 
   affiche (pointInsertion, $) {
-    this.$boutonStop = $('<a id="stop" class="bouton-stop"></a>');
-    this.$boutonStop.append(`<img src='${stop}'>`);
-    this.$boutonStop.on('click', () => {
+    const $boutonStop = $('<a id="stop" class="bouton-stop"></a>');
+    $boutonStop.append(`<img src='${stop}'>`);
+
+    $boutonStop.on('click', () => {
       afficheFenetreModale(
-        $(pointInsertion),
+        pointInsertion,
         $,
         traduction('situation.stop'),
         this.clickSurOk.bind(this)
       );
     });
-    $(pointInsertion).append(this.$boutonStop);
+    $(pointInsertion).append($boutonStop);
   }
 
   clickSurOk () {

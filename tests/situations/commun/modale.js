@@ -10,7 +10,7 @@ describe('fenetre modale', function () {
   });
 
   it("sait s'ajouter dans une page web", function () {
-    afficheFenetreModale($('#point-insertion'), $, 'message', () => {});
+    afficheFenetreModale('#point-insertion', $, 'message', () => {});
 
     const $fenetre = $('#fenetre-modale');
     expect($fenetre.length).to.equal(1);
@@ -18,7 +18,7 @@ describe('fenetre modale', function () {
   });
 
   it("execute l'action quand on clique le bouton Ok", function (done) {
-    afficheFenetreModale($('#point-insertion'), $, 'message', () => {
+    afficheFenetreModale('#point-insertion', $, 'message', () => {
       done();
     });
 
@@ -47,7 +47,7 @@ describe('fenetre modale', function () {
   });
 
   it('supprime la fenêtre modal quand on clique sur annuler', () => {
-    afficheFenetreModale($('#point-insertion'), $, 'message', () => {});
+    afficheFenetreModale('#point-insertion', $, 'message', () => {});
 
     $('#annuler-modale').click();
     expect($('#fenetre-modale').length).to.equal(0);
