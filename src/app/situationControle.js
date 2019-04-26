@@ -9,7 +9,7 @@ import { initialise as initialiseInternationalisation, traduction } from 'commun
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
 import { Situation } from 'controle/modeles/situation';
-import { VueSituation } from 'controle/vues/situation';
+import VueSituation from 'controle/vues/situation';
 import sonConsigne from 'controle/assets/consigne_demarrage.mp3';
 
 import { scenario } from 'controle/data/pieces';

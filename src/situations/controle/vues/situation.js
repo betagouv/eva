@@ -11,7 +11,7 @@ import VuePiece from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 import VueFondSonore from 'controle/vues/fond_sonore';
 
-export class VueSituation {
+export default class VueSituation {
   constructor (situation, journal) {
     function nouveauBac (categorie, { x, y }) {
       return new Bac({ categorie, x, y, largeur: 22.6, hauteur: 41.3 });
