@@ -58,7 +58,7 @@ describe('vue Stop', function () {
     mockJournal.enregistre = (evenement) => {
       return Promise.reject(new Error('serveur non joignable'));
     };
-    vue.clickSurOk().finally(() => {
+    vue.clickSurOk().catch(() => {
       try {
         expect(retourAccueil).to.equal(true);
         done();
