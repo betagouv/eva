@@ -5,7 +5,7 @@ export const PIECE_DEFECTUEUSE = false;
 export const CHANGEMENT_POSITION = 'changementPosition';
 export const CHANGEMENT_SELECTION = 'changementSelection';
 
-export class Piece extends EventEmitter {
+export default class Piece extends EventEmitter {
   constructor ({ x, y, conforme, image }) {
     super();
     this.x = x;

@@ -5,7 +5,7 @@ import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
-import { Piece, PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
+import Piece, { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import { Situation, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
 import { VueSituation } from 'controle/vues/situation';
 import MockAudio from '../../commun/aides/mock_audio';

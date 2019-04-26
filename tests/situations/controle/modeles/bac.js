@@ -1,5 +1,5 @@
 import Bac, { CHANGEMENT_ETAT_SURVOLE } from 'controle/modeles/bac';
-import { Piece, PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
+import Piece, { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 
 describe('un bac', function () {
   it('connaît ses dimensions', function () {
