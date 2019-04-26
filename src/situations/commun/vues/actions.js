@@ -13,7 +13,7 @@ export default class VueActions {
 
   affiche (pointInsertion, $) {
     this.$actions = $('<div class="actions"></div>');
-    const stop = new VueStop(this.journal);
+    const stop = new VueStop(this.situation, this.journal);
     const rejoueConsigne = new VueRejoueConsigne(this.consigne);
 
     stop.affiche(this.$actions, $);
