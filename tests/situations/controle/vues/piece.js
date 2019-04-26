@@ -1,7 +1,7 @@
 import jsdom from 'jsdom-global';
 import { DISPARITION_PIECE } from 'controle/modeles/situation';
 import Piece from 'controle/modeles/piece';
-import { VuePiece } from 'controle/vues/piece';
+import VuePiece from 'controle/vues/piece';
 
 function creeVueMinimale (piece) {
   return new VuePiece(piece, () => {}, () => {});
