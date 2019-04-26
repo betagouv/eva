@@ -10,7 +10,7 @@ export default class Contenant {
     this.contenu = contenu;
 
     if (this.forme) {
-      this.posX = pourcentage(this.posX, scene.largeur);
+      this.posX = pourcentage(this.posX + scene.positionXEtageres, scene.largeur);
       this.posY = pourcentage(this.posY, scene.hauteur);
 
       this.largeur = pourcentage(formes[this.forme].largeur, scene.largeur);
