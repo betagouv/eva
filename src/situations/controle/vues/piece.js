@@ -13,7 +13,7 @@ export function animationFinale ($element, done) {
   $element.fadeOut(500, () => { done($element); });
 }
 
-export class VuePiece extends EventEmitter {
+export default class VuePiece extends EventEmitter {
   constructor (piece,
     callbackApresApparition = animationInitiale,
     callbackAvantSuppression = animationFinale) {
