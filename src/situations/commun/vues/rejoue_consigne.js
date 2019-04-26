@@ -1,6 +1,6 @@
-import 'commun/styles/rejoue_consigne.scss';
 import play from 'commun/assets/play.svg';
 import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
+import 'commun/styles/rejoue_consigne.scss';
 
 export default class VueRejoueConsigne {
   constructor (consigne) {
@@ -16,6 +16,7 @@ export default class VueRejoueConsigne {
 
   click ($) {
     this.joueConsigne($);
+    this.$boutonRejoueConsigne.addClass('bouton-relecture-en-cours');
     this.$boutonRejoueConsigne.children().attr('src', lectureEnCours);
   }
 
@@ -28,6 +29,7 @@ export default class VueRejoueConsigne {
   }
 
   lectureTermine () {
+    this.$boutonRejoueConsigne.removeClass('bouton-relecture-en-cours');
     this.$boutonRejoueConsigne.children().attr('src', play);
   }
 }
