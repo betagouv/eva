@@ -113,6 +113,8 @@ module.exports = {
   ],
   devServer: {
     contentBase: './src/public',
+    host: '0.0.0.0',
+    disableHostCheck: true,
     port: 7700
   }
 };
