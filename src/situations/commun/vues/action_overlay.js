@@ -1,3 +1,4 @@
+import VueBouton from './bouton';
 import 'commun/styles/action_overlay.scss';
 
 export default class VueActionOverlay {
@@ -5,19 +6,19 @@ export default class VueActionOverlay {
     this.image = image;
     this.message = message;
     this.classe = classe;
+    this.vueBouton = new VueBouton(this.classe, this.image, () => this.click());
   }
 
   affiche (pointInsertion, $) {
     this.$message = $(`<div class='message'>${this.message}</div>`);
     const $conteneurBouton = $('<div class="bouton-centre"></div>');
-    this.$bouton = $(`<div class="${this.classe}"><img src="${this.image}"></div>`);
-    $conteneurBouton.append(this.$bouton);
+
+    this.vueBouton.affiche($conteneurBouton, $);
+
     this.$overlay = $('<div class="overlay"></div>');
 
     this.$overlay.append($conteneurBouton);
     this.$overlay.append(this.$message);
-
-    this.$bouton.on('click', () => this.click());
 
     $(pointInsertion).append(this.$overlay);
   }

@@ -1,3 +1,5 @@
+import VueBouton from './bouton';
+
 import play from 'commun/assets/play.svg';
 import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 import 'commun/styles/bouton.scss';
@@ -5,19 +7,20 @@ import 'commun/styles/bouton.scss';
 export default class VueRejoueConsigne {
   constructor (consigne) {
     this.consigne = consigne;
+    this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.click(this.$));
+    this.vueBoutonLectureEnCours = new VueBouton('bouton-lecture-en-cours', lectureEnCours);
   }
 
   affiche (pointInsertion, $) {
-    this.$boutonRejoueConsigne = $(`<a class="bouton-lire-consigne"><img src="${play}"></a>`);
-    this.$boutonRejoueConsigne.on('click', () => this.click($));
-
-    $(pointInsertion).append(this.$boutonRejoueConsigne);
+    this.$ = $;
+    this.pointInsertion = pointInsertion;
+    this.vueBoutonLire.affiche(this.pointInsertion, $);
   }
 
   click ($) {
     this.joueConsigne($);
-    this.$boutonRejoueConsigne.addClass('bouton-lecture-en-cours');
-    this.$boutonRejoueConsigne.children().attr('src', lectureEnCours);
+    this.vueBoutonLire.cache();
+    this.vueBoutonLectureEnCours.affiche(this.pointInsertion, $);
   }
 
   joueConsigne ($) {
@@ -29,7 +32,7 @@ export default class VueRejoueConsigne {
   }
 
   lectureTermine () {
-    this.$boutonRejoueConsigne.removeClass('bouton-lecture-en-cours');
-    this.$boutonRejoueConsigne.children().attr('src', play);
+    this.vueBoutonLectureEnCours.cache();
+    this.vueBoutonLire.affiche(this.pointInsertion, this.$);
   }
 }
