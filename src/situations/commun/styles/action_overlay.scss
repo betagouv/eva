@@ -13,33 +13,20 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -2rem;
-    margin-top: -2rem;
-    box-sizing: border-box;
-  }
+  justify-content: center;
 }
 
 .bouton-go {
-  @include bouton-carre-before($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+  @include bouton-carre($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
 }
 
 .bouton-lire-consigne-demarrage {
-  @include bouton-carre-before($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
+  @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
 }
 
 .bouton-lecture-en-cours {
-  @include bouton-carre-before($couleur-fond-bouton-vert, $couleur-fond-bouton-vert, $couleur-fond-bouton-vert);
+  @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert, $couleur-fond-bouton-vert, 3.5rem);
   cursor: default;
-
-  img {
-    height: 3.5rem;
-  }
 }
 
 .bouton-chargement {

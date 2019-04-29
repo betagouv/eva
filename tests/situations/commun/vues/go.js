@@ -19,7 +19,7 @@ describe('vue Go', function () {
 
   it('affiche les informations', () => {
     expect($('#pointInsertion .overlay').length).to.eql(1);
-    expect($('#pointInsertion .bouton-centre.bouton-go').length).to.eql(1);
+    expect($('#pointInsertion .bouton-go').length).to.eql(1);
     expect($('#pointInsertion .message').text()).to.eql(traduction('situation.go'));
   });
 

@@ -1,6 +1,6 @@
 @import 'commun/styles/couleurs.scss';
 
-@mixin bouton-carre($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc) {
+@mixin bouton-carre($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc, $hauteur-image: 1.3rem) {
   cursor: pointer;
   height: 4rem;
   width: 4rem;
@@ -24,30 +24,8 @@
   img {
     position: relative;
     margin: auto;
+    height: $hauteur-image;
   }
-}
-
-@mixin bouton-carre-before($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc) {
-  &:before {
-    @include bouton-carre($couleur-fond, $couleur-fond-focus, $couleur-bordure);
-  }
-
-  &:hover:before {
-    background-color: $couleur-fond-focus;
-  }
-
-  &:active:before {
-    background-color: $couleur-fond;
-    border-color: $couleur-fond;
-    box-shadow: inset 0px 0px 0px 3px $couleur-fond;
-  }
-
-  img {
-    position: relative;
-    margin: auto;
-    height: 1.3rem;
-  }
-
 }
 
 .bouton {
