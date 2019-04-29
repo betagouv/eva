@@ -1,44 +1,18 @@
-import uuidv4 from 'uuid/v4';
-
 import 'controle/styles/app.scss';
 
-import DepotJournal from 'commun/infra/depot_journal';
-import ChargeurRessources from 'commun/infra/chargeur_ressources';
-import Journal from 'commun/modeles/journal';
-import VueCadre from 'commun/vues/cadre';
-import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
-import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
-
+import { afficheSituation } from 'commun/vues/affiche_situation';
 import Situation from 'controle/modeles/situation';
 import VueSituation from 'controle/vues/situation';
 import sonConsigne from 'controle/assets/consigne_demarrage.mp3';
 
 import { scenario } from 'controle/data/pieces';
 
-function afficheSituation (pointInsertion, $) {
-  const session = uuidv4();
-  const journal = new Journal(Date.now, session, 'controle', new DepotJournal(), new RegistreUtilisateur());
-  const chargeurRessources = new ChargeurRessources();
-  chargeurRessources.charge(require.context('commun/assets', true, /\.svg$/));
-  chargeurRessources.charge(require.context('controle/assets', true, /\.png$/));
-
-  const situation = new Situation({
-    scenario: scenario,
-    cadence: 5000,
-    positionApparitionPieces: { x: 100, y: 64.5 },
-    dureeViePiece: 12000,
-    sonConsigne: sonConsigne
-  });
-
-  const vueSituation = new VueSituation(situation, journal);
-  const vueCadre = new VueCadre(vueSituation, situation, journal, chargeurRessources);
-
-  vueCadre.affiche(pointInsertion, $);
-}
-
-initialiseInternationalisation().then(function () {
-  jQuery(function () {
-    document.title = traduction('controle.titre');
-    afficheSituation('body', jQuery);
-  });
+const situation = new Situation({
+  scenario,
+  cadence: 5000,
+  positionApparitionPieces: { x: 100, y: 64.5 },
+  dureeViePiece: 12000,
+  sonConsigne
 });
+
+afficheSituation('controle', situation, VueSituation, require.context('controle/assets', true, /\.png$/));
