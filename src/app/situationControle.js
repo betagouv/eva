@@ -15,4 +15,4 @@ const situation = new Situation({
   sonConsigne
 });
 
-afficheSituation('controle', situation, VueSituation, require.context('controle/assets', true, /\.png$/));
+afficheSituation('controle', situation, VueSituation, require.context('controle/assets'));

@@ -14,9 +14,12 @@ export function afficheSituation (nomSituation, modeleSituation, VueSituation, c
     const vueSituation = new VueSituation(modeleSituation, journal);
 
     const chargeurRessources = new ChargeurRessources();
-    const contexteRessourcesCommunes = require.context('commun/assets', true, /\.svg$/);
-    chargeurRessources.charge(contexteRessourcesCommunes);
-    chargeurRessources.charge(contexte);
+    const contexteRessourcesCommunes = require.context('commun/assets');
+    const ressourcesCommunes = contexteRessourcesCommunes.keys().map(contexteRessourcesCommunes);
+    chargeurRessources.charge(ressourcesCommunes);
+
+    const ressourcesSituation = contexte.keys().map(contexte);
+    chargeurRessources.charge(ressourcesSituation);
 
     const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, chargeurRessources);
     vueCadre.affiche(pointInsertion, $);

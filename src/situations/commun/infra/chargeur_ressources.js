@@ -1,4 +1,4 @@
-export function chargeurAudio (src) {
+function chargeurAudio (src) {
   const audio = new window.Audio(src);
   return new Promise((resolve, reject) => {
     audio.addEventListener('canplaythrough', resolve);
@@ -6,7 +6,7 @@ export function chargeurAudio (src) {
   });
 }
 
-export function chargeurImage (src) {
+function chargeurImage (src) {
   const img = new window.Image();
   const promesse = new Promise((resolve, reject) => {
     img.onload = resolve;
@@ -16,9 +16,10 @@ export function chargeurImage (src) {
   return promesse;
 }
 
-export const CHARGEURS = {
+const CHARGEURS = {
   'mp3': chargeurAudio,
-  'png': chargeurImage
+  'png': chargeurImage,
+  'svg': chargeurImage
 };
 
 export default class ChargeurRessources {
@@ -27,11 +28,10 @@ export default class ChargeurRessources {
     this.promesses = [];
   }
 
-  charge (contexte) {
-    contexte.keys().forEach((key) => {
-      const promesse = this.chargeurs[key.match(/\.([^.]+)$/)[1]](contexte(key));
-      this.promesses.push(promesse);
-    });
+  charge (ressources) {
+    this.promesses.push(...ressources.map((ressource) => {
+      return this.chargeurs[ressource.match(/\.([^.]+)$/)[1]](ressource);
+    }));
   }
 
   chargement () {
