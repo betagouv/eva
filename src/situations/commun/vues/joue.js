@@ -6,7 +6,7 @@ import { traduction } from 'commun/infra/internationalisation';
 
 export default class VueJoue extends VueActionOverlay {
   constructor (situation) {
-    super(play, traduction('situation.ecouter-consigne'), 'bouton-lire-consigne-demarrage');
+    super(play, traduction('situation.ecouter-consigne'), 'bouton-lire-consigne');
     this.situation = situation;
   }
 

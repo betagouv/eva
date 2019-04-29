@@ -20,18 +20,9 @@
   @include bouton-carre($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
 }
 
-.bouton-lire-consigne-demarrage {
-  @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
-}
-
-.bouton-lecture-en-cours {
-  @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert, $couleur-fond-bouton-vert, 3.5rem);
-  cursor: default;
-}
-
 .bouton-chargement {
   background: transparent;
-  @include bouton-carre-before(transparent, transparent, transparent);
+  @include bouton-carre(transparent, transparent, transparent);
   cursor: default;
 
   img {
@@ -40,7 +31,7 @@
 }
 
 .bouton-erreur-chargement {
-  @include bouton-carre-before($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
+  @include bouton-carre($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
 
   img {
     height: 2rem;

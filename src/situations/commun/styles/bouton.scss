@@ -28,6 +28,33 @@
   }
 }
 
+@mixin bouton-allonge($couleur-fond, $couleur-texte) {
+  background: $couleur-fond;
+  color: $couleur-texte;
+  padding: .7rem 1.375rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .025rem;
+  outline: none;
+  transition : background 200ms ease-out;
+}
+
+@mixin bouton-modale($couleur-fond, $couleur-texte, $couleur-focus) {
+  @include bouton-allonge($couleur-fond, $couleur-texte);
+  padding: .7rem 2.375rem;
+  font-weight: normal;
+  &:hover { background-color: $couleur-focus }
+}
+
+.bouton-lire-consigne {
+  @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
+}
+
+.bouton-lecture-en-cours {
+  @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert, $couleur-fond-bouton-vert, 3.5rem);
+  cursor: default;
+}
+
 .bouton {
   display: block;
   width: 20rem;
@@ -58,22 +85,4 @@
     transform: scale(1.5);
 
   }
-}
-
-@mixin bouton-allonge($couleur-fond, $couleur-texte) {
-  background: $couleur-fond;
-  color: $couleur-texte;
-  padding: .7rem 1.375rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: .025rem;
-  outline: none;
-  transition : background 200ms ease-out;
-}
-
-@mixin bouton-modale($couleur-fond, $couleur-texte, $couleur-focus) {
-  @include bouton-allonge($couleur-fond, $couleur-texte);
-  padding: .7rem 2.375rem;
-  font-weight: normal;
-  &:hover { background-color: $couleur-focus }
 }
