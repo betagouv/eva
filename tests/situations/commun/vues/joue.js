@@ -19,7 +19,7 @@ describe('la vue joue', () => {
 
   it('affiche les informations', () => {
     expect($('#pointInsertion .overlay').length).to.eql(1);
-    expect($('#pointInsertion .bouton-lire-consigne-demarrage').length).to.eql(1);
+    expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
     expect($('#pointInsertion .message').text()).to.eql(traduction('situation.ecouter-consigne'));
   });
 

@@ -21,7 +21,7 @@ describe('vue chargement', function () {
   it('affiche les informations', () => {
     vue.affiche('#pointInsertion', $);
     expect($('#pointInsertion .overlay').length).to.eql(1);
-    expect($('#pointInsertion .bouton-centre.bouton-chargement').length).to.eql(1);
+    expect($('#pointInsertion .bouton-chargement').length).to.eql(1);
     expect($('#pointInsertion .message').text()).to.eql(traduction('situation.chargement'));
   });
 

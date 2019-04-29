@@ -72,7 +72,7 @@ describe('Une vue du cadre', function () {
     const vueCadre = new VueCadre(uneVue(), situation, {}, chargeurRessources);
     vueCadre.affiche('#point-insertion', $);
 
-    expect($('#cadre .bouton-lire-consigne-demarrage').length).to.equal(1);
+    expect($('#cadre .overlay .bouton-lire-consigne').length).to.equal(1);
   });
 
   it("affiche la consigne dans l'état LECTURE_CONSIGNE", function () {
