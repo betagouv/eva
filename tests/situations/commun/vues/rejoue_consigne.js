@@ -24,6 +24,6 @@ describe('vue Rejoue Consigne', function () {
 
   it("sait s'insérer dans une page web", function () {
     vue.affiche('#magasin', $);
-    expect($('#magasin #rejoue-consigne').length).to.eql(1);
+    expect($('#magasin .bouton-lire-consigne').length).to.eql(1);
   });
 });

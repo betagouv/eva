@@ -8,7 +8,7 @@ export default class VueRejoueConsigne {
   }
 
   affiche (pointInsertion, $) {
-    this.$boutonRejoueConsigne = $(`<a id="rejoue-consigne" class="bouton-lire-consigne"><img src="${play}"></a>`);
+    this.$boutonRejoueConsigne = $(`<a class="bouton-lire-consigne"><img src="${play}"></a>`);
     this.$boutonRejoueConsigne.on('click', () => this.click($));
 
     $(pointInsertion).append(this.$boutonRejoueConsigne);
