@@ -1,4 +1,4 @@
-import ChargeurRessources, { chargeurAudio, chargeurImage } from 'commun/infra/chargeur_ressources';
+import ChargeurRessources from 'commun/infra/chargeur_ressources';
 import jsdom from 'jsdom-global';
 
 describe('le chargeur de ressources', function () {
@@ -6,9 +6,9 @@ describe('le chargeur de ressources', function () {
     jsdom('', { url: 'http://localhost' });
   });
 
-  it("permet de charger toutes les ressources d'un répertoire", function () {
+  it('permet de charger toutes les ressources', function () {
     const chargeur = new ChargeurRessources();
-    chargeur.charge(require.context('./ressources'));
+    chargeur.charge(['test.png', 'test2.png', 'test.mp3']);
     expect(chargeur.promesses.length).to.equal(3);
   });
 
@@ -17,7 +17,7 @@ describe('le chargeur de ressources', function () {
       'mp3': (src) => Promise.resolve(),
       'png': (src) => Promise.resolve()
     });
-    chargeur.charge(require.context('./ressources'));
+    chargeur.charge(['test.png', 'test.mp3']);
     chargeur.chargement().then(() => done());
   });
 
@@ -26,64 +26,15 @@ describe('le chargeur de ressources', function () {
       'mp3': (src) => Promise.resolve(),
       'png': (src) => Promise.reject(new Error('test'))
     });
-    chargeur.charge(require.context('./ressources'));
+    chargeur.charge(['test.png', 'test.mp3']);
     chargeur.chargement().catch(() => done());
   });
-});
 
-describe('le chargeur audio', function () {
-  it('résout la promesse', function (done) {
-    const sons = [];
-    window.Audio = class {
-      constructor (src) {
-        expect(src).to.equal('test.mp3');
-      }
+  it('sait charger des ressources en plusieurs fois', function () {
+    const chargeur = new ChargeurRessources();
+    chargeur.charge(['test.png', 'test.mp3']);
+    chargeur.charge(['unFichierSupplementaire.png']);
 
-      addEventListener (nomEvenement, callback) {
-        if (nomEvenement === 'canplaythrough') {
-          sons.push(callback);
-        }
-      }
-    };
-    chargeurAudio('test.mp3').then(() => done());
-    sons[0]();
-  });
-
-  it('rejette la promesse', function (done) {
-    const sons = [];
-    window.Audio = class {
-      addEventListener (nomEvenement, callback) {
-        if (nomEvenement === 'error') {
-          sons.push(callback);
-        }
-      }
-    };
-    chargeurAudio('test.mp3').catch(() => done());
-    sons[0]();
-  });
-});
-
-describe("le chargeur d'image", function () {
-  it('résout la promesse', function (done) {
-    const images = [];
-    window.Image = class {
-      constructor () {
-        images.push(this);
-      }
-    };
-    chargeurImage('test.png').then(() => done());
-    images[0].onload();
-    expect(images[0].src).to.equal('test.png');
-  });
-
-  it('rejette la promesse', function (done) {
-    const images = [];
-    window.Image = class {
-      constructor () {
-        images.push(this);
-      }
-    };
-    chargeurImage('test.png').catch(() => done());
-    images[0].onerror();
+    expect(chargeur.promesses.length).to.equal(3);
   });
 });

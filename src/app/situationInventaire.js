@@ -16,4 +16,4 @@ const situation = new Situation(
   { consigne, reussite, echec }
 );
 
-afficheSituation('inventaire', situation, VueSituation, require.context('inventaire/assets', true, /\.png$/));
+afficheSituation('inventaire', situation, VueSituation, require.context('inventaire/assets'));
