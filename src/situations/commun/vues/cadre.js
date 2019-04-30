@@ -9,10 +9,10 @@ import VueGo from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
 
 export default class VueCadre {
-  constructor (vueSituation, situation, journal, chargeurRessources) {
+  constructor (vueSituation, situation, journal, depotRessources) {
     this.vueSituation = vueSituation;
     this.situation = situation;
-    this.chargeurRessources = chargeurRessources;
+    this.depotRessources = depotRessources;
     this.vueActions = new VueActions(situation, journal);
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
@@ -46,7 +46,7 @@ export default class VueCadre {
     }
     const ClasseVue = this.vuesEtats.get(etat);
     if (ClasseVue) {
-      this.vueCourante = new ClasseVue(this.situation, this.chargeurRessources);
+      this.vueCourante = new ClasseVue(this.situation, this.depotRessources);
       this.vueCourante.affiche(this.selecteurCadre, this.$);
     }
     if (etat === FINI) {

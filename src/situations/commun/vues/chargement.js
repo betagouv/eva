@@ -5,17 +5,17 @@ import chargement from 'commun/assets/chargement.svg';
 import { traduction } from 'commun/infra/internationalisation';
 
 export default class VueChargement extends VueActionOverlay {
-  constructor (situation, chargeurRessources) {
+  constructor (situation, depotRessources) {
     super(chargement, traduction('situation.chargement'), 'bouton-chargement', 'bouton-centre-invisible');
     this.situation = situation;
-    this.chargeurRessources = chargeurRessources;
+    this.depotRessources = depotRessources;
   }
 
   affiche (pointInsertion, $) {
     super.affiche(pointInsertion, $);
     this.$overlay.addClass('opaque');
 
-    return this.chargeurRessources.chargement().then(() => {
+    return this.depotRessources.chargement().then(() => {
       this.situation.modifieEtat(ATTENTE_DEMARRAGE);
     }).catch(() => {
       this.situation.modifieEtat(ERREUR_CHARGEMENT);

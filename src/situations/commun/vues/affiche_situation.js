@@ -1,7 +1,7 @@
 import uuidv4 from 'uuid/v4';
 
 import DepotJournal from 'commun/infra/depot_journal';
-import ChargeurRessources from 'commun/infra/chargeur_ressources';
+import DepotRessources from 'commun/infra/depot_ressources';
 import Journal from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
@@ -13,15 +13,15 @@ export function afficheSituation (nomSituation, modeleSituation, VueSituation, c
     const journal = new Journal(Date.now, session, nomSituation, new DepotJournal(), new RegistreUtilisateur());
     const vueSituation = new VueSituation(modeleSituation, journal);
 
-    const chargeurRessources = new ChargeurRessources();
+    const depotRessources = new DepotRessources();
     const contexteRessourcesCommunes = require.context('commun/assets');
     const ressourcesCommunes = contexteRessourcesCommunes.keys().map(contexteRessourcesCommunes);
-    chargeurRessources.charge(ressourcesCommunes);
+    depotRessources.charge(ressourcesCommunes);
 
     const ressourcesSituation = contexte.keys().map(contexte);
-    chargeurRessources.charge(ressourcesSituation);
+    depotRessources.charge(ressourcesSituation);
 
-    const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, chargeurRessources);
+    const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, depotRessources);
     vueCadre.affiche(pointInsertion, $);
   }
 

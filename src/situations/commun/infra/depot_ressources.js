@@ -22,7 +22,7 @@ const CHARGEURS = {
   'svg': chargeurImage
 };
 
-export default class ChargeurRessources {
+export default class DepotRessources {
   constructor (chargeurs = CHARGEURS) {
     this.chargeurs = chargeurs;
     this.promesses = [];
