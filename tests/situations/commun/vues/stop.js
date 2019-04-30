@@ -31,13 +31,13 @@ describe('vue Stop', function () {
 
   it("sait s'insérer dans une page web", function () {
     vue.affiche('#point-insertion', $);
-    expect(document.querySelector('#point-insertion #stop').classList).to.not.contain('invisible');
+    expect(document.querySelector('#point-insertion .bouton-stop').classList).to.not.contain('invisible');
   });
 
   it('ouvre une fenêtre de confirmation avant de stopper', function () {
     vue.affiche('#point-insertion', $);
 
-    $('#point-insertion #stop').click();
+    $('#point-insertion .bouton-stop').click();
     expect($('#fenetre-modale').length).to.equal(1);
     expect($('label').text()).to.equal('situation.stop');
   });
