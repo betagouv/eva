@@ -11,6 +11,7 @@ export default class VueErreurChargement extends VueActionOverlay {
   affiche (pointInsertion, $) {
     super.affiche(pointInsertion, $);
     this.$overlay.addClass('opaque');
+    this.$overlay.children().css('background', 'transparent');
   }
 
   click () {
