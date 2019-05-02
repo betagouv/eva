@@ -8,7 +8,7 @@ describe('vue Rejoue Consigne', function () {
   let $;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
+    jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     situation = new class extends Situation {
       constructor () {
@@ -19,11 +19,11 @@ describe('vue Rejoue Consigne', function () {
       }
     }();
 
-    vue = new VueRejoueConsigne('#magasin', $, situation, situation.audios.consigne);
+    vue = new VueRejoueConsigne(situation.audios.consigne);
   });
 
   it("sait s'insérer dans une page web", function () {
-    vue.affiche('#magasin', $);
-    expect($('#magasin .bouton-lire-consigne').length).to.eql(1);
+    vue.affiche('#pointInsertion', $);
+    expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
   });
 });
