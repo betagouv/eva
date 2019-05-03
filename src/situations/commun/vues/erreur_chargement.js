@@ -5,13 +5,12 @@ import { traduction } from 'commun/infra/internationalisation';
 
 export default class VueErreurChargement extends VueActionOverlay {
   constructor () {
-    super(recharge, traduction('situation.erreur_chargement'), 'bouton-erreur-chargement');
+    super(recharge, traduction('situation.erreur_chargement'), 'bouton-erreur-chargement', 'bouton-centre-invisible');
   }
 
   affiche (pointInsertion, $) {
     super.affiche(pointInsertion, $);
     this.$overlay.addClass('opaque');
-    this.$overlay.children().css('background', 'transparent');
   }
 
   click () {

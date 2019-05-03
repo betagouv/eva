@@ -2,16 +2,17 @@ import VueBouton from './bouton';
 import 'commun/styles/action_overlay.scss';
 
 export default class VueActionOverlay {
-  constructor (image, message, classe) {
+  constructor (image, message, classe, classeBouton) {
     this.image = image;
     this.message = message;
     this.classe = classe;
+    this.classeBouton = classeBouton;
     this.vueBouton = new VueBouton(this.classe, this.image, () => this.click());
   }
 
   affiche (pointInsertion, $) {
     this.$message = $(`<div class='message'>${this.message}</div>`);
-    const $conteneurBouton = $('<div class="bouton-centre"></div>');
+    const $conteneurBouton = $(`<div class=${this.classeBouton}></div>`);
 
     this.vueBouton.affiche($conteneurBouton, $);
 

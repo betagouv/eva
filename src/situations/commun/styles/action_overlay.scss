@@ -1,19 +1,11 @@
 @import 'commun/styles/bouton.scss';
 
-.bouton-centre {
-  background: rgba(255, 255, 255, 0.8);
-  width: 12.25rem;
-  height: 12.25rem;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -6.125rem;
-  margin-top: -6.125rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bouton-centre-visible {
+  @include bouton-centre(rgba(255, 255, 255, 0.8));
+}
+
+.bouton-centre-invisible {
+   @include bouton-centre(transparent);
 }
 
 .bouton-go {
