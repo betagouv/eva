@@ -37,7 +37,6 @@ export default class Situation extends SituationCommune {
     this.produits = inventaireProduits(unStock);
     this.contenants = creerContenants(unStock);
     this.audios = {
-      consigne: new window.Audio(sons.consigne),
       reussite: new window.Audio(sons.reussite),
       echec: new window.Audio(sons.echec)
     };

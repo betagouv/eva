@@ -10,14 +10,13 @@ export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
 export const PIECE_RATEE = 'pieceRatée';
 
 export default class Situation extends SituationCommune {
-  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces, sonConsigne }) {
+  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces }) {
     super();
     this.cadence = cadence;
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
     this.audios = {
-      consigne: new window.Audio(sonConsigne),
       fondSonore: new window.Audio(sonFondSonore)
     };
     this._piecesAffichees = [];
