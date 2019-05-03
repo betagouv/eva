@@ -2,7 +2,8 @@ import jsdom from 'jsdom-global';
 
 import SituationCommune, { CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI, STOPPEE } from 'commun/modeles/situation';
 import VueCadre from 'commun/vues/cadre';
-import MockAudio from '../../commun/aides/mock_audio';
+import DepotRessourcesControle from 'controle/infra/depot_ressources_controle';
+import chargeurs from '../../commun/aides/mock_chargeurs';
 
 function uneVue (callbackAffichage = () => {}) {
   return { affiche: callbackAffichage };
@@ -16,15 +17,9 @@ describe('Une vue du cadre', function () {
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
-    depotRessources = { chargement: () => Promise.resolve() };
-    situation = new class extends SituationCommune {
-      constructor () {
-        super();
-        this.audios = {
-          consigne: new MockAudio()
-        };
-      }
-    }();
+    depotRessources = new DepotRessourcesControle(chargeurs());
+    situation = new SituationCommune();
+    return depotRessources.chargement();
   });
 
   it("Crée l'élément cadre", function () {
@@ -55,9 +50,9 @@ describe('Une vue du cadre', function () {
 
   it("affiche la barre d'action", function () {
     const vueCadre = new VueCadre(uneVue(), situation, {}, depotRessources);
-    vueCadre.affiche('#point-insertion', $);
-
-    expect($('#cadre .actions').length).to.equal(1);
+    vueCadre.affiche('#point-insertion', $).then(() => {
+      expect($('#cadre .actions').length).to.equal(1);
+    });
   });
 
   it("affiche la vue chargement dans l'état CHARGEMENT", function () {
@@ -93,10 +88,11 @@ describe('Une vue du cadre', function () {
 
   it('affiche la vue terminer', function () {
     const vueCadre = new VueCadre(uneVue(), situation, {}, depotRessources);
-    vueCadre.affiche('#point-insertion', $);
-    situation.emit(CHANGEMENT_ETAT, FINI);
-    expect($('.actions').length).to.equal(2);
-    expect($('.actions.invisible').length).to.equal(1);
+    vueCadre.affiche('#point-insertion', $).then(() => {
+      situation.emit(CHANGEMENT_ETAT, FINI);
+      expect($('.actions').length).to.equal(2);
+      expect($('.actions.invisible').length).to.equal(1);
+    });
   });
 
   it('demande une confirmation pour quitter la page lorsque la situation est démarré', function () {
@@ -112,12 +108,13 @@ describe('Une vue du cadre', function () {
 
   it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
     const vueCadre = new VueCadre(uneVue(), situation, {}, depotRessources);
-    vueCadre.affiche('#point-insertion', $);
-    [CHARGEMENT, ERREUR_CHARGEMENT, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
-      situation.modifieEtat(etat);
-      const event = $.Event('beforeunload');
-      $(window).trigger(event);
-      expect(event.isDefaultPrevented()).to.not.be.ok();
+    vueCadre.affiche('#point-insertion', $).then(() => {
+      [CHARGEMENT, ERREUR_CHARGEMENT, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
+        situation.modifieEtat(etat);
+        const event = $.Event('beforeunload');
+        $(window).trigger(event);
+        expect(event.isDefaultPrevented()).to.not.be.ok();
+      });
     });
   });
 });

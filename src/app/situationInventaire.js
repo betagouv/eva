@@ -2,7 +2,7 @@ import 'inventaire/styles/app.scss';
 
 import { afficheSituation } from 'commun/vues/affiche_situation';
 
-import DepotRessourcesInventaire from 'controle/infra/depot_ressources_inventaire';
+import DepotRessourcesInventaire from 'inventaire/infra/depot_ressources_inventaire';
 import Situation from 'inventaire/modeles/situation';
 import VueSituation from 'inventaire/vues/situation';
 

@@ -13,7 +13,7 @@ export default class VueCadre {
     this.vueSituation = vueSituation;
     this.situation = situation;
     this.depotRessources = depotRessources;
-    this.vueActions = new VueActions(situation, journal);
+    this.vueActions = new VueActions(situation, journal, this.depotRessources);
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
     this.vuesEtats.set(ERREUR_CHARGEMENT, VueErreurChargement);
@@ -26,32 +26,33 @@ export default class VueCadre {
   affiche (pointInsertion, $) {
     const $cadre = $('<div id="cadre" class="conteneur"></div>');
     $(pointInsertion).prepend($cadre);
-
     $cadre.append($('<div class="scene"></div>'));
-    this.vueSituation.affiche('.scene', $);
+    const selecteurCadre = '#cadre';
 
-    this.selecteurCadre = '#cadre';
-    this.vueActions.affiche(this.selecteurCadre, $);
+    const afficheEtat = (etat) => {
+      if (this.vueCourante) {
+        this.vueCourante.cache();
+        this.vueCourante = null;
+      }
+      const ClasseVue = this.vuesEtats.get(etat);
+      if (ClasseVue) {
+        this.vueCourante = new ClasseVue(this.situation, this.depotRessources);
+        this.vueCourante.affiche(selecteurCadre, $);
+      }
+      if (etat === FINI) {
+        this.vueActions.cache();
+      }
+    };
 
-    this.$ = $;
-    this.afficheEtat(this.situation.etat());
-    this.situation.on(CHANGEMENT_ETAT, this.afficheEtat.bind(this));
+    afficheEtat(this.situation.etat());
+    this.situation.on(CHANGEMENT_ETAT, afficheEtat);
     this.previensLaFermetureDeLaSituation($);
-  }
 
-  afficheEtat (etat) {
-    if (this.vueCourante) {
-      this.vueCourante.cache();
-      this.vueCourante = null;
-    }
-    const ClasseVue = this.vuesEtats.get(etat);
-    if (ClasseVue) {
-      this.vueCourante = new ClasseVue(this.situation, this.depotRessources);
-      this.vueCourante.affiche(this.selecteurCadre, this.$);
-    }
-    if (etat === FINI) {
-      this.vueActions.cache();
-    }
+    return this.depotRessources.chargement().then(() => {
+      this.vueSituation.affiche('.scene', $);
+
+      this.vueActions.affiche(selecteurCadre, $);
+    });
   }
 
   previensLaFermetureDeLaSituation ($) {
