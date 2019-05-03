@@ -3,7 +3,7 @@ import jsdom from 'jsdom-global';
 
 describe('le dépôt de ressources', function () {
   beforeEach(function () {
-    jsdom('', { url: 'http://localhost' });
+    jsdom('');
   });
 
   it('permet de charger toutes les ressources', function () {
