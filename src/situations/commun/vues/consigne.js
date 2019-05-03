@@ -4,7 +4,7 @@ import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 
 export default class VueConsigne extends VueActionOverlay {
   constructor (situation) {
-    super(lectureEnCours, '', 'bouton-lecture-en-cours');
+    super(lectureEnCours, '', 'bouton-lecture-en-cours', 'bouton-centre-visible');
     this.situation = situation;
     this.consigne = situation.audios.consigne;
   }

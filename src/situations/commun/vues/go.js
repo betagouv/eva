@@ -6,7 +6,7 @@ import { traduction } from 'commun/infra/internationalisation';
 
 export default class VueeGo extends VueActionOverlay {
   constructor (situation) {
-    super(go, traduction('situation.go'), 'bouton-go');
+    super(go, traduction('situation.go'), 'bouton-go', 'bouton-centre-visible');
     this.situation = situation;
   }
 

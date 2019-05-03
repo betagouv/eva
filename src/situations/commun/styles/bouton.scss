@@ -46,6 +46,23 @@
   &:hover { background-color: $couleur-focus }
 }
 
+
+@mixin bouton-centre($background) {
+  background: $background;
+  width: 12.25rem;
+  height: 12.25rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -6.125rem;
+  margin-top: -6.125rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .bouton-lire-consigne {
   @include bouton-carre($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
 }
