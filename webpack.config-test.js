@@ -2,6 +2,13 @@ const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
+const situations = ['controle', 'inventaire', 'tri'];
+
+const aliasSituations = situations.reduce(function (alias, situation) {
+  alias[situation] = path.resolve(__dirname, `src/situations/${situation}/`);
+  return alias;
+}, {});
+
 var config = {
   entry: './all-tests.js',
   output: {
@@ -12,8 +19,7 @@ var config = {
     alias: {
       accueil: path.resolve(__dirname, 'src/situations/accueil/'),
       commun: path.resolve(__dirname, 'src/situations/commun/'),
-      controle: path.resolve(__dirname, 'src/situations/controle/'),
-      inventaire: path.resolve(__dirname, 'src/situations/inventaire/')
+      ...aliasSituations
     }
   },
   target: 'node',
