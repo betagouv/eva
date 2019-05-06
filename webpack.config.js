@@ -5,12 +5,36 @@ const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
+const situations = ['controle', 'inventaire', 'tri'];
+
+function upperFirst (nom) {
+  return `${nom[0].toUpperCase()}${nom.substring(1)}`;
+}
+
+const entriesSituations = situations.reduce(function (entries, situation) {
+  entries[`situation${upperFirst(situation)}`] = path.resolve(__dirname, `src/app/situation${upperFirst(situation)}.js`);
+  return entries;
+}, {});
+
+const aliasSituations = situations.reduce(function (alias, situation) {
+  alias[situation] = path.resolve(__dirname, `src/situations/${situation}/`);
+  return alias;
+}, {});
+
+const templatesSituations = situations.map(function (situation) {
+  return new HtmlWebpackPlugin({
+    filename: `${situation}.html`,
+    hash: true,
+    template: path.resolve(__dirname, 'src/public/template_index.html'),
+    chunks: [`situation${upperFirst(situation)}`],
+    inject: 'head'
+  });
+});
 
 module.exports = {
   entry: {
     competencesPro: path.resolve(__dirname, 'src/app/index.js'),
-    situationControle: path.resolve(__dirname, 'src/app/situationControle.js'),
-    situationInventaire: path.resolve(__dirname, 'src/app/situationInventaire.js')
+    ...entriesSituations
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -21,9 +45,8 @@ module.exports = {
     alias: {
       accueil: path.resolve(__dirname, 'src/situations/accueil/'),
       commun: path.resolve(__dirname, 'src/situations/commun/'),
-      controle: path.resolve(__dirname, 'src/situations/controle/'),
-      inventaire: path.resolve(__dirname, 'src/situations/inventaire/'),
-      src: path.resolve(__dirname, 'src/')
+      src: path.resolve(__dirname, 'src/'),
+      ...aliasSituations
     }
   },
   optimization: {
@@ -93,20 +116,7 @@ module.exports = {
       chunks: ['competencesPro'],
       inject: 'head'
     }),
-    new HtmlWebpackPlugin({
-      filename: 'controle.html',
-      hash: true,
-      template: path.resolve(__dirname, 'src/public/template_index.html'),
-      chunks: ['situationControle'],
-      inject: 'head'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'inventaire.html',
-      hash: true,
-      template: path.resolve(__dirname, 'src/public/template_index.html'),
-      chunks: ['situationInventaire'],
-      inject: 'head'
-    }),
+    ...templatesSituations,
     new webpack.ProvidePlugin({ jQuery: 'jquery' }),
     new webpack.EnvironmentPlugin(['URL_SERVEUR']),
     new FaviconsWebpackPlugin('./src/public/favicon.svg')
