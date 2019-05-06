@@ -29,5 +29,8 @@
     "terminer": "Terminer",
     "repeter_consigne": "Répéter la consigne",
     "arreter_mission": "Arrêter la mission"
+  },
+  "tri": {
+    "titre": "Magasin de friandises"
   }
 }
