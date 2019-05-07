@@ -24,14 +24,14 @@ describe('vue Rejoue Consigne', function () {
 
   it('passe en état lecture en cours', function () {
     vue.affiche('#pointInsertion', $);
-    vue.click($);
+    vue.joueConsigne($);
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(0);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(1);
   });
 
   it("à la fin de la lecture, repasse à l'état initial", function () {
     vue.affiche('#pointInsertion', $);
-    vue.click($);
+    vue.joueConsigne($);
     $(consigne).trigger('ended');
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
@@ -39,9 +39,9 @@ describe('vue Rejoue Consigne', function () {
 
   it('on peut lire la consigne plusieurs fois', function () {
     vue.affiche('#pointInsertion', $);
-    vue.click($);
+    vue.joueConsigne($);
     $(consigne).trigger('ended');
-    vue.click($);
+    vue.joueConsigne($);
     $(consigne).trigger('ended');
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
@@ -53,6 +53,6 @@ describe('vue Rejoue Consigne', function () {
       done();
     };
     vue.affiche('#pointInsertion', $);
-    vue.click($);
+    vue.joueConsigne($);
   });
 });
