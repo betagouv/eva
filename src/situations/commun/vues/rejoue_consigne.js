@@ -36,6 +36,7 @@ export default class VueRejoueConsigne {
 
   lectureTermine () {
     this.vueBoutonLectureEnCours.cache();
+    this.vueBoutonLire.cache();
     this.vueBoutonLire.affiche(this.pointInsertion, this.$);
   }
 }
