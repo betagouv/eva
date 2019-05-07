@@ -19,17 +19,17 @@ export default class VueRejoueConsigne {
     this.$ = $;
     this.pointInsertion = pointInsertion;
     this.vueBoutonLire.affiche(this.pointInsertion, $);
+    $(this.consigne).on('ended', this.lectureTermine.bind(this));
   }
 
   click ($) {
     this.journal.enregistre(new EvenementRejoueConsigne());
-    this.joueConsigne($);
+    this.joueConsigne();
     this.vueBoutonLire.cache();
     this.vueBoutonLectureEnCours.affiche(this.pointInsertion, $);
   }
 
-  joueConsigne ($) {
-    $(this.consigne).on('ended', this.lectureTermine.bind(this));
+  joueConsigne () {
     this.consigne.play();
   }
 

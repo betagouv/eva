@@ -1,33 +1,50 @@
 import jsdom from 'jsdom-global';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
-import Situation from 'commun/modeles/situation';
 import EvenementRejoueConsigne from 'commun/modeles/evenement_rejoue_consigne';
 
 describe('vue Rejoue Consigne', function () {
-  let situation;
   let vue;
   let $;
   let journal;
+  let consigne;
 
   beforeEach(function () {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
-    journal = {};
-    situation = new class extends Situation {
-      constructor () {
-        super();
-        this.audios = {
-          consigne: { play: () => Promise.resolve() }
-        };
-      }
-    }();
+    journal = { enregistre () {} };
+    consigne = { play () {} };
 
-    vue = new VueRejoueConsigne(situation.audios.consigne, journal);
+    vue = new VueRejoueConsigne(consigne, journal);
   });
 
   it("sait s'insérer dans une page web", function () {
     vue.affiche('#pointInsertion', $);
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
+  });
+
+  it('passe en état lecture en cours', function () {
+    vue.affiche('#pointInsertion', $);
+    vue.click($);
+    expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(0);
+    expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(1);
+  });
+
+  it("à la fin de la lecture, repasse à l'état initial", function () {
+    vue.affiche('#pointInsertion', $);
+    vue.click($);
+    $(consigne).trigger('ended');
+    expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
+    expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
+  });
+
+  it('on peut lire la consigne plusieurs fois', function () {
+    vue.affiche('#pointInsertion', $);
+    vue.click($);
+    $(consigne).trigger('ended');
+    vue.click($);
+    $(consigne).trigger('ended');
+    expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
+    expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
   });
 
   it('journalise un événement RejoueConsigne', function (done) {
