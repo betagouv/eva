@@ -37,7 +37,7 @@ export default class DepotRessources {
   constructor (chargeurs = CHARGEURS) {
     this.chargeurs = chargeurs;
     this.promesses = [];
-    this.ressources = {};
+    this.cloneursRessource = {};
   }
 
   charge (ressources) {
@@ -45,8 +45,8 @@ export default class DepotRessources {
       const extension = ressource.match(/\.([^.]+)$/)[1];
       const chargeur = this.chargeurs[extension];
 
-      return chargeur(ressource).then((valeur) => {
-        this.ressources[ressource] = valeur;
+      return chargeur(ressource).then((cloneur) => {
+        this.cloneursRessource[ressource] = cloneur;
       });
     });
 
@@ -58,6 +58,6 @@ export default class DepotRessources {
   }
 
   ressource (idRessource) {
-    return this.ressources[idRessource]();
+    return this.cloneursRessource[idRessource]();
   }
 }
