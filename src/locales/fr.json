@@ -26,6 +26,8 @@
     },
     "reussite": "C'est réussi, bravo !",
     "stop": "Voulez vous vraiment quitter la mission ?",
-    "terminer": "Terminer"
+    "terminer": "Terminer",
+    "repeter_consigne": "Répéter la consigne",
+    "arreter_mission": "Arrêter la mission"
   }
 }

@@ -1,3 +1,4 @@
+import { traduction } from 'commun/infra/internationalisation';
 import VueBouton from './bouton';
 import EvenementRejoueConsigne from '../modeles/evenement_rejoue_consigne';
 
@@ -10,6 +11,7 @@ export default class VueRejoueConsigne {
     this.consigne = consigne;
     this.journal = journal;
     this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.click(this.$));
+    this.vueBoutonLire.ajouteUneEtiquette(traduction('situation.repeter_consigne'));
     this.vueBoutonLectureEnCours = new VueBouton('bouton-lecture-en-cours', lectureEnCours);
   }
 

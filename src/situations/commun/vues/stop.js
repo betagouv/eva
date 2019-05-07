@@ -18,6 +18,7 @@ export default class VueStop {
 
   affiche (pointInsertion, $) {
     const boutonStop = new VueBouton('bouton-stop', stop, () => { this.clickSurStop(pointInsertion, $); });
+    boutonStop.ajouteUneEtiquette(traduction('situation.arreter_mission'), true);
     boutonStop.affiche(pointInsertion, $);
   }
 

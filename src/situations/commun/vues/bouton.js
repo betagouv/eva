@@ -5,13 +5,28 @@ export default class VueBouton {
     this.click = click;
   }
 
+  ajouteUneEtiquette (etiquette, aGauche = false) {
+    this.etiquette = etiquette;
+    this.aGauche = aGauche;
+  }
+
   affiche (pointInsertion, $) {
-    this.$bouton = $(`<a class="${this.classe}"><img src="${this.image}"></a>`);
-    this.$bouton.on('click', this.click);
-    $(pointInsertion).append(this.$bouton);
+    const $bouton = $(`<a class="${this.classe}"><img src="${this.image}"></a>`);
+    $bouton.on('click', this.click);
+    this.$element = $bouton;
+    if (this.etiquette) {
+      const $boutonEtEtiquette = $('<div class="bouton-et-etiquette"></div>');
+      if (this.aGauche) {
+        $boutonEtEtiquette.addClass('gauche');
+      }
+      $boutonEtEtiquette.append($bouton);
+      $boutonEtEtiquette.append(`<span>${this.etiquette}</span>`);
+      this.$element = $boutonEtEtiquette;
+    }
+    $(pointInsertion).append(this.$element);
   }
 
   cache () {
-    this.$bouton.remove();
+    this.$element.remove();
   }
 }
