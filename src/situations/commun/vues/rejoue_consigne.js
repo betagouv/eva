@@ -10,7 +10,7 @@ export default class VueRejoueConsigne {
   constructor (consigne, journal) {
     this.consigne = consigne;
     this.journal = journal;
-    this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.click(this.$));
+    this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.joueConsigne(this.$));
     this.vueBoutonLire.ajouteUneEtiquette(traduction('situation.repeter_consigne'));
     this.vueBoutonLectureEnCours = new VueBouton('bouton-lecture-en-cours', lectureEnCours);
   }
@@ -22,14 +22,10 @@ export default class VueRejoueConsigne {
     $(this.consigne).on('ended', this.lectureTermine.bind(this));
   }
 
-  click ($) {
+  joueConsigne ($) {
     this.journal.enregistre(new EvenementRejoueConsigne());
-    this.joueConsigne();
     this.vueBoutonLire.cache();
     this.vueBoutonLectureEnCours.affiche(this.pointInsertion, $);
-  }
-
-  joueConsigne () {
     this.consigne.play();
   }
 
