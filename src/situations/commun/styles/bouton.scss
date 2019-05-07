@@ -103,3 +103,22 @@
 
   }
 }
+
+.bouton-et-etiquette {
+  display: flex;
+  align-items: center;
+
+  &.gauche {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  span {
+    text-transform: uppercase;
+    color: $couleur-etiquette-bouton;
+    font-weight: bold;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 7rem;
+  }
+}
