@@ -23,14 +23,4 @@ describe('vue consigne', function () {
     $(vue.consigne).trigger('ended');
     expect(situation.etat()).to.eql(CONSIGNE_ECOUTEE);
   });
-
-  it("passe  directement a l'état CONSIGNE_ECOUTEE si la consigne ne peut pas être jouée", (done) => {
-    vue.consigne.play = () => {
-      return Promise.reject(new Error('Le fichier audio ne peut pas être joué'));
-    };
-    vue.affiche('#pointInsertion', $).then(() => {
-      expect(situation.etat()).to.eql(CONSIGNE_ECOUTEE);
-      done();
-    });
-  });
 });

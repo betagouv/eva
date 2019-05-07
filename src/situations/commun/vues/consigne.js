@@ -11,7 +11,7 @@ export default class VueConsigne extends VueActionOverlay {
 
   affiche (pointInsertion, $) {
     super.affiche(pointInsertion, $);
-    return this.joueConsigne($);
+    this.joueConsigne($);
   }
 
   lectureTermine () {
@@ -20,9 +20,6 @@ export default class VueConsigne extends VueActionOverlay {
 
   joueConsigne ($) {
     $(this.consigne).on('ended', this.lectureTermine.bind(this));
-    return Promise.resolve(this.consigne.play())
-      .catch(e => {
-        this.lectureTermine();
-      });
+    this.consigne.play();
   }
 }

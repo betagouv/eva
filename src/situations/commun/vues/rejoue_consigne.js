@@ -28,10 +28,7 @@ export default class VueRejoueConsigne {
 
   joueConsigne ($) {
     $(this.consigne).on('ended', this.lectureTermine.bind(this));
-    return Promise.resolve(this.consigne.play())
-      .catch(e => {
-        this.lectureTermine();
-      });
+    this.consigne.play();
   }
 
   lectureTermine () {
