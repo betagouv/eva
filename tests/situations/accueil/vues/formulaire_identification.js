@@ -23,7 +23,6 @@ describe("Le formulaire d'identification", function () {
     expect($('#formulaire form#formulaire-identification').length).to.equal(1);
     expect($('#formulaire label').length).to.equal(1);
     expect($('#formulaire input[type=text]').length).to.equal(1);
-    expect($('#formulaire button').length).to.equal(1);
   });
 
   it("restaure l'identifiant actuel", function () {
@@ -48,7 +47,6 @@ describe("Le formulaire d'identification", function () {
       done();
     };
     vue.affiche('#formulaire', $);
-    $('#formulaire input[type=text]').val('Mon pseudo');
-    $('#formulaire button').click();
+    $('#formulaire input[type=text]').val('Mon pseudo').trigger('input');
   });
 });

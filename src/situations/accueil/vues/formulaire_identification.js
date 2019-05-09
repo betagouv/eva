@@ -14,7 +14,6 @@ export default class FormulaireIdentification {
             ${traduction('accueil.identification.label')}
             <input type="text" value="${identifiantActuel}">
           </label>
-          <button>${traduction('accueil.identification.button')}</button>
         </form>
       `);
 
@@ -22,7 +21,7 @@ export default class FormulaireIdentification {
     }
 
     const $gabarit = creeGabarit(this.registreUtilisateur);
-    $('button', $gabarit).on('click', (e) => {
+    $('input', $gabarit).on('input', (e) => {
       e.preventDefault();
       const identifiantUtilisateur = $('input[type=text]', $gabarit).val();
       this.registreUtilisateur.inscris(identifiantUtilisateur);
