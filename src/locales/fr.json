@@ -1,7 +1,6 @@
 {
   "accueil": {
     "identification": {
-      "button": "OK",
       "label": "Entrez votre nom ou pseudo"
     },
     "titre": "Compétences pro"
