@@ -19,6 +19,11 @@ export default class Situation extends SituationCommune {
     this.audios = {
       fondSonore: new window.Audio(sonFondSonore)
     };
+    this.resultat = {
+      bien_placees: 0,
+      mal_placees: 0,
+      ratees: 0
+    };
     this._piecesAffichees = [];
     this._bacs = [];
   }
@@ -98,10 +103,15 @@ export default class Situation extends SituationCommune {
 
     const bac = this.bacs().find((bac) => bac.contient(piece));
     if (bac) {
-      const evenement = bac.correspondALaCategorie(piece) ? PIECE_BIEN_PLACEE : PIECE_MAL_PLACEE;
-
-      this.emit(evenement, piece);
+      if (bac.correspondALaCategorie(piece)) {
+        this.resultat.bien_placees++;
+        this.emit(PIECE_BIEN_PLACEE, piece);
+      } else {
+        this.resultat.mal_placees++;
+        this.emit(PIECE_MAL_PLACEE, piece);
+      }
     } else {
+      this.resultat.ratees++;
       this.emit(PIECE_RATEE, piece);
     }
 
