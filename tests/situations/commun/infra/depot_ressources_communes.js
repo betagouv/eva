@@ -4,9 +4,11 @@ import chargeurs from '../../commun/aides/mock_chargeurs';
 
 describe('Le dépot de ressources communes', function () {
   let depot;
+  let son;
 
   beforeEach(function () {
-    depot = new DepotRessourcesCommunes(chargeurs());
+    son = 'test.mp3';
+    depot = new DepotRessourcesCommunes(son, chargeurs());
   });
 
   it('étend DépotRessources', function () {
@@ -15,5 +17,15 @@ describe('Le dépot de ressources communes', function () {
 
   it('charge des ressources communes', function () {
     expect(depot.promesses.length).not.to.equal(0);
+  });
+
+  it('retourne la consigne', function () {
+    const _chargeurs = chargeurs({
+      mp3: () => Promise.resolve(() => 'plop')
+    });
+    depot = new DepotRessourcesCommunes(son, _chargeurs);
+    return depot.chargement().then(() => {
+      expect(depot.consigne()).to.eql('plop');
+    });
   });
 });
