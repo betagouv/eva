@@ -28,6 +28,13 @@ describe('La situation « Contrôle »', function () {
     expect(situation.sequenceTerminee()).to.be(true);
   });
 
+  it('initialise le résultat', function () {
+    const situation = new Situation({ scenario: [] });
+    expect(situation.resultat.bien_placees).to.eql(0);
+    expect(situation.resultat.mal_placees).to.eql(0);
+    expect(situation.resultat.ratees).to.eql(0);
+  });
+
   it('sait donner la piece suivante quand il y en encore à venir', function () {
     let situation = new Situation({ scenario: [{ conforme: false }], positionApparitionPieces: { x: 25, y: 50 } });
     expect(situation.sequenceTerminee()).to.be(false);
@@ -102,6 +109,7 @@ describe('La situation « Contrôle »', function () {
       bac.correspondALaCategorie = () => true;
 
       situation.on(PIECE_BIEN_PLACEE, (piece) => {
+        expect(situation.resultat.bien_placees).to.equal(1);
         done();
       });
       situation.faisDisparaitrePiece(piece);
@@ -112,6 +120,7 @@ describe('La situation « Contrôle »', function () {
       bac.correspondALaCategorie = () => false;
 
       situation.on(PIECE_MAL_PLACEE, (piece) => {
+        expect(situation.resultat.mal_placees).to.equal(1);
         done();
       });
       situation.faisDisparaitrePiece(piece);
@@ -121,6 +130,7 @@ describe('La situation « Contrôle »', function () {
       bac.contient = () => false;
 
       situation.on(PIECE_RATEE, (piece) => {
+        expect(situation.resultat.ratees).to.equal(1);
         done();
       });
       situation.faisDisparaitrePiece(piece);
