@@ -7,14 +7,4 @@ describe('Le dépôt de ressources de la situation tri', function () {
     const depot = new DepotRessourcesTri(chargeurs());
     expect(depot).to.be.a(DepotRessourcesCommunes);
   });
-
-  it('retourne la consigne', function () {
-    const _chargeurs = chargeurs({
-      mp3: () => Promise.resolve(() => 'plop')
-    });
-    const depot = new DepotRessourcesTri(_chargeurs);
-    return depot.chargement().then(() => {
-      expect(depot.consigne()).to.eql('plop');
-    });
-  });
 });

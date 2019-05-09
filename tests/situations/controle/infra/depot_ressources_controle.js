@@ -7,14 +7,4 @@ describe('Le dépôt de ressources de la situation contrôle', function () {
     const depot = new DepotRessourcesControle(chargeurs());
     expect(depot).to.be.a(DepotRessourcesCommunes);
   });
-
-  it('retourne la consigne', function () {
-    const _chargeurs = chargeurs({
-      mp3: () => Promise.resolve(() => 'plop')
-    });
-    const depot = new DepotRessourcesControle(_chargeurs);
-    return depot.chargement().then(() => {
-      expect(depot.consigne()).to.eql('plop');
-    });
-  });
 });
