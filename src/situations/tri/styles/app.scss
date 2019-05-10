@@ -1,0 +1,9 @@
+@import 'commun/styles/commun.scss';
+@import 'commun/styles/conteneur.scss';
+
+.scene.tri {
+  background-image: url('../assets/fond-situation.jpg') ;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
