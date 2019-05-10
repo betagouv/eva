@@ -1,4 +1,5 @@
-
 export default class VueSituationTri {
-  affiche () {}
+  affiche (pointInsertion, $) {
+    $(pointInsertion).addClass('tri');
+  }
 }

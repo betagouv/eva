@@ -91,7 +91,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|mp3|svg|woff|woff2|ttf|eot)(\?.*$|$)/i,
+        test: /\.(png|jpg|mp3|svg|woff|woff2|ttf|eot)(\?.*$|$)/i,
         use: [
           {
             loader: 'file-loader',

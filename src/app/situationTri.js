@@ -1,4 +1,4 @@
-import 'inventaire/styles/app.scss';
+import 'tri/styles/app.scss';
 
 import { afficheSituation } from 'commun/vues/affiche_situation';
 
