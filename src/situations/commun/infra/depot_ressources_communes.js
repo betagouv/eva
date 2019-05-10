@@ -3,11 +3,14 @@ import DepotRessources from 'commun/infra/depot_ressources';
 export default class DepotRessourcesCommunes extends DepotRessources {
   constructor (sonConsigne, chargeurs) {
     super(chargeurs);
-    const contexteRessourcesCommunes = require.context('commun/assets');
-    const ressourcesCommunes = contexteRessourcesCommunes.keys().map(contexteRessourcesCommunes);
-    this.charge(ressourcesCommunes);
+    this.chargeContexte(require.context('commun/assets'));
     this.charge([sonConsigne]);
     this.sonConsigne = sonConsigne;
+  }
+
+  chargeContexte (contexte) {
+    const ressources = contexte.keys().map(contexte);
+    this.charge(ressources);
   }
 
   consigne () {
