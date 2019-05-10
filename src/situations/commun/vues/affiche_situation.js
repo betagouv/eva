@@ -10,7 +10,7 @@ export function afficheSituation (nomSituation, modeleSituation, VueSituation, d
   function affiche (pointInsertion, $) {
     const session = uuidv4();
     const journal = new Journal(Date.now, session, nomSituation, new DepotJournal(), new RegistreUtilisateur());
-    const vueSituation = new VueSituation(modeleSituation, journal);
+    const vueSituation = new VueSituation(modeleSituation, journal, depotRessources);
 
     const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, depotRessources);
     vueCadre.affiche(pointInsertion, $);

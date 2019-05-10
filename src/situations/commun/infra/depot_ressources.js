@@ -30,7 +30,8 @@ function chargeurImage (src) {
 const CHARGEURS = {
   'mp3': chargeurAudio,
   'png': chargeurImage,
-  'svg': chargeurImage
+  'svg': chargeurImage,
+  'jpg': chargeurImage
 };
 
 export default class DepotRessources {

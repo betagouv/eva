@@ -6,6 +6,7 @@ export default function (chargeurs = {}) {
     svg: chargeurDefaut,
     mp3: () => Promise.resolve(() => new MockAudio()),
     png: chargeurDefaut,
+    jpg: chargeurDefaut,
     ...chargeurs
   };
 }
