@@ -1,4 +1,4 @@
-import 'controle/styles/app.scss';
+import 'commun/styles/situation.scss';
 
 import { afficheSituation } from 'commun/vues/affiche_situation';
 import DepotRessourcesControle from 'controle/infra/depot_ressources_controle';

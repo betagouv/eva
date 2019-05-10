@@ -1,4 +1,4 @@
-import 'tri/styles/app.scss';
+import 'commun/styles/situation.scss';
 
 import { afficheSituation } from 'commun/vues/affiche_situation';
 

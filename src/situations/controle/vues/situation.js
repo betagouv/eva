@@ -1,3 +1,4 @@
+import 'controle/styles/situation.scss';
 import Bac from 'controle/modeles/bac';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
