@@ -1,3 +1,4 @@
+import 'inventaire/styles/situation.scss';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 
 import VueEtageres from 'inventaire/vues/etageres';
