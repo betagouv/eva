@@ -1,12 +1,14 @@
 import jsdom from 'jsdom-global';
 
 import VueSituation from 'tri/vues/situation';
+import Situation from 'tri/modeles/situation';
 
 describe('La situation « Tri »', function () {
   let $;
   let mockDepotRessources;
   let situation;
   let journal;
+  let vueSituation;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
@@ -18,12 +20,19 @@ describe('La situation « Tri »', function () {
         };
       }
     }();
+    situation = new Situation({ pieces: [] });
+    vueSituation = new VueSituation(situation, journal, mockDepotRessources);
   });
 
   it('affiche le fond', function () {
-    const vueSituation = new VueSituation(situation, journal, mockDepotRessources);
     vueSituation.affiche('#point-insertion', $);
     expect($('#point-insertion').hasClass('tri')).to.be(true);
     expect($('#point-insertion').css('background-image')).to.equal('url(image-de-fond)');
+  });
+
+  it('affiche les pièces', function () {
+    situation.pieces = [{ type: 'bonbon1' }];
+    vueSituation.affiche('#point-insertion', $);
+    expect($('.piece', '#point-insertion').length).to.equal(1);
   });
 });
