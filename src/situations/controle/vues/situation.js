@@ -11,6 +11,7 @@ import VueBac from 'controle/vues/bac';
 import VuePiece from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 import VueFondSonore from 'controle/vues/fond_sonore';
+import VueFin from 'controle/vues/fin';
 
 export default class VueSituation {
   constructor (situation, journal) {
@@ -28,6 +29,7 @@ export default class VueSituation {
     this.journal = journal;
     this.tapis = new VueTapis(situation);
     this.fondSonore = new VueFondSonore(situation);
+    this.fin = new VueFin(situation);
   }
 
   creeVuePiece (piece) {
@@ -46,6 +48,7 @@ export default class VueSituation {
     this.situation.bacs().forEach(afficheBac);
     this.tapis.affiche(pointInsertion, $);
     this.fondSonore.affiche(pointInsertion, $);
+    this.fin.affiche(pointInsertion, $);
 
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {
