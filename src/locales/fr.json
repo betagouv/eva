@@ -6,7 +6,12 @@
     "titre": "Compétences pro"
   },
   "controle": {
-    "titre": "Chaîne de fabrication"
+    "titre": "Chaîne de fabrication",
+    "resultat": {
+      "bien_placees": "Réussis : {{nombre}}",
+      "mal_placees": "Erreurs : {{nombre}}",
+      "ratees": "Non triés : {{nombre}}"
+    }
   },
   "inventaire": {
     "placeholder": "Qté",
