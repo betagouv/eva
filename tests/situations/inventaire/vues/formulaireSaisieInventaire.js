@@ -179,6 +179,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     expect(evenement).to.be.a(EvenementSaisieInventaire);
     expect($('.valide-saisie').length).to.equal(0);
     expect($('.succes-saisie-inventaire').length).to.equal(1);
+    expect($('.retour-stock').length).to.equal(0);
     expect(evenement.donnees()).to.eql({ reussite: true, reponses: { '0': { quantite: '12', reussite: true } } });
   });
 

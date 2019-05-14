@@ -99,6 +99,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
   function afficheVueSucces () {
     $('.valide-saisie').remove();
+    $('.retour-stock').remove();
     $('.formulaire-saisie-inventaire').addClass('succes-saisie-inventaire');
     $('input').prop('disabled', true);
   }
