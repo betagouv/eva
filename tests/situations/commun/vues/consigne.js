@@ -14,13 +14,17 @@ describe('vue consigne', function () {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     situation = new Situation();
-    const depot = { consigne () { return new MockAudio(); } };
+    const depot = {
+      consigne: () => new MockAudio(),
+      consigneCommune: () => new MockAudio()
+    };
     vue = new VueConsigne(situation, depot);
   });
 
   it("change l'état a CONSIGNE_ECOUTEE une fois terminé", () => {
     vue.affiche('#pointInsertion', $);
     $(vue.consigne).trigger('ended');
+    $(vue.consigneCommune).trigger('ended');
     expect(situation.etat()).to.eql(CONSIGNE_ECOUTEE);
   });
 });
