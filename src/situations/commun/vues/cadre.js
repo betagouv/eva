@@ -47,6 +47,7 @@ export default class VueCadre {
     afficheEtat(this.situation.etat());
     this.situation.on(CHANGEMENT_ETAT, afficheEtat);
     this.previensLaFermetureDeLaSituation($);
+    this.previensLeClickDroit($);
 
     return this.depotRessources.chargement().then(() => {
       this.vueSituation.affiche('.scene', $);
@@ -61,6 +62,12 @@ export default class VueCadre {
         e.preventDefault();
         return '';
       }
+    });
+  }
+
+  previensLeClickDroit ($) {
+    $('#cadre').on('contextmenu', (e) => {
+      e.preventDefault();
     });
   }
 }
