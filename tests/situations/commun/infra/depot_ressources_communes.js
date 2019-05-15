@@ -28,4 +28,10 @@ describe('Le dépot de ressources communes', function () {
       expect(depot.consigne()).to.eql('plop');
     });
   });
+
+  it('retourne la consigne commune', function () {
+    return depot.chargement().then(() => {
+      expect(depot.consigneCommune()).to.not.be(undefined);
+    });
+  });
 });
