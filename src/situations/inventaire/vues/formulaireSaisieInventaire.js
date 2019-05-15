@@ -56,10 +56,15 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
     $(`#${ID_FORMULAIRE_SAISIE} input`).each(function () {
       const $input = $(this);
-      reponses.set($input.attr('id'), { quantite: $input.val() });
+      reponses.set($input.attr('id'), { quantite: parseInput($input) });
     });
 
     return reponses;
+  }
+
+  function parseInput (input) {
+    const reponse = input.val();
+    return parseInt(reponse, 10);
   }
 
   function creeZoneRetourStock () {
