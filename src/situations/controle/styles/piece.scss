@@ -1,15 +1,3 @@
 .piece {
-  display: block;
-  position: absolute;
   width: 13%;
-  cursor: grab;
-
-  &.selectionnee {
-    z-index: 100;
-    cursor: grabbing;
-  }
-}
-
-.desactiver {
-  pointer-events: none;
 }

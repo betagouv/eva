@@ -1,7 +1,3 @@
-export default class Piece {
-  constructor ({ image, posY, posX }) {
-    this.image = image;
-    this.posY = posY;
-    this.posX = posX;
-  }
-}
+import PieceCommune from 'commun/modeles/piece';
+
+export default PieceCommune;
