@@ -117,4 +117,12 @@ describe('Une vue du cadre', function () {
       });
     });
   });
+
+  it('désactive le click droit', function () {
+    const vueCadre = new VueCadre(uneVue(), situation, {}, depotRessources);
+    vueCadre.affiche('#point-insertion', $);
+    const contextmenu = $.Event('contextmenu');
+    $('#cadre').trigger(contextmenu);
+    expect(contextmenu.isDefaultPrevented()).to.be(true);
+  });
 });
