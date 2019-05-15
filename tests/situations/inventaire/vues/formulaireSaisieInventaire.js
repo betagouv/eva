@@ -183,6 +183,28 @@ describe("Le formulaire de saisie d'inventaire", function () {
     expect(evenement.donnees()).to.eql({ reussite: true, reponses: { '0': { quantite: '12', reussite: true } } });
   });
 
+  it("parse les données rentrées par les utilisateurs pour n'enregistrer que les valeurs numériques", function () {
+    const magasin = unMagasin().avecCommeReferences(
+      { idProduit: '0', nom: 'Nova Sky' }
+    ).avecEnStock(
+      new Contenant({ idContenu: '0', quantite: 12 })
+    ).construit();
+
+    let evenement;
+
+    journal.enregistre = (e) => {
+      evenement = e;
+    };
+
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    const $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
+    const $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
+
+    $zoneSaisieInventaire.val('12 L ');
+    $boutonValidationSaisie.click();
+    expect(evenement.donnees()).to.eql({ reussite: true, reponses: { '0': { quantite: '12', reussite: true } } });
+  });
+
   it("envoie l'événement fin a la réussite", function (done) {
     const magasin = unMagasinVide();
 
