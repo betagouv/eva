@@ -1,0 +1,14 @@
+.piece {
+  display: block;
+  position: absolute;
+  cursor: grab;
+
+  &.selectionnee {
+    z-index: 100;
+    cursor: grabbing;
+  }
+
+  &.desactiver {
+    pointer-events: none;
+  }
+}

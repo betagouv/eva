@@ -2,6 +2,7 @@ import jsdom from 'jsdom-global';
 
 import VueSituation from 'tri/vues/situation';
 import Situation from 'tri/modeles/situation';
+import Piece from 'tri/modeles/piece';
 
 describe('La situation « Tri »', function () {
   let $;
@@ -31,7 +32,7 @@ describe('La situation « Tri »', function () {
   });
 
   it('affiche les pièces', function () {
-    situation.pieces = [{ type: 'bonbon1' }];
+    situation.pieces = [new Piece({ type: 'bonbon1' })];
     vueSituation.affiche('#point-insertion', $);
     expect($('.piece', '#point-insertion').length).to.equal(1);
   });

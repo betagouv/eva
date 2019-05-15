@@ -1,8 +1,7 @@
-import EventEmitter from 'events';
-
 import 'controle/styles/piece.scss';
 
-import { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
+import VuePieceCommune from 'commun/vues/piece';
+import { CHANGEMENT_SELECTION } from 'controle/modeles/piece';
 import { DISPARITION_PIECE } from 'controle/modeles/situation';
 
 export function animationInitiale ($element) {
@@ -13,66 +12,45 @@ export function animationFinale ($element, done) {
   $element.fadeOut(500, () => { done($element); });
 }
 
-export default class VuePiece extends EventEmitter {
+export default class VuePiece extends VuePieceCommune {
   constructor (piece,
     callbackApresApparition = animationInitiale,
     callbackAvantSuppression = animationFinale) {
-    super();
+    super(piece);
 
-    this.piece = piece;
     this.callbackApresApparition = callbackApresApparition;
     this.callbackAvantSuppression = callbackAvantSuppression;
   }
 
   affiche (pointInsertion, $) {
-    function creeElementPiece (piece, dimensionsElementParent) {
-      let $piece = $(`<img class="piece" src="${piece.image}">`);
-      metsAJourPosition($piece, piece.position(), dimensionsElementParent);
-      return $piece;
-    }
+    super.affiche(pointInsertion, $);
 
-    function metsAJourPosition ($piece, { x, y }, { largeurParent, hauteurParent }) {
-      $piece.css('left', x * largeurParent / 100);
-      $piece.css('top', y * hauteurParent / 100);
-    }
-
-    const $elementParent = $(pointInsertion);
-    const dimensionsElementParent = {
-      largeurParent: $elementParent.width(),
-      hauteurParent: $elementParent.height()
-    };
-    const $piece = creeElementPiece(this.piece, dimensionsElementParent);
-
-    $piece.mousedown(e => {
-      $piece.stop(true);
-      $piece.css('opacity', 1);
+    this.$piece.mousedown(e => {
+      this.$piece.stop(true);
+      this.$piece.css('opacity', 1);
       this.piece.changePosition({
-        x: 100 * parseInt($piece.css('left')) / $elementParent.width(),
-        y: 100 * parseInt($piece.css('top')) / $elementParent.height()
+        x: 100 * parseInt(this.$piece.css('left')) / this.$elementParent.width(),
+        y: 100 * parseInt(this.$piece.css('top')) / this.$elementParent.height()
       });
       this.piece.selectionne({
-        x: 100 * e.clientX / $elementParent.width(),
-        y: 100 * e.clientY / $elementParent.height()
+        x: 100 * e.clientX / this.$elementParent.width(),
+        y: 100 * e.clientY / this.$elementParent.height()
       });
     });
 
-    $piece.on('dragstart', function (event) { event.preventDefault(); });
-    $piece.mouseup(e => { this.piece.deselectionne(); });
+    this.$piece.on('dragstart', function (event) { event.preventDefault(); });
+    this.$piece.mouseup(e => { this.piece.deselectionne(); });
 
-    this.piece.on(CHANGEMENT_POSITION, (nouvellePosition) => {
-      metsAJourPosition($piece, nouvellePosition, dimensionsElementParent);
-    });
     this.piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
-      $elementParent.append($piece);
-      $piece.toggleClass('selectionnee', selectionnee);
+      this.$elementParent.append(this.$piece);
+      this.$piece.toggleClass('selectionnee', selectionnee);
     });
-    $elementParent.append($piece);
-    $piece.show(() => { this.callbackApresApparition($piece); });
+    this.$piece.show(() => { this.callbackApresApparition(this.$piece); });
 
     this.piece.on(DISPARITION_PIECE, () => {
-      $piece.addClass('desactiver');
-      this.callbackAvantSuppression($piece, () => {
-        $piece.remove();
+      this.$piece.addClass('desactiver');
+      this.callbackAvantSuppression(this.$piece, () => {
+        this.$piece.remove();
       });
     });
   }

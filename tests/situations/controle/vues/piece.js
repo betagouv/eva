@@ -15,33 +15,6 @@ describe('Une pièce', function () {
     $ = jQuery(window);
   });
 
-  it("s'affiche", function () {
-    const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = creeVueMinimale(piece);
-    expect($('.piece').length).to.equal(0);
-
-    vuePiece.affiche('#controle', $);
-    expect($('.piece').length).to.equal(1);
-  });
-
-  it("affiche l'image de la piece", function () {
-    const piece = new Piece({ x: 90, y: 40, conforme: false, image: 'image-url' });
-    const vuePiece = creeVueMinimale(piece);
-    vuePiece.affiche('#controle', $);
-    expect($('.piece').attr('src')).to.eql('image-url');
-  });
-
-  it("se positionne correctement vis-à-vis de l'élément parent", function () {
-    const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = creeVueMinimale(piece);
-
-    $('#controle').width(200).height(50);
-    vuePiece.affiche('#controle', $);
-
-    expect($('.piece').css('left')).to.eql('180px');
-    expect($('.piece').css('top')).to.eql('20px');
-  });
-
   it('peut être sélectionnée', function () {
     const piece = new Piece({ x: 90, y: 40 });
     const vuePiece = creeVueMinimale(piece);
@@ -62,22 +35,6 @@ describe('Une pièce', function () {
     expect(piece.estSelectionnee()).to.be(true);
     $('.piece').trigger($.Event('mouseup'));
     expect(piece.estSelectionnee()).to.be(false);
-  });
-
-  it('peut être bougée', function () {
-    const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = creeVueMinimale(piece);
-
-    $('#controle').width(100).height(100);
-    vuePiece.affiche('#controle', $);
-
-    expect($('.piece').css('left')).to.eql('90px');
-    expect($('.piece').css('top')).to.eql('40px');
-
-    piece.changePosition({ x: 25, y: 5 });
-
-    expect($('.piece').css('left')).to.eql('25px');
-    expect($('.piece').css('top')).to.eql('5px');
   });
 
   it("suit une séquence d'animation pour apparaître", function (done) {
