@@ -7,6 +7,7 @@ export default class VueConsigne extends VueActionOverlay {
     super(lectureEnCours, '', 'bouton-lecture-en-cours', 'bouton-centre-visible');
     this.situation = situation;
     this.consigne = depot.consigne();
+    this.consigneCommune = depot.consigneCommune();
   }
 
   affiche (pointInsertion, $) {
@@ -19,7 +20,15 @@ export default class VueConsigne extends VueActionOverlay {
   }
 
   joueConsigne ($) {
-    $(this.consigne).on('ended', this.lectureTermine.bind(this));
-    this.consigne.play();
+    this.joueSon($, this.consigne, () => this.joueConsigneCommune($));
+  }
+
+  joueConsigneCommune ($) {
+    this.joueSon($, this.consigneCommune, () => this.lectureTermine());
+  }
+
+  joueSon ($, son, callbackFin) {
+    $(son).on('ended', callbackFin);
+    son.play();
   }
 }
