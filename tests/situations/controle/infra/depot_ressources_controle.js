@@ -7,4 +7,14 @@ describe('Le dépôt de ressources de la situation contrôle', function () {
     const depot = new DepotRessourcesControle(chargeurs());
     expect(depot).to.be.a(DepotRessourcesCommunes);
   });
+
+  it('retourne les biscuits en défaut', function () {
+    const depot = new DepotRessourcesControle(chargeurs());
+    expect(depot.piece('def10')).to.not.be(undefined);
+  });
+
+  it('retourne le biscuit normal', function () {
+    const depot = new DepotRessourcesControle(chargeurs());
+    expect(depot.piece('biscuit-normal')).to.not.be(undefined);
+  });
 });
