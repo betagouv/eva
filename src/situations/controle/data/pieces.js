@@ -1,8 +1,7 @@
-const pieceConforme = { conforme: true, image: require('controle/assets/biscuit-normal.png') };
+const pieceConforme = { type: 'biscuit-normal', conforme: true };
 
 const piecesNonConformes = Array(19).fill().map((_, i) => {
-  const image = require(`controle/assets/def${i + 1}.png`);
-  return { conforme: false, image: image };
+  return { type: `def${i + 1}`, conforme: false };
 });
 
 const scenario = [

@@ -14,9 +14,10 @@ export function animationFinale ($element, done) {
 
 export default class VuePiece extends VuePieceCommune {
   constructor (piece,
+    depotRessources,
     callbackApresApparition = animationInitiale,
     callbackAvantSuppression = animationFinale) {
-    super(piece);
+    super(piece, depotRessources);
 
     this.callbackApresApparition = callbackApresApparition;
     this.callbackAvantSuppression = callbackAvantSuppression;

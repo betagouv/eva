@@ -3,21 +3,23 @@ import { DISPARITION_PIECE } from 'controle/modeles/situation';
 import Piece from 'controle/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
-function creeVueMinimale (piece) {
-  return new VuePiece(piece, () => {}, () => {});
+function creeVueMinimale (piece, depot) {
+  return new VuePiece(piece, depot, () => {}, () => {});
 }
 
 describe('Une pièce', function () {
   let $;
+  let depot;
 
   beforeEach(function () {
     jsdom('<div id="controle" style="width: 100px; height: 100px"></div>');
     $ = jQuery(window);
+    depot = { piece () { } };
   });
 
   it('peut être sélectionnée', function () {
     const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = creeVueMinimale(piece);
+    const vuePiece = creeVueMinimale(piece, depot);
     vuePiece.affiche('#controle', $);
 
     expect(piece.estSelectionnee()).to.be(false);
@@ -29,7 +31,7 @@ describe('Une pièce', function () {
     const piece = new Piece({ x: 90, y: 40 });
     piece.selectionne({ x: 95, y: 55 });
 
-    const vuePiece = creeVueMinimale(piece);
+    const vuePiece = creeVueMinimale(piece, depot);
     vuePiece.affiche('#controle', $);
 
     expect(piece.estSelectionnee()).to.be(true);
@@ -39,7 +41,7 @@ describe('Une pièce', function () {
 
   it("suit une séquence d'animation pour apparaître", function (done) {
     const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = new VuePiece(piece, function ($element) {
+    const vuePiece = new VuePiece(piece, depot, function ($element) {
       expect($element.hasClass('.piece'));
       done();
     });
@@ -52,7 +54,7 @@ describe('Une pièce', function () {
     const sequenceAnimation = function ($element) {
       $element.animate({ left: '80px' }, 0).delay(5).animate({ left: '10px' }, 0);
     };
-    const vuePiece = new VuePiece(piece, sequenceAnimation);
+    const vuePiece = new VuePiece(piece, depot, sequenceAnimation);
 
     vuePiece.affiche('#controle', $);
 
@@ -76,7 +78,7 @@ describe('Une pièce', function () {
       done();
     };
 
-    const vuePiece = new VuePiece(piece, () => {}, callbackAvantSuppression);
+    const vuePiece = new VuePiece(piece, depot, () => {}, callbackAvantSuppression);
     vuePiece.affiche('#controle', $);
     expect($('.piece').length).to.equal(1);
     piece.emit(DISPARITION_PIECE);
@@ -91,7 +93,7 @@ describe('Une pièce', function () {
       done();
     };
 
-    const vuePiece = new VuePiece(piece, () => {}, callbackAvantSuppression);
+    const vuePiece = new VuePiece(piece, depot, () => {}, callbackAvantSuppression);
     vuePiece.affiche('#controle', $);
     expect($('.desactiver').length).to.equal(0);
     piece.emit(DISPARITION_PIECE);
@@ -100,7 +102,7 @@ describe('Une pièce', function () {
 
   it("rajoute la classe selectionne lorsqu'elle est sélectionné", function () {
     const piece = new Piece({});
-    const vuePiece = creeVueMinimale(piece);
+    const vuePiece = creeVueMinimale(piece, depot);
     vuePiece.affiche('#controle', $);
     expect($('.piece.selectionnee').length).to.equal(0);
     piece.selectionne({ x: 0, y: 0 });
@@ -109,7 +111,7 @@ describe('Une pièce', function () {
 
   it("réordonne la pièce sélectionnée pour la placer en dernier dans l'élément parent", function () {
     const piece = new Piece({});
-    const vuePiece = creeVueMinimale(piece);
+    const vuePiece = creeVueMinimale(piece, depot);
     vuePiece.affiche('#controle', $);
     $('#controle').append(`<div class="element"></div>`);
     expect($('.piece').index()).to.equal(0);

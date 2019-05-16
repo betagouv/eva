@@ -5,14 +5,16 @@ import 'commun/styles/piece.scss';
 import { CHANGEMENT_POSITION } from 'commun/modeles/piece';
 
 export default class VuePiece extends EventEmitter {
-  constructor (piece) {
+  constructor (piece, depotRessources) {
     super();
     this.piece = piece;
+    this.depotRessources = depotRessources;
   }
 
   affiche (pointInsertion, $) {
-    function creeElementPiece (piece, dimensionsElementParent) {
-      let $piece = $(`<img class="piece" src="${piece.image}">`);
+    function creeElementPiece (depotRessources, piece, dimensionsElementParent) {
+      const image = depotRessources.piece(piece.type);
+      const $piece = $(`<img class="piece" src="${image}">`);
       metsAJourPosition($piece, piece.position(), dimensionsElementParent);
       return $piece;
     }
@@ -27,7 +29,7 @@ export default class VuePiece extends EventEmitter {
       largeurParent: this.$elementParent.width(),
       hauteurParent: this.$elementParent.height()
     };
-    this.$piece = creeElementPiece(this.piece, dimensionsElementParent);
+    this.$piece = creeElementPiece(this.depotRessources, this.piece, dimensionsElementParent);
     this.$elementParent.append(this.$piece);
 
     this.piece.on(CHANGEMENT_POSITION, (nouvellePosition) => {

@@ -20,6 +20,7 @@ describe('La situation « Tri »', function () {
           src: 'image-de-fond'
         };
       }
+      piece () { }
     }();
     situation = new Situation({ pieces: [] });
     vueSituation = new VueSituation(situation, journal, mockDepotRessources);

@@ -14,7 +14,7 @@ import VueFondSonore from 'controle/vues/fond_sonore';
 import VueFin from 'controle/vues/fin';
 
 export default class VueSituation {
-  constructor (situation, journal) {
+  constructor (situation, journal, depotRessources) {
     function nouveauBac (categorie, { x, y }) {
       return new Bac({ categorie, x, y, largeur: 22.6, hauteur: 41.3 });
     }
@@ -27,13 +27,14 @@ export default class VueSituation {
 
     this.situation = situation;
     this.journal = journal;
+    this.depotRessources = depotRessources;
     this.tapis = new VueTapis(situation);
     this.fondSonore = new VueFondSonore(situation);
     this.fin = new VueFin(situation);
   }
 
   creeVuePiece (piece) {
-    return new VuePiece(piece);
+    return new VuePiece(piece, this.depotRessources);
   }
 
   affiche (pointInsertion, $) {

@@ -4,11 +4,11 @@ export const CHANGEMENT_POSITION = 'changementPosition';
 export const CHANGEMENT_SELECTION = 'changementSelection';
 
 export default class Piece extends EventEmitter {
-  constructor ({ x, y, image }) {
+  constructor ({ x, y, type }) {
     super();
     this.x = x;
     this.y = y;
-    this.image = image;
+    this.type = type;
     this.selectionnee = false;
   }
 
