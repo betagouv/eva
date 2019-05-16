@@ -7,4 +7,9 @@ describe('Le dépôt de ressources de la situation tri', function () {
     const depot = new DepotRessourcesTri(chargeurs());
     expect(depot).to.be.a(DepotRessourcesCommunes);
   });
+
+  it('retourne les bonbons', function () {
+    const depot = new DepotRessourcesTri(chargeurs());
+    expect(depot.piece('bonbon1')).to.not.be(undefined);
+  });
 });
