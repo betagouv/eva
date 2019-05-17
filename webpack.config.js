@@ -7,12 +7,8 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 const situations = ['controle', 'inventaire', 'tri'];
 
-function upperFirst (nom) {
-  return `${nom[0].toUpperCase()}${nom.substring(1)}`;
-}
-
 const entriesSituations = situations.reduce(function (entries, situation) {
-  entries[`situation${upperFirst(situation)}`] = path.resolve(__dirname, `src/app/situation${upperFirst(situation)}.js`);
+  entries[`situation_${situation}`] = path.resolve(__dirname, `src/app/situation_${situation}.js`);
   return entries;
 }, {});
 
@@ -26,7 +22,7 @@ const templatesSituations = situations.map(function (situation) {
     filename: `${situation}.html`,
     hash: true,
     template: path.resolve(__dirname, 'src/public/template_index.html'),
-    chunks: [`situation${upperFirst(situation)}`],
+    chunks: [`situation_${situation}`],
     inject: 'head'
   });
 });
