@@ -1,4 +1,4 @@
-import { nouvelInventaireReference } from 'inventaire/modeles/inventaireReference';
+import { nouvelInventaireReference } from 'inventaire/modeles/inventaire_reference';
 
 describe("L'inventaire de référence", function () {
   it('sait valider les réponses correctes', function () {

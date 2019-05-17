@@ -1,5 +1,5 @@
 import SituationCommune from 'commun/modeles/situation';
-import { nouvelInventaireReference } from './inventaireReference';
+import { nouvelInventaireReference } from './inventaire_reference';
 import Contenant from './contenant';
 
 function inventaireProduits ({ contenants, contenus }) {
