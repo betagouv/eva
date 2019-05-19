@@ -14,7 +14,7 @@ export default class VueActions {
   affiche (pointInsertion, $) {
     this.$actions = $('<div class="actions"></div>');
     const stop = new VueStop(this.situation, this.journal);
-    const rejoueConsigne = new VueRejoueConsigne(this.depot.consigne(), this.journal);
+    const rejoueConsigne = new VueRejoueConsigne(this.depot, this.journal);
 
     stop.affiche(this.$actions, $);
     rejoueConsigne.affiche(this.$actions, $);

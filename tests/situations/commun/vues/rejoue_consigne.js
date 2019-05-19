@@ -1,20 +1,31 @@
 import jsdom from 'jsdom-global';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
 import EvenementRejoueConsigne from 'commun/modeles/evenement_rejoue_consigne';
+import MockAudioNode from '../aides/mock_audio_node';
 
 describe('vue Rejoue Consigne', function () {
   let vue;
   let $;
   let journal;
-  let consigne;
+  let mockDepotResources;
 
   beforeEach(function () {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     journal = { enregistre () {} };
-    consigne = { play () {} };
 
-    vue = new VueRejoueConsigne(consigne, journal);
+    mockDepotResources = new class {
+      consigne () {
+        this.derniereConsigneRetournee = new MockAudioNode();
+        return this.derniereConsigneRetournee;
+      }
+
+      finConsigne () {
+        $(this.derniereConsigneRetournee).trigger('ended');
+      }
+    }();
+
+    vue = new VueRejoueConsigne(mockDepotResources, journal);
   });
 
   it("sait s'insérer dans une page web", function () {
@@ -32,7 +43,7 @@ describe('vue Rejoue Consigne', function () {
   it("à la fin de la lecture, repasse à l'état initial", function () {
     vue.affiche('#pointInsertion', $);
     vue.joueConsigne($);
-    $(consigne).trigger('ended');
+    mockDepotResources.finConsigne();
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
   });
@@ -40,9 +51,9 @@ describe('vue Rejoue Consigne', function () {
   it('on peut lire la consigne plusieurs fois', function () {
     vue.affiche('#pointInsertion', $);
     vue.joueConsigne($);
-    $(consigne).trigger('ended');
+    mockDepotResources.finConsigne();
     vue.joueConsigne($);
-    $(consigne).trigger('ended');
+    mockDepotResources.finConsigne();
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
   });

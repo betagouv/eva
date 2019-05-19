@@ -1,14 +1,29 @@
-function chargeurAudio (src) {
-  const audio = new window.Audio(src);
+const chargeurAudio = function (src, timeout = 2000) {
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-  return new Promise((resolve, reject) => {
-    audio.addEventListener('canplaythrough', () => {
-      resolve(() => new window.Audio(src));
-    });
+  const request = new window.XMLHttpRequest();
 
-    audio.addEventListener('error', reject);
+  request.open('GET', src, true);
+  request.responseType = 'arraybuffer';
+
+  const promesse = new Promise((resolve, reject) => {
+    request.onload = function () {
+      audioCtx.decodeAudioData(request.response,
+        function (buffer) {
+          resolve(() => {
+            const source = audioCtx.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioCtx.destination);
+            return source;
+          });
+        },
+        reject);
+    };
   });
-}
+
+  request.send();
+  return promesse;
+};
 
 function chargeurImage (src) {
   const img = new window.Image();
@@ -62,3 +77,5 @@ export default class DepotRessources {
     return this.cloneursRessource[idRessource]();
   }
 }
+
+export { chargeurAudio };
