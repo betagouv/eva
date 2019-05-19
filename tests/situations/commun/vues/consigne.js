@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 
-import MockAudio from '../aides/mock_audio';
+import MockAudioNode from '../aides/mock_audio_node';
 
 import VueConsigne from 'commun/vues/consigne';
 import Situation, { CONSIGNE_ECOUTEE } from 'commun/modeles/situation';
@@ -15,8 +15,8 @@ describe('vue consigne', function () {
     $ = jQuery(window);
     situation = new Situation();
     const depot = {
-      consigne: () => new MockAudio(),
-      consigneCommune: () => new MockAudio()
+      consigne: () => new MockAudioNode(),
+      consigneCommune: () => new MockAudioNode()
     };
     vue = new VueConsigne(situation, depot);
   });

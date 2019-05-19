@@ -7,8 +7,8 @@ import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 import 'commun/styles/bouton.scss';
 
 export default class VueRejoueConsigne {
-  constructor (consigne, journal) {
-    this.consigne = consigne;
+  constructor (depotResources, journal) {
+    this.depotResources = depotResources;
     this.journal = journal;
     this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.joueConsigne(this.$));
     this.vueBoutonLire.ajouteUneEtiquette(traduction('situation.repeter_consigne'));
@@ -19,14 +19,15 @@ export default class VueRejoueConsigne {
     this.$ = $;
     this.pointInsertion = pointInsertion;
     this.vueBoutonLire.affiche(this.pointInsertion, $);
-    $(this.consigne).on('ended', this.lectureTermine.bind(this));
   }
 
   joueConsigne ($) {
     this.journal.enregistre(new EvenementRejoueConsigne());
     this.vueBoutonLire.cache();
     this.vueBoutonLectureEnCours.affiche(this.pointInsertion, $);
-    this.consigne.play();
+    const consigne = this.depotResources.consigne();
+    $(consigne).on('ended', this.lectureTermine.bind(this));
+    consigne.start();
   }
 
   lectureTermine () {

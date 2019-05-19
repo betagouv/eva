@@ -29,6 +29,6 @@ export default class VueConsigne extends VueActionOverlay {
 
   joueSon ($, son, callbackFin) {
     $(son).on('ended', callbackFin);
-    son.play();
+    son.start();
   }
 }
