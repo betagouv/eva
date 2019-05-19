@@ -37,6 +37,14 @@ describe('Une pièce', function () {
     expect($('.piece').attr('src')).to.eql('image-url');
   });
 
+  it('met les dimensions de la pièce', function () {
+    const piece = new Piece({ largeur: 10, hauteur: 20 });
+    const vuePiece = creeVueMinimale(piece, depot);
+    vuePiece.affiche('#pointInsertion', $);
+    expect($('.piece').css('width')).to.eql('10px');
+    expect($('.piece').css('height')).to.eql('20px');
+  });
+
   it("se positionne correctement vis-à-vis de l'élément parent", function () {
     const piece = new Piece({ x: 90, y: 40 });
     const vuePiece = creeVueMinimale(piece, depot);

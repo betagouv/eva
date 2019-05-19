@@ -14,6 +14,12 @@ describe("Le modèle commun d'une pièce", function () {
     expect(piece.position()).to.eql({ x: 12, y: 34 });
   });
 
+  it('a des dimensions', function () {
+    const piece = new Piece({ largeur: 10, hauteur: 20 });
+
+    expect(piece.dimensions()).to.eql({ largeur: 10, hauteur: 20 });
+  });
+
   it('notifie ses abonnés des changements de position', function (done) {
     let piece = new Piece({ x: 90, y: 50 });
     piece.on(CHANGEMENT_POSITION, ({ x, y }) => {

@@ -12,16 +12,23 @@ export default class VuePiece extends EventEmitter {
   }
 
   affiche (pointInsertion, $) {
-    function creeElementPiece (depotRessources, piece, dimensionsElementParent) {
+    function creeElementPiece (depotRessources, piece, { largeurParent, hauteurParent }) {
       const image = depotRessources.piece(piece.type);
       const $piece = $(`<img class="piece" src="${image}">`);
-      metsAJourPosition($piece, piece.position(), dimensionsElementParent);
+      const { largeur, hauteur } = piece.dimensions();
+      $piece.css({
+        width: largeur * largeurParent / 100,
+        height: hauteur * hauteurParent / 100
+      });
+      metsAJourPosition($piece, piece.position(), { largeurParent, hauteurParent });
       return $piece;
     }
 
     function metsAJourPosition ($piece, { x, y }, { largeurParent, hauteurParent }) {
-      $piece.css('left', x * largeurParent / 100);
-      $piece.css('top', y * hauteurParent / 100);
+      $piece.css({
+        left: x * largeurParent / 100,
+        top: y * hauteurParent / 100
+      });
     }
 
     this.$elementParent = $(pointInsertion);

@@ -57,7 +57,8 @@ export default class Situation extends SituationCommune {
     return new Piece({ x: this.positionApparition.x,
       y: this.positionApparition.y,
       conforme: donneesPiece.conforme,
-      type: donneesPiece.type });
+      type: donneesPiece.type,
+      largeur: 13 });
   }
 
   piecesAffichees () {
