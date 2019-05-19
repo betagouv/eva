@@ -7,7 +7,7 @@ import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
 
 import 'commun/styles/commun.scss';
 import 'commun/styles/overlay.scss';
-import 'inventaire/styles/formulaireSaisieInventaire.scss';
+import 'inventaire/styles/formulaire_saisie_inventaire.scss';
 
 const ID_FORMULAIRE_SAISIE = 'formulaire-saisie-inventaire';
 
