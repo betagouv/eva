@@ -1,5 +1,3 @@
-import 'controle/styles/piece.scss';
-
 import VuePieceCommune from 'commun/vues/piece';
 import { CHANGEMENT_SELECTION } from 'controle/modeles/piece';
 import { DISPARITION_PIECE } from 'controle/modeles/situation';
