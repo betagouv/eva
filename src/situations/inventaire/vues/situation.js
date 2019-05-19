@@ -2,7 +2,7 @@ import 'inventaire/styles/situation.scss';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 
 import VueEtageres from 'inventaire/vues/etageres';
-import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
+import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaire_saisie_inventaire';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export default class VueSituation {

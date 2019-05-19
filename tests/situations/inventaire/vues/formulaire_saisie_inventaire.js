@@ -1,6 +1,6 @@
 import { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 import Contenant from 'inventaire/modeles/contenant';
-import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaireSaisieInventaire';
+import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaire_saisie_inventaire';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 
