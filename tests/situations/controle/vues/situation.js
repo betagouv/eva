@@ -74,35 +74,6 @@ describe('La situation « Contrôle »', function () {
     vueSituation.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
-  it('déplace les pièces sélectionnées', function () {
-    const piece = new Piece({ x: 95, y: 55 });
-    const vueSituation = vueSituationMinimaliste();
-    const $pointInsertion = $('#point-insertion');
-
-    piece.selectionne({ x: 95, y: 55 });
-    $pointInsertion.width(50).height(200);
-    vueSituation.affiche('#point-insertion', $);
-    vueSituation.situation.ajoutePiece(piece);
-
-    $pointInsertion.trigger($.Event('mousemove', { buttons: 1, clientX: 30, clientY: 20 }));
-
-    expect(piece.position()).to.eql({ x: 60, y: 10 });
-  });
-
-  it('déselectionne les pièces si il y a un mousemove sans maintien du clic', function () {
-    const piece = new Piece({});
-    const vueSituation = vueSituationMinimaliste();
-    const $pointInsertion = $('#point-insertion');
-
-    piece.selectionne({ x: 95, y: 55 });
-    vueSituation.affiche('#point-insertion', $);
-    vueSituation.situation.ajoutePiece(piece);
-
-    $pointInsertion.trigger($.Event('mousemove', { buttons: 0, clientX: 30, clientY: 20 }));
-
-    expect(piece.estSelectionnee()).to.be(false);
-  });
-
   describe('avec une situation démarrée, une pièce et un journal', function () {
     let journal;
     let piece;
