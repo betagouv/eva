@@ -1,6 +1,6 @@
 import { FINI } from 'commun/modeles/situation';
 import Situation, { NOUVELLE_PIECE, DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
-import Piece from 'controle/modeles/piece';
+import Piece from 'commun/modeles/piece';
 
 function creeSituationMinimale (bacs = []) {
   return new Situation({

@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 import { DISPARITION_PIECE } from 'controle/modeles/situation';
-import Piece from 'controle/modeles/piece';
+import Piece from 'commun/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
 describe('Une pièce', function () {
