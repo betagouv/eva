@@ -1,7 +1,7 @@
 import jsdom from 'jsdom-global';
 
 import VueActions from 'commun/vues/actions';
-import SituationCommune from 'commun/modeles/situation';
+import SituationCommune, { CONSIGNE_ECOUTEE, DEMARRE } from 'commun/modeles/situation';
 
 describe('Affiche les éléments communs aux situations', function () {
   let vueActions;
@@ -21,8 +21,22 @@ describe('Affiche les éléments communs aux situations', function () {
     expect($('.actions').length).to.equal(1);
   });
 
-  it('Affiche les éléments en commun des situations (bouton stop, bouton rejoue consigne)', function () {
+  it("N'affiche pas les éléments communs au situation par défaut (bouton stop, bouton rejoue consigne)", function () {
     vueActions.affiche('#magasin', $);
+    expect($('.bouton-stop').length).to.equal(0);
+    expect($('.bouton-lire-consigne', '.actions').length).to.equal(0);
+  });
+
+  it("Affiche le bouton rejoue consigne une fois que l'utilisateur à joué une fois la consigne", function () {
+    vueActions.affiche('#magasin', $);
+    situation.modifieEtat(CONSIGNE_ECOUTEE);
+    expect($('.bouton-stop').length).to.equal(0);
+    expect($('.bouton-lire-consigne', '.actions').length).to.equal(1);
+  });
+
+  it("Affiche le bouton rejoue consigne et le bouton une fois que l'utilisateur à cliqué sur GO", function () {
+    vueActions.affiche('#magasin', $);
+    situation.modifieEtat(DEMARRE);
     expect($('.bouton-stop').length).to.equal(1);
     expect($('.bouton-lire-consigne', '.actions').length).to.equal(1);
   });
