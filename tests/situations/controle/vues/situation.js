@@ -33,14 +33,12 @@ describe('La situation « Contrôle »', function () {
 
   it('affiche les bacs et le tapis', function () {
     const vueSituation = vueSituationMinimaliste();
-    expect($('#point-insertion .bac.pieces-conformes').length).to.equal(0);
-    expect($('#point-insertion .bac.pieces-defectueuses').length).to.equal(0);
+    expect($('#point-insertion .bac').length).to.equal(0);
 
     vueSituation.affiche('#point-insertion', $);
 
     expect($('#point-insertion').hasClass('controle')).to.be(true);
-    expect($('#point-insertion .bac.pieces-conformes').length).to.equal(1);
-    expect($('#point-insertion .bac.pieces-defectueuses').length).to.equal(1);
+    expect($('#point-insertion .bac').length).to.equal(2);
     expect($('#point-insertion .tapis').length).to.equal(1);
   });
 
