@@ -71,6 +71,22 @@ const pieces = [
   { type: 'bonbon1', y: 477 / scene.hauteur * 100, x: 316 / scene.largeur * 100 }
 ];
 
-const bacs = [];
+const bacs = [
+  { categorie: 'bonbon10', x: 10.5, y: 4 },
+  { categorie: 'bonbon6', x: 10.5, y: 31 },
+  { categorie: 'bonbon11', x: 10.5, y: 57 },
+
+  { categorie: 'bonbon4', x: 30, y: 4 },
+  { categorie: 'bonbon9', x: 30, y: 31 },
+  { categorie: 'bonbon8', x: 30, y: 57 },
+
+  { categorie: 'bonbon7', x: 55, y: 4 },
+  { categorie: 'bonbon3', x: 55, y: 31 },
+  { categorie: 'bonbon1', x: 55, y: 57 },
+
+  { categorie: 'bonbon5', x: 75, y: 4 },
+  { categorie: 'bonbon12', x: 75, y: 31 },
+  { categorie: 'bonbon2', x: 75, y: 57 }
+];
 
 export default { pieces, bacs };
