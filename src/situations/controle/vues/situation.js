@@ -1,12 +1,10 @@
 import 'controle/styles/situation.scss';
-import Bac from 'controle/modeles/bac';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import { NOUVELLE_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
-import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import VueBac from 'controle/vues/bac';
 import VuePiece from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
@@ -16,16 +14,6 @@ import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 
 export default class VueSituation {
   constructor (situation, journal, depotRessources) {
-    function nouveauBac (categorie, { x, y }) {
-      return new Bac({ categorie, x, y, largeur: 22.6, hauteur: 41.3 });
-    }
-
-    function creeBacs () {
-      situation.ajouteBac(nouveauBac(PIECE_CONFORME, { x: 16, y: 8.1 }));
-      situation.ajouteBac(nouveauBac(PIECE_DEFECTUEUSE, { x: 61.3, y: 8.1 }));
-    }
-    creeBacs();
-
     this.situation = situation;
     this.journal = journal;
     this.depotRessources = depotRessources;
@@ -70,7 +58,7 @@ export default class VueSituation {
     });
     const envoiEvenementPiece = (Classe) => {
       return (piece) => {
-        this.journal.enregistre(new Classe({ piece: { conforme: piece.estConforme() } }));
+        this.journal.enregistre(new Classe({ piece: { conforme: piece.categorie() } }));
       };
     };
     this.situation.on(PIECE_BIEN_PLACEE, envoiEvenementPiece(EvenementPieceBienPlacee));

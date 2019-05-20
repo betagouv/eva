@@ -5,10 +5,11 @@ import DepotRessourcesControle from 'controle/infra/depot_ressources_controle';
 import Situation from 'controle/modeles/situation';
 import VueSituation from 'controle/vues/situation';
 
-import { scenario } from 'controle/data/pieces';
+import { scenario, bacs } from 'controle/data/pieces';
 
 const situation = new Situation({
   scenario,
+  bacs,
   cadence: 5000,
   positionApparitionPieces: { x: 100, y: 64.5 },
   dureeViePiece: 12000

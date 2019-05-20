@@ -1,14 +1,14 @@
 import { FINI } from 'commun/modeles/situation';
 import Situation, { NOUVELLE_PIECE, DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
-import Bac from 'controle/modeles/bac';
 import Piece from 'controle/modeles/piece';
 
-function creeSituationMinimale () {
+function creeSituationMinimale (bacs = []) {
   return new Situation({
     cadence: 0,
     scenario: [{ conforme: false }],
     positionApparitionPieces: { x: 25, y: 50 },
-    dureeViePiece: 1
+    dureeViePiece: 1,
+    bacs
   });
 }
 
@@ -36,12 +36,12 @@ describe('La situation « Contrôle »', function () {
   });
 
   it('sait donner la piece suivante quand il y en encore à venir', function () {
-    let situation = new Situation({ scenario: [{ conforme: false }], positionApparitionPieces: { x: 25, y: 50 } });
+    const situation = new Situation({ scenario: [{ categorie: false }], positionApparitionPieces: { x: 25, y: 50 } });
     expect(situation.sequenceTerminee()).to.be(false);
 
-    let piece = situation.pieceSuivante();
+    const piece = situation.pieceSuivante();
     expect(situation.sequenceTerminee()).to.be(true);
-    expect(piece.estConforme()).to.be(false);
+    expect(piece.categorie()).to.be(false);
     expect(piece.position()).to.eql({ x: 25, y: 50 });
   });
 
@@ -84,12 +84,6 @@ describe('La situation « Contrôle »', function () {
     expect(situation.etat()).to.eql(FINI);
   });
 
-  it('on peut lui ajouter des bacs', function () {
-    const situation = new Situation({ scenario: [] });
-    situation.ajouteBac(new Bac({}));
-    expect(situation.bacs().length).to.eql(1);
-  });
-
   describe('avec un bac et une pièce', function () {
     let piece;
     let bac;
@@ -97,10 +91,9 @@ describe('La situation « Contrôle »', function () {
 
     beforeEach(function () {
       piece = new Piece({});
-      bac = new Bac({});
-      situation = creeSituationMinimale();
+      situation = creeSituationMinimale([{}]);
+      bac = situation.bacs()[0];
 
-      situation.ajouteBac(bac);
       situation.ajoutePiece(piece);
     });
 
@@ -144,10 +137,9 @@ describe('La situation « Contrôle »', function () {
 
     beforeEach(function () {
       piece = new Piece({});
-      bac = new Bac({});
-      situation = new Situation({ scenario: [] });
+      situation = new Situation({ scenario: [], bacs: [{}] });
+      bac = situation.bacs()[0];
 
-      situation.ajouteBac(bac);
       situation.ajoutePiece(piece);
 
       piece.selectionne({ x: 0, y: 0 });

@@ -13,6 +13,6 @@ export default class Bac extends BacCommun {
   }
 
   correspondALaCategorie (piece) {
-    return piece.estConforme() === this.categorie();
+    return piece.categorie() === this.categorie();
   }
 }
