@@ -1,13 +1,13 @@
 import jsdom from 'jsdom-global';
 
 import Bac from 'commun/modeles/bac';
-import VueBac from 'controle/vues/bac';
+import VueBac from 'commun/vues/bac';
 
 describe("La vue d'un bac", function () {
   let $;
 
   beforeEach(function () {
-    jsdom('<div id="controle" style="width: 100px; height: 100px"></div>');
+    jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
   });
 
@@ -16,28 +16,24 @@ describe("La vue d'un bac", function () {
     const vue = new VueBac(bac);
     expect($('.bac').length).to.equal(0);
 
-    vue.affiche('#controle', $);
+    vue.affiche('#point-insertion', $);
 
-    expect($('#controle .bac').length).to.equal(1);
+    expect($('#point-insertion .bac').length).to.equal(1);
   });
 
   it("se positionne correctement vis-à-vis de l'élément parent", function () {
     const bac = new Bac({ x: 10, y: 12, largeur: 20, hauteur: 30 });
     const vue = new VueBac(bac);
 
-    $('#controle').width(200).height(150);
-    vue.affiche('#controle', $);
+    vue.affiche('#point-insertion', $);
 
-    expect($('.bac').css('left')).to.eql('20px');
-    expect($('.bac').css('top')).to.eql('18px');
-    expect($('.bac').css('width')).to.eql('40px');
-    expect($('.bac').css('height')).to.eql('45px');
+    expect($('.bac').attr('style')).to.eql('left: 10%; top: 12%; width: 20%; height: 30%;');
   });
 
   it("s'abonne au changement d'état survolé", function () {
     const bac = new Bac({});
     const vue = new VueBac(bac);
-    vue.affiche('#controle', $);
+    vue.affiche('#point-insertion', $);
     expect($('.bac.survole').length).to.equal(0);
     bac.passeEnEtatSurvole();
     expect($('.bac.survole').length).to.equal(1);
