@@ -1,5 +1,5 @@
 import SituationCommune from 'commun/modeles/situation';
-import Piece from './piece';
+import Piece from 'commun/modeles/piece';
 
 export default class Situation extends SituationCommune {
   constructor ({ pieces }) {
