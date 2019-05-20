@@ -23,7 +23,7 @@ describe('La situation « Tri »', function () {
       }
       piece () { }
     }();
-    situation = new Situation({ pieces: [] });
+    situation = new Situation({ pieces: [], bacs: [] });
     vueSituation = new VueSituation(situation, journal, mockDepotRessources);
     mockDeplaceurPieces = {
       activeDeplacementPieces () {}

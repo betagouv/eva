@@ -71,4 +71,6 @@ const pieces = [
   { type: 'bonbon1', y: 477 / scene.hauteur * 100, x: 316 / scene.largeur * 100 }
 ];
 
-export default { pieces };
+const bacs = [];
+
+export default { pieces, bacs };
