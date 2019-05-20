@@ -3,10 +3,11 @@ import EventEmitter from 'events';
 export const CHANGEMENT_ETAT_SURVOLE = 'changementEtatSurvole';
 
 export default class Bac extends EventEmitter {
-  constructor ({ x, y, largeur, hauteur }) {
+  constructor ({ x, y, largeur, hauteur, categorie }) {
     super();
     this._dimensions = { largeur, hauteur };
     this._position = { x, y };
+    this._categorie = categorie;
     this._survole = false;
   }
 
@@ -16,6 +17,10 @@ export default class Bac extends EventEmitter {
 
   position () {
     return this._position;
+  }
+
+  categorie () {
+    return this._categorie;
   }
 
   passeEnEtatSurvole () {
@@ -44,5 +49,9 @@ export default class Bac extends EventEmitter {
     }
     return estEntre(x, largeur, this._position.x, this._dimensions.largeur) &&
       estEntre(y, hauteur, this._position.y, this._dimensions.hauteur);
+  }
+
+  correspondALaCategorie (piece) {
+    return piece.categorie() === this.categorie();
   }
 }

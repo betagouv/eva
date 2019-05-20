@@ -1,6 +1,6 @@
 import 'controle/styles/bac.scss';
 
-import { CHANGEMENT_ETAT_SURVOLE } from 'controle/modeles/bac';
+import { CHANGEMENT_ETAT_SURVOLE } from 'commun/modeles/bac';
 
 export default class VueBac {
   constructor (bac) {
