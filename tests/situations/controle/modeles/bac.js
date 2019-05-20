@@ -1,5 +1,5 @@
 import Bac from 'controle/modeles/bac';
-import Piece from 'controle/modeles/piece';
+import Piece from 'commun/modeles/piece';
 
 describe('un bac', function () {
   it('sait quel catégorie de pièces accueillir', function () {

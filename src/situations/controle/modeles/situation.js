@@ -1,4 +1,4 @@
-import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
+import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'commun/modeles/piece';
 import Bac from 'controle/modeles/bac';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 

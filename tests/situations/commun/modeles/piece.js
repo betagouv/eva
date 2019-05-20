@@ -7,6 +7,14 @@ describe("Le modèle commun d'une pièce", function () {
     expect(piece.position()).to.eql({ x: 90, y: 50 });
   });
 
+  it('connait sa catégorie', function () {
+    const pieceConforme = new Piece({ categorie: true });
+    const pieceDefectueuse = new Piece({ categorie: false });
+
+    expect(pieceConforme.categorie()).to.be(true);
+    expect(pieceDefectueuse.categorie()).to.be(false);
+  });
+
   it('peut changer de position', function () {
     let piece = new Piece({ x: 90, y: 50 });
 

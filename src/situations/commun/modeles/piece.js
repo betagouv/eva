@@ -4,12 +4,13 @@ export const CHANGEMENT_POSITION = 'changementPosition';
 export const CHANGEMENT_SELECTION = 'changementSelection';
 
 export default class Piece extends EventEmitter {
-  constructor ({ x, y, type, largeur, hauteur }) {
+  constructor ({ x, y, type, largeur, hauteur, categorie }) {
     super();
     this.x = x;
     this.y = y;
     this.type = type;
     this._dimensions = { largeur, hauteur };
+    this._categorie = categorie;
     this.selectionnee = false;
   }
 
@@ -19,6 +20,10 @@ export default class Piece extends EventEmitter {
 
   dimensions () {
     return this._dimensions;
+  }
+
+  categorie () {
+    return this._categorie;
   }
 
   changePosition ({ x, y }) {
