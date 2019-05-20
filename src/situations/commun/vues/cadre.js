@@ -11,12 +11,12 @@ import VueTerminer from 'commun/vues/terminer';
 import VueBarreDev from 'commun/vues/barre_dev';
 
 export default class VueCadre {
-  constructor (vueSituation, situation, journal, depotRessources, barreDev) {
-    this.vueSituation = vueSituation;
+  constructor (VueSituation, situation, journal, depotRessources, barreDev) {
+    this.VueSituation = VueSituation;
+    this.journal = journal;
     this.situation = situation;
     this.depotRessources = depotRessources;
     this.barreDev = barreDev;
-    this.vueActions = new VueActions(situation, journal, this.depotRessources);
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
     this.vuesEtats.set(ERREUR_CHARGEMENT, VueErreurChargement);
@@ -58,8 +58,10 @@ export default class VueCadre {
     }
 
     return this.depotRessources.chargement().then(() => {
-      this.vueSituation.affiche('.scene', $);
+      const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources);
+      vueSituation.affiche('.scene', $);
 
+      this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources);
       this.vueActions.affiche(selecteurCadre, $);
     });
   }

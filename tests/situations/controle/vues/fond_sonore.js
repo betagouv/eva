@@ -1,5 +1,6 @@
 import jsdom from 'jsdom-global';
 
+import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle';
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Situation from 'controle/modeles/situation';
 import VueFondSonore from 'controle/vues/fond_sonore';
@@ -17,31 +18,31 @@ describe('Le fond sonore', () => {
       pause () {}
     };
     situation = new Situation({});
-    vue = new VueFondSonore(situation);
+    vue = new VueFondSonore(situation, new MockDepotRessourcesControle());
   });
 
   it("ne joue rien a l'affichage", () => {
-    let play = 0;
-    vue.audio.play = e => play++;
+    let jouee = 0;
+    vue.audio.start = e => jouee++;
     vue.affiche('#pointInsertion', $);
-    expect(play).to.equal(0);
+    expect(jouee).to.equal(0);
   });
 
   it("joue le fond sonore a l'état DEMARRE", () => {
-    let play = 0;
-    vue.audio.play = e => play++;
+    let jouee = 0;
+    vue.audio.start = e => jouee++;
     situation.modifieEtat(DEMARRE);
     vue.affiche('#pointInsertion', $);
 
-    expect(play).to.equal(1);
+    expect(jouee).to.equal(1);
   });
 
   it("stoppe le fond sonore lorsque c'est fini", () => {
-    let pause = 0;
-    vue.audio.pause = e => pause++;
+    let stope = 0;
+    vue.audio.stop = e => stope++;
     situation.modifieEtat(DEMARRE);
     vue.affiche('#pointInsertion', $);
     situation.modifieEtat(FINI);
-    expect(pause).to.equal(1);
+    expect(stope).to.equal(1);
   });
 });

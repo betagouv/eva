@@ -2,8 +2,6 @@ import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE } f
 import Bac from 'commun/modeles/bac';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
-import sonFondSonore from 'controle/assets/fond_sonore.wav';
-
 export const NOUVELLE_PIECE = 'nouvellePiece';
 export const PIECE_BIEN_PLACEE = 'pieceBienPlacée';
 export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
@@ -16,9 +14,6 @@ export default class Situation extends SituationCommune {
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
-    this.audios = {
-      fondSonore: new window.Audio(sonFondSonore)
-    };
     this.resultat = {
       bien_placees: 0,
       mal_placees: 0,

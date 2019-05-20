@@ -12,9 +12,8 @@ export function afficheSituation (nomSituation, modeleSituation, VueSituation, d
   function affiche (pointInsertion, $) {
     const session = uuidv4();
     const journal = new Journal(Date.now, session, nomSituation, new DepotJournal(), new RegistreUtilisateur());
-    const vueSituation = new VueSituation(modeleSituation, journal, depotRessources);
 
-    const vueCadre = new VueCadre(vueSituation, modeleSituation, journal, depotRessources, barreDev);
+    const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources, barreDev);
     vueCadre.affiche(pointInsertion, $);
   }
 
