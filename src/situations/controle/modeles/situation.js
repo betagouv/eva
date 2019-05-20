@@ -1,4 +1,5 @@
 import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'controle/modeles/piece';
+import Bac from 'controle/modeles/bac';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
 import sonFondSonore from 'controle/assets/fond_sonore.mp3';
@@ -10,7 +11,7 @@ export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
 export const PIECE_RATEE = 'pieceRatée';
 
 export default class Situation extends SituationCommune {
-  constructor ({ cadence, scenario, dureeViePiece, positionApparitionPieces }) {
+  constructor ({ cadence, scenario, bacs = [], dureeViePiece, positionApparitionPieces }) {
     super();
     this.cadence = cadence;
     this.scenario = scenario;
@@ -25,7 +26,7 @@ export default class Situation extends SituationCommune {
       ratees: 0
     };
     this._piecesAffichees = [];
-    this._bacs = [];
+    this._bacs = bacs.map((bac) => new Bac(bac));
   }
 
   cadenceArriveePieces () {
@@ -48,15 +49,11 @@ export default class Situation extends SituationCommune {
     return this._bacs;
   }
 
-  ajouteBac (bac) {
-    this._bacs.push(bac);
-  }
-
   pieceSuivante () {
     const donneesPiece = this.scenario.shift();
     return new Piece({ x: this.positionApparition.x,
       y: this.positionApparition.y,
-      conforme: donneesPiece.conforme,
+      categorie: donneesPiece.categorie,
       type: donneesPiece.type,
       largeur: 13,
       hauteur: 30

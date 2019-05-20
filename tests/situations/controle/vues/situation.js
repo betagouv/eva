@@ -5,7 +5,7 @@ import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
-import Piece, { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
+import Piece from 'controle/modeles/piece';
 import Situation, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
 import VueSituation from 'controle/vues/situation';
 import MockAudio from '../../commun/aides/mock_audio';
@@ -19,7 +19,7 @@ class SituationDeTest extends Situation {
 }
 
 function vueSituationMinimaliste (journal) {
-  const situation = new SituationDeTest({ scenario: [] });
+  const situation = new SituationDeTest({ scenario: [], bacs: [{}, {}] });
   return new VueSituation(situation, journal);
 }
 
@@ -40,15 +40,6 @@ describe('La situation « Contrôle »', function () {
     expect($('#point-insertion').hasClass('controle')).to.be(true);
     expect($('#point-insertion .bac').length).to.equal(2);
     expect($('#point-insertion .tapis').length).to.equal(1);
-  });
-
-  it('enregistre les bacs associés à la situation', function () {
-    const vueSituation = vueSituationMinimaliste();
-    const bacs = vueSituation.situation.bacs();
-
-    expect(bacs.length).to.equal(2);
-    expect(bacs[0].categorie()).to.equal(PIECE_CONFORME);
-    expect(bacs[1].categorie()).to.equal(PIECE_DEFECTUEUSE);
   });
 
   it('demarre la situation', function (done) {
@@ -79,7 +70,7 @@ describe('La situation « Contrôle »', function () {
 
     beforeEach(function () {
       journal = {};
-      piece = new Piece({ conforme: true });
+      piece = new Piece({ categorie: true });
       vueSituation = vueSituationMinimaliste(journal);
 
       vueSituation.affiche('#point-insertion', $);

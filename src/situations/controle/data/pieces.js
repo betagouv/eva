@@ -1,7 +1,10 @@
-const pieceConforme = { type: 'biscuit-normal', conforme: true };
+const CONFORME = true;
+const DEFECTUEUX = false;
+
+const pieceConforme = { type: 'biscuit-normal', categorie: CONFORME };
 
 const piecesNonConformes = Array(19).fill().map((_, i) => {
-  return { type: `def${i + 1}`, conforme: false };
+  return { type: `def${i + 1}`, categorie: DEFECTUEUX };
 });
 
 const scenario = [
@@ -67,4 +70,9 @@ const scenario = [
   pieceConforme
 ];
 
-export { scenario };
+const bacs = [
+  { categorie: CONFORME, x: 16, y: 8.1, largeur: 22.6, hauteur: 41.3 },
+  { categorie: DEFECTUEUX, x: 61.3, y: 8.1, largeur: 22.6, hauteur: 41.3 }
+];
+
+export { scenario, bacs };
