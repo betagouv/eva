@@ -13,9 +13,14 @@ export default class VueRejoueConsigne {
     this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.joueConsigne(this.$));
     this.vueBoutonLire.ajouteUneEtiquette(traduction('situation.repeter_consigne'));
     this.vueBoutonLectureEnCours = new VueBouton('bouton-lecture-en-cours', lectureEnCours);
+    this.affichee = false;
   }
 
   affiche (pointInsertion, $) {
+    if (this.affichee) {
+      return;
+    }
+    this.affichee = true;
     this.$ = $;
     this.pointInsertion = pointInsertion;
     this.vueBoutonLire.affiche(this.pointInsertion, $);
