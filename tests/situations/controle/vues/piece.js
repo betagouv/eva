@@ -3,10 +3,6 @@ import { DISPARITION_PIECE } from 'controle/modeles/situation';
 import Piece from 'controle/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
-function creeVueMinimale (piece, depot) {
-  return new VuePiece(piece, depot, () => {}, () => {});
-}
-
 describe('Une pièce', function () {
   let $;
   let depot;
@@ -15,28 +11,6 @@ describe('Une pièce', function () {
     jsdom('<div id="controle" style="width: 100px; height: 100px"></div>');
     $ = jQuery(window);
     depot = { piece () { } };
-  });
-
-  it('peut être sélectionnée', function () {
-    const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = creeVueMinimale(piece, depot);
-    vuePiece.affiche('#controle', $);
-
-    expect(piece.estSelectionnee()).to.be(false);
-    $('.piece').trigger($.Event('mousedown', { clientX: 95, clientY: 55 }));
-    expect(piece.estSelectionnee()).to.be(true);
-  });
-
-  it('peut être désélectionnée', function () {
-    const piece = new Piece({ x: 90, y: 40 });
-    piece.selectionne({ x: 95, y: 55 });
-
-    const vuePiece = creeVueMinimale(piece, depot);
-    vuePiece.affiche('#controle', $);
-
-    expect(piece.estSelectionnee()).to.be(true);
-    $('.piece').trigger($.Event('mouseup'));
-    expect(piece.estSelectionnee()).to.be(false);
   });
 
   it("suit une séquence d'animation pour apparaître", function (done) {
@@ -98,24 +72,5 @@ describe('Une pièce', function () {
     expect($('.desactiver').length).to.equal(0);
     piece.emit(DISPARITION_PIECE);
     expect($('.desactiver').length).to.equal(1);
-  });
-
-  it("rajoute la classe selectionne lorsqu'elle est sélectionné", function () {
-    const piece = new Piece({});
-    const vuePiece = creeVueMinimale(piece, depot);
-    vuePiece.affiche('#controle', $);
-    expect($('.piece.selectionnee').length).to.equal(0);
-    piece.selectionne({ x: 0, y: 0 });
-    expect($('.piece.selectionnee').length).to.equal(1);
-  });
-
-  it("réordonne la pièce sélectionnée pour la placer en dernier dans l'élément parent", function () {
-    const piece = new Piece({});
-    const vuePiece = creeVueMinimale(piece, depot);
-    vuePiece.affiche('#controle', $);
-    $('#controle').append(`<div class="element"></div>`);
-    expect($('.piece').index()).to.equal(0);
-    piece.selectionne({ x: 0, y: 0 });
-    expect($('.piece').index()).to.equal(1);
   });
 });

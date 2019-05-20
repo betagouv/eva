@@ -63,4 +63,45 @@ describe('Une pièce', function () {
     expect($('.piece').css('left')).to.eql('25px');
     expect($('.piece').css('top')).to.eql('5px');
   });
+
+  it('peut être sélectionnée', function () {
+    const piece = new Piece({ x: 90, y: 40 });
+    const vuePiece = creeVueMinimale(piece, depot);
+    vuePiece.affiche('#pointInsertion', $);
+
+    expect(piece.estSelectionnee()).to.be(false);
+    $('.piece').trigger($.Event('mousedown', { clientX: 95, clientY: 55 }));
+    expect(piece.estSelectionnee()).to.be(true);
+  });
+
+  it('peut être désélectionnée', function () {
+    const piece = new Piece({ x: 90, y: 40 });
+    piece.selectionne({ x: 95, y: 55 });
+
+    const vuePiece = creeVueMinimale(piece, depot);
+    vuePiece.affiche('#pointInsertion', $);
+
+    expect(piece.estSelectionnee()).to.be(true);
+    $('.piece').trigger($.Event('mouseup'));
+    expect(piece.estSelectionnee()).to.be(false);
+  });
+
+  it("rajoute la classe selectionne lorsqu'elle est sélectionné", function () {
+    const piece = new Piece({});
+    const vuePiece = creeVueMinimale(piece, depot);
+    vuePiece.affiche('#pointInsertion', $);
+    expect($('.piece.selectionnee').length).to.equal(0);
+    piece.selectionne({ x: 0, y: 0 });
+    expect($('.piece.selectionnee').length).to.equal(1);
+  });
+
+  it("réordonne la pièce sélectionnée pour la placer en dernier dans l'élément parent", function () {
+    const piece = new Piece({});
+    const vuePiece = creeVueMinimale(piece, depot);
+    vuePiece.affiche('#pointInsertion', $);
+    $('#pointInsertion').append(`<div class="element"></div>`);
+    expect($('.piece').index()).to.equal(0);
+    piece.selectionne({ x: 0, y: 0 });
+    expect($('.piece').index()).to.equal(1);
+  });
 });
