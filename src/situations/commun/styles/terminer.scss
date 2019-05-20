@@ -20,6 +20,8 @@
   cursor: pointer;
   color: $blanc;
   background-color: $couleur-fond-bouton-terminer;
+  position: absolute;
+  right: 1rem;
   &:active {
     border-color: $couleur-fond-bouton-terminer;
   }
