@@ -2,7 +2,7 @@ import jsdom from 'jsdom-global';
 
 import VueSituation from 'tri/vues/situation';
 import Situation from 'tri/modeles/situation';
-import Piece from 'tri/modeles/piece';
+import Piece from 'commun/modeles/piece';
 
 describe('La situation « Tri »', function () {
   let $;
