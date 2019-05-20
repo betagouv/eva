@@ -1,11 +1,11 @@
 import 'controle/styles/tapis.scss';
 
-import { DEMARRE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import { DEMARRE, CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 
 export default class VueFondSonore {
-  constructor (situation) {
+  constructor (situation, depotRessources) {
     this.situation = situation;
-    this.audio = situation.audios.fondSonore;
+    this.audio = depotRessources.fondSonore();
     this.audio.loop = true;
   }
 
@@ -18,9 +18,9 @@ export default class VueFondSonore {
 
   changeEtat (pointInsertion, $) {
     if (this.situation.etat() === DEMARRE) {
-      this.audio.play();
-    } else {
-      this.audio.pause();
+      this.audio.start();
+    } else if (this.situation.etat() === FINI) {
+      this.audio.stop();
     }
   }
 }

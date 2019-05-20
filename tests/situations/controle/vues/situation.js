@@ -1,24 +1,16 @@
 import jsdom from 'jsdom-global';
 
+import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle';
 import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import Piece from 'commun/modeles/piece';
 import Situation, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_RATEE } from 'controle/modeles/situation';
 import VueSituation from 'controle/vues/situation';
-import MockAudio from '../../commun/aides/mock_audio';
-
-class SituationDeTest extends Situation {
-  constructor (donnees) {
-    super(donnees);
-    this.audios.fondSonore = new MockAudio();
-  }
-  demarre () {}
-}
 
 function vueSituationMinimaliste (journal) {
-  const situation = new SituationDeTest({ scenario: [], bacs: [{}, {}] });
-  return new VueSituation(situation, journal);
+  const situation = new Situation({ scenario: [], bacs: [{}, {}] });
+  return new VueSituation(situation, journal, new MockDepotRessourcesControle());
 }
 
 describe('La situation « Contrôle »', function () {
