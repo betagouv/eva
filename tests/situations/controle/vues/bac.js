@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 
-import Bac from 'controle/modeles/bac';
+import Bac from 'commun/modeles/bac';
 import VueBac from 'controle/vues/bac';
 
 describe("La vue d'un bac", function () {

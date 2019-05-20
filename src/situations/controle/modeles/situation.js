@@ -1,5 +1,5 @@
 import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'commun/modeles/piece';
-import Bac from 'controle/modeles/bac';
+import Bac from 'commun/modeles/bac';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
 import sonFondSonore from 'controle/assets/fond_sonore.mp3';
