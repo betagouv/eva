@@ -41,11 +41,13 @@ export default class Bac extends EventEmitter {
 
   contient (piece) {
     const { x, y } = piece.position();
-    function estEntre (positionPiece, positionBac, tailleBac) {
-      return positionPiece >= positionBac && positionPiece <= positionBac + tailleBac;
+    const { largeur, hauteur } = piece.dimensions();
+    function estEntre (positionPiece, taillePiece, positionBac, tailleBac) {
+      return (positionPiece >= positionBac && positionPiece <= positionBac + tailleBac) ||
+        (positionPiece <= positionBac && positionPiece + taillePiece >= positionBac);
     }
-    return estEntre(x, this._position.x, this._dimensions.largeur) &&
-        estEntre(y, this._position.y, this._dimensions.hauteur);
+    return estEntre(x, largeur, this._position.x, this._dimensions.largeur) &&
+      estEntre(y, hauteur, this._position.y, this._dimensions.hauteur);
   }
 
   correspondALaCategorie (piece) {
