@@ -44,15 +44,27 @@ describe('un bac', function () {
     expect(changementEtatSurvole).to.equal(2);
   });
 
-  it('sait si une pièce est posé dessus', function () {
+  it('sait si une pièce est parfaitement posé dessus', function () {
     const bac = new Bac({ x: 10, y: 20, largeur: 10, hauteur: 20 });
-    const piece = new Piece({ x: 13, y: 30 });
+    const piece = new Piece({ x: 13, y: 30, largeur: 5, hauteur: 10 });
+    expect(bac.contient(piece)).to.be(true);
+  });
+
+  it('sait si une pièce est posé dessus décalé vers la gauche', function () {
+    const bac = new Bac({ x: 10, y: 20, largeur: 10, hauteur: 20 });
+    const piece = new Piece({ x: 6, y: 30, largeur: 5, hauteur: 10 });
+    expect(bac.contient(piece)).to.be(true);
+  });
+
+  it('sait si une pièce est posé dessus décalé vers la droite', function () {
+    const bac = new Bac({ x: 10, y: 20, largeur: 10, hauteur: 20 });
+    const piece = new Piece({ x: 17, y: 30, largeur: 5, hauteur: 10 });
     expect(bac.contient(piece)).to.be(true);
   });
 
   it("sait si une pièce n'est pas posé dessus", function () {
     const bac = new Bac({ x: 10, y: 20, largeur: 10, hauteur: 20 });
-    const piece = new Piece({ x: 5, y: 5 });
+    const piece = new Piece({ x: 5, y: 5, largeur: 5, hauteur: 10 });
     expect(bac.contient(piece)).to.be(false);
   });
 
