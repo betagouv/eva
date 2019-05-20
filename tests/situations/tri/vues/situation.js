@@ -1,6 +1,7 @@
 import jsdom from 'jsdom-global';
 
 import VueSituation from 'tri/vues/situation';
+import Bac from 'commun/modeles/bac';
 import Situation from 'tri/modeles/situation';
 import Piece from 'commun/modeles/piece';
 
@@ -41,6 +42,12 @@ describe('La situation « Tri »', function () {
     situation.pieces = [new Piece({ type: 'bonbon1' })];
     vueSituation.affiche('#point-insertion', $);
     expect($('.piece', '#point-insertion').length).to.equal(1);
+  });
+
+  it('affiche les bacs', function () {
+    situation.bacs = () => [new Bac({}), new Bac({}), new Bac({})];
+    vueSituation.affiche('#point-insertion', $);
+    expect($('.bac', '#point-insertion').length).to.equal(3);
   });
 
   it('active le déplacement des pièces', function (done) {
