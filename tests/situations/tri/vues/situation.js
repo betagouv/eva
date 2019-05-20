@@ -10,6 +10,7 @@ describe('La situation « Tri »', function () {
   let situation;
   let journal;
   let vueSituation;
+  let mockDeplaceurPieces;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
@@ -24,6 +25,10 @@ describe('La situation « Tri »', function () {
     }();
     situation = new Situation({ pieces: [] });
     vueSituation = new VueSituation(situation, journal, mockDepotRessources);
+    mockDeplaceurPieces = {
+      activeDeplacementPieces () {}
+    };
+    vueSituation.deplaceurPieces = mockDeplaceurPieces;
   });
 
   it('affiche le fond', function () {
@@ -36,5 +41,12 @@ describe('La situation « Tri »', function () {
     situation.pieces = [new Piece({ type: 'bonbon1' })];
     vueSituation.affiche('#point-insertion', $);
     expect($('.piece', '#point-insertion').length).to.equal(1);
+  });
+
+  it('active le déplacement des pièces', function (done) {
+    mockDeplaceurPieces.activeDeplacementPieces = () => {
+      done();
+    };
+    vueSituation.affiche('#point-insertion', $);
   });
 });

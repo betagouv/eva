@@ -6,4 +6,8 @@ export default class Situation extends SituationCommune {
     super();
     this.pieces = pieces.map((piece) => new Piece({ ...piece, largeur: 7.44, hauteur: 11.3 }));
   }
+
+  piecesAffichees () {
+    return this.pieces;
+  }
 }

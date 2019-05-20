@@ -12,6 +12,7 @@ import VuePiece from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 import VueFondSonore from 'controle/vues/fond_sonore';
 import VueFin from 'controle/vues/fin';
+import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 
 export default class VueSituation {
   constructor (situation, journal, depotRessources) {
@@ -31,6 +32,7 @@ export default class VueSituation {
     this.tapis = new VueTapis(situation);
     this.fondSonore = new VueFondSonore(situation);
     this.fin = new VueFin(situation);
+    this.deplaceurPieces = new DeplaceurPieces(situation);
   }
 
   creeVuePiece (piece) {
@@ -58,13 +60,7 @@ export default class VueSituation {
       }
     });
 
-    this.$situation.mousemove(e => {
-      if (e.buttons === 1) {
-        this.deplacePiecesSelectionnees(e);
-      } else {
-        this.deselectionneToutesLesPieces();
-      }
-    });
+    this.deplaceurPieces.activeDeplacementPieces(this.$situation, $);
   }
 
   demarre (pointInsertion, $) {
@@ -81,22 +77,5 @@ export default class VueSituation {
     this.situation.on(PIECE_MAL_PLACEE, envoiEvenementPiece(EvenementPieceMalPlacee));
     this.situation.on(PIECE_RATEE, envoiEvenementPiece(EvenementPieceRatee));
     this.situation.demarre();
-  }
-
-  deplacePiecesSelectionnees (e) {
-    const piecesAffichees = this.situation.piecesAffichees();
-    piecesAffichees.forEach(p => {
-      p.deplaceSiSelectionnee({
-        x: 100 * e.clientX / this.$situation.width(),
-        y: 100 * e.clientY / this.$situation.height()
-      });
-    });
-  }
-
-  deselectionneToutesLesPieces () {
-    const piecesAffichees = this.situation.piecesAffichees();
-    piecesAffichees.forEach(p => {
-      p.deselectionne();
-    });
   }
 }
