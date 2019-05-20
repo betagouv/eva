@@ -1,7 +1,6 @@
 import jsdom from 'jsdom-global';
 
 import Bac from 'controle/modeles/bac';
-import { PIECE_CONFORME, PIECE_DEFECTUEUSE } from 'controle/modeles/piece';
 import VueBac from 'controle/vues/bac';
 
 describe("La vue d'un bac", function () {
@@ -33,28 +32,6 @@ describe("La vue d'un bac", function () {
     expect($('.bac').css('top')).to.eql('18px');
     expect($('.bac').css('width')).to.eql('40px');
     expect($('.bac').css('height')).to.eql('45px');
-  });
-
-  it('affiche le bac des pièces conformes', function () {
-    const bac = new Bac({ categorie: PIECE_CONFORME });
-    const vue = new VueBac(bac);
-    expect($('.bac.pieces-conformes').length).to.equal(0);
-
-    vue.affiche('#controle', $);
-
-    expect($('.bac.pieces-conformes').length).to.equal(1);
-    expect($('.bac.pieces-defectueuses').length).to.equal(0);
-  });
-
-  it('affiche le bac des pièces défectueuses', function () {
-    const bac = new Bac({ categorie: PIECE_DEFECTUEUSE });
-    const vue = new VueBac(bac);
-    expect($('.bac.pieces-conformes').length).to.equal(0);
-
-    vue.affiche('#controle', $);
-
-    expect($('.bac.pieces-defectueuses').length).to.equal(1);
-    expect($('.bac.pieces-conformes').length).to.equal(0);
   });
 
   it("s'abonne au changement d'état survolé", function () {

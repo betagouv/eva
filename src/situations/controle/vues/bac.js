@@ -1,6 +1,5 @@
 import 'controle/styles/bac.scss';
 
-import { PIECE_CONFORME } from 'controle/modeles/piece';
 import { CHANGEMENT_ETAT_SURVOLE } from 'controle/modeles/bac';
 
 export default class VueBac {
@@ -10,8 +9,7 @@ export default class VueBac {
 
   affiche (pointInsertion, $) {
     function creeElementBac (categorie, { x, y }, { largeur, hauteur }, { largeurParent, hauteurParent }) {
-      const classeCategorie = categorie === PIECE_CONFORME ? 'pieces-conformes' : 'pieces-defectueuses';
-      const $element = $(`<div class="bac ${classeCategorie}"></div>`);
+      const $element = $('<div class="bac"></div>');
       $element.css('left', x * largeurParent / 100);
       $element.css('top', y * hauteurParent / 100);
       $element.width(largeur * largeurParent / 100).height(hauteur * hauteurParent / 100);
