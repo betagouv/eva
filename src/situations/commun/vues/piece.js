@@ -2,13 +2,18 @@ import EventEmitter from 'events';
 
 import 'commun/styles/piece.scss';
 
-import { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'commun/modeles/piece';
+import { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'commun/modeles/piece';
+
+export function animationFinale ($element, done) {
+  $element.fadeOut(500, () => { done($element); });
+}
 
 export default class VuePiece extends EventEmitter {
-  constructor (piece, depotRessources) {
+  constructor (piece, depotRessources, animationDisparition = animationFinale) {
     super();
     this.piece = piece;
     this.depotRessources = depotRessources;
+    this.animationDisparition = animationDisparition;
   }
 
   affiche (pointInsertion, $) {
@@ -62,6 +67,14 @@ export default class VuePiece extends EventEmitter {
     this.piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
       this.$elementParent.append(this.$piece);
       this.$piece.toggleClass('selectionnee', selectionnee);
+    });
+
+    this.piece.on(DISPARITION_PIECE, () => {
+      this.$piece.addClass('desactiver');
+
+      this.animationDisparition(this.$piece, () => {
+        this.$piece.remove();
+      });
     });
   }
 }

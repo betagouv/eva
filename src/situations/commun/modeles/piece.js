@@ -3,6 +3,8 @@ import EventEmitter from 'events';
 export const CHANGEMENT_POSITION = 'changementPosition';
 export const CHANGEMENT_SELECTION = 'changementSelection';
 
+export const DISPARITION_PIECE = 'disparitionPiece';
+
 export default class Piece extends EventEmitter {
   constructor ({ x, y, type, largeur, hauteur, categorie }) {
     super();

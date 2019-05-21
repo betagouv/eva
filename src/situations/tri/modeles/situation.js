@@ -1,8 +1,6 @@
 import SituationCommune from 'commun/modeles/situation';
-import Piece, { CHANGEMENT_SELECTION } from 'commun/modeles/piece';
+import Piece, { CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'commun/modeles/piece';
 import Bac from 'commun/modeles/bac';
-
-export const DISPARITION_PIECE = 'disparitionPiece';
 
 export default class Situation extends SituationCommune {
   constructor ({ pieces, bacs }) {

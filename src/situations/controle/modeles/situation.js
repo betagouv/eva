@@ -1,11 +1,10 @@
-import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION } from 'commun/modeles/piece';
+import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'commun/modeles/piece';
 import Bac from 'commun/modeles/bac';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
 import sonFondSonore from 'controle/assets/fond_sonore.mp3';
 
 export const NOUVELLE_PIECE = 'nouvellePiece';
-export const DISPARITION_PIECE = 'disparitionPiece';
 export const PIECE_BIEN_PLACEE = 'pieceBienPlacée';
 export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
 export const PIECE_RATEE = 'pieceRatée';
