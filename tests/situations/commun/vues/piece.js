@@ -1,6 +1,6 @@
 import jsdom from 'jsdom-global';
 
-import Piece from 'commun/modeles/piece';
+import Piece, { DISPARITION_PIECE } from 'commun/modeles/piece';
 import VuePiece from 'commun/vues/piece';
 
 function creeVueMinimale (piece, depot) {
@@ -111,5 +111,29 @@ describe('Une pièce', function () {
     expect($('.piece').index()).to.equal(0);
     piece.selectionne({ x: 0, y: 0 });
     expect($('.piece').index()).to.equal(1);
+  });
+
+  it("au moment de l'événement DISPARITION_PIECE, disparait", function () {
+    $.fx.off = true;
+    const piece = new Piece({ x: 90, y: 40 });
+    const vuePiece = new VuePiece(piece, depot);
+    vuePiece.affiche('#pointInsertion', $);
+    expect($('.piece').length).to.equal(1);
+    piece.emit(DISPARITION_PIECE);
+    expect($('.piece').length).to.equal(0);
+  });
+
+  it("rajoute la classe desactiver au moment de l'événement DISPARITION_PIECE", function (done) {
+    const piece = new Piece({});
+
+    const callbackAvantSuppression = () => {
+      expect($('.desactiver').length).to.equal(1);
+      done();
+    };
+
+    const vuePiece = new VuePiece(piece, depot, callbackAvantSuppression);
+    vuePiece.affiche('#pointInsertion', $);
+    expect($('.desactiver').length).to.equal(0);
+    piece.emit(DISPARITION_PIECE);
   });
 });

@@ -1,5 +1,6 @@
+import { DISPARITION_PIECE } from 'commun/modeles/piece';
 import Bac from 'commun/modeles/bac';
-import Situation, { DISPARITION_PIECE } from 'tri/modeles/situation';
+import Situation from 'tri/modeles/situation';
 
 describe('La situation « Tri »', function () {
   it('répond que toutes ses pièces sont affichées', function () {

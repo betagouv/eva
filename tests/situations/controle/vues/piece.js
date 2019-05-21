@@ -1,5 +1,4 @@
 import jsdom from 'jsdom-global';
-import { DISPARITION_PIECE } from 'controle/modeles/situation';
 import Piece from 'commun/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
@@ -41,36 +40,5 @@ describe('Une pièce', function () {
       expect(piece.position()).to.eql({ x: 80, y: 40 });
       done();
     }, 10);
-  });
-
-  it("au moment de l'événement DISPARITION_PIECE, disparait", function (done) {
-    const piece = new Piece({ x: 90, y: 40 });
-
-    const callbackAvantSuppression = (_, callbackSuppression) => {
-      callbackSuppression();
-      expect($('.piece').length).to.equal(0);
-      done();
-    };
-
-    const vuePiece = new VuePiece(piece, depot, () => {}, callbackAvantSuppression);
-    vuePiece.affiche('#controle', $);
-    expect($('.piece').length).to.equal(1);
-    piece.emit(DISPARITION_PIECE);
-  });
-
-  it("rajoute la classe desactiver au moment de l'événement DISPARITION_PIECE", function (done) {
-    const piece = new Piece({});
-
-    const callbackAvantSuppression = (_, callbackSuppression) => {
-      callbackSuppression();
-      expect($('.piece').length).to.equal(0);
-      done();
-    };
-
-    const vuePiece = new VuePiece(piece, depot, () => {}, callbackAvantSuppression);
-    vuePiece.affiche('#controle', $);
-    expect($('.desactiver').length).to.equal(0);
-    piece.emit(DISPARITION_PIECE);
-    expect($('.desactiver').length).to.equal(1);
   });
 });
