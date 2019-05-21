@@ -21,7 +21,7 @@ describe('La situation « Tri »', function () {
   });
 
   it('fait disparaitre la pièce lorsque la pièce est bien placée', function (done) {
-    const situation = new Situation({ pieces: [{ categorie: 1 }], bacs: [{ categorie: 1, x: 1, y: 2 }] });
+    const situation = new Situation({ pieces: [{}], bacs: [{ x: 1, y: 2 }] });
     const bac = situation.bacs()[0];
     const piece = situation.piecesAffichees()[0];
     bac.contient = () => true;
@@ -31,5 +31,16 @@ describe('La situation « Tri »', function () {
     });
     piece.selectionne({});
     piece.deselectionne();
+  });
+
+  it("remet la pièce dans sa position initiale lorsqu'elle n'est dans son bac", function () {
+    const situation = new Situation({ pieces: [{ x: 4, y: 5 }], bacs: [{ x: 1, y: 2 }] });
+    const bac = situation.bacs()[0];
+    const piece = situation.piecesAffichees()[0];
+    bac.contient = () => false;
+    piece.selectionne({ x: 0, y: 0 });
+    piece.deplaceSiSelectionnee({ x: 10, y: 20 });
+    piece.deselectionne();
+    expect(piece.position()).to.eql({ x: 4, y: 5 });
   });
 });

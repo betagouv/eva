@@ -10,11 +10,14 @@ export default class Situation extends SituationCommune {
     this.pieces = pieces.map((piece) => new Piece({ ...piece, categorie: piece.type, largeur: 7.44, hauteur: 11.3 }));
     this._bacs = bacs.map((bac) => new Bac({ ...bac, largeur: 15, hauteur: 22.5 }));
     this.pieces.forEach((piece) => {
+      const positionInitiale = piece.position();
       piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
         if (!selectionnee) {
           const bac = this.bacs().find((bac) => bac.contient(piece));
-          if (bac.correspondALaCategorie(piece)) {
+          if (bac && bac.correspondALaCategorie(piece)) {
             piece.emit(DISPARITION_PIECE);
+          } else {
+            piece.changePosition(positionInitiale);
           }
         }
       });
