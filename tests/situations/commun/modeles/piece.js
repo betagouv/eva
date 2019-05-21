@@ -54,6 +54,15 @@ describe("Le modèle commun d'une pièce", function () {
     piece.selectionne({ x: 95, y: 65 });
   });
 
+  it('ne notifie pas lorsque la sélection ne change pas', function () {
+    let nombreAppels = 0;
+    const piece = new Piece({ x: 90, y: 50 });
+    piece.on(CHANGEMENT_SELECTION, () => nombreAppels++);
+    piece.selectionne({ x: 95, y: 65 });
+    piece.selectionne({ x: 95, y: 65 });
+    expect(nombreAppels).to.eql(1);
+  });
+
   it('peut être déplacée quand sélectionnée', function () {
     let piece = new Piece({ x: 90, y: 50 });
     piece.selectionne({ x: 95, y: 65 });

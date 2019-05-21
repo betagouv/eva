@@ -42,8 +42,10 @@ export default class Piece extends EventEmitter {
   }
 
   changeSelection (selectionne) {
-    this.selectionnee = selectionne;
-    this.emit(CHANGEMENT_SELECTION, selectionne);
+    if (this.selectionnee !== selectionne) {
+      this.selectionnee = selectionne;
+      this.emit(CHANGEMENT_SELECTION, selectionne);
+    }
   }
 
   deplaceSiSelectionnee ({ x, y }) {
