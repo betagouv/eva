@@ -28,6 +28,7 @@ describe('La situation « Tri »', function () {
     bac.contient = () => true;
     bac.correspondALaCategorie = () => true;
     piece.on(DISPARITION_PIECE, () => {
+      expect(situation.piecesAffichees().length).to.eql(0);
       done();
     });
     piece.selectionne({});

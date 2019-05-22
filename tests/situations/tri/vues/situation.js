@@ -39,7 +39,7 @@ describe('La situation « Tri »', function () {
   });
 
   it('affiche les pièces', function () {
-    situation.pieces = [new Piece({ type: 'bonbon1' })];
+    situation.piecesAffichees = () => [new Piece({ type: 'bonbon1' })];
     vueSituation.affiche('#point-insertion', $);
     expect($('.piece', '#point-insertion').length).to.equal(1);
   });

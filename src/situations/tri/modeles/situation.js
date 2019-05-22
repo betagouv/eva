@@ -5,14 +5,14 @@ import Bac from 'commun/modeles/bac';
 export default class Situation extends SituationCommune {
   constructor ({ pieces, bacs }) {
     super();
-    this.pieces = pieces.map((piece) => new Piece({ ...piece, categorie: piece.type, largeur: 7.44, hauteur: 11.3 }));
+    this._pieces = pieces.map((piece) => new Piece({ ...piece, categorie: piece.type, largeur: 7.44, hauteur: 11.3 }));
     this._bacs = bacs.map((bac) => new Bac({ ...bac, largeur: 15, hauteur: 22.5 }));
-    this.pieces.forEach((piece) => {
+    this._pieces.forEach((piece) => {
       piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
         if (!selectionnee) {
           const bac = this.bacs().find((bac) => bac.contient(piece));
           if (bac && bac.correspondALaCategorie(piece)) {
-            piece.emit(DISPARITION_PIECE);
+            this.faitDisparaitreLaPiece(piece);
           } else {
             piece.changePosition(piece.positionOriginelle());
           }
@@ -21,8 +21,13 @@ export default class Situation extends SituationCommune {
     });
   }
 
+  faitDisparaitreLaPiece (piece) {
+    this._pieces.splice(this._pieces.indexOf(piece), 1);
+    piece.emit(DISPARITION_PIECE);
+  }
+
   piecesAffichees () {
-    return this.pieces;
+    return this._pieces;
   }
 
   bacs () {
