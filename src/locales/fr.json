@@ -1,4 +1,9 @@
 {
+  "duree": "{{minutes}} et {{secondes}}",
+  "minute": "{{count}} minute",
+  "minute_plural": "{{count}} minutes",
+  "seconde": "{{count}} seconde",
+  "seconde_plural": "{{count}} secondes",
   "accueil": {
     "identification": {
       "label": "Entrez votre nom ou pseudo"
@@ -37,6 +42,7 @@
   "tri": {
     "titre": "Magasin de friandises",
     "resultat": {
+      "temps_passe": "Temps: {{nombre, duree}}",
       "erreurs": "Erreurs : {{nombre}}"
     }
   }
