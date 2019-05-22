@@ -1,4 +1,4 @@
-import SituationCommune from 'commun/modeles/situation';
+import SituationCommune, { FINI } from 'commun/modeles/situation';
 import Piece, { CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'tri/modeles/piece';
 import Bac from 'commun/modeles/bac';
 
@@ -24,6 +24,10 @@ export default class Situation extends SituationCommune {
   faitDisparaitreLaPiece (piece) {
     this._pieces.splice(this._pieces.indexOf(piece), 1);
     piece.emit(DISPARITION_PIECE);
+
+    if (this.piecesAffichees().length === 0) {
+      this.modifieEtat(FINI);
+    }
   }
 
   piecesAffichees () {
