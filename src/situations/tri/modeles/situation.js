@@ -5,6 +5,9 @@ import Bac from 'commun/modeles/bac';
 export default class Situation extends SituationCommune {
   constructor ({ pieces, bacs }) {
     super();
+    this.resultat = {
+      erreurs: 0
+    };
     this._pieces = pieces.map((piece) => new Piece({ ...piece, categorie: piece.type, largeur: 7.44, hauteur: 11.3 }));
     this._bacs = bacs.map((bac) => new Bac({ ...bac, largeur: 15, hauteur: 22.5 }));
     this._pieces.forEach((piece) => {
@@ -14,6 +17,7 @@ export default class Situation extends SituationCommune {
           if (bac && bac.correspondALaCategorie(piece)) {
             this.faitDisparaitreLaPiece(piece);
           } else {
+            this.resultat.erreurs++;
             piece.changePosition(piece.positionOriginelle());
           }
         }

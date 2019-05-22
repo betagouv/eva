@@ -36,7 +36,7 @@ describe('La situation « Tri »', function () {
     piece.deselectionne();
   });
 
-  it("remet la pièce dans sa position initiale lorsqu'elle n'est dans son bac", function () {
+  it("remet la pièce dans sa position initiale lorsqu'elle n'est pas dans son bac", function () {
     const situation = new Situation({ pieces: [{ x: 4, y: 5 }], bacs: [{ x: 1, y: 2 }] });
     const bac = situation.bacs()[0];
     const piece = situation.piecesAffichees()[0];
@@ -45,6 +45,7 @@ describe('La situation « Tri »', function () {
     piece.deplaceSiSelectionnee({ x: 10, y: 20 });
     piece.deselectionne();
     expect(piece.position()).to.eql({ x: 4, y: 5 });
+    expect(situation.resultat.erreurs).to.eql(1);
   });
 
   it('passe la situation en fin lorsque toutes les pièces ont été trié', function () {
