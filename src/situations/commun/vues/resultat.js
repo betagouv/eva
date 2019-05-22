@@ -1,11 +1,12 @@
-import 'controle/styles/fin.scss';
+import 'commun/styles/resultat.scss';
 
 import { traduction } from 'commun/infra/internationalisation';
 import { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 
-export default class VueFin {
-  constructor (situation) {
+export default class VueResultat {
+  constructor (situation, espaceDeNom) {
     this.situation = situation;
+    this.espaceDeNom = espaceDeNom;
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === FINI) {
         this.passeEnEtatFini();
@@ -22,8 +23,8 @@ export default class VueFin {
 
   passeEnEtatFini () {
     const $message = this.$('<div class="message-fin"></div>');
-    for (let resultat in this.situation.resultat) {
-      const message = traduction(`controle.resultat.${resultat}`, { nombre: this.situation.resultat[resultat] });
+    for (const resultat in this.situation.resultat) {
+      const message = traduction(`${this.espaceDeNom}.resultat.${resultat}`, { nombre: this.situation.resultat[resultat] });
       $message.append(this.$(`<p>${message}</p>`));
     }
     this.$overlay.append($message);

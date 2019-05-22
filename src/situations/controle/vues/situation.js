@@ -9,7 +9,7 @@ import VueBac from 'commun/vues/bac';
 import VuePiece from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 import VueFondSonore from 'controle/vues/fond_sonore';
-import VueFin from 'controle/vues/fin';
+import VueResultat from 'commun/vues/resultat';
 import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 
 export default class VueSituation {
@@ -19,7 +19,7 @@ export default class VueSituation {
     this.depotRessources = depotRessources;
     this.tapis = new VueTapis(situation);
     this.fondSonore = new VueFondSonore(situation);
-    this.fin = new VueFin(situation);
+    this.resultat = new VueResultat(situation, 'controle');
     this.deplaceurPieces = new DeplaceurPieces(situation);
   }
 
@@ -39,7 +39,7 @@ export default class VueSituation {
     this.situation.bacs().forEach(afficheBac);
     this.tapis.affiche(pointInsertion, $);
     this.fondSonore.affiche(pointInsertion, $);
-    this.fin.affiche(pointInsertion, $);
+    this.resultat.affiche(pointInsertion, $);
 
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {
