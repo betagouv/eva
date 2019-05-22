@@ -1,3 +1,5 @@
+@import 'commun/styles/dimensions.scss';
+
 .overlay {
   z-index: 100;
   position: absolute;
@@ -9,7 +11,12 @@
   outline: none;
   display: flex;
   align-items: center;
+
   &.opaque {
     background: black;
+  }
+
+  &.hors-actions {
+    height: $largeur-cadre;
   }
 }
