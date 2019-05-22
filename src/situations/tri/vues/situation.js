@@ -14,7 +14,7 @@ export default class VueSituationTri {
     $(pointInsertion).addClass('tri')
       .css('background-image', `url('${this.depotRessources.fondSituation().src}')`);
 
-    this.situation.pieces.forEach((piece) => {
+    this.situation.piecesAffichees().forEach((piece) => {
       const vuePiece = new VuePiece(piece, this.depotRessources);
       vuePiece.affiche(pointInsertion, $);
     });
