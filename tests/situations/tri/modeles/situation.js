@@ -1,5 +1,5 @@
 import { DISPARITION_PIECE } from 'commun/modeles/piece';
-import { FINI } from 'commun/modeles/situation';
+import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Bac from 'commun/modeles/bac';
 import Situation from 'tri/modeles/situation';
 
@@ -55,5 +55,21 @@ describe('La situation « Tri »', function () {
     situation.faitDisparaitreLaPiece(piece1);
     situation.faitDisparaitreLaPiece(piece2);
     expect(situation.etat()).to.eql(FINI);
+  });
+
+  it('mesure le temps passé', function () {
+    let maintenant;
+    const situation = new Situation(
+      { pieces: [{}, {}], bacs: [{ x: 1, y: 2 }] },
+      () => maintenant
+    );
+    maintenant = 1;
+    situation.modifieEtat(DEMARRE);
+    const piece1 = situation.piecesAffichees()[0];
+    const piece2 = situation.piecesAffichees()[1];
+    situation.faitDisparaitreLaPiece(piece1);
+    maintenant = 4;
+    situation.faitDisparaitreLaPiece(piece2);
+    expect(situation.resultat.temps_passe).to.eql(3);
   });
 });
