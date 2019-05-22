@@ -1,4 +1,5 @@
 import { DISPARITION_PIECE } from 'commun/modeles/piece';
+import { FINI } from 'commun/modeles/situation';
 import Bac from 'commun/modeles/bac';
 import Situation from 'tri/modeles/situation';
 
@@ -44,5 +45,14 @@ describe('La situation « Tri »', function () {
     piece.deplaceSiSelectionnee({ x: 10, y: 20 });
     piece.deselectionne();
     expect(piece.position()).to.eql({ x: 4, y: 5 });
+  });
+
+  it('passe la situation en fin lorsque toutes les pièces ont été trié', function () {
+    const situation = new Situation({ pieces: [{}, {}], bacs: [{ x: 1, y: 2 }] });
+    const piece1 = situation.piecesAffichees()[0];
+    const piece2 = situation.piecesAffichees()[1];
+    situation.faitDisparaitreLaPiece(piece1);
+    situation.faitDisparaitreLaPiece(piece2);
+    expect(situation.etat()).to.eql(FINI);
   });
 });
