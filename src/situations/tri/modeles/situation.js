@@ -1,5 +1,5 @@
 import SituationCommune from 'commun/modeles/situation';
-import Piece, { CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'commun/modeles/piece';
+import Piece, { CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'tri/modeles/piece';
 import Bac from 'commun/modeles/bac';
 
 export default class Situation extends SituationCommune {
@@ -8,14 +8,13 @@ export default class Situation extends SituationCommune {
     this.pieces = pieces.map((piece) => new Piece({ ...piece, categorie: piece.type, largeur: 7.44, hauteur: 11.3 }));
     this._bacs = bacs.map((bac) => new Bac({ ...bac, largeur: 15, hauteur: 22.5 }));
     this.pieces.forEach((piece) => {
-      const positionInitiale = piece.position();
       piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
         if (!selectionnee) {
           const bac = this.bacs().find((bac) => bac.contient(piece));
           if (bac && bac.correspondALaCategorie(piece)) {
             piece.emit(DISPARITION_PIECE);
           } else {
-            piece.changePosition(positionInitiale);
+            piece.changePosition(piece.positionOriginelle());
           }
         }
       });

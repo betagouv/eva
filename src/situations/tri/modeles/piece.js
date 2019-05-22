@@ -1,0 +1,14 @@
+import PieceCommune, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'commun/modeles/piece';
+
+export { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE };
+
+export default class Piece extends PieceCommune {
+  constructor (parametres) {
+    super(parametres);
+    this._positionOriginelle = this.position();
+  }
+
+  positionOriginelle () {
+    return this._positionOriginelle;
+  }
+}
