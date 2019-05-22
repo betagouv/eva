@@ -35,6 +35,9 @@
     "arreter_mission": "Arrêter la mission"
   },
   "tri": {
-    "titre": "Magasin de friandises"
+    "titre": "Magasin de friandises",
+    "resultat": {
+      "erreurs": "Erreurs : {{nombre}}"
+    }
   }
 }
