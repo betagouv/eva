@@ -1,6 +1,7 @@
 import 'tri/styles/situation.scss';
 import VueBac from 'commun/vues/bac.js';
 import VuePiece from 'tri/vues/piece.js';
+import VueResultat from 'commun/vues/resultat.js';
 import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 
 export default class VueSituationTri {
@@ -8,6 +9,7 @@ export default class VueSituationTri {
     this.depotRessources = depotRessources;
     this.situation = situation;
     this.deplaceurPieces = new DeplaceurPieces(situation);
+    this.resultat = new VueResultat(situation, 'tri');
   }
 
   affiche (pointInsertion, $) {
@@ -25,5 +27,6 @@ export default class VueSituationTri {
     });
 
     this.deplaceurPieces.activeDeplacementPieces(pointInsertion, $);
+    this.resultat.affiche(pointInsertion, $);
   }
 }
