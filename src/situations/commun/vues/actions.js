@@ -27,7 +27,6 @@ export default class VueActions {
       this.rejoueConsigne.affiche(this.$actions, $);
     });
     actionsEtat.set(DEMARRE, () => {
-      this.rejoueConsigne.affiche(this.$actions, $);
       this.stop.affiche(this.$actions, $);
     });
     const changements = actionsEtat.get(etat);

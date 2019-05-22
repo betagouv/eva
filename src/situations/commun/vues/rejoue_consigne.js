@@ -22,14 +22,16 @@ export default class VueRejoueConsigne {
     }
     this.affichee = true;
     this.$ = $;
+    this.$boutonRejoueConsigne = $('<div></div>');
     this.pointInsertion = pointInsertion;
-    this.vueBoutonLire.affiche(this.pointInsertion, $);
+    $(pointInsertion).append(this.$boutonRejoueConsigne);
+    this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, $);
   }
 
   joueConsigne ($) {
     this.journal.enregistre(new EvenementRejoueConsigne());
     this.vueBoutonLire.cache();
-    this.vueBoutonLectureEnCours.affiche(this.pointInsertion, $);
+    this.vueBoutonLectureEnCours.affiche(this.$boutonRejoueConsigne, $);
     const consigne = this.depotResources.consigne();
     $(consigne).on('ended', this.lectureTermine.bind(this));
     consigne.start();
@@ -37,6 +39,6 @@ export default class VueRejoueConsigne {
 
   lectureTermine () {
     this.vueBoutonLectureEnCours.cache();
-    this.vueBoutonLire.affiche(this.pointInsertion, this.$);
+    this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, this.$);
   }
 }

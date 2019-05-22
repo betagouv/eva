@@ -34,11 +34,11 @@ describe('Affiche les éléments communs aux situations', function () {
     expect($('.bouton-lire-consigne', '.actions').length).to.equal(1);
   });
 
-  it("Affiche le bouton rejoue consigne et le bouton une fois que l'utilisateur à cliqué sur GO", function () {
+  it("Affiche bouton stop une fois que l'utilisateur à cliqué sur GO", function () {
     vueActions.affiche('#magasin', $);
     situation.modifieEtat(DEMARRE);
     expect($('.bouton-stop').length).to.equal(1);
-    expect($('.bouton-lire-consigne', '.actions').length).to.equal(1);
+    expect($('.bouton-lire-consigne', '.actions').length).to.equal(0);
   });
 
   it('cache le conteneur', function () {

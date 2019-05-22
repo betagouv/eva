@@ -1,7 +1,9 @@
+@import 'commun/styles/dimensions.scss';
+
 .scene {
   position: relative;
   width: 100%;
-  height: 35.375rem;
+  height: $largeur-cadre;
   background: ivory;
   overflow: hidden;
 }
