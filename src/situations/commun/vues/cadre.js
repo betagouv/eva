@@ -1,5 +1,6 @@
 import 'commun/styles/cadre.scss';
-import { CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, STOPPEE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import { CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI, STOPPEE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import VueActions from 'commun/vues/actions';
 import VueChargement from 'commun/vues/chargement';
 import VueErreurChargement from 'commun/vues/erreur_chargement';
@@ -23,6 +24,7 @@ export default class VueCadre {
     this.vuesEtats.set(LECTURE_CONSIGNE, VueConsigne);
     this.vuesEtats.set(CONSIGNE_ECOUTEE, VueGo);
     this.vuesEtats.set(FINI, VueTerminer);
+    this.envoiEvenementDemarrageUneFoisDemarre(journal);
   }
 
   affiche (pointInsertion, $) {
@@ -74,6 +76,14 @@ export default class VueCadre {
   previensLeClickDroit ($) {
     $('#cadre').on('contextmenu', (e) => {
       e.preventDefault();
+    });
+  }
+
+  envoiEvenementDemarrageUneFoisDemarre (journal) {
+    this.situation.on(CHANGEMENT_ETAT, (etat) => {
+      if (etat === DEMARRE) {
+        journal.enregistre(new EvenementDemarrage());
+      }
     });
   }
 }

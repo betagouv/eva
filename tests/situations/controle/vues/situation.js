@@ -1,7 +1,5 @@
 import jsdom from 'jsdom-global';
 
-import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
-import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
@@ -49,18 +47,6 @@ describe('La situation « Contrôle »', function () {
 
     vueSituation.affiche('#point-insertion', $);
     vueSituation.demarre('#point-insertion', $);
-  });
-
-  it("enregistre l'événement de démarrage", function (done) {
-    const journal = {
-      enregistre (evenement) {
-        expect(evenement).to.be.a(EvenementDemarrage);
-        done();
-      }
-    };
-    const vueSituation = vueSituationMinimaliste(journal);
-    vueSituation.affiche('#point-insertion', $);
-    vueSituation.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
   describe('avec une situation démarrée, une pièce et un journal', function () {

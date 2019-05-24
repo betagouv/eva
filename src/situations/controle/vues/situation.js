@@ -1,6 +1,5 @@
 import 'controle/styles/situation.scss';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
-import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
@@ -43,7 +42,6 @@ export default class VueSituation {
 
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {
-        this.journal.enregistre(new EvenementDemarrage());
         this.demarre(pointInsertion, $);
       }
     });

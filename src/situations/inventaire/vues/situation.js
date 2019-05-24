@@ -1,20 +1,12 @@
 import 'inventaire/styles/situation.scss';
-import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 
 import VueEtageres from 'inventaire/vues/etageres';
 import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaire_saisie_inventaire';
-import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 
 export default class VueSituation {
   constructor (situation, journal) {
     this.journal = journal;
     this.situation = situation;
-
-    situation.on(CHANGEMENT_ETAT, (etat) => {
-      if (etat === DEMARRE) {
-        this.journal.enregistre(new EvenementDemarrage());
-      }
-    });
   }
 
   affiche (pointInsertion, $) {
