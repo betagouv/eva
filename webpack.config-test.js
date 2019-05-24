@@ -39,7 +39,7 @@ var config = {
         loader: 'null-loader'
       },
       {
-        test: /\.(png|jpg|mp3|svg)(\?.*$|$)/i,
+        test: /\.(png|jpg|wav|svg)(\?.*$|$)/i,
         use: [
           {
             loader: 'file-loader',

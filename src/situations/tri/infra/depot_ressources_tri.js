@@ -1,6 +1,6 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
-import sonConsigne from 'tri/assets/consigne_demarrage.mp3';
+import sonConsigne from 'tri/assets/consigne_demarrage.wav';
 import fondSituation from 'tri/assets/fond-situation.jpg';
 
 const bonbons = require.context('tri/assets', false, /bonbon[0-9]+\.png$/);

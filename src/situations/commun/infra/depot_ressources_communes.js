@@ -1,5 +1,5 @@
 import DepotRessources from 'commun/infra/depot_ressources';
-import sonConsigneCommune from 'commun/assets/consigne_commune.mp3';
+import sonConsigneCommune from 'commun/assets/consigne_commune.wav';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
   constructor (sonConsigne, chargeurs) {

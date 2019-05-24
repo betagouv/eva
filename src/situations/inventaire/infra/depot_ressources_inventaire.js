@@ -1,6 +1,6 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
-import sonConsigne from 'inventaire/assets/consigne_demarrage.mp3';
+import sonConsigne from 'inventaire/assets/consigne_demarrage.wav';
 
 export default class DepotRessourcesInventaire extends DepotRessourcesCommunes {
   constructor (chargeurs) {
