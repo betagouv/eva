@@ -1,6 +1,6 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
-import sonConsigne from 'controle/assets/consigne_demarrage.mp3';
+import sonConsigne from 'controle/assets/consigne_demarrage.wav';
 
 const biscuits = require.context('controle/assets', false, /(def[0-9]+|biscuit-normal)\.png$/);
 

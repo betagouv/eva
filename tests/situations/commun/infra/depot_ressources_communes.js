@@ -8,11 +8,11 @@ describe('Le dépot de ressources communes', function () {
   let dernierSonCharge;
 
   beforeEach(function () {
-    son = 'test.mp3';
+    son = 'test.wav';
     const _chargeurs = chargeurs({
-      mp3: (_son) => {
+      wav: (_son) => {
         dernierSonCharge = _son;
-        return Promise.resolve(() => 'mp3_precharge');
+        return Promise.resolve(() => 'wav_precharge');
       }
     });
     depot = new DepotRessourcesCommunes(son, _chargeurs);
@@ -32,13 +32,13 @@ describe('Le dépot de ressources communes', function () {
 
   it('retourne la consigne', function () {
     return depot.chargement().then(() => {
-      expect(depot.consigne()).to.eql('mp3_precharge');
+      expect(depot.consigne()).to.eql('wav_precharge');
     });
   });
 
   it('retourne la consigne commune', function () {
     return depot.chargement().then(() => {
-      expect(depot.consigneCommune()).to.eql('mp3_precharge');
+      expect(depot.consigneCommune()).to.eql('wav_precharge');
     });
   });
 });

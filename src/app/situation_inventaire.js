@@ -6,8 +6,8 @@ import DepotRessourcesInventaire from 'inventaire/infra/depot_ressources_inventa
 import Situation from 'inventaire/modeles/situation';
 import VueSituation from 'inventaire/vues/situation';
 
-import reussite from 'inventaire/assets/reussite.mp3';
-import echec from 'inventaire/assets/echec.mp3';
+import reussite from 'inventaire/assets/reussite.wav';
+import echec from 'inventaire/assets/echec.wav';
 
 import { contenants, contenus } from 'inventaire/data/stock';
 

@@ -43,7 +43,7 @@ function chargeurImage (src) {
 }
 
 const CHARGEURS = {
-  'mp3': chargeurAudio,
+  'wav': chargeurAudio,
   'png': chargeurImage,
   'svg': chargeurImage,
   'jpg': chargeurImage
@@ -60,7 +60,6 @@ export default class DepotRessources {
     const promesses = ressources.map((ressource) => {
       const extension = ressource.match(/\.([^.]+)$/)[1];
       const chargeur = this.chargeurs[extension];
-
       return chargeur(ressource).then((cloneur) => {
         this.cloneursRessource[ressource] = cloneur;
       });
