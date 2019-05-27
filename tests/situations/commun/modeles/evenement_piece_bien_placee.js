@@ -1,4 +1,4 @@
-import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
+import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 
 describe("l'événement de pièce bien placée", function () {
   it('retourne son nom', function () {

@@ -1,4 +1,4 @@
-import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
+import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 
 describe("l'événement de pièce mal placée", function () {
   it('retourne son nom', function () {

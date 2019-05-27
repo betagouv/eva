@@ -1,8 +1,8 @@
 import jsdom from 'jsdom-global';
 
 import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle';
-import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
-import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
+import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
+import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import Piece, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
 import Situation, { PIECE_RATEE } from 'controle/modeles/situation';

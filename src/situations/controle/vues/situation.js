@@ -1,8 +1,8 @@
 import 'controle/styles/situation.scss';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
-import EvenementPieceBienPlacee from 'controle/modeles/evenement_piece_bien_placee';
-import EvenementPieceMalPlacee from 'controle/modeles/evenement_piece_mal_placee';
+import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
+import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import { NOUVELLE_PIECE, PIECE_RATEE } from 'controle/modeles/situation';
 import VueBac from 'commun/vues/bac';
