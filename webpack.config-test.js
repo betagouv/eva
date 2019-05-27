@@ -1,3 +1,4 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
@@ -54,6 +55,7 @@ var config = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({ jQuery: 'jquery' }),
     new webpack.ProvidePlugin({ expect: ['expect.js'] })
   ]
