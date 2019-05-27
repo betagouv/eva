@@ -1,6 +1,6 @@
-import PieceCommune, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'commun/modeles/piece';
+import PieceCommune, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE, PIECE_BIEN_PLACEE } from 'commun/modeles/piece';
 
-export { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE };
+export { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE, PIECE_BIEN_PLACEE };
 
 export default class Piece extends PieceCommune {
   constructor (parametres) {

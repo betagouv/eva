@@ -1,5 +1,5 @@
 import SituationCommune, { CHANGEMENT_ETAT, DEMARRE, FINI } from 'commun/modeles/situation';
-import Piece, { CHANGEMENT_SELECTION, DISPARITION_PIECE } from 'tri/modeles/piece';
+import Piece, { CHANGEMENT_SELECTION, DISPARITION_PIECE, PIECE_BIEN_PLACEE } from 'tri/modeles/piece';
 import Bac from 'commun/modeles/bac';
 
 export default class Situation extends SituationCommune {
@@ -23,7 +23,7 @@ export default class Situation extends SituationCommune {
         if (!selectionnee) {
           const bac = this.bacs().find((bac) => bac.contient(piece));
           if (bac && bac.correspondALaCategorie(piece)) {
-            this.faitDisparaitreLaPiece(piece);
+            this.faitDisparaitreLaPiece(piece, bac);
           } else {
             this.resultat.erreurs++;
             piece.changePosition(piece.positionOriginelle());
@@ -33,9 +33,10 @@ export default class Situation extends SituationCommune {
     });
   }
 
-  faitDisparaitreLaPiece (piece) {
+  faitDisparaitreLaPiece (piece, bac) {
     this._pieces.splice(this._pieces.indexOf(piece), 1);
     piece.emit(DISPARITION_PIECE);
+    this.emit(PIECE_BIEN_PLACEE, piece, bac);
 
     if (this.piecesAffichees().length === 0) {
       this.resultat.temps_passe = this.maintenant() - this.date_debut;
