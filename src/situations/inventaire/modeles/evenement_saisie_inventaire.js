@@ -1,8 +1,8 @@
 import Evenement from 'commun/modeles/evenement';
 
 export default class EvenementSaisieInventaire extends Evenement {
-  nom () {
-    return 'saisieInventaire';
+  constructor (donnees = {}) {
+    super('saisieInventaire', donnees);
   }
 
   donnees () {
