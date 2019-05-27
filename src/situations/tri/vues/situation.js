@@ -14,6 +14,7 @@ export default class VueSituationTri {
     this.deplaceurPieces = new DeplaceurPieces(situation);
     this.resultat = new VueResultat(situation, 'tri');
     this.envoiEvenementsAuJournal(journal);
+    this.ajoutEcouteursPourLesSons();
   }
 
   affiche (pointInsertion, $) {
@@ -43,5 +44,10 @@ export default class VueSituationTri {
     };
     this.situation.on(PIECE_BIEN_PLACEE, envoiEvenementPiece(EvenementPieceBienPlacee));
     this.situation.on(PIECE_MAL_PLACEE, envoiEvenementPiece(EvenementPieceMalPlacee));
+  }
+
+  ajoutEcouteursPourLesSons () {
+    this.situation.on(PIECE_BIEN_PLACEE, () => this.depotRessources.sonBonBac().start());
+    this.situation.on(PIECE_MAL_PLACEE, () => this.depotRessources.sonMauvaisBac().start());
   }
 }
