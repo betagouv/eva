@@ -7,6 +7,8 @@ import Piece, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 
+import MockDepotRessourcesTri from '../aides/mock_depot_ressources_tri';
+
 describe('La situation « Tri »', function () {
   let $;
   let mockDepotRessources;
@@ -18,15 +20,8 @@ describe('La situation « Tri »', function () {
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
-    mockDepotRessources = new class {
-      fondSituation () {
-        return {
-          src: 'image-de-fond'
-        };
-      }
-      piece () { }
-    }();
-    journal = {};
+    mockDepotRessources = new MockDepotRessourcesTri();
+    journal = { enregistre () {} };
     situation = new Situation({ pieces: [], bacs: [] });
     vueSituation = new VueSituation(situation, journal, mockDepotRessources);
     mockDeplaceurPieces = {
@@ -36,6 +31,7 @@ describe('La situation « Tri »', function () {
   });
 
   it('affiche le fond', function () {
+    mockDepotRessources.fondSituation = () => { return { src: 'image-de-fond' }; };
     vueSituation.affiche('#point-insertion', $);
     expect($('#point-insertion').hasClass('tri')).to.be(true);
     expect($('#point-insertion').css('background-image')).to.equal('url(image-de-fond)');
@@ -97,6 +93,24 @@ describe('La situation « Tri »', function () {
         done();
       };
       vueSituation.situation.emit(PIECE_MAL_PLACEE, piece, null);
+    });
+
+    it("joue le son sonBonBac lorsque'une pièce est bien placéee", function (done) {
+      mockDepotRessources.sonBonBac = () => {
+        return {
+          start: done
+        };
+      };
+      vueSituation.situation.emit(PIECE_BIEN_PLACEE, piece, bac);
+    });
+
+    it("joue le son sonMauvaisBac lorsque'une pièce est mal placéee", function (done) {
+      mockDepotRessources.sonMauvaisBac = () => {
+        return {
+          start: done
+        };
+      };
+      vueSituation.situation.emit(PIECE_MAL_PLACEE, piece, bac);
     });
   });
 });
