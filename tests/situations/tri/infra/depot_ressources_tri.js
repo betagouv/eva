@@ -3,13 +3,26 @@ import DepotRessourcesTri from 'tri/infra/depot_ressources_tri';
 import chargeurs from '../../commun/aides/mock_chargeurs';
 
 describe('Le dépôt de ressources de la situation tri', function () {
+  let depot;
+
+  beforeEach(function () {
+    depot = new DepotRessourcesTri(chargeurs());
+    return depot.chargement();
+  });
+
   it('étend DepotRessourcesCommunes', function () {
-    const depot = new DepotRessourcesTri(chargeurs());
     expect(depot).to.be.a(DepotRessourcesCommunes);
   });
 
   it('retourne les bonbons', function () {
-    const depot = new DepotRessourcesTri(chargeurs());
     expect(depot.piece('bonbon1')).to.not.be(undefined);
+  });
+
+  it('retourne le son de bon bac', function () {
+    expect(depot.sonBonBac()).to.not.be(undefined);
+  });
+
+  it('retourne le son de mauvais bac', function () {
+    expect(depot.sonMauvaisBac()).to.not.be(undefined);
   });
 });
