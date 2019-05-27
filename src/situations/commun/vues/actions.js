@@ -24,10 +24,11 @@ export default class VueActions {
   afficheBoutons (etat, $) {
     const actionsEtat = new Map();
     actionsEtat.set(CONSIGNE_ECOUTEE, () => {
-      this.rejoueConsigne.affiche(this.$actions, $);
+      this.rejoueConsigne.affiche(this.$actions, $, this.situation);
     });
     actionsEtat.set(DEMARRE, () => {
       this.stop.affiche(this.$actions, $);
+      this.rejoueConsigne.affiche(this.$actions, $, this.situation);
     });
     const changements = actionsEtat.get(etat);
     if (changements) {
