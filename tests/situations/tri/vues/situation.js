@@ -3,7 +3,9 @@ import jsdom from 'jsdom-global';
 import VueSituation from 'tri/vues/situation';
 import Bac from 'commun/modeles/bac';
 import Situation from 'tri/modeles/situation';
-import Piece from 'commun/modeles/piece';
+import Piece, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
+import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
+import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 
 describe('La situation « Tri »', function () {
   let $;
@@ -24,6 +26,7 @@ describe('La situation « Tri »', function () {
       }
       piece () { }
     }();
+    journal = {};
     situation = new Situation({ pieces: [], bacs: [] });
     vueSituation = new VueSituation(situation, journal, mockDepotRessources);
     mockDeplaceurPieces = {
@@ -55,5 +58,45 @@ describe('La situation « Tri »', function () {
       done();
     };
     vueSituation.affiche('#point-insertion', $);
+  });
+
+  describe('avec une situation démarrée, une pièce et un journal', function () {
+    let piece;
+    let bac;
+
+    beforeEach(function () {
+      piece = new Piece({ categorie: 'bonbon1' });
+      bac = new Bac({ categorie: 'bonbon1' });
+      vueSituation.affiche('#point-insertion', $);
+    });
+
+    it('écoute les événements PIECE_BIEN_PLACEE pour les enregistrer dans le journal', function (done) {
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceBienPlacee);
+        expect(e.donnees()).to.eql({ piece: 'bonbon1', bac: 'bonbon1' });
+        done();
+      };
+      vueSituation.situation.emit(PIECE_BIEN_PLACEE, piece, bac);
+    });
+
+    it('écoute les événements PIECE_MAL_PLACEE pour les enregistrer dans le journal', function (done) {
+      bac.categorie = () => 'bonbon2';
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceMalPlacee);
+        expect(e.donnees()).to.eql({ piece: 'bonbon1', bac: 'bonbon2' });
+        done();
+      };
+      vueSituation.situation.emit(PIECE_MAL_PLACEE, piece, bac);
+    });
+
+    it('écoute les événements PIECE_MAL_PLACEE pour les enregistrer dans le journal sans bac', function (done) {
+      bac.categorie = () => 'bonbon2';
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceMalPlacee);
+        expect(e.donnees()).to.eql({ piece: 'bonbon1', bac: null });
+        done();
+      };
+      vueSituation.situation.emit(PIECE_MAL_PLACEE, piece, null);
+    });
   });
 });
