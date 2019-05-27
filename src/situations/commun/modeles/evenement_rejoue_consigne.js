@@ -1,7 +1,7 @@
 import Evenement from './evenement';
 
 export default class EvenementRejoueConsigne extends Evenement {
-  nom () {
-    return 'rejoueConsigne';
+  constructor (donnees = {}) {
+    super('rejoueConsigne', donnees);
   }
 }

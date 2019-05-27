@@ -1,10 +1,11 @@
 export default class Evenement {
-  constructor (donnees = {}) {
+  constructor (nom, donnees = {}) {
+    this._nom = nom;
     this._donnees = donnees;
   }
 
   nom () {
-    throw new Error('Pas implémenté');
+    return this._nom;
   }
 
   donnees () {

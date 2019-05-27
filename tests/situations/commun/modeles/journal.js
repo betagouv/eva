@@ -10,12 +10,6 @@ describe('le journal', function () {
   const sessionId = 42;
   const situation = 'inventaire';
 
-  class EvenementTest extends Evenement {
-    nom () {
-      return 'test';
-    }
-  }
-
   beforeEach(function () {
     mockMaintenant = () => { return 123; };
     mockDepot = new MockDepot();
@@ -24,7 +18,7 @@ describe('le journal', function () {
 
   it('enregistre un événement', function () {
     registre.consulte = () => 'identifiant utilisateur';
-    journal.enregistre(new EvenementTest());
+    journal.enregistre(new Evenement('test'));
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(1);
