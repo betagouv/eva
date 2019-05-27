@@ -2,26 +2,33 @@ import jsdom from 'jsdom-global';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
 import EvenementRejoueConsigne from 'commun/modeles/evenement_rejoue_consigne';
 import MockAudioNode from '../aides/mock_audio_node';
+import SituationCommune from 'commun/modeles/situation';
 
 describe('vue Rejoue Consigne', function () {
   let vue;
   let $;
   let journal;
   let mockDepotResources;
+  let situation;
 
   beforeEach(function () {
     jsdom('<div id="pointInsertion"></div>');
     $ = jQuery(window);
     journal = { enregistre () {} };
-
+    situation = new SituationCommune();
     mockDepotResources = new class {
       consigne () {
         this.derniereConsigneRetournee = new MockAudioNode();
         return this.derniereConsigneRetournee;
       }
 
+      consigneCommune () {
+        this.consigneCommune = new MockAudioNode();
+        return this.consigneCommune;
+      }
+
       finConsigne () {
-        $(this.derniereConsigneRetournee).trigger('ended');
+        $(this.consigneCommune).trigger('ended');
       }
     }();
 
@@ -29,33 +36,28 @@ describe('vue Rejoue Consigne', function () {
   });
 
   it("sait s'insérer dans une page web", function () {
-    vue.affiche('#pointInsertion', $);
+    vue.affiche('#pointInsertion', $, situation);
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
   });
 
   it('passe en état lecture en cours', function () {
-    vue.affiche('#pointInsertion', $);
+    vue.affiche('#pointInsertion', $, situation);
     vue.joueConsigne($);
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(0);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(1);
   });
 
   it("à la fin de la lecture, repasse à l'état initial", function () {
-    vue.affiche('#pointInsertion', $);
-    vue.joueConsigne($);
+    vue.affiche('#pointInsertion', $, situation);
     mockDepotResources.finConsigne();
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
   });
 
   it('on peut lire la consigne plusieurs fois', function () {
-    vue.affiche('#pointInsertion', $);
-    vue.joueConsigne($);
-    mockDepotResources.finConsigne();
-    vue.joueConsigne($);
+    vue.affiche('#pointInsertion', $, situation);
     mockDepotResources.finConsigne();
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
-    expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
   });
 
   it('journalise un événement RejoueConsigne', function (done) {
@@ -63,7 +65,7 @@ describe('vue Rejoue Consigne', function () {
       expect(evenement).to.be.a(EvenementRejoueConsigne);
       done();
     };
-    vue.affiche('#pointInsertion', $);
+    vue.affiche('#pointInsertion', $, situation);
     vue.joueConsigne($);
   });
 });
