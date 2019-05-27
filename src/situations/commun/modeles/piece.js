@@ -6,6 +6,7 @@ export const CHANGEMENT_SELECTION = 'changementSelection';
 export const DISPARITION_PIECE = 'disparitionPiece';
 
 export const PIECE_BIEN_PLACEE = 'pieceBienPlacée';
+export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
 
 export default class Piece extends EventEmitter {
   constructor ({ x, y, type, largeur, hauteur, categorie }) {

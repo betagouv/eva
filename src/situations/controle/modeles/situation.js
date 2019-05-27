@@ -1,9 +1,8 @@
-import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE, PIECE_BIEN_PLACEE } from 'commun/modeles/piece';
+import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
 import Bac from 'commun/modeles/bac';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
 export const NOUVELLE_PIECE = 'nouvellePiece';
-export const PIECE_MAL_PLACEE = 'pieceMalPlacée';
 export const PIECE_RATEE = 'pieceRatée';
 
 export default class Situation extends SituationCommune {

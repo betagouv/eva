@@ -1,4 +1,4 @@
-import { DISPARITION_PIECE, PIECE_BIEN_PLACEE } from 'commun/modeles/piece';
+import { DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Bac from 'commun/modeles/bac';
 import Situation from 'tri/modeles/situation';
@@ -58,6 +58,18 @@ describe('La situation « Tri »', function () {
     piece.deselectionne();
     expect(piece.position()).to.eql({ x: 4, y: 5 });
     expect(situation.resultat.erreurs).to.eql(1);
+  });
+
+  it("émet l'événement PIECE_MAL_PLACEE lorsque la pièce n'est pas dans son bac", function (done) {
+    const situation = new Situation({ pieces: [{ x: 4, y: 5 }], bacs: [{ x: 1, y: 2 }] });
+    const piece = situation.piecesAffichees()[0];
+    const bac = situation.bacs()[0];
+    situation.on(PIECE_MAL_PLACEE, (piece2, bac2) => {
+      expect(piece2).to.equal(piece);
+      expect(bac2).to.equal(bac);
+      done();
+    });
+    situation.comptabiliseErreur(piece, bac);
   });
 
   it('passe la situation en fin lorsque toutes les pièces ont été trié', function () {
