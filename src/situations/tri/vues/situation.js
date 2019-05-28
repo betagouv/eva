@@ -3,6 +3,9 @@ import VueBac from 'commun/vues/bac.js';
 import VuePiece from 'tri/vues/piece.js';
 import VueResultat from 'commun/vues/resultat.js';
 import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
+import chronometre from 'tri/assets/chronometre.png';
+import aiguilleSeconde from 'tri/assets/aiguille-seconde.png';
+import aiguilleMinute from 'tri/assets/aiguille-minute.png';
 
 export default class VueSituationTri {
   constructor (situation, journal, depotRessources) {
@@ -20,6 +23,10 @@ export default class VueSituationTri {
       const vuePiece = new VuePiece(piece, this.depotRessources);
       vuePiece.affiche(pointInsertion, $);
     });
+    $(pointInsertion).append('<div class="chronometre-container"></div>');
+    $('.chronometre-container').append(`<img class='chronometre' src=${chronometre}>`);
+    $('.chronometre-container').append(`<img class='aiguille-minute' src=${aiguilleMinute}>`);
+    $('.chronometre-container').append(`<img class='aiguille-seconde' src=${aiguilleSeconde}>`);
 
     this.situation.bacs().forEach((bac) => {
       const vueBac = new VueBac(bac);

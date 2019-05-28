@@ -38,6 +38,13 @@ describe('La situation « Tri »', function () {
     expect($('#point-insertion').css('background-image')).to.equal('url(image-de-fond)');
   });
 
+  it('affiche le chronometre', function () {
+    vueSituation.affiche('#point-insertion', $);
+    expect($('.chronometre-container', '#point-insertion').length).to.equal(1);
+    expect($('.aiguille-minute', '.chronometre-container').length).to.equal(1);
+
+  });
+
   it('affiche les pièces', function () {
     situation.piecesAffichees = () => [new Piece({ type: 'bonbon1' })];
     vueSituation.affiche('#point-insertion', $);

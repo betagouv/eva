@@ -3,3 +3,33 @@
   background-size: contain;
   background-position: center;
 }
+
+.chronometre-container {
+  width: 80px;
+  height: 115px;
+  position: absolute;
+  left: 46%;
+  top: 32%;
+  .chronometre {
+    width: 100%;
+  }
+  .aiguille-minute,
+  .aiguille-seconde {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .aiguille-minute {
+    animation: rotate 3660s infinite steps(60);
+  }
+  .aiguille-seconde {
+    animation: rotate 60s infinite steps(60);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
