@@ -31,7 +31,7 @@ export default class DepotRessourcesTri extends DepotRessourcesCommunes {
     return this.ressource(aiguilleLongue);
   }
   aiguilleCourte () {
-    return this. ressource(aiguilleCourte);
+    return this.ressource(aiguilleCourte);
   }
 
   piece (type) {

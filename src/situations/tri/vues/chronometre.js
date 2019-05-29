@@ -6,23 +6,23 @@ export default class VueChronometre {
   constructor (situation, depotRessources) {
     this.depotRessources = depotRessources;
     this.situation = situation;
-  }
-
-  affiche (pointInsertion, $) {
-    $(pointInsertion).prepend('<div class="chronometre"></div>')
-    $('.chronometre')
-      .css('background-image', `url('${this.depotRessources.fondChronometre().src}')`)
-      .append('<div class="minutes"></div>', '<div class="secondes"></div>');
-    $('.minutes').css('background-image', `url('${this.depotRessources.aiguilleLongue().src}')`);
-    $('.secondes').css('background-image', `url('${this.depotRessources.aiguilleCourte().src}')`);
-    this.changeEtat(pointInsertion, $);
-    this.situation.on(CHANGEMENT_ETAT, () => {
-      this.changeEtat(pointInsertion, $);
+    this.situation.on(CHANGEMENT_ETAT, (etat) => {
+      this.changeEtat(etat);
     });
   }
 
-  changeEtat (pointInsertion, $) {
+  affiche (pointInsertion, $) {
+    $(pointInsertion).append('<div class="chronometre-container"></div>');
+    this.chronometreConteneur = $('.chronometre-container');
+    const chronometreContenu = `<img class='chronometre' src="${this.depotRessources.fondChronometre().src}">
+                                <img class='aiguille-minute' src=${this.depotRessources.aiguilleLongue().src}>
+                                <img class='aiguille-seconde' src=${this.depotRessources.aiguilleCourte().src}>`;
+    this.chronometreConteneur.append(chronometreContenu);
+    this.changeEtat(pointInsertion, $);
+  }
+
+  changeEtat (etat) {
     const enMarche = this.situation.etat() === DEMARRE;
-    $('.chronometre', pointInsertion).toggleClass('en-marche', enMarche);
+    this.chronometreConteneur.toggleClass('actif', enMarche);
   }
 }
