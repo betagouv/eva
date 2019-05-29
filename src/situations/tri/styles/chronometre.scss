@@ -1,38 +1,31 @@
-.chronometre {
-  position: absolute;
-  margin: 16.8% 46%;
-  height: 6.6rem;
+.chronometre-container {
+  transform: translateX(-50%) translateY(-85%);
   width: 5rem;
-  background-size: cover;
-  z-index: 1;
-  .minutes {
-    position: absolute;
-    height: 5rem;
-    width: 1rem;
-    margin: -0.35rem 2rem;
-    transform-origin: 50% 90%;
-    background-size: cover;
-    transform: scale(.5);
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  .chronometre {
+    width: 100%;
   }
-  .secondes {
+  .aiguille-minute,
+  .aiguille-seconde {
+    width: 100%;
     position: absolute;
-    height: 3.6rem;
-    width: 1rem;
-    margin: 1.05rem 2rem;
-    transform-origin: 50% 87%;
-    background-size: cover;
-    transform: scale(.5);
+    transform: scale(1.1);
+    top: 0.625rem;
+    left: 0;
   }
-  &.en-marche {
-    .minutes {
-      animation: tick 30s steps(60, end) infinite;
+
+   &.actif {
+    .aiguille-minute {
+      animation: rotate 30s steps(60, end) infinite;
     }
-    .secondes {
-      animation: tick 2.5s steps(60, end) infinite;
+    .aiguille-seconde {
+      animation: rotate 2.5s steps(60, end) infinite;
     }
   }
 }
 
-@keyframes tick {
-  to { transform: scale(.5) rotate(360deg) }
+ @keyframes rotate {
+ to { transform: scale(1.1) rotateZ(360deg); }
 }
