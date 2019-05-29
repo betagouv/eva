@@ -14,4 +14,22 @@ export default class MockDepotRessources {
   sonMauvaisBac () {
     return new MockAudioNode();
   }
+
+  fondChronometre () {
+    return {
+      src: 'image-de-chronometre'
+    };
+  }
+
+  aiguilleLongue () {
+    return {
+      src: 'image-aiguille-longue'
+    };
+  }
+
+  aiguilleCourte () {
+    return {
+      src: 'image-aiguille-courte'
+    };
+  }
 }
