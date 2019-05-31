@@ -17,8 +17,8 @@ export default class VueSituation {
     this.situation = situation;
     this.journal = journal;
     this.depotRessources = depotRessources;
-    this.tapis = new VueTapis(situation);
-    this.fondSonore = new VueFondSonore(situation, this.depotRessources);
+    this.tapis = new VueTapis(situation, depotRessources);
+    this.fondSonore = new VueFondSonore(situation, depotRessources);
     this.resultat = new VueResultat(situation, 'controle');
     this.deplaceurPieces = new DeplaceurPieces(situation);
   }
