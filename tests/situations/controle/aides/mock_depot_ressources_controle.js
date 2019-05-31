@@ -4,4 +4,8 @@ export default class MockDepotRessources {
   fondSonore () {
     return new MockAudioNode();
   }
+
+  fondSituation () {
+    return { src: '' };
+  }
 }

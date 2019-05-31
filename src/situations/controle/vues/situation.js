@@ -33,7 +33,8 @@ export default class VueSituation {
       vueBac.affiche(pointInsertion, $);
     }
 
-    this.$situation = $(pointInsertion);
+    this.$situation = $(pointInsertion)
+      .css('background-image', `url('${this.depotRessources.fondSituation().src}')`);
     this.$situation.addClass('controle');
 
     this.situation.bacs().forEach(afficheBac);
