@@ -13,12 +13,19 @@ function vueSituationMinimaliste (journal) {
   return new VueSituation(situation, journal, new MockDepotRessourcesControle());
 }
 
-describe('La situation « Contrôle »', function () {
+describe('La vue de la situation « Contrôle »', function () {
   let $;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
+  });
+
+  it('affiche le fond', function () {
+    const vueSituation = vueSituationMinimaliste();
+    vueSituation.depotRessources.fondSituation = () => { return { src: 'image-de-fond' }; };
+    vueSituation.affiche('#point-insertion', $);
+    expect($('#point-insertion').css('background-image')).to.equal('url(image-de-fond)');
   });
 
   it('affiche les bacs et le tapis', function () {
