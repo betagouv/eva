@@ -8,4 +8,8 @@ export default class MockDepotRessources {
   fondSituation () {
     return { src: '' };
   }
+
+  tapis () {
+    return { src: '' };
+  }
 }
