@@ -10,8 +10,8 @@ describe('vue contenu', function () {
   let element;
 
   beforeEach(function () {
-    jsdom('<div id="stock"></div>');
-    let pointInsertion = document.getElementById('stock');
+    jsdom('<div id="point-insertion"></div>');
+    let pointInsertion = document.getElementById('point-insertion');
     vue = new VueContenu(pointInsertion);
     calque = document.getElementById('calque');
     element = vue.element;
@@ -19,6 +19,7 @@ describe('vue contenu', function () {
 
   it("initialise un contenu invisible tant que le contenant n'est pas ouvert", function () {
     expect(calque.classList).to.contain('invisible');
+    expect(element.classList).to.contain('invisible');
   });
 
   it("sait s'afficher puis se cacher", function (done) {
@@ -27,13 +28,19 @@ describe('vue contenu', function () {
     vue.element.dispatchEvent(new Event('load'));
 
     expect(calque.classList).to.not.contain('invisible');
+    expect(vue.element.classList).to.not.contain('invisible');
 
     calque.dispatchEvent(new Event('click'));
 
     setTimeout(() => {
       expect(calque.classList).to.contain('invisible');
+      expect(vue.element.classList).to.contain('invisible');
       done();
     }, DELAY_FERMETURE_CONTENANT_MILLISEC);
+  });
+
+  it("ajoute le calque après l'element pour qu'il soit devant", function () {
+    expect(document.querySelector('.contenu + .calque')).to.not.be(null);
   });
 
   describe('position()', function () {
