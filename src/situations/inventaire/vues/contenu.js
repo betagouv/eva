@@ -9,7 +9,6 @@ export default class VueContenu {
   constructor (pointInsertion) {
     this.calque = document.createElement('div');
     this.calque.id = 'calque';
-    pointInsertion.appendChild(this.calque);
     this.calque.classList.add('calque', 'invisible');
     this.calque.addEventListener('click', (event) => {
       this.element.classList.replace('ouvrir', 'fermer');
@@ -20,8 +19,9 @@ export default class VueContenu {
       event.stopPropagation();
     });
     this.element = document.createElement('img');
-    this.element.classList.add('contenu', 'fermer');
+    this.element.classList.add('contenu', 'fermer', 'invisible');
     pointInsertion.appendChild(this.element);
+    pointInsertion.appendChild(this.calque);
   }
 
   position (position, dimensionFermee, dimensionOuvert) {
