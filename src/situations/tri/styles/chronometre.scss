@@ -11,7 +11,7 @@
   .aiguille-seconde {
     width: 100%;
     position: absolute;
-    transform: scale(1.1);
+    transform: scale(1.1) rotateZ(0deg);
     top: 0.5rem;
     left: 0;
   }
@@ -26,6 +26,6 @@
   }
 }
 
- @keyframes rotate {
- to { transform: scale(1.1) rotateZ(360deg); }
+@keyframes rotate {
+  to { transform: scale(1.1) rotateZ(360deg); }
 }
