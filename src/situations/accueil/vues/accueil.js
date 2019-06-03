@@ -1,3 +1,5 @@
+import 'accueil/styles/accueil.scss';
+
 import FormulaireIdentification from './formulaire_identification';
 
 export default class VueAccueil {
@@ -9,25 +11,29 @@ export default class VueAccueil {
   affiche (pointInsertion, $) {
     function creeElementSituation (situation) {
       return $(`
-        <li>
-          <a href="${situation.chemin}" class='bouton'>
-            ${situation.nom}
-            <i class="fas fa-caret-right"></i>
-          </a>
-        </li>
+        <a href="${situation.chemin}" class='situation ${situation.identifiant}'>
+          ${situation.nom}
+        </a>
       `);
     }
 
     function creeElementListe (situations) {
-      const $liste = $(`<ul></ul>`);
+      const $liste = $(`<div class='situations'></div>`);
       const $elementsSituation = situations.map(s => { return creeElementSituation(s); });
       $liste.append(...$elementsSituation);
       return $liste;
     }
-    const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
+
+    function creeTitre (registreUtilisateur) {
+      const $titre = $("<div class='titre'></div>");
+      $($titre).append('<h1>Compétences pro</h1>');
+      const formulaireIdentification = new FormulaireIdentification(registreUtilisateur);
+      formulaireIdentification.affiche($titre, $);
+      return $titre;
+    }
+
     const $situations = creeElementListe(this.situations);
-    $(pointInsertion).append('<h1>Compétences pro</h1>');
-    formulaireIdentification.affiche(pointInsertion, $);
-    $(pointInsertion).append($situations);
+    const $titre = creeTitre(this.registreUtilisateur);
+    $(pointInsertion).append($titre, $situations);
   }
 }

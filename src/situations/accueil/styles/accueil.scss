@@ -1,0 +1,57 @@
+@import 'commun/styles/couleurs.scss';
+
+#accueil {
+  display: flex;
+  flex-direction: column;
+
+  .titre {
+    display: flex;
+    align-items: baseline;
+
+    form {
+      text-align: right;
+      flex-grow: 1;
+    }
+  }
+
+  .situations {
+    background-image: url('../assets/fond-accueil.jpg');
+    background-size: contain;
+    height: 35.375rem;
+    position: relative;
+  }
+
+  .situation {
+    display: block;
+    position: absolute;
+    font-size: 0;
+
+    &:hover {
+      filter: drop-shadow(0 0 20px white);
+    }
+
+    &.tri {
+      background-image: url('../assets/tri.png');
+      height: 219px;
+      width: 227px;
+      left: 610px;
+      top: 30px;
+    }
+
+    &.inventaire {
+      background-image: url('../assets/inventaire.png');
+      height: 214px;
+      width: 248px;
+      left: 210px;
+      top: 30px;
+    }
+
+    &.controle {
+      background-image: url('../assets/controle.png');
+      height: 303px;
+      width: 272px;
+      left: 320px;
+      top: 135px;
+    }
+  }
+}
