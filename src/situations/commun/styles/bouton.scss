@@ -78,38 +78,6 @@
   cursor: default;
 }
 
-.bouton {
-  display: block;
-  width: 20rem;
-  border-radius: .5rem;
-  padding: 1.5rem;
-  background-color: $couleur-fond-bouton;
-  text-decoration: none;
-
-  font-size: 1.125rem;
-  font-weight: bold;
-  border: solid 2px $couleur-bordure-bouton;
-  color: $couleur-principale-bouton;
-
-  &:hover {
-    border-color: $couleur-bordure-bouton-focus;
-    background-color: $couleur-fond-bouton-focus;
-    color: $couleur-texte;
-  }
-
-  &:active {
-    border-color: $couleur-principale-bouton;
-    background-color: $couleur-fond-bouton-focus;
-    color: $couleur-principale-bouton;
-  }
-
-  i {
-    float: right;
-    transform: scale(1.5);
-
-  }
-}
-
 .bouton-et-etiquette {
   display: flex;
   align-items: center;
