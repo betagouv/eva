@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import VueErreurChargement from 'commun/vues/erreur_chargement';
 import { traduction } from 'commun/infra/internationalisation';

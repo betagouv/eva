@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import VueAccueil from 'accueil/vues/accueil';
 

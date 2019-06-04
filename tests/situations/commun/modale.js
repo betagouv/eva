@@ -1,4 +1,6 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
+
 import { afficheFenetreModale } from 'commun/vues/modale';
 
 describe('fenetre modale', function () {

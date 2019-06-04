@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 import VueTerminer from 'commun/vues/terminer.js';
 
 describe('Affiche les éléments liés à la fin de la situation', function () {

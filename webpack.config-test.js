@@ -49,7 +49,6 @@ var config = {
 
   plugins: [
     new CleanWebpackPlugin(),
-    new webpack.ProvidePlugin({ jQuery: 'jquery' }),
     new webpack.ProvidePlugin({ expect: ['expect.js'] })
   ]
 };

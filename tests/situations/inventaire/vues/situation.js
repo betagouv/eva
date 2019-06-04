@@ -1,4 +1,6 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
+
 import { unMagasinVide } from '../aides/magasin';
 import VueSituation from 'inventaire/vues/situation';
 

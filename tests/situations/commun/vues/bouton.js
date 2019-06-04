@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 import VueBouton from 'commun/vues/bouton';
 
 describe('vue Bouton', function () {

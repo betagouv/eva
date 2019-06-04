@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle';
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';

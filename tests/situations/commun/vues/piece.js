@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import Piece, { DISPARITION_PIECE } from 'commun/modeles/piece';
 import VuePiece from 'commun/vues/piece';

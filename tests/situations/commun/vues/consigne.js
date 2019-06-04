@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import MockAudioNode from '../aides/mock_audio_node';
 

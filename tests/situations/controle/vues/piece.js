@@ -1,4 +1,6 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
+
 import Piece from 'commun/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
