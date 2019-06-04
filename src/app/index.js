@@ -1,3 +1,5 @@
+import jQuery from 'jquery';
+
 import 'accueil/styles/app.scss';
 
 import { situations } from 'src/situations';

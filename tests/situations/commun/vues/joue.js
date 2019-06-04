@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import Situation, { LECTURE_CONSIGNE, CONSIGNE_ECOUTEE } from 'commun/modeles/situation';
 import Joue from 'commun/vues/joue';

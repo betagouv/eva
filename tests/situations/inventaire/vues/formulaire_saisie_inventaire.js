@@ -1,3 +1,6 @@
+import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
+
 import { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 import Contenant from 'inventaire/modeles/contenant';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaire_saisie_inventaire';
@@ -5,8 +8,6 @@ import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouv
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 
 import { unMagasin, unMagasinVide } from '../aides/magasin';
-
-let jsdom = require('jsdom-global');
 
 describe("Le formulaire de saisie d'inventaire", function () {
   let $;

@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Situation from 'tri/modeles/situation';

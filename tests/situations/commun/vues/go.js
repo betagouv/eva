@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import VueGo from 'commun/vues/go';
 import Situation, { DEMARRE } from 'commun/modeles/situation';

@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import Situation, { FINI } from 'commun/modeles/situation';
 import VueResultat from 'commun/vues/resultat';

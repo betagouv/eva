@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import VueActions from 'commun/vues/actions';
 import SituationCommune, { CONSIGNE_ECOUTEE, DEMARRE } from 'commun/modeles/situation';

@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 
 import VueChargement from 'commun/vues/chargement';
 import Situation, { CHARGEMENT, ATTENTE_DEMARRAGE, ERREUR_CHARGEMENT } from 'commun/modeles/situation';

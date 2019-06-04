@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 
 describe("Le formulaire d'identification", function () {

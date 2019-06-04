@@ -1,4 +1,5 @@
 import jsdom from 'jsdom-global';
+import jQuery from 'jquery';
 import VueStop from 'commun/vues/stop';
 import EvenementStop from 'commun/modeles/evenement_stop';
 import Situation, { STOPPEE } from 'commun/modeles/situation';

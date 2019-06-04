@@ -1,4 +1,5 @@
 import uuidv4 from 'uuid/v4';
+import jQuery from 'jquery';
 
 import DepotJournal from 'commun/infra/depot_journal';
 import Journal from 'commun/modeles/journal';
