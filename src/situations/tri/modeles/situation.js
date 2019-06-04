@@ -22,7 +22,8 @@ export default class Situation extends SituationCommune {
       piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
         if (!selectionnee) {
           const bac = this.bacs().find((bac) => bac.contient(piece));
-          if (bac && bac.correspondALaCategorie(piece)) {
+          if (!bac) return;
+          if (bac.correspondALaCategorie(piece)) {
             this.faitDisparaitreLaPiece(piece, bac);
           } else {
             this.comptabiliseErreur(piece, bac);

@@ -52,12 +52,25 @@ describe('La situation « Tri »', function () {
     const situation = new Situation({ pieces: [{ x: 4, y: 5 }], bacs: [{ x: 1, y: 2 }] });
     const bac = situation.bacs()[0];
     const piece = situation.piecesAffichees()[0];
-    bac.contient = () => false;
+    bac.contient = () => true;
+    bac.correspondALaCategorie = () => false;
     piece.selectionne({ x: 0, y: 0 });
     piece.deplaceSiSelectionnee({ x: 10, y: 20 });
     piece.deselectionne();
     expect(piece.position()).to.eql({ x: 4, y: 5 });
     expect(situation.resultat.erreurs).to.eql(1);
+  });
+
+  it("ne déplace pas la pièce si elle n'est pas dans un bac", function () {
+    const situation = new Situation({ pieces: [{ x: 4, y: 5 }], bacs: [{ x: 1, y: 2 }] });
+    const bac = situation.bacs()[0];
+    const piece = situation.piecesAffichees()[0];
+    bac.contient = () => false;
+    piece.selectionne({ x: 0, y: 0 });
+    piece.deplaceSiSelectionnee({ x: 10, y: 20 });
+    piece.deselectionne();
+    expect(piece.position()).to.eql({ x: 14, y: 25 });
+    expect(situation.resultat.erreurs).to.eql(0);
   });
 
   it("émet l'événement PIECE_MAL_PLACEE lorsque la pièce n'est pas dans son bac", function (done) {
