@@ -3,10 +3,10 @@ import 'inventaire/styles/contenu.scss';
 
 // Attention de maintenir la cohérence avec le temps
 // de la transition css (class contenu)
-export const DELAY_FERMETURE_CONTENANT_MILLISEC = 400;
+const DELAI_FERMETURE_CONTENANT_MILLISEC = 400;
 
 export default class VueContenu {
-  constructor (pointInsertion) {
+  constructor (pointInsertion, delaiFermeture = DELAI_FERMETURE_CONTENANT_MILLISEC) {
     this.calque = document.createElement('div');
     this.calque.id = 'calque';
     this.calque.classList.add('calque', 'invisible');
@@ -15,7 +15,7 @@ export default class VueContenu {
       setTimeout(() => {
         this.calque.classList.add('invisible');
         this.element.classList.add('invisible');
-      }, DELAY_FERMETURE_CONTENANT_MILLISEC);
+      }, delaiFermeture);
       event.stopPropagation();
     });
     this.element = document.createElement('img');
