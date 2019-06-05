@@ -1,28 +1,31 @@
 import 'accueil/styles/accueil.scss';
-
 import FormulaireIdentification from './formulaire_identification';
 
 export default class VueAccueil {
-  constructor (situations, registreUtilisateur) {
+  constructor (situations, registreUtilisateur, depotRessources) {
     this.situations = situations;
     this.registreUtilisateur = registreUtilisateur;
+    this.depotRessources = depotRessources;
   }
 
   affiche (pointInsertion, $) {
-    function creeElementSituation (situation) {
-      return $(`
+    const creeElementSituation = (situation) => {
+      const $situation = $(`
         <a href="${situation.chemin}" class='situation ${situation.identifiant}'>
           ${situation.nom}
         </a>
       `);
-    }
+      $situation.css('background-image', `url('${this.depotRessources.batimentSituation(situation.identifiant).src}')`);
+      return $situation;
+    };
 
-    function creeElementListe (situations) {
+    const creeElementListe = (situations) => {
       const $liste = $(`<div class='situations'></div>`);
-      const $elementsSituation = situations.map(s => { return creeElementSituation(s); });
+      $liste.css('background-image', `url('${this.depotRessources.fondAccueil().src}')`);
+      const $elementsSituation = situations.map((s) => { return creeElementSituation(s); });
       $liste.append(...$elementsSituation);
       return $liste;
-    }
+    };
 
     function creeTitre (registreUtilisateur) {
       const $titre = $("<div class='titre'></div>");
