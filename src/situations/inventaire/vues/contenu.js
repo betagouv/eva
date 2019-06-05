@@ -35,12 +35,10 @@ export default class VueContenu {
     this.element.style.height = contenant.dimensionsOuvert.hauteur + '%';
     this.element.style.width = contenant.dimensionsOuvert.largeur + '%';
 
-    this.element.addEventListener('load', () => {
-      this.calque.classList.remove('invisible');
-      this.element.classList.remove('invisible');
-      setTimeout(() => {
-        this.element.classList.replace('fermer', 'ouvrir');
-      }, 50);
-    });
+    this.calque.classList.remove('invisible');
+    this.element.classList.remove('invisible');
+    setTimeout(() => {
+      this.element.classList.replace('fermer', 'ouvrir');
+    }, 50);
   }
 }
