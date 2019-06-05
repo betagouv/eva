@@ -15,10 +15,10 @@
   }
 
   .situations {
-    background-image: url('../assets/fond-accueil.jpg');
     background-size: contain;
-    height: 35.375rem;
+    height: 566px;
     position: relative;
+    background-repeat: no-repeat;
   }
 
   .situation {
@@ -31,7 +31,6 @@
     }
 
     &.tri {
-      background-image: url('../assets/tri.png');
       height: 219px;
       width: 227px;
       left: 610px;
@@ -39,7 +38,6 @@
     }
 
     &.inventaire {
-      background-image: url('../assets/inventaire.png');
       height: 214px;
       width: 248px;
       left: 210px;
@@ -47,7 +45,6 @@
     }
 
     &.controle {
-      background-image: url('../assets/controle.png');
       height: 303px;
       width: 272px;
       left: 320px;
