@@ -35,7 +35,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
       <li>
         <label>${produit.nom}</label>
         <span class='saisie'>
-          <input id="${idProduit}" type="text" placeholder= "${traduction('inventaire.placeholder')}">
+          <input id="${idProduit}" type="text" maxlength="2" placeholder="${traduction('inventaire.placeholder')}">
         </span>
         <div class="image-produit">
           <img src='${produit.image}' class="${produit.forme}">
