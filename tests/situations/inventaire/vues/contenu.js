@@ -1,18 +1,19 @@
 /* global Event */
 
 import Contenant from 'inventaire/modeles/contenant';
-import VueContenu, { DELAY_FERMETURE_CONTENANT_MILLISEC } from 'inventaire/vues/contenu';
+import VueContenu from 'inventaire/vues/contenu';
 import jsdom from 'jsdom-global';
 
 describe('vue contenu', function () {
   let vue;
   let calque;
   let element;
+  const DELAI_FERMETURE = 3;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     let pointInsertion = document.getElementById('point-insertion');
-    vue = new VueContenu(pointInsertion);
+    vue = new VueContenu(pointInsertion, DELAI_FERMETURE);
     calque = document.getElementById('calque');
     element = vue.element;
   });
@@ -35,7 +36,7 @@ describe('vue contenu', function () {
       expect(calque.classList).to.contain('invisible');
       expect(vue.element.classList).to.contain('invisible');
       done();
-    }, DELAY_FERMETURE_CONTENANT_MILLISEC);
+    }, DELAI_FERMETURE);
   });
 
   it("ajoute le calque après l'element pour qu'il soit devant", function () {
