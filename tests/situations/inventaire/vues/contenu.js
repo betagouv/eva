@@ -25,7 +25,6 @@ describe('vue contenu', function () {
   it("sait s'afficher puis se cacher", function (done) {
     const contenant = new Contenant({ idProduit: '0', quantite: 1, dimensionsOuvert: { largeur: 33, hauteur: 33 } });
     vue.affiche(contenant);
-    vue.element.dispatchEvent(new Event('load'));
 
     expect(calque.classList).to.not.contain('invisible');
     expect(vue.element.classList).to.not.contain('invisible');
@@ -53,7 +52,6 @@ describe('vue contenu', function () {
     it("sait afficher l'image du contenant ouvert", function () {
       const contenant = new Contenant({ imageOuvert: 'image_contenant', dimensionsOuvert: { largeur: 33, hauteur: 33 } }, { nom: 'Nova Sky' });
       vue.affiche(contenant);
-      vue.element.dispatchEvent(new Event('load'));
 
       expect(element.src).to.eql('image_contenant');
     });
