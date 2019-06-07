@@ -15,16 +15,16 @@
   }
 
   .situations {
-    background-size: contain;
     height: 566px;
     position: relative;
-    background-repeat: no-repeat;
+    background: center / contain no-repeat;
   }
 
   .situation {
     display: block;
     position: absolute;
     font-size: 0;
+    background: center / contain no-repeat;
 
     &:hover {
       filter: drop-shadow(0 0 20px white);
@@ -33,22 +33,22 @@
     &.tri {
       height: 219px;
       width: 227px;
-      left: 610px;
-      top: 30px;
+      left: 624px;
+      top: 37px;
     }
 
     &.inventaire {
       height: 214px;
       width: 248px;
-      left: 210px;
-      top: 30px;
+      left: 216px;
+      top: 31px;
     }
 
     &.controle {
       height: 303px;
       width: 272px;
-      left: 320px;
-      top: 135px;
+      left: 328px;
+      top: 138px;
     }
   }
 }
