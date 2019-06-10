@@ -65,7 +65,6 @@ export default class Situation extends SituationCommune {
 
       this.faisApparaitreLaNouvellePiece();
     };
-    afficheProchainePiece();
     this.identifiantIntervalle = setInterval(
       afficheProchainePiece,
       this.cadence
