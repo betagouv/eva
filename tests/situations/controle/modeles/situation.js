@@ -45,11 +45,11 @@ describe('La situation « Contrôle »', function () {
     expect(piece.position()).to.eql({ x: 25, y: 50 });
   });
 
-  it('démarre la situation et ajoute la piece dans les pieces en cours', function () {
+  it("démarre la situation mais n'ajoute pas immediatement une piece dans les pieces en cours", function () {
     const situation = creeSituationMinimale();
     expect(situation.piecesAffichees().length).to.eql(0);
     situation.demarre();
-    expect(situation.piecesAffichees().length).to.eql(1);
+    expect(situation.piecesAffichees().length).to.eql(0);
   });
 
   it("démarre la situation et déclenche un événement a l'ajout de la piece dans les pieces en cours", function (done) {
