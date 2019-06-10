@@ -53,6 +53,7 @@
     "@fortawesome/fontawesome-free": "^5.8.2",
     "i18next": "^15.1.3",
     "jquery": "^3.4.1",
+    "rollbar": "^2.7.1",
     "uuid": "^3.3.2"
   },
   "semistandard": {
