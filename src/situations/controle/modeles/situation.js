@@ -8,7 +8,7 @@ export const PIECE_RATEE = 'pieceRatée';
 export default class Situation extends SituationCommune {
   constructor ({ cadence, scenario, bacs = [], dureeViePiece, positionApparitionPieces }) {
     super();
-    this.cadence = cadence;
+    this._cadence = cadence;
     this.scenario = scenario;
     this.positionApparition = positionApparitionPieces;
     this._dureeViePiece = dureeViePiece;
@@ -19,10 +19,6 @@ export default class Situation extends SituationCommune {
     };
     this._piecesAffichees = [];
     this._bacs = bacs.map((bac) => new Bac(bac));
-  }
-
-  cadenceArriveePieces () {
-    return this.cadence;
   }
 
   dureeViePiece () {
@@ -67,7 +63,7 @@ export default class Situation extends SituationCommune {
     };
     this.identifiantIntervalle = setInterval(
       afficheProchainePiece,
-      this.cadence
+      this._cadence
     );
   }
 
