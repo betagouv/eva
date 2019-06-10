@@ -12,7 +12,8 @@ const situation = new Situation({
   bacs,
   cadence: 5000,
   positionApparitionPieces: { x: 100, y: 64.5 },
-  dureeViePiece: 12000
+  dureeViePiece: 12000,
+  sequenceKlaxons: [28000, 70000, 30000, 3000, 60000, 40000]
 });
 
 const depotRessources = new DepotRessourcesControle();
