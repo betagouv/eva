@@ -5,13 +5,13 @@
   position: absolute;
   background: $blanc;
   outline: none;
-  bottom: 15%;
-  right: 13.3%;
+  bottom: 12%;
+  right: 15.3%;
   border: .5rem solid $couleur-fond-bouton-bleu;
   border-radius: .75rem;
   font-size: 1rem;
   box-shadow: 0 .5rem .625rem 0 $couleur-ombre;
-  padding: .7rem .875rem;
+  padding: 0rem;
 
   &:hover {
     border-color: $couleur-bordure-bouton-focus;
