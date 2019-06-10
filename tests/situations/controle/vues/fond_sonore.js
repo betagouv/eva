@@ -1,49 +1,99 @@
 import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
 
-import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle';
+import MockAudioNode from '../../commun/aides/mock_audio_node';
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Situation from 'controle/modeles/situation';
 import VueFondSonore from 'controle/vues/fond_sonore';
 
 describe('Le fond sonore', () => {
-  let $;
   let situation;
   let vue;
 
   beforeEach(() => {
     jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
-    window.Audio = class {
-      play () {}
-      pause () {}
-    };
-    situation = new Situation({});
-    vue = new VueFondSonore(situation, new MockDepotRessourcesControle());
   });
 
-  it("ne joue rien a l'affichage", () => {
-    let jouee = 0;
-    vue.audio.start = e => jouee++;
-    vue.affiche('#pointInsertion', $);
-    expect(jouee).to.equal(0);
+  describe('joue le bruit du tapis', () => {
+    beforeEach(() => {
+      situation = new Situation({
+        sequenceKlaxons: []
+      });
+      const mockDepotRessource = new class {
+        fondSonore () {
+          return new MockAudioNode();
+        }
+      }();
+      vue = new VueFondSonore(situation, mockDepotRessource);
+    });
+
+    it("ne joue rien a l'affichage", () => {
+      let jouee = 0;
+      vue.audio.start = e => jouee++;
+      vue.affiche('#pointInsertion');
+      expect(jouee).to.equal(0);
+    });
+
+    it("joue a l'état DEMARRE", () => {
+      let jouee = 0;
+      vue.audio.start = e => jouee++;
+      situation.modifieEtat(DEMARRE);
+      vue.affiche('#pointInsertion');
+
+      expect(jouee).to.equal(1);
+    });
+
+    it("stoppe lorsque c'est fini", () => {
+      let stope = 0;
+      vue.audio.stop = e => stope++;
+      vue.affiche('#pointInsertion');
+      situation.modifieEtat(FINI);
+      expect(stope).to.equal(1);
+    });
   });
 
-  it("joue le fond sonore a l'état DEMARRE", () => {
-    let jouee = 0;
-    vue.audio.start = e => jouee++;
-    situation.modifieEtat(DEMARRE);
-    vue.affiche('#pointInsertion', $);
+  describe('joue les klaxons', () => {
+    let audioKlaxon;
 
-    expect(jouee).to.equal(1);
-  });
+    beforeEach(() => {
+      situation = new Situation({
+        sequenceKlaxons: [1, 1]
+      });
+      audioKlaxon = new MockAudioNode();
+      const mockDepotRessource = new class {
+        fondSonore () {
+          return new MockAudioNode();
+        }
 
-  it("stoppe le fond sonore lorsque c'est fini", () => {
-    let stope = 0;
-    vue.audio.stop = e => stope++;
-    situation.modifieEtat(DEMARRE);
-    vue.affiche('#pointInsertion', $);
-    situation.modifieEtat(FINI);
-    expect(stope).to.equal(1);
+        klaxon () {
+          return audioKlaxon;
+        }
+      }();
+      vue = new VueFondSonore(situation, mockDepotRessource);
+    });
+
+    it("joue a l'état DEMARRE", (done) => {
+      let jouee = 0;
+      audioKlaxon.start = e => jouee++;
+      situation.modifieEtat(DEMARRE);
+      vue.affiche('#pointInsertion');
+
+      setTimeout(() => {
+        expect(jouee).to.equal(2);
+        done();
+      }, 5);
+    });
+
+    it("stoppe si c'est fini", function (done) {
+      let jouee = 0;
+      audioKlaxon.start = e => jouee++;
+      situation.modifieEtat(DEMARRE);
+      vue.affiche('#pointInsertion');
+      situation.modifieEtat(FINI);
+
+      setTimeout(() => {
+        expect(jouee).to.equal(0);
+        done();
+      }, 5);
+    });
   });
 });
