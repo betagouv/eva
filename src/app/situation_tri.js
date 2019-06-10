@@ -6,7 +6,7 @@ import DepotRessourcesTri from 'tri/infra/depot_ressources_tri';
 import Situation from 'tri/modeles/situation';
 import VueSituation from 'tri/vues/situation';
 
-import scenario from 'tri/data/pieces.js';
+import scenario from 'tri/data/pieces';
 
 const situation = new Situation(scenario);
 
