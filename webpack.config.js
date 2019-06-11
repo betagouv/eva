@@ -115,7 +115,7 @@ module.exports = {
       inject: 'head'
     }),
     ...templatesSituations,
-    new webpack.EnvironmentPlugin(['URL_SERVEUR', 'AFFICHE_BARRE_DEV']),
+    new webpack.EnvironmentPlugin(['URL_SERVEUR', 'AFFICHE_BARRE_DEV', 'JETON_CLIENT_ROLLBAR']),
     new FaviconsWebpackPlugin('./src/public/favicon.svg')
   ],
   devServer: {

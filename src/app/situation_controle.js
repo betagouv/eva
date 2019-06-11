@@ -1,5 +1,7 @@
 import 'commun/styles/situation.scss';
 
+import 'commun/infra/report_erreurs';
+
 import { afficheSituation } from 'commun/vues/affiche_situation';
 import DepotRessourcesControle from 'controle/infra/depot_ressources_controle';
 import Situation from 'controle/modeles/situation';
