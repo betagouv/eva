@@ -1,5 +1,5 @@
 import jsdom from 'jsdom-global';
-import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
+import RegistreUtilisateur, { CHANGEMENT_NOM } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
   beforeEach(function () {
@@ -10,5 +10,11 @@ describe('le registre utilisateur', function () {
     const registre = new RegistreUtilisateur();
     registre.inscris('test');
     expect(registre.consulte()).to.eql('test');
+  });
+
+  it("émet un événement lorsque le nom de l'utilisateur change", function (done) {
+    const registre = new RegistreUtilisateur();
+    registre.on(CHANGEMENT_NOM, done);
+    registre.inscris('test');
   });
 });
