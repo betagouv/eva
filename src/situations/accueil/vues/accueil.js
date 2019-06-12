@@ -27,16 +27,16 @@ export default class VueAccueil {
       return $liste;
     };
 
-    function creeTitre (registreUtilisateur) {
+    function creeTitre () {
       const $titre = $("<div class='titre'></div>");
       $($titre).append('<h1>Compétences pro</h1>');
-      const formulaireIdentification = new FormulaireIdentification(registreUtilisateur);
-      formulaireIdentification.affiche($titre, $);
       return $titre;
     }
 
     const $situations = creeElementListe(this.situations);
-    const $titre = creeTitre(this.registreUtilisateur);
+    const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
+    formulaireIdentification.affiche($situations, $);
+    const $titre = creeTitre();
     $(pointInsertion).append($titre, $situations);
   }
 }

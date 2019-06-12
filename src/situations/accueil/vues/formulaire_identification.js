@@ -1,3 +1,4 @@
+import 'accueil/styles/formulaire_identification.scss';
 import { traduction } from 'commun/infra/internationalisation';
 
 export default class FormulaireIdentification {
@@ -9,11 +10,14 @@ export default class FormulaireIdentification {
     function creeGabarit (registre) {
       const identifiantActuel = registre.consulte() || '';
       const $resultat = $(`
-        <form id="formulaire-identification">
+        <form class="formulaire-identification" id="formulaire-identification">
+          <h2>${traduction('accueil.identification.titre')}</h2>
           <label>
-            ${traduction('accueil.identification.label')}
+            <span>${traduction('accueil.identification.label')}</span>
+            <br />
             <input type="text" value="${identifiantActuel}">
           </label>
+          <button class="bouton-demarrer">${traduction('accueil.identification.boutton')}</button>
         </form>
       `);
 
