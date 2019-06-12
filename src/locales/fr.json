@@ -6,7 +6,9 @@
   "seconde_plural": "{{count}} secondes",
   "accueil": {
     "identification": {
-      "label": "Entrez votre nom ou pseudo"
+      "boutton": "Démarrer",
+      "label": "Entrez votre nom et prénom",
+      "titre": "Bienvenue !"
     },
     "titre": "Compétences pro"
   },
