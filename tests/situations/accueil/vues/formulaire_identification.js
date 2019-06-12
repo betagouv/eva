@@ -42,12 +42,12 @@ describe("Le formulaire d'identification", function () {
     expect($('#formulaire input[type=text]').val()).to.equal('');
   });
 
-  it('sauvegarde la valeur rentrée', function (done) {
+  it("sauvegarde la valeur rentrée à l'appui sur le bouton", function (done) {
     registreUtilisateur.inscris = (identifiantUtilisateur) => {
       expect(identifiantUtilisateur).to.equal('Mon pseudo');
       done();
     };
     vue.affiche('#formulaire', $);
-    $('#formulaire input[type=text]').val('Mon pseudo').trigger('input');
+    $('#formulaire input[type=text]').val('Mon pseudo').trigger('submit');
   });
 });
