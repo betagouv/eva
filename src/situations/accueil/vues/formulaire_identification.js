@@ -25,7 +25,7 @@ export default class FormulaireIdentification {
     }
 
     const $gabarit = creeGabarit(this.registreUtilisateur);
-    $('input', $gabarit).on('input', (e) => {
+    $gabarit.on('submit', (e) => {
       e.preventDefault();
       const identifiantUtilisateur = $('input[type=text]', $gabarit).val();
       this.registreUtilisateur.inscris(identifiantUtilisateur);
