@@ -34,7 +34,7 @@ describe("Le formulaire d'identification", function () {
     expect($('#formulaire input[type=text]').val()).to.equal('mon identifiant actuel');
   });
 
-  it("affiche une chaîne vide lorsqu'aucun utilisateur n'est identifié", function () {
+  it("affiche une chaîne vide lorsqu'aucun utilisateur n'est pas identifié", function () {
     registreUtilisateur.consulte = () => {
       return null;
     };
@@ -49,6 +49,12 @@ describe("Le formulaire d'identification", function () {
     };
     vue.affiche('#formulaire', $);
     $('#formulaire input[type=text]').val('Mon pseudo').trigger('submit');
+  });
+
+  it('ne sauvegarde pas la valeur rentrée si elle est vide', function () {
+    registreUtilisateur.inscris = () => { throw new Error('ne devrait pas être appellé'); };
+    vue.affiche('#formulaire', $);
+    $('#formulaire input[type=text]').val('').trigger('submit');
   });
 
   it('permet de supprimer son affichage', function () {

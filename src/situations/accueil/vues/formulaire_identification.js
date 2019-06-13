@@ -27,8 +27,10 @@ export default class FormulaireIdentification {
     this.$gabarit = creeGabarit(this.registreUtilisateur);
     this.$gabarit.on('submit', (e) => {
       e.preventDefault();
-      const identifiantUtilisateur = $('input[type=text]', this.$gabarit).val();
-      this.registreUtilisateur.inscris(identifiantUtilisateur);
+      const identifiantUtilisateur = $('input[type=text]', this.$gabarit).val().trim();
+      if (identifiantUtilisateur !== '') {
+        this.registreUtilisateur.inscris(identifiantUtilisateur);
+      }
     });
     $(pointInsertion).append(this.$gabarit);
   }
