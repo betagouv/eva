@@ -24,12 +24,18 @@ export default class FormulaireIdentification {
       return $resultat;
     }
 
-    const $gabarit = creeGabarit(this.registreUtilisateur);
-    $gabarit.on('submit', (e) => {
+    this.$gabarit = creeGabarit(this.registreUtilisateur);
+    this.$gabarit.on('submit', (e) => {
       e.preventDefault();
-      const identifiantUtilisateur = $('input[type=text]', $gabarit).val();
+      const identifiantUtilisateur = $('input[type=text]', this.$gabarit).val();
       this.registreUtilisateur.inscris(identifiantUtilisateur);
     });
-    $(pointInsertion).append($gabarit);
+    $(pointInsertion).append(this.$gabarit);
+  }
+
+  supprime () {
+    if (this.$gabarit) {
+      this.$gabarit.remove();
+    }
   }
 }

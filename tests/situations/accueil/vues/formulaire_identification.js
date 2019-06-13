@@ -50,4 +50,12 @@ describe("Le formulaire d'identification", function () {
     vue.affiche('#formulaire', $);
     $('#formulaire input[type=text]').val('Mon pseudo').trigger('submit');
   });
+
+  it('permet de supprimer son affichage', function () {
+    vue.supprime();
+    vue.affiche('#formulaire', $);
+    expect($('#formulaire form').length).to.equal(1);
+    vue.supprime();
+    expect($('#formulaire form').length).to.equal(0);
+  });
 });
