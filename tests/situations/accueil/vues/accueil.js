@@ -59,6 +59,7 @@ describe('La vue accueil', function () {
   });
 
   it("cache le formulaire d'identification une fois le nom rempli", function () {
+    $.fx.off = true;
     let callbackChangementDeNom;
     registreUtilisateur.on = (_nom, callback) => {
       callbackChangementDeNom = callback;

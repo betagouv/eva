@@ -58,6 +58,7 @@ describe("Le formulaire d'identification", function () {
   });
 
   it('permet de supprimer son affichage', function () {
+    $.fx.off = true;
     vue.supprime();
     vue.affiche('#formulaire', $);
     expect($('#formulaire form').length).to.equal(1);
