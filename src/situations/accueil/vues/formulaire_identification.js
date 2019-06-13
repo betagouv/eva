@@ -37,7 +37,9 @@ export default class FormulaireIdentification {
 
   supprime () {
     if (this.$gabarit) {
-      this.$gabarit.remove();
+      this.$gabarit.fadeOut(() => {
+        this.$gabarit.remove();
+      });
     }
   }
 }
