@@ -6,7 +6,7 @@ import VueAccueil from 'accueil/vues/accueil';
 describe('La vue accueil', function () {
   let $;
   let depotRessources;
-  const registreUtilisateur = { consulte () {} };
+  const registreUtilisateur = { on () {}, consulte () {} };
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
@@ -49,6 +49,27 @@ describe('La vue accueil', function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
+  });
+
+  it("cache le formulaire d'identification si le nom est rempli", function () {
+    registreUtilisateur.consulte = () => 'test';
+    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+    vueAccueil.affiche('#accueil', $);
+    expect($('#accueil #formulaire-identification').length).to.equal(0);
+  });
+
+  it("cache le formulaire d'identification une fois le nom rempli", function () {
+    let callbackChangementDeNom;
+    registreUtilisateur.on = (_nom, callback) => {
+      callbackChangementDeNom = callback;
+    };
+    registreUtilisateur.consulte = () => undefined;
+    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+    vueAccueil.affiche('#accueil', $);
+    expect($('#accueil #formulaire-identification').length).to.equal(1);
+    registreUtilisateur.consulte = () => 'test';
+    callbackChangementDeNom();
+    expect($('#accueil #formulaire-identification').length).to.equal(0);
   });
 
   it("affiche le fond de l'accueil", function () {
