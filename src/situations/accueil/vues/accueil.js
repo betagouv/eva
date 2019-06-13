@@ -1,5 +1,6 @@
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
+import { CHANGEMENT_NOM } from 'commun/infra/registre_utilisateur';
 
 export default class VueAccueil {
   constructor (situations, registreUtilisateur, depotRessources) {
@@ -35,7 +36,16 @@ export default class VueAccueil {
 
     const $situations = creeElementListe(this.situations);
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
-    formulaireIdentification.affiche($situations, $);
+    const basculeAffichageFormulaireIdentification = () => {
+      if (!this.registreUtilisateur.consulte()) {
+        formulaireIdentification.affiche($situations, $);
+      } else {
+        formulaireIdentification.supprime();
+      }
+    };
+    this.registreUtilisateur.on(CHANGEMENT_NOM, basculeAffichageFormulaireIdentification);
+    basculeAffichageFormulaireIdentification();
+
     const $titre = creeTitre();
     $(pointInsertion).append($titre, $situations);
   }
