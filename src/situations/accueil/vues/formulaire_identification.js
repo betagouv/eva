@@ -15,7 +15,7 @@ export default class FormulaireIdentification {
           <label>
             <span>${traduction('accueil.identification.label')}</span>
             <br />
-            <input type="text" value="${identifiantActuel}">
+            <input type="text" value="${identifiantActuel}" autofocus>
           </label>
           <button class="bouton-demarrer">${traduction('accueil.identification.boutton')}</button>
         </form>
