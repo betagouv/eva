@@ -21,10 +21,10 @@
     }
   },
   "inventaire": {
-    "placeholder": "Qté",
     "titre": "Stock de boissons",
     "valider_saisie": "Vérifier",
-    "retour_stock": "Retour au stock"
+    "retour_stock": "Retour au stock",
+    "unite_vrac": "litre"
   },
   "situation": {
     "ecouter-consigne": "Commencez par écouter la consigne",
