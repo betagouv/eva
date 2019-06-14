@@ -1,10 +1,11 @@
+@import 'commun/styles/mixins/bords_arrondis.scss';
+
 .conteneur {
+  @include bords-arrondis;
   width: 63rem;
   height: 41.875rem;
   margin: auto;
   position: relative;
-  border-radius: 2rem;
-  overflow: hidden;
 
   -moz-user-select: none;
   -webkit-user-select: none;

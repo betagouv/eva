@@ -1,4 +1,5 @@
 @import 'commun/styles/couleurs.scss';
+@import 'commun/styles/mixins/bords_arrondis.scss';
 
 #accueil {
   display: flex;
@@ -15,10 +16,9 @@
   }
 
   .situations {
+    @include bords-arrondis;
     height: 566px;
     position: relative;
-    overflow: hidden;
-    border-radius: 2rem;
     background: center / contain no-repeat;
   }
 
