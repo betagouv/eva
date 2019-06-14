@@ -17,6 +17,7 @@
   .situations {
     height: 566px;
     position: relative;
+    overflow: hidden;
     background: center / contain no-repeat;
   }
 
@@ -31,24 +32,24 @@
     }
 
     &.tri {
-      height: 219px;
-      width: 227px;
-      left: 624px;
-      top: 37px;
+      width: 225px;
+      height: 250px;
+      left: 215px;
+      top: 10px;
     }
 
     &.inventaire {
+      width: 247px;
       height: 214px;
-      width: 248px;
-      left: 216px;
-      top: 31px;
+      left: 350px;
+      top: 190px;
     }
 
     &.controle {
-      height: 303px;
-      width: 272px;
-      left: 328px;
-      top: 138px;
+      width: 271px;
+      height: 302px;
+      left: 570px;
+      top: -38px;
     }
   }
 }
