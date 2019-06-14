@@ -42,7 +42,7 @@ describe('La vue accueil', function () {
 
     vueAccueil.affiche('#accueil', $);
 
-    const $liens = $('#accueil a');
+    const $liens = $('#accueil .situations a');
     expect($liens.length).to.equal(2);
 
     expect($liens.eq(0).text()).to.contain('ABC');
@@ -113,5 +113,14 @@ describe('La vue accueil', function () {
 
     expect($situation.eq(1).text()).to.contain('XYZ');
     expect($situation.eq(1).hasClass('desactivee')).to.be(true);
+  });
+
+  it('permet de se déconnecter', function (done) {
+    registreUtilisateur.deconnecte = () => {
+      done();
+    };
+    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+    vueAccueil.affiche('#accueil', $);
+    $('.deconnexion').click();
   });
 });
