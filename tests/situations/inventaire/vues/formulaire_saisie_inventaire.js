@@ -240,22 +240,37 @@ describe("Le formulaire de saisie d'inventaire", function () {
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 
-  it('sait afficher une marque correcte ou incorrecte', function () {
-    let magasin = unMagasin().avecCommeReferences(
-      { idProduit: '0', nom: 'Nova Sky' }
-    ).avecEnStock(
-      new Contenant({ idContenu: '0', quantite: 12 })
-    ).construit();
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
-    expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(0);
-    expect($('.formulaire-saisie-inventaire span.reponse-incorrecte').length).to.equal(0);
+  describe('sait afficher un résultat correcte ou incorrecte', function () {
+    beforeEach(function () {
+      const magasin = unMagasin().avecCommeReferences(
+        { idProduit: '0', nom: 'Nova Sky' }
+      ).avecEnStock(
+        new Contenant({ idContenu: '0', quantite: 12 })
+      ).construit();
+      initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
+    });
 
-    afficheCorrection(['0', true], $);
-    expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(1);
-    expect($('.formulaire-saisie-inventaire span.reponse-incorrecte').length).to.equal(0);
+    it("affiche une marque correcte si c'est correcte", function () {
+      expect($('.formulaire-saisie-inventaire .marque-correcte').length).to.equal(0);
 
-    afficheCorrection(['0', false], $);
-    expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(0);
-    expect($('.formulaire-saisie-inventaire span.reponse-incorrecte').length).to.equal(1);
+      afficheCorrection(['0', true], $);
+      expect($('.formulaire-saisie-inventaire .marque-correcte').length).to.equal(1);
+
+      afficheCorrection(['0', false], $);
+      expect($('.formulaire-saisie-inventaire .marque-correcte').length).to.equal(0);
+    });
+
+    it('style le champ en fonction de la réponse', function () {
+      expect($('.formulaire-saisie-inventaire input.reponse-correcte').length).to.equal(0);
+      expect($('.formulaire-saisie-inventaire input.reponse-incorrecte').length).to.equal(0);
+
+      afficheCorrection(['0', true], $);
+      expect($('.formulaire-saisie-inventaire input.reponse-correcte').length).to.equal(1);
+      expect($('.formulaire-saisie-inventaire input.reponse-incorrecte').length).to.equal(0);
+
+      afficheCorrection(['0', false], $);
+      expect($('.formulaire-saisie-inventaire input.reponse-correcte').length).to.equal(0);
+      expect($('.formulaire-saisie-inventaire input.reponse-incorrecte').length).to.equal(1);
+    });
   });
 });
