@@ -44,9 +44,20 @@ export default class VueAccueil {
       return $liste;
     };
 
-    function creeTitre () {
+    function creeDeconnexion (registreUtilisateur) {
+      const $deconnexion = $("<a class='deconnexion' href='#'><i class='fas fa-sign-out-alt'></i></a>");
+      $deconnexion.click(() => {
+        registreUtilisateur.deconnecte();
+      });
+      return $deconnexion;
+    }
+
+    function creeTitre (registreUtilisateur) {
       const $titre = $("<div class='titre'></div>");
       $($titre).append('<h1>Compétences pro</h1>');
+
+      const $deconnexion = creeDeconnexion(registreUtilisateur);
+      $titre.append($deconnexion);
       return $titre;
     }
 
@@ -67,7 +78,7 @@ export default class VueAccueil {
 
     $situations.prepend($progression);
 
-    const $titre = creeTitre();
+    const $titre = creeTitre(this.registreUtilisateur);
     $(pointInsertion).append($titre, $situations);
   }
 }
