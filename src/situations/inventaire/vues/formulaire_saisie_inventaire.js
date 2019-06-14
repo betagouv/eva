@@ -15,13 +15,18 @@ function basculeVisibilite ($element) {
 }
 
 export function afficheCorrection ([idProduit, reponseCorrecte], $) {
-  const $marque = reponseCorrecte
-    ? $('<span class="reponse reponse-correcte">✓</span>')
-    : $('<span class="reponse reponse-incorrecte">✗</span>');
-  const selecteurEmplacementMarque = `#${ID_FORMULAIRE_SAISIE} input#${idProduit}`;
+  const $champSaisie = $(`#${ID_FORMULAIRE_SAISIE} input#${idProduit}`);
+  const $marque = $('<span class="marque-correcte">✓</span>');
 
-  $(`${selecteurEmplacementMarque} + .reponse`).remove();
-  $marque.insertAfter($(selecteurEmplacementMarque));
+  $champSaisie.siblings(`.marque-correcte`).remove();
+  if (reponseCorrecte) {
+    $champSaisie.addClass('reponse-correcte');
+    $champSaisie.removeClass('reponse-incorrecte');
+    $marque.insertAfter($champSaisie);
+  } else {
+    $champSaisie.addClass('reponse-incorrecte');
+    $champSaisie.removeClass('reponse-correcte');
+  }
 }
 
 export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal, depotRessources) {

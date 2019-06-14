@@ -110,20 +110,22 @@
     position: relative;
   }
 
-  .reponse {
+  .reponse-correcte {
+    border-color: $couleur-reponse-correcte;
+  }
+
+  .reponse-incorrecte {
+    border-color: $couleur-reponse-incorrecte;
+    background-color: $couleur-fond-reponse-incorrecte;
+  }
+
+  .marque-correcte {
     position: absolute;
     top: 50%;
-    right: .625rem;
+    right: -4.7rem;
     transform: translateY(-50%);
-    font-size: 1.125rem;
-
-    &.reponse-correcte {
-      color: $couleur-reponse-correcte;
-    }
-
-    &.reponse-incorrecte {
-      color: $couleur-reponse-incorrecte;
-    }
+    font-size: 2rem;
+    color: $couleur-reponse-correcte;
   }
 }
 
