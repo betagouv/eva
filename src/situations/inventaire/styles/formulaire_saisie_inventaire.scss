@@ -84,10 +84,6 @@
     margin: 1.25rem 0 1.25rem 1.25rem;
     font-size: 1.125rem;
     padding: .625rem .5rem;
-
-    &::placeholder {
-      color: $couleur-placeholder;
-    }
   }
 
   .validation-inventaire {
@@ -108,6 +104,14 @@
 
   .saisie {
     position: relative;
+
+    .unite {
+      position: absolute;
+      top: 50%;
+      right: 0.4rem;
+      transform: translateY(-50%);
+      color: $couleur-unite;
+    }
   }
 
   .reponse-correcte {

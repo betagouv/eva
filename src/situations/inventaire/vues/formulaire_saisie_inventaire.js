@@ -35,11 +35,13 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   let reussite = false;
 
   function creeItem (idProduit, produit) {
+    const unite = produit.forme === 'bidon' ? `<span class="unite">${traduction('inventaire.unite_vrac')}</span>` : '';
     return $(`
       <li>
         <label>${produit.nom}</label>
         <span class='saisie'>
-          <input id="${idProduit}" type="text" maxlength="2" placeholder="${traduction('inventaire.placeholder')}">
+          <input id="${idProduit}" type="text" maxlength="2">
+          ${unite}
         </span>
         <div class="image-produit">
           <img src='${produit.image}' class="${produit.forme}">

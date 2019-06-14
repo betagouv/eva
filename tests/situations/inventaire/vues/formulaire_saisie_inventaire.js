@@ -144,6 +144,21 @@ describe("Le formulaire de saisie d'inventaire", function () {
     expect($('#magasin .formulaire-saisie-inventaire input').length).to.equal(2);
   });
 
+  it("affiche l'unite pour les produits dans des bidons", function () {
+    let magasin = unMagasin().avecCommeReferences(
+      { idProduit: '0', nom: 'Vrac Sky', forme: 'bidon' },
+      { idProduit: '1', nom: 'Terra Cola', forme: 'caisse' }
+    ).avecEnStock(
+      new Contenant({ idContenu: '0', quantite: 12 }),
+      new Contenant({ idContenu: '1', quantite: 7 })
+    ).construit();
+
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
+    const $champs = $('#magasin .formulaire-saisie-inventaire input');
+    expect($champs.eq(0).siblings('.unite').length).to.equal(1);
+    expect($champs.eq(1).siblings('.unite').length).to.equal(0);
+  });
+
   it('affiche un bouton pour valider la saisie', function () {
     let magasin = unMagasinVide();
     expect($('.formulaire-saisie-inventaire .valide-saisie').length).to.equal(0);
