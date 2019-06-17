@@ -5,12 +5,12 @@ import Progression from 'commun/modeles/progression';
 const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 
-export const CHANGEMENT_NOM = 'changementNom';
+export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
   inscris (identifiantUtilisateur) {
     window.localStorage.setItem(CLEF_IDENTIFIANT, identifiantUtilisateur);
-    this.emit(CHANGEMENT_NOM);
+    this.emit(CHANGEMENT_CONNEXION);
   }
 
   estConnecte () {
@@ -43,5 +43,6 @@ export default class RegistreUtilisateur extends EventEmitter {
 
   deconnecte () {
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
+    this.emit(CHANGEMENT_CONNEXION);
   }
 }

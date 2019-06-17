@@ -1,5 +1,5 @@
 import jsdom from 'jsdom-global';
-import RegistreUtilisateur, { CHANGEMENT_NOM } from 'commun/infra/registre_utilisateur';
+import RegistreUtilisateur, { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
   beforeEach(function () {
@@ -14,7 +14,7 @@ describe('le registre utilisateur', function () {
 
   it("émet un événement lorsque le nom de l'utilisateur change", function (done) {
     const registre = new RegistreUtilisateur();
-    registre.on(CHANGEMENT_NOM, done);
+    registre.on(CHANGEMENT_CONNEXION, done);
     registre.inscris('test');
   });
 
@@ -59,5 +59,19 @@ describe('le registre utilisateur', function () {
     registre.enregistreSituationFaite('tri');
     const progression = registre.progression();
     expect(progression.niveau()).to.eql(2);
+  });
+
+  it('à la déconnexion, nous ne sommes plus connectés', function () {
+    const registre = new RegistreUtilisateur();
+    registre.inscris('test');
+    expect(registre.estConnecte()).to.be(true);
+    registre.deconnecte();
+    expect(registre.estConnecte()).to.be(false);
+  });
+
+  it("émet un événement lorsque l'utilisateur se déconnecte", function (done) {
+    const registre = new RegistreUtilisateur();
+    registre.on(CHANGEMENT_CONNEXION, done);
+    registre.deconnecte();
   });
 });
