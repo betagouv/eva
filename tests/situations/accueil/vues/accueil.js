@@ -65,10 +65,12 @@ describe('La vue accueil', function () {
 
   it("cache le formulaire d'identification si le nom est rempli et affiche la déconnexion", function () {
     registreUtilisateur.estConnecte = () => true;
+    registreUtilisateur.consulte = () => 'Jacques Adit';
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(0);
     expect($('#accueil .deconnexion').length).to.equal(1);
+    expect($('#accueil .boite-utilisateur').text()).to.equal('Jacques Adit');
   });
 
   it("cache le formulaire d'identification une fois le nom rempli", function () {
@@ -127,7 +129,7 @@ describe('La vue accueil', function () {
     $('.deconnexion').click();
   });
 
-  it("enlève la déconnexion lorsque l'utilise se déconnecte", function (done) {
+  it("enlève la déconnexion lorsque l'utilisateur se déconnecte", function (done) {
     let callbackChangementConnexion;
     registreUtilisateur.on = (_nom, callback) => {
       callbackChangementConnexion = callback;

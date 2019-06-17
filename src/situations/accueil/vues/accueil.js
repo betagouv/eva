@@ -44,12 +44,15 @@ export default class VueAccueil {
       return $liste;
     };
 
-    function creeDeconnexion (registreUtilisateur) {
+    function creeBoiteUtilisateur (registreUtilisateur) {
+      const $utilisateur = $('<div class="boite-utilisateur"></div>');
+      $utilisateur.append(registreUtilisateur.consulte());
       const $deconnexion = $("<a class='deconnexion' href='#'><i class='fas fa-sign-out-alt'></i></a>");
       $deconnexion.click(() => {
         registreUtilisateur.deconnecte();
       });
-      return $deconnexion;
+      $utilisateur.append($deconnexion);
+      return $utilisateur;
     }
 
     function creeTitre () {
@@ -64,14 +67,14 @@ export default class VueAccueil {
 
     const $situations = creeElementListe(this.situations);
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
-    const $deconnexion = creeDeconnexion(this.registreUtilisateur);
+    const $boiteUtilisateur = creeBoiteUtilisateur(this.registreUtilisateur);
     const basculeAffichageFormulaireIdentification = () => {
       if (!this.registreUtilisateur.estConnecte()) {
         formulaireIdentification.affiche($situations, $);
-        $deconnexion.detach();
+        $boiteUtilisateur.detach();
       } else {
         formulaireIdentification.supprime();
-        $('.titre').append($deconnexion);
+        $('.titre').append($boiteUtilisateur);
       }
     };
     this.registreUtilisateur.on(CHANGEMENT_CONNEXION, basculeAffichageFormulaireIdentification);
