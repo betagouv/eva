@@ -1,5 +1,40 @@
 @import 'commun/styles/couleurs.scss';
 
+.input-accueil {
+  box-shadow: inset .1rem .2rem .2rem $couleur-ombre-input-accueil;
+  border-color: $couleur-bordure-input-accueil;
+  border-style: solid;
+  border-radius: .5rem;
+  width: 33%;
+  height: 3rem;
+  padding: 1rem;
+  color: $couleur-titre-accueil;
+  transition: border .3s;
+
+  &:active, &:focus, &:hover {
+    border-color: darken($couleur-bordure-input-accueil, 10%);
+  }
+}
+
+.bouton-accueil {
+  padding: .625rem .9375rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: .1rem solid $couleur-fond-bouton-terminer-focus;
+  border-radius: 2rem;
+  cursor: pointer;
+  color: $blanc;
+  background-color: $couleur-fond-bouton-terminer;
+  transition: border, background .3s;
+  &:active {
+    border-color: $couleur-fond-bouton-terminer;
+  }
+  &:hover,
+  &:focus {
+    background-color: $couleur-fond-bouton-terminer-focus;
+  }
+}
+
 .formulaire-identification {
   position: absolute;
   top: 0;
@@ -20,34 +55,5 @@
   label span {
     display: inline-block;
     padding-bottom: .5rem;
-  }
-
-  input {
-    box-shadow: inset .1rem .2rem .2rem $couleur-ombre-input-accueil;
-    border-color: $couleur-bordure-input-accueil;
-    border-style: solid;
-    border-radius: .5rem;
-    width: 33%;
-    height: 3rem;
-    padding: 1rem;
-    color: $couleur-titre-accueil;
-  }
-
-  .bouton-demarrer {
-    padding: .625rem .9375rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: .1rem solid $couleur-fond-bouton-terminer-focus;
-    border-radius: 2rem;
-    cursor: pointer;
-    color: $blanc;
-    background-color: $couleur-fond-bouton-terminer;
-    &:active {
-      border-color: $couleur-fond-bouton-terminer;
-    }
-    &:hover,
-    &:focus {
-      background-color: $couleur-fond-bouton-terminer-focus;
-    }
   }
 }
