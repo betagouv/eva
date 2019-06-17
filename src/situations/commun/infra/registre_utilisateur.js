@@ -1,5 +1,7 @@
 import EventEmitter from 'events';
 
+import Progression from 'commun/modeles/progression';
+
 const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 
@@ -33,5 +35,9 @@ export default class RegistreUtilisateur extends EventEmitter {
       return JSON.parse(situations);
     }
     return [];
+  }
+
+  progression () {
+    return new Progression(this.situationsFaites());
   }
 }

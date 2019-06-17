@@ -35,6 +35,10 @@ export default class VueAccueil {
       return $titre;
     }
 
+    const $progression = $(`<div class='progression'></div>`);
+    const niveau = this.registreUtilisateur.progression().niveau();
+    $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
+
     const $situations = creeElementListe(this.situations);
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     const basculeAffichageFormulaireIdentification = () => {
@@ -46,6 +50,8 @@ export default class VueAccueil {
     };
     this.registreUtilisateur.on(CHANGEMENT_NOM, basculeAffichageFormulaireIdentification);
     basculeAffichageFormulaireIdentification();
+
+    $situations.prepend($progression);
 
     const $titre = creeTitre();
     $(pointInsertion).append($titre, $situations);
