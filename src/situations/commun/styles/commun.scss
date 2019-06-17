@@ -1,5 +1,6 @@
 @import "commun/styles/couleurs.scss";
 @import 'commun/styles/font_awesome.scss';
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700|Work+Sans:400,700&display=swap&subset=latin-ext');
 
 html, body {
   height: 100%;
@@ -9,7 +10,7 @@ html, body {
 body {
   background: $couleur-fond;
   display: flex;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 16px;
   min-height: 100%;
   align-items: center;
@@ -27,6 +28,7 @@ ul {
 }
 
 h1 {
+  font-family: 'Quicksand', sans-serif;
   font-size: 2rem;
   font-weight: bold;
   color: $couleur-texte;
