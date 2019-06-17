@@ -67,7 +67,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     });
 
     it('cache le formulaire', function () {
-      $('.bouton-retour-stock').click();
+      $('.croix-retour-stock').click();
       expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(1);
     });
   });
@@ -152,10 +152,10 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   it('affiche un bouton pour retourner au stock', function () {
     let magasin = unMagasinVide();
-    expect($('.formulaire-saisie-inventaire .retour-stock').length).to.equal(0);
+    expect($('.formulaire-saisie-inventaire .croix-retour-stock').length).to.equal(0);
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
-    expect($('.formulaire-saisie-inventaire .retour-stock').length).to.equal(1);
+    expect($('.formulaire-saisie-inventaire .croix-retour-stock').length).to.equal(1);
   });
 
   it("valide la saisie d'inventaire avec succès", function () {
