@@ -6,11 +6,14 @@ import VueAccueil from 'accueil/vues/accueil';
 describe('La vue accueil', function () {
   let $;
   let depotRessources;
+  let progression;
   const registreUtilisateur = { on () {}, estConnecte () {}, consulte () {} };
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
     $ = jQuery(window);
+    progression = { niveau () { } };
+    registreUtilisateur.progression = () => progression;
     depotRessources = new class {
       fondAccueil () {
         return { src: 'image-fond' };
@@ -18,6 +21,10 @@ describe('La vue accueil', function () {
 
       batimentSituation (identifiant) {
         return { src: identifiant };
+      }
+
+      progression () {
+        return { src: 'progression' };
       }
     }();
   });
@@ -77,5 +84,13 @@ describe('La vue accueil', function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('.situations').attr('style')).to.equal('background-image: url(image-fond);');
+  });
+
+  it('affiche la progression dans le parc', function () {
+    depotRessources.progression = (niveau) => { return { src: niveau }; };
+    progression.niveau = () => 42;
+    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+    vueAccueil.affiche('#accueil', $);
+    expect($('.progression').attr('style')).to.equal('background-image: url(42);');
   });
 });

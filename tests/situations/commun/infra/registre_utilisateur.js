@@ -53,4 +53,11 @@ describe('le registre utilisateur', function () {
     registre.enregistreSituationFaite('tri');
     expect(registre.situationsFaites()).to.eql(['tri']);
   });
+
+  it('retourne la progression', function () {
+    const registre = new RegistreUtilisateur();
+    registre.enregistreSituationFaite('tri');
+    const progression = registre.progression();
+    expect(progression.niveau()).to.eql(2);
+  });
 });
