@@ -126,32 +126,10 @@
     }
   }
 }
-.retour-stock {
+
+.croix-retour-stock {
   position: absolute;
-  top: -.75rem;
-  left: 0;
-  width: 100%;
-  text-align: center;
-
- .fa-arrow-left {
-   padding-right: .625rem
-  }
-
-  .bouton-retour-stock {
-    @include bouton-allonge($couleur-bordure-modale-reponse, $couleur-texte-bouton-retour);
-    font-size: 1rem;
-    padding-top: 0;
-    border-radius: 0 0 .625rem .625rem;
-    display: inline-block;
-    border: 0.125rem solid $noir;
-    border-top: 0.125rem solid $couleur-bordure-modale-reponse;
-    cursor: pointer;
-
-    &:hover {
-      color: $noir;
-      &i {
-        color: $noir;
-      }
-    }
-  }
+  top: -2.3rem;
+  right: -2.3rem;
+  cursor: pointer;
 }

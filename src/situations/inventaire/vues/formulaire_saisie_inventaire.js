@@ -4,6 +4,7 @@ import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouv
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 
 import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
+import croixRetourStock from 'inventaire/assets/croix.png';
 
 import 'commun/styles/commun.scss';
 import 'commun/styles/font_awesome.scss';
@@ -69,16 +70,13 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeZoneRetourStock () {
-    const $zoneRetour = $('<div class="retour-stock"></div>');
-    const $boutonRetour = $(`<a class="bouton-retour-stock">${traduction('inventaire.retour_stock')}</a>`);
-    $boutonRetour.prepend(`<i class="fas fa-arrow-left"></i>`);
-    $boutonRetour.click(function () {
+    const $croixRetourStock = $(`<img class="croix-retour-stock" src="${croixRetourStock}">`);
+    $croixRetourStock.click(function () {
       basculeVisibilite($formulaireSaisie);
       basculeVisibilite($formulaireSaisie.parent());
     });
 
-    $zoneRetour.append($boutonRetour);
-    return $zoneRetour;
+    return $croixRetourStock;
   }
 
   function creeBoutonValidation () {
@@ -105,7 +103,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
   function afficheVueSucces () {
     $('.valide-saisie').remove();
-    $('.retour-stock').remove();
+    $('.croix-retour-stock').remove();
     $('.formulaire-saisie-inventaire').addClass('succes-saisie-inventaire');
     $('input').prop('disabled', true);
   }
