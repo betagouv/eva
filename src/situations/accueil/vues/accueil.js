@@ -37,7 +37,7 @@ export default class VueAccueil {
     const $situations = creeElementListe(this.situations);
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     const basculeAffichageFormulaireIdentification = () => {
-      if (!this.registreUtilisateur.consulte()) {
+      if (!this.registreUtilisateur.estConnecte()) {
         formulaireIdentification.affiche($situations, $);
       } else {
         formulaireIdentification.supprime();
