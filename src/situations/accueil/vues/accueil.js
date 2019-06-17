@@ -1,6 +1,6 @@
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
-import { CHANGEMENT_NOM } from 'commun/infra/registre_utilisateur';
+import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 export default class VueAccueil {
   constructor (situations, registreUtilisateur, depotRessources) {
@@ -52,12 +52,10 @@ export default class VueAccueil {
       return $deconnexion;
     }
 
-    function creeTitre (registreUtilisateur) {
+    function creeTitre () {
       const $titre = $("<div class='titre'></div>");
       $($titre).append('<h1>Compétences pro</h1>');
 
-      const $deconnexion = creeDeconnexion(registreUtilisateur);
-      $titre.append($deconnexion);
       return $titre;
     }
 
@@ -66,19 +64,22 @@ export default class VueAccueil {
 
     const $situations = creeElementListe(this.situations);
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
+    const $deconnexion = creeDeconnexion(this.registreUtilisateur);
     const basculeAffichageFormulaireIdentification = () => {
       if (!this.registreUtilisateur.estConnecte()) {
         formulaireIdentification.affiche($situations, $);
+        $deconnexion.detach();
       } else {
         formulaireIdentification.supprime();
+        $('.titre').append($deconnexion);
       }
     };
-    this.registreUtilisateur.on(CHANGEMENT_NOM, basculeAffichageFormulaireIdentification);
-    basculeAffichageFormulaireIdentification();
+    this.registreUtilisateur.on(CHANGEMENT_CONNEXION, basculeAffichageFormulaireIdentification);
 
     $situations.prepend($progression);
 
-    const $titre = creeTitre(this.registreUtilisateur);
+    const $titre = creeTitre();
     $(pointInsertion).append($titre, $situations);
+    basculeAffichageFormulaireIdentification();
   }
 }

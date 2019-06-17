@@ -7,7 +7,7 @@ describe('La vue accueil', function () {
   let $;
   let depotRessources;
   let progression;
-  const registreUtilisateur = { on () {}, estConnecte () {}, consulte () {} };
+  const registreUtilisateur = { on () {}, estConnecte () {}, consulte () {}, deconnecte () {} };
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
@@ -56,31 +56,33 @@ describe('La vue accueil', function () {
     expect($liens.eq(1).attr('style')).to.equal('background-image: url(identifiant-xyz);');
   });
 
-  it("affiche le formulaire d'identification", function () {
+  it("affiche le formulaire d'identification et masque la déconnexion", function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
+    expect($('#accueil .deconnexion').length).to.equal(0);
   });
 
-  it("cache le formulaire d'identification si le nom est rempli", function () {
+  it("cache le formulaire d'identification si le nom est rempli et affiche la déconnexion", function () {
     registreUtilisateur.estConnecte = () => true;
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(0);
+    expect($('#accueil .deconnexion').length).to.equal(1);
   });
 
   it("cache le formulaire d'identification une fois le nom rempli", function () {
     $.fx.off = true;
-    let callbackChangementDeNom;
+    let callbackChangementConnexion;
     registreUtilisateur.on = (_nom, callback) => {
-      callbackChangementDeNom = callback;
+      callbackChangementConnexion = callback;
     };
     registreUtilisateur.estConnecte = () => false;
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
     registreUtilisateur.estConnecte = () => true;
-    callbackChangementDeNom();
+    callbackChangementConnexion();
     expect($('#accueil #formulaire-identification').length).to.equal(0);
   });
 
@@ -116,11 +118,35 @@ describe('La vue accueil', function () {
   });
 
   it('permet de se déconnecter', function (done) {
+    registreUtilisateur.estConnecte = () => true;
     registreUtilisateur.deconnecte = () => {
       done();
     };
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
+    $('.deconnexion').click();
+  });
+
+  it("enlève la déconnexion lorsque l'utilise se déconnecte", function (done) {
+    let callbackChangementConnexion;
+    registreUtilisateur.on = (_nom, callback) => {
+      callbackChangementConnexion = callback;
+    };
+
+    registreUtilisateur.estConnecte = () => true;
+    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+    vueAccueil.affiche('#accueil', $);
+    expect($('#accueil .deconnexion').length).to.equal(1);
+    registreUtilisateur.estConnecte = () => false;
+    callbackChangementConnexion();
+    expect($('#accueil .deconnexion').length).to.equal(0);
+
+    registreUtilisateur.estConnecte = () => true;
+    callbackChangementConnexion();
+    expect($('#accueil .deconnexion').length).to.equal(1);
+    registreUtilisateur.deconnecte = () => {
+      done();
+    };
     $('.deconnexion').click();
   });
 });
