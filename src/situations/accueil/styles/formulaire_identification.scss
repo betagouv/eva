@@ -10,6 +10,7 @@
   padding: 1rem;
   color: $couleur-titre-accueil;
   transition: border .3s;
+  outline: none;
 
   &:active, &:focus, &:hover {
     border-color: darken($couleur-bordure-input-accueil, 10%);
@@ -26,6 +27,8 @@
   color: $blanc;
   background-color: $couleur-fond-bouton-terminer;
   transition: border, background .3s;
+  outline: none;
+
   &:active {
     border-color: $couleur-fond-bouton-terminer;
   }
