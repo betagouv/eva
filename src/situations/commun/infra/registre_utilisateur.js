@@ -10,6 +10,10 @@ export default class RegistreUtilisateur extends EventEmitter {
     this.emit(CHANGEMENT_NOM);
   }
 
+  estConnecte () {
+    return !!this.consulte();
+  }
+
   consulte () {
     return window.localStorage.getItem(CLEF_IDENTIFIANT);
   }

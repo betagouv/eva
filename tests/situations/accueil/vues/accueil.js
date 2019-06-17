@@ -6,7 +6,7 @@ import VueAccueil from 'accueil/vues/accueil';
 describe('La vue accueil', function () {
   let $;
   let depotRessources;
-  const registreUtilisateur = { on () {}, consulte () {} };
+  const registreUtilisateur = { on () {}, estConnecte () {}, consulte () {} };
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
@@ -52,7 +52,7 @@ describe('La vue accueil', function () {
   });
 
   it("cache le formulaire d'identification si le nom est rempli", function () {
-    registreUtilisateur.consulte = () => 'test';
+    registreUtilisateur.estConnecte = () => true;
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(0);
@@ -64,11 +64,11 @@ describe('La vue accueil', function () {
     registreUtilisateur.on = (_nom, callback) => {
       callbackChangementDeNom = callback;
     };
-    registreUtilisateur.consulte = () => undefined;
+    registreUtilisateur.estConnecte = () => false;
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
-    registreUtilisateur.consulte = () => 'test';
+    registreUtilisateur.estConnecte = () => true;
     callbackChangementDeNom();
     expect($('#accueil #formulaire-identification').length).to.equal(0);
   });

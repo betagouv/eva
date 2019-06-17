@@ -17,4 +17,15 @@ describe('le registre utilisateur', function () {
     registre.on(CHANGEMENT_NOM, done);
     registre.inscris('test');
   });
+
+  it("estConnecte retourne true lorsque l'utilisateur a rempli un nom", function () {
+    const registre = new RegistreUtilisateur();
+    registre.inscris('test');
+    expect(registre.estConnecte()).to.be(true);
+  });
+
+  it("estConnecte retourne false lorsque l'utilisateur n'a pas rempli un nom", function () {
+    const registre = new RegistreUtilisateur();
+    expect(registre.estConnecte()).to.be(false);
+  });
 });
