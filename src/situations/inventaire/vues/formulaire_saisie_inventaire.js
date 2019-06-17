@@ -6,6 +6,7 @@ import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inven
 import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
 
 import 'commun/styles/commun.scss';
+import 'commun/styles/font_awesome.scss';
 import 'commun/styles/overlay.scss';
 import 'inventaire/styles/formulaire_saisie_inventaire.scss';
 
