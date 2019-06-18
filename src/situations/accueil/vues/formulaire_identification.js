@@ -12,12 +12,13 @@ export default class FormulaireIdentification {
       const $resultat = $(`
         <form class="formulaire-identification" id="formulaire-identification">
           <h2>${traduction('accueil.identification.titre')}</h2>
-          <label>
-            <span>${traduction('accueil.identification.label')}</span>
-            <br />
-            <input type="text" class="input-accueil" value="${identifiantActuel}" autofocus>
+          <label for="formulaire-identification-input">
+            ${traduction('accueil.identification.label')}
           </label>
-          <button class="bouton-accueil">${traduction('accueil.identification.boutton')}</button>
+          <div class="flex">
+            <input id="formulaire-identification-input" type="text" class="input-accueil" value="${identifiantActuel}" autofocus>
+            <button class="bouton-accueil">${traduction('accueil.identification.boutton')}</button>
+          </div>
         </form>
       `);
 
