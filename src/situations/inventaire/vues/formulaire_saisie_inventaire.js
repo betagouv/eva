@@ -3,9 +3,6 @@ import { FINI } from 'commun/modeles/situation';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
 
-import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
-import croixRetourStock from 'inventaire/assets/croix.png';
-
 import 'commun/styles/commun.scss';
 import 'commun/styles/font_awesome.scss';
 import 'commun/styles/overlay.scss';
@@ -27,7 +24,7 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   $marque.insertAfter($(selecteurEmplacementMarque));
 }
 
-export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal) {
+export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal, depotRessources) {
   const produits = situation.produitsEnStock();
   const inventaireReference = situation.inventaireReference();
   let reussite = false;
@@ -70,7 +67,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeZoneRetourStock () {
-    const $croixRetourStock = $(`<img class="croix-retour-stock" src="${croixRetourStock}">`);
+    const $croixRetourStock = $(`<img class="croix-retour-stock" src="${depotRessources.croixRetourStock().src}">`);
     $croixRetourStock.click(function () {
       basculeVisibilite($formulaireSaisie);
       basculeVisibilite($formulaireSaisie.parent());
@@ -128,7 +125,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeBoutonSaisie ($formulaireSaisie) {
-    const $boutonSaisie = $(`<button class="affiche-saisie"><img src="${boutonSaisie}"></button>`);
+    const $boutonSaisie = $(`<button class="affiche-saisie"><img src="${depotRessources.boutonSaisie().src}"></button>`);
     const $overlay = $('<div class="overlay invisible"></div>');
     const $elementsCombines = $boutonSaisie.add($overlay);
     $overlay.append($formulaireSaisie);
