@@ -6,12 +6,13 @@ import Contenant from 'inventaire/modeles/contenant';
 import { afficheCorrection, initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaire_saisie_inventaire';
 import EvenementOuvertureSaisieInventaire from 'inventaire/modeles/evenement_ouverture_saisie_inventaire';
 import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inventaire';
-
+import MockDepotRessourcesInventaire from '../aides/mock_depot_ressources';
 import { unMagasin, unMagasinVide } from '../aides/magasin';
 
 describe("Le formulaire de saisie d'inventaire", function () {
   let $;
   let journal;
+  let depotRessources;
 
   beforeEach(function () {
     jsdom('<div id="magasin"></div>');
@@ -20,17 +21,18 @@ describe("Le formulaire de saisie d'inventaire", function () {
     journal = {
       enregistre () {}
     };
+    depotRessources = new MockDepotRessourcesInventaire();
   });
 
   it("sait afficher un bouton pour saisir l'inventaire", function () {
     expect($('.affiche-saisie').length).to.equal(0);
-    initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $);
+    initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal, depotRessources);
     expect($('#magasin .affiche-saisie').length).to.equal(1);
   });
 
   describe('quand on clique sur le bouton', function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal, depotRessources);
     });
 
     it('affiche un overlay extérieur pour commander sa fermeture', function () {
@@ -62,7 +64,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   describe('quand on clique sur le bouton de retour au stock', function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal, depotRessources);
       $('.affiche-saisie').click();
     });
 
@@ -74,7 +76,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   describe("quand on clique sur l'overlay", function () {
     beforeEach(function () {
-      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal);
+      initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal, depotRessources);
       $('.affiche-saisie').click();
       expect($('.overlay.invisible').length).to.equal(0);
     });
@@ -112,7 +114,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     expect($('#magasin .formulaire-saisie-inventaire .image-produit').length).to.equal(1);
     expect($('.image-produit img').attr('src')).to.equal('cheminImageNovaSky');
   });
@@ -124,7 +126,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     expect($('#magasin .formulaire-saisie-inventaire label').length).to.equal(1);
     expect($('#magasin .formulaire-saisie-inventaire label').text()).to.equal('Nova Sky');
   });
@@ -138,7 +140,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       new Contenant({ idContenu: '1', quantite: 7 })
     ).construit();
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     expect($('#magasin .formulaire-saisie-inventaire input').length).to.equal(2);
   });
 
@@ -146,7 +148,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     let magasin = unMagasinVide();
     expect($('.formulaire-saisie-inventaire .valide-saisie').length).to.equal(0);
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     expect($('.formulaire-saisie-inventaire .valide-saisie').length).to.equal(1);
   });
 
@@ -154,7 +156,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     let magasin = unMagasinVide();
     expect($('.formulaire-saisie-inventaire .croix-retour-stock').length).to.equal(0);
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     expect($('.formulaire-saisie-inventaire .croix-retour-stock').length).to.equal(1);
   });
 
@@ -171,7 +173,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       evenement = e;
     };
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     const $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
     const $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
 
@@ -197,7 +199,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       evenement = e;
     };
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     const $zoneSaisieInventaire = $('.formulaire-saisie-inventaire input');
     const $boutonValidationSaisie = $('.formulaire-saisie-inventaire .valide-saisie');
 
@@ -214,14 +216,14 @@ describe("Le formulaire de saisie d'inventaire", function () {
       done();
     });
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 
   it("joue l'audio en cas de réussite", function (done) {
     const magasin = unMagasinVide();
     magasin.audios.reussite.play = done;
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 
@@ -234,7 +236,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
     magasin.audios.echec.play = done;
 
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
 
@@ -244,7 +246,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     ).avecEnStock(
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
-    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $);
+    initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     expect($('.formulaire-saisie-inventaire span.reponse-correcte').length).to.equal(0);
     expect($('.formulaire-saisie-inventaire span.reponse-incorrecte').length).to.equal(0);
 

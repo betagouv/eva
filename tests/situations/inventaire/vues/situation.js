@@ -3,12 +3,14 @@ import jQuery from 'jquery';
 
 import { unMagasinVide } from '../aides/magasin';
 import VueSituation from 'inventaire/vues/situation';
+import MockDepotRessourcesInventaire from '../aides/mock_depot_ressources';
 
 describe('La situation « Inventaire »', function () {
   let $;
   let mockJournal;
   let situation;
   let vue;
+  let depotRessources;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
@@ -17,7 +19,8 @@ describe('La situation « Inventaire »', function () {
       enregistre: () => {}
     };
     situation = unMagasinVide();
-    vue = new VueSituation(situation, mockJournal);
+    depotRessources = new MockDepotRessourcesInventaire();
+    vue = new VueSituation(situation, mockJournal, depotRessources);
   });
 
   it('affiche les étagères', function () {

@@ -4,9 +4,10 @@ import VueEtageres from 'inventaire/vues/etageres';
 import { initialiseFormulaireSaisieInventaire } from 'inventaire/vues/formulaire_saisie_inventaire';
 
 export default class VueSituation {
-  constructor (situation, journal) {
+  constructor (situation, journal, depotRessources) {
     this.journal = journal;
     this.situation = situation;
+    this.depotRessources = depotRessources;
   }
 
   affiche (pointInsertion, $) {
@@ -16,7 +17,8 @@ export default class VueSituation {
     initialiseFormulaireSaisieInventaire(this.situation,
       pointInsertion,
       $,
-      this.journal
+      this.journal,
+      this.depotRessources
     );
   }
 }
