@@ -67,14 +67,14 @@ export default class VueAccueil {
 
     const $situations = creeElementListe(this.situations);
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
-    const $boiteUtilisateur = creeBoiteUtilisateur(this.registreUtilisateur);
+    const registreUtilisateur = this.registreUtilisateur;
     const basculeAffichageFormulaireIdentification = () => {
       if (!this.registreUtilisateur.estConnecte()) {
         formulaireIdentification.affiche($situations, $);
-        $boiteUtilisateur.detach();
+        $('.boite-utilisateur').remove();
       } else {
         formulaireIdentification.supprime();
-        $('.titre').append($boiteUtilisateur);
+        $('.titre').append(creeBoiteUtilisateur(registreUtilisateur));
       }
     };
     this.registreUtilisateur.on(CHANGEMENT_CONNEXION, basculeAffichageFormulaireIdentification);
