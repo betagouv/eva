@@ -68,6 +68,11 @@ export default class DepotRessources {
     this.promesses.push(...promesses);
   }
 
+  chargeContexte (contexte) {
+    const ressources = contexte.keys().map(contexte);
+    this.charge(ressources);
+  }
+
   chargement () {
     return Promise.all(this.promesses);
   }

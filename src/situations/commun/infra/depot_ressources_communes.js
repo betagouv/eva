@@ -9,11 +9,6 @@ export default class DepotRessourcesCommunes extends DepotRessources {
     this.sonConsigne = sonConsigne;
   }
 
-  chargeContexte (contexte) {
-    const ressources = contexte.keys().map(contexte);
-    this.charge(ressources);
-  }
-
   consigne () {
     return this.ressource(this.sonConsigne);
   }
