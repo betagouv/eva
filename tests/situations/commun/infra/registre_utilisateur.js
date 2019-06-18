@@ -28,4 +28,29 @@ describe('le registre utilisateur', function () {
     const registre = new RegistreUtilisateur();
     expect(registre.estConnecte()).to.be(false);
   });
+
+  it('permet de récupérer les situations faites au début', function () {
+    const registre = new RegistreUtilisateur();
+    expect(registre.situationsFaites()).to.eql([]);
+  });
+
+  it('permet de sauvegarder et de récupérer les situations faites', function () {
+    const registre = new RegistreUtilisateur();
+    registre.enregistreSituationFaite('tri');
+    expect(registre.situationsFaites()).to.eql(['tri']);
+  });
+
+  it('permet de sauvegarder plusieurs situations faites', function () {
+    const registre = new RegistreUtilisateur();
+    registre.enregistreSituationFaite('tri');
+    registre.enregistreSituationFaite('controle');
+    expect(registre.situationsFaites()).to.eql(['tri', 'controle']);
+  });
+
+  it('ne sauvegarde pas plusieurs fois la même situation', function () {
+    const registre = new RegistreUtilisateur();
+    registre.enregistreSituationFaite('tri');
+    registre.enregistreSituationFaite('tri');
+    expect(registre.situationsFaites()).to.eql(['tri']);
+  });
 });
