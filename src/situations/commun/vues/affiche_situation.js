@@ -12,9 +12,10 @@ const barreDev = process.env.AFFICHE_BARRE_DEV === 'true';
 export function afficheSituation (nomSituation, modeleSituation, VueSituation, depotRessources) {
   function affiche (pointInsertion, $) {
     const session = uuidv4();
-    const journal = new Journal(Date.now, session, nomSituation, new DepotJournal(), new RegistreUtilisateur());
+    const registreUtilisateur = new RegistreUtilisateur();
+    const journal = new Journal(Date.now, session, nomSituation, new DepotJournal(), registreUtilisateur);
 
-    const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources, barreDev);
+    const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources, registreUtilisateur, barreDev);
     vueCadre.affiche(pointInsertion, $);
   }
 

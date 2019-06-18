@@ -11,11 +11,12 @@ import VueTerminer from 'commun/vues/terminer';
 import VueBarreDev from 'commun/vues/barre_dev';
 
 export default class VueCadre {
-  constructor (VueSituation, situation, journal, depotRessources, barreDev) {
+  constructor (VueSituation, situation, journal, depotRessources, registreUtilisateur, barreDev) {
     this.VueSituation = VueSituation;
     this.journal = journal;
     this.situation = situation;
     this.depotRessources = depotRessources;
+    this.registreUtilisateur = registreUtilisateur;
     this.barreDev = barreDev;
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
@@ -24,7 +25,7 @@ export default class VueCadre {
     this.vuesEtats.set(LECTURE_CONSIGNE, VueConsigne);
     this.vuesEtats.set(CONSIGNE_ECOUTEE, VueGo);
     this.vuesEtats.set(FINI, VueTerminer);
-    this.envoiEvenementDemarrageUneFoisDemarre(journal);
+    this.envoiEvenementDemarrageUneFoisDemarre();
   }
 
   affiche (pointInsertion, $) {
@@ -81,10 +82,11 @@ export default class VueCadre {
     });
   }
 
-  envoiEvenementDemarrageUneFoisDemarre (journal) {
+  envoiEvenementDemarrageUneFoisDemarre () {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {
-        journal.enregistre(new EvenementDemarrage());
+        this.journal.enregistre(new EvenementDemarrage());
+        this.registreUtilisateur.enregistreSituationFaite(this.journal.situation);
       }
     });
   }

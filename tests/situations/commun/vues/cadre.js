@@ -7,7 +7,7 @@ import VueCadre from 'commun/vues/cadre';
 import DepotRessourcesCommune from 'commun/infra/depot_ressources_communes';
 import chargeurs from '../../commun/aides/mock_chargeurs';
 
-function uneClassVue (callbackAffichage = () => {}) {
+function uneClasseVue (callbackAffichage = () => {}) {
   return class {
     affiche (pointInsertion, jQuery) {
       callbackAffichage(pointInsertion, jQuery);
@@ -20,6 +20,8 @@ describe('Une vue du cadre', function () {
   let situation;
   let depotRessources;
   let journal;
+  let registreUtilisateur;
+  let uneVueCadre;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
@@ -27,11 +29,17 @@ describe('Une vue du cadre', function () {
     depotRessources = new DepotRessourcesCommune('sonConsigne.wav', chargeurs());
     situation = new SituationCommune();
     journal = { enregistre () {} };
+    registreUtilisateur = { enregistreSituationFaite () { } };
+
+    uneVueCadre = function (classeVue = uneClasseVue(), barreDev = false) {
+      return new VueCadre(classeVue, situation, journal, depotRessources, registreUtilisateur, barreDev);
+    };
+
     return depotRessources.chargement();
   });
 
   it("Crée l'élément cadre", function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     expect($('#point-insertion #cadre').length).to.equal(0);
 
     vueCadre.affiche('#point-insertion', $);
@@ -39,7 +47,7 @@ describe('Une vue du cadre', function () {
   });
 
   it("Affiche une scene comme point d'insertion de la vue situation", function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     expect($('#cadre .scene').length).to.equal(0);
 
     vueCadre.affiche('#point-insertion', $);
@@ -47,24 +55,24 @@ describe('Une vue du cadre', function () {
   });
 
   it('affiche une situation donnée', function (done) {
-    const VueSituation = uneClassVue(function (pointInsertion, jQuery) {
+    const VueSituation = uneClasseVue(function (pointInsertion, jQuery) {
       expect(pointInsertion).to.equal('.scene');
       expect(jQuery).to.equal($);
       done();
     });
-    const vueCadre = new VueCadre(VueSituation, situation, journal, depotRessources);
+    const vueCadre = uneVueCadre(VueSituation);
     vueCadre.affiche('#point-insertion', $);
   });
 
   it("affiche la barre d'action", function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $).then(() => {
       expect($('#cadre .actions').length).to.equal(1);
     });
   });
 
   it("affiche la vue chargement dans l'état CHARGEMENT", function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $);
 
     expect($('#cadre .bouton-chargement').length).to.equal(1);
@@ -72,7 +80,7 @@ describe('Une vue du cadre', function () {
 
   it("affiche le bouton play dans l'état ATTENTE_DEMARRAGE", function () {
     situation.modifieEtat(ATTENTE_DEMARRAGE);
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $);
 
     expect($('#cadre .overlay .bouton-lire-consigne').length).to.equal(1);
@@ -80,7 +88,7 @@ describe('Une vue du cadre', function () {
 
   it("affiche la consigne dans l'état LECTURE_CONSIGNE", function () {
     situation.modifieEtat(LECTURE_CONSIGNE);
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $);
 
     expect($('#cadre .bouton-lecture-en-cours').length).to.equal(1);
@@ -88,14 +96,14 @@ describe('Une vue du cadre', function () {
 
   it("affiche le bouton go dans l'état CONSIGNE_ECOUTEE", function () {
     situation.modifieEtat(CONSIGNE_ECOUTEE);
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $);
 
     expect($('#cadre .bouton-go').length).to.equal(1);
   });
 
   it('affiche la vue terminer', function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $).then(() => {
       situation.emit(CHANGEMENT_ETAT, FINI);
       expect($('.actions').length).to.equal(2);
@@ -104,7 +112,7 @@ describe('Une vue du cadre', function () {
   });
 
   it('demande une confirmation pour quitter la page lorsque la situation est démarré', function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $);
     [LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE].forEach((etat) => {
       situation.modifieEtat(etat);
@@ -115,7 +123,7 @@ describe('Une vue du cadre', function () {
   });
 
   it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $).then(() => {
       [CHARGEMENT, ERREUR_CHARGEMENT, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
         situation.modifieEtat(etat);
@@ -127,7 +135,7 @@ describe('Une vue du cadre', function () {
   });
 
   it('désactive le click droit', function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources);
+    const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $);
     const contextmenu = $.Event('contextmenu');
     $('#cadre').trigger(contextmenu);
@@ -135,14 +143,14 @@ describe('Une vue du cadre', function () {
   });
 
   it("crée la barre d'outils de dev", function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources, true);
+    const vueCadre = uneVueCadre(uneClasseVue(), true);
     vueCadre.affiche('#point-insertion', $);
 
     expect($('.barre-dev').length).to.equal(1);
   });
 
   it("ne crée pas la barre d'outils de dev", function () {
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources, false);
+    const vueCadre = uneVueCadre(uneClasseVue(), false);
     vueCadre.affiche('#point-insertion', $);
 
     expect($('.barre-dev').length).to.equal(0);
@@ -153,7 +161,17 @@ describe('Une vue du cadre', function () {
       expect(evenement).to.be.a(EvenementDemarrage);
       done();
     };
-    const vueCadre = new VueCadre(uneClassVue(), situation, journal, depotRessources, false);
+    const vueCadre = uneVueCadre();
+    vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
+  });
+
+  it('enregistre la situation faite dans le registre utilisateur au démarrage', function (done) {
+    registreUtilisateur.enregistreSituationFaite = (nomSituation) => {
+      expect(nomSituation).to.eql('nom situation');
+      done();
+    };
+    journal.situation = 'nom situation';
+    const vueCadre = uneVueCadre();
     vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 });
