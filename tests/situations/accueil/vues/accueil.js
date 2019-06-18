@@ -20,7 +20,7 @@ describe('La vue accueil', function () {
       }
 
       personnages () {
-        return { src: 'personnages' };
+        return { src: '' };
       }
 
       batimentSituation (identifiant) {
@@ -56,6 +56,16 @@ describe('La vue accueil', function () {
     expect($liens.eq(1).attr('style')).to.equal('background-image: url(identifiant-xyz);');
   });
 
+  it("affiche le fond de l'accueil et les personnages", function () {
+    depotRessources.fondAccueil = () => { return { src: 'image-fond' }; };
+    depotRessources.personnages = () => { return { src: 'personnages' }; };
+
+    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+    vueAccueil.affiche('#accueil', $);
+    expect($('.situations').attr('style')).to.equal('background-image: url(image-fond);');
+    expect($('.personnages').attr('style')).to.equal('background-image: url(personnages);');
+  });
+
   it("affiche le formulaire d'identification et masque la déconnexion", function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
@@ -86,13 +96,6 @@ describe('La vue accueil', function () {
     registreUtilisateur.estConnecte = () => true;
     callbackChangementConnexion();
     expect($('#accueil #formulaire-identification').length).to.equal(0);
-  });
-
-  it("affiche le fond de l'accueil et les personnages", function () {
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    expect($('.situations').attr('style')).to.equal('background-image: url(image-fond);');
-    expect($('.personnages').attr('style')).to.equal('background-image: url(personnages);');
   });
 
   it('affiche la progression dans le parc', function () {
