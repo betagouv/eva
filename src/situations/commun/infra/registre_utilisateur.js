@@ -1,6 +1,7 @@
 import EventEmitter from 'events';
 
 const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
+const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 
 export const CHANGEMENT_NOM = 'changementNom';
 
@@ -16,5 +17,21 @@ export default class RegistreUtilisateur extends EventEmitter {
 
   consulte () {
     return window.localStorage.getItem(CLEF_IDENTIFIANT);
+  }
+
+  enregistreSituationFaite (situation) {
+    const situations = this.situationsFaites();
+    if (!situations.includes(situation)) {
+      situations.push(situation);
+    }
+    window.localStorage.setItem(CLEF_SITUATIONS_FAITES, JSON.stringify(situations));
+  }
+
+  situationsFaites () {
+    const situations = window.localStorage.getItem(CLEF_SITUATIONS_FAITES);
+    if (situations) {
+      return JSON.parse(situations);
+    }
+    return [];
   }
 }
