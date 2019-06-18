@@ -16,6 +16,7 @@ export default class VueAccueil {
           ${situation.nom}
         </a>
       `);
+      $situation.on('dragstart', (e) => e.preventDefault());
       $situation.css('background-image', `url('${this.depotRessources.batimentSituation(situation.identifiant).src}')`);
       return $situation;
     };
