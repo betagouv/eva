@@ -94,8 +94,10 @@ describe('La vue accueil', function () {
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
     registreUtilisateur.estConnecte = () => true;
+    registreUtilisateur.consulte = () => 'Jacques Adit2';
     callbackChangementConnexion();
     expect($('#accueil #formulaire-identification').length).to.equal(0);
+    expect($('#accueil .boite-utilisateur').text()).to.equal('Jacques Adit2');
   });
 
   it('affiche la progression dans le parc', function () {
