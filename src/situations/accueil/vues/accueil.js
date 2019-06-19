@@ -10,12 +10,24 @@ export default class VueAccueil {
   }
 
   affiche (pointInsertion, $) {
-    const creeElementSituation = (situation) => {
-      const $situation = $(`
+    const niveau = this.registreUtilisateur.progression().niveau();
+
+    const creeElementSituation = (situation, index) => {
+      const desactivee = index + 1 > niveau;
+      let $situation = $(`
         <a href="${situation.chemin}" class='situation ${situation.identifiant}'>
           ${situation.nom}
         </a>
       `);
+
+      if (desactivee) {
+        $situation = $(`
+        <span class='situation ${situation.identifiant} desactivee'>
+          ${situation.nom}
+        </span>
+      `);
+      }
+
       $situation.on('dragstart', (e) => e.preventDefault());
       $situation.css('background-image', `url('${this.depotRessources.batimentSituation(situation.identifiant).src}')`);
       return $situation;
@@ -27,7 +39,7 @@ export default class VueAccueil {
       const $personnages = $(`<div class='personnages'></div>`);
       $personnages.css('background-image', `url('${this.depotRessources.personnages().src}')`);
       $liste.append($personnages);
-      const $elementsSituation = situations.map((s) => { return creeElementSituation(s); });
+      const $elementsSituation = situations.map((s, index) => { return creeElementSituation(s, index); });
       $liste.append(...$elementsSituation);
       return $liste;
     };
@@ -39,7 +51,6 @@ export default class VueAccueil {
     }
 
     const $progression = $(`<div class='progression'></div>`);
-    const niveau = this.registreUtilisateur.progression().niveau();
     $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
 
     const $situations = creeElementListe(this.situations);

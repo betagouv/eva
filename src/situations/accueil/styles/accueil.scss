@@ -52,6 +52,10 @@
       left: 570px;
       top: -38px;
     }
+
+    &.desactivee {
+      filter: brightness(0.4);
+    }
   }
 
   .progression, .personnages {
