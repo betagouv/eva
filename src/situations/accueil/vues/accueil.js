@@ -1,5 +1,6 @@
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
+import VueBoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 export default class VueAccueil {
@@ -44,49 +45,34 @@ export default class VueAccueil {
       return $liste;
     };
 
-    function creeBoiteUtilisateur (registreUtilisateur) {
-      const $utilisateur = $(`
-        <div class="boite-utilisateur">
-          ${registreUtilisateur.consulte()}
-          <a class='deconnexion' href='#'>
-            <i class='fas fa-sign-out-alt'></i>
-          </a>
-        </div>`
-      );
-      $utilisateur.find('.deconnexion').click(() => {
-        registreUtilisateur.deconnecte();
-      });
-      return $utilisateur;
-    }
-
     function creeTitre () {
       const $titre = $("<div class='titre'></div>");
-      $($titre).append('<h1>Compétences pro</h1>');
+      $titre.append('<h1>Compétences pro</h1>');
 
       return $titre;
     }
 
+    const $titre = creeTitre();
     const $progression = $(`<div class='progression'></div>`);
     $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
 
     const $situations = creeElementListe(this.situations);
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
-    const registreUtilisateur = this.registreUtilisateur;
+    const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
+
     const basculeAffichageFormulaireIdentification = () => {
       if (!this.registreUtilisateur.estConnecte()) {
         formulaireIdentification.affiche($situations, $);
-        $('.boite-utilisateur').remove();
+        boiteUtilisateur.supprime();
       } else {
         formulaireIdentification.supprime();
-        $('.titre').append(creeBoiteUtilisateur(registreUtilisateur));
+        boiteUtilisateur.affiche($titre, $);
       }
     };
     this.registreUtilisateur.on(CHANGEMENT_CONNEXION, basculeAffichageFormulaireIdentification);
+    basculeAffichageFormulaireIdentification();
 
     $situations.prepend($progression);
-
-    const $titre = creeTitre();
     $(pointInsertion).append($titre, $situations);
-    basculeAffichageFormulaireIdentification();
   }
 }
