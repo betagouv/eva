@@ -98,4 +98,20 @@ describe('La vue accueil', function () {
     vueAccueil.affiche('#accueil', $);
     expect($('.progression').attr('style')).to.equal('background-image: url(42);');
   });
+
+  it('désactive les situations qui ne sont pas dans le niveau actuel', function () {
+    const situations = [
+      { nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc' },
+      { nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz' }
+    ];
+    progression.niveau = () => 1;
+    const vueAccueil = new VueAccueil(situations, registreUtilisateur, depotRessources);
+    vueAccueil.affiche('#accueil', $);
+    const $situation = $('#accueil .situation');
+    expect($situation.eq(0).text()).to.contain('ABC');
+    expect($situation.eq(0).hasClass('desactivee')).to.be(false);
+
+    expect($situation.eq(1).text()).to.contain('XYZ');
+    expect($situation.eq(1).hasClass('desactivee')).to.be(true);
+  });
 });
