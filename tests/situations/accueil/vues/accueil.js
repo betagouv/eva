@@ -16,7 +16,7 @@ describe('La vue accueil', function () {
     registreUtilisateur.progression = () => progression;
     depotRessources = new class {
       fondAccueil () {
-        return { src: 'image-fond' };
+        return { src: '' };
       }
 
       personnages () {
@@ -42,18 +42,18 @@ describe('La vue accueil', function () {
 
     vueAccueil.affiche('#accueil', $);
 
-    const $liens = $('#accueil .situations a');
-    expect($liens.length).to.equal(2);
+    const $liensSituations = $('#accueil .situations a');
+    expect($liensSituations.length).to.equal(2);
 
-    expect($liens.eq(0).text()).to.contain('ABC');
-    expect($liens.eq(0).attr('href')).to.equal('abc.html');
-    expect($liens.eq(0).attr('class')).to.equal('situation identifiant-abc');
-    expect($liens.eq(0).attr('style')).to.equal('background-image: url(identifiant-abc);');
+    expect($liensSituations.eq(0).text()).to.contain('ABC');
+    expect($liensSituations.eq(0).attr('href')).to.equal('abc.html');
+    expect($liensSituations.eq(0).attr('class')).to.equal('situation identifiant-abc');
+    expect($liensSituations.eq(0).attr('style')).to.equal('background-image: url(identifiant-abc);');
 
-    expect($liens.eq(1).text()).to.contain('XYZ');
-    expect($liens.eq(1).attr('href')).to.equal('xyz.html');
-    expect($liens.eq(1).attr('class')).to.equal('situation identifiant-xyz');
-    expect($liens.eq(1).attr('style')).to.equal('background-image: url(identifiant-xyz);');
+    expect($liensSituations.eq(1).text()).to.contain('XYZ');
+    expect($liensSituations.eq(1).attr('href')).to.equal('xyz.html');
+    expect($liensSituations.eq(1).attr('class')).to.equal('situation identifiant-xyz');
+    expect($liensSituations.eq(1).attr('style')).to.equal('background-image: url(identifiant-xyz);');
   });
 
   it("affiche le fond de l'accueil et les personnages", function () {
