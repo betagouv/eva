@@ -87,6 +87,8 @@ export default class DepotRessources {
   }
 
   ressource (idRessource) {
+    const message = "Tentative de chargement d'une ressource dont le nom est `undefined`";
+    if (idRessource === undefined) throw new Error(message);
     return this.cloneursRessource[idRessource]();
   }
 }
