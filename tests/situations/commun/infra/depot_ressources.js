@@ -49,6 +49,14 @@ describe('le dépôt de ressources', function () {
     });
   });
 
+  it('lance une exception explicite si le nom de la ressource est undefined', function () {
+    const depot = new DepotRessources({ });
+    expect(() => depot.ressource(undefined)).to.throwError(function (e) {
+      expect(e).to.be.a(Error);
+      expect(e.message).to.equal("Tentative de chargement d'une ressource dont le nom est `undefined`");
+    });
+  });
+
   it('clone les ressources servies', function () {
     let nbAppels = 0;
     const depot = new DepotRessources({
