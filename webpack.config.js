@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
-const situations = ['controle', 'inventaire', 'tri'];
+const situations = ['controle', 'inventaire', 'tri', 'compte_rendu'];
 
 const entriesSituations = situations.reduce(function (entries, situation) {
   entries[`situation_${situation}`] = path.resolve(__dirname, `src/app/situation_${situation}.js`);
