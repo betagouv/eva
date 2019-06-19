@@ -23,7 +23,6 @@
   "inventaire": {
     "titre": "Stock de boissons",
     "valider_saisie": "Vérifier",
-    "retour_stock": "Retour au stock",
     "unite_vrac": "litre"
   },
   "situation": {
