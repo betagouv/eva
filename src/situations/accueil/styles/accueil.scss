@@ -54,7 +54,7 @@
     }
 
     &.desactivee {
-      filter: brightness(0.4);
+      filter: contrast(80%) saturate(30%);
     }
   }
 
