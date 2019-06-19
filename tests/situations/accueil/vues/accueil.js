@@ -70,17 +70,15 @@ describe('La vue accueil', function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
-    expect($('#accueil .deconnexion').length).to.equal(0);
+    expect($('#accueil .boite-utilisateur').length).to.equal(0);
   });
 
   it("cache le formulaire d'identification si le nom est rempli et affiche la déconnexion", function () {
     registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.consulte = () => 'Jacques Adit';
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(0);
-    expect($('#accueil .deconnexion').length).to.equal(1);
-    expect($('#accueil .boite-utilisateur').text().trim()).to.equal('Jacques Adit');
+    expect($('#accueil .boite-utilisateur').length).to.equal(1);
   });
 
   it("cache le formulaire d'identification une fois le nom rempli", function () {
@@ -94,10 +92,9 @@ describe('La vue accueil', function () {
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
     registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.consulte = () => 'Jacques Adit2';
     callbackChangementConnexion();
     expect($('#accueil #formulaire-identification').length).to.equal(0);
-    expect($('#accueil .boite-utilisateur').text().trim()).to.equal('Jacques Adit2');
+    expect($('#accueil .boite-utilisateur').length).to.equal(1);
   });
 
   it('affiche la progression dans le parc', function () {
@@ -134,7 +131,7 @@ describe('La vue accueil', function () {
     $('.deconnexion').click();
   });
 
-  it("enlève la déconnexion lorsque l'utilisateur se déconnecte", function (done) {
+  it("enlève la déconnexion lorsque l'utilisateur se déconnecte", function () {
     let callbackChangementConnexion;
     registreUtilisateur.on = (_nom, callback) => {
       callbackChangementConnexion = callback;
@@ -143,17 +140,9 @@ describe('La vue accueil', function () {
     registreUtilisateur.estConnecte = () => true;
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
-    expect($('#accueil .deconnexion').length).to.equal(1);
+    expect($('#accueil .boite-utilisateur').length).to.equal(1);
     registreUtilisateur.estConnecte = () => false;
     callbackChangementConnexion();
-    expect($('#accueil .deconnexion').length).to.equal(0);
-
-    registreUtilisateur.estConnecte = () => true;
-    callbackChangementConnexion();
-    expect($('#accueil .deconnexion').length).to.equal(1);
-    registreUtilisateur.deconnecte = () => {
-      done();
-    };
-    $('.deconnexion').click();
+    expect($('#accueil .boite-utilisateur').length).to.equal(0);
   });
 });
