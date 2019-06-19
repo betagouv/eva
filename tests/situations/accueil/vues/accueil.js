@@ -80,7 +80,7 @@ describe('La vue accueil', function () {
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(0);
     expect($('#accueil .deconnexion').length).to.equal(1);
-    expect($('#accueil .boite-utilisateur').text()).to.equal('Jacques Adit');
+    expect($('#accueil .boite-utilisateur').text().trim()).to.equal('Jacques Adit');
   });
 
   it("cache le formulaire d'identification une fois le nom rempli", function () {
@@ -97,7 +97,7 @@ describe('La vue accueil', function () {
     registreUtilisateur.consulte = () => 'Jacques Adit2';
     callbackChangementConnexion();
     expect($('#accueil #formulaire-identification').length).to.equal(0);
-    expect($('#accueil .boite-utilisateur').text()).to.equal('Jacques Adit2');
+    expect($('#accueil .boite-utilisateur').text().trim()).to.equal('Jacques Adit2');
   });
 
   it('affiche la progression dans le parc', function () {

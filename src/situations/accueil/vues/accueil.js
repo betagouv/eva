@@ -45,13 +45,17 @@ export default class VueAccueil {
     };
 
     function creeBoiteUtilisateur (registreUtilisateur) {
-      const $utilisateur = $('<div class="boite-utilisateur"></div>');
-      $utilisateur.append(registreUtilisateur.consulte());
-      const $deconnexion = $("<a class='deconnexion' href='#'><i class='fas fa-sign-out-alt'></i></a>");
-      $deconnexion.click(() => {
+      const $utilisateur = $(`
+        <div class="boite-utilisateur">
+          ${registreUtilisateur.consulte()}
+          <a class='deconnexion' href='#'>
+            <i class='fas fa-sign-out-alt'></i>
+          </a>
+        </div>`
+      );
+      $utilisateur.find('.deconnexion').click(() => {
         registreUtilisateur.deconnecte();
       });
-      $utilisateur.append($deconnexion);
       return $utilisateur;
     }
 
