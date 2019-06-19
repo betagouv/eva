@@ -19,7 +19,7 @@
     @include bords-arrondis;
     height: 566px;
     position: relative;
-    background: center / contain no-repeat;
+    background-repeat: no-repeat;
   }
 
   .situation {
