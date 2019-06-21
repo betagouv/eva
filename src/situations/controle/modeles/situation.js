@@ -49,8 +49,8 @@ export default class Situation extends SituationCommune {
       y: this.positionApparition.y,
       categorie: donneesPiece.categorie,
       type: donneesPiece.type,
-      largeur: 13,
-      hauteur: 30
+      largeur: 11.6,
+      hauteur: 27.7
     });
   }
 
