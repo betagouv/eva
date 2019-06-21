@@ -1,4 +1,4 @@
-import Journal from 'commun/modeles/journal';
+import { Journal } from 'commun/modeles/journal';
 import Evenement from 'commun/modeles/evenement';
 import MockDepot from '../aides/mock_depot';
 
@@ -8,12 +8,12 @@ describe('le journal', function () {
   let mockDepot;
   const registre = { consulte () {} };
   const sessionId = 42;
-  const situation = 'inventaire';
+  const identifiantSituation = 'inventaire';
 
   beforeEach(function () {
     mockMaintenant = () => { return 123; };
     mockDepot = new MockDepot();
-    journal = new Journal(mockMaintenant, sessionId, situation, mockDepot, registre);
+    journal = new Journal(mockMaintenant, sessionId, identifiantSituation, mockDepot, registre);
   });
 
   it('enregistre un événement', function () {
@@ -26,7 +26,7 @@ describe('le journal', function () {
     expect(enregistrement[0]).to.have.property('nom', 'test');
     expect(enregistrement[0]).to.have.property('date', 123);
     expect(enregistrement[0]).to.have.property('session_id', sessionId);
-    expect(enregistrement[0]).to.have.property('situation', situation);
+    expect(enregistrement[0]).to.have.property('situation', identifiantSituation);
     expect(enregistrement[0]).to.have.property('utilisateur', 'identifiant utilisateur');
   });
 });

@@ -28,11 +28,11 @@ describe('Une vue du cadre', function () {
     $ = jQuery(window);
     depotRessources = new DepotRessourcesCommune('sonConsigne.wav', chargeurs());
     situation = new SituationCommune();
-    journal = { enregistre () {} };
     registreUtilisateur = { enregistreSituationFaite () { } };
+    journal = { enregistre () {}, registreUtilisateur };
 
     uneVueCadre = function (classeVue = uneClasseVue(), barreDev = false) {
-      return new VueCadre(classeVue, situation, journal, depotRessources, registreUtilisateur, barreDev);
+      return new VueCadre(classeVue, situation, journal, depotRessources, barreDev);
     };
 
     return depotRessources.chargement();

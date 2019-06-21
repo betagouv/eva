@@ -1,27 +1,22 @@
-import uuidv4 from 'uuid/v4';
 import jQuery from 'jquery';
 
-import DepotJournal from 'commun/infra/depot_journal';
-import Journal from 'commun/modeles/journal';
+import creeJournalPourSituation from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
-import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
 const barreDev = process.env.AFFICHE_BARRE_DEV === 'true';
 
-export function afficheSituation (nomSituation, modeleSituation, VueSituation, depotRessources) {
+export function afficheSituation (identifiantSituation, modeleSituation, VueSituation, depotRessources) {
   function affiche (pointInsertion, $) {
-    const session = uuidv4();
-    const registreUtilisateur = new RegistreUtilisateur();
-    const journal = new Journal(Date.now, session, nomSituation, new DepotJournal(), registreUtilisateur);
+    const journal = creeJournalPourSituation(identifiantSituation);
 
-    const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources, registreUtilisateur, barreDev);
+    const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources, barreDev);
     vueCadre.affiche(pointInsertion, $);
   }
 
   initialiseInternationalisation().then(function () {
     jQuery(function () {
-      document.title = traduction(`${nomSituation}.titre`);
+      document.title = traduction(`${identifiantSituation}.titre`);
       affiche('body', jQuery);
     });
   });

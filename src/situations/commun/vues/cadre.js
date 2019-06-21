@@ -11,12 +11,12 @@ import VueTerminer from 'commun/vues/terminer';
 import VueBarreDev from 'commun/vues/barre_dev';
 
 export default class VueCadre {
-  constructor (VueSituation, situation, journal, depotRessources, registreUtilisateur, barreDev) {
+  constructor (VueSituation, situation, journal, depotRessources, barreDev) {
     this.VueSituation = VueSituation;
     this.journal = journal;
     this.situation = situation;
     this.depotRessources = depotRessources;
-    this.registreUtilisateur = registreUtilisateur;
+    this.registreUtilisateur = this.journal.registreUtilisateur;
     this.barreDev = barreDev;
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
