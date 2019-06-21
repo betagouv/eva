@@ -11,7 +11,7 @@ import 'commun/styles/situation.scss';
 function afficheSituation (pointInsertion, $) {
   const depotRessources = new DepotRessourcesCompteRendu();
   const journal = creeJournalPourSituation(IDENTIFIANT_SITUATION_COMPTE_RENDU);
-  const vueSituation = new VueSituation(journal);
+  const vueSituation = new VueSituation(depotRessources, journal);
 
   depotRessources.chargement().then(() => {
     vueSituation.affiche(pointInsertion, $);
