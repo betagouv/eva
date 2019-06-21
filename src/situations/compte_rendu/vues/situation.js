@@ -2,13 +2,15 @@ import { traduction } from 'commun/infra/internationalisation';
 import EvenementReponseEnvoyee from 'compte_rendu/modeles/evenement_reponse_envoyee';
 
 export default class VueSituation {
-  constructor (journal) {
+  constructor (depotRessources, journal) {
+    this.depotRessources = depotRessources;
     this.journal = journal;
   }
 
   affiche (pointInsertion, $) {
     const $vue = $(`
       <div class="situation">
+        <img class="illustration" src=${this.depotRessources.accidentCarine().src}></img>
         <textarea id="reponse-compte-rendu" rows="5" cols="33">
           ${traduction('compte_rendu.entete_reponse')}
         </textarea>
