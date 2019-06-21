@@ -12,8 +12,10 @@
     },
     "titre": "Compétences pro"
   },
-  "compte-rendu": {
-    "titre": "Compte rendu d'accident"
+  "compte_rendu": {
+    "titre": "Compte rendu d'accident",
+    "entete_reponse": "Bonjour Catherine…",
+    "envoyer": "Envoyer"
   },
   "controle": {
     "titre": "Chaîne de fabrication",
