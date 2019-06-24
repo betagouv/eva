@@ -1,0 +1,15 @@
+@import 'commun/styles/couleurs.scss';
+
+
+.boite-utilisateur {
+  border: 1px solid $couleur-bordure-input-accueil;
+  border-radius: 1rem;
+  color: $couleur-titre-accueil;
+  padding: 1.375rem 1rem;
+  font-size: 1.125rem;
+
+  .deconnexion {
+    margin-left: 1rem;
+    color: $couleur-titre-accueil;
+  }
+}
