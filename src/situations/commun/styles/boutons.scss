@@ -1,0 +1,22 @@
+@import 'commun/styles/couleurs.scss';
+
+.bouton-arrondi {
+  padding: .625rem .9375rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: .1rem solid $couleur-fond-bouton-terminer-focus;
+  border-radius: 2rem;
+  cursor: pointer;
+  color: $blanc;
+  background-color: $couleur-fond-bouton-terminer;
+  transition: border, background .3s;
+  outline: none;
+
+  &:active {
+    border-color: $couleur-fond-bouton-terminer;
+  }
+  &:hover,
+  &:focus {
+    background-color: $couleur-fond-bouton-terminer-focus;
+  }
+}

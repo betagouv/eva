@@ -15,7 +15,11 @@
   "compte_rendu": {
     "titre": "Compte rendu d'accident",
     "entete_reponse": "Bonjour Catherine…",
-    "envoyer": "Envoyer"
+    "envoyer": "Envoyer",
+    "message_catherine_jean": "Bonjour, <br>Merci de bien vouloir rédiger une note concernant la chute de Carine dont vous avez été témoin. Elle a un fêlure de la main droite.<br><br> Cordialement,<br> Catherine Jean",
+    "objet_message_catherine": "Sujet : Accident Carine",
+    "informations_expediteur": "de c.jean@eva.fr, le 20/06/2019, 16:18",
+    "objet_reponse": "Réponse : Note Accident Carine"
   },
   "controle": {
     "titre": "Chaîne de fabrication",
