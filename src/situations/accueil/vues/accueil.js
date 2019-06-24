@@ -11,7 +11,7 @@ export default class VueAccueil {
   }
 
   affiche (pointInsertion, $) {
-    const niveau = this.registreUtilisateur.progression().niveau();
+    let niveau = this.registreUtilisateur.progression().niveau();
 
     const creeElementSituation = (situation, index) => {
       const desactivee = index + 1 > niveau;
@@ -54,7 +54,6 @@ export default class VueAccueil {
 
     const $titre = creeTitre();
     const $progression = $(`<div class='progression'></div>`);
-    $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
 
     const $situations = creeElementListe(this.situations);
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
@@ -65,9 +64,12 @@ export default class VueAccueil {
         formulaireIdentification.affiche($situations, $);
         boiteUtilisateur.supprime();
       } else {
+        niveau = this.registreUtilisateur.progression().niveau();
         formulaireIdentification.supprime();
         boiteUtilisateur.affiche($titre, $);
       }
+
+      $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
     };
     this.registreUtilisateur.on(CHANGEMENT_CONNEXION, basculeAffichageFormulaireIdentification);
     basculeAffichageFormulaireIdentification();

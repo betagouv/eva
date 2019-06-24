@@ -7,13 +7,14 @@ describe('La vue accueil', function () {
   let $;
   let depotRessources;
   let progression;
-  const registreUtilisateur = { on () {}, estConnecte () {}, consulte () {}, deconnecte () {} };
+  const registreUtilisateur = { on () {}, estConnecte () {}, consulte () {} };
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
     $ = jQuery(window);
     progression = { niveau () { } };
     registreUtilisateur.progression = () => progression;
+    registreUtilisateur.deconnecte = () => {};
     depotRessources = new class {
       fondAccueil () {
         return { src: '' };
@@ -129,6 +130,21 @@ describe('La vue accueil', function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     $('.deconnexion').click();
+  });
+
+  it('actualise la progression quand on se déconnecte', function () {
+    let nombreDeFoisProgressionRaffraîchie = 0;
+    registreUtilisateur.progression = () => {
+      nombreDeFoisProgressionRaffraîchie += 1;
+      return { niveau () {} };
+    };
+    registreUtilisateur.estConnecte = () => true;
+    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+
+    vueAccueil.affiche('#accueil', $);
+    $('.deconnexion').click();
+
+    expect(nombreDeFoisProgressionRaffraîchie).to.equal(2);
   });
 
   it("enlève la déconnexion lorsque l'utilisateur se déconnecte", function () {
