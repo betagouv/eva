@@ -29,4 +29,13 @@ describe('le journal', function () {
     expect(enregistrement[0]).to.have.property('situation', identifiantSituation);
     expect(enregistrement[0]).to.have.property('utilisateur', 'identifiant utilisateur');
   });
+
+  it('enregistre la situation faite', function (done) {
+    registre.enregistreSituationFaite = (nomSituation) => {
+      expect(nomSituation).to.eql('nom situation');
+      done();
+    };
+    journal.situation = 'nom situation';
+    journal.enregistreSituationFaite();
+  });
 });

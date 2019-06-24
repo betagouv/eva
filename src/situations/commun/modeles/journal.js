@@ -23,6 +23,10 @@ export class Journal {
     };
     return this.depot.enregistre(payLoad, timeout);
   }
+
+  enregistreSituationFaite () {
+    this.registreUtilisateur.enregistreSituationFaite(this.situation);
+  }
 }
 
 export default function creeJournalPourSituation (identifiantSituation) {
