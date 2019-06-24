@@ -19,6 +19,10 @@ describe('La vue accueil', function () {
         return { src: 'image-fond' };
       }
 
+      personnages () {
+        return { src: 'personnages' };
+      }
+
       batimentSituation (identifiant) {
         return { src: identifiant };
       }
@@ -80,10 +84,11 @@ describe('La vue accueil', function () {
     expect($('#accueil #formulaire-identification').length).to.equal(0);
   });
 
-  it("affiche le fond de l'accueil", function () {
+  it("affiche le fond de l'accueil et les personnages", function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('.situations').attr('style')).to.equal('background-image: url(image-fond);');
+    expect($('.personnages').attr('style')).to.equal('background-image: url(personnages);');
   });
 
   it('affiche la progression dans le parc', function () {

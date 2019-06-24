@@ -24,6 +24,9 @@ export default class VueAccueil {
     const creeElementListe = (situations) => {
       const $liste = $(`<div class='situations'></div>`);
       $liste.css('background-image', `url('${this.depotRessources.fondAccueil().src}')`);
+      const $personnages = $(`<div class='personnages'></div>`);
+      $personnages.css('background-image', `url('${this.depotRessources.personnages().src}')`);
+      $liste.append($personnages);
       const $elementsSituation = situations.map((s) => { return creeElementSituation(s); });
       $liste.append(...$elementsSituation);
       return $liste;
