@@ -1,4 +1,5 @@
 import 'accueil/styles/formulaire_identification.scss';
+import 'commun/styles/boutons.scss';
 import { traduction } from 'commun/infra/internationalisation';
 
 export default class FormulaireIdentification {
@@ -17,7 +18,7 @@ export default class FormulaireIdentification {
           </label>
           <div class="flex">
             <input id="formulaire-identification-input" type="text" class="input-accueil" value="${identifiantActuel}" autofocus>
-            <button class="bouton-accueil">${traduction('accueil.identification.boutton')}</button>
+            <button class="bouton-arrondi">${traduction('accueil.identification.boutton')}</button>
           </div>
         </form>
       `);
