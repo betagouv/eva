@@ -61,6 +61,14 @@ describe('le registre utilisateur', function () {
     expect(progression.niveau()).to.eql(2);
   });
 
+  it('à la déconnexion, remet la progression au début', function () {
+    const registre = new RegistreUtilisateur();
+    registre.enregistreSituationFaite('tri');
+    registre.deconnecte();
+    const progression = registre.progression();
+    expect(progression.niveau()).to.equal(1);
+  });
+
   it('à la déconnexion, nous ne sommes plus connectés', function () {
     const registre = new RegistreUtilisateur();
     registre.inscris('test');
