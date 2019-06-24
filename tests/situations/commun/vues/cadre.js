@@ -20,7 +20,6 @@ describe('Une vue du cadre', function () {
   let situation;
   let depotRessources;
   let journal;
-  let registreUtilisateur;
   let uneVueCadre;
 
   beforeEach(function () {
@@ -28,8 +27,7 @@ describe('Une vue du cadre', function () {
     $ = jQuery(window);
     depotRessources = new DepotRessourcesCommune('sonConsigne.wav', chargeurs());
     situation = new SituationCommune();
-    registreUtilisateur = { enregistreSituationFaite () { } };
-    journal = { enregistre () {}, registreUtilisateur };
+    journal = { enregistre () {}, enregistreSituationFaite () {} };
 
     uneVueCadre = function (classeVue = uneClasseVue(), barreDev = false) {
       return new VueCadre(classeVue, situation, journal, depotRessources, barreDev);
@@ -165,12 +163,10 @@ describe('Une vue du cadre', function () {
     vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
-  it('enregistre la situation faite dans le registre utilisateur au démarrage', function (done) {
-    registreUtilisateur.enregistreSituationFaite = (nomSituation) => {
-      expect(nomSituation).to.eql('nom situation');
+  it('enregistre la situation faite', function (done) {
+    journal.enregistreSituationFaite = () => {
       done();
     };
-    journal.situation = 'nom situation';
     const vueCadre = uneVueCadre();
     vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });

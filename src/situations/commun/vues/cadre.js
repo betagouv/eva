@@ -86,7 +86,7 @@ export default class VueCadre {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {
         this.journal.enregistre(new EvenementDemarrage());
-        this.registreUtilisateur.enregistreSituationFaite(this.journal.situation);
+        this.journal.enregistreSituationFaite();
       }
     });
   }
