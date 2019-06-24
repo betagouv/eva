@@ -1,3 +1,5 @@
+import 'commun/styles/boite_utilisateur.scss';
+import 'commun/styles/font_awesome.scss';
 
 export default class VueBoiteUtilisateur {
   constructor (registreUtilisateur) {
