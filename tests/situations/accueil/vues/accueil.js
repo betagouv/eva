@@ -49,12 +49,12 @@ describe('La vue accueil', function () {
     expect($liensSituations.eq(0).text()).to.contain('ABC');
     expect($liensSituations.eq(0).attr('href')).to.equal('abc.html');
     expect($liensSituations.eq(0).attr('class')).to.equal('situation identifiant-abc');
-    expect($liensSituations.eq(0).attr('style')).to.equal('background-image: url(identifiant-abc);');
+    expect($liensSituations.eq(0).css('background-image')).to.equal('url(identifiant-abc)');
 
     expect($liensSituations.eq(1).text()).to.contain('XYZ');
     expect($liensSituations.eq(1).attr('href')).to.equal('xyz.html');
     expect($liensSituations.eq(1).attr('class')).to.equal('situation identifiant-xyz');
-    expect($liensSituations.eq(1).attr('style')).to.equal('background-image: url(identifiant-xyz);');
+    expect($liensSituations.eq(1).css('background-image')).to.equal('url(identifiant-xyz)');
   });
 
   it("affiche le fond de l'accueil et les personnages", function () {
@@ -117,9 +117,11 @@ describe('La vue accueil', function () {
     const $situation = $('#accueil .situation');
     expect($situation.eq(0).text()).to.contain('ABC');
     expect($situation.eq(0).hasClass('desactivee')).to.be(false);
+    expect($situation.eq(0).css('pointer-events')).to.equal('auto');
 
     expect($situation.eq(1).text()).to.contain('XYZ');
     expect($situation.eq(1).hasClass('desactivee')).to.be(true);
+    expect($situation.eq(1).css('pointer-events')).to.equal('none');
   });
 
   it('permet de se déconnecter', function (done) {
@@ -145,6 +147,28 @@ describe('La vue accueil', function () {
     $('.deconnexion').click();
 
     expect(nombreDeFoisProgressionRaffraîchie).to.equal(2);
+  });
+
+  it("actualise l'accès aux situations quand on se déconnecte", function () {
+    let callbackChangementConnexion;
+    registreUtilisateur.on = (_nom, callback) => {
+      callbackChangementConnexion = callback;
+    };
+
+    const situations = [
+      { nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc' },
+      { nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz' }
+    ];
+    registreUtilisateur.estConnecte = () => true;
+    progression.niveau = () => 2;
+    const vueAccueil = new VueAccueil(situations, registreUtilisateur, depotRessources);
+    vueAccueil.affiche('#accueil', $);
+    const $situations = $('#accueil .situation');
+    expect($situations.eq(1).hasClass('desactivee')).to.be(false);
+
+    progression.niveau = () => 1;
+    callbackChangementConnexion();
+    expect($situations.eq(1).hasClass('desactivee')).to.be(true);
   });
 
   it("enlève la déconnexion lorsque l'utilisateur se déconnecte", function () {
