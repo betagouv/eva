@@ -41,18 +41,25 @@ describe('La vue de la situation « Compte-rendu »', function () {
     expect($('#point-insertion .situation #envoi-reponse').length).to.equal(1);
   });
 
-  it('enregistre la réponse dans le journal quand on appuie sur le bouton envoi', function (done) {
+  it("enregistre la réponse dans le journal quand on appuie sur le bouton envoi puis redirige vers l'accueil", function () {
+    let retourAccueil = false;
+    const promesseDEnregistrement = Promise.resolve();
     const journal = {
       enregistre (evenement) {
         expect(evenement).to.be.a(EvenementReponseEnvoyee);
         expect(evenement.donnees()).to.eql({ reponse: 'Ma réponse' });
-        done();
+        return promesseDEnregistrement;
       }
     };
-    const $vue = new VueSituation(depotRessources, journal);
+    const $vue = new VueSituation(depotRessources, journal, () => { retourAccueil = true; });
 
     $vue.affiche('#point-insertion', $);
     $('.situation #reponse-compte-rendu').val('     Ma réponse  ');
     $('.situation #envoi-reponse').click();
+
+    expect(retourAccueil).to.equal(false);
+    return promesseDEnregistrement.then(() => {
+      expect(retourAccueil).to.equal(true);
+    });
   });
 });
