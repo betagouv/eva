@@ -4,9 +4,10 @@ import 'commun/styles/boutons.scss';
 import 'compte_rendu/styles/situation.scss';
 
 export default class VueSituation {
-  constructor (depotRessources, journal) {
+  constructor (depotRessources, journal, retourAccueil = () => window.location.assign('/')) {
     this.depotRessources = depotRessources;
     this.journal = journal;
+    this.retourAccueil = retourAccueil;
   }
 
   affiche (pointInsertion, $) {
@@ -34,7 +35,8 @@ export default class VueSituation {
     $('#envoi-reponse').click(() => {
       const reponse = $('#reponse-compte-rendu').val().trim();
       const evenement = new EvenementReponseEnvoyee({ reponse });
-      this.journal.enregistre(evenement);
+      this.journal.enregistre(evenement)
+        .finally(this.retourAccueil);
     });
   }
 }

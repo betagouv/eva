@@ -8,9 +8,7 @@ import 'commun/styles/stop.scss';
 import { afficheFenetreModale } from 'commun/vues/modale';
 
 export default class VueStop {
-  constructor (situation, journal, retourAccueil = () => {
-    window.location.assign('/');
-  }) {
+  constructor (situation, journal, retourAccueil = () => window.location.assign('/')) {
     this.situation = situation;
     this.journal = journal;
     this.retourAccueil = retourAccueil;
