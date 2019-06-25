@@ -14,24 +14,27 @@ export default class VueAccueil {
     let niveau = this.registreUtilisateur.progression().niveau();
 
     const creeElementSituation = (situation, index) => {
-      const desactivee = index + 1 > niveau;
       let $situation = $(`
         <a href="${situation.chemin}" class='situation ${situation.identifiant}'>
           ${situation.nom}
         </a>
       `);
 
-      if (desactivee) {
-        $situation = $(`
-        <span class='situation ${situation.identifiant} desactivee'>
-          ${situation.nom}
-        </span>
-      `);
-      }
-
       $situation.on('dragstart', (e) => e.preventDefault());
       $situation.css('background-image', `url('${this.depotRessources.batimentSituation(situation.identifiant).src}')`);
       return $situation;
+    };
+
+    const metsAJourAccesSituations = (niveau) => {
+      function estInaccessible (index) { return index + 1 > niveau; }
+
+      $('.situations .situation').each((index, element) => {
+        $(element).toggleClass('desactivee', estInaccessible(index));
+      });
+
+      $('.situations .situation').css('pointer-events', function (index) {
+        return estInaccessible(index) ? 'none' : 'auto';
+      });
     };
 
     const creeElementListe = (situations) => {
@@ -56,6 +59,7 @@ export default class VueAccueil {
     const $progression = $(`<div class='progression'></div>`);
 
     const $situations = creeElementListe(this.situations);
+
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
 
@@ -65,6 +69,7 @@ export default class VueAccueil {
         boiteUtilisateur.supprime();
       } else {
         niveau = this.registreUtilisateur.progression().niveau();
+        metsAJourAccesSituations(niveau);
         formulaireIdentification.supprime();
         boiteUtilisateur.affiche($titre, $);
       }
@@ -76,5 +81,6 @@ export default class VueAccueil {
 
     $situations.prepend($progression);
     $(pointInsertion).append($titre, $situations);
+    metsAJourAccesSituations(niveau);
   }
 }
