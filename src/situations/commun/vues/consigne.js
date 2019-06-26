@@ -1,5 +1,7 @@
 import { CONSIGNE_ECOUTEE } from 'commun/modeles/situation';
+import joueConsigne from 'commun/composants/joueur_consigne';
 import VueActionOverlay from './action_overlay';
+
 import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 
 export default class VueConsigne extends VueActionOverlay {
@@ -11,23 +13,10 @@ export default class VueConsigne extends VueActionOverlay {
 
   affiche (pointInsertion, $) {
     super.affiche(pointInsertion, $);
-    this.joueConsigne($);
+    joueConsigne($, this.depot, true, () => this.lectureTerminee());
   }
 
   lectureTerminee () {
     this.situation.modifieEtat(CONSIGNE_ECOUTEE);
-  }
-
-  joueConsigne ($) {
-    this.joueSon($, this.depot.consigne(), () => this.joueConsigneCommune($));
-  }
-
-  joueConsigneCommune ($) {
-    this.joueSon($, this.depot.consigneCommune(), () => this.lectureTerminee());
-  }
-
-  joueSon ($, son, callbackFin) {
-    $(son).on('ended', callbackFin);
-    son.start();
   }
 }
