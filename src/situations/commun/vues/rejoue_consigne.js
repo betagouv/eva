@@ -1,3 +1,4 @@
+import joueConsigne from 'commun/composants/joueur_consigne';
 import { traduction } from 'commun/infra/internationalisation';
 import VueBouton from './bouton';
 import EvenementRejoueConsigne from '../modeles/evenement_rejoue_consigne';
@@ -11,7 +12,7 @@ export default class VueRejoueConsigne {
   constructor (depotResources, journal) {
     this.depotResources = depotResources;
     this.journal = journal;
-    this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.joueConsigne(this.$));
+    this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.litConsigne(this.$));
     this.vueBoutonLire.ajouteUneEtiquette(traduction('situation.repeter_consigne'));
     this.vueBoutonLectureEnCours = new VueBouton('bouton-lecture-en-cours', lectureEnCours);
   }
@@ -28,37 +29,16 @@ export default class VueRejoueConsigne {
     this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, $);
   }
 
-  joueConsigne ($) {
+  litConsigne ($) {
     this.journal.enregistre(new EvenementRejoueConsigne());
     this.vueBoutonLire.cache();
 
     this.vueBoutonLectureEnCours.affiche(this.$boutonRejoueConsigne, $);
-    this.definisConsigneAJouer($);
-  }
-
-  definisConsigneAJouer ($) {
-    const consigne = this.depotResources.consigne();
-    let actionSuivante;
-    if (this.etat !== DEMARRE) {
-      actionSuivante = () => this.joueConsigneCommune($);
-    } else {
-      actionSuivante = () => this.lectureTerminee($);
-    }
-    this.joueSon($, consigne, actionSuivante);
-  }
-
-  joueConsigneCommune ($) {
-    const consigneCommune = this.depotResources.consigneCommune();
-    this.joueSon($, consigneCommune, () => this.lectureTerminee());
+    joueConsigne($, this.depotResources, this.etat !== DEMARRE, () => this.lectureTerminee());
   }
 
   lectureTerminee () {
     this.vueBoutonLectureEnCours.cache();
     this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, this.$);
-  }
-
-  joueSon ($, son, callbackFin) {
-    $(son).on('ended', callbackFin);
-    son.start();
   }
 }

@@ -43,7 +43,7 @@ describe('vue Rejoue Consigne', function () {
 
   it('passe en état lecture en cours', function () {
     vue.affiche('#pointInsertion', $, situation);
-    vue.joueConsigne($);
+    vue.litConsigne($);
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(0);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(1);
   });
@@ -67,6 +67,6 @@ describe('vue Rejoue Consigne', function () {
       done();
     };
     vue.affiche('#pointInsertion', $, situation);
-    vue.joueConsigne($);
+    vue.litConsigne($);
   });
 });
