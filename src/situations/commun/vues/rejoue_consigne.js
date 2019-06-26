@@ -38,19 +38,21 @@ export default class VueRejoueConsigne {
 
   definisConsigneAJouer ($) {
     const consigne = this.depotResources.consigne();
+    let actionSuivante;
     if (this.etat !== DEMARRE) {
-      this.joueSon($, consigne, () => this.joueConsigneCommune($));
+      actionSuivante = () => this.joueConsigneCommune($);
     } else {
-      this.joueSon($, consigne, () => this.lectureTermine($));
+      actionSuivante = () => this.lectureTerminee($);
     }
+    this.joueSon($, consigne, actionSuivante);
   }
 
   joueConsigneCommune ($) {
     const consigneCommune = this.depotResources.consigneCommune();
-    this.joueSon($, consigneCommune, () => this.lectureTermine());
+    this.joueSon($, consigneCommune, () => this.lectureTerminee());
   }
 
-  lectureTermine () {
+  lectureTerminee () {
     this.vueBoutonLectureEnCours.cache();
     this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, this.$);
   }
