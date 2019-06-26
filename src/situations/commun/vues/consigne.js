@@ -14,7 +14,7 @@ export default class VueConsigne extends VueActionOverlay {
     this.joueConsigne($);
   }
 
-  lectureTermine () {
+  lectureTerminee () {
     this.situation.modifieEtat(CONSIGNE_ECOUTEE);
   }
 
@@ -23,7 +23,7 @@ export default class VueConsigne extends VueActionOverlay {
   }
 
   joueConsigneCommune ($) {
-    this.joueSon($, this.depot.consigneCommune(), () => this.lectureTermine());
+    this.joueSon($, this.depot.consigneCommune(), () => this.lectureTerminee());
   }
 
   joueSon ($, son, callbackFin) {
