@@ -1,5 +1,6 @@
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
+import VueAccesSituation from 'accueil/vues/acces_situation';
 import VueBoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
@@ -12,18 +13,6 @@ export default class VueAccueil {
 
   affiche (pointInsertion, $) {
     let niveau = this.registreUtilisateur.progression().niveau();
-
-    const creeElementSituation = (situation, index) => {
-      let $situation = $(`
-        <a href="${situation.chemin}" class='situation ${situation.identifiant}'>
-          ${situation.nom}
-        </a>
-      `);
-
-      $situation.on('dragstart', (e) => e.preventDefault());
-      $situation.css('background-image', `url('${this.depotRessources.batimentSituation(situation.identifiant).src}')`);
-      return $situation;
-    };
 
     const metsAJourAccesSituations = (niveau) => {
       function estInaccessible (index) { return index + 1 > niveau; }
@@ -43,8 +32,10 @@ export default class VueAccueil {
       const $personnages = $(`<div class='personnages'></div>`);
       $personnages.css('background-image', `url('${this.depotRessources.personnages().src}')`);
       $liste.append($personnages);
-      const $elementsSituation = situations.map((s, index) => { return creeElementSituation(s, index); });
-      $liste.append(...$elementsSituation);
+      situations.forEach((s) => {
+        const accesSituation = new VueAccesSituation(s, this.depotRessources);
+        accesSituation.affiche($liste, $);
+      });
       return $liste;
     };
 
