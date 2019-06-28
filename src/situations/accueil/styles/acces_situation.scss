@@ -1,0 +1,35 @@
+.acces-situation {
+  display: block;
+  position: absolute;
+  font-size: 0;
+  background: center / contain no-repeat;
+
+  &:hover {
+    filter: drop-shadow(0 0 20px white);
+  }
+
+  &.tri {
+    width: 225px;
+    height: 250px;
+    left: 215px;
+    top: 10px;
+  }
+
+  &.inventaire {
+    width: 247px;
+    height: 214px;
+    left: 350px;
+    top: 190px;
+  }
+
+  &.controle {
+    width: 271px;
+    height: 302px;
+    left: 570px;
+    top: -38px;
+  }
+
+  &.desactivee {
+    filter: contrast(80%) saturate(30%);
+  }
+}
