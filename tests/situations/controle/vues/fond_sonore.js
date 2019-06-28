@@ -71,16 +71,14 @@ describe('Le fond sonore', () => {
       vue = new VueFondSonore(situation, mockDepotRessource);
     });
 
-    it("joue à l'état DEMARRE", (done) => {
+    it("joue à l'état DEMARRE", function (done) {
       let jouee = 0;
-      audioKlaxon.start = e => jouee++;
+      audioKlaxon.start = e => {
+        jouee++;
+        if (jouee === 2) done();
+      };
       situation.modifieEtat(DEMARRE);
       vue.affiche('#pointInsertion');
-
-      setTimeout(() => {
-        expect(jouee).to.equal(2);
-        done();
-      }, 5);
     });
 
     it("stoppe si c'est fini", function (done) {
