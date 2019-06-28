@@ -59,7 +59,7 @@ describe('La situation « Contrôle »', function () {
     expect(situation.piecesAffichees().length).to.eql(0);
   });
 
-  it("démarre la situation et déclenche un événement a l'ajout de la piece dans les pieces en cours", function (done) {
+  it("démarre la situation et déclenche un événement à l'ajout de la piece dans les pieces en cours", function (done) {
     const situation = creeSituationMinimale();
     situation.on(NOUVELLE_PIECE, () => {
       done();
@@ -67,7 +67,7 @@ describe('La situation « Contrôle »', function () {
     situation.demarre();
   });
 
-  it('enleve la piece des pieces en cours apres le temps défini', function (done) {
+  it('enlève la pièce des pieces en cours après le temps défini', function (done) {
     const situation = creeSituationMinimale();
     situation.on(NOUVELLE_PIECE, (piece) => {
       piece.on(DISPARITION_PIECE, () => {
@@ -78,7 +78,7 @@ describe('La situation « Contrôle »', function () {
     situation.demarre();
   });
 
-  it('passe la situation en fini une fois que toutes les pieces ont disparu', function () {
+  it('passe la situation en fini une fois que toutes les pièces ont disparu', function () {
     const piece1 = new Piece({});
     const piece2 = new Piece({});
     const situation = new Situation({ scenario: [] });
