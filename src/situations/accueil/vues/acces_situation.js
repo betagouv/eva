@@ -1,18 +1,29 @@
+import 'accueil/styles/acces_situation.scss';
+
 export default class VueAccesSituation {
-  constructor (situation, depotRessources) {
-    this.situation = situation;
+  constructor (accesSituation, depotRessources) {
+    this.accesSituation = accesSituation;
     this.depotRessources = depotRessources;
   }
 
   affiche (pointInsertion, $) {
-    let $accesSituation = $(`
-        <a href="${this.situation.chemin}" class='situation ${this.situation.identifiant}'>
-          ${this.situation.nom}
+    this.$accesSituation = $(`
+        <a href="${this.accesSituation.chemin}" class='acces-situation ${this.accesSituation.identifiant}'>
+          ${this.accesSituation.nom}
         </a>
       `);
 
-    $accesSituation.on('dragstart', (e) => e.preventDefault());
-    $accesSituation.css('background-image', `url('${this.depotRessources.batimentSituation(this.situation.identifiant).src}')`);
-    $(pointInsertion).append($accesSituation);
+    this.$accesSituation.on('dragstart', (e) => e.preventDefault());
+    this.$accesSituation.css('background-image', `url('${this.depotRessources.batimentSituation(this.accesSituation.identifiant).src}')`);
+    $(pointInsertion).append(this.$accesSituation);
+  }
+
+  metsAJourAcces (niveau) {
+    const estInaccessible = !this.accesSituation.estAccessible(niveau);
+
+    this.$accesSituation.toggleClass('desactivee', estInaccessible);
+    this.$accesSituation.css('pointer-events', function () {
+      return estInaccessible ? 'none' : 'auto';
+    });
   }
 }

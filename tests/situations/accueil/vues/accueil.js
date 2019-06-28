@@ -2,11 +2,13 @@ import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
 
 import VueAccueil from 'accueil/vues/accueil';
+import AccesSituation from 'accueil/modeles/acces_situation';
 
 describe('La vue accueil', function () {
   let $;
   let depotRessources;
   let progression;
+  let accesSituations;
   const registreUtilisateur = { on () {}, estConnecte () {}, consulte () {} };
 
   beforeEach(function () {
@@ -32,29 +34,20 @@ describe('La vue accueil', function () {
         return { src: 'progression' };
       }
     }();
+
+    accesSituations = [
+      new AccesSituation({ nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc', niveauMinimum: 1 }),
+      new AccesSituation({ nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz', niveauMinimum: 2 })
+    ];
   });
 
   it('affiche un lien pour chaque situation', function () {
-    const situations = [
-      { nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc' },
-      { nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz' }
-    ];
-    const vueAccueil = new VueAccueil(situations, registreUtilisateur, depotRessources);
+    const vueAccueil = new VueAccueil(accesSituations, registreUtilisateur, depotRessources);
 
     vueAccueil.affiche('#accueil', $);
 
-    const $liensSituations = $('#accueil .situations a');
+    const $liensSituations = $('#accueil .acces-situations .acces-situation');
     expect($liensSituations.length).to.equal(2);
-
-    expect($liensSituations.eq(0).text()).to.contain('ABC');
-    expect($liensSituations.eq(0).attr('href')).to.equal('abc.html');
-    expect($liensSituations.eq(0).attr('class')).to.equal('situation identifiant-abc');
-    expect($liensSituations.eq(0).css('background-image')).to.equal('url(identifiant-abc)');
-
-    expect($liensSituations.eq(1).text()).to.contain('XYZ');
-    expect($liensSituations.eq(1).attr('href')).to.equal('xyz.html');
-    expect($liensSituations.eq(1).attr('class')).to.equal('situation identifiant-xyz');
-    expect($liensSituations.eq(1).css('background-image')).to.equal('url(identifiant-xyz)');
   });
 
   it("affiche le fond de l'accueil et les personnages", function () {
@@ -63,7 +56,7 @@ describe('La vue accueil', function () {
 
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
-    expect($('.situations').attr('style')).to.equal('background-image: url(image-fond);');
+    expect($('.acces-situations').attr('style')).to.equal('background-image: url(image-fond);');
     expect($('.personnages').attr('style')).to.equal('background-image: url(personnages);');
   });
 
@@ -106,15 +99,11 @@ describe('La vue accueil', function () {
     expect($('.progression').attr('style')).to.equal('background-image: url(42);');
   });
 
-  it('désactive les situations qui ne sont pas dans le niveau actuel', function () {
-    const situations = [
-      { nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc' },
-      { nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz' }
-    ];
+  it('désactive les accès aux situations qui ne sont pas dans le niveau actuel', function () {
     progression.niveau = () => 1;
-    const vueAccueil = new VueAccueil(situations, registreUtilisateur, depotRessources);
+    const vueAccueil = new VueAccueil(accesSituations, registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
-    const $situation = $('#accueil .situation');
+    const $situation = $('#accueil .acces-situation');
     expect($situation.eq(0).text()).to.contain('ABC');
     expect($situation.eq(0).hasClass('desactivee')).to.be(false);
     expect($situation.eq(0).css('pointer-events')).to.equal('auto');
@@ -155,20 +144,16 @@ describe('La vue accueil', function () {
       callbackChangementConnexion = callback;
     };
 
-    const situations = [
-      { nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc' },
-      { nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz' }
-    ];
     registreUtilisateur.estConnecte = () => true;
     progression.niveau = () => 2;
-    const vueAccueil = new VueAccueil(situations, registreUtilisateur, depotRessources);
+    const vueAccueil = new VueAccueil(accesSituations, registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
-    const $situations = $('#accueil .situation');
-    expect($situations.eq(1).hasClass('desactivee')).to.be(false);
+    const $accesSituations = $('#accueil .acces-situation');
+    expect($accesSituations.eq(1).hasClass('desactivee')).to.be(false);
 
     progression.niveau = () => 1;
     callbackChangementConnexion();
-    expect($situations.eq(1).hasClass('desactivee')).to.be(true);
+    expect($accesSituations.eq(1).hasClass('desactivee')).to.be(true);
   });
 
   it("enlève la déconnexion lorsque l'utilisateur se déconnecte", function () {

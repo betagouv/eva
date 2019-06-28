@@ -5,8 +5,8 @@ import VueBoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 export default class VueAccueil {
-  constructor (situations, registreUtilisateur, depotRessources) {
-    this.situations = situations;
+  constructor (accesSituations, registreUtilisateur, depotRessources) {
+    this.accesSituations = accesSituations;
     this.registreUtilisateur = registreUtilisateur;
     this.depotRessources = depotRessources;
   }
@@ -14,27 +14,16 @@ export default class VueAccueil {
   affiche (pointInsertion, $) {
     let niveau = this.registreUtilisateur.progression().niveau();
 
-    const metsAJourAccesSituations = (niveau) => {
-      function estInaccessible (index) { return index + 1 > niveau; }
-
-      $('.situations .situation').each((index, element) => {
-        $(element).toggleClass('desactivee', estInaccessible(index));
-      });
-
-      $('.situations .situation').css('pointer-events', function (index) {
-        return estInaccessible(index) ? 'none' : 'auto';
-      });
-    };
-
-    const creeElementListe = (situations) => {
-      const $liste = $(`<div class='situations'></div>`);
+    const creeListeAcces = (accesSituations) => {
+      const $liste = $(`<div class='acces-situations'></div>`);
       $liste.css('background-image', `url('${this.depotRessources.fondAccueil().src}')`);
       const $personnages = $(`<div class='personnages'></div>`);
       $personnages.css('background-image', `url('${this.depotRessources.personnages().src}')`);
       $liste.append($personnages);
-      situations.forEach((s) => {
-        const accesSituation = new VueAccesSituation(s, this.depotRessources);
-        accesSituation.affiche($liste, $);
+      this.vuesAccesSituations = accesSituations.map((accesSituation) => {
+        const vue = new VueAccesSituation(accesSituation, this.depotRessources);
+        vue.affiche($liste, $);
+        return vue;
       });
       return $liste;
     };
@@ -49,14 +38,18 @@ export default class VueAccueil {
     const $titre = creeTitre();
     const $progression = $(`<div class='progression'></div>`);
 
-    const $situations = creeElementListe(this.situations);
+    const $accesSituations = creeListeAcces(this.accesSituations);
 
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
 
+    const metsAJourAccesSituations = (niveau) => {
+      this.vuesAccesSituations.forEach((vue) => vue.metsAJourAcces(niveau));
+    };
+
     const basculeAffichageFormulaireIdentification = () => {
       if (!this.registreUtilisateur.estConnecte()) {
-        formulaireIdentification.affiche($situations, $);
+        formulaireIdentification.affiche($accesSituations, $);
         boiteUtilisateur.supprime();
       } else {
         niveau = this.registreUtilisateur.progression().niveau();
@@ -67,11 +60,12 @@ export default class VueAccueil {
 
       $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
     };
+
     this.registreUtilisateur.on(CHANGEMENT_CONNEXION, basculeAffichageFormulaireIdentification);
     basculeAffichageFormulaireIdentification();
 
-    $situations.prepend($progression);
-    $(pointInsertion).append($titre, $situations);
+    $accesSituations.prepend($progression);
+    $(pointInsertion).append($titre, $accesSituations);
     metsAJourAccesSituations(niveau);
   }
 }
