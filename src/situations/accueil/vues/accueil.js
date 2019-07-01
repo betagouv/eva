@@ -19,7 +19,7 @@ export default class VueAccueil {
       $personnages.css('background-image', `url('${this.depotRessources.personnages().src}')`);
       $liste.append($personnages);
       this.vuesAccesSituations = accesSituations.map((accesSituation) => {
-        const vue = new VueAccesSituation(accesSituation, this.depotRessources);
+        const vue = new VueAccesSituation(accesSituation, this.depotRessources, this.registreUtilisateur);
         vue.affiche($liste, $);
         return vue;
       });
@@ -41,10 +41,6 @@ export default class VueAccueil {
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
 
-    const metsAJourAccesSituations = (niveau) => {
-      this.vuesAccesSituations.forEach((vue) => vue.metsAJourAcces(niveau));
-    };
-
     const basculeAffichageFormulaireIdentification = () => {
       if (!this.registreUtilisateur.estConnecte()) {
         formulaireIdentification.affiche($accesSituations, $);
@@ -55,7 +51,6 @@ export default class VueAccueil {
       }
 
       const niveau = this.registreUtilisateur.progression().niveau();
-      metsAJourAccesSituations(niveau);
       $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
     };
 
