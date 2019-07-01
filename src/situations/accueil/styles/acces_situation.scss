@@ -31,5 +31,6 @@
 
   &.desactivee {
     filter: contrast(80%) saturate(30%);
+    pointer-events: none;
   }
 }

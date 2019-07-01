@@ -107,20 +107,6 @@ describe('La vue accueil', function () {
     expect($('.progression').attr('style')).to.equal('background-image: url(42);');
   });
 
-  it('désactive les accès aux situations qui ne sont pas dans le niveau actuel', function () {
-    progression.niveau = () => 1;
-    const vueAccueil = new VueAccueil(accesSituations, registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    const $situation = $('#accueil .acces-situation');
-    expect($situation.eq(0).text()).to.contain('ABC');
-    expect($situation.eq(0).hasClass('desactivee')).to.be(false);
-    expect($situation.eq(0).css('pointer-events')).to.equal('auto');
-
-    expect($situation.eq(1).text()).to.contain('XYZ');
-    expect($situation.eq(1).hasClass('desactivee')).to.be(true);
-    expect($situation.eq(1).css('pointer-events')).to.equal('none');
-  });
-
   it('permet de se déconnecter', function (done) {
     registreUtilisateur.estConnecte = () => true;
     registreUtilisateur.deconnecte = () => {
