@@ -1,20 +1,28 @@
 import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
+import EventEmitter from 'events';
 
 import VueAccueil from 'accueil/vues/accueil';
 import AccesSituation from 'accueil/modeles/acces_situation';
+
+import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 describe('La vue accueil', function () {
   let $;
   let depotRessources;
   let progression;
   let accesSituations;
-  const registreUtilisateur = { on () {}, estConnecte () {}, consulte () {} };
+  let registreUtilisateur;
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
     $ = jQuery(window);
     progression = { niveau () { } };
+    registreUtilisateur = new class extends EventEmitter {
+      estConnecte () {}
+      consulte () {}
+    }();
+
     registreUtilisateur.progression = () => progression;
     registreUtilisateur.deconnecte = () => {};
     depotRessources = new class {
@@ -124,26 +132,18 @@ describe('La vue accueil', function () {
   });
 
   it('actualise la progression quand on se déconnecte', function () {
-    let nombreDeFoisProgressionRaffraîchie = 0;
-    registreUtilisateur.progression = () => {
-      nombreDeFoisProgressionRaffraîchie += 1;
-      return { niveau () {} };
-    };
+    depotRessources.progression = (niveau) => { return { src: niveau }; };
+    progression.niveau = () => 2;
     registreUtilisateur.estConnecte = () => true;
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
 
     vueAccueil.affiche('#accueil', $);
-    $('.deconnexion').click();
-
-    expect(nombreDeFoisProgressionRaffraîchie).to.equal(2);
+    progression.niveau = () => 1;
+    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
+    expect($('.progression').attr('style')).to.equal('background-image: url(1);');
   });
 
   it("actualise l'accès aux situations quand on se déconnecte", function () {
-    let callbackChangementConnexion;
-    registreUtilisateur.on = (_nom, callback) => {
-      callbackChangementConnexion = callback;
-    };
-
     registreUtilisateur.estConnecte = () => true;
     progression.niveau = () => 2;
     const vueAccueil = new VueAccueil(accesSituations, registreUtilisateur, depotRessources);
@@ -152,7 +152,7 @@ describe('La vue accueil', function () {
     expect($accesSituations.eq(1).hasClass('desactivee')).to.be(false);
 
     progression.niveau = () => 1;
-    callbackChangementConnexion();
+    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
     expect($accesSituations.eq(1).hasClass('desactivee')).to.be(true);
   });
 

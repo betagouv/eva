@@ -12,8 +12,6 @@ export default class VueAccueil {
   }
 
   affiche (pointInsertion, $) {
-    let niveau = this.registreUtilisateur.progression().niveau();
-
     const creeListeAcces = (accesSituations) => {
       const $liste = $(`<div class='acces-situations'></div>`);
       $liste.css('background-image', `url('${this.depotRessources.fondAccueil().src}')`);
@@ -52,12 +50,12 @@ export default class VueAccueil {
         formulaireIdentification.affiche($accesSituations, $);
         boiteUtilisateur.supprime();
       } else {
-        niveau = this.registreUtilisateur.progression().niveau();
-        metsAJourAccesSituations(niveau);
         formulaireIdentification.supprime();
         boiteUtilisateur.affiche($titre, $);
       }
 
+      const niveau = this.registreUtilisateur.progression().niveau();
+      metsAJourAccesSituations(niveau);
       $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
     };
 
@@ -66,6 +64,5 @@ export default class VueAccueil {
 
     $accesSituations.prepend($progression);
     $(pointInsertion).append($titre, $accesSituations);
-    metsAJourAccesSituations(niveau);
   }
 }
