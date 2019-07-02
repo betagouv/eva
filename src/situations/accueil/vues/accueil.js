@@ -39,8 +39,7 @@ export default class VueAccueil {
 
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     formulaireIdentification.affiche($accesSituations, $);
-
-    const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
+    const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur, this.accesSituations);
     boiteUtilisateur.affiche($gabarit.find('.titre'), $);
 
     $(pointInsertion).append($gabarit);

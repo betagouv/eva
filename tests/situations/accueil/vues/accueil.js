@@ -21,6 +21,7 @@ describe('La vue accueil', function () {
       consulte () {}
     }();
 
+    registreUtilisateur.situationsFaites = () => ['tri'];
     registreUtilisateur.progression = () => progression;
     registreUtilisateur.deconnecte = () => {};
     depotRessources = new class {
