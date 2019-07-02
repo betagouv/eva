@@ -12,40 +12,37 @@ export default class VueAccueil {
   }
 
   affiche (pointInsertion, $) {
-    const creeListeAcces = (accesSituations) => {
-      const $liste = $(`<div class='acces-situations'></div>`);
-      $liste.css('background-image', `url('${this.depotRessources.fondAccueil().src}')`);
+    const $gabarit = $(`
+      <div>
+        <div class="titre">
+          <h1>Compétences pro</h1>
+        </div>
+        <div style="background-image: url(${this.depotRessources.fondAccueil().src});"
+             class="acces-situations">
 
-      const progression = new VueProgression(this.depotRessources, this.registreUtilisateur);
-      progression.affiche($liste, $);
+          <div id="progression"></div>
+          <div style="background-image: url(${this.depotRessources.personnages().src});"
+               class="personnages"></div>
 
-      const $personnages = $(`<div class='personnages'></div>`);
-      $personnages.css('background-image', `url('${this.depotRessources.personnages().src}')`);
-      $liste.append($personnages);
-      accesSituations.forEach((accesSituation) => {
-        const vue = new VueAccesSituation(accesSituation, this.depotRessources, this.registreUtilisateur);
-        vue.affiche($liste, $);
-      });
-      return $liste;
-    };
+        </div>
+      </div>
+    `);
+    const $accesSituations = $gabarit.find('.acces-situations');
 
-    function creeTitre () {
-      const $titre = $("<div class='titre'></div>");
-      $titre.append('<h1>Compétences pro</h1>');
+    const progression = new VueProgression(this.depotRessources, this.registreUtilisateur);
+    progression.affiche($gabarit.find('#progression'), $);
 
-      return $titre;
-    }
-
-    const $titre = creeTitre();
-
-    const $accesSituations = creeListeAcces(this.accesSituations);
+    this.accesSituations.forEach((accesSituation) => {
+      const vue = new VueAccesSituation(accesSituation, this.depotRessources, this.registreUtilisateur);
+      vue.affiche($accesSituations, $);
+    });
 
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     formulaireIdentification.affiche($accesSituations, $);
 
     const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
-    boiteUtilisateur.affiche($titre, $);
+    boiteUtilisateur.affiche($gabarit.find('.titre'), $);
 
-    $(pointInsertion).append($titre, $accesSituations);
+    $(pointInsertion).append($gabarit);
   }
 }
