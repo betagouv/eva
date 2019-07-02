@@ -1,8 +1,8 @@
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
 import VueAccesSituation from 'accueil/vues/acces_situation';
+import VueProgression from 'accueil/vues/progression';
 import VueBoiteUtilisateur from 'commun/vues/boite_utilisateur';
-import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 export default class VueAccueil {
   constructor (accesSituations, registreUtilisateur, depotRessources) {
@@ -15,6 +15,10 @@ export default class VueAccueil {
     const creeListeAcces = (accesSituations) => {
       const $liste = $(`<div class='acces-situations'></div>`);
       $liste.css('background-image', `url('${this.depotRessources.fondAccueil().src}')`);
+
+      const progression = new VueProgression(this.depotRessources, this.registreUtilisateur);
+      progression.affiche($liste, $);
+
       const $personnages = $(`<div class='personnages'></div>`);
       $personnages.css('background-image', `url('${this.depotRessources.personnages().src}')`);
       $liste.append($personnages);
@@ -33,7 +37,6 @@ export default class VueAccueil {
     }
 
     const $titre = creeTitre();
-    const $progression = $(`<div class='progression'></div>`);
 
     const $accesSituations = creeListeAcces(this.accesSituations);
 
@@ -43,15 +46,6 @@ export default class VueAccueil {
     const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
     boiteUtilisateur.affiche($titre, $);
 
-    const basculeAffichageFormulaireIdentification = () => {
-      const niveau = this.registreUtilisateur.progression().niveau();
-      $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
-    };
-
-    this.registreUtilisateur.on(CHANGEMENT_CONNEXION, basculeAffichageFormulaireIdentification);
-    basculeAffichageFormulaireIdentification();
-
-    $accesSituations.prepend($progression);
     $(pointInsertion).append($titre, $accesSituations);
   }
 }
