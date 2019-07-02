@@ -68,19 +68,17 @@ describe('La vue accueil', function () {
     expect($('.personnages').attr('style')).to.equal('background-image: url(personnages);');
   });
 
-  it("affiche le formulaire d'identification et masque la déconnexion", function () {
+  it("affiche le formulaire d'identification", function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
-    expect($('#accueil .boite-utilisateur').length).to.equal(0);
   });
 
-  it("cache le formulaire d'identification si le nom est rempli et affiche la déconnexion", function () {
+  it("cache le formulaire d'identification si le nom est rempli", function () {
     registreUtilisateur.estConnecte = () => true;
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(0);
-    expect($('#accueil .boite-utilisateur').length).to.equal(1);
   });
 
   it("cache le formulaire d'identification une fois le nom rempli", function () {
@@ -107,16 +105,6 @@ describe('La vue accueil', function () {
     expect($('.progression').attr('style')).to.equal('background-image: url(42);');
   });
 
-  it('permet de se déconnecter', function (done) {
-    registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.deconnecte = () => {
-      done();
-    };
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    $('.deconnexion').click();
-  });
-
   it('actualise la progression quand on se déconnecte', function () {
     depotRessources.progression = (niveau) => { return { src: niveau }; };
     progression.niveau = () => 2;
@@ -127,33 +115,5 @@ describe('La vue accueil', function () {
     progression.niveau = () => 1;
     registreUtilisateur.emit(CHANGEMENT_CONNEXION);
     expect($('.progression').attr('style')).to.equal('background-image: url(1);');
-  });
-
-  it("actualise l'accès aux situations quand on se déconnecte", function () {
-    registreUtilisateur.estConnecte = () => true;
-    progression.niveau = () => 2;
-    const vueAccueil = new VueAccueil(accesSituations, registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    const $accesSituations = $('#accueil .acces-situation');
-    expect($accesSituations.eq(1).hasClass('desactivee')).to.be(false);
-
-    progression.niveau = () => 1;
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
-    expect($accesSituations.eq(1).hasClass('desactivee')).to.be(true);
-  });
-
-  it("enlève la déconnexion lorsque l'utilisateur se déconnecte", function () {
-    let callbackChangementConnexion;
-    registreUtilisateur.on = (_nom, callback) => {
-      callbackChangementConnexion = callback;
-    };
-
-    registreUtilisateur.estConnecte = () => true;
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    expect($('#accueil .boite-utilisateur').length).to.equal(1);
-    registreUtilisateur.estConnecte = () => false;
-    callbackChangementConnexion();
-    expect($('#accueil .boite-utilisateur').length).to.equal(0);
   });
 });
