@@ -23,14 +23,14 @@ export default class VueSituationTri {
     $(pointInsertion).addClass('tri')
       .css('background-image', `url('${this.depotRessources.fondSituation().src}')`);
 
-    this.situation.piecesAffichees().forEach((piece) => {
-      const vuePiece = new VuePiece(piece, this.depotRessources);
-      vuePiece.affiche(pointInsertion, $);
-    });
-
     this.situation.bacs().forEach((bac) => {
       const vueBac = new VueBac(bac);
       vueBac.affiche(pointInsertion, $);
+    });
+
+    this.situation.piecesAffichees().forEach((piece) => {
+      const vuePiece = new VuePiece(piece, this.depotRessources);
+      vuePiece.affiche(pointInsertion, $);
     });
 
     this.chronometre.affiche(pointInsertion, $);
