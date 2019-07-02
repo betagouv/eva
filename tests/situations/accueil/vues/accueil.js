@@ -5,8 +5,6 @@ import EventEmitter from 'events';
 import VueAccueil from 'accueil/vues/accueil';
 import AccesSituation from 'accueil/modeles/acces_situation';
 
-import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
-
 describe('La vue accueil', function () {
   let $;
   let depotRessources;
@@ -72,25 +70,5 @@ describe('La vue accueil', function () {
     const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
-  });
-
-  it('affiche la progression dans le parc', function () {
-    depotRessources.progression = (niveau) => { return { src: niveau }; };
-    progression.niveau = () => 42;
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    expect($('.progression').attr('style')).to.equal('background-image: url(42);');
-  });
-
-  it('actualise la progression quand on se déconnecte', function () {
-    depotRessources.progression = (niveau) => { return { src: niveau }; };
-    progression.niveau = () => 2;
-    registreUtilisateur.estConnecte = () => true;
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-
-    vueAccueil.affiche('#accueil', $);
-    progression.niveau = () => 1;
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
-    expect($('.progression').attr('style')).to.equal('background-image: url(1);');
   });
 });
