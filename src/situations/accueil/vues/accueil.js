@@ -18,10 +18,9 @@ export default class VueAccueil {
       const $personnages = $(`<div class='personnages'></div>`);
       $personnages.css('background-image', `url('${this.depotRessources.personnages().src}')`);
       $liste.append($personnages);
-      this.vuesAccesSituations = accesSituations.map((accesSituation) => {
+      accesSituations.forEach((accesSituation) => {
         const vue = new VueAccesSituation(accesSituation, this.depotRessources, this.registreUtilisateur);
         vue.affiche($liste, $);
-        return vue;
       });
       return $liste;
     };
