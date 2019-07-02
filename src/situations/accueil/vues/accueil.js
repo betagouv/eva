@@ -40,14 +40,13 @@ export default class VueAccueil {
 
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
     const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
+    boiteUtilisateur.affiche($titre, $);
 
     const basculeAffichageFormulaireIdentification = () => {
       if (!this.registreUtilisateur.estConnecte()) {
         formulaireIdentification.affiche($accesSituations, $);
-        boiteUtilisateur.supprime();
       } else {
         formulaireIdentification.supprime();
-        boiteUtilisateur.affiche($titre, $);
       }
 
       const niveau = this.registreUtilisateur.progression().niveau();
