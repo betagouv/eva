@@ -35,7 +35,8 @@ h1 {
 }
 
 .invisible {
-  display: none !important;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .lien-source-code {

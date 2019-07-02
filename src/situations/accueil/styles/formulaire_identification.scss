@@ -26,6 +26,7 @@
   background-color: rgba($blanc, .85);
   padding-top: 15%;
   padding-left: 3%;
+  transition: opacity .3s;
 
   h2 {
     color: $couleur-titre-accueil;
