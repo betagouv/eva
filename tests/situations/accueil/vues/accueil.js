@@ -74,29 +74,6 @@ describe('La vue accueil', function () {
     expect($('#accueil #formulaire-identification').length).to.equal(1);
   });
 
-  it("cache le formulaire d'identification si le nom est rempli", function () {
-    registreUtilisateur.estConnecte = () => true;
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    expect($('#accueil #formulaire-identification').length).to.equal(0);
-  });
-
-  it("cache le formulaire d'identification une fois le nom rempli", function () {
-    $.fx.off = true;
-    let callbackChangementConnexion;
-    registreUtilisateur.on = (_nom, callback) => {
-      callbackChangementConnexion = callback;
-    };
-    registreUtilisateur.estConnecte = () => false;
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    expect($('#accueil #formulaire-identification').length).to.equal(1);
-    registreUtilisateur.estConnecte = () => true;
-    callbackChangementConnexion();
-    expect($('#accueil #formulaire-identification').length).to.equal(0);
-    expect($('#accueil .boite-utilisateur').length).to.equal(1);
-  });
-
   it('affiche la progression dans le parc', function () {
     depotRessources.progression = (niveau) => { return { src: niveau }; };
     progression.niveau = () => 42;

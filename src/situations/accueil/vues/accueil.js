@@ -39,16 +39,12 @@ export default class VueAccueil {
     const $accesSituations = creeListeAcces(this.accesSituations);
 
     const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
+    formulaireIdentification.affiche($accesSituations, $);
+
     const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur);
     boiteUtilisateur.affiche($titre, $);
 
     const basculeAffichageFormulaireIdentification = () => {
-      if (!this.registreUtilisateur.estConnecte()) {
-        formulaireIdentification.affiche($accesSituations, $);
-      } else {
-        formulaireIdentification.supprime();
-      }
-
       const niveau = this.registreUtilisateur.progression().niveau();
       $progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
     };
