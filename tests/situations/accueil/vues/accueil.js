@@ -18,7 +18,7 @@ describe('La vue accueil', function () {
     progression = { niveau () { } };
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
-      consulte () {}
+      nom () {}
     }();
 
     registreUtilisateur.situationsFaites = () => ['tri'];

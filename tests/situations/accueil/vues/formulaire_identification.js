@@ -16,7 +16,7 @@ describe("Le formulaire d'identification", function () {
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
       inscris () {}
-      consulte () {}
+      nom () {}
     }();
     vue = new FormulaireIdentification(registreUtilisateur);
   });

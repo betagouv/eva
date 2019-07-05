@@ -13,7 +13,7 @@ export default class VueBoiteUtilisateur {
 
     this.$boiteUtilisateur = $(`
       <div class="boite-utilisateur">
-        <div class='nom-utilisateur'> ${this.registreUtilisateur.consulte()}</div>
+        <div class='nom-utilisateur'> ${this.registreUtilisateur.nom()}</div>
         <div class="progression-utilisateur">${this.afficheEtapesUtilisateur()}</div>
         <a class='deconnexion' href='#'>
           <i class='fas fa-sign-out-alt'></i>
@@ -31,7 +31,7 @@ export default class VueBoiteUtilisateur {
 
   rafraichis () {
     this.$boiteUtilisateur.toggleClass('invisible', !this.registreUtilisateur.estConnecte());
-    this.$boiteUtilisateur.find('.nom-utilisateur').text(this.registreUtilisateur.consulte());
+    this.$boiteUtilisateur.find('.nom-utilisateur').text(this.registreUtilisateur.nom());
     this.$boiteUtilisateur.find('.progression-utilisateur').text(this.afficheEtapesUtilisateur());
   }
 

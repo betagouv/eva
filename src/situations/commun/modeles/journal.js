@@ -19,7 +19,7 @@ export class Journal {
       situation: this.situation,
       nom: evenement.nom(),
       donnees: evenement.donnees(),
-      utilisateur: this.registreUtilisateur.consulte()
+      evaluation_id: this.registreUtilisateur.identifiant()
     };
     return this.depot.enregistre(payLoad, timeout);
   }

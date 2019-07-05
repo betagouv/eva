@@ -16,7 +16,7 @@ describe('La boite utilisateur', function () {
     $ = jQuery(window);
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
-      consulte () {}
+      nom () {}
       deconnecte () {}
       progression () {}
     }();
@@ -29,7 +29,7 @@ describe('La boite utilisateur', function () {
   });
 
   it("affiche le nom de l'évalué·e et le bouton de déconnexion", function () {
-    registreUtilisateur.consulte = () => 'Jacques Adit';
+    registreUtilisateur.nom = () => 'Jacques Adit';
     vueBoiteUtilisateur.affiche('#point-insertion', $);
     expect($('#point-insertion .nom-utilisateur').text().trim()).to.equal('Jacques Adit');
     expect($('#point-insertion .deconnexion').length).to.equal(1);
@@ -63,7 +63,7 @@ describe('La boite utilisateur', function () {
     registreUtilisateur.estConnecte = () => false;
     vueBoiteUtilisateur.affiche('#point-insertion', $);
     registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.consulte = () => 'Jacques Adit';
+    registreUtilisateur.nom = () => 'Jacques Adit';
     registreUtilisateur.emit(CHANGEMENT_CONNEXION);
     expect($('#point-insertion .nom-utilisateur').text()).to.eql('Jacques Adit');
   });
