@@ -18,4 +18,9 @@ describe("l'acces à une situation", function () {
   it('est accessible quand le niveau actuel est superieur à son niveau', function () {
     expect(accesSituation.estAccessible(3)).to.equal(true);
   });
+
+  it("est inaccesible si le niveau n'est pas précisé", function () {
+    accesSituation = new AccesSituation({});
+    expect(accesSituation.estAccessible(1)).to.equal(false);
+  });
 });
