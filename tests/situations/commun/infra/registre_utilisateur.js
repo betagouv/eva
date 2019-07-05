@@ -1,7 +1,7 @@
 import jsdom from 'jsdom-global';
 import RegistreUtilisateur, { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
-describe('le registre utilisateur', function () {
+describe.only('le registre utilisateur', function () {
   function unRegistre (id, nom) {
     return new RegistreUtilisateur({
       ajax () {
