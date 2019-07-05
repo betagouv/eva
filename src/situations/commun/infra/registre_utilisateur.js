@@ -3,9 +3,9 @@ import jQuery from 'jquery';
 
 import Progression from 'commun/modeles/progression';
 
-const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 
+export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
@@ -32,7 +32,11 @@ export default class RegistreUtilisateur extends EventEmitter {
 
   parseLocalStorage (clef) {
     const valeur = window.localStorage.getItem(clef) || '{}';
-    return JSON.parse(valeur);
+    try {
+      return JSON.parse(valeur);
+    } catch (ex) {
+      return {};
+    }
   }
 
   nom () {
