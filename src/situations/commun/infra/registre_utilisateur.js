@@ -4,7 +4,6 @@ import jQuery from 'jquery';
 import Progression from 'commun/modeles/progression';
 
 const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
-const CLEF_IDENTIFIANT_EVALUATION = 'identifiantEvaluation';
 const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
@@ -22,8 +21,7 @@ export default class RegistreUtilisateur extends EventEmitter {
       data: JSON.stringify({ nom }),
       contentType: 'application/json; charset=utf-8'
     }).then((data) => {
-      window.localStorage.setItem(CLEF_IDENTIFIANT, data.nom);
-      window.localStorage.setItem(CLEF_IDENTIFIANT_EVALUATION, data.id);
+      window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(data));
       this.emit(CHANGEMENT_CONNEXION);
     });
   }
@@ -32,12 +30,17 @@ export default class RegistreUtilisateur extends EventEmitter {
     return !!this.identifiant();
   }
 
+  parseLocalStorage (clef) {
+    const valeur = window.localStorage.getItem(clef) || '{}';
+    return JSON.parse(valeur);
+  }
+
   nom () {
-    return window.localStorage.getItem(CLEF_IDENTIFIANT);
+    return this.parseLocalStorage(CLEF_IDENTIFIANT).nom;
   }
 
   identifiant () {
-    return window.localStorage.getItem(CLEF_IDENTIFIANT_EVALUATION);
+    return this.parseLocalStorage(CLEF_IDENTIFIANT).id;
   }
 
   enregistreSituationFaite (situation) {
@@ -63,7 +66,6 @@ export default class RegistreUtilisateur extends EventEmitter {
   deconnecte () {
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
     window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
-    window.localStorage.removeItem(CLEF_IDENTIFIANT_EVALUATION);
     this.emit(CHANGEMENT_CONNEXION);
   }
 }
