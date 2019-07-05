@@ -1,5 +1,5 @@
 import jsdom from 'jsdom-global';
-import RegistreUtilisateur, { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
+import RegistreUtilisateur, { CHANGEMENT_CONNEXION, CLEF_IDENTIFIANT } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
   function unRegistre (id, nom) {
@@ -92,5 +92,11 @@ describe('le registre utilisateur', function () {
     const registre = new RegistreUtilisateur();
     registre.on(CHANGEMENT_CONNEXION, done);
     registre.deconnecte();
+  });
+
+  it('déconnecte si ancienne données présentes', function () {
+    window.localStorage.setItem(CLEF_IDENTIFIANT, 'nom utilisateur');
+    const registre = new RegistreUtilisateur();
+    expect(registre.estConnecte()).to.be(false);
   });
 });
