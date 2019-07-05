@@ -6,7 +6,7 @@ describe('le journal', function () {
   let journal;
   let mockMaintenant;
   let mockDepot;
-  const registre = { consulte () {} };
+  const registre = { identifiant () {} };
   const sessionId = 42;
   const identifiantSituation = 'inventaire';
 
@@ -17,17 +17,17 @@ describe('le journal', function () {
   });
 
   it('enregistre un événement', function () {
-    registre.consulte = () => 'identifiant utilisateur';
+    registre.identifiant = () => 'identifiant utilisateur';
     journal.enregistre(new Evenement('test'));
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.only.have.keys('date', 'session_id', 'nom', 'donnees', 'situation', 'utilisateur');
+    expect(enregistrement[0]).to.only.have.keys('date', 'session_id', 'nom', 'donnees', 'situation', 'evaluation_id');
     expect(enregistrement[0]).to.have.property('nom', 'test');
     expect(enregistrement[0]).to.have.property('date', 123);
     expect(enregistrement[0]).to.have.property('session_id', sessionId);
     expect(enregistrement[0]).to.have.property('situation', identifiantSituation);
-    expect(enregistrement[0]).to.have.property('utilisateur', 'identifiant utilisateur');
+    expect(enregistrement[0]).to.have.property('evaluation_id', 'identifiant utilisateur');
   });
 
   it('enregistre la situation faite', function (done) {

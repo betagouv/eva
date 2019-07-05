@@ -2,26 +2,36 @@ import jsdom from 'jsdom-global';
 import RegistreUtilisateur, { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
+  function unRegistre (id, nom) {
+    return new RegistreUtilisateur({
+      ajax () {
+        return Promise.resolve({ id, nom });
+      }
+    });
+  }
   beforeEach(function () {
     jsdom('', { url: 'http://localhost' });
   });
 
   it("permet d'inscrire et de récupérer un utilisateur", function () {
-    const registre = new RegistreUtilisateur();
-    registre.inscris('test');
-    expect(registre.consulte()).to.eql('test');
+    const registre = unRegistre(1, 'autre test');
+    registre.inscris('test').then(() => {
+      expect(registre.nom()).to.eql('autre test');
+      expect(registre.identifiant()).to.eql(1);
+    });
   });
 
   it("émet un événement lorsque le nom de l'utilisateur change", function (done) {
-    const registre = new RegistreUtilisateur();
+    const registre = unRegistre(1, 'test');
     registre.on(CHANGEMENT_CONNEXION, done);
     registre.inscris('test');
   });
 
   it("estConnecte retourne true lorsque l'utilisateur a rempli un nom", function () {
-    const registre = new RegistreUtilisateur();
-    registre.inscris('test');
-    expect(registre.estConnecte()).to.be(true);
+    const registre = unRegistre(1, 'test');
+    return registre.inscris('test').then(() => {
+      expect(registre.estConnecte()).to.be(true);
+    });
   });
 
   it("estConnecte retourne false lorsque l'utilisateur n'a pas rempli un nom", function () {
@@ -70,11 +80,12 @@ describe('le registre utilisateur', function () {
   });
 
   it('à la déconnexion, nous ne sommes plus connectés', function () {
-    const registre = new RegistreUtilisateur();
-    registre.inscris('test');
-    expect(registre.estConnecte()).to.be(true);
-    registre.deconnecte();
-    expect(registre.estConnecte()).to.be(false);
+    const registre = unRegistre(1, 'test');
+    return registre.inscris('test').then(() => {
+      expect(registre.estConnecte()).to.be(true);
+      registre.deconnecte();
+      expect(registre.estConnecte()).to.be(false);
+    });
   });
 
   it("émet un événement lorsque l'utilisateur se déconnecte", function (done) {
