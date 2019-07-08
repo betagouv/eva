@@ -5,7 +5,6 @@
 
 .scene-compte-rendu {
   background-color: $couleur-fond-module;
-  @include bords-arrondis;
   .illustration {
     border-radius: 2rem;
     width: 718px;
