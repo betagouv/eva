@@ -19,16 +19,16 @@ describe('La vue de la question Numératie', function () {
     expect($('#point-insertion input[type=radio]').length).to.equal(0);
 
     $vue.affiche('#point-insertion', $);
-    expect($('#point-insertion input[type=radio]').length).to.equal(5);
+    expect($('#point-insertion input[type=radio]').length).to.equal(6);
   });
 
   it('affiche la palette', function () {
     const $vue = new VueNumeratie(depotRessources);
-    expect($('#point-insertion .illustration').length).to.equal(0);
+    expect($('#point-insertion .question-illustration').length).to.equal(0);
 
     $vue.affiche('#point-insertion', $);
-    expect($('#point-insertion .illustration').length).to.equal(1);
-    expect($('#point-insertion .illustration').attr('src'))
+    expect($('#point-insertion .question-illustration').length).to.equal(1);
+    expect($('#point-insertion .question-illustration').attr('src'))
       .to.equal('palette');
   });
 

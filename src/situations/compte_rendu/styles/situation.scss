@@ -3,26 +3,42 @@
 @import 'commun/styles/dimensions.scss';
 @import 'commun/styles/mixins/bords_arrondis.scss';
 
-.scene-compte-rendu {
+.question {
   background-color: $couleur-fond-module;
-  .illustration {
+  display: flex;
+  align-items: center;
+
+  &-illustration {
     border-radius: 2rem;
     width: 718px;
     height: $hauteur-scene;
     left: 216px;
     top: 194px;
   }
+
+  &-barre {
+    background-color: $blanc;
+    border-radius: 2rem;
+    padding: 1.25rem 1.875rem;
+    position: absolute;
+    right: 1.25rem;
+    width: 295px;
+    font-size: 0.875rem;
+  }
+
+  &-choix {
+    margin-top: 1rem;
+  }
 }
 
-.messagerie, .question {
-  background-color: $blanc;
-  border-radius: 2rem;
-  padding: 1.25rem 1.875rem;
-  top: 1.25rem;
-  right: 1.25rem;
-  position: absolute;
-  width: 295px;
-  font-size: 0.875rem;
+.couleur-grise {
+  color: $gris;
+}
+.sans-marge {
+  margin: 0;
+}
+
+.messagerie {
   p {
     margin-top: 0;
   }
@@ -34,7 +50,6 @@
   &-expediteur {
     margin-bottom: 1.25rem;
     font-size: 0.75rem;
-    color: $gris;
   }
   &-objet-reponse {
     margin-bottom: 0;

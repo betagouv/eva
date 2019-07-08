@@ -13,11 +13,11 @@ export default class VueLitteratie extends VueQuestion {
     const heureSansSecondes = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     this.$vue = $(`
-      <div id="litteratie">
-        <img class="illustration" src=${this.depotRessources.accidentCarine().src}></img>
-        <div class="messagerie">
+      <div id="litteratie" class="question">
+        <img class="question-illustration" src=${this.depotRessources.accidentCarine().src}></img>
+        <div class="messagerie question-barre">
           <p class="messagerie-sujet">${traduction('compte_rendu.objet_message_catherine')}</p>
-          <p class="messagerie-expediteur">${traduction('compte_rendu.informations_expediteur', { date_courante: dateCourante, heure_sans_secondes: heureSansSecondes })}</p>
+          <p class="messagerie-expediteur couleur-grise">${traduction('compte_rendu.informations_expediteur', { date_courante: dateCourante, heure_sans_secondes: heureSansSecondes })}</p>
           <p class='message-catherine-jean'>
             ${traduction('compte_rendu.message_catherine_jean')}
           </p>
