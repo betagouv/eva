@@ -1,17 +1,13 @@
 import 'commun/styles/boutons.scss';
 import 'compte_rendu/styles/situation.scss';
 
-import EventEmitter from 'events';
 import { traduction } from 'commun/infra/internationalisation';
 
-export const EVENEMENT_REPONSE = 'reponse';
+import VueQuestion, { EVENEMENT_REPONSE } from './question';
 
-export default class VueLitteratie extends EventEmitter {
-  constructor (depotRessources) {
-    super();
-    this.depotRessources = depotRessources;
-  }
+export { EVENEMENT_REPONSE };
 
+export default class VueLitteratie extends VueQuestion {
   affiche (pointInsertion, $) {
     const dateCourante = new Date().toLocaleDateString();
     const heureSansSecondes = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
