@@ -34,6 +34,13 @@
     "valider_saisie": "Vérifier",
     "unite_vrac": "litre"
   },
+  "qcm": {
+    "numeratie": {
+      "description": "Cette palette est complète. Chaque carton contient 4 cartons de 8 bouteilles.",
+      "question": "Combien y a t-il de bouteilles de O'cola au total ?",
+      "valider": "Valider"
+    }
+  },
   "situation": {
     "ecouter-consigne": "Commencez par écouter la consigne",
     "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
