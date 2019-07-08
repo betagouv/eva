@@ -27,7 +27,7 @@ export default class VueNumeratie extends VueQuestion {
           <p class="couleur-grise sans-marge">${traduction('qcm.numeratie.description')}</p>
           <p class="sans-marge">${traduction('qcm.numeratie.question')}</p>
           ${$valeursPossibles}
-          <button id="envoi-reponse" class="bouton-reponse bouton-arrondi">
+          <button id="envoi-reponse" class="question-bouton bouton-arrondi">
             ${traduction('qcm.numeratie.valider')}
           </button>
         </div

@@ -1,5 +1,6 @@
 import 'commun/styles/boutons.scss';
 import 'compte_rendu/styles/situation.scss';
+import 'compte_rendu/styles/litteratie.scss';
 
 import { traduction } from 'commun/infra/internationalisation';
 
@@ -23,7 +24,7 @@ export default class VueLitteratie extends VueQuestion {
           </p>
           <p class="messagerie-objet-reponse">${traduction('compte_rendu.objet_reponse')}</p>
           <textarea id="reponse-compte-rendu" placeholder="${traduction('compte_rendu.entete_reponse')}"></textarea>
-          <button id="envoi-reponse" class="bouton-reponse bouton-arrondi">
+          <button id="envoi-reponse" class="question-bouton bouton-arrondi">
             ${traduction('compte_rendu.envoyer')}
           </button>
         </div>
