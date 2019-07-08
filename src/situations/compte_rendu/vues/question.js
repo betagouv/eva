@@ -12,4 +12,8 @@ export default class VueQuestion extends EventEmitter {
   }
 
   affiche (pointInsertion, $) {}
+
+  supprime () {
+    this.$vue.remove();
+  }
 }

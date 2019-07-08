@@ -9,7 +9,7 @@ import Situation from 'compte_rendu/modeles/situation';
 import VueSituation from 'compte_rendu/vues/situation';
 import { IDENTIFIANT_SITUATION_COMPTE_RENDU } from 'accueil/data/acces_situations';
 
-const situation = new Situation();
+const situation = new Situation({ questions: ['litteratie', 'numeratie'] });
 
 const depotRessources = new DepotRessourcesCompteRendu();
 afficheSituation(IDENTIFIANT_SITUATION_COMPTE_RENDU, situation, VueSituation, depotRessources);
