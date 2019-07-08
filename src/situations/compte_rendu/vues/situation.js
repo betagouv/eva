@@ -1,6 +1,3 @@
-import 'commun/styles/boutons.scss';
-import 'compte_rendu/styles/situation.scss';
-
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'compte_rendu/modeles/situation';
 import EvenementReponseEnvoyee from 'compte_rendu/modeles/evenement_reponse_envoyee';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from './question';
