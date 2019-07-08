@@ -20,8 +20,8 @@ export default class VueNumeratie extends VueQuestion {
         </div>
       `;
     }).join('');
-    const $vue = $(`
-      <div>
+    this.$vue = $(`
+      <div id="numeratie">
         <img class="illustration" src=${this.depotRessources.palette().src}></img>
         <div class="question">
           <p>${traduction('qcm.numeratie.description')}</p>
@@ -34,8 +34,8 @@ export default class VueNumeratie extends VueQuestion {
       </div>
     `);
 
-    $(pointInsertion).append($vue);
-    $('#envoi-reponse', $vue).click(() => {
+    $(pointInsertion).append(this.$vue);
+    $('#envoi-reponse', this.$vue).click(() => {
       const reponse = $('input[name="numeratie"]:checked').val();
       this.emit(EVENEMENT_REPONSE, reponse);
     });
