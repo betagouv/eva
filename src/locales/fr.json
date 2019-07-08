@@ -37,6 +37,7 @@
   "qcm": {
     "numeratie": {
       "description": "Cette palette est complète. Chaque carton contient 4 cartons de 8 bouteilles.",
+      "ne_sait_pas": "Je ne sais pas faire ce calcul",
       "question": "Combien y a t-il de bouteilles de O'cola au total ?",
       "valider": "Valider"
     }

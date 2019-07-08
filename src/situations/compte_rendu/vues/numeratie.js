@@ -9,10 +9,10 @@ export { EVENEMENT_REPONSE };
 
 export default class VueNumeratie extends VueQuestion {
   affiche (pointInsertion, $) {
-    const valeurs = [144, 288, 32, 384, 624];
+    const valeurs = [144, 288, 32, 384, 624, traduction('qcm.numeratie.ne_sait_pas')];
     const $valeursPossibles = valeurs.map((valeur) => {
       return `
-        <div>
+        <div class="question-choix">
           <label>
             <input name="numeratie" type="radio" value="${valeur}" />
             ${valeur}
@@ -21,11 +21,11 @@ export default class VueNumeratie extends VueQuestion {
       `;
     }).join('');
     this.$vue = $(`
-      <div id="numeratie">
-        <img class="illustration" src=${this.depotRessources.palette().src}></img>
-        <div class="question">
-          <p>${traduction('qcm.numeratie.description')}</p>
-          <p>${traduction('qcm.numeratie.question')}</p>
+      <div id="numeratie" class="question">
+        <img class="question-illustration" src=${this.depotRessources.palette().src}></img>
+        <div class="question-barre">
+          <p class="couleur-grise sans-marge">${traduction('qcm.numeratie.description')}</p>
+          <p class="sans-marge">${traduction('qcm.numeratie.question')}</p>
           ${$valeursPossibles}
           <button id="envoi-reponse" class="bouton-reponse bouton-arrondi">
             ${traduction('qcm.numeratie.valider')}

@@ -19,16 +19,16 @@ describe('La vue de la question Littératie', function () {
     expect($('#point-insertion #reponse-compte-rendu').length).to.equal(0);
 
     $vue.affiche('#point-insertion', $);
-    expect($('#point-insertion  #reponse-compte-rendu').length).to.equal(1);
+    expect($('#point-insertion #reponse-compte-rendu').length).to.equal(1);
   });
 
   it("affiche l'accident de Carine", function () {
     const $vue = new VueLitteratie(depotRessources);
-    expect($('#point-insertion  .illustration').length).to.equal(0);
+    expect($('#point-insertion .question-illustration').length).to.equal(0);
 
     $vue.affiche('#point-insertion', $);
-    expect($('#point-insertion .illustration').length).to.equal(1);
-    expect($('#point-insertion .illustration').attr('src'))
+    expect($('#point-insertion .question-illustration').length).to.equal(1);
+    expect($('#point-insertion .question-illustration').attr('src'))
       .to.equal('accident-carine');
   });
 
