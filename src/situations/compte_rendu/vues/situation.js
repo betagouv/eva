@@ -1,13 +1,15 @@
-import { traduction } from 'commun/infra/internationalisation';
-import EvenementReponseEnvoyee from 'compte_rendu/modeles/evenement_reponse_envoyee';
 import 'commun/styles/boutons.scss';
 import 'compte_rendu/styles/situation.scss';
 
+import { FINI } from 'commun/modeles/situation';
+import { traduction } from 'commun/infra/internationalisation';
+import EvenementReponseEnvoyee from 'compte_rendu/modeles/evenement_reponse_envoyee';
+
 export default class VueSituation {
-  constructor (depotRessources, journal, retourAccueil = () => window.location.assign('/')) {
+  constructor (situation, journal, depotRessources) {
+    this.situation = situation;
     this.depotRessources = depotRessources;
     this.journal = journal;
-    this.retourAccueil = retourAccueil;
   }
 
   affiche (pointInsertion, $) {
@@ -39,7 +41,9 @@ export default class VueSituation {
       const reponse = $('#reponse-compte-rendu').val().trim();
       const evenement = new EvenementReponseEnvoyee({ reponse });
       this.journal.enregistre(evenement)
-        .finally(this.retourAccueil);
+        .finally(() => {
+          this.situation.modifieEtat(FINI);
+        });
     });
   }
 }
