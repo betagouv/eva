@@ -12,15 +12,6 @@
     },
     "titre": "Compétences pro"
   },
-  "compte_rendu": {
-    "titre": "Compte rendu d'accident",
-    "entete_reponse": "Bonjour Catherine…",
-    "envoyer": "Envoyer",
-    "message_catherine_jean": "Bonjour, <br>Merci de bien vouloir rédiger une note concernant la chute de Carine dont vous avez été témoin. Elle a un fêlure de la main droite.<br><br> Cordialement,<br> Catherine Jean",
-    "objet_message_catherine": "Sujet : Accident Carine",
-    "informations_expediteur": "de c.jean@eva.fr, le {{date_courante}}, {{heure_sans_secondes}}",
-    "objet_reponse": "Réponse : Note Accident Carine"
-  },
   "controle": {
     "titre": "Chaîne de fabrication",
     "resultat": {
@@ -34,7 +25,16 @@
     "valider_saisie": "Vérifier",
     "unite_vrac": "litre"
   },
-  "qcm": {
+  "questions": {
+    "titre": "Questions",
+    "litteratie": {
+      "entete_reponse": "Bonjour Catherine…",
+      "envoyer": "Envoyer",
+      "message_catherine_jean": "Bonjour, <br>Merci de bien vouloir rédiger une note concernant la chute de Carine dont vous avez été témoin. Elle a un fêlure de la main droite.<br><br> Cordialement,<br> Catherine Jean",
+      "objet_message_catherine": "Sujet : Accident Carine",
+      "informations_expediteur": "de c.jean@eva.fr, le {{date_courante}}, {{heure_sans_secondes}}",
+      "objet_reponse": "Réponse : Note Accident Carine"
+    },
     "numeratie": {
       "description": "Cette palette est complète. Chaque carton contient 4 cartons de 8 bouteilles.",
       "ne_sait_pas": "Je ne sais pas faire ce calcul",

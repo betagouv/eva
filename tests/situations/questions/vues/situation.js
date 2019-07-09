@@ -1,13 +1,13 @@
 import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
 
-import Situation, { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'compte_rendu/modeles/situation';
-import EvenementReponseEnvoyee from 'compte_rendu/modeles/evenement_reponse_envoyee';
-import VueSituation from 'compte_rendu/vues/situation';
-import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'compte_rendu/vues/litteratie';
-import MockDepotRessourcesCompteRendu from '../aides/mock_depot_ressources';
+import Situation, { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
+import EvenementReponseEnvoyee from 'questions/modeles/evenement_reponse_envoyee';
+import VueSituation from 'questions/vues/situation';
+import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/litteratie';
+import MockDepotRessourcesQuestions from '../aides/mock_depot_ressources';
 
-describe('La vue de la situation « Compte-rendu »', function () {
+describe('La vue de la situation « Question »', function () {
   let $;
   let depotRessources;
   let situation;
@@ -16,7 +16,7 @@ describe('La vue de la situation « Compte-rendu »', function () {
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
-    depotRessources = new MockDepotRessourcesCompteRendu();
+    depotRessources = new MockDepotRessourcesQuestions();
     journal = { enregistre () {} };
     situation = new Situation({ questions: ['litteratie', 'numeratie'] });
   });

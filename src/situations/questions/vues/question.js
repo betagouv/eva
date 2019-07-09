@@ -1,5 +1,5 @@
 import 'commun/styles/boutons.scss';
-import 'compte_rendu/styles/situation.scss';
+import 'questions/styles/situation.scss';
 
 import EventEmitter from 'events';
 

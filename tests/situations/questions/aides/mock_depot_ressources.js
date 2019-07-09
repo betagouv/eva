@@ -1,4 +1,4 @@
-export default class MockDepotRessourcesCompteRendu {
+export default class MockDepotRessourcesQuestions {
   accidentCarine () {
     return { src: 'accident-carine' };
   }
