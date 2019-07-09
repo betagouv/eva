@@ -44,7 +44,7 @@ describe('La vue de la situation « Question »', function () {
     journal = {
       enregistre (evenement) {
         expect(evenement).to.be.a(EvenementReponse);
-        expect(evenement.donnees()).to.eql({ reponse: 'Ma réponse' });
+        expect(evenement.donnees()).to.eql({ question: 'litteratie', reponse: 'Ma réponse' });
         done();
       }
     };
