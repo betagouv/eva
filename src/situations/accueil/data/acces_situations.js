@@ -1,7 +1,7 @@
 import { traduction } from 'commun/infra/internationalisation';
 import AccesSituation from 'accueil/modeles/acces_situation';
 
-export const IDENTIFIANT_SITUATION_COMPTE_RENDU = 'compte_rendu';
+export const IDENTIFIANT_SITUATION_QUESTIONS = 'questions';
 
 export function accesSituations () {
   return [

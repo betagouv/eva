@@ -1,5 +1,5 @@
-import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'compte_rendu/modeles/situation';
-import EvenementReponseEnvoyee from 'compte_rendu/modeles/evenement_reponse_envoyee';
+import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
+import EvenementReponseEnvoyee from 'questions/modeles/evenement_reponse_envoyee';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from './question';
 import VueLitteratie from './litteratie';
 import VueNumeratie from './numeratie';

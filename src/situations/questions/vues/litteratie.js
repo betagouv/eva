@@ -1,6 +1,6 @@
 import 'commun/styles/boutons.scss';
-import 'compte_rendu/styles/situation.scss';
-import 'compte_rendu/styles/litteratie.scss';
+import 'questions/styles/situation.scss';
+import 'questions/styles/litteratie.scss';
 
 import { traduction } from 'commun/infra/internationalisation';
 
@@ -17,15 +17,15 @@ export default class VueLitteratie extends VueQuestion {
       <div id="litteratie" class="question">
         <img class="question-illustration" src=${this.depotRessources.accidentCarine().src}></img>
         <div class="messagerie question-barre">
-          <p class="messagerie-sujet">${traduction('compte_rendu.objet_message_catherine')}</p>
-          <p class="messagerie-expediteur couleur-grise">${traduction('compte_rendu.informations_expediteur', { date_courante: dateCourante, heure_sans_secondes: heureSansSecondes })}</p>
+          <p class="messagerie-sujet">${traduction('questions.litteratie.objet_message_catherine')}</p>
+          <p class="messagerie-expediteur couleur-grise">${traduction('questions.litteratie.informations_expediteur', { date_courante: dateCourante, heure_sans_secondes: heureSansSecondes })}</p>
           <p class='message-catherine-jean'>
-            ${traduction('compte_rendu.message_catherine_jean')}
+            ${traduction('questions.litteratie.message_catherine_jean')}
           </p>
-          <p class="messagerie-objet-reponse">${traduction('compte_rendu.objet_reponse')}</p>
-          <textarea id="reponse-compte-rendu" placeholder="${traduction('compte_rendu.entete_reponse')}"></textarea>
+          <p class="messagerie-objet-reponse">${traduction('questions.litteratie.objet_reponse')}</p>
+          <textarea id="reponse-compte-rendu" placeholder="${traduction('questions.litteratie.entete_reponse')}"></textarea>
           <button id="envoi-reponse" class="question-bouton bouton-arrondi">
-            ${traduction('compte_rendu.envoyer')}
+            ${traduction('questions.litteratie.envoyer')}
           </button>
         </div>
       </div>

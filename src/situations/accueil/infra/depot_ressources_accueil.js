@@ -4,7 +4,7 @@ import personnages from 'accueil/assets/personnages.png';
 import tri from 'accueil/assets/tri.png';
 import inventaire from 'accueil/assets/inventaire.png';
 import controle from 'accueil/assets/controle.png';
-import compteRendu from 'accueil/assets/1px-transparent.png';
+import questions from 'accueil/assets/1px-transparent.png';
 
 const progression = require.context('accueil/assets', false, /progression[1-4]\.png$/);
 
@@ -12,13 +12,13 @@ const batiments = {
   'tri': tri,
   'inventaire': inventaire,
   'controle': controle,
-  'compte_rendu': compteRendu
+  'questions': questions
 };
 
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnages, tri, inventaire, controle, compteRendu]);
+    this.charge([fondAccueil, personnages, tri, inventaire, controle, questions]);
     this.chargeContexte(progression);
     this._progression = progression.keys().reduce((memo, fichier) => {
       memo[fichier.match(/progression([1-4]).png/)[1]] = progression(fichier);

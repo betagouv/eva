@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
-const situations = ['compte_rendu', 'controle', 'inventaire', 'tri'];
+const situations = ['questions', 'controle', 'inventaire', 'tri'];
 
 const aliasSituations = situations.reduce(function (alias, situation) {
   alias[situation] = path.resolve(__dirname, `src/situations/${situation}/`);

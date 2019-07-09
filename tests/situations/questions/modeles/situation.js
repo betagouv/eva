@@ -1,7 +1,7 @@
 import { FINI } from 'commun/modeles/situation';
-import Situation, { EVENEMENT_REPONSE } from 'compte_rendu/modeles/situation';
+import Situation, { EVENEMENT_REPONSE } from 'questions/modeles/situation';
 
-describe('Le modèle de la situation « Compte rendu »', function () {
+describe('Le modèle de la situation « Questions »', function () {
   it('peut donner la question actuelle', function () {
     const situation = new Situation({ questions: ['litteratie', 'numeratie'] });
     expect(situation.question()).to.eql('litteratie');
