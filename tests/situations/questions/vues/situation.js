@@ -2,7 +2,7 @@ import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
 
 import Situation, { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
-import EvenementReponseEnvoyee from 'questions/modeles/evenement_reponse_envoyee';
+import EvenementReponse from 'questions/modeles/evenement_reponse';
 import VueSituation from 'questions/vues/situation';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/litteratie';
 import MockDepotRessourcesQuestions from '../aides/mock_depot_ressources';
@@ -43,7 +43,7 @@ describe('La vue de la situation « Question »', function () {
   it('enregistre la réponse dans le journal', function (done) {
     journal = {
       enregistre (evenement) {
-        expect(evenement).to.be.a(EvenementReponseEnvoyee);
+        expect(evenement).to.be.a(EvenementReponse);
         expect(evenement.donnees()).to.eql({ reponse: 'Ma réponse' });
         done();
       }
