@@ -14,7 +14,7 @@ export default class VueSituation {
     };
 
     this.situation.on(EVENEMENT_REPONSE_SITUATION, (question, reponse) => {
-      const evenement = new EvenementReponse({ reponse });
+      const evenement = new EvenementReponse({ question, reponse });
       journal.enregistre(evenement);
       this.afficheQuestion();
     });
