@@ -1,5 +1,5 @@
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
-import EvenementReponseEnvoyee from 'questions/modeles/evenement_reponse_envoyee';
+import EvenementReponse from 'questions/modeles/evenement_reponse';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from './question';
 import VueLitteratie from './litteratie';
 import VueNumeratie from './numeratie';
@@ -14,7 +14,7 @@ export default class VueSituation {
     };
 
     this.situation.on(EVENEMENT_REPONSE_SITUATION, (question, reponse) => {
-      const evenement = new EvenementReponseEnvoyee({ reponse });
+      const evenement = new EvenementReponse({ reponse });
       journal.enregistre(evenement);
       this.afficheQuestion();
     });
