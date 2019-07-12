@@ -26,22 +26,24 @@ describe("Le formulaire d'identification", function () {
 
     vue.affiche('#formulaire', $);
     expect($('#formulaire form#formulaire-identification').length).to.equal(1);
-    expect($('#formulaire label').length).to.equal(1);
-    expect($('#formulaire input[type=text]').length).to.equal(1);
+    expect($('#formulaire label').length).to.equal(2);
+    expect($('#formulaire input[type=text]').length).to.equal(2);
   });
 
   it("sauvegarde la valeur rentrée à l'appui sur le bouton", function (done) {
-    registreUtilisateur.inscris = (identifiantUtilisateur) => {
+    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
       expect(identifiantUtilisateur).to.equal('Mon pseudo');
+      expect(codeCampagne).to.equal('Mon code campagne');
       done();
     };
     vue.affiche('#formulaire', $);
-    $('#formulaire input[type=text]').val('Mon pseudo').trigger('submit');
+    $('#formulaire #formulaire-identification-input-campagne').val('Mon code campagne');
+    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
   });
 
   it("réinitialise la valeur rentrée à l'appui sur le bouton", function () {
     vue.affiche('#formulaire', $);
-    $('#formulaire input[type=text]').val('Mon pseudo').trigger('submit');
+    $('#formulaire input[type=text]').val('Mon pseudo ou code').trigger('submit');
     expect($('#formulaire input[type=text]').val()).to.eql('');
   });
 
