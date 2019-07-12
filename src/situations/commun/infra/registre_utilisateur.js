@@ -9,9 +9,10 @@ export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
-  constructor ($ = jQuery) {
+  constructor (situationsAccessibles, $ = jQuery) {
     super();
     this.$ = $;
+    this.situationsAccessibles = situationsAccessibles;
   }
 
   inscris (nom, codeCampagne) {
@@ -64,7 +65,9 @@ export default class RegistreUtilisateur extends EventEmitter {
   }
 
   progression () {
-    return new Progression(this.situationsFaites());
+    return new Progression(this.situationsFaites().filter((situation) => {
+      return this.situationsAccessibles.includes(situation);
+    }));
   }
 
   deconnecte () {

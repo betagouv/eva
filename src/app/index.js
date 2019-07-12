@@ -11,7 +11,7 @@ import 'commun/infra/report_erreurs';
 
 function afficheAccueil (pointInsertion, $) {
   const _accesSituations = accesSituations();
-  const registreUtilisateur = new RegistreUtilisateur();
+  const registreUtilisateur = new RegistreUtilisateur(_accesSituations.map((acces) => acces.identifiant));
   const depotRessources = new DepotRessourcesAccueil();
   const vueAccueil = new VueAccueil(_accesSituations, registreUtilisateur, depotRessources);
   depotRessources.chargement().then(() => {
