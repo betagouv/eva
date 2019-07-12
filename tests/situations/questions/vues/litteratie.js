@@ -7,18 +7,20 @@ import MockDepotRessourcesQuestions from '../aides/mock_depot_ressources';
 describe('La vue de la question Littératie', function () {
   let $;
   let depotRessources;
+  let src;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
     depotRessources = new MockDepotRessourcesQuestions();
+    src = depotRessources.accidentCarine().src;
   });
 
   it('affiche une zone de saisie de texte', function () {
     const $vue = new VueLitteratie(depotRessources);
     expect($('#point-insertion #reponse-compte-rendu').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', $);
+    $vue.affiche('#point-insertion', 'litteratie', src, $);
     expect($('#point-insertion #reponse-compte-rendu').length).to.equal(1);
   });
 
@@ -26,7 +28,7 @@ describe('La vue de la question Littératie', function () {
     const $vue = new VueLitteratie(depotRessources);
     expect($('#point-insertion .question-illustration').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', $);
+    $vue.affiche('#point-insertion', 'litteratie', src, $);
     expect($('#point-insertion .question-illustration').length).to.equal(1);
     expect($('#point-insertion .question-illustration').attr('src'))
       .to.equal('accident-carine');
@@ -36,14 +38,14 @@ describe('La vue de la question Littératie', function () {
     const $vue = new VueLitteratie(depotRessources);
     expect($('#point-insertion #envoi-reponse').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', $);
+    $vue.affiche('#point-insertion', 'litteratie', src, $);
     expect($('#point-insertion #envoi-reponse').length).to.equal(1);
   });
 
   it('emet un événément réponse quand on appuie sur le bouton envoi', function (done) {
     const $vue = new VueLitteratie(depotRessources);
 
-    $vue.affiche('#point-insertion', $);
+    $vue.affiche('#point-insertion', 'litteratie', src, $);
     $('#point-insertion #reponse-compte-rendu').val('     Ma réponse  ');
     $vue.on(EVENEMENT_REPONSE, (reponse) => {
       expect(reponse).to.eql('Ma réponse');

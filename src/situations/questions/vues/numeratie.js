@@ -8,8 +8,13 @@ import VueQuestion, { EVENEMENT_REPONSE } from './question';
 export { EVENEMENT_REPONSE };
 
 export default class VueNumeratie extends VueQuestion {
-  affiche (pointInsertion, $) {
-    const valeurs = [144, 288, 32, 384, 624, traduction('questions.numeratie.ne_sait_pas')];
+  affiche (pointInsertion, donneesQuestion, resource, $) {
+    const valeurs = [donneesQuestion['valeur_1'],
+      donneesQuestion['valeur_2'],
+      donneesQuestion['valeur_3'],
+      donneesQuestion['valeur_4'],
+      donneesQuestion['valeur_5'],
+      donneesQuestion['ne_sait_pas']];
     const $valeursPossibles = valeurs.map((valeur) => {
       return `
         <div class="question-choix">
@@ -22,10 +27,10 @@ export default class VueNumeratie extends VueQuestion {
     }).join('');
     this.$vue = $(`
       <div id="numeratie" class="question">
-        <img class="question-illustration" src=${this.depotRessources.palette().src}></img>
+        <img class="question-illustration" src=${resource}></img>
         <div class="question-barre">
-          <p class="couleur-grise sans-marge">${traduction('questions.numeratie.description')}</p>
-          <p class="sans-marge">${traduction('questions.numeratie.question')}</p>
+          <p class="couleur-grise sans-marge">${donneesQuestion['description']}</p>
+          <p class="sans-marge">${donneesQuestion['question']}</p>
           ${$valeursPossibles}
           <button id="envoi-reponse" class="question-bouton bouton-arrondi">
             ${traduction('questions.numeratie.valider')}
