@@ -14,11 +14,11 @@ export default class RegistreUtilisateur extends EventEmitter {
     this.$ = $ || jQuery;
   }
 
-  inscris (nom) {
+  inscris (nom, codeCampagne) {
     return this.$.ajax({
       type: 'POST',
       url: `${process.env.URL_SERVEUR}/api/evaluations`,
-      data: JSON.stringify({ nom }),
+      data: JSON.stringify({ nom, codeCampagne }),
       contentType: 'application/json; charset=utf-8'
     }).then((data) => {
       window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(data));

@@ -15,11 +15,19 @@ export default class FormulaireIdentification {
       const $resultat = $(`
         <form class="formulaire-identification" id="formulaire-identification">
           <h2>${traduction('accueil.identification.titre')}</h2>
-          <label for="formulaire-identification-input">
+          <label for="formulaire-identification-input-nom">
             ${traduction('accueil.identification.label')}
           </label>
-          <div class="flex">
-            <input id="formulaire-identification-input" type="text" class="input-accueil" autofocus>
+          <div class="inputs">
+            <input id="formulaire-identification-input-nom" type="text" class="input-accueil" autofocus>
+          </div>
+          <label for="formulaire-identification-input-campagne">
+            ${traduction('accueil.identification.campagne')}
+          </label>
+          <div class="inputs">
+            <input id="formulaire-identification-input-campagne" type="text" class="input-accueil">
+          </div>
+          <div class="inputs">
             <button class="bouton-arrondi">${traduction('accueil.identification.boutton')}</button>
           </div>
         </form>
@@ -33,11 +41,14 @@ export default class FormulaireIdentification {
 
     this.$gabarit.on('submit', (e) => {
       e.preventDefault();
-      const $input = $('input[type=text]', this.$gabarit);
-      const identifiantUtilisateur = $input.val().trim();
+      const $inputNom = $('#formulaire-identification-input-nom', this.$gabarit);
+      const identifiantUtilisateur = $inputNom.val().trim();
+      const $inputCodeCampagne = $('#formulaire-identification-input-campagne', this.$gabarit);
+      const codeCampagne = $inputCodeCampagne.val().trim();
       if (identifiantUtilisateur !== '') {
-        this.registreUtilisateur.inscris(identifiantUtilisateur);
-        $input.val('');
+        this.registreUtilisateur.inscris(identifiantUtilisateur, codeCampagne);
+        $inputNom.val('');
+        $inputCodeCampagne.val('');
       }
     });
 

@@ -8,6 +8,7 @@
     "identification": {
       "boutton": "Démarrer",
       "label": "Entrez votre nom et prénom",
+      "campagne": "Code de la campagne",
       "titre": "Bienvenue !"
     },
     "titre": "Compétences pro"
