@@ -1,5 +1,7 @@
+import jQuery from 'jquery';
+
 export default class DepotJournal {
-  constructor ($ = require('jquery')) {
+  constructor ($ = jQuery) {
     this.$ = $;
   }
 

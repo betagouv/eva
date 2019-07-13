@@ -1,5 +1,5 @@
-import EventEmitter from 'events';
 import jQuery from 'jquery';
+import EventEmitter from 'events';
 
 import Progression from 'commun/modeles/progression';
 
@@ -9,9 +9,9 @@ export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
-  constructor ($) {
+  constructor ($ = jQuery) {
     super();
-    this.$ = $ || jQuery;
+    this.$ = $;
   }
 
   inscris (nom, codeCampagne) {
