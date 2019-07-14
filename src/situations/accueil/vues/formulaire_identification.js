@@ -11,7 +11,7 @@ export default class FormulaireIdentification {
   affiche (pointInsertion, $) {
     this.registreUtilisateur.on(CHANGEMENT_CONNEXION, () => this.rafraichis());
 
-    function creeGabarit (registre) {
+    function creeGabarit () {
       const $resultat = $(`
         <form class="formulaire-identification" id="formulaire-identification">
           <h2>${traduction('accueil.identification.titre')}</h2>
@@ -36,7 +36,7 @@ export default class FormulaireIdentification {
       return $resultat;
     }
 
-    this.$gabarit = creeGabarit(this.registreUtilisateur);
+    this.$gabarit = creeGabarit();
     this.rafraichis();
 
     this.$gabarit.on('submit', (e) => {
