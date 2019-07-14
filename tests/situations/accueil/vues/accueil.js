@@ -15,13 +15,15 @@ describe('La vue accueil', function () {
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
     $ = jQuery(window);
-    progression = { niveau () { } };
+    progression = {
+      niveau: () => { },
+      fait: () => 1
+    };
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
       nom () {}
     }();
 
-    registreUtilisateur.situationsFaites = () => ['tri'];
     registreUtilisateur.progression = () => progression;
     registreUtilisateur.deconnecte = () => {};
     depotRessources = new class {
