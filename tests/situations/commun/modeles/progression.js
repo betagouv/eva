@@ -15,4 +15,9 @@ describe("La progression dans l'accueil", function () {
     const progression = new Progression(['tri', 'controle', 'inventaire']);
     expect(progression.niveau()).to.eql(4);
   });
+
+  it('retourne le nombre de situations faites', function () {
+    const progression = new Progression(['tri']);
+    expect(progression.fait()).to.eql(1);
+  });
 });

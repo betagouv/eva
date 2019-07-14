@@ -74,6 +74,10 @@ export default class RegistreUtilisateur extends EventEmitter {
     return this.progression().niveau();
   }
 
+  nombreSituationsFaites () {
+    return this.progression().fait();
+  }
+
   deconnecte () {
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
     window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);

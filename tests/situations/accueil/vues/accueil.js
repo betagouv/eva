@@ -18,6 +18,7 @@ describe('La vue accueil', function () {
       estConnecte () {}
       nom () {}
       niveauActuel () {}
+      nombreSituationsFaites () {}
     }();
 
     registreUtilisateur.situationsFaites = () => ['tri'];
