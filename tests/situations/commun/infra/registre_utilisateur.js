@@ -66,7 +66,9 @@ describe('le registre utilisateur', function () {
 
   it('retourne la progression', function () {
     const registre = new RegistreUtilisateur(['tri']);
+    expect(registre.nombreSituationsFaites()).to.eql(0);
     registre.enregistreSituationFaite('tri');
+    expect(registre.nombreSituationsFaites()).to.eql(1);
     expect(registre.niveauActuel()).to.eql(2);
   });
 
@@ -74,6 +76,7 @@ describe('le registre utilisateur', function () {
     const registre = new RegistreUtilisateur(['tri']);
     expect(registre.niveauActuel()).to.eql(1);
     registre.enregistreSituationFaite('questions');
+    expect(registre.nombreSituationsFaites()).to.eql(0);
     expect(registre.niveauActuel()).to.eql(1);
   });
 
