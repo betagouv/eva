@@ -7,14 +7,9 @@ import VueQuestion, { EVENEMENT_REPONSE } from './question';
 
 export { EVENEMENT_REPONSE };
 
-export default class VueNumeratie extends VueQuestion {
-  affiche (pointInsertion, donneesQuestion, resource, $) {
-    const valeurs = [donneesQuestion['valeur_1'],
-      donneesQuestion['valeur_2'],
-      donneesQuestion['valeur_3'],
-      donneesQuestion['valeur_4'],
-      donneesQuestion['valeur_5'],
-      donneesQuestion['ne_sait_pas']];
+export default class VueQCM extends VueQuestion {
+  affiche (pointInsertion, $) {
+    const valeurs = [...this.question.choix, this.question.ne_sait_pas];
     const $valeursPossibles = valeurs.map((valeur) => {
       return `
         <div class="question-choix">
@@ -27,13 +22,13 @@ export default class VueNumeratie extends VueQuestion {
     }).join('');
     this.$vue = $(`
       <div id="numeratie" class="question">
-        <img class="question-illustration" src=${resource}></img>
+        <img class="question-illustration" src=${this.srcResource}></img>
         <div class="question-barre">
-          <p class="couleur-grise sans-marge">${donneesQuestion['description']}</p>
-          <p class="sans-marge">${donneesQuestion['question']}</p>
+          <p class="couleur-grise sans-marge">${this.question.description}</p>
+          <p class="sans-marge">${this.question.question}</p>
           ${$valeursPossibles}
           <button id="envoi-reponse" class="question-bouton bouton-arrondi">
-            ${traduction('questions.numeratie.valider')}
+            ${traduction('questions.qcm.valider')}
           </button>
         </div
       </div>

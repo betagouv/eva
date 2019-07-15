@@ -4,7 +4,7 @@ import jQuery from 'jquery';
 import Situation, { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import VueSituation from 'questions/vues/situation';
-import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/litteratie';
+import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/redaction_note';
 import MockDepotRessourcesQuestions from '../aides/mock_depot_ressources';
 
 describe('La vue de la situation « Question »', function () {
@@ -18,14 +18,17 @@ describe('La vue de la situation « Question »', function () {
     $ = jQuery(window);
     depotRessources = new MockDepotRessourcesQuestions();
     journal = { enregistre () {} };
-    situation = new Situation({ questions: ['litteratie', 'numeratie'] });
+    situation = new Situation({ questions: [
+      { 'type': 'redaction_note', 'choix': [] },
+      { 'type': 'qcm', 'choix': [] }
+    ] });
   });
 
   it('affiche la première question', function () {
     const vue = new VueSituation(situation, journal, depotRessources);
 
     vue.affiche('#point-insertion', $);
-    expect($('#litteratie').length).to.eql(1);
+    expect($('.question').length).to.eql(1);
   });
 
   it('enregistre la réponse dans le modèle lorsque la vue répond', function (done) {
@@ -65,7 +68,6 @@ describe('La vue de la situation « Question »', function () {
 
   it('garde la dernière question affiché a la fin', function () {
     const vue = new VueSituation(situation, journal, depotRessources);
-
     vue.affiche('#point-insertion', $);
     situation.repond('Ma réponse');
     situation.repond('Ma réponse');

@@ -27,18 +27,11 @@
   },
   "questions": {
     "titre": "Questions",
-    "litteratie": {
-      "entete_reponse": "Bonjour Catherine…",
+    "redaction_note": {
       "envoyer": "Envoyer",
-      "message_catherine_jean": "Bonjour, <br>Merci de bien vouloir rédiger une note concernant la chute de Carine dont vous avez été témoin. Elle a un fêlure de la main droite.<br><br> Cordialement,<br> Catherine Jean",
-      "objet_message_catherine": "Sujet : Accident Carine",
-      "informations_expediteur": "de c.jean@eva.fr, le {{date_courante}}, {{heure_sans_secondes}}",
-      "objet_reponse": "Réponse : Note Accident Carine"
+      "informations_expediteur": "de c.jean@eva.fr, le {{date_courante}}, {{heure_sans_secondes}}"
     },
-    "numeratie": {
-      "description": "Cette palette est complète. Chaque carton contient 4 packs de 8 bouteilles.",
-      "ne_sait_pas": "Je ne sais pas faire ce calcul",
-      "question": "Combien y a t-il de bouteilles de O'cola au total ?",
+    "qcm": {
       "valider": "Valider"
     }
   },

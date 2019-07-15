@@ -6,9 +6,10 @@ import EventEmitter from 'events';
 export const EVENEMENT_REPONSE = 'reponse';
 
 export default class VueQuestion extends EventEmitter {
-  constructor (depotRessources) {
+  constructor (question, srcResource) {
     super();
-    this.depotRessources = depotRessources;
+    this.question = question;
+    this.srcResource = srcResource;
   }
 
   affiche (pointInsertion, $) {}

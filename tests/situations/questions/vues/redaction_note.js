@@ -1,51 +1,50 @@
 import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
 
-import VueLitteratie, { EVENEMENT_REPONSE } from 'questions/vues/litteratie';
-import MockDepotRessourcesQuestions from '../aides/mock_depot_ressources';
+import VueRedactionNote, { EVENEMENT_REPONSE } from 'questions/vues/redaction_note';
 
-describe('La vue de la question Littératie', function () {
+describe('La vue de la question RedactionNote', function () {
   let $;
-  let depotRessources;
-  let src;
+  let srcResource;
+  let question;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
-    depotRessources = new MockDepotRessourcesQuestions();
-    src = depotRessources.accidentCarine().src;
+    srcResource = '';
+    question = {};
   });
 
   it('affiche une zone de saisie de texte', function () {
-    const $vue = new VueLitteratie(depotRessources);
+    const $vue = new VueRedactionNote(question, srcResource);
     expect($('#point-insertion #reponse-compte-rendu').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', 'litteratie', src, $);
+    $vue.affiche('#point-insertion', $);
     expect($('#point-insertion #reponse-compte-rendu').length).to.equal(1);
   });
 
-  it("affiche l'accident de Carine", function () {
-    const $vue = new VueLitteratie(depotRessources);
+  it("affiche l'image de la question", function () {
+    const $vue = new VueRedactionNote(question, 'accident-carine');
     expect($('#point-insertion .question-illustration').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', 'litteratie', src, $);
+    $vue.affiche('#point-insertion', $);
     expect($('#point-insertion .question-illustration').length).to.equal(1);
     expect($('#point-insertion .question-illustration').attr('src'))
       .to.equal('accident-carine');
   });
 
   it("affiche un bouton d'envoi de réponse", function () {
-    const $vue = new VueLitteratie(depotRessources);
+    const $vue = new VueRedactionNote(question, srcResource);
     expect($('#point-insertion #envoi-reponse').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', 'litteratie', src, $);
+    $vue.affiche('#point-insertion', $);
     expect($('#point-insertion #envoi-reponse').length).to.equal(1);
   });
 
   it('emet un événément réponse quand on appuie sur le bouton envoi', function (done) {
-    const $vue = new VueLitteratie(depotRessources);
+    const $vue = new VueRedactionNote(question, srcResource);
 
-    $vue.affiche('#point-insertion', 'litteratie', src, $);
+    $vue.affiche('#point-insertion', $);
     $('#point-insertion #reponse-compte-rendu').val('     Ma réponse  ');
     $vue.on(EVENEMENT_REPONSE, (reponse) => {
       expect(reponse).to.eql('Ma réponse');
