@@ -18,16 +18,16 @@ export default class FormulaireIdentification {
           <label for="formulaire-identification-input-nom">
             ${traduction('accueil.identification.label')}
           </label>
-          <div class="inputs">
+          <div class="element-formulaire">
             <input id="formulaire-identification-input-nom" type="text" class="input-accueil" autofocus>
           </div>
           <label for="formulaire-identification-input-campagne">
             ${traduction('accueil.identification.campagne')}
           </label>
-          <div class="inputs">
+          <div class="element-formulaire">
             <input id="formulaire-identification-input-campagne" type="text" class="input-accueil">
           </div>
-          <div class="inputs">
+          <div class="element-formulaire">
             <button class="bouton-arrondi">${traduction('accueil.identification.boutton')}</button>
           </div>
         </form>
