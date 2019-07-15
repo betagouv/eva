@@ -28,8 +28,7 @@
   "questions": {
     "titre": "Questions",
     "redaction_note": {
-      "envoyer": "Envoyer",
-      "informations_expediteur": "de c.jean@eva.fr, le {{date_courante}}, {{heure_sans_secondes}}"
+      "envoyer": "Envoyer"
     },
     "qcm": {
       "valider": "Valider"
