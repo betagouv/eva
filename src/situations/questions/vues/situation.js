@@ -50,7 +50,7 @@ export default class VueSituation {
   }
 
   afficheNouvelleQuestion (question) {
-    const resource = this.recupereRessource(question.identifiant);
+    const resource = this.recupereRessource(question.illustration);
     this.question = new this.classesQuestions[question.type](question, resource);
     this.question.affiche(this.pointInsertion, this.$);
     this.$('.question', this.pointInsertion).hide().fadeIn();
@@ -59,16 +59,7 @@ export default class VueSituation {
     });
   }
 
-  recupereRessource (identifiant) {
-    switch (identifiant) {
-      case 'litteratie':
-        return this.depotRessources.accidentCarine().src;
-      case 'numeratie':
-        return this.depotRessources.palette().src;
-      case 'numeratie_inverse':
-        return this.depotRessources.palette().src;
-      default:
-        console.warn('libellé de question inconnu');
-    }
+  recupereRessource (nom) {
+    return this.depotRessources[nom]().src;
   }
 }

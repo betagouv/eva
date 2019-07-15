@@ -7,7 +7,8 @@
     "envoyer": "Envoyer",
     "message": "Bonjour, <br>Merci de bien vouloir rédiger une note concernant la chute de Carine dont vous avez été témoin. Elle a un fêlure de la main droite.<br><br> Cordialement,<br> Catherine Jean",
     "objet_message": "Sujet : Accident Carine",
-    "objet_reponse": "Réponse : Note Accident Carine"
+    "objet_reponse": "Réponse : Note Accident Carine",
+    "illustration": "accidentCarine"
   },
   {
     "identifiant": "numeratie",
@@ -21,7 +22,8 @@
       "384",
       "624"
     ],
-    "ne_sait_pas": "Je ne sais pas faire ce calcul"
+    "ne_sait_pas": "Je ne sais pas faire ce calcul",
+    "illustration": "palette"
   },
   {
     "identifiant": "numeratie_inverse",
@@ -35,6 +37,7 @@
       "16",
       "600"
     ],
-    "ne_sait_pas": "Je ne sais pas faire ce calcul"
+    "ne_sait_pas": "Je ne sais pas faire ce calcul",
+    "illustration": "palette"
   }
 ]

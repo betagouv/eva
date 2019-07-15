@@ -20,8 +20,8 @@ describe('La vue de la situation « Question »', function () {
     depotRessources = new MockDepotRessourcesQuestions();
     journal = { enregistre () {} };
     situation = new Situation({ questions: [
-      { 'type': 'redaction_note', 'choix': [] },
-      { 'type': 'qcm', 'choix': [] }
+      { 'type': 'redaction_note', illustration: 'palette' },
+      { 'type': 'qcm', 'choix': [], illustration: 'palette' }
     ] });
   });
 
