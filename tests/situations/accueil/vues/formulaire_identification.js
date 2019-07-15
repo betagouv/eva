@@ -43,8 +43,14 @@ describe("Le formulaire d'identification", function () {
 
   it("réinitialise la valeur rentrée à l'appui sur le bouton", function () {
     vue.affiche('#formulaire', $);
-    $('#formulaire input[type=text]').val('Mon pseudo ou code').trigger('submit');
-    expect($('#formulaire input[type=text]').val()).to.eql('');
+    $('#formulaire input[type=text]').each(function () {
+      $(this).val('Mon pseudo ou code');
+    });
+    $('#formulaire input[type=text]').trigger('submit');
+
+    $('#formulaire input[type=text]').each(function () {
+      expect($(this).val()).to.eql('');
+    });
   });
 
   it('ne sauvegarde pas la valeur rentrée si elle est vide', function () {
