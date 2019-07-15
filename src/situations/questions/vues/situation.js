@@ -1,18 +1,16 @@
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from './question';
-import VueLitteratie from './litteratie';
-import VueNumeratie from './numeratie';
-const donneesNumeratie = require('../data/donnees_questions.json');
+import VueRedactionNote from './redaction_note';
+import VueQCM from './qcm';
 
 export default class VueSituation {
   constructor (situation, journal, depotRessources) {
     this.situation = situation;
     this.depotRessources = depotRessources;
     this.classesQuestions = {
-      litteratie: VueLitteratie,
-      numeratie: VueNumeratie,
-      numeratie_inverse: VueNumeratie
+      redaction_note: VueRedactionNote,
+      qcm: VueQCM
     };
 
     this.situation.on(EVENEMENT_REPONSE_SITUATION, (question, reponse) => {
@@ -30,30 +28,29 @@ export default class VueSituation {
   }
 
   afficheQuestion () {
-    const libelleQuestion = this.situation.question();
-    const donneesQuestion = donneesNumeratie[libelleQuestion];
-    if (!libelleQuestion) {
+    const question = this.situation.question();
+    if (!question) {
       return;
     }
     if (this.question) {
       this.question.supprime();
     }
-    this.question = new this.classesQuestions[libelleQuestion](this.depotRessources);
-    const resource = this.recupereRessource(libelleQuestion, this.question);
-    this.question.affiche(this.$vue, donneesQuestion, resource, this.$);
+    const resource = this.recupereRessource(question.identifiant);
+    this.question = new this.classesQuestions[question.type](question, resource);
+    this.question.affiche(this.$vue, this.$);
     this.question.on(EVENEMENT_REPONSE_VUE, (reponse) => {
       this.situation.repond(reponse);
     });
   }
 
-  recupereRessource (libelle, question) {
-    switch (libelle) {
+  recupereRessource (identifiant) {
+    switch (identifiant) {
       case 'litteratie':
-        return question.depotRessources.accidentCarine().src;
+        return this.depotRessources.accidentCarine().src;
       case 'numeratie':
-        return question.depotRessources.palette().src;
+        return this.depotRessources.palette().src;
       case 'numeratie_inverse':
-        return question.depotRessources.palette().src;
+        return this.depotRessources.palette().src;
       default:
         console.warn('libellé de question inconnu');
     }

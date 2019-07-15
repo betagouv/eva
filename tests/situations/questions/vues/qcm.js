@@ -1,51 +1,52 @@
 import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
 
-import VueNumeratie, { EVENEMENT_REPONSE } from 'questions/vues/numeratie';
-import MockDepotRessourcesQuestions from '../aides/mock_depot_ressources';
+import VueQCM, { EVENEMENT_REPONSE } from 'questions/vues/qcm';
 
 describe('La vue de la question Numératie', function () {
   let $;
-  let depotRessources;
-  let src;
+  let srcResource;
+  let question;
+
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
-    depotRessources = new MockDepotRessourcesQuestions();
-    src = depotRessources.palette().src;
+    srcResource = '';
+    question = { choix: [] };
   });
 
   it('affiche des radios', function () {
-    const $vue = new VueNumeratie(depotRessources);
+    question.choix = [1, 2, 3, 4, 5];
+    const $vue = new VueQCM(question, srcResource);
     expect($('#point-insertion input[type=radio]').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', 'numeratie', src, $);
+    $vue.affiche('#point-insertion', $);
     expect($('#point-insertion input[type=radio]').length).to.equal(6);
   });
 
-  it('affiche la palette', function () {
-    const $vue = new VueNumeratie(depotRessources);
+  it("affiche l'image", function () {
+    const $vue = new VueQCM(question, 'palette');
     expect($('#point-insertion .question-illustration').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', 'numeratie', src, $);
+    $vue.affiche('#point-insertion', $);
     expect($('#point-insertion .question-illustration').length).to.equal(1);
     expect($('#point-insertion .question-illustration').attr('src'))
       .to.equal('palette');
   });
 
   it("affiche un bouton d'envoi de réponse", function () {
-    const $vue = new VueNumeratie(depotRessources);
+    const $vue = new VueQCM(question, srcResource);
     expect($('#point-insertion #envoi-reponse').length).to.equal(0);
 
-    $vue.affiche('#point-insertion', 'numeratie', src, $);
+    $vue.affiche('#point-insertion', $);
     expect($('#point-insertion #envoi-reponse').length).to.equal(1);
   });
 
   it('emet un événément réponse quand on appuie sur le bouton envoi', function (done) {
-    const $vue = new VueNumeratie(depotRessources);
-    const valeurReponse = { valeur_1: '32' };
+    question.choix = ['32'];
+    const $vue = new VueQCM(question, srcResource);
 
-    $vue.affiche('#point-insertion', valeurReponse, src, $);
+    $vue.affiche('#point-insertion', $);
     $('#point-insertion input[type=radio][value=32]').prop('checked', true);
     $vue.on(EVENEMENT_REPONSE, (reponse) => {
       expect(reponse).to.eql('32');
