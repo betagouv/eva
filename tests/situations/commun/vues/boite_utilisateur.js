@@ -2,19 +2,19 @@ import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
 import EventEmitter from 'events';
 
-import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
+import { CHANGEMENT_CONNEXION } from 'commun/modeles/utilisateur';
 import VueBoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import AccesSituation from 'accueil/modeles/acces_situation';
 
 describe('La boite utilisateur', function () {
-  let registreUtilisateur;
+  let utilisateur;
   let vueBoiteUtilisateur;
   let $;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
-    registreUtilisateur = new class extends EventEmitter {
+    utilisateur = new class extends EventEmitter {
       estConnecte () {}
       nom () {}
       deconnecte () {}
@@ -24,19 +24,19 @@ describe('La boite utilisateur', function () {
       new AccesSituation({ nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc', niveauMinimum: 1 }),
       new AccesSituation({ nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz', niveauMinimum: 2 })
     ];
-    vueBoiteUtilisateur = new VueBoiteUtilisateur(registreUtilisateur, accesSituations);
+    vueBoiteUtilisateur = new VueBoiteUtilisateur(utilisateur, accesSituations);
   });
 
   it("affiche le nom de l'évalué·e et le bouton de déconnexion", function () {
-    registreUtilisateur.nom = () => 'Jacques Adit';
+    utilisateur.nom = () => 'Jacques Adit';
     vueBoiteUtilisateur.affiche('#point-insertion', $);
     expect($('#point-insertion .nom-utilisateur').text().trim()).to.equal('Jacques Adit');
     expect($('#point-insertion .deconnexion').length).to.equal(1);
   });
 
   it('permet de se déconnecter', function (done) {
-    registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.deconnecte = () => {
+    utilisateur.estConnecte = () => true;
+    utilisateur.deconnecte = () => {
       done();
     };
     vueBoiteUtilisateur.affiche('#point-insertion', $);
@@ -44,26 +44,26 @@ describe('La boite utilisateur', function () {
   });
 
   it("cache la boîte lorsque l'évalué·e se déconnecte", function () {
-    registreUtilisateur.estConnecte = () => true;
+    utilisateur.estConnecte = () => true;
     vueBoiteUtilisateur.affiche('#point-insertion', $);
     expect($('#point-insertion .boite-utilisateur').hasClass('invisible')).to.eql(false);
-    registreUtilisateur.estConnecte = () => false;
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
+    utilisateur.estConnecte = () => false;
+    utilisateur.emit(CHANGEMENT_CONNEXION);
     expect($('#point-insertion .boite-utilisateur').hasClass('invisible')).to.eql(true);
   });
 
   it("la boîte est cachée lorsque l'évalué·e est déconnecté·e", function () {
-    registreUtilisateur.estConnecte = () => false;
+    utilisateur.estConnecte = () => false;
     vueBoiteUtilisateur.affiche('#point-insertion', $);
     expect($('#point-insertion .boite-utilisateur').hasClass('invisible')).to.eql(true);
   });
 
   it("Mets à jour le nom de l'évalué·e à la connexion", function () {
-    registreUtilisateur.estConnecte = () => false;
+    utilisateur.estConnecte = () => false;
     vueBoiteUtilisateur.affiche('#point-insertion', $);
-    registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.nom = () => 'Jacques Adit';
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
+    utilisateur.estConnecte = () => true;
+    utilisateur.nom = () => 'Jacques Adit';
+    utilisateur.emit(CHANGEMENT_CONNEXION);
     expect($('#point-insertion .nom-utilisateur').text()).to.eql('Jacques Adit');
   });
 

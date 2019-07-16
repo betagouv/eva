@@ -1,18 +1,12 @@
 import jQuery from 'jquery';
-import EventEmitter from 'events';
-
-import Progression from 'commun/modeles/progression';
 
 const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 
 export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
-export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
-export default class RegistreUtilisateur extends EventEmitter {
-  constructor (situationsAccessibles, $ = jQuery) {
-    super();
+export default class RegistreUtilisateur {
+  constructor ($ = jQuery) {
     this.$ = $;
-    this.situationsAccessibles = situationsAccessibles;
   }
 
   inscris (nom, codeCampagne) {
@@ -23,12 +17,7 @@ export default class RegistreUtilisateur extends EventEmitter {
       contentType: 'application/json; charset=utf-8'
     }).then((data) => {
       window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(data));
-      this.emit(CHANGEMENT_CONNEXION);
     });
-  }
-
-  estConnecte () {
-    return !!this.identifiant();
   }
 
   parseLocalStorage (clef) {
@@ -64,15 +53,8 @@ export default class RegistreUtilisateur extends EventEmitter {
     return [];
   }
 
-  progression () {
-    return new Progression(this.situationsFaites().filter((situation) => {
-      return this.situationsAccessibles.includes(situation);
-    }));
-  }
-
   deconnecte () {
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
     window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
-    this.emit(CHANGEMENT_CONNEXION);
   }
 }

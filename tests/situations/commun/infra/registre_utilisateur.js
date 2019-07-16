@@ -1,10 +1,10 @@
 import jsdom from 'jsdom-global';
-import RegistreUtilisateur, { CHANGEMENT_CONNEXION, CLEF_IDENTIFIANT } from 'commun/infra/registre_utilisateur';
+import RegistreUtilisateur, { CLEF_IDENTIFIANT } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
   function unRegistre (id, nom) {
-    return new RegistreUtilisateur([], {
-      ajax () {
+    return new RegistreUtilisateur({
+      ajax (data) {
         return Promise.resolve({ id, nom });
       }
     });
@@ -21,22 +21,14 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  it("émet un événement lorsque le nom de l'utilisateur change", function (done) {
-    const registre = unRegistre(1, 'test');
-    registre.on(CHANGEMENT_CONNEXION, done);
-    registre.inscris('test');
-  });
-
-  it("estConnecte retourne true lorsque l'utilisateur a rempli un nom", function () {
-    const registre = unRegistre(1, 'test');
-    return registre.inscris('test').then(() => {
-      expect(registre.estConnecte()).to.be(true);
+  it("envoie les données au serveur à l'inscription", function (done) {
+    const registre = new RegistreUtilisateur({
+      ajax (payload) {
+        expect(payload.data).to.equal('{"nom":"nom utilisateur","code_campagne":"campagne1"}');
+        done();
+      }
     });
-  });
-
-  it("estConnecte retourne false lorsque l'utilisateur n'a pas rempli un nom", function () {
-    const registre = new RegistreUtilisateur();
-    expect(registre.estConnecte()).to.be(false);
+    registre.inscris('nom utilisateur', 'campagne1');
   });
 
   it('permet de récupérer les situations faites au début', function () {
@@ -64,46 +56,21 @@ describe('le registre utilisateur', function () {
     expect(registre.situationsFaites()).to.eql(['tri']);
   });
 
-  it('retourne la progression', function () {
-    const registre = new RegistreUtilisateur(['tri']);
-    registre.enregistreSituationFaite('tri');
-    const progression = registre.progression();
-    expect(progression.niveau()).to.eql(2);
-  });
-
-  it('les situations non accessibles ne font pas avancer la progression', function () {
-    const registre = new RegistreUtilisateur(['tri']);
-    expect(registre.progression().niveau()).to.eql(1);
-    registre.enregistreSituationFaite('questions');
-    expect(registre.progression().niveau()).to.eql(1);
-  });
-
-  it('à la déconnexion, remet la progression au début', function () {
-    const registre = new RegistreUtilisateur();
-    registre.enregistreSituationFaite('tri');
-    registre.deconnecte();
-    const progression = registre.progression();
-    expect(progression.niveau()).to.equal(1);
-  });
-
-  it('à la déconnexion, nous ne sommes plus connectés', function () {
+  it('à la déconnexion, le registre est vidé', function () {
     const registre = unRegistre(1, 'test');
     return registre.inscris('test').then(() => {
-      expect(registre.estConnecte()).to.be(true);
+      registre.enregistreSituationFaite('tri');
       registre.deconnecte();
-      expect(registre.estConnecte()).to.be(false);
+      expect(registre.identifiant()).to.equal(undefined);
+      expect(registre.nom()).to.equal(undefined);
+      expect(registre.situationsFaites()).to.eql([]);
     });
   });
 
-  it("émet un événement lorsque l'utilisateur se déconnecte", function (done) {
-    const registre = new RegistreUtilisateur();
-    registre.on(CHANGEMENT_CONNEXION, done);
-    registre.deconnecte();
-  });
-
-  it('déconnecte si ancienne données présentes', function () {
+  it("s'initialise vide si d'anciennes données sont présentes", function () {
     window.localStorage.setItem(CLEF_IDENTIFIANT, 'nom utilisateur');
     const registre = new RegistreUtilisateur();
-    expect(registre.estConnecte()).to.be(false);
+    expect(registre.identifiant()).to.equal(undefined);
+    expect(registre.nom()).to.equal(undefined);
   });
 });

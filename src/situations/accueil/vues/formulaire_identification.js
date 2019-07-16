@@ -1,15 +1,15 @@
 import 'accueil/styles/formulaire_identification.scss';
 import 'commun/styles/boutons.scss';
 import { traduction } from 'commun/infra/internationalisation';
-import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
+import { CHANGEMENT_CONNEXION } from 'commun/modeles/utilisateur';
 
 export default class FormulaireIdentification {
-  constructor (registreUtilisateur) {
-    this.registreUtilisateur = registreUtilisateur;
+  constructor (utilisateur) {
+    this.utilisateur = utilisateur;
   }
 
   affiche (pointInsertion, $) {
-    this.registreUtilisateur.on(CHANGEMENT_CONNEXION, () => this.rafraichis());
+    this.utilisateur.on(CHANGEMENT_CONNEXION, () => this.rafraichis());
 
     function creeGabarit () {
       const $resultat = $(`
@@ -48,7 +48,7 @@ export default class FormulaireIdentification {
       const codeCampagne = $inputCodeCampagne.val().trim();
       if (identifiantUtilisateur !== '') {
         $erreur.remove();
-        this.registreUtilisateur.inscris(identifiantUtilisateur, codeCampagne)
+        this.utilisateur.inscris(identifiantUtilisateur, codeCampagne)
           .done(() => {
             $inputNom.val('');
             $inputCodeCampagne.val('');
@@ -60,7 +60,7 @@ export default class FormulaireIdentification {
   }
 
   rafraichis () {
-    this.$gabarit.toggleClass('invisible', this.registreUtilisateur.estConnecte());
+    this.$gabarit.toggleClass('invisible', this.utilisateur.estConnecte());
   }
 
   afficheErreur ($, xhr) {

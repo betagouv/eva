@@ -10,7 +10,7 @@ describe('La vue accueil', function () {
   let depotRessources;
   let progression;
   let accesSituations;
-  let registreUtilisateur;
+  let utilisateur;
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
@@ -19,13 +19,13 @@ describe('La vue accueil', function () {
       niveau: () => { },
       fait: () => 1
     };
-    registreUtilisateur = new class extends EventEmitter {
+    utilisateur = new class extends EventEmitter {
       estConnecte () {}
       nom () {}
     }();
 
-    registreUtilisateur.progression = () => progression;
-    registreUtilisateur.deconnecte = () => {};
+    utilisateur.progression = () => progression;
+    utilisateur.deconnecte = () => {};
     depotRessources = new class {
       fondAccueil () {
         return { src: '' };
@@ -51,7 +51,7 @@ describe('La vue accueil', function () {
   });
 
   it('affiche un lien pour chaque situation', function () {
-    const vueAccueil = new VueAccueil(accesSituations, registreUtilisateur, depotRessources);
+    const vueAccueil = new VueAccueil(accesSituations, utilisateur, depotRessources);
 
     vueAccueil.affiche('#accueil', $);
 
@@ -63,14 +63,14 @@ describe('La vue accueil', function () {
     depotRessources.fondAccueil = () => { return { src: 'image-fond' }; };
     depotRessources.personnages = () => { return { src: 'personnages' }; };
 
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+    const vueAccueil = new VueAccueil([], utilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('.acces-situations').attr('style')).to.equal('background-image: url(image-fond);');
     expect($('.personnages').attr('style')).to.equal('background-image: url(personnages);');
   });
 
   it("affiche le formulaire d'identification", function () {
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
+    const vueAccueil = new VueAccueil([], utilisateur, depotRessources);
     vueAccueil.affiche('#accueil', $);
     expect($('#accueil #formulaire-identification').length).to.equal(1);
   });

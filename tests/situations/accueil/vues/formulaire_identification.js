@@ -3,23 +3,23 @@ import jQuery from 'jquery';
 import EventEmitter from 'events';
 import { traduction } from 'commun/infra/internationalisation';
 
-import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
+import { CHANGEMENT_CONNEXION } from 'commun/modeles/utilisateur';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 
 describe("Le formulaire d'identification", function () {
   let $;
   let vue;
-  let registreUtilisateur;
+  let utilisateur;
 
   beforeEach(function () {
     jsdom('<div id="formulaire"></div>');
     $ = jQuery(window);
-    registreUtilisateur = new class extends EventEmitter {
+    utilisateur = new class extends EventEmitter {
       estConnecte () {}
       inscris () { return $.Deferred().resolve(); }
       nom () {}
     }();
-    vue = new FormulaireIdentification(registreUtilisateur);
+    vue = new FormulaireIdentification(utilisateur);
   });
 
   it("s'affiche", function () {
@@ -32,7 +32,7 @@ describe("Le formulaire d'identification", function () {
   });
 
   it("sauvegarde la valeur rentrée à l'appui sur le bouton", function (done) {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+    utilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
       expect(identifiantUtilisateur).to.equal('Mon pseudo');
       expect(codeCampagne).to.equal('Mon code campagne');
       done();
@@ -55,7 +55,7 @@ describe("Le formulaire d'identification", function () {
   });
 
   it("ne réinitialise pas les valeurs rentrées lorsque l'on n'a pas réussi à s'identifier", function () {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+    utilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
       return $.Deferred().reject({ status: 422 });
     };
     vue.affiche('#formulaire', $);
@@ -69,28 +69,28 @@ describe("Le formulaire d'identification", function () {
   });
 
   it('ne sauvegarde pas la valeur rentrée si elle est vide', function () {
-    registreUtilisateur.inscris = () => { throw new Error('ne devrait pas être appellé'); };
+    utilisateur.inscris = () => { throw new Error('ne devrait pas être appellé'); };
     vue.affiche('#formulaire', $);
     $('#formulaire input[type=text]').val('').trigger('submit');
   });
 
   it("cache le formulaire lors que l'évalué·e est connecté·e", function () {
-    registreUtilisateur.estConnecte = () => true;
+    utilisateur.estConnecte = () => true;
     vue.affiche('#formulaire', $);
     expect($('#formulaire #formulaire-identification').hasClass('invisible')).to.eql(true);
   });
 
   it("affiche le formulaire lorsque l'évalué·e se connecte", function () {
-    registreUtilisateur.estConnecte = () => false;
+    utilisateur.estConnecte = () => false;
     vue.affiche('#formulaire', $);
     expect($('#formulaire #formulaire-identification').hasClass('invisible')).to.eql(false);
-    registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
+    utilisateur.estConnecte = () => true;
+    utilisateur.emit(CHANGEMENT_CONNEXION);
     expect($('#formulaire #formulaire-identification').hasClass('invisible')).to.eql(true);
   });
 
   it("affiche une erreur si le code campagne n'existe pas", function () {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+    utilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
       return $.Deferred().reject({ status: 404 });
     };
     vue.affiche('#formulaire', $);
@@ -100,7 +100,7 @@ describe("Le formulaire d'identification", function () {
   });
 
   it('affiche une erreur générique', function () {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+    utilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
       return $.Deferred().reject({ status: 422 });
     };
     vue.affiche('#formulaire', $);
@@ -110,7 +110,7 @@ describe("Le formulaire d'identification", function () {
   });
 
   it("enlève l'erreur lorsque l'on resoumet le formulaire", function () {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+    utilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
       return $.Deferred().reject({ status: 422 });
     };
     vue.affiche('#formulaire', $);

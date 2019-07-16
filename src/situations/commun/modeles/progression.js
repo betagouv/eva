@@ -4,7 +4,7 @@ export default class Progression {
   }
 
   niveau () {
-    return this.situationsFaites.length + 1;
+    return this.fait() + 1;
   }
 
   fait () {
