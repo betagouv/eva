@@ -18,7 +18,7 @@ export default class RegistreUtilisateur extends EventEmitter {
     return this.$.ajax({
       type: 'POST',
       url: `${process.env.URL_SERVEUR}/api/evaluations`,
-      data: JSON.stringify({ nom, codeCampagne }),
+      data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
       contentType: 'application/json; charset=utf-8'
     }).then((data) => {
       window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(data));
