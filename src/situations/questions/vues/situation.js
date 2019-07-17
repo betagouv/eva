@@ -21,10 +21,9 @@ export default class VueSituation {
   }
 
   affiche (pointInsertion, $) {
-    this.$vue = $(`<div class="scene-compte-rendu"></div>`);
     this.$ = $;
+    this.pointInsertion = pointInsertion;
     this.afficheQuestion();
-    $(pointInsertion).append(this.$vue);
   }
 
   afficheQuestion () {
@@ -32,12 +31,26 @@ export default class VueSituation {
     if (!question) {
       return;
     }
+    const cbAffichageQuestion = () => this.afficheNouvelleQuestion(question);
     if (this.question) {
-      this.question.supprime();
+      this.cacheQuestionPrecedente(cbAffichageQuestion);
+    } else {
+      cbAffichageQuestion();
     }
+  }
+
+  cacheQuestionPrecedente (callbackFinAnimation) {
+    this.$('.question', this.pointInsertion).fadeOut(150, () => {
+      this.question.supprime();
+      callbackFinAnimation();
+    });
+  }
+
+  afficheNouvelleQuestion (question) {
     const resource = this.recupereRessource(question.identifiant);
     this.question = new this.classesQuestions[question.type](question, resource);
-    this.question.affiche(this.$vue, this.$);
+    this.question.affiche(this.pointInsertion, this.$);
+    this.$('.question', this.pointInsertion).hide().fadeIn();
     this.question.on(EVENEMENT_REPONSE_VUE, (reponse) => {
       this.situation.repond(reponse);
     });
