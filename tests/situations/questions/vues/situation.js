@@ -74,4 +74,13 @@ describe('La vue de la situation « Question »', function () {
     situation.repond('Ma réponse');
     expect($('#numeratie').length).to.eql(1);
   });
+
+  it('affiche un overlay au dessus des questions a la fin', function () {
+    const vue = new VueSituation(situation, journal, depotRessources);
+    vue.affiche('#point-insertion', $);
+    situation.repond('Ma réponse');
+    expect($('.overlay.invisible').length).to.eql(1);
+    situation.repond('Ma réponse');
+    expect($('.overlay.invisible').length).to.eql(0);
+  });
 });

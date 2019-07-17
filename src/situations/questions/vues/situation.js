@@ -1,3 +1,4 @@
+import VueResultat from 'commun/vues/resultat';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from './question';
@@ -18,12 +19,14 @@ export default class VueSituation {
       journal.enregistre(evenement);
       this.afficheQuestion();
     });
+    this.resultat = new VueResultat(situation);
   }
 
   affiche (pointInsertion, $) {
     this.$ = $;
     this.pointInsertion = pointInsertion;
     this.afficheQuestion();
+    this.resultat.affiche(pointInsertion, $);
   }
 
   afficheQuestion () {
