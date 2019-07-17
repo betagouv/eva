@@ -16,6 +16,7 @@ describe('La vue de la situation « Question »', function () {
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
+    $.fx.off = true;
     depotRessources = new MockDepotRessourcesQuestions();
     journal = { enregistre () {} };
     situation = new Situation({ questions: [
