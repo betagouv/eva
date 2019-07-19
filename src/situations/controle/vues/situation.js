@@ -18,7 +18,6 @@ export default class VueSituation {
     this.journal = journal;
     this.depotRessources = depotRessources;
     this.tapis = new VueTapis(situation, depotRessources);
-    this.fondSonore = new VueFondSonore(situation, depotRessources);
     this.resultat = new VueResultat(situation, 'controle');
     this.deplaceurPieces = new DeplaceurPieces(situation);
   }
@@ -39,6 +38,7 @@ export default class VueSituation {
 
     this.situation.bacs().forEach(afficheBac);
     this.tapis.affiche(pointInsertion, $);
+    this.fondSonore = new VueFondSonore(this.situation, this.depotRessources);
     this.fondSonore.affiche(pointInsertion, $);
     this.resultat.affiche(pointInsertion, $);
 

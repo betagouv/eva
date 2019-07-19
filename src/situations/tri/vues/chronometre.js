@@ -6,12 +6,13 @@ export default class VueChronometre {
   constructor (situation, depotRessources) {
     this.depotRessources = depotRessources;
     this.situation = situation;
-    this.situation.on(CHANGEMENT_ETAT, (etat) => {
-      this.changeEtat(etat);
-    });
   }
 
   affiche (pointInsertion, $) {
+    this.situation.on(CHANGEMENT_ETAT, (etat) => {
+      this.changeEtat(etat);
+    });
+
     $(pointInsertion).append('<div class="chronometre-container"></div>');
     this.chronometreConteneur = $('.chronometre-container');
     const chronometreContenu = `<img class='chronometre' src="${this.depotRessources.fondChronometre().src}">

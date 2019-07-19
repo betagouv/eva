@@ -58,8 +58,8 @@ export default class VueCadre {
       barreDev.affiche(pointInsertion, $);
     }
 
+    const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.registreUtilisateur);
     return this.depotRessources.chargement().then(() => {
-      const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources);
       vueSituation.affiche('.scene', $);
 
       this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources);
