@@ -51,11 +51,18 @@ function chargeurImage (src) {
   return promesse;
 }
 
+function chargeurJSON (src) {
+  return window.fetch(src)
+    .then((response) => response.json())
+    .then((json) => { return () => json; });
+}
+
 const CHARGEURS = {
   'wav': chargeurAudio,
   'png': chargeurImage,
   'svg': chargeurImage,
-  'jpg': chargeurImage
+  'jpg': chargeurImage,
+  'json': chargeurJSON
 };
 
 export default class DepotRessources {
