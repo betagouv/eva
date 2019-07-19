@@ -12,28 +12,40 @@ describe('La vue de la situation « Question »', function () {
   let depotRessources;
   let situation;
   let journal;
+  let registreUtilisateur;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
     $.fx.off = true;
     depotRessources = new MockDepotRessourcesQuestions();
+    depotRessources.charge = () => {};
+    depotRessources.ressource = (ressource) => {
+      return {
+        questions: [
+          { 'type': 'redaction_note' },
+          { 'type': 'qcm', 'choix': [] }
+        ]
+      };
+    };
     journal = { enregistre () {} };
-    situation = new Situation({ questions: [
-      { 'type': 'redaction_note', 'choix': [] },
-      { 'type': 'qcm', 'choix': [] }
-    ] });
+    situation = new Situation();
+    registreUtilisateur = {
+      urlEvaluation () {
+        return 'urlEvaluation';
+      }
+    };
   });
 
   it('affiche la première question', function () {
-    const vue = new VueSituation(situation, journal, depotRessources);
+    const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
 
     vue.affiche('#point-insertion', $);
     expect($('.question').length).to.eql(1);
   });
 
   it('enregistre la réponse dans le modèle lorsque la vue répond', function (done) {
-    const vue = new VueSituation(situation, journal, depotRessources);
+    const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
 
     situation.repond = (reponse) => {
       expect(reponse).to.eql('Ma réponse');
@@ -48,18 +60,18 @@ describe('La vue de la situation « Question »', function () {
     journal = {
       enregistre (evenement) {
         expect(evenement).to.be.a(EvenementReponse);
-        expect(evenement.donnees()).to.eql({ question: 'litteratie', reponse: 'Ma réponse' });
+        expect(evenement.donnees()).to.eql({ question: 2, reponse: 'Ma réponse' });
         done();
       }
     };
-    const vue = new VueSituation(situation, journal, depotRessources);
+    const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
 
     vue.affiche('#point-insertion', $);
-    situation.emit(EVENEMENT_REPONSE_SITUATION, 'litteratie', 'Ma réponse');
+    situation.emit(EVENEMENT_REPONSE_SITUATION, { id: 2 }, 'Ma réponse');
   });
 
   it('affiche la question suivante une fois la première répondu', function () {
-    const vue = new VueSituation(situation, journal, depotRessources);
+    const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
 
     vue.affiche('#point-insertion', $);
     expect($('#numeratie').length).to.eql(0);
@@ -68,7 +80,7 @@ describe('La vue de la situation « Question »', function () {
   });
 
   it('garde la dernière question affiché a la fin', function () {
-    const vue = new VueSituation(situation, journal, depotRessources);
+    const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
     vue.affiche('#point-insertion', $);
     situation.repond('Ma réponse');
     situation.repond('Ma réponse');
@@ -76,7 +88,7 @@ describe('La vue de la situation « Question »', function () {
   });
 
   it('affiche un overlay au dessus des questions a la fin', function () {
-    const vue = new VueSituation(situation, journal, depotRessources);
+    const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
     vue.affiche('#point-insertion', $);
     situation.repond('Ma réponse');
     expect($('.overlay.invisible').length).to.eql(1);

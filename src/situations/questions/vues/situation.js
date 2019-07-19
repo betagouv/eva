@@ -6,16 +6,20 @@ import VueRedactionNote from './redaction_note';
 import VueQCM from './qcm';
 
 export default class VueSituation {
-  constructor (situation, journal, depotRessources) {
+  constructor (situation, journal, depotRessources, registreUtilisateur) {
     this.situation = situation;
     this.depotRessources = depotRessources;
+
+    this.ressourceEvaluation = registreUtilisateur.urlEvaluation();
+    this.depotRessources.charge([this.ressourceEvaluation]);
+
     this.classesQuestions = {
       redaction_note: VueRedactionNote,
       qcm: VueQCM
     };
 
     this.situation.on(EVENEMENT_REPONSE_SITUATION, (question, reponse) => {
-      const evenement = new EvenementReponse({ question, reponse });
+      const evenement = new EvenementReponse({ question: question.id, reponse });
       journal.enregistre(evenement);
       this.afficheQuestion();
     });
@@ -23,6 +27,7 @@ export default class VueSituation {
   }
 
   affiche (pointInsertion, $) {
+    this.situation.questions(this.depotRessources.ressource(this.ressourceEvaluation)['questions']);
     this.$ = $;
     this.pointInsertion = pointInsertion;
     this.afficheQuestion();
@@ -60,15 +65,6 @@ export default class VueSituation {
   }
 
   recupereRessource (identifiant) {
-    switch (identifiant) {
-      case 'litteratie':
-        return this.depotRessources.accidentCarine().src;
-      case 'numeratie':
-        return this.depotRessources.palette().src;
-      case 'numeratie_inverse':
-        return this.depotRessources.palette().src;
-      default:
-        console.warn('libellé de question inconnu');
-    }
+    return this.depotRessources.palette().src;
   }
 }

@@ -3,7 +3,7 @@ import jQuery from 'jquery';
 
 import VueQCM, { EVENEMENT_REPONSE } from 'questions/vues/qcm';
 
-describe('La vue de la question Numératie', function () {
+describe('La vue de la question QCM', function () {
   let $;
   let srcResource;
   let question;
@@ -21,7 +21,7 @@ describe('La vue de la question Numératie', function () {
     expect($('#point-insertion input[type=radio]').length).to.equal(0);
 
     $vue.affiche('#point-insertion', $);
-    expect($('#point-insertion input[type=radio]').length).to.equal(6);
+    expect($('#point-insertion input[type=radio]').length).to.equal(5);
   });
 
   it("affiche l'image", function () {
@@ -43,7 +43,7 @@ describe('La vue de la question Numératie', function () {
   });
 
   it('emet un événément réponse quand on appuie sur le bouton envoi', function (done) {
-    question.choix = ['32'];
+    question.choix = [{ id: '32' }];
     const $vue = new VueQCM(question, srcResource);
 
     $vue.affiche('#point-insertion', $);
