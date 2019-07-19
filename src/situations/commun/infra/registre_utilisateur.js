@@ -27,6 +27,10 @@ export default class RegistreUtilisateur extends EventEmitter {
     });
   }
 
+  urlEvaluation () {
+    return `${process.env.URL_SERVEUR}/api/evaluations/${this.identifiant()}.json`;
+  }
+
   estConnecte () {
     return !!this.identifiant();
   }
