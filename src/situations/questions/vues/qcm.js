@@ -9,13 +9,13 @@ export { EVENEMENT_REPONSE };
 
 export default class VueQCM extends VueQuestion {
   affiche (pointInsertion, $) {
-    const valeurs = [...this.question.choix, this.question.ne_sait_pas];
-    const $valeursPossibles = valeurs.map((valeur) => {
+    const choix = this.question.choix;
+    const $valeursPossibles = choix.map((choix) => {
       return `
         <div class="question-choix">
           <label>
-            <input name="numeratie" type="radio" value="${valeur}" />
-            ${valeur}
+            <input name="numeratie" type="radio" value="${choix.id}" />
+            ${choix.intitule}
           </label>
         </div>
       `;
@@ -25,7 +25,7 @@ export default class VueQCM extends VueQuestion {
         <img class="question-illustration" src=${this.srcResource}></img>
         <div class="question-barre">
           <p class="couleur-grise sans-marge">${this.question.description}</p>
-          <p class="sans-marge">${this.question.question}</p>
+          <p class="sans-marge">${this.question.intitule}</p>
           ${$valeursPossibles}
           <button id="envoi-reponse" class="question-bouton bouton-arrondi">
             ${traduction('questions.qcm.valider')}

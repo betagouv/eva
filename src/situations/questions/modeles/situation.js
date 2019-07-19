@@ -3,10 +3,13 @@ import SituationCommune, { FINI } from 'commun/modeles/situation';
 export const EVENEMENT_REPONSE = 'reponse';
 
 export default class Situation extends SituationCommune {
-  constructor ({ questions }) {
+  constructor () {
     super();
-    this.questions = questions;
     this.indexQuestion = 0;
+  }
+
+  questions (questions) {
+    this.questions = questions;
   }
 
   question () {
