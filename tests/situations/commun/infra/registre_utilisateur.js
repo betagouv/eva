@@ -9,13 +9,14 @@ describe('le registre utilisateur', function () {
       }
     });
   }
+
   beforeEach(function () {
     jsdom('', { url: 'http://localhost' });
   });
 
   it("permet d'inscrire et de récupérer un utilisateur", function () {
     const registre = unRegistre(1, 'autre test');
-    registre.inscris('test').then(() => {
+    return registre.inscris('test').then(() => {
       expect(registre.nom()).to.eql('autre test');
       expect(registre.identifiant()).to.eql(1);
     });
@@ -106,5 +107,13 @@ describe('le registre utilisateur', function () {
     window.localStorage.setItem(CLEF_IDENTIFIANT, 'nom utilisateur');
     const registre = new RegistreUtilisateur();
     expect(registre.estConnecte()).to.be(false);
+  });
+
+  it("retourne l'url de l'évaluation", function () {
+    process.env.URL_SERVEUR = 'http://localhost';
+    const registre = unRegistre(1, 'test');
+    return registre.inscris('test').then(() => {
+      expect(registre.urlEvaluation()).to.eql('http://localhost/api/evaluations/1.json');
+    });
   });
 });
