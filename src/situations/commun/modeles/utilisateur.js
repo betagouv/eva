@@ -1,7 +1,5 @@
 import EventEmitter from 'events';
 
-import Progression from 'commun/modeles/progression';
-
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class Utilisateur extends EventEmitter {
@@ -25,12 +23,16 @@ export default class Utilisateur extends EventEmitter {
     return this.registreUtilisateur.nom();
   }
 
-  progression () {
+  nbSituationsDebloquees () {
+    return this.nbSituationsFaites() + 1;
+  }
+
+  nbSituationsFaites () {
     const situationsFaitesAccessibles =
       this.registreUtilisateur.situationsFaites().filter((situation) => {
         return this.situationsAccessibles.includes(situation);
       });
-    return new Progression(situationsFaitesAccessibles);
+    return situationsFaitesAccessibles.length;
   }
 
   deconnecte () {

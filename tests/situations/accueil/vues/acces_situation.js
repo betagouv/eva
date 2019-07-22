@@ -21,8 +21,7 @@ describe('La vue pour accéder à une situation', function () {
       }
     }();
     utilisateur = new class extends EventEmitter {
-      progression () {
-        return { niveau () { } };
+      nbSituationsDebloquees () {
       }
     }();
   });

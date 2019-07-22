@@ -16,7 +16,7 @@ export default class VueProgression {
   }
 
   rafraichis () {
-    const niveau = this.utilisateur.progression().niveau();
-    this.$progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
+    const nbSituationsDebloquees = this.utilisateur.nbSituationsDebloquees();
+    this.$progression.css('background-image', `url('${this.depotRessources.progression(nbSituationsDebloquees).src}')`);
   }
 }

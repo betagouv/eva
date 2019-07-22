@@ -37,7 +37,7 @@ export default class VueBoiteUtilisateur {
 
   afficheEtapesUtilisateur () {
     if (this.accesSituations.length === 0) return 0;
-    const nombreDeSituationsFaites = this.utilisateur.progression().fait();
+    const nombreDeSituationsFaites = this.utilisateur.nbSituationsFaites();
     return `${nombreDeSituationsFaites}/${this.accesSituations.length}`;
   }
 }

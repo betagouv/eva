@@ -23,18 +23,16 @@ describe("l'utilisateur", function () {
     utilisateur.inscris('nom utilisateur', 'code campagne');
   });
 
-  it('retourne la progression', function () {
+  it('retourne le nombre de situations accessibles débloquées', function () {
     registreUtilisateur.situationsFaites = () => ['tri'];
-    const utilisateur = unUtilisateur(['tri']);
-    const progression = utilisateur.progression();
-    expect(progression.niveau()).to.eql(2);
+    const utilisateur = unUtilisateur(['tri', 'controle']);
+    expect(utilisateur.nbSituationsDebloquees()).to.eql(2);
   });
 
-  it('les situations non accessibles ne font pas avancer la progression', function () {
+  it('les situations non accessibles ne permettent pas de débloquer plus de situations', function () {
     registreUtilisateur.situationsFaites = () => ['questions'];
     const utilisateur = unUtilisateur(['tri']);
-    const progression = utilisateur.progression();
-    expect(progression.niveau()).to.eql(1);
+    expect(utilisateur.nbSituationsDebloquees()).to.eql(1);
   });
 
   it("déconnecte l'utilisateur quand il se déconnecte", function (done) {

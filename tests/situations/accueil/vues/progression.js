@@ -20,14 +20,12 @@ describe('La vue pour afficher la progression', function () {
       }
     }();
     utilisateur = new class extends EventEmitter {
-      progression () {
-        return { niveau () { } };
-      }
+      nbSituationsDebloquees () { }
     }();
   });
 
   it("sait s'afficher", function () {
-    utilisateur.progression = () => { return { niveau: () => 42 }; };
+    utilisateur.nbSituationsDebloquees = () => 42;
     depotRessources.progression = (niveau) => { return { src: niveau }; };
     const vue = new VueProgression(depotRessources, utilisateur);
 
@@ -36,12 +34,12 @@ describe('La vue pour afficher la progression', function () {
   });
 
   it('sait se rafraichir', function () {
-    utilisateur.progression = () => { return { niveau: () => 42 }; };
+    utilisateur.nbSituationsDebloquees = () => 42;
     depotRessources.progression = (niveau) => { return { src: niveau }; };
     const vue = new VueProgression(depotRessources, utilisateur);
 
     vue.affiche('#pointInsertion', $);
-    utilisateur.progression = () => { return { niveau: () => 1 }; };
+    utilisateur.nbSituationsDebloquees = () => 1;
     utilisateur.emit(CHANGEMENT_CONNEXION);
     expect($('.progression').css('background-image')).to.equal('url(1)');
   });

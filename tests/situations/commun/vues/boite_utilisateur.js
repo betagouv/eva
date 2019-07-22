@@ -18,7 +18,7 @@ describe('La boite utilisateur', function () {
       estConnecte () {}
       nom () {}
       deconnecte () {}
-      progression () { return { fait: () => 1 }; }
+      nbSituationsFaites () { return 1; }
     }();
     const accesSituations = [
       new AccesSituation({ nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc', niveauMinimum: 1 }),
