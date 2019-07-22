@@ -22,7 +22,7 @@ export default class VueQCM extends VueQuestion {
     }).join('');
     this.$vue = $(`
       <div id="numeratie" class="question">
-        <img class="question-illustration" src=${this.srcResource}></img>
+        <img class="question-illustration" src=${this.question.illustration}></img>
         <div class="question-barre">
           <p class="couleur-grise sans-marge">${this.question.description}</p>
           <p class="sans-marge">${this.question.intitule}</p>

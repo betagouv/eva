@@ -5,18 +5,16 @@ import VueRedactionNote, { EVENEMENT_REPONSE } from 'questions/vues/redaction_no
 
 describe('La vue de la question RedactionNote', function () {
   let $;
-  let srcResource;
   let question;
 
   beforeEach(function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
-    srcResource = '';
     question = {};
   });
 
   it('affiche une zone de saisie de texte', function () {
-    const $vue = new VueRedactionNote(question, srcResource);
+    const $vue = new VueRedactionNote(question);
     expect($('#point-insertion #reponse-compte-rendu').length).to.equal(0);
 
     $vue.affiche('#point-insertion', $);
@@ -24,7 +22,8 @@ describe('La vue de la question RedactionNote', function () {
   });
 
   it("affiche l'image de la question", function () {
-    const $vue = new VueRedactionNote(question, 'accident-carine');
+    question.illustration = 'accident-carine';
+    const $vue = new VueRedactionNote(question);
     expect($('#point-insertion .question-illustration').length).to.equal(0);
 
     $vue.affiche('#point-insertion', $);
@@ -34,7 +33,7 @@ describe('La vue de la question RedactionNote', function () {
   });
 
   it("affiche un bouton d'envoi de réponse", function () {
-    const $vue = new VueRedactionNote(question, srcResource);
+    const $vue = new VueRedactionNote(question);
     expect($('#point-insertion #envoi-reponse').length).to.equal(0);
 
     $vue.affiche('#point-insertion', $);
@@ -42,7 +41,7 @@ describe('La vue de la question RedactionNote', function () {
   });
 
   it('emet un événément réponse quand on appuie sur le bouton envoi', function (done) {
-    const $vue = new VueRedactionNote(question, srcResource);
+    const $vue = new VueRedactionNote(question);
 
     $vue.affiche('#point-insertion', $);
     $('#point-insertion #reponse-compte-rendu').val('     Ma réponse  ');
