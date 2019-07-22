@@ -5,7 +5,6 @@ import Situation, { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'que
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import VueSituation from 'questions/vues/situation';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/redaction_note';
-import MockDepotRessourcesQuestions from '../aides/mock_depot_ressources';
 
 describe('La vue de la situation « Question »', function () {
   let $;
@@ -18,7 +17,7 @@ describe('La vue de la situation « Question »', function () {
     jsdom('<div id="point-insertion"></div>');
     $ = jQuery(window);
     $.fx.off = true;
-    depotRessources = new MockDepotRessourcesQuestions();
+    depotRessources = new class {}();
     depotRessources.charge = () => {};
     depotRessources.ressource = (ressource) => {
       return {

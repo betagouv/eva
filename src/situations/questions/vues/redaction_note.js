@@ -12,7 +12,7 @@ export default class VueRedactionNote extends VueQuestion {
   affiche (pointInsertion, $) {
     this.$vue = $(`
       <div class="question">
-        <img class="question-illustration" src=${this.srcResource}></img>
+        <img class="question-illustration" src=${this.question.illustration}></img>
         <div class="messagerie question-barre">
           <p class="messagerie-sujet">${this.question.intitule}</p>
           <p class="messagerie-expediteur couleur-grise">${this.question.expediteur}</p>

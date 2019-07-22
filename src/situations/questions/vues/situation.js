@@ -55,16 +55,11 @@ export default class VueSituation {
   }
 
   afficheNouvelleQuestion (question) {
-    const resource = this.recupereRessource(question.identifiant);
-    this.question = new this.classesQuestions[question.type](question, resource);
+    this.question = new this.classesQuestions[question.type](question);
     this.question.affiche(this.pointInsertion, this.$);
     this.$('.question', this.pointInsertion).hide().fadeIn();
     this.question.on(EVENEMENT_REPONSE_VUE, (reponse) => {
       this.situation.repond(reponse);
     });
-  }
-
-  recupereRessource (identifiant) {
-    return this.depotRessources.palette().src;
   }
 }
