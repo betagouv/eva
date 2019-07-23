@@ -5,7 +5,15 @@ jobs:
       - image: circleci/node:10.11
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - npm-v1-{{ checksum "package-lock.json" }}
+            - npm-v1-
       - run: npm ci
+      - save_cache:
+          key: npm-v1-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
       - run: npm run lint
       - run: npm test
 
