@@ -1,6 +1,7 @@
 import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
 import EventEmitter from 'events';
+import { traduction } from 'commun/infra/internationalisation';
 
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
@@ -15,7 +16,7 @@ describe("Le formulaire d'identification", function () {
     $ = jQuery(window);
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
-      inscris () {}
+      inscris () { return $.Deferred(); }
       nom () {}
     }();
     vue = new FormulaireIdentification(registreUtilisateur);
@@ -72,5 +73,37 @@ describe("Le formulaire d'identification", function () {
     registreUtilisateur.estConnecte = () => true;
     registreUtilisateur.emit(CHANGEMENT_CONNEXION);
     expect($('#formulaire #formulaire-identification').hasClass('invisible')).to.eql(true);
+  });
+
+  it("affiche une erreur si le code campagne n'existe pas", function () {
+    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+      return $.Deferred().reject({ status: 404 });
+    };
+    vue.affiche('#formulaire', $);
+    expect($('.erreur').length).to.equal(0);
+    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
+    expect($('.erreur').text()).to.equal(traduction('accueil.identification.erreur_code_campagne'));
+  });
+
+  it('affiche une erreur générique', function () {
+    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+      return $.Deferred().reject({ status: 422 });
+    };
+    vue.affiche('#formulaire', $);
+    expect($('.erreur').length).to.equal(0);
+    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
+    expect($('.erreur').text()).to.equal(traduction('accueil.identification.erreur_generique'));
+  });
+
+  it("enlève l'erreur lorsque l'on resoumet le formulaire", function () {
+    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+      return $.Deferred().reject({ status: 422 });
+    };
+    vue.affiche('#formulaire', $);
+    expect($('.erreur').length).to.equal(0);
+    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
+    expect($('.erreur').length).to.equal(1);
+    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
+    expect($('.erreur').length).to.equal(1);
   });
 });
