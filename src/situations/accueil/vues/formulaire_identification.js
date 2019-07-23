@@ -41,21 +41,30 @@ export default class FormulaireIdentification {
 
     this.$gabarit.on('submit', (e) => {
       e.preventDefault();
+      const $erreur = $('.erreur', this.$gabarit);
       const $inputNom = $('#formulaire-identification-input-nom', this.$gabarit);
       const identifiantUtilisateur = $inputNom.val().trim();
       const $inputCodeCampagne = $('#formulaire-identification-input-campagne', this.$gabarit);
       const codeCampagne = $inputCodeCampagne.val().trim();
       if (identifiantUtilisateur !== '') {
-        this.registreUtilisateur.inscris(identifiantUtilisateur, codeCampagne);
+        $erreur.remove();
+        this.registreUtilisateur.inscris(identifiantUtilisateur, codeCampagne).fail((xhr) => { this.afficheErreur($, xhr); });
         $inputNom.val('');
         $inputCodeCampagne.val('');
       }
     });
-
     $(pointInsertion).append(this.$gabarit);
   }
 
   rafraichis () {
     this.$gabarit.toggleClass('invisible', this.registreUtilisateur.estConnecte());
+  }
+
+  afficheErreur ($, xhr) {
+    let message = traduction('accueil.identification.erreur_generique');
+    if (xhr.status === 404) {
+      message = traduction('accueil.identification.erreur_code_campagne');
+    }
+    $('.bouton-arrondi').parent().append(`<span class='erreur'>${message}</span>`);
   }
 }
