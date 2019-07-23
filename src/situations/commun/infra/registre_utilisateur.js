@@ -28,11 +28,11 @@ export default class RegistreUtilisateur extends EventEmitter {
   }
 
   urlEvaluation () {
-    return `${process.env.URL_SERVEUR}/api/evaluations/${this.identifiant()}.json`;
+    return `${process.env.URL_SERVEUR}/api/evaluations/${this.idEvaluation()}.json`;
   }
 
   estConnecte () {
-    return !!this.identifiant();
+    return !!this.idEvaluation();
   }
 
   parseLocalStorage (clef) {
@@ -48,7 +48,7 @@ export default class RegistreUtilisateur extends EventEmitter {
     return this.parseLocalStorage(CLEF_IDENTIFIANT).nom;
   }
 
-  identifiant () {
+  idEvaluation () {
     return this.parseLocalStorage(CLEF_IDENTIFIANT).id;
   }
 

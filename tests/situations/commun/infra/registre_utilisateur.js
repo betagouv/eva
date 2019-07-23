@@ -18,7 +18,7 @@ describe('le registre utilisateur', function () {
     const registre = unRegistre(1, 'autre test');
     return registre.inscris('test').then(() => {
       expect(registre.nom()).to.eql('autre test');
-      expect(registre.identifiant()).to.eql(1);
+      expect(registre.idEvaluation()).to.eql(1);
     });
   });
 
