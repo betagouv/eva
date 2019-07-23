@@ -48,9 +48,12 @@ export default class FormulaireIdentification {
       const codeCampagne = $inputCodeCampagne.val().trim();
       if (identifiantUtilisateur !== '') {
         $erreur.remove();
-        this.registreUtilisateur.inscris(identifiantUtilisateur, codeCampagne).fail((xhr) => { this.afficheErreur($, xhr); });
-        $inputNom.val('');
-        $inputCodeCampagne.val('');
+        this.registreUtilisateur.inscris(identifiantUtilisateur, codeCampagne)
+          .done(() => {
+            $inputNom.val('');
+            $inputCodeCampagne.val('');
+          })
+          .fail((xhr) => { this.afficheErreur($, xhr); });
       }
     });
     $(pointInsertion).append(this.$gabarit);

@@ -16,7 +16,7 @@ describe("Le formulaire d'identification", function () {
     $ = jQuery(window);
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
-      inscris () { return $.Deferred(); }
+      inscris () { return $.Deferred().resolve(); }
       nom () {}
     }();
     vue = new FormulaireIdentification(registreUtilisateur);
@@ -42,7 +42,7 @@ describe("Le formulaire d'identification", function () {
     $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
   });
 
-  it("réinitialise la valeur rentrée à l'appui sur le bouton", function () {
+  it("réinitialise les valeurs rentrées lorsque l'on a réussi à s'identifier", function () {
     vue.affiche('#formulaire', $);
     $('#formulaire input[type=text]').each(function () {
       $(this).val('Mon pseudo ou code');
@@ -51,6 +51,20 @@ describe("Le formulaire d'identification", function () {
 
     $('#formulaire input[type=text]').each(function () {
       expect($(this).val()).to.eql('');
+    });
+  });
+
+  it("ne réinitialise pas les valeurs rentrées lorsque l'on n'a pas réussi à s'identifier", function () {
+    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
+      return $.Deferred().reject({ status: 422 });
+    };
+    vue.affiche('#formulaire', $);
+    $('#formulaire input[type=text]').each(function () {
+      $(this).val('Mon pseudo ou code');
+    });
+    $('#formulaire input[type=text]').trigger('submit');
+    $('#formulaire input[type=text]').each(function () {
+      expect($(this).val()).to.eql('Mon pseudo ou code');
     });
   });
 
