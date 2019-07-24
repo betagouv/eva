@@ -9,9 +9,7 @@
       "boutton": "Démarrer",
       "campagne": "Code de la campagne",
       "label": "Entrez votre nom et prénom",
-      "titre": "Bienvenue !",
-      "erreur_generique": "Une erreur est survenue",
-      "erreur_code_campagne": "Le code campagne n'existe pas"
+      "titre": "Bienvenue !"
     },
     "titre": "Compétences pro"
   },
