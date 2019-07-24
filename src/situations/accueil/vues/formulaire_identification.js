@@ -64,10 +64,10 @@ export default class FormulaireIdentification {
   }
 
   afficheErreur ($, xhr) {
-    let message = traduction('accueil.identification.erreur_generique');
-    if (xhr.status === 404) {
-      message = traduction('accueil.identification.erreur_code_campagne');
+    for (let [attribut, erreur] of Object.entries(xhr.responseJSON)) {
+      const $champ = $(`#formulaire-identification-input-${attribut}`);
+      const $message = $(`<span class='erreur'>${erreur}</span>`);
+      $champ.after($message);
     }
-    $('.bouton-arrondi').parent().append(`<span class='erreur'>${message}</span>`);
   }
 }

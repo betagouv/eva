@@ -1,8 +1,6 @@
 import jsdom from 'jsdom-global';
 import jQuery from 'jquery';
 import EventEmitter from 'events';
-import { traduction } from 'commun/infra/internationalisation';
-
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 
@@ -56,7 +54,7 @@ describe("Le formulaire d'identification", function () {
 
   it("ne réinitialise pas les valeurs rentrées lorsque l'on n'a pas réussi à s'identifier", function () {
     registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
-      return $.Deferred().reject({ status: 422 });
+      return $.Deferred().reject({ responseJSON: { campagne: 'code inexistant' } });
     };
     vue.affiche('#formulaire', $);
     $('#formulaire input[type=text]').each(function () {
@@ -89,29 +87,21 @@ describe("Le formulaire d'identification", function () {
     expect($('#formulaire #formulaire-identification').hasClass('invisible')).to.eql(true);
   });
 
-  it("affiche une erreur si le code campagne n'existe pas", function () {
+  it('affiche les erreurs si les champs sont vides', function () {
     registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
-      return $.Deferred().reject({ status: 404 });
+      return $.Deferred().reject({ responseJSON: { campagne: 'code inexistant', nom: 'doit être rempli' } });
     };
     vue.affiche('#formulaire', $);
     expect($('.erreur').length).to.equal(0);
     $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
-    expect($('.erreur').text()).to.equal(traduction('accueil.identification.erreur_code_campagne'));
-  });
-
-  it('affiche une erreur générique', function () {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
-      return $.Deferred().reject({ status: 422 });
-    };
-    vue.affiche('#formulaire', $);
-    expect($('.erreur').length).to.equal(0);
-    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
-    expect($('.erreur').text()).to.equal(traduction('accueil.identification.erreur_generique'));
+    expect($('.erreur').length).to.equal(2);
+    expect($('.erreur:first').text()).to.equal('doit être rempli');
+    expect($('.erreur:last').text()).to.equal('code inexistant');
   });
 
   it("enlève l'erreur lorsque l'on resoumet le formulaire", function () {
     registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
-      return $.Deferred().reject({ status: 422 });
+      return $.Deferred().reject({ responseJSON: { campagne: 'code inexistant' } });
     };
     vue.affiche('#formulaire', $);
     expect($('.erreur').length).to.equal(0);
