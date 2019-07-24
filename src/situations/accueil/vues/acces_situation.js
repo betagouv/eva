@@ -26,7 +26,7 @@ export default class VueAccesSituation {
   }
 
   metsAJourAcces () {
-    const niveau = this.registreUtilisateur.progression().niveau();
+    const niveau = this.registreUtilisateur.niveauActuel();
     const estInaccessible = !this.accesSituation.estAccessible(niveau);
 
     this.$accesSituation.toggleClass('desactivee', estInaccessible);
