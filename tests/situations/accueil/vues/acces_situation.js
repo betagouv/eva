@@ -21,9 +21,7 @@ describe('La vue pour accéder à une situation', function () {
       }
     }();
     registreUtilisateur = new class extends EventEmitter {
-      progression () {
-        return { niveau () { } };
-      }
+      niveauActuel () {}
     }();
   });
 

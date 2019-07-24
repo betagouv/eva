@@ -16,7 +16,7 @@ export default class VueProgression {
   }
 
   rafraichis () {
-    const niveau = this.registreUtilisateur.progression().niveau();
+    const niveau = this.registreUtilisateur.niveauActuel();
     this.$progression.css('background-image', `url('${this.depotRessources.progression(niveau).src}')`);
   }
 }

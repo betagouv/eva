@@ -8,21 +8,19 @@ import AccesSituation from 'accueil/modeles/acces_situation';
 describe('La vue accueil', function () {
   let $;
   let depotRessources;
-  let progression;
   let accesSituations;
   let registreUtilisateur;
 
   beforeEach(function () {
     jsdom('<div id="accueil"></div>');
     $ = jQuery(window);
-    progression = { niveau () { } };
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
       nom () {}
+      niveauActuel () {}
     }();
 
     registreUtilisateur.situationsFaites = () => ['tri'];
-    registreUtilisateur.progression = () => progression;
     registreUtilisateur.deconnecte = () => {};
     depotRessources = new class {
       fondAccueil () {

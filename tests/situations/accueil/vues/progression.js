@@ -19,15 +19,14 @@ describe('La vue pour afficher la progression', function () {
         return { src: identifiant };
       }
     }();
+
     registreUtilisateur = new class extends EventEmitter {
-      progression () {
-        return { niveau () { } };
-      }
+      niveauActuel () {}
     }();
   });
 
   it("sait s'afficher", function () {
-    registreUtilisateur.progression = () => { return { niveau: () => 42 }; };
+    registreUtilisateur.niveauActuel = () => 42;
     depotRessources.progression = (niveau) => { return { src: niveau }; };
     const vue = new VueProgression(depotRessources, registreUtilisateur);
 
@@ -36,12 +35,12 @@ describe('La vue pour afficher la progression', function () {
   });
 
   it('sait se rafraichir', function () {
-    registreUtilisateur.progression = () => { return { niveau: () => 42 }; };
+    registreUtilisateur.niveauActuel = () => 42;
     depotRessources.progression = (niveau) => { return { src: niveau }; };
     const vue = new VueProgression(depotRessources, registreUtilisateur);
 
     vue.affiche('#pointInsertion', $);
-    registreUtilisateur.progression = () => { return { niveau: () => 1 }; };
+    registreUtilisateur.niveauActuel = () => 1;
     registreUtilisateur.emit(CHANGEMENT_CONNEXION);
     expect($('.progression').css('background-image')).to.equal('url(1)');
   });
