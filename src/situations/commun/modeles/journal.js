@@ -1,15 +1,15 @@
 import uuidv4 from 'uuid/v4';
 
 import DepotJournal from 'commun/infra/depot_journal';
-import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
+import Utilisateur from 'commun/modeles/utilisateur';
 
 export class Journal {
-  constructor (maintenant, session, situation, depot, registre) {
+  constructor (maintenant, session, situation, depot, utilisateur) {
     this.maintenant = maintenant;
     this.depot = depot;
     this.sessionId = session;
     this.situation = situation;
-    this.registreUtilisateur = registre;
+    this.utilisateur = utilisateur;
   }
 
   enregistre (evenement, timeout) {
@@ -19,19 +19,19 @@ export class Journal {
       situation: this.situation,
       nom: evenement.nom(),
       donnees: evenement.donnees(),
-      evaluation_id: this.registreUtilisateur.idEvaluation()
+      evaluation_id: this.utilisateur.idEvaluation()
     };
     return this.depot.enregistre(payLoad, timeout);
   }
 
   enregistreSituationFaite () {
-    this.registreUtilisateur.enregistreSituationFaite(this.situation);
+    this.utilisateur.enregistreSituationFaite(this.situation);
   }
 }
 
 export default function creeJournalPourSituation (identifiantSituation) {
   const session = uuidv4();
   const depotJournal = new DepotJournal();
-  const registreUtilisateur = new RegistreUtilisateur();
-  return new Journal(Date.now, session, identifiantSituation, depotJournal, registreUtilisateur);
+  const utilisateur = new Utilisateur();
+  return new Journal(Date.now, session, identifiantSituation, depotJournal, utilisateur);
 }

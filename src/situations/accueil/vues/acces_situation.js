@@ -3,14 +3,14 @@ import 'accueil/styles/acces_situation.scss';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 export default class VueAccesSituation {
-  constructor (accesSituation, depotRessources, registreUtilisateur) {
+  constructor (accesSituation, depotRessources, utilisateur) {
     this.accesSituation = accesSituation;
     this.depotRessources = depotRessources;
-    this.registreUtilisateur = registreUtilisateur;
+    this.utilisateur = utilisateur;
   }
 
   affiche (pointInsertion, $) {
-    this.registreUtilisateur.on(CHANGEMENT_CONNEXION, () => this.metsAJourAcces());
+    this.utilisateur.on(CHANGEMENT_CONNEXION, () => this.metsAJourAcces());
 
     this.$accesSituation = $(`
         <a href="${this.accesSituation.chemin}" class='acces-situation ${this.accesSituation.identifiant}'>
@@ -26,7 +26,7 @@ export default class VueAccesSituation {
   }
 
   metsAJourAcces () {
-    const niveau = this.registreUtilisateur.niveauActuel();
+    const niveau = this.utilisateur.niveauActuel();
     const estInaccessible = !this.accesSituation.estAccessible(niveau);
 
     this.$accesSituation.toggleClass('desactivee', estInaccessible);
