@@ -1,18 +1,15 @@
 import jQuery from 'jquery';
 import EventEmitter from 'events';
 
-import Progression from 'commun/modeles/progression';
-
 const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 
 export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
-  constructor (situationsAccessibles, $ = jQuery) {
+  constructor ($ = jQuery) {
     super();
     this.$ = $;
-    this.situationsAccessibles = situationsAccessibles;
   }
 
   inscris (nom, codeCampagne) {
@@ -66,20 +63,6 @@ export default class RegistreUtilisateur extends EventEmitter {
       return JSON.parse(situations);
     }
     return [];
-  }
-
-  progression () {
-    return new Progression(this.situationsFaites().filter((situation) => {
-      return this.situationsAccessibles.includes(situation);
-    }));
-  }
-
-  niveauActuel () {
-    return this.progression().niveau();
-  }
-
-  nombreSituationsFaites () {
-    return this.progression().fait();
   }
 
   deconnecte () {
