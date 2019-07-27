@@ -11,20 +11,23 @@ export default class Utilisateur extends RegistreUtilisateur {
   constructor (situationsAccessibles) {
     super();
     this.situationsAccessibles = situationsAccessibles;
+    this.metsAJourProgression();
+  }
+
+  declareSituationFaite (situation) {
+    this.enregistreSituationFaite(situation);
+    this.metsAJourProgression();
   }
 
   niveauActuel () {
-    return this.progression().niveau();
+    return this.progression.niveau();
   }
 
   nombreSituationsFaites () {
-    return this.progression().fait();
+    return this.progression.fait();
   }
 
-  progression () {
-    const situationsAPrendreEnCompte = this.situationsFaites().filter(
-      (situation) => this.situationsAccessibles.includes(situation)
-    );
-    return new Progression(situationsAPrendreEnCompte);
+  metsAJourProgression () {
+    this.progression = new Progression(this.situationsFaites(), this.situationsAccessibles);
   }
 }

@@ -1,6 +1,6 @@
 export default class Progression {
-  constructor (situationsFaites) {
-    this.situationsFaites = situationsFaites;
+  constructor (situationsFaites, situationsAccessibles) {
+    this.situationsFaites = situationsFaites.filter((s) => situationsAccessibles.includes(s));
   }
 
   niveau () {
