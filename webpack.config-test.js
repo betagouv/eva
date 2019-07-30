@@ -2,6 +2,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const situations = ['questions', 'controle', 'inventaire', 'tri'];
 
@@ -17,13 +18,13 @@ var config = {
     filename: 'testBundle.js'
   },
   resolve: {
+    extensions: ['.js', '.vue'],
     alias: {
       accueil: path.resolve(__dirname, 'src/situations/accueil/'),
       commun: path.resolve(__dirname, 'src/situations/commun/'),
       ...aliasSituations
     }
   },
-  target: 'node',
   externals: [nodeExternals()],
 
   module: {
@@ -43,13 +44,18 @@ var config = {
             }
           }
         ]
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       }
     ]
   },
 
   plugins: [
     new CleanWebpackPlugin(),
-    new webpack.ProvidePlugin({ expect: ['expect.js'] })
+    new webpack.ProvidePlugin({ expect: ['expect.js'] }),
+    new VueLoaderPlugin()
   ]
 };
 

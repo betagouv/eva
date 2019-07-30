@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 const situations = ['controle', 'inventaire', 'tri', 'questions'];
@@ -39,6 +40,7 @@ module.exports = {
     publicPath: '/' // public URL of the output directory when referenced in a browser
   },
   resolve: {
+    extensions: ['.js', '.vue'],
     alias: {
       accueil: path.resolve(__dirname, 'src/situations/accueil/'),
       commun: path.resolve(__dirname, 'src/situations/commun/'),
@@ -98,6 +100,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       }
     ]
   },
@@ -116,7 +122,8 @@ module.exports = {
     }),
     ...templatesSituations,
     new webpack.EnvironmentPlugin(['URL_SERVEUR', 'AFFICHE_BARRE_DEV', 'JETON_CLIENT_ROLLBAR']),
-    new FaviconsWebpackPlugin('./src/public/favicon.svg')
+    new FaviconsWebpackPlugin('./src/public/favicon.svg'),
+    new VueLoaderPlugin()
   ],
   devServer: {
     contentBase: './src/public',
