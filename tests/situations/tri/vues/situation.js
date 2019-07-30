@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import VueSituation from 'tri/vues/situation';
 import Bac from 'commun/modeles/bac';
@@ -11,7 +10,6 @@ import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import MockDepotRessourcesTri from '../aides/mock_depot_ressources_tri';
 
 describe('La situation « Tri »', function () {
-  let $;
   let mockDepotRessources;
   let situation;
   let journal;
@@ -19,8 +17,7 @@ describe('La situation « Tri »', function () {
   let mockDeplaceurPieces;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
     mockDepotRessources = new MockDepotRessourcesTri();
     journal = { enregistre () {} };
     situation = new Situation({ pieces: [], bacs: [] });

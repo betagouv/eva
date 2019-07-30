@@ -1,14 +1,11 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import VueBouton from 'commun/vues/bouton';
 
 describe('vue Bouton', function () {
   let vue;
-  let $;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
     vue = new VueBouton('bouton-lire-consigne', 'imagePlayer', () => this.click());
   });
 

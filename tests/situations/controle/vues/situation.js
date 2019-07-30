@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle';
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
@@ -15,11 +14,8 @@ function vueSituationMinimaliste (journal) {
 }
 
 describe('La vue de la situation « Contrôle »', function () {
-  let $;
-
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
   });
 
   it('affiche le fond', function () {

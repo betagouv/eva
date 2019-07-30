@@ -1,15 +1,12 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import VueRedactionNote, { EVENEMENT_REPONSE } from 'questions/vues/redaction_note';
 
 describe('La vue de la question RedactionNote', function () {
-  let $;
   let question;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
     question = {};
   });
 

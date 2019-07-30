@@ -1,19 +1,16 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import EventEmitter from 'events';
 
 import VueAccueil from 'accueil/vues/accueil';
 import AccesSituation from 'accueil/modeles/acces_situation';
 
 describe('La vue accueil', function () {
-  let $;
   let depotRessources;
   let accesSituations;
   let registreUtilisateur;
 
   beforeEach(function () {
-    jsdom('<div id="accueil"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="accueil"></div>');
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
       nom () {}

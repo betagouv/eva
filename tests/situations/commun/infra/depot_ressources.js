@@ -1,12 +1,7 @@
 import DepotRessources from 'commun/infra/depot_ressources';
-import jsdom from 'jsdom-global';
 import chargeurs from '../../commun/aides/mock_chargeurs';
 
 describe('le dépôt de ressources', function () {
-  beforeEach(function () {
-    jsdom('');
-  });
-
   it('permet de charger toutes les ressources', function () {
     const depot = new DepotRessources(chargeurs());
     depot.charge(['test.png', 'test2.png', 'test.wav']);

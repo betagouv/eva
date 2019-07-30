@@ -1,17 +1,14 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import EventEmitter from 'events';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 
 describe("Le formulaire d'identification", function () {
-  let $;
   let vue;
   let registreUtilisateur;
 
   beforeEach(function () {
-    jsdom('<div id="formulaire"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="formulaire"></div>');
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
       inscris () { return $.Deferred().resolve(); }

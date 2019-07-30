@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import SituationCommune, { CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI, STOPPEE } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
@@ -16,15 +15,13 @@ function uneClasseVue (callbackAffichage = () => {}) {
 }
 
 describe('Une vue du cadre', function () {
-  let $;
   let situation;
   let depotRessources;
   let journal;
   let uneVueCadre;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
     depotRessources = new DepotRessourcesCommune('sonConsigne.wav', chargeurs());
     situation = new SituationCommune();
     journal = { enregistre () {}, enregistreSituationFaite () {} };

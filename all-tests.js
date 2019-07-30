@@ -1,5 +1,6 @@
-require('jsdom');
+afterEach(function () {
+  document.body.innerHTML = '';
+});
 
-let context = require.context('./tests', true, /\.js$/);
+const context = require.context('./tests', true, /\.js$/);
 context.keys().forEach(context);
-module.exports = context;

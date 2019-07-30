@@ -1,4 +1,3 @@
-import jsdom from 'jsdom-global';
 import RegistreUtilisateur, { CHANGEMENT_CONNEXION, CLEF_IDENTIFIANT } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
@@ -11,7 +10,7 @@ describe('le registre utilisateur', function () {
   }
 
   beforeEach(function () {
-    jsdom('', { url: 'http://localhost' });
+    window.localStorage.clear();
   });
 
   it("permet d'inscrire et de récupérer un utilisateur", function () {

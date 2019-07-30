@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import Situation, { LECTURE_CONSIGNE, CONSIGNE_ECOUTEE } from 'commun/modeles/situation';
 import Joue from 'commun/vues/joue';
@@ -7,12 +6,10 @@ import { traduction } from 'commun/infra/internationalisation';
 
 describe('la vue joue', () => {
   let situation;
-  let $;
   let vue;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation();
     vue = new Joue(situation);
     vue.affiche('#pointInsertion', $);

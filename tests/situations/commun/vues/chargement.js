@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import VueChargement from 'commun/vues/chargement';
 import Situation, { CHARGEMENT, ATTENTE_DEMARRAGE, ERREUR_CHARGEMENT } from 'commun/modeles/situation';
@@ -7,13 +6,11 @@ import { traduction } from 'commun/infra/internationalisation';
 
 describe('vue chargement', function () {
   let situation;
-  let $;
   let vue;
   let depotRessources;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation();
     depotRessources = { chargement () { return Promise.resolve(); } };
     vue = new VueChargement(situation, depotRessources);

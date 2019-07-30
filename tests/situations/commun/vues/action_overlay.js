@@ -1,15 +1,12 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import ActionOverlay from 'commun/vues/action_overlay';
 
 describe('une action overlay', () => {
-  let $;
   let vue;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     vue = new ActionOverlay('image', 'texte', 'classe-bouton');
     vue.affiche('#pointInsertion', $);
   });

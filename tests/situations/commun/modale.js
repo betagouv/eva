@@ -1,14 +1,10 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import { afficheFenetreModale } from 'commun/vues/modale';
 
 describe('fenetre modale', function () {
-  let $;
-
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
   });
 
   it("sait s'ajouter dans une page web", function () {

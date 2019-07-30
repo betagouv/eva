@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import Situation, { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
@@ -7,15 +6,13 @@ import VueSituation from 'questions/vues/situation';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/redaction_note';
 
 describe('La vue de la situation « Question »', function () {
-  let $;
   let depotRessources;
   let situation;
   let journal;
   let registreUtilisateur;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
     $.fx.off = true;
     depotRessources = new class {}();
     depotRessources.charge = () => {};

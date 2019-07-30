@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import Piece, { DISPARITION_PIECE } from 'commun/modeles/piece';
 import VuePiece from 'commun/vues/piece';
@@ -9,12 +8,10 @@ function creeVueMinimale (piece, depot) {
 }
 
 describe('Une pièce', function () {
-  let $;
   let depot;
 
   beforeEach(function () {
-    jsdom('<div id="pointInsertion" style="width: 100px; height: 100px"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion" style="width: 100px; height: 100px"></div>');
     depot = { piece () { } };
   });
 

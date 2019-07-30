@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import EventEmitter from 'events';
 
 import VueAccesSituation from 'accueil/vues/acces_situation';
@@ -8,13 +7,11 @@ import AccesSituation from 'accueil/modeles/acces_situation';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 describe('La vue pour accéder à une situation', function () {
-  let $;
   let depotRessources;
   let registreUtilisateur;
 
   beforeEach(function () {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     depotRessources = new class {
       batimentSituation (identifiant) {
         return { src: identifiant };

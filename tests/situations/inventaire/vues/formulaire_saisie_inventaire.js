@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 import Contenant from 'inventaire/modeles/contenant';
@@ -10,14 +9,11 @@ import MockDepotRessourcesInventaire from '../aides/mock_depot_ressources';
 import { unMagasin, unMagasinVide } from '../aides/magasin';
 
 describe("Le formulaire de saisie d'inventaire", function () {
-  let $;
   let journal;
   let depotRessources;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
-
-    $ = jQuery(window);
+    $('body').append('<div id="magasin"></div>');
     journal = {
       enregistre () {}
     };

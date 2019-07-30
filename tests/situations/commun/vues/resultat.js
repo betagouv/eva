@@ -1,16 +1,13 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import Situation, { FINI } from 'commun/modeles/situation';
 import VueResultat from 'commun/vues/resultat';
 
 describe('La vue de résultat', function () {
-  let $;
   let situation;
 
   beforeEach(function () {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation();
   });
 
