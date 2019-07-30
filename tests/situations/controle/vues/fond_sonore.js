@@ -1,5 +1,3 @@
-import jsdom from 'jsdom-global';
-
 import MockAudioNode from '../../commun/aides/mock_audio_node';
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Situation from 'controle/modeles/situation';
@@ -10,7 +8,7 @@ describe('Le fond sonore', () => {
   let vue;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
+    document.body.innerHTML = '<div id="pointInsertion"></div>';
   });
 
   describe('joue le bruit du tapis', () => {

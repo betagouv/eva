@@ -2,7 +2,6 @@
 
 import Contenant from 'inventaire/modeles/contenant';
 import VueContenu from 'inventaire/vues/contenu';
-import jsdom from 'jsdom-global';
 
 describe('vue contenu', function () {
   let vue;
@@ -11,7 +10,7 @@ describe('vue contenu', function () {
   const DELAI_FERMETURE = 3;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
+    document.body.innerHTML = '<div id="point-insertion"></div>';
     let pointInsertion = document.getElementById('point-insertion');
     vue = new VueContenu(pointInsertion, DELAI_FERMETURE);
     calque = document.getElementById('calque');
@@ -54,7 +53,7 @@ describe('vue contenu', function () {
       const contenant = new Contenant({ imageOuvert: 'image_contenant', dimensionsOuvert: { largeur: 33, hauteur: 33 } }, { nom: 'Nova Sky' });
       vue.affiche(contenant);
 
-      expect(element.src).to.eql('image_contenant');
+      expect(element.src).to.eql('http://localhost/image_contenant');
     });
 
     it('affiche le contenant ouvert aux dimensions données en paramètres', function () {

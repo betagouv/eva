@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import EventEmitter from 'events';
 
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
@@ -9,11 +8,9 @@ import AccesSituation from 'accueil/modeles/acces_situation';
 describe('La boite utilisateur', function () {
   let registreUtilisateur;
   let vueBoiteUtilisateur;
-  let $;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
     registreUtilisateur = new class extends EventEmitter {
       estConnecte () {}
       nom () {}

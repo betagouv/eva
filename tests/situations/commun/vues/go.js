@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import VueGo from 'commun/vues/go';
 import Situation, { DEMARRE } from 'commun/modeles/situation';
@@ -7,12 +6,10 @@ import { traduction } from 'commun/infra/internationalisation';
 
 describe('vue Go', function () {
   let situation;
-  let $;
   let vue;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation();
     vue = new VueGo(situation);
     vue.affiche('#pointInsertion', $);

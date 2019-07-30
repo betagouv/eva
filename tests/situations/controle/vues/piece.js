@@ -1,16 +1,13 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import Piece from 'commun/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
 describe('Une pièce', function () {
-  let $;
   let depot;
 
   beforeEach(function () {
-    jsdom('<div id="controle" style="width: 100px; height: 100px"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="controle" style="width: 100px; height: 100px"></div>');
     depot = { piece () { } };
   });
 

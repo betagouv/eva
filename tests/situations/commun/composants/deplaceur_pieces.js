@@ -1,15 +1,11 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import Piece from 'commun/modeles/piece';
 import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 
 describe('Le composant DeplaceurPieces', function () {
-  let $;
-
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
   });
 
   it('déplace les pièces sélectionnées', function () {

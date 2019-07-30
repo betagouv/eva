@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import EventEmitter from 'events';
 
 import VueProgression from 'accueil/vues/progression';
@@ -7,13 +6,11 @@ import VueProgression from 'accueil/vues/progression';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 describe('La vue pour afficher la progression', function () {
-  let $;
   let depotRessources;
   let registreUtilisateur;
 
   beforeEach(function () {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     depotRessources = new class {
       progression (identifiant) {
         return { src: identifiant };

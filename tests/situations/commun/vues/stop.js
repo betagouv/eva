@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import VueStop from 'commun/vues/stop';
 import EvenementStop from 'commun/modeles/evenement_stop';
 import Situation, { STOPPEE } from 'commun/modeles/situation';
@@ -9,14 +8,12 @@ beforeEach(() => initialise());
 
 describe('vue Stop', function () {
   let vue;
-  let $;
   let retourAccueil = false;
   let mockJournal;
   let situation;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
     mockJournal = {
       enregistre () {}
     };
@@ -28,7 +25,7 @@ describe('vue Stop', function () {
 
   it("sait s'insérer dans une page web", function () {
     vue.affiche('#point-insertion', $);
-    expect(document.querySelector('#point-insertion .bouton-stop').classList).to.not.contain('invisible');
+    expect($('#point-insertion .bouton-stop').hasClass('invisible')).to.be(false);
   });
 
   it('ouvre une fenêtre de confirmation avant de stopper', function () {

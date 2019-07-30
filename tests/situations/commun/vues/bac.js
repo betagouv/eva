@@ -1,15 +1,11 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import Bac from 'commun/modeles/bac';
 import VueBac from 'commun/vues/bac';
 
 describe("La vue d'un bac", function () {
-  let $;
-
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
   });
 
   it("s'affiche à partir d'un point d'insertion", function () {

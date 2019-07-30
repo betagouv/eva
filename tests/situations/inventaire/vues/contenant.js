@@ -2,7 +2,6 @@
 
 import Contenant from 'inventaire/modeles/contenant';
 import VueContenant from 'inventaire/vues/contenant';
-import jsdom from 'jsdom-global';
 
 describe('vue contenant', function () {
   let vue;
@@ -12,7 +11,7 @@ describe('vue contenant', function () {
   );
 
   beforeEach(function () {
-    jsdom('<div id="contenants"></div>');
+    document.body.innerHTML = '<div id="contenants"></div>';
     const pointInsertion = document.getElementById('contenants');
     vue = new VueContenant(pointInsertion, contenant);
   });

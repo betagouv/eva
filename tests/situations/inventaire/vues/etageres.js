@@ -2,13 +2,12 @@
 
 import Contenant from 'inventaire/modeles/contenant';
 import VueEtageres from 'inventaire/vues/etageres';
-import jsdom from 'jsdom-global';
 
 describe('vue etagères', function () {
   let vue;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
+    document.body.innerHTML = '<div id="magasin"></div>';
     vue = new VueEtageres('#magasin');
   });
 

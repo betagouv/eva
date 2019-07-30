@@ -1,15 +1,12 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import VueQCM, { EVENEMENT_REPONSE } from 'questions/vues/qcm';
 
 describe('La vue de la question QCM', function () {
-  let $;
   let question;
 
   beforeEach(function () {
-    jsdom('<div id="point-insertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="point-insertion"></div>');
     question = { choix: [] };
   });
 

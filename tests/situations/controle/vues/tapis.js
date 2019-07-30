@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Situation from 'controle/modeles/situation';
@@ -7,14 +6,12 @@ import VueTapis from 'controle/vues/tapis';
 import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle';
 
 describe('La vue du tapis', () => {
-  let $;
   let situation;
   let vue;
   let depot;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation({});
     depot = new MockDepotRessourcesControle();
     vue = new VueTapis(situation, depot);

@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import VueActions from 'commun/vues/actions';
 import SituationCommune, { CONSIGNE_ECOUTEE, DEMARRE } from 'commun/modeles/situation';
@@ -7,11 +6,9 @@ import SituationCommune, { CONSIGNE_ECOUTEE, DEMARRE } from 'commun/modeles/situ
 describe('Affiche les éléments communs aux situations', function () {
   let vueActions;
   let situation;
-  let $;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="magasin"></div>');
     situation = new SituationCommune();
 
     vueActions = new VueActions(situation, {}, new class {}());

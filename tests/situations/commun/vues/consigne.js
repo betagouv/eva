@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import MockAudioNode from '../aides/mock_audio_node';
 
@@ -8,14 +7,12 @@ import Situation, { CONSIGNE_ECOUTEE } from 'commun/modeles/situation';
 
 describe('vue consigne', function () {
   let vue;
-  let $;
   let situation;
   let consigne;
   let consigneCommune;
 
   beforeEach(function () {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation();
     consigne = new MockAudioNode();
     consigneCommune = new MockAudioNode();

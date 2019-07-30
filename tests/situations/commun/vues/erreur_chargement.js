@@ -1,16 +1,13 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import VueErreurChargement from 'commun/vues/erreur_chargement';
 import { traduction } from 'commun/infra/internationalisation';
 
 describe('vue erreur chargement', function () {
-  let $;
   let vue;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     vue = new VueErreurChargement();
   });
 

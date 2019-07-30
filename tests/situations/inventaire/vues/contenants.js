@@ -3,7 +3,6 @@
 import Contenant from 'inventaire/modeles/contenant';
 import VueContenants from 'inventaire/vues/contenants';
 import EvenementOuvertureContenant from 'inventaire/modeles/evenement_ouverture_contenant';
-import jsdom from 'jsdom-global';
 
 describe('vue contenants', function () {
   let vue;
@@ -16,7 +15,7 @@ describe('vue contenants', function () {
   ];
 
   beforeEach(function () {
-    jsdom('<div id="stock"></div>');
+    document.body.innerHTML = '<div id="stock"></div>';
     pointInsertion = document.getElementById('stock');
     journal = {
       enregistre () {}

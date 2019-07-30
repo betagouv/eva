@@ -1,19 +1,16 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Situation from 'tri/modeles/situation';
 import VueChronometre from 'tri/vues/chronometre';
 
 describe('Le chronometre', () => {
-  let $;
   let situation;
   let mockDepotRessources;
   let vue;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation({ pieces: [], bacs: [] });
     mockDepotRessources = new class {
       fondChronometre () {

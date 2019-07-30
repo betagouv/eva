@@ -1,5 +1,4 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
 import EvenementRejoueConsigne from 'commun/modeles/evenement_rejoue_consigne';
 import MockAudioNode from '../aides/mock_audio_node';
@@ -7,14 +6,12 @@ import SituationCommune from 'commun/modeles/situation';
 
 describe('vue Rejoue Consigne', function () {
   let vue;
-  let $;
   let journal;
   let mockDepotResources;
   let situation;
 
   beforeEach(function () {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     journal = { enregistre () {} };
     situation = new SituationCommune();
     mockDepotResources = new class {

@@ -1,17 +1,14 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 
 import BarreDev from 'commun/vues/barre_dev';
 import Situation, { DEMARRE, FINI } from 'commun/modeles/situation';
 
 describe('la barre de developpement', () => {
-  let $;
   let situation;
   let vue;
 
   beforeEach(() => {
-    jsdom('<div id="pointInsertion"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation();
     vue = new BarreDev(situation);
     vue.affiche('#pointInsertion', $);

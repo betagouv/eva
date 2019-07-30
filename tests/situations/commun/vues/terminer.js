@@ -1,14 +1,11 @@
-import jsdom from 'jsdom-global';
-import jQuery from 'jquery';
+import $ from 'jquery';
 import VueTerminer from 'commun/vues/terminer.js';
 
 describe('Affiche les éléments liés à la fin de la situation', function () {
   let vueTerminer;
-  let $;
 
   beforeEach(function () {
-    jsdom('<div id="magasin"></div>');
-    $ = jQuery(window);
+    $('body').append('<div id="magasin"></div>');
     vueTerminer = new VueTerminer();
   });
 
