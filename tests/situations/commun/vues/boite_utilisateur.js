@@ -1,71 +1,37 @@
-import $ from 'jquery';
-import EventEmitter from 'events';
+import { mount } from '@vue/test-utils';
 
-import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
-import VueBoiteUtilisateur from 'commun/vues/boite_utilisateur';
-import AccesSituation from 'accueil/modeles/acces_situation';
+import Vuex from 'vuex';
+import BoiteUtilisateur from 'commun/vues/boite_utilisateur.vue';
 
 describe('La boite utilisateur', function () {
-  let registreUtilisateur;
-  let vueBoiteUtilisateur;
+  let wrapper;
+  let store;
 
   beforeEach(function () {
-    $('body').append('<div id="point-insertion"></div>');
-    registreUtilisateur = new class extends EventEmitter {
-      estConnecte () {}
-      nom () {}
-      deconnecte () {}
-      nombreSituationsFaites () { return 1; }
-    }();
-    const accesSituations = [
-      new AccesSituation({ nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc', niveauMinimum: 1 }),
-      new AccesSituation({ nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz', niveauMinimum: 2 })
-    ];
-    vueBoiteUtilisateur = new VueBoiteUtilisateur(registreUtilisateur, accesSituations);
+    store = new Vuex.Store({
+      state: { estConnecte: true, nom: '', situations: [1, 2], situationsFaites: [1] }
+    });
+    wrapper = mount(BoiteUtilisateur, { store });
   });
 
-  it("affiche le nom de l'évalué·e et le bouton de déconnexion", function () {
-    registreUtilisateur.nom = () => 'Jacques Adit';
-    vueBoiteUtilisateur.affiche('#point-insertion', $);
-    expect($('#point-insertion .nom-utilisateur').text().trim()).to.equal('Jacques Adit');
-    expect($('#point-insertion .deconnexion').length).to.equal(1);
+  it('affiche le bouton de déconnexion', function () {
+    expect(wrapper.exists('.deconnexion')).to.be(true);
   });
 
   it('permet de se déconnecter', function (done) {
-    registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.deconnecte = () => {
+    store.dispatch = (nom) => {
+      expect(nom).to.eql('deconnecte');
       done();
     };
-    vueBoiteUtilisateur.affiche('#point-insertion', $);
-    $('#point-insertion .deconnexion').click();
-  });
-
-  it("cache la boîte lorsque l'évalué·e se déconnecte", function () {
-    registreUtilisateur.estConnecte = () => true;
-    vueBoiteUtilisateur.affiche('#point-insertion', $);
-    expect($('#point-insertion .boite-utilisateur').hasClass('invisible')).to.eql(false);
-    registreUtilisateur.estConnecte = () => false;
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
-    expect($('#point-insertion .boite-utilisateur').hasClass('invisible')).to.eql(true);
+    wrapper.find('.deconnexion').trigger('click');
   });
 
   it("la boîte est cachée lorsque l'évalué·e est déconnecté·e", function () {
-    registreUtilisateur.estConnecte = () => false;
-    vueBoiteUtilisateur.affiche('#point-insertion', $);
-    expect($('#point-insertion .boite-utilisateur').hasClass('invisible')).to.eql(true);
+    store.state.estConnecte = false;
+    expect(wrapper.isEmpty()).to.be(true);
   });
 
-  it("Mets à jour le nom de l'évalué·e à la connexion", function () {
-    registreUtilisateur.estConnecte = () => false;
-    vueBoiteUtilisateur.affiche('#point-insertion', $);
-    registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.nom = () => 'Jacques Adit';
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
-    expect($('#point-insertion .nom-utilisateur').text()).to.eql('Jacques Adit');
-  });
-
-  it("Affiche la progression de l'évalué·e", function () {
-    vueBoiteUtilisateur.affiche('#point-insertion', $);
-    expect($('#point-insertion .progression-utilisateur').text()).to.equal('1/2');
+  it("affiche la progression de l'évalué·e", function () {
+    expect(wrapper.find('.progression-utilisateur').text()).to.equal('1/2');
   });
 });

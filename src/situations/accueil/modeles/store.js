@@ -8,7 +8,9 @@ export function creeStore (registreUtilisateur) {
   const store = new Vuex.Store({
     state: {
       estConnecte: registreUtilisateur.estConnecte(),
-      nom: registreUtilisateur.nom()
+      nom: registreUtilisateur.nom(),
+      situations: [],
+      situationsFaites: registreUtilisateur.situationsFaites()
     },
     mutations: {
       connecte (state, nom) {
@@ -26,7 +28,7 @@ export function creeStore (registreUtilisateur) {
         return registreUtilisateur
           .inscris(nom, campagne);
       },
-      deconnecte() {
+      deconnecte () {
         return registreUtilisateur
           .deconnecte();
       }

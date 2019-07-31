@@ -16,7 +16,7 @@ describe("Le formulaire d'identification", function () {
     store = new Vuex.Store({
       state: { estConnecte: false }
     });
-    store.dispatch = () => Promise.resolve();
+    store.dispatch = () => promesse;
     wrapper = mount(FormulaireIdentificationVue, { store });
   });
 
