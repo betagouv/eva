@@ -1,8 +1,14 @@
+import Vue from 'vue';
+
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
+import { creeStore } from '../modeles/store';
 import VueAccesSituation from 'accueil/vues/acces_situation';
 import VueProgression from 'accueil/vues/progression';
 import VueBoiteUtilisateur from 'commun/vues/boite_utilisateur';
+import { traduction } from 'commun/infra/internationalisation';
+
+Vue.prototype.traduction = traduction;
 
 export default class VueAccueil {
   constructor (accesSituations, registreUtilisateur, depotRessources) {
@@ -37,8 +43,16 @@ export default class VueAccueil {
       vue.affiche($accesSituations, $);
     });
 
-    const formulaireIdentification = new FormulaireIdentification(this.registreUtilisateur);
-    formulaireIdentification.affiche($accesSituations, $);
+    const div = document.createElement('div');
+    $accesSituations.append(div);
+
+    const store = creeStore(this.registreUtilisateur);
+
+    new Vue({
+      store,
+      render: createEle => createEle(FormulaireIdentification)
+    }).$mount(div);
+
     const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur, this.accesSituations);
     boiteUtilisateur.affiche($gabarit.find('.titre'), $);
 
