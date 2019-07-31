@@ -5,7 +5,7 @@ import FormulaireIdentification from './formulaire_identification';
 import { creeStore } from '../modeles/store';
 import VueAccesSituation from 'accueil/vues/acces_situation';
 import VueProgression from 'accueil/vues/progression';
-import VueBoiteUtilisateur from 'commun/vues/boite_utilisateur';
+import BoiteUtilisateur from 'commun/vues/boite_utilisateur.vue';
 import { traduction } from 'commun/infra/internationalisation';
 
 Vue.prototype.traduction = traduction;
@@ -53,8 +53,13 @@ export default class VueAccueil {
       render: createEle => createEle(FormulaireIdentification)
     }).$mount(div);
 
-    const boiteUtilisateur = new VueBoiteUtilisateur(this.registreUtilisateur, this.accesSituations);
-    boiteUtilisateur.affiche($gabarit.find('.titre'), $);
+    const div2 = document.createElement('div');
+    $gabarit.find('.titre').append(div2);
+
+    new Vue({
+      store,
+      render: createEle => createEle(BoiteUtilisateur)
+    }).$mount(div2);
 
     $(pointInsertion).append($gabarit);
   }
