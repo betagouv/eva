@@ -25,6 +25,10 @@ export function creeStore (registreUtilisateur) {
       inscris ({ commit }, { nom, campagne }) {
         return registreUtilisateur
           .inscris(nom, campagne);
+      },
+      deconnecte() {
+        return registreUtilisateur
+          .deconnecte();
       }
     }
   });
