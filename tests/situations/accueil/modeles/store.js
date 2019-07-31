@@ -7,7 +7,8 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur = {
       estConnecte () {},
       nom () {},
-      on () {}
+      on () {},
+      situationsFaites () {}
     };
   });
 
@@ -22,9 +23,11 @@ describe("Le store de l'accueil", function () {
   it('initialise son état connecté a partir du registre utilisateur', function () {
     registreUtilisateur.estConnecte = () => true;
     registreUtilisateur.nom = () => 'Mon nom';
+    registreUtilisateur.situationsFaites = () => [1];
     const store = creeStore(registreUtilisateur);
     expect(store.state.estConnecte).to.eql(true);
     expect(store.state.nom).to.eql('Mon nom');
+    expect(store.state.situationsFaites).to.eql([1]);
   });
 
   it("mets à jour l'état connecte lorsque le registre change d'état", function () {
