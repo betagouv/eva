@@ -16,11 +16,15 @@ export default class RegistreUtilisateur extends EventEmitter {
   }
 
   inscris (nom, codeCampagne) {
-    return this.$.ajax({
-      type: 'POST',
-      url: `${process.env.URL_SERVEUR}/api/evaluations`,
-      data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
-      contentType: 'application/json; charset=utf-8'
+    return new Promise((resolve, reject) => {
+      this.$.ajax({
+        type: 'POST',
+        url: `${process.env.URL_SERVEUR}/api/evaluations`,
+        data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
+        contentType: 'application/json; charset=utf-8',
+        success: resolve,
+        error: reject
+      });
     }).then((data) => {
       window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(data));
       this.emit(CHANGEMENT_CONNEXION);

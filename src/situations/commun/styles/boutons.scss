@@ -19,4 +19,9 @@
   &:focus {
     background-color: $couleur-fond-bouton-terminer-focus;
   }
+  &[disabled] {
+    background-color: grayscale($couleur-fond-bouton-terminer);
+    border-color: grayscale($couleur-fond-bouton-terminer-focus);
+    cursor: auto;
+  }
 }

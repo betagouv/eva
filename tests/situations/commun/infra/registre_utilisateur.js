@@ -3,8 +3,8 @@ import RegistreUtilisateur, { CHANGEMENT_CONNEXION, CLEF_IDENTIFIANT } from 'com
 describe('le registre utilisateur', function () {
   function unRegistre (id, nom) {
     return new RegistreUtilisateur([], {
-      ajax () {
-        return Promise.resolve({ id, nom });
+      ajax (options) {
+        options.success({ id, nom });
       }
     });
   }

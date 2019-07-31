@@ -1,110 +1,120 @@
-import $ from 'jquery';
-import EventEmitter from 'events';
-import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
-import FormulaireIdentification from 'accueil/vues/formulaire_identification';
+import { mount } from '@vue/test-utils';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import FormulaireIdentificationVue from 'accueil/vues/formulaire_identification';
+import { traduction } from 'commun/infra/internationalisation';
+
+Vue.prototype.traduction = traduction;
 
 describe("Le formulaire d'identification", function () {
-  let vue;
-  let registreUtilisateur;
+  let wrapper;
+  let promesse;
+  let store;
 
   beforeEach(function () {
-    $('body').append('<div id="formulaire"></div>');
-    registreUtilisateur = new class extends EventEmitter {
-      estConnecte () {}
-      inscris () { return $.Deferred().resolve(); }
-      nom () {}
-    }();
-    vue = new FormulaireIdentification(registreUtilisateur);
+    promesse = Promise.resolve();
+    store = new Vuex.Store({
+      state: { estConnecte: false }
+    });
+    store.dispatch = () => Promise.resolve();
+    wrapper = mount(FormulaireIdentificationVue, { store });
   });
 
   it("s'affiche", function () {
-    expect($('#formulaire form').length).to.equal(0);
-
-    vue.affiche('#formulaire', $);
-    expect($('#formulaire form#formulaire-identification').length).to.equal(1);
-    expect($('#formulaire label').length).to.equal(2);
-    expect($('#formulaire input[type=text]').length).to.equal(2);
+    expect(wrapper.exists('form')).to.be(true);
+    expect(wrapper.exists('label')).to.be(true);
+    expect(wrapper.findAll('input[type=text]').length).to.eql(2);
   });
 
-  it("sauvegarde la valeur rentrée à l'appui sur le bouton", function (done) {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
-      expect(identifiantUtilisateur).to.equal('Mon pseudo');
-      expect(codeCampagne).to.equal('Mon code campagne');
+  it("se cache lorsqu'on est connecté", function () {
+    store.state.estConnecte = true;
+    expect(wrapper.isEmpty()).to.be(true);
+  });
+
+  it("inscrit la personne avec le nom et la campagne à l'appui sur le bouton", function (done) {
+    store.dispatch = (action, { nom, campagne }) => {
+      expect(action).to.equal('inscris');
+      expect(nom).to.equal('Mon pseudo');
+      expect(campagne).to.equal('Mon code campagne');
+
       done();
+      return promesse;
     };
-    vue.affiche('#formulaire', $);
-    $('#formulaire #formulaire-identification-input-campagne').val('Mon code campagne');
-    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
+    const input = wrapper.findAll('input[type=text]').at(0);
+    input.setValue('  Mon pseudo  ');
+    const input2 = wrapper.findAll('input[type=text]').at(1);
+    input2.setValue('Mon code campagne');
+    input.trigger('submit');
   });
 
-  it("réinitialise les valeurs rentrées lorsque l'on a réussi à s'identifier", function () {
-    vue.affiche('#formulaire', $);
-    $('#formulaire input[type=text]').each(function () {
-      $(this).val('Mon pseudo ou code');
+  it('réinitialise les valeurs une fois sauvegardé', function () {
+    wrapper.vm.nom = 'Mon pseudo';
+    wrapper.vm.campagne = 'Ma campagne';
+    return wrapper.vm.envoieFormulaire().then(() => {
+      expect(wrapper.vm.nom).to.eql('');
+      expect(wrapper.vm.campagne).to.eql('');
     });
-    $('#formulaire input[type=text]').trigger('submit');
+  });
 
-    $('#formulaire input[type=text]').each(function () {
-      expect($(this).val()).to.eql('');
+  it('est desactivé lorsque le nom est vide ou la campagne est vide', function () {
+    expect(wrapper.vm.estDesactive).to.be(true);
+    wrapper.vm.nom = 'Mon pseudo';
+    expect(wrapper.vm.estDesactive).to.be(true);
+    wrapper.vm.campagne = 'Mon pseudo';
+    expect(wrapper.vm.estDesactive).to.be(false);
+  });
+
+  it("est désactivé lorsque l'inscription est en cours", function () {
+    wrapper.vm.nom = 'Pseudo';
+    wrapper.vm.campagne = 'Campagne';
+    wrapper.vm.envoieFormulaire();
+    expect(wrapper.vm.enCours).to.be(true);
+    expect(wrapper.vm.estDesactive).to.be(true);
+  });
+
+  it("réinitialise l'état en cours lorsque l'inscription est terminé", function () {
+    return wrapper.vm.envoieFormulaire().then(() => {
+      expect(wrapper.vm.enCours).to.be(false);
     });
   });
 
   it("ne réinitialise pas les valeurs rentrées lorsque l'on n'a pas réussi à s'identifier", function () {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
-      return $.Deferred().reject({ responseJSON: { campagne: 'code inexistant' } });
-    };
-    vue.affiche('#formulaire', $);
-    $('#formulaire input[type=text]').each(function () {
-      $(this).val('Mon pseudo ou code');
+    store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+      responseJSON: { campagne: ['code inexistant'] }
     });
-    $('#formulaire input[type=text]').trigger('submit');
-    $('#formulaire input[type=text]').each(function () {
-      expect($(this).val()).to.eql('Mon pseudo ou code');
+    wrapper.vm.nom = 'Pseudo';
+    wrapper.vm.campagne = 'Campagne';
+    return wrapper.vm.envoieFormulaire().then(() => {
+      expect(wrapper.vm.nom).to.eql('Pseudo');
+      expect(wrapper.vm.campagne).to.eql('Campagne');
     });
   });
 
-  it('ne sauvegarde pas la valeur rentrée si elle est vide', function () {
-    registreUtilisateur.inscris = () => { throw new Error('ne devrait pas être appellé'); };
-    vue.affiche('#formulaire', $);
-    $('#formulaire input[type=text]').val('').trigger('submit');
+  it('affiche les erreurs au niveau des champs', function () {
+    store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+      responseJSON: {
+        campagne: ['code inexistant'],
+        nom: ['doit être rempli']
+      }
+    });
+
+    expect(wrapper.findAll('.erreur').length).to.equal(0);
+    return wrapper.vm.envoieFormulaire().then(() => {
+      expect(wrapper.findAll('.erreur').length).to.equal(2);
+      expect(wrapper.findAll('.erreur').at(0).text()).to.equal('doit être rempli');
+      expect(wrapper.findAll('.erreur').at(1).text()).to.equal('code inexistant');
+    });
   });
 
-  it("cache le formulaire lors que l'évalué·e est connecté·e", function () {
-    registreUtilisateur.estConnecte = () => true;
-    vue.affiche('#formulaire', $);
-    expect($('#formulaire #formulaire-identification').hasClass('invisible')).to.eql(true);
-  });
-
-  it("affiche le formulaire lorsque l'évalué·e se connecte", function () {
-    registreUtilisateur.estConnecte = () => false;
-    vue.affiche('#formulaire', $);
-    expect($('#formulaire #formulaire-identification').hasClass('invisible')).to.eql(false);
-    registreUtilisateur.estConnecte = () => true;
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
-    expect($('#formulaire #formulaire-identification').hasClass('invisible')).to.eql(true);
-  });
-
-  it('affiche les erreurs si les champs sont vides', function () {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
-      return $.Deferred().reject({ responseJSON: { campagne: 'code inexistant', nom: 'doit être rempli' } });
-    };
-    vue.affiche('#formulaire', $);
-    expect($('.erreur').length).to.equal(0);
-    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
-    expect($('.erreur').length).to.equal(2);
-    expect($('.erreur:first').text()).to.equal('doit être rempli');
-    expect($('.erreur:last').text()).to.equal('code inexistant');
-  });
-
-  it("enlève l'erreur lorsque l'on resoumet le formulaire", function () {
-    registreUtilisateur.inscris = (identifiantUtilisateur, codeCampagne) => {
-      return $.Deferred().reject({ responseJSON: { campagne: 'code inexistant' } });
-    };
-    vue.affiche('#formulaire', $);
-    expect($('.erreur').length).to.equal(0);
-    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
-    expect($('.erreur').length).to.equal(1);
-    $('#formulaire #formulaire-identification-input-nom').val('Mon pseudo').trigger('submit');
-    expect($('.erreur').length).to.equal(1);
+  it("enlève les erreurs lorsque l'on resoumet le formulaire", function () {
+    store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+      responseJSON: { campagne: ['code inexistant'] }
+    });
+    expect(wrapper.vm.erreurs).to.eql({});
+    return wrapper.vm.envoieFormulaire().then(() => {
+      expect(wrapper.vm.erreurs).to.not.eql({});
+      wrapper.vm.envoieFormulaire();
+      expect(wrapper.vm.erreurs).to.eql({});
+    });
   });
 });
