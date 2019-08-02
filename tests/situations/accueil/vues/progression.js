@@ -1,44 +1,41 @@
-import $ from 'jquery';
-import EventEmitter from 'events';
-
-import VueProgression from 'accueil/vues/progression';
-
-import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
+import { mount, createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
+import Progression from 'accueil/vues/progression';
 
 describe('La vue pour afficher la progression', function () {
   let depotRessources;
-  let registreUtilisateur;
+  let wrapper;
+  let store;
+  let localVue;
 
   beforeEach(function () {
-    $('body').append('<div id="pointInsertion"></div>');
     depotRessources = new class {
       progression (identifiant) {
         return { src: identifiant };
       }
     }();
-
-    registreUtilisateur = new class extends EventEmitter {
-      niveauActuel () {}
-    }();
+    localVue = createLocalVue();
+    localVue.prototype.depotRessources = depotRessources;
+    store = new Vuex.Store({
+      state: {
+        niveau: 2
+      },
+      getters: {
+        niveauActuel (state) {
+          return state.niveau;
+        }
+      }
+    });
+    wrapper = mount(Progression, {
+      localVue,
+      store
+    });
   });
 
-  it("sait s'afficher", function () {
-    registreUtilisateur.niveauActuel = () => 42;
-    depotRessources.progression = (niveau) => { return { src: niveau }; };
-    const vue = new VueProgression(depotRessources, registreUtilisateur);
-
-    vue.affiche('#pointInsertion', $);
-    expect($('.progression').css('background-image')).to.equal('url(42)');
-  });
-
-  it('sait se rafraichir', function () {
-    registreUtilisateur.niveauActuel = () => 42;
-    depotRessources.progression = (niveau) => { return { src: niveau }; };
-    const vue = new VueProgression(depotRessources, registreUtilisateur);
-
-    vue.affiche('#pointInsertion', $);
-    registreUtilisateur.niveauActuel = () => 1;
-    registreUtilisateur.emit(CHANGEMENT_CONNEXION);
-    expect($('.progression').css('background-image')).to.equal('url(1)');
+  it("rend l'image de fond en fonction du niveau actuel", function () {
+    store.state.niveau = 1;
+    expect(wrapper.vm.backgroundImage).to.eql("url('1')");
+    store.state.niveau = 42;
+    expect(wrapper.vm.backgroundImage).to.eql("url('42')");
   });
 });

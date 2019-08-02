@@ -4,7 +4,7 @@ import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
 import { creeStore } from '../modeles/store';
 import AccesSituation from 'accueil/vues/acces_situation';
-import VueProgression from 'accueil/vues/progression';
+import Progression from 'accueil/vues/progression';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import { traduction } from 'commun/infra/internationalisation';
 
@@ -46,8 +46,13 @@ export default class VueAccueil {
     `);
     const $accesSituations = $gabarit.find('.acces-situations');
 
-    const progression = new VueProgression(this.depotRessources, this.registreUtilisateur);
-    progression.affiche($gabarit.find('#progression'), $);
+    const divProgression = document.createElement('div');
+    $gabarit.find('#progression').append(divProgression);
+
+    new Vue({
+      store,
+      render: createEle => createEle(Progression)
+    }).$mount(divProgression);
 
     store.state.situations.forEach((situation) => {
       const div = document.createElement('div');
