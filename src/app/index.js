@@ -20,14 +20,6 @@ function afficheAccueil (pointInsertion) {
   Vue.prototype.traduction = traduction;
 
   const store = creeStore(registreUtilisateur);
-  store.commit('metsAJourSituations', _accesSituations.map((accesSituation) => {
-    return {
-      nom: accesSituation.nom,
-      chemin: accesSituation.chemin,
-      identifiant: accesSituation.identifiant,
-      niveauMinimum: accesSituation.niveauMinimum
-    };
-  }));
 
   depotRessources.chargement().then(() => {
     new Vue({
