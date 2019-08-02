@@ -21,6 +21,10 @@ export function creeStore (registreUtilisateur) {
       deconnecte (state) {
         state.estConnecte = false;
         state.nom = '';
+      },
+
+      metsAJourSituations (state, situations) {
+        state.situations = situations;
       }
     },
     actions: {
