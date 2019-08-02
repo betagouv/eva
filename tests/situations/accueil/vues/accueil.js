@@ -1,25 +1,17 @@
-import $ from 'jquery';
-import EventEmitter from 'events';
-
-import VueAccueil from 'accueil/vues/accueil';
-import AccesSituation from 'accueil/modeles/acces_situation';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
+import Accueil from 'accueil/vues/accueil';
+import AccesSituation from 'accueil/vues/acces_situation';
+import FormulaireIdentification from 'accueil/vues/formulaire_identification';
+import Progression from 'accueil/vues/progression';
+import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 
 describe('La vue accueil', function () {
   let depotRessources;
-  let accesSituations;
-  let registreUtilisateur;
+  let store;
+  let localVue;
 
   beforeEach(function () {
-    $('body').append('<div id="accueil"></div>');
-    registreUtilisateur = new class extends EventEmitter {
-      estConnecte () {}
-      nom () {}
-      niveauActuel () {}
-      nombreSituationsFaites () {}
-    }();
-
-    registreUtilisateur.situationsFaites = () => ['tri'];
-    registreUtilisateur.deconnecte = () => {};
     depotRessources = new class {
       fondAccueil () {
         return { src: '' };
@@ -28,44 +20,37 @@ describe('La vue accueil', function () {
       personnages () {
         return { src: '' };
       }
-
-      batimentSituation (identifiant) {
-        return { src: identifiant };
-      }
-
-      progression () {
-        return { src: 'progression' };
-      }
     }();
 
-    accesSituations = [
-      new AccesSituation({ nom: 'ABC', chemin: 'abc.html', identifiant: 'identifiant-abc', niveauMinimum: 1 }),
-      new AccesSituation({ nom: 'XYZ', chemin: 'xyz.html', identifiant: 'identifiant-xyz', niveauMinimum: 2 })
-    ];
+    store = new Vuex.Store({
+      state: {
+        situations: [{}, {}]
+      }
+    });
+    localVue = createLocalVue();
+    localVue.prototype.depotRessources = depotRessources;
   });
 
-  it('affiche un lien pour chaque situation', function () {
-    const vueAccueil = new VueAccueil(accesSituations, registreUtilisateur, depotRessources);
-
-    vueAccueil.affiche('#accueil', $);
-
-    const $liensSituations = $('#accueil .acces-situations .acces-situation');
-    expect($liensSituations.length).to.equal(2);
+  it('affiche les composants', function () {
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    expect(wrapper.findAll(AccesSituation).length).to.eql(2);
+    expect(wrapper.contains(Progression)).to.be(true);
+    expect(wrapper.contains(FormulaireIdentification)).to.be(true);
+    expect(wrapper.contains(BoiteUtilisateur)).to.be(true);
   });
 
   it("affiche le fond de l'accueil et les personnages", function () {
     depotRessources.fondAccueil = () => { return { src: 'image-fond' }; };
     depotRessources.personnages = () => { return { src: 'personnages' }; };
 
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    expect($('.acces-situations').attr('style')).to.equal('background-image: url(image-fond);');
-    expect($('.personnages').attr('style')).to.equal('background-image: url(personnages);');
-  });
-
-  it("affiche le formulaire d'identification", function () {
-    const vueAccueil = new VueAccueil([], registreUtilisateur, depotRessources);
-    vueAccueil.affiche('#accueil', $);
-    expect($('#accueil #formulaire-identification').length).to.equal(1);
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    expect(wrapper.vm.fondAccueil).to.eql('url(image-fond)');
+    expect(wrapper.vm.personnages).to.eql('url(personnages)');
   });
 });
