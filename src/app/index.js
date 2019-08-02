@@ -1,29 +1,48 @@
-import jQuery from 'jquery';
-
+import Vue from 'vue';
 import 'accueil/styles/app.scss';
 
 import { accesSituations } from 'accueil/data/acces_situations';
-import VueAccueil from 'accueil/vues/accueil';
+import { creeStore } from 'accueil/modeles/store';
+import Accueil from 'accueil/vues/accueil';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 import DepotRessourcesAccueil from 'accueil/infra/depot_ressources_accueil';
 import 'commun/infra/report_erreurs';
 
-function afficheAccueil (pointInsertion, $) {
+function afficheAccueil (pointInsertion) {
   const _accesSituations = accesSituations();
   const identifiantsSituationsAccessibles = _accesSituations.map((acces) => acces.identifiant);
   const registreUtilisateur = new RegistreUtilisateur(identifiantsSituationsAccessibles);
+
   const depotRessources = new DepotRessourcesAccueil();
-  const vueAccueil = new VueAccueil(_accesSituations, registreUtilisateur, depotRessources);
+
+  Vue.prototype.depotRessources = depotRessources;
+  Vue.prototype.traduction = traduction;
+
+  const store = creeStore(registreUtilisateur);
+  store.commit('metsAJourSituations', _accesSituations.map((accesSituation) => {
+    return {
+      nom: accesSituation.nom,
+      chemin: accesSituation.chemin,
+      identifiant: accesSituation.identifiant,
+      niveauMinimum: accesSituation.niveauMinimum
+    };
+  }));
+
   depotRessources.chargement().then(() => {
-    vueAccueil.affiche(pointInsertion, $);
+    new Vue({
+      store,
+      render: createEle => createEle(Accueil)
+    }).$mount(pointInsertion);
   });
 }
 
 initialiseInternationalisation().then(function () {
-  jQuery(function () {
+  document.addEventListener('DOMContentLoaded', function () {
     document.title = traduction('accueil.titre');
-    jQuery('body').prepend('<div id="accueil" class="conteneur"></div>');
-    afficheAccueil('#accueil', jQuery);
+    const div = document.createElement('div');
+    div.setAttribute('class', 'conteneur');
+    document.body.appendChild(div);
+    afficheAccueil(div);
   });
 });
