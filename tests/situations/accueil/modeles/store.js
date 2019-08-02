@@ -30,6 +30,17 @@ describe("Le store de l'accueil", function () {
     expect(store.state.situationsFaites).to.eql([1]);
   });
 
+  it("réinitilise les propriétés de l'évalué·e a la déconnexion", function () {
+    registreUtilisateur.estConnecte = () => true;
+    registreUtilisateur.nom = () => 'Mon nom';
+    registreUtilisateur.situationsFaites = () => [1];
+    const store = creeStore(registreUtilisateur);
+    store.commit('deconnecte');
+    expect(store.state.estConnecte).to.eql(false);
+    expect(store.state.nom).to.eql('');
+    expect(store.state.situationsFaites.length).to.eql(0);
+  });
+
   it('mets à jour les situations accessible', function () {
     const store = creeStore(registreUtilisateur);
     store.commit('metsAJourSituations', [1, 2]);
@@ -47,5 +58,11 @@ describe("Le store de l'accueil", function () {
     callback();
     expect(store.state.estConnecte).to.eql(false);
     expect(store.state.nom).to.eql('');
+  });
+
+  it('recupère le niveau actuel', function () {
+    registreUtilisateur.situationsFaites = () => [1];
+    const store = creeStore(registreUtilisateur);
+    expect(store.getters.niveauActuel).to.eql(2);
   });
 });
