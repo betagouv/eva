@@ -65,4 +65,24 @@ describe("Le store de l'accueil", function () {
     const store = creeStore(registreUtilisateur);
     expect(store.getters.niveauActuel).to.eql(2);
   });
+
+  it('sait récupérer les situations depuis le serveur', function () {
+    registreUtilisateur.urlEvaluation = () => '/evaluation';
+    const fetch = (url) => Promise.resolve({
+      json: () => {
+        const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
+        return { situations: [situation] };
+      }
+    });
+    const store = creeStore(registreUtilisateur, fetch);
+    return store.dispatch('synchroniseSituations').then(() => {
+      const situationAttendue = {
+        identifiant: 'nom_technique',
+        nom: 'libelle',
+        chemin: 'nom_technique.html',
+        niveauMinimum: 1
+      };
+      expect(store.state.situations).to.eql([situationAttendue]);
+    });
+  });
 });

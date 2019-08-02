@@ -43,8 +43,12 @@ export default {
     };
   },
 
+  mounted: function() {
+    if(this.estConnecte) this.$store.dispatch('synchroniseSituations');
+  },
+
   computed: {
-    ...mapState(['situations'])
+    ...mapState(['situations', 'estConnecte'])
   }
 }
 </script>

@@ -4,7 +4,7 @@ import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 
 Vue.use(Vuex);
 
-export function creeStore (registreUtilisateur) {
+export function creeStore (registreUtilisateur, fetch = window.fetch) {
   const store = new Vuex.Store({
     state: {
       estConnecte: registreUtilisateur.estConnecte(),
@@ -36,6 +36,21 @@ export function creeStore (registreUtilisateur) {
       deconnecte () {
         return registreUtilisateur
           .deconnecte();
+      },
+      synchroniseSituations ({ commit }) {
+        return fetch(registreUtilisateur.urlEvaluation()).then((reponse) => {
+          return reponse.json();
+        }).then((json) => {
+          const situations = json.situations.map(function (situation, index) {
+            return {
+              nom: situation.libelle,
+              chemin: `${situation.nom_technique}.html`,
+              identifiant: situation.nom_technique,
+              niveauMinimum: index + 1
+            };
+          });
+          commit('metsAJourSituations', situations);
+        });
       }
     },
     getters: {

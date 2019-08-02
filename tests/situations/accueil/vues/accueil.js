@@ -24,7 +24,8 @@ describe('La vue accueil', function () {
 
     store = new Vuex.Store({
       state: {
-        situations: [{}, {}]
+        situations: [{}, {}],
+        estConnecte: false
       }
     });
     localVue = createLocalVue();
@@ -52,5 +53,17 @@ describe('La vue accueil', function () {
     });
     expect(wrapper.vm.fondAccueil).to.eql('url(image-fond)');
     expect(wrapper.vm.personnages).to.eql('url(personnages)');
+  });
+
+  it('synchronise les situations quand un utilisateur est connecté', function (done) {
+    store.dispatch = (evenement) => {
+      expect(evenement).to.eql('synchroniseSituations');
+      done();
+    };
+    store.state.estConnecte = true;
+    shallowMount(Accueil, {
+      localVue,
+      store
+    });
   });
 });
