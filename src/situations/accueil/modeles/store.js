@@ -21,6 +21,7 @@ export function creeStore (registreUtilisateur) {
       deconnecte (state) {
         state.estConnecte = false;
         state.nom = '';
+        state.situationsFaites = [];
       },
 
       metsAJourSituations (state, situations) {
@@ -35,6 +36,11 @@ export function creeStore (registreUtilisateur) {
       deconnecte () {
         return registreUtilisateur
           .deconnecte();
+      }
+    },
+    getters: {
+      niveauActuel (state) {
+        return state.situationsFaites.length + 1;
       }
     }
   });

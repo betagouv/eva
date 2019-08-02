@@ -3,9 +3,9 @@ import Vue from 'vue';
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
 import { creeStore } from '../modeles/store';
-import VueAccesSituation from 'accueil/vues/acces_situation';
+import AccesSituation from 'accueil/vues/acces_situation';
 import VueProgression from 'accueil/vues/progression';
-import BoiteUtilisateur from 'commun/vues/boite_utilisateur.vue';
+import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import { traduction } from 'commun/infra/internationalisation';
 
 Vue.prototype.traduction = traduction;
@@ -15,9 +15,20 @@ export default class VueAccueil {
     this.accesSituations = accesSituations;
     this.registreUtilisateur = registreUtilisateur;
     this.depotRessources = depotRessources;
+    Vue.prototype.depotRessources = depotRessources;
   }
 
   affiche (pointInsertion, $) {
+    const store = creeStore(this.registreUtilisateur);
+    store.commit('metsAJourSituations', this.accesSituations.map((accesSituation) => {
+      return {
+        nom: accesSituation.nom,
+        chemin: accesSituation.chemin,
+        identifiant: accesSituation.identifiant,
+        niveauMinimum: accesSituation.niveauMinimum
+      };
+    }));
+
     const $gabarit = $(`
       <div>
         <div class="titre">
@@ -38,21 +49,19 @@ export default class VueAccueil {
     const progression = new VueProgression(this.depotRessources, this.registreUtilisateur);
     progression.affiche($gabarit.find('#progression'), $);
 
-    this.accesSituations.forEach((accesSituation) => {
-      const vue = new VueAccesSituation(accesSituation, this.depotRessources, this.registreUtilisateur);
-      vue.affiche($accesSituations, $);
+    store.state.situations.forEach((situation) => {
+      const div = document.createElement('div');
+      $accesSituations.append(div);
+      new Vue({
+        store,
+        render: createEle => createEle(AccesSituation, {
+          props: { situation }
+        })
+      }).$mount(div);
     });
 
     const div = document.createElement('div');
     $accesSituations.append(div);
-
-    const store = creeStore(this.registreUtilisateur);
-    store.commit('metsAJourSituations', this.accesSituations.map((accesSituation) => {
-      return {
-        nom: accesSituation.nom,
-        chemin: accesSituation.chemin
-      };
-    }));
 
     new Vue({
       store,
