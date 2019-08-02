@@ -30,6 +30,12 @@ describe("Le store de l'accueil", function () {
     expect(store.state.situationsFaites).to.eql([1]);
   });
 
+  it('mets à jour les situations accessible', function () {
+    const store = creeStore(registreUtilisateur);
+    store.commit('metsAJourSituations', [1, 2]);
+    expect(store.state.situations.length).to.eql(2);
+  });
+
   it("mets à jour l'état connecte lorsque le registre change d'état", function () {
     let callback;
     registreUtilisateur.on = (_, cb) => { callback = cb; };

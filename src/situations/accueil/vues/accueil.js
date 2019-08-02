@@ -47,6 +47,12 @@ export default class VueAccueil {
     $accesSituations.append(div);
 
     const store = creeStore(this.registreUtilisateur);
+    store.commit('metsAJourSituations', this.accesSituations.map((accesSituation) => {
+      return {
+        nom: accesSituation.nom,
+        chemin: accesSituation.chemin
+      };
+    }));
 
     new Vue({
       store,
