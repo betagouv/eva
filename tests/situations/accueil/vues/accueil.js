@@ -15,10 +15,10 @@ describe('La vue accueil', function () {
       estConnecte () {}
       nom () {}
       niveauActuel () {}
-      nombreSituationsFaites () {}
+      nombreSituationsDebloquees () {}
     }();
 
-    registreUtilisateur.situationsFaites = () => ['tri'];
+    registreUtilisateur.situationsDebloquees = () => ['tri'];
     registreUtilisateur.deconnecte = () => {};
     depotRessources = new class {
       fondAccueil () {

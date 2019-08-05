@@ -24,8 +24,8 @@ export class Journal {
     return this.depot.enregistre(payLoad, timeout);
   }
 
-  enregistreSituationFaite () {
-    this.utilisateur.enregistreSituationFaite(this.situation);
+  enregistreSituationDebloquee () {
+    this.utilisateur.enregistreSituationDebloquee(this.situation);
   }
 }
 

@@ -1,13 +1,13 @@
 export default class Progression {
-  constructor (situationsFaites, situationsAccessibles) {
-    this.situationsFaites = situationsFaites.filter((s) => situationsAccessibles.includes(s));
+  constructor (situationsDebloquees, situationsAccessibles) {
+    this.situationsDebloquees = situationsDebloquees.filter((s) => situationsAccessibles.includes(s));
   }
 
   niveau () {
-    return this.fait() + 1;
+    return this.debloque() + 1;
   }
 
-  fait () {
-    return this.situationsFaites.length;
+  debloque () {
+    return this.situationsDebloquees.length;
   }
 }

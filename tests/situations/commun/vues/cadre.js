@@ -24,7 +24,7 @@ describe('Une vue du cadre', function () {
     $('body').append('<div id="point-insertion"></div>');
     depotRessources = new DepotRessourcesCommune('sonConsigne.wav', chargeurs());
     situation = new SituationCommune();
-    journal = { enregistre () {}, enregistreSituationFaite () {} };
+    journal = { enregistre () {}, enregistreSituationDebloquee () {} };
 
     uneVueCadre = function (classeVue = uneClasseVue(), barreDev = false) {
       return new VueCadre(classeVue, situation, journal, depotRessources, barreDev);
@@ -160,8 +160,8 @@ describe('Une vue du cadre', function () {
     vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
-  it('enregistre la situation faite', function (done) {
-    journal.enregistreSituationFaite = () => {
+  it('enregistre la situation débloquée', function (done) {
+    journal.enregistreSituationDebloquee = () => {
       done();
     };
     const vueCadre = uneVueCadre();

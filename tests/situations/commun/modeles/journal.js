@@ -30,12 +30,12 @@ describe('le journal', function () {
     expect(enregistrement[0]).to.have.property('evaluation_id', 'identifiant evaluation');
   });
 
-  it('enregistre la situation faite', function (done) {
-    registre.enregistreSituationFaite = (nomSituation) => {
+  it('enregistre la situation débloquée', function (done) {
+    registre.enregistreSituationDebloquee = (nomSituation) => {
       expect(nomSituation).to.eql('nom situation');
       done();
     };
     journal.situation = 'nom situation';
-    journal.enregistreSituationFaite();
+    journal.enregistreSituationDebloquee();
   });
 });

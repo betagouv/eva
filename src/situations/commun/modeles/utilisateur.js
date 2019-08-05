@@ -14,8 +14,8 @@ export default class Utilisateur extends RegistreUtilisateur {
     this.metsAJourProgression();
   }
 
-  declareSituationFaite (situation) {
-    this.enregistreSituationFaite(situation);
+  declareSituationDebloquee (situation) {
+    this.enregistreSituationDebloquee(situation);
     this.metsAJourProgression();
   }
 
@@ -23,11 +23,11 @@ export default class Utilisateur extends RegistreUtilisateur {
     return this.progression.niveau();
   }
 
-  nombreSituationsFaites () {
-    return this.progression.fait();
+  nombreSituationsDebloquees () {
+    return this.progression.debloque();
   }
 
   metsAJourProgression () {
-    this.progression = new Progression(this.situationsFaites(), this.situationsAccessibles);
+    this.progression = new Progression(this.situationsDebloquees(), this.situationsAccessibles);
   }
 }

@@ -1,7 +1,7 @@
 import jQuery from 'jquery';
 import EventEmitter from 'events';
 
-const CLEF_SITUATIONS_FAITES = 'situationsFaites';
+const CLEF_SITUATIONS_DEBLOQUEES = 'situationsDebloquees';
 
 export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
@@ -49,16 +49,16 @@ export default class RegistreUtilisateur extends EventEmitter {
     return this.parseLocalStorage(CLEF_IDENTIFIANT).id;
   }
 
-  enregistreSituationFaite (situation) {
-    const situations = this.situationsFaites();
+  enregistreSituationDebloquee (situation) {
+    const situations = this.situationsDebloquees();
     if (!situations.includes(situation)) {
       situations.push(situation);
     }
-    window.localStorage.setItem(CLEF_SITUATIONS_FAITES, JSON.stringify(situations));
+    window.localStorage.setItem(CLEF_SITUATIONS_DEBLOQUEES, JSON.stringify(situations));
   }
 
-  situationsFaites () {
-    const situations = window.localStorage.getItem(CLEF_SITUATIONS_FAITES);
+  situationsDebloquees () {
+    const situations = window.localStorage.getItem(CLEF_SITUATIONS_DEBLOQUEES);
     if (situations) {
       return JSON.parse(situations);
     }
@@ -67,7 +67,7 @@ export default class RegistreUtilisateur extends EventEmitter {
 
   deconnecte () {
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
-    window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
+    window.localStorage.removeItem(CLEF_SITUATIONS_DEBLOQUEES);
     this.emit(CHANGEMENT_CONNEXION);
   }
 }
