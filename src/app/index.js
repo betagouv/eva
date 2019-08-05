@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import 'accueil/styles/app.scss';
 
-import { accesSituations } from 'accueil/data/acces_situations';
 import { creeStore } from 'accueil/modeles/store';
 import Accueil from 'accueil/vues/accueil';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
@@ -10,9 +9,7 @@ import DepotRessourcesAccueil from 'accueil/infra/depot_ressources_accueil';
 import 'commun/infra/report_erreurs';
 
 function afficheAccueil (pointInsertion) {
-  const _accesSituations = accesSituations();
-  const identifiantsSituationsAccessibles = _accesSituations.map((acces) => acces.identifiant);
-  const registreUtilisateur = new RegistreUtilisateur(identifiantsSituationsAccessibles);
+  const registreUtilisateur = new RegistreUtilisateur();
 
   const depotRessources = new DepotRessourcesAccueil();
 

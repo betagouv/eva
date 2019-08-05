@@ -2,7 +2,7 @@ import RegistreUtilisateur, { CHANGEMENT_CONNEXION, CLEF_IDENTIFIANT } from 'com
 
 describe('le registre utilisateur', function () {
   function unRegistre (id, nom) {
-    return new RegistreUtilisateur([], {
+    return new RegistreUtilisateur({
       ajax (options) {
         options.success({ id, nom });
       }
@@ -62,29 +62,6 @@ describe('le registre utilisateur', function () {
     registre.enregistreSituationFaite('tri');
     registre.enregistreSituationFaite('tri');
     expect(registre.situationsFaites()).to.eql(['tri']);
-  });
-
-  it('retourne la progression', function () {
-    const registre = new RegistreUtilisateur(['tri']);
-    expect(registre.nombreSituationsFaites()).to.eql(0);
-    registre.enregistreSituationFaite('tri');
-    expect(registre.nombreSituationsFaites()).to.eql(1);
-    expect(registre.niveauActuel()).to.eql(2);
-  });
-
-  it('les situations non accessibles ne font pas avancer la progression', function () {
-    const registre = new RegistreUtilisateur(['tri']);
-    expect(registre.niveauActuel()).to.eql(1);
-    registre.enregistreSituationFaite('questions');
-    expect(registre.nombreSituationsFaites()).to.eql(0);
-    expect(registre.niveauActuel()).to.eql(1);
-  });
-
-  it('à la déconnexion, remet la progression au début', function () {
-    const registre = new RegistreUtilisateur();
-    registre.enregistreSituationFaite('tri');
-    registre.deconnecte();
-    expect(registre.niveauActuel()).to.equal(1);
   });
 
   it('à la déconnexion, nous ne sommes plus connectés', function () {
