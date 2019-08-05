@@ -29,6 +29,13 @@
     top: -38px;
   }
 
+  &.questions {
+    width: 225px;
+    height: 250px;
+    left: 700px;
+    top: 290px;
+  }
+
   &.desactivee {
     filter: contrast(80%) saturate(30%);
     pointer-events: none;

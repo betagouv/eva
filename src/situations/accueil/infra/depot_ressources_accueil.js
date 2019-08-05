@@ -8,9 +8,10 @@ import controle from 'accueil/assets/controle.png';
 const progression = require.context('accueil/assets', false, /progression[1-4]\.png$/);
 
 const batiments = {
-  'tri': tri,
-  'inventaire': inventaire,
-  'controle': controle
+  tri,
+  inventaire,
+  controle,
+  questions: tri
 };
 
 export default class DepotRessourcesAccueil extends DepotRessources {
