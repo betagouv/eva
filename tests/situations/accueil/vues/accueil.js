@@ -55,7 +55,7 @@ describe('La vue accueil', function () {
     expect(wrapper.vm.personnages).to.eql('url(personnages)');
   });
 
-  it('synchronise les situations quand un utilisateur est connecté', function (done) {
+  it("synchronise les situations quand un utilisateur affiche l'accueil en étant connecté", function (done) {
     store.dispatch = (evenement) => {
       expect(evenement).to.eql('synchroniseSituations');
       done();
@@ -65,5 +65,21 @@ describe('La vue accueil', function () {
       localVue,
       store
     });
+  });
+
+  it('synchronise les situations à la connexion', function () {
+    let nombreDispatch = 0;
+    store.dispatch = (evenement) => {
+      expect(evenement).to.eql('synchroniseSituations');
+      nombreDispatch++;
+    };
+    store.state.estConnecte = false;
+    shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    expect(nombreDispatch).to.eql(0);
+    store.state.estConnecte = true;
+    expect(nombreDispatch).to.eql(1);
   });
 });
