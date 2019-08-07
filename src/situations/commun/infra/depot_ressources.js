@@ -1,4 +1,6 @@
 const chargeurAudio = function (src, timeout = 2000) {
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
   const request = new window.XMLHttpRequest();
 
   request.open('GET', src, true);
@@ -6,27 +8,16 @@ const chargeurAudio = function (src, timeout = 2000) {
 
   const promesse = new Promise((resolve, reject) => {
     request.onload = function () {
-      if (window.AudioContext) {
-        const audioCtx = new window.AudioContext();
-        audioCtx.decodeAudioData(request.response,
-          function (buffer) {
-            resolve(() => {
-              const source = audioCtx.createBufferSource();
-              source.buffer = buffer;
-              source.connect(audioCtx.destination);
-              return source;
-            });
-          },
-          reject);
-      } else {
-        resolve(() => {
-          const audio = new window.Audio();
-          audio.src = src;
-          audio.start = audio.play;
-          audio.stop = audio.pause;
-          return audio;
-        });
-      }
+      audioCtx.decodeAudioData(request.response,
+        function (buffer) {
+          resolve(() => {
+            const source = audioCtx.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioCtx.destination);
+            return source;
+          });
+        },
+        reject);
     };
   });
 
