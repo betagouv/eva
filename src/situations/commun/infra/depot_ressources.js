@@ -1,6 +1,7 @@
-const chargeurAudio = function (src, timeout = 2000) {
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+let audioCtx;
 
+const chargeurAudio = function (src, timeout = 2000) {
+  audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
   const request = new window.XMLHttpRequest();
 
   request.open('GET', src, true);
