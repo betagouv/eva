@@ -1,7 +1,7 @@
-export default function joueConsigne ($, depot, jouerConsigneCommune, lectureTerminee) {
+export default function joueConsigne (depot, jouerConsigneCommune, lectureTerminee) {
   function joueSon (noeudSon, callbackFin) {
-    $(noeudSon).on('ended', callbackFin);
     noeudSon.start();
+    setTimeout(callbackFin, noeudSon.buffer.duration * 1000);
   }
 
   function joueConsigneCommune () {
