@@ -34,7 +34,7 @@ export default class VueRejoueConsigne {
     this.vueBoutonLire.cache();
 
     this.vueBoutonLectureEnCours.affiche(this.$boutonRejoueConsigne, $);
-    joueConsigne($, this.depotResources, this.etat !== DEMARRE, () => this.lectureTerminee());
+    joueConsigne(this.depotResources, this.etat !== DEMARRE, () => this.lectureTerminee());
   }
 
   lectureTerminee () {
