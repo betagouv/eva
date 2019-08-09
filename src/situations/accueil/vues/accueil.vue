@@ -1,5 +1,5 @@
 <template>
-  <div id="accueil" class="conteneur">
+  <div id="accueil">
     <div class="titre">
       <h1>Compétences pro</h1>
       <boite-utilisateur />
