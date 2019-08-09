@@ -1,36 +1,37 @@
-import joueConsigne from 'commun/composants/joueur_consigne';
+import JoueurConsigne from 'commun/composants/joueur_consigne';
 
 import MockAudioNode from '../aides/mock_audio_node';
 
 describe('joueur de consigne', function () {
   let uneConsigne;
   let uneConsigneCommune;
-  let depot;
+  let joueur;
 
   beforeEach(function () {
     uneConsigne = new MockAudioNode();
     uneConsigneCommune = new MockAudioNode();
-    depot = {
+    const depot = {
       consigne: () => uneConsigne,
       consigneCommune: () => uneConsigneCommune
     };
+    joueur = new JoueurConsigne(depot);
   });
 
   it('joue la consigne du dépôt', function (done) {
     uneConsigne.start = done;
-    joueConsigne(depot, false, () => {});
+    joueur.joue(false, () => {});
   });
 
   it('appelle la callback de fin après la lecture de la consigne', function (done) {
     let consigneJouee = false;
     uneConsigne.start = () => { consigneJouee = true; };
-    joueConsigne(depot, false, () => {
+    joueur.joue(false, () => {
       expect(consigneJouee).to.be(true);
       done();
     });
   });
 
-  it('joue la consigne commune après la consigne à la demande', function (done) {
+  it('joue la consigne commune après la consigne, à la demande', function (done) {
     let consigneJouee = false;
     let consigneCommuneJouee = false;
     uneConsigne.start = () => { consigneJouee = true; };
@@ -38,7 +39,7 @@ describe('joueur de consigne', function () {
       expect(consigneJouee).to.be(true);
       consigneCommuneJouee = true;
     };
-    joueConsigne(depot, true, () => {
+    joueur.joue(true, () => {
       expect(consigneCommuneJouee).to.be(true);
       done();
     });
@@ -49,7 +50,7 @@ describe('joueur de consigne', function () {
     uneConsigneCommune.start = () => {
       consigneCommuneJouee = true;
     };
-    joueConsigne(depot, false, () => {
+    joueur.joue(false, () => {
       expect(consigneCommuneJouee).to.be(false);
       done();
     });
