@@ -1,5 +1,6 @@
 import Vue from 'vue';
-import 'accueil/styles/app.scss';
+import 'commun/styles/conteneur.scss';
+import 'commun/styles/commun.scss';
 
 import { creeStore } from 'accueil/modeles/store';
 import Accueil from 'accueil/vues/accueil';
