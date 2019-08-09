@@ -4,18 +4,19 @@ import { CHANGEMENT_ETAT, CONSIGNE_ECOUTEE, DEMARRE } from 'commun/modeles/situa
 
 import VueStop from 'commun/vues/stop';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
+import JoueurConsigne from 'commun/composants/joueur_consigne';
 
 export default class VueActions {
   constructor (situation, journal, depot) {
     this.situation = situation;
     this.journal = journal;
-    this.depot = depot;
+    this.joueurConsigne = new JoueurConsigne(depot);
   }
 
   affiche (pointInsertion, $) {
     this.$actions = $('<div class="actions"></div>');
     this.stop = new VueStop(this.situation, this.journal);
-    this.rejoueConsigne = new VueRejoueConsigne(this.depot, this.journal);
+    this.rejoueConsigne = new VueRejoueConsigne(this.joueurConsigne, this.journal);
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
     this.afficheBoutons(this.situation.etat(), $);
     $(pointInsertion).append(this.$actions);

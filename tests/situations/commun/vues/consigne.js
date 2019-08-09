@@ -10,10 +10,12 @@ describe('vue consigne', function () {
 
   it("change l'état a CONSIGNE_ECOUTEE une fois terminé", () => {
     const situation = new Situation();
-    const mockJoueConsigne = (unused, alsoUnused, cbFin) => {
-      cbFin();
+    const mockJoueurConsigne = class {
+      joue (unused, cbFin) {
+        cbFin();
+      }
     };
-    const vue = new VueConsigne(situation, null, mockJoueConsigne);
+    const vue = new VueConsigne(situation, null, mockJoueurConsigne);
     vue.affiche('#pointInsertion', $);
 
     expect(situation.etat()).to.eql(CONSIGNE_ECOUTEE);

@@ -1,20 +1,19 @@
 import { CONSIGNE_ECOUTEE } from 'commun/modeles/situation';
-import _joueConsigne from 'commun/composants/joueur_consigne';
+import _JoueurConsigne from 'commun/composants/joueur_consigne';
 import VueActionOverlay from './action_overlay';
 
 import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 
 export default class VueConsigne extends VueActionOverlay {
-  constructor (situation, depot, joueConsigne = _joueConsigne) {
+  constructor (situation, depot, JoueurConsigne = _JoueurConsigne) {
     super(lectureEnCours, '', 'bouton-lecture-en-cours', 'bouton-centre-visible');
     this.situation = situation;
-    this.depot = depot;
-    this.joueConsigne = joueConsigne;
+    this.joueurConsigne = new JoueurConsigne(depot);
   }
 
   affiche (pointInsertion, $) {
     super.affiche(pointInsertion, $);
-    this.joueConsigne(this.depot, true, () => this.lectureTerminee());
+    this.joueurConsigne.joue(true, this.lectureTerminee.bind(this));
   }
 
   lectureTerminee () {
