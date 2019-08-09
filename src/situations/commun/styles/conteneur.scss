@@ -1,11 +1,12 @@
 @import 'commun/styles/mixins/bords_arrondis.scss';
+@import 'commun/styles/mixins/conteneur.scss';
+@import 'commun/styles/mixins/ombre.scss';
 
 .conteneur {
   @include bords-arrondis;
-  width: 63rem;
+  @include conteneur;
+  @include ombre;
   height: 41.875rem;
-  margin: auto;
-  position: relative;
 
   -moz-user-select: none;
   -webkit-user-select: none;

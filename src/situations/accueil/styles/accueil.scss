@@ -1,9 +1,12 @@
 @import 'commun/styles/couleurs.scss';
 @import 'commun/styles/mixins/bords_arrondis.scss';
+@import 'commun/styles/mixins/conteneur.scss';
+@import 'commun/styles/mixins/ombre.scss';
 
 #accueil {
   display: flex;
   flex-direction: column;
+  @include conteneur;
 
   .titre {
     display: flex;
@@ -16,7 +19,8 @@
 
   .acces-situations {
     @include bords-arrondis;
-    height: 566px;
+    @include ombre;
+    height: 35.375rem;
     position: relative;
     background-repeat: no-repeat;
   }
