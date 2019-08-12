@@ -1,5 +1,5 @@
 // général
-$couleur-fond: #FBF9F;
+$couleur-fond: #FBF9FA;
 $couleur-texte: #001c36;
 $blanc: #ffffff;
 $noir: #000000;
@@ -22,7 +22,7 @@ $couleur-ombre: rgba(0,0,0,0.31);
 $couleur-fond-bouton-rouge: #DE0B27;
 $couleur-fond-bouton-rouge-focus: #C2001A;
 // actions
-$couleur-fond-actions: #ebebeb;
+$couleur-fond-actions: $couleur-fond;
 
 // formulaires
 $couleur-bordure-modale-reponse: #cecece;
