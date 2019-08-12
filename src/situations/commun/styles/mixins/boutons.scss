@@ -1,11 +1,8 @@
-@mixin bouton-carre($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc, $hauteur-image: 1.3rem) {
+@mixin bouton($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc, $hauteur-image: 1.3rem) {
   cursor: pointer;
   height: 4rem;
   width: 4rem;
-  border-radius: 1rem;
-  border: solid 3px $couleur-bordure;
   background-color: $couleur-fond;
-  box-shadow: inset 0px 0px 0px 3px $couleur-fond-focus;
   display: flex;
   align-items: center;
 

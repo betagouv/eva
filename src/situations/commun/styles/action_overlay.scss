@@ -9,12 +9,13 @@
 }
 
 .bouton-go {
-  @include bouton-carre($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+  @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+  border-radius: 3.125rem;
 }
 
 .bouton-chargement {
   background: transparent;
-  @include bouton-carre(transparent, transparent, transparent);
+  @include bouton(transparent, transparent, transparent);
   cursor: default;
 
   img {
@@ -23,7 +24,7 @@
 }
 
 .bouton-erreur-chargement {
-  @include bouton-carre($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
+  @include bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
 
   img {
     height: 2rem;
