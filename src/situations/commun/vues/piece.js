@@ -44,10 +44,6 @@ export default class VuePiece extends EventEmitter {
     this.$piece = creeElementPiece(this.depotRessources, this.piece, dimensionsElementParent);
     this.$elementParent.append(this.$piece);
 
-    this.piece.on(CHANGEMENT_POSITION, (nouvellePosition) => {
-      metsAJourPosition(this.$piece, nouvellePosition, dimensionsElementParent);
-    });
-
     this.$piece.mousedown(e => {
       this.$piece.stop(true);
       this.$piece.css('opacity', 1);
@@ -61,8 +57,13 @@ export default class VuePiece extends EventEmitter {
       });
     });
 
-    this.$piece.on('dragstart', function (event) { event.preventDefault(); });
     this.$piece.mouseup(e => { this.piece.deselectionne(); });
+
+    this.$piece.on('dragstart', function (event) { event.preventDefault(); });
+
+    this.piece.on(CHANGEMENT_POSITION, (nouvellePosition) => {
+      metsAJourPosition(this.$piece, nouvellePosition, dimensionsElementParent);
+    });
 
     this.piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
       this.$elementParent.append(this.$piece);
