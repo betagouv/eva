@@ -19,10 +19,14 @@
           v-if="erreurs.nom"
           class="erreur">{{ erreurs.nom[0] }}</span>
       </div>
-      <label for="formulaire-identification-input-campagne">
+      <label
+        v-if="!campagneForcee"
+        for="formulaire-identification-input-campagne">
         {{ traduction('accueil.identification.campagne') }}
       </label>
-      <div class="element-formulaire">
+      <div
+        v-if="!campagneForcee"
+        class="element-formulaire">
         <input
           v-model.trim="campagne"
           type="text"
@@ -46,10 +50,17 @@ import 'accueil/styles/formulaire_identification.scss';
 import 'commun/styles/boutons.scss';
 
 export default {
+  props: {
+    forceCampagne: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
   data () {
     return {
       nom: '',
-      campagne: '',
+      campagne: this.forceCampagne,
       enCours: false,
       erreurs: {}
     };
@@ -60,6 +71,10 @@ export default {
 
     estDesactive () {
       return this.nom === '' || this.campagne === '' || this.enCours;
+    },
+
+    campagneForcee () {
+      return this.forceCampagne !== '';
     }
   },
 
@@ -70,7 +85,7 @@ export default {
       return this.$store.dispatch('inscris', { nom: this.nom, campagne: this.campagne })
         .then(() => {
           this.nom = '';
-          this.campagne = '';
+          this.campagne = this.forceCampagne;
         })
         .catch((xhr) => {
           this.erreurs = xhr.responseJSON;

@@ -117,4 +117,12 @@ describe("Le formulaire d'identification", function () {
       expect(wrapper.vm.erreurs).to.eql({});
     });
   });
+
+  it('cache le champ campagne si il y a une propriété forceCampagne', function () {
+    expect(wrapper.findAll('.input-accueil').length).to.equal(2);
+    wrapper = mount(FormulaireIdentificationVue, { store, propsData: { forceCampagne: 'ete-2019' } });
+    expect(wrapper.vm.campagne).to.eql('ete-2019');
+    expect(wrapper.findAll('label').length).to.equal(1);
+    expect(wrapper.findAll('.input-accueil').length).to.equal(1);
+  });
 });

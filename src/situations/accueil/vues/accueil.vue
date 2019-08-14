@@ -20,7 +20,7 @@
         :situation="situation"
       />
 
-      <formulaire-identification />
+      <formulaire-identification :force-campagne="forceCampagne" />
     </div>
   </div>
 </template>
@@ -37,11 +37,14 @@ export default {
   components: { FormulaireIdentification, AccesSituation, Progression, BoiteUtilisateur },
 
   data() {
+    const parsedUrl = new URL(window.location.href);
     return {
       fondAccueil: `url(${this.depotRessources.fondAccueil().src})`,
-      personnages: `url(${this.depotRessources.personnages().src})`
+      personnages: `url(${this.depotRessources.personnages().src})`,
+      forceCampagne: parsedUrl.searchParams.get('code') || ''
     };
   },
+
 
   computed: {
     ...mapState(['situations', 'estConnecte'])
