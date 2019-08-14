@@ -17,11 +17,11 @@ export default class VueSituation {
     this.journal = journal;
     this.depotRessources = depotRessources;
     this.tapis = new VueTapis(situation, depotRessources);
-    this.deplaceurPieces = new DeplaceurPieces(situation);
+    this.deplaceurPieces = new DeplaceurPieces();
   }
 
   creeVuePiece (piece) {
-    return new VuePiece(piece, this.depotRessources);
+    return new VuePiece(piece, this.depotRessources, this.deplaceurPieces);
   }
 
   affiche (pointInsertion, $) {

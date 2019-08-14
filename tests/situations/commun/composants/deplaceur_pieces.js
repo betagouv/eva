@@ -9,17 +9,13 @@ describe('Le composant DeplaceurPieces', function () {
   });
 
   it('déplace les pièces sélectionnées', function () {
-    const piece = new Piece({ x: 95, y: 55 });
-    const deplaceur = new DeplaceurPieces({
-      piecesAffichees () {
-        return [piece];
-      }
-    });
+    const piece = new Piece({ x: 90, y: 55 });
+    const deplaceur = new DeplaceurPieces();
     const $pointInsertion = $('#point-insertion');
-
-    piece.selectionne({ x: 95, y: 55 });
     $pointInsertion.width(50).height(200);
+
     deplaceur.activeDeplacementPieces('#point-insertion', $);
+    deplaceur.debuteSelection(piece, { x: 90, y: 55 }, { clientX: 45, clientY: 110 });
 
     $pointInsertion.trigger($.Event('mousemove', { buttons: 1, clientX: 30, clientY: 20 }));
 
@@ -28,15 +24,12 @@ describe('Le composant DeplaceurPieces', function () {
 
   it('déselectionne les pièces si il y a un mousemove sans maintien du clic', function () {
     const piece = new Piece({});
-    const deplaceur = new DeplaceurPieces({
-      piecesAffichees () {
-        return [piece];
-      }
-    });
+    const deplaceur = new DeplaceurPieces();
     const $pointInsertion = $('#point-insertion');
 
-    piece.selectionne({ x: 95, y: 55 });
     deplaceur.activeDeplacementPieces('#point-insertion', $);
+    deplaceur.debuteSelection(piece, {}, { clientX: 95, clientY: 55 });
+    expect(piece.estSelectionnee()).to.be(true);
 
     $pointInsertion.trigger($.Event('mousemove', { buttons: 0, clientX: 30, clientY: 20 }));
 
