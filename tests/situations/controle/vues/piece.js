@@ -1,19 +1,23 @@
 import $ from 'jquery';
 
+import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 import Piece from 'commun/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
 describe('Une pièce', function () {
+  let deplaceur;
   let depot;
 
   beforeEach(function () {
     $('body').append('<div id="controle" style="width: 100px; height: 100px"></div>');
+    deplaceur = new DeplaceurPieces();
+    deplaceur.activeDeplacementPieces('#controle', $);
     depot = { piece () { } };
   });
 
   it("suit une séquence d'animation pour apparaître", function (done) {
     const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = new VuePiece(piece, depot, function ($element) {
+    const vuePiece = new VuePiece(piece, depot, deplaceur, function ($element) {
       expect($element.hasClass('.piece'));
       done();
     });
@@ -26,7 +30,7 @@ describe('Une pièce', function () {
     const sequenceAnimation = function ($element) {
       $element.animate({ left: '80px' }, 0).delay(5).animate({ left: '10px' }, 0);
     };
-    const vuePiece = new VuePiece(piece, depot, sequenceAnimation);
+    const vuePiece = new VuePiece(piece, depot, deplaceur, sequenceAnimation);
 
     vuePiece.affiche('#controle', $);
 

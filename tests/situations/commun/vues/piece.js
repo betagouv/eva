@@ -1,10 +1,18 @@
 import $ from 'jquery';
 
+import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 import Piece, { DISPARITION_PIECE } from 'commun/modeles/piece';
 import VuePiece from 'commun/vues/piece';
 
+function activeDeplaceur (pointInsertion = '#pointInsertion') {
+  const deplaceur = new DeplaceurPieces();
+  deplaceur.activeDeplacementPieces(pointInsertion, $);
+  return deplaceur;
+}
+
 function creeVueMinimale (piece, depot) {
-  return new VuePiece(piece, depot);
+  const deplaceur = activeDeplaceur();
+  return new VuePiece(piece, depot, deplaceur);
 }
 
 describe('Une pièce', function () {
@@ -82,10 +90,12 @@ describe('Une pièce', function () {
 
   it('peut être désélectionnée', function () {
     const piece = new Piece({ x: 90, y: 40 });
-    piece.selectionne({ x: 95, y: 55 });
 
-    const vuePiece = creeVueMinimale(piece, depot);
+    const deplaceur = activeDeplaceur();
+    const vuePiece = new VuePiece(piece, depot, deplaceur);
     vuePiece.affiche('#pointInsertion', $);
+
+    deplaceur.debuteSelection(piece, { x: 90, y: 40 }, { clientX: 95, clientY: 55 });
 
     expect(piece.estSelectionnee()).to.be(true);
     $('.piece').trigger($.Event('mouseup'));
@@ -129,7 +139,8 @@ describe('Une pièce', function () {
       done();
     };
 
-    const vuePiece = new VuePiece(piece, depot, callbackAvantSuppression);
+    const deplaceur = activeDeplaceur();
+    const vuePiece = new VuePiece(piece, depot, deplaceur, callbackAvantSuppression);
     vuePiece.affiche('#pointInsertion', $);
     expect($('.desactiver').length).to.equal(0);
     piece.emit(DISPARITION_PIECE);

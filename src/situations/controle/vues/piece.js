@@ -5,10 +5,8 @@ export function animationInitiale ($element) {
 }
 
 export default class VuePiece extends VuePieceCommune {
-  constructor (piece,
-    depotRessources,
-    callbackApresApparition = animationInitiale) {
-    super(piece, depotRessources);
+  constructor (piece, depotRessources, deplaceur, callbackApresApparition = animationInitiale) {
+    super(piece, depotRessources, deplaceur);
 
     this.callbackApresApparition = callbackApresApparition;
   }

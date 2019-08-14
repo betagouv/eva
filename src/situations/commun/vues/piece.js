@@ -9,10 +9,11 @@ export function animationFinale ($element, done) {
 }
 
 export default class VuePiece extends EventEmitter {
-  constructor (piece, depotRessources, animationDisparition = animationFinale) {
+  constructor (piece, depotRessources, deplaceur, animationDisparition = animationFinale) {
     super();
     this.piece = piece;
     this.depotRessources = depotRessources;
+    this.deplaceur = deplaceur;
     this.animationDisparition = animationDisparition;
   }
 
@@ -47,17 +48,17 @@ export default class VuePiece extends EventEmitter {
     this.$piece.mousedown(e => {
       this.$piece.stop(true);
       this.$piece.css('opacity', 1);
-      this.piece.changePosition({
+
+      const positionActuelle = {
         x: 100 * parseInt(this.$piece.css('left')) / this.$elementParent.width(),
         y: 100 * parseInt(this.$piece.css('top')) / this.$elementParent.height()
-      });
-      this.piece.selectionne({
-        x: 100 * e.clientX / this.$elementParent.width(),
-        y: 100 * e.clientY / this.$elementParent.height()
-      });
+      };
+      this.deplaceur.debuteSelection(this.piece, positionActuelle, e);
     });
 
-    this.$piece.mouseup(e => { this.piece.deselectionne(); });
+    this.$piece.mouseup((e) => {
+      this.deplaceur.termineSelection(this.piece);
+    });
 
     this.$piece.on('dragstart', function (event) { event.preventDefault(); });
 

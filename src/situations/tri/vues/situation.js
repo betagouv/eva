@@ -12,7 +12,7 @@ export default class VueSituationTri {
     this.depotRessources = depotRessources;
     this.chronometre = new VueChronometre(situation, depotRessources);
     this.situation = situation;
-    this.deplaceurPieces = new DeplaceurPieces(situation);
+    this.deplaceurPieces = new DeplaceurPieces();
     this.envoiEvenementsAuJournal(journal);
     this.ajoutEcouteursPourLesSons();
   }
@@ -27,7 +27,7 @@ export default class VueSituationTri {
     });
 
     this.situation.piecesAffichees().forEach((piece) => {
-      const vuePiece = new VuePiece(piece, this.depotRessources);
+      const vuePiece = new VuePiece(piece, this.depotRessources, this.deplaceurPieces);
       vuePiece.affiche(pointInsertion, $);
     });
 

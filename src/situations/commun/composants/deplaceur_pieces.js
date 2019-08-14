@@ -1,33 +1,34 @@
 export default class DeplaceurPieces {
-  constructor (situation) {
-    this.situation = situation;
-  }
-
   activeDeplacementPieces (pointInsertion, $) {
-    this.$pointInsertion = $(pointInsertion);
-    this.$pointInsertion.mousemove(e => {
+    const $pointInsertion = $(pointInsertion);
+
+    this._positionEvenement = (e) => {
+      return {
+        x: 100 * e.clientX / $pointInsertion.width(),
+        y: 100 * e.clientY / $pointInsertion.height()
+      };
+    };
+
+    $pointInsertion.mousemove(e => {
       if (e.buttons === 1) {
         this.deplacePiecesSelectionnees(e);
       } else {
-        this.deselectionneToutesLesPieces();
+        this.termineSelection();
       }
     });
   }
 
-  deplacePiecesSelectionnees (e) {
-    const piecesAffichees = this.situation.piecesAffichees();
-    piecesAffichees.forEach(p => {
-      p.deplaceSiSelectionnee({
-        x: 100 * e.clientX / this.$pointInsertion.width(),
-        y: 100 * e.clientY / this.$pointInsertion.height()
-      });
-    });
+  debuteSelection (piece, positionActuelle, e) {
+    this.pieceSelectionne = piece;
+    this.pieceSelectionne.changePosition(positionActuelle);
+    this.pieceSelectionne.selectionne(this._positionEvenement(e));
   }
 
-  deselectionneToutesLesPieces () {
-    const piecesAffichees = this.situation.piecesAffichees();
-    piecesAffichees.forEach(p => {
-      p.deselectionne();
-    });
+  deplacePiecesSelectionnees (e) {
+    this.pieceSelectionne.deplaceSiSelectionnee(this._positionEvenement(e));
+  }
+
+  termineSelection (piece) {
+    this.pieceSelectionne.deselectionne();
   }
 }
