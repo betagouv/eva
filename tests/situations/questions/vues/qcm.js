@@ -60,4 +60,19 @@ describe('La vue de la question QCM', function () {
 
     $('#point-insertion #envoi-reponse').click();
   });
+
+  it('désactive le bouton une fois répondu pour éviter le double click', function (done) {
+    question.choix = [{ id: '32' }];
+    const $vue = new VueQCM(question);
+
+    $vue.affiche('#point-insertion', $);
+    $('#point-insertion input[type=radio][value=32]').prop('checked', true).trigger('input');
+    expect($('#point-insertion #envoi-reponse').prop('disabled')).to.be(false);
+    $vue.on(EVENEMENT_REPONSE, (reponse) => {
+      expect($('#point-insertion #envoi-reponse').prop('disabled')).to.be(true);
+      done();
+    });
+
+    $('#point-insertion #envoi-reponse').click();
+  });
 });
