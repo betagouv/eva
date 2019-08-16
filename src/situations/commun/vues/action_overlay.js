@@ -2,11 +2,12 @@ import VueBouton from './bouton';
 import 'commun/styles/action_overlay.scss';
 
 export default class VueActionOverlay {
-  constructor (image, message, classe, classeBouton) {
+  constructor (image, message, classe, classeBouton, dimensionOverlay = '') {
     this.image = image;
     this.message = message;
     this.classe = classe;
     this.classeBouton = classeBouton;
+    this.dimensionOverlay = dimensionOverlay;
     this.vueBouton = new VueBouton(this.classe, this.image, () => this.click());
   }
 
@@ -16,7 +17,7 @@ export default class VueActionOverlay {
 
     this.vueBouton.affiche($conteneurBouton, $);
 
-    this.$overlay = $('<div class="overlay hors-actions"></div>');
+    this.$overlay = $(`<div class="overlay ${this.dimensionOverlay}"></div>`);
 
     this.$overlay.append($conteneurBouton);
     this.$overlay.append(this.$message);

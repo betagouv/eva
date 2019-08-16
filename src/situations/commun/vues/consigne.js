@@ -6,7 +6,7 @@ import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 
 export default class VueConsigne extends VueActionOverlay {
   constructor (situation, depot, JoueurConsigne = _JoueurConsigne) {
-    super(lectureEnCours, '', 'bouton-lecture-en-cours', 'bouton-centre-visible');
+    super(lectureEnCours, '', 'bouton-lecture-en-cours', 'bouton-centre-visible', 'hors-actions');
     this.situation = situation;
     this.joueurConsigne = new JoueurConsigne(depot);
   }
