@@ -27,16 +27,19 @@ export default class VueQCM extends VueQuestion {
           <p class="couleur-grise sans-marge">${this.question.description}</p>
           <p class="sans-marge">${this.question.intitule}</p>
           ${$valeursPossibles}
-          <button id="envoi-reponse" class="question-bouton bouton-arrondi">
+          <button id="envoi-reponse" class="question-bouton bouton-arrondi" disabled>
             ${traduction('questions.qcm.valider')}
           </button>
         </div
       </div>
     `);
-
     $(pointInsertion).append(this.$vue);
-    $('#envoi-reponse', this.$vue).click(() => {
-      const reponse = $('input[name="numeratie"]:checked').val();
+    const $envoiReponse = $('#envoi-reponse', this.$vue);
+    $('input[name="numeratie"]', this.$vue).on('input', () => {
+      $envoiReponse.prop('disabled', false);
+    });
+    $envoiReponse.click(() => {
+      const reponse = $('input[name="numeratie"]:checked', this.$vue).val();
       this.emit(EVENEMENT_REPONSE, reponse);
     });
   }

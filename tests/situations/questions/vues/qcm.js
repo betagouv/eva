@@ -38,7 +38,16 @@ describe('La vue de la question QCM', function () {
     expect($('#point-insertion #envoi-reponse').length).to.equal(1);
   });
 
-  it('emet un événément réponse quand on appuie sur le bouton envoi', function (done) {
+  it("désactive le bouton lorsqu'aucune réponse n'est sélectionnée", function () {
+    question.choix = [{ id: '32' }];
+    const $vue = new VueQCM(question);
+    $vue.affiche('#point-insertion', $);
+    expect($('#point-insertion #envoi-reponse').prop('disabled')).to.be(true);
+    $('#point-insertion input[type=radio][value=32]').prop('checked', true).trigger('input');
+    expect($('#point-insertion #envoi-reponse').prop('disabled')).to.be(false);
+  });
+
+  it('emet un événement réponse quand on appuie sur le bouton envoi', function (done) {
     question.choix = [{ id: '32' }];
     const $vue = new VueQCM(question);
 
