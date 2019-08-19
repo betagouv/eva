@@ -17,7 +17,6 @@
     margin-bottom: 0;
     padding: 0.937rem 0 1.25rem;
     border-top: 1px solid #eeeeee;
-    color: $couleur-fond-bouton-terminer;
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
   }
@@ -29,6 +28,10 @@
   align-items: center;
   margin-bottom: 1.875rem;
   padding: 0 0.937rem;
+}
+
+.messagerie-expediteur {
+  color: $accent-validation-legere;
 }
 
 #reponse-compte-rendu {
