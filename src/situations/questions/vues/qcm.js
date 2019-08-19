@@ -24,8 +24,8 @@ export default class VueQCM extends VueQuestion {
       <div id="numeratie" class="question">
         <img class="question-illustration" src=${this.question.illustration}></img>
         <div class="question-barre">
-          <p class="couleur-grise sans-marge">${this.question.description}</p>
-          <p class="sans-marge">${this.question.intitule}</p>
+          <p class="sans-marge">${this.question.description}</p>
+          <p class="intitule-question sans-marge">${this.question.intitule}</p>
           ${$valeursPossibles}
           <button id="envoi-reponse" class="question-bouton bouton-arrondi" disabled>
             ${traduction('questions.qcm.valider')}

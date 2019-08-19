@@ -15,7 +15,7 @@ export default class VueRedactionNote extends VueQuestion {
         <img class="question-illustration" src=${this.question.illustration}></img>
         <div class="messagerie question-barre">
           <p class="messagerie-sujet">${this.question.intitule}</p>
-          <p class="messagerie-expediteur couleur-grise">${this.question.expediteur}</p>
+          <p class="messagerie-expediteur">${this.question.expediteur}</p>
           <p class='message-catherine-jean'>
             ${this.question.message}
           </p>
