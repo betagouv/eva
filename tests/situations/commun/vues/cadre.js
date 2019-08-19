@@ -21,6 +21,7 @@ describe('Une vue du cadre', function () {
   let uneVueCadre;
 
   beforeEach(function () {
+    $(window).off();
     $('body').append('<div id="point-insertion"></div>');
     depotRessources = new DepotRessourcesCommune('sonConsigne.wav', chargeurs());
     situation = new SituationCommune();
@@ -108,23 +109,24 @@ describe('Une vue du cadre', function () {
 
   it('demande une confirmation pour quitter la page lorsque la situation est démarré', function () {
     const vueCadre = uneVueCadre();
-    vueCadre.affiche('#point-insertion', $);
-    [LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE].forEach((etat) => {
-      situation.modifieEtat(etat);
-      const event = $.Event('beforeunload');
-      $(window).trigger(event);
-      expect(event.isDefaultPrevented()).to.be.ok();
+    return vueCadre.affiche('#point-insertion', $).then(() => {
+      [LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE].forEach((etat) => {
+        situation.modifieEtat(etat);
+        const event = $.Event('beforeunload');
+        $(window).trigger(event);
+        expect(event.isDefaultPrevented()).to.be(true);
+      });
     });
   });
 
   it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
     const vueCadre = uneVueCadre();
-    vueCadre.affiche('#point-insertion', $).then(() => {
+    return vueCadre.affiche('#point-insertion', $).then(() => {
       [CHARGEMENT, ERREUR_CHARGEMENT, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
         situation.modifieEtat(etat);
         const event = $.Event('beforeunload');
         $(window).trigger(event);
-        expect(event.isDefaultPrevented()).to.not.be.ok();
+        expect(event.isDefaultPrevented()).to.be(false);
       });
     });
   });
