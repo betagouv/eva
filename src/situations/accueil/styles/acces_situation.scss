@@ -8,6 +8,13 @@
     filter: drop-shadow(0 0 20px white);
   }
 
+  &.centre {
+    width: 335px;
+    height: 382px;
+    left: 336px;
+    top: 120px;
+  }
+
   &.tri {
     width: 225px;
     height: 250px;
@@ -16,24 +23,24 @@
   }
 
   &.inventaire {
-    width: 247px;
-    height: 214px;
-    left: 350px;
-    top: 190px;
+    width: 365px;
+    height: 400px;
+    left: 882px;
+    top: 109px;
   }
 
   &.controle {
-    width: 271px;
-    height: 302px;
-    left: 570px;
-    top: -38px;
+    width: 365px;
+    height: 374px;
+    left: 494px;
+    top: 138px;
   }
 
   &.questions {
-    width: 180px;
-    height: 278px;
-    left: 767px;
-    top: 258px;
+    width: 375px;
+    height: 370px;
+    left: 1269px;
+    top: 131px;
   }
 
   &.desactivee {

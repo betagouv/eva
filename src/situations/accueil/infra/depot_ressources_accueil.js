@@ -4,7 +4,7 @@ import personnages from 'accueil/assets/personnages.png';
 import tri from 'accueil/assets/tri.png';
 import inventaire from 'accueil/assets/inventaire.png';
 import controle from 'accueil/assets/controle.png';
-import questions from 'accueil/assets/questions.png';
+import questions from 'accueil/assets/bureau.png';
 
 const progression = require.context('accueil/assets', false, /progression[1-5]-sur-[1-5]\.png$/);
 
