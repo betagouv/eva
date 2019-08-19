@@ -91,4 +91,10 @@ describe('La vue de la situation « Question »', function () {
     situation.repond('Ma réponse');
     expect($('.overlay.invisible').length).to.eql(0);
   });
+
+  it('affiche un indicateur de progression', function () {
+    const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
+    vue.affiche('#point-insertion', $);
+    expect($('.progression-question').length).to.eql(1);
+  });
 });

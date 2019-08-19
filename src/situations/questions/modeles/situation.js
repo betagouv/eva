@@ -16,6 +16,14 @@ export default class Situation extends SituationCommune {
     return this.questions[this.indexQuestion];
   }
 
+  numeroQuestionCourante () {
+    return this.indexQuestion + 1;
+  }
+
+  nombreQuestions () {
+    return this.questions.length;
+  }
+
   repond (reponse) {
     const question = this.question();
     this.indexQuestion++;

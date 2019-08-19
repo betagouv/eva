@@ -2,8 +2,9 @@ import VueResultat from 'commun/vues/resultat';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from './question';
-import VueRedactionNote from './redaction_note';
+import VueProgression from './progression';
 import VueQCM from './qcm';
+import VueRedactionNote from './redaction_note';
 
 export default class VueSituation {
   constructor (situation, journal, depotRessources, registreUtilisateur) {
@@ -24,6 +25,7 @@ export default class VueSituation {
       this.afficheQuestion();
     });
     this.resultat = new VueResultat(situation);
+    this.progression = new VueProgression(situation);
   }
 
   affiche (pointInsertion, $) {
@@ -57,6 +59,7 @@ export default class VueSituation {
   afficheNouvelleQuestion (question) {
     this.question = new this.classesQuestions[question.type](question);
     this.question.affiche(this.pointInsertion, this.$);
+    this.progression.affiche(this.$('.question-barre'), this.$);
     this.$('.question', this.pointInsertion).hide().fadeIn();
     this.question.on(EVENEMENT_REPONSE_VUE, (reponse) => {
       this.situation.repond(reponse);
