@@ -9,10 +9,10 @@
   padding: 5px;
 
   .bouton-go {
-    @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+    @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet-focus);
   }
 
   .bouton-fini {
-    @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+    @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet-focus);
   }
 }
