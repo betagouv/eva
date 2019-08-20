@@ -66,6 +66,17 @@ describe("Le store de l'accueil", function () {
     expect(store.getters.niveauActuel).to.eql(2);
   });
 
+  it('recupère le dernier niveau', function () {
+    const store = creeStore(registreUtilisateur);
+    store.commit('metsAJourSituations', [1, 2]);
+    expect(store.getters.dernierNiveau).to.eql(3);
+  });
+
+  it('retourne undefined si le dernier niveau est inconnu', function () {
+    const store = creeStore(registreUtilisateur);
+    expect(store.getters.dernierNiveau).to.eql(undefined);
+  });
+
   it('sait récupérer les situations depuis le serveur', function () {
     registreUtilisateur.urlEvaluation = () => '/evaluation';
     const fetch = (url) => Promise.resolve({
