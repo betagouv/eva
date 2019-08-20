@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 import Accueil from 'accueil/vues/accueil';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
-import Progression from 'accueil/vues/progression';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 
 describe('La vue accueil', function () {
@@ -38,7 +37,6 @@ describe('La vue accueil', function () {
       store
     });
     expect(wrapper.findAll(AccesSituation).length).to.eql(2);
-    expect(wrapper.contains(Progression)).to.be(true);
     expect(wrapper.contains(FormulaireIdentification)).to.be(true);
     expect(wrapper.contains(BoiteUtilisateur)).to.be(true);
   });

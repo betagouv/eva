@@ -8,8 +8,6 @@
       :style="{ 'background-image': fondAccueil }"
       class="acces-situations">
 
-      <progression />
-
       <div
         :style="{ 'background-image': personnages }"
         class="personnages"></div>
