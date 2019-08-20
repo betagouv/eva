@@ -10,10 +10,10 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters(['niveauActuel']),
+    ...mapGetters(['niveauActuel', 'dernierNiveau']),
 
     backgroundImage() {
-      return `url('${this.depotRessources.progression(this.niveauActuel).src}')`;
+      return `url('${this.depotRessources.progression(this.niveauActuel, this.dernierNiveau).src}')`;
     }
   }
 }

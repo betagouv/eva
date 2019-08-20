@@ -10,19 +10,23 @@ describe('La vue pour afficher la progression', function () {
 
   beforeEach(function () {
     depotRessources = new class {
-      progression (identifiant) {
-        return { src: identifiant };
+      progression (identifiant, dernierNiveau) {
+        return { src: identifiant + '-' + dernierNiveau };
       }
     }();
     localVue = createLocalVue();
     localVue.prototype.depotRessources = depotRessources;
     store = new Vuex.Store({
       state: {
-        niveau: 2
+        niveau: 2,
+        dernierNiveau: 5
       },
       getters: {
         niveauActuel (state) {
           return state.niveau;
+        },
+        dernierNiveau (state) {
+          return state.dernierNiveau;
         }
       }
     });
@@ -34,8 +38,11 @@ describe('La vue pour afficher la progression', function () {
 
   it("rend l'image de fond en fonction du niveau actuel", function () {
     store.state.niveau = 1;
-    expect(wrapper.vm.backgroundImage).to.eql("url('1')");
+    store.state.dernierNiveau = 5;
+    expect(wrapper.vm.backgroundImage).to.eql("url('1-5')");
     store.state.niveau = 42;
-    expect(wrapper.vm.backgroundImage).to.eql("url('42')");
+    expect(wrapper.vm.backgroundImage).to.eql("url('42-5')");
+    store.state.dernierNiveau = 43;
+    expect(wrapper.vm.backgroundImage).to.eql("url('42-43')");
   });
 });

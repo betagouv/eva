@@ -56,6 +56,12 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
     getters: {
       niveauActuel (state) {
         return state.situationsFaites.length + 1;
+      },
+      dernierNiveau (state) {
+        if (state.situations.length === 0) {
+          return undefined;
+        }
+        return state.situations.length + 1;
       }
     }
   });
