@@ -4,8 +4,18 @@ $couleur-texte: #001c36;
 $blanc: #ffffff;
 $noir: #000000;
 $gris: #969696;
+$bleu-fonce: #1E416A;
+$violet: #6E84FE;
+$rouge: #FD5C54;
+$bleu-clair: #9ADBD0;
 $gris-clair: #DDDDDD;
-$accent-validation-legere: #9ADBD0;
+
+// branding & style-guide
+$couleur-sombre: $bleu-fonce;
+$couleur-principale-marque-et-interaction: $violet;
+$couleur-accent-et-erreur: $rouge;
+$couleur-legere-accent-et-validation: $bleu-clair;
+$couleur-clair: $gris-clair;
 
 
 // boutons
@@ -20,9 +30,9 @@ $couleur-fond-bouton-vert-focus: #0B8538;
 $couleur-fond-bouton-bleu: #12AFFF;
 $couleur-fond-bouton-bleu-focus: #0996DF;
 $couleur-ombre: rgba(0,0,0,0.31);
-$couleur-fond-bouton-rouge: #FD5C54;
+$couleur-fond-bouton-rouge: $rouge;
 $couleur-fond-bouton-rouge-focus: #C2001A;
-$couleur-fond-bouton-violet: #6E84FE;
+$couleur-fond-bouton-violet: $violet;
 $couleur-fond-bouton-violet-focus: #556ffe;
 // actions
 $couleur-fond-actions: $couleur-fond;
