@@ -45,7 +45,7 @@
       "ok": "OUI"
     },
     "reussite": "C'est terminé, bravo !",
-    "stop": "Voulez vous vraiment quitter la mission ?",
+    "stop": "Attention, vous n'avez pas terminé cette mission. Votre résultat sera impacté. Voulez vous vraiment abandonner ?",
     "terminer": "Terminer",
     "repeter_consigne": "Répéter la consigne",
     "arreter_mission": "Arrêter la mission"
