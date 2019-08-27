@@ -1,4 +1,4 @@
-import DepotRessources from 'commun/infra/depot_ressources';
+import DepotRessources, { chargeurJSON } from 'commun/infra/depot_ressources';
 import chargeurs from '../../commun/aides/mock_chargeurs';
 
 describe('le dépôt de ressources', function () {
@@ -64,6 +64,36 @@ describe('le dépôt de ressources', function () {
       depot.ressource('./etageres.png');
       depot.ressource('./etageres.png');
       expect(nbAppels).to.equal(2);
+    });
+  });
+
+  it('peut charger des resources json', function () {
+    let jsonString = '{ cle: "valeur"}';
+    window.fetch = (src) => {
+      return new Promise((resolve, reject) => {
+        resolve({
+          ok: true,
+          json: () => jsonString
+        });
+      });
+    };
+    return chargeurJSON('./evaluations/134.json').then((cloneur) => {
+      expect(cloneur()).to.equal(jsonString);
+    });
+  });
+
+  it("gère les erreurs reseau lors du chargement d'une resource json", function () {
+    window.fetch = (src) => {
+      return new Promise((resolve, reject) => {
+        resolve({
+          ok: false,
+          status: 404
+        });
+      });
+    };
+    return chargeurJSON('./evaluations/134.json').catch((e) => {
+      expect(e).to.be.a(Error);
+      expect(e.message).to.equal('Le chargement de la resources ./evaluations/134.json a échoué avec le code 404');
     });
   });
 });
