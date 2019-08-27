@@ -1,6 +1,6 @@
 let audioCtx;
 
-const chargeurAudio = function (src, timeout = 2000) {
+function chargeurAudio (src, timeout = 2000) {
   audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
   const request = new window.XMLHttpRequest();
 
@@ -24,7 +24,7 @@ const chargeurAudio = function (src, timeout = 2000) {
 
   request.send();
   return promesse;
-};
+}
 
 function chargeurImage (src) {
   const img = new window.Image();
@@ -45,6 +45,13 @@ function chargeurImage (src) {
 
 function chargeurJSON (src) {
   return window.fetch(src)
+    .then(res => {
+      if (res.ok) {
+        return res;
+      } else {
+        throw Error(`Le chargement de la resources ${src} a échoué avec le code ${res.status}`);
+      }
+    })
     .then((response) => response.json())
     .then((json) => { return () => json; });
 }
@@ -92,4 +99,4 @@ export default class DepotRessources {
   }
 }
 
-export { chargeurAudio };
+export { chargeurAudio, chargeurJSON };
