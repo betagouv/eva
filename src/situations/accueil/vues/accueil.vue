@@ -5,12 +5,14 @@
       <boite-utilisateur />
     </div>
     <div
-      :style="{ 'background-image': fondAccueil }"
+      :style="{ 'background-image': fondAccueil, 'background-position-x': position }"
       class="acces-situations">
 
       <div
         :style="{ 'background-image': personnages }"
-        class="personnages"></div>
+        class="personnages"
+        :class="[deplacePersonnage]"
+      ></div>
 
       <acces-situation
         v-for="situation in situations"
@@ -39,7 +41,9 @@ export default {
     return {
       fondAccueil: `url(${this.depotRessources.fondAccueil().src})`,
       personnages: `url(${this.depotRessources.personnages().src})`,
-      forceCampagne: parsedUrl.searchParams.get('code') || ''
+      forceCampagne: parsedUrl.searchParams.get('code') || '',
+      deplacePersonnage: this.deplacePersonnage(),
+      position: this.deplacefond()
     };
   },
 
@@ -61,6 +65,23 @@ export default {
   methods: {
     synchroniseSituations () {
       if(this.estConnecte) this.$store.dispatch('synchroniseSituations');
+    },
+
+    deplacePersonnage () {
+      if(this.$store.getters.niveauActuel > 1) return 'centre-personnage'
+    },
+
+    deplacefond () {
+      switch (this.$store.getters.niveauActuel) {
+        case 1:
+          return '0px'
+        case 2:
+          return '-12.5rem'
+        case 3:
+          return '-25rem'
+        case 4:
+          return '-37.5rem'
+      }
     }
   }
 }
