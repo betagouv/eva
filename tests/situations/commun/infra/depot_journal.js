@@ -7,7 +7,7 @@ describe('le depot du journal', function () {
     depot.enregistre({ autreCle: 'valeur2', description: { cle: 'valeur2' } });
 
     expect(requetes.length).to.equal(1);
-    expect(requetes[0]['type']).to.equal('POST');
+    expect(requetes[0].type).to.equal('POST');
   });
 
   it('retourne une promesse standard javascript', function () {

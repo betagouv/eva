@@ -14,24 +14,24 @@ function creeSituationMinimale (bacs = []) {
 
 describe('La situation « Contrôle »', function () {
   it('peut donner le delai avant le prochain coup de klaxon', function () {
-    let situation = new Situation({ sequenceKlaxons: [30000, 60000] });
+    const situation = new Situation({ sequenceKlaxons: [30000, 60000] });
     expect(situation.delaiKlaxonSuivant()).to.equal(30000);
     expect(situation.delaiKlaxonSuivant()).to.equal(60000);
     expect(situation.delaiKlaxonSuivant()).to.equal(undefined);
   });
 
   it('connaît la cadence à laquelle arrivent les pièces', function () {
-    let situation = new Situation({ cadence: 1000 });
+    const situation = new Situation({ cadence: 1000 });
     expect(situation._cadence).to.equal(1000);
   });
 
   it("connaît la durée de vie d'une pièce", function () {
-    let situation = new Situation({ dureeViePiece: 42 });
+    const situation = new Situation({ dureeViePiece: 42 });
     expect(situation.dureeViePiece()).to.equal(42);
   });
 
   it('sait reconnaître quand plus de pieces à venir', function () {
-    let situation = new Situation({ scenario: [] });
+    const situation = new Situation({ scenario: [] });
     expect(situation.sequenceTerminee()).to.be(true);
   });
 

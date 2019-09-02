@@ -11,7 +11,7 @@ describe('vue contenu', function () {
 
   beforeEach(function () {
     document.body.innerHTML = '<div id="point-insertion"></div>';
-    let pointInsertion = document.getElementById('point-insertion');
+    const pointInsertion = document.getElementById('point-insertion');
     vue = new VueContenu(pointInsertion, DELAI_FERMETURE);
     calque = document.getElementById('calque');
     element = vue.element;

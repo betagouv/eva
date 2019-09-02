@@ -68,7 +68,7 @@ describe('le dépôt de ressources', function () {
   });
 
   it('peut charger des resources json', function () {
-    let jsonString = '{ cle: "valeur"}';
+    const jsonString = '{ cle: "valeur"}';
     window.fetch = (src) => {
       return new Promise((resolve, reject) => {
         resolve({

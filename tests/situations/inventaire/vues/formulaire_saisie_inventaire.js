@@ -104,7 +104,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it('affiche les images des produits à inventorier', function () {
-    let magasin = unMagasin().avecCommeReferences(
+    const magasin = unMagasin().avecCommeReferences(
       { idProduit: '0', nom: 'Nova Sky', image: 'cheminImageNovaSky' }
     ).avecEnStock(
       new Contenant({ idContenu: '0', quantite: 12 })
@@ -116,7 +116,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it('affiche les noms des produits à inventorier', function () {
-    let magasin = unMagasin().avecCommeReferences(
+    const magasin = unMagasin().avecCommeReferences(
       { idProduit: '0', nom: 'Nova Sky' }
     ).avecEnStock(
       new Contenant({ idContenu: '0', quantite: 12 })
@@ -128,7 +128,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it('affiche pour chaque produit une zone de saisie', function () {
-    let magasin = unMagasin().avecCommeReferences(
+    const magasin = unMagasin().avecCommeReferences(
       { idProduit: '0', nom: 'Nova Sky' },
       { idProduit: '1', nom: 'Terra Cola' }
     ).avecEnStock(
@@ -141,7 +141,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it("affiche l'unite pour les produits dans des bidons", function () {
-    let magasin = unMagasin().avecCommeReferences(
+    const magasin = unMagasin().avecCommeReferences(
       { idProduit: '0', nom: 'Vrac Sky', forme: 'bidon' },
       { idProduit: '1', nom: 'Terra Cola', forme: 'caisse' }
     ).avecEnStock(
@@ -156,7 +156,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it('affiche un bouton pour valider la saisie', function () {
-    let magasin = unMagasinVide();
+    const magasin = unMagasinVide();
     expect($('.formulaire-saisie-inventaire .valide-saisie').length).to.equal(0);
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
@@ -164,7 +164,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
   });
 
   it('affiche un bouton pour retourner au stock', function () {
-    let magasin = unMagasinVide();
+    const magasin = unMagasinVide();
     expect($('.formulaire-saisie-inventaire .croix-retour-stock').length).to.equal(0);
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
@@ -194,7 +194,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
     expect($('.valide-saisie').length).to.equal(0);
     expect($('.succes-saisie-inventaire').length).to.equal(1);
     expect($('.retour-stock').length).to.equal(0);
-    expect(evenement.donnees()).to.eql({ reussite: true, reponses: { '0': { quantite: '12', reussite: true } } });
+    expect(evenement.donnees()).to.eql({ reussite: true, reponses: { 0: { quantite: '12', reussite: true } } });
   });
 
   it("parse les données rentrées par les utilisateurs pour n'enregistrer que les valeurs numériques", function () {
@@ -216,7 +216,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
     $zoneSaisieInventaire.val('12 L ');
     $boutonValidationSaisie.click();
-    expect(evenement.donnees()).to.eql({ reussite: true, reponses: { '0': { quantite: '12', reussite: true } } });
+    expect(evenement.donnees()).to.eql({ reussite: true, reponses: { 0: { quantite: '12', reussite: true } } });
   });
 
   it("envoie l'événement fin a la réussite", function (done) {

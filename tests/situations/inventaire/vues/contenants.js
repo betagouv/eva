@@ -9,7 +9,7 @@ describe('vue contenants', function () {
   let pointInsertion;
   let journal;
 
-  let contenants = [
+  const contenants = [
     new Contenant({ id: '0', idContenu: '0', quantite: 1, posX: 40, posY: 80 }, { nom: 'Nova Sky', image: 'chemin' }),
     new Contenant({ id: '1', idContenu: '0', quantite: 2, posX: 60, posY: 80 }, { nom: 'Nova Sky', image: 'chemin' })
   ];
@@ -38,10 +38,12 @@ describe('vue contenants', function () {
   });
 
   it('affiche le contenu quand on clique sur un contenant', function (done) {
-    vue.afficheLesContenants(contenants, { affiche: (contenant) => {
-      expect(contenant).to.equal(contenants[0]);
-      done();
-    } });
+    vue.afficheLesContenants(contenants, {
+      affiche: (contenant) => {
+        expect(contenant).to.equal(contenants[0]);
+        done();
+      }
+    });
 
     document.getElementsByClassName('contenant')[0]
       .dispatchEvent(new Event('click'));

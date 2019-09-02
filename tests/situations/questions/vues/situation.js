@@ -19,8 +19,8 @@ describe('La vue de la situation « Question »', function () {
     depotRessources.ressource = (ressource) => {
       return {
         questions: [
-          { 'type': 'redaction_note' },
-          { 'type': 'qcm', 'choix': [{ id: 1, type_choix: 'bon' }] }
+          { type: 'redaction_note' },
+          { type: 'qcm', choix: [{ id: 1, type_choix: 'bon' }] }
         ]
       };
     };

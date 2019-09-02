@@ -16,11 +16,11 @@ describe("l'événement d'ouverture de saisie d'inventaire", function () {
     expect(new EvenementSaisieInventaire(donnees).donnees()).to.eql({
       reussite: false,
       reponses: {
-        '1': {
+        1: {
           quantite: 4,
           reussite: true
         },
-        '2': {
+        2: {
           quantite: 6,
           reussite: false
         }

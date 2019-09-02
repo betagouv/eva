@@ -6,7 +6,7 @@ import VueContenant from 'inventaire/vues/contenant';
 describe('vue contenant', function () {
   let vue;
 
-  let contenant = new Contenant(
+  const contenant = new Contenant(
     { quantite: 12, posX: 40, posY: 80, largeur: 15, hauteur: 25, profondeurX: 10, profondeurY: 12 }
   );
 

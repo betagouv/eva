@@ -105,7 +105,7 @@ describe('Une pièce', function () {
     const piece = new Piece({});
     const vuePiece = creeVueMinimale(piece, depot);
     vuePiece.affiche('#pointInsertion', $);
-    $('#pointInsertion').append(`<div class="element"></div>`);
+    $('#pointInsertion').append('<div class="element"></div>');
     expect($('.piece').index()).to.equal(0);
     piece.selectionne({ x: 0, y: 0 });
     expect($('.piece').index()).to.equal(1);
