@@ -24,12 +24,15 @@ export default class DepotRessourcesTri extends DepotRessourcesCommunes {
   fondSituation () {
     return this.ressource(fondSituation);
   }
+
   fondChronometre () {
     return this.ressource(fondChronometre);
   }
+
   aiguilleLongue () {
     return this.ressource(aiguilleLongue);
   }
+
   aiguilleCourte () {
     return this.ressource(aiguilleCourte);
   }

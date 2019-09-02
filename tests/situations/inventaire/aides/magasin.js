@@ -22,13 +22,15 @@ class MagasinEnDevenir {
   }
 
   construit () {
-    let stock = { contenants: this.contenants, contenus: this.contenus };
+    const stock = { contenants: this.contenants, contenus: this.contenus };
 
     window.Audio = MockAudio;
     return new Situation(stock,
-      { consigne: 'chemin_son_consigne',
+      {
+        consigne: 'chemin_son_consigne',
         reussite: 'chemin_son_reussite',
-        echec: 'chemin_son_echec' });
+        echec: 'chemin_son_echec'
+      });
   }
 }
 

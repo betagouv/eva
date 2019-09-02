@@ -29,7 +29,7 @@ export default class VueSituation {
   }
 
   affiche (pointInsertion, $) {
-    this.situation.questions(this.depotRessources.ressource(this.ressourceEvaluation)['questions']);
+    this.situation.questions(this.depotRessources.ressource(this.ressourceEvaluation).questions);
     this.$ = $;
     this.pointInsertion = pointInsertion;
     this.afficheQuestion();

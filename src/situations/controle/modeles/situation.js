@@ -45,7 +45,8 @@ export default class Situation extends SituationCommune {
 
   pieceSuivante () {
     const donneesPiece = this.scenario.shift();
-    return new Piece({ x: this.positionApparition.x,
+    return new Piece({
+      x: this.positionApparition.x,
       y: this.positionApparition.y,
       categorie: donneesPiece.categorie,
       type: donneesPiece.type,

@@ -18,7 +18,7 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
   const $champSaisie = $(`#${ID_FORMULAIRE_SAISIE} input#${idProduit}`);
   const $marque = $('<span class="marque-correcte">✓</span>');
 
-  $champSaisie.siblings(`.marque-correcte`).remove();
+  $champSaisie.siblings('.marque-correcte').remove();
   if (reponseCorrecte) {
     $champSaisie.addClass('reponse-correcte');
     $champSaisie.removeClass('reponse-incorrecte');

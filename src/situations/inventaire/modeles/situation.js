@@ -6,7 +6,7 @@ function inventaireProduits ({ contenants, contenus }) {
   var inventaire = new Map();
 
   contenants.forEach(function (c) {
-    let clefProduit = c.idContenu;
+    const clefProduit = c.idContenu;
     if (!inventaire.has(clefProduit)) {
       inventaire.set(clefProduit, 0);
     }

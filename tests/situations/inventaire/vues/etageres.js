@@ -12,7 +12,7 @@ describe('vue etagères', function () {
   });
 
   it("sait s'afficher dans une page web", function () {
-    let elementsTrouves = document.querySelectorAll('#magasin .etageres');
+    const elementsTrouves = document.querySelectorAll('#magasin .etageres');
     expect(elementsTrouves.length).to.equal(1);
 
     vue.affiche([]);

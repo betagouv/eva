@@ -57,11 +57,11 @@ function chargeurJSON (src) {
 }
 
 const CHARGEURS = {
-  'wav': chargeurAudio,
-  'png': chargeurImage,
-  'svg': chargeurImage,
-  'jpg': chargeurImage,
-  'json': chargeurJSON
+  wav: chargeurAudio,
+  png: chargeurImage,
+  svg: chargeurImage,
+  jpg: chargeurImage,
+  json: chargeurJSON
 };
 
 export default class DepotRessources {
