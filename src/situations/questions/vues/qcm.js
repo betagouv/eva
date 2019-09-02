@@ -40,7 +40,7 @@ export default class VueQCM extends VueQuestion {
     });
     $envoiReponse.click(() => {
       $envoiReponse.prop('disabled', true);
-      const reponse = $('input[name="numeratie"]:checked', this.$vue).val();
+      const reponse = parseInt($('input[name="numeratie"]:checked', this.$vue).val(), 10);
       this.emit(EVENEMENT_REPONSE, reponse);
     });
   }
