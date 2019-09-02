@@ -6,14 +6,19 @@ export default class Situation extends SituationCommune {
   constructor () {
     super();
     this.indexQuestion = 0;
+    this.resultat = {
+      bon: 0,
+      mauvais: 0,
+      abstention: 0
+    };
   }
 
   questions (questions) {
-    this.questions = questions;
+    this._questions = questions;
   }
 
   question () {
-    return this.questions[this.indexQuestion];
+    return this._questions[this.indexQuestion];
   }
 
   numeroQuestionCourante () {
@@ -21,13 +26,17 @@ export default class Situation extends SituationCommune {
   }
 
   nombreQuestions () {
-    return this.questions.length;
+    return this._questions.length;
   }
 
   repond (reponse) {
     const question = this.question();
     this.indexQuestion++;
-    if (this.indexQuestion === this.questions.length) {
+    if (question.type === 'qcm') {
+      const choix = question.choix.find(choix => choix.id === reponse);
+      this.resultat[choix.type_choix]++;
+    }
+    if (this.indexQuestion === this._questions.length) {
       this.modifieEtat(FINI);
     }
     this.emit(EVENEMENT_REPONSE, question, reponse);

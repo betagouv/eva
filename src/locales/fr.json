@@ -33,6 +33,11 @@
     },
     "qcm": {
       "valider": "Valider"
+    },
+    "resultat": {
+      "bon": "Bonnes réponses : {{nombre}}",
+      "mauvais": "Mauvaises réponses : {{nombre}}",
+      "abstention": "Ne sait pas : {{nombre}}"
     }
   },
   "situation": {

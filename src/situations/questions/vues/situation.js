@@ -24,7 +24,7 @@ export default class VueSituation {
       journal.enregistre(evenement);
       this.afficheQuestion();
     });
-    this.resultat = new VueResultat(situation);
+    this.resultat = new VueResultat(situation, 'questions');
     this.progression = new VueProgression(situation);
   }
 

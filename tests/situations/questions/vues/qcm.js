@@ -48,13 +48,13 @@ describe('La vue de la question QCM', function () {
   });
 
   it('emet un événement réponse quand on appuie sur le bouton envoi', function (done) {
-    question.choix = [{ id: '32' }];
+    question.choix = [{ id: 32 }];
     const $vue = new VueQCM(question);
 
     $vue.affiche('#point-insertion', $);
     $('#point-insertion input[type=radio][value=32]').prop('checked', true);
     $vue.on(EVENEMENT_REPONSE, (reponse) => {
-      expect(reponse).to.eql('32');
+      expect(reponse).to.equal(32);
       done();
     });
 
@@ -62,7 +62,7 @@ describe('La vue de la question QCM', function () {
   });
 
   it('désactive le bouton une fois répondu pour éviter le double click', function (done) {
-    question.choix = [{ id: '32' }];
+    question.choix = [{ id: 32 }];
     const $vue = new VueQCM(question);
 
     $vue.affiche('#point-insertion', $);
