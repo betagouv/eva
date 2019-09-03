@@ -53,6 +53,25 @@ describe('La vue accueil', function () {
     expect(wrapper.vm.personnages).to.eql('url(personnages)');
   });
 
+  it("donne le décalage a gauche d'une situation", function () {
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    expect(wrapper.vm.decalageGaucheBatiment(0)).to.equal(298.5);
+    expect(wrapper.vm.decalageGaucheBatiment(1)).to.equal(298.5 + 411 + 195.75);
+    expect(wrapper.vm.decalageGaucheBatiment(2)).to.equal(298.5 + (411 + 195.75) * 2);
+  });
+
+  it('donne le déplacement à gauche de la vue', function () {
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    expect(wrapper.vm.decalageGaucheVue(1)).to.equal(0);
+    expect(wrapper.vm.decalageGaucheVue(2)).to.equal(411 + 195.75);
+  });
+
   it("synchronise les situations quand un utilisateur affiche l'accueil en étant connecté", function (done) {
     store.dispatch = (evenement) => {
       expect(evenement).to.eql('synchroniseSituations');

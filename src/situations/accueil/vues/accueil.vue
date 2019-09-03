@@ -6,7 +6,7 @@
     </div>
     <div
       :style="{ 'background-image': fondAccueil, 'background-position-x': position }"
-      class="acces-situations">
+      class="accueil-scene">
 
       <div
         :style="{ 'background-image': personnages }"
@@ -14,11 +14,16 @@
         :class="[deplacePersonnage]"
       ></div>
 
-      <acces-situation
-        v-for="situation in situations"
-        :key="situation.identifiant"
-        :situation="situation"
-      />
+      <div
+        :style="{ transform: `translateX(${-decalageGaucheVue(niveauActuel)}px)`}"
+        class="acces-situations">
+        <acces-situation
+          v-for="(situation, index) in situations"
+          :key="situation.identifiant"
+          :situation="situation"
+          :style="{ left: `${decalageGaucheBatiment(index)}px`}"
+         />
+      </div>
 
       <formulaire-identification :force-campagne="forceCampagne" />
     </div>
@@ -26,12 +31,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
 import Progression from 'accueil/vues/progression';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
+
+const LARGEUR_SCENE = 1008;
+const LARGEUR_BATIMENT = 411;
+const DECALAGE_INITIAL = LARGEUR_SCENE / 2 - LARGEUR_BATIMENT / 2;
+const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 
 export default {
   components: { FormulaireIdentification, AccesSituation, Progression, BoiteUtilisateur },
@@ -49,7 +59,8 @@ export default {
 
 
   computed: {
-    ...mapState(['situations', 'estConnecte'])
+    ...mapState(['situations', 'estConnecte']),
+    ...mapGetters(['niveauActuel'])
   },
 
   mounted () {
@@ -64,11 +75,19 @@ export default {
 
   methods: {
     synchroniseSituations () {
-      if(this.estConnecte) this.$store.dispatch('synchroniseSituations');
+      if (this.estConnecte) this.$store.dispatch('synchroniseSituations');
     },
 
     deplacePersonnage () {
-      if(this.$store.getters.niveauActuel > 1) return 'centre-personnage'
+      if (this.$store.getters.niveauActuel > 1) return 'centre-personnage'
+    },
+
+    decalageGaucheBatiment (index) {
+      return DECALAGE_INITIAL + index * (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
+    },
+
+    decalageGaucheVue (niveau) {
+      return (niveau - 1) * (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
     },
 
     deplacefond () {

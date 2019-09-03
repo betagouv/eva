@@ -17,12 +17,18 @@
     }
   }
 
-  .acces-situations {
+  .accueil-scene {
     @include bords-arrondis;
     @include ombre;
     height: 35.375rem;
     position: relative;
     background-repeat: no-repeat;
+  }
+
+  .acces-situations {
+    position: absolute;
+    bottom: 70px;
+    transition: transform 1s;
   }
 
   .progression {
