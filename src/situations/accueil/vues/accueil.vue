@@ -8,11 +8,10 @@
       :style="{ 'background-image': fondAccueil, 'background-position-x': position }"
       class="accueil-scene">
 
-      <div
-        :style="{ 'background-image': personnages }"
-        class="personnages"
-        :class="[deplacePersonnage]"
-      ></div>
+      <img
+        :src="personnage"
+        class="personnage"
+      />
 
       <div
         :style="{ transform: `translateX(${-decalageGaucheVue(niveauActuel)}px)`}"
@@ -50,13 +49,11 @@ export default {
     const parsedUrl = new URL(window.location.href);
     return {
       fondAccueil: `url(${this.depotRessources.fondAccueil().src})`,
-      personnages: `url(${this.depotRessources.personnages().src})`,
+      personnage: this.depotRessources.personnage().src,
       forceCampagne: parsedUrl.searchParams.get('code') || '',
-      deplacePersonnage: this.deplacePersonnage(),
       position: this.deplacefond()
     };
   },
-
 
   computed: {
     ...mapState(['situations', 'estConnecte']),
@@ -76,10 +73,6 @@ export default {
   methods: {
     synchroniseSituations () {
       if (this.estConnecte) this.$store.dispatch('synchroniseSituations');
-    },
-
-    deplacePersonnage () {
-      if (this.$store.getters.niveauActuel > 1) return 'centre-personnage'
     },
 
     decalageGaucheBatiment (index) {

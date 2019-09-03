@@ -16,7 +16,7 @@ describe('La vue accueil', function () {
         return { src: '' };
       }
 
-      personnages () {
+      personnage () {
         return { src: '' };
       }
     }();
@@ -41,16 +41,16 @@ describe('La vue accueil', function () {
     expect(wrapper.contains(BoiteUtilisateur)).to.be(true);
   });
 
-  it("affiche le fond de l'accueil et les personnages", function () {
+  it("affiche le fond de l'accueil et le personnage", function () {
     depotRessources.fondAccueil = () => { return { src: 'image-fond' }; };
-    depotRessources.personnages = () => { return { src: 'personnages' }; };
+    depotRessources.personnage = () => { return { src: 'personnage' }; };
 
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
     });
     expect(wrapper.vm.fondAccueil).to.eql('url(image-fond)');
-    expect(wrapper.vm.personnages).to.eql('url(personnages)');
+    expect(wrapper.vm.personnage).to.eql('personnage');
   });
 
   it("donne le décalage a gauche d'une situation", function () {

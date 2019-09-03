@@ -1,6 +1,6 @@
 import DepotRessources from 'commun/infra/depot_ressources';
 import fondAccueil from 'accueil/assets/fond-accueil.png';
-import personnages from 'accueil/assets/personnages.png';
+import personnage from 'accueil/assets/personnage.png';
 import tri from 'accueil/assets/tri.png';
 import inventaire from 'accueil/assets/inventaire.png';
 import controle from 'accueil/assets/controle.png';
@@ -18,7 +18,7 @@ const batiments = {
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnages, tri, inventaire, controle, questions]);
+    this.charge([fondAccueil, personnage, tri, inventaire, controle, questions]);
     this.chargeContexte(progression);
     this._progression = progression.keys().reduce((memo, fichier) => {
       const match = fichier.match(/progression([1-5])-sur-([1-5])\.png$/);
@@ -31,8 +31,8 @@ export default class DepotRessourcesAccueil extends DepotRessources {
     return this.ressource(fondAccueil);
   }
 
-  personnages () {
-    return this.ressource(personnages);
+  personnage () {
+    return this.ressource(personnage);
   }
 
   batimentSituation (situation) {
