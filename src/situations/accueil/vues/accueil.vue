@@ -35,7 +35,6 @@ import { mapState, mapGetters } from 'vuex';
 import 'accueil/styles/accueil.scss';
 import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
-import Progression from 'accueil/vues/progression';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 
 const LARGEUR_SCENE = 1008;
@@ -44,7 +43,7 @@ const DECALAGE_INITIAL = LARGEUR_SCENE / 2 - LARGEUR_BATIMENT / 2;
 const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 
 export default {
-  components: { FormulaireIdentification, AccesSituation, Progression, BoiteUtilisateur },
+  components: { FormulaireIdentification, AccesSituation, BoiteUtilisateur },
 
   data() {
     const parsedUrl = new URL(window.location.href);

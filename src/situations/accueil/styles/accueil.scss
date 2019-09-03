@@ -32,15 +32,6 @@
     transition: transform 1s;
   }
 
-  .progression {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-  }
-
   .personnage {
     position: absolute;
     background: no-repeat;
