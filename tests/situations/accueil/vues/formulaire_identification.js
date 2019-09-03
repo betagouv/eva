@@ -24,6 +24,7 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.exists('form')).to.be(true);
     expect(wrapper.exists('label')).to.be(true);
     expect(wrapper.findAll('input[type=text]').length).to.eql(2);
+    expect(wrapper.findAll('input[type=checkbox]').length).to.eql(1);
   });
 
   it("se cache lorsqu'on est connecté", function () {
@@ -44,6 +45,8 @@ describe("Le formulaire d'identification", function () {
     input.setValue('  Mon pseudo  ');
     const input2 = wrapper.findAll('input[type=text]').at(1);
     input2.setValue('Mon code campagne');
+    const inputCheckbox = wrapper.find('input[type=checkbox]');
+    inputCheckbox.setChecked();
     input.trigger('submit');
   });
 
@@ -56,11 +59,13 @@ describe("Le formulaire d'identification", function () {
     });
   });
 
-  it('est desactivé lorsque le nom est vide ou la campagne est vide', function () {
+  it('est desactivé lorsque le nom est vide ou la campagne est vide ou les conditions ne sont pas accepté', function () {
     expect(wrapper.vm.estDesactive).to.be(true);
     wrapper.vm.nom = 'Mon pseudo';
     expect(wrapper.vm.estDesactive).to.be(true);
     wrapper.vm.campagne = 'Mon pseudo';
+    expect(wrapper.vm.estDesactive).to.be(true);
+    wrapper.vm.cgu = true;
     expect(wrapper.vm.estDesactive).to.be(false);
   });
 
@@ -122,7 +127,7 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.findAll('.input-accueil').length).to.equal(2);
     wrapper = mount(FormulaireIdentificationVue, { store, propsData: { forceCampagne: 'ete-2019' } });
     expect(wrapper.vm.campagne).to.eql('ete-2019');
-    expect(wrapper.findAll('label').length).to.equal(1);
+    expect(wrapper.findAll('label').length).to.equal(2);
     expect(wrapper.findAll('.input-accueil').length).to.equal(1);
   });
 });
