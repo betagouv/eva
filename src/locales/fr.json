@@ -8,6 +8,7 @@
     "identification": {
       "boutton": "Démarrer",
       "campagne": "Code de la campagne",
+      "cgu": "J'autorise Compétences pro à collecter et traiter mes données personnelles dans le cadre de l'utilisation de l'outil. Ces données ne seront pas exploitées commercialement. Dans le cadre spécifique d'une campagne de recrutement, j'accepte que les données collectées soient transmises à l'entreprise pour laquelle je postule et/ou à l'institution en charge des formations. Vous pouvez utiliser votre droit de suppression de données personnelles en nous écrivant à l'adresse email support@competences-pro.beta.gouv.fr",
       "label": "Entrez votre nom et prénom",
       "titre": "Bienvenue !"
     },

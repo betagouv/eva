@@ -35,6 +35,12 @@
           v-if="erreurs.campagne"
           class="erreur">{{ erreurs.campagne[0] }}</span>
       </div>
+      <div>
+        <label>
+          <input v-model="cgu" type="checkbox" />
+          {{ traduction('accueil.identification.cgu') }}
+        </label>
+      </div>
       <div class="element-formulaire">
         <button
           :disabled="estDesactive"
@@ -62,7 +68,8 @@ export default {
       nom: '',
       campagne: this.forceCampagne,
       enCours: false,
-      erreurs: {}
+      erreurs: {},
+      cgu: false
     };
   },
 
@@ -70,7 +77,7 @@ export default {
     ...mapState(['estConnecte']),
 
     estDesactive () {
-      return this.nom === '' || this.campagne === '' || this.enCours;
+      return this.nom === '' || this.campagne === '' || !this.cgu || this.enCours;
     },
 
     campagneForcee () {
