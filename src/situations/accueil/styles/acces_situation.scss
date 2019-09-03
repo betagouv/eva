@@ -3,44 +3,12 @@
   position: absolute;
   font-size: 0;
   background: center / contain no-repeat;
+  width: 411px;
+  height: 382px;
+  bottom: 0px;
 
   &:hover {
     filter: drop-shadow(0 0 20px white);
-  }
-
-  &.centre {
-    width: 335px;
-    height: 382px;
-    left: 336px;
-    top: 120px;
-  }
-
-  &.tri {
-    width: 334px;
-    height: 380px;
-    left: 140px;
-    top: 120px;
-  }
-
-  &.inventaire {
-    width: 365px;
-    height: 400px;
-    left: 882px;
-    top: 109px;
-  }
-
-  &.controle {
-    width: 365px;
-    height: 374px;
-    left: 494px;
-    top: 138px;
-  }
-
-  &.questions {
-    width: 375px;
-    height: 370px;
-    left: 1269px;
-    top: 131px;
   }
 
   &.desactivee {
