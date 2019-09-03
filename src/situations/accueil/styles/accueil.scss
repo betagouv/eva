@@ -40,18 +40,12 @@
     pointer-events: none;
   }
 
-  .personnages {
+  .personnage {
     position: absolute;
     background: no-repeat;
-    top: 365px;
-    left: 50px;
-    height: 100%;
-    width: 100%;
+    bottom: 20px;
+    left: 50%;
     pointer-events: none;
     z-index: 100
-  }
-
-  .centre-personnage {
-    left: 34rem;
   }
 }
