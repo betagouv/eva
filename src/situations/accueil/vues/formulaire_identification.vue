@@ -5,46 +5,46 @@
       id="formulaire-identification"
       class="formulaire-identification"
       @submit.prevent="envoieFormulaire">
-      <h2>{{ traduction('accueil.identification.titre') }}</h2>
-      <label for="formulaire-identification-input-nom">
-        {{ traduction('accueil.identification.label') }}
-      </label>
-      <div class="element-formulaire">
-        <input
-          v-model.trim="nom"
-          type="text"
-          class="input-accueil"
-          autofocus>
-        <span
-          v-if="erreurs.nom"
-          class="erreur">{{ erreurs.nom[0] }}</span>
-      </div>
-      <label
-        v-if="!campagneForcee"
-        for="formulaire-identification-input-campagne">
-        {{ traduction('accueil.identification.campagne') }}
-      </label>
-      <div
-        v-if="!campagneForcee"
-        class="element-formulaire">
-        <input
-          v-model.trim="campagne"
-          type="text"
-          class="input-accueil">
-        <span
-          v-if="erreurs.campagne"
-          class="erreur">{{ erreurs.campagne[0] }}</span>
-      </div>
       <div>
-        <label>
-          <input v-model="cgu" type="checkbox" />
-          {{ traduction('accueil.identification.cgu') }}
+        <h2>{{ traduction('accueil.identification.titre') }}</h2>
+        <label for="formulaire-identification-input-nom">
+          {{ traduction('accueil.identification.label') }}
         </label>
-      </div>
-      <div class="element-formulaire">
-        <button
-          :disabled="estDesactive"
-          class="bouton-arrondi">{{ traduction('accueil.identification.boutton') }}</button>
+        <div class="element-formulaire">
+          <input
+            v-model.trim="nom"
+            type="text"
+            class="input-accueil"
+            autofocus>
+          <span
+            v-if="erreurs.nom"
+            class="erreur">{{ erreurs.nom[0] }}</span>
+        </div>
+        <label
+          v-if="!campagneForcee"
+          for="formulaire-identification-input-campagne">
+          {{ traduction('accueil.identification.campagne') }}
+        </label>
+        <div
+          v-if="!campagneForcee"
+          class="element-formulaire">
+          <input
+            v-model.trim="campagne"
+            type="text"
+            class="input-accueil">
+          <span
+            v-if="erreurs.campagne"
+            class="erreur">{{ erreurs.campagne[0] }}</span>
+        </div>
+        <label class="cgu-label">
+          <input v-model="cgu" type="checkbox" />
+          <span class="cgu-text">{{ traduction('accueil.identification.cgu') }}</span>
+        </label>
+        <div class="element-formulaire">
+          <button
+            :disabled="estDesactive"
+            class="bouton-arrondi">{{ traduction('accueil.identification.boutton') }}</button>
+        </div>
       </div>
     </form>
   </transition>
