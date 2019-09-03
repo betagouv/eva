@@ -5,8 +5,9 @@
       <boite-utilisateur />
     </div>
     <div
-      :style="{ 'background-image': fondAccueil, 'background-position-x': position }"
-      class="accueil-scene">
+      :style="{ 'background-image': fondAccueil, 'background-position-x': `${positionFond}%` }"
+      class="accueil-scene"
+    >
 
       <img
         :src="personnage"
@@ -50,14 +51,17 @@ export default {
     return {
       fondAccueil: `url(${this.depotRessources.fondAccueil().src})`,
       personnage: this.depotRessources.personnage().src,
-      forceCampagne: parsedUrl.searchParams.get('code') || '',
-      position: this.deplacefond()
+      forceCampagne: parsedUrl.searchParams.get('code') || ''
     };
   },
 
   computed: {
     ...mapState(['situations', 'estConnecte']),
-    ...mapGetters(['niveauActuel'])
+    ...mapGetters(['niveauActuel']),
+
+    positionFond () {
+      return (this.niveauActuel - 1) * 100 / this.situations.length;
+    }
   },
 
   mounted () {
@@ -81,19 +85,6 @@ export default {
 
     decalageGaucheVue (niveau) {
       return (niveau - 1) * (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
-    },
-
-    deplacefond () {
-      switch (this.$store.getters.niveauActuel) {
-        case 1:
-          return '0px'
-        case 2:
-          return '-12.5rem'
-        case 3:
-          return '-25rem'
-        case 4:
-          return '-37.5rem'
-      }
     }
   }
 }
