@@ -1,7 +1,6 @@
 @import 'commun/styles/couleurs.scss';
-@import 'commun/styles/mixins/bords_arrondis.scss';
 @import 'commun/styles/mixins/conteneur.scss';
-@import 'commun/styles/mixins/ombre.scss';
+@import 'commun/styles/mixins/boutons.scss';
 
 #accueil {
   display: flex;
@@ -17,11 +16,7 @@
     }
   }
 
-  .accueil-scene {
-    @include bords-arrondis;
-    @include ombre;
-    height: 35.375rem;
-    position: relative;
+  .scene {
     transition: background-position-x 1s;
   }
 
@@ -38,5 +33,10 @@
     left: 50%;
     pointer-events: none;
     z-index: 100
+  }
+
+  .bouton-mission {
+    @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet-focus);
+    border-radius: 3.125rem;
   }
 }

@@ -5,6 +5,8 @@ import tri from 'accueil/assets/tri.png';
 import inventaire from 'accueil/assets/inventaire.png';
 import controle from 'accueil/assets/controle.png';
 import questions from 'accueil/assets/bureau.png';
+import precedent from 'accueil/assets/precedent.svg';
+import suivant from 'accueil/assets/suivant.svg';
 
 const batiments = {
   tri,
@@ -16,7 +18,7 @@ const batiments = {
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnage, tri, inventaire, controle, questions]);
+    this.charge([fondAccueil, personnage, tri, inventaire, controle, questions, precedent, suivant]);
   }
 
   fondAccueil () {
@@ -25,6 +27,14 @@ export default class DepotRessourcesAccueil extends DepotRessources {
 
   personnage () {
     return this.ressource(personnage);
+  }
+
+  precedent () {
+    return this.ressource(precedent);
+  }
+
+  suivant () {
+    return this.ressource(suivant);
   }
 
   batimentSituation (situation) {
