@@ -1,6 +1,4 @@
-// général
-$couleur-fond: #FBF9FA;
-$couleur-texte: #001c36;
+// couleurs
 $blanc: #ffffff;
 $noir: #000000;
 $gris: #969696;
@@ -17,6 +15,9 @@ $couleur-accent-et-erreur: $rouge;
 $couleur-legere-accent-et-validation: $bleu-clair;
 $couleur-clair: $gris-clair;
 
+// général
+$couleur-fond: #FBF9FA;
+$couleur-texte: $couleur-sombre;
 
 // boutons
 $couleur-texte-bouton-retour: #414141;
@@ -47,9 +48,6 @@ $couleur-reponse-incorrecte: $couleur-fond-bouton-rouge;
 $couleur-fond-reponse-incorrecte: #ffbebe;
 $couleur-bordure-input-accueil: #75c5ff;
 $couleur-ombre-input-accueil: #c5c5c5;
-
-// titre
-$couleur-titre-accueil:#245c8f;
 
 //litératie/numeratie
 $couleur-fond-module: #EFEEE4;

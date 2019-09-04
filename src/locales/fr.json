@@ -47,8 +47,8 @@
     "chargement": "Chargement en cours",
     "go": "Vous pouvez commencer",
     "modale": {
-      "annuler": "NON",
-      "ok": "OUI"
+      "annuler": "Non",
+      "ok": "Oui"
     },
     "reussite": "C'est terminé, bravo !",
     "stop": "Attention, vous n'avez pas terminé cette mission. Votre résultat sera impacté. Voulez vous vraiment abandonner ?",
