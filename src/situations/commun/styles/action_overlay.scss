@@ -32,9 +32,10 @@
 }
 
 .message {
+  font-family: 'Quicksand', sans-serif;
   position:absolute;
   top: 7rem;
-  color: $blanc;
+  color: $couleur-texte;
   text-align: center;
   width: 100%;
   line-height: 6.5rem;

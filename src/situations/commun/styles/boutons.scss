@@ -1,8 +1,7 @@
 @import 'commun/styles/couleurs.scss';
 
 .bouton-arrondi {
-  padding: .625rem .9375rem;
-  text-transform: uppercase;
+  padding: .5rem 2.5rem;
   text-decoration: none;
   border-radius: 2rem;
   cursor: pointer;
@@ -10,6 +9,7 @@
   background-color: $couleur-fond-bouton-violet;
   transition: border, background .3s;
   outline: none;
+  line-height: 1.3;
 
   &:active {
     border-color: $couleur-fond-bouton-violet;

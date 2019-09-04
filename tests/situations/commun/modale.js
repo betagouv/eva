@@ -12,7 +12,7 @@ describe('fenetre modale', function () {
 
     const $fenetre = $('#fenetre-modale');
     expect($fenetre.length).to.equal(1);
-    expect($fenetre.find('label').text()).to.equal('message');
+    expect($fenetre.find('h2').text()).to.equal('message');
   });
 
   it("execute l'action quand on clique le bouton Ok", function (done) {

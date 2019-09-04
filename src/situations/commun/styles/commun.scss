@@ -37,6 +37,15 @@ h1 {
   color: $couleur-texte;
 }
 
+h2 {
+  font-family: 'Quicksand', sans-serif;
+  color: $couleur-texte;
+  font-size: 2rem;
+  margin: 0;
+  padding-bottom: .5rem;
+  width: 42rem;
+}
+
 .invisible {
   opacity: 0;
   pointer-events: none;
@@ -73,8 +82,7 @@ h1 {
 }
 
 button {
-  font-size: 1rem;
-  font-family: inherit;
+  font-size: 1.1rem;
   border: 0px;
 }
 
