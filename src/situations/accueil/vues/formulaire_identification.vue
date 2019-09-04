@@ -12,6 +12,7 @@
         </label>
         <div class="element-formulaire">
           <input
+            id="formulaire-identification-input-nom"
             v-model.trim="nom"
             type="text"
             class="input-accueil"
@@ -29,6 +30,7 @@
           v-if="!campagneForcee"
           class="element-formulaire">
           <input
+            id="formulaire-identification-input-campagne"
             v-model.trim="campagne"
             type="text"
             class="input-accueil">
