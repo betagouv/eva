@@ -27,4 +27,8 @@
     margin-right: 1rem;
     width: 7rem;
   }
+
+  &.desactivee span {
+    opacity: .5;
+  }
 }

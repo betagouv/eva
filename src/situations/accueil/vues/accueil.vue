@@ -4,27 +4,56 @@
       <h1>Compétences pro</h1>
       <boite-utilisateur />
     </div>
-    <div
-      :style="{ 'background-image': fondAccueil, 'background-position-x': `${positionFond}%` }"
-      class="accueil-scene"
-    >
-
-      <img
-        :src="personnage"
-        class="personnage"
-      />
-
+    <div class="conteneur">
       <div
-        :style="{ transform: `translateX(${-decalageGaucheVue(indexBatiment)}px)`}"
-        class="acces-situations">
-        <acces-situation
-          v-for="(situation, index) in situations"
-          :key="situation.identifiant"
-          :situation="situation"
-          :style="{ left: `${decalageGaucheBatiment(index)}px`}"
-         />
-      </div>
+        :style="{ 'background-image': fondAccueil, 'background-position-x': `${positionFond}%` }"
+        class="scene"
+      >
 
+        <img
+          :src="personnage"
+          class="personnage"
+        />
+
+        <div
+          :style="{ transform: `translateX(${-decalageGaucheVue(indexBatiment)}px)`}"
+          class="acces-situations">
+          <acces-situation
+            v-for="(situation, index) in situations"
+            :key="situation.identifiant"
+            :situation="situation"
+            :style="{ left: `${decalageGaucheBatiment(index)}px`}"
+           />
+        </div>
+      </div>
+      <div class="actions">
+        <div
+          :class="{ desactivee: precedentDesactivee}"
+          class="bouton-et-etiquette"
+        >
+          <button
+            :disabled="precedentDesactivee"
+            class="bouton-mission"
+            @click="indexBatiment--"
+           >
+            <img :src="precedent">
+          </button>
+          <span>{{ traduction('accueil.precedent') }}</span>
+        </div>
+        <div
+          :class="{ desactivee: suivantDesactivee}"
+          class="bouton-et-etiquette gauche"
+        >
+          <button
+            :disabled="suivantDesactivee"
+            class="bouton-mission"
+            @click="indexBatiment++"
+           >
+            <img :src="suivant">
+          </button>
+          <span>{{ traduction('accueil.suivant') }}</span>
+        </div>
+      </div>
       <formulaire-identification :force-campagne="forceCampagne" />
     </div>
   </div>
@@ -33,6 +62,9 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import 'accueil/styles/accueil.scss';
+import 'commun/styles/cadre.scss';
+import 'commun/styles/actions.scss';
+import 'commun/styles/bouton.scss';
 import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
@@ -52,6 +84,8 @@ export default {
     return {
       fondAccueil: `url(${this.depotRessources.fondAccueil().src})`,
       personnage: this.depotRessources.personnage().src,
+      precedent: this.depotRessources.precedent().src,
+      suivant: this.depotRessources.suivant().src,
       forceCampagne: parsedUrl.searchParams.get('code') || '',
       indexBatiment: this.recupereNiveauDuPrecedentChargement()
     };
@@ -63,6 +97,14 @@ export default {
 
     positionFond () {
       return (this.indexBatiment - 1) * 30;
+    },
+
+    precedentDesactivee () {
+      return this.indexBatiment === 1;
+    },
+
+    suivantDesactivee () {
+      return this.indexBatiment === this.niveauActuel;
     }
   },
 

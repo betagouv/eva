@@ -19,6 +19,14 @@ describe('La vue accueil', function () {
       personnage () {
         return { src: '' };
       }
+
+      precedent () {
+        return { src: '' };
+      }
+
+      suivant () {
+        return { src: '' };
+      }
     }();
 
     store = new Vuex.Store({

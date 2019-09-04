@@ -5,6 +5,8 @@
   "seconde": "{{count}} seconde",
   "seconde_plural": "{{count}} secondes",
   "accueil": {
+    "precedent": "Mission précédente",
+    "suivant": "Mission suivante",
     "identification": {
       "boutton": "Démarrer",
       "campagne": "Code de la campagne",
