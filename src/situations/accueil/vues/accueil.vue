@@ -15,7 +15,7 @@
       />
 
       <div
-        :style="{ transform: `translateX(${-decalageGaucheVue(niveauActuel)}px)`}"
+        :style="{ transform: `translateX(${-decalageGaucheVue(indexBatiment)}px)`}"
         class="acces-situations">
         <acces-situation
           v-for="(situation, index) in situations"
@@ -42,6 +42,8 @@ const LARGEUR_BATIMENT = 411;
 const DECALAGE_INITIAL = LARGEUR_SCENE / 2 - LARGEUR_BATIMENT / 2;
 const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 
+export const CLE_NIVEAU_PRECEDENT = 'niveauPrecedent';
+
 export default {
   components: { FormulaireIdentification, AccesSituation, BoiteUtilisateur },
 
@@ -50,7 +52,8 @@ export default {
     return {
       fondAccueil: `url(${this.depotRessources.fondAccueil().src})`,
       personnage: this.depotRessources.personnage().src,
-      forceCampagne: parsedUrl.searchParams.get('code') || ''
+      forceCampagne: parsedUrl.searchParams.get('code') || '',
+      indexBatiment: this.recupereNiveauDuPrecedentChargement()
     };
   },
 
@@ -59,12 +62,13 @@ export default {
     ...mapGetters(['niveauActuel']),
 
     positionFond () {
-      return (this.niveauActuel - 1) * 100 / this.situations.length;
+      return (this.indexBatiment - 1) * 30;
     }
   },
 
   mounted () {
     this.synchroniseSituations();
+    this.sauvegardeNiveauPourProchainChargement();
   },
 
   watch: {
@@ -75,7 +79,9 @@ export default {
 
   methods: {
     synchroniseSituations () {
-      if (this.estConnecte) this.$store.dispatch('synchroniseSituations');
+      if (!this.estConnecte) return;
+      this.$store.dispatch('synchroniseSituations')
+        .then(() => this.indexBatiment = this.niveauActuel );
     },
 
     decalageGaucheBatiment (index) {
@@ -84,6 +90,15 @@ export default {
 
     decalageGaucheVue (niveau) {
       return (niveau - 1) * (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
+    },
+
+    sauvegardeNiveauPourProchainChargement () {
+      window.localStorage.setItem(CLE_NIVEAU_PRECEDENT, this.niveauActuel);
+    },
+
+    recupereNiveauDuPrecedentChargement () {
+      const precedentNiveau = window.localStorage.getItem(CLE_NIVEAU_PRECEDENT);
+      return parseInt(precedentNiveau);
     }
   }
 }
