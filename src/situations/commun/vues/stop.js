@@ -26,8 +26,6 @@ export default class VueStop {
       $,
       {
         titre: traduction('situation.stop'),
-        boutonOk: traduction('situation.modale.ok'),
-        boutonAnnuler: traduction('situation.modale.annuler'),
         actionOk: this.clickSurOk.bind(this)
       }
     );
