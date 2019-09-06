@@ -35,10 +35,12 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.nom = () => 'Mon nom';
     registreUtilisateur.situationsFaites = () => [1];
     const store = creeStore(registreUtilisateur);
+    store.commit('metsAJourSituations', [1, 2]);
     store.commit('deconnecte');
     expect(store.state.estConnecte).to.eql(false);
     expect(store.state.nom).to.eql('');
     expect(store.state.situationsFaites.length).to.eql(0);
+    expect(store.state.situations.length).to.eql(0);
   });
 
   it('mets à jour les situations accessible', function () {
