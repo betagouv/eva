@@ -7,6 +7,7 @@ import controle from 'accueil/assets/controle.png';
 import questions from 'accueil/assets/bureau.png';
 import precedent from 'accueil/assets/precedent.svg';
 import suivant from 'accueil/assets/suivant.svg';
+import punaise from 'accueil/assets/punaise.svg';
 
 const batiments = {
   tri,
@@ -18,7 +19,7 @@ const batiments = {
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnage, tri, inventaire, controle, questions, precedent, suivant]);
+    this.charge([fondAccueil, personnage, tri, inventaire, controle, questions, precedent, suivant, punaise]);
   }
 
   fondAccueil () {
@@ -35,6 +36,10 @@ export default class DepotRessourcesAccueil extends DepotRessources {
 
   suivant () {
     return this.ressource(suivant);
+  }
+
+  punaise () {
+    return this.ressource(punaise);
   }
 
   batimentSituation (situation) {
