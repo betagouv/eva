@@ -18,6 +18,10 @@ export default {
     situation: {
       type: Object,
       required: true
+    },
+    desactivee: {
+      type: Boolean,
+      required: true
     }
   },
 
@@ -25,12 +29,6 @@ export default {
     return {
       backgroundImage: `url('${this.depotRessources.batimentSituation(this.situation.identifiant).src}')`
     };
-  },
-
-  computed: {
-    desactivee() {
-      return this.situation.niveauMinimum > this.$store.getters.niveauActuel;
-    }
   }
 }
 </script>

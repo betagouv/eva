@@ -28,6 +28,7 @@
             :key="situation.identifiant"
             :situation="situation"
             :style="{ left: `${decalageGaucheBatiment(index)}px`}"
+            :desactivee="indexBatiment - 1 !== index"
            />
         </div>
       </div>
