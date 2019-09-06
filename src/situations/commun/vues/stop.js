@@ -24,8 +24,12 @@ export default class VueStop {
     afficheFenetreModale(
       pointInsertion,
       $,
-      traduction('situation.stop'),
-      this.clickSurOk.bind(this)
+      {
+        titre: traduction('situation.stop'),
+        boutonOk: traduction('situation.modale.ok'),
+        boutonAnnuler: traduction('situation.modale.annuler'),
+        actionOk: this.clickSurOk.bind(this)
+      }
     );
   }
 

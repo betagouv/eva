@@ -10,6 +10,7 @@ export function afficheSituation (identifiantSituation, modeleSituation, VueSitu
   function affiche (pointInsertion, $) {
     const journal = creeJournalPourSituation(identifiantSituation);
 
+    modeleSituation.identifiant = identifiantSituation;
     const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources, barreDev);
     vueCadre.affiche(pointInsertion, $);
   }
