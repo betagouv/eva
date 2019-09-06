@@ -52,7 +52,7 @@
     },
     "reussite": "C'est terminé, bravo !",
     "stop": "Attention, vous n'avez pas terminé cette mission. Votre résultat sera impacté. Voulez vous vraiment abandonner ?",
-    "terminer": "Terminer",
+    "retour_accueil": "Retour au parc",
     "repeter_consigne": "Répéter la consigne",
     "arreter_mission": "Arrêter la mission"
   },

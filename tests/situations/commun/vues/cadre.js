@@ -100,10 +100,9 @@ describe('Une vue du cadre', function () {
 
   it('affiche la vue terminer', function () {
     const vueCadre = uneVueCadre();
-    vueCadre.affiche('#point-insertion', $).then(() => {
+    return vueCadre.affiche('#point-insertion', $).then(() => {
       situation.emit(CHANGEMENT_ETAT, FINI);
-      expect($('.actions').length).to.equal(2);
-      expect($('.actions.invisible').length).to.equal(1);
+      expect($('#fenetre-modale').text()).to.match(/situation.reussite/);
     });
   });
 

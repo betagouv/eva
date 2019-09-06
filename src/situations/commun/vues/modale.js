@@ -1,16 +1,18 @@
-import { traduction } from 'commun/infra/internationalisation';
-
 import 'commun/styles/overlay.scss';
 import 'commun/styles/boutons.scss';
 import 'commun/styles/modale.scss';
 
-export function afficheFenetreModale (pointInsertion, $, message, actionOk) {
+export function afficheFenetreModale (pointInsertion, $,
+  { titre, boutonOk, boutonAnnuler, message, actionOk }) {
+  const htmlAnnuler = boutonAnnuler ? `<button id="annuler-modale" class='bouton-arrondi modal-annuler'>${boutonAnnuler}</button>` : '';
+
   const $modale = $(`<div id="fenetre-modale" class="overlay modale">
     <div>
-      <h2>${message}</h2>
+      <h2>${titre}</h2>
+      <p>${message}<p>
       <div class="buttons">
-        <button id="OK-modale" class='bouton-arrondi'>${traduction('situation.modale.ok')}</button>
-        <button id="annuler-modale" class='bouton-arrondi modal-annuler'>${traduction('situation.modale.annuler')}</button>
+        <button id="OK-modale" class='bouton-arrondi'>${boutonOk}</button>
+        ${htmlAnnuler}
       </div>
     </div>
     </div>`);

@@ -3,7 +3,6 @@ import { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'tri/modeles/piece';
 import VueBac from 'commun/vues/bac.js';
 import VuePiece from 'tri/vues/piece.js';
 import VueChronometre from 'tri/vues/chronometre.js';
-import VueResultat from 'commun/vues/resultat.js';
 import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
@@ -14,7 +13,6 @@ export default class VueSituationTri {
     this.chronometre = new VueChronometre(situation, depotRessources);
     this.situation = situation;
     this.deplaceurPieces = new DeplaceurPieces(situation);
-    this.resultat = new VueResultat(situation, 'tri');
     this.envoiEvenementsAuJournal(journal);
     this.ajoutEcouteursPourLesSons();
   }
@@ -35,7 +33,6 @@ export default class VueSituationTri {
 
     this.chronometre.affiche(pointInsertion, $);
     this.deplaceurPieces.activeDeplacementPieces(pointInsertion, $);
-    this.resultat.affiche(pointInsertion, $);
   }
 
   envoiEvenementsAuJournal (journal) {

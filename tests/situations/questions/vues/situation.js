@@ -83,15 +83,6 @@ describe('La vue de la situation « Question »', function () {
     expect($('#numeratie').length).to.eql(1);
   });
 
-  it('affiche un overlay au dessus des questions à la fin', function () {
-    const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
-    vue.affiche('#point-insertion', $);
-    situation.repond('Ma réponse');
-    expect($('.overlay.invisible').length).to.eql(1);
-    situation.repond(1);
-    expect($('.overlay.invisible').length).to.eql(0);
-  });
-
   it('affiche un indicateur de progression', function () {
     const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
     vue.affiche('#point-insertion', $);

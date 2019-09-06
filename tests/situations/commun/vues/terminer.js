@@ -2,25 +2,42 @@ import $ from 'jquery';
 import VueTerminer from 'commun/vues/terminer.js';
 
 describe('Affiche les éléments liés à la fin de la situation', function () {
-  let vueTerminer;
+  let vue;
+  let situation;
 
   beforeEach(function () {
-    $('body').append('<div id="magasin"></div>');
-    vueTerminer = new VueTerminer();
+    $('body').append('<div id="pointInsertion"></div>');
+    situation = {
+      identifiant: 'maSituation',
+      resultat: { }
+    };
+    vue = new VueTerminer(situation);
   });
 
-  it('regroupe les éléments dans un conteneur', function () {
-    vueTerminer.affiche('#magasin', $);
-    expect($('.actions').length).to.equal(1);
+  it('affiche une fenêtre modale de fin', function () {
+    vue.affiche('#pointInsertion', $);
+    expect($('#fenetre-modale').length).to.equal(1);
   });
 
   it('affiche le message de succés', function () {
-    vueTerminer.affiche('#magasin', $);
-    expect($('.message-succes').length).to.equal(1);
+    vue.affiche('#pointInsertion', $);
+    expect($('#fenetre-modale').find('h2').text()).to.equal('situation.reussite');
   });
 
-  it('affiche le bouton terminer', function () {
-    vueTerminer.affiche('#magasin', $);
-    expect($('.bouton-terminer').length).to.equal(1);
+  it("affiche le bouton retour à l'accueil", function () {
+    vue.affiche('#pointInsertion', $);
+    expect($('#fenetre-modale').find('button').text()).to.equal('situation.retour_accueil');
+  });
+
+  it('affiche les résultats', function () {
+    situation.resultat = {
+      resultat1: 'valeurResultat1',
+      resultat2: 'valeurResultat2'
+    };
+    vue.affiche('#pointInsertion', $);
+    const $fenetre = $('#fenetre-modale');
+    expect($fenetre.find('.message-fin').length).to.equal(1);
+    expect($fenetre.find('.message-fin p').length).to.equal(2);
+    expect($fenetre.find('.message-fin p').first().text()).to.eql('maSituation.resultat.resultat1');
   });
 });
