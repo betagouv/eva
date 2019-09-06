@@ -22,6 +22,7 @@ export default class VueTerminer {
       {
         titre: traduction('situation.reussite'),
         boutonOk: traduction('situation.retour_accueil'),
+        boutonAnnuler: false,
         message: $message.get(0).outerHTML,
         actionOk: this.retourAccueil
       }
