@@ -150,4 +150,33 @@ describe('La vue accueil', function () {
     const niveauPrecedentChargement = wrapper.vm.recupereNiveauDuPrecedentChargement();
     expect(niveauPrecedentChargement).to.equal(2);
   });
+
+  it('retourne aucune situation actuelle lorsque aucune situations est chargée', function () {
+    store.state.situations = [];
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    expect(wrapper.vm.situationActuelle).to.eql(null);
+  });
+
+  it('retourne la situation actuelle lorsque les situations sont chargées', function () {
+    store.state.situations = [{ nom: 'Inventaire' }];
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    wrapper.vm.indexBatiment = 1;
+    expect(wrapper.vm.situationActuelle.nom).to.eql('Inventaire');
+  });
+
+  it("retourne aucune situation actuelle lorsque c'est terminée", function () {
+    store.state.situations = [{ nom: 'Inventaire' }];
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    wrapper.vm.indexBatiment = 2;
+    expect(wrapper.vm.situationActuelle).to.eql(null);
+  });
 });
