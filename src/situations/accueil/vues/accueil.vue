@@ -136,6 +136,10 @@ export default {
   watch: {
     estConnecte () {
       this.synchroniseSituations();
+      if (!this.estConnecte) {
+        this.indexBatiment = 0;
+        this.sauvegardeNiveauPourProchainChargement();
+      }
     }
   },
 
