@@ -22,6 +22,7 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
         state.estConnecte = false;
         state.nom = '';
         state.situationsFaites = [];
+        state.situations = [];
       },
 
       metsAJourSituations (state, situations) {
