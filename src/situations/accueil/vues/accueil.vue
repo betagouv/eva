@@ -40,6 +40,13 @@
           </button>
           <span>{{ traduction('accueil.precedent') }}</span>
         </div>
+        <a
+          v-if="situationActuelle"
+          :href="situationActuelle.chemin"
+          class="bouton-arrondi"
+        >
+          {{ traduction('accueil.commencer', { situation: situationActuelle.nom }) }}
+        </a>
         <div
           :class="{ desactivee: suivantDesactivee}"
           class="bouton-et-etiquette gauche"
@@ -105,6 +112,12 @@ export default {
 
     suivantDesactivee () {
       return this.indexBatiment === this.niveauActuel;
+    },
+
+    situationActuelle () {
+      if (this.situations.length === 0 || this.indexBatiment > this.situations.length)
+        return null;
+      return this.situations[this.indexBatiment - 1];
     }
   },
 
