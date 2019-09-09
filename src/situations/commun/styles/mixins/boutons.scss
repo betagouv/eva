@@ -1,4 +1,5 @@
 @mixin bouton($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc, $hauteur-image: 1.3rem) {
+  border-radius: 3.125rem;
   cursor: pointer;
   height: 4rem;
   width: 4rem;

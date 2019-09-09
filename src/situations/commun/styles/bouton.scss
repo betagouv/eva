@@ -3,12 +3,10 @@
 
 .bouton-lire-consigne {
   @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet-focus);
-  border-radius: 3.125rem;
 }
 
 .bouton-lecture-en-cours {
   @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet, $couleur-fond-bouton-violet, 3.5rem);
-  border-radius: 3.125rem;
   cursor: default;
 }
 

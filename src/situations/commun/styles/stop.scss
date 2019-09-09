@@ -3,5 +3,4 @@
 
 .bouton-stop {
   @include bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
-  border-radius: 3.125rem;
 }
