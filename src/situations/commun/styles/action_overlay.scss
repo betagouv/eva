@@ -10,7 +10,6 @@
 
 .bouton-go {
   @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet-focus);
-  border-radius: 3.125rem;
 }
 
 .bouton-chargement {
