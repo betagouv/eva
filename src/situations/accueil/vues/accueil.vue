@@ -53,6 +53,12 @@
         >
           {{ traduction('accueil.commencer', { situation: situationActuelle.nom }) }}
         </a>
+        <a
+          v-else-if="termine"
+          class="bouton-arrondi"
+        >
+          {{ traduction('accueil.conclure') }}
+        </a>
         <div
           :class="{ desactivee: suivantDesactivee}"
           class="bouton-et-etiquette gauche"
@@ -122,9 +128,13 @@ export default {
     },
 
     situationActuelle () {
-      if (this.situations.length === 0 || this.indexBatiment > this.situations.length)
+      if (this.situations.length === 0 || this.termine)
         return null;
       return this.situations[this.indexBatiment - 1];
+    },
+
+    termine () {
+      return this.indexBatiment > this.situations.length;
     }
   },
 

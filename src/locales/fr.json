@@ -6,6 +6,7 @@
   "seconde_plural": "{{count}} secondes",
   "accueil": {
     "commencer": "Commencer {{situation}}",
+    "conclure": "Conclure",
     "precedent": "Mission précédente",
     "suivant": "Mission suivante",
     "identification": {
