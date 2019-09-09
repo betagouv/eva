@@ -183,4 +183,14 @@ describe('La vue accueil', function () {
     wrapper.vm.indexBatiment = 2;
     expect(wrapper.vm.situationActuelle).to.eql(null);
   });
+
+  it('termine est vraie lorsque toute les situations ont été faites', function () {
+    store.state.situations = [{ nom: 'Inventaire' }];
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    wrapper.vm.indexBatiment = 2;
+    expect(wrapper.vm.termine).to.be(true);
+  });
 });
