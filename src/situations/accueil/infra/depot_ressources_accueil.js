@@ -1,5 +1,5 @@
 import DepotRessources from 'commun/infra/depot_ressources';
-import fondAccueil from 'accueil/assets/fond-accueil.png';
+import fondAccueil from 'accueil/assets/fond-accueil.jpg';
 import personnage from 'accueil/assets/personnage.png';
 import tri from 'accueil/assets/tri.png';
 import inventaire from 'accueil/assets/inventaire.png';
