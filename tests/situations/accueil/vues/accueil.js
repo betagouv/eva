@@ -193,4 +193,28 @@ describe('La vue accueil', function () {
     wrapper.vm.indexBatiment = 2;
     expect(wrapper.vm.termine).to.be(true);
   });
+
+  it("affiche l'écran de fin à l'appui du bouton conclure", function () {
+    store.state.situations = [{ nom: 'Inventaire' }];
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    wrapper.vm.afficheEcranFin();
+    expect(wrapper.vm.ecranFinAfficher).to.eql(true);
+  });
+
+  it('réinitialise les données a la déconnexion', function () {
+    store.dispatch = () => Promise.resolve();
+    store.state.estConnecte = true;
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    wrapper.vm.ecranFinAfficher = true;
+    wrapper.vm.indexBatiment = 1;
+    store.state.estConnecte = false;
+    expect(wrapper.vm.ecranFinAfficher).to.be(false);
+    expect(wrapper.vm.indexBatiment).to.equal(0);
+  });
 });

@@ -16,6 +16,11 @@
       "label": "Entrez votre nom et prénom",
       "titre": "Bienvenue !"
     },
+    "fin": {
+      "bouton": "Terminer",
+      "message": "Vous avez maintenant terminé toutes les mises en situations",
+      "titre": "Merci et bravo !"
+    },
     "titre": "Compétences pro"
   },
   "controle": {
