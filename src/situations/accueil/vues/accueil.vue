@@ -53,12 +53,13 @@
         >
           {{ traduction('accueil.commencer', { situation: situationActuelle.nom }) }}
         </a>
-        <a
+        <button
           v-else-if="termine"
           class="bouton-arrondi"
+          @click="afficheEcranFin"
         >
           {{ traduction('accueil.conclure') }}
-        </a>
+        </button>
         <div
           :class="{ desactivee: suivantDesactivee}"
           class="bouton-et-etiquette gauche"
@@ -74,6 +75,9 @@
         </div>
       </div>
       <formulaire-identification :force-campagne="forceCampagne" />
+      <transition-fade>
+        <fin v-if="ecranFinAfficher" />
+      </transition-fade>
     </div>
   </div>
 </template>
@@ -84,9 +88,13 @@ import 'accueil/styles/accueil.scss';
 import 'commun/styles/cadre.scss';
 import 'commun/styles/actions.scss';
 import 'commun/styles/bouton.scss';
+import 'commun/styles/overlay.scss';
+import 'commun/styles/modale.scss';
 import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
+import Fin from 'accueil/vues/fin';
+import TransitionFade from 'commun/vues/transition_fade';
 
 const LARGEUR_SCENE = 1008;
 const LARGEUR_BATIMENT = 411;
@@ -96,7 +104,7 @@ const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 export const CLE_NIVEAU_PRECEDENT = 'niveauPrecedent';
 
 export default {
-  components: { FormulaireIdentification, AccesSituation, BoiteUtilisateur },
+  components: { FormulaireIdentification, AccesSituation, BoiteUtilisateur, Fin, TransitionFade },
 
   data() {
     const parsedUrl = new URL(window.location.href);
@@ -107,7 +115,8 @@ export default {
       suivant: this.depotRessources.suivant().src,
       punaise: this.depotRessources.punaise().src,
       forceCampagne: parsedUrl.searchParams.get('code') || '',
-      indexBatiment: this.recupereNiveauDuPrecedentChargement()
+      indexBatiment: this.recupereNiveauDuPrecedentChargement(),
+      ecranFinAfficher: false
     };
   },
 
@@ -148,6 +157,7 @@ export default {
       this.synchroniseSituations();
       if (!this.estConnecte) {
         this.indexBatiment = 0;
+        this.ecranFinAfficher = false;
         this.sauvegardeNiveauPourProchainChargement();
       }
     }
@@ -175,6 +185,10 @@ export default {
     recupereNiveauDuPrecedentChargement () {
       const precedentNiveau = window.localStorage.getItem(CLE_NIVEAU_PRECEDENT);
       return parseInt(precedentNiveau);
+    },
+
+    afficheEcranFin () {
+      this.ecranFinAfficher = true;
     }
   }
 }
