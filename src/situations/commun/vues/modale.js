@@ -28,9 +28,7 @@ export function afficheFenetreModale (pointInsertion, $,
 
   $('#OK-modale').on('click', () => {
     $modale.addClass('attendre');
-    Promise.resolve(actionOk()).finally(() => {
-      $modale.remove();
-    });
+    actionOk();
   });
 
   $('#annuler-modale').on('click', () => {
