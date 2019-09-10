@@ -21,7 +21,7 @@
         />
 
         <div
-          :style="{ transform: `translateX(${-decalageGaucheVue(indexBatiment)}px)`}"
+          :style="{ left: `${-decalageGaucheVue(indexBatiment)}px`}"
           class="acces-situations">
           <acces-situation
             v-for="(situation, index) in situations"
