@@ -10,11 +10,14 @@ export default class DeplaceurPieces {
     };
 
     $pointInsertion.mousemove(e => {
-      if (e.buttons === 1) {
-        this.deplacePiecesSelectionnees(e);
-      } else {
+      if (e.buttons === 0) {
         this.termineSelection();
+        return;
       }
+      this.deplacePiecesSelectionnees(e);
+    });
+    $pointInsertion.on('touchmove', (e) => {
+      this.deplacePiecesSelectionnees(e.changedTouches[0]);
     });
   }
 

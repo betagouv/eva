@@ -78,28 +78,54 @@ describe('Une pièce', function () {
     expect($('.piece').css('top')).to.eql('5px');
   });
 
-  it('peut être sélectionnée', function () {
-    const piece = new Piece({ x: 90, y: 40 });
-    const vuePiece = creeVueMinimale(piece, depot);
-    vuePiece.affiche('#pointInsertion', $);
+  describe('peut être sélectionnée', function () {
+    let piece;
 
-    expect(piece.estSelectionnee()).to.be(false);
-    $('.piece').trigger($.Event('mousedown', { clientX: 95, clientY: 55 }));
-    expect(piece.estSelectionnee()).to.be(true);
+    beforeEach(function () {
+      piece = new Piece({ x: 90, y: 40 });
+      const vuePiece = creeVueMinimale(piece, depot);
+      vuePiece.affiche('#pointInsertion', $);
+    });
+
+    it('à la souris', function () {
+      expect(piece.estSelectionnee()).to.be(false);
+      $('.piece').trigger($.Event('mousedown', { clientX: 95, clientY: 55 }));
+      expect(piece.estSelectionnee()).to.be(true);
+    });
+
+    it('au doight', function () {
+      expect(piece.estSelectionnee()).to.be(false);
+      $('.piece').trigger($.Event('touchstart', {
+        changedTouches: [{ clientX: 95, clientY: 55 }]
+      }));
+      expect(piece.estSelectionnee()).to.be(true);
+    });
   });
 
-  it('peut être désélectionnée', function () {
-    const piece = new Piece({ x: 90, y: 40 });
+  describe('peut être désélectionnée', function () {
+    let piece;
 
-    const deplaceur = activeDeplaceur();
-    const vuePiece = new VuePiece(piece, depot, deplaceur);
-    vuePiece.affiche('#pointInsertion', $);
+    beforeEach(function () {
+      piece = new Piece({ x: 90, y: 40 });
 
-    deplaceur.debuteSelection(piece, { x: 90, y: 40 }, { clientX: 95, clientY: 55 });
+      const deplaceur = activeDeplaceur();
+      const vuePiece = new VuePiece(piece, depot, deplaceur);
+      vuePiece.affiche('#pointInsertion', $);
 
-    expect(piece.estSelectionnee()).to.be(true);
-    $('.piece').trigger($.Event('mouseup'));
-    expect(piece.estSelectionnee()).to.be(false);
+      deplaceur.debuteSelection(piece, { x: 90, y: 40 }, { clientX: 95, clientY: 55 });
+    });
+
+    it('à la souris', function () {
+      expect(piece.estSelectionnee()).to.be(true);
+      $('.piece').trigger($.Event('mouseup'));
+      expect(piece.estSelectionnee()).to.be(false);
+    });
+
+    it('au doight', function () {
+      expect(piece.estSelectionnee()).to.be(true);
+      $('.piece').trigger($.Event('touchend'));
+      expect(piece.estSelectionnee()).to.be(false);
+    });
   });
 
   it("rajoute la classe selectionne lorsqu'elle est sélectionné", function () {
