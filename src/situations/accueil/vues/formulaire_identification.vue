@@ -45,7 +45,7 @@
         <div class="element-formulaire">
           <button
             :disabled="estDesactive"
-            class="bouton-arrondi">{{ traduction('accueil.identification.boutton') }}</button>
+            class="bouton-arrondi">{{ traduction('accueil.identification.bouton') }}</button>
         </div>
       </div>
     </form>
