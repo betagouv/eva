@@ -4,34 +4,48 @@ import Piece from 'commun/modeles/piece';
 import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 
 describe('Le composant DeplaceurPieces', function () {
+  let $pointInsertion;
+  let deplaceur;
+
   beforeEach(function () {
     $('body').append('<div id="point-insertion"></div>');
+    $pointInsertion = $('#point-insertion');
+    deplaceur = new DeplaceurPieces();
+    deplaceur.activeDeplacementPieces('#point-insertion', $);
   });
 
-  it('déplace les pièces sélectionnées', function () {
-    const piece = new Piece({ x: 90, y: 55 });
-    const deplaceur = new DeplaceurPieces();
-    const $pointInsertion = $('#point-insertion');
-    $pointInsertion.width(50).height(200);
+  describe('déplace les pièces selectionnées', function () {
+    let piece;
 
-    deplaceur.activeDeplacementPieces('#point-insertion', $);
-    deplaceur.debuteSelection(piece, { x: 90, y: 55 }, { clientX: 45, clientY: 110 });
+    beforeEach(function () {
+      $pointInsertion.width(50).height(200);
+      piece = new Piece({ x: 90, y: 55, largeur: 10, hauteur: 10 });
+      deplaceur.debuteSelection(piece, { x: 90, y: 55 }, { clientX: 45, clientY: 110 });
+    });
 
-    $pointInsertion.trigger($.Event('mousemove', { buttons: 1, clientX: 30, clientY: 20 }));
+    it('à la souris', function () {
+      $pointInsertion.trigger($.Event('mousemove', { buttons: 1, clientX: 30, clientY: 20 }));
 
-    expect(piece.position()).to.eql({ x: 60, y: 10 });
+      expect(piece.position()).to.eql({ x: 60, y: 10 });
+    });
+
+    it('avec un doigt', function () {
+      $pointInsertion.trigger($.Event('touchmove',
+        {
+          changedTouches: [{ clientX: 30, clientY: 20 }]
+        }));
+
+      expect(piece.position()).to.eql({ x: 60, y: 10 });
+    });
   });
 
   it('déselectionne les pièces si il y a un mousemove sans maintien du clic', function () {
     const piece = new Piece({});
-    const deplaceur = new DeplaceurPieces();
-    const $pointInsertion = $('#point-insertion');
 
-    deplaceur.activeDeplacementPieces('#point-insertion', $);
-    deplaceur.debuteSelection(piece, {}, { clientX: 95, clientY: 55 });
+    deplaceur.debuteSelection(piece, {}, {});
     expect(piece.estSelectionnee()).to.be(true);
 
-    $pointInsertion.trigger($.Event('mousemove', { buttons: 0, clientX: 30, clientY: 20 }));
+    $pointInsertion.trigger($.Event('mousemove', { buttons: 0 }));
 
     expect(piece.estSelectionnee()).to.be(false);
   });

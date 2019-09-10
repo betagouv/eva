@@ -45,7 +45,7 @@ export default class VuePiece extends EventEmitter {
     this.$piece = creeElementPiece(this.depotRessources, this.piece, dimensionsElementParent);
     this.$elementParent.append(this.$piece);
 
-    this.$piece.mousedown(e => {
+    const debuteSelection = e => {
       this.$piece.stop(true);
       this.$piece.css('opacity', 1);
 
@@ -54,11 +54,18 @@ export default class VuePiece extends EventEmitter {
         y: 100 * parseInt(this.$piece.css('top')) / this.$elementParent.height()
       };
       this.deplaceur.debuteSelection(this.piece, positionActuelle, e);
+    };
+    this.$piece.on('touchstart', (e) => {
+      e.preventDefault();
+      debuteSelection(e.changedTouches[0]);
     });
+    this.$piece.mousedown(debuteSelection);
 
-    this.$piece.mouseup((e) => {
+    const termineSelection = (e) => {
       this.deplaceur.termineSelection(this.piece);
-    });
+    };
+    this.$piece.on('touchend', termineSelection);
+    this.$piece.mouseup(termineSelection);
 
     this.$piece.on('dragstart', function (event) { event.preventDefault(); });
 
