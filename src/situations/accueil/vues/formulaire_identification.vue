@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition-fade>
     <form
       v-if="!estConnecte"
       id="formulaire-identification"
@@ -49,15 +49,18 @@
         </div>
       </div>
     </form>
-  </transition>
+  </transition-fade>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import 'accueil/styles/formulaire_identification.scss';
 import 'commun/styles/boutons.scss';
+import TransitionFade from 'commun/vues/transition_fade';
 
 export default {
+  components: { TransitionFade },
+
   props: {
     forceCampagne: {
       type: String,
@@ -106,12 +109,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .3s;
-  }
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
-</style>
