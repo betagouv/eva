@@ -110,7 +110,7 @@ export default {
     ...mapGetters(['niveauActuel']),
 
     positionFond () {
-      return (this.indexBatiment - 1) * 30;
+      return (this.indexBatiment - 1) * 80;
     },
 
     precedentDesactivee () {
