@@ -20,12 +20,13 @@ describe('La vue de fin', function () {
     expect(wrapper.find('button').text()).to.eql('accueil.fin.bouton');
   });
 
-  it("se déconnecte a l'appui sur le bouton", function (done) {
-    store.dispatch = () => {
-      done();
-      return Promise.resolve();
+  it("se déconnecte a l'appui sur le bouton", function () {
+    let deconnecte = 0;
+    store.dispatch = (nom) => {
+      deconnecte++;
     };
 
     wrapper.find('button').trigger('click');
+    expect(deconnecte).to.equal(1);
   });
 });

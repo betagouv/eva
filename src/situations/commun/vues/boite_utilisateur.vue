@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import 'commun/styles/boite_utilisateur.scss';
 import 'commun/styles/font_awesome.scss';
 
@@ -19,9 +19,7 @@ export default {
     ...mapState(['estConnecte', 'nom', 'situations', 'situationsFaites'])
   },
   methods: {
-    deconnecte () {
-      this.$store.dispatch('deconnecte')
-    }
+    ...mapActions(['deconnecte']),
   }
 }
 </script>
