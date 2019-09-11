@@ -1,7 +1,7 @@
 <template>
   <a
     :href="situation.chemin"
-    :class="[situation.identifiant, { desactivee: desactivee }]"
+    :class="{ desactivee: desactivee }"
     :style="{ 'background-image': backgroundImage }"
     class="acces-situation"
     @dragstart.prevent
