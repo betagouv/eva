@@ -30,7 +30,6 @@ describe('La vue pour accéder à une situation', function () {
   it("sait s'afficher", function () {
     expect(wrapper.text()).to.eql('ABC');
     expect(wrapper.attributes('href')).to.equal('abc.html');
-    expect(wrapper.classes('identifiant-abc')).to.be(true);
     expect(wrapper.attributes('style')).to.equal('background-image: url(identifiant-abc);');
   });
 });
