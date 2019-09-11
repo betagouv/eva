@@ -2,8 +2,7 @@
   <transition-fade>
     <form
       v-if="!estConnecte"
-      id="formulaire-identification"
-      class="formulaire-identification"
+      class="overlay modale"
       @submit.prevent="envoieFormulaire">
       <div>
         <h2>{{ traduction('accueil.identification.titre') }}</h2>
