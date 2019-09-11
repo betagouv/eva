@@ -4,7 +4,7 @@ import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 import Piece from 'commun/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
-describe('Une pièce', function () {
+describe('Une pièce du Contrôle', function () {
   let deplaceur;
   let depot;
 
@@ -26,7 +26,7 @@ describe('Une pièce', function () {
   });
 
   it("interrompt la séquence d'animation quand sélection de la pièce", function (done) {
-    const piece = new Piece({ x: 90, y: 40 });
+    const piece = new Piece({ x: 90, y: 40, largeur: 1, hauteur: 1 });
     const sequenceAnimation = function ($element) {
       $element.animate({ left: '80px' }, 0).delay(5).animate({ left: '10px' }, 0);
     };
