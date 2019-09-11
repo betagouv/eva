@@ -32,10 +32,10 @@ export default class Piece extends EventEmitter {
   }
 
   changePosition ({ x, y }) {
-    this.x = x;
-    this.y = y;
+    this.x = Math.min(100 - this._dimensions.largeur, Math.max(0, x));
+    this.y = Math.min(100 - this._dimensions.hauteur, Math.max(0, y));
 
-    this.emit(CHANGEMENT_POSITION, { x, y });
+    this.emit(CHANGEMENT_POSITION, { x: this.x, y: this.y });
   }
 
   estSelectionnee () {

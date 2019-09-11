@@ -63,7 +63,7 @@ describe('Une pièce', function () {
   });
 
   it('peut être bougée', function () {
-    const piece = new Piece({ x: 90, y: 40 });
+    const piece = new Piece({ x: 90, y: 40, largeur: 1, hauteur: 1 });
     const vuePiece = creeVueMinimale(piece, depot);
 
     $('#pointInsertion').width(100).height(100);
