@@ -62,12 +62,6 @@ describe("Le store de l'accueil", function () {
     expect(store.state.nom).to.eql('');
   });
 
-  it('recupère le niveau actuel', function () {
-    registreUtilisateur.situationsFaites = () => [1];
-    const store = creeStore(registreUtilisateur);
-    expect(store.getters.niveauActuel).to.eql(2);
-  });
-
   it('sait récupérer les situations depuis le serveur', function () {
     registreUtilisateur.urlEvaluation = () => '/evaluation';
     const fetch = (url) => Promise.resolve({

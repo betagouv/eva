@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import Accueil, { CLE_NIVEAU_PRECEDENT } from 'accueil/vues/accueil';
+import Accueil, { CLE_ETAT_ACCUEIL } from 'accueil/vues/accueil';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
@@ -37,12 +37,7 @@ describe('La vue accueil', function () {
       state: {
         situations: [{}, {}],
         estConnecte: false,
-        niveau: 1
-      },
-      getters: {
-        niveauActuel (state) {
-          return state.niveau;
-        }
+        situationsFaites: []
       }
     });
     localVue = createLocalVue();
@@ -54,7 +49,7 @@ describe('La vue accueil', function () {
       localVue,
       store
     });
-    expect(wrapper.findAll(AccesSituation).length).to.eql(2);
+    expect(wrapper.findAll(AccesSituation).length).to.eql(4);
     expect(wrapper.contains(FormulaireIdentification)).to.be(true);
     expect(wrapper.contains(BoiteUtilisateur)).to.be(true);
   });
@@ -69,6 +64,35 @@ describe('La vue accueil', function () {
     });
     expect(wrapper.vm.fondAccueil).to.eql('url(image-fond)');
     expect(wrapper.vm.personnage).to.eql('personnage');
+  });
+
+  it('retourne les batiments', function () {
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    expect(wrapper.vm.batiments.length).to.eql(4);
+  });
+
+  describe('niveauMax', function () {
+    let wrapper;
+
+    beforeEach(function () {
+      wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+    });
+
+    it('1 au début', function () {
+      store.state.situationsFaites = [];
+      expect(wrapper.vm.niveauMax).to.eql(1);
+    });
+
+    it('2 une fois une situation faite', function () {
+      store.state.situationsFaites = [''];
+      expect(wrapper.vm.niveauMax).to.eql(2);
+    });
   });
 
   it("donne le décalage a gauche d'une situation", function () {
@@ -86,8 +110,9 @@ describe('La vue accueil', function () {
       localVue,
       store
     });
-    expect(wrapper.vm.decalageGaucheVue(1)).to.equal(0);
-    expect(wrapper.vm.decalageGaucheVue(2)).to.equal(411 + 195.75);
+    expect(wrapper.vm.decalageGaucheVue(0)).to.equal(0);
+    expect(wrapper.vm.decalageGaucheVue(1)).to.equal(411 + 195.75);
+    expect(wrapper.vm.decalageGaucheVue(2)).to.equal((411 + 195.75) * 2);
   });
 
   it("synchronise les situations quand un utilisateur affiche l'accueil en étant connecté", function (done) {
@@ -120,14 +145,15 @@ describe('La vue accueil', function () {
     expect(nombreDispatch).to.eql(1);
   });
 
-  it('assigne indexBatiment au niveau actuel aprés avoir chargé les situations', function () {
+  it('assigne indexBatiment au niveau max aprés avoir chargé les situations', function () {
     store.state.estConnecte = true;
-    store.state.niveau = 2;
+    store.state.situationsFaites = [''];
     store.dispatch = () => Promise.resolve();
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
     });
+    wrapper.vm.introFaite = true;
 
     return Promise.resolve().then(() => {
       expect(wrapper.vm.indexBatiment).to.equal(2);
@@ -135,63 +161,168 @@ describe('La vue accueil', function () {
   });
 
   it('sauvegarde le niveau pour le prochain chargement', function () {
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
-    store.state.niveau = 2;
-    wrapper.vm.sauvegardeNiveauPourProchainChargement();
-    const niveauPrecedent = window.localStorage.getItem(CLE_NIVEAU_PRECEDENT);
-    expect(niveauPrecedent).to.equal('2');
-  });
-
-  it('récupère le niveau du précédent chargement', function () {
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
-    window.localStorage.setItem(CLE_NIVEAU_PRECEDENT, 2);
-    const niveauPrecedentChargement = wrapper.vm.recupereNiveauDuPrecedentChargement();
-    expect(niveauPrecedentChargement).to.equal(2);
-  });
-
-  it('retourne aucune situation actuelle lorsque aucune situations est chargée', function () {
-    store.state.situations = [];
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
-    expect(wrapper.vm.situationActuelle).to.eql(null);
-  });
-
-  it('retourne la situation actuelle lorsque les situations sont chargées', function () {
-    store.state.situations = [{ nom: 'Inventaire' }];
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
-    wrapper.vm.indexBatiment = 1;
-    expect(wrapper.vm.situationActuelle.nom).to.eql('Inventaire');
-  });
-
-  it("retourne aucune situation actuelle lorsque c'est terminée", function () {
-    store.state.situations = [{ nom: 'Inventaire' }];
+    window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
     });
     wrapper.vm.indexBatiment = 2;
-    expect(wrapper.vm.situationActuelle).to.eql(null);
+    wrapper.vm.sauvegardeEtatPourProchainChargement();
+    const etat = JSON.parse(window.localStorage.getItem(CLE_ETAT_ACCUEIL));
+    expect(etat.indexPrecedent).to.eql(2);
   });
 
-  it('termine est vraie lorsque toute les situations ont été faites', function () {
-    store.state.situations = [{ nom: 'Inventaire' }];
+  describe('recupereEtatDuPrecedentChargement', function () {
+    it("lorsque aucune valeur n'est présente dans localStorage", function () {
+      window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
+      const wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+      const etatPrecedent = wrapper.vm.recupereEtatDuPrecedentChargement();
+      expect(etatPrecedent.indexPrecedent).to.equal(-0.5);
+    });
+
+    it("lorsqu'une valeur est présente dans localStorage", function () {
+      const wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+      window.localStorage.setItem(CLE_ETAT_ACCUEIL, JSON.stringify({
+        indexPrecedent: 4
+      }));
+      const etatPrecedent = wrapper.vm.recupereEtatDuPrecedentChargement();
+      expect(etatPrecedent.indexPrecedent).to.equal(4);
+    });
+  });
+
+  describe('situationActuelle', function () {
+    it('null lorsque aucune situations est chargée', function () {
+      store.state.situations = [];
+      const wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+      expect(wrapper.vm.situationActuelle).to.eql(null);
+    });
+
+    it('null lorsque indexBatiment est inférieure à 1', function () {
+      store.state.situations = [{ nom: 'Inventaire' }];
+      const wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+      wrapper.vm.indexBatiment = 0;
+      expect(wrapper.vm.situationActuelle).to.eql(null);
+    });
+
+    it('retourne la situation actuelle lorsque les situations sont chargées', function () {
+      store.state.situations = [{ nom: 'Inventaire' }];
+      const wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+      wrapper.vm.indexBatiment = 1;
+      expect(wrapper.vm.situationActuelle.nom).to.eql('Inventaire');
+    });
+
+    it("null lorsque c'est terminée", function () {
+      store.state.situations = [{ nom: 'Inventaire' }];
+      const wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+      wrapper.vm.indexBatiment = 2;
+      expect(wrapper.vm.situationActuelle).to.eql(null);
+    });
+  });
+
+  describe('termine', function () {
+    let wrapper;
+
+    beforeEach(function () {
+      store.state.situations = [{ nom: 'Inventaire' }];
+      wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+    });
+
+    it("faux lorsque toute les situations n'ont pas été faites", function () {
+      wrapper.vm.indexBatiment = 1;
+      expect(wrapper.vm.termine).to.be(false);
+    });
+
+    it('vraie lorsque toute les situations ont été faites', function () {
+      wrapper.vm.indexBatiment = 2;
+      expect(wrapper.vm.termine).to.be(true);
+    });
+  });
+
+  describe('precedentDesactivee', function () {
+    let wrapper;
+
+    beforeEach(function () {
+      wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+    });
+
+    it('vrai lorsque indexBatiment est à 0', function () {
+      wrapper.vm.indexBatiment = 0;
+      expect(wrapper.vm.precedentDesactivee).to.be(true);
+    });
+
+    it('faux lorsque indexBatiment est autre chose que 0', function () {
+      wrapper.vm.indexBatiment = 3;
+      expect(wrapper.vm.precedentDesactivee).to.be(false);
+    });
+  });
+
+  describe('suivantDesactivee', function () {
+    let wrapper;
+
+    beforeEach(function () {
+      wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+    });
+
+    it('vrai lorsque le niveauMax est atteint', function () {
+      store.state.situationsFaites = [''];
+      wrapper.vm.indexBatiment = 2;
+      expect(wrapper.vm.suivantDesactivee).to.be(true);
+    });
+
+    it("faux lorsque les niveauMax n'est pas atteint", function () {
+      store.state.situationsFaites = [''];
+      wrapper.vm.indexBatiment = 1;
+      expect(wrapper.vm.suivantDesactivee).to.be(false);
+    });
+  });
+
+  it("fait passer l'affichage des batiments à 0 à la connexion", function () {
+    store.dispatch = () => Promise.resolve();
+    store.state.estConnecte = false;
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
     });
-    wrapper.vm.indexBatiment = 2;
-    expect(wrapper.vm.termine).to.be(true);
+    store.state.estConnecte = true;
+    expect(wrapper.vm.indexBatiment).to.eql(0);
+  });
+
+  it("passeIntro fait avancer l'index des batiments", function () {
+    window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+    wrapper.vm.indexBatiment = 0;
+    wrapper.vm.passeIntro();
+    expect(wrapper.vm.indexBatiment).to.equal(1);
   });
 
   it("affiche l'écran de fin à l'appui du bouton conclure", function () {
@@ -215,6 +346,6 @@ describe('La vue accueil', function () {
     wrapper.vm.indexBatiment = 1;
     store.state.estConnecte = false;
     expect(wrapper.vm.ecranFinAfficher).to.be(false);
-    expect(wrapper.vm.indexBatiment).to.equal(0);
+    expect(wrapper.vm.indexBatiment).to.equal(-0.5);
   });
 });

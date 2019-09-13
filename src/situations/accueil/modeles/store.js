@@ -53,11 +53,6 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
           commit('metsAJourSituations', situations);
         });
       }
-    },
-    getters: {
-      niveauActuel (state) {
-        return state.situationsFaites.length + 1;
-      }
     }
   });
 

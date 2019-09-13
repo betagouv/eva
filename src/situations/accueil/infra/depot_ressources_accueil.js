@@ -1,25 +1,30 @@
 import DepotRessources from 'commun/infra/depot_ressources';
 import fondAccueil from 'accueil/assets/fond-accueil.jpg';
 import personnage from 'accueil/assets/personnage.png';
+import bienvenue from 'accueil/assets/bienvenue.png';
 import tri from 'accueil/assets/tri.png';
 import inventaire from 'accueil/assets/inventaire.png';
 import controle from 'accueil/assets/controle.png';
 import questions from 'accueil/assets/bureau.png';
+import fin from 'accueil/assets/fin.png';
 import precedent from 'accueil/assets/precedent.svg';
 import suivant from 'accueil/assets/suivant.svg';
 import punaise from 'accueil/assets/punaise.svg';
 
 const batiments = {
-  tri,
-  inventaire,
+  bienvenue,
   controle,
-  questions
+  fin,
+  inventaire,
+  questions,
+  tri
 };
 
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnage, tri, inventaire, controle, questions, precedent, suivant, punaise]);
+    this.charge([fondAccueil, personnage, bienvenue, tri, inventaire,
+      controle, questions, fin, precedent, suivant, punaise]);
   }
 
   fondAccueil () {

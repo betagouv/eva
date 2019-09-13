@@ -16,6 +16,11 @@
       "label": "Entrez votre nom et prénom",
       "titre": "Bienvenue !"
     },
+    "intro": {
+      "bouton": "Lancer la consigne",
+      "message": "Veuillez mettre vos écouteurs pour suivre les consignes audio.",
+      "titre": "eva vous aide à évaluer vos compétences"
+    },
     "fin": {
       "bouton": "Terminer",
       "message": "Vous avez maintenant terminé toutes les mises en situations",
