@@ -47,19 +47,13 @@
           <span>{{ traduction('accueil.precedent') }}</span>
         </div>
         <a
-          v-if="situationActuelle"
-          :href="situationActuelle.chemin"
+          v-if="batiments[indexBatiment] && batiments[indexBatiment].action"
+          :href="batiments[indexBatiment].chemin"
           class="bouton-arrondi"
+          @click="batiments[indexBatiment].action"
         >
-          {{ traduction('accueil.commencer', { situation: situationActuelle.nom }) }}
+          {{ batiments[indexBatiment].nom }}
         </a>
-        <button
-          v-else-if="termine"
-          class="bouton-arrondi"
-          @click="afficheEcranFin"
-        >
-          {{ traduction('accueil.conclure') }}
-        </button>
         <div
           :class="{ desactivee: suivantDesactivee}"
           class="bouton-et-etiquette gauche"
@@ -102,6 +96,7 @@ import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import Fin from 'accueil/vues/fin';
 import OverlayIntro from 'accueil/vues/overlay_intro';
 import TransitionFade from 'commun/vues/transition_fade';
+import { traduction } from 'commun/infra/internationalisation';
 
 const LARGEUR_SCENE = 1008;
 const LARGEUR_BATIMENT = 411;
@@ -143,26 +138,29 @@ export default {
       return this.indexBatiment === this.niveauMax;
     },
 
-    situationActuelle () {
-      if (this.situations.length === 0 || this.termine || this.indexBatiment < 1)
-        return null;
-      return this.situations[this.indexBatiment - 1];
-    },
-
     termine () {
       return this.indexBatiment === this.batiments.length - 1;
     },
 
     batiments () {
+      const situations = this.situations.map(({ nom, chemin, identifiant }) => {
+        return {
+          nom: traduction('accueil.commencer', { situation: nom }),
+          chemin,
+          identifiant,
+          action: () => {}
+        };
+      });
       return [
         {
           identifiant: 'bienvenue',
-          nom: 'Bienvenue'
+          nom: ''
         },
-        ...this.situations,
+        ...situations,
         {
           identifiant: 'fin',
-          nom: 'Terminer'
+          nom: traduction('accueil.conclure'),
+          action: this.afficheEcranFin
         }
       ]
     },

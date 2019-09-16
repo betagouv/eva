@@ -11,6 +11,7 @@ describe('La vue accueil', function () {
   let localVue;
 
   beforeEach(function () {
+    window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
     depotRessources = new class {
       fondAccueil () {
         return { src: '' };
@@ -67,11 +68,24 @@ describe('La vue accueil', function () {
   });
 
   it('retourne les batiments', function () {
+    store.state.situations = [{ chemin: '/', identifiant: 'test' }];
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
     });
-    expect(wrapper.vm.batiments.length).to.eql(4);
+    expect(wrapper.vm.batiments.length).to.eql(3);
+    expect(wrapper.vm.batiments[0]).to.eql({
+      identifiant: 'bienvenue',
+      nom: ''
+    });
+    expect(wrapper.vm.batiments[1].identifiant).to.eql('test');
+    expect(wrapper.vm.batiments[1].chemin).to.eql('/');
+    expect(wrapper.vm.batiments[1].nom).to.eql('accueil.commencer');
+    expect(wrapper.vm.batiments[2]).to.eql({
+      nom: 'accueil.conclure',
+      identifiant: 'fin',
+      action: wrapper.vm.afficheEcranFin
+    });
   });
 
   describe('niveauMax', function () {
@@ -161,7 +175,6 @@ describe('La vue accueil', function () {
   });
 
   it('sauvegarde le niveau pour le prochain chargement', function () {
-    window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
@@ -174,7 +187,6 @@ describe('La vue accueil', function () {
 
   describe('recupereEtatDuPrecedentChargement', function () {
     it("lorsque aucune valeur n'est présente dans localStorage", function () {
-      window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
       const wrapper = shallowMount(Accueil, {
         localVue,
         store
@@ -193,47 +205,6 @@ describe('La vue accueil', function () {
       }));
       const etatPrecedent = wrapper.vm.recupereEtatDuPrecedentChargement();
       expect(etatPrecedent.indexPrecedent).to.equal(4);
-    });
-  });
-
-  describe('situationActuelle', function () {
-    it('null lorsque aucune situations est chargée', function () {
-      store.state.situations = [];
-      const wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
-      expect(wrapper.vm.situationActuelle).to.eql(null);
-    });
-
-    it('null lorsque indexBatiment est inférieure à 1', function () {
-      store.state.situations = [{ nom: 'Inventaire' }];
-      const wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
-      wrapper.vm.indexBatiment = 0;
-      expect(wrapper.vm.situationActuelle).to.eql(null);
-    });
-
-    it('retourne la situation actuelle lorsque les situations sont chargées', function () {
-      store.state.situations = [{ nom: 'Inventaire' }];
-      const wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
-      wrapper.vm.indexBatiment = 1;
-      expect(wrapper.vm.situationActuelle.nom).to.eql('Inventaire');
-    });
-
-    it("null lorsque c'est terminée", function () {
-      store.state.situations = [{ nom: 'Inventaire' }];
-      const wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
-      wrapper.vm.indexBatiment = 2;
-      expect(wrapper.vm.situationActuelle).to.eql(null);
     });
   });
 
@@ -315,7 +286,6 @@ describe('La vue accueil', function () {
   });
 
   it("passeIntro fait avancer l'index des batiments", function () {
-    window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
