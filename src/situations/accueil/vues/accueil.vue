@@ -29,6 +29,8 @@
             :situation="situation"
             :style="{ left: `${decalageGaucheBatiment(index)}px`}"
             :desactivee="indexBatiment !== index"
+            :affiche-fond="true"
+            class="acces-situation"
            />
         </div>
       </div>
@@ -46,14 +48,11 @@
           </button>
           <span>{{ traduction('accueil.precedent') }}</span>
         </div>
-        <a
-          v-if="batiments[indexBatiment] && batiments[indexBatiment].action"
-          :href="batiments[indexBatiment].chemin"
+        <acces-situation
+          v-if="batiments[indexBatiment] && (batiments[indexBatiment].action || batiments[indexBatiment].chemin)"
+          :situation="batiments[indexBatiment]"
           class="bouton-arrondi"
-          @click="batiments[indexBatiment].action"
-        >
-          {{ batiments[indexBatiment].nom }}
-        </a>
+        />
         <div
           :class="{ desactivee: suivantDesactivee}"
           class="bouton-et-etiquette gauche"
@@ -147,15 +146,13 @@ export default {
         return {
           nom: traduction('accueil.commencer', { situation: nom }),
           chemin,
-          identifiant,
-          action: () => {}
+          identifiant
         };
       });
       return [
         {
           identifiant: 'bienvenue',
-          nom: '',
-          action: () => {}
+          nom: ''
         },
         ...situations,
         {

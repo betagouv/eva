@@ -29,9 +29,14 @@ describe('La vue pour accéder à une situation', function () {
     });
   });
 
-  it("sait s'afficher", function () {
+  it("sait s'afficher avec un fond", function () {
+    wrapper.setProps({ afficheFond: true });
     expect(wrapper.text()).to.eql('ABC');
     expect(wrapper.attributes('href')).to.equal('abc.html');
     expect(wrapper.attributes('style')).to.equal('background-image: url(identifiant-abc);');
+  });
+
+  it("sait s'afficher sans fond", function () {
+    expect(wrapper.attributes('style')).to.equal(undefined);
   });
 });
