@@ -16,6 +16,15 @@
   &.modale {
     background: rgba(255, 255, 255, .9);
     padding: 3%;
+
+    .modale-interieur {
+      max-width: 70%;
+
+      > * {
+        margin-bottom: 3rem;
+      }
+    }
+
     .buttons {
       button {
         margin-right: 1.875rem;
@@ -29,5 +38,15 @@
         }
       }
     }
+  }
+}
+
+.icone-description {
+  display: flex;
+  align-items: center;
+
+  &-icone {
+    margin-right: 2rem;
+    flex-shrink: 0;
   }
 }

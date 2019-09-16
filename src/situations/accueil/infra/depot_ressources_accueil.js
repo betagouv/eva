@@ -1,5 +1,6 @@
 import DepotRessources from 'commun/infra/depot_ressources';
 import fondAccueil from 'accueil/assets/fond-accueil.jpg';
+import casque from 'accueil/assets/casque.svg';
 import personnage from 'accueil/assets/personnage.png';
 import bienvenue from 'accueil/assets/bienvenue.png';
 import tri from 'accueil/assets/tri.png';
@@ -24,7 +25,7 @@ export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
     this.charge([fondAccueil, personnage, bienvenue, tri, inventaire,
-      controle, questions, fin, precedent, suivant, punaise]);
+      controle, questions, fin, precedent, suivant, punaise, casque]);
   }
 
   fondAccueil () {
@@ -45,6 +46,10 @@ export default class DepotRessourcesAccueil extends DepotRessources {
 
   punaise () {
     return this.ressource(punaise);
+  }
+
+  casque () {
+    return this.ressource(casque);
   }
 
   batimentSituation (situation) {
