@@ -4,6 +4,7 @@
     :class="{ desactivee: desactivee }"
     :style="{ 'background-image': backgroundImage }"
     class="acces-situation"
+    @click="situation.action"
     @dragstart.prevent
   >
     {{ situation.nom }}

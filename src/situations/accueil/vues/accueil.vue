@@ -154,7 +154,8 @@ export default {
       return [
         {
           identifiant: 'bienvenue',
-          nom: ''
+          nom: '',
+          action: () => {}
         },
         ...situations,
         {

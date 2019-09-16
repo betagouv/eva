@@ -21,8 +21,10 @@ describe('La vue pour accéder à une situation', function () {
           nom: 'ABC',
           chemin: 'abc.html',
           identifiant: 'identifiant-abc',
-          niveauMinimum: 2
-        }
+          niveauMinimum: 2,
+          action: () => {}
+        },
+        desactivee: false
       }
     });
   });
