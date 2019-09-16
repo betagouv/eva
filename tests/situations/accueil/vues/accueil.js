@@ -74,11 +74,15 @@ describe('La vue accueil', function () {
       store
     });
     expect(wrapper.vm.batiments.length).to.eql(3);
-    expect(wrapper.vm.batiments[0].identifiant).to.eql('bienvenue');
-    expect(wrapper.vm.batiments[0].nom).to.eql('');
-    expect(wrapper.vm.batiments[1].identifiant).to.eql('test');
-    expect(wrapper.vm.batiments[1].chemin).to.eql('/');
-    expect(wrapper.vm.batiments[1].nom).to.eql('accueil.commencer');
+    expect(wrapper.vm.batiments[0]).to.eql({
+      nom: '',
+      identifiant: 'bienvenue'
+    });
+    expect(wrapper.vm.batiments[1]).to.eql({
+      nom: 'accueil.commencer',
+      chemin: '/',
+      identifiant: 'test'
+    });
     expect(wrapper.vm.batiments[2]).to.eql({
       nom: 'accueil.conclure',
       identifiant: 'fin',

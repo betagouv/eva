@@ -2,9 +2,8 @@
   <a
     :href="situation.chemin"
     :class="{ desactivee: desactivee }"
-    :style="{ 'background-image': backgroundImage }"
-    class="acces-situation"
-    @click="situation.action"
+    :style="{ 'background-image': afficheFond ? backgroundImage : null }"
+    v-on="situation.action ? { click: situation.action } : {}"
     @dragstart.prevent
   >
     {{ situation.nom }}
@@ -22,7 +21,13 @@ export default {
     },
     desactivee: {
       type: Boolean,
-      required: true
+      required: false,
+      default: false
+    },
+    afficheFond: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
 
