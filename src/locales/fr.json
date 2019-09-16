@@ -16,10 +16,14 @@
       "label": "Entrez votre nom et prénom",
       "titre": "Bienvenue !"
     },
-    "intro": {
-      "bouton": "Lancer la consigne",
-      "message": "Veuillez mettre vos écouteurs pour suivre les consignes audio.",
-      "titre": "eva vous aide à évaluer vos compétences"
+    "intro_consigne": {
+      "bouton": "Commencer",
+      "message": "Veuillez mettre vos écouteurs avant de commencer.",
+      "titre": "Compétences pro vous aide à évaluer vos compétences"
+    },
+    "intro_contexte": {
+      "bouton": "A vous de jouer !",
+      "message": "<p>Nous allons identifier ensemble, à travers les jeux que vous allez réaliser, vos compétences transversales et cognitives. Si certains de ces jeux reproduisent des mises en situation professionnelles particulières, les compétences que nous y mesurons s’appliquent dans tous les métiers et secteurs d’activité.</p><p>Lorsque vous aurez terminé, vous pourrez découvrir quelles sont vos compétences fortes, et comment les utiliser au mieux dans votre parcours professionnel, opportunités d’emploi ou de formation.</p>"
     },
     "fin": {
       "bouton": "Terminer",
