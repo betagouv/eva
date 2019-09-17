@@ -24,6 +24,7 @@ export default class RegistreUtilisateur extends EventEmitter {
       });
     }).then((data) => {
       window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(data));
+      window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
       this.emit(CHANGEMENT_CONNEXION);
     });
   }

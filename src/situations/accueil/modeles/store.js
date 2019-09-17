@@ -16,6 +16,7 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
       connecte (state, nom) {
         state.estConnecte = true;
         state.nom = nom;
+        state.situationsFaites = [];
       },
 
       deconnecte (state) {

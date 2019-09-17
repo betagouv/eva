@@ -43,6 +43,14 @@ describe("Le store de l'accueil", function () {
     expect(store.state.situations.length).to.eql(0);
   });
 
+  it('initialise à la connexion', function () {
+    registreUtilisateur.situationsFaites = () => [1];
+    const store = creeStore(registreUtilisateur);
+    store.commit('connecte', 'nom évalué');
+    expect(store.state.nom).to.equal('nom évalué');
+    expect(store.state.situationsFaites.length).to.eql(0);
+  });
+
   it('mets à jour les situations accessible', function () {
     const store = creeStore(registreUtilisateur);
     store.commit('metsAJourSituations', [1, 2]);

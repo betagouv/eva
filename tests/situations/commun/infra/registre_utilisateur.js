@@ -21,6 +21,14 @@ describe('le registre utilisateur', function () {
     });
   });
 
+  it("ré-initialise la progression au moment de l'inscription", function () {
+    const registre = unRegistre(1, 'autre test');
+    registre.enregistreSituationFaite('tri');
+    return registre.inscris('test').then(() => {
+      expect(registre.situationsFaites()).to.eql([]);
+    });
+  });
+
   it("émet un événement lorsque le nom de l'utilisateur change", function (done) {
     const registre = unRegistre(1, 'test');
     registre.on(CHANGEMENT_CONNEXION, done);
