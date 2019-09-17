@@ -4,7 +4,7 @@ import go from '../assets/play.svg';
 
 import { CHANGEMENT_ETAT, ATTENTE_DEMARRAGE, DEMARRE, FINI } from '../modeles/situation';
 
-export default class VueBareDev {
+export default class VueBarreDev {
   constructor (situation) {
     this.situation = situation;
   }
