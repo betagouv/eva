@@ -24,8 +24,8 @@ const batiments = {
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnage, bienvenue, tri, inventaire,
-      controle, questions, fin, precedent, suivant, punaise, casque]);
+    this.charge([fondAccueil, personnage, precedent, suivant, punaise, casque]);
+    this.charge(Object.values(batiments));
   }
 
   fondAccueil () {
