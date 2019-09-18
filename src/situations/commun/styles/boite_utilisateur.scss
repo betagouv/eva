@@ -1,18 +1,29 @@
 @import 'commun/styles/couleurs.scss';
 
-
 .boite-utilisateur {
-  border: 1px solid $couleur-bordure-input-accueil;
-  border-radius: 1rem;
+  border: 1px solid $bleu-clair;
+  border-radius: 3rem;
   color: $couleur-texte;
-  padding: 1.375rem 1rem;
   font-size: 1.125rem;
-  display: flex;
+  overflow: hidden;
+  position: relative;
+
+  .progression {
+    position: absolute;
+    background-color: $bleu-clair;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .contenu {
+    padding: 1rem;
+    display: flex;
+  }
 
   .progression-utilisateur {
     margin-left: 1rem;
   }
-  
+
   .deconnexion {
     margin-left: 1rem;
     color: $couleur-texte;

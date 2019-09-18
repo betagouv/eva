@@ -1,11 +1,19 @@
 <template>
-  <div v-if="estConnecte"
-       class="boite-utilisateur">
-    <div>{{ nom }}</div>
-    <div class="progression-utilisateur">{{ situationsFaites.length }}/{{ situations.length }}</div>
-    <a class="deconnexion" href="#" @click.prevent="deconnecte">
-      <i class="fas fa-sign-out-alt"></i>
-    </a>
+  <div
+    v-if="estConnecte"
+    class="boite-utilisateur"
+  >
+    <div
+      :style="{ width: pourcentProgression }"
+      class="progression"
+    />
+    <div class="contenu">
+      <div>{{ nom }}</div>
+      <div class="progression-utilisateur">{{ situationsFaites.length }}/{{ situations.length }}</div>
+      <a class="deconnexion" href="#" @click.prevent="deconnecte">
+        <i class="fas fa-sign-out-alt"></i>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -16,7 +24,11 @@ import 'commun/styles/font_awesome.scss';
 
 export default {
   computed: {
-    ...mapState(['estConnecte', 'nom', 'situations', 'situationsFaites'])
+    ...mapState(['estConnecte', 'nom', 'situations', 'situationsFaites']),
+
+    pourcentProgression () {
+      return `${this.situationsFaites.length * 100 / this.situations.length}%`;
+    }
   },
   methods: {
     ...mapActions(['deconnecte']),
