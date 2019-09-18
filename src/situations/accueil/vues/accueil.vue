@@ -98,9 +98,9 @@ import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
 
 const LARGEUR_SCENE = 1008;
-const LARGEUR_BATIMENT = 411;
-const DECALAGE_INITIAL = LARGEUR_SCENE / 2 - LARGEUR_BATIMENT / 2;
-const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
+export const LARGEUR_BATIMENT = 411;
+export const DECALAGE_INITIAL = LARGEUR_SCENE / 2 - LARGEUR_BATIMENT / 2;
+export const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 
 export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 

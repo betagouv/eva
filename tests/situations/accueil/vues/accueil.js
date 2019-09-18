@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import Accueil, { CLE_ETAT_ACCUEIL } from 'accueil/vues/accueil';
+import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECALAGE_INITIAL } from 'accueil/vues/accueil';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
@@ -116,9 +116,9 @@ describe('La vue accueil', function () {
       localVue,
       store
     });
-    expect(wrapper.vm.decalageGaucheBatiment(0)).to.equal(298.5);
-    expect(wrapper.vm.decalageGaucheBatiment(1)).to.equal(298.5 + 411 + 195.75);
-    expect(wrapper.vm.decalageGaucheBatiment(2)).to.equal(298.5 + (411 + 195.75) * 2);
+    expect(wrapper.vm.decalageGaucheBatiment(0)).to.equal(DECALAGE_INITIAL);
+    expect(wrapper.vm.decalageGaucheBatiment(1)).to.equal(DECALAGE_INITIAL + LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
+    expect(wrapper.vm.decalageGaucheBatiment(2)).to.equal(DECALAGE_INITIAL + (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT) * 2);
   });
 
   it('donne le déplacement à gauche de la vue', function () {
@@ -127,8 +127,8 @@ describe('La vue accueil', function () {
       store
     });
     expect(wrapper.vm.decalageGaucheVue(0)).to.equal(0);
-    expect(wrapper.vm.decalageGaucheVue(1)).to.equal(411 + 195.75);
-    expect(wrapper.vm.decalageGaucheVue(2)).to.equal((411 + 195.75) * 2);
+    expect(wrapper.vm.decalageGaucheVue(1)).to.equal(LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
+    expect(wrapper.vm.decalageGaucheVue(2)).to.equal((LARGEUR_BATIMENT + ESPACEMENT_BATIMENT) * 2);
   });
 
   it("synchronise les situations quand un utilisateur affiche l'accueil en étant connecté", function (done) {
