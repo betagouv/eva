@@ -49,7 +49,7 @@
           <span>{{ traduction('accueil.precedent') }}</span>
         </div>
         <acces-situation
-          v-if="batiments[indexBatiment] && (batiments[indexBatiment].action || batiments[indexBatiment].chemin)"
+          v-if="afficheBoutonSituation"
           :situation="batiments[indexBatiment]"
           class="bouton-arrondi"
         />
@@ -165,6 +165,11 @@ export default {
 
     niveauMax () {
       return this.situationsFaites.length + 1;
+    },
+
+    afficheBoutonSituation () {
+      const batiment = this.batiments[this.indexBatiment];
+      return batiment && (batiment.action || batiment.chemin);
     }
   },
 
