@@ -34,4 +34,8 @@ describe('La boite utilisateur', function () {
   it("affiche la progression de l'évalué·e", function () {
     expect(wrapper.find('.progression-utilisateur').text()).to.equal('1/2');
   });
+
+  it('renvoit la progression en pourcentage', function () {
+    expect(wrapper.vm.pourcentProgression).to.equal('50%');
+  });
 });
