@@ -15,7 +15,7 @@ export function afficheFenetreModale (pointInsertion, $,
   const htmlAnnuler = boutonAnnuler ? `<button id="annuler-modale" class='bouton-arrondi modal-annuler'>${boutonAnnuler}</button>` : '';
 
   const $modale = $(`<div id="fenetre-modale" class="overlay modale">
-    <div>
+    <div class="modale-interieur">
       <h2>${titre}</h2>
       <p>${message}</p>
       <div class="buttons">
