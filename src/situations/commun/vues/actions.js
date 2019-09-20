@@ -1,5 +1,5 @@
 import 'commun/styles/actions.scss';
-import 'commun/styles/stop.scss';
+import 'commun/styles/bouton.scss';
 import { CHANGEMENT_ETAT, CONSIGNE_ECOUTEE, DEMARRE } from 'commun/modeles/situation';
 
 import VueStop from 'commun/vues/stop';

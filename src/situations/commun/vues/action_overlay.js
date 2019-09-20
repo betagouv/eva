@@ -1,5 +1,6 @@
 import VueBouton from './bouton';
 import 'commun/styles/action_overlay.scss';
+import 'commun/styles/bouton.scss';
 
 export default class VueActionOverlay {
   constructor (image, message, classe, classeBouton, dimensionOverlay = '') {

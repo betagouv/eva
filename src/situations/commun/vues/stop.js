@@ -4,7 +4,9 @@ import { STOPPEE } from 'commun/modeles/situation';
 import stop from 'commun/assets/stop.svg';
 import VueBouton from './bouton';
 
+import 'commun/styles/bouton.scss';
 import 'commun/styles/stop.scss';
+
 import { afficheFenetreModale } from 'commun/vues/modale';
 
 export default class VueStop {
