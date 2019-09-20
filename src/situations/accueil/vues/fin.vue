@@ -1,6 +1,6 @@
 <template>
   <div class="overlay modale">
-    <div>
+    <div class= "modale-interieur">
       <h2>{{ traduction('accueil.fin.titre') }}</h2>
       <p>{{ traduction('accueil.fin.message') }}</p>
       <button
