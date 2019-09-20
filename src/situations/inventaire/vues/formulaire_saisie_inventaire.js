@@ -5,6 +5,7 @@ import EvenementSaisieInventaire from 'inventaire/modeles/evenement_saisie_inven
 
 import 'commun/styles/commun.scss';
 import 'commun/styles/font_awesome.scss';
+import 'commun/styles/bouton.scss';
 import 'commun/styles/overlay.scss';
 import 'inventaire/styles/formulaire_saisie_inventaire.scss';
 

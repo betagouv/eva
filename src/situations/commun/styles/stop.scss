@@ -1,5 +1,5 @@
-@import 'commun/styles/bouton.scss';
 @import 'commun/styles/couleurs.scss';
+@import 'commun/styles/mixins/boutons.scss';
 
 .bouton-stop {
   @include bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
