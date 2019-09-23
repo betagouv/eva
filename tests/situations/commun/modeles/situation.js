@@ -20,4 +20,14 @@ describe('une situation', function () {
     });
     uneSituation.modifieEtat(LECTURE_CONSIGNE);
   });
+
+  it("ne notifie pas lorsque l'état ne change pas", function () {
+    let compteurChangementEtat = 0;
+    const uneSituation = new Situation();
+    uneSituation.on(CHANGEMENT_ETAT, (etat) => {
+      compteurChangementEtat++;
+    });
+    uneSituation.modifieEtat(CHARGEMENT);
+    expect(compteurChangementEtat).to.eql(0);
+  });
 });
