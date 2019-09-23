@@ -59,6 +59,9 @@
       "abstention": "Ne sait pas : {{nombre}}"
     }
   },
+  "securite": {
+    "titre": "Sécurité"
+  },
   "situation": {
     "ecouter-consigne": "Commencez par écouter la consigne",
     "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
