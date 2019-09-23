@@ -22,6 +22,8 @@ export default class Situation extends EventEmitter {
   }
 
   modifieEtat (etat) {
+    if (etat === this.etat()) return;
+
     this._etat = etat;
     this.emit(CHANGEMENT_ETAT, etat);
   }
