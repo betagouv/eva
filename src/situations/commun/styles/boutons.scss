@@ -23,4 +23,8 @@
     border-color: grayscale($couleur-fond-bouton-violet-focus);
     cursor: auto;
   }
+
+  &.bouton-arrondi--petit {
+    font-size: 1rem;
+  }
 }

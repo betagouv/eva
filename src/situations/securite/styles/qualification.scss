@@ -1,0 +1,12 @@
+@import 'commun/styles/couleurs';
+
+.qualification {
+  position: absolute;
+  background-color: $blanc;
+  padding: 15px 30px;
+  border-radius: 1rem;
+
+  .qualification-input {
+    padding-bottom: .5rem;
+  }
+}
