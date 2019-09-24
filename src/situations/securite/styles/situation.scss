@@ -1,3 +1,14 @@
+@import 'commun/styles/couleurs';
+
 .fond-situation {
   height: 100%;
+}
+
+.zone {
+  fill: transparent;
+
+  &-selectionnee {
+    stroke: $couleur-accent-et-erreur;
+    stroke-width: 6px;
+  }
 }

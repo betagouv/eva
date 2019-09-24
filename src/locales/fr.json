@@ -60,6 +60,12 @@
     }
   },
   "securite": {
+    "danger": {
+      "bouton": "Suivant",
+      "non": "Non",
+      "oui": "Oui",
+      "titre": "Est-ce un danger ?"
+    },
     "titre": "Sécurité"
   },
   "situation": {

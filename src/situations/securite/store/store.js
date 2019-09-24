@@ -8,11 +8,15 @@ Vue.use(Vuex);
 export function creeStore () {
   return new Vuex.Store({
     state: {
-      etat: CHARGEMENT
+      etat: CHARGEMENT,
+      zones: []
     },
     mutations: {
       modifieEtat (state, etat) {
         state.etat = etat;
+      },
+      chargeZones (state, zones) {
+        state.zones = zones;
       }
     }
   });

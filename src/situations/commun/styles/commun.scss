@@ -30,17 +30,23 @@ ul {
   padding: 0;
 }
 
-h1 {
+h1,h2,h3,h4,h5,h6 {
   font-family: 'Quicksand', sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
   color: $couleur-texte;
 }
 
-h2 {
-  font-family: 'Quicksand', sans-serif;
-  color: $couleur-texte;
+h1 {
   font-size: 2rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 0;
+  padding-bottom: .5rem;
+}
+
+h3 {
   margin: 0;
   padding-bottom: .5rem;
 }

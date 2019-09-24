@@ -13,6 +13,13 @@ describe('Le store de la situation sécurité', function () {
     expect(store.state.etat).to.eql(FINI);
   });
 
+  it('permet de charger les zones', function () {
+    const store = creeStore();
+    const zones = [{ x: 1, y: 2, r: 3 }];
+    store.commit('chargeZones', zones);
+    expect(store.state.zones).to.eql(zones);
+  });
+
   it("permet de synchroniser l'état du modèle situation avec le store", function () {
     const store = creeStore();
     const situation = new Situation();
