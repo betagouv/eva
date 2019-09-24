@@ -5,7 +5,7 @@ import { afficheSituation } from 'commun/vues/affiche_situation';
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 import Situation from 'commun/modeles/situation';
 import VueSituation from 'securite/vues/situation';
-import sonConsigne from 'controle/assets/consigne_demarrage.wav';
+import sonConsigne from 'commun/assets/consigne_demarrage_blanche.wav';
 
 const situation = new Situation();
 
