@@ -14,6 +14,21 @@ describe('Le composant DeplaceurPieces', function () {
     deplaceur.activeDeplacementPieces('#point-insertion', $);
   });
 
+  it("peut bouger la souris même si aucune pièce n'est selectionnée", function () {
+    $pointInsertion.trigger($.Event('mousemove', { buttons: 0, clientX: 30, clientY: 20 }));
+  });
+
+  it("peut bouger la souris en cliquant même si aucune pièce n'est selectionnée", function () {
+    $pointInsertion.trigger($.Event('mousemove', { buttons: 1, clientX: 30, clientY: 20 }));
+  });
+
+  it("peut bouger le doigt même si aucune pièce n'est selectionnée", function () {
+    $pointInsertion.trigger($.Event('touchmove',
+      {
+        changedTouches: [{ clientX: 30, clientY: 20 }]
+      }));
+  });
+
   describe('déplace les pièces selectionnées', function () {
     let piece;
 
