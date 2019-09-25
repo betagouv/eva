@@ -24,6 +24,7 @@ describe('une situation', function () {
   it("ne notifie pas lorsque l'état ne change pas", function () {
     let compteurChangementEtat = 0;
     const uneSituation = new Situation();
+    uneSituation.modifieEtat(CHARGEMENT);
     uneSituation.on(CHANGEMENT_ETAT, (etat) => {
       compteurChangementEtat++;
     });

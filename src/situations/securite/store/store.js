@@ -27,7 +27,9 @@ export function synchroniseStoreEtModeleSituation (situation, store) {
     store.commit('modifieEtat', etat);
   });
   store.subscribe((mutation, state) => {
-    situation.modifieEtat(mutation.payload);
+    if (mutation.type === 'modifieEtat') {
+      situation.modifieEtat(mutation.payload);
+    }
   });
   store.commit('modifieEtat', situation.etat());
 }
