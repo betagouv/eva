@@ -28,10 +28,14 @@ export default class DeplaceurPieces {
   }
 
   deplacePiecesSelectionnees (e) {
-    this.pieceSelectionne.deplaceSiSelectionnee(this._positionEvenement(e));
+    if (this.pieceSelectionne) {
+      this.pieceSelectionne.deplaceSiSelectionnee(this._positionEvenement(e));
+    }
   }
 
   termineSelection (piece) {
-    this.pieceSelectionne.deselectionne();
+    if (this.pieceSelectionne) {
+      this.pieceSelectionne.deselectionne();
+    }
   }
 }
