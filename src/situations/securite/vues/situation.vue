@@ -16,6 +16,7 @@
     </svg>
     <qualification
       v-if="zoneSelectionnee"
+      :key="`${zoneSelectionnee.x}${zoneSelectionnee.y}`"
       :zone="zoneSelectionnee"
      />
   </div>
