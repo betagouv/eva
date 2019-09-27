@@ -1,12 +1,12 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Qualification from 'securite/vues/qualification';
+import FenetreZone from 'securite/vues/fenetre_zone';
 
-describe('La vue qualification', function () {
+describe('Le composant FenetreZone', function () {
   let wrapper;
 
   beforeEach(function () {
     const localVue = createLocalVue();
-    wrapper = shallowMount(Qualification, {
+    wrapper = shallowMount(FenetreZone, {
       localVue,
       propsData: {
         zone: {}

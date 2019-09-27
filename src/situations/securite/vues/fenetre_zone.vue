@@ -1,7 +1,7 @@
 <template>
   <div
     :style="{ bottom: bottom, left: left, right: right }"
-    class="qualification">
+    class="fenetre-zone">
     <h3>{{ traduction('securite.danger.titre') }}</h3>
     <div class="qualification-input">
       <label>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import 'securite/styles/qualification.scss';
+import 'securite/styles/fenetre_zone.scss';
 
 export default {
   props: {

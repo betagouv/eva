@@ -14,7 +14,7 @@
         @click="selectionneZone(zone)"
       />
     </svg>
-    <qualification
+    <fenetre-zone
       v-if="zoneSelectionnee"
       :key="`${zoneSelectionnee.x}${zoneSelectionnee.y}`"
       :zone="zoneSelectionnee"
@@ -25,10 +25,10 @@
 <script>
 import { mapState } from 'vuex';
 import 'securite/styles/situation.scss';
-import Qualification from './qualification';
+import FenetreZone from './fenetre_zone';
 
 export default {
-  components: { Qualification },
+  components: { FenetreZone },
 
   data () {
     return {
