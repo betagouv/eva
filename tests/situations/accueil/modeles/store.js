@@ -89,4 +89,21 @@ describe("Le store de l'accueil", function () {
       expect(store.state.situations).to.eql([situationAttendue]);
     });
   });
+
+  it('sait récupérer les compétences fortes depuis le serveur', function () {
+    registreUtilisateur.urlEvaluation = () => '/evaluation/1';
+    const fetch = (url) => Promise.resolve({
+      json: () => {
+        return { competences: [{ comprehension_consigne: 4 }, { rapidite: 2 }, { perseverance: 1 }] };
+      }
+    });
+    const store = creeStore(registreUtilisateur, fetch);
+    return store.dispatch('recupereCompetencesFortes').then(() => {
+      const competencesFortesAttendues = [
+        { comprehension_consigne: 4 },
+        { rapidite: 2 }
+      ];
+      expect(store.state.competencesFortes).to.eql(competencesFortesAttendues);
+    });
+  });
 });

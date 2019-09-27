@@ -8,8 +8,12 @@ describe('La vue de fin', function () {
 
   beforeEach(function () {
     store = new Vuex.Store({
+      state: {
+        competencesFortes: [{ rapidite: 4 }, { comprehension_consigne: 3 }]
+      },
       actions: {
-        deconnecte () {}
+        deconnecte () {},
+        recupereCompetencesFortes () {}
       }
     });
     wrapper = mount(Fin, { store });
@@ -28,5 +32,10 @@ describe('La vue de fin', function () {
 
     wrapper.find('button').trigger('click');
     expect(deconnecte).to.equal(1);
+  });
+
+  it('récupère les compétences fortes', function () {
+    expect(wrapper.find('li:first-of-type').text()).to.eql('accueil.fin.rapidite');
+    expect(wrapper.find('li:last-of-type').text()).to.eql('accueil.fin.comprehension_consigne');
   });
 });
