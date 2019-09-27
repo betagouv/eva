@@ -3,17 +3,19 @@
     <h3>{{ traduction('securite.danger.titre') }}</h3>
     <div class="identification-danger-input">
       <label>
-        <input type="radio" name="danger" />
+        <input v-model="danger" type="radio" name="danger" value="oui" />
         {{ traduction('securite.danger.oui') }}
       </label>
     </div>
     <div class="identification-danger-input">
       <label>
-        <input type="radio" name="danger" />
+        <input v-model="danger" type="radio" name="danger" value="non" />
         {{ traduction('securite.danger.non') }}
       </label>
     </div>
-    <button class="bouton-arrondi bouton-arrondi--petit">{{ traduction('securite.danger.bouton') }}</button>
+    <button
+      :disabled="desactivee"
+      class="bouton-arrondi bouton-arrondi--petit">{{ traduction('securite.danger.bouton') }}</button>
   </div>
 </template>
 
@@ -21,6 +23,17 @@
 import 'securite/styles/identification_danger.scss';
 
 export default {
+  data () {
+    return {
+      danger: ""
+    };
+  },
+
+  computed: {
+    desactivee () {
+      return this.danger === "";
+    }
+  }
 }
 
 </script>
