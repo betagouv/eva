@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import FenetreZone from 'securite/vues/fenetre_zone';
+import IdentificationDanger from 'securite/vues/identification_danger';
 
 describe('Le composant FenetreZone', function () {
   let wrapper;
@@ -15,7 +16,7 @@ describe('Le composant FenetreZone', function () {
   });
 
   it("affiche le formulaire pour dire si c'est un danger ou non", function () {
-    expect(wrapper.findAll('input').length).to.eql(2);
+    expect(wrapper.contains(IdentificationDanger)).to.be(true);
   });
 
   it('définis la position bottom à partir des infos de la zone', function () {
