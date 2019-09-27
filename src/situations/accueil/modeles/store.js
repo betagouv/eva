@@ -10,6 +10,7 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
       estConnecte: registreUtilisateur.estConnecte(),
       nom: registreUtilisateur.nom(),
       situations: [],
+      competencesFortes: [],
       situationsFaites: registreUtilisateur.situationsFaites()
     },
     mutations: {
@@ -24,10 +25,15 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
         state.nom = '';
         state.situationsFaites = [];
         state.situations = [];
+        state.competences = [];
       },
 
       metsAJourSituations (state, situations) {
         state.situations = situations;
+      },
+
+      metsAJourCompetencesFortes (state, competencesFortes) {
+        state.competencesFortes = competencesFortes;
       }
     },
     actions: {
@@ -52,6 +58,15 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
             };
           });
           commit('metsAJourSituations', situations);
+        });
+      },
+
+      recupereCompetencesFortes ({ commit }) {
+        return fetch(registreUtilisateur.urlEvaluation()).then((reponse) => {
+          return reponse.json();
+        }).then((json) => {
+          const deuxCompetencesFortes = json.competences.slice(0, 2);
+          commit('metsAJourCompetencesFortes', deuxCompetencesFortes);
         });
       }
     }
