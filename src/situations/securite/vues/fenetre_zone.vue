@@ -2,27 +2,19 @@
   <div
     :style="{ bottom: bottom, left: left, right: right }"
     class="fenetre-zone">
-    <h3>{{ traduction('securite.danger.titre') }}</h3>
-    <div class="qualification-input">
-      <label>
-        <input type="radio" name="danger" />
-        {{ traduction('securite.danger.oui') }}
-      </label>
-    </div>
-    <div class="qualification-input">
-      <label>
-        <input type="radio" name="danger" />
-        {{ traduction('securite.danger.non') }}
-      </label>
-    </div>
-    <button class="bouton-arrondi bouton-arrondi--petit">{{ traduction('securite.danger.bouton') }}</button>
+    <identification-danger/>
   </div>
 </template>
 
 <script>
 import 'securite/styles/fenetre_zone.scss';
+import IdentificationDanger from './identification_danger';
 
 export default {
+  components: {
+    IdentificationDanger
+  },
+
   props: {
     zone: {
       type: Object,
