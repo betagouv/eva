@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import FenetreZone from 'securite/vues/fenetre_zone';
-import IdentificationDanger from 'securite/vues/identification_danger';
+import FormulaireRadio from 'securite/vues/formulaire_radio';
 
 describe('Le composant FenetreZone', function () {
   let wrapper;
@@ -16,7 +16,7 @@ describe('Le composant FenetreZone', function () {
   });
 
   it("affiche le formulaire pour dire si c'est un danger ou non", function () {
-    expect(wrapper.contains(IdentificationDanger)).to.be(true);
+    expect(wrapper.contains(FormulaireRadio)).to.be(true);
   });
 
   it('définis la position bottom à partir des infos de la zone', function () {

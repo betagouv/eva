@@ -12,8 +12,7 @@
     <button
       :disabled="desactivee"
       @click="question.click"
-      class="bouton-arrondi bouton-arrondi--petit">{{ traduction('securite.danger.bouton') }}
-    </button>
+      class="bouton-arrondi bouton-arrondi--petit">{{ question.bouton }}</button>
   </div>
 </template>
 

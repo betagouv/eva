@@ -1,10 +1,16 @@
 <template>
   <div
+    v-if="etat != 'termine'"
     :style="{ bottom: bottom, left: left, right: right }"
     class="fenetre-zone">
     <formulaire-radio
-      v-if="etatIdentification"
+      key="identification"
+      v-if="etat == 'identification'"
       :question="identificationDanger" />
+    <formulaire-radio
+      key="qualification"
+      v-else-if="etat == 'qualification'"
+      :question="qualificationDanger" />
   </div>
 </template>
 
@@ -22,12 +28,19 @@ export default {
     return {
       etat: "identification",
       identificationDanger: {
-        titre: traduction('securite.danger.titre'),
+        titre: traduction('securite.danger.identification.titre'),
         options: [
-          { libelle: traduction('securite.danger.oui'), valeur: "oui"},
-          { libelle: traduction('securite.danger.non'), valeur: "non"}
+          { libelle: traduction('securite.danger.identification.oui'), valeur: "oui"},
+          { libelle: traduction('securite.danger.identification.non'), valeur: "non"}
         ],
-        click: this.suivant
+        bouton: traduction('securite.danger.identification.bouton'),
+        click: this.qualification
+      },
+      qualificationDanger: {
+        titre: traduction('securite.danger.qualification.titre'),
+        options: this.zone.qualification,
+        bouton: traduction('securite.danger.qualification.bouton'),
+        click: this.termine
       }
     }
   },
@@ -43,17 +56,15 @@ export default {
     formatePourcentage (pourcentage) {
       return `${pourcentage}%`;
     },
-
-    suivant () {
-      this.etat="qualification";
+    qualification () {
+      this.etat = "qualification";
+    },
+    termine () {
+      this.etat = "termine";
     }
   },
 
   computed: {
-    etatIdentification () {
-      return this.etat == "identification";
-    },
-
     bottom () {
       return this.formatePourcentage((100 - this.zone.y + Math.sin(Math.PI / 4) * this.zone.r).toFixed(1));
     },
