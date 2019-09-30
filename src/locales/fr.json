@@ -61,10 +61,16 @@
   },
   "securite": {
     "danger": {
-      "bouton": "Suivant",
-      "non": "Non",
-      "oui": "Oui",
-      "titre": "Est-ce un danger ?"
+      "identification": {
+        "bouton": "Suivant",
+        "non": "Non",
+        "oui": "Oui",
+        "titre": "Est-ce un danger ?"
+      },
+      "qualification": {
+        "bouton": "Valider",
+        "titre": "Quel est le risque ?"
+      }
     },
     "titre": "Sécurité"
   },

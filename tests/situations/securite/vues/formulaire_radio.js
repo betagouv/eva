@@ -1,11 +1,22 @@
-import { shallowMount } from '@vue/test-utils';
-import IdentificationDanger from 'securite/vues/identification_danger';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import FormulaireRadio from 'securite/vues/formulaire_radio';
 
-describe('Le composant IdentificationDanger', function () {
+describe('Le composant FormulaireRadio', function () {
   let wrapper;
 
   beforeEach(function () {
-    wrapper = shallowMount(IdentificationDanger);
+    const localVue = createLocalVue();
+    wrapper = shallowMount(FormulaireRadio, {
+      localVue,
+      propsData: {
+        question: {
+          titre: 'question ?',
+          options: [{ libelle: 'option1', valeur: '1' }, { libelle: 'option2', valeur: '2' }],
+          bouton: 'Valider',
+          click: () => {}
+        }
+      }
+    });
   });
 
   it('affiche deux options', function () {
