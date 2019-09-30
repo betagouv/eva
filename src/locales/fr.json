@@ -27,12 +27,16 @@
     },
     "fin": {
       "bouton": "Terminer",
-      "message": "Vous avez maintenant terminé toutes les mises en situations. Nous avons détecté 2 compétences fortes :",
+      "message": "Vous avez maintenant terminé toutes les mises en situations.",
+      "competences":" Nous avons détecté 2 compétences fortes :",
       "titre": "Merci et bravo !",
-      "comprehension_consigne": "Compréhension de consignes",
-      "rapidite": "Rapidité",
+      "comprehension_consigne": "Compréhension de la consigne",
+      "comparaison_tri": "Comparaison et tri",
+      "rapidite": "Rapidité de traitement",
       "vigilance_controle": "Vigilance et contrôle",
-      "organisation_methode": "Organisation et méthode"
+      "organisation_methode": "Organisation et méthode",
+      "attention_concentration": "Attention et concentration",
+      "perseverance": "Persévérance"
     },
     "titre": "Compétences pro"
   },

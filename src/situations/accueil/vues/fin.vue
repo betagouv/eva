@@ -4,7 +4,7 @@
       <h2>{{ traduction('accueil.fin.titre') }}</h2>
       <p class="message-base">{{ traduction('accueil.fin.message') }}</p>
       <div class='competences-fortes-conteneur' v-if="this.competencesFortes.length != 0" >
-        <p class="message-competence">{{ traduction('accueil.fin.competences') }}</p>
+        <p>{{ traduction('accueil.fin.competences') }}</p>
         <li class="competences" v-for="(competence, index) in competencesFortes">
           {{ traduction(`accueil.fin.${Object.keys(competence).join()}`) }}
         </li>

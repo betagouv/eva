@@ -39,7 +39,7 @@ describe('La vue de fin', function () {
     store.state.competencesFortes = [{ rapidite: 4 }, { comprehension_consigne: 3 }];
     wrapper = mount(Fin, { store });
 
-    expect(wrapper.findAll('.message-competence').length).to.equal(1);
+    expect(wrapper.findAll('.competences-fortes-conteneur').length).to.equal(1);
     expect(wrapper.find('li:first-of-type').text()).to.eql('accueil.fin.rapidite');
     expect(wrapper.find('li:last-of-type').text()).to.eql('accueil.fin.comprehension_consigne');
   });
@@ -48,6 +48,6 @@ describe('La vue de fin', function () {
     store.state.competences = [];
     wrapper = mount(Fin, { store });
 
-    expect(wrapper.findAll('.message-competence').length).to.equal(0);
+    expect(wrapper.findAll('.competences-fortes-conteneur').length).to.equal(0);
   });
 });
