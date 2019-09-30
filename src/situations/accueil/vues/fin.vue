@@ -2,9 +2,8 @@
   <div class="overlay modale">
     <div class= "modale-interieur">
       <h2>{{ traduction('accueil.fin.titre') }}</h2>
-      <p>{{ traduction('accueil.fin.message') }}</p>
-      <p>{{ traduction('accueil.fin.competences_fortes') }}</p>
-      <li v-for="(competence, index) in competencesFortes">
+      <p class="message-fin">{{ traduction('accueil.fin.message') }}</p>
+      <li class="competences" v-for="(competence, index) in competencesFortes">
         {{ traduction(`accueil.fin.${Object.keys(competence).join()}`) }}
       </li>
       <button
@@ -17,6 +16,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import "commun/styles/fin.scss";
 
 export default {
   computed: {
