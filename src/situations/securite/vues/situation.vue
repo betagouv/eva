@@ -25,6 +25,7 @@
 <script>
 import { mapState } from 'vuex';
 import 'securite/styles/situation.scss';
+import { FINI } from '../store/store';
 import FenetreZone from './fenetre_zone';
 
 export default {
@@ -37,7 +38,15 @@ export default {
     };
   },
 
-  computed: mapState(['zones']),
+  computed: mapState(['zones', 'dangers', 'dangersQualifies']),
+
+  watch: {
+    dangersQualifies () {
+      if (this.dangersQualifies.length === Object.keys(this.dangers).length) {
+        this.$store.commit('modifieEtat', FINI);
+      }
+    }
+  },
 
   methods: {
     selectionneZone (zone) {
