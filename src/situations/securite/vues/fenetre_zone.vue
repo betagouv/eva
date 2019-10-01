@@ -38,7 +38,7 @@ export default {
           { libelle: traduction('securite.danger.identification.non'), valeur: "non"}
         ],
         bouton: traduction('securite.danger.identification.bouton'),
-        submit: () => this.etat = 'qualification'
+        submit: this.identifie
       }
     }
   },
@@ -71,6 +71,13 @@ export default {
   methods: {
     formatePourcentage (pourcentage) {
       return `${pourcentage}%`;
+    },
+    identifie () {
+      if (this.zone.danger) {
+        this.etat = 'qualification';
+      } else {
+        this.etat = 'termine';
+      }
     },
     qualifie () {
       this.$store.commit('ajouteDangerQualifie', this.zone.danger);

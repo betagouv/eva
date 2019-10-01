@@ -90,7 +90,12 @@ const zones = [
     y: pourcentageY(370),
     r: pourcentageX(45),
     danger: DANGER_SIGNALISATION
-  } // personne signe gauche
+  }, // personne signe gauche
+  {
+    x: pourcentageX(730),
+    y: pourcentageY(490),
+    r: pourcentageX(70)
+  } // voiture bleue
 ];
 
 export { dangers, zones };
