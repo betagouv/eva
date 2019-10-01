@@ -71,6 +71,20 @@ describe('Le composant FenetreZone', function () {
     });
   });
 
+  describe('avec une zone sans danger associé', function () {
+    beforeEach(function () {
+      const zone = { x: 4, r: 1 };
+      store.commit('chargeZonesEtDangers', { zones: [zone], dangers: {} });
+      wrapper.setProps({ zone });
+    });
+
+    it("ne propose que l'étape d'identification", function () {
+      expect(wrapper.vm.etat).to.equal('identification');
+      wrapper.vm.question.submit();
+      expect(wrapper.vm.etat).to.equal('termine');
+    });
+  });
+
   it('ne rend plus rien une fois terminé', function () {
     expect(wrapper.isEmpty()).to.be(false);
     wrapper.vm.etat = 'termine';
