@@ -48,9 +48,13 @@ describe('La vue de la situation Sécurité', function () {
       zones: [{ x: 1, y: 2, r: 3, danger: 'danger1' }, { x: 4, y: 5, r: 6, danger: 'danger2' }],
       dangers: { danger1: {}, danger2: {} }
     });
+    expect(wrapper.vm.nombreDangersQualifies).to.equal(0);
+    expect(wrapper.vm.nombreDangersAQualifies).to.equal(2);
     store.commit('ajouteDangerQualifie', 'danger1');
     expect(store.state.etat).to.equal(CHARGEMENT);
+    expect(wrapper.vm.nombreDangersQualifies).to.equal(1);
     store.commit('ajouteDangerQualifie', 'danger2');
     expect(store.state.etat).to.equal(FINI);
+    expect(wrapper.vm.nombreDangersQualifies).to.equal(2);
   });
 });
