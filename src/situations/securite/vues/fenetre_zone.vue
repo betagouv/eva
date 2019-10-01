@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="etat != 'termine'"
     :style="{ bottom: bottom, left: left, right: right }"
     class="fenetre-zone">
 
@@ -80,12 +79,16 @@ export default {
       if (this.zone.danger) {
         this.etat = 'qualification';
       } else {
-        this.etat = 'termine';
+        this.ferme();
       }
     },
     qualifie (choix) {
       this.$store.commit('ajouteDangerQualifie', { nom: this.zone.danger, choix });
-      this.etat = 'termine';
+      this.ferme();
+    },
+
+    ferme () {
+      this.$emit('ferme');
     }
   }
 }

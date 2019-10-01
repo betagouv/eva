@@ -51,6 +51,14 @@ describe('La vue de la situation Sécurité', function () {
     expect(wrapper.vm.nombreDangersAQualifies).to.equal(2);
   });
 
+  it('déselectionne la zone courante', function () {
+    store.commit('chargeZonesEtDangers', { zones: [{ x: 1, y: 2, r: 3 }, { x: 4, y: 5, r: 6 }], dangers: {} });
+    wrapper.find('.zone').trigger('click');
+    expect(wrapper.findAll('.zone-selectionnee').length).to.eql(1);
+    wrapper.vm.deselectionneZone();
+    expect(wrapper.findAll('.zone-selectionnee').length).to.eql(0);
+  });
+
   it('passe la situation en FINI lorsque tout les dangers ont été identifiés', function () {
     store.commit('chargeZonesEtDangers', {
       zones: [{ x: 1, y: 2, r: 3, danger: 'danger1' }, { x: 4, y: 5, r: 6, danger: 'danger2' }],

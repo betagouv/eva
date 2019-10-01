@@ -20,6 +20,7 @@
       v-if="zoneSelectionnee"
       :key="`${zoneSelectionnee.x}${zoneSelectionnee.y}`"
       :zone="zoneSelectionnee"
+      @ferme="deselectionneZone"
      />
   </div>
 </template>
@@ -59,6 +60,9 @@ export default {
   methods: {
     selectionneZone (zone) {
       this.zoneSelectionnee = zone;
+    },
+    deselectionneZone () {
+      this.zoneSelectionnee = null;
     }
   }
 }

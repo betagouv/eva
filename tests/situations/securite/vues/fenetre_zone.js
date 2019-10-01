@@ -64,7 +64,7 @@ describe('Le composant FenetreZone', function () {
       wrapper.vm.question.submit();
       expect(wrapper.vm.etat).to.equal('qualification');
       wrapper.vm.question.submit();
-      expect(wrapper.vm.etat).to.equal('termine');
+      expect(wrapper.emitted('ferme').length).to.equal(1);
     });
 
     it('mets à jour le store pour stocker le danger qualifié', function (done) {
@@ -97,13 +97,7 @@ describe('Le composant FenetreZone', function () {
     it("ne propose que l'étape d'identification", function () {
       expect(wrapper.vm.etat).to.equal('identification');
       wrapper.vm.question.submit();
-      expect(wrapper.vm.etat).to.equal('termine');
+      expect(wrapper.emitted('ferme').length).to.equal(1);
     });
-  });
-
-  it('ne rend plus rien une fois terminé', function () {
-    expect(wrapper.isEmpty()).to.be(false);
-    wrapper.vm.etat = 'termine';
-    expect(wrapper.isEmpty()).to.be(true);
   });
 });

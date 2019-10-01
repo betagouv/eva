@@ -1,5 +1,5 @@
 <template>
-  <form @submit="submit">
+  <form @submit.prevent="submit">
     <h3>{{ question.titre }}</h3>
     <div
       v-for="option in question.options"
