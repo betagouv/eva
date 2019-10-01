@@ -22,6 +22,21 @@ describe('Le store de la situation sécurité', function () {
     expect(store.state.dangers).to.eql(dangers);
   });
 
+  it('permet de stocker les dangers qualifiés', function () {
+    const store = creeStore();
+    expect(store.state.dangersQualifies).to.eql([]);
+    store.commit('ajouteDangerQualifie', 'danger1');
+    expect(store.state.dangersQualifies).to.eql(['danger1']);
+  });
+
+  it('permet de stocker une seule fois un danger qualifié', function () {
+    const store = creeStore();
+    expect(store.state.dangersQualifies).to.eql([]);
+    store.commit('ajouteDangerQualifie', 'danger1');
+    store.commit('ajouteDangerQualifie', 'danger1');
+    expect(store.state.dangersQualifies).to.eql(['danger1']);
+  });
+
   it("permet de synchroniser l'état du modèle situation avec le store", function () {
     const store = creeStore();
     const situation = new Situation();
