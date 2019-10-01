@@ -35,4 +35,18 @@ describe('Le composant FenetreZone', function () {
     expect(wrapper.vm.left).to.eql(undefined);
     expect(wrapper.vm.right).to.eql('20.7%');
   });
+
+  it("rend la question d'identification du danger puis de qualification puis c'est terminé", function () {
+    expect(wrapper.vm.etat).to.equal('identification');
+    wrapper.vm.question.submit();
+    expect(wrapper.vm.etat).to.equal('qualification');
+    wrapper.vm.question.submit();
+    expect(wrapper.vm.etat).to.equal('termine');
+  });
+
+  it('ne rend plus rien une fois terminé', function () {
+    expect(wrapper.isEmpty()).to.be(false);
+    wrapper.vm.etat = 'termine';
+    expect(wrapper.isEmpty()).to.be(true);
+  });
 });
