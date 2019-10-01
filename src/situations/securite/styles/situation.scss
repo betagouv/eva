@@ -12,3 +12,13 @@
     stroke-width: 6px;
   }
 }
+
+.compteur {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  border-radius: 1rem;
+  background-color: $blanc;
+  padding: 1rem;
+  color: $couleur-sombre;
+}

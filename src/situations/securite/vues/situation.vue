@@ -2,7 +2,8 @@
   <div
     :style="{ 'background-image': fondSituation }"
     class="fond-situation"
-    >
+  >
+    <div class="compteur">{{ traduction('securite.dangers_detectes') }}: {{nombreDangersQualifies}}/{{nombreDangersAQualifies}}</div>
     <svg height="100%" width="100%">
       <circle
         v-for="zone in zones"
@@ -39,11 +40,19 @@ export default {
     };
   },
 
-  computed: mapState(['zones', 'dangers', 'dangersQualifies']),
+  computed: {
+    ...mapState(['zones', 'dangers', 'dangersQualifies']),
+    nombreDangersQualifies () {
+      return this.dangersQualifies.length;
+    },
+    nombreDangersAQualifies () {
+      return Object.keys(this.dangers).length;
+    }
+  },
 
   watch: {
     dangersQualifies () {
-      if (this.dangersQualifies.length === Object.keys(this.dangers).length) {
+      if (this.nombreDangersQualifies === this.nombreDangersAQualifies) {
         this.$store.commit('modifieEtat', FINI);
       }
     }
