@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form @submit="submit">
     <h3>{{ question.titre }}</h3>
     <div
       v-for="option in question.options"
@@ -11,9 +11,8 @@
     </div>
     <button
       :disabled="desactivee"
-      @click="question.click"
       class="bouton-arrondi bouton-arrondi--petit">{{ question.bouton }}</button>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -36,9 +35,13 @@ export default {
   computed: {
     desactivee () {
       return this.choix === "";
-    },
+    }
+  },
+
+  methods: {
+    submit() {
+      this.question.submit(this.choix);
+    }
   }
 }
-
 </script>
-

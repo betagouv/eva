@@ -34,13 +34,13 @@ export default {
           { libelle: traduction('securite.danger.identification.non'), valeur: "non"}
         ],
         bouton: traduction('securite.danger.identification.bouton'),
-        click: this.qualification
+        submit: this.qualification
       },
       qualificationDanger: {
         titre: traduction('securite.danger.qualification.titre'),
         options: this.zone.qualification,
         bouton: traduction('securite.danger.qualification.bouton'),
-        click: this.termine
+        submit: this.termine
       }
     }
   },
