@@ -1,14 +1,16 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
+import { creeStore } from 'securite/store/store';
 import FenetreZone from 'securite/vues/fenetre_zone';
 import FormulaireRadio from 'securite/vues/formulaire_radio';
 
 describe('Le composant FenetreZone', function () {
   let wrapper;
+  let store;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
+    store = creeStore();
     wrapper = shallowMount(FenetreZone, {
-      localVue,
+      store,
       propsData: {
         zone: {}
       }
@@ -36,12 +38,27 @@ describe('Le composant FenetreZone', function () {
     expect(wrapper.vm.right).to.eql('20.7%');
   });
 
-  it("rend la question d'identification du danger puis de qualification puis c'est terminé", function () {
-    expect(wrapper.vm.etat).to.equal('identification');
-    wrapper.vm.question.submit();
-    expect(wrapper.vm.etat).to.equal('qualification');
-    wrapper.vm.question.submit();
-    expect(wrapper.vm.etat).to.equal('termine');
+  describe('avec une zone et un danger associé', function () {
+    let danger;
+
+    beforeEach(function () {
+      const zone = { x: 4, r: 1, danger: 'danger1' };
+      danger = { qualifications: [] };
+      store.commit('chargeZonesEtDangers', { zones: [zone], dangers: { danger1: danger } });
+      wrapper.setProps({ zone });
+    });
+
+    it('renvoit les options de qualification', function () {
+      expect(wrapper.vm.qualificationDanger.options).to.equal(danger.qualifications);
+    });
+
+    it("rend la question d'identification du danger puis de qualification puis c'est terminé", function () {
+      expect(wrapper.vm.etat).to.equal('identification');
+      wrapper.vm.question.submit();
+      expect(wrapper.vm.etat).to.equal('qualification');
+      wrapper.vm.question.submit();
+      expect(wrapper.vm.etat).to.equal('termine');
+    });
   });
 
   it('ne rend plus rien une fois terminé', function () {

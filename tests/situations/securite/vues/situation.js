@@ -26,12 +26,12 @@ describe('La vue de la situation Sécurité', function () {
 
   it('affiche les zones', function () {
     expect(wrapper.findAll('.zone').length).to.eql(0);
-    store.commit('chargeZones', [{ x: 1, y: 2, r: 3 }, { x: 4, y: 5, r: 6 }]);
+    store.commit('chargeZonesEtDangers', { zones: [{ x: 1, y: 2, r: 3 }, { x: 4, y: 5, r: 6 }], dangers: {} });
     expect(wrapper.findAll('.zone').length).to.eql(2);
   });
 
   it('selectionne une zone au clic', function () {
-    store.commit('chargeZones', [{ x: 1, y: 2, r: 3 }, { x: 4, y: 5, r: 6 }]);
+    store.commit('chargeZonesEtDangers', { zones: [{ x: 1, y: 2, r: 3 }, { x: 4, y: 5, r: 6 }], dangers: {} });
     expect(wrapper.findAll('.zone-selectionnee').length).to.eql(0);
     wrapper.find('.zone').trigger('click');
     expect(wrapper.findAll('.zone-selectionnee').length).to.eql(1);
