@@ -12,6 +12,13 @@ import fin from 'accueil/assets/fin.png';
 import precedent from 'accueil/assets/precedent.svg';
 import suivant from 'accueil/assets/suivant.svg';
 import punaise from 'accueil/assets/punaise.svg';
+import comprehensionConsigne from 'accueil/assets/comprehension_consigne.png';
+import rapidite from 'accueil/assets/rapidite.png';
+import comparaisonTri from 'accueil/assets/comparaison_tri.png';
+import vigilanceControle from 'accueil/assets/vigilance_controle.png';
+import organisationMethode from 'accueil/assets/organisation_methode.png';
+import attentionConcentration from 'accueil/assets/attention_concentration.png';
+import perseverance from 'accueil/assets/perseverance.png';
 
 const batiments = {
   bienvenue,
@@ -23,11 +30,26 @@ const batiments = {
   tri
 };
 
+const competences = {
+  comprehension_consigne: comprehensionConsigne,
+  rapidite: rapidite,
+  comparaison_tri: comparaisonTri,
+  vigilance_controle: vigilanceControle,
+  organisation_methode: organisationMethode,
+  attention_concentration: attentionConcentration,
+  perseverance: perseverance
+};
+
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
     this.charge([fondAccueil, personnage, precedent, suivant, punaise, casque]);
     this.charge(Object.values(batiments));
+    this.charge(Object.values(competences));
+  }
+
+  pictoCompetences (competenceForte) {
+    return competences[competenceForte];
   }
 
   fondAccueil () {
