@@ -39,12 +39,6 @@ export default {
         ],
         bouton: traduction('securite.danger.identification.bouton'),
         submit: () => this.etat = 'qualification'
-      },
-      qualificationDanger: {
-        titre: traduction('securite.danger.qualification.titre'),
-        options: this.zone.qualification,
-        bouton: traduction('securite.danger.qualification.bouton'),
-        submit: () => this.etat = 'termine'
       }
     }
   },
@@ -60,6 +54,14 @@ export default {
     right () {
       if (this.zone.x < 80) return undefined;
       return this.formatePourcentage((100 - (this.zone.x + Math.cos(3 * Math.PI / 4) * this.zone.r)).toFixed(1));
+    },
+    qualificationDanger () {
+      return {
+        titre: traduction('securite.danger.qualification.titre'),
+        options: this.$store.state.dangers[this.zone.danger].qualifications,
+        bouton: traduction('securite.danger.qualification.bouton'),
+        submit: () => this.etat = 'termine'
+      };
     },
     question () {
       return this.etat === 'identification' ? this.identificationDanger : this.qualificationDanger;

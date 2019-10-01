@@ -9,14 +9,16 @@ export function creeStore () {
   return new Vuex.Store({
     state: {
       etat: CHARGEMENT,
-      zones: []
+      zones: [],
+      dangers: {}
     },
     mutations: {
       modifieEtat (state, etat) {
         state.etat = etat;
       },
-      chargeZones (state, zones) {
+      chargeZonesEtDangers (state, { zones, dangers }) {
         state.zones = zones;
+        state.dangers = dangers;
       }
     }
   });
