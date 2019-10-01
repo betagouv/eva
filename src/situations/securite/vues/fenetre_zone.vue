@@ -3,14 +3,11 @@
     v-if="etat != 'termine'"
     :style="{ bottom: bottom, left: left, right: right }"
     class="fenetre-zone">
+
     <formulaire-radio
-      key="identification"
-      v-if="etat == 'identification'"
-      :question="identificationDanger" />
-    <formulaire-radio
-      key="qualification"
-      v-else-if="etat == 'qualification'"
-      :question="qualificationDanger" />
+      :key="etat"
+      :question="question" />
+
   </div>
 </template>
 
@@ -24,6 +21,13 @@ export default {
     FormulaireRadio
   },
 
+  props: {
+    zone: {
+      type: Object,
+      required: true
+    }
+  },
+
   data () {
     return {
       etat: "identification",
@@ -34,33 +38,14 @@ export default {
           { libelle: traduction('securite.danger.identification.non'), valeur: "non"}
         ],
         bouton: traduction('securite.danger.identification.bouton'),
-        submit: this.qualification
+        submit: () => this.etat = 'qualification'
       },
       qualificationDanger: {
         titre: traduction('securite.danger.qualification.titre'),
         options: this.zone.qualification,
         bouton: traduction('securite.danger.qualification.bouton'),
-        submit: this.termine
+        submit: () => this.etat = 'termine'
       }
-    }
-  },
-
-  props: {
-    zone: {
-      type: Object,
-      required: true
-    }
-  },
-
-  methods: {
-    formatePourcentage (pourcentage) {
-      return `${pourcentage}%`;
-    },
-    qualification () {
-      this.etat = "qualification";
-    },
-    termine () {
-      this.etat = "termine";
     }
   },
 
@@ -75,6 +60,15 @@ export default {
     right () {
       if (this.zone.x < 80) return undefined;
       return this.formatePourcentage((100 - (this.zone.x + Math.cos(3 * Math.PI / 4) * this.zone.r)).toFixed(1));
+    },
+    question () {
+      return this.etat === 'identification' ? this.identificationDanger : this.qualificationDanger;
+    }
+  },
+
+  methods: {
+    formatePourcentage (pourcentage) {
+      return `${pourcentage}%`;
     }
   }
 }
