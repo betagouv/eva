@@ -5,5 +5,9 @@
 }
 
 .competences {
+  display: flex;
   color: $violet;
+  img {
+    margin-right: 1rem;
+  }
 }

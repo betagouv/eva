@@ -2,13 +2,15 @@
   <div class="overlay modale">
     <div class= "modale-interieur">
       <h2>{{ traduction('accueil.fin.titre') }}</h2>
-      <p class="message-base">{{ traduction('accueil.fin.message') }}</p>
-      <div class='competences-fortes-conteneur' v-if="this.competencesFortes.length != 0" >
-        <p>{{ traduction('accueil.fin.competences') }}</p>
-        <li class="competences" v-for="(competence, index) in competencesFortes">
-          {{ traduction(`accueil.fin.${Object.keys(competence).join()}`) }}
-        </li>
-      </div>
+      <p class="message-fin">{{ traduction('accueil.fin.message') }}
+        <span v-if="this.competencesFortes.length != 0" class="message-competences-fortes">{{ traduction('accueil.fin.competences') }}</span>
+      </p>
+      <p class="competences" v-for="(competence, index) in competencesFortes">
+        <img
+          :src="affichePicto(competence)"
+        />
+        {{ traduction(`accueil.fin.${formatteCompetence(competence)}`) }}
+      </p>
       <button
         class="bouton-arrondi"
         @click="deconnecte"
@@ -32,6 +34,15 @@ export default {
 
   methods: {
     ...mapActions(['deconnecte']),
+
+    formatteCompetence (competence) {
+      return Object.keys(competence)[0]
+    },
+
+    affichePicto (competence) {
+      const competencesFortes = this.formatteCompetence(competence)
+      return this.depotRessources.pictoCompetences(competencesFortes);
+    },
 
     recupereCompetencesFortes (sync = true) {
       this.$store.dispatch('recupereCompetencesFortes');
