@@ -59,6 +59,16 @@ describe('Le composant FenetreZone', function () {
       wrapper.vm.question.submit();
       expect(wrapper.vm.etat).to.equal('termine');
     });
+
+    it('mets à jour le store pour stocker le danger qualifié', function (done) {
+      wrapper.vm.etat = 'qualification';
+      store.commit = (mutation, donnees) => {
+        expect(mutation).to.equal('ajouteDangerQualifie');
+        expect(donnees).to.equal('danger1');
+        done();
+      };
+      wrapper.vm.question.submit('qualification1');
+    });
   });
 
   it('ne rend plus rien une fois terminé', function () {

@@ -60,7 +60,7 @@ export default {
         titre: traduction('securite.danger.qualification.titre'),
         options: this.$store.state.dangers[this.zone.danger].qualifications,
         bouton: traduction('securite.danger.qualification.bouton'),
-        submit: () => this.etat = 'termine'
+        submit: this.qualifie
       };
     },
     question () {
@@ -71,6 +71,10 @@ export default {
   methods: {
     formatePourcentage (pourcentage) {
       return `${pourcentage}%`;
+    },
+    qualifie () {
+      this.$store.commit('ajouteDangerQualifie', this.zone.danger);
+      this.etat = 'termine';
     }
   }
 }

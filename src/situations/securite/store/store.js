@@ -10,7 +10,8 @@ export function creeStore () {
     state: {
       etat: CHARGEMENT,
       zones: [],
-      dangers: {}
+      dangers: {},
+      dangersQualifies: []
     },
     mutations: {
       modifieEtat (state, etat) {
@@ -19,6 +20,11 @@ export function creeStore () {
       chargeZonesEtDangers (state, { zones, dangers }) {
         state.zones = zones;
         state.dangers = dangers;
+      },
+      ajouteDangerQualifie (state, dangerQualifie) {
+        if (!state.dangersQualifies.includes(dangerQualifie)) {
+          state.dangersQualifies.push(dangerQualifie);
+        }
       }
     }
   });
