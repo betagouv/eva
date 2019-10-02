@@ -3,21 +3,29 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700|Work+Sans:400,700&display=swap&subset=latin-ext');
 
 html, body {
-  height: 100%;
   margin: 0;
 }
 
 body {
+  min-height: 100vh;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+  display: flex;
+  position: relative;
+  background-color: $couleur-fond;
+}
+
+body:after {
+  content: "";
+  z-index: -1;
   background: url('../assets/fond-footer.svg') center;
   background-size: cover;
   background-position: bottom;
   background-repeat: repeat;
-  display: flex;
-  font-family: 'Work Sans', sans-serif;
-  font-size: 16px;
-  min-height: 100%;
-  align-items: center;
-  flex-direction: column;
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  bottom: 0;
 }
 
 * {
