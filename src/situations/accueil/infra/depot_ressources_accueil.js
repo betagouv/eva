@@ -49,7 +49,7 @@ export default class DepotRessourcesAccueil extends DepotRessources {
   }
 
   pictoCompetences (competenceForte) {
-    return competences[competenceForte];
+    return this.ressource(competences[competenceForte]);
   }
 
   fondAccueil () {
