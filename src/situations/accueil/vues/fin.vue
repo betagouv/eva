@@ -1,6 +1,7 @@
 <template>
-  <div class="overlay modale">
-    <div class= "modale-interieur">
+  <div class="overlay modale"
+       :class="{ attendre: ! competencesFortesRecus }">
+    <div v-if="competencesFortesRecus" class= "modale-interieur">
       <h2>{{ traduction('accueil.fin.titre') }}</h2>
       <p class="message-fin">{{ traduction('accueil.fin.message') }}
         <span v-if="this.competencesFortes.length != 0" class="message-competences-fortes">{{ traduction('accueil.fin.competences') }}</span>
@@ -24,6 +25,12 @@ import { mapActions, mapState } from 'vuex';
 import "commun/styles/fin.scss";
 
 export default {
+  data () {
+    return {
+      competencesFortesRecus: false
+    };
+  },
+
   computed: {
     ...mapState(['competencesFortes']),
   },
@@ -45,8 +52,10 @@ export default {
     },
 
     recupereCompetencesFortes (sync = true) {
-      this.$store.dispatch('recupereCompetencesFortes');
-      }
+      this.$store.dispatch('recupereCompetencesFortes').then(() => {
+        this.competencesFortesRecus = true;
+      });
     }
+  }
 };
 </script>
