@@ -41,7 +41,7 @@ export default {
 
     affichePicto (competence) {
       const competencesFortes = this.formatteCompetence(competence)
-      return this.depotRessources.pictoCompetences(competencesFortes);
+      return this.depotRessources.pictoCompetences(competencesFortes).src;
     },
 
     recupereCompetencesFortes (sync = true) {
