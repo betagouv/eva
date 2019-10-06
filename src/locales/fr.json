@@ -27,8 +27,8 @@
     },
     "fin": {
       "bouton": "Terminer",
-      "message": "Vous avez maintenant terminé toutes les mises en situations.",
-      "competences":" Nous avons détecté 2 compétences fortes :",
+      "message": "Vous avez maintenant terminé l'ensemble des mises en situations.",
+      "competences":" Parmi celles ci, vos deux principaux potentiels identifiés sont :",
       "titre": "Merci et bravo !",
       "comprehension_consigne": "Compréhension de la consigne",
       "comparaison_tri": "Comparaison et tri",
