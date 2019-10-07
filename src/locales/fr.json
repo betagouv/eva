@@ -66,6 +66,7 @@
     }
   },
   "securite": {
+    "aide": "J'ai besoin d'aide",
     "danger": {
       "identification": {
         "bouton": "Suivant",

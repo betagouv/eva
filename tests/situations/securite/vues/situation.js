@@ -59,6 +59,12 @@ describe('La vue de la situation Sécurité', function () {
     expect(wrapper.findAll('.zone-selectionnee').length).to.eql(0);
   });
 
+  it("avec le niveau d'aide activé, ajoute la classe aide sur la zone", function () {
+    store.commit('chargeZonesEtDangers', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
+    store.commit('activeAide');
+    expect(wrapper.findAll('.zone.zone-aide').length).to.eql(1);
+  });
+
   it('passe la situation en FINI lorsque tout les dangers ont été identifiés', function () {
     store.commit('chargeZonesEtDangers', {
       zones: [{ x: 1, y: 2, r: 3, danger: 'danger1' }, { x: 4, y: 5, r: 6, danger: 'danger2' }],

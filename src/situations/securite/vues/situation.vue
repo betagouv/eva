@@ -3,7 +3,10 @@
     :style="{ 'background-image': fondSituation }"
     class="fond-situation"
   >
-    <div class="compteur">{{ traduction('securite.dangers_detectes') }}: {{nombreDangersQualifies}}/{{nombreDangersAQualifies}}</div>
+    <div class="compteur-statut">
+      {{ traduction('securite.dangers_detectes') }}: {{nombreDangersQualifies}}/{{nombreDangersAQualifies}}
+      <bouton-aide />
+    </div>
     <svg height="100%" width="100%">
       <circle
         v-for="zone in zones"
@@ -12,7 +15,8 @@
         :cy="`${zone.y}%`"
         :r="`${zone.r}%`"
         :class="{ 'zone-selectionnee': zone === zoneSelectionnee,
-                  'zone-qualifiee': qualification(zone.danger) }"
+                  'zone-qualifiee': qualification(zone.danger),
+                  'zone-aide': aide }"
         class="zone"
         @click="selectionneZone(zone)"
       />
@@ -30,10 +34,11 @@
 import { mapState, mapGetters } from 'vuex';
 import 'securite/styles/situation.scss';
 import { FINI } from '../store/store';
+import BoutonAide from './bouton_aide';
 import FenetreZone from './fenetre_zone';
 
 export default {
-  components: { FenetreZone },
+  components: { BoutonAide, FenetreZone },
 
   data () {
     return {
@@ -43,8 +48,9 @@ export default {
   },
 
   computed: {
-    ...mapState(['zones', 'dangers', 'dangersQualifies']),
+    ...mapState(['zones', 'dangers', 'dangersQualifies', 'aide']),
     ...mapGetters(['qualification', 'nombreDangersQualifies']),
+
     nombreDangersAQualifies () {
       return Object.keys(this.dangers).length;
     }
