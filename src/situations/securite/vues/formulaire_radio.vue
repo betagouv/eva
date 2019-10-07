@@ -28,7 +28,7 @@ export default {
 
   data () {
     return {
-      choix: ""
+      choix: this.question.choix
     };
   },
 

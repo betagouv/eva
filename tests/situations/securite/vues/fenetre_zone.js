@@ -49,8 +49,14 @@ describe('Le composant FenetreZone', function () {
       wrapper.setProps({ zone });
     });
 
-    it('renvoit les options de qualification', function () {
+    it('envoit les options de qualification', function () {
       expect(wrapper.vm.qualificationDanger.options).to.equal(danger.qualifications);
+    });
+
+    it('envoit le choix selectionné', function () {
+      expect(wrapper.vm.qualificationDanger.choix).to.equal('');
+      store.commit('ajouteDangerQualifie', { nom: zone.danger, choix: 'choix1' });
+      expect(wrapper.vm.qualificationDanger.choix).to.equal('choix1');
     });
 
     it("rend la question d'identification du danger puis de qualification puis c'est terminé", function () {
@@ -65,14 +71,14 @@ describe('Le composant FenetreZone', function () {
       wrapper.vm.etat = 'qualification';
       store.commit = (mutation, donnees) => {
         expect(mutation).to.equal('ajouteDangerQualifie');
-        expect(donnees).to.equal('danger1');
+        expect(donnees).to.eql({ nom: 'danger1', choix: 'qualification1' });
         done();
       };
       wrapper.vm.question.submit('qualification1');
     });
 
     it('une fois le danger qualifié, on ne peut que modifier la qualification', function () {
-      store.commit('ajouteDangerQualifie', zone.danger);
+      store.commit('ajouteDangerQualifie', { nom: zone.danger, choix: 'choix1' });
       const wrapper = shallowMount(FenetreZone, {
         store,
         propsData: { zone }

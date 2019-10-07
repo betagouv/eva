@@ -25,16 +25,35 @@ describe('Le store de la situation sécurité', function () {
   it('permet de stocker les dangers qualifiés', function () {
     const store = creeStore();
     expect(store.state.dangersQualifies).to.eql([]);
-    store.commit('ajouteDangerQualifie', 'danger1');
-    expect(store.state.dangersQualifies).to.eql(['danger1']);
+    const qualification = { nom: 'danger1', choix: 'bonne' };
+    store.commit('ajouteDangerQualifie', qualification);
+    expect(store.state.dangersQualifies).to.eql({ danger1: 'bonne' });
   });
 
   it('permet de stocker une seule fois un danger qualifié', function () {
     const store = creeStore();
     expect(store.state.dangersQualifies).to.eql([]);
-    store.commit('ajouteDangerQualifie', 'danger1');
-    store.commit('ajouteDangerQualifie', 'danger1');
-    expect(store.state.dangersQualifies).to.eql(['danger1']);
+    const qualification = { nom: 'danger1', choix: 'mauvaise' };
+    const qualification2 = { nom: 'danger1', choix: 'bonne' };
+    store.commit('ajouteDangerQualifie', qualification);
+    store.commit('ajouteDangerQualifie', qualification2);
+    expect(store.state.dangersQualifies).to.eql({ danger1: 'bonne' });
+  });
+
+  it("peut donner la qualification d'un danger", function () {
+    const store = creeStore();
+    expect(store.getters.qualification('danger1')).to.eql(undefined);
+    const qualification = { nom: 'danger1', choix: 'mauvaise' };
+    store.commit('ajouteDangerQualifie', qualification);
+    expect(store.getters.qualification('danger1')).to.eql('mauvaise');
+  });
+
+  it('peut donner le nombre de danger qualifiés', function () {
+    const store = creeStore();
+    expect(store.getters.nombreDangersQualifies).to.eql(0);
+    const qualification = { nom: 'danger1', choix: 'mauvaise' };
+    store.commit('ajouteDangerQualifie', qualification);
+    expect(store.getters.nombreDangersQualifies).to.eql(1);
   });
 
   it("permet de synchroniser l'état du modèle situation avec le store", function () {

@@ -11,7 +11,7 @@
         :cy="`${zone.y}%`"
         :r="`${zone.r}%`"
         :class="{ 'zone-selectionnee': zone === zoneSelectionnee,
-                  'zone-qualifiee': dangersQualifies.includes(zone.danger) }"
+                  'zone-qualifiee': qualification(zone.danger) }"
         class="zone"
         @click="selectionneZone(zone)"
       />
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import 'securite/styles/situation.scss';
 import { FINI } from '../store/store';
 import FenetreZone from './fenetre_zone';
@@ -42,9 +42,7 @@ export default {
 
   computed: {
     ...mapState(['zones', 'dangers', 'dangersQualifies']),
-    nombreDangersQualifies () {
-      return this.dangersQualifies.length;
-    },
+    ...mapGetters(['qualification', 'nombreDangersQualifies']),
     nombreDangersAQualifies () {
       return Object.keys(this.dangers).length;
     }

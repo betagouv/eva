@@ -29,9 +29,9 @@ export default {
   },
 
   data () {
-    const dangersQualifies = this.$store.state.dangersQualifies;
+    const qualification = this.$store.getters.qualification(this.zone.danger);
     return {
-      etat: dangersQualifies.includes(this.zone.danger) ? 'qualification' : 'identification',
+      etat: qualification ? 'qualification' : 'identification',
       identificationDanger: {
         titre: traduction('securite.danger.identification.titre'),
         options: [
@@ -39,6 +39,7 @@ export default {
           { libelle: traduction('securite.danger.identification.non'), valeur: "non"}
         ],
         bouton: traduction('securite.danger.identification.bouton'),
+        choix: '',
         submit: this.identifie
       }
     }
@@ -57,10 +58,12 @@ export default {
       return this.formatePourcentage((100 - (this.zone.x + Math.cos(3 * Math.PI / 4) * this.zone.r)).toFixed(1));
     },
     qualificationDanger () {
+      const qualification = this.$store.getters.qualification(this.zone.danger);
       return {
         titre: traduction('securite.danger.qualification.titre'),
         options: this.$store.state.dangers[this.zone.danger].qualifications,
         bouton: traduction('securite.danger.qualification.bouton'),
+        choix: qualification ? qualification : '',
         submit: this.qualifie
       };
     },
@@ -80,8 +83,8 @@ export default {
         this.etat = 'termine';
       }
     },
-    qualifie () {
-      this.$store.commit('ajouteDangerQualifie', this.zone.danger);
+    qualifie (choix) {
+      this.$store.commit('ajouteDangerQualifie', { nom: this.zone.danger, choix });
       this.etat = 'termine';
     }
   }
