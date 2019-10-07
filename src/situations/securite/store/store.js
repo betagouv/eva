@@ -11,7 +11,8 @@ export function creeStore () {
       etat: CHARGEMENT,
       zones: [],
       dangers: {},
-      dangersQualifies: {}
+      dangersQualifies: {},
+      aide: false
     },
     getters: {
       qualification (state) {
@@ -31,6 +32,9 @@ export function creeStore () {
       },
       ajouteDangerQualifie (state, dangerQualifie) {
         Vue.set(state.dangersQualifies, dangerQualifie.nom, dangerQualifie.choix);
+      },
+      activeAide (state) {
+        state.aide = true;
       }
     }
   });

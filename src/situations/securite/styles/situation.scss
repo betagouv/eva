@@ -11,9 +11,13 @@
     stroke: $couleur-accent-et-erreur;
     stroke-width: 6px;
   }
+
+  &-aide {
+    cursor: pointer;
+  }
 }
 
-.compteur {
+.compteur-statut {
   position: absolute;
   top: 3%;
   right: 3%;
