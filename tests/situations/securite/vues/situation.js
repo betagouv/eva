@@ -37,6 +37,12 @@ describe('La vue de la situation Sécurité', function () {
     expect(wrapper.findAll('.zone-selectionnee').length).to.eql(1);
   });
 
+  it('une fois le danger qualifié, rajoute une classe sur la zone', function () {
+    store.commit('chargeZonesEtDangers', { zones: [{ x: 4, y: 5, r: 6, danger: 'test' }], dangers: { test: {} } });
+    store.commit('ajouteDangerQualifie', 'test');
+    expect(wrapper.findAll('.zone-qualifiee').length).to.eql(1);
+  });
+
   it('passe la situation en FINI lorsque tout les dangers ont été identifiés', function () {
     store.commit('chargeZonesEtDangers', {
       zones: [{ x: 1, y: 2, r: 3, danger: 'danger1' }, { x: 4, y: 5, r: 6, danger: 'danger2' }],
