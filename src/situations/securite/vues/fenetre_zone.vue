@@ -29,8 +29,9 @@ export default {
   },
 
   data () {
+    const dangersQualifies = this.$store.state.dangersQualifies;
     return {
-      etat: "identification",
+      etat: dangersQualifies.includes(this.zone.danger) ? 'qualification' : 'identification',
       identificationDanger: {
         titre: traduction('securite.danger.identification.titre'),
         options: [

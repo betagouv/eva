@@ -39,10 +39,11 @@ describe('Le composant FenetreZone', function () {
   });
 
   describe('avec une zone et un danger associé', function () {
+    let zone;
     let danger;
 
     beforeEach(function () {
-      const zone = { x: 4, r: 1, danger: 'danger1' };
+      zone = { x: 4, r: 1, danger: 'danger1' };
       danger = { qualifications: [] };
       store.commit('chargeZonesEtDangers', { zones: [zone], dangers: { danger1: danger } });
       wrapper.setProps({ zone });
@@ -68,6 +69,15 @@ describe('Le composant FenetreZone', function () {
         done();
       };
       wrapper.vm.question.submit('qualification1');
+    });
+
+    it('une fois le danger qualifié, on ne peut que modifier la qualification', function () {
+      store.commit('ajouteDangerQualifie', zone.danger);
+      const wrapper = shallowMount(FenetreZone, {
+        store,
+        propsData: { zone }
+      });
+      expect(wrapper.vm.etat).to.equal('qualification');
     });
   });
 
