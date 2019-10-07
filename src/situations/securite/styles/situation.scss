@@ -7,7 +7,7 @@
 .zone {
   fill: transparent;
 
-  &-selectionnee {
+  &-selectionnee, &-qualifiee {
     stroke: $couleur-accent-et-erreur;
     stroke-width: 6px;
   }

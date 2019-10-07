@@ -9,7 +9,8 @@
         :cx="`${zone.x}%`"
         :cy="`${zone.y}%`"
         :r="`${zone.r}%`"
-        :class="{ 'zone-selectionnee': zone === zoneSelectionnee }"
+        :class="{ 'zone-selectionnee': zone === zoneSelectionnee,
+                  'zone-qualifiee': dangersQualifies.includes(zone.danger) }"
         class="zone"
         @click="selectionneZone(zone)"
       />
