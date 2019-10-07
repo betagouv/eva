@@ -39,8 +39,16 @@ describe('La vue de la situation Sécurité', function () {
 
   it('une fois le danger qualifié, rajoute une classe sur la zone', function () {
     store.commit('chargeZonesEtDangers', { zones: [{ x: 4, y: 5, r: 6, danger: 'test' }], dangers: { test: {} } });
-    store.commit('ajouteDangerQualifie', 'test');
+    store.commit('ajouteDangerQualifie', { nom: 'test', choix: 'bon' });
     expect(wrapper.findAll('.zone-qualifiee').length).to.eql(1);
+  });
+
+  it('calcule le nombre de danger à qualifier', function () {
+    expect(wrapper.vm.nombreDangersAQualifies).to.equal(0);
+    store.commit('chargeZonesEtDangers', {
+      dangers: { danger1: {}, danger2: {} }
+    });
+    expect(wrapper.vm.nombreDangersAQualifies).to.equal(2);
   });
 
   it('passe la situation en FINI lorsque tout les dangers ont été identifiés', function () {
@@ -48,13 +56,9 @@ describe('La vue de la situation Sécurité', function () {
       zones: [{ x: 1, y: 2, r: 3, danger: 'danger1' }, { x: 4, y: 5, r: 6, danger: 'danger2' }],
       dangers: { danger1: {}, danger2: {} }
     });
-    expect(wrapper.vm.nombreDangersQualifies).to.equal(0);
-    expect(wrapper.vm.nombreDangersAQualifies).to.equal(2);
-    store.commit('ajouteDangerQualifie', 'danger1');
+    store.commit('ajouteDangerQualifie', { nom: 'danger1', choix: 'bon' });
     expect(store.state.etat).to.equal(CHARGEMENT);
-    expect(wrapper.vm.nombreDangersQualifies).to.equal(1);
-    store.commit('ajouteDangerQualifie', 'danger2');
+    store.commit('ajouteDangerQualifie', { nom: 'danger2', choix: 'mauvais' });
     expect(store.state.etat).to.equal(FINI);
-    expect(wrapper.vm.nombreDangersQualifies).to.equal(2);
   });
 });

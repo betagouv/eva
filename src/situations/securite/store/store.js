@@ -11,7 +11,15 @@ export function creeStore () {
       etat: CHARGEMENT,
       zones: [],
       dangers: {},
-      dangersQualifies: []
+      dangersQualifies: {}
+    },
+    getters: {
+      qualification (state) {
+        return (nomDanger) => state.dangersQualifies[nomDanger];
+      },
+      nombreDangersQualifies (state) {
+        return Object.keys(state.dangersQualifies).length;
+      }
     },
     mutations: {
       modifieEtat (state, etat) {
@@ -22,9 +30,7 @@ export function creeStore () {
         state.dangers = dangers;
       },
       ajouteDangerQualifie (state, dangerQualifie) {
-        if (!state.dangersQualifies.includes(dangerQualifie)) {
-          state.dangersQualifies.push(dangerQualifie);
-        }
+        Vue.set(state.dangersQualifies, dangerQualifie.nom, dangerQualifie.choix);
       }
     }
   });
