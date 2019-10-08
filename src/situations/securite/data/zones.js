@@ -93,10 +93,30 @@ const zones = [
     danger: DANGER_SIGNALISATION
   }, // personne signe gauche
   {
-    x: pourcentageX(730),
-    y: pourcentageY(490),
-    r: pourcentageX(70)
-  } // voiture bleue
+    x: pourcentageX(370),
+    y: pourcentageY(210),
+    r: pourcentageX(45)
+  }, // brouette verte
+  {
+    x: pourcentageX(315),
+    y: pourcentageY(90),
+    r: pourcentageX(80)
+  }, // voiture rouge
+  {
+    x: pourcentageX(775),
+    y: pourcentageY(260),
+    r: pourcentageX(50)
+  }, // l'ouvrier et l'ouvrière
+  {
+    x: pourcentageX(590),
+    y: pourcentageY(440),
+    r: pourcentageX(50)
+  }, // ouvrier avec brouette
+  {
+    x: pourcentageX(725),
+    y: pourcentageY(100),
+    r: pourcentageX(45)
+  } // ouvrier qui perce en haut a droite
 ];
 
 export { dangers, zones };
