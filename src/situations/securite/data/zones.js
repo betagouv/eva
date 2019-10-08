@@ -20,36 +20,37 @@ const DANGER_SIGNALISATION = 'signalisation';
 const dangers = {
   [DANGER_BOUCHE_EGOUT]: {
     qualifications: [
-      { libelle: 'Des rats peuvent sortir', valeur: 'mauvaise1' },
-      { libelle: "Quelqu'un peut sortir", valeur: 'mauvaise2' },
-      { libelle: 'On peut tomber dans le trou', valeur: 'bonne' }
+      { libelle: "Il n'y a pas de barrière devant le parc", valeur: 'mauvaise1' },
+      { libelle: 'La bouche d’égout est ouverte', valeur: 'bonne' },
+      { libelle: 'Le trottoir est trop étroit', valeur: 'mauvaise2' }
     ]
   },
   [DANGER_CASQUE]: {
     qualifications: [
-      { libelle: "L'homme est devant une sortie de garage", valeur: 'mauvaise1' },
-      { libelle: "L'homme pourrait se blesser à la tête", valeur: 'bonne' },
-      { libelle: "L'homme pourrait être maladroit", valeur: 'mauvaise2' }
+      { libelle: "L'homme n’a pas de gilet à haute visibilité", valeur: 'mauvaise1' },
+      { libelle: "L'homme discute avec son collègue", valeur: 'bonne' },
+      { libelle: "L'homme n’a pas de casque", valeur: 'mauvaise2' }
     ]
   },
   [DANGER_ESCABEAU]: {
     qualifications: [
-      { libelle: "L'homme est monté trop haut", valeur: 'bonne' },
-      { libelle: "l'escabeau pourrait tomber", valeur: 'mauvaise1' }
+      { libelle: "L'homme est en déséquilibre sur un escabeau", valeur: 'bonne' },
+      { libelle: 'L’homme n’a pas de chaussures', valeur: 'mauvaise1' },
+      { libelle: 'L’homme ne porte pas de casque', valeur: 'mauvaise1' }
     ]
   },
   [DANGER_CAMION]: {
     qualifications: [
-      { libelle: 'Le camion empêche la circulation des pietons sur le trottoire', valeur: 'bonne' },
-      { libelle: "Le camion n'a pas ses warnings", valeur: 'mauvaise1' },
-      { libelle: 'Le camion pourrait écraser un pieton', valeur: 'mauvaise2' }
+      { libelle: 'Les piétons ne sont pas invités à changer de trottoir ', valeur: 'bonne' },
+      { libelle: 'Le camion est vide', valeur: 'mauvaise1' },
+      { libelle: 'Le passage piéton est jaune alors qu’il devrait être blanc', valeur: 'mauvaise2' }
     ]
   },
   [DANGER_SIGNALISATION]: {
     qualifications: [
       { libelle: 'Les deux ouvriers autorisent le passage des voitures', valeur: 'bonne' },
-      { libelle: 'Le tas de terre empèche les voitures de passer', valeur: 'mauvaise1' },
-      { libelle: "L'ouvrier pourrait se faire écraser par une voiture", valeur: 'mauvaise2' }
+      { libelle: 'Les deux ouvriers sont sur la route', valeur: 'mauvaise1' },
+      { libelle: 'Les deux ouvriers pourraient se faire écraser par une voiture', valeur: 'mauvaise2' }
     ]
   }
 };
@@ -74,8 +75,8 @@ const zones = [
     danger: DANGER_ESCABEAU
   },
   {
-    x: pourcentageX(825),
-    y: pourcentageY(355),
+    x: pourcentageX(850),
+    y: pourcentageY(375),
     r: pourcentageX(90),
     danger: DANGER_CAMION
   },
