@@ -26,6 +26,6 @@ describe("La fenêtre d'aide", function () {
     store.commit('activeAide');
     wrapper.find('button').trigger('click');
     expect(wrapper.vm.etat).to.be('activee');
-    expect(wrapper.classes('aide-activee')).to.be(true);
+    expect(wrapper.find('div').classes('aide-activee')).to.be(true);
   });
 });
