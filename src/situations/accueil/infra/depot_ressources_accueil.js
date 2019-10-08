@@ -7,6 +7,7 @@ import tri from 'accueil/assets/tri.png';
 import inventaire from 'accueil/assets/inventaire.png';
 import controle from 'accueil/assets/controle.png';
 import questions from 'accueil/assets/bureau.png';
+import securite from 'accueil/assets/securite.png';
 import fin from 'accueil/assets/fin.png';
 import precedent from 'accueil/assets/precedent.svg';
 import suivant from 'accueil/assets/suivant.svg';
@@ -18,6 +19,7 @@ const batiments = {
   fin,
   inventaire,
   questions,
+  securite,
   tri
 };
 
