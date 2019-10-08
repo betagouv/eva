@@ -1,0 +1,9 @@
+@import 'commun/styles/couleurs.scss';
+
+.fenetre {
+  border-radius: 1rem;
+  background-color: $blanc;
+  padding: 15px 30px;
+  position: absolute;
+  color: $bleu-fonce;
+}
