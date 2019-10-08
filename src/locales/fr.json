@@ -70,7 +70,7 @@
     "aide": {
       "activee": "Aide activée",
       "bouton": "Continuer",
-      "texte": "Vous avez activé l’aide. Grâce à celle-ci, le curseur de la souris se transformera en main au survol d’un danger. Faites-en bon usage !"
+      "texte": "Vous avez activé l’aide. Grâce à celle-ci, le curseur de la souris se transforme en main. Ces endroits sont peut-être des dangers que vous devez identifier. Faites-en bon usage !"
     },
     "danger": {
       "identification": {
