@@ -66,7 +66,12 @@
     }
   },
   "securite": {
-    "aide": "J'ai besoin d'aide",
+    "activation_aide": "J'ai besoin d'aide",
+    "aide": {
+      "activee": "Aide activée",
+      "bouton": "Continuer",
+      "texte": "Vous avez activé l’aide. Grâce à celle-ci, le curseur de la souris se transformera en main au survol d’un danger. Faites-en bon usage !"
+    },
     "danger": {
       "identification": {
         "bouton": "Suivant",

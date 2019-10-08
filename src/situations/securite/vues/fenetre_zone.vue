@@ -1,7 +1,7 @@
 <template>
   <div
     :style="{ bottom: bottom, left: left, right: right, top: top }"
-    class="fenetre-zone">
+    class="fenetre">
 
     <formulaire-radio
       :key="etat"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import 'securite/styles/fenetre_zone.scss';
+import 'securite/styles/fenetre.scss';
 import FormulaireRadio from './formulaire_radio';
 import { traduction } from 'commun/infra/internationalisation';
 

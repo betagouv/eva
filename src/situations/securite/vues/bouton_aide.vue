@@ -3,7 +3,7 @@
     :disabled="aide"
     class="bouton-arrondi bouton-arrondi--petit"
     @click="activeAide"
-  >{{ traduction('securite.aide') }}</button>
+  >{{ traduction('securite.activation_aide') }}</button>
 </template>
 
 <script>

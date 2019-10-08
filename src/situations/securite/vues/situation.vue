@@ -7,6 +7,7 @@
       {{ traduction('securite.dangers_detectes') }}: {{nombreDangersQualifies}}/{{nombreDangersAQualifies}}
       <bouton-aide />
     </div>
+    <fenetre-aide />
     <svg height="100%" width="100%">
       <circle
         v-for="zone in zones"
@@ -36,9 +37,10 @@ import 'securite/styles/situation.scss';
 import { FINI } from '../store/store';
 import BoutonAide from './bouton_aide';
 import FenetreZone from './fenetre_zone';
+import FenetreAide from './fenetre_aide';
 
 export default {
-  components: { BoutonAide, FenetreZone },
+  components: { BoutonAide, FenetreAide, FenetreZone },
 
   data () {
     return {
