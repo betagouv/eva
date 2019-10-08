@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="{ bottom: bottom, left: left, right: right }"
+    :style="{ bottom: bottom, left: left, right: right, top: top }"
     class="fenetre-zone">
 
     <formulaire-radio
@@ -46,7 +46,12 @@ export default {
 
   computed: {
     bottom () {
+      if (this.zone.y < 45) return undefined;
       return this.formatePourcentage((100 - this.zone.y + Math.sin(Math.PI / 4) * this.zone.r).toFixed(1));
+    },
+    top () {
+      if (this.zone.y >= 45) return undefined;
+      return this.formatePourcentage((this.zone.y + Math.sin(Math.PI / 4) * this.zone.r).toFixed(1));
     },
     left () {
       if (this.zone.x >= 80) return undefined;
