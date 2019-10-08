@@ -24,5 +24,7 @@
     height: 100%;
     z-index: 99;
     cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
   }
 }
