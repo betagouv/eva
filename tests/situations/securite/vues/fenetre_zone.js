@@ -24,6 +24,7 @@ describe('Le composant FenetreZone', function () {
   it('définis la position bottom à partir des infos de la zone', function () {
     wrapper.setProps({ zone: { y: 70, r: 3 } });
     expect(wrapper.vm.bottom).to.eql('32.1%');
+    expect(wrapper.vm.top).to.eql(undefined);
   });
 
   it('définis la position à partir des infos de la zone', function () {
@@ -36,6 +37,12 @@ describe('Le composant FenetreZone', function () {
     wrapper.setProps({ zone: { x: 80, r: 1 } });
     expect(wrapper.vm.left).to.eql(undefined);
     expect(wrapper.vm.right).to.eql('20.7%');
+  });
+
+  it('définis la position pour mettre la boite en bas à droite de la zone', function () {
+    wrapper.setProps({ zone: { y: 40, r: 1 } });
+    expect(wrapper.vm.bottom).to.eql(undefined);
+    expect(wrapper.vm.top).to.eql('40.7%');
   });
 
   describe('avec une zone et un danger associé', function () {
