@@ -32,7 +32,7 @@ describe('La vue de fin', function () {
   });
 
   it("sait s'afficher", function () {
-    store.state.competencesFortes = [{ rapidite: 4 }, { comprehension_consigne: 3 }];
+    store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
     wrapper = mount(Fin, { store, localVue });
     wrapper.vm.competencesFortesRecus = true;
 
@@ -54,7 +54,7 @@ describe('La vue de fin', function () {
   });
 
   it('récupère les compétences fortes', function () {
-    store.state.competencesFortes = [{ rapidite: 4 }, { comprehension_consigne: 3 }];
+    store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
     wrapper = mount(Fin, { store, localVue });
     wrapper.vm.competencesFortesRecus = true;
 

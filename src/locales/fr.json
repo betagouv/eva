@@ -30,13 +30,11 @@
       "message": "Vous avez maintenant terminé l'ensemble des mises en situations.",
       "competences":" Parmi celles ci, vos deux principaux potentiels identifiés sont :",
       "titre": "Merci et bravo !",
-      "comprehension_consigne": "Compréhension de la consigne",
       "comparaison_tri": "Comparaison et tri",
-      "rapidite": "Rapidité de traitement",
+      "rapidite": "Vitesse d'éxécution",
       "vigilance_controle": "Vigilance et contrôle",
       "organisation_methode": "Organisation et méthode",
-      "attention_concentration": "Attention et concentration",
-      "perseverance": "Persévérance"
+      "attention_concentration": "Attention et concentration"
     },
     "titre": "Compétences pro"
   },

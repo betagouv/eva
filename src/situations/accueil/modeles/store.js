@@ -65,8 +65,7 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
         return fetch(registreUtilisateur.urlEvaluation()).then((reponse) => {
           return reponse.json();
         }).then((json) => {
-          const deuxCompetencesFortes = json.competences.slice(0, 2);
-          commit('metsAJourCompetencesFortes', deuxCompetencesFortes);
+          commit('metsAJourCompetencesFortes', json.competences_fortes);
         });
       }
     }
