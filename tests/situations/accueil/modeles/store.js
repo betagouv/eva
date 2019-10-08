@@ -94,15 +94,12 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.urlEvaluation = () => '/evaluation/1';
     const fetch = (url) => Promise.resolve({
       json: () => {
-        return { competences: [{ comprehension_consigne: 4 }, { rapidite: 2 }, { perseverance: 1 }] };
+        return { competences_fortes: ['comprehension_consigne', 'rapidite'] };
       }
     });
     const store = creeStore(registreUtilisateur, fetch);
     return store.dispatch('recupereCompetencesFortes').then(() => {
-      const competencesFortesAttendues = [
-        { comprehension_consigne: 4 },
-        { rapidite: 2 }
-      ];
+      const competencesFortesAttendues = ['comprehension_consigne', 'rapidite'];
       expect(store.state.competencesFortes).to.eql(competencesFortesAttendues);
     });
   });

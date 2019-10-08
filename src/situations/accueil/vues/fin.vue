@@ -10,7 +10,7 @@
         <img
           :src="affichePicto(competence)"
         />
-        {{ traduction(`accueil.fin.${formatteCompetence(competence)}`) }}
+        {{ traduction(`accueil.fin.${competence}`) }}
       </p>
       <button
         class="bouton-arrondi"
@@ -42,13 +42,8 @@ export default {
   methods: {
     ...mapActions(['deconnecte']),
 
-    formatteCompetence (competence) {
-      return Object.keys(competence)[0]
-    },
-
     affichePicto (competence) {
-      const competencesFortes = this.formatteCompetence(competence)
-      return this.depotRessources.pictoCompetences(competencesFortes).src;
+      return this.depotRessources.pictoCompetences(competence).src;
     },
 
     recupereCompetencesFortes (sync = true) {
