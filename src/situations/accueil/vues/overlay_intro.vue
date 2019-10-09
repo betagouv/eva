@@ -26,6 +26,7 @@
        ></div>
       <button
         class="bouton-arrondi"
+        :disabled="passeDesactive"
         @click="passe"
       >{{ traduction('accueil.intro_contexte.bouton') }}</button>
     </div>
@@ -34,18 +35,38 @@
 
 <script>
 import 'commun/styles/modale.scss';
+import JoueurConsigne from 'commun/composants/joueur_consigne';
 
 export default {
   data () {
     return {
       ecran: 'consigne',
-      casque: this.depotRessources.casque().src
+      casque: this.depotRessources.casque().src,
+      consigneEnCours: false,
+      depot: this.depotRessources
     };
+  },
+
+  computed: {
+    passeDesactive () {
+      return this.consigneEnCours;
+    }
   },
 
   methods: {
     afficheContexte () {
       this.ecran = 'contexte';
+      this.joueConsigne();
+    },
+
+    joueConsigne () {
+      this.consigneEnCours = true;
+      const consigne = new JoueurConsigne(this.depot);
+      consigne.joueSon(this.depot.consigneAccueil(), this.lectureTerminee.bind(this));
+    },
+
+    lectureTerminee () {
+      this.consigneEnCours = false;
     },
 
     passe () {
