@@ -36,7 +36,7 @@ const dangers = {
     qualifications: [
       { libelle: "L'homme est en déséquilibre sur un escabeau", valeur: 'bonne' },
       { libelle: 'L’homme n’a pas de chaussures', valeur: 'mauvaise1' },
-      { libelle: 'L’homme ne porte pas de casque', valeur: 'mauvaise1' }
+      { libelle: 'L’homme ne porte pas de casque', valeur: 'mauvaise2' }
     ]
   },
   [DANGER_CAMION]: {
