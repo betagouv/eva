@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "dev": "env $(cat .env | xargs) webpack-dev-server --history-api-fallback --inline --progress --mode development",
     "test": "./bin/test.sh",
-    "lint": "semistandard"
+    "lint": "eslint --cache --ext .js,.vue src tests"
   },
   "engines": {
     "node": "10.11.x",
@@ -31,6 +31,14 @@
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-semistandard": "^15.0.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^5.2.3",
     "expect.js": "^0.3.1",
     "favicons-webpack-plugin": "^1.0.2",
     "file-loader": "^4.2.0",
@@ -43,7 +51,6 @@
     "null-loader": "^3.0",
     "sass": "^1.22.12",
     "sass-loader": "^8.0.0",
-    "semistandard": "^14.2.0",
     "style-loader": "^1.0.0",
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10",
@@ -61,23 +68,18 @@
     "vue": "^2.6.10",
     "vuex": "^3.1.1"
   },
-  "semistandard": {
-    "globals": [
-      "$",
-      "after",
-      "afterEach",
-      "before",
-      "beforeEach",
-      "describe",
-      "expect",
-      "it",
-      "jQuery",
-      "xit"
+  "eslintConfig": {
+    "plugins": ["vue"],
+    "extends": [
+      "semistandard",
+      "plugin:vue/essential"
     ],
-    "ignore": [
-      "public/",
-      "test_build/",
-      "dist/"
-    ]
+    "env": {
+      "browser": true,
+      "mocha": true
+    },
+    "globals": {
+      "expect": "readonly"
+    }
   }
 }
