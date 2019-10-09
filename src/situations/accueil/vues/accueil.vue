@@ -107,7 +107,7 @@ export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 export default {
   components: { FormulaireIdentification, AccesSituation, BoiteUtilisateur, OverlayIntro, Fin, TransitionFade },
 
-  data() {
+  data () {
     const parsedUrl = new URL(window.location.href);
     const { indexPrecedent } = this.recupereEtatDuPrecedentChargement();
     return {
@@ -160,7 +160,7 @@ export default {
           nom: traduction('accueil.conclure'),
           action: this.afficheEcranFin
         }
-      ]
+      ];
     },
 
     niveauMax () {
@@ -236,5 +236,5 @@ export default {
       this.ecranFinAfficher = true;
     }
   }
-}
+};
 </script>

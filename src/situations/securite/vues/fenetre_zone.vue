@@ -34,14 +34,14 @@ export default {
       identificationDanger: {
         titre: traduction('securite.danger.identification.titre'),
         options: [
-          { libelle: traduction('securite.danger.identification.oui'), valeur: "oui"},
-          { libelle: traduction('securite.danger.identification.non'), valeur: "non"}
+          { libelle: traduction('securite.danger.identification.oui'), valeur: 'oui' },
+          { libelle: traduction('securite.danger.identification.non'), valeur: 'non' }
         ],
         bouton: traduction('securite.danger.identification.bouton'),
         choix: '',
         submit: this.identifie
       }
-    }
+    };
   },
 
   computed: {
@@ -67,7 +67,7 @@ export default {
         titre: traduction('securite.danger.qualification.titre'),
         options: this.$store.state.dangers[this.zone.danger].qualifications,
         bouton: traduction('securite.danger.qualification.bouton'),
-        choix: qualification ? qualification : '',
+        choix: qualification || '',
         submit: this.qualifie
       };
     },
@@ -96,5 +96,5 @@ export default {
       this.$emit('ferme');
     }
   }
-}
+};
 </script>

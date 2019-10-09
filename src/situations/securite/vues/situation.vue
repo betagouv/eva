@@ -7,6 +7,7 @@
     <svg height="100%" width="100%">
       <circle
         v-for="zone in zones"
+        :key="`${zone.x}-${zone.y}`"
         :cx="`${zone.x}%`"
         :cy="`${zone.y}%`"
         :r="`${zone.r}%`"
@@ -65,5 +66,5 @@ export default {
       this.zoneSelectionnee = null;
     }
   }
-}
+};
 </script>

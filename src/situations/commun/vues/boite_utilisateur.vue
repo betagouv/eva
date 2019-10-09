@@ -30,8 +30,7 @@ export default {
       return `${this.situationsFaites.length * 100 / this.situations.length}%`;
     }
   },
-  methods: {
-    ...mapActions(['deconnecte']),
-  }
-}
+
+  methods: mapActions(['deconnecte'])
+};
 </script>
