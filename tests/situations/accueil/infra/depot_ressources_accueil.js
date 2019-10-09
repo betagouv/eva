@@ -14,6 +14,10 @@ describe('Le dépôt de ressources de la situation accueil', function () {
     expect(depot).to.be.a(DepotRessources);
   });
 
+  it("retourne la consigne d'accueil", function () {
+    expect(depot.consigneAccueil()).to.not.be(undefined);
+  });
+
   it('retourne les bâtiments', function () {
     expect(depot.batimentSituation('tri')).to.eql('assets/tri.png');
     expect(depot.batimentSituation('inventaire')).to.eql('assets/inventaire.png');

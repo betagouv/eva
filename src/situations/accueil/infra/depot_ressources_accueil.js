@@ -17,6 +17,7 @@ import comparaisonTri from 'accueil/assets/comparaison_tri.png';
 import vigilanceControle from 'accueil/assets/vigilance_controle.png';
 import organisationMethode from 'accueil/assets/organisation_methode.png';
 import attentionConcentration from 'accueil/assets/attention_concentration.png';
+import consigneAccueil from 'accueil/assets/consigne_accueil.wav';
 
 const batiments = {
   bienvenue,
@@ -39,7 +40,7 @@ const competences = {
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnage, precedent, suivant, punaise, casque]);
+    this.charge([fondAccueil, personnage, precedent, suivant, punaise, casque, consigneAccueil]);
     this.charge(Object.values(batiments));
     this.charge(Object.values(competences));
   }
@@ -74,5 +75,9 @@ export default class DepotRessourcesAccueil extends DepotRessources {
 
   batimentSituation (situation) {
     return this.ressource(batiments[situation]);
+  }
+
+  consigneAccueil () {
+    return this.ressource(consigneAccueil);
   }
 }
