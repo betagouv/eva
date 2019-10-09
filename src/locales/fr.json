@@ -17,13 +17,13 @@
       "titre": "Bienvenue !"
     },
     "intro_consigne": {
-      "bouton": "Commencer",
-      "message": "Veuillez mettre vos écouteurs avant de commencer.",
+      "bouton": "Lancer la consigne",
+      "message": "Veuillez mettre vos écouteurs pour suivre les consignes audio.",
       "titre": "Compétences pro vous aide à évaluer vos compétences"
     },
     "intro_contexte": {
       "bouton": "A vous de jouer !",
-      "message": "<p>Nous allons identifier ensemble, à travers les jeux que vous allez réaliser, vos compétences transversales et cognitives. Si certains de ces jeux reproduisent des mises en situation professionnelles particulières, les compétences que nous y mesurons s’appliquent dans tous les métiers et secteurs d’activité.</p><p>Lorsque vous aurez terminé, vous pourrez découvrir quelles sont vos compétences fortes, et comment les utiliser au mieux dans votre parcours professionnel, opportunités d’emploi ou de formation.</p>"
+      "message": "<p>Bonjour et bienvenue,<br><br> Nous allons identifier ensemble, à travers les jeux que vous allez réaliser, vos compétences transférables d'un métier à un autre. Si ces jeux reproduisent des activités particulières, les compétences mesurées s'appliquent à tous les métiers et secteurs d'activité. <br><br>Lorsque vous aurez terminé, vous pourrez découvrir quelles sont vos compétences fortes et les métiers associés. Vous pourrez alors échanger avec votre conseiller/ accompagnateur sur les moyens de les utiliser au mieux dans votre parcours professionnel, opportunités d'emploi ou de formation.</p>"
     },
     "fin": {
       "bouton": "Terminer",
