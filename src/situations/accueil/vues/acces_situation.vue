@@ -31,10 +31,10 @@ export default {
     }
   },
 
-  data() {
+  data () {
     return {
       backgroundImage: `url('${this.depotRessources.batimentSituation(this.situation.identifiant).src}')`
     };
   }
-}
+};
 </script>

@@ -3,6 +3,7 @@
     <h3>{{ question.titre }}</h3>
     <div
       v-for="option in question.options"
+      :key="option.valeur"
       class="identification-danger-input">
       <label>
         <input v-model="choix" type="radio" name="option" :value="option.valeur" />
@@ -34,14 +35,14 @@ export default {
 
   computed: {
     desactivee () {
-      return this.choix === "";
+      return this.choix === '';
     }
   },
 
   methods: {
-    submit() {
+    submit () {
       this.question.submit(this.choix);
     }
   }
-}
+};
 </script>

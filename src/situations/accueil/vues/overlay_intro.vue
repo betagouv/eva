@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import 'commun/styles/modale.scss';
 
 export default {
