@@ -8,6 +8,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import EvenementActivationAide from 'securite/modeles/evenement_activation_aide';
 
 export default {
   computed: mapState(['aide']),
@@ -15,6 +16,7 @@ export default {
   methods: {
     activeAide () {
       this.$store.commit('activeAide');
+      this.journal.enregistre(new EvenementActivationAide());
     }
   }
 };
