@@ -3,6 +3,7 @@ import { creeStore } from 'securite/store/store';
 import FenetreZone from 'securite/vues/fenetre_zone';
 import FormulaireRadio from 'securite/vues/formulaire_radio';
 import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
+import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
 
 describe('Le composant FenetreZone', function () {
   let wrapper;
@@ -99,6 +100,16 @@ describe('Le composant FenetreZone', function () {
       store.commit = (mutation, donnees) => {
         expect(mutation).to.equal('ajouteDangerQualifie');
         expect(donnees).to.eql({ nom: 'danger1', choix: 'qualification1' });
+        done();
+      };
+      wrapper.vm.question.submit('qualification1');
+    });
+
+    it('rapporte la qualification du danger au journal', function (done) {
+      wrapper.vm.etat = 'qualification';
+      localVue.prototype.journal.enregistre = (evenement) => {
+        expect(evenement).to.be.a(EvenementQualificationDanger);
+        expect(evenement.donnees()).to.eql({ danger: 'danger1', reponse: 'qualification1' });
         done();
       };
       wrapper.vm.question.submit('qualification1');

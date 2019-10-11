@@ -3,7 +3,6 @@ import Vue from 'vue';
 import { traduction } from 'commun/infra/internationalisation';
 import { creeStore, synchroniseStoreEtModeleSituation } from '../store/store';
 import { zones, dangers } from '../data/zones';
-import rapporteAuJournal from '../modeles/rapporteur';
 import Situation from './situation.vue';
 
 export default class VueSituation {
@@ -23,7 +22,6 @@ export default class VueSituation {
     const store = creeStore();
     store.commit('chargeZonesEtDangers', { zones, dangers });
     synchroniseStoreEtModeleSituation(this.situation, store);
-    rapporteAuJournal(store, this.journal);
     new Vue({
       store,
       render: createEle => createEle(Situation)
