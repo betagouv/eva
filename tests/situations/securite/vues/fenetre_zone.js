@@ -4,6 +4,7 @@ import FenetreZone from 'securite/vues/fenetre_zone';
 import FormulaireRadio from 'securite/vues/formulaire_radio';
 import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
+import EvenementIdentificationDanger from 'securite/modeles/evenement_identification_danger';
 
 describe('Le composant FenetreZone', function () {
   let wrapper;
@@ -71,7 +72,7 @@ describe('Le composant FenetreZone', function () {
     let danger;
 
     beforeEach(function () {
-      zone = { x: 4, r: 1, danger: 'danger1' };
+      zone = { x: 4, r: 1, danger: 'danger1', id: 'LaZone' };
       danger = { qualifications: [] };
       store.commit('chargeZonesEtDangers', { zones: [zone], dangers: { danger1: danger } });
       wrapper.setProps({ zone });
@@ -123,6 +124,15 @@ describe('Le composant FenetreZone', function () {
         propsData: { zone }
       });
       expect(wrapper.vm.etat).to.equal('qualification');
+    });
+
+    it("rapporte le résultat de l'identification au journal", function (done) {
+      localVue.prototype.journal.enregistre = (evenement) => {
+        expect(evenement).to.be.a(EvenementIdentificationDanger);
+        expect(evenement.donnees()).to.eql({ zone: zone.id, reponse: 'oui', danger: zone.danger });
+        done();
+      };
+      wrapper.vm.question.submit('oui');
     });
   });
 

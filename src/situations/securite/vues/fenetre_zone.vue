@@ -16,6 +16,7 @@ import FormulaireRadio from './formulaire_radio';
 import { traduction } from 'commun/infra/internationalisation';
 import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
+import EvenementIdentificationDanger from 'securite/modeles/evenement_identification_danger';
 
 export default {
   components: {
@@ -87,7 +88,9 @@ export default {
     formatePourcentage (pourcentage) {
       return `${pourcentage}%`;
     },
-    identifie () {
+    identifie (choix) {
+      const evenement = new EvenementIdentificationDanger({ zone: this.zone.id, reponse: choix, danger: this.zone.danger });
+      this.journal.enregistre(evenement);
       if (this.zone.danger) {
         this.etat = 'qualification';
       } else {
