@@ -1,15 +1,20 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { creeStore } from 'securite/store/store';
 import FenetreZone from 'securite/vues/fenetre_zone';
 import FormulaireRadio from 'securite/vues/formulaire_radio';
+import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 
 describe('Le composant FenetreZone', function () {
   let wrapper;
   let store;
+  let localVue;
 
   beforeEach(function () {
     store = creeStore();
+    localVue = createLocalVue();
+    localVue.prototype.journal = { enregistre () {} };
     wrapper = shallowMount(FenetreZone, {
+      localVue,
       store,
       propsData: {
         zone: {}
@@ -43,6 +48,21 @@ describe('Le composant FenetreZone', function () {
     wrapper.setProps({ zone: { y: 40, r: 1 } });
     expect(wrapper.vm.bottom).to.eql(undefined);
     expect(wrapper.vm.top).to.eql('40.7%');
+  });
+
+  it('rapporte son ouverture au journal', function (done) {
+    localVue.prototype.journal.enregistre = (evenement) => {
+      expect(evenement).to.be.a(EvenementOuvertureZone);
+      expect(evenement.donnees()).to.eql({ zone: 'zone 51', danger: 'un-gros-danger' });
+      done();
+    };
+    shallowMount(FenetreZone, {
+      localVue,
+      store,
+      propsData: {
+        zone: { id: 'zone 51', danger: 'un-gros-danger' }
+      }
+    });
   });
 
   describe('avec une zone et un danger associé', function () {
@@ -88,6 +108,7 @@ describe('Le composant FenetreZone', function () {
       store.commit('ajouteDangerQualifie', { nom: zone.danger, choix: 'choix1' });
       const wrapper = shallowMount(FenetreZone, {
         store,
+        localVue,
         propsData: { zone }
       });
       expect(wrapper.vm.etat).to.equal('qualification');

@@ -14,6 +14,7 @@ export default class VueSituation {
 
     Vue.prototype.depotRessources = depotRessources;
     Vue.prototype.traduction = traduction;
+    Vue.prototype.journal = journal;
   }
 
   affiche (pointInsertion, $) {

@@ -14,6 +14,7 @@
 import 'securite/styles/fenetre_zone.scss';
 import FormulaireRadio from './formulaire_radio';
 import { traduction } from 'commun/infra/internationalisation';
+import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 
 export default {
   components: {
@@ -25,6 +26,11 @@ export default {
       type: Object,
       required: true
     }
+  },
+
+  mounted () {
+    const evenement = new EvenementOuvertureZone({ zone: this.zone.id, danger: this.zone.danger });
+    this.journal.enregistre(evenement);
   },
 
   data () {
