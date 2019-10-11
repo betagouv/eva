@@ -1,13 +1,28 @@
 @import 'commun/styles/couleurs.scss';
 
-.message-fin {
-  max-width: 62%;
-}
+.overlay.modale .modale-interieur {
 
-.competences {
-  display: flex;
-  color: $violet;
-  img {
-    margin-right: 1rem;
+  h2, .contenu, button {
+    margin-bottom: 1rem;
+  }
+
+  .message-fin {
+    max-width: 62%;
+  }
+
+  .competences-fortes {
+    display: flex;
+
+    &-nom {
+      color: $violet;
+    }
+    &-description {
+      font-size: 1rem;
+      width: 34rem;
+    }
+    img {
+      margin: 2rem;
+      width: 10rem;
+    }
   }
 }

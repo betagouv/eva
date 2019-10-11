@@ -60,7 +60,7 @@ describe('La vue de fin', function () {
 
     expect(wrapper.findAll('.message-competences-fortes').length).to.equal(1);
     expect(wrapper.find('.message-competences-fortes').text()).to.eql('accueil.fin.competences');
-    expect(wrapper.find('p:last-of-type').text()).to.eql('accueil.fin.comprehension_consigne');
+    expect(wrapper.find('.competences-fortes-nom').text()).to.eql('accueil.fin.rapidite.nom');
   });
 
   it("n'afiche pas de message de détection de compétences fortes si l'évalué n'en a pas", function () {

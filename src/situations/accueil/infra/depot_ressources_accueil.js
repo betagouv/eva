@@ -12,11 +12,11 @@ import fin from 'accueil/assets/fin.png';
 import precedent from 'accueil/assets/precedent.svg';
 import suivant from 'accueil/assets/suivant.svg';
 import punaise from 'accueil/assets/punaise.svg';
-import rapidite from 'accueil/assets/rapidite.png';
-import comparaisonTri from 'accueil/assets/comparaison_tri.png';
-import vigilanceControle from 'accueil/assets/vigilance_controle.png';
-import organisationMethode from 'accueil/assets/organisation_methode.png';
-import attentionConcentration from 'accueil/assets/attention_concentration.png';
+import rapidite from 'accueil/assets/rapidite.svg';
+import comparaisonTri from 'accueil/assets/comparaison_tri.svg';
+import vigilanceControle from 'accueil/assets/vigilance_controle.svg';
+import organisationMethode from 'accueil/assets/organisation_methode.svg';
+import attentionConcentration from 'accueil/assets/attention_concentration.svg';
 import consigneAccueil from 'accueil/assets/consigne_accueil.wav';
 
 const batiments = {

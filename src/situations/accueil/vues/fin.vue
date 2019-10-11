@@ -8,21 +8,26 @@
       class="modale-interieur"
     >
       <h2>{{ traduction('accueil.fin.titre') }}</h2>
-      <p class="message-fin">
+      <div class="contenu">
+        <p class="message-fin">
         {{ traduction('accueil.fin.message') }}
         <span
           v-if="this.competencesFortes.length != 0"
           class="message-competences-fortes"
-        >{{ traduction('accueil.fin.competences') }}</span>
-      </p>
-      <p
-        v-for="competence in competencesFortes"
-        :key="competence"
-        class="competences"
-      >
-        <img :src="affichePicto(competence)" />
-        {{ traduction(`accueil.fin.${competence}`) }}
-      </p>
+          >{{ traduction('accueil.fin.competences') }}</span>
+        </p>
+        <div
+          v-for="competence in competencesFortes"
+          :key="competence"
+          class="competences-fortes"
+          >
+          <img :src="affichePicto(competence)" />
+          <div>
+            <p class="competences-fortes-nom">{{ traduction(`accueil.fin.${competence}.nom`) }}</p>
+            <p class="competences-fortes-description">{{ traduction(`accueil.fin.${competence}.description`) }}</p>
+          </div>
+        </div>
+      </div>
       <button
         class="bouton-arrondi"
         @click="deconnecte"
