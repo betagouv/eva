@@ -3,14 +3,12 @@
     :style="{ bottom: bottom, left: left, right: right, top: top }"
     class="fenetre">
 
-    <div v-if="etat == 'resultat-identification'">
-     <p>{{ messageResultatIdentification }}</p>
-      <img :src="pictoResultatIdentification"/>
-      <button
-        class="bouton-arrondi bouton-arrondi--petit"
-        @click="termineIdentification"
-        >Suivant</button>
-    </div>
+    <resultat-identification
+      v-if="etat == 'resultat-identification'"
+      :succesIdentification="succesIdentification"
+      :danger="zone.danger != undefined"
+      @termine="termineIdentification"
+      />
     <formulaire-radio
       v-else
       :key="etat"
@@ -22,6 +20,7 @@
 <script>
 import 'securite/styles/fenetre.scss';
 import FormulaireRadio from './formulaire_radio';
+import ResultatIdentification from './resultat_identification';
 import { traduction } from 'commun/infra/internationalisation';
 import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
@@ -29,7 +28,8 @@ import EvenementIdentificationDanger from 'securite/modeles/evenement_identifica
 
 export default {
   components: {
-    FormulaireRadio
+    FormulaireRadio,
+    ResultatIdentification
   },
 
   props: {
@@ -48,8 +48,7 @@ export default {
     const qualification = this.$store.getters.qualification(this.zone.danger);
     return {
       etat: qualification ? 'qualification' : 'identification',
-      succesIdentification: 'non défini',
-      pictoResultatIdentification: '',
+      succesIdentification: 'non defini',
       identificationDanger: {
         titre: traduction('securite.danger.identification.titre'),
         options: [
@@ -80,10 +79,6 @@ export default {
       if (this.zone.x < 70) return undefined;
       return this.formatePourcentage((100 - (this.zone.x + Math.cos(3 * Math.PI / 4) * this.zone.r)).toFixed(1));
     },
-    messageResultatIdentification () {
-      const cleDanger = this.zone.danger ? 'danger' : 'non-danger';
-      return traduction(`securite.danger.identification.${cleDanger}.${this.succesIdentification}`);
-    },
     qualificationDanger () {
       const qualification = this.$store.getters.qualification(this.zone.danger);
       return {
@@ -109,13 +104,7 @@ export default {
 
       const estUnDanger = !!this.zone.danger;
       const aIdentifieUnDanger = choix === 'oui';
-      if (estUnDanger === aIdentifieUnDanger) {
-        this.succesIdentification = 'succes';
-        this.pictoResultatIdentification = this.depotRessources.pictoDangerBienIdentifie().src;
-      } else {
-        this.succesIdentification = 'echec';
-        this.pictoResultatIdentification = this.depotRessources.pictoDangerMalIdentifie().src;
-      }
+      this.succesIdentification = estUnDanger === aIdentifieUnDanger;
       this.etat = 'resultat-identification';
     },
     termineIdentification () {
