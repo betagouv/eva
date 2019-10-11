@@ -3,7 +3,16 @@
     :style="{ bottom: bottom, left: left, right: right, top: top }"
     class="fenetre">
 
+    <div v-if="etat == 'resultat-identification'">
+     <p>{{ messageResultatIdentification }}</p>
+      <img :src="pictoResultatIdentification"/>
+      <button
+        class="bouton-arrondi bouton-arrondi--petit"
+        @click="termineIdentification"
+        >Suivant</button>
+    </div>
     <formulaire-radio
+      v-else
       :key="etat"
       :question="question" />
 
@@ -39,6 +48,8 @@ export default {
     const qualification = this.$store.getters.qualification(this.zone.danger);
     return {
       etat: qualification ? 'qualification' : 'identification',
+      succesIdentification: 'non défini',
+      pictoResultatIdentification: '',
       identificationDanger: {
         titre: traduction('securite.danger.identification.titre'),
         options: [
@@ -69,6 +80,10 @@ export default {
       if (this.zone.x < 70) return undefined;
       return this.formatePourcentage((100 - (this.zone.x + Math.cos(3 * Math.PI / 4) * this.zone.r)).toFixed(1));
     },
+    messageResultatIdentification () {
+      const cleDanger = this.zone.danger ? 'danger' : 'non-danger';
+      return traduction(`securite.danger.identification.${cleDanger}.${this.succesIdentification}`);
+    },
     qualificationDanger () {
       const qualification = this.$store.getters.qualification(this.zone.danger);
       return {
@@ -91,6 +106,19 @@ export default {
     identifie (choix) {
       const evenement = new EvenementIdentificationDanger({ zone: this.zone.id, reponse: choix, danger: this.zone.danger });
       this.journal.enregistre(evenement);
+
+      const estUnDanger = !!this.zone.danger;
+      const aIdentifieUnDanger = choix === 'oui';
+      if (estUnDanger === aIdentifieUnDanger) {
+        this.succesIdentification = 'succes';
+        this.pictoResultatIdentification = this.depotRessources.pictoDangerBienIdentifie().src;
+      } else {
+        this.succesIdentification = 'echec';
+        this.pictoResultatIdentification = this.depotRessources.pictoDangerMalIdentifie().src;
+      }
+      this.etat = 'resultat-identification';
+    },
+    termineIdentification () {
       if (this.zone.danger) {
         this.etat = 'qualification';
       } else {
