@@ -77,7 +77,15 @@
         "bouton": "Suivant",
         "non": "Non",
         "oui": "Oui",
-        "titre": "Est-ce un danger ?"
+        "titre": "Est-ce un danger ?",
+        "danger": {
+          "succes": "Bravo, maintenant qualifiez ce danger.",
+          "echec": "Et si, c'est bien un danger. Maintenant pouvez-vous qualifier ce danger ?",
+        },
+        "non-danger": {
+          "succes": "Bravo, ce n'est pas un danger.",
+          "echec": "Et non, ce n’est pas un danger.",
+        }
       },
       "qualification": {
         "bouton": "Valider",

@@ -6,18 +6,29 @@ import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
 import EvenementIdentificationDanger from 'securite/modeles/evenement_identification_danger';
 
-describe('Le composant FenetreZone', function () {
+describe.only('Le composant FenetreZone', function () {
   let wrapper;
   let store;
   let localVue;
 
   beforeEach(function () {
+    const localVue = createLocalVue();
+    localVue.prototype.depotRessources = new class {
+      pictoDangerMalIdentifie () {
+        return { src: 'danger-mal-identifie' };
+      }
+
+      pictoDangerBienIdentifie () {
+        return { src: 'danger-bien-identifie' };
+      }
+    }();
     store = creeStore();
     localVue = createLocalVue();
     localVue.prototype.journal = { enregistre () {} };
     wrapper = shallowMount(FenetreZone, {
       localVue,
       store,
+      localVue,
       propsData: {
         zone: {}
       }
@@ -88,12 +99,30 @@ describe('Le composant FenetreZone', function () {
       expect(wrapper.vm.qualificationDanger.choix).to.equal('choix1');
     });
 
-    it("rend la question d'identification du danger puis de qualification puis c'est terminé", function () {
+    it("rend la question d'identification du danger puis informe du résultat puis de qualification puis c'est terminé", function () {
       expect(wrapper.vm.etat).to.equal('identification');
       wrapper.vm.question.submit();
+      expect(wrapper.vm.etat).to.equal('resultat-identification');
+      wrapper.vm.termineIdentification();
       expect(wrapper.vm.etat).to.equal('qualification');
       wrapper.vm.question.submit();
       expect(wrapper.emitted('ferme').length).to.equal(1);
+    });
+
+    it("Informe l'utilisateur qu'il a bien identifié le danger", function () {
+      wrapper.vm.question.submit('oui');
+      expect(wrapper.vm.succesIdentification).to.equal('succes');
+      expect(wrapper.vm.pictoResultatIdentification).to.equal('danger-bien-identifie');
+      wrapper.vm.termineIdentification();
+      expect(wrapper.vm.etat).to.equal('qualification');
+    });
+
+    it("Informe l'utilisateur qu'il a bien identifié le danger", function () {
+      wrapper.vm.question.submit('non');
+      expect(wrapper.vm.succesIdentification).to.equal('echec');
+      expect(wrapper.vm.pictoResultatIdentification).to.equal('danger-mal-identifie');
+      wrapper.vm.termineIdentification();
+      expect(wrapper.vm.etat).to.equal('qualification');
     });
 
     it('mets à jour le store pour stocker le danger qualifié', function (done) {
@@ -143,9 +172,17 @@ describe('Le composant FenetreZone', function () {
       wrapper.setProps({ zone });
     });
 
-    it("ne propose que l'étape d'identification", function () {
-      expect(wrapper.vm.etat).to.equal('identification');
-      wrapper.vm.question.submit();
+    it("Informe l'utilisateur qu'il a bien identifié le non-danger", function () {
+      wrapper.vm.question.submit('non');
+      expect(wrapper.vm.succesIdentification).to.equal('succes');
+      wrapper.vm.termineIdentification();
+      expect(wrapper.emitted('ferme').length).to.equal(1);
+    });
+
+    it("Informe l'utilisateur qu'il a bien identifié le non-danger", function () {
+      wrapper.vm.question.submit('oui');
+      expect(wrapper.vm.succesIdentification).to.equal('echec');
+      wrapper.vm.termineIdentification();
       expect(wrapper.emitted('ferme').length).to.equal(1);
     });
   });
