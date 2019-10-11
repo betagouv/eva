@@ -1,7 +1,9 @@
 <template>
   <div class="resultat-identification">
-    <p class="message">{{ messageResultatIdentification }}</p>
-    <img :src="pictoResultatIdentification"/>
+    <div class="resultat-identification-reponse">
+      <p class="resultat-identification-message">{{ messageResultatIdentification }}</p>
+      <img :src="pictoResultatIdentification"/>
+    </div>
     <button
       class="bouton-arrondi bouton-arrondi--petit"
       @click="termine()"
