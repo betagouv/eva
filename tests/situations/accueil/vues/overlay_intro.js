@@ -46,4 +46,9 @@ describe("La vue d'introduction", function () {
     wrapper.find('button').trigger('click');
     expect(wrapper.emitted('passe').length).to.eql(1);
   });
+
+  it('permet de passer directement au parc en appuyant sur S', function () {
+    wrapper.trigger('keydown', { key: 's' });
+    expect(wrapper.emitted('passe').length).to.eql(1);
+  });
 });
