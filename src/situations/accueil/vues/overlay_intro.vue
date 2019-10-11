@@ -1,5 +1,9 @@
 <template>
-  <div class="overlay modale">
+  <div
+    class="overlay modale"
+    tabindex="0"
+    @keydown.s="passe"
+  >
     <div
       v-if="ecran == 'consigne'"
       class="modale-interieur"
