@@ -15,6 +15,7 @@ import 'securite/styles/fenetre.scss';
 import FormulaireRadio from './formulaire_radio';
 import { traduction } from 'commun/infra/internationalisation';
 import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
+import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
 
 export default {
   components: {
@@ -95,6 +96,12 @@ export default {
     },
     qualifie (choix) {
       this.$store.commit('ajouteDangerQualifie', { nom: this.zone.danger, choix });
+      this.journal.enregistre(
+        new EvenementQualificationDanger({
+          danger: this.zone.danger,
+          reponse: choix
+        })
+      );
       this.ferme();
     },
 
