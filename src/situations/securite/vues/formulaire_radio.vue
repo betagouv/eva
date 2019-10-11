@@ -4,7 +4,7 @@
     <div
       v-for="option in question.options"
       :key="option.valeur"
-      class="identification-danger-input">
+      class="formulaire-radio-input">
       <label>
         <input v-model="choix" type="radio" name="option" :value="option.valeur" />
         {{ option.libelle }}
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import 'securite/styles/identification_danger.scss';
+import 'securite/styles/formulaire_radio.scss';
 
 export default {
   props: {
