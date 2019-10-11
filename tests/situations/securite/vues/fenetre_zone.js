@@ -6,29 +6,18 @@ import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
 import EvenementIdentificationDanger from 'securite/modeles/evenement_identification_danger';
 
-describe.only('Le composant FenetreZone', function () {
+describe('Le composant FenetreZone', function () {
   let wrapper;
   let store;
   let localVue;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
-    localVue.prototype.depotRessources = new class {
-      pictoDangerMalIdentifie () {
-        return { src: 'danger-mal-identifie' };
-      }
-
-      pictoDangerBienIdentifie () {
-        return { src: 'danger-bien-identifie' };
-      }
-    }();
     store = creeStore();
     localVue = createLocalVue();
     localVue.prototype.journal = { enregistre () {} };
     wrapper = shallowMount(FenetreZone, {
       localVue,
       store,
-      localVue,
       propsData: {
         zone: {}
       }
@@ -111,16 +100,14 @@ describe.only('Le composant FenetreZone', function () {
 
     it("Informe l'utilisateur qu'il a bien identifié le danger", function () {
       wrapper.vm.question.submit('oui');
-      expect(wrapper.vm.succesIdentification).to.equal('succes');
-      expect(wrapper.vm.pictoResultatIdentification).to.equal('danger-bien-identifie');
+      expect(wrapper.vm.succesIdentification).to.equal(true);
       wrapper.vm.termineIdentification();
       expect(wrapper.vm.etat).to.equal('qualification');
     });
 
     it("Informe l'utilisateur qu'il a bien identifié le danger", function () {
       wrapper.vm.question.submit('non');
-      expect(wrapper.vm.succesIdentification).to.equal('echec');
-      expect(wrapper.vm.pictoResultatIdentification).to.equal('danger-mal-identifie');
+      expect(wrapper.vm.succesIdentification).to.equal(false);
       wrapper.vm.termineIdentification();
       expect(wrapper.vm.etat).to.equal('qualification');
     });
@@ -174,14 +161,14 @@ describe.only('Le composant FenetreZone', function () {
 
     it("Informe l'utilisateur qu'il a bien identifié le non-danger", function () {
       wrapper.vm.question.submit('non');
-      expect(wrapper.vm.succesIdentification).to.equal('succes');
+      expect(wrapper.vm.succesIdentification).to.equal(true);
       wrapper.vm.termineIdentification();
       expect(wrapper.emitted('ferme').length).to.equal(1);
     });
 
     it("Informe l'utilisateur qu'il a bien identifié le non-danger", function () {
       wrapper.vm.question.submit('oui');
-      expect(wrapper.vm.succesIdentification).to.equal('echec');
+      expect(wrapper.vm.succesIdentification).to.equal(false);
       wrapper.vm.termineIdentification();
       expect(wrapper.emitted('ferme').length).to.equal(1);
     });
