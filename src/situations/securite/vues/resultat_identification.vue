@@ -7,7 +7,7 @@
     <button
       class="bouton-arrondi bouton-arrondi--petit"
       @click="termine()"
-      >Suivant</button>
+      >{{ texteBouton }}</button>
   </div>
 </template>
 
@@ -28,10 +28,15 @@ export default {
   },
 
   computed: {
+    clefDanger () {
+      return this.danger ? 'danger' : 'non-danger';
+    },
     messageResultatIdentification () {
-      const cleDanger = this.danger ? 'danger' : 'non-danger';
       const cleSucces = this.succesIdentification ? 'succes' : 'echec';
-      return traduction(`securite.danger.identification.${cleDanger}.${cleSucces}`);
+      return traduction(`securite.danger.identification.${this.clefDanger}.${cleSucces}`);
+    },
+    texteBouton () {
+      return traduction(`securite.danger.identification.${this.clefDanger}.bouton`);
     },
     pictoResultatIdentification () {
       if (this.succesIdentification) {
