@@ -53,9 +53,11 @@ describe("Le formulaire d'identification", function () {
   it('réinitialise les valeurs une fois sauvegardé', function () {
     wrapper.vm.nom = 'Mon pseudo';
     wrapper.vm.campagne = 'Ma campagne';
+    wrapper.vm.cgu = true;
     return wrapper.vm.envoieFormulaire().then(() => {
       expect(wrapper.vm.nom).to.eql('');
       expect(wrapper.vm.campagne).to.eql('');
+      expect(wrapper.vm.cgu).to.eql(false);
     });
   });
 
