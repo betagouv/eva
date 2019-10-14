@@ -7,6 +7,12 @@ https://beta.gouv.fr/startup/competences-pro.html
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
 
+Pour voir les autres projets de Compétences Pro:
+
+- [la partie serveur](https://github.com/betagouv/competences-pro-serveur)
+- [la partie orchestration](https://github.com/betagouv/competences-pro-orchestrateur)
+- [le site web](https://github.com/betagouv/competences-pro-www)
+
 ## Démarrer un serveur Webpack en local (mode développement)
 
 Installer `npm` si nécessaire, et exécuter la commande suivante.
