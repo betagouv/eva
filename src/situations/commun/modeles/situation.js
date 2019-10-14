@@ -5,6 +5,8 @@ export const ERREUR_CHARGEMENT = 'erreurDeChargement';
 export const ATTENTE_DEMARRAGE = 'attenteDemarrage';
 export const LECTURE_CONSIGNE = 'lectureConsigne';
 export const CONSIGNE_ECOUTEE = 'consigneEcoutée';
+export const ENTRAINEMENT_DEMARRE = 'entrainementDemarré';
+export const ENTRAINEMENT_FINI = 'entrainementFini';
 export const DEMARRE = 'démarré';
 export const FINI = 'fini';
 export const STOPPEE = 'stoppée';
@@ -12,9 +14,10 @@ export const STOPPEE = 'stoppée';
 export const CHANGEMENT_ETAT = 'changementEtat';
 
 export default class Situation extends EventEmitter {
-  constructor () {
+  constructor (modeEntrainement = false) {
     super();
     this._etat = CHARGEMENT;
+    this._entrainementDisponible = modeEntrainement;
   }
 
   etat () {
@@ -26,5 +29,9 @@ export default class Situation extends EventEmitter {
 
     this._etat = etat;
     this.emit(CHANGEMENT_ETAT, etat);
+  }
+
+  entrainementDisponible () {
+    return this._entrainementDisponible;
   }
 }

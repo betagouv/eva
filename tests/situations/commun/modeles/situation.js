@@ -31,4 +31,14 @@ describe('une situation', function () {
     uneSituation.modifieEtat(CHARGEMENT);
     expect(compteurChangementEtat).to.eql(0);
   });
+
+  it("retourne l'information si le mode entrainement est disponible", function () {
+    const uneSituation = new Situation();
+    expect(uneSituation.entrainementDisponible()).to.be(false);
+  });
+
+  it("permet d'être initialisé avec le mode entrainement disponible", function () {
+    const uneSituation = new Situation(true);
+    expect(uneSituation.entrainementDisponible()).to.be(true);
+  });
 });
