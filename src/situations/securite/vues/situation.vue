@@ -2,12 +2,16 @@
   <div
     :style="{ 'background-image': fondSituation }"
     class="fond-situation"
+    @click="clickSituation"
   >
-    <div class="compteur-statut">
+    <div
+      class="compteur-statut"
+      @click.stop
+    >
       {{ traduction('securite.dangers_detectes') }}: {{nombreDangersQualifies}}/{{nombreDangersAQualifies}}
       <bouton-aide />
     </div>
-    <fenetre-aide />
+    <fenetre-aide @click.native.stop />
     <svg height="100%" width="100%">
       <circle
         v-for="zone in zones"
@@ -19,7 +23,7 @@
                   'zone-qualifiee': qualification(zone.danger),
                   'zone-aide': aide }"
         class="zone"
-        @click="selectionneZone(zone)"
+        @click.stop="selectionneZone(zone)"
       />
     </svg>
     <fenetre-zone
@@ -27,6 +31,7 @@
       :key="`${zoneSelectionnee.x}${zoneSelectionnee.y}`"
       :zone="zoneSelectionnee"
       @ferme="deselectionneZone"
+      @click.native.stop
      />
   </div>
 </template>
@@ -35,9 +40,11 @@
 import { mapState, mapGetters } from 'vuex';
 import 'securite/styles/situation.scss';
 import { FINI } from '../store/store';
+import { pourcentageX, pourcentageY } from '../data/zones';
 import BoutonAide from './bouton_aide';
 import FenetreZone from './fenetre_zone';
 import FenetreAide from './fenetre_aide';
+import EvenementClickHorsZone from '../modeles/evenement_click_hors_zone';
 
 export default {
   components: { BoutonAide, FenetreAide, FenetreZone },
@@ -72,6 +79,9 @@ export default {
     },
     deselectionneZone () {
       this.zoneSelectionnee = null;
+    },
+    clickSituation (e) {
+      this.journal.enregistre(new EvenementClickHorsZone({ x: pourcentageX(e.layerX), y: pourcentageY(e.layerY) }));
     }
   }
 };

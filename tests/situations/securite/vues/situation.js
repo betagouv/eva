@@ -1,13 +1,15 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Situation from 'securite/vues/situation.vue';
 import { creeStore, CHARGEMENT, FINI } from 'securite/store/store';
+import EvenementClickHorsZone from 'securite/modeles/evenement_click_hors_zone';
 
 describe('La vue de la situation Sécurité', function () {
   let wrapper;
   let store;
+  let localVue;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
+    localVue = createLocalVue();
     localVue.prototype.depotRessources = new class {
       fondSituation () {
         return { src: 'fond-situation' };
@@ -74,5 +76,43 @@ describe('La vue de la situation Sécurité', function () {
     expect(store.state.etat).to.equal(CHARGEMENT);
     store.commit('ajouteDangerQualifie', { nom: 'danger2', choix: 'mauvais' });
     expect(store.state.etat).to.equal(FINI);
+  });
+
+  it('un click sur le fond de la situation enregistre un événement click hors zone', function (done) {
+    localVue.prototype.journal = {
+      enregistre (evenement) {
+        expect(evenement).to.be.a(EvenementClickHorsZone);
+        expect(evenement.donnees()).to.be.eql({ x: 50, y: 10 });
+        done();
+      }
+    };
+    wrapper.trigger('click', {
+      layerX: 504,
+      layerY: 56.6
+    });
+  });
+
+  it("un click sur une zone n'enregistre pas d'événement click hors zone", function () {
+    store.commit('chargeZonesEtDangers', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
+    let enregistre = 0;
+    localVue.prototype.journal = {
+      enregistre (evenement) {
+        enregistre++;
+      }
+    };
+    wrapper.find('circle').trigger('click');
+    expect(enregistre).to.eql(0);
+  });
+
+  it("un click sur le compteur n'enregistre pas d'événement click hors zone", function () {
+    store.commit('chargeZonesEtDangers', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
+    let enregistre = 0;
+    localVue.prototype.journal = {
+      enregistre (evenement) {
+        enregistre++;
+      }
+    };
+    wrapper.find('.compteur-statut').trigger('click');
+    expect(enregistre).to.eql(0);
   });
 });
