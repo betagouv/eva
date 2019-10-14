@@ -15,7 +15,7 @@
     <svg height="100%" width="100%">
       <circle
         v-for="zone in zones"
-        :key="`${zone.x}-${zone.y}`"
+        :key="zone.id"
         :cx="`${zone.x}%`"
         :cy="`${zone.y}%`"
         :r="`${zone.r}%`"
@@ -28,7 +28,7 @@
     </svg>
     <fenetre-zone
       v-if="zoneSelectionnee"
-      :key="`${zoneSelectionnee.x}${zoneSelectionnee.y}`"
+      :key="zoneSelectionnee.id"
       :zone="zoneSelectionnee"
       @ferme="deselectionneZone"
       @click.native.stop
