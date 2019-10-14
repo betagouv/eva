@@ -3,11 +3,11 @@ const scene = {
   hauteur: 566
 };
 
-function pourcentageX (valeur) {
+export function pourcentageX (valeur) {
   return valeur / scene.largeur * 100;
 }
 
-function pourcentageY (valeur) {
+export function pourcentageY (valeur) {
   return valeur / scene.hauteur * 100;
 }
 
