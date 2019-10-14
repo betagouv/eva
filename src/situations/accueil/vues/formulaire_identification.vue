@@ -96,6 +96,7 @@ export default {
       return this.$store.dispatch('inscris', { nom: this.nom, campagne: this.campagne })
         .then(() => {
           this.nom = '';
+          this.cgu = false;
           this.campagne = this.forceCampagne;
         })
         .catch((xhr) => {
