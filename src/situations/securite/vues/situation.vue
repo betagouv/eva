@@ -75,6 +75,7 @@ export default {
 
   methods: {
     selectionneZone (zone) {
+      if (this.zoneSelectionnee) { return; }
       this.zoneSelectionnee = zone;
     },
     deselectionneZone () {
