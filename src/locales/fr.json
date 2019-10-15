@@ -118,6 +118,7 @@
     "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
     "chargement": "Chargement en cours",
     "go": "Vous pouvez commencer",
+    "entrainement_fini": "Bravo vous avez terminé l'entrainement",
     "modale": {
       "annuler": "Non",
       "ok": "Oui"
