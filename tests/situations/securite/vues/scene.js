@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import SceneSecurite from 'securite/vues/scene';
 import EvenementClickHorsZone from 'securite/modeles/evenement_click_hors_zone';
+import BoutonAide from 'securite/vues/bouton_aide';
 import { creeStore } from 'securite/store/store';
 
 describe('La vue de la scene Sécurité', function () {
@@ -18,6 +19,15 @@ describe('La vue de la scene Sécurité', function () {
         fondSituation: ''
       }
     });
+  });
+
+  it("affiche l'aide par défaut", function () {
+    expect(wrapper.contains(BoutonAide)).to.be(true);
+  });
+
+  it("cache l'aide si la props aide est a faux", function () {
+    wrapper.setProps({ afficheAide: false });
+    expect(wrapper.contains(BoutonAide)).to.be(false);
   });
 
   it('affiche les zones', function () {
