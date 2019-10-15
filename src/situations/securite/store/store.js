@@ -29,6 +29,8 @@ export function creeStore () {
       chargeZonesEtDangers (state, { zones, dangers }) {
         state.zones = zones;
         state.dangers = dangers;
+        state.dangersQualifies = {};
+        state.aide = false;
       },
       ajouteDangerQualifie (state, dangerQualifie) {
         Vue.set(state.dangersQualifies, dangerQualifie.nom, dangerQualifie.choix);
