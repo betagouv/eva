@@ -27,14 +27,14 @@ const dangers = {
   },
   [DANGER_CASQUE]: {
     qualifications: [
-      { libelle: "L'homme n’a pas de gilet à haute visibilité", valeur: 'mauvaise1' },
-      { libelle: "L'homme discute avec son collègue", valeur: 'mauvaise2' },
-      { libelle: "L'homme n’a pas de casque", valeur: 'bonne' }
+      { libelle: 'L’homme n’a pas de gilet à haute visibilité', valeur: 'mauvaise1' },
+      { libelle: 'L’homme discute avec son collègue', valeur: 'mauvaise2' },
+      { libelle: 'L’homme n’a pas de casque', valeur: 'bonne' }
     ]
   },
   [DANGER_ESCABEAU]: {
     qualifications: [
-      { libelle: "L'homme est en déséquilibre sur un escabeau", valeur: 'bonne' },
+      { libelle: 'L’homme est en déséquilibre sur un escabeau', valeur: 'bonne' },
       { libelle: 'L’homme n’a pas de chaussures', valeur: 'mauvaise1' },
       { libelle: 'L’homme ne porte pas de casque', valeur: 'mauvaise2' }
     ]
