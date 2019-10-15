@@ -1,5 +1,16 @@
 import 'commun/styles/cadre.scss';
-import { CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI, STOPPEE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import {
+  CHARGEMENT,
+  ERREUR_CHARGEMENT,
+  ATTENTE_DEMARRAGE,
+  LECTURE_CONSIGNE,
+  CONSIGNE_ECOUTEE,
+  ENTRAINEMENT_FINI,
+  DEMARRE,
+  FINI,
+  STOPPEE,
+  CHANGEMENT_ETAT
+} from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import VueActions from 'commun/vues/actions';
 import VueChargement from 'commun/vues/chargement';
@@ -24,6 +35,7 @@ export default class VueCadre {
     this.vuesEtats.set(ATTENTE_DEMARRAGE, VueJoue);
     this.vuesEtats.set(LECTURE_CONSIGNE, VueConsigne);
     this.vuesEtats.set(CONSIGNE_ECOUTEE, VueGo);
+    this.vuesEtats.set(ENTRAINEMENT_FINI, VueGo);
     this.vuesEtats.set(FINI, VueTerminer);
     this.envoiEvenementDemarrageUneFoisDemarre();
   }
