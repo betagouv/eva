@@ -31,6 +31,13 @@ describe('vue Rejoue Consigne', function () {
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
   });
 
+  it('sait se cacher', function () {
+    vue.affiche('#pointInsertion', $, situation);
+    vue.cache();
+    expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(0);
+    expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
+  });
+
   it('passe en état lecture en cours', function () {
     vue.affiche('#pointInsertion', $, situation);
     vue.litConsigne($);

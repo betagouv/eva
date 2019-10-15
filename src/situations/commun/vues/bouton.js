@@ -27,6 +27,8 @@ export default class VueBouton {
   }
 
   cache () {
-    this.$element.remove();
+    if (this.$element) {
+      this.$element.remove();
+    }
   }
 }
