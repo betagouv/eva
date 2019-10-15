@@ -8,6 +8,7 @@
 import { mapState } from 'vuex';
 import { DEMARRE, FINI } from '../store/store';
 import SceneSecurite from './scene';
+import { zones, dangers, zonesEntrainement, dangersEntrainement } from '../data/zones';
 
 export default {
   components: { SceneSecurite },
@@ -20,6 +21,21 @@ export default {
         return this.depotRessources.fondSituation().src;
       }
       return this.depotRessources.fondSituationEntrainement().src;
+    }
+  },
+
+  mounted () {
+    this.$store.commit('chargeZonesEtDangers', {
+      zones: zonesEntrainement,
+      dangers: dangersEntrainement
+    });
+  },
+
+  watch: {
+    etat (nouvelEtat) {
+      if (nouvelEtat === DEMARRE) {
+        this.$store.commit('chargeZonesEtDangers', { zones, dangers });
+      }
     }
   }
 };

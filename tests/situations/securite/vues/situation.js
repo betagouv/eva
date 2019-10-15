@@ -39,4 +39,14 @@ describe('La vue de la situation Sécurité', function () {
   it('rend la scene', function () {
     expect(wrapper.contains(SceneSecurite)).to.be(true);
   });
+
+  it("charge les zones d'entrainement au chargement", function () {
+    expect(store.state.zones.length).to.eql(2);
+  });
+
+  it('charge les autres zones de la situation une fois démarré', function () {
+    expect(store.state.zones.length).to.eql(2);
+    store.commit('modifieEtat', DEMARRE);
+    expect(store.state.zones.length).to.eql(11);
+  });
 });

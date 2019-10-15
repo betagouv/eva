@@ -2,7 +2,6 @@ import Vue from 'vue';
 
 import { traduction } from 'commun/infra/internationalisation';
 import { creeStore, synchroniseStoreEtModeleSituation } from '../store/store';
-import { zones, dangers } from '../data/zones';
 import Situation from './situation.vue';
 
 export default class VueSituation {
@@ -20,7 +19,6 @@ export default class VueSituation {
     const div = document.createElement('div');
     $(pointInsertion).append(div);
     const store = creeStore();
-    store.commit('chargeZonesEtDangers', { zones, dangers });
     synchroniseStoreEtModeleSituation(this.situation, store);
     new Vue({
       store,

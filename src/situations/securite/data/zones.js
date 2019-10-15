@@ -16,6 +16,7 @@ const DANGER_CASQUE = 'casque';
 const DANGER_ESCABEAU = 'escabeau';
 const DANGER_CAMION = 'camion';
 const DANGER_SIGNALISATION = 'signalisation';
+const DANGER_CEINTURE = 'ceinture';
 
 const dangers = {
   [DANGER_BOUCHE_EGOUT]: {
@@ -130,4 +131,30 @@ const zones = [
   }
 ];
 
-export { dangers, zones };
+const dangersEntrainement = {
+  [DANGER_CEINTURE]: {
+    qualifications: [
+      { libelle: 'La ceinture de la passagère n’est pas attachée', valeur: 'bonne' },
+      { libelle: 'La vitre est ouverte', valeur: 'mauvaise1' },
+      { libelle: 'L’appui-tête est mal réglé du côté passager', valeur: 'mauvaise2' }
+    ]
+  }
+};
+
+const zonesEntrainement = [
+  {
+    x: pourcentageX(260),
+    y: pourcentageY(280),
+    r: pourcentageX(200),
+    id: 'ceinture-gauche',
+    danger: DANGER_CEINTURE
+  },
+  {
+    x: pourcentageX(740),
+    y: pourcentageY(280),
+    r: pourcentageX(200),
+    id: 'ceinture-droite'
+  }
+];
+
+export { dangers, zones, zonesEntrainement, dangersEntrainement };
