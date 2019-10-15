@@ -1,6 +1,7 @@
 <template>
   <scene-securite
-    :fond-situation="fondSituation"
+    :fond-situation="scene.fondSituation"
+    :affiche-aide="scene.afficheAide"
     @terminer="changeEtatSituation"
   />
 </template>
@@ -17,11 +18,17 @@ export default {
   computed: {
     ...mapState(['etat']),
 
-    fondSituation () {
+    scene () {
       if ([DEMARRE, FINI].includes(this.etat)) {
-        return this.depotRessources.fondSituation().src;
+        return {
+          fondSituation: this.depotRessources.fondSituation().src,
+          afficheAide: true
+        };
       }
-      return this.depotRessources.fondSituationEntrainement().src;
+      return {
+        fondSituation: this.depotRessources.fondSituationEntrainement().src,
+        afficheAide: false
+      };
     }
   },
 
