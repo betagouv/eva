@@ -28,6 +28,11 @@ export default class VueRejoueConsigne {
     this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, $);
   }
 
+  cache () {
+    this.vueBoutonLire.cache();
+    this.vueBoutonLectureEnCours.cache();
+  }
+
   litConsigne ($) {
     this.journal.enregistre(new EvenementRejoueConsigne());
     this.vueBoutonLire.cache();

@@ -1,6 +1,6 @@
 import 'commun/styles/actions.scss';
 import 'commun/styles/bouton.scss';
-import { CHANGEMENT_ETAT, CONSIGNE_ECOUTEE, DEMARRE } from 'commun/modeles/situation';
+import { CHANGEMENT_ETAT, CONSIGNE_ECOUTEE, DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
 
 import VueStop from 'commun/vues/stop';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
@@ -27,9 +27,17 @@ export default class VueActions {
     actionsEtat.set(CONSIGNE_ECOUTEE, () => {
       this.rejoueConsigne.affiche(this.$actions, $, this.situation);
     });
-    actionsEtat.set(DEMARRE, () => {
+    actionsEtat.set(ENTRAINEMENT_DEMARRE, () => {
       this.stop.affiche(this.$actions, $);
-      this.rejoueConsigne.affiche(this.$actions, $, this.situation);
+    });
+    actionsEtat.set(ENTRAINEMENT_FINI, () => {
+      this.rejoueConsigne.cache();
+    });
+    actionsEtat.set(DEMARRE, () => {
+      if (!this.situation.entrainementDisponible()) {
+        this.stop.affiche(this.$actions, $);
+        this.rejoueConsigne.affiche(this.$actions, $, this.situation);
+      }
     });
     const changements = actionsEtat.get(etat);
     if (changements) {
