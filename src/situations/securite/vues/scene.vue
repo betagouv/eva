@@ -56,7 +56,6 @@
 import { mapState, mapGetters } from 'vuex';
 import 'securite/styles/situation.scss';
 import { pourcentageX, pourcentageY } from '../data/zones';
-import { FINI } from '../store/store';
 import BoutonAide from './bouton_aide';
 import FenetreZone from './fenetre_zone';
 import FenetreAide from './fenetre_aide';
@@ -90,7 +89,7 @@ export default {
   watch: {
     dangersQualifies () {
       if (this.nombreDangersQualifies === this.nombreDangersAQualifies) {
-        this.$store.commit('modifieEtat', FINI);
+        this.$emit('terminer');
       }
     }
   },

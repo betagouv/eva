@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import SceneSecurite from 'securite/vues/scene';
-import { creeStore, CHARGEMENT, FINI } from 'securite/store/store';
 import EvenementClickHorsZone from 'securite/modeles/evenement_click_hors_zone';
+import { creeStore } from 'securite/store/store';
 
 describe('La vue de la scene Sécurité', function () {
   let wrapper;
@@ -69,15 +69,15 @@ describe('La vue de la scene Sécurité', function () {
     expect(wrapper.findAll('.zone.zone-aide').length).to.eql(1);
   });
 
-  it('passe la situation en FINI lorsque tout les dangers ont été identifiés', function () {
+  it('émet un événement terminer lorsque tout les dangers ont été identifiés', function () {
     store.commit('chargeZonesEtDangers', {
       zones: [{ x: 1, y: 2, r: 3, danger: 'danger1' }, { x: 4, y: 5, r: 6, danger: 'danger2' }],
       dangers: { danger1: {}, danger2: {} }
     });
     store.commit('ajouteDangerQualifie', { nom: 'danger1', choix: 'bon' });
-    expect(store.state.etat).to.equal(CHARGEMENT);
+    expect(wrapper.emitted('terminer')).to.be(undefined);
     store.commit('ajouteDangerQualifie', { nom: 'danger2', choix: 'mauvais' });
-    expect(store.state.etat).to.equal(FINI);
+    expect(wrapper.emitted('terminer').length).to.eql(1);
   });
 
   it('un click sur le fond de la situation enregistre un événement click hors zone', function (done) {
