@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import { CHANGEMENT_ETAT, CHARGEMENT, DEMARRE, FINI } from 'commun/modeles/situation';
+import { CHANGEMENT_ETAT, CHARGEMENT, ENTRAINEMENT_DEMARRE, DEMARRE, FINI } from 'commun/modeles/situation';
 
 Vue.use(Vuex);
 
@@ -52,4 +52,4 @@ export function synchroniseStoreEtModeleSituation (situation, store) {
   store.commit('modifieEtat', situation.etat());
 }
 
-export { CHARGEMENT, DEMARRE, FINI };
+export { CHARGEMENT, ENTRAINEMENT_DEMARRE, DEMARRE, FINI };
