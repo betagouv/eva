@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Situation from 'securite/vues/situation.vue';
 import SceneSecurite from 'securite/vues/scene';
-import { creeStore, ENTRAINEMENT_DEMARRE, DEMARRE } from 'securite/store/store';
+import { creeStore, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from 'securite/store/store';
 
 describe('La vue de la situation Sécurité', function () {
   let wrapper;
@@ -48,5 +48,17 @@ describe('La vue de la situation Sécurité', function () {
     expect(store.state.zones.length).to.eql(2);
     store.commit('modifieEtat', DEMARRE);
     expect(store.state.zones.length).to.eql(11);
+  });
+
+  it("change l'état de la situation en ENTRAINEMENT_FINI une fois la scene terminé", function () {
+    store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
+    wrapper.vm.changeEtatSituation();
+    expect(store.state.etat).to.eql(ENTRAINEMENT_FINI);
+  });
+
+  it("change l'état de la situation en FINI une fois la scene terminé", function () {
+    store.commit('modifieEtat', DEMARRE);
+    wrapper.vm.changeEtatSituation();
+    expect(store.state.etat).to.eql(FINI);
   });
 });
