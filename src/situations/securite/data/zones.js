@@ -20,7 +20,7 @@ const DANGER_SIGNALISATION = 'signalisation';
 const dangers = {
   [DANGER_BOUCHE_EGOUT]: {
     qualifications: [
-      { libelle: "Il n'y a pas de barrière devant le parc", valeur: 'mauvaise1' },
+      { libelle: 'Le chien n’est pas tenu en laisse', valeur: 'mauvaise1' },
       { libelle: 'La bouche d’égout est ouverte', valeur: 'bonne' },
       { libelle: 'Le trottoir est trop étroit', valeur: 'mauvaise2' }
     ]
