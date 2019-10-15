@@ -22,9 +22,22 @@ describe('Le store de la situation sécurité', function () {
     expect(store.state.dangers).to.eql(dangers);
   });
 
+  it("réinitialise les dangers qualifiés et l'aide au chargement de nouvelles zones", function () {
+    const store = creeStore();
+    const zones = [{ x: 1, y: 2, r: 3 }];
+    const dangers = { danger1: {} };
+    store.commit('chargeZonesEtDangers', { zones, dangers });
+    const qualification = { nom: 'danger1', choix: 'bonne' };
+    store.commit('ajouteDangerQualifie', qualification);
+    store.commit('activeAide');
+    store.commit('chargeZonesEtDangers', { zones, dangers });
+    expect(store.state.dangersQualifies).to.eql({});
+    expect(store.state.aide).to.be(false);
+  });
+
   it('permet de stocker les dangers qualifiés', function () {
     const store = creeStore();
-    expect(store.state.dangersQualifies).to.eql([]);
+    expect(store.state.dangersQualifies).to.eql({});
     const qualification = { nom: 'danger1', choix: 'bonne' };
     store.commit('ajouteDangerQualifie', qualification);
     expect(store.state.dangersQualifies).to.eql({ danger1: 'bonne' });
