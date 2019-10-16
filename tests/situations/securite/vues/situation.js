@@ -45,6 +45,14 @@ describe('La vue de la situation Sécurité', function () {
     expect(wrapper.findAll('.zone-qualifiee').length).to.eql(1);
   });
 
+  it('mets a jour le compteur de dangers identifié', function () {
+    store.commit('chargeZonesEtDangers', { zones: [{ x: 4, y: 5, r: 6, danger: 'test' }], dangers: { test: {}, test2: {} } });
+    expect(wrapper.findAll('.panneau-danger').length).to.eql(2);
+    expect(wrapper.findAll('.panneau-danger-trouve').length).to.eql(0);
+    store.commit('ajouteDangerQualifie', { nom: 'test', choix: 'bon' });
+    expect(wrapper.findAll('.panneau-danger-trouve').length).to.eql(1);
+  });
+
   it('calcule le nombre de danger à qualifier', function () {
     expect(wrapper.vm.nombreDangersAQualifies).to.equal(0);
     store.commit('chargeZonesEtDangers', {
