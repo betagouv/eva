@@ -31,7 +31,6 @@
       :key="zoneSelectionnee.id"
       :zone="zoneSelectionnee"
       @ferme="deselectionneZone"
-      @click.native.stop
      />
   </div>
 </template>
@@ -82,6 +81,7 @@ export default {
       this.zoneSelectionnee = null;
     },
     clickSituation (e) {
+      if (this.zoneSelectionnee) { return; }
       this.journal.enregistre(new EvenementClickHorsZone({ x: pourcentageX(e.layerX), y: pourcentageY(e.layerY) }));
     }
   }
