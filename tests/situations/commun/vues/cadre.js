@@ -7,6 +7,7 @@ import SituationCommune, {
   DEMARRE, FINI, STOPPEE
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
+import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
 import VueCadre from 'commun/vues/cadre';
 import DepotRessourcesCommune from 'commun/infra/depot_ressources_communes';
 import chargeurs from '../../commun/aides/mock_chargeurs';
@@ -155,6 +156,15 @@ describe('Une vue du cadre', function () {
     vueCadre.affiche('#point-insertion', $);
 
     expect($('.barre-dev').length).to.equal(0);
+  });
+
+  it("enregistre l'événement de démarrage de l'entrainement", function (done) {
+    journal.enregistre = (evenement) => {
+      expect(evenement).to.be.a(EvenementEntrainementDemarrage);
+      done();
+    };
+    const vueCadre = uneVueCadre();
+    vueCadre.situation.emit(CHANGEMENT_ETAT, ENTRAINEMENT_DEMARRE);
   });
 
   it("enregistre l'événement de démarrage", function (done) {

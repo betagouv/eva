@@ -12,6 +12,7 @@ import {
   CHANGEMENT_ETAT
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
+import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
 import VueActions from 'commun/vues/actions';
 import VueChargement from 'commun/vues/chargement';
 import VueErreurChargement from 'commun/vues/erreur_chargement';
@@ -96,9 +97,14 @@ export default class VueCadre {
 
   envoiEvenementDemarrageUneFoisDemarre () {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
-      if (etat === DEMARRE) {
-        this.journal.enregistre(new EvenementDemarrage());
-        this.journal.enregistreSituationFaite();
+      switch (etat) {
+        case ENTRAINEMENT_DEMARRE:
+          this.journal.enregistre(new EvenementEntrainementDemarrage());
+          break;
+        case DEMARRE:
+          this.journal.enregistre(new EvenementDemarrage());
+          this.journal.enregistreSituationFaite();
+          break;
       }
     });
   }
