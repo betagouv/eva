@@ -94,8 +94,8 @@
         "oui": "Oui",
         "titre": "Est-ce un danger ?",
         "danger": {
-          "succes": "Bravo, maintenant qualifiez ce danger.",
-          "echec": "Et si, c'est bien un danger. Maintenant pouvez-vous qualifier ce danger ?",
+          "succes": "Bravo, maintenant pouvez-vous dire quel est ce danger ?",
+          "echec": "Et si, c'est bien un danger. Maintenant pouvez-vous dire quel est ce danger ?",
           "bouton": "Suivant"
         },
         "non-danger": {
