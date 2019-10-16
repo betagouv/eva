@@ -92,15 +92,15 @@
         "bouton": "Suivant",
         "non": "Non",
         "oui": "Oui",
-        "titre": "Est-ce un danger ?",
+        "titre": "Y-a-t’il un danger ?",
         "danger": {
           "succes": "Bravo, maintenant pouvez-vous dire quel est ce danger ?",
-          "echec": "Et si, c'est bien un danger. Maintenant pouvez-vous dire quel est ce danger ?",
+          "echec": "Et si, il y a bien un danger. Maintenant pouvez-vous dire quel est ce danger ?",
           "bouton": "Suivant"
         },
         "non-danger": {
-          "succes": "Bravo, ce n'est pas un danger.",
-          "echec": "Et non, ce n’est pas un danger.",
+          "succes": "Bravo, il n’y a pas de danger ici.",
+          "echec": "Et non, il n’y a pas de danger ici.",
           "bouton": "Fermer"
         }
       },
