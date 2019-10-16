@@ -5,10 +5,10 @@ import {
   ATTENTE_DEMARRAGE,
   LECTURE_CONSIGNE,
   CONSIGNE_ECOUTEE,
+  ENTRAINEMENT_DEMARRE,
   ENTRAINEMENT_FINI,
   DEMARRE,
   FINI,
-  STOPPEE,
   CHANGEMENT_ETAT
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
@@ -81,7 +81,7 @@ export default class VueCadre {
 
   previensLaFermetureDeLaSituation ($) {
     $(window).on('beforeunload', (e) => {
-      if (![CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, FINI, STOPPEE].includes(this.situation.etat())) {
+      if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE].includes(this.situation.etat())) {
         e.preventDefault();
         return '';
       }
