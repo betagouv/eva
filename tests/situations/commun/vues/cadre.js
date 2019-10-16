@@ -1,6 +1,11 @@
 import $ from 'jquery';
 
-import SituationCommune, { CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT, ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE, FINI, STOPPEE } from 'commun/modeles/situation';
+import SituationCommune, {
+  CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT,
+  ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE,
+  ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI,
+  DEMARRE, FINI, STOPPEE
+} from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import VueCadre from 'commun/vues/cadre';
 import DepotRessourcesCommune from 'commun/infra/depot_ressources_communes';
@@ -109,7 +114,7 @@ describe('Une vue du cadre', function () {
   it('demande une confirmation pour quitter la page lorsque la situation est démarré', function () {
     const vueCadre = uneVueCadre();
     return vueCadre.affiche('#point-insertion', $).then(() => {
-      [LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, DEMARRE].forEach((etat) => {
+      [ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE].forEach((etat) => {
         situation.modifieEtat(etat);
         const event = $.Event('beforeunload');
         $(window).trigger(event);
@@ -121,7 +126,7 @@ describe('Une vue du cadre', function () {
   it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
     const vueCadre = uneVueCadre();
     return vueCadre.affiche('#point-insertion', $).then(() => {
-      [CHARGEMENT, ERREUR_CHARGEMENT, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
+      [CHARGEMENT, ERREUR_CHARGEMENT, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
         situation.modifieEtat(etat);
         const event = $.Event('beforeunload');
         $(window).trigger(event);
