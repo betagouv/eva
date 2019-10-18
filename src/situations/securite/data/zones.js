@@ -41,16 +41,16 @@ const dangers = {
   },
   [DANGER_CAMION]: {
     qualifications: [
-      { libelle: 'Il n'y a pas de panneau de signalisation de sortie d'engin', valeur: 'bonne' },
+      { libelle: 'Les piétons ne sont pas invités à changer de trottoir ', valeur: 'bonne' },
       { libelle: 'Le camion est vide', valeur: 'mauvaise1' },
       { libelle: 'Le passage piéton est jaune alors qu’il devrait être blanc', valeur: 'mauvaise2' }
     ]
   },
   [DANGER_SIGNALISATION]: {
     qualifications: [
-      { libelle: 'Les deux ouvriers de signalisation autorisent le passage des voitures', valeur: 'bonne' },
-      { libelle: 'Les deux ouvriers de signalisation empêchent le passage des voitures', valeur: 'mauvaise1' },
-      { libelle: 'Un seul ouvrier empêche le passage des voitures', valeur: 'mauvaise2' }
+      { libelle: 'Les deux ouvriers autorisent le passage des voitures', valeur: 'bonne' },
+      { libelle: 'Les deux ouvriers sont sur la route', valeur: 'mauvaise1' },
+      { libelle: 'Les deux ouvriers pourraient se faire écraser par une voiture', valeur: 'mauvaise2' }
     ]
   }
 };
