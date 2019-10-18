@@ -54,7 +54,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import 'securite/styles/situation.scss';
+import 'securite/styles/acte.scss';
 import { pourcentageX, pourcentageY } from '../data/zones';
 import BoutonAide from './bouton_aide';
 import FenetreZone from './fenetre_zone';

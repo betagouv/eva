@@ -1,10 +1,10 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import SceneSecurite from 'securite/vues/scene';
+import ActeSecurite from 'securite/vues/acte';
 import EvenementClickHorsZone from 'securite/modeles/evenement_click_hors_zone';
 import BoutonAide from 'securite/vues/bouton_aide';
 import { creeStore } from 'securite/store/store';
 
-describe('La vue de la scene Sécurité', function () {
+describe("La vue de l'acte Sécurité", function () {
   let wrapper;
   let store;
   let localVue;
@@ -12,7 +12,7 @@ describe('La vue de la scene Sécurité', function () {
   beforeEach(function () {
     store = creeStore();
     localVue = createLocalVue();
-    wrapper = shallowMount(SceneSecurite, {
+    wrapper = shallowMount(ActeSecurite, {
       localVue,
       store,
       propsData: {
