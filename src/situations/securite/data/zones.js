@@ -41,7 +41,7 @@ const dangers = {
   },
   [DANGER_CAMION]: {
     qualifications: [
-      { libelle: "Il n'y a pas de panneau de signalisation de sortie d'engin", valeur: 'bonne' },
+      { libelle: 'Il n’y a pas de panneau de signalisation de sortie d’engin', valeur: 'bonne' },
       { libelle: 'Le camion est vide', valeur: 'mauvaise1' },
       { libelle: 'Le passage piéton est jaune alors qu’il devrait être blanc', valeur: 'mauvaise2' }
     ]
