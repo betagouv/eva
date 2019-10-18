@@ -24,7 +24,8 @@
           <img :src="affichePicto(competence)" />
           <div>
             <p class="competences-fortes-nom">{{ traduction(`accueil.fin.${competence}.nom`) }}</p>
-            <p class="competences-fortes-description">{{ traduction(`accueil.fin.${competence}.description`) }}</p>
+            <p class="competences-fortes-description">{{ traduction(`accueil.fin.${competence}.description`) }}
+            <a class="competences-fortes-lien" :href="lienSiteVitrine(competence)">{{ traduction('accueil.fin.en-savoir-plus') }}</a></p>
           </div>
         </div>
       </div>
@@ -58,6 +59,10 @@ export default {
 
     affichePicto (competence) {
       return this.depotRessources.pictoCompetences(competence).src;
+    },
+
+    lienSiteVitrine (competence) {
+      return `https://eva.beta.gouv.fr/competences/${competence}`;
     },
 
     recupereCompetencesFortes (sync = true) {

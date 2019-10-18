@@ -13,6 +13,16 @@
   .competences-fortes {
     display: flex;
 
+    &-lien {
+      font-size: 1rem;
+      color: $couleur-principale-marque-et-interaction;
+      text-decoration: none;
+    }
+
+    &-lien:hover {
+      text-decoration: underline;
+    }
+
     &-nom {
       color: $violet;
     }
