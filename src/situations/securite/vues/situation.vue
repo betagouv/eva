@@ -1,5 +1,5 @@
 <template>
-  <scene-securite
+  <acte-securite
     :fond-situation="scene.fondSituation"
     :affiche-aide="scene.afficheAide"
     @terminer="changeEtatSituation"
@@ -9,11 +9,11 @@
 <script>
 import { mapState } from 'vuex';
 import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from '../store/store';
-import SceneSecurite from './scene';
+import ActeSecurite from './acte';
 import { zones, dangers, zonesEntrainement, dangersEntrainement } from '../data/zones';
 
 export default {
-  components: { SceneSecurite },
+  components: { ActeSecurite },
 
   computed: {
     ...mapState(['etat']),

@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Situation from 'securite/vues/situation.vue';
-import SceneSecurite from 'securite/vues/scene';
+import ActeSecurite from 'securite/vues/acte';
 import { creeStore, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from 'securite/store/store';
 
 describe('La vue de la situation Sécurité', function () {
@@ -38,8 +38,8 @@ describe('La vue de la situation Sécurité', function () {
     expect(wrapper.vm.scene.afficheAide).to.be(true);
   });
 
-  it('rend la scene', function () {
-    expect(wrapper.contains(SceneSecurite)).to.be(true);
+  it("rend l'acte", function () {
+    expect(wrapper.contains(ActeSecurite)).to.be(true);
   });
 
   it("charge les zones d'entrainement au chargement", function () {
