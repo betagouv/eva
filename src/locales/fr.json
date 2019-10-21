@@ -23,7 +23,7 @@
     },
     "intro_contexte": {
       "bouton": "A vous de jouer !",
-      "message": "<p>Bonjour et bienvenue,<br><br> Nous allons identifier ensemble, à travers les jeux que vous allez réaliser, vos compétences transférables d'un métier à un autre. Si ces jeux reproduisent des activités particulières, les compétences mesurées s'appliquent à tous les métiers et secteurs d'activité. <br><br>Lorsque vous aurez terminé, vous pourrez découvrir quelles sont vos compétences fortes et les métiers associés. Vous pourrez alors échanger avec votre conseiller/ accompagnateur sur les moyens de les utiliser au mieux dans votre parcours professionnel, opportunités d'emploi ou de formation.</p>"
+      "message": "<p>Bonjour et bienvenue,</p><p>Nous allons identifier ensemble, à travers les jeux que vous allez réaliser, vos compétences transférables d'un métier à un autre. Si ces jeux reproduisent des activités particulières, les compétences mesurées s'appliquent à tous les métiers et tous les secteurs d'activité.</p><p>Lorsque vous aurez terminé, vous pourrez découvrir quelles sont vos compétences fortes et les métiers associés. Vous pourrez alors échanger avec votre conseiller ou votre accompagnateur sur les moyens de les utiliser au mieux dans votre parcours professionnel, opportunités d'emploi ou de formation.</p>"
     },
     "fin": {
       "bouton": "Terminer",
