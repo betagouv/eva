@@ -71,6 +71,8 @@
       <transition-fade>
         <overlay-intro
           v-if="estConnecte && indexBatiment === 0"
+          :titre="traduction('accueil.intro_consigne.titre')"
+          :message="traduction('accueil.intro_contexte.message')"
           @passe="passeIntro"
         />
       </transition-fade>
@@ -93,7 +95,7 @@ import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import Fin from 'accueil/vues/fin';
-import OverlayIntro from 'accueil/vues/overlay_intro';
+import OverlayIntro from 'commun/vues/overlay_intro';
 import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
 

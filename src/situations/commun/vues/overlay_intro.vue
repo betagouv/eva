@@ -8,7 +8,7 @@
       v-if="ecran == 'consigne'"
       class="modale-interieur"
     >
-      <h2>{{ traduction('accueil.intro_consigne.titre') }}</h2>
+      <h2>{{ titre }}</h2>
       <p class="icone-description">
         <img
           :src="casque"
@@ -26,7 +26,7 @@
       class="modale-interieur"
     >
       <div
-        v-html="traduction('accueil.intro_contexte.message')"
+        v-html="message"
        ></div>
       <button
         class="bouton-arrondi"
@@ -40,8 +40,22 @@
 <script>
 import 'commun/styles/modale.scss';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
+import { traduction } from 'commun/infra/internationalisation';
 
 export default {
+  props: {
+    titre: {
+      type: String,
+      default: () => {
+        return traduction('situation.ecouter-consigne');
+      }
+    },
+    message: {
+      type: String,
+      required: true
+    }
+  },
+
   data () {
     return {
       ecran: 'consigne',

@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import OverlayIntro from 'accueil/vues/overlay_intro';
-import MockAudioNode from '../../commun/aides/mock_audio_node';
+import OverlayIntro from 'commun/vues/overlay_intro';
+import MockAudioNode from '../aides/mock_audio_node';
 
 describe("La vue d'introduction", function () {
   let wrapper;
@@ -17,7 +17,11 @@ describe("La vue d'introduction", function () {
     }();
     const localVue = createLocalVue();
     localVue.prototype.depotRessources = depotRessources;
-    wrapper = shallowMount(OverlayIntro, { localVue });
+    wrapper = shallowMount(OverlayIntro, { propsData: { message: 'contenu' }, localVue });
+  });
+
+  it("a un titre par défaut si aucun titre n'est donné", function () {
+    expect(wrapper.vm.titre).to.eql('situation.ecouter-consigne');
   });
 
   it("joue la consigne à l'affichage de la vue contexte", function () {
