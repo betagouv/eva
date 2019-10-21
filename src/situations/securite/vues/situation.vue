@@ -1,9 +1,5 @@
 <template>
-  <acte-securite
-    :fond-situation="scene.fondSituation"
-    :affiche-aide="scene.afficheAide"
-    @terminer="changeEtatSituation"
-  />
+  <acte-securite @terminer="changeEtatSituation" />
 </template>
 
 <script>
@@ -22,27 +18,28 @@ export default {
       if ([DEMARRE, FINI].includes(this.etat)) {
         return {
           fondSituation: this.depotRessources.fondSituation().src,
-          afficheAide: true
+          afficheAide: true,
+          zones,
+          dangers
         };
       }
       return {
         fondSituation: this.depotRessources.fondSituationEntrainement().src,
-        afficheAide: false
+        afficheAide: false,
+        zones: zonesEntrainement,
+        dangers: dangersEntrainement
       };
     }
   },
 
   mounted () {
-    this.$store.commit('chargeZonesEtDangers', {
-      zones: zonesEntrainement,
-      dangers: dangersEntrainement
-    });
+    this.$store.commit('configureActe', this.scene);
   },
 
   watch: {
     etat (nouvelEtat) {
       if (nouvelEtat === DEMARRE) {
-        this.$store.commit('chargeZonesEtDangers', { zones, dangers });
+        this.$store.commit('configureActe', this.scene);
       }
     }
   },

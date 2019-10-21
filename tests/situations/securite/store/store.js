@@ -13,24 +13,26 @@ describe('Le store de la situation sécurité', function () {
     expect(store.state.etat).to.eql(FINI);
   });
 
-  it('permet de charger les zones et les dangers', function () {
+  it("permet la configuration d'un acte", function () {
     const store = creeStore();
     const zones = [{ x: 1, y: 2, r: 3 }];
     const dangers = { danger1: {} };
-    store.commit('chargeZonesEtDangers', { zones, dangers });
+    store.commit('configureActe', { zones, dangers, fondSituation: 'fond', afficheAide: false });
     expect(store.state.zones).to.eql(zones);
     expect(store.state.dangers).to.eql(dangers);
+    expect(store.state.fondSituation).to.eql('fond');
+    expect(store.state.afficheAide).to.be(false);
   });
 
-  it("réinitialise les dangers qualifiés et l'aide au chargement de nouvelles zones", function () {
+  it("réinitialise les dangers qualifiés et l'aide a la configuration de l'acte", function () {
     const store = creeStore();
     const zones = [{ x: 1, y: 2, r: 3 }];
     const dangers = { danger1: {} };
-    store.commit('chargeZonesEtDangers', { zones, dangers });
+    store.commit('configureActe', { zones, dangers });
     const qualification = { nom: 'danger1', choix: 'bonne' };
     store.commit('ajouteDangerQualifie', qualification);
     store.commit('activeAide');
-    store.commit('chargeZonesEtDangers', { zones, dangers });
+    store.commit('configureActe', { zones, dangers });
     expect(store.state.dangersQualifies).to.eql({});
     expect(store.state.aide).to.be(false);
   });
@@ -89,7 +91,7 @@ describe('Le store de la situation sécurité', function () {
     const store = creeStore();
     const situation = new Situation();
     synchroniseStoreEtModeleSituation(situation, store);
-    store.commit('chargeZonesEtDangers', { zones: [], dangers: {} });
+    store.commit('configureActe', { zones: [], dangers: {} });
     expect(situation.etat()).to.eql(CHARGEMENT);
   });
 
