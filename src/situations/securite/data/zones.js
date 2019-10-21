@@ -18,7 +18,7 @@ const DANGER_CAMION = 'camion';
 const DANGER_SIGNALISATION = 'signalisation';
 const DANGER_CEINTURE = 'ceinture';
 
-const dangers = {
+const dangersNormale = {
   [DANGER_BOUCHE_EGOUT]: {
     qualifications: [
       { libelle: 'Le chien n’est pas tenu en laisse', valeur: 'mauvaise1' },
@@ -56,7 +56,7 @@ const dangers = {
   }
 };
 
-const zones = [
+const zonesNormale = [
   {
     x: pourcentageX(155),
     y: pourcentageY(475),
@@ -157,4 +157,7 @@ const zonesEntrainement = [
   }
 ];
 
-export { dangers, zones, zonesEntrainement, dangersEntrainement };
+const configurationEntrainement = { zones: zonesEntrainement, dangers: dangersEntrainement };
+const configurationNormale = { zones: zonesNormale, dangers: dangersNormale };
+
+export { configurationEntrainement, configurationNormale };
