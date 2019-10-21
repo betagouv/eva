@@ -6,7 +6,7 @@
 import { mapState } from 'vuex';
 import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from '../store/store';
 import ActeSecurite from './acte';
-import { zones, dangers, zonesEntrainement, dangersEntrainement } from '../data/zones';
+import { configurationEntrainement, configurationNormale } from '../data/zones';
 
 export default {
   components: { ActeSecurite },
@@ -19,15 +19,13 @@ export default {
         return {
           fondSituation: this.depotRessources.fondSituation().src,
           afficheAide: true,
-          zones,
-          dangers
+          ...configurationNormale
         };
       }
       return {
         fondSituation: this.depotRessources.fondSituationEntrainement().src,
         afficheAide: false,
-        zones: zonesEntrainement,
-        dangers: dangersEntrainement
+        ...configurationEntrainement
       };
     }
   },
