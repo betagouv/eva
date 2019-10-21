@@ -111,6 +111,7 @@ export default {
       if (this.zone.danger) {
         this.etat = 'qualification';
       } else {
+        this.$store.commit('ajouteNonDangerIdentifie', this.zone.id);
         this.ferme();
       }
     },
