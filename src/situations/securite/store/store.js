@@ -13,6 +13,7 @@ export function creeStore () {
       dangers: {},
       fondSituation: '',
       dangersQualifies: {},
+      nonDangersIdentifies: [],
       afficheAide: true,
       aide: false
     },
@@ -35,9 +36,15 @@ export function creeStore () {
         state.afficheAide = afficheAide;
         state.dangersQualifies = {};
         state.aide = false;
+        state.nonDangersIdentifies = [];
       },
       ajouteDangerQualifie (state, dangerQualifie) {
         Vue.set(state.dangersQualifies, dangerQualifie.nom, dangerQualifie.choix);
+      },
+      ajouteNonDangerIdentifie (state, zoneId) {
+        if (!state.nonDangersIdentifies.includes(zoneId)) {
+          state.nonDangersIdentifies.push(zoneId);
+        }
       },
       activeAide (state) {
         state.aide = true;

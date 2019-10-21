@@ -31,10 +31,12 @@ describe('Le store de la situation sécurité', function () {
     store.commit('configureActe', { zones, dangers });
     const qualification = { nom: 'danger1', choix: 'bonne' };
     store.commit('ajouteDangerQualifie', qualification);
+    store.commit('ajouteNonDangerIdentifie', 'zone1');
     store.commit('activeAide');
     store.commit('configureActe', { zones, dangers });
     expect(store.state.dangersQualifies).to.eql({});
     expect(store.state.aide).to.be(false);
+    expect(store.state.nonDangersIdentifies).to.eql([]);
   });
 
   it('permet de stocker les dangers qualifiés', function () {
@@ -69,6 +71,15 @@ describe('Le store de la situation sécurité', function () {
     const qualification = { nom: 'danger1', choix: 'mauvaise' };
     store.commit('ajouteDangerQualifie', qualification);
     expect(store.getters.nombreDangersQualifies).to.eql(1);
+  });
+
+  it('permet de stocker les non dangers identifiés', function () {
+    const store = creeStore();
+    expect(store.state.nonDangersIdentifies).to.eql([]);
+    store.commit('ajouteNonDangerIdentifie', 'zone1');
+    expect(store.state.nonDangersIdentifies).to.eql(['zone1']);
+    store.commit('ajouteNonDangerIdentifie', 'zone1');
+    expect(store.state.nonDangersIdentifies).to.eql(['zone1']);
   });
 
   it("permet de synchroniser l'état du modèle situation avec le store", function () {
