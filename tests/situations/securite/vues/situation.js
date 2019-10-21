@@ -28,14 +28,14 @@ describe('La vue de la situation Sécurité', function () {
 
   it("en mode entrainement, il rend le fond d'entrainement et cache l'aide", function () {
     store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
-    expect(wrapper.vm.scene.fondSituation).to.eql('fond-situation-entrainement');
-    expect(wrapper.vm.scene.afficheAide).to.be(false);
+    expect(wrapper.vm.acte.fondSituation).to.eql('fond-situation-entrainement');
+    expect(wrapper.vm.acte.afficheAide).to.be(false);
   });
 
   it("en mode normal, il rend le fond normal et affiche l'aide", function () {
     store.commit('modifieEtat', DEMARRE);
-    expect(wrapper.vm.scene.fondSituation).to.eql('fond-situation');
-    expect(wrapper.vm.scene.afficheAide).to.be(true);
+    expect(wrapper.vm.acte.fondSituation).to.eql('fond-situation');
+    expect(wrapper.vm.acte.afficheAide).to.be(true);
   });
 
   it("rend l'acte", function () {
@@ -52,13 +52,13 @@ describe('La vue de la situation Sécurité', function () {
     expect(store.state.zones.length).to.eql(11);
   });
 
-  it("change l'état de la situation en ENTRAINEMENT_FINI une fois la scene terminé", function () {
+  it("change l'état de la situation en ENTRAINEMENT_FINI une fois l'acte terminé", function () {
     store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
     wrapper.vm.changeEtatSituation();
     expect(store.state.etat).to.eql(ENTRAINEMENT_FINI);
   });
 
-  it("change l'état de la situation en FINI une fois la scene terminé", function () {
+  it("change l'état de la situation en FINI une fois l'acte terminé", function () {
     store.commit('modifieEtat', DEMARRE);
     wrapper.vm.changeEtatSituation();
     expect(store.state.etat).to.eql(FINI);

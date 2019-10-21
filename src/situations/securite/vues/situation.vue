@@ -14,7 +14,7 @@ export default {
   computed: {
     ...mapState(['etat']),
 
-    scene () {
+    acte () {
       if ([DEMARRE, FINI].includes(this.etat)) {
         return {
           fondSituation: this.depotRessources.fondSituation().src,
@@ -31,13 +31,13 @@ export default {
   },
 
   mounted () {
-    this.$store.commit('configureActe', this.scene);
+    this.$store.commit('configureActe', this.acte);
   },
 
   watch: {
     etat (nouvelEtat) {
       if (nouvelEtat === DEMARRE) {
-        this.$store.commit('configureActe', this.scene);
+        this.$store.commit('configureActe', this.acte);
       }
     }
   },
