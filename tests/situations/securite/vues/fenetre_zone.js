@@ -74,7 +74,7 @@ describe('Le composant FenetreZone', function () {
     beforeEach(function () {
       zone = { x: 4, r: 1, danger: 'danger1', id: 'LaZone' };
       danger = { qualifications: [] };
-      store.commit('chargeZonesEtDangers', { zones: [zone], dangers: { danger1: danger } });
+      store.commit('configureActe', { zones: [zone], dangers: { danger1: danger } });
       wrapper.setProps({ zone });
     });
 
@@ -155,7 +155,7 @@ describe('Le composant FenetreZone', function () {
   describe('avec une zone sans danger associé', function () {
     beforeEach(function () {
       const zone = { x: 4, r: 1 };
-      store.commit('chargeZonesEtDangers', { zones: [zone], dangers: {} });
+      store.commit('configureActe', { zones: [zone], dangers: {} });
       wrapper.setProps({ zone });
     });
 

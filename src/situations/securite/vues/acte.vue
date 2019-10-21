@@ -64,18 +64,6 @@ import EvenementClickHorsZone from '../modeles/evenement_click_hors_zone';
 export default {
   components: { BoutonAide, FenetreAide, FenetreZone },
 
-  props: {
-    fondSituation: {
-      type: String,
-      required: true
-    },
-    afficheAide: {
-      type: Boolean,
-      required: false,
-      default: true
-    }
-  },
-
   data () {
     return {
       zoneSelectionnee: null
@@ -83,7 +71,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['zones', 'dangers', 'dangersQualifies', 'aide']),
+    ...mapState(['zones', 'dangers', 'dangersQualifies', 'aide', 'fondSituation', 'afficheAide']),
     ...mapGetters(['qualification', 'nombreDangersQualifies']),
 
     nombreDangersAQualifies () {
