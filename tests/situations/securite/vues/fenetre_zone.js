@@ -154,7 +154,7 @@ describe('Le composant FenetreZone', function () {
 
   describe('avec une zone sans danger associé', function () {
     beforeEach(function () {
-      const zone = { x: 4, r: 1 };
+      const zone = { id: 'zone1', x: 4, r: 1 };
       store.commit('configureActe', { zones: [zone], dangers: {} });
       wrapper.setProps({ zone });
     });
@@ -166,11 +166,14 @@ describe('Le composant FenetreZone', function () {
       expect(wrapper.emitted('ferme').length).to.equal(1);
     });
 
-    it("Informe l'utilisateur qu'il a bien identifié le non-danger", function () {
+    it("enregistre dans le store l'identification", function (done) {
       wrapper.vm.question.submit('oui');
-      expect(wrapper.vm.succesIdentification).to.equal(false);
+      store.commit = (mutation, donnees) => {
+        expect(mutation).to.equal('ajouteNonDangerIdentifie');
+        expect(donnees).to.eql('zone1');
+        done();
+      };
       wrapper.vm.termineIdentification();
-      expect(wrapper.emitted('ferme').length).to.equal(1);
     });
   });
 });
