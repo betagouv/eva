@@ -11,7 +11,7 @@ describe("La vue d'introduction", function () {
         return { src: '' };
       }
 
-      consigneAccueil () {
+      consigne () {
         return new MockAudioNode();
       }
     }();

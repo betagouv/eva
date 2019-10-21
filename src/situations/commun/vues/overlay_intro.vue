@@ -80,7 +80,7 @@ export default {
     joueConsigne () {
       this.consigneEnCours = true;
       const consigne = new JoueurConsigne(this.depot);
-      consigne.joueSon(this.depot.consigneAccueil(), this.lectureTerminee.bind(this));
+      consigne.joue(false, this.lectureTerminee.bind(this));
     },
 
     lectureTerminee () {
