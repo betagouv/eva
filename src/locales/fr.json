@@ -92,7 +92,7 @@
   },
   "securite": {
     "intro_contexte": {
-      "message": "Dans cet exercice, vous allez devoir superviser un secteur et détecter des dangers. Pour cela, il vous suffira de cliquer sur les dangers que vous aurez détectés et de spécifier quels sont les dangers en choisissant parmi une liste de propositions. Commençons tout d’abord par un tutoriel."
+      "message": "<p>Dans cet exercice, vous allez devoir superviser un secteur et détecter les dangers.</p><p>Pour cela, il vous faudra cliquer sur les dangers que vous aurez détectés et spécifier quels sont les dangers en choisissant parmi une liste de propositions.</p><p>Commençons tout d’abord par un tutoriel.</p>"
     },
     "activation_aide": "J'ai besoin d'aide",
     "aide": {
