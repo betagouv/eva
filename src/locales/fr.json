@@ -56,6 +56,9 @@
   },
   "controle": {
     "titre": "Chaîne de fabrication",
+    "intro_contexte": {
+      "message": "<p>Vous devez controler la production des biscuits bonhomme.</p><p>Le modèle conforme est présent sur le poste de travail. À l'arrivé des biscuits, placez les dans la zone conforme ou non-conforme si vous relevez un défaut.</p>"
+    },
     "resultat": {
       "bien_placees": "Réussis : {{nombre}}",
       "mal_placees": "Erreurs : {{nombre}}",
@@ -64,11 +67,17 @@
   },
   "inventaire": {
     "titre": "Stock de boissons",
+    "intro_contexte": {
+      "message": "<p>Vous devez faire l'inventaire du stock des boissons en cliquant sur les contenants pour voir les produits à l'intérieur.</p><p>Vous pouvez utiliser un suport papier/crayon et une calculatrice. Quand votre calcul est complet, cliquez sur le bouton bleu où est dessiné un stylo pour saisir votre inventaire.</p>"
+    },
     "valider_saisie": "Vérifier",
     "unite_vrac": "litre"
   },
   "questions": {
     "titre": "Bureau",
+    "intro_contexte": {
+      "message": "<p>Bienvenu·e,<p></p>Pour cette série de questions vous n'êtes pas chronometrés et vous pouvez utiliser une calculatrice si vous le souhaitez. Si vous ne savez pas comment faire le calcul, selectionnez dans les choix multiples \"je ne sais pas faire ce calcul\".</p>"
+    },
     "redaction_note": {
       "envoyer": "Envoyer"
     },
@@ -139,6 +148,9 @@
   },
   "tri": {
     "titre": "Magasin de friandises",
+    "intro_contexte": {
+      "message": "<p>Vous devez trier les friandises présentes sur le plateau en bas de l'écran en les déponsant dans les casiers selon les modèles. Cliquez sur la friandise et maintenez la pression sur la souris pour déposer le bonbon dans le bon casier.</p><p>Pour information nous vous chronométrons. Le chronomètre s'arrête automatiquement lorsque qu'il ne reste plus de bonbon sur le plateau.</p>"
+    },
     "resultat": {
       "temps_passe": "Temps: {{nombre, duree}}",
       "erreurs": "Erreurs : {{nombre}}"

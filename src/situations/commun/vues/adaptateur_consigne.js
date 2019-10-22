@@ -11,13 +11,17 @@ export default class AdaptateurConsigne {
     Vue.prototype.traduction = traduction;
   }
 
+  message () {
+    return traduction(`${this.situation.identifiant}.intro_contexte.message`);
+  }
+
   affiche (pointInsertion, $) {
     const div = document.createElement('div');
     $(pointInsertion).append(div);
     this.vm = new Vue({
       render: createEle => createEle(Consigne, {
         props: {
-          message: traduction('securite.intro_contexte.message')
+          message: this.message()
         }
       })
     }).$mount(div);
