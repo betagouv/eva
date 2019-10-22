@@ -1,6 +1,6 @@
 import DepotRessources from 'commun/infra/depot_ressources';
 import fondAccueil from 'accueil/assets/fond-accueil.jpg';
-import casque from 'accueil/assets/casque.svg';
+import casque from 'commun/assets/casque.svg';
 import personnage from 'accueil/assets/personnage.png';
 import bienvenue from 'accueil/assets/bienvenue.png';
 import tri from 'accueil/assets/tri.png';

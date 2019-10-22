@@ -3,8 +3,6 @@ import {
   CHARGEMENT,
   ERREUR_CHARGEMENT,
   ATTENTE_DEMARRAGE,
-  LECTURE_CONSIGNE,
-  CONSIGNE_ECOUTEE,
   ENTRAINEMENT_DEMARRE,
   ENTRAINEMENT_FINI,
   DEMARRE,
@@ -16,8 +14,7 @@ import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainemen
 import VueActions from 'commun/vues/actions';
 import VueChargement from 'commun/vues/chargement';
 import VueErreurChargement from 'commun/vues/erreur_chargement';
-import VueJoue from 'commun/vues/joue';
-import VueConsigne from 'commun/vues/consigne';
+import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueGo from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
 import VueBarreDev from 'commun/vues/barre_dev';
@@ -33,9 +30,7 @@ export default class VueCadre {
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, VueChargement);
     this.vuesEtats.set(ERREUR_CHARGEMENT, VueErreurChargement);
-    this.vuesEtats.set(ATTENTE_DEMARRAGE, VueJoue);
-    this.vuesEtats.set(LECTURE_CONSIGNE, VueConsigne);
-    this.vuesEtats.set(CONSIGNE_ECOUTEE, VueGo);
+    this.vuesEtats.set(ATTENTE_DEMARRAGE, AdaptateurConsigne);
     this.vuesEtats.set(ENTRAINEMENT_FINI, VueGo);
     this.vuesEtats.set(FINI, VueTerminer);
     this.envoiEvenementDemarrageUneFoisDemarre();

@@ -3,8 +3,6 @@ import EventEmitter from 'events';
 export const CHARGEMENT = 'chargement';
 export const ERREUR_CHARGEMENT = 'erreurDeChargement';
 export const ATTENTE_DEMARRAGE = 'attenteDemarrage';
-export const LECTURE_CONSIGNE = 'lectureConsigne';
-export const CONSIGNE_ECOUTEE = 'consigneEcoutée';
 export const ENTRAINEMENT_DEMARRE = 'entrainementDemarré';
 export const ENTRAINEMENT_FINI = 'entrainementFini';
 export const DEMARRE = 'démarré';
