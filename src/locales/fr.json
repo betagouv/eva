@@ -108,6 +108,10 @@
       "qualification": {
         "bouton": "Valider",
         "titre": "Quel est le risque ?"
+      },
+      "deja-identifie": {
+        "texte": "Vous avez déjà regardé ici. Il n'y a pas de danger.",
+        "bouton": "Fermer"
       }
     },
     "dangers_detectes": "Dangers",

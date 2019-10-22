@@ -3,8 +3,15 @@
     :style="{ bottom: bottom, left: left, right: right, top: top }"
     class="fenetre">
 
+    <div v-if="etat === 'deja-identifie'">
+      <p>{{ traduction('securite.danger.deja-identifie.texte') }}</p>
+      <button
+        class="bouton-arrondi bouton-arrondi--petit"
+        @click="ferme"
+        >{{ traduction('securite.danger.deja-identifie.bouton') }}</button>
+    </div>
     <resultat-identification
-      v-if="etat == 'resultat-identification'"
+      v-else-if="etat == 'resultat-identification'"
       :succesIdentification="succesIdentification"
       :danger="zone.danger != undefined"
       @termine="termineIdentification"
@@ -45,10 +52,16 @@ export default {
   },
 
   data () {
-    const qualification = this.$store.getters.qualification(this.zone.danger);
+    const dejaQualifie = this.$store.getters.qualification(this.zone.danger);
+    const nonDangerDejaIdentifie = this.$store.state.nonDangersIdentifies.includes(this.zone.id);
+    const etatInitial = () => {
+      if (nonDangerDejaIdentifie) return 'deja-identifie';
+      else if (dejaQualifie) return 'qualification';
+      return 'identification';
+    };
     return {
-      etat: qualification ? 'qualification' : 'identification',
-      succesIdentification: 'non defini',
+      etat: etatInitial(),
+      succesIdentification: null,
       identificationDanger: {
         titre: traduction('securite.danger.identification.titre'),
         options: [
