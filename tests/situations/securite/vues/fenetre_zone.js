@@ -153,8 +153,10 @@ describe('Le composant FenetreZone', function () {
   });
 
   describe('avec une zone sans danger associé', function () {
+    let zone;
+
     beforeEach(function () {
-      const zone = { id: 'zone1', x: 4, r: 1 };
+      zone = { id: 'zone1', x: 4, r: 1 };
       store.commit('configureActe', { zones: [zone], dangers: {} });
       wrapper.setProps({ zone });
     });
@@ -174,6 +176,16 @@ describe('Le composant FenetreZone', function () {
         done();
       };
       wrapper.vm.termineIdentification();
+    });
+
+    it('une fois identifié, on ne peut plus rien faire', function () {
+      store.commit('ajouteNonDangerIdentifie', zone.id);
+      const wrapper = shallowMount(FenetreZone, {
+        store,
+        localVue,
+        propsData: { zone }
+      });
+      expect(wrapper.vm.etat).to.equal('deja-identifie');
     });
   });
 });
