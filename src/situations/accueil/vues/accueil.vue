@@ -73,6 +73,7 @@
           v-if="estConnecte && indexBatiment === 0"
           :titre="traduction('accueil.intro_consigne.titre')"
           :message="traduction('accueil.intro_contexte.message')"
+          :titre-consigne=false
           @passe="passeIntro"
         />
       </transition-fade>

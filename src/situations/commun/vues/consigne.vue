@@ -25,6 +25,7 @@
       v-else
       class="modale-interieur"
     >
+      <h2 v-if="titreConsigne">{{ traduction('situation.consigne') }}</h2>
       <div
         v-html="message"
        ></div>
@@ -48,6 +49,12 @@ export default {
       type: String,
       default: () => {
         return traduction('situation.ecouter-consigne');
+      }
+    },
+    titreConsigne: {
+      type: Boolean,
+      default: () => {
+        return true;
       }
     },
     message: {

@@ -131,6 +131,7 @@
   },
   "situation": {
     "ecouter-consigne": "Commencez par écouter la consigne",
+    "consigne": "Consigne",
     "entrainement_go": "Vous pouvez commencer l'entrainement",
     "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
     "chargement": "Chargement en cours",
