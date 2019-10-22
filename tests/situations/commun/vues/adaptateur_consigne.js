@@ -1,9 +1,9 @@
 import $ from 'jquery';
 
-import Situation from 'commun/modeles/situation';
+import Situation, { ATTENTE_DEMARRAGE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE } from 'commun/modeles/situation';
 import AdaptateurConsigne from 'commun/vues/adaptateur_consigne.js';
 
-describe("L'adaptateur de la vue Consigne", () => {
+describe("L'adaptateur de la vue Consigne", function () {
   let situation;
   let vue;
 
@@ -29,5 +29,18 @@ describe("L'adaptateur de la vue Consigne", () => {
     expect(vue.message()).to.eql('securite.intro_contexte.message');
     situation.identifiant = 'tri';
     expect(vue.message()).to.eql('tri.intro_contexte.message');
+  });
+
+  it("calcul l'état suivant", function () {
+    situation.etat = () => ATTENTE_DEMARRAGE;
+    situation.entrainementDisponible = () => true;
+    expect(vue.prochainEtat()).to.eql(ENTRAINEMENT_DEMARRE);
+
+    situation.etat = () => ATTENTE_DEMARRAGE;
+    situation.entrainementDisponible = () => false;
+    expect(vue.prochainEtat()).to.eql(DEMARRE);
+
+    situation.etat = () => ENTRAINEMENT_FINI;
+    expect(vue.prochainEtat()).to.eql(DEMARRE);
   });
 });
