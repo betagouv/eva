@@ -19,8 +19,15 @@ describe("L'adaptateur de la vue Consigne", () => {
     vue.affiche('#pointInsertion', $);
   });
 
-  it('affiche la vue consigne', () => {
+  it('affiche la vue consigne', function () {
     expect($('#pointInsertion .overlay').length).to.eql(1);
     expect($('#pointInsertion .bouton-arrondi').text()).to.eql('accueil.intro_consigne.bouton');
+  });
+
+  it('affiche le message de la consigne de la situation', function () {
+    situation.identifiant = 'securite';
+    expect(vue.message()).to.eql('securite.intro_contexte.message');
+    situation.identifiant = 'tri';
+    expect(vue.message()).to.eql('tri.intro_contexte.message');
   });
 });
