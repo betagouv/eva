@@ -14,6 +14,10 @@ describe('La vue consigne', function () {
       consigne () {
         return new MockAudioNode();
       }
+
+      consigneCommune () {
+        return new MockAudioNode();
+      }
     }();
     const localVue = createLocalVue();
     localVue.prototype.depotRessources = depotRessources;
@@ -31,7 +35,7 @@ describe('La vue consigne', function () {
     expect(wrapper.vm.consigneEnCours).to.eql(true);
   });
 
-  it('disable le bouton tant que la consigne est en cours de lecture', function () {
+  it('désactive le bouton tant que la consigne est en cours de lecture', function () {
     wrapper.find('button').trigger('click');
     expect(wrapper.vm.ecran).to.eql('contexte');
     expect(wrapper.vm.consigneEnCours).to.eql(true);

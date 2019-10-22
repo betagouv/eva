@@ -18,6 +18,7 @@ import vigilanceControle from 'accueil/assets/vigilance_controle.svg';
 import organisationMethode from 'accueil/assets/organisation_methode.svg';
 import attentionConcentration from 'accueil/assets/attention_concentration.svg';
 import consigneAccueil from 'accueil/assets/consigne_accueil.wav';
+import consigneCommune from 'commun/assets/consigne_commune.wav';
 
 const batiments = {
   bienvenue,
@@ -40,7 +41,7 @@ const competences = {
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnage, precedent, suivant, punaise, casque, consigneAccueil]);
+    this.charge([fondAccueil, personnage, precedent, suivant, punaise, casque, consigneAccueil, consigneCommune]);
     this.charge(Object.values(batiments));
     this.charge(Object.values(competences));
   }
@@ -79,5 +80,9 @@ export default class DepotRessourcesAccueil extends DepotRessources {
 
   consigne () {
     return this.ressource(consigneAccueil);
+  }
+
+  consigneCommune () {
+    return this.ressource(consigneCommune);
   }
 }
