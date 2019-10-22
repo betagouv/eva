@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 import SituationCommune, {
   CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT,
-  ATTENTE_DEMARRAGE, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE,
+  ATTENTE_DEMARRAGE,
   ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI,
   DEMARRE, FINI, STOPPEE
 } from 'commun/modeles/situation';
@@ -80,28 +80,12 @@ describe('Une vue du cadre', function () {
     expect($('#cadre .bouton-chargement').length).to.equal(1);
   });
 
-  it("affiche le bouton play dans l'état ATTENTE_DEMARRAGE", function () {
+  it("affiche l'overlay d'introduction dans l'état ATTENTE_DEMARRAGE", function () {
     situation.modifieEtat(ATTENTE_DEMARRAGE);
     const vueCadre = uneVueCadre();
     vueCadre.affiche('#point-insertion', $);
 
-    expect($('#cadre .overlay .bouton-lire-consigne').length).to.equal(1);
-  });
-
-  it("affiche la consigne dans l'état LECTURE_CONSIGNE", function () {
-    situation.modifieEtat(LECTURE_CONSIGNE);
-    const vueCadre = uneVueCadre();
-    vueCadre.affiche('#point-insertion', $);
-
-    expect($('#cadre .bouton-lecture-en-cours').length).to.equal(1);
-  });
-
-  it("affiche le bouton go dans l'état CONSIGNE_ECOUTEE", function () {
-    situation.modifieEtat(CONSIGNE_ECOUTEE);
-    const vueCadre = uneVueCadre();
-    vueCadre.affiche('#point-insertion', $);
-
-    expect($('#cadre .bouton-go').length).to.equal(1);
+    expect($('#cadre .overlay .icone-description').length).to.equal(1);
   });
 
   it('affiche la vue terminer', function () {
@@ -127,7 +111,7 @@ describe('Une vue du cadre', function () {
   it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
     const vueCadre = uneVueCadre();
     return vueCadre.affiche('#point-insertion', $).then(() => {
-      [CHARGEMENT, ERREUR_CHARGEMENT, LECTURE_CONSIGNE, CONSIGNE_ECOUTEE, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
+      [CHARGEMENT, ERREUR_CHARGEMENT, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
         situation.modifieEtat(etat);
         const event = $.Event('beforeunload');
         $(window).trigger(event);

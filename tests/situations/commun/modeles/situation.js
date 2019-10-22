@@ -1,4 +1,4 @@
-import Situation, { CHARGEMENT, LECTURE_CONSIGNE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import Situation, { CHARGEMENT, DEMARRE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
 
 describe('une situation', function () {
   it('a un état chargement par défaut', function () {
@@ -8,17 +8,17 @@ describe('une situation', function () {
 
   it('peut changer son état', function () {
     const uneSituation = new Situation();
-    uneSituation.modifieEtat(LECTURE_CONSIGNE);
-    expect(uneSituation.etat()).to.eql(LECTURE_CONSIGNE);
+    uneSituation.modifieEtat(DEMARRE);
+    expect(uneSituation.etat()).to.eql(DEMARRE);
   });
 
   it("notifie lors d'un changement d'état", function (done) {
     const uneSituation = new Situation();
     uneSituation.on(CHANGEMENT_ETAT, (etat) => {
-      expect(etat).to.eql(LECTURE_CONSIGNE);
+      expect(etat).to.eql(DEMARRE);
       done();
     });
-    uneSituation.modifieEtat(LECTURE_CONSIGNE);
+    uneSituation.modifieEtat(DEMARRE);
   });
 
   it("ne notifie pas lorsque l'état ne change pas", function () {

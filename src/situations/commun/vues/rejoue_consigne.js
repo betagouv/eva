@@ -18,9 +18,6 @@ export default class VueRejoueConsigne {
 
   affiche (pointInsertion, $, situation) {
     this.situation = situation;
-    if (this.situation.etat() === DEMARRE) {
-      return;
-    }
     this.$ = $;
     this.$boutonRejoueConsigne = $('<div></div>');
     this.pointInsertion = pointInsertion;

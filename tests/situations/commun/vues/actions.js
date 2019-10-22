@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 import VueActions from 'commun/vues/actions';
-import SituationCommune, { CONSIGNE_ECOUTEE, DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
+import SituationCommune, { DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
 
 describe('Affiche les éléments communs aux situations', function () {
   let vueActions;
@@ -25,23 +25,16 @@ describe('Affiche les éléments communs aux situations', function () {
     expect($('.bouton-lire-consigne', '.actions').length).to.equal(0);
   });
 
-  it("Affiche le bouton rejoue consigne une fois que l'utilisateur à joué une fois la consigne", function () {
-    vueActions.affiche('#magasin', $);
-    situation.modifieEtat(CONSIGNE_ECOUTEE);
-    expect($('.bouton-stop').length).to.equal(0);
-    expect($('.bouton-lire-consigne', '.actions').length).to.equal(1);
-  });
-
-  it("Affiche bouton stop une fois que l'utilisateur à cliqué sur GO", function () {
+  it("Affiche bouton stop et rejoue consigne une fois que l'utilisateur à cliqué sur GO", function () {
     vueActions.affiche('#magasin', $);
     situation.modifieEtat(DEMARRE);
     expect($('.bouton-stop').length).to.equal(1);
-    expect($('.bouton-lire-consigne', '.actions').length).to.equal(0);
+    expect($('.bouton-lire-consigne', '.actions').length).to.equal(1);
   });
 
   it("n'affiche pas le bouton rejoue consigne une fois l'entrainement terminé", function () {
     vueActions.affiche('#magasin', $);
-    situation.modifieEtat(CONSIGNE_ECOUTEE);
+    situation._entrainementDisponible = true;
     situation.modifieEtat(ENTRAINEMENT_DEMARRE);
     expect($('.bouton-lire-consigne', '.actions').length).to.equal(1);
     situation.modifieEtat(ENTRAINEMENT_FINI);
@@ -53,7 +46,6 @@ describe('Affiche les éléments communs aux situations', function () {
   it("affiche le bouton stop une fois l'entrainement démarré", function () {
     situation.entrainementDisponible = () => true;
     vueActions.affiche('#magasin', $);
-    situation.modifieEtat(CONSIGNE_ECOUTEE);
     situation.modifieEtat(ENTRAINEMENT_DEMARRE);
     expect($('.bouton-stop').length).to.equal(1);
     situation.modifieEtat(ENTRAINEMENT_FINI);

@@ -1,23 +1,58 @@
-import $ from 'jquery';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import Consigne from 'commun/vues/consigne';
+import MockAudioNode from '../aides/mock_audio_node';
 
-import VueConsigne from 'commun/vues/consigne';
-import Situation, { CONSIGNE_ECOUTEE } from 'commun/modeles/situation';
+describe('La vue consigne', function () {
+  let wrapper;
 
-describe('vue consigne', function () {
   beforeEach(function () {
-    $('body').append('<div id="pointInsertion"></div>');
+    const depotRessources = new class {
+      casque () {
+        return { src: '' };
+      }
+
+      consigne () {
+        return new MockAudioNode();
+      }
+    }();
+    const localVue = createLocalVue();
+    localVue.prototype.depotRessources = depotRessources;
+    wrapper = shallowMount(Consigne, { propsData: { message: 'contenu' }, localVue });
   });
 
-  it("change l'état a CONSIGNE_ECOUTEE une fois terminé", () => {
-    const situation = new Situation();
-    const mockJoueurConsigne = class {
-      joue (unused, cbFin) {
-        cbFin();
-      }
-    };
-    const vue = new VueConsigne(situation, null, mockJoueurConsigne);
-    vue.affiche('#pointInsertion', $);
+  it("a un titre par défaut si aucun titre n'est donné", function () {
+    expect(wrapper.vm.titre).to.eql('situation.ecouter-consigne');
+  });
 
-    expect(situation.etat()).to.eql(CONSIGNE_ECOUTEE);
+  it("joue la consigne à l'affichage de la vue contexte", function () {
+    expect(wrapper.vm.consigneEnCours).to.eql(false);
+    wrapper.find('button').trigger('click');
+    expect(wrapper.vm.ecran).to.eql('contexte');
+    expect(wrapper.vm.consigneEnCours).to.eql(true);
+  });
+
+  it('disable le bouton tant que la consigne est en cours de lecture', function () {
+    wrapper.find('button').trigger('click');
+    expect(wrapper.vm.ecran).to.eql('contexte');
+    expect(wrapper.vm.consigneEnCours).to.eql(true);
+    expect(wrapper.vm.passeDesactive).to.be(true);
+
+    wrapper.setData({ consigneEnCours: false });
+    expect(wrapper.vm.passeDesactive).to.be(false);
+  });
+
+  it('affiche la vue contexte au clic et emet "passe" a la fin', function () {
+    expect(wrapper.vm.ecran).to.eql('consigne');
+    wrapper.find('button').trigger('click');
+    expect(wrapper.vm.ecran).to.eql('contexte');
+    wrapper.setData({ consigneEnCours: false });
+
+    wrapper.find('button').trigger('click');
+    expect(wrapper.emitted('passe').length).to.eql(1);
+  });
+
+  it('permet de passer directement au parc en appuyant sur S', function () {
+    wrapper.trigger('keydown', { key: 's' });
+    expect(wrapper.emitted('passe').length).to.eql(1);
   });
 });
