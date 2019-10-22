@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import { ENTRAINEMENT_DEMARRE } from 'commun/modeles/situation';
+import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE } from 'commun/modeles/situation';
 import Consigne from 'commun/vues/consigne';
 import { traduction } from 'commun/infra/internationalisation';
 
@@ -26,8 +26,16 @@ export default class AdaptateurConsigne {
       })
     }).$mount(div);
     this.vm.$children[0].$on('passe', () => {
-      this.situation.modifieEtat(ENTRAINEMENT_DEMARRE);
+      this.situation.modifieEtat(this.prochainEtat());
     });
+  }
+
+  prochainEtat () {
+    if (this.situation.etat() === ENTRAINEMENT_FINI ||
+        !this.situation.entrainementDisponible()) {
+      return DEMARRE;
+    }
+    return ENTRAINEMENT_DEMARRE;
   }
 
   cache () {
