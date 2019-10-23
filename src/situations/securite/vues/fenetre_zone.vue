@@ -77,11 +77,11 @@ export default {
 
   computed: {
     bottom () {
-      if (this.zone.y < 45) return undefined;
+      if (this.zone.y < 50) return undefined;
       return this.formatePourcentage((100 - this.zone.y + Math.sin(Math.PI / 4) * this.zone.r).toFixed(1));
     },
     top () {
-      if (this.zone.y >= 45) return undefined;
+      if (this.zone.y >= 50) return undefined;
       return this.formatePourcentage((this.zone.y + Math.sin(Math.PI / 4) * this.zone.r).toFixed(1));
     },
     left () {
