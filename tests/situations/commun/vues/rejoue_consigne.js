@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
 import EvenementRejoueConsigne from 'commun/modeles/evenement_rejoue_consigne';
-import SituationCommune, { ATTENTE_DEMARRAGE, DEMARRE } from 'commun/modeles/situation';
+import SituationCommune, { ATTENTE_DEMARRAGE, ENTRAINEMENT_DEMARRE, DEMARRE } from 'commun/modeles/situation';
 
 describe('vue Rejoue Consigne', function () {
   let vue;
@@ -72,7 +72,17 @@ describe('vue Rejoue Consigne', function () {
     vue.litConsigne($);
   });
 
-  it('ne rejoue pas la consigne commune si la situation a demarre', function () {
+  it("ne rejoue pas la consigne commune si l'entrainement a démarré", function () {
+    mockJoueurConsigne.joue = (joueConsigneCommune, cbFin) => {
+      expect(joueConsigneCommune).to.be(false);
+    };
+    vue.affiche('#pointInsertion', $, situation);
+    situation.modifieEtat(ENTRAINEMENT_DEMARRE);
+    vue.affiche('#pointInsertion', $, situation);
+    vue.litConsigne($);
+  });
+
+  it('ne rejoue pas la consigne commune si la situation a demarré', function () {
     mockJoueurConsigne.joue = (joueConsigneCommune, cbFin) => {
       expect(joueConsigneCommune).to.be(false);
     };
