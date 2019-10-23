@@ -39,24 +39,29 @@ describe('La vue consigne', function () {
     wrapper.find('button').trigger('click');
     expect(wrapper.vm.ecran).to.eql('contexte');
     expect(wrapper.vm.consigneEnCours).to.eql(true);
-    expect(wrapper.vm.passeDesactive).to.be(true);
+    expect(wrapper.vm.aVousDeJouerDesactive).to.be(true);
 
     wrapper.setData({ consigneEnCours: false });
-    expect(wrapper.vm.passeDesactive).to.be(false);
+    expect(wrapper.vm.aVousDeJouerDesactive).to.be(false);
   });
 
-  it('affiche la vue contexte au clic et emet "passe" a la fin', function () {
+  it('affiche la vue contexte au clic', function () {
     expect(wrapper.vm.ecran).to.eql('consigne');
     wrapper.find('button').trigger('click');
     expect(wrapper.vm.ecran).to.eql('contexte');
+    expect(wrapper.find('button').text()).to.eql('accueil.intro_contexte.bouton');
+  });
+
+  it('émets le message de la fin et se cache', function () {
+    wrapper.find('button').trigger('click');
     wrapper.setData({ consigneEnCours: false });
 
     wrapper.find('button').trigger('click');
-    expect(wrapper.emitted('passe').length).to.eql(1);
+    expect(wrapper.emitted('fini').length).to.eql(1);
   });
 
   it('permet de passer directement au parc en appuyant sur S', function () {
     wrapper.trigger('keydown', { key: 's' });
-    expect(wrapper.emitted('passe').length).to.eql(1);
+    expect(wrapper.emitted('fini').length).to.eql(1);
   });
 });

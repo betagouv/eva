@@ -2,7 +2,7 @@
   <div
     class="overlay modale"
     tabindex="0"
-    @keydown.s="passe"
+    @keydown.s="termine"
   >
     <div
       v-if="ecran == 'consigne'"
@@ -31,8 +31,8 @@
        ></div>
       <button
         class="bouton-arrondi"
-        :disabled="passeDesactive"
-        @click="passe"
+        :disabled="aVousDeJouerDesactive"
+        @click="termine"
       >{{ traduction('accueil.intro_contexte.bouton') }}</button>
     </div>
   </div>
@@ -42,6 +42,8 @@
 import 'commun/styles/modale.scss';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
 import { traduction } from 'commun/infra/internationalisation';
+
+export const FINI = 'fini';
 
 export default {
   props: {
@@ -73,7 +75,7 @@ export default {
   },
 
   computed: {
-    passeDesactive () {
+    aVousDeJouerDesactive () {
       return this.consigneEnCours;
     }
   },
@@ -94,8 +96,8 @@ export default {
       this.consigneEnCours = false;
     },
 
-    passe () {
-      this.$emit('passe');
+    termine () {
+      this.$emit(FINI);
     }
   }
 };
