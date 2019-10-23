@@ -69,7 +69,7 @@
       </div>
       <formulaire-identification :force-campagne="forceCampagne" />
       <transition-fade>
-        <consigne
+        <intro-consigne
           v-if="estConnecte && indexBatiment === 0"
           :titre="traduction('accueil.intro_consigne.titre')"
           :message="traduction('accueil.intro_contexte.message')"
@@ -96,7 +96,7 @@ import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import Fin from 'accueil/vues/fin';
-import Consigne from 'commun/vues/consigne';
+import IntroConsigne from 'commun/vues/intro_consigne';
 import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
 
@@ -108,7 +108,7 @@ export const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 
 export default {
-  components: { FormulaireIdentification, AccesSituation, BoiteUtilisateur, Consigne, Fin, TransitionFade },
+  components: { FormulaireIdentification, AccesSituation, BoiteUtilisateur, IntroConsigne, Fin, TransitionFade },
 
   data () {
     const parsedUrl = new URL(window.location.href);
