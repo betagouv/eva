@@ -1,7 +1,7 @@
 import { traduction } from 'commun/infra/internationalisation';
 import VueBouton from './bouton';
 import EvenementRejoueConsigne from '../modeles/evenement_rejoue_consigne';
-import { DEMARRE } from 'commun/modeles/situation';
+import { ENTRAINEMENT_DEMARRE, DEMARRE } from 'commun/modeles/situation';
 
 import play from 'commun/assets/play.svg';
 import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
@@ -17,8 +17,8 @@ export default class VueRejoueConsigne {
   }
 
   affiche (pointInsertion, $, situation) {
-    this.etat = situation._etat;
-    if (this.etat === DEMARRE) {
+    this.situation = situation;
+    if (this.situation.etat() === DEMARRE) {
       return;
     }
     this.$ = $;
@@ -38,8 +38,9 @@ export default class VueRejoueConsigne {
     this.vueBoutonLire.cache();
 
     this.vueBoutonLectureEnCours.affiche(this.$boutonRejoueConsigne, $);
+    const consigneCommune = ![ENTRAINEMENT_DEMARRE, DEMARRE].includes(this.situation.etat());
     this.joueurConsigne
-      .joue(this.etat !== DEMARRE, this.lectureTerminee.bind(this));
+      .joue(consigneCommune, this.lectureTerminee.bind(this));
   }
 
   lectureTerminee () {
