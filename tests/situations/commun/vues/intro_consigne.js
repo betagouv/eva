@@ -1,8 +1,8 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Consigne from 'commun/vues/consigne';
+import IntroConsigne from 'commun/vues/intro_consigne';
 import MockAudioNode from '../aides/mock_audio_node';
 
-describe('La vue consigne', function () {
+describe('La vue intro-consigne', function () {
   let wrapper;
 
   beforeEach(function () {
@@ -21,7 +21,7 @@ describe('La vue consigne', function () {
     }();
     const localVue = createLocalVue();
     localVue.prototype.depotRessources = depotRessources;
-    wrapper = shallowMount(Consigne, { propsData: { message: 'contenu' }, localVue });
+    wrapper = shallowMount(IntroConsigne, { propsData: { message: 'contenu' }, localVue });
   });
 
   it("a un titre par défaut si aucun titre n'est donné", function () {

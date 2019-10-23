@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE } from 'commun/modeles/situation';
-import Consigne, { FINI } from 'commun/vues/consigne';
+import IntroConsigne, { FINI } from 'commun/vues/intro_consigne';
 import { traduction } from 'commun/infra/internationalisation';
 
 export default class AdaptateurConsigne {
@@ -19,7 +19,7 @@ export default class AdaptateurConsigne {
     const div = document.createElement('div');
     $(pointInsertion).append(div);
     this.vm = new Vue({
-      render: createEle => createEle(Consigne, {
+      render: createEle => createEle(IntroConsigne, {
         props: {
           message: this.message()
         }
