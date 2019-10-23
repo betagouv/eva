@@ -74,7 +74,7 @@
           :titre="traduction('accueil.intro_consigne.titre')"
           :message="traduction('accueil.intro_contexte.message')"
           :titre-consigne=false
-          @passe="passeIntro"
+          @fini="passeIntro"
         />
       </transition-fade>
       <transition-fade>
