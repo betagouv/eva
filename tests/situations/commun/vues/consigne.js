@@ -1,9 +1,8 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { CONSIGNE_FINI } from 'commun/vues/consigne';
-import IntroConsigne from 'commun/vues/intro_consigne';
+import Consigne, { CONSIGNE_FINI } from 'commun/vues/consigne';
 import MockAudioNode from '../aides/mock_audio_node';
 
-describe('La vue intro-consigne', function () {
+describe('La vue consigne', function () {
   let wrapper;
 
   beforeEach(function () {
@@ -22,17 +21,25 @@ describe('La vue intro-consigne', function () {
     }();
     const localVue = createLocalVue();
     localVue.prototype.depotRessources = depotRessources;
-    wrapper = shallowMount(IntroConsigne, { propsData: { message: 'contenu' }, localVue });
+    wrapper = shallowMount(Consigne, { propsData: { message: 'contenu' }, localVue });
   });
 
-  it("a un titre par défaut si aucun titre n'est donné", function () {
-    expect(wrapper.vm.titre).to.eql('situation.ecouter-consigne');
+  it("joue la consigne à l'affichage du composant", function () {
+    expect(wrapper.vm.consigneEnCours).to.eql(true);
   });
 
-  it('affiche la vue consigne au clic', function () {
-    expect(wrapper.vm.ecran).to.eql('intro');
+  it('désactive le bouton tant que la consigne est en cours de lecture', function () {
+    expect(wrapper.vm.aVousDeJouerDesactive).to.be(true);
+
+    wrapper.setData({ consigneEnCours: false });
+    expect(wrapper.vm.aVousDeJouerDesactive).to.be(false);
+  });
+
+  it('émets le message de la fin et se cache', function () {
+    wrapper.setData({ consigneEnCours: false });
+
     wrapper.find('button').trigger('click');
-    expect(wrapper.vm.ecran).to.eql('consigne');
+    expect(wrapper.emitted(CONSIGNE_FINI).length).to.eql(1);
   });
 
   it('permet de passer directement au parc en appuyant sur S', function () {
