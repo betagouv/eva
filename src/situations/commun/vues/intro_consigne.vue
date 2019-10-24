@@ -1,11 +1,11 @@
 <template>
   <div
+    v-if="ecran == 'intro'"
     class="overlay modale"
     tabindex="0"
-    @keydown.s="termine"
+    @keydown.s="fini"
   >
     <div
-      v-if="ecran == 'consigne'"
       class="modale-interieur"
     >
       <h2>{{ titre }}</h2>
@@ -21,31 +21,23 @@
         @click="afficheContexte"
       >{{ traduction('accueil.intro_consigne.bouton') }}</button>
     </div>
-    <div
-      v-else
-      class="modale-interieur"
-    >
-      <h2 v-if="titreConsigne">{{ traduction('situation.consigne') }}</h2>
-      <div
-        v-html="message"
-       ></div>
-      <button
-        class="bouton-arrondi"
-        :disabled="aVousDeJouerDesactive"
-        @click="termine"
-      >{{ traduction('accueil.intro_contexte.bouton') }}</button>
-    </div>
   </div>
+  <consigne
+    v-else
+    :titreConsigne="titreConsigne"
+    :message="message"
+    @consigne-fini="fini"
+  >
+  </consigne>
 </template>
 
 <script>
 import 'commun/styles/modale.scss';
-import JoueurConsigne from 'commun/composants/joueur_consigne';
+import Consigne, { CONSIGNE_FINI } from 'commun/vues/consigne';
 import { traduction } from 'commun/infra/internationalisation';
 
-export const FINI = 'fini';
-
 export default {
+  components: { Consigne },
   props: {
     titre: {
       type: String,
@@ -67,37 +59,18 @@ export default {
 
   data () {
     return {
-      ecran: 'consigne',
-      casque: this.depotRessources.casque().src,
-      consigneEnCours: false,
-      depot: this.depotRessources
+      ecran: 'intro',
+      casque: this.depotRessources.casque().src
     };
-  },
-
-  computed: {
-    aVousDeJouerDesactive () {
-      return this.consigneEnCours;
-    }
   },
 
   methods: {
     afficheContexte () {
-      this.ecran = 'contexte';
-      this.joueConsigne();
+      this.ecran = 'consigne';
     },
 
-    joueConsigne () {
-      this.consigneEnCours = true;
-      const consigne = new JoueurConsigne(this.depot);
-      consigne.joue(true, this.lectureTerminee.bind(this));
-    },
-
-    lectureTerminee () {
-      this.consigneEnCours = false;
-    },
-
-    termine () {
-      this.$emit(FINI);
+    fini () {
+      this.$emit(CONSIGNE_FINI);
     }
   }
 };

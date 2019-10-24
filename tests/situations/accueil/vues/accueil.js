@@ -287,13 +287,13 @@ describe('La vue accueil', function () {
     expect(wrapper.vm.indexBatiment).to.eql(0);
   });
 
-  it("passeIntro fait avancer l'index des batiments", function () {
+  it("à la fin de l'intro, fait avancer l'index des batiments", function () {
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
     });
     wrapper.vm.indexBatiment = 0;
-    wrapper.vm.passeIntro();
+    wrapper.vm.finiIntro();
     expect(wrapper.vm.indexBatiment).to.equal(1);
   });
 

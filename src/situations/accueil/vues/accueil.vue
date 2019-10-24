@@ -74,7 +74,7 @@
           :titre="traduction('accueil.intro_consigne.titre')"
           :message="traduction('accueil.intro_contexte.message')"
           :titre-consigne=false
-          @fini="passeIntro"
+          @consigne-fini="finiIntro"
         />
       </transition-fade>
       <transition-fade>
@@ -231,7 +231,7 @@ export default {
       return JSON.parse(etatPrecedent);
     },
 
-    passeIntro () {
+    finiIntro () {
       this.indexBatiment++;
     },
 
