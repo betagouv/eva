@@ -5,7 +5,7 @@
     @keydown.s="fini"
   >
     <div class="modale-interieur">
-      <h2 v-if="titreConsigne">{{ traduction('situation.consigne') }}</h2>
+      <h2 v-if="titreConsigne !== ''">{{ titreConsigne }}</h2>
       <div
         v-html="message"
        ></div>
@@ -21,15 +21,16 @@
 <script>
 import 'commun/styles/modale.scss';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
+import { traduction } from 'commun/infra/internationalisation';
 
 export const CONSIGNE_FINI = 'consigne-fini';
 
 export default {
   props: {
     titreConsigne: {
-      type: Boolean,
+      type: String,
       default: () => {
-        return true;
+        return traduction('situation.consigne');
       }
     },
     message: {

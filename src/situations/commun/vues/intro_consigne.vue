@@ -46,12 +46,9 @@ export default {
       }
     },
     titreConsigne: {
-      type: Boolean,
-      default: () => {
-        return true;
-      }
+      type: String
     },
-    message: {
+    identifiantSituation: {
       type: String,
       required: true
     }
@@ -60,7 +57,8 @@ export default {
   data () {
     return {
       ecran: 'intro',
-      casque: this.depotRessources.casque().src
+      casque: this.depotRessources.casque().src,
+      message: traduction(`${this.identifiantSituation}.intro_contexte.message`)
     };
   },
 

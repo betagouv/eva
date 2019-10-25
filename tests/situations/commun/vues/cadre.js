@@ -31,6 +31,7 @@ describe('Une vue du cadre', function () {
     $('body').append('<div id="point-insertion"></div>');
     depotRessources = new DepotRessourcesCommune('sonConsigne.wav', chargeurs());
     situation = new SituationCommune();
+    situation.identifiant = 'tri';
     journal = { enregistre () {}, enregistreSituationFaite () {} };
 
     uneVueCadre = function (classeVue = uneClasseVue(), barreDev = false) {
