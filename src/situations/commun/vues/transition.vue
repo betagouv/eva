@@ -2,6 +2,7 @@
   <consigne
     :titreConsigne="traduction('situation.titre_transition')"
     :message="message"
+    ressourceConsigne="messageTransition"
     @consigne-fini="fini"
   >
   </consigne>

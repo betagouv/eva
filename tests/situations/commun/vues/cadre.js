@@ -6,6 +6,7 @@ import SituationCommune, {
   ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI,
   DEMARRE, FINI, STOPPEE
 } from 'commun/modeles/situation';
+import MockAudioNode from '../aides/mock_audio_node';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
 import VueCadre from 'commun/vues/cadre';
@@ -30,6 +31,7 @@ describe('Une vue du cadre', function () {
     $(window).off();
     $('body').append('<div id="point-insertion"></div>');
     depotRessources = new DepotRessourcesCommune(chargeurs(), 'sonConsigne.wav');
+    depotRessources.messageTransition = () => new MockAudioNode();
     situation = new SituationCommune();
     situation.identifiant = 'tri';
     journal = { enregistre () {}, enregistreSituationFaite () {} };

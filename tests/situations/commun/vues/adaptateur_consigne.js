@@ -24,6 +24,10 @@ describe("L'adaptateur de la vue Consigne", function () {
       consigne () {
         return new MockAudioNode();
       }
+
+      messageTransition () {
+        return new MockAudioNode();
+      }
     }();
     vue = new AdaptateurConsigne(situation, depotRessources);
   });

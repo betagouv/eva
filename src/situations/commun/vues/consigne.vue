@@ -36,6 +36,10 @@ export default {
     message: {
       type: String,
       required: true
+    },
+    ressourceConsigne: {
+      type: String,
+      required: true
     }
   },
 
@@ -60,7 +64,7 @@ export default {
 
     joueConsigne () {
       this.consigneEnCours = true;
-      const consigne = new JoueurConsigne(this.depot);
+      const consigne = new JoueurConsigne(this.depot, this.ressourceConsigne);
       consigne.joue(true, this.lectureTerminee.bind(this));
     },
 
