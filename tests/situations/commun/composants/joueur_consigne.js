@@ -14,7 +14,7 @@ describe('joueur de consigne', function () {
       consigne: () => uneConsigne,
       consigneCommune: () => uneConsigneCommune
     };
-    joueur = new JoueurConsigne(depot);
+    joueur = new JoueurConsigne(depot, 'consigne');
   });
 
   it('joue la consigne du dépôt', function (done) {

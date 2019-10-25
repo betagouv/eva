@@ -10,7 +10,7 @@ export default class VueActions {
   constructor (situation, journal, depot) {
     this.situation = situation;
     this.journal = journal;
-    this.joueurConsigne = new JoueurConsigne(depot);
+    this.joueurConsigne = new JoueurConsigne(depot, 'consigne');
   }
 
   affiche (pointInsertion, $) {

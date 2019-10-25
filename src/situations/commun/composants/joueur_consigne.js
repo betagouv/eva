@@ -1,6 +1,7 @@
 export default class JoueurConsigne {
-  constructor (depot) {
+  constructor (depot, ressourceConsigne) {
     this.depot = depot;
+    this.ressourceConsigne = ressourceConsigne;
   }
 
   joueSon (noeudSon, callbackFin) {
@@ -12,7 +13,7 @@ export default class JoueurConsigne {
     const joueConsigneCommune = () => {
       this.joueSon(this.depot.consigneCommune(), lectureTerminee);
     };
-    this.joueSon(this.depot.consigne(),
+    this.joueSon(this.depot[this.ressourceConsigne](),
       jouerConsigneCommune ? joueConsigneCommune : lectureTerminee);
   }
 }
