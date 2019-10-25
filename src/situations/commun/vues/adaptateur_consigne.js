@@ -1,8 +1,10 @@
 import Vue from 'vue';
 
-import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE } from 'commun/modeles/situation';
+import { ATTENTE_DEMARRAGE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE } from 'commun/modeles/situation';
 import { CONSIGNE_FINI } from 'commun/vues/consigne';
 import IntroConsigne from 'commun/vues/intro_consigne';
+import Transition from 'commun/vues/transition';
+
 import { traduction } from 'commun/infra/internationalisation';
 
 export default class AdaptateurConsigne {
@@ -12,17 +14,14 @@ export default class AdaptateurConsigne {
     Vue.prototype.traduction = traduction;
   }
 
-  message () {
-    return traduction(`${this.situation.identifiant}.intro_contexte.message`);
-  }
-
   affiche (pointInsertion, $) {
     const div = document.createElement('div');
     $(pointInsertion).append(div);
+    const vue = this.situation.etat() === ATTENTE_DEMARRAGE ? IntroConsigne : Transition;
     this.vm = new Vue({
-      render: createEle => createEle(IntroConsigne, {
+      render: createEle => createEle(vue, {
         props: {
-          message: this.message()
+          identifiantSituation: this.situation.identifiant
         }
       })
     }).$mount(div);

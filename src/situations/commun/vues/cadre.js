@@ -15,7 +15,6 @@ import VueActions from 'commun/vues/actions';
 import VueChargement from 'commun/vues/chargement';
 import VueErreurChargement from 'commun/vues/erreur_chargement';
 import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
-import VueGo from 'commun/vues/go';
 import VueTerminer from 'commun/vues/terminer';
 import VueBarreDev from 'commun/vues/barre_dev';
 
@@ -31,7 +30,7 @@ export default class VueCadre {
     this.vuesEtats.set(CHARGEMENT, VueChargement);
     this.vuesEtats.set(ERREUR_CHARGEMENT, VueErreurChargement);
     this.vuesEtats.set(ATTENTE_DEMARRAGE, AdaptateurConsigne);
-    this.vuesEtats.set(ENTRAINEMENT_FINI, VueGo);
+    this.vuesEtats.set(ENTRAINEMENT_FINI, AdaptateurConsigne);
     this.vuesEtats.set(FINI, VueTerminer);
     this.envoiEvenementDemarrageUneFoisDemarre();
   }

@@ -22,7 +22,10 @@ describe('La vue intro-consigne', function () {
     }();
     const localVue = createLocalVue();
     localVue.prototype.depotRessources = depotRessources;
-    wrapper = shallowMount(IntroConsigne, { propsData: { message: 'contenu' }, localVue });
+    wrapper = shallowMount(IntroConsigne, {
+      propsData: { message: 'contenu', identifiantSituation: 'securite' },
+      localVue
+    });
   });
 
   it("a un titre par défaut si aucun titre n'est donné", function () {
