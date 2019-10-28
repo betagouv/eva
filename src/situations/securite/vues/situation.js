@@ -10,9 +10,9 @@ export default class VueSituation {
     this.depotRessources = depotRessources;
     this.journal = journal;
 
-    Vue.prototype.depotRessources = depotRessources;
-    Vue.prototype.traduction = traduction;
-    Vue.prototype.journal = journal;
+    Vue.prototype.$depotRessources = depotRessources;
+    Vue.prototype.$traduction = traduction;
+    Vue.prototype.$journal = journal;
   }
 
   affiche (pointInsertion, $) {

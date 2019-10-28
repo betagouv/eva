@@ -10,8 +10,8 @@ import { traduction } from 'commun/infra/internationalisation';
 export default class AdaptateurConsigne {
   constructor (situation, depotRessources) {
     this.situation = situation;
-    Vue.prototype.depotRessources = depotRessources;
-    Vue.prototype.traduction = traduction;
+    Vue.prototype.$depotRessources = depotRessources;
+    Vue.prototype.$traduction = traduction;
   }
 
   affiche (pointInsertion, $) {

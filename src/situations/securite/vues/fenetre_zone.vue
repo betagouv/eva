@@ -4,11 +4,11 @@
     class="fenetre">
 
     <div v-if="etat === 'deja-identifie'">
-      <p>{{ traduction('securite.danger.deja-identifie.texte') }}</p>
+      <p>{{ $traduction('securite.danger.deja-identifie.texte') }}</p>
       <button
         class="bouton-arrondi bouton-arrondi--petit"
         @click="ferme"
-        >{{ traduction('securite.danger.deja-identifie.bouton') }}</button>
+        >{{ $traduction('securite.danger.deja-identifie.bouton') }}</button>
     </div>
     <resultat-identification
       v-else-if="etat == 'resultat-identification'"
@@ -48,7 +48,7 @@ export default {
 
   mounted () {
     const evenement = new EvenementOuvertureZone({ zone: this.zone.id, danger: this.zone.danger });
-    this.journal.enregistre(evenement);
+    this.$journal.enregistre(evenement);
   },
 
   data () {
@@ -113,7 +113,7 @@ export default {
     },
     identifie (choix) {
       const evenement = new EvenementIdentificationDanger({ zone: this.zone.id, reponse: choix, danger: this.zone.danger });
-      this.journal.enregistre(evenement);
+      this.$journal.enregistre(evenement);
 
       const estUnDanger = !!this.zone.danger;
       const aIdentifieUnDanger = choix === 'oui';
@@ -130,7 +130,7 @@ export default {
     },
     qualifie (choix) {
       this.$store.commit('ajouteDangerQualifie', { nom: this.zone.danger, choix });
-      this.journal.enregistre(
+      this.$journal.enregistre(
         new EvenementQualificationDanger({
           danger: this.zone.danger,
           reponse: choix

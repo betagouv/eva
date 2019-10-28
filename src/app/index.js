@@ -14,8 +14,8 @@ function afficheAccueil (pointInsertion) {
 
   const depotRessources = new DepotRessourcesAccueil();
 
-  Vue.prototype.depotRessources = depotRessources;
-  Vue.prototype.traduction = traduction;
+  Vue.prototype.$depotRessources = depotRessources;
+  Vue.prototype.$traduction = traduction;
 
   const store = creeStore(registreUtilisateur);
 

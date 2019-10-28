@@ -1,10 +1,10 @@
-import { mount } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import FormulaireIdentificationVue from 'accueil/vues/formulaire_identification';
 import { traduction } from 'commun/infra/internationalisation';
 
-Vue.prototype.traduction = traduction;
+Vue.prototype.$traduction = traduction;
 
 describe("Le formulaire d'identification", function () {
   let wrapper;
@@ -12,12 +12,13 @@ describe("Le formulaire d'identification", function () {
   let store;
 
   beforeEach(function () {
+    const localVue = createLocalVue();
     promesse = Promise.resolve();
     store = new Vuex.Store({
       state: { estConnecte: false }
     });
     store.dispatch = () => promesse;
-    wrapper = mount(FormulaireIdentificationVue, { store });
+    wrapper = mount(FormulaireIdentificationVue, { store, localVue });
   });
 
   it("s'affiche", function () {

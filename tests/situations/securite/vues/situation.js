@@ -10,7 +10,7 @@ describe('La vue de la situation Sécurité', function () {
 
   beforeEach(function () {
     localVue = createLocalVue();
-    localVue.prototype.depotRessources = new class {
+    localVue.prototype.$depotRessources = new class {
       fondSituation () {
         return { src: 'fond-situation' };
       }

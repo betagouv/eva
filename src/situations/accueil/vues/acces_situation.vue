@@ -33,7 +33,7 @@ export default {
 
   data () {
     return {
-      backgroundImage: `url('${this.depotRessources.batimentSituation(this.situation.identifiant).src}')`
+      backgroundImage: `url('${this.$depotRessources.batimentSituation(this.situation.identifiant).src}')`
     };
   }
 };

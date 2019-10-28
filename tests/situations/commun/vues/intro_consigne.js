@@ -21,7 +21,7 @@ describe('La vue intro-consigne', function () {
       }
     }();
     const localVue = createLocalVue();
-    localVue.prototype.depotRessources = depotRessources;
+    localVue.prototype.$depotRessources = depotRessources;
     wrapper = shallowMount(IntroConsigne, {
       propsData: { message: 'contenu', identifiantSituation: 'securite' },
       localVue

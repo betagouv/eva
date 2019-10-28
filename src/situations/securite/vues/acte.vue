@@ -8,7 +8,7 @@
       class="compteur-statut"
       @click.stop
     >
-      {{ traduction('securite.dangers_detectes') }}
+      {{ $traduction('securite.dangers_detectes') }}
 
       <svg
         v-for="nombre in nombreDangersAQualifies"
@@ -97,7 +97,7 @@ export default {
     },
     clickSituation (e) {
       if (this.zoneSelectionnee) { return; }
-      this.journal.enregistre(new EvenementClickHorsZone({ x: pourcentageX(e.layerX), y: pourcentageY(e.layerY) }));
+      this.$journal.enregistre(new EvenementClickHorsZone({ x: pourcentageX(e.layerX), y: pourcentageY(e.layerY) }));
     }
   }
 };

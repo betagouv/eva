@@ -46,7 +46,7 @@
            >
             <img :src="precedent">
           </button>
-          <span>{{ traduction('accueil.precedent') }}</span>
+          <span>{{ $traduction('accueil.precedent') }}</span>
         </div>
         <acces-situation
           v-if="afficheBoutonSituation"
@@ -64,14 +64,14 @@
            >
             <img :src="suivant">
           </button>
-          <span>{{ traduction('accueil.suivant') }}</span>
+          <span>{{ $traduction('accueil.suivant') }}</span>
         </div>
       </div>
       <formulaire-identification :force-campagne="forceCampagne" />
       <transition-fade>
         <intro-consigne
           v-if="estConnecte && indexBatiment === 0"
-          :titre="traduction('accueil.intro_consigne.titre')"
+          :titre="$traduction('accueil.intro_consigne.titre')"
           identifiant-situation="accueil"
           titre-consigne=""
           @consigne-fini="finiIntro"
@@ -114,11 +114,11 @@ export default {
     const parsedUrl = new URL(window.location.href);
     const { indexPrecedent } = this.recupereEtatDuPrecedentChargement();
     return {
-      fondAccueil: `url(${this.depotRessources.fondAccueil().src})`,
-      personnage: this.depotRessources.personnage().src,
-      precedent: this.depotRessources.precedent().src,
-      suivant: this.depotRessources.suivant().src,
-      punaise: this.depotRessources.punaise().src,
+      fondAccueil: `url(${this.$depotRessources.fondAccueil().src})`,
+      personnage: this.$depotRessources.personnage().src,
+      precedent: this.$depotRessources.precedent().src,
+      suivant: this.$depotRessources.suivant().src,
+      punaise: this.$depotRessources.punaise().src,
       forceCampagne: parsedUrl.searchParams.get('code') || '',
       indexBatiment: indexPrecedent,
       ecranFinAfficher: false

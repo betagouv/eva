@@ -20,7 +20,7 @@ describe('La vue consigne', function () {
       }
     }();
     const localVue = createLocalVue();
-    localVue.prototype.depotRessources = depotRessources;
+    localVue.prototype.$depotRessources = depotRessources;
     wrapper = shallowMount(Consigne, {
       propsData: { message: 'contenu', ressourceConsigne: 'consigneDemarrage' },
       localVue

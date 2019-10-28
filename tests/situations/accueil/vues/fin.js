@@ -28,7 +28,7 @@ describe('La vue de fin', function () {
       }
     });
     localVue = createLocalVue();
-    localVue.prototype.depotRessources = depotRessources;
+    localVue.prototype.$depotRessources = depotRessources;
   });
 
   it("sait s'afficher", function () {

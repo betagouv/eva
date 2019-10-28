@@ -13,7 +13,7 @@
         class="bouton-arrondi"
         :disabled="aVousDeJouerDesactive"
         @click="fini"
-      >{{ traduction('accueil.intro_contexte.bouton') }}</button>
+      >{{ $traduction('accueil.intro_contexte.bouton') }}</button>
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
   data () {
     return {
       consigneEnCours: false,
-      depot: this.depotRessources
+      depot: this.$depotRessources
     };
   },
 

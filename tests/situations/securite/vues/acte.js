@@ -88,7 +88,7 @@ describe("La vue de l'acte Sécurité", function () {
   });
 
   it('un click sur le fond de la situation enregistre un événement click hors zone', function (done) {
-    localVue.prototype.journal = {
+    localVue.prototype.$journal = {
       enregistre (evenement) {
         expect(evenement).to.be.a(EvenementClickHorsZone);
         expect(evenement.donnees()).to.be.eql({ x: 50, y: 10 });
@@ -104,7 +104,7 @@ describe("La vue de l'acte Sécurité", function () {
   it("un click hors zone alors qu'une zone est sélectionné n'enregistre pas un événement click hors zone", function () {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
-    localVue.prototype.journal = {
+    localVue.prototype.$journal = {
       enregistre (evenement) {
         enregistre++;
       }
@@ -120,7 +120,7 @@ describe("La vue de l'acte Sécurité", function () {
   it("un click sur une zone n'enregistre pas d'événement click hors zone", function () {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
-    localVue.prototype.journal = {
+    localVue.prototype.$journal = {
       enregistre (evenement) {
         enregistre++;
       }
@@ -132,7 +132,7 @@ describe("La vue de l'acte Sécurité", function () {
   it("un click sur le compteur n'enregistre pas d'événement click hors zone", function () {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
-    localVue.prototype.journal = {
+    localVue.prototype.$journal = {
       enregistre (evenement) {
         enregistre++;
       }

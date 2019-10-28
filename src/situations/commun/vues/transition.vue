@@ -1,6 +1,6 @@
 <template>
   <consigne
-    :titreConsigne="traduction('situation.titre_transition')"
+    :titreConsigne="$traduction('situation.titre_transition')"
     :message="message"
     ressourceConsigne="consigneTransition"
     @consigne-fini="fini"
