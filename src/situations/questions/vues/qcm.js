@@ -14,7 +14,7 @@ export default class VueQCM extends VueQuestion {
       return `
         <div class="question-choix">
           <label>
-            <input name="numeratie" type="radio" value="${choix.id}" />
+            <input name="question" type="radio" value="${choix.id}" />
             ${choix.intitule}
           </label>
         </div>
@@ -35,12 +35,12 @@ export default class VueQCM extends VueQuestion {
     `);
     $(pointInsertion).append(this.$vue);
     const $envoiReponse = $('#envoi-reponse', this.$vue);
-    $('input[name="numeratie"]', this.$vue).on('input', () => {
+    $('input[name="question"]', this.$vue).on('change', () => {
       $envoiReponse.prop('disabled', false);
     });
     $envoiReponse.click(() => {
       $envoiReponse.prop('disabled', true);
-      const reponse = $('input[name="numeratie"]:checked', this.$vue).val();
+      const reponse = $('input[name="question"]:checked', this.$vue).val();
       this.emit(EVENEMENT_REPONSE, reponse);
     });
   }
