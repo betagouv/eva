@@ -1,44 +1,24 @@
 @import 'commun/styles/couleurs.scss';
 @import 'commun/styles/mixins/boutons.scss';
 
-.bouton-centre-visible {
-  @include bouton-centre(rgba(255, 255, 255, 0.8));
-}
+.overlay-action {
+   .bouton-centre-visible {
+     @include bouton-centre(rgba(255, 255, 255, 0.8));
+   }
 
-.bouton-centre-invisible {
-   @include bouton-centre(transparent);
-}
+   .bouton-centre-invisible {
+      @include bouton-centre(transparent);
+   }
 
-.bouton-go {
-  @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet-focus);
-}
-
-.bouton-chargement {
-  background: transparent;
-  @include bouton(transparent, transparent, transparent);
-  cursor: default;
-
-  img {
-    height: 4rem;
+  .overlay-action-message {
+    font-family: 'Quicksand', sans-serif;
+    position:absolute;
+    top: 7rem;
+    color: $couleur-texte;
+    text-align: center;
+    width: 100%;
+    line-height: 6.5rem;
+    font-size: 2.25rem;
+    font-weight: bold;
   }
-}
-
-.bouton-erreur-chargement {
-  @include bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
-
-  img {
-    height: 2rem;
-  }
-}
-
-.message {
-  font-family: 'Quicksand', sans-serif;
-  position:absolute;
-  top: 7rem;
-  color: $couleur-texte;
-  text-align: center;
-  width: 100%;
-  line-height: 6.5rem;
-  font-size: 2.25rem;
-  font-weight: bold;
 }
