@@ -12,11 +12,11 @@ describe('une action overlay', () => {
   });
 
   it('a un overlay', () => {
-    expect($('#pointInsertion .overlay').length).to.eql(1);
+    expect($('#pointInsertion .overlay.overlay-action').length).to.eql(1);
   });
 
   it("affiche le message, l'image et la classe spécifique", () => {
-    expect($('#pointInsertion .message').text()).to.eql('texte');
+    expect($('#pointInsertion .overlay-action-message').text()).to.eql('texte');
     expect($('#pointInsertion .classe-bouton').length).to.eql(1);
     expect($('#pointInsertion .hors-actions').length).to.eql(1);
     expect($('#pointInsertion .classe-bouton img').attr('src')).to.eql('image');

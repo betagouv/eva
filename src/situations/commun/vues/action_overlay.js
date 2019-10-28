@@ -13,12 +13,12 @@ export default class VueActionOverlay {
   }
 
   affiche (pointInsertion, $) {
-    this.$message = $(`<div class='message'>${this.message}</div>`);
+    this.$message = $(`<div class='overlay-action-message'>${this.message}</div>`);
     const $conteneurBouton = $(`<div class=${this.classeBouton}></div>`);
 
     this.vueBouton.affiche($conteneurBouton, $);
 
-    this.$overlay = $(`<div class="overlay ${this.dimensionOverlay}"></div>`);
+    this.$overlay = $(`<div class="overlay ${this.dimensionOverlay} overlay-action"></div>`);
 
     this.$overlay.append($conteneurBouton);
     this.$overlay.append(this.$message);

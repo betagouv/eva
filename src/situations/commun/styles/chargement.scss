@@ -1,0 +1,12 @@
+@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/mixins/boutons.scss';
+
+.bouton-chargement {
+  background: transparent;
+  @include bouton(transparent, transparent, transparent);
+  cursor: default;
+
+  img {
+    height: 4rem;
+  }
+}
