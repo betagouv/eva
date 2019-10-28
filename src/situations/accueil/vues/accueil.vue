@@ -1,86 +1,80 @@
 <template>
-  <div id="accueil">
-    <div class="titre">
-      <h1>Compétences pro</h1>
-      <boite-utilisateur />
-    </div>
-    <div class="conteneur">
+  <div class="conteneur">
+    <div
+      :style="{ 'background-image': fondAccueil, 'background-position-x': `${positionFond}%` }"
+      class="scene"
+    >
+
+      <img
+        :src="punaise"
+        class="punaise"
+      />
+
+      <img
+        :src="personnage"
+        class="personnage"
+      />
+
       <div
-        :style="{ 'background-image': fondAccueil, 'background-position-x': `${positionFond}%` }"
-        class="scene"
-      >
-
-        <img
-          :src="punaise"
-          class="punaise"
-        />
-
-        <img
-          :src="personnage"
-          class="personnage"
-        />
-
-        <div
-          :style="{ left: `${-decalageGaucheVue(indexBatiment)}px`}"
-          class="acces-situations">
-          <acces-situation
-            v-for="(situation, index) in batiments"
-            :key="situation.identifiant"
-            :situation="situation"
-            :style="{ left: `${decalageGaucheBatiment(index)}px`}"
-            :desactivee="indexBatiment !== index"
-            :affiche-fond="true"
-            class="acces-situation"
-           />
-        </div>
-      </div>
-      <div class="actions">
-        <div
-          :class="{ desactivee: precedentDesactivee}"
-          class="bouton-et-etiquette"
-        >
-          <button
-            :disabled="precedentDesactivee"
-            class="bouton-mission"
-            @click="indexBatiment--"
-           >
-            <img :src="precedent">
-          </button>
-          <span>{{ $traduction('accueil.precedent') }}</span>
-        </div>
+        :style="{ left: `${-decalageGaucheVue(indexBatiment)}px`}"
+        class="acces-situations">
         <acces-situation
-          v-if="afficheBoutonSituation"
-          :situation="batiments[indexBatiment]"
-          class="bouton-arrondi"
-        />
-        <div
-          :class="{ desactivee: suivantDesactivee}"
-          class="bouton-et-etiquette gauche"
-        >
-          <button
-            :disabled="suivantDesactivee"
-            class="bouton-mission"
-            @click="indexBatiment++"
-           >
-            <img :src="suivant">
-          </button>
-          <span>{{ $traduction('accueil.suivant') }}</span>
-        </div>
+          v-for="(situation, index) in batiments"
+          :key="situation.identifiant"
+          :situation="situation"
+          :style="{ left: `${decalageGaucheBatiment(index)}px`}"
+          :desactivee="indexBatiment !== index"
+          :affiche-fond="true"
+          class="acces-situation"
+         />
       </div>
-      <formulaire-identification :force-campagne="forceCampagne" />
-      <transition-fade>
-        <intro-consigne
-          v-if="estConnecte && indexBatiment === 0"
-          :titre="$traduction('accueil.intro_consigne.titre')"
-          identifiant-situation="accueil"
-          titre-consigne=""
-          @consigne-fini="finiIntro"
-        />
-      </transition-fade>
-      <transition-fade>
-        <fin v-if="ecranFinAfficher" />
-      </transition-fade>
     </div>
+    <div class="actions">
+      <div
+        :class="{ desactivee: precedentDesactivee}"
+        class="bouton-et-etiquette"
+      >
+        <button
+          :disabled="precedentDesactivee"
+          class="bouton-mission"
+          @click="indexBatiment--"
+         >
+          <img :src="precedent">
+        </button>
+        <span>{{ $traduction('accueil.precedent') }}</span>
+      </div>
+      <acces-situation
+        v-if="afficheBoutonSituation"
+        :situation="batiments[indexBatiment]"
+        class="bouton-arrondi"
+      />
+      <div
+        :class="{ desactivee: suivantDesactivee}"
+        class="bouton-et-etiquette gauche"
+      >
+        <button
+          :disabled="suivantDesactivee"
+          class="bouton-mission"
+          @click="indexBatiment++"
+         >
+          <img :src="suivant">
+        </button>
+        <span>{{ $traduction('accueil.suivant') }}</span>
+      </div>
+    </div>
+    <formulaire-identification :force-campagne="forceCampagne" />
+    <transition-fade>
+      <intro-consigne
+        v-if="estConnecte && indexBatiment === 0"
+        :titre="$traduction('accueil.intro_consigne.titre')"
+        identifiant-situation="accueil"
+        titre-consigne=""
+        @consigne-fini="finiIntro"
+      />
+    </transition-fade>
+    <transition-fade>
+      <fin v-if="ecranFinAfficher" />
+    </transition-fade>
   </div>
 </template>
 
@@ -94,7 +88,6 @@ import 'commun/styles/overlay.scss';
 import 'commun/styles/modale.scss';
 import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
-import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import Fin from 'accueil/vues/fin';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import TransitionFade from 'commun/vues/transition_fade';
@@ -108,7 +101,7 @@ export const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 
 export default {
-  components: { FormulaireIdentification, AccesSituation, BoiteUtilisateur, IntroConsigne, Fin, TransitionFade },
+  components: { FormulaireIdentification, AccesSituation, IntroConsigne, Fin, TransitionFade },
 
   data () {
     const parsedUrl = new URL(window.location.href);

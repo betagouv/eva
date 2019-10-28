@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECALAGE_INITIAL } from 'accueil/vues/accueil';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
-import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 
 describe('La vue accueil', function () {
   let depotRessources;
@@ -52,7 +51,6 @@ describe('La vue accueil', function () {
     });
     expect(wrapper.findAll(AccesSituation).length).to.eql(4);
     expect(wrapper.contains(FormulaireIdentification)).to.be(true);
-    expect(wrapper.contains(BoiteUtilisateur)).to.be(true);
   });
 
   it("affiche le fond de l'accueil et le personnage", function () {
