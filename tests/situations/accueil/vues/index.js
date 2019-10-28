@@ -1,8 +1,8 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import Index from 'accueil/vues/index';
-import OverlayChargement from 'accueil/vues/overlay_chargement';
-import OverlayErreurChargement from 'accueil/vues/overlay_erreur_chargement';
+import OverlayChargement from 'commun/vues/overlay_chargement';
+import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import Accueil from 'accueil/vues/accueil';
 
 describe('La vue index', function () {

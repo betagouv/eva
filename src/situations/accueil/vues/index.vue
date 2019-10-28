@@ -4,16 +4,21 @@
       <h1>{{ $traduction('nom_produit') }}</h1>
       <boite-utilisateur v-if="!chargement" />
     </div>
-    <overlay-erreur-chargement v-if="erreurChargement" />
-    <overlay-chargement v-else-if="chargement" />
+    <div
+      v-if="chargement || erreurChargement"
+      class="conteneur"
+    >
+      <overlay-erreur-chargement v-if="erreurChargement" />
+      <overlay-chargement v-else-if="chargement" />
+    </div>
     <accueil v-else />
   </div>
 </template>
 
 <script>
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
-import OverlayChargement from './overlay_chargement';
-import OverlayErreurChargement from './overlay_erreur_chargement';
+import OverlayChargement from 'commun/vues/overlay_chargement';
+import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import Accueil from './accueil';
 
 export default {

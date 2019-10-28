@@ -12,8 +12,9 @@ import {
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
 import VueActions from 'commun/vues/actions';
-import VueChargement from 'commun/vues/chargement';
-import VueErreurChargement from 'commun/vues/erreur_chargement';
+import { creeAdapteur } from './adapteur_vue';
+import OverlayChargement from './overlay_chargement';
+import OverlayErreurChargement from './overlay_erreur_chargement';
 import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
 import VueBarreDev from 'commun/vues/barre_dev';
@@ -27,8 +28,8 @@ export default class VueCadre {
     this.registreUtilisateur = this.journal.registreUtilisateur;
     this.barreDev = barreDev;
     this.vuesEtats = new Map();
-    this.vuesEtats.set(CHARGEMENT, VueChargement);
-    this.vuesEtats.set(ERREUR_CHARGEMENT, VueErreurChargement);
+    this.vuesEtats.set(CHARGEMENT, creeAdapteur(OverlayChargement));
+    this.vuesEtats.set(ERREUR_CHARGEMENT, creeAdapteur(OverlayErreurChargement));
     this.vuesEtats.set(ATTENTE_DEMARRAGE, AdaptateurConsigne);
     this.vuesEtats.set(ENTRAINEMENT_FINI, AdaptateurConsigne);
     this.vuesEtats.set(FINI, VueTerminer);
@@ -67,10 +68,13 @@ export default class VueCadre {
 
     const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.registreUtilisateur);
     return this.depotRessources.chargement().then(() => {
+      this.situation.modifieEtat(ATTENTE_DEMARRAGE);
       vueSituation.affiche('.scene', $);
 
       this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources);
       this.vueActions.affiche(selecteurCadre, $);
+    }).catch(() => {
+      this.situation.modifieEtat(ERREUR_CHARGEMENT);
     });
   }
 
