@@ -3,7 +3,7 @@ import 'commun/styles/conteneur.scss';
 import 'commun/styles/commun.scss';
 
 import { creeStore } from 'accueil/modeles/store';
-import Accueil from 'accueil/vues/accueil';
+import Index from 'accueil/vues/index';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 import DepotRessourcesAccueil from 'accueil/infra/depot_ressources_accueil';
@@ -19,12 +19,10 @@ function afficheAccueil (pointInsertion) {
 
   const store = creeStore(registreUtilisateur);
 
-  depotRessources.chargement().then(() => {
-    new Vue({
-      store,
-      render: createEle => createEle(Accueil)
-    }).$mount(pointInsertion);
-  });
+  new Vue({
+    store,
+    render: createEle => createEle(Index)
+  }).$mount(pointInsertion);
 }
 
 initialiseInternationalisation().then(function () {

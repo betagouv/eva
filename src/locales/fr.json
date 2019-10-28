@@ -1,4 +1,5 @@
 {
+  "nom_produit": "Compétences pro",
   "duree": "{{minutes}} et {{secondes}}",
   "minute": "{{count}} minute",
   "minute_plural": "{{count}} minutes",
