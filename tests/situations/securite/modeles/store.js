@@ -1,4 +1,4 @@
-import { creeStore, synchroniseStoreEtModeleSituation, CHARGEMENT, FINI } from 'securite/store/store';
+import { creeStore, synchroniseStoreEtModeleSituation, CHARGEMENT, FINI } from 'securite/modeles/store';
 import Situation from 'commun/modeles/situation';
 
 describe('Le store de la situation sécurité', function () {

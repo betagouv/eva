@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import FenetreAide from 'securite/vues/fenetre_aide';
-import { creeStore } from 'securite/store/store';
+import { creeStore } from 'securite/modeles/store';
 
 describe("La fenêtre d'aide", function () {
   let wrapper;

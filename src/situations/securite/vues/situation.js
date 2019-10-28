@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 import { traduction } from 'commun/infra/internationalisation';
-import { creeStore, synchroniseStoreEtModeleSituation } from '../store/store';
+import { creeStore, synchroniseStoreEtModeleSituation } from '../modeles/store';
 import Situation from './situation.vue';
 
 export default class VueSituation {

@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { creeStore } from 'securite/store/store';
+import { creeStore } from 'securite/modeles/store';
 import FenetreZone from 'securite/vues/fenetre_zone';
 import FormulaireRadio from 'securite/vues/formulaire_radio';
 import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';

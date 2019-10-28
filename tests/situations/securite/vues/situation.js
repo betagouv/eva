@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Situation from 'securite/vues/situation.vue';
 import ActeSecurite from 'securite/vues/acte';
-import { creeStore, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from 'securite/store/store';
+import { creeStore, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from 'securite/modeles/store';
 
 describe('La vue de la situation Sécurité', function () {
   let wrapper;

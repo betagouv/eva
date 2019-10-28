@@ -4,7 +4,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from '../store/store';
+import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from '../modeles/store';
 import ActeSecurite from './acte';
 import { configurationEntrainement, configurationNormale } from '../data/zones';
 
