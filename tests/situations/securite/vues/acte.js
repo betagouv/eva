@@ -2,7 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ActeSecurite from 'securite/vues/acte';
 import EvenementClickHorsZone from 'securite/modeles/evenement_click_hors_zone';
 import BoutonAide from 'securite/vues/bouton_aide';
-import { creeStore } from 'securite/store/store';
+import { creeStore } from 'securite/modeles/store';
 
 describe("La vue de l'acte Sécurité", function () {
   let wrapper;

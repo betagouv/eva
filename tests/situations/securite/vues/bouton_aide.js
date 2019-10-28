@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BoutonAide from 'securite/vues/bouton_aide';
-import { creeStore } from 'securite/store/store';
+import { creeStore } from 'securite/modeles/store';
 import EvenementActivationAide from 'securite/modeles/evenement_activation_aide';
 
 describe("Le bouton d'aide", function () {
