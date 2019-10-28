@@ -43,7 +43,7 @@ describe('La vue de la question QCM', function () {
     const $vue = new VueQCM(question);
     $vue.affiche('#point-insertion', $);
     expect($('#point-insertion #envoi-reponse').prop('disabled')).to.be(true);
-    $('#point-insertion input[type=radio][value=uid-32]').prop('checked', true).trigger('input');
+    $('#point-insertion input[type=radio][value=uid-32]').prop('checked', true).trigger('change');
     expect($('#point-insertion #envoi-reponse').prop('disabled')).to.be(false);
   });
 
@@ -66,7 +66,7 @@ describe('La vue de la question QCM', function () {
     const $vue = new VueQCM(question);
 
     $vue.affiche('#point-insertion', $);
-    $('#point-insertion input[type=radio][value=uid-32]').prop('checked', true).trigger('input');
+    $('#point-insertion input[type=radio][value=uid-32]').prop('checked', true).trigger('change');
     expect($('#point-insertion #envoi-reponse').prop('disabled')).to.be(false);
     $vue.on(EVENEMENT_REPONSE, (reponse) => {
       expect($('#point-insertion #envoi-reponse').prop('disabled')).to.be(true);
