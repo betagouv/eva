@@ -11,7 +11,7 @@ describe("Le bouton d'aide", function () {
   beforeEach(function () {
     store = creeStore();
     localVue = createLocalVue();
-    localVue.prototype.journal = { enregistre () {} };
+    localVue.prototype.$journal = { enregistre () {} };
     wrapper = shallowMount(BoutonAide, {
       store,
       localVue
@@ -32,7 +32,7 @@ describe("Le bouton d'aide", function () {
   });
 
   it("rapporte l'activation de l'aide au journal", function (done) {
-    localVue.prototype.journal.enregistre = (evenement) => {
+    localVue.prototype.$journal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementActivationAide);
       done();
     };

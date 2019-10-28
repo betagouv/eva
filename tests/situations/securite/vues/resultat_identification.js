@@ -6,7 +6,7 @@ describe('Le composant RésultatIdentification', function () {
 
   beforeEach(function () {
     localVue = createLocalVue();
-    localVue.prototype.depotRessources = new class {
+    localVue.prototype.$depotRessources = new class {
       pictoDangerMalIdentifie () {
         return { src: 'danger-mal-identifie' };
       }

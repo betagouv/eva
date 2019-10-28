@@ -13,7 +13,7 @@ describe('La vue pour accéder à une situation', function () {
         return { src: identifiant };
       }
     }();
-    localVue.prototype.depotRessources = depotRessources;
+    localVue.prototype.$depotRessources = depotRessources;
     wrapper = mount(AccesSituation, {
       localVue,
       propsData: {

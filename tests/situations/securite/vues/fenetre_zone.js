@@ -14,7 +14,7 @@ describe('Le composant FenetreZone', function () {
   beforeEach(function () {
     store = creeStore();
     localVue = createLocalVue();
-    localVue.prototype.journal = { enregistre () {} };
+    localVue.prototype.$journal = { enregistre () {} };
     wrapper = shallowMount(FenetreZone, {
       localVue,
       store,
@@ -53,7 +53,7 @@ describe('Le composant FenetreZone', function () {
   });
 
   it('rapporte son ouverture au journal', function (done) {
-    localVue.prototype.journal.enregistre = (evenement) => {
+    localVue.prototype.$journal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementOuvertureZone);
       expect(evenement.donnees()).to.eql({ zone: 'zone 51', danger: 'un-gros-danger' });
       done();
@@ -124,7 +124,7 @@ describe('Le composant FenetreZone', function () {
 
     it('rapporte la qualification du danger au journal', function (done) {
       wrapper.vm.etat = 'qualification';
-      localVue.prototype.journal.enregistre = (evenement) => {
+      localVue.prototype.$journal.enregistre = (evenement) => {
         expect(evenement).to.be.a(EvenementQualificationDanger);
         expect(evenement.donnees()).to.eql({ danger: 'danger1', reponse: 'qualification1' });
         done();
@@ -143,7 +143,7 @@ describe('Le composant FenetreZone', function () {
     });
 
     it("rapporte le résultat de l'identification au journal", function (done) {
-      localVue.prototype.journal.enregistre = (evenement) => {
+      localVue.prototype.$journal.enregistre = (evenement) => {
         expect(evenement).to.be.a(EvenementIdentificationDanger);
         expect(evenement.donnees()).to.eql({ zone: zone.id, reponse: 'oui', danger: zone.danger });
         done();

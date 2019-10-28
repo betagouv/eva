@@ -42,7 +42,7 @@ describe('La vue accueil', function () {
       }
     });
     localVue = createLocalVue();
-    localVue.prototype.depotRessources = depotRessources;
+    localVue.prototype.$depotRessources = depotRessources;
   });
 
   it('affiche les composants', function () {

@@ -17,13 +17,13 @@ export default {
     acte () {
       if ([DEMARRE, FINI].includes(this.etat)) {
         return {
-          fondSituation: this.depotRessources.fondSituation().src,
+          fondSituation: this.$depotRessources.fondSituation().src,
           afficheAide: true,
           ...configurationNormale
         };
       }
       return {
-        fondSituation: this.depotRessources.fondSituationEntrainement().src,
+        fondSituation: this.$depotRessources.fondSituationEntrainement().src,
         afficheAide: false,
         ...configurationEntrainement
       };

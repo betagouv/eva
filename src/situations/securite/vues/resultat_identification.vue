@@ -40,9 +40,9 @@ export default {
     },
     pictoResultatIdentification () {
       if (this.succesIdentification) {
-        return this.depotRessources.pictoDangerBienIdentifie().src;
+        return this.$depotRessources.pictoDangerBienIdentifie().src;
       } else {
-        return this.depotRessources.pictoDangerMalIdentifie().src;
+        return this.$depotRessources.pictoDangerMalIdentifie().src;
       }
     }
   },

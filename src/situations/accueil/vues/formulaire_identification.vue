@@ -5,9 +5,9 @@
       class="overlay modale"
       @submit.prevent="envoieFormulaire">
       <div>
-        <h2>{{ traduction('accueil.identification.titre') }}</h2>
+        <h2>{{ $traduction('accueil.identification.titre') }}</h2>
         <label for="formulaire-identification-input-nom">
-          {{ traduction('accueil.identification.label') }}
+          {{ $traduction('accueil.identification.label') }}
         </label>
         <div class="element-formulaire">
           <input
@@ -23,7 +23,7 @@
         <label
           v-if="!campagneForcee"
           for="formulaire-identification-input-campagne">
-          {{ traduction('accueil.identification.campagne') }}
+          {{ $traduction('accueil.identification.campagne') }}
         </label>
         <div
           v-if="!campagneForcee"
@@ -39,12 +39,12 @@
         </div>
         <label class="cgu-label">
           <input v-model="cgu" type="checkbox" />
-          <span class="cgu-text">{{ traduction('accueil.identification.cgu') }}</span>
+          <span class="cgu-text">{{ $traduction('accueil.identification.cgu') }}</span>
         </label>
         <div class="element-formulaire">
           <button
             :disabled="estDesactive"
-            class="bouton-arrondi">{{ traduction('accueil.identification.bouton') }}</button>
+            class="bouton-arrondi">{{ $traduction('accueil.identification.bouton') }}</button>
         </div>
       </div>
     </form>

@@ -14,12 +14,12 @@
           :src="casque"
           class="icone-description-icone"
         >
-        <span>{{ traduction('accueil.intro_consigne.message') }}</span>
+        <span>{{ $traduction('accueil.intro_consigne.message') }}</span>
       </p>
       <button
         class="bouton-arrondi"
         @click="afficheContexte"
-      >{{ traduction('accueil.intro_consigne.bouton') }}</button>
+      >{{ $traduction('accueil.intro_consigne.bouton') }}</button>
     </div>
   </div>
   <consigne
@@ -58,7 +58,7 @@ export default {
   data () {
     return {
       ecran: 'intro',
-      casque: this.depotRessources.casque().src,
+      casque: this.$depotRessources.casque().src,
       message: traduction(`${this.identifiantSituation}.intro_contexte.message`)
     };
   },

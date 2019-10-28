@@ -3,7 +3,7 @@
     :disabled="aide"
     class="bouton-arrondi bouton-arrondi--petit"
     @click="activeAide"
-  >{{ traduction('securite.activation_aide') }}</button>
+  >{{ $traduction('securite.activation_aide') }}</button>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ export default {
   methods: {
     activeAide () {
       this.$store.commit('activeAide');
-      this.journal.enregistre(new EvenementActivationAide());
+      this.$journal.enregistre(new EvenementActivationAide());
     }
   }
 };
