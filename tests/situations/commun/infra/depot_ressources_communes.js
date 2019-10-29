@@ -15,7 +15,7 @@ describe('Le dépot de ressources communes', function () {
         return Promise.resolve(() => 'wav_precharge');
       }
     });
-    depot = new DepotRessourcesCommunes(son, _chargeurs);
+    depot = new DepotRessourcesCommunes(_chargeurs, son);
   });
 
   it('étend DépotRessources', function () {
