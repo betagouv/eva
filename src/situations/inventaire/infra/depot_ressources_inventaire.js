@@ -6,7 +6,7 @@ import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
 
 export default class DepotRessourcesInventaire extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(sonConsigne, chargeurs);
+    super(chargeurs, sonConsigne);
     this.charge([croixRetourStock, boutonSaisie]);
     this.chargeContexte(require.context('inventaire/assets'));
   }

@@ -8,7 +8,7 @@ import pictoDangerMalIdentifie from 'securite/assets/danger_mal_identifie.svg';
 
 export default class DepotRessourcesSecurite extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(sonConsigne, chargeurs);
+    super(chargeurs, sonConsigne);
     this.charge([fondSituation, fondSituationEntrainement, pictoDangerBienIdentifie, pictoDangerMalIdentifie]);
   }
 

@@ -10,7 +10,7 @@ const biscuits = require.context('controle/assets', false, /(def[0-9]+|biscuit-n
 
 export default class DepotRessourcesControle extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(sonConsigne, chargeurs);
+    super(chargeurs, sonConsigne);
     this.chargeContexte(biscuits);
     this.charge([fondSituation, tapis, sonFondSonore, sonKlaxon]);
 

@@ -4,6 +4,6 @@ import sonConsigne from 'questions/assets/consigne_demarrage.wav';
 
 export default class DepotRessourcesQuestions extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(sonConsigne, chargeurs);
+    super(chargeurs, sonConsigne);
   }
 }
