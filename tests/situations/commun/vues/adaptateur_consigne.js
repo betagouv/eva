@@ -21,11 +21,11 @@ describe("L'adaptateur de la vue Consigne", function () {
         return new MockAudioNode();
       }
 
-      consigne () {
+      consigneDemarrage () {
         return new MockAudioNode();
       }
 
-      messageTransition () {
+      consigneTransition () {
         return new MockAudioNode();
       }
     }();

@@ -12,7 +12,7 @@ describe('La vue intro-consigne', function () {
         return { src: '' };
       }
 
-      consigne () {
+      consigneDemarrage () {
         return new MockAudioNode();
       }
 

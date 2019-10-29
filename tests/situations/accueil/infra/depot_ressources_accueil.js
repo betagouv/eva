@@ -15,7 +15,7 @@ describe('Le dépôt de ressources de la situation accueil', function () {
   });
 
   it("retourne la consigne d'accueil", function () {
-    expect(depot.consigne()).to.not.be(undefined);
+    expect(depot.consigneDemarrage()).to.not.be(undefined);
   });
 
   it('retourne les bâtiments', function () {
