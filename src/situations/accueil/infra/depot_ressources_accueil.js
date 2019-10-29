@@ -78,7 +78,7 @@ export default class DepotRessourcesAccueil extends DepotRessources {
     return this.ressource(batiments[situation]);
   }
 
-  consigne () {
+  consigneDemarrage () {
     return this.ressource(consigneAccueil);
   }
 

@@ -11,10 +11,10 @@ describe('joueur de consigne', function () {
     uneConsigne = new MockAudioNode();
     uneConsigneCommune = new MockAudioNode();
     const depot = {
-      consigne: () => uneConsigne,
+      consigneDemarrage: () => uneConsigne,
       consigneCommune: () => uneConsigneCommune
     };
-    joueur = new JoueurConsigne(depot, 'consigne');
+    joueur = new JoueurConsigne(depot, 'consigneDemarrage');
   });
 
   it('joue la consigne du dépôt', function (done) {

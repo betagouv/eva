@@ -11,7 +11,7 @@ describe('La vue consigne', function () {
         return { src: '' };
       }
 
-      consigne () {
+      consigneDemarrage () {
         return new MockAudioNode();
       }
 
@@ -22,7 +22,7 @@ describe('La vue consigne', function () {
     const localVue = createLocalVue();
     localVue.prototype.depotRessources = depotRessources;
     wrapper = shallowMount(Consigne, {
-      propsData: { message: 'contenu', ressourceConsigne: 'consigne' },
+      propsData: { message: 'contenu', ressourceConsigne: 'consigneDemarrage' },
       localVue
     });
   });

@@ -26,7 +26,7 @@
     v-else
     :titreConsigne="titreConsigne"
     :message="message"
-    ressourceConsigne="consigne"
+    ressourceConsigne="consigneDemarrage"
     @consigne-fini="fini"
   >
   </consigne>
