@@ -1,9 +1,12 @@
+@import 'commun/styles/couleurs.scss';
+
 .etageres {
 
   .contenu {
     // Attention de maintenir la cohérence avec DELAI_FERMETURE_CONTENANT_MILLISEC
     transition: transform .4s;
     position: absolute;
+    filter: drop-shadow(0 5px 10px $couleur-ombre);
   }
 
   .contenu.fermer {
