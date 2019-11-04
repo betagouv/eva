@@ -33,7 +33,7 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
       },
 
       metsAJourCompetencesFortes (state, competencesFortes) {
-        state.competencesFortes = competencesFortes;
+        state.competencesFortes = competencesFortes.slice(0, 2);
       }
     },
     actions: {

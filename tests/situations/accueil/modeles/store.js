@@ -90,11 +90,11 @@ describe("Le store de l'accueil", function () {
     });
   });
 
-  it('sait récupérer les compétences fortes depuis le serveur', function () {
+  it('sait récupérer les deux compétences fortes depuis le serveur', function () {
     registreUtilisateur.urlEvaluation = () => '/evaluation/1';
     const fetch = (url) => Promise.resolve({
       json: () => {
-        return { competences_fortes: ['comprehension_consigne', 'rapidite'] };
+        return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
       }
     });
     const store = creeStore(registreUtilisateur, fetch);
