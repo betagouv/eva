@@ -6,7 +6,8 @@ import 'inventaire/styles/contenu.scss';
 const DELAI_FERMETURE_CONTENANT_MILLISEC = 400;
 
 export default class VueContenu {
-  constructor (pointInsertion, delaiFermeture = DELAI_FERMETURE_CONTENANT_MILLISEC) {
+  constructor (situation, pointInsertion, delaiFermeture = DELAI_FERMETURE_CONTENANT_MILLISEC) {
+    this.situation = situation;
     this.calque = document.createElement('div');
     this.calque.id = 'calque';
     this.calque.classList.add('calque', 'invisible');
@@ -28,11 +29,14 @@ export default class VueContenu {
   }
 
   affiche (contenant) {
-    this.element = document.createElement('img');
-    this.element.src = contenant.imageOuvert;
+    if (this.situation.aideActivee) {
+      this.element = this.creeElementAvecAide(contenant);
+    } else {
+      this.element = this.creeElementSansAide(contenant);
+    }
     this.element.classList.add('contenu', 'fermer', 'invisible');
     this.element.style.top = this.position(contenant.posY - contenant.hauteur, contenant.hauteur, contenant.dimensionsOuvert.hauteur) + '%';
-    this.element.style.left = this.position(contenant.posX, contenant.largeur, contenant.dimensionsOuvert.largeur) + '%';
+    this.element.style.left = Math.max(0, this.position(contenant.posX, contenant.largeur, contenant.dimensionsOuvert.largeur)) + '%';
     this.element.style.height = contenant.dimensionsOuvert.hauteur + '%';
     this.element.style.width = contenant.dimensionsOuvert.largeur + '%';
 
@@ -44,5 +48,24 @@ export default class VueContenu {
     setTimeout(() => {
       this.element.classList.replace('fermer', 'ouvrir');
     }, 50);
+  }
+
+  creeElementSansAide (contenant) {
+    const element = document.createElement('img');
+    element.src = contenant.imageOuvert;
+
+    return element;
+  }
+
+  creeElementAvecAide (contenant) {
+    const element = document.createElement('div');
+    element.classList.add('contenu-aide');
+    const img = document.createElement('img');
+    img.src = contenant.contenu.image;
+    element.append(img);
+    const span = document.createElement('span');
+    span.textContent = `${contenant.quantite} ${contenant.contenu.nom}`;
+    element.append(span);
+    return element;
   }
 }
