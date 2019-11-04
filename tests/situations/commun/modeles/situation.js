@@ -41,4 +41,11 @@ describe('une situation', function () {
     const uneSituation = new Situation(true);
     expect(uneSituation.entrainementDisponible()).to.be(true);
   });
+
+  it("permet d'activer l'aide", function () {
+    const uneSituation = new Situation();
+    expect(uneSituation.aideActivee).to.be(false);
+    uneSituation.activeAide();
+    expect(uneSituation.aideActivee).to.be(true);
+  });
 });
