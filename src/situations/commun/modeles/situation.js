@@ -16,6 +16,7 @@ export default class Situation extends EventEmitter {
     super();
     this._etat = CHARGEMENT;
     this._entrainementDisponible = modeEntrainement;
+    this.aideActivee = false;
   }
 
   etat () {
@@ -31,5 +32,9 @@ export default class Situation extends EventEmitter {
 
   entrainementDisponible () {
     return this._entrainementDisponible;
+  }
+
+  activeAide () {
+    this.aideActivee = true;
   }
 }
