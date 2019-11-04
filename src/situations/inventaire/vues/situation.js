@@ -11,8 +11,8 @@ export default class VueSituation {
   }
 
   affiche (pointInsertion, $) {
-    new VueEtageres(pointInsertion, this.journal)
-      .affiche(this.situation.contenants);
+    new VueEtageres(this.situation, this.journal)
+      .affiche(pointInsertion);
 
     initialiseFormulaireSaisieInventaire(this.situation,
       pointInsertion,

@@ -3,16 +3,19 @@ import VueContenu from './contenu';
 import imageEtageres from 'inventaire/assets/etageres.png';
 
 export default class VueEtageres {
-  constructor (pointInsertion, journal) {
+  constructor (situation, journal) {
     this.journal = journal;
+    this.situation = situation;
+  }
+
+  affiche (pointInsertion) {
     this.element = document.createElement('div');
     this.element.id = 'etageres';
     this.element.classList.add('etageres');
+
     document.querySelector(pointInsertion).appendChild(this.element);
     document.querySelector(pointInsertion).classList.add('magasin');
-  }
 
-  affiche (contenants) {
     const etageres = document.createElement('img');
     etageres.id = 'imageEtageres';
     etageres.src = imageEtageres;
@@ -25,7 +28,7 @@ export default class VueEtageres {
 
     const vueContenants = new VueContenants(avantPlan, this.journal);
     const vueContenu = new VueContenu(avantPlan);
-    vueContenants.afficheLesContenants(contenants, vueContenu);
+    vueContenants.afficheLesContenants(this.situation.contenants, vueContenu);
 
     const redimensionne = () => {
       avantPlan.style.width = etageres.width + 'px';
