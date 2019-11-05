@@ -6,7 +6,7 @@
 }
 
 .bouton-lecture-en-cours {
-  @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu, 3.5rem);
+  @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu, 3rem);
   cursor: default;
 }
 
@@ -20,12 +20,10 @@
   }
 
   span {
-    text-transform: uppercase;
-    color: $couleur-etiquette-bouton;
-    font-weight: bold;
+    color: $couleur-texte;
+    font-size: 1.1rem;
     margin-left: 1rem;
     margin-right: 1rem;
-    width: 7rem;
   }
 
   &.desactivee span {
