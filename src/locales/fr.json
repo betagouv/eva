@@ -58,7 +58,7 @@
   "controle": {
     "titre": "Chaîne de fabrication",
     "intro_contexte": {
-      "message": "<p>Vous devez controler la production des biscuits bonhomme.</p><p>Le modèle conforme est présent sur le poste de travail. À l'arrivé des biscuits, placez les dans la zone conforme ou non-conforme si vous relevez un défaut.</p>"
+      "message": "<p>Vous devez controler la production des biscuits bonhomme.</p><p>Le modèle conforme est présent sur le poste de travail. À l'arrivée des biscuits, placez les dans la zone conforme ou non-conforme si vous relevez un défaut.</p>"
     },
     "resultat": {
       "bien_placees": "Réussis : {{nombre}}",
