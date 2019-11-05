@@ -1,5 +1,6 @@
 import 'commun/styles/commun.scss';
 import 'inventaire/styles/contenu.scss';
+import { traduction } from 'commun/infra/internationalisation';
 
 // Attention de maintenir la cohérence avec le temps
 // de la transition css (class contenu)
@@ -60,12 +61,16 @@ export default class VueContenu {
   creeElementAvecAide (contenant) {
     const element = document.createElement('div');
     element.classList.add('contenu-aide');
-    const img = document.createElement('img');
-    img.src = contenant.contenu.image;
-    element.append(img);
-    const span = document.createElement('span');
-    span.textContent = `${contenant.quantite} ${contenant.contenu.nom}`;
-    element.append(span);
+    if (contenant.quantite !== 0) {
+      const img = document.createElement('img');
+      img.src = contenant.contenu.image;
+      element.append(img);
+      const clefTraduction = contenant.contenu.forme === 'bidon' ? 'inventaire.aide_contenu_bidon' : 'inventaire.aide_contenu';
+      const span = document.createElement('span');
+      span.textContent = traduction(clefTraduction, { nombre: contenant.quantite, produit: contenant.contenu.nom });
+      element.append(span);
+    }
+
     return element;
   }
 }

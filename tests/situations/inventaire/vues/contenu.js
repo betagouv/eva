@@ -72,7 +72,24 @@ describe('vue contenu', function () {
       const contenant = new Contenant({ quantite: 5, dimensionsOuvert: { largeur: 33, hauteur: 33 } }, { nom: 'Nova Sky' });
       vue.affiche(contenant);
       expect(vue.element.classList.contains('contenu-aide')).to.be(true);
-      expect(vue.element.textContent).to.eql('5 Nova Sky');
+      expect(vue.element.textContent).to.eql('inventaire.aide_contenu');
+    });
+
+    it("affiche l'unité si le contenant est un bidon lorsque l'aide est activée", function () {
+      situation.activeAide();
+
+      const contenant = new Contenant({ quantite: 5, dimensionsOuvert: { largeur: 33, hauteur: 33 } }, { nom: 'Nova Sky', forme: 'bidon' });
+      vue.affiche(contenant);
+      expect(vue.element.classList.contains('contenu-aide')).to.be(true);
+      expect(vue.element.textContent).to.eql('inventaire.aide_contenu_bidon');
+    });
+
+    it("n'affiche rien lorsque la quantite est à 0 et l'aide est activée", function () {
+      situation.activeAide();
+
+      const contenant = new Contenant({ quantite: 0, dimensionsOuvert: { largeur: 33, hauteur: 33 } }, { nom: 'Nova Sky' });
+      vue.affiche(contenant);
+      expect(vue.element.textContent).to.eql('');
     });
   });
 });
