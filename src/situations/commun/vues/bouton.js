@@ -5,9 +5,8 @@ export default class VueBouton {
     this.click = click;
   }
 
-  ajouteUneEtiquette (etiquette, aGauche = false) {
+  ajouteUneEtiquette (etiquette) {
     this.etiquette = etiquette;
-    this.aGauche = aGauche;
   }
 
   affiche (pointInsertion, $) {
@@ -16,9 +15,6 @@ export default class VueBouton {
     this.$element = $bouton;
     if (this.etiquette) {
       const $boutonEtEtiquette = $('<div class="bouton-et-etiquette"></div>');
-      if (this.aGauche) {
-        $boutonEtEtiquette.addClass('gauche');
-      }
       $boutonEtEtiquette.append($bouton);
       $boutonEtEtiquette.append(`<span>${this.etiquette}</span>`);
       this.$element = $boutonEtEtiquette;
