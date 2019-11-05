@@ -75,6 +75,11 @@ export default class DepotRessources {
     const promesses = ressources.map((ressource) => {
       const extension = ressource.match(/\.([^.]+)$/)[1];
       const chargeur = this.chargeurs[extension];
+      if (chargeur === undefined) {
+        throw new Error(
+          `Aucun chargeur disponible pour l'extension '${extension}'. Impossible de charger la ressource '${ressource}'`
+        );
+      }
       return chargeur(ressource).then((cloneur) => {
         this.cloneursRessource[ressource] = cloneur;
       });
