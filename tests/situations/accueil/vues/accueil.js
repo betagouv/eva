@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECALAGE_INITIAL } from 'accueil/vues/accueil';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
+import { traduction } from 'commun/infra/internationalisation';
 
 describe('La vue accueil', function () {
   let depotRessources;
@@ -42,6 +43,7 @@ describe('La vue accueil', function () {
     });
     localVue = createLocalVue();
     localVue.prototype.$depotRessources = depotRessources;
+    localVue.prototype.$traduction = traduction;
   });
 
   it('affiche les composants', function () {

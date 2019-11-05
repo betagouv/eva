@@ -4,6 +4,7 @@ import Index from 'accueil/vues/index';
 import OverlayChargement from 'commun/vues/overlay_chargement';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import Accueil from 'accueil/vues/accueil';
+import { traduction } from 'commun/infra/internationalisation';
 
 describe('La vue index', function () {
   let depotRessources;
@@ -18,6 +19,7 @@ describe('La vue index', function () {
 
     localVue = createLocalVue();
     localVue.prototype.$depotRessources = depotRessources;
+    localVue.prototype.$traduction = traduction;
   });
 
   it('affiche les composants en chargement', function () {

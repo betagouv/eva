@@ -1,18 +1,17 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import Vue from 'vue';
 import Vuex from 'vuex';
 import FormulaireIdentificationVue from 'accueil/vues/formulaire_identification';
 import { traduction } from 'commun/infra/internationalisation';
-
-Vue.prototype.$traduction = traduction;
 
 describe("Le formulaire d'identification", function () {
   let wrapper;
   let promesse;
   let store;
+  let localVue;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
+    localVue = createLocalVue();
+    localVue.prototype.$traduction = traduction;
     promesse = Promise.resolve();
     store = new Vuex.Store({
       state: { estConnecte: false }
@@ -128,7 +127,7 @@ describe("Le formulaire d'identification", function () {
 
   it('cache le champ campagne si il y a une propriété forceCampagne', function () {
     expect(wrapper.findAll('.input-accueil').length).to.equal(2);
-    wrapper = mount(FormulaireIdentificationVue, { store, propsData: { forceCampagne: 'ete-2019' } });
+    wrapper = mount(FormulaireIdentificationVue, { store, localVue, propsData: { forceCampagne: 'ete-2019' } });
     expect(wrapper.vm.campagne).to.eql('ete-2019');
     expect(wrapper.findAll('label').length).to.equal(2);
     expect(wrapper.findAll('.input-accueil').length).to.equal(1);

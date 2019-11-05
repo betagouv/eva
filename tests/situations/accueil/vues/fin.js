@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Fin from 'accueil/vues/fin';
+import { traduction } from 'commun/infra/internationalisation';
 
 describe('La vue de fin', function () {
   let wrapper;
@@ -29,6 +30,7 @@ describe('La vue de fin', function () {
     });
     localVue = createLocalVue();
     localVue.prototype.$depotRessources = depotRessources;
+    localVue.prototype.$traduction = traduction;
   });
 
   it("sait s'afficher", function () {
