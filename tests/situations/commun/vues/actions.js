@@ -65,10 +65,4 @@ describe('Affiche les éléments communs aux situations', function () {
     situation.modifieEtat(DEMARRE);
     expect($('.bouton-aide').length).to.equal(1);
   });
-
-  it('cache le conteneur', function () {
-    vueActions.affiche('#magasin', $);
-    vueActions.cache();
-    expect($('.actions.invisible').length).to.equal(1);
-  });
 });

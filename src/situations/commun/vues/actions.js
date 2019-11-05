@@ -16,40 +16,45 @@ export default class VueActions {
   }
 
   affiche (pointInsertion, $) {
-    this.$actions = $('<div class="actions"></div>');
+    const $actions = $(`
+      <div class="actions">
+        <div class="actions-rejoue-consigne"></div>
+        <div class="actions-aide"></div>
+        <div class="actions-stop"></div>
+      </div>
+    `);
+    this.$rejoueConsigne = $actions.find('.actions-rejoue-consigne');
+    this.$aide = $actions.find('.actions-aide');
+    this.$stop = $actions.find('.actions-stop');
     this.stop = new VueStop(this.situation, this.journal);
     this.rejoueConsigne = new VueRejoueConsigne(this.situation, this.joueurConsigne, this.journal);
     this.aide = new VueAide(this.situation, this.depotRessources);
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
     this.afficheBoutons(this.situation.etat(), $);
-    $(pointInsertion).append(this.$actions);
+    $(pointInsertion).append($actions);
   }
 
   afficheBoutons (etat, $) {
     const actionsEtat = new Map();
     actionsEtat.set(ENTRAINEMENT_DEMARRE, () => {
-      this.rejoueConsigne.affiche(this.$actions, $);
-      this.stop.affiche(this.$actions, $);
+      this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
+      this.stop.affiche(this.$stop, $);
     });
     actionsEtat.set(ENTRAINEMENT_FINI, () => {
       this.rejoueConsigne.cache();
     });
     actionsEtat.set(DEMARRE, () => {
       if (!this.situation.entrainementDisponible()) {
-        this.rejoueConsigne.affiche(this.$actions, $);
-        this.aide.affiche(this.$actions, $);
-        this.stop.affiche(this.$actions, $);
+        this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
+        this.aide.affiche(this.$aide, $);
+        this.stop.affiche(this.$stop, $);
       } else {
-        this.aide.affiche(this.$actions, $);
+        this.aide.affiche(this.$aide, $);
       }
     });
     const changements = actionsEtat.get(etat);
     if (changements) {
       changements();
     }
-  }
-
-  cache () {
-    this.$actions.addClass('invisible');
   }
 }
