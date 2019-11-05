@@ -1,7 +1,7 @@
 @import 'commun/styles/couleurs.scss';
 
 .boite-utilisateur {
-  border: 1px solid $bleu-clair;
+  border: 1px solid $vert-clair;
   border-radius: 3rem;
   color: $couleur-texte;
   font-size: 1.125rem;
@@ -10,7 +10,7 @@
 
   .progression {
     position: absolute;
-    background-color: $bleu-clair;
+    background-color: $vert-clair;
     height: 100%;
     z-index: -1;
   }

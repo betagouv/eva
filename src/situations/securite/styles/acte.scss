@@ -13,7 +13,7 @@
   }
 
   &-qualifiee {
-    fill: transparentize($bleu-clair, .25);
+    fill: transparentize($vert-clair, .25);
     stroke: $blanc;
     stroke-width: 6px;
   }
@@ -64,6 +64,6 @@
   animation: 1s agrandit-puis-retrecit;
 
   path {
-    fill: $bleu-clair;
+    fill: $vert-clair;
   }
 }
