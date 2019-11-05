@@ -114,6 +114,22 @@ describe('Le store de la situation sécurité', function () {
     expect(store.state.etat).to.eql(FINI);
   });
 
+  it("permet de synchroniser l'aide entre le modèle situation et le store", function () {
+    const store = creeStore();
+    const situation = new Situation();
+    synchroniseStoreEtModeleSituation(situation, store);
+    situation.activeAide();
+    expect(store.state.aide).to.be(true);
+  });
+
+  it("permet de synchroniser l'aide entre le  store et le modèle situation", function () {
+    const store = creeStore();
+    const situation = new Situation();
+    synchroniseStoreEtModeleSituation(situation, store);
+    store.commit('activeAide');
+    expect(situation.aideActivee).to.be(true);
+  });
+
   it("active l'aide", function () {
     const store = creeStore();
     expect(store.state.aide).to.be(false);

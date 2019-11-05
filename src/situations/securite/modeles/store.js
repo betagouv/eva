@@ -1,7 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import { CHANGEMENT_ETAT, CHARGEMENT, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from 'commun/modeles/situation';
+import {
+  ACTIVATION_AIDE,
+  CHANGEMENT_ETAT,
+  CHARGEMENT,
+  ENTRAINEMENT_DEMARRE,
+  ENTRAINEMENT_FINI,
+  DEMARRE,
+  FINI
+} from 'commun/modeles/situation';
 
 Vue.use(Vuex);
 
@@ -57,9 +65,20 @@ export function synchroniseStoreEtModeleSituation (situation, store) {
   situation.on(CHANGEMENT_ETAT, (etat) => {
     store.commit('modifieEtat', etat);
   });
+  situation.on(ACTIVATION_AIDE, () => {
+    store.commit('activeAide');
+  });
   store.subscribe((mutation, state) => {
-    if (mutation.type === 'modifieEtat') {
-      situation.modifieEtat(mutation.payload);
+    switch (mutation.type) {
+      case 'modifieEtat':
+        situation.modifieEtat(mutation.payload);
+        break;
+      case 'activeAide':
+        if (situation.aideActivee) {
+          return;
+        }
+        situation.activeAide();
+        break;
     }
   });
   store.commit('modifieEtat', situation.etat());
