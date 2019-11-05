@@ -44,6 +44,16 @@ describe('le dépôt de ressources', function () {
     });
   });
 
+  it("lance un exception explicite si l'extension n'est pas gérée", function () {
+    const depot = new DepotRessources({
+    });
+
+    expect(() => depot.charge(['./etageres.png'])).to.throwError(function (e) {
+      expect(e).to.be.a(Error);
+      expect(e.message).to.equal("Aucun chargeur disponible pour l'extension 'png'. Impossible de charger la ressource './etageres.png'");
+    });
+  });
+
   it('lance une exception explicite si le nom de la ressource est undefined', function () {
     const depot = new DepotRessources({ });
     expect(() => depot.ressource(undefined)).to.throwError(function (e) {
