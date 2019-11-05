@@ -26,16 +26,14 @@ describe('La vue de la situation Sécurité', function () {
     });
   });
 
-  it("en mode entrainement, il rend le fond d'entrainement et cache l'aide", function () {
+  it("en mode entrainement, il rend le fond d'entrainement", function () {
     store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
     expect(wrapper.vm.acte.fondSituation).to.eql('fond-situation-entrainement');
-    expect(wrapper.vm.acte.afficheAide).to.be(false);
   });
 
-  it("en mode normal, il rend le fond normal et affiche l'aide", function () {
+  it('en mode normal, il rend le fond normal', function () {
     store.commit('modifieEtat', DEMARRE);
     expect(wrapper.vm.acte.fondSituation).to.eql('fond-situation');
-    expect(wrapper.vm.acte.afficheAide).to.be(true);
   });
 
   it("rend l'acte", function () {

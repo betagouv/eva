@@ -17,11 +17,10 @@ describe('Le store de la situation sécurité', function () {
     const store = creeStore();
     const zones = [{ x: 1, y: 2, r: 3 }];
     const dangers = { danger1: {} };
-    store.commit('configureActe', { zones, dangers, fondSituation: 'fond', afficheAide: false });
+    store.commit('configureActe', { zones, dangers, fondSituation: 'fond' });
     expect(store.state.zones).to.eql(zones);
     expect(store.state.dangers).to.eql(dangers);
     expect(store.state.fondSituation).to.eql('fond');
-    expect(store.state.afficheAide).to.be(false);
   });
 
   it("réinitialise les dangers qualifiés et l'aide a la configuration de l'acte", function () {

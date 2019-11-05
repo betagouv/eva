@@ -18,13 +18,11 @@ export default {
       if ([DEMARRE, FINI].includes(this.etat)) {
         return {
           fondSituation: this.$depotRessources.fondSituation().src,
-          afficheAide: true,
           ...configurationNormale
         };
       }
       return {
         fondSituation: this.$depotRessources.fondSituationEntrainement().src,
-        afficheAide: false,
         ...configurationEntrainement
       };
     }

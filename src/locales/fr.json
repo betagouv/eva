@@ -96,7 +96,6 @@
       "message": "<p>Dans cet exercice, vous allez devoir superviser un secteur et détecter les dangers.</p><p>Pour cela, il vous faudra cliquer sur les dangers que vous aurez détectés et spécifier quels sont les dangers en choisissant parmi une liste de propositions.</p><p>Commençons tout d’abord par un tutoriel.</p>",
       "message_transition": "<p>Vous venez de réussir l’entraînement. Vous allez maintenant pouvoir commencer l’exercice de sécurité. Il vous faudra trouver 5 dangers sur la scène qui vous sera présentée.</p>"
     },
-    "activation_aide": "J'ai besoin d'aide",
     "aide": {
       "activee": "Aide activée",
       "bouton": "Continuer",
