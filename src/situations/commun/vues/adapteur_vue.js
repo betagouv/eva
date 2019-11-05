@@ -10,6 +10,9 @@ export function creeAdapteur (component) {
     }
 
     affiche (pointInsertion, $) {
+      if (this.vm) {
+        return;
+      }
       const div = document.createElement('div');
       $(pointInsertion).append(div);
       this.vm = new Vue({
@@ -20,6 +23,7 @@ export function creeAdapteur (component) {
     cache () {
       this.vm.$el.remove();
       this.vm.$destroy();
+      this.vm = null;
     }
   };
 }
