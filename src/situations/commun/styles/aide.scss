@@ -1,0 +1,6 @@
+@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/mixins/boutons.scss';
+
+.bouton-aide {
+  @include bouton($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
+}

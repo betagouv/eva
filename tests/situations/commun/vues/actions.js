@@ -25,11 +25,12 @@ describe('Affiche les éléments communs aux situations', function () {
     expect($('.bouton-lire-consigne', '.actions').length).to.equal(0);
   });
 
-  it("Affiche bouton stop et rejoue consigne une fois que l'utilisateur à cliqué sur GO", function () {
+  it("Affiche bouton stop, rejoue consigne et aide une fois que l'utilisateur a démarré", function () {
     vueActions.affiche('#magasin', $);
     situation.modifieEtat(DEMARRE);
     expect($('.bouton-stop').length).to.equal(1);
     expect($('.bouton-lire-consigne', '.actions').length).to.equal(1);
+    expect($('.bouton-aide', '.actions').length).to.equal(1);
   });
 
   it("n'affiche pas le bouton rejoue consigne une fois l'entrainement terminé", function () {
@@ -52,6 +53,17 @@ describe('Affiche les éléments communs aux situations', function () {
     expect($('.bouton-stop').length).to.equal(1);
     situation.modifieEtat(DEMARRE);
     expect($('.bouton-stop').length).to.equal(1);
+  });
+
+  it("n'affiche pas le bouton aide dans l'entrainement", function () {
+    situation.entrainementDisponible = () => true;
+    vueActions.affiche('#magasin', $);
+    situation.modifieEtat(ENTRAINEMENT_DEMARRE);
+    expect($('.bouton-aide').length).to.equal(0);
+    situation.modifieEtat(ENTRAINEMENT_FINI);
+    expect($('.bouton-aide').length).to.equal(0);
+    situation.modifieEtat(DEMARRE);
+    expect($('.bouton-aide').length).to.equal(1);
   });
 
   it('cache le conteneur', function () {
