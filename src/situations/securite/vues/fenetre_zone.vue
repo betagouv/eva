@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import 'securite/styles/fenetre.scss';
+import 'commun/styles/fenetre.scss';
 import FormulaireRadio from './formulaire_radio';
 import ResultatIdentification from './resultat_identification';
 import { traduction } from 'commun/infra/internationalisation';

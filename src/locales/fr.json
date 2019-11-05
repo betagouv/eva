@@ -97,7 +97,6 @@
       "message_transition": "<p>Vous venez de réussir l’entraînement. Vous allez maintenant pouvoir commencer l’exercice de sécurité. Il vous faudra trouver 5 dangers sur la scène qui vous sera présentée.</p>"
     },
     "aide": {
-      "activee": "Aide activée",
       "bouton": "Continuer",
       "texte": "Vous avez activé l’aide. Grâce à celle-ci, le curseur de la souris se transforme en main. Ces endroits sont peut-être des dangers que vous devez identifier. Faites-en bon usage !"
     },

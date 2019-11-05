@@ -1,0 +1,13 @@
+@import 'commun/styles/couleurs.scss';
+
+.fenetre-aide-presentation {
+  bottom: 15%;
+  left: 50%;
+  margin-left: -20%;
+  width: 40%;
+  filter: drop-shadow(0 5px 10px $couleur-ombre);
+
+  .fenetre-aide-presentation-bouton {
+    margin-top: 1rem;
+  }
+}

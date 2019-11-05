@@ -8,17 +8,18 @@ import VueAide from 'commun/vues/aide';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
 
 export default class VueActions {
-  constructor (situation, journal, depot) {
+  constructor (situation, journal, depotRessources) {
     this.situation = situation;
     this.journal = journal;
-    this.joueurConsigne = new JoueurConsigne(depot, 'consigneDemarrage');
+    this.joueurConsigne = new JoueurConsigne(depotRessources, 'consigneDemarrage');
+    this.depotRessources = depotRessources;
   }
 
   affiche (pointInsertion, $) {
     this.$actions = $('<div class="actions"></div>');
     this.stop = new VueStop(this.situation, this.journal);
     this.rejoueConsigne = new VueRejoueConsigne(this.situation, this.joueurConsigne, this.journal);
-    this.aide = new VueAide(this.situation);
+    this.aide = new VueAide(this.situation, this.depotRessources);
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
     this.afficheBoutons(this.situation.etat(), $);
     $(pointInsertion).append(this.$actions);
