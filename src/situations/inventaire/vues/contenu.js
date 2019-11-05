@@ -61,6 +61,7 @@ export default class VueContenu {
   creeElementAvecAide (contenant) {
     const element = document.createElement('div');
     element.classList.add('contenu-aide');
+    element.style.backgroundColor = contenant.couleur;
     if (contenant.quantite !== 0) {
       const img = document.createElement('img');
       img.src = contenant.contenu.image;
