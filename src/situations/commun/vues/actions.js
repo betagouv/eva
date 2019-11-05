@@ -4,6 +4,7 @@ import { CHANGEMENT_ETAT, DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } fro
 
 import VueStop from 'commun/vues/stop';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
+import VueAide from 'commun/vues/aide';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
 
 export default class VueActions {
@@ -17,6 +18,7 @@ export default class VueActions {
     this.$actions = $('<div class="actions"></div>');
     this.stop = new VueStop(this.situation, this.journal);
     this.rejoueConsigne = new VueRejoueConsigne(this.situation, this.joueurConsigne, this.journal);
+    this.aide = new VueAide();
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
     this.afficheBoutons(this.situation.etat(), $);
     $(pointInsertion).append(this.$actions);
@@ -34,7 +36,10 @@ export default class VueActions {
     actionsEtat.set(DEMARRE, () => {
       if (!this.situation.entrainementDisponible()) {
         this.rejoueConsigne.affiche(this.$actions, $);
+        this.aide.affiche(this.$actions, $);
         this.stop.affiche(this.$actions, $);
+      } else {
+        this.aide.affiche(this.$actions, $);
       }
     });
     const changements = actionsEtat.get(etat);

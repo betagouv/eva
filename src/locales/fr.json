@@ -132,6 +132,7 @@
     "titre": "Sécurité"
   },
   "situation": {
+    "activer_aide": "J'ai besoin d'aide",
     "ecouter-consigne": "Commencez par écouter la consigne",
     "consigne": "Consigne",
     "titre_transition": "Bravo !",
