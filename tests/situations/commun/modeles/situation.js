@@ -1,4 +1,4 @@
-import Situation, { CHARGEMENT, DEMARRE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
+import Situation, { CHARGEMENT, DEMARRE, CHANGEMENT_ETAT, ACTIVATION_AIDE } from 'commun/modeles/situation';
 
 describe('une situation', function () {
   it('a un état chargement par défaut', function () {
@@ -47,5 +47,15 @@ describe('une situation', function () {
     expect(uneSituation.aideActivee).to.be(false);
     uneSituation.activeAide();
     expect(uneSituation.aideActivee).to.be(true);
+  });
+
+  it("notifie l'activation de l'aide", function () {
+    let compteurActivationAide = 0;
+    const uneSituation = new Situation();
+    uneSituation.on(ACTIVATION_AIDE, () => {
+      compteurActivationAide++;
+    });
+    uneSituation.activeAide();
+    expect(compteurActivationAide).to.eql(1);
   });
 });
