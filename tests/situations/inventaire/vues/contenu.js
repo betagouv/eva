@@ -69,9 +69,10 @@ describe('vue contenu', function () {
     it("affiche le contenu avec le type et la quantite lorsque l'aide est activée", function () {
       situation.activeAide();
 
-      const contenant = new Contenant({ quantite: 5, dimensionsOuvert: { largeur: 33, hauteur: 33 } }, { nom: 'Nova Sky' });
+      const contenant = new Contenant({ quantite: 5, dimensionsOuvert: { largeur: 33, hauteur: 33 }, couleur: 'green' }, { nom: 'Nova Sky' });
       vue.affiche(contenant);
       expect(vue.element.classList.contains('contenu-aide')).to.be(true);
+      expect(vue.element.style.backgroundColor).to.eql('green');
       expect(vue.element.textContent).to.eql('inventaire.aide_contenu');
     });
 
