@@ -72,7 +72,9 @@
       "message": "<p>Vous devez faire l'inventaire du stock des boissons en cliquant sur les contenants pour voir les produits à l'intérieur.</p><p>Vous pouvez utiliser un suport papier/crayon et une calculatrice. Quand votre calcul est complet, cliquez sur le bouton bleu où est dessiné un stylo pour saisir votre inventaire.</p>"
     },
     "valider_saisie": "Vérifier",
-    "unite_vrac": "litre"
+    "unite_vrac": "litre",
+    "aide_contenu": "{{nombre}} {{- produit}}",
+    "aide_contenu_bidon": "{{nombre}} litres {{- produit}}"
   },
   "questions": {
     "titre": "Bureau",
