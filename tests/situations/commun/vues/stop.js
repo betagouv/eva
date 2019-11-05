@@ -25,7 +25,7 @@ describe('vue Stop', function () {
 
   it("sait s'insérer dans une page web", function () {
     vue.affiche('#point-insertion', $);
-    expect($('#point-insertion .bouton-stop').hasClass('invisible')).to.be(false);
+    expect($('#point-insertion .bouton-stop').length).to.eql(1);
   });
 
   it('ouvre une fenêtre de confirmation avant de stopper', function () {
