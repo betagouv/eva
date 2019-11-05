@@ -10,6 +10,7 @@ export const FINI = 'fini';
 export const STOPPEE = 'stoppée';
 
 export const CHANGEMENT_ETAT = 'changementEtat';
+export const ACTIVATION_AIDE = 'activationAide';
 
 export default class Situation extends EventEmitter {
   constructor (modeEntrainement = false) {
@@ -36,5 +37,6 @@ export default class Situation extends EventEmitter {
 
   activeAide () {
     this.aideActivee = true;
+    this.emit(ACTIVATION_AIDE);
   }
 }
