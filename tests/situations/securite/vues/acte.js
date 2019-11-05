@@ -1,7 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ActeSecurite from 'securite/vues/acte';
 import EvenementClickHorsZone from 'securite/modeles/evenement_click_hors_zone';
-import BoutonAide from 'securite/vues/bouton_aide';
 import { creeStore } from 'securite/modeles/store';
 
 describe("La vue de l'acte Sécurité", function () {
@@ -16,15 +15,6 @@ describe("La vue de l'acte Sécurité", function () {
       localVue,
       store
     });
-  });
-
-  it("affiche l'aide par défaut", function () {
-    expect(wrapper.contains(BoutonAide)).to.be(true);
-  });
-
-  it("cache l'aide si l'acte le configure a faux", function () {
-    store.commit('configureActe', { zones: [], dangers: {}, afficheAide: false });
-    expect(wrapper.contains(BoutonAide)).to.be(false);
   });
 
   it('affiche les zones', function () {

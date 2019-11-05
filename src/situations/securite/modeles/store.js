@@ -22,7 +22,6 @@ export function creeStore () {
       fondSituation: '',
       dangersQualifies: {},
       nonDangersIdentifies: [],
-      afficheAide: true,
       aide: false
     },
     getters: {
@@ -37,11 +36,10 @@ export function creeStore () {
       modifieEtat (state, etat) {
         state.etat = etat;
       },
-      configureActe (state, { zones, dangers, fondSituation, afficheAide }) {
+      configureActe (state, { zones, dangers, fondSituation }) {
         state.zones = zones;
         state.dangers = dangers;
         state.fondSituation = fondSituation;
-        state.afficheAide = afficheAide;
         state.dangersQualifies = {};
         state.aide = false;
         state.nonDangersIdentifies = [];
