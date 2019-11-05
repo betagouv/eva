@@ -4,11 +4,16 @@
   height: 6.5rem;
   background: $couleur-fond-actions;
   padding: 1rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
   align-items: center;
   justify-content: space-between;
 
-  &.invisible {
-    display: none;
+  > :nth-child(2) {
+    justify-self: center;
+  }
+
+  > :last-child {
+    justify-self: end;
   }
 }

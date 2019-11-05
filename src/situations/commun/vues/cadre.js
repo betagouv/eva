@@ -52,9 +52,6 @@ export default class VueCadre {
         this.vueCourante = new ClasseVue(this.situation, this.depotRessources);
         this.vueCourante.affiche(selecteurCadre, $);
       }
-      if (etat === FINI) {
-        this.vueActions.cache();
-      }
     };
 
     afficheEtat(this.situation.etat());
