@@ -6,21 +6,21 @@
   border-radius: 2rem;
   cursor: pointer;
   color: $blanc;
-  background-color: $couleur-fond-bouton-violet;
+  background-color: $couleur-fond-bouton-bleu;
   transition: border, background .3s;
   outline: none;
   line-height: 1.3;
 
   &:active {
-    border-color: $couleur-fond-bouton-violet;
+    border-color: $couleur-fond-bouton-bleu;
   }
   &:hover,
   &:focus {
-    background-color: $couleur-fond-bouton-violet-focus;
+    background-color: $couleur-fond-bouton-bleu-focus;
   }
   &[disabled] {
-    background-color: grayscale($couleur-fond-bouton-violet);
-    border-color: grayscale($couleur-fond-bouton-violet-focus);
+    background-color: grayscale($couleur-fond-bouton-bleu);
+    border-color: grayscale($couleur-fond-bouton-bleu-focus);
     cursor: auto;
   }
 

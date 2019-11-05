@@ -2,11 +2,11 @@
 @import 'commun/styles/mixins/boutons.scss';
 
 .bouton-lire-consigne {
-  @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet-focus);
+  @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
 }
 
 .bouton-lecture-en-cours {
-  @include bouton($couleur-fond-bouton-violet, $couleur-fond-bouton-violet, $couleur-fond-bouton-violet, 3.5rem);
+  @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu, 3.5rem);
   cursor: default;
 }
 
