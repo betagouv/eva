@@ -14,7 +14,7 @@
   padding: 0rem;
 
   &:hover {
-    border-color: $couleur-bordure-bouton-focus;
+    border-color: $couleur-fond-bouton-bleu-focus;
   }
 }
 
@@ -99,7 +99,7 @@
       font-size: 1.125rem;
       border-radius: .625rem .625rem 0 0;
 
-      &:hover { background: $couleur-bordure-bouton-focus }
+      &:hover { background: $couleur-fond-bouton-bleu-focus; }
     }
   }
 
