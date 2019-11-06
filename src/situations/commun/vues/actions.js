@@ -28,7 +28,7 @@ export default class VueActions {
     this.$stop = $actions.find('.actions-stop');
     this.stop = new VueStop(this.situation, this.journal);
     this.rejoueConsigne = new VueRejoueConsigne(this.situation, this.joueurConsigne, this.journal);
-    this.aide = new VueAide(this.situation, this.depotRessources);
+    this.aide = new VueAide(this.situation, this.depotRessources, this.journal);
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
     this.afficheBoutons(this.situation.etat(), $);
     $(pointInsertion).append($actions);
