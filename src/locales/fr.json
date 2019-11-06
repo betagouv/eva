@@ -37,7 +37,7 @@
         "description": "Sait distinguer des objets entre eux sur la base de critères visuels (calibre, couleur, forme, disposition), les comparer à des modèles, et les classer. Parvient à détecter et localiser les défauts d’aspect des objets pour les trier."
       },
       "rapidite": {
-        "nom": "Vitesse d'éxécution",
+        "nom": "Vitesse d'exécution",
         "description": "Parvient à mobiliser ses compétences afin de réaliser correctement les tâches demandées en un minimum de temps."
       },
       "vigilance_controle": {
