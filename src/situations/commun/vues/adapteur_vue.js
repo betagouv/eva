@@ -21,9 +21,11 @@ export function creeAdapteur (component) {
     }
 
     cache () {
-      this.vm.$el.remove();
-      this.vm.$destroy();
-      this.vm = null;
+      if (this.vm) {
+        this.vm.$el.remove();
+        this.vm.$destroy();
+        this.vm = null;
+      }
     }
   };
 }

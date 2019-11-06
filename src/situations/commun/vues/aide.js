@@ -2,6 +2,7 @@ import { traduction } from 'commun/infra/internationalisation';
 import aide from 'commun/assets/aide.svg';
 import VueBouton from './bouton';
 import { creeAdapteur } from './adapteur_vue';
+import EvenementActivationAide from 'commun/modeles/evenement_activation_aide';
 import VueFenetreAide, { FERME } from 'commun/vues/fenetre_aide';
 
 import 'commun/styles/bouton.scss';
@@ -10,9 +11,10 @@ import 'commun/styles/aide.scss';
 const AdapteurFenetreAide = creeAdapteur(VueFenetreAide);
 
 export default class VueAide {
-  constructor (situation, depotRessources) {
+  constructor (situation, depotRessources, journal) {
     this.situation = situation;
     this.depotRessources = depotRessources;
+    this.journal = journal;
   }
 
   affiche (pointInsertion, $) {
@@ -25,7 +27,10 @@ export default class VueAide {
   }
 
   activeAide (pointInsertion, $) {
-    this.situation.activeAide();
+    if (!this.situation.aideActivee) {
+      this.situation.activeAide();
+      this.journal.enregistre(new EvenementActivationAide());
+    }
     this.fenetreAide.affiche(pointInsertion, $);
     this.fenetreAide.vm.$children[0].$on(FERME, () => {
       this.fenetreAide.cache();
