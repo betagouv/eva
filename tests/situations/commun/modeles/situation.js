@@ -58,4 +58,14 @@ describe('une situation', function () {
     uneSituation.activeAide();
     expect(compteurActivationAide).to.eql(1);
   });
+
+  it("retourne l'information si l'aide est disponible", function () {
+    const uneSituation = new Situation();
+    expect(uneSituation.aideDisponible()).to.be(false);
+  });
+
+  it("permet d'être initialisé avec le mode entrainement disponible", function () {
+    const uneSituation = new Situation(false, true);
+    expect(uneSituation.aideDisponible()).to.be(true);
+  });
 });

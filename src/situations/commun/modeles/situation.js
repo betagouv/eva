@@ -13,10 +13,11 @@ export const CHANGEMENT_ETAT = 'changementEtat';
 export const ACTIVATION_AIDE = 'activationAide';
 
 export default class Situation extends EventEmitter {
-  constructor (modeEntrainement = false) {
+  constructor (modeEntrainement = false, aideDisponible = false) {
     super();
     this._etat = CHARGEMENT;
     this._entrainementDisponible = modeEntrainement;
+    this._aideDisponible = aideDisponible;
     this.aideActivee = false;
   }
 
@@ -33,6 +34,10 @@ export default class Situation extends EventEmitter {
 
   entrainementDisponible () {
     return this._entrainementDisponible;
+  }
+
+  aideDisponible () {
+    return this._aideDisponible;
   }
 
   activeAide () {
