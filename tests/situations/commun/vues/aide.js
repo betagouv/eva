@@ -11,7 +11,7 @@ describe('vue bouton aide', function () {
   beforeEach(function () {
     $('body').append('<div id="point-insertion"></div>');
     situation = new Situation();
-    journal = { enregistre () { } };
+    journal = { situation: 'test', enregistre () { } };
     vue = new VueAide(situation, null, journal);
   });
 

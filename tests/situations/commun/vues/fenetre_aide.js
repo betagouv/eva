@@ -5,7 +5,11 @@ describe("La fenêtre d'aide", function () {
   let wrapper;
 
   beforeEach(function () {
-    wrapper = shallowMount(FenetreAide);
+    wrapper = shallowMount(FenetreAide, {
+      propsData: {
+        contexte: ''
+      }
+    });
   });
 
   it('au click sur le bouton, envoi un événement', function () {
