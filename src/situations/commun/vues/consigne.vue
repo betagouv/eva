@@ -45,8 +45,7 @@ export default {
 
   data () {
     return {
-      consigneEnCours: false,
-      depot: this.$depotRessources
+      consigneEnCours: false
     };
   },
 
@@ -64,7 +63,7 @@ export default {
 
     joueConsigne () {
       this.consigneEnCours = true;
-      const consigne = new JoueurConsigne(this.depot, this.ressourceConsigne);
+      const consigne = new JoueurConsigne(this.$depotRessources, this.ressourceConsigne);
       consigne.joue(true, this.lectureTerminee.bind(this));
     },
 
