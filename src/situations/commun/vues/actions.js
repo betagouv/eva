@@ -48,7 +48,9 @@ export default class VueActions {
         this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
         this.stop.affiche(this.$stop, $);
       }
-      this.aide.affiche(this.$aide, $);
+      if (this.situation.aideDisponible()) {
+        this.aide.affiche(this.$aide, $);
+      }
     });
     const changements = actionsEtat.get(etat);
     if (changements) {
