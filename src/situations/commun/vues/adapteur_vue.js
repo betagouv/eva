@@ -4,9 +4,10 @@ import { traduction } from 'commun/infra/internationalisation';
 
 export function creeAdapteur (component) {
   return class AdaptateurVue {
-    constructor (situation, depotRessources) {
+    constructor (situation, depotRessources, props = {}) {
       Vue.prototype.$depotRessources = depotRessources;
       Vue.prototype.$traduction = traduction;
+      this.props = props;
     }
 
     affiche (pointInsertion, $) {
@@ -16,7 +17,7 @@ export function creeAdapteur (component) {
       const div = document.createElement('div');
       $(pointInsertion).append(div);
       this.vm = new Vue({
-        render: createEle => createEle(component)
+        render: createEle => createEle(component, { props: this.props })
       }).$mount(div);
     }
 

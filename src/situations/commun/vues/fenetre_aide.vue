@@ -1,12 +1,12 @@
 <template>
   <transition-fade>
     <div class="fenetre fenetre-aide-presentation">
-      <div>{{ $traduction('securite.aide.texte') }}</div>
+      <div>{{ $traduction(`${contexte}.texte_aide`) }}</div>
 
       <button
         class="bouton-arrondi bouton-arrondi--petit fenetre-aide-presentation-bouton"
         @click="cacheAide"
-      >{{ $traduction('securite.aide.bouton') }}</button>
+      >{{ $traduction('situation.bouton_aide') }}</button>
     </div>
   </transition-fade>
 </template>
@@ -20,6 +20,13 @@ export const FERME = 'ferme';
 
 export default {
   components: { TransitionFade },
+
+  props: {
+    contexte: {
+      type: String,
+      required: true
+    }
+  },
 
   methods: {
     cacheAide () {

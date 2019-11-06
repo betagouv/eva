@@ -18,7 +18,9 @@ export default class VueAide {
   }
 
   affiche (pointInsertion, $) {
-    this.fenetreAide = new AdapteurFenetreAide(this.situation, this.depotRessources);
+    this.fenetreAide = new AdapteurFenetreAide(this.situation, this.depotRessources, {
+      contexte: this.journal.situation
+    });
     const boutonAide = new VueBouton('bouton-aide', aide, () => {
       this.activeAide(pointInsertion, $);
     });
