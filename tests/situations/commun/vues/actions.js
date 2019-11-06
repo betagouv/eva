@@ -26,6 +26,7 @@ describe('Affiche les éléments communs aux situations', function () {
   });
 
   it("Affiche bouton stop, rejoue consigne et aide une fois que l'utilisateur a démarré", function () {
+    situation.aideDisponible = () => true;
     vueActions.affiche('#magasin', $);
     situation.modifieEtat(DEMARRE);
     expect($('.bouton-stop').length).to.equal(1);
@@ -56,6 +57,7 @@ describe('Affiche les éléments communs aux situations', function () {
   });
 
   it("n'affiche pas le bouton aide dans l'entrainement", function () {
+    situation.aideDisponible = () => true;
     situation.entrainementDisponible = () => true;
     vueActions.affiche('#magasin', $);
     situation.modifieEtat(ENTRAINEMENT_DEMARRE);
@@ -64,5 +66,11 @@ describe('Affiche les éléments communs aux situations', function () {
     expect($('.bouton-aide').length).to.equal(0);
     situation.modifieEtat(DEMARRE);
     expect($('.bouton-aide').length).to.equal(1);
+  });
+
+  it("n'affiche pas le bouton d'aide lorsqu'elle n'est pas disponible", function () {
+    vueActions.affiche('#magasin', $);
+    situation.modifieEtat(DEMARRE);
+    expect($('.bouton-aide').length).to.equal(0);
   });
 });
