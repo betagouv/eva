@@ -46,11 +46,9 @@ export default class VueActions {
     actionsEtat.set(DEMARRE, () => {
       if (!this.situation.entrainementDisponible()) {
         this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
-        this.aide.affiche(this.$aide, $);
         this.stop.affiche(this.$stop, $);
-      } else {
-        this.aide.affiche(this.$aide, $);
       }
+      this.aide.affiche(this.$aide, $);
     });
     const changements = actionsEtat.get(etat);
     if (changements) {
