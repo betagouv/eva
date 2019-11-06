@@ -8,7 +8,8 @@ import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
 import 'commun/styles/bouton.scss';
 
 export default class VueRejoueConsigne {
-  constructor (joueurConsigne, journal) {
+  constructor (situation, joueurConsigne, journal) {
+    this.situation = situation;
     this.joueurConsigne = joueurConsigne;
     this.journal = journal;
     this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.litConsigne(this.$));
@@ -16,8 +17,7 @@ export default class VueRejoueConsigne {
     this.vueBoutonLectureEnCours = new VueBouton('bouton-lecture-en-cours', lectureEnCours);
   }
 
-  affiche (pointInsertion, $, situation) {
-    this.situation = situation;
+  affiche (pointInsertion, $) {
     this.$ = $;
     this.$boutonRejoueConsigne = $('<div></div>');
     this.pointInsertion = pointInsertion;

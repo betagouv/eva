@@ -16,7 +16,7 @@ export default class VueActions {
   affiche (pointInsertion, $) {
     this.$actions = $('<div class="actions"></div>');
     this.stop = new VueStop(this.situation, this.journal);
-    this.rejoueConsigne = new VueRejoueConsigne(this.joueurConsigne, this.journal);
+    this.rejoueConsigne = new VueRejoueConsigne(this.situation, this.joueurConsigne, this.journal);
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
     this.afficheBoutons(this.situation.etat(), $);
     $(pointInsertion).append(this.$actions);
@@ -25,7 +25,7 @@ export default class VueActions {
   afficheBoutons (etat, $) {
     const actionsEtat = new Map();
     actionsEtat.set(ENTRAINEMENT_DEMARRE, () => {
-      this.rejoueConsigne.affiche(this.$actions, $, this.situation);
+      this.rejoueConsigne.affiche(this.$actions, $);
       this.stop.affiche(this.$actions, $);
     });
     actionsEtat.set(ENTRAINEMENT_FINI, () => {
@@ -33,7 +33,7 @@ export default class VueActions {
     });
     actionsEtat.set(DEMARRE, () => {
       if (!this.situation.entrainementDisponible()) {
-        this.rejoueConsigne.affiche(this.$actions, $, this.situation);
+        this.rejoueConsigne.affiche(this.$actions, $);
         this.stop.affiche(this.$actions, $);
       }
     });

@@ -23,30 +23,30 @@ describe('vue Rejoue Consigne', function () {
       }
     }();
 
-    vue = new VueRejoueConsigne(mockJoueurConsigne, journal);
+    vue = new VueRejoueConsigne(situation, mockJoueurConsigne, journal);
   });
 
   it("sait s'insérer dans une page web", function () {
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
   });
 
   it('sait se cacher', function () {
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     vue.cache();
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(0);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(0);
   });
 
   it('passe en état lecture en cours', function () {
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     vue.litConsigne($);
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(0);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).to.eql(1);
   });
 
   it("à la fin de la lecture, repasse à l'état initial", function () {
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     vue.litConsigne($);
     mockJoueurConsigne.finConsigne();
     expect($('#pointInsertion .bouton-lire-consigne').length).to.eql(1);
@@ -54,7 +54,7 @@ describe('vue Rejoue Consigne', function () {
   });
 
   it('on peut lire la consigne plusieurs fois', function () {
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     vue.litConsigne($);
     mockJoueurConsigne.finConsigne();
     vue.litConsigne($);
@@ -68,7 +68,7 @@ describe('vue Rejoue Consigne', function () {
       expect(joueConsigneCommune).to.be(true);
     };
     situation.modifieEtat(ATTENTE_DEMARRAGE);
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     vue.litConsigne($);
   });
 
@@ -76,9 +76,9 @@ describe('vue Rejoue Consigne', function () {
     mockJoueurConsigne.joue = (joueConsigneCommune, cbFin) => {
       expect(joueConsigneCommune).to.be(false);
     };
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     situation.modifieEtat(ENTRAINEMENT_DEMARRE);
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     vue.litConsigne($);
   });
 
@@ -86,9 +86,9 @@ describe('vue Rejoue Consigne', function () {
     mockJoueurConsigne.joue = (joueConsigneCommune, cbFin) => {
       expect(joueConsigneCommune).to.be(false);
     };
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     situation.modifieEtat(DEMARRE);
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     vue.litConsigne($);
   });
 
@@ -97,7 +97,7 @@ describe('vue Rejoue Consigne', function () {
       expect(evenement).to.be.a(EvenementRejoueConsigne);
       done();
     };
-    vue.affiche('#pointInsertion', $, situation);
+    vue.affiche('#pointInsertion', $);
     vue.litConsigne($);
   });
 });
