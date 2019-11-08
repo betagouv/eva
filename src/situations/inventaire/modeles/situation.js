@@ -33,7 +33,7 @@ function creerContenants ({ contenants, contenus }) {
 
 export default class Situation extends SituationCommune {
   constructor (unStock, sons) {
-    super();
+    super({ aideDisponible: true });
     this.produits = inventaireProduits(unStock);
     this.contenants = creerContenants(unStock);
     this.audios = {
