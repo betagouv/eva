@@ -27,7 +27,7 @@ export default class VueQCM extends VueQuestion {
           <p class="sans-marge">${this.question.description}</p>
           <p class="intitule-question sans-marge">${this.question.intitule}</p>
           ${$valeursPossibles}
-          <button id="envoi-reponse" class="question-bouton bouton-arrondi" disabled>
+          <button id="envoi-reponse" class="question-bouton bouton-arrondi bouton-arrondi--petit" disabled>
             ${traduction('questions.qcm.valider')}
           </button>
         </div
