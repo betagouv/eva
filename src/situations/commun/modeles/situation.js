@@ -13,7 +13,7 @@ export const CHANGEMENT_ETAT = 'changementEtat';
 export const ACTIVATION_AIDE = 'activationAide';
 
 export default class Situation extends EventEmitter {
-  constructor (modeEntrainement = false, aideDisponible = false) {
+  constructor ({ modeEntrainement = false, aideDisponible = false } = {}) {
     super();
     this._etat = CHARGEMENT;
     this._entrainementDisponible = modeEntrainement;

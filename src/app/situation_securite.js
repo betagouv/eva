@@ -6,7 +6,7 @@ import DepotRessourcesSecurite from 'securite/infra/depot_ressources_securite';
 import Situation from 'commun/modeles/situation';
 import VueSituation from 'securite/vues/situation';
 
-const situation = new Situation(true, true);
+const situation = new Situation({ modeEntrainement: true, aideDisponible: true });
 
 const depotRessources = new DepotRessourcesSecurite();
 afficheSituation('securite', situation, VueSituation, depotRessources);
