@@ -38,7 +38,7 @@ describe('une situation', function () {
   });
 
   it("permet d'être initialisé avec le mode entrainement disponible", function () {
-    const uneSituation = new Situation(true);
+    const uneSituation = new Situation({ modeEntrainement: true });
     expect(uneSituation.entrainementDisponible()).to.be(true);
   });
 
@@ -65,7 +65,7 @@ describe('une situation', function () {
   });
 
   it("permet d'être initialisé avec le mode entrainement disponible", function () {
-    const uneSituation = new Situation(false, true);
+    const uneSituation = new Situation({ modeEntrainement: false, aideDisponible: true });
     expect(uneSituation.aideDisponible()).to.be(true);
   });
 });
