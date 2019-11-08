@@ -74,7 +74,8 @@
     "valider_saisie": "Vérifier",
     "unite_vrac": "litre",
     "aide_contenu": "{{nombre}} {{- produit}}",
-    "aide_contenu_bidon": "{{nombre}} litres {{- produit}}"
+    "aide_contenu_bidon": "{{nombre}} litres {{- produit}}",
+    "texte_aide": "Vous avez activé l’aide. Cliquez sur chaque contenant pour connaître la boisson qu’il contient et sa quantité sans avoir à compter."
   },
   "questions": {
     "titre": "Bureau",
