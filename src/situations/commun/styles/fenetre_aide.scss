@@ -1,6 +1,7 @@
 @import 'commun/styles/couleurs.scss';
 
 .fenetre-aide-presentation {
+  z-index: 101;
   bottom: 15%;
   left: 50%;
   margin-left: -20%;
