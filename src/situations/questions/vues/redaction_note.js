@@ -21,7 +21,7 @@ export default class VueRedactionNote extends VueQuestion {
           </p>
           <p class="messagerie-objet-reponse">${this.question.objet_reponse}</p>
           <textarea id="reponse-compte-rendu" placeholder="${this.question.entete_reponse}"></textarea>
-          <button id="envoi-reponse" class="question-bouton bouton-arrondi">
+          <button id="envoi-reponse" class="question-bouton bouton-arrondi bouton-arrondi--petit">
             ${traduction('questions.redaction_note.envoyer')}
           </button>
         </div>
