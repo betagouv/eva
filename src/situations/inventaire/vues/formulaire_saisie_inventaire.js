@@ -33,7 +33,6 @@ export function afficheCorrection ([idProduit, reponseCorrecte], $) {
 export function initialiseFormulaireSaisieInventaire (situation, pointInsertion, $, journal, depotRessources) {
   const produits = situation.produitsEnStock();
   const inventaireReference = situation.inventaireReference();
-  let reussite = false;
 
   function creeItem (idProduit, produit) {
     const unite = produit.forme === 'bidon' ? `<span class="unite">${traduction('inventaire.unite_vrac')}</span>` : '';
@@ -92,11 +91,10 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
       Array.from(saisieValide).forEach(correction => afficheCorrection(correction, $));
 
-      reussite = Array.from(saisieValide.values()).every(v => v);
+      const reussite = Array.from(saisieValide.values()).every(v => v);
       journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation: saisieValide, reponses }));
       if (reussite) {
         situation.audios.reussite.play();
-        afficheVueSucces();
         situation.modifieEtat(FINI);
       } else {
         situation.audios.echec.play();
@@ -104,13 +102,6 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     });
 
     return $bouton;
-  }
-
-  function afficheVueSucces () {
-    $('.valide-saisie').remove();
-    $('.croix-retour-stock').remove();
-    $('.formulaire-saisie-inventaire').addClass('succes-saisie-inventaire');
-    $('input').prop('disabled', true);
   }
 
   function creeZoneValidation () {
@@ -139,7 +130,6 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     $overlay.append($formulaireSaisie);
 
     function basculeVisibiliteFormulaire () {
-      if (reussite) return;
       if ($overlay.hasClass('invisible')) {
         journal.enregistre(new EvenementOuvertureSaisieInventaire());
       }

@@ -20,20 +20,11 @@
 
 .formulaire-saisie-inventaire {
   background: $blanc;
-  border: solid $couleur-fond-bouton-bleu 0.625rem;
   width: 85%;
   margin: auto;
   border-radius: 1.5rem;
-  box-shadow: 0 0 0 0.125rem $noir,
-              0 0 0 .75rem $couleur-bordure-modale-reponse;
   padding: 4.75rem 1.75rem;
   position: relative;
-  transition : border 500ms ease-out;
-
-
-  &.succes-saisie-inventaire {
-    border-color: $couleur-reponse-correcte;
-  }
 
   ul {
     columns: 2;
