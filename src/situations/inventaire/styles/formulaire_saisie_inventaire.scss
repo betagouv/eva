@@ -23,7 +23,7 @@
   width: 85%;
   margin: auto;
   border-radius: 1.5rem;
-  padding: 4.75rem 1.75rem;
+  padding: 2.75rem 2rem;
   position: relative;
 
   ul {
@@ -79,19 +79,8 @@
   }
 
   .validation-inventaire {
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    bottom: -.625rem;
-    left: 0;
-
-    .valide-saisie {
-      @include bouton-allonge($couleur-fond-bouton-bleu, $blanc);
-      font-size: 1.125rem;
-      border-radius: .625rem .625rem 0 0;
-
-      &:hover { background: $couleur-fond-bouton-bleu-focus; }
-    }
+    text-align: right;
+    margin-top: 2rem;
   }
 
   .saisie {
