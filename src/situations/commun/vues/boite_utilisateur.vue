@@ -9,10 +9,12 @@
     />
     <div class="contenu">
       <div>{{ nom }}</div>
-      <div class="progression-utilisateur">{{ situationsFaites.length }}/{{ situations.length }}</div>
-      <a class="deconnexion" href="#" @click.prevent="deconnecte">
-        <i class="fas fa-sign-out-alt"></i>
-      </a>
+      <div class="progression-actions">
+        <div class="progression-utilisateur">{{ situationsFaites.length }}/{{ situations.length }}</div>
+        <a class="deconnexion" href="#" @click.prevent="deconnecte">
+          <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </div>
     </div>
   </div>
 </template>

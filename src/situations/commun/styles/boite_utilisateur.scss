@@ -15,8 +15,14 @@
   }
 
   .contenu {
-    padding: 1rem;
+    padding: 0.8rem 2rem;
     display: flex;
+    justify-content: space-between;
+    min-width: 20rem;
+
+    .progression-actions {
+      display: flex;
+    }
   }
 
   .progression-utilisateur {
