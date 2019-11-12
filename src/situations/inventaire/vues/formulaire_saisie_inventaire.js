@@ -84,7 +84,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeBoutonValidation () {
-    const $bouton = $(`<button type="button" class="valide-saisie">${traduction('inventaire.valider_saisie')}</button>`);
+    const $bouton = $(`<button type="button" class="bouton-arrondi valide-saisie">${traduction('inventaire.valider_saisie')}</button>`);
     $bouton.click(function () {
       const reponses = extraisReponses();
       const saisieValide = inventaireReference.valide(reponses);
