@@ -95,12 +95,6 @@ describe("Le formulaire de saisie d'inventaire", function () {
       $('.overlay').click();
       expect(evenements).to.eql(0);
     });
-
-    it("ne cache pas l'overlay lorsque l'inventaire est une réussite", function () {
-      $('.valide-saisie').click();
-      $('.overlay').click();
-      expect($('.overlay.invisible').length).to.equal(0);
-    });
   });
 
   it('affiche les images des produits à inventorier', function () {
@@ -191,9 +185,6 @@ describe("Le formulaire de saisie d'inventaire", function () {
     $zoneSaisieInventaire.val(12);
     $boutonValidationSaisie.click();
     expect(evenement).to.be.a(EvenementSaisieInventaire);
-    expect($('.valide-saisie').length).to.equal(0);
-    expect($('.succes-saisie-inventaire').length).to.equal(1);
-    expect($('.retour-stock').length).to.equal(0);
     expect(evenement.donnees()).to.eql({ reussite: true, reponses: { 0: { quantite: '12', reussite: true } } });
   });
 
