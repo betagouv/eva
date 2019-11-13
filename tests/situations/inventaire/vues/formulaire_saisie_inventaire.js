@@ -58,14 +58,19 @@ describe("Le formulaire de saisie d'inventaire", function () {
     });
   });
 
-  describe('quand on clique sur le bouton de retour au stock', function () {
+  describe('quand on clique', function () {
     beforeEach(function () {
       initialiseFormulaireSaisieInventaire(unMagasinVide(), '#magasin', $, journal, depotRessources);
       $('.affiche-saisie').click();
     });
 
-    it('cache le formulaire', function () {
+    it('sur la croix de retour, cache le formulaire', function () {
       $('.croix-retour-stock').click();
+      expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(1);
+    });
+
+    it('sur le bouton de retour, cache le formulaire', function () {
+      $('.bouton-retour-stock').click();
       expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(1);
     });
   });
@@ -157,12 +162,14 @@ describe("Le formulaire de saisie d'inventaire", function () {
     expect($('.formulaire-saisie-inventaire .valide-saisie').length).to.equal(1);
   });
 
-  it('affiche un bouton pour retourner au stock', function () {
+  it('affiche une croix et un bouton pour retourner au stock', function () {
     const magasin = unMagasinVide();
     expect($('.formulaire-saisie-inventaire .croix-retour-stock').length).to.equal(0);
+    expect($('.formulaire-saisie-inventaire .bouton-retour-stock').length).to.equal(0);
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     expect($('.formulaire-saisie-inventaire .croix-retour-stock').length).to.equal(1);
+    expect($('.formulaire-saisie-inventaire .bouton-retour-stock').length).to.equal(1);
   });
 
   it("valide la saisie d'inventaire avec succès", function () {
