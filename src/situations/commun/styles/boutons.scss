@@ -11,6 +11,7 @@
   outline: none;
   line-height: 1.8;
   font-size: 1.1rem;
+  position: relative;
 
   &:active {
     border-color: $couleur-fond-bouton-bleu;
@@ -28,5 +29,16 @@
   &.bouton-arrondi--petit {
     line-height: 1.1;
     font-size: 0.9rem;
+  }
+
+  &-icone {
+   position: absolute;
+   left: .8rem;
+   height: 1.5rem;
+   top: .8rem;
+  }
+
+  &-icone + .bouton-arrondi-texte {
+    margin-left: 1rem;
   }
 }

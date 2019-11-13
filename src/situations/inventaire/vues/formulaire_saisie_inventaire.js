@@ -73,7 +73,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     return parseInt(reponse, 10);
   }
 
-  function creeZoneRetourStock () {
+  function creeCroixRetourStock () {
     const $croixRetourStock = $(`<img class="croix-retour-stock" src="${depotRessources.croixRetourStock().src}">`);
     $croixRetourStock.click(function () {
       basculeVisibilite($formulaireSaisie);
@@ -83,8 +83,13 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     return $croixRetourStock;
   }
 
+  function creeBouton (icone, texte) {
+    return $(`<button type="button" class="bouton-arrondi"><img class="bouton-arrondi-icone" src="${icone}" /> <span class="bouton-arrondi-texte">${texte}</span></button>`);
+  }
+
   function creeBoutonValidation () {
-    const $bouton = $(`<button type="button" class="bouton-arrondi valide-saisie">${traduction('inventaire.valider_saisie')}</button>`);
+    const $bouton = creeBouton(depotRessources.loupe().src, traduction('inventaire.valider_saisie'));
+    $bouton.addClass('valide-saisie');
     $bouton.click(function () {
       const reponses = extraisReponses();
       const saisieValide = inventaireReference.valide(reponses);
@@ -104,10 +109,21 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     return $bouton;
   }
 
+  function creeBoutonRetour () {
+    const $bouton = creeBouton(depotRessources.retourStock().src, traduction('inventaire.retour'));
+    $bouton.addClass('bouton-retour-stock');
+    $bouton.click(function () {
+      basculeVisibilite($formulaireSaisie);
+      basculeVisibilite($formulaireSaisie.parent());
+    });
+    return $bouton;
+  }
+
   function creeZoneValidation () {
     const $zoneValidation = $('<div class="validation-inventaire"></div>');
-    const $bouton = creeBoutonValidation();
-    $zoneValidation.append($bouton);
+    const $boutonValidation = creeBoutonValidation();
+    const $boutonRetour = creeBoutonRetour();
+    $zoneValidation.append($boutonRetour, $boutonValidation);
     return $zoneValidation;
   }
 
@@ -117,9 +133,9 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     `);
     const $liste = creeListe();
     const $zoneValidation = creeZoneValidation();
-    const $zoneRetour = creeZoneRetourStock();
+    const $croixRetour = creeCroixRetourStock();
 
-    $formulaireSaisie.append($zoneRetour, $liste, $zoneValidation);
+    $formulaireSaisie.append($croixRetour, $liste, $zoneValidation);
     return $formulaireSaisie;
   }
 
