@@ -3,19 +3,10 @@
 
 .affiche-saisie {
   position: absolute;
-  background: $blanc;
   outline: none;
-  bottom: 12%;
-  right: 15.3%;
-  border: .5rem solid $couleur-fond-bouton-bleu;
-  border-radius: .75rem;
-  font-size: 1rem;
-  box-shadow: 0 .5rem .625rem 0 $couleur-ombre;
-  padding: 0rem;
-
-  &:hover {
-    border-color: $couleur-fond-bouton-bleu-focus;
-  }
+  bottom: 14%;
+  right: 3%;
+  border: solid 3px $blanc;
 }
 
 .formulaire-saisie-inventaire {

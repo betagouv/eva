@@ -140,7 +140,8 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeBoutonSaisie ($formulaireSaisie) {
-    const $boutonSaisie = $(`<button class="affiche-saisie"><img src="${depotRessources.boutonSaisie().src}"></button>`);
+    const $boutonSaisie = creeBouton(depotRessources.boutonSaisie().src, traduction('inventaire.saisie_inventaire'));
+    $boutonSaisie.addClass('affiche-saisie');
     const $overlay = $('<div class="overlay invisible"></div>');
     const $elementsCombines = $boutonSaisie.add($overlay);
     $overlay.append($formulaireSaisie);
