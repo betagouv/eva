@@ -161,6 +161,14 @@ describe('Une vue du cadre', function () {
     vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
+  it("enregistre la situation faite au démarrage de l'entrainement", function (done) {
+    journal.enregistreSituationFaite = () => {
+      done();
+    };
+    const vueCadre = uneVueCadre();
+    vueCadre.situation.emit(CHANGEMENT_ETAT, ENTRAINEMENT_DEMARRE);
+  });
+
   it('enregistre la situation faite', function (done) {
     journal.enregistreSituationFaite = () => {
       done();
