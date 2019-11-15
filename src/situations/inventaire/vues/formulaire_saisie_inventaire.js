@@ -98,6 +98,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
 
       const reussite = Array.from(saisieValide.values()).every(v => v);
       journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation: saisieValide, reponses }));
+      $('.erreur-saisie').toggleClass('invisible', reussite);
       if (reussite) {
         situation.audios.reussite.play();
         situation.modifieEtat(FINI);
@@ -123,7 +124,8 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     const $zoneValidation = $('<div class="validation-inventaire"></div>');
     const $boutonValidation = creeBoutonValidation();
     const $boutonRetour = creeBoutonRetour();
-    $zoneValidation.append($boutonRetour, $boutonValidation);
+    const $span = $('<span class="erreur-saisie invisible"></span>').text(traduction('inventaire.erreur_saisie'));
+    $zoneValidation.append($boutonRetour, $span, $boutonValidation);
     return $zoneValidation;
   }
 
@@ -149,6 +151,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
     function basculeVisibiliteFormulaire () {
       if ($overlay.hasClass('invisible')) {
         journal.enregistre(new EvenementOuvertureSaisieInventaire());
+        $('.erreur-saisie').addClass('invisible');
       }
       basculeVisibilite($overlay);
       basculeVisibilite($formulaireSaisie);

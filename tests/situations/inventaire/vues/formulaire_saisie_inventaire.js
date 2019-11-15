@@ -73,6 +73,10 @@ describe("Le formulaire de saisie d'inventaire", function () {
       $('.bouton-retour-stock').click();
       expect($('.formulaire-saisie-inventaire.invisible').length).to.equal(1);
     });
+
+    it("cache l'erreur de saisie", function () {
+      expect($('.erreur-saisie').hasClass('invisible')).to.be(true);
+    });
   });
 
   describe("quand on clique sur l'overlay", function () {
@@ -280,6 +284,21 @@ describe("Le formulaire de saisie d'inventaire", function () {
       afficheCorrection(['0', false], $);
       expect($('.formulaire-saisie-inventaire input.reponse-correcte').length).to.equal(0);
       expect($('.formulaire-saisie-inventaire input.reponse-incorrecte').length).to.equal(1);
+    });
+
+    it("affiche le message d'erreur", function () {
+      $('.affiche-saisie').click();
+      $('.formulaire-saisie-inventaire .valide-saisie').click();
+      expect($('.erreur-saisie').hasClass('invisible')).to.be(false);
+    });
+
+    it("cache le message d'erreur a la réouverture de l'overlay", function () {
+      $('.affiche-saisie').click();
+      $('.formulaire-saisie-inventaire .valide-saisie').click();
+      expect($('.erreur-saisie').hasClass('invisible')).to.be(false);
+      $('.croix-retour-stock').click();
+      $('.affiche-saisie').click();
+      expect($('.erreur-saisie').hasClass('invisible')).to.be(true);
     });
   });
 });
