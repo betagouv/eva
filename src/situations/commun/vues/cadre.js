@@ -95,6 +95,7 @@ export default class VueCadre {
       switch (etat) {
         case ENTRAINEMENT_DEMARRE:
           this.journal.enregistre(new EvenementEntrainementDemarrage());
+          this.journal.enregistreSituationFaite();
           break;
         case DEMARRE:
           this.journal.enregistre(new EvenementDemarrage());
