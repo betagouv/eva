@@ -131,9 +131,9 @@ describe('La vue accueil', function () {
     expect(wrapper.vm.decalageGaucheVue(2)).to.equal((LARGEUR_BATIMENT + ESPACEMENT_BATIMENT) * 2);
   });
 
-  it("synchronise les situations quand un utilisateur affiche l'accueil en étant connecté", function (done) {
+  it("synchronise l'évaluation quand un utilisateur affiche l'accueil en étant connecté", function (done) {
     store.dispatch = (evenement) => {
-      expect(evenement).to.eql('synchroniseSituations');
+      expect(evenement).to.eql('synchroniseEvaluation');
       done();
       return Promise.resolve();
     };
@@ -144,10 +144,10 @@ describe('La vue accueil', function () {
     });
   });
 
-  it('synchronise les situations à la connexion', function () {
+  it("synchronise l'évaluation à la connexion", function () {
     let nombreDispatch = 0;
     store.dispatch = (evenement) => {
-      expect(evenement).to.eql('synchroniseSituations');
+      expect(evenement).to.eql('synchroniseEvaluation');
       nombreDispatch++;
       return Promise.resolve();
     };

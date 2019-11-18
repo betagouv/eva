@@ -170,12 +170,12 @@ export default {
   },
 
   mounted () {
-    this.synchroniseSituations();
+    this.synchroniseEvaluation();
   },
 
   watch: {
     estConnecte () {
-      this.synchroniseSituations(false);
+      this.synchroniseEvaluation(false);
       if (!this.estConnecte) {
         this.reinitialiseDonnees();
       } else {
@@ -189,9 +189,9 @@ export default {
   },
 
   methods: {
-    synchroniseSituations (sync = true) {
+    synchroniseEvaluation (sync = true) {
       if (!this.estConnecte) return;
-      this.$store.dispatch('synchroniseSituations')
+      this.$store.dispatch('synchroniseEvaluation')
         .then(() => {
           if (sync) {
             this.indexBatiment = this.niveauMax;

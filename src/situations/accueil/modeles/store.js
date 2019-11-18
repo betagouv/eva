@@ -45,7 +45,7 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
         return registreUtilisateur
           .deconnecte();
       },
-      synchroniseSituations ({ commit }) {
+      synchroniseEvaluation ({ commit }) {
         return fetch(registreUtilisateur.urlEvaluation())
           .then((reponse) => {
             if (reponse.status === 404) {
@@ -65,15 +65,8 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
               };
             });
             commit('metsAJourSituations', situations);
+            commit('metsAJourCompetencesFortes', json.competences_fortes);
           });
-      },
-
-      recupereCompetencesFortes ({ commit }) {
-        return fetch(registreUtilisateur.urlEvaluation()).then((reponse) => {
-          return reponse.json();
-        }).then((json) => {
-          commit('metsAJourCompetencesFortes', json.competences_fortes);
-        });
       }
     }
   });

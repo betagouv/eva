@@ -75,11 +75,11 @@ describe("Le store de l'accueil", function () {
     const fetch = (url) => Promise.resolve({
       json: () => {
         const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
-        return { situations: [situation] };
+        return { situations: [situation], competences_fortes: [] };
       }
     });
     const store = creeStore(registreUtilisateur, fetch);
-    return store.dispatch('synchroniseSituations').then(() => {
+    return store.dispatch('synchroniseEvaluation').then(() => {
       const situationAttendue = {
         identifiant: 'nom_technique',
         nom: 'libelle',
@@ -97,7 +97,7 @@ describe("Le store de l'accueil", function () {
     });
     const store = creeStore(registreUtilisateur, fetch);
     store.commit('connecte', 'test');
-    return store.dispatch('synchroniseSituations').catch(() => {
+    return store.dispatch('synchroniseEvaluation').catch(() => {
       expect(store.state.estConnecte).to.eql(false);
     });
   });
@@ -106,11 +106,11 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.urlEvaluation = () => '/evaluation/1';
     const fetch = (url) => Promise.resolve({
       json: () => {
-        return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
+        return { situations: [], competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
       }
     });
     const store = creeStore(registreUtilisateur, fetch);
-    return store.dispatch('recupereCompetencesFortes').then(() => {
+    return store.dispatch('synchroniseEvaluation').then(() => {
       const competencesFortesAttendues = ['comprehension_consigne', 'rapidite'];
       expect(store.state.competencesFortes).to.eql(competencesFortesAttendues);
     });
