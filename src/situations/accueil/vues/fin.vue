@@ -1,12 +1,6 @@
 <template>
-  <div
-    :class="{ attendre: ! competencesFortesRecus }"
-    class="overlay modale"
-  >
-    <div
-      v-if="competencesFortesRecus"
-      class="modale-interieur"
-    >
+  <div class="overlay modale">
+    <div class="modale-interieur">
       <h2>{{ $traduction('accueil.fin.titre') }}</h2>
       <div class="contenu">
         <p class="message-fin">
@@ -42,17 +36,7 @@ import { mapActions, mapState } from 'vuex';
 import 'commun/styles/fin.scss';
 
 export default {
-  data () {
-    return {
-      competencesFortesRecus: false
-    };
-  },
-
   computed: mapState(['competencesFortes']),
-
-  mounted () {
-    this.recupereCompetencesFortes();
-  },
 
   methods: {
     ...mapActions(['deconnecte']),
@@ -63,12 +47,6 @@ export default {
 
     lienSiteVitrine (competence) {
       return `https://eva.beta.gouv.fr/competences/${competence}`;
-    },
-
-    recupereCompetencesFortes (sync = true) {
-      this.$store.dispatch('recupereCompetencesFortes').then(() => {
-        this.competencesFortesRecus = true;
-      });
     }
   }
 };
