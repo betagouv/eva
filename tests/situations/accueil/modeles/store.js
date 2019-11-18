@@ -90,6 +90,18 @@ describe("Le store de l'accueil", function () {
     });
   });
 
+  it('se déconnecte en cas de 404 du serveur', function () {
+    registreUtilisateur.urlEvaluation = () => '/evaluation';
+    const fetch = (url) => Promise.resolve({
+      status: 404
+    });
+    const store = creeStore(registreUtilisateur, fetch);
+    store.commit('connecte', 'test');
+    return store.dispatch('synchroniseSituations').catch(() => {
+      expect(store.state.estConnecte).to.eql(false);
+    });
+  });
+
   it('sait récupérer les deux compétences fortes depuis le serveur', function () {
     registreUtilisateur.urlEvaluation = () => '/evaluation/1';
     const fetch = (url) => Promise.resolve({

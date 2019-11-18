@@ -46,19 +46,26 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
           .deconnecte();
       },
       synchroniseSituations ({ commit }) {
-        return fetch(registreUtilisateur.urlEvaluation()).then((reponse) => {
-          return reponse.json();
-        }).then((json) => {
-          const situations = json.situations.map(function (situation, index) {
-            return {
-              nom: situation.libelle,
-              chemin: `${situation.nom_technique}.html`,
-              identifiant: situation.nom_technique,
-              niveauMinimum: index + 1
-            };
+        return fetch(registreUtilisateur.urlEvaluation())
+          .then((reponse) => {
+            if (reponse.status === 404) {
+              commit('deconnecte');
+              throw reponse;
+            }
+            return reponse;
+          })
+          .then(reponse => reponse.json())
+          .then((json) => {
+            const situations = json.situations.map(function (situation, index) {
+              return {
+                nom: situation.libelle,
+                chemin: `${situation.nom_technique}.html`,
+                identifiant: situation.nom_technique,
+                niveauMinimum: index + 1
+              };
+            });
+            commit('metsAJourSituations', situations);
           });
-          commit('metsAJourSituations', situations);
-        });
       },
 
       recupereCompetencesFortes ({ commit }) {
