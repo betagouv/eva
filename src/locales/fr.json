@@ -69,7 +69,7 @@
   "inventaire": {
     "titre": "Stock de boissons",
     "intro_contexte": {
-      "message": "<p>Vous devez faire l'inventaire du stock des boissons en cliquant sur les contenants pour voir les produits à l'intérieur.</p><p>Vous pouvez utiliser un suport papier/crayon et une calculatrice. Quand votre calcul est complet, cliquez sur le bouton bleu où est dessiné un stylo pour saisir votre inventaire.</p>"
+      "message": "<p>Vous devez faire l'inventaire du stock des boissons en cliquant sur les différents contenants, boites et bidons, pour voir les produits à l'intérieur. Vous pouvez utiliser un stylo, un papier et une calculatrice.</p><p>Quand votre calcul est complet, cliquez sur le bouton bleu pour saisir votre inventaire.</p>"
     },
     "valider_saisie": "Vérifier",
     "unite_vrac": "litre",
