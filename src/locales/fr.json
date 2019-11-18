@@ -99,8 +99,8 @@
   },
   "securite": {
     "intro_contexte": {
-      "message": "<p>Dans cet exercice, vous allez devoir superviser un secteur et détecter les dangers.</p><p>Pour cela, il vous faudra cliquer sur les dangers que vous aurez détectés et spécifier quels sont les dangers en choisissant parmi une liste de propositions.</p><p>Commençons tout d’abord par un tutoriel.</p>",
-      "message_transition": "<p>Vous venez de réussir l’entraînement. Vous allez maintenant pouvoir commencer l’exercice de sécurité. Il vous faudra trouver 5 dangers sur la scène qui vous sera présentée.</p>"
+      "message": "<p>Dans cet exercice, vous allez devoir observer une scène et détecter des dangers. Pour cela, il vous suffira de cliquer sur les dangers et de les décrire en choisissant parmi une liste de propositions.</p><p>Commençons tout d’abord par un entraînement : cliquez sur le danger que vous voyez sur cette image.</p>",
+      "message_transition": "<p>Vous venez de réussir l’entraînement, bravo ! Vous allez maintenant pouvoir commencer l’exercice de sécurité. Il vous faudra trouver 5 dangers sur la scène qui vous sera présentée.</p>"
     },
     "texte_aide": "Vous avez activé l’aide. Grâce à celle-ci, le curseur de la souris se transforme en main. Ces endroits sont peut-être des dangers que vous devez identifier. Faites-en bon usage !",
     "danger": {
