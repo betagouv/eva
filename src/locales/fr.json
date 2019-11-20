@@ -31,27 +31,7 @@
       "message": "Vous avez maintenant terminé l'ensemble des mises en situations.",
       "competences":" Parmi celles ci, vos deux principaux potentiels identifiés sont :",
       "titre": "Merci et bravo !",
-      "en-savoir-plus": "En savoir plus sur cette compétence et les métiers associés…",
-      "comparaison_tri": {
-        "nom": "Comparaison et tri",
-        "description": "Sait distinguer des objets entre eux sur la base de critères visuels (calibre, couleur, forme, disposition), les comparer à des modèles, et les classer. Parvient à détecter et localiser les défauts d’aspect des objets pour les trier."
-      },
-      "rapidite": {
-        "nom": "Vitesse d'exécution",
-        "description": "Parvient à mobiliser ses compétences afin de réaliser correctement les tâches demandées en un minimum de temps."
-      },
-      "vigilance_controle": {
-        "nom": "Vigilance et contrôle",
-        "description": "Parvient à déterminer quand et sur quoi il convient de porter son attention pour mener une tâche à bien."
-      },
-      "organisation_methode": {
-        "nom": "Organisation et méthode",
-        "description": "Sait décomposer la tâche en actions simples, à déterminer et planifier les étapes de réalisation, et à respecter son plan d’action."
-      },
-      "attention_concentration": {
-        "nom": "Attention et concentration",
-        "description": "A la capacité à rester focalisé·e sur un objet ou une tâche pendant une période de temps, et ce malgré la présence de distracteurs ou de difficultés."
-      }
+      "en-savoir-plus": "En savoir plus sur cette compétence et les métiers associés…"
     },
     "titre": "eva"
   },

@@ -53,12 +53,21 @@ describe('La vue de fin', function () {
   });
 
   it('récupère les compétences fortes', function () {
-    store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+    store.state.competencesFortes = [{
+      id: 'rapidite',
+      nom: "vitesse d'execution",
+      description: 'description rapidite'
+    }, {
+      id: 'comprehension_consigne',
+      nom: 'comprehension de la consigne',
+      description: 'description comprehentsion consigne'
+    }];
     wrapper = mount(Fin, { store, localVue });
 
     expect(wrapper.findAll('.message-competences-fortes').length).to.equal(1);
     expect(wrapper.find('.message-competences-fortes').text()).to.eql('accueil.fin.competences');
-    expect(wrapper.find('.competences-fortes-nom').text()).to.eql('accueil.fin.rapidite.nom');
+    expect(wrapper.find('.competences-fortes-nom').text()).to.eql("vitesse d'execution");
+    expect(wrapper.find('.competences-fortes-description').text()).to.contain('description rapidite');
   });
 
   it("n'afiche pas de message de détection de compétences fortes si l'évalué n'en a pas", function () {

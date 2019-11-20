@@ -12,14 +12,15 @@
         </p>
         <div
           v-for="competence in competencesFortes"
-          :key="competence"
+          :key="competence.id"
           class="competences-fortes"
           >
-          <img :src="affichePicto(competence)" />
+          <img :src="affichePicto(competence.id)" />
           <div>
-            <p class="competences-fortes-nom">{{ $traduction(`accueil.fin.${competence}.nom`) }}</p>
-            <p class="competences-fortes-description">{{ $traduction(`accueil.fin.${competence}.description`) }}
-            <a class="competences-fortes-lien" :href="lienSiteVitrine(competence)">{{ $traduction('accueil.fin.en-savoir-plus') }}</a></p>
+            <p class="competences-fortes-nom">{{ competence.nom }}</p>
+            <p class="competences-fortes-description">{{ competence.description }}
+              <a class="competences-fortes-lien" :href="lienSiteVitrine(competence.id)">{{ $traduction('accueil.fin.en-savoir-plus') }}</a>
+            </p>
           </div>
         </div>
       </div>
