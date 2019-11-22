@@ -14,10 +14,6 @@ describe('La vue de fin', function () {
       comprehensionConsigne () {
         return { src: '' };
       }
-
-      pictoCompetences () {
-        return { src: '' };
-      }
     }();
     store = new Vuex.Store({
       state: {
