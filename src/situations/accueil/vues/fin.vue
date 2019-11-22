@@ -15,7 +15,7 @@
           :key="competence.id"
           class="competences-fortes"
           >
-          <img :src="affichePicto(competence.id)" />
+          <img :src="competence.picto" />
           <div>
             <p class="competences-fortes-nom">{{ competence.nom }}</p>
             <p class="competences-fortes-description">{{ competence.description }}
@@ -41,10 +41,6 @@ export default {
 
   methods: {
     ...mapActions(['deconnecte']),
-
-    affichePicto (competence) {
-      return this.$depotRessources.pictoCompetences(competence).src;
-    },
 
     lienSiteVitrine (competence) {
       return `https://eva.beta.gouv.fr/competences/${competence}`;
