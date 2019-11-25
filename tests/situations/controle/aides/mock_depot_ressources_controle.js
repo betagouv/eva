@@ -12,4 +12,6 @@ export default class MockDepotRessources {
   tapis () {
     return { src: '' };
   }
+
+  piece () {}
 }

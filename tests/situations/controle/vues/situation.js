@@ -3,9 +3,10 @@ import $ from 'jquery';
 import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle';
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
+import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import Piece, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
-import Situation, { PIECE_RATEE } from 'controle/modeles/situation';
+import Situation, { PIECE_RATEE, NOUVELLE_PIECE } from 'controle/modeles/situation';
 import VueSituation from 'controle/vues/situation';
 
 function vueSituationMinimaliste (journal) {
@@ -57,6 +58,27 @@ describe('La vue de la situation « Contrôle »', function () {
 
       vueSituation.affiche('#point-insertion', $);
       vueSituation.demarre('#point-insertion', $);
+    });
+
+    it('écoute les événements de sélection de pièces', function (done) {
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPiecePrise);
+        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        done();
+      };
+      vueSituation.situation.emit(NOUVELLE_PIECE, piece);
+      piece.selectionne({ x: 0, y: 0 });
+    });
+
+    it('écoute seulement les événements de sélection de pièces', function () {
+      let nombreAppelsEnregistre = 0;
+      journal.enregistre = function (e) {
+        nombreAppelsEnregistre++;
+      };
+      vueSituation.situation.emit(NOUVELLE_PIECE, piece);
+      piece.selectionne({ x: 0, y: 0 });
+      piece.deselectionne();
+      expect(nombreAppelsEnregistre).to.eql(1);
     });
 
     it('écoute les événements PIECE_BIEN_PLACEE pour les enregistrer dans le journal', function (done) {
