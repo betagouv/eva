@@ -6,6 +6,7 @@ import Situation from 'tri/modeles/situation';
 import Piece, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
+import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
 
 import MockDepotRessourcesTri from '../aides/mock_depot_ressources_tri';
 
@@ -64,6 +65,29 @@ describe('La situation « Tri »', function () {
       vueSituation.affiche('#point-insertion', $);
     });
 
+    it('écouter la sélection de pièce pour les enregistrer dans le journal', function (done) {
+      situation.piecesAffichees = () => [piece];
+      vueSituation = new VueSituation(situation, journal, mockDepotRessources);
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPiecePrise);
+        expect(e.donnees()).to.eql({ piece: 'bonbon1' });
+        done();
+      };
+      vueSituation.situation.piecesAffichees()[0].selectionne({ x: 0, y: 0 });
+    });
+
+    it('écouter seulement la sélection de pièce pour les enregistrer dans le journal', function () {
+      situation.piecesAffichees = () => [piece];
+      vueSituation = new VueSituation(situation, journal, mockDepotRessources);
+      let nombreAppelsEnregistre = 0;
+      journal.enregistre = function (e) {
+        nombreAppelsEnregistre++;
+      };
+      vueSituation.situation.piecesAffichees()[0].selectionne({ x: 0, y: 0 });
+      vueSituation.situation.piecesAffichees()[0].deselectionne();
+      expect(nombreAppelsEnregistre).to.eql(1);
+    });
+
     it('écoute les événements PIECE_BIEN_PLACEE pour les enregistrer dans le journal', function (done) {
       journal.enregistre = function (e) {
         expect(e).to.be.a(EvenementPieceBienPlacee);
@@ -81,16 +105,6 @@ describe('La situation « Tri »', function () {
         done();
       };
       vueSituation.situation.emit(PIECE_MAL_PLACEE, piece, bac);
-    });
-
-    it('écoute les événements PIECE_MAL_PLACEE pour les enregistrer dans le journal sans bac', function (done) {
-      bac.categorie = () => 'bonbon2';
-      journal.enregistre = function (e) {
-        expect(e).to.be.a(EvenementPieceMalPlacee);
-        expect(e.donnees()).to.eql({ piece: 'bonbon1', bac: null });
-        done();
-      };
-      vueSituation.situation.emit(PIECE_MAL_PLACEE, piece, null);
     });
 
     it("joue le son sonBonBac lorsque'une pièce est bien placéee", function (done) {
