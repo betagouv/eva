@@ -1,4 +1,4 @@
-import { DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
+import { DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS } from 'commun/modeles/piece';
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Bac from 'commun/modeles/bac';
 import Situation from 'tri/modeles/situation';
@@ -61,16 +61,20 @@ describe('La situation « Tri »', function () {
     expect(situation.resultat.erreurs).to.eql(1);
   });
 
-  it("ne déplace pas la pièce si elle n'est pas dans un bac", function () {
+  it("émet l'événement PIECE_DEPOSE_HORS_BACS lorsque la pièce n'est dans aucun bac", function (done) {
     const situation = new Situation({ pieces: [{ x: 4, y: 5 }], bacs: [{ x: 1, y: 2 }] });
     const bac = situation.bacs()[0];
     const piece = situation.piecesAffichees()[0];
     bac.contient = () => false;
     piece.selectionne({ x: 0, y: 0 });
     piece.deplaceSiSelectionnee({ x: 10, y: 20 });
+    situation.on(PIECE_DEPOSE_HORS_BACS, (piece2) => {
+      expect(piece2).to.equal(piece);
+      expect(piece.position()).to.eql({ x: 14, y: 25 });
+      expect(situation.resultat.erreurs).to.eql(0);
+      done();
+    });
     piece.deselectionne();
-    expect(piece.position()).to.eql({ x: 14, y: 25 });
-    expect(situation.resultat.erreurs).to.eql(0);
   });
 
   it("émet l'événement PIECE_MAL_PLACEE lorsque la pièce n'est pas dans son bac", function (done) {
