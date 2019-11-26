@@ -1,5 +1,5 @@
 import SituationCommune, { CHANGEMENT_ETAT, DEMARRE, FINI } from 'commun/modeles/situation';
-import Piece, { CHANGEMENT_SELECTION, DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'tri/modeles/piece';
+import Piece, { CHANGEMENT_SELECTION, DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS } from 'tri/modeles/piece';
 import Bac from 'commun/modeles/bac';
 
 export default class Situation extends SituationCommune {
@@ -22,8 +22,9 @@ export default class Situation extends SituationCommune {
       piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
         if (!selectionnee) {
           const bac = this.bacs().find((bac) => bac.contient(piece));
-          if (!bac) return;
-          if (bac.correspondALaCategorie(piece)) {
+          if (!bac) {
+            this.emit(PIECE_DEPOSE_HORS_BACS, piece);
+          } else if (bac.correspondALaCategorie(piece)) {
             this.faitDisparaitreLaPiece(piece, bac);
           } else {
             this.comptabiliseErreur(piece, bac);
