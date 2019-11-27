@@ -8,13 +8,14 @@ import EvenementFermetureContenant from 'inventaire/modeles/evenement_fermeture_
 const DELAI_FERMETURE_CONTENANT_MILLISEC = 400;
 
 export default class VueContenu {
-  constructor (situation, pointInsertion, journal) {
+  constructor (situation, pointInsertion, journal, delaiFermeture = DELAI_FERMETURE_CONTENANT_MILLISEC) {
     this.situation = situation;
     this.calque = document.createElement('div');
     this.calque.id = 'calque';
-    this.calque.classList.add('calque', 'invisible');
+    this.calque.classList.add('calque');
     this.pointInsertion = pointInsertion;
     this.journal = journal;
+    this.delaiFermeture = delaiFermeture;
   }
 
   ferme (contenant) {
@@ -22,11 +23,9 @@ export default class VueContenu {
       this.element.classList.replace('ouvrir', 'fermer');
       this.journal.enregistre(new EvenementFermetureContenant({ contenant: contenant.id }));
       setTimeout(() => {
-        this.calque.classList.add('invisible');
-        this.element.classList.add('invisible');
         this.element.remove();
         this.calque.remove();
-      }, DELAI_FERMETURE_CONTENANT_MILLISEC);
+      }, this.delaiFermeture);
     }, { once: true });
   }
 
@@ -40,7 +39,7 @@ export default class VueContenu {
     } else {
       this.element = this.creeElementSansAide(contenant);
     }
-    this.element.classList.add('contenu', 'fermer', 'invisible');
+    this.element.classList.add('contenu', 'fermer');
     this.element.style.top = this.position(contenant.posY - contenant.hauteur, contenant.hauteur, contenant.dimensionsOuvert.hauteur) + '%';
     this.element.style.left = Math.max(0, this.position(contenant.posX, contenant.largeur, contenant.dimensionsOuvert.largeur)) + '%';
     this.element.style.height = contenant.dimensionsOuvert.hauteur + '%';
@@ -49,8 +48,6 @@ export default class VueContenu {
     this.pointInsertion.appendChild(this.element);
     this.pointInsertion.appendChild(this.calque);
 
-    this.calque.classList.remove('invisible');
-    this.element.classList.remove('invisible');
     setTimeout(() => {
       this.element.classList.replace('fermer', 'ouvrir');
     }, 50);
