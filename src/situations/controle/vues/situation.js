@@ -1,9 +1,10 @@
 import 'controle/styles/situation.scss';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
-import { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, CHANGEMENT_SELECTION } from 'commun/modeles/piece';
+import { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS, CHANGEMENT_SELECTION } from 'commun/modeles/piece';
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
+import EvenementPieceDeposeHorsBacs from 'commun/modeles/evenement_piece_depose_hors_bacs';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import { NOUVELLE_PIECE, PIECE_RATEE } from 'controle/modeles/situation';
 import VueBac from 'commun/vues/bac';
@@ -67,6 +68,7 @@ export default class VueSituation {
     this.situation.on(PIECE_BIEN_PLACEE, envoiEvenementPiece(EvenementPieceBienPlacee));
     this.situation.on(PIECE_MAL_PLACEE, envoiEvenementPiece(EvenementPieceMalPlacee));
     this.situation.on(PIECE_RATEE, envoiEvenementPiece(EvenementPieceRatee));
+    this.situation.on(PIECE_DEPOSE_HORS_BACS, envoiEvenementPiece(EvenementPieceDeposeHorsBacs));
     this.situation.demarre();
   }
 }

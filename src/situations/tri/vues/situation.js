@@ -1,5 +1,5 @@
 import 'tri/styles/situation.scss';
-import { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, CHANGEMENT_SELECTION } from 'tri/modeles/piece';
+import { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS, CHANGEMENT_SELECTION } from 'tri/modeles/piece';
 import VueBac from 'commun/vues/bac.js';
 import VuePiece from 'tri/vues/piece.js';
 import VueChronometre from 'tri/vues/chronometre.js';
@@ -7,6 +7,7 @@ import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
+import EvenementPieceDeposeHorsBacs from 'commun/modeles/evenement_piece_depose_hors_bacs';
 
 export default class VueSituationTri {
   constructor (situation, journal, depotRessources) {
@@ -45,6 +46,7 @@ export default class VueSituationTri {
     };
     this.situation.on(PIECE_BIEN_PLACEE, envoiEvenementPiece(EvenementPieceBienPlacee));
     this.situation.on(PIECE_MAL_PLACEE, envoiEvenementPiece(EvenementPieceMalPlacee));
+    this.situation.on(PIECE_DEPOSE_HORS_BACS, envoiEvenementPiece(EvenementPieceDeposeHorsBacs));
     this.situation.piecesAffichees().forEach((piece) => {
       piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
         if (selectionnee) {
