@@ -1,4 +1,11 @@
-import Piece, { CHANGEMENT_POSITION, CHANGEMENT_SELECTION, DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
+import Piece, {
+  CHANGEMENT_POSITION,
+  CHANGEMENT_SELECTION,
+  DISPARITION_PIECE,
+  PIECE_BIEN_PLACEE,
+  PIECE_MAL_PLACEE,
+  PIECE_DEPOSE_HORS_BACS
+} from 'commun/modeles/piece';
 import Bac from 'commun/modeles/bac';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
 
@@ -126,6 +133,10 @@ export default class Situation extends SituationCommune {
 
   reinitialiseBacs (piece) {
     if (!piece.estSelectionnee()) {
+      const bac = this.bacs().find((bac) => bac.contient(piece));
+      if (!bac) {
+        this.emit(PIECE_DEPOSE_HORS_BACS, piece);
+      }
       this.bacs().forEach(bac => bac.reinitialiseEtatSurvole());
     }
   }
