@@ -6,6 +6,7 @@ import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
 import EvenementPieceDeposeHorsBacs from 'commun/modeles/evenement_piece_depose_hors_bacs';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
+import EvenementPieceApparition from 'controle/modeles/evenement_piece_apparition';
 import Piece, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS } from 'commun/modeles/piece';
 import Situation, { PIECE_RATEE, NOUVELLE_PIECE } from 'controle/modeles/situation';
 import VueSituation from 'controle/vues/situation';
@@ -53,7 +54,7 @@ describe('La vue de la situation « Contrôle »', function () {
     let vueSituation;
 
     beforeEach(function () {
-      journal = {};
+      journal = { enregistre () {} };
       piece = new Piece({ categorie: true });
       vueSituation = vueSituationMinimaliste(journal);
 
@@ -62,21 +63,21 @@ describe('La vue de la situation « Contrôle »', function () {
     });
 
     it('écoute les événements de sélection de pièces', function (done) {
+      vueSituation.situation.emit(NOUVELLE_PIECE, piece);
       journal.enregistre = function (e) {
         expect(e).to.be.a(EvenementPiecePrise);
         expect(e.donnees()).to.eql({ piece: { conforme: true } });
         done();
       };
-      vueSituation.situation.emit(NOUVELLE_PIECE, piece);
       piece.selectionne({ x: 0, y: 0 });
     });
 
     it('écoute seulement les événements de sélection de pièces', function () {
+      vueSituation.situation.emit(NOUVELLE_PIECE, piece);
       let nombreAppelsEnregistre = 0;
       journal.enregistre = function (e) {
         nombreAppelsEnregistre++;
       };
-      vueSituation.situation.emit(NOUVELLE_PIECE, piece);
       piece.selectionne({ x: 0, y: 0 });
       piece.deselectionne();
       expect(nombreAppelsEnregistre).to.eql(1);
@@ -116,6 +117,15 @@ describe('La vue de la situation « Contrôle »', function () {
         done();
       };
       vueSituation.situation.emit(PIECE_DEPOSE_HORS_BACS, piece);
+    });
+
+    it('écoute les événements NOUVELLE_PIECE pour les enregistrer dans le journal', function (done) {
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceApparition);
+        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        done();
+      };
+      vueSituation.situation.emit(NOUVELLE_PIECE, piece);
     });
   });
 });
