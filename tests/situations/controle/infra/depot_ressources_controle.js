@@ -10,7 +10,7 @@ describe('Le dépôt de ressources de la situation contrôle', function () {
 
   it('retourne les biscuits en défaut', function () {
     const depot = new DepotRessourcesControle(chargeurs());
-    expect(depot.piece('def10')).to.not.be(undefined);
+    expect(depot.piece('def9')).to.not.be(undefined);
   });
 
   it('retourne le biscuit normal', function () {
