@@ -1,6 +1,6 @@
 import { FINI } from 'commun/modeles/situation';
 import Situation, { NOUVELLE_PIECE, PIECE_RATEE } from 'controle/modeles/situation';
-import Piece, { DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
+import Piece, { DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS } from 'commun/modeles/piece';
 
 function creeSituationMinimale (bacs = []) {
   return new Situation({
@@ -185,6 +185,24 @@ describe('La situation « Contrôle »', function () {
 
       situation.faisDisparaitrePiece(piece);
       expect(nbReinitialiseEtatSurvole).to.equal(0);
+    });
+
+    it("envoi l'événement PIECE_DEPOSE_HORS_BACS a la dépose d'un biscuit hors bacs", function (done) {
+      situation.on(PIECE_DEPOSE_HORS_BACS, (piece2) => {
+        expect(piece2).to.eql(piece);
+        done();
+      });
+      piece.deselectionne();
+    });
+
+    it("n'envoi pas l'événement PIECE_DEPOSE_HORS_BACS a la dépose d'un biscuit dans un bac", function () {
+      bac.contient = () => true;
+      let nombreAppelsDeposeHorsBacs = 0;
+      situation.on(PIECE_DEPOSE_HORS_BACS, () => {
+        nombreAppelsDeposeHorsBacs++;
+      });
+      piece.deselectionne();
+      expect(nombreAppelsDeposeHorsBacs).to.eql(0);
     });
   });
 });
