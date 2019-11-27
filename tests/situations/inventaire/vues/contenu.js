@@ -3,17 +3,22 @@
 import Contenant from 'inventaire/modeles/contenant';
 import VueContenu from 'inventaire/vues/contenu';
 import { unMagasin } from '../aides/magasin';
+import EvenementFermetureContenant from 'inventaire/modeles/evenement_fermeture_contenant';
 
 describe('vue contenu', function () {
   let situation;
   let vue;
+  let journal;
   const DELAI_FERMETURE = 3;
 
   beforeEach(function () {
     situation = unMagasin().construit();
     document.body.innerHTML = '<div id="point-insertion"></div>';
     const pointInsertion = document.getElementById('point-insertion');
-    vue = new VueContenu(situation, pointInsertion, DELAI_FERMETURE);
+    journal = {
+      enregistre () {}
+    };
+    vue = new VueContenu(situation, pointInsertion, journal);
   });
 
   it('initialise un calque invisible', function () {
@@ -30,10 +35,21 @@ describe('vue contenu', function () {
     vue.calque.dispatchEvent(new Event('click'));
 
     setTimeout(() => {
-      expect(vue.calque.classList).to.contain('invisible');
-      expect(vue.element.classList).to.contain('invisible');
+      expect(vue.calque.classList).to.not.contain('invisible');
+      expect(vue.element.classList).to.not.contain('invisible');
       done();
     }, DELAI_FERMETURE);
+  });
+
+  it('envoi un événement à la fermeture du contenant', function (done) {
+    const contenant = new Contenant({ id: 'id_contenant', idProduit: '0', quantite: 1, dimensionsOuvert: { largeur: 33, hauteur: 33 } });
+    journal.enregistre = (evenement) => {
+      expect(evenement).to.be.a(EvenementFermetureContenant);
+      expect(evenement.donnees()).to.eql({ contenant: 'id_contenant' });
+      done();
+    };
+    vue.affiche(contenant);
+    vue.calque.dispatchEvent(new Event('click'));
   });
 
   it("ajoute le calque après l'element pour qu'il soit devant", function () {

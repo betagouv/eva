@@ -27,7 +27,7 @@ export default class VueEtageres {
     this.element.appendChild(avantPlan);
 
     const vueContenants = new VueContenants(avantPlan, this.journal);
-    const vueContenu = new VueContenu(this.situation, avantPlan);
+    const vueContenu = new VueContenu(this.situation, avantPlan, this.journal);
     vueContenants.afficheLesContenants(this.situation.contenants, vueContenu);
 
     const redimensionne = () => {

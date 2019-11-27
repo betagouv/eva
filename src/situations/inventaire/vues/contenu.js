@@ -1,28 +1,33 @@
 import 'commun/styles/commun.scss';
 import 'inventaire/styles/contenu.scss';
 import { traduction } from 'commun/infra/internationalisation';
+import EvenementFermetureContenant from 'inventaire/modeles/evenement_fermeture_contenant';
 
 // Attention de maintenir la cohérence avec le temps
 // de la transition css (class contenu)
 const DELAI_FERMETURE_CONTENANT_MILLISEC = 400;
 
 export default class VueContenu {
-  constructor (situation, pointInsertion, delaiFermeture = DELAI_FERMETURE_CONTENANT_MILLISEC) {
+  constructor (situation, pointInsertion, journal) {
     this.situation = situation;
     this.calque = document.createElement('div');
     this.calque.id = 'calque';
     this.calque.classList.add('calque', 'invisible');
-    this.calque.addEventListener('click', (event) => {
+    this.pointInsertion = pointInsertion;
+    this.journal = journal;
+  }
+
+  ferme (contenant) {
+    this.calque.addEventListener('click', (e) => {
       this.element.classList.replace('ouvrir', 'fermer');
+      this.journal.enregistre(new EvenementFermetureContenant({ contenant: contenant.id }));
       setTimeout(() => {
         this.calque.classList.add('invisible');
         this.element.classList.add('invisible');
         this.element.remove();
         this.calque.remove();
-      }, delaiFermeture);
-      event.stopPropagation();
-    });
-    this.pointInsertion = pointInsertion;
+      }, DELAI_FERMETURE_CONTENANT_MILLISEC);
+    }, { once: true });
   }
 
   position (position, dimensionFermee, dimensionOuvert) {
@@ -49,6 +54,7 @@ export default class VueContenu {
     setTimeout(() => {
       this.element.classList.replace('fermer', 'ouvrir');
     }, 50);
+    this.ferme(contenant);
   }
 
   creeElementSansAide (contenant) {
