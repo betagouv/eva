@@ -60,7 +60,7 @@ describe('La vue de la situation « Contrôle »', function () {
 
     beforeEach(function () {
       journal = { enregistre () {} };
-      piece = new Piece({ categorie: true });
+      piece = new Piece({ categorie: true, type: 'def2' });
       vueSituation = vueSituationMinimaliste(journal);
 
       vueSituation.affiche('#point-insertion', $);
@@ -70,7 +70,7 @@ describe('La vue de la situation « Contrôle »', function () {
     it('écoute les événements PIECE_PRISE pour les enregistre dans le journal', function (done) {
       journal.enregistre = function (e) {
         expect(e).to.be.a(EvenementPiecePrise);
-        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        expect(e.donnees()).to.eql({ piece: { conforme: true, type: 'def2' } });
         done();
       };
       vueSituation.situation.emit(PIECE_PRISE, piece);
@@ -79,7 +79,7 @@ describe('La vue de la situation « Contrôle »', function () {
     it('écoute les événements PIECE_BIEN_PLACEE pour les enregistrer dans le journal', function (done) {
       journal.enregistre = function (e) {
         expect(e).to.be.a(EvenementPieceBienPlacee);
-        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        expect(e.donnees()).to.eql({ piece: { conforme: true, type: 'def2' } });
         done();
       };
       vueSituation.situation.emit(PIECE_BIEN_PLACEE, piece);
@@ -88,7 +88,7 @@ describe('La vue de la situation « Contrôle »', function () {
     it('écoute les événements PIECE_MAL_PLACEE pour les enregistrer dans le journal', function (done) {
       journal.enregistre = function (e) {
         expect(e).to.be.a(EvenementPieceMalPlacee);
-        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        expect(e.donnees()).to.eql({ piece: { conforme: true, type: 'def2' } });
         done();
       };
       vueSituation.situation.emit(PIECE_MAL_PLACEE, piece);
@@ -97,7 +97,7 @@ describe('La vue de la situation « Contrôle »', function () {
     it('écoute les événements PIECE_RATEE pour les enregistrer dans le journal', function (done) {
       journal.enregistre = function (e) {
         expect(e).to.be.a(EvenementPieceRatee);
-        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        expect(e.donnees()).to.eql({ piece: { conforme: true, type: 'def2' } });
         done();
       };
       vueSituation.situation.emit(PIECE_RATEE, piece);
@@ -106,7 +106,7 @@ describe('La vue de la situation « Contrôle »', function () {
     it('écoute les événements PIECE_DEPOSE_HORS_BACS pour les enregistrer dans le journal', function (done) {
       journal.enregistre = function (e) {
         expect(e).to.be.a(EvenementPieceDeposeHorsBacs);
-        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        expect(e.donnees()).to.eql({ piece: { conforme: true, type: 'def2' } });
         done();
       };
       vueSituation.situation.emit(PIECE_DEPOSE_HORS_BACS, piece);
@@ -115,7 +115,7 @@ describe('La vue de la situation « Contrôle »', function () {
     it('écoute les événements NOUVELLE_PIECE pour les enregistrer dans le journal', function (done) {
       journal.enregistre = function (e) {
         expect(e).to.be.a(EvenementPieceApparition);
-        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        expect(e.donnees()).to.eql({ piece: { conforme: true, type: 'def2' } });
         done();
       };
       vueSituation.situation.emit(NOUVELLE_PIECE, piece);

@@ -54,7 +54,7 @@ export default class VueSituation {
   demarre (pointInsertion, $) {
     const envoiEvenementPiece = (Classe) => {
       return (piece) => {
-        this.journal.enregistre(new Classe({ piece: { conforme: piece.categorie() } }));
+        this.journal.enregistre(new Classe({ piece: { type: piece.type, conforme: piece.categorie() } }));
       };
     };
     this.situation.on(NOUVELLE_PIECE, (piece) => {
