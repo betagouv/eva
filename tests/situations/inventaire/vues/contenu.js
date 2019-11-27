@@ -9,6 +9,7 @@ describe('vue contenu', function () {
   let situation;
   let vue;
   let journal;
+  let delaiFermeture;
   const DELAI_FERMETURE = 3;
 
   beforeEach(function () {
@@ -18,27 +19,25 @@ describe('vue contenu', function () {
     journal = {
       enregistre () {}
     };
-    vue = new VueContenu(situation, pointInsertion, journal);
-  });
-
-  it('initialise un calque invisible', function () {
-    expect(vue.calque.classList).to.contain('invisible');
+    vue = new VueContenu(situation, pointInsertion, journal, delaiFermeture = DELAI_FERMETURE);
   });
 
   it("sait s'afficher puis se cacher", function (done) {
     const contenant = new Contenant({ idProduit: '0', quantite: 1, dimensionsOuvert: { largeur: 33, hauteur: 33 } });
     vue.affiche(contenant);
-
-    expect(vue.calque.classList).to.not.contain('invisible');
-    expect(vue.element.classList).to.not.contain('invisible');
-
     vue.calque.dispatchEvent(new Event('click'));
 
     setTimeout(() => {
-      expect(vue.calque.classList).to.not.contain('invisible');
-      expect(vue.element.classList).to.not.contain('invisible');
+      expect(vue.element.classList).to.contain('ouvrir');
       done();
-    }, DELAI_FERMETURE);
+    }, 50);
+
+    vue.ferme(contenant);
+    expect(vue.element.classList).to.contain('fermer');
+
+    setTimeout(() => {
+      expect(vue).to.not.contain('calque');
+    }, delaiFermeture);
   });
 
   it('envoi un événement à la fermeture du contenant', function (done) {
@@ -48,6 +47,7 @@ describe('vue contenu', function () {
       expect(evenement.donnees()).to.eql({ contenant: 'id_contenant' });
       done();
     };
+
     vue.affiche(contenant);
     vue.calque.dispatchEvent(new Event('click'));
   });
