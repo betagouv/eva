@@ -4,8 +4,9 @@ import MockDepotRessourcesControle from '../aides/mock_depot_ressources_controle
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
+import EvenementPieceDeposeHorsBacs from 'commun/modeles/evenement_piece_depose_hors_bacs';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
-import Piece, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE } from 'commun/modeles/piece';
+import Piece, { PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS } from 'commun/modeles/piece';
 import Situation, { PIECE_RATEE, NOUVELLE_PIECE } from 'controle/modeles/situation';
 import VueSituation from 'controle/vues/situation';
 
@@ -106,6 +107,15 @@ describe('La vue de la situation « Contrôle »', function () {
         done();
       };
       vueSituation.situation.emit(PIECE_RATEE, piece);
+    });
+
+    it('écoute les événements PIECE_DEPOSE_HORS_BACS pour les enregistrer dans le journal', function (done) {
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceDeposeHorsBacs);
+        expect(e.donnees()).to.eql({ piece: { conforme: true } });
+        done();
+      };
+      vueSituation.situation.emit(PIECE_DEPOSE_HORS_BACS, piece);
     });
   });
 });
