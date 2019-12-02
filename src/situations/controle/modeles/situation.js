@@ -5,6 +5,7 @@ import Piece, {
   PIECE_BIEN_PLACEE,
   PIECE_MAL_PLACEE,
   PIECE_DEPOSE_HORS_BACS,
+  PIECE_DEPOSE_DANS_BAC,
   PIECE_PRISE
 } from 'commun/modeles/piece';
 import Bac from 'commun/modeles/bac';
@@ -140,7 +141,9 @@ export default class Situation extends SituationCommune {
 
   reinitialiseBacs (piece) {
     const bac = this.bacs().find((bac) => bac.contient(piece));
-    if (!bac) {
+    if (bac) {
+      this.emit(PIECE_DEPOSE_DANS_BAC, piece);
+    } else {
       this.emit(PIECE_DEPOSE_HORS_BACS, piece);
     }
     this.bacs().forEach(bac => bac.reinitialiseEtatSurvole());
