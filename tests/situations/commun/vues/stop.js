@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import VueStop from 'commun/vues/stop';
-import EvenementStop from 'commun/modeles/evenement_stop';
+import EvenementAbandon from 'commun/modeles/evenement_abandon';
 import Situation, { STOPPEE } from 'commun/modeles/situation';
 import { initialise } from '../aides/internationalisation';
 
@@ -38,7 +38,7 @@ describe('vue Stop', function () {
 
   it("enregistre l'événement et redirige vers l'accueil quand on confirme la modale", function () {
     mockJournal.enregistre = (evenement) => {
-      expect(evenement).to.be.a(EvenementStop);
+      expect(evenement).to.be.a(EvenementAbandon);
       return Promise.resolve();
     };
     return vue.clickSurOk().then(() => {
