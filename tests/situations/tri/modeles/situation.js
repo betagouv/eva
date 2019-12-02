@@ -1,4 +1,10 @@
-import { DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS } from 'commun/modeles/piece';
+import {
+  DISPARITION_PIECE,
+  PIECE_BIEN_PLACEE,
+  PIECE_MAL_PLACEE,
+  PIECE_DEPOSE_HORS_BACS,
+  PIECE_PRISE
+} from 'commun/modeles/piece';
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Bac from 'commun/modeles/bac';
 import Situation from 'tri/modeles/situation';
@@ -34,6 +40,28 @@ describe('La situation « Tri »', function () {
     });
     piece.selectionne({});
     piece.deselectionne();
+  });
+
+  it("émet l'événement PIECE_PRISE lorsque la pièce est sélectionné", function (done) {
+    const situation = new Situation({ pieces: [{}], bacs: [{ x: 1, y: 2 }] });
+    const piece = situation.piecesAffichees()[0];
+    situation.on(PIECE_PRISE, (piece2) => {
+      expect(piece2).to.eql(piece);
+      done();
+    });
+    piece.selectionne({});
+  });
+
+  it("émet l'événement PIECE_PRISE seulement lorsque la pièce est sélectionné", function () {
+    let nombreAppelsPiecePrise = 0;
+    const situation = new Situation({ pieces: [{}], bacs: [{ x: 1, y: 2 }] });
+    const piece = situation.piecesAffichees()[0];
+    situation.on(PIECE_PRISE, (piece2) => {
+      nombreAppelsPiecePrise++;
+    });
+    piece.selectionne({});
+    piece.deselectionne();
+    expect(nombreAppelsPiecePrise).to.eql(1);
   });
 
   it("émet l'événement PIECE_BIEN_PLACEE lorsque la pièce est bien placée", function (done) {
