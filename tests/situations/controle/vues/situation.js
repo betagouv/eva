@@ -7,11 +7,13 @@ import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
 import EvenementPieceDeposeHorsBacs from 'commun/modeles/evenement_piece_depose_hors_bacs';
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import EvenementPieceApparition from 'controle/modeles/evenement_piece_apparition';
+import EvenementPieceDeposeDansBac from 'controle/modeles/evenement_piece_depose_dans_bac';
 import Situation, { PIECE_RATEE, NOUVELLE_PIECE } from 'controle/modeles/situation';
 import Piece, {
   PIECE_BIEN_PLACEE,
   PIECE_MAL_PLACEE,
   PIECE_DEPOSE_HORS_BACS,
+  PIECE_DEPOSE_DANS_BAC,
   PIECE_PRISE
 } from 'commun/modeles/piece';
 import VueSituation from 'controle/vues/situation';
@@ -110,6 +112,15 @@ describe('La vue de la situation « Contrôle »', function () {
         done();
       };
       vueSituation.situation.emit(PIECE_DEPOSE_HORS_BACS, piece);
+    });
+
+    it('écoute les événements PIECE_DEPOSE_DANS_BAC pour les enregistrer dans le journal', function (done) {
+      journal.enregistre = function (e) {
+        expect(e).to.be.a(EvenementPieceDeposeDansBac);
+        expect(e.donnees()).to.eql({ piece: { conforme: true, type: 'def2' } });
+        done();
+      };
+      vueSituation.situation.emit(PIECE_DEPOSE_DANS_BAC, piece);
     });
 
     it('écoute les événements NOUVELLE_PIECE pour les enregistrer dans le journal', function (done) {
