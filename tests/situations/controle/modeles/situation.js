@@ -1,6 +1,12 @@
 import { FINI } from 'commun/modeles/situation';
 import Situation, { NOUVELLE_PIECE, PIECE_RATEE } from 'controle/modeles/situation';
-import Piece, { DISPARITION_PIECE, PIECE_BIEN_PLACEE, PIECE_MAL_PLACEE, PIECE_DEPOSE_HORS_BACS } from 'commun/modeles/piece';
+import Piece, {
+  DISPARITION_PIECE,
+  PIECE_BIEN_PLACEE,
+  PIECE_MAL_PLACEE,
+  PIECE_DEPOSE_HORS_BACS,
+  PIECE_PRISE
+} from 'commun/modeles/piece';
 
 function creeSituationMinimale (bacs = []) {
   return new Situation({
@@ -134,6 +140,24 @@ describe('La situation « Contrôle »', function () {
         done();
       });
       situation.faisDisparaitrePiece(piece);
+    });
+
+    it("déclenche l'événement PIECE_PRISE lorsque la pièce est sélectionnée", function (done) {
+      situation.on(PIECE_PRISE, (piece2) => {
+        expect(piece2).to.equal(piece);
+        done();
+      });
+      piece.selectionne({ x: 0, y: 0 });
+    });
+
+    it("déclenche l'événement PIECE_PRISE seulement lorsque la pièce est sélectionnée", function () {
+      let nombreAppelsPiecePrise = 0;
+      situation.on(PIECE_PRISE, () => {
+        nombreAppelsPiecePrise++;
+      });
+      piece.selectionne({ x: 0, y: 0 });
+      piece.deselectionne();
+      expect(nombreAppelsPiecePrise).to.eql(1);
     });
   });
 

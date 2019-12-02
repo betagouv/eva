@@ -4,7 +4,8 @@ import Piece, {
   DISPARITION_PIECE,
   PIECE_BIEN_PLACEE,
   PIECE_MAL_PLACEE,
-  PIECE_DEPOSE_HORS_BACS
+  PIECE_DEPOSE_HORS_BACS,
+  PIECE_PRISE
 } from 'commun/modeles/piece';
 import Bac from 'commun/modeles/bac';
 import SituationCommune, { FINI } from 'commun/modeles/situation';
@@ -91,7 +92,13 @@ export default class Situation extends SituationCommune {
     this._piecesAffichees.push(piece);
     this.emit(NOUVELLE_PIECE, piece);
     piece.on(CHANGEMENT_POSITION, () => this.detecteSurvol(piece));
-    piece.on(CHANGEMENT_SELECTION, () => this.reinitialiseBacs(piece));
+    piece.on(CHANGEMENT_SELECTION, (selectionnee) => {
+      if (selectionnee) {
+        this.emit(PIECE_PRISE, piece);
+      } else {
+        this.reinitialiseBacs(piece);
+      }
+    });
   }
 
   faisDisparaitrePiece (piece) {
@@ -132,12 +139,10 @@ export default class Situation extends SituationCommune {
   }
 
   reinitialiseBacs (piece) {
-    if (!piece.estSelectionnee()) {
-      const bac = this.bacs().find((bac) => bac.contient(piece));
-      if (!bac) {
-        this.emit(PIECE_DEPOSE_HORS_BACS, piece);
-      }
-      this.bacs().forEach(bac => bac.reinitialiseEtatSurvole());
+    const bac = this.bacs().find((bac) => bac.contient(piece));
+    if (!bac) {
+      this.emit(PIECE_DEPOSE_HORS_BACS, piece);
     }
+    this.bacs().forEach(bac => bac.reinitialiseEtatSurvole());
   }
 }
