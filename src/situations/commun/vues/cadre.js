@@ -10,6 +10,7 @@ import {
   CHANGEMENT_ETAT
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
+import EvenementFinSituation from 'commun/modeles/evenement_fin_situation';
 import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
 import VueActions from 'commun/vues/actions';
 import { creeAdapteur } from './adapteur_vue';
@@ -34,6 +35,7 @@ export default class VueCadre {
     this.vuesEtats.set(ENTRAINEMENT_FINI, AdaptateurConsigne);
     this.vuesEtats.set(FINI, VueTerminer);
     this.envoiEvenementDemarrageUneFoisDemarre();
+    this.envoiEvenementFinSituationUneFoisTermine();
   }
 
   affiche (pointInsertion, $) {
@@ -80,6 +82,14 @@ export default class VueCadre {
       if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE].includes(this.situation.etat())) {
         e.preventDefault();
         return '';
+      }
+    });
+  }
+
+  envoiEvenementFinSituationUneFoisTermine () {
+    this.situation.on(CHANGEMENT_ETAT, (etat) => {
+      if (etat === FINI) {
+        this.journal.enregistre(new EvenementFinSituation());
       }
     });
   }
