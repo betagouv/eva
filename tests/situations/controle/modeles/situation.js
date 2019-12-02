@@ -5,6 +5,7 @@ import Piece, {
   PIECE_BIEN_PLACEE,
   PIECE_MAL_PLACEE,
   PIECE_DEPOSE_HORS_BACS,
+  PIECE_DEPOSE_DANS_BAC,
   PIECE_PRISE
 } from 'commun/modeles/piece';
 
@@ -227,6 +228,15 @@ describe('La situation « Contrôle »', function () {
       });
       piece.deselectionne();
       expect(nombreAppelsDeposeHorsBacs).to.eql(0);
+    });
+
+    it("l'événement PIECE_DANS_BAC a la dépose d'un biscuit dans un bac", function (done) {
+      bac.contient = () => true;
+      situation.on(PIECE_DEPOSE_DANS_BAC, (piece2) => {
+        expect(piece2).to.eql(piece);
+        done();
+      });
+      piece.deselectionne();
     });
   });
 });
