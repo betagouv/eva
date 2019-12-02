@@ -1,5 +1,5 @@
 import { traduction } from 'commun/infra/internationalisation';
-import EvenementStop from 'commun/modeles/evenement_stop';
+import EvenementAbandon from 'commun/modeles/evenement_abandon';
 import { STOPPEE } from 'commun/modeles/situation';
 import stop from 'commun/assets/stop.svg';
 import VueBouton from './bouton';
@@ -36,7 +36,7 @@ export default class VueStop {
   clickSurOk () {
     this.situation.modifieEtat(STOPPEE);
     return this.journal
-      .enregistre(new EvenementStop(), 1000)
+      .enregistre(new EvenementAbandon(), 1000)
       .finally(() => {
         this.retourAccueil();
       });
