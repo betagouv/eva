@@ -14,6 +14,10 @@ describe('La vue de fin', function () {
       comprehensionConsigne () {
         return { src: '' };
       }
+
+      avatarFin () {
+        return { src: '' };
+      }
     }();
     store = new Vuex.Store({
       state: {
@@ -32,20 +36,8 @@ describe('La vue de fin', function () {
     store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
     wrapper = mount(Fin, { store, localVue });
 
-    expect(wrapper.find('h2').text()).to.eql('accueil.fin.titre');
-    expect(wrapper.find('button').text()).to.eql('accueil.fin.bouton');
-  });
-
-  it("se déconnecte a l'appui sur le bouton", function () {
-    wrapper = mount(Fin, { store, localVue });
-
-    let deconnecte = 0;
-    store.dispatch = (nom) => {
-      deconnecte++;
-    };
-
-    wrapper.find('button').trigger('click');
-    expect(deconnecte).to.equal(1);
+    expect(wrapper.find('h2').text()).to.eql('accueil.fin.bravo.titre');
+    expect(wrapper.find('button').text()).to.eql('accueil.fin.bravo.bouton');
   });
 
   it('récupère les compétences fortes', function () {
@@ -60,16 +52,19 @@ describe('La vue de fin', function () {
     }];
     wrapper = mount(Fin, { store, localVue });
 
+    wrapper.find('button').trigger('click');
+
     expect(wrapper.findAll('.message-competences-fortes').length).to.equal(1);
-    expect(wrapper.find('.message-competences-fortes').text()).to.eql('accueil.fin.competences');
+    expect(wrapper.find('.message-competences-fortes').text()).to.eql('accueil.fin.resultat.competences');
     expect(wrapper.find('.competences-fortes-nom').text()).to.eql("vitesse d'execution");
     expect(wrapper.find('.competences-fortes-description').text()).to.contain('description rapidite');
   });
 
-  it("n'afiche pas de message de détection de compétences fortes si l'évalué n'en a pas", function () {
+  it("n'affiche pas de bouton suivant", function () {
     store.state.competences = [];
     wrapper = mount(Fin, { store, localVue });
 
-    expect(wrapper.findAll('.competences-fortes-conteneur').length).to.equal(0);
+    expect(wrapper.findAll('.contenu').length).to.equal(0);
+    expect(wrapper.findAll('.button').length).to.equal(0);
   });
 });
