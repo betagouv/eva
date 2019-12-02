@@ -27,11 +27,16 @@
       "message": "<p>Bonjour et bienvenue,</p><p>Nous allons identifier ensemble, à travers les jeux que vous allez réaliser, vos compétences transférables d'un métier à un autre. Si ces jeux reproduisent des activités particulières, les compétences mesurées s'appliquent à tous les métiers et tous les secteurs d'activité.</p><p>Lorsque vous aurez terminé, vous pourrez découvrir quelles sont vos compétences fortes et les métiers associés. Vous pourrez alors échanger avec votre conseiller ou votre accompagnateur sur les moyens de les utiliser au mieux dans votre parcours professionnel, opportunités d'emploi ou de formation.</p>"
     },
     "fin": {
-      "bouton": "Terminer",
-      "message": "Vous avez maintenant terminé l'ensemble des mises en situations.",
-      "competences":" Parmi celles ci, vos deux principaux potentiels identifiés sont :",
-      "titre": "Merci et bravo !",
-      "en-savoir-plus": "En savoir plus sur cette compétence et les métiers associés…"
+      "bravo": {
+        "titre": "Merci et bravo !",
+        "message": "Allez sur la page suivante pour consulter vos résultats :",
+        "bouton": "Suivant"
+      },
+      "resultat": {
+        "titre": "Votre potentiel",
+        "competences": "<p>Voici vos deux principaux potentiels identifiés :<br><em>Cliquez sur 'en savoir plus' pour connaitres les métiers associés.</em></p>",
+        "en-savoir-plus": "En savoir plus"
+      }
     },
     "titre": "eva"
   },
