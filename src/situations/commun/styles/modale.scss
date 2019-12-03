@@ -1,6 +1,7 @@
 @import 'commun/styles/couleurs.scss';
 
 .overlay {
+
   &.attendre {
     cursor: wait;
 
@@ -16,6 +17,11 @@
   &.modale {
     background: rgba(255, 255, 255, .9);
     padding: 3%;
+
+    &.centrage-horizontal {
+      flex-direction: column;
+      padding: 5%;
+    }
 
     .modale-interieur {
       max-width: 70%;
