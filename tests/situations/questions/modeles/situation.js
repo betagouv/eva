@@ -1,4 +1,4 @@
-import { FINI } from 'commun/modeles/situation';
+import { CHANGEMENT_ETAT, FINI } from 'commun/modeles/situation';
 import Situation, { EVENEMENT_REPONSE } from 'questions/modeles/situation';
 
 describe('Le modèle de la situation « Questions »', function () {
@@ -59,10 +59,14 @@ describe('Le modèle de la situation « Questions »', function () {
   });
 
   it('une fois toutes les questions répondue, passe la situation en fini', function () {
+    const evenementsRecusDansLOrdre = [];
+    situation.on(EVENEMENT_REPONSE, () => evenementsRecusDansLOrdre.push(EVENEMENT_REPONSE));
+    situation.on(CHANGEMENT_ETAT, (etat) => evenementsRecusDansLOrdre.push(etat));
     expect(situation.repond('Ma réponse'));
     expect(situation.question()).to.eql(this.question2);
     expect(situation.repond(this.question2.choix[0].id));
     expect(situation.question()).to.eql(undefined);
     expect(situation.etat()).to.eql(FINI);
+    expect(evenementsRecusDansLOrdre).to.eql([EVENEMENT_REPONSE, EVENEMENT_REPONSE, FINI]);
   });
 });

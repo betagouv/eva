@@ -36,9 +36,9 @@ export default class Situation extends SituationCommune {
       const choix = question.choix.find(choix => choix.id === reponse);
       this.resultat[choix.type_choix]++;
     }
+    this.emit(EVENEMENT_REPONSE, question, reponse);
     if (this.indexQuestion === this._questions.length) {
       this.modifieEtat(FINI);
     }
-    this.emit(EVENEMENT_REPONSE, question, reponse);
   }
 }
