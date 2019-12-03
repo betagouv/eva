@@ -1,5 +1,5 @@
 <template>
-  <div class="overlay modale">
+  <div class="overlay modale centrage-horizontal">
     <div
       v-if="ecran == 'bravo'"
       class="modale-interieur bravo">
