@@ -1,7 +1,7 @@
 <template>
   <div id="accueil">
     <div class="titre">
-      <h1>{{ $traduction('nom_produit') }}</h1>
+      <h1><img class="logo" :src="logo"/></h1>
       <boite-utilisateur v-if="!chargement" />
     </div>
     <div
@@ -20,6 +20,7 @@ import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import OverlayChargement from 'commun/vues/overlay_chargement';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import Accueil from './accueil';
+import logo from 'accueil/assets/logo.svg';
 
 export default {
   components: { Accueil, BoiteUtilisateur, OverlayChargement, OverlayErreurChargement },
@@ -27,7 +28,8 @@ export default {
   data () {
     return {
       chargement: true,
-      erreurChargement: false
+      erreurChargement: false,
+      logo
     };
   },
 
