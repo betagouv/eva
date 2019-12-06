@@ -132,4 +132,12 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.findAll('label').length).to.equal(2);
     expect(wrapper.findAll('.input-accueil').length).to.equal(1);
   });
+
+  it('cache le champ nom/prénom si il y a une propriété forceNom', function () {
+    expect(wrapper.findAll('.input-accueil').length).to.equal(2);
+    wrapper = mount(FormulaireIdentificationVue, { store, localVue, propsData: { forceNom: 'franck-poulain' } });
+    expect(wrapper.vm.nom).to.eql('franck-poulain');
+    expect(wrapper.findAll('label').length).to.equal(2);
+    expect(wrapper.findAll('.input-accueil').length).to.equal(1);
+  });
 });

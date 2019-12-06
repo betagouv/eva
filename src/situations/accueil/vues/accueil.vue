@@ -62,7 +62,7 @@
         <span>{{ $traduction('accueil.suivant') }}</span>
       </div>
     </div>
-    <formulaire-identification :force-campagne="forceCampagne" />
+    <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom" />
     <transition-fade>
       <intro-consigne
         v-if="estConnecte && indexBatiment === 0"
@@ -113,6 +113,7 @@ export default {
       suivant: this.$depotRessources.suivant().src,
       punaise: this.$depotRessources.punaise().src,
       forceCampagne: parsedUrl.searchParams.get('code') || '',
+      forceNom: parsedUrl.searchParams.get('nom') || '',
       indexBatiment: indexPrecedent,
       ecranFinAfficher: false
     };

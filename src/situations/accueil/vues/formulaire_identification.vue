@@ -6,10 +6,14 @@
       @submit.prevent="envoieFormulaire">
       <div>
         <h2>{{ $traduction('accueil.identification.titre') }}</h2>
-        <label for="formulaire-identification-input-nom">
+        <label
+          v-if="!nomForce"
+          for="formulaire-identification-input-nom">
           {{ $traduction('accueil.identification.label') }}
         </label>
-        <div class="element-formulaire">
+        <div
+          class="element-formulaire"
+          v-if="!nomForce">
           <input
             id="formulaire-identification-input-nom"
             v-model.trim="nom"
@@ -65,11 +69,17 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+
+    forceNom: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data () {
     return {
-      nom: '',
+      nom: this.forceNom,
       campagne: this.forceCampagne,
       enCours: false,
       erreurs: {},
@@ -86,6 +96,10 @@ export default {
 
     campagneForcee () {
       return this.forceCampagne !== '';
+    },
+
+    nomForce () {
+      return this.forceNom !== '';
     }
   },
 
@@ -95,7 +109,7 @@ export default {
       this.erreurs = {};
       return this.$store.dispatch('inscris', { nom: this.nom, campagne: this.campagne })
         .then(() => {
-          this.nom = '';
+          this.nom = this.forceNom;
           this.cgu = false;
           this.campagne = this.forceCampagne;
         })
