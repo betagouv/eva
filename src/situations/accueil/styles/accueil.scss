@@ -43,7 +43,7 @@
     z-index: 100
   }
 
-  .bouton-mission {
+  .bouton-navigation-situation {
     @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
     border-radius: 3.125rem;
   }
