@@ -8,8 +8,8 @@
   "accueil": {
     "commencer": "Commencer {{situation}}",
     "conclure": "Accéder aux résultats",
-    "precedent": "Mission précédente",
-    "suivant": "Mission suivante",
+    "precedent": "Situation précédente",
+    "suivant": "Situation suivante",
     "identification": {
       "bouton": "Démarrer",
       "campagne": "Code de la campagne",
@@ -131,10 +131,10 @@
       "ok": "Oui"
     },
     "reussite": "C'est terminé, bravo !",
-    "stop": "Attention, vous n'avez pas terminé cette mission. Votre résultat sera impacté. Voulez vous vraiment abandonner ?",
+    "stop": "Attention, vous n'avez pas terminé. Votre résultat sera impacté. Voulez vous vraiment abandonner ?",
     "retour_accueil": "Retour au parc",
-    "repeter_consigne": "Répéter la consigne",
-    "arreter_mission": "Arrêter la mission"
+    "repeter_consigne": "Répéter la consigne",
+    "abandonner_situation": "Arrêter la situation"
   },
   "tri": {
     "titre": "Magasin de friandises",

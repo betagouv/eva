@@ -36,7 +36,7 @@
       >
         <button
           :disabled="precedentDesactivee"
-          class="bouton-mission"
+          class="bouton-navigation-situation"
           @click="indexBatiment--"
          >
           <img :src="precedent">
@@ -54,7 +54,7 @@
       >
         <button
           :disabled="suivantDesactivee"
-          class="bouton-mission"
+          class="bouton-navigation-situation"
           @click="indexBatiment++"
          >
           <img :src="suivant">
