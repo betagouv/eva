@@ -28,10 +28,6 @@ describe('La vue accueil', function () {
       suivant () {
         return { src: '' };
       }
-
-      punaise () {
-        return { src: '' };
-      }
     }();
 
     store = new Vuex.Store({

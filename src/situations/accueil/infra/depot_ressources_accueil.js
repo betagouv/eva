@@ -11,7 +11,6 @@ import securite from 'accueil/assets/securite.png';
 import fin from 'accueil/assets/fin.png';
 import precedent from 'accueil/assets/precedent.svg';
 import suivant from 'accueil/assets/suivant.svg';
-import punaise from 'accueil/assets/punaise.svg';
 import avatarFin from 'accueil/assets/avatar-fin.png';
 import consigneAccueil from 'accueil/assets/consigne_accueil.wav';
 import consigneCommune from 'commun/assets/consigne_commune.wav';
@@ -29,7 +28,7 @@ const batiments = {
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnage, precedent, suivant, punaise, casque, avatarFin, consigneAccueil, consigneCommune]);
+    this.charge([fondAccueil, personnage, precedent, suivant, casque, avatarFin, consigneAccueil, consigneCommune]);
     this.charge(Object.values(batiments));
   }
 
@@ -47,10 +46,6 @@ export default class DepotRessourcesAccueil extends DepotRessources {
 
   suivant () {
     return this.ressource(suivant);
-  }
-
-  punaise () {
-    return this.ressource(punaise);
   }
 
   casque () {
