@@ -6,11 +6,6 @@
     >
 
       <img
-        :src="punaise"
-        class="punaise"
-      />
-
-      <img
         :src="personnage"
         class="personnage"
       />
@@ -111,7 +106,6 @@ export default {
       personnage: this.$depotRessources.personnage().src,
       precedent: this.$depotRessources.precedent().src,
       suivant: this.$depotRessources.suivant().src,
-      punaise: this.$depotRessources.punaise().src,
       forceCampagne: parsedUrl.searchParams.get('code') || '',
       forceNom: parsedUrl.searchParams.get('nom') || '',
       indexBatiment: indexPrecedent,
