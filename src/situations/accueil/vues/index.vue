@@ -1,7 +1,7 @@
 <template>
   <div id="accueil">
     <div class="titre">
-      <h1><img class="logo" :src="logo"/></h1>
+      <h1><img class="logo" :alt="altLogo" :src="logo"/></h1>
       <boite-utilisateur v-if="!chargement" />
     </div>
     <div
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { traduction } from 'commun/infra/internationalisation';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import OverlayChargement from 'commun/vues/overlay_chargement';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
@@ -29,7 +30,8 @@ export default {
     return {
       chargement: true,
       erreurChargement: false,
-      logo
+      logo,
+      altLogo: traduction('alt-logo')
     };
   },
 
