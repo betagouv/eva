@@ -20,7 +20,7 @@ import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import OverlayChargement from 'commun/vues/overlay_chargement';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import Accueil from './accueil';
-import logo from 'accueil/assets/logo.svg';
+import logo from '../../../public/logo.svg';
 
 export default {
   components: { Accueil, BoiteUtilisateur, OverlayChargement, OverlayErreurChargement },
