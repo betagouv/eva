@@ -1,13 +1,13 @@
-# Competence pro
+# eva
 
-Évaluer en ligne les compétences pro à travers des mises en situation
+Évaluer en ligne les compétences transversales à travers des mises en situations professionnelles.
 
 https://beta.gouv.fr/startup/eva.html
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
 
-Pour voir les autres projets de Compétences Pro:
+Pour voir les autres projets de eva:
 
 - [la partie serveur](https://github.com/betagouv/eva-serveur)
 - [la partie orchestration](https://github.com/betagouv/eva-orchestrateur)
