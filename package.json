@@ -1,7 +1,7 @@
 {
-  "name": "competences-pro",
+  "name": "eva",
   "version": "0.0.1",
-  "description": "Évaluer en ligne les compétences pro à travers des mises en situation",
+  "description": "Évaluer en ligne les compétences transversales à travers des mises en situation professionnelles",
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "webpack --mode production",
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/betagouv/competences-pro.git"
+    "url": "git+https://github.com/betagouv/eva.git"
   },
   "bugs": {
-    "url": "https://github.com/betagouv/competences-pro/issues"
+    "url": "https://github.com/betagouv/eva/issues"
   },
-  "homepage": "https://github.com/betagouv/competences-pro#readme",
+  "homepage": "https://github.com/betagouv/eva#readme",
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
