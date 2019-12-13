@@ -22,12 +22,12 @@ jobs:
       enabled: true
     steps:
       - run: pip install ansible
-      - run: git clone git@github.com:betagouv/competences-pro-orchestrateur.git
+      - run: git clone git@github.com:betagouv/eva-orchestrateur.git
       - run:
-          working_directory: competences-pro-orchestrateur
+          working_directory: eva-orchestrateur
           command: echo ${DEPLOIEMENT_HOTE} > hotes
       - run:
-          working_directory: competences-pro-orchestrateur
+          working_directory: eva-orchestrateur
           command: ansible-playbook --inventory=hotes --user=${DEPLOIEMENT_UTILISATEUR} --extra-vars="chemin_racine={{ansible_env.HOME}}/preprod hote_client=preprod.eva.beta.gouv.fr hote_serveur=apipreprod.eva.beta.gouv.fr" deploiement.yml
 
 workflows:
