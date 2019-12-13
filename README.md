@@ -28,10 +28,10 @@ Et se rendre sur l'adresse affichée dans la sortie standard (http://localhost:7
 Installer `docker` si nécessaire, et exécuter la commande suivante.
 
 ```
-$ docker build -t competences-pro . && docker run --rm -ti -p 3000:80 competences-pro
+$ docker build -t eva . && docker run --rm -ti -p 3000:80 eva
 ```
 
-Une fois le message `Successfully tagged competences-pro:latest` affiché, se rendre à l'adresse http://localhost:3000
+Une fois le message `Successfully tagged eva:latest` affiché, se rendre à l'adresse http://localhost:3000
 
 ## Travailler avec le linter
 
