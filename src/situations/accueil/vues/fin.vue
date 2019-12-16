@@ -5,7 +5,7 @@
       class="modale-interieur bravo">
       <img class="avatar-fin" :src="avatarFin"/>
       <div>
-        <h2>{{ $traduction('accueil.fin.bravo.titre') }}</h2>
+        <h2>{{ $traduction('accueil.fin.bravo.titre', { nom: nom }) }}</h2>
         <div v-if="this.competencesFortes.length != 0">
           <div class="contenu">
             <p class="message-fin">
@@ -55,7 +55,7 @@ import { mapActions, mapState } from 'vuex';
 import 'accueil/styles/fin.scss';
 
 export default {
-  computed: mapState(['competencesFortes']),
+  computed: mapState(['competencesFortes', 'nom']),
 
   data () {
     return {
