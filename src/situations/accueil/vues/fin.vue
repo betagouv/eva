@@ -5,7 +5,7 @@
       class="modale-interieur bravo">
       <img class="avatar-fin" :src="avatarFin"/>
       <div>
-        <h2>{{ $traduction('accueil.fin.bravo.titre', { nom: nom }) }}</h2>
+        <h2 v-html="$traduction('accueil.fin.bravo.titre', { nom: nom })"></h2>
         <div v-if="this.competencesFortes.length != 0">
           <div class="contenu">
             <p class="message-fin">

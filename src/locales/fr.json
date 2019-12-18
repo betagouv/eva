@@ -28,7 +28,7 @@
     },
     "fin": {
       "bravo": {
-        "titre": "Merci et bravo {{nom}} !",
+        "titre": "Merci et bravo<br>{{nom}} !",
         "message": "Allez sur la page suivante pour consulter vos résultats :",
         "bouton": "Suivant"
       },
