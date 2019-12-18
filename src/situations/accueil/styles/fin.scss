@@ -1,6 +1,7 @@
 @import 'commun/styles/couleurs.scss';
 
 .overlay.modale {
+  user-select: text;
 
   .modale-interieur.bravo {
     display: flex;
