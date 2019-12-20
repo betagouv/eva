@@ -1,9 +1,10 @@
-export default class VueSituation {
-  constructor (situation, journal, depotRessources, registreUtilisateur) {
-    this.situation = situation;
-    this.depotRessources = depotRessources;
-  }
+import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
 
-  affiche (pointInsertion, $) {
+import { creeStore } from 'securite/modeles/store';
+import VueSituation from 'securite/vues/situation.vue';
+
+export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
+  constructor (situation, journal, depotRessources) {
+    super(situation, journal, depotRessources, creeStore, VueSituation);
   }
 }
