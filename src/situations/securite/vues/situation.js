@@ -1,29 +1,10 @@
-import Vue from 'vue';
+import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
 
-import { traduction } from 'commun/infra/internationalisation';
-import { synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
 import { creeStore } from '../modeles/store';
-import Situation from './situation.vue';
+import VueSituation from './situation.vue';
 
-export default class VueSituation {
-  constructor (situation, journal, depotRessources, registreUtilisateur) {
-    this.situation = situation;
-    this.depotRessources = depotRessources;
-    this.journal = journal;
-
-    Vue.prototype.$depotRessources = depotRessources;
-    Vue.prototype.$traduction = traduction;
-    Vue.prototype.$journal = journal;
-  }
-
-  affiche (pointInsertion, $) {
-    const div = document.createElement('div');
-    $(pointInsertion).append(div);
-    const store = creeStore();
-    synchroniseStoreEtModeleSituation(this.situation, store);
-    new Vue({
-      store,
-      render: createEle => createEle(Situation)
-    }).$mount(div);
+export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
+  constructor (situation, journal, depotRessources) {
+    super(situation, journal, depotRessources, creeStore, VueSituation);
   }
 }
