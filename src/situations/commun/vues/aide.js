@@ -1,14 +1,14 @@
 import { traduction } from 'commun/infra/internationalisation';
 import aide from 'commun/assets/aide.svg';
 import VueBouton from './bouton';
-import { creeAdapteur } from './adapteur_vue';
+import { creeAdaptateur } from './adaptateur_vue';
 import EvenementActivationAide from 'commun/modeles/evenement_activation_aide';
 import VueFenetreAide, { FERME } from 'commun/vues/fenetre_aide';
 
 import 'commun/styles/bouton.scss';
 import 'commun/styles/aide.scss';
 
-const AdapteurFenetreAide = creeAdapteur(VueFenetreAide);
+const AdapteurFenetreAide = creeAdaptateur(VueFenetreAide);
 
 export default class VueAide {
   constructor (situation, depotRessources, journal) {
