@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import { traduction } from 'commun/infra/internationalisation';
 
-export function creeAdapteur (component) {
+export function creeAdaptateur (component) {
   return class AdaptateurVue {
     constructor (situation, depotRessources, props = {}) {
       Vue.prototype.$depotRessources = depotRessources;
