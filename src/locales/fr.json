@@ -117,6 +117,9 @@
     "dangers_detectes": "Dangers",
     "titre": "Sécurité"
   },
+  "prevention": {
+    "titre": "Prévention"
+  },
   "situation": {
     "activer_aide": "J'ai besoin d'aide",
     "ecouter-consigne": "Commencez par écouter la consigne",
