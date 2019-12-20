@@ -4,9 +4,9 @@ import { afficheSituation } from 'commun/vues/affiche_situation';
 
 import DepotRessourcesPrevention from 'prevention/infra/depot_ressources_prevention';
 import Situation from 'commun/modeles/situation';
-import VueSituation from 'prevention/vues/situation';
+import AdaptateurVueSituation from 'prevention/vues/situation';
 
 const situation = new Situation();
 
 const depotRessources = new DepotRessourcesPrevention();
-afficheSituation('prevention', situation, VueSituation, depotRessources);
+afficheSituation('prevention', situation, AdaptateurVueSituation, depotRessources);
