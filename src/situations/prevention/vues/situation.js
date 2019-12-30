@@ -1,6 +1,6 @@
 import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
 
-import { creeStore } from 'securite/modeles/store';
+import { creeStore } from 'prevention/modeles/store';
 import ActePrevention from 'prevention/vues/acte';
 
 export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
