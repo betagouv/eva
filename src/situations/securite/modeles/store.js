@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
 
 import {
   CHARGEMENT,
@@ -9,18 +8,16 @@ import {
   FINI
 } from 'commun/modeles/situation';
 
-Vue.use(Vuex);
+import { creeStore as creeStoreCommun } from 'commun/modeles/store';
 
 export function creeStore () {
-  return new Vuex.Store({
+  return creeStoreCommun({
     state: {
-      etat: CHARGEMENT,
       zones: [],
       dangers: {},
       fondSituation: '',
       dangersQualifies: {},
-      nonDangersIdentifies: [],
-      aide: false
+      nonDangersIdentifies: []
     },
     getters: {
       qualification (state) {
@@ -31,9 +28,6 @@ export function creeStore () {
       }
     },
     mutations: {
-      modifieEtat (state, etat) {
-        state.etat = etat;
-      },
       configureActe (state, { zones, dangers, fondSituation }) {
         state.zones = zones;
         state.dangers = dangers;
@@ -49,9 +43,6 @@ export function creeStore () {
         if (!state.nonDangersIdentifies.includes(zoneId)) {
           state.nonDangersIdentifies.push(zoneId);
         }
-      },
-      activeAide (state) {
-        state.aide = true;
       }
     }
   });

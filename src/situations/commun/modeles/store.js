@@ -1,7 +1,34 @@
+import Vue from 'vue';
+import Vuex from 'vuex';
+
 import {
+  CHARGEMENT,
   ACTIVATION_AIDE,
   CHANGEMENT_ETAT
 } from 'commun/modeles/situation';
+
+Vue.use(Vuex);
+
+export function creeStore ({ state, mutations, getters, actions } = {}) {
+  return new Vuex.Store({
+    state: {
+      etat: CHARGEMENT,
+      aide: false,
+      ...state
+    },
+    mutations: {
+      modifieEtat (state, etat) {
+        state.etat = etat;
+      },
+      activeAide (state) {
+        state.aide = true;
+      },
+      ...mutations
+    },
+    getters,
+    actions
+  });
+}
 
 export function synchroniseStoreEtModeleSituation (situation, store) {
   situation.on(CHANGEMENT_ETAT, (etat) => {
