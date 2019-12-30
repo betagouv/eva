@@ -1,15 +1,22 @@
 <template>
-  <acte-securite @terminer="changeEtatSituation" />
+  <component
+    :is="composantActe"
+    @terminer="changeEtatSituation"
+  ></component>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from '../modeles/store';
-import ActeSecurite from './acte';
 import { configurationEntrainement, configurationNormale } from '../data/zones';
 
 export default {
-  components: { ActeSecurite },
+  props: {
+    composantActe: {
+      type: Object,
+      required: true
+    }
+  },
 
   computed: {
     ...mapState(['etat']),
