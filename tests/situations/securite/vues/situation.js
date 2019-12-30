@@ -22,7 +22,10 @@ describe('La vue de la situation Sécurité', function () {
     store = creeStore();
     wrapper = shallowMount(Situation, {
       store,
-      localVue
+      localVue,
+      propsData: {
+        composantActe: ActeSecurite
+      }
     });
   });
 
