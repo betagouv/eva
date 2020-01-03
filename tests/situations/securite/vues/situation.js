@@ -24,7 +24,9 @@ describe('La vue de la situation Sécurité', function () {
       store,
       localVue,
       propsData: {
-        composantActe: ActeSecurite
+        composantActe: ActeSecurite,
+        configurationNormale: { zones: [] },
+        configurationEntrainement: { zones: [] }
       }
     });
   });
@@ -44,13 +46,14 @@ describe('La vue de la situation Sécurité', function () {
   });
 
   it("charge les zones d'entrainement au chargement", function () {
-    expect(store.state.zones.length).to.eql(2);
+    expect(store.state.zones.length).to.eql(0);
   });
 
   it('charge les autres zones de la situation une fois démarré', function () {
-    expect(store.state.zones.length).to.eql(2);
+    wrapper.setProps({ configurationNormale: { zones: [1, 2] } });
+    expect(store.state.zones.length).to.eql(0);
     store.commit('modifieEtat', DEMARRE);
-    expect(store.state.zones.length).to.eql(11);
+    expect(store.state.zones.length).to.eql(2);
   });
 
   it("change l'état de la situation en ENTRAINEMENT_FINI une fois l'acte terminé", function () {
