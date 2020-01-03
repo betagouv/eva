@@ -8,11 +8,18 @@
 <script>
 import { mapState } from 'vuex';
 import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from '../modeles/store';
-import { configurationEntrainement, configurationNormale } from '../data/zones';
 
 export default {
   props: {
     composantActe: {
+      type: Object,
+      required: true
+    },
+    configurationEntrainement: {
+      type: Object,
+      required: true
+    },
+    configurationNormale: {
       type: Object,
       required: true
     }
@@ -25,12 +32,12 @@ export default {
       if ([DEMARRE, FINI].includes(this.etat)) {
         return {
           fondSituation: this.$depotRessources.fondSituation().src,
-          ...configurationNormale
+          ...this.configurationNormale
         };
       }
       return {
         fondSituation: this.$depotRessources.fondSituationEntrainement().src,
-        ...configurationEntrainement
+        ...this.configurationEntrainement
       };
     }
   },

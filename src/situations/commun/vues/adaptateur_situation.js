@@ -5,10 +5,12 @@ import { synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
 import VueSituation from 'securite/vues/situation.vue';
 
 export default class AdaptateurCommunVueSituation {
-  constructor (situation, journal, depotRessources, creeStore, ComposantActe) {
+  constructor (situation, journal, depotRessources, creeStore, ComposantActe, configurationEntrainement, configurationNormale) {
     this.situation = situation;
     this.creeStore = creeStore;
     this.ComposantActe = ComposantActe;
+    this.configurationEntrainement = configurationEntrainement;
+    this.configurationNormale = configurationNormale;
 
     Vue.prototype.$depotRessources = depotRessources;
     Vue.prototype.$traduction = traduction;
@@ -24,7 +26,9 @@ export default class AdaptateurCommunVueSituation {
       store,
       render: createEle => createEle(VueSituation, {
         props: {
-          composantActe: this.ComposantActe
+          composantActe: this.ComposantActe,
+          configurationEntrainement: this.configurationEntrainement,
+          configurationNormale: this.configurationNormale
         }
       })
     }).$mount(div);
