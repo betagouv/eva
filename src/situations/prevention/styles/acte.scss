@@ -1,0 +1,11 @@
+@import 'commun/styles/couleurs.scss';
+
+.fond-situation {
+  height: 100%;
+}
+
+.zone {
+  fill: transparent;
+  stroke: $orange;
+  stroke-width: 12px;
+}
