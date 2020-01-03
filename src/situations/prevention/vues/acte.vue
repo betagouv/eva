@@ -10,7 +10,7 @@
         :cx="`${zone.x}%`"
         :cy="`${zone.y}%`"
         :r="`${zone.r}%`"
-        class="zone zone-selectionnee"
+        class="zone"
       />
     </svg>
   </div>
@@ -18,7 +18,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import 'securite/styles/acte.scss';
+import 'prevention/styles/acte.scss';
 
 export default {
   computed: {
