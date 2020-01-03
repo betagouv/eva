@@ -1,9 +1,10 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Situation from 'securite/vues/situation.vue';
+import Situation from 'commun/vues/situation';
 import ActeSecurite from 'securite/vues/acte';
-import { creeStore, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from 'securite/modeles/store';
+import { creeStore } from 'commun/modeles/store';
+import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from 'commun/modeles/situation';
 
-describe('La vue de la situation Sécurité', function () {
+describe('commun/vues/situation', function () {
   let wrapper;
   let store;
   let localVue;
@@ -19,7 +20,16 @@ describe('La vue de la situation Sécurité', function () {
         return { src: 'fond-situation-entrainement' };
       }
     }();
-    store = creeStore();
+    store = creeStore({
+      state: {
+        zones: []
+      },
+      mutations: {
+        configureActe (state, { zones }) {
+          state.zones = zones;
+        }
+      }
+    });
     wrapper = shallowMount(Situation, {
       store,
       localVue,

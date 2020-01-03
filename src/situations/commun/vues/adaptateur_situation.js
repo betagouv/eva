@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import { traduction } from 'commun/infra/internationalisation';
 import { synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
-import VueSituation from 'securite/vues/situation.vue';
+import VueSituation from 'commun/vues/situation';
 
 export default class AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources, creeStore, ComposantActe, configurationEntrainement, configurationNormale) {

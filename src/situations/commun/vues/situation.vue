@@ -7,7 +7,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from '../modeles/store';
+import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from '../modeles/situation';
 
 export default {
   props: {
