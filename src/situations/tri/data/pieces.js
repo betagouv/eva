@@ -1,74 +1,71 @@
-const scene = {
-  largeur: 1008,
-  hauteur: 566
-};
+import { pourcentageX, pourcentageY } from 'commun/data/scene';
 
 const pieces = [
-  { type: 'bonbon3', y: 430 / scene.hauteur * 100, x: 855 / scene.largeur * 100 },
-  { type: 'bonbon6', y: 430 / scene.hauteur * 100, x: 301 / scene.largeur * 100 },
+  { type: 'bonbon3', y: pourcentageY(430), x: pourcentageX(855) },
+  { type: 'bonbon6', y: pourcentageY(430), x: pourcentageX(301) },
 
-  { type: 'bonbon2', y: 433 / scene.hauteur * 100, x: 723 / scene.largeur * 100 },
-  { type: 'bonbon6', y: 433 / scene.hauteur * 100, x: 335 / scene.largeur * 100 },
-  { type: 'bonbon1', y: 433 / scene.hauteur * 100, x: 196 / scene.largeur * 100 },
+  { type: 'bonbon2', y: pourcentageY(433), x: pourcentageX(723) },
+  { type: 'bonbon6', y: pourcentageY(433), x: pourcentageX(335) },
+  { type: 'bonbon1', y: pourcentageY(433), x: pourcentageX(196) },
 
-  { type: 'bonbon8', y: 434 / scene.hauteur * 100, x: 688 / scene.largeur * 100 },
-  { type: 'bonbon7', y: 435 / scene.hauteur * 100, x: 450 / scene.largeur * 100 },
-  { type: 'bonbon7', y: 437 / scene.hauteur * 100, x: 474 / scene.largeur * 100 },
-  { type: 'bonbon2', y: 439 / scene.hauteur * 100, x: 289 / scene.largeur * 100 },
+  { type: 'bonbon8', y: pourcentageY(434), x: pourcentageX(688) },
+  { type: 'bonbon7', y: pourcentageY(435), x: pourcentageX(450) },
+  { type: 'bonbon7', y: pourcentageY(437), x: pourcentageX(474) },
+  { type: 'bonbon2', y: pourcentageY(439), x: pourcentageX(289) },
 
-  { type: 'bonbon2', y: 443 / scene.hauteur * 100, x: 706 / scene.largeur * 100 },
-  { type: 'bonbon8', y: 443 / scene.hauteur * 100, x: 403 / scene.largeur * 100 },
-  { type: 'bonbon11', y: 443 / scene.hauteur * 100, x: 243 / scene.largeur * 100 },
+  { type: 'bonbon2', y: pourcentageY(443), x: pourcentageX(706) },
+  { type: 'bonbon8', y: pourcentageY(443), x: pourcentageX(403) },
+  { type: 'bonbon11', y: pourcentageY(443), x: pourcentageX(243) },
 
-  { type: 'bonbon6', y: 445 / scene.hauteur * 100, x: 387 / scene.largeur * 100 },
-  { type: 'bonbon9', y: 445 / scene.hauteur * 100, x: 231 / scene.largeur * 100 },
+  { type: 'bonbon6', y: pourcentageY(445), x: pourcentageX(387) },
+  { type: 'bonbon9', y: pourcentageY(445), x: pourcentageX(231) },
 
-  { type: 'bonbon3', y: 447 / scene.hauteur * 100, x: 91 / scene.largeur * 100 },
+  { type: 'bonbon3', y: pourcentageY(447), x: pourcentageX(91) },
 
-  { type: 'bonbon12', y: 448 / scene.hauteur * 100, x: 501 / scene.largeur * 100 },
-  { type: 'bonbon12', y: 448 / scene.hauteur * 100, x: 174 / scene.largeur * 100 },
+  { type: 'bonbon12', y: pourcentageY(448), x: pourcentageX(501) },
+  { type: 'bonbon12', y: pourcentageY(448), x: pourcentageX(174) },
 
-  { type: 'bonbon10', y: 450 / scene.hauteur * 100, x: 638 / scene.largeur * 100 },
-  { type: 'bonbon5', y: 450 / scene.hauteur * 100, x: 281 / scene.largeur * 100 },
-  { type: 'bonbon10', y: 450 / scene.hauteur * 100, x: 255 / scene.largeur * 100 },
-  { type: 'bonbon12', y: 450 / scene.hauteur * 100, x: 51 / scene.largeur * 100 },
+  { type: 'bonbon10', y: pourcentageY(450), x: pourcentageX(638) },
+  { type: 'bonbon5', y: pourcentageY(450), x: pourcentageX(281) },
+  { type: 'bonbon10', y: pourcentageY(450), x: pourcentageX(255) },
+  { type: 'bonbon12', y: pourcentageY(450), x: pourcentageX(51) },
 
-  { type: 'bonbon9', y: 451 / scene.hauteur * 100, x: 832 / scene.largeur * 100 },
-  { type: 'bonbon11', y: 451 / scene.hauteur * 100, x: 299 / scene.largeur * 100 },
+  { type: 'bonbon9', y: pourcentageY(451), x: pourcentageX(832) },
+  { type: 'bonbon11', y: pourcentageY(451), x: pourcentageX(299) },
 
-  { type: 'bonbon5', y: 452 / scene.hauteur * 100, x: 457 / scene.largeur * 100 },
-  { type: 'bonbon9', y: 453 / scene.hauteur * 100, x: 619 / scene.largeur * 100 },
-  { type: 'bonbon10', y: 455 / scene.hauteur * 100, x: 140 / scene.largeur * 100 },
+  { type: 'bonbon5', y: pourcentageY(452), x: pourcentageX(457) },
+  { type: 'bonbon9', y: pourcentageY(453), x: pourcentageX(619) },
+  { type: 'bonbon10', y: pourcentageY(455), x: pourcentageX(140) },
 
-  { type: 'bonbon12', y: 456 / scene.hauteur * 100, x: 671 / scene.largeur * 100 },
-  { type: 'bonbon3', y: 456 / scene.hauteur * 100, x: 346 / scene.largeur * 100 },
+  { type: 'bonbon12', y: pourcentageY(456), x: pourcentageX(671) },
+  { type: 'bonbon3', y: pourcentageY(456), x: pourcentageX(346) },
 
-  { type: 'bonbon3', y: 458 / scene.hauteur * 100, x: 308 / scene.largeur * 100 },
-  { type: 'bonbon10', y: 462 / scene.hauteur * 100, x: 303 / scene.largeur * 100 },
-  { type: 'bonbon4', y: 463 / scene.hauteur * 100, x: 230 / scene.largeur * 100 },
-  { type: 'bonbon2', y: 464 / scene.hauteur * 100, x: 453 / scene.largeur * 100 },
-  { type: 'bonbon11', y: 466 / scene.hauteur * 100, x: 750 / scene.largeur * 100 },
-  { type: 'bonbon4', y: 468 / scene.hauteur * 100, x: 404 / scene.largeur * 100 },
-  { type: 'bonbon5', y: 469 / scene.hauteur * 100, x: 328 / scene.largeur * 100 },
-  { type: 'bonbon7', y: 470 / scene.hauteur * 100, x: 751 / scene.largeur * 100 },
+  { type: 'bonbon3', y: pourcentageY(458), x: pourcentageX(308) },
+  { type: 'bonbon10', y: pourcentageY(462), x: pourcentageX(303) },
+  { type: 'bonbon4', y: pourcentageY(463), x: pourcentageX(230) },
+  { type: 'bonbon2', y: pourcentageY(464), x: pourcentageX(453) },
+  { type: 'bonbon11', y: pourcentageY(466), x: pourcentageX(750) },
+  { type: 'bonbon4', y: pourcentageY(468), x: pourcentageX(404) },
+  { type: 'bonbon5', y: pourcentageY(469), x: pourcentageX(328) },
+  { type: 'bonbon7', y: pourcentageY(470), x: pourcentageX(751) },
 
-  { type: 'bonbon1', y: 471 / scene.hauteur * 100, x: 632 / scene.largeur * 100 },
-  { type: 'bonbon9', y: 471 / scene.hauteur * 100, x: 605 / scene.largeur * 100 },
-  { type: 'bonbon7', y: 471 / scene.hauteur * 100, x: 440 / scene.largeur * 100 },
+  { type: 'bonbon1', y: pourcentageY(471), x: pourcentageX(632) },
+  { type: 'bonbon9', y: pourcentageY(471), x: pourcentageX(605) },
+  { type: 'bonbon7', y: pourcentageY(471), x: pourcentageX(440) },
 
-  { type: 'bonbon5', y: 473 / scene.hauteur * 100, x: 654 / scene.largeur * 100 },
+  { type: 'bonbon5', y: pourcentageY(473), x: pourcentageX(654) },
 
-  { type: 'bonbon4', y: 474 / scene.hauteur * 100, x: 808 / scene.largeur * 100 },
-  { type: 'bonbon11', y: 474 / scene.hauteur * 100, x: 402 / scene.largeur * 100 },
+  { type: 'bonbon4', y: pourcentageY(474), x: pourcentageX(808) },
+  { type: 'bonbon11', y: pourcentageY(474), x: pourcentageX(402) },
 
-  { type: 'bonbon6', y: 475 / scene.hauteur * 100, x: 374 / scene.largeur * 100 },
+  { type: 'bonbon6', y: pourcentageY(475), x: pourcentageX(374) },
 
-  { type: 'bonbon8', y: 476 / scene.hauteur * 100, x: 713 / scene.largeur * 100 },
-  { type: 'bonbon8', y: 476 / scene.hauteur * 100, x: 106 / scene.largeur * 100 },
+  { type: 'bonbon8', y: pourcentageY(476), x: pourcentageX(713) },
+  { type: 'bonbon8', y: pourcentageY(476), x: pourcentageX(106) },
 
-  { type: 'bonbon1', y: 477 / scene.hauteur * 100, x: 795 / scene.largeur * 100 },
-  { type: 'bonbon4', y: 477 / scene.hauteur * 100, x: 664 / scene.largeur * 100 },
-  { type: 'bonbon1', y: 477 / scene.hauteur * 100, x: 316 / scene.largeur * 100 }
+  { type: 'bonbon1', y: pourcentageY(477), x: pourcentageX(795) },
+  { type: 'bonbon4', y: pourcentageY(477), x: pourcentageX(664) },
+  { type: 'bonbon1', y: pourcentageY(477), x: pourcentageX(316) }
 ];
 
 const bacs = [
