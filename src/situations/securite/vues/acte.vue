@@ -52,7 +52,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import 'securite/styles/acte.scss';
-import { pourcentageX, pourcentageY } from '../data/zones';
+import { pourcentageX, pourcentageY } from 'commun/data/scene';
 import FenetreZone from './fenetre_zone';
 import EvenementClickHorsZone from '../modeles/evenement_click_hors_zone';
 
