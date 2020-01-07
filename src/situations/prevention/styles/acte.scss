@@ -8,4 +8,26 @@
   fill: transparent;
   stroke: $orange;
   stroke-width: 12px;
+  transition: transform .3s ease, stroke-width .3s ease;
+
+  &-clickable {
+    stroke: $blanc;
+    cursor: pointer;
+  }
+
+  &-agrandi {
+    stroke: $blanc;
+    stroke-width: 6px;
+  }
+}
+
+.overlay-zone {
+  fill: transparentize($orange, 0.2);
+}
+
+.transition-transform {
+  transition: transform .3s ease;
+}
+.transform-scale-1-5 {
+  transform: scale(1.5);
 }

@@ -4,7 +4,7 @@ const configurationEntrainement = { zones: [] };
 const configurationNormale = {
   zones: [
     {
-      x: pourcentageX(80),
+      x: pourcentageX(100),
       y: pourcentageY(460),
       r: pourcentageX(80),
       id: 'fuite-camion-citerne'
