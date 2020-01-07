@@ -31,3 +31,11 @@
 .transform-scale-1-5 {
   transform: scale(1.5);
 }
+
+.overlay-zone-actions-cache {
+  transform: translate(0, 100%);
+}
+
+.overlay-zone-action {
+  cursor: pointer;
+}
