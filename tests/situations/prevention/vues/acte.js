@@ -15,7 +15,7 @@ describe("La vue de l'acte prévention", function () {
 
   it('affiche le fond', function () {
     store.commit('configureActe', { fondSituation: 'fondSituation', zones: [] });
-    expect(wrapper.attributes('style')).to.eql('background-image: url(fondSituation);');
+    expect(wrapper.find('image').attributes('href')).to.eql('fondSituation');
   });
 
   it('affiche les zones', function () {
