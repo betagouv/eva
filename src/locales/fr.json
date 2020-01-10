@@ -142,7 +142,7 @@
   "tri": {
     "titre": "Magasin de friandises",
     "intro_contexte": {
-      "message": "<p>Vous devez trier les friandises présentes sur le plateau en bas de l'écran en les déponsant dans les casiers selon les modèles. Cliquez sur la friandise et maintenez la pression sur la souris pour déposer le bonbon dans le bon casier.</p><p>Pour information nous vous chronométrons. Le chronomètre s'arrête automatiquement lorsque qu'il ne reste plus de bonbon sur le plateau.</p>"
+      "message": "<p>Vous devez trier les friandises présentes sur le plateau en bas de l'écran en les déposant dans les casiers selon les modèles. Cliquez sur la friandise et maintenez la pression sur la souris pour déposer le bonbon dans le bon casier.</p><p>Pour information nous vous chronométrons. Le chronomètre s'arrête automatiquement lorsqu'il ne reste plus de bonbon sur le plateau.</p>"
     },
     "resultat": {
       "temps_passe": "Temps: {{nombre, duree}}",
