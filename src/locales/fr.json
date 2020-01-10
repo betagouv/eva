@@ -13,7 +13,7 @@
     "identification": {
       "bouton": "Démarrer",
       "campagne": "Code de la campagne",
-      "cgu": "J'autorise eva à collecter et traiter mes données personnelles dans le cadre de l'utilisation de l'outil. Ces données ne seront pas exploitées commercialement. Dans le cadre spécifique d'une campagne de recrutement, j'accepte que les données collectées soient transmises à l'entreprise pour laquelle je postule et/ou à l'organisme en charge des formations. Vous pouvez utiliser votre droit de suppression de données personnelles en nous écrivant à l'adresse email support@eva.beta.gouv.fr",
+      "cgu": "J'autorise eva à collecter et traiter mes données personnelles dans le cadre de l'utilisation de l'outil. Ces données ne seront pas exploitées commercialement. Dans le cadre d'un accompagnement de parcours ou d’une opération de recrutement spécifique, j'accepte que les données collectées soient transmises à l'entreprise ou à l’opérateur de service public partenaire. Vous pouvez utiliser votre droit de suppression de données personnelles en nous écrivant à l'adresse email support@eva.beta.gouv.fr",
       "label": "Entrez votre nom et prénom",
       "titre": "Bienvenue !"
     },
