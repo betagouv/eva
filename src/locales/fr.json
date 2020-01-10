@@ -34,7 +34,7 @@
       },
       "resultat": {
         "titre": "Votre potentiel",
-        "competences": "<p>Voici vos deux principaux potentiels identifiés :<br><em>Cliquez sur 'en savoir plus' pour connaitres les métiers associés.</em></p>",
+        "competences": "<p>Voici vos deux principaux potentiels identifiés.<br><em>Cliquez sur \"En savoir plus\" pour connaître les métiers associés à chaque compétence forte.</em></p>",
         "en-savoir-plus": "En savoir plus"
       }
     },
