@@ -27,8 +27,8 @@ describe("La vue de l'acte prévention", function () {
     let zone1;
     let zone2;
     beforeEach(function () {
-      zone1 = {};
-      zone2 = {};
+      zone1 = { x: 1, y: 2, r: 3 };
+      zone2 = { x: 4, y: 5, r: 6 };
       store.commit('configureActe', { zones: [zone1, zone2] });
     });
 
@@ -41,6 +41,7 @@ describe("La vue de l'acte prévention", function () {
 
     it('une zone évalué devient active ', function () {
       expect(wrapper.vm.zonesNonActive).to.eql([zone1, zone2]);
+      wrapper.vm.survoleZone(zone1);
       wrapper.vm.evalueZone(zone1);
       expect(wrapper.vm.zoneActive).to.eql(zone1);
       expect(wrapper.vm.zonesNonActive).to.eql([zone2]);
@@ -52,6 +53,12 @@ describe("La vue de l'acte prévention", function () {
       wrapper.vm.evalueZone(zone1);
       expect(wrapper.vm.zoneSurvolee).to.eql(null);
       expect(wrapper.vm.zoneEvaluee).to.eql(zone1);
+    });
+
+    it('une zone action devient active', function () {
+      wrapper.vm.survoleZone(zone1);
+      wrapper.vm.actionZone(zone1);
+      expect(wrapper.vm.zoneActive).to.eql(zone1);
     });
   });
 });

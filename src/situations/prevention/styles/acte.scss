@@ -4,7 +4,6 @@
   fill: transparent;
   stroke: $orange;
   stroke-width: 12px;
-  transition: transform .3s ease, stroke-width .3s ease;
 
   &-clickable {
     stroke: $blanc;
@@ -13,7 +12,6 @@
 
   &-agrandi {
     stroke: $blanc;
-    stroke-width: 6px;
   }
 }
 
