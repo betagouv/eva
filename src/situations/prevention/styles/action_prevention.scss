@@ -1,0 +1,43 @@
+.action-prevention {
+  position: relative;
+  margin: 20px;
+  height: calc(100% - 40px);
+  overflow: hidden;
+  border-radius: 17px;
+
+  img {
+    position: absolute;
+    transition: clip-path .3s ease, opacity .3s ease;
+    cursor: pointer;
+  }
+
+  .desactivee {
+    opacity: .1;
+  }
+
+  img:first-child {
+    clip-path: polygon(0% 0%, 75% 0%, 60% 100%, 0% 100%);
+
+    &:hover {
+      clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%);
+    }
+
+    &.desactivee {
+      clip-path: polygon(0% 0%, 50% 0%, 35% 100%, 0% 100%);
+    }
+  }
+
+  img:last-child {
+    right: 0;
+    clip-path: polygon(45% 0%, 100% 0%, 100% 100%, 30% 100%);
+
+    &:hover {
+      clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 5% 100%);
+      z-index: 15;
+    }
+
+    &.desactivee {
+      clip-path: polygon(70% 0%, 100% 0%, 100% 100%, 55% 100%);
+    }
+  }
+}

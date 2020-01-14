@@ -11,7 +11,7 @@
         :cx="`${zoneActive.x}%`"
         :cy="`${zoneActive.y}%`"
         :r="`${zoneActive.r}%`"
-        :class="{ 'transform-scale-1-5': zoneEvaluee || zoneAction  }"
+        :class="{ 'transform-scale-1-5': zoneEvaluee || zonePrevention  }"
         :style="{ 'transform-origin': zoneActiveTransformOrigin }"
         class="transition-transform"
       />
@@ -38,7 +38,7 @@
     </transition-fade>
     <g
       v-if="zoneActive"
-      :class="{ 'overlay-zone-actions-cache': !zoneEvaluee && !zoneAction }"
+      :class="{ 'overlay-zone-actions-cache': !zoneEvaluee && !zonePrevention }"
       class="transition-transform"
     >
       <rect
@@ -49,9 +49,19 @@
         :rx="rectActions.rx"
         fill="#FBF9FA"
       />
+      <foreignObject
+        v-if="zonePrevention"
+        :width="`${rectActions.width}%`"
+        :height="`${rectActions.height}%`"
+        :x="`${rectActions.x}%`"
+        :y="`${rectActions.y}%`"
+        :rx="rectActions.rx"
+      >
+        <action-prevention />
+      </foreignObject>
       <g
-        v-if="zoneEvaluee"
-        @click="actionZone(zoneActive)"
+        v-else
+        @click="previentZone(zoneActive)"
       >
         <svg width="52" height="51" viewBox="0 0 52 51" x="37%" y="79%" class="overlay-zone-action">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M26 51C40.3594 51 52 39.5833 52 25.5C52 11.4167 40.3594 0 26 0C11.6406 0 0 11.4167 0 25.5C0 39.5833 11.6406 51 26 51ZM41.5416 14.3955C42.2484 13.5092 42.124 12.2004 41.2637 11.4722C40.4034 10.744 39.1331 10.8722 38.4263 11.7585L21.3023 33.2316L17.6413 28.0931C16.9825 27.1684 15.7208 26.969 14.8232 27.6478C13.9257 28.3265 13.7321 29.6264 14.391 30.5511L21.123 40L41.5416 14.3955Z" fill="#9ADBD0"/>
@@ -73,7 +83,7 @@
       :xlink:href="fondSituation"
       :style="[ { 'transform-origin': zoneActiveTransformOrigin },
                    zoneEvaluee ? { transform: transformZone(2) } : '',
-                   zoneAction ? { transform: transformZone(1) } : '' ]"
+                   zonePrevention ? { transform: transformZone(1) } : '' ]"
       clip-path="url(#cercle-illustration-clip)"
       height="100%"
       width="100%"
@@ -84,7 +94,7 @@
       :cx="`${cercleBlanc.cx}%`"
       :cy="`${cercleBlanc.cy}%`"
       :r="`${cercleBlanc.r}%`"
-      :class="{ 'zone-agrandi': zoneEvaluee || zoneAction,
+      :class="{ 'zone-agrandi': zoneEvaluee || zonePrevention,
                 'zone-clickable': zoneSurvolee }"
       class="zone"
       @mouseout="deSurvoleZone"
@@ -96,12 +106,14 @@
 
 <script>
 import { mapState } from 'vuex';
+import gsap from 'gsap';
 import 'prevention/styles/acte.scss';
 import TransitionFade from 'commun/vues/transition_fade';
-import gsap from 'gsap';
+import ActionPrevention from './action_prevention';
 
 export default {
   components: {
+    ActionPrevention,
     TransitionFade
   },
 
@@ -109,7 +121,7 @@ export default {
     return {
       zoneSurvolee: null,
       zoneEvaluee: null,
-      zoneAction: null,
+      zonePrevention: null,
       rectActions: {},
       cercleBlanc: {}
     };
@@ -118,7 +130,7 @@ export default {
   computed: {
     ...mapState(['fondSituation', 'zones']),
     zoneActive () {
-      return this.zoneSurvolee || this.zoneEvaluee || this.zoneAction;
+      return this.zoneSurvolee || this.zoneEvaluee || this.zonePrevention;
     },
     zonesNonActive () {
       return this.zones.filter(z => this.zoneActive !== z);
@@ -131,12 +143,9 @@ export default {
   methods: {
     transformZone (scale) {
       let y = 40;
-      if (this.zoneAction) y = 35;
-      const translate = `translate(${(50 - this.zoneActive.x) / scale}%, ${(y - this.zoneActive.y) / scale}%)`;
-      if (scale === 1) {
-        return translate;
-      }
-      return `scale(${scale}) ${translate}`;
+      if (this.zonePrevention) y = 35;
+      const scaleInstruction = scale === 1 ? '' : `scale(${scale})`;
+      return `${scaleInstruction} translate(${(50 - this.zoneActive.x) / scale}%, ${(y - this.zoneActive.y) / scale}%)`;
     },
 
     survoleZone (zone) {
@@ -154,11 +163,11 @@ export default {
 
     sortEvaluationZone () {
       this.zoneEvaluee = null;
-      this.zoneAction = null;
+      this.zonePrevention = null;
     },
 
-    actionZone (zone) {
-      this.zoneAction = zone;
+    previentZone (zone) {
+      this.zonePrevention = zone;
       this.zoneEvaluee = null;
     },
 
@@ -176,9 +185,9 @@ export default {
       if (!zone) return;
       this.anime(this.cercleBlanc, { r: this.zoneActive.r * 3, cx: 50, cy: 40 });
     },
-    zoneAction (zone) {
+    zonePrevention (zone) {
       if (!zone) return;
-      this.anime(this.rectActions, { x: 21.5, y: 45, width: 57, height: 45, rx: 30 });
+      this.anime(this.rectActions, { x: 21.5, y: 45, width: 57, height: 44.85, rx: 30 });
       this.anime(this.cercleBlanc, { r: this.zoneActive.r * 1.5, cx: 50, cy: 35 });
     }
   }
