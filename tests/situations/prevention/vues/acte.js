@@ -1,15 +1,21 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ActePrevention from 'prevention/vues/acte';
 import { creeStore } from 'securite/modeles/store';
+import MockDepotRessources from '../aides/mock_depot_ressources_prevention';
 
 describe("La vue de l'acte prévention", function () {
   let wrapper;
   let store;
+  let depotRessources;
 
   beforeEach(function () {
+    const localVue = createLocalVue();
+    depotRessources = new MockDepotRessources();
+    localVue.prototype.$depotRessources = depotRessources;
     store = creeStore();
     wrapper = shallowMount(ActePrevention, {
-      store
+      store,
+      localVue
     });
   });
 
@@ -55,9 +61,9 @@ describe("La vue de l'acte prévention", function () {
       expect(wrapper.vm.zoneEvaluee).to.eql(zone1);
     });
 
-    it('une zone action devient active', function () {
+    it('une zone de prévention devient active', function () {
       wrapper.vm.survoleZone(zone1);
-      wrapper.vm.actionZone(zone1);
+      wrapper.vm.previentZone(zone1);
       expect(wrapper.vm.zoneActive).to.eql(zone1);
     });
   });
