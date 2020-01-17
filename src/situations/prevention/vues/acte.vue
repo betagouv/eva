@@ -25,15 +25,17 @@
       class="zone"
       @mouseover="survoleZone(zone)"
     />
-    <rect
-      v-if="zoneActive"
-      x="0"
-      y="0"
-      width="100%"
-      height="100%"
-      class="overlay-zone"
-      @click="sortEvaluationZone"
-    />
+    <transition-fade>
+      <rect
+        v-if="zoneActive"
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        class="overlay-zone"
+        @click="sortEvaluationZone"
+      />
+    </transition-fade>
     <g
       :class="{ 'overlay-zone-actions-cache': !zoneEvaluee }"
       class="transition-transform"
@@ -90,8 +92,13 @@
 <script>
 import { mapState } from 'vuex';
 import 'prevention/styles/acte.scss';
+import TransitionFade from 'commun/vues/transition_fade';
 
 export default {
+  components: {
+    TransitionFade
+  },
+
   data () {
     return {
       zoneSurvolee: null,
