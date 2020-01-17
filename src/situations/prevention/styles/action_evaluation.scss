@@ -1,0 +1,16 @@
+@import 'commun/styles/couleurs.scss';
+
+.overlay-zone-action {
+  cursor: pointer;
+
+  &:hover {
+    .overlay-zone-action-hover {
+      stroke: $couleur-principale-marque-et-interaction;
+      stroke-width: 6px;
+    }
+  }
+
+  .overlay-zone-action-hover {
+    fill: none;
+  }
+}
