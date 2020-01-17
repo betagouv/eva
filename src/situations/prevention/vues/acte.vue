@@ -50,21 +50,17 @@
         fill="#FBF9FA"
       />
       <foreignObject
-        v-if="zonePrevention"
         :width="`${rectActions.width}%`"
         :height="`${rectActions.height}%`"
         :x="`${rectActions.x}%`"
         :y="`${rectActions.y}%`"
         :rx="rectActions.rx"
       >
-        <action-prevention />
+        <action-prevention v-if="zonePrevention" />
+        <action-evaluation
+          v-else
+          @click="previentZone(zoneActive)" />
       </foreignObject>
-      <g
-        v-else
-        @click="previentZone(zoneActive)"
-      >
-       <action-evaluation />
-      </g>
     </g>
 
     <image

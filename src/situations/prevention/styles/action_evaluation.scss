@@ -1,6 +1,14 @@
 @import 'commun/styles/couleurs.scss';
 
-.overlay-zone-action {
+.overlay-zone-evaluation {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-around;
+  margin: 0 20px;
+}
+
+.overlay-zone-evaluation-action {
   cursor: pointer;
 
   &:hover {
