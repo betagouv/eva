@@ -111,6 +111,9 @@ import 'prevention/styles/acte.scss';
 import TransitionFade from 'commun/vues/transition_fade';
 import ActionPrevention from './action_prevention';
 
+const POSITION_CERCLE_EVALUATION = { x: 50, y: 40 };
+const POSITION_CERCLE_PREVENTION = { x: 50, y: 35 };
+
 export default {
   components: {
     ActionPrevention,
@@ -137,15 +140,19 @@ export default {
     },
     zoneActiveTransformOrigin () {
       return `${this.zoneActive.x}% ${this.zoneActive.y}%`;
+    },
+    positionCercle () {
+      if (this.zonePrevention) {
+        return POSITION_CERCLE_PREVENTION;
+      }
+      return POSITION_CERCLE_EVALUATION;
     }
   },
 
   methods: {
     transformZone (scale) {
-      let y = 40;
-      if (this.zonePrevention) y = 35;
       const scaleInstruction = scale === 1 ? '' : `scale(${scale})`;
-      return `${scaleInstruction} translate(${(50 - this.zoneActive.x) / scale}%, ${(y - this.zoneActive.y) / scale}%)`;
+      return `${scaleInstruction} translate(${(this.positionCercle.x - this.zoneActive.x) / scale}%, ${(this.positionCercle.y - this.zoneActive.y) / scale}%)`;
     },
 
     survoleZone (zone) {
@@ -183,12 +190,12 @@ export default {
     },
     zoneEvaluee (zone) {
       if (!zone) return;
-      this.anime(this.cercleBlanc, { r: this.zoneActive.r * 3, cx: 50, cy: 40 });
+      this.anime(this.cercleBlanc, { r: this.zoneActive.r * 3, cx: this.positionCercle.x, cy: this.positionCercle.y });
     },
     zonePrevention (zone) {
       if (!zone) return;
       this.anime(this.rectActions, { x: 21.5, y: 45, width: 57, height: 44.85, rx: 30 });
-      this.anime(this.cercleBlanc, { r: this.zoneActive.r * 1.5, cx: 50, cy: 35 });
+      this.anime(this.cercleBlanc, { r: this.zoneActive.r * 1.5, cx: this.positionCercle.x, cy: this.positionCercle.y });
     }
   }
 };
