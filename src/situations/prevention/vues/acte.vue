@@ -114,6 +114,9 @@ import ActionPrevention from './action_prevention';
 const POSITION_CERCLE_EVALUATION = { x: 50, y: 40 };
 const POSITION_CERCLE_PREVENTION = { x: 50, y: 35 };
 
+const RECTANGLE_EVALUATION = { x: 32, y: 73, width: 35, height: 22, rx: 64 };
+const RECTANGLE_PREVENTION = { x: 21.5, y: 45, width: 57, height: 44.85, rx: 30 };
+
 export default {
   components: {
     ActionPrevention,
@@ -185,7 +188,7 @@ export default {
   watch: {
     zoneSurvolee (zone) {
       if (!zone) return;
-      this.rectActions = { x: 32, y: 73, width: 35, height: 22, rx: 64 };
+      this.rectActions = { ...RECTANGLE_EVALUATION };
       this.cercleBlanc = { cx: this.zoneActive.x, cy: this.zoneActive.y, r: this.zoneActive.r };
     },
     zoneEvaluee (zone) {
@@ -194,7 +197,7 @@ export default {
     },
     zonePrevention (zone) {
       if (!zone) return;
-      this.anime(this.rectActions, { x: 21.5, y: 45, width: 57, height: 44.85, rx: 30 });
+      this.anime(this.rectActions, RECTANGLE_PREVENTION);
       this.anime(this.cercleBlanc, { r: this.zoneActive.r * 1.5, cx: this.positionCercle.x, cy: this.positionCercle.y });
     }
   }
