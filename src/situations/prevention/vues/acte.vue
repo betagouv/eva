@@ -157,6 +157,7 @@ export default {
     },
 
     evalueZone (zone) {
+      if (this.zonePrevention) return;
       this.zoneEvaluee = zone;
       this.deSurvoleZone();
     },
