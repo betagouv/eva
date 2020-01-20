@@ -41,3 +41,14 @@
 .overlay-zone-actions-cache {
   transform: translate(0, 100%);
 }
+
+.vient-du-bas-enter-active, .vient-du-bas-leave-active {
+  transition: transform .3s ease;
+}
+.vient-du-bas-enter, .vient-du-bas-leave-to {
+  transform: translate(0, 100%);
+}
+
+.restaure-position-enter, .restaure-position-leave-to {
+  transform: translate(0, 0) !important;
+}

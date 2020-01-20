@@ -6,15 +6,17 @@
       width="100%"
     />
     <clipPath id="cercle-illustration-clip">
-      <circle
-        v-if="zoneActive"
-        :cx="`${zoneActive.x}%`"
-        :cy="`${zoneActive.y}%`"
-        :r="`${zoneActive.r}%`"
-        :class="{ 'transform-scale-1-5': zoneEvaluee || zonePrevention  }"
-        :style="{ 'transform-origin': zoneActiveTransformOrigin }"
-        class="transition-transform"
-      />
+      <transition name="restaure-position">
+        <circle
+          v-if="zoneActive"
+          :cx="`${zoneActive.x}%`"
+          :cy="`${zoneActive.y}%`"
+          :r="`${zoneActive.r}%`"
+          :class="{ 'transform-scale-1-5': zoneEvaluee || zonePrevention  }"
+          :style="{ 'transform-origin': zoneActiveTransformOrigin }"
+          class="transition-transform"
+        />
+      </transition>
     </clipPath>
     <circle
       v-for="zone in zonesNonActive"
@@ -34,61 +36,64 @@
         width="100%"
         height="100%"
         class="overlay-zone"
-        @click="sortEvaluationZone"
       />
     </transition-fade>
-    <g
-      v-if="zoneActive"
-      :class="{ 'overlay-zone-actions-cache': !zoneEvaluee && !zonePrevention }"
-      class="transition-transform"
-    >
-      <rect
-        :width="`${rectActions.width}%`"
-        :height="`${rectActions.height}%`"
-        :x="`${rectActions.x}%`"
-        :y="`${rectActions.y}%`"
-        :rx="rectActions.rx"
-        fill="#FBF9FA"
+    <transition name="vient-du-bas">
+      <g v-if="zoneEvaluee || zonePrevention">
+        <rect
+          :width="`${rectActions.width}%`"
+          :height="`${rectActions.height}%`"
+          :x="`${rectActions.x}%`"
+          :y="`${rectActions.y}%`"
+          :rx="rectActions.rx"
+          fill="#FBF9FA"
+        />
+        <foreignObject
+          :width="`${rectActions.width}%`"
+          :height="`${rectActions.height}%`"
+          :x="`${rectActions.x}%`"
+          :y="`${rectActions.y}%`"
+          :rx="rectActions.rx"
+        >
+          <action-prevention
+            v-if="zonePrevention"
+            @click="fermeZonePrevention"
+          />
+          <action-evaluation
+            v-else
+            @selectionPanneau="previentZone"
+         />
+        </foreignObject>
+      </g>
+    </transition>
+    <transition name="restaure-position">
+      <image
+        v-if="zoneActive"
+        :xlink:href="fondSituation"
+        :style="[ { 'transform-origin': zoneActiveTransformOrigin },
+                     zoneEvaluee || zonePrevention ? { transform: transformZone(2) } : '' ]"
+        clip-path="url(#cercle-illustration-clip)"
+        height="100%"
+        width="100%"
+        class="transition-transform"
       />
-      <foreignObject
-        :width="`${rectActions.width}%`"
-        :height="`${rectActions.height}%`"
-        :x="`${rectActions.x}%`"
-        :y="`${rectActions.y}%`"
-        :rx="rectActions.rx"
-      >
-        <action-prevention v-if="zonePrevention" />
-        <action-evaluation
-          v-else
-          @selectionPanneau="previentZone" />
-      </foreignObject>
-    </g>
-
-    <image
-      v-if="zoneActive"
-      :xlink:href="fondSituation"
-      :style="[ { 'transform-origin': zoneActiveTransformOrigin },
-                   zoneEvaluee || zonePrevention ? { transform: transformZone(2) } : '' ]"
-      clip-path="url(#cercle-illustration-clip)"
-      height="100%"
-      width="100%"
-      class="transition-transform"
-    />
-    <circle
-      v-if="zoneActive"
-      :cx="`${zoneActive.x}%`"
-      :cy="`${zoneActive.y}%`"
-      :r="`${zoneActive.r}%`"
-      :class="{ 'zone-agrandi': zoneEvaluee,
-                'zone-clickable': zoneSurvolee,
-                'zone-reduite':  zonePrevention }"
-      :style="[{ 'transform-origin': zoneActiveTransformOrigin },
-                 zoneEvaluee || zonePrevention ? { transform: transformZone(3) } : '' ]"
-      class="zone transition-transform"
-      @mouseout="deSurvoleZone"
-      @click="evalueZone(zoneActive)"
-    />
-
+    </transition>
+    <transition name="restaure-position">
+      <circle
+        v-if="zoneActive"
+        :cx="`${zoneActive.x}%`"
+        :cy="`${zoneActive.y}%`"
+        :r="`${zoneActive.r}%`"
+        :class="{ 'zone-agrandi': zoneEvaluee,
+                  'zone-clickable': zoneSurvolee,
+                  'zone-reduite':  zonePrevention }"
+        :style="[{ 'transform-origin': zoneActiveTransformOrigin },
+                   zoneEvaluee || zonePrevention ? { transform: transformZone(3) } : '' ]"
+        class="zone transition-transform"
+        @mouseout="deSurvoleZone"
+        @click="evalueZone(zoneActive)"
+      />
+    </transition>
   </svg>
 </template>
 
@@ -156,15 +161,14 @@ export default {
       this.deSurvoleZone();
     },
 
-    sortEvaluationZone () {
-      this.zoneEvaluee = null;
-      this.zonePrevention = null;
-    },
-
     previentZone (panneau) {
       this.zonePrevention = this.zoneActive;
       this.zoneEvaluee = null;
       this.$store.commit('previentZone', { id: this.zoneActive.id, panneau });
+    },
+
+    fermeZonePrevention () {
+      this.zonePrevention = null;
     },
 
     anime (objet, proprietes) {
