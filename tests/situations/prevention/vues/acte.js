@@ -66,5 +66,13 @@ describe("La vue de l'acte prévention", function () {
       wrapper.vm.previentZone(zone1);
       expect(wrapper.vm.zoneActive).to.eql(zone1);
     });
+
+    it('ne réouvre pas la zone en mode évaluation si celle ci est en mode prévention', function () {
+      wrapper.vm.survoleZone(zone1);
+      wrapper.vm.evalueZone(zone1);
+      wrapper.vm.previentZone(zone1);
+      wrapper.vm.evalueZone(zone1);
+      expect(wrapper.vm.zoneEvaluee).to.eql(null);
+    });
   });
 });
