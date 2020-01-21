@@ -120,6 +120,9 @@
   "prevention": {
     "titre": "Prévention"
   },
+  "decision_lexicale": {
+    "titre": "Décision lexicale"
+  },
   "situation": {
     "activer_aide": "J'ai besoin d'aide",
     "ecouter-consigne": "Commencez par écouter la consigne",

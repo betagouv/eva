@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const situations = ['questions', 'controle', 'inventaire', 'tri', 'securite', 'prevention'];
+const situations = ['questions', 'controle', 'inventaire', 'tri', 'securite', 'prevention', 'decision_lexicale'];
 
 const aliasSituations = situations.reduce(function (alias, situation) {
   alias[situation] = path.resolve(__dirname, `src/situations/${situation}/`);
