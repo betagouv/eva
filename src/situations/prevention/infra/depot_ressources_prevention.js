@@ -18,6 +18,10 @@ export default class DepotRessourcesPrevention extends DepotRessourcesCommunes {
     return this.ressource(fondSituation);
   }
 
+  fondSituationEntrainement () {
+    return this.ressource(fondSituation);
+  }
+
   ok () {
     return this.ressource(ok);
   }
