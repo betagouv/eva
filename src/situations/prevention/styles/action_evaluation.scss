@@ -9,6 +9,7 @@
 }
 
 .overlay-zone-evaluation-action {
+  position: relative;
   cursor: pointer;
 
   &:hover {
@@ -20,5 +21,11 @@
 
   .overlay-zone-action-hover {
     fill: none;
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
