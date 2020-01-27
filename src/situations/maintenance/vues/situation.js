@@ -1,28 +1,11 @@
-import SituationCommune from 'commun/modeles/situation';
-import Vue from 'vue';
-import vueLexique from './lexique';
-import { lexique } from '../data/lexique';
+import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
 
-export default class Situation extends SituationCommune {
+import { configurationEntrainement, configurationNormale } from '../data/lexique';
+import { creeStore } from '../modeles/store';
+import ActeMaintenance from './acte';
+
+export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources) {
-    super();
-    this.journal = journal;
-    this.situation = situation;
-    this.depotRessources = depotRessources;
-  }
-
-  affiche (pointInsertion, $) {
-    const div = document.createElement('div');
-    $(pointInsertion).append(div);
-    new Vue({
-      render: function (createElement) {
-        return createElement(vueLexique,
-          {
-            props:
-            { lexique: lexique }
-          }
-        );
-      }
-    }).$mount(div);
+    super(situation, journal, depotRessources, creeStore, ActeMaintenance, configurationEntrainement, configurationNormale);
   }
 }
