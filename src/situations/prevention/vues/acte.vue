@@ -22,6 +22,7 @@
       :cx="`${zone.x}%`"
       :cy="`${zone.y}%`"
       :r="`${zone.r}%`"
+      :class="{ 'zone-traitee': $store.getters.evaluationZone(zone.id) }"
       class="zone"
       @mouseover="survoleZone(zone)"
     />
