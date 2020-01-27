@@ -59,7 +59,7 @@
         <action-prevention v-if="zonePrevention" />
         <action-evaluation
           v-else
-          @click="previentZone(zoneActive)" />
+          @selectionPanneau="previentZone" />
       </foreignObject>
     </g>
 
@@ -163,9 +163,10 @@ export default {
       this.zonePrevention = null;
     },
 
-    previentZone (zone) {
-      this.zonePrevention = zone;
+    previentZone (panneau) {
+      this.zonePrevention = this.zoneActive;
       this.zoneEvaluee = null;
+      this.$store.commit('previentZone', { id: this.zoneActive.id, panneau });
     },
 
     anime (objet, proprietes) {
