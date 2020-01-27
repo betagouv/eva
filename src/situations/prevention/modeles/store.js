@@ -36,7 +36,7 @@ export function creeStore () {
         });
         state.fondSituation = fondSituation;
       },
-      previentZone (state, { id, panneau }) {
+      selectionEvaluation (state, { id, panneau }) {
         chercheParId(state.zones, id).evaluation = panneau;
       },
       selectionPrevention (state, { id }) {
