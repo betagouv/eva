@@ -36,6 +36,8 @@ describe("La vue de l'acte prévention", function () {
       zone1 = { x: 1, y: 2, r: 3 };
       zone2 = { x: 4, y: 5, r: 6 };
       store.commit('configureActe', { zones: [zone1, zone2] });
+      zone1 = store.state.zones[0];
+      zone2 = store.state.zones[1];
     });
 
     it('une zone survolé devient active ', function () {
