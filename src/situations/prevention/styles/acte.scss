@@ -13,6 +13,11 @@
   &-agrandi {
     stroke: $blanc;
   }
+
+  &-traitee {
+    stroke: $blanc;
+    fill: transparentize($orange, 0.2)
+  }
 }
 
 .overlay-zone {

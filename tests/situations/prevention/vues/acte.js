@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ActePrevention from 'prevention/vues/acte';
-import { creeStore } from 'securite/modeles/store';
+import { creeStore } from 'prevention/modeles/store';
 import MockDepotRessources from '../aides/mock_depot_ressources_prevention';
 
 describe("La vue de l'acte prévention", function () {
