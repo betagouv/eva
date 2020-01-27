@@ -62,7 +62,7 @@
         >
           <action-prevention
             v-if="zonePrevention"
-            @click="fermeZonePrevention"
+            @selectionPrevention="selectionPrevention"
           />
           <action-evaluation
             v-else
@@ -143,6 +143,9 @@ export default {
     },
     zoneActiveTransformOrigin () {
       return `${this.zoneActive.x}% ${this.zoneActive.y}%`;
+    },
+    terminee () {
+      return this.zones.every(zone => zone.prevention);
     }
   },
 
@@ -175,7 +178,8 @@ export default {
       this.$store.commit('selectionEvaluation', { id: this.zoneActive.id, panneau });
     },
 
-    fermeZonePrevention () {
+    selectionPrevention () {
+      this.$store.commit('selectionPrevention', { id: this.zoneActive.id });
       this.zonePrevention = null;
     },
 
@@ -191,6 +195,11 @@ export default {
     zonePrevention (zone) {
       if (!zone) return;
       this.anime(this.rectActions, RECTANGLE_PREVENTION);
+    },
+    terminee (terminee) {
+      if (terminee) {
+        this.$emit('terminer');
+      }
     }
   }
 };

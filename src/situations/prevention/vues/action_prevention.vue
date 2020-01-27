@@ -5,14 +5,14 @@
       :class="{ desactivee: survolDroite }"
       @mouseover="survolGauche = true"
       @mouseout="survolGauche = false"
-      @click="$emit('click')"
+      @click="$emit('selectionPrevention')"
     />
     <img
       :src="$depotRessources.risque22().src"
       :class="{ desactivee: survolGauche }"
       @mouseover="survolDroite = true"
       @mouseout="survolDroite = false"
-      @click="$emit('click')"
+      @click="$emit('selectionPrevention')"
     />
   </div>
 </template>

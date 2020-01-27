@@ -33,8 +33,8 @@ describe("La vue de l'acte prévention", function () {
     let zone1;
     let zone2;
     beforeEach(function () {
-      zone1 = { x: 1, y: 2, r: 3 };
-      zone2 = { x: 4, y: 5, r: 6 };
+      zone1 = { id: 'zone1', x: 1, y: 2, r: 3 };
+      zone2 = { id: 'zone2', x: 4, y: 5, r: 6 };
       store.commit('configureActe', { zones: [zone1, zone2] });
       zone1 = store.state.zones[0];
       zone2 = store.state.zones[1];
@@ -75,6 +75,15 @@ describe("La vue de l'acte prévention", function () {
       wrapper.vm.previentZone(zone1);
       wrapper.vm.evalueZone(zone1);
       expect(wrapper.vm.zoneEvaluee).to.eql(null);
+    });
+
+    it("une fois toutes les zones évaluées, envoie l'événement terminer", function () {
+      wrapper.vm.survoleZone(zone1);
+      wrapper.vm.selectionPrevention();
+      expect(wrapper.emitted('terminer')).to.be(undefined);
+      wrapper.vm.survoleZone(zone2);
+      wrapper.vm.selectionPrevention();
+      expect(wrapper.emitted('terminer').length).to.be(1);
     });
   });
 });
