@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import {
   CHARGEMENT,
   ENTRAINEMENT_DEMARRE,
@@ -8,25 +7,40 @@ import {
 } from 'commun/modeles/situation';
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
 
+function chercheParId (zones, id) {
+  return zones.find(zone => zone.id === id);
+}
+
 export function creeStore () {
   return creeStoreCommun({
     state: {
-      evaluationZones: {},
       zones: [],
       fondSituation: ''
     },
     getters: {
       evaluationZone (state) {
-        return (id) => state.evaluationZones[id];
+        return id => chercheParId(state.zones, id).evaluation;
+      },
+      preventionZone (state) {
+        return id => chercheParId(state.zones, id).prevention;
       }
     },
     mutations: {
       configureActe (state, { zones, fondSituation }) {
-        state.zones = zones;
+        state.zones = zones.map((zone) => {
+          return {
+            ...zone,
+            evaluation: null,
+            prevention: null
+          };
+        });
         state.fondSituation = fondSituation;
       },
       previentZone (state, { id, panneau }) {
-        Vue.set(state.evaluationZones, id, panneau);
+        chercheParId(state.zones, id).evaluation = panneau;
+      },
+      selectionPrevention (state, { id }) {
+        chercheParId(state.zones, id).prevention = true;
       }
     }
   });
