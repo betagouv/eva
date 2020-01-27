@@ -2,7 +2,7 @@
   <div class="overlay-zone-evaluation">
     <div
       class="overlay-zone-evaluation-action"
-      @click="clickSurPanneau"
+      @click="clickSurPanneau('ok')"
     >
       <img :src="$depotRessources.ok().src" />
       <svg
@@ -16,7 +16,7 @@
 
     <div
       class="overlay-zone-evaluation-action"
-      @click="clickSurPanneau"
+      @click="clickSurPanneau('danger')"
     >
       <img :src="$depotRessources.danger().src" />
       <svg
@@ -30,7 +30,7 @@
 
     <div
       class="overlay-zone-evaluation-action"
-      @click="clickSurPanneau"
+      @click="clickSurPanneau('urgence')"
     >
       <img :src="$depotRessources.urgence().src" />
       <svg
@@ -49,8 +49,8 @@ import 'prevention/styles/action_evaluation.scss';
 
 export default {
   methods: {
-    clickSurPanneau () {
-      this.$emit('click');
+    clickSurPanneau (panneau) {
+      this.$emit('selectionPanneau', panneau);
     }
   }
 };
