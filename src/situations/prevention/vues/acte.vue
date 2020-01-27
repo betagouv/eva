@@ -172,7 +172,7 @@ export default {
     previentZone (panneau) {
       this.zonePrevention = this.zoneActive;
       this.zoneEvaluee = null;
-      this.$store.commit('previentZone', { id: this.zoneActive.id, panneau });
+      this.$store.commit('selectionEvaluation', { id: this.zoneActive.id, panneau });
     },
 
     fermeZonePrevention () {
