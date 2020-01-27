@@ -1,4 +1,4 @@
-const lexique = [
+const lexiqueNormale = [
   'anxieux',
   'apeuré',
   'craintes',
@@ -57,4 +57,16 @@ const lexique = [
   'tesfon'
 ];
 
-export { lexique };
+const lexiqueEntrainement = [
+  'jamais',
+  'menthol',
+  'profondément',
+  'tilure',
+  'cabyale',
+  'pourmignetes'
+];
+
+const configurationEntrainement = { lexique: lexiqueEntrainement };
+const configurationNormale = { lexique: lexiqueNormale };
+
+export { configurationEntrainement, configurationNormale };
