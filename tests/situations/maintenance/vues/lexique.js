@@ -45,7 +45,11 @@ describe('La vue de la Maintenance', function () {
     expect(wrapper.vm.termine).to.be(false);
     wrapper.vm.afficheMot();
     wrapper.vm.afficheMot();
+    expect(wrapper.emitted('terminer')).to.be(undefined);
     wrapper.vm.afficheMot();
     expect(wrapper.vm.termine).to.be(true);
+    expect(wrapper.emitted('terminer')).to.be(undefined);
+    wrapper.vm.motSuivant();
+    expect(wrapper.emitted('terminer').length).to.eql(1);
   });
 });

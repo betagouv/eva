@@ -6,6 +6,7 @@
     <lexique
       v-if="situationDemarre"
       :lexique="lexique"
+      @terminer="$emit('terminer')"
     />
   </div>
 </template>
