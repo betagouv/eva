@@ -118,7 +118,11 @@
     "titre": "Sécurité"
   },
   "prevention": {
-    "titre": "Prévention"
+    "titre": "Prévention",
+    "intro_contexte": {
+      "message": "<p>Dans cet exercice, vous allez devoir observer une scène sur laquelle des situations sont entourées. Il vous faudra cliquer sur chaque situation entourée et choisir un niveau de risque correspondant : situation pas du tout risquée (dans laquelle tout va bien), situation assez risquée, situation très risquée (dans laquelle une ou plusieurs personnes sont en danger). Vous devrez ensuite choisir parmi deux propositions comment agir face à chaque situation.</p><p>Commençons tout d’abord par un entraînement : cliquez sur la situation entourée sur cette image.</p>",
+      "message_transition": "<p>Vous venez de réussir l’entraînement, bravo ! Vous allez maintenant pouvoir commencer l’exercice. Il vous faudra déterminer si les cinq situations entourées sont risquées ou non, et comment agir parmi les deux choix.</p>"
+    }
   },
   "maintenance": {
     "titre": "Maintenance"
