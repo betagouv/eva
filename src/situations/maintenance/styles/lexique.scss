@@ -1,4 +1,7 @@
+@import 'commun/styles/couleurs.scss';
+
 .mot-conteneur {
+  color: $blanc;
   width: 100%;
   line-height: 6.5rem;
   font-size: 2.25rem;
@@ -7,4 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.mot, .croix {
+  position: relative;
+  top: 10%;
 }

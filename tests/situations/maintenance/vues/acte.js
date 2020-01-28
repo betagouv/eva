@@ -10,11 +10,20 @@ describe("La vue de l'acte", function () {
 
   beforeEach(function () {
     localVue = createLocalVue();
+    localVue.prototype.$depotRessources = new class {
+      fondSituation () {
+        return { src: 'fond' };
+      }
+    }();
     store = creeStore();
     wrapper = shallowMount(Acte, {
       store,
       localVue
     });
+  });
+
+  it('affiche le fond', function () {
+    expect(wrapper.attributes('style')).to.equal('background-image: url(fond);');
   });
 
   it("A l'initialisation de l'acte la situation n'est pas démarré", function () {
