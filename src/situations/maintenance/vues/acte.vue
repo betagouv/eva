@@ -4,7 +4,7 @@
     class="fond-situation"
   >
     <lexique
-      v-if="situationDemarre"
+      v-if="afficheLexique"
       :lexique="lexique"
       @terminer="$emit('terminer')"
     />
@@ -14,15 +14,15 @@
 <script>
 import { mapState } from 'vuex';
 import Lexique from './lexique';
-import { DEMARRE } from '../modeles/store';
+import { ENTRAINEMENT_DEMARRE, DEMARRE } from '../modeles/store';
 import 'maintenance/styles/acte.scss';
 
 export default {
   components: { Lexique },
   computed: {
     ...mapState(['lexique', 'etat']),
-    situationDemarre () {
-      return this.etat === DEMARRE;
+    afficheLexique () {
+      return [ENTRAINEMENT_DEMARRE, DEMARRE].includes(this.etat);
     }
   }
 };
