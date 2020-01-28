@@ -1,14 +1,14 @@
 <template>
   <div class="action-prevention">
     <img
-      :src="$depotRessources.risque21().src"
+      :src="$depotRessources.prevention(zone.images_prevention[0])"
       :class="{ desactivee: survolDroite }"
       @mouseover="survolGauche = true"
       @mouseout="survolGauche = false"
       @click="$emit('selectionPrevention')"
     />
     <img
-      :src="$depotRessources.risque22().src"
+      :src="$depotRessources.prevention(zone.images_prevention[1])"
       :class="{ desactivee: survolGauche }"
       @mouseover="survolDroite = true"
       @mouseout="survolDroite = false"
@@ -21,6 +21,13 @@
 import 'prevention/styles/action_prevention.scss';
 
 export default {
+  props: {
+    zone: {
+      type: Object,
+      required: true
+    }
+  },
+
   data () {
     return {
       survolGauche: false,

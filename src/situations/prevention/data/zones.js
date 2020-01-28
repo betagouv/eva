@@ -7,31 +7,36 @@ const configurationNormale = {
       x: pourcentageX(100),
       y: pourcentageY(460),
       r: pourcentageX(80),
-      id: 'fuite-camion-citerne'
+      id: 'fuite-camion-citerne',
+      images_prevention: ['prevention-fuite-gauche', 'prevention-fuite-droite']
     },
     {
       x: pourcentageX(450),
       y: pourcentageY(390),
       r: pourcentageX(80),
-      id: 'alcool-pelleteuse'
+      id: 'alcool-pelleteuse',
+      images_prevention: ['prevention-alcool-gauche', 'prevention-alcool-droite']
     },
     {
       x: pourcentageX(490),
       y: pourcentageY(250),
       r: pourcentageX(80),
-      id: 'peintre'
+      id: 'peintre',
+      images_prevention: ['prevention-peintre-gauche', 'prevention-peintre-droite']
     },
     {
       x: pourcentageX(750),
       y: pourcentageY(340),
       r: pourcentageX(80),
-      id: 'fuite-gaz'
+      id: 'fuite-gaz',
+      images_prevention: ['prevention-gaz-gauche', 'prevention-gaz-droite']
     },
     {
       x: pourcentageX(870),
       y: pourcentageY(420),
       r: pourcentageX(80),
-      id: 'trou'
+      id: 'trou',
+      images_prevention: ['prevention-trou-gauche', 'prevention-trou-droite']
     }
   ]
 };

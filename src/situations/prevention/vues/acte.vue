@@ -62,6 +62,7 @@
         >
           <action-prevention
             v-if="zonePrevention"
+            :zone="zoneActive"
             @selectionPrevention="selectionPrevention"
           />
           <action-evaluation
