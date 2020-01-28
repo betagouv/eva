@@ -52,7 +52,10 @@ export default {
 
   methods: {
     motSuivant () {
-      if (this.termine || this.croix) return;
+      if (this.croix) return;
+      if (this.termine) {
+        this.$emit('terminer');
+      }
 
       this.motSuivantAvecDelai();
     },
