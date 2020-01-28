@@ -2,16 +2,21 @@ import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
 import sonConsigneDemarrage from 'commun/assets/consigne_blanche.wav';
 import fondSituation from '../assets/fond-situation.jpg';
-import risque21 from '../assets/risque2-1.png';
-import risque22 from '../assets/risque2-2.png';
 import ok from '../assets/ok.svg';
 import danger from '../assets/danger.svg';
 import urgence from '../assets/urgence.svg';
 
+const preventionsContext = require.context('prevention/assets', false, /prevention.+\.png$/);
+
 export default class DepotRessourcesPrevention extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigneDemarrage);
-    this.charge([fondSituation, ok, danger, urgence, risque21, risque22]);
+    this.charge([fondSituation, ok, danger, urgence]);
+    this.chargeContexte(preventionsContext);
+    this.preventions = preventionsContext.keys().reduce((memo, fichier) => {
+      memo[fichier.match(/(prevention-.+)\.png/)[1]] = preventionsContext(fichier);
+      return memo;
+    }, {});
   }
 
   fondSituation () {
@@ -34,11 +39,7 @@ export default class DepotRessourcesPrevention extends DepotRessourcesCommunes {
     return this.ressource(urgence);
   }
 
-  risque21 () {
-    return this.ressource(risque21);
-  }
-
-  risque22 () {
-    return this.ressource(risque22);
+  prevention (prevention) {
+    return this.preventions[prevention];
   }
 }
