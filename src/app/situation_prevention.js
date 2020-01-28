@@ -6,7 +6,7 @@ import DepotRessourcesPrevention from 'prevention/infra/depot_ressources_prevent
 import Situation from 'commun/modeles/situation';
 import AdaptateurVueSituation from 'prevention/vues/situation';
 
-const situation = new Situation();
+const situation = new Situation({ modeEntrainement: true });
 
 const depotRessources = new DepotRessourcesPrevention();
 afficheSituation('prevention', situation, AdaptateurVueSituation, depotRessources);

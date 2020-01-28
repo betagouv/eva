@@ -1,6 +1,16 @@
 import { pourcentageX, pourcentageY } from 'commun/data/scene';
 
-const configurationEntrainement = { zones: [] };
+const configurationEntrainement = {
+  zones: [
+    {
+      x: pourcentageX(770),
+      y: pourcentageY(380),
+      r: pourcentageX(80),
+      id: 'entrainement',
+      images_prevention: ['prevention-entrainement-gauche', 'prevention-entrainement-droite']
+    }
+  ]
+};
 const configurationNormale = {
   zones: [
     {
