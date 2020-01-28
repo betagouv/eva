@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Acte from 'maintenance/vues/acte';
 import Lexique from 'maintenance/vues/lexique';
-import { creeStore, DEMARRE } from 'maintenance/modeles/store';
+import { creeStore, ENTRAINEMENT_DEMARRE, DEMARRE } from 'maintenance/modeles/store';
 
 describe("La vue de l'acte", function () {
   let wrapper;
@@ -26,12 +26,21 @@ describe("La vue de l'acte", function () {
     expect(wrapper.attributes('style')).to.equal('background-image: url(fond);');
   });
 
-  it("A l'initialisation de l'acte la situation n'est pas démarré", function () {
-    expect(wrapper.vm.situationDemarre).to.eql(false);
+  it("Affiche le Lexique une fois l'entrainement démarré", function () {
+    expect(wrapper.vm.afficheLexique).to.eql(false);
+    expect(wrapper.contains(Lexique)).to.be(false);
+    store.commit('configureActe', { lexique: [] });
+    store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
+    expect(wrapper.vm.afficheLexique).to.eql(true);
+    expect(wrapper.contains(Lexique)).to.be(true);
+  });
+
+  it('Affiche le Lexique une fois la situation démarré', function () {
+    expect(wrapper.vm.afficheLexique).to.eql(false);
     expect(wrapper.contains(Lexique)).to.be(false);
     store.commit('configureActe', { lexique: [] });
     store.commit('modifieEtat', DEMARRE);
-    expect(wrapper.vm.situationDemarre).to.eql(true);
+    expect(wrapper.vm.afficheLexique).to.eql(true);
     expect(wrapper.contains(Lexique)).to.be(true);
   });
 });

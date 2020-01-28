@@ -6,7 +6,7 @@ import DepotRessourcesMaintenance from 'maintenance/infra/depot_ressources_maint
 import Situation from 'commun/modeles/situation';
 import VueSituation from 'maintenance/vues/situation';
 
-const situation = new Situation();
+const situation = new Situation({ modeEntrainement: true });
 
 const depotRessources = new DepotRessourcesMaintenance();
 afficheSituation('maintenance', situation, VueSituation, depotRessources);
