@@ -1,22 +1,22 @@
 <template>
   <lexique
-  v-if="situationDemarre()"
-  :lexique="lexique"
+    v-if="situationDemarre"
+    :lexique="lexique"
   />
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import Lexique from './lexique';
-import { DEMARRE } from '../modeles/situation';
+import { DEMARRE } from '../modeles/store';
 
 export default {
   components: { Lexique },
-  computed: mapState(['lexique', 'etat']),
-  methods: {
-    situationDemarre() {
-      return this.etat == 'démarré'
+  computed: {
+    ...mapState(['lexique', 'etat']),
+    situationDemarre () {
+      return this.etat === DEMARRE;
     }
   }
-}
+};
 </script>

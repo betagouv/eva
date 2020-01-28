@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 import {
   CHARGEMENT,
   ENTRAINEMENT_DEMARRE,
@@ -23,7 +21,6 @@ export function creeStore () {
       }
     }
   });
-
 }
 
 export { CHARGEMENT, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI };
