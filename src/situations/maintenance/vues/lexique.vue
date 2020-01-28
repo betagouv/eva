@@ -10,12 +10,11 @@
       class="mot">
       {{ lexique[index] }}
     </div>
-    <div
+    <img
       v-if="croix"
+      :src="$depotRessources.croix().src"
       class="croix"
     >
-      X
-    </div>
   </div>
 </template>
 

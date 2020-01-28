@@ -7,6 +7,11 @@ describe('La vue de la Maintenance', function () {
 
   beforeEach(function () {
     localVue = createLocalVue();
+    localVue.prototype.$depotRessources = new class {
+      croix () {
+        return { src: 'croix' };
+      }
+    }();
     wrapper = shallowMount(Lexique, {
       localVue,
       propsData: {
