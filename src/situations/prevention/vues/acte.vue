@@ -5,6 +5,7 @@
       height="100%"
       width="100%"
     />
+    <!-- Définition du disque découpé -->
     <clipPath id="cercle-illustration-clip">
       <transition name="restaure-position">
         <circle
@@ -18,6 +19,7 @@
         />
       </transition>
     </clipPath>
+    <!-- Cercles de zones sauf celui actif -->
     <circle
       v-for="zone in zonesNonActive"
       :key="zone.id"
@@ -28,6 +30,7 @@
       class="zone"
       @mouseover="survoleZone(zone)"
     />
+    <!-- Calque orange de fond lorsqu'une zone est active -->
     <transition-fade>
       <rect
         v-if="zoneActive"
@@ -40,6 +43,7 @@
     </transition-fade>
     <transition name="vient-du-bas">
       <g v-if="zoneEvaluee || zonePrevention">
+        <!-- Rectangle blanc d'interaction -->
         <rect
           :width="`${rectActions.width}%`"
           :height="`${rectActions.height}%`"
@@ -48,6 +52,7 @@
           :rx="rectActions.rx"
           fill="#FBF9FA"
         />
+        <!-- Intérieur du rectangle blanc d'interaction -->
         <foreignObject
           :width="`${rectActions.width}%`"
           :height="`${rectActions.height}%`"
@@ -66,6 +71,7 @@
         </foreignObject>
       </g>
     </transition>
+    <!-- Disque découpé dans l'image de fond -->
     <transition name="restaure-position">
       <image
         v-if="zoneActive"
@@ -78,6 +84,7 @@
         class="transition-transform"
       />
     </transition>
+    <!-- Cercle blanc autour du disque de l'image de fond découpé -->
     <transition name="restaure-position">
       <circle
         v-if="zoneActive"
