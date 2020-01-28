@@ -47,6 +47,7 @@ export default {
   },
 
   mounted () {
+    this.$el.focus();
     this.motSuivant();
   },
 
