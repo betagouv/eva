@@ -41,6 +41,8 @@ describe('La vue de la Maintenance', function () {
   });
 
   it("terminer est à true lorsque l'on a vu tout les mots", function () {
+    let appelAMotSuivant = 0;
+    wrapper.setMethods({ motSuivantAvecDelai () { appelAMotSuivant++; } });
     expect(wrapper.vm.termine).to.be(false);
     wrapper.vm.afficheMot();
     wrapper.vm.afficheMot();
@@ -50,6 +52,7 @@ describe('La vue de la Maintenance', function () {
     expect(wrapper.emitted('terminer')).to.be(undefined);
     wrapper.vm.motSuivant();
     expect(wrapper.emitted('terminer').length).to.eql(1);
+    expect(appelAMotSuivant).to.eql(0);
   });
 
   it("rajoute la classe bouton-arrondi--animation sur le premier bouton lorsqu'un choix est fait", function () {
