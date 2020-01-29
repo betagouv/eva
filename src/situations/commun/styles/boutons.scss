@@ -1,12 +1,21 @@
 @import 'commun/styles/couleurs.scss';
 
+@mixin bouton-arrondi-couleur($couleur, $couleur-focus) {
+  background-color: $couleur;
+
+  &:hover,
+  &:focus {
+    background-color: $couleur-focus;
+  }
+}
+
 .bouton-arrondi {
+  @include bouton-arrondi-couleur($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
   padding: .5rem 2.5rem;
   text-decoration: none;
   border-radius: 2rem;
   cursor: pointer;
   color: $blanc;
-  background-color: $couleur-fond-bouton-bleu;
   transition: border, background .3s;
   outline: none;
   line-height: 1.8;
@@ -15,10 +24,6 @@
 
   &:active {
     border-color: $couleur-fond-bouton-bleu;
-  }
-  &:hover,
-  &:focus {
-    background-color: $couleur-fond-bouton-bleu-focus;
   }
   &[disabled] {
     background-color: grayscale($couleur-fond-bouton-bleu);
@@ -40,5 +45,14 @@
 
   &-icone + .bouton-arrondi-texte {
     margin-left: 1rem;
+  }
+
+  &-rouge {
+    @include bouton-arrondi-couleur($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
+  }
+
+  &-vert {
+    @include bouton-arrondi-couleur($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
+    color: $couleur-texte;
   }
 }

@@ -3,11 +3,10 @@ import EvenementAbandon from 'commun/modeles/evenement_abandon';
 import { STOPPEE } from 'commun/modeles/situation';
 import stop from 'commun/assets/stop.svg';
 import VueBouton from './bouton';
+import { afficheFenetreModale } from 'commun/vues/modale';
 
 import 'commun/styles/bouton.scss';
 import 'commun/styles/stop.scss';
-
-import { afficheFenetreModale } from 'commun/vues/modale';
 
 export default class VueStop {
   constructor (situation, journal, retourAccueil = () => window.location.assign('/')) {

@@ -17,11 +17,11 @@
     >
     <div class="boutons">
       <button
-        class="bouton-arrondi"
+        class="bouton-arrondi bouton-arrondi-vert"
         @click="motSuivant"
       >{{ $traduction('maintenance.francais') }}</button>
       <button
-        class="bouton-arrondi"
+        class="bouton-arrondi bouton-arrondi-rouge"
         @click="motSuivant"
       >{{ $traduction('maintenance.pas_francais') }}</button>
     </div>

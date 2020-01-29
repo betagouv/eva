@@ -39,14 +39,6 @@
       button {
         margin-right: 1.875rem;
       }
-
-      .modal-annuler {
-        background: $couleur-fond-bouton-rouge;
-
-        &:hover {
-          background-color: $couleur-fond-bouton-rouge-focus;
-        }
-      }
     }
   }
 }
