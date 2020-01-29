@@ -2,8 +2,8 @@
   <div
     class="mot-conteneur"
     tabindex="0"
-    @keydown.left="motSuivant"
-    @keydown.right="motSuivant"
+    @keydown.left="motSuivant(CHOIX_FRANCAIS)"
+    @keydown.right="motSuivant(CHOIX_PASFRANCAIS)"
   >
     <div
       v-if="mot"
@@ -17,8 +17,9 @@
     >
     <div class="boutons">
       <button
+        :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_FRANCAIS }"
         class="bouton-arrondi bouton-arrondi-vert"
-        @click="motSuivant"
+        @click="motSuivant(CHOIX_FRANCAIS)"
       >
         <img
           :src="$depotRessources.flecheGauche().src"
@@ -27,8 +28,9 @@
         <span class="bouton-arrondi-texte">{{ $traduction('maintenance.francais') }}</span>
       </button>
       <button
+        :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_PASFRANCAIS }"
         class="bouton-arrondi bouton-arrondi-rouge"
-        @click="motSuivant"
+        @click="motSuivant(CHOIX_PASFRANCAIS)"
       >
         <img
           :src="$depotRessources.flecheDroite().src"
@@ -47,6 +49,9 @@ import 'commun/styles/boutons.scss';
 const DELAI_CROIX = 500;
 const DELAI_MOT = 6000;
 
+const CHOIX_FRANCAIS = 'francais';
+const CHOIX_PASFRANCAIS = 'pasfrancais';
+
 export default {
   props: {
     lexique: {
@@ -60,7 +65,9 @@ export default {
       index: -1,
       croix: false,
       mot: false,
-      delaiAffichageMot: ''
+      choixFait: null,
+      CHOIX_FRANCAIS,
+      CHOIX_PASFRANCAIS
     };
   },
 
@@ -76,8 +83,11 @@ export default {
   },
 
   methods: {
-    motSuivant () {
+    motSuivant (choix) {
       if (this.croix) return;
+
+      this.choixFait = choix;
+
       if (this.termine) {
         this.$emit('terminer');
       }
@@ -88,6 +98,7 @@ export default {
       clearTimeout(this.delaiAffichageMot);
       this.affichePointDeFixation();
       setTimeout(() => {
+        this.choixFait = null;
         this.afficheMot();
         this.delaiAffichageMot = setTimeout(() => {
           this.motSuivant();

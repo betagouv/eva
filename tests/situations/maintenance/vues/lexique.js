@@ -49,4 +49,16 @@ describe('La vue de la Maintenance', function () {
     wrapper.vm.motSuivant();
     expect(wrapper.emitted('terminer').length).to.eql(1);
   });
+
+  it("rajoute la classe bouton-arrondi--animation sur le premier bouton lorsqu'un choix est fait", function () {
+    expect(wrapper.find('.bouton-arrondi:first-child').classes('bouton-arrondi--animation')).to.be(false);
+    wrapper.vm.choixFait = wrapper.vm.CHOIX_FRANCAIS;
+    expect(wrapper.find('.bouton-arrondi:first-child').classes('bouton-arrondi--animation')).to.be(true);
+  });
+
+  it("rajoute la classe bouton-arrondi--animation lorsqu'un choix est fait", function () {
+    expect(wrapper.find('.bouton-arrondi:last-child').classes('bouton-arrondi--animation')).to.be(false);
+    wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
+    expect(wrapper.find('.bouton-arrondi:last-child').classes('bouton-arrondi--animation')).to.be(true);
+  });
 });
