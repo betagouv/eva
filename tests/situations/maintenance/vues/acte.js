@@ -10,11 +10,6 @@ describe("La vue de l'acte", function () {
 
   beforeEach(function () {
     localVue = createLocalVue();
-    localVue.prototype.$depotRessources = new class {
-      fondSituation () {
-        return { src: 'fond' };
-      }
-    }();
     store = creeStore();
     wrapper = shallowMount(Acte, {
       store,
@@ -23,7 +18,8 @@ describe("La vue de l'acte", function () {
   });
 
   it('affiche le fond', function () {
-    expect(wrapper.attributes('style')).to.equal('background-image: url(fond);');
+    store.commit('configureActe', { fondSituation: 'test', zones: [] });
+    expect(wrapper.attributes('style')).to.equal('background-image: url(test);');
   });
 
   it("Affiche le Lexique une fois l'entrainement démarré", function () {
