@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Lexique from 'maintenance/vues/lexique';
+import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
 
 describe('La vue de la Maintenance', function () {
   let wrapper;
@@ -7,11 +8,7 @@ describe('La vue de la Maintenance', function () {
 
   beforeEach(function () {
     localVue = createLocalVue();
-    localVue.prototype.$depotRessources = new class {
-      croix () {
-        return { src: 'croix' };
-      }
-    }();
+    localVue.prototype.$depotRessources = new MockDepotRessources();
     wrapper = shallowMount(Lexique, {
       localVue,
       propsData: {

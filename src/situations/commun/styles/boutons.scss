@@ -37,14 +37,24 @@
   }
 
   &-icone {
-   position: absolute;
-   left: .8rem;
-   height: 1.5rem;
-   top: .8rem;
+    position: absolute;
+    left: .8rem;
+    height: 1.5rem;
+    top: calc(50% - .75rem);
+
+    &--droite {
+      left: auto;
+      right: .8rem;
+    }
   }
 
   &-icone + .bouton-arrondi-texte {
     margin-left: 1rem;
+  }
+
+  &-icone--droite + .bouton-arrondi-texte {
+    margin-right: 1rem;
+    margin-left: 0;
   }
 
   &-rouge {

@@ -19,11 +19,23 @@
       <button
         class="bouton-arrondi bouton-arrondi-vert"
         @click="motSuivant"
-      >{{ $traduction('maintenance.francais') }}</button>
+      >
+        <img
+          :src="$depotRessources.flecheGauche().src"
+          class="bouton-arrondi-icone bouton-arrondi-icone--droite"
+        />
+        <span class="bouton-arrondi-texte">{{ $traduction('maintenance.francais') }}</span>
+      </button>
       <button
         class="bouton-arrondi bouton-arrondi-rouge"
         @click="motSuivant"
-      >{{ $traduction('maintenance.pas_francais') }}</button>
+      >
+        <img
+          :src="$depotRessources.flecheDroite().src"
+          class="bouton-arrondi-icone"
+        />
+        <span class="bouton-arrondi-texte">{{ $traduction('maintenance.pas_francais') }}</span>
+      </button>
     </div>
   </div>
 </template>

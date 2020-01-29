@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="{ 'background-image': `url(${$depotRessources.fondSituation().src})` }"
+    :style="{ 'background-image': `url(${fondSituation})` }"
     class="fond-situation"
   >
     <lexique
@@ -20,7 +20,7 @@ import 'maintenance/styles/acte.scss';
 export default {
   components: { Lexique },
   computed: {
-    ...mapState(['lexique', 'etat']),
+    ...mapState(['lexique', 'etat', 'fondSituation']),
     afficheLexique () {
       return [ENTRAINEMENT_DEMARRE, DEMARRE].includes(this.etat);
     }
