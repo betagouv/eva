@@ -23,5 +23,12 @@
   bottom: 0;
   border-top-right-radius: 35px;
   border-top-left-radius: 35px;
-  padding: 0 2%;
+  padding: 1.5rem;
+  display: flex;
+  width: 60%;
+
+  > button {
+    flex: 50%;
+    margin: 0 .5rem;
+  }
 }
