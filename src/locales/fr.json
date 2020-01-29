@@ -125,6 +125,8 @@
     }
   },
   "maintenance": {
+    "francais": "Mot français",
+    "pas_francais": "Mot pas français",
     "titre": "Maintenance"
   },
   "situation": {

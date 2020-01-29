@@ -15,11 +15,23 @@
       :src="$depotRessources.croix().src"
       class="croix"
     >
+    <div class="boutons">
+      <button
+        class="bouton-arrondi"
+        @click="motSuivant"
+      >{{ $traduction('maintenance.francais') }}</button>
+      <button
+        class="bouton-arrondi"
+        @click="motSuivant"
+      >{{ $traduction('maintenance.pas_francais') }}</button>
+    </div>
   </div>
 </template>
 
 <script>
 import 'maintenance/styles/lexique.scss';
+import 'commun/styles/boutons.scss';
+
 const DELAI_CROIX = 500;
 const DELAI_MOT = 6000;
 
