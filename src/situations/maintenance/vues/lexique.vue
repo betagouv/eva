@@ -90,6 +90,8 @@ export default {
     motSuivant (choix) {
       if (this.croix) return;
 
+      clearTimeout(this.delaiAffichageMot);
+
       this.choixFait = choix;
       this.$journal.enregistre(
         new EvenementIdentificationMot({
@@ -100,12 +102,12 @@ export default {
 
       if (this.termine) {
         this.$emit('terminer');
+        return;
       }
 
       this.motSuivantAvecDelai();
     },
     motSuivantAvecDelai () {
-      clearTimeout(this.delaiAffichageMot);
       this.affichePointDeFixation();
       setTimeout(() => {
         this.choixFait = null;
