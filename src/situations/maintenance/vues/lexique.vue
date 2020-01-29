@@ -4,6 +4,8 @@
     tabindex="0"
     @keydown.left="motSuivant(CHOIX_FRANCAIS)"
     @keydown.right="motSuivant(CHOIX_PASFRANCAIS)"
+    @keydown.e="motSuivant(CHOIX_FRANCAIS)"
+    @keydown.i="motSuivant(CHOIX_PASFRANCAIS)"
   >
     <div
       v-if="mot"
