@@ -31,7 +31,7 @@ const templatesSituations = situations.map(function (situation) {
 
 module.exports = {
   entry: {
-    competencesPro: path.resolve(__dirname, 'src/app/index.js'),
+    index: path.resolve(__dirname, 'src/app/index.js'),
     ...entriesSituations
   },
   output: {
@@ -117,7 +117,7 @@ module.exports = {
       filename: 'index.html',
       hash: true,
       template: path.resolve(__dirname, 'src/public/template_index.html'),
-      chunks: ['competencesPro'],
+      chunks: ['index'],
       inject: 'head'
     }),
     ...templatesSituations,
