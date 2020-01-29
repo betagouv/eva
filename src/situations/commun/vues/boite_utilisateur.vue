@@ -11,8 +11,12 @@
       <div>{{ nom }}</div>
       <div class="progression-actions">
         <div class="progression-utilisateur">{{ situationsFaites.length }}/{{ situations.length }}</div>
-        <a class="deconnexion" href="#" @click.prevent="deconnecte">
-          <i class="fas fa-sign-out-alt"></i>
+        <a
+          class="deconnexion"
+          href="#"
+          @click.prevent="deconnecte"
+        >
+          <img :src="signOutIcon" />
         </a>
       </div>
     </div>
@@ -21,10 +25,16 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import signOutIcon from '../assets/sign_out.svg';
 import 'commun/styles/boite_utilisateur.scss';
-import 'commun/styles/font_awesome.scss';
 
 export default {
+  data () {
+    return {
+      signOutIcon
+    };
+  },
+
   computed: {
     ...mapState(['estConnecte', 'nom', 'situations', 'situationsFaites']),
 
