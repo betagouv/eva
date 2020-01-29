@@ -21,6 +21,7 @@
   line-height: 1.8;
   font-size: 1.1rem;
   position: relative;
+  transition: background-color .3 ease;
 
   &:active {
     border-color: $couleur-fond-bouton-bleu;
