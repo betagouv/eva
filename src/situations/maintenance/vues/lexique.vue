@@ -48,11 +48,13 @@
 import 'maintenance/styles/lexique.scss';
 import 'commun/styles/boutons.scss';
 
+import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
+
 const DELAI_CROIX = 500;
 const DELAI_MOT = 6000;
 
-const CHOIX_FRANCAIS = 'francais';
-const CHOIX_PASFRANCAIS = 'pasfrancais';
+export const CHOIX_FRANCAIS = 'francais';
+export const CHOIX_PASFRANCAIS = 'pasfrancais';
 
 export default {
   props: {
@@ -81,7 +83,7 @@ export default {
 
   mounted () {
     this.$el.focus();
-    this.motSuivant();
+    this.motSuivantAvecDelai();
   },
 
   methods: {
@@ -89,6 +91,12 @@ export default {
       if (this.croix) return;
 
       this.choixFait = choix;
+      this.$journal.enregistre(
+        new EvenementIdentificationMot({
+          mot: this.lexique[this.index],
+          reponse: choix
+        })
+      );
 
       if (this.termine) {
         this.$emit('terminer');

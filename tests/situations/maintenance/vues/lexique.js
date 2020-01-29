@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Lexique from 'maintenance/vues/lexique';
+import Lexique, { CHOIX_FRANCAIS } from 'maintenance/vues/lexique';
+import EvenementIdentificationMot from 'maintenance/modeles/evenement_identification_mot';
 import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
 
 describe('La vue de la Maintenance', function () {
@@ -9,6 +10,7 @@ describe('La vue de la Maintenance', function () {
   beforeEach(function () {
     localVue = createLocalVue();
     localVue.prototype.$depotRessources = new MockDepotRessources();
+    localVue.prototype.$journal = { enregistre () {} };
     wrapper = shallowMount(Lexique, {
       localVue,
       propsData: {
@@ -60,5 +62,18 @@ describe('La vue de la Maintenance', function () {
     expect(wrapper.find('.bouton-arrondi:last-child').classes('bouton-arrondi--animation')).to.be(false);
     wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
     expect(wrapper.find('.bouton-arrondi:last-child').classes('bouton-arrondi--animation')).to.be(true);
+  });
+
+  it("enregistre l'événement identificationMot", function (done) {
+    wrapper.setProps({ lexique: ['premiermot', 'deuxiemot'] });
+    wrapper.vm.afficheMot();
+    localVue.prototype.$journal = {
+      enregistre (evenement) {
+        expect(evenement).to.be.a(EvenementIdentificationMot);
+        expect(evenement.donnees()).to.be.eql({ mot: 'premiermot', reponse: CHOIX_FRANCAIS });
+        done();
+      }
+    };
+    wrapper.vm.motSuivant(CHOIX_FRANCAIS);
   });
 });
