@@ -32,5 +32,10 @@
   .deconnexion {
     margin-left: 1rem;
     color: $couleur-texte;
+    display: flex;
+
+    img {
+      width: 18px;
+    }
   }
 }
