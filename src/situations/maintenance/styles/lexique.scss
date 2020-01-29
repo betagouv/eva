@@ -16,3 +16,12 @@
   position: relative;
   top: 10%;
 }
+
+.boutons {
+  background-color: $couleur-fond;
+  position: absolute;
+  bottom: 0;
+  border-top-right-radius: 35px;
+  border-top-left-radius: 35px;
+  padding: 0 2%;
+}
