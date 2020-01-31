@@ -30,7 +30,7 @@ initialiseInternationalisation().then(function () {
     document.title = traduction('accueil.titre');
     const div = document.createElement('div');
     div.setAttribute('class', 'conteneur');
-    document.body.appendChild(div);
+    document.body.prepend(div);
     afficheAccueil(div);
   });
 });
