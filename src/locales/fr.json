@@ -118,15 +118,19 @@
     "titre": "Sécurité"
   },
   "prevention": {
-    "titre": "Prévention",
     "intro_contexte": {
       "message": "<p>Dans cet exercice, vous allez devoir observer une scène sur laquelle des situations sont entourées. Il vous faudra cliquer sur chaque situation entourée et choisir un niveau de risque correspondant : situation pas du tout risquée (dans laquelle tout va bien), situation assez risquée, situation très risquée (dans laquelle une ou plusieurs personnes sont en danger). Vous devrez ensuite choisir parmi deux propositions comment agir face à chaque situation.</p><p>Commençons tout d’abord par un entraînement : cliquez sur la situation entourée sur cette image.</p>",
       "message_transition": "<p>Vous venez de réussir l’entraînement, bravo ! Vous allez maintenant pouvoir commencer l’exercice. Il vous faudra déterminer si les cinq situations entourées sont risquées ou non, et comment agir parmi les deux choix.</p>"
-    }
+    },
+    "titre": "Prévention"
   },
   "maintenance": {
     "francais": "Mot français",
     "pas_francais": "Mot pas français",
+    "intro_contexte": {
+      "message": "<p>Le parc d'attraction dans lequel vous travaillez a reçu un robot qui accueillera les visiteurs.</p><p>Ce robot n'a pas encore été réglé pour parler français, et vous devez lui apprendre quels mots sont français ou non.</p><p>Lorsqu'un mot s'affiche, vous devez le classer en utilisant les flèches de votre clavier. Si vous êtes sur tablette, utilisez les deux index de vos mains pour appuyer sur les flèches de l’écran en vert et rouge. Cliquez à gauche si le mot est français, à droite s'il n'est pas français.</p><p>Commençons d'abord par un entrainement avant de débuter l’exercice.</p>",
+      "message_transition": "<p>Vous venez de réussir l’entraînement, bravo&nbsp;! Vous allez maintenant pouvoir commencer l’exercice. Lorsqu'un mot s'affiche, vous devez le classer, à gauche s'il est français, à droite s'il ne l'est pas. Choisissez le plus rapidement possible, vous êtes chronométré.</p>"
+    },
     "titre": "Maintenance"
   },
   "situation": {
