@@ -23,7 +23,8 @@
 
   &-traitee {
     stroke: $blanc;
-    fill: transparentize($orange, 0.2)
+    fill: transparentize($orange, 0.2);
+    pointer-events: none;
   }
 }
 
