@@ -11,12 +11,9 @@
     display: flex;
     align-items: center;
 
-    h1 {
-      flex-grow: 1;
-    }
-
     .logo {
-      height: 2.5rem;
+      height: 3.5rem;
+      margin: 1rem auto 1rem 0;
     }
   }
 
