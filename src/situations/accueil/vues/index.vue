@@ -1,7 +1,7 @@
 <template>
   <div id="accueil">
     <div class="titre">
-      <h1><img class="logo" :alt="altLogo" :src="logo"/></h1>
+      <img class="logo" :alt="altLogo" :src="logo"/>
       <boite-utilisateur v-if="!chargement" />
     </div>
     <div
