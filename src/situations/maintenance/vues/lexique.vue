@@ -10,7 +10,7 @@
     <div
       v-if="mot"
       class="mot">
-      {{ lexique[index] }}
+      {{ lexique[index].mot }}
     </div>
     <img
       v-if="croix"
@@ -95,7 +95,7 @@ export default {
       this.choixFait = choix;
       this.$journal.enregistre(
         new EvenementIdentificationMot({
-          mot: this.lexique[this.index],
+          ...this.lexique[this.index],
           reponse: choix
         })
       );
@@ -118,9 +118,9 @@ export default {
       }, DELAI_CROIX);
     },
     afficheMot () {
+      this.index++;
       this.croix = false;
       this.mot = true;
-      this.index++;
     },
     affichePointDeFixation () {
       this.croix = true;

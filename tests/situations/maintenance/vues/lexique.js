@@ -14,7 +14,7 @@ describe('La vue de la Maintenance', function () {
     wrapper = shallowMount(Lexique, {
       localVue,
       propsData: {
-        lexique: ['ballon', 'douermatho', 'saumon']
+        lexique: [{ mot: 'ballon', type: '' }, { mot: 'douermatho', type: '' }, { mot: 'saumon', type: '' }]
       },
       methods: { motSuivantAvecDelai () {} }
     });
@@ -68,12 +68,12 @@ describe('La vue de la Maintenance', function () {
   });
 
   it("enregistre l'événement identificationMot", function (done) {
-    wrapper.setProps({ lexique: ['premiermot', 'deuxiemot'] });
+    wrapper.setProps({ lexique: [{ mot: 'premiermot', type: 'neutre' }, { mot: 'deuxiemot', type: 'neutre' }] });
     wrapper.vm.afficheMot();
     localVue.prototype.$journal = {
       enregistre (evenement) {
         expect(evenement).to.be.a(EvenementIdentificationMot);
-        expect(evenement.donnees()).to.be.eql({ mot: 'premiermot', reponse: CHOIX_FRANCAIS });
+        expect(evenement.donnees()).to.be.eql({ mot: 'premiermot', type: 'neutre', reponse: CHOIX_FRANCAIS });
         done();
       }
     };
