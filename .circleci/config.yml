@@ -18,17 +18,13 @@ jobs:
       - run: npm test
 
   deploy:
-    machine:
-      enabled: true
+    docker:
+      - image: circleci/node:12
     steps:
-      - run: pip install ansible
-      - run: git clone git@github.com:betagouv/eva-orchestrateur.git
-      - run:
-          working_directory: eva-orchestrateur
-          command: echo ${DEPLOIEMENT_HOTE} > hotes
-      - run:
-          working_directory: eva-orchestrateur
-          command: ansible-playbook --inventory=hotes --user=${DEPLOIEMENT_UTILISATEUR} --extra-vars="chemin_racine={{ansible_env.HOME}}/preprod hote_client=preprod.eva.beta.gouv.fr hote_serveur=apipreprod.eva.beta.gouv.fr" deploiement.yml
+      - run: |
+          curl -u ${CIRCLE_API_USER_TOKEN}: \
+            -d build_parameters[CIRCLE_JOB]=deploy \
+            https://circleci.com/api/v1.1/project/github/betagouv/eva-orchestrateur/tree/master
 
 workflows:
   version: 2
