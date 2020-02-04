@@ -7,7 +7,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
-const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance'];
+const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison'];
 
 const entriesSituations = situations.reduce(function (entries, situation) {
   entries[`situation_${situation}`] = path.resolve(__dirname, `src/app/situation_${situation}.js`);
