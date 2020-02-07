@@ -1,7 +1,9 @@
+import Vue from 'vue';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from './question';
 import VueProgression from './progression';
+
 import VueQCM from './qcm';
 import VueRedactionNote from './redaction_note';
 
@@ -50,17 +52,26 @@ export default class VueSituation {
 
   cacheQuestionPrecedente (callbackFinAnimation) {
     this.$('.question', this.pointInsertion).fadeOut(150, () => {
-      this.question.supprime();
+      this.question.$destroy();
+      this.question.$el.remove();
       callbackFinAnimation();
     });
   }
 
   afficheNouvelleQuestion (question) {
-    this.question = new this.classesQuestions[question.type](question);
-    this.question.affiche(this.pointInsertion, this.$);
+    const div = document.createElement('div');
+    this.$(this.pointInsertion).append(div);
+    this.question = new Vue({
+      render: createEle => createEle(this.classesQuestions[question.type], {
+        ref: 'question',
+        props: {
+          question
+        }
+      })
+    }).$mount(div);
     this.progression.affiche(this.$('.question-barre'), this.$);
     this.$('.question', this.pointInsertion).hide().fadeIn();
-    this.question.on(EVENEMENT_REPONSE_VUE, (reponse) => {
+    this.question.$refs.question.$on(EVENEMENT_REPONSE_VUE, (reponse) => {
       this.situation.repond(reponse);
     });
   }

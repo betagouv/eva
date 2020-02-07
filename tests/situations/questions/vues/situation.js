@@ -3,7 +3,7 @@ import $ from 'jquery';
 import Situation, { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import VueSituation from 'questions/vues/situation';
-import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/redaction_note';
+import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/question';
 
 describe('La vue de la situation « Question »', function () {
   let depotRessources;
@@ -47,7 +47,7 @@ describe('La vue de la situation « Question »', function () {
     };
 
     vue.affiche('#point-insertion', $);
-    vue.question.emit(EVENEMENT_REPONSE_VUE, 'Ma réponse');
+    vue.question.$refs.question.$emit(EVENEMENT_REPONSE_VUE, 'Ma réponse');
   });
 
   it('enregistre la réponse dans le journal', function (done) {
@@ -68,9 +68,10 @@ describe('La vue de la situation « Question »', function () {
     const vue = new VueSituation(situation, journal, depotRessources, registreUtilisateur);
 
     vue.affiche('#point-insertion', $);
-    expect($('#numeratie').length).to.eql(0);
+    expect($('.question--redaction-note').length).to.eql(1);
     situation.repond('Ma réponse');
-    expect($('#numeratie').length).to.eql(1);
+    expect($('.question--qcm').length).to.eql(1);
+    expect($('.question--redaction-note').length).to.eql(0);
   });
 
   it('garde la dernière question affiché à la fin', function () {
@@ -78,7 +79,7 @@ describe('La vue de la situation « Question »', function () {
     vue.affiche('#point-insertion', $);
     situation.repond('Ma réponse');
     situation.repond(1);
-    expect($('#numeratie').length).to.eql(1);
+    expect($('.question').length).to.eql(1);
   });
 
   it('affiche un indicateur de progression', function () {
