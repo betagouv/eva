@@ -1,12 +1,12 @@
 import RegistreUtilisateur, { CHANGEMENT_CONNEXION, CLEF_IDENTIFIANT } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
-  function unRegistre (id, nom) {
+  function unRegistre (id, nom, urlServeur) {
     return new RegistreUtilisateur({
       ajax (options) {
         options.success({ id, nom });
       }
-    });
+    }, urlServeur);
   }
 
   beforeEach(function () {
@@ -94,8 +94,7 @@ describe('le registre utilisateur', function () {
   });
 
   it("retourne l'url de l'évaluation", function () {
-    process.env.URL_SERVEUR = 'http://localhost';
-    const registre = unRegistre(1, 'test');
+    const registre = unRegistre(1, 'test', 'http://localhost');
     return registre.inscris('test').then(() => {
       expect(registre.urlEvaluation()).to.eql('http://localhost/api/evaluations/1.json');
     });
