@@ -10,8 +10,9 @@
     font-family: 'Quicksand', sans-serif;
   }
   &-expediteur {
-    margin-bottom: 1.25rem;
+    color: $couleur-legere-accent-et-validation;
     font-size: 0.75rem;
+    margin-bottom: 1.25rem;
   }
   &-objet-reponse {
     margin-bottom: 0;
@@ -20,30 +21,27 @@
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
   }
-}
 
-.message-catherine-jean {
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.875rem;
-  padding: 0 0.937rem;
-}
+  &-message {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.875rem;
+    padding: 0 0.937rem;
+  }
 
-.messagerie-expediteur {
-  color: $couleur-legere-accent-et-validation;
-}
+  &-reponse {
+    width: 100%;
+    height: 184px;
+    padding: 0.75rem;
+    text-align: left;
+    resize: none;
+    border: 1px solid $gris-clair;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
 
-#reponse-compte-rendu {
-  width: 100%;
-  height: 184px;
-  padding: 0.75rem;
-  text-align: left;
-  resize: none;
-  border: 1px solid $gris-clair;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  &::placeholder {
-    color: $gris;
+    &::placeholder {
+      color: $gris;
+    }
   }
 }
