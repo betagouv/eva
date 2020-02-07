@@ -15,14 +15,12 @@ describe('La vue de la situation « Question »', function () {
     $('body').append('<div id="point-insertion"></div>');
     $.fx.off = true;
     depotRessources = new class {}();
-    depotRessources.charge = () => {};
-    depotRessources.ressource = (ressource) => {
-      return {
-        questions: [
-          { type: 'redaction_note' },
-          { type: 'qcm', choix: [{ id: 1, type_choix: 'bon' }] }
-        ]
-      };
+    depotRessources.chargeEvaluation = () => {};
+    depotRessources.questions = () => {
+      return [
+        { type: 'redaction_note' },
+        { type: 'qcm', choix: [{ id: 1, type_choix: 'bon' }] }
+      ];
     };
     journal = { enregistre () {} };
     situation = new Situation();

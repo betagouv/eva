@@ -10,8 +10,8 @@ export default class VueSituation {
     this.situation = situation;
     this.depotRessources = depotRessources;
 
-    this.ressourceEvaluation = registreUtilisateur.urlEvaluation();
-    this.depotRessources.charge([this.ressourceEvaluation]);
+    const urlEvaluation = registreUtilisateur.urlEvaluation();
+    this.depotRessources.chargeEvaluation(urlEvaluation, situation.identifiant);
 
     this.classesQuestions = {
       redaction_note: VueRedactionNote,
@@ -27,7 +27,9 @@ export default class VueSituation {
   }
 
   affiche (pointInsertion, $) {
-    this.situation.questions(this.depotRessources.ressource(this.ressourceEvaluation).questions);
+    const questions = this.depotRessources.questions();
+    this.situation.questions(questions);
+
     this.$ = $;
     this.pointInsertion = pointInsertion;
     this.afficheQuestion();
