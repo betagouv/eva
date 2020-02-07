@@ -7,16 +7,17 @@ export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
-  constructor ($ = jQuery) {
+  constructor ($ = jQuery, urlServeur = process.env.URL_SERVEUR) {
     super();
     this.$ = $;
+    this.urlServeur = urlServeur;
   }
 
   inscris (nom, codeCampagne) {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
-        url: `${process.env.URL_SERVEUR}/api/evaluations`,
+        url: `${this.urlServeur}/api/evaluations`,
         data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
         contentType: 'application/json; charset=utf-8',
         success: resolve,
@@ -30,7 +31,7 @@ export default class RegistreUtilisateur extends EventEmitter {
   }
 
   urlEvaluation () {
-    return `${process.env.URL_SERVEUR}/api/evaluations/${this.idEvaluation()}.json`;
+    return `${this.urlServeur}/api/evaluations/${this.idEvaluation()}.json`;
   }
 
   estConnecte () {
