@@ -31,6 +31,10 @@ export default class DepotRessourcesQuestions extends DepotRessourcesCommunes {
           this.questionnaireUrl = `${this.urlServeur}/api/questionnaires/${situation.questionnaire_id}.json`;
           return this.promesseRessource(this.questionnaireUrl);
         }
+      }).then(() => {
+        const images = this.questions().map(question => question.illustration).filter(illustration => illustration);
+        this.charge(images);
+        return super.chargement();
       });
   }
 }
