@@ -6,7 +6,7 @@ import DepotRessourcesQuestions from 'questions/infra/depot_ressources_questions
 import Situation from 'commun/modeles/situation';
 import AdaptateurVueSituation from 'questions/vues/situation';
 
-const situation = new Situation();
+const situation = new Situation({ modeEntrainement: true });
 
 const depotRessources = new DepotRessourcesQuestions();
 afficheSituation('livraison', situation, AdaptateurVueSituation, depotRessources);
