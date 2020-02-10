@@ -1,6 +1,6 @@
 import { creeStore } from 'prevention/modeles/store';
 
-describe('Le store de la situation sécurité', function () {
+describe('Le store de la situation prévention', function () {
   it("permet la configuration d'un acte", function () {
     const store = creeStore();
     const zones = [{ x: 1, y: 2, r: 3 }];
