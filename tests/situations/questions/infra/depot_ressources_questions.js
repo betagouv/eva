@@ -72,6 +72,35 @@ describe('Le dépot ressource de la situation Questions', function () {
     });
   });
 
+  it("lorsque la situation a un questionnaire de situation et d'entrainement, il les charge", function () {
+    const nomSituation = 'nomSituation';
+    const reponsesJson = {
+      'urlEvaluation.json': {
+        situations: [{
+          nom_technique: nomSituation,
+          questionnaire_id: 'monIdDeQuestionnaire',
+          questionnaire_entrainement_id: 'monIdDeQuestionnaireEntrainement'
+        }]
+      },
+      'http://api.localhost/api/questionnaires/monIdDeQuestionnaire.json': [
+        { id: '1' }
+      ],
+      'http://api.localhost/api/questionnaires/monIdDeQuestionnaireEntrainement.json': [
+        { id: '2' }
+      ]
+    };
+    const depotRessources = creeDepotRessources(reponsesJson);
+    depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
+    return depotRessources.chargement().then(() => {
+      expect(depotRessources.questions()).to.eql([
+        { id: '1' }
+      ]);
+      expect(depotRessources.questionsEntrainement()).to.eql([
+        { id: '2' }
+      ]);
+    });
+  });
+
   it('charge les illustrations du questionnaire', function () {
     const nomSituation = 'nomSituation';
     const reponsesJson = {
