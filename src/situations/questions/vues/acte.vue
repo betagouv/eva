@@ -1,13 +1,15 @@
 <template>
-  <transition-fade mode="out-in">
-    <component
-      v-if="questionCourante"
-      :key="questionCourante.id"
-      :is="composantQuestion"
-      :question="questionCourante"
-      @reponse="repondQuestion"
-    ></component>
-  </transition-fade>
+  <div :key="etat">
+    <transition-fade mode="out-in">
+      <component
+        v-if="questionCourante"
+        :key="questionCourante.id"
+        :is="composantQuestion"
+        :question="questionCourante"
+        @reponse="repondQuestion"
+      ></component>
+    </transition-fade>
+  </div>
 </template>
 
 <script>
@@ -22,7 +24,7 @@ export default {
   components: { TransitionFade },
 
   computed: {
-    ...mapState(['indexQuestions']),
+    ...mapState(['indexQuestions', 'etat']),
     ...mapGetters(['questionCourante', 'nombreQuestions']),
 
     composantQuestion () {
