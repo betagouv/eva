@@ -18,4 +18,9 @@ describe('La vue de la question', function () {
     expect(vue.contains('.question-illustration')).to.be(true);
     expect(vue.find('.question-illustration').attributes('src')).to.equal('palette');
   });
+
+  it('affiche la progression', function () {
+    const vue = shallowMount(VueQuestion, { store, propsData: { question } });
+    expect(vue.contains('.question-progression')).to.be(true);
+  });
 });
