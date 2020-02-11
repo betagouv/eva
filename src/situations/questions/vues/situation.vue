@@ -1,5 +1,6 @@
 <script>
 import Situation from 'commun/vues/situation';
+import { DEMARRE, FINI } from 'commun/modeles/situation';
 
 export default {
   extends: Situation,
@@ -17,8 +18,13 @@ export default {
 
   computed: {
     acte () {
+      if ([DEMARRE, FINI].includes(this.etat)) {
+        return {
+          questions: this.$depotRessources.questions()
+        };
+      }
       return {
-        questions: this.$depotRessources.questions()
+        questions: this.$depotRessources.questionsEntrainement()
       };
     }
   }

@@ -7,6 +7,14 @@ describe('Le store de la situation questions', function () {
     expect(store.state.questions.length).to.eql(1);
   });
 
+  it("réinitialise l'index des questions à la configuration d'un acte", function () {
+    const store = creeStore();
+    store.commit('configureActe', { questions: [{ id: 1 }] });
+    store.commit('repondQuestionCourante', 'reponse');
+    store.commit('configureActe', { questions: [{ id: 1 }] });
+    expect(store.state.indexQuestions).to.eql(0);
+  });
+
   it('renvoit le nombre de questions', function () {
     const store = creeStore();
     store.commit('configureActe', { questions: [{ id: 1 }] });
