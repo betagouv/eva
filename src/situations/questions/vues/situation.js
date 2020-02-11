@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
-import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from './question';
 import VueProgression from './progression';
 
 import VueQCM from './qcm';
@@ -71,7 +70,7 @@ export default class VueSituation {
     }).$mount(div);
     this.progression.affiche(this.$('.question-barre'), this.$);
     this.$('.question', this.pointInsertion).hide().fadeIn();
-    this.question.$refs.question.$on(EVENEMENT_REPONSE_VUE, (reponse) => {
+    this.question.$refs.question.$on('reponse', (reponse) => {
       this.situation.repond(reponse);
     });
   }

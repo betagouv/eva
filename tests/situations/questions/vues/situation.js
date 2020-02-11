@@ -3,7 +3,6 @@ import $ from 'jquery';
 import Situation, { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import VueSituation from 'questions/vues/situation';
-import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_VUE } from 'questions/vues/question';
 
 describe('La vue de la situation « Question »', function () {
   let depotRessources;
@@ -47,7 +46,7 @@ describe('La vue de la situation « Question »', function () {
     };
 
     vue.affiche('#point-insertion', $);
-    vue.question.$refs.question.$emit(EVENEMENT_REPONSE_VUE, 'Ma réponse');
+    vue.question.$refs.question.$emit('reponse', 'Ma réponse');
   });
 
   it('enregistre la réponse dans le journal', function (done) {
