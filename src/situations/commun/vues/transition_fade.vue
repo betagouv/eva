@@ -1,8 +1,22 @@
 <template>
-  <transition name="fade">
+  <transition
+    :mode="mode"
+    name="fade"
+  >
     <slot />
   </transition>
 </template>
+
+<script>
+export default {
+  props: {
+    mode: {
+      type: String,
+      required: false
+    }
+  }
+};
+</script>
 
 <style>
   .fade-enter-active, .fade-leave-active {
