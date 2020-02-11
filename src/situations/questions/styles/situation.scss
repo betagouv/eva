@@ -1,7 +1,7 @@
 @import 'commun/styles/couleurs.scss';
 @import 'commun/styles/dimensions.scss';
 
-.progression-question {
+.question-progression {
   position: absolute;
   top: -0.3rem;
   right: -0.5rem;
@@ -11,7 +11,6 @@
   color: #fff;
   font-size: 0.9rem;
 }
-
 
 .question {
   background-color: $couleur-fond-module;
