@@ -1,77 +1,32 @@
 import Vue from 'vue';
-import { EVENEMENT_REPONSE as EVENEMENT_REPONSE_SITUATION } from 'questions/modeles/situation';
-import EvenementReponse from 'questions/modeles/evenement_reponse';
-import VueProgression from './progression';
 
-import VueQCM from './qcm';
-import VueRedactionNote from './redaction_note';
+import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
+import { synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
 
-export default class VueSituation {
+import { creeStore } from '../modeles/store';
+import VueSituation from './situation.vue';
+import ActeQuestions from './acte';
+
+export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources, registreUtilisateur) {
-    this.situation = situation;
-    this.depotRessources = depotRessources;
+    super(situation, journal, depotRessources, creeStore, ActeQuestions);
 
     const urlEvaluation = registreUtilisateur.urlEvaluation();
-    this.depotRessources.chargeEvaluation(urlEvaluation, situation.identifiant);
-
-    this.classesQuestions = {
-      redaction_note: VueRedactionNote,
-      qcm: VueQCM
-    };
-
-    this.situation.on(EVENEMENT_REPONSE_SITUATION, (question, reponse) => {
-      const evenement = new EvenementReponse({ question: question.id, reponse });
-      journal.enregistre(evenement);
-      this.afficheQuestion();
-    });
-    this.progression = new VueProgression(situation);
+    depotRessources.chargeEvaluation(urlEvaluation, situation.identifiant);
   }
 
   affiche (pointInsertion, $) {
-    const questions = this.depotRessources.questions();
-    this.situation.questions(questions);
-
-    this.$ = $;
-    this.pointInsertion = pointInsertion;
-    this.afficheQuestion();
-  }
-
-  afficheQuestion () {
-    const question = this.situation.question();
-    if (!question) {
-      return;
-    }
-    const cbAffichageQuestion = () => this.afficheNouvelleQuestion(question);
-    if (this.question) {
-      this.cacheQuestionPrecedente(cbAffichageQuestion);
-    } else {
-      cbAffichageQuestion();
-    }
-  }
-
-  cacheQuestionPrecedente (callbackFinAnimation) {
-    this.$('.question', this.pointInsertion).fadeOut(150, () => {
-      this.question.$destroy();
-      this.question.$el.remove();
-      callbackFinAnimation();
-    });
-  }
-
-  afficheNouvelleQuestion (question) {
     const div = document.createElement('div');
-    this.$(this.pointInsertion).append(div);
-    this.question = new Vue({
-      render: createEle => createEle(this.classesQuestions[question.type], {
-        ref: 'question',
+    $(pointInsertion).append(div);
+    const store = this.creeStore();
+    synchroniseStoreEtModeleSituation(this.situation, store);
+    new Vue({
+      store,
+      render: createEle => createEle(VueSituation, {
         props: {
-          question
+          composantActe: this.ComposantActe
         }
       })
     }).$mount(div);
-    this.progression.affiche(this.$('.question-barre'), this.$);
-    this.$('.question', this.pointInsertion).hide().fadeIn();
-    this.question.$refs.question.$on('reponse', (reponse) => {
-      this.situation.repond(reponse);
-    });
   }
 }
