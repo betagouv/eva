@@ -1,38 +1,37 @@
 <template>
-  <div class="question question--redaction-note">
-    <img
-      :src="question.illustration"
-      class="question-illustration"
-    />
-    <div class="messagerie question-barre">
-      <p class="messagerie-sujet">{{ question.intitule }}</p>
-      <p class="messagerie-expediteur">{{ question.expediteur }}</p>
-      <p
-        v-html="question.message"
-        class='messagerie-message'
-      ></p>
-      <p class="messagerie-objet-reponse">{{ question.objet_reponse }}</p>
-      <textarea
-        v-model.trim="reponse"
-        :placeholder="question.entete_reponse"
-        class="messagerie-reponse"></textarea>
-      <button
-        class="question-bouton bouton-arrondi bouton-arrondi--petit"
-        @click="envoi"
-      >
-        {{ $traduction('questions.redaction_note.envoyer') }}
-      </button>
-    </div>
-  </div>
+  <question
+    :question="question"
+    class="question--redaction-note messagerie"
+  >
+    <p class="messagerie-sujet">{{ question.intitule }}</p>
+    <p class="messagerie-expediteur">{{ question.expediteur }}</p>
+    <p
+      v-html="question.message"
+      class='messagerie-message'
+    ></p>
+    <p class="messagerie-objet-reponse">{{ question.objet_reponse }}</p>
+    <textarea
+      v-model.trim="reponse"
+      :placeholder="question.entete_reponse"
+      class="messagerie-reponse"></textarea>
+    <button
+      class="question-bouton bouton-arrondi bouton-arrondi--petit"
+      @click="envoi"
+    >
+      {{ $traduction('questions.redaction_note.envoyer') }}
+    </button>
+  </question>
 </template>
 
 <script>
 import 'commun/styles/boutons.scss';
 import 'questions/styles/situation.scss';
 import 'questions/styles/redaction_note.scss';
-import { EVENEMENT_REPONSE } from './question';
+import Question from './question';
 
 export default {
+  components: { Question },
+
   props: {
     question: {
       type: Object,
@@ -48,7 +47,7 @@ export default {
 
   methods: {
     envoi () {
-      this.$emit(EVENEMENT_REPONSE, this.reponse);
+      this.$emit('reponse', this.reponse);
     }
   }
 };
