@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Lexique, { CHOIX_FRANCAIS } from 'maintenance/vues/lexique';
 import EvenementIdentificationMot from 'maintenance/modeles/evenement_identification_mot';
+import EvenementApparitionMot from 'maintenance/modeles/evenement_apparition_mot';
 import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
 
 describe('La vue de la Maintenance', function () {
@@ -78,5 +79,17 @@ describe('La vue de la Maintenance', function () {
       }
     };
     wrapper.vm.motSuivant(CHOIX_FRANCAIS);
+  });
+
+  it("enregistre l'événement apparitionMot", function (done) {
+    localVue.prototype.$journal = {
+      enregistre (evenement) {
+        console.log(evenement.donnees());
+        expect(evenement).to.be.a(EvenementApparitionMot);
+        expect(evenement.donnees()).to.be.eql({ mot: 'ballon', type: '' });
+        done();
+      }
+    };
+    wrapper.vm.afficheMot();
   });
 });
