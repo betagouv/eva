@@ -49,6 +49,7 @@ import 'maintenance/styles/lexique.scss';
 import 'commun/styles/boutons.scss';
 
 import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
+import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
 
 const DELAI_CROIX = 500;
 const DELAI_MOT = 6000;
@@ -121,6 +122,9 @@ export default {
       this.index++;
       this.croix = false;
       this.mot = true;
+      this.$journal.enregistre(
+        new EvenementApparitionMot({ ...this.lexique[this.index] })
+      );
     },
     affichePointDeFixation () {
       this.croix = true;
