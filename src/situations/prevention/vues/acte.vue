@@ -109,6 +109,7 @@
 import { mapState } from 'vuex';
 import gsap from 'gsap';
 import 'prevention/styles/acte.scss';
+import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 import TransitionFade from 'commun/vues/transition_fade';
 import ActionEvaluation from './action_evaluation';
 import ActionPrevention from './action_prevention';
@@ -171,6 +172,7 @@ export default {
       if (this.zonePrevention) return;
       this.zoneEvaluee = zone;
       this.deSurvoleZone();
+      this.$journal.enregistre(new EvenementOuvertureZone({ zone: zone.id }));
     },
 
     previentZone (panneau) {

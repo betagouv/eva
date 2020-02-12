@@ -2,16 +2,20 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ActePrevention from 'prevention/vues/acte';
 import { creeStore } from 'prevention/modeles/store';
 import MockDepotRessources from '../aides/mock_depot_ressources_prevention';
+import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
 
 describe("La vue de l'acte prévention", function () {
   let wrapper;
   let store;
+  let journal;
   let depotRessources;
 
   beforeEach(function () {
     const localVue = createLocalVue();
     depotRessources = new MockDepotRessources();
+    journal = { enregistre () {} };
     localVue.prototype.$depotRessources = depotRessources;
+    localVue.prototype.$journal = journal;
     store = creeStore();
     wrapper = shallowMount(ActePrevention, {
       store,
@@ -84,6 +88,15 @@ describe("La vue de l'acte prévention", function () {
       wrapper.vm.survoleZone(zone2);
       wrapper.vm.selectionPrevention();
       expect(wrapper.emitted('terminer').length).to.be(1);
+    });
+
+    it("envoie l'événement ouverture zone à l'ouverture d'une zone", function (done) {
+      journal.enregistre = (evenement) => {
+        expect(evenement).to.be.a(EvenementOuvertureZone);
+        expect(evenement.donnees()).to.eql({ zone: zone1.id });
+        done();
+      };
+      wrapper.vm.evalueZone(zone1);
     });
   });
 });
