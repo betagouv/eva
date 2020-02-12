@@ -84,7 +84,6 @@ describe('La vue de la Maintenance', function () {
   it("enregistre l'événement apparitionMot", function (done) {
     localVue.prototype.$journal = {
       enregistre (evenement) {
-        console.log(evenement.donnees());
         expect(evenement).to.be.a(EvenementApparitionMot);
         expect(evenement.donnees()).to.be.eql({ mot: 'ballon', type: '' });
         done();
