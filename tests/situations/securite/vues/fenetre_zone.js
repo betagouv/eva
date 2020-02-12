@@ -2,7 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { creeStore } from 'securite/modeles/store';
 import FenetreZone from 'securite/vues/fenetre_zone';
 import FormulaireRadio from 'securite/vues/formulaire_radio';
-import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
+import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
 import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
 import EvenementIdentificationDanger from 'securite/modeles/evenement_identification_danger';
 

@@ -29,7 +29,7 @@ import 'commun/styles/fenetre.scss';
 import FormulaireRadio from './formulaire_radio';
 import ResultatIdentification from './resultat_identification';
 import { traduction } from 'commun/infra/internationalisation';
-import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
+import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
 import EvenementQualificationDanger from 'securite/modeles/evenement_qualification_danger';
 import EvenementIdentificationDanger from 'securite/modeles/evenement_identification_danger';
 
