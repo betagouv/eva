@@ -2,7 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ActePrevention from 'prevention/vues/acte';
 import { creeStore } from 'prevention/modeles/store';
 import MockDepotRessources from '../aides/mock_depot_ressources_prevention';
-import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
+import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
 
 describe("La vue de l'acte prévention", function () {
   let wrapper;

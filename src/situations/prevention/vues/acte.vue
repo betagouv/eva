@@ -109,7 +109,7 @@
 import { mapState } from 'vuex';
 import gsap from 'gsap';
 import 'prevention/styles/acte.scss';
-import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
+import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
 import TransitionFade from 'commun/vues/transition_fade';
 import ActionEvaluation from './action_evaluation';
 import ActionPrevention from './action_prevention';

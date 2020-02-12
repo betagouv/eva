@@ -1,4 +1,4 @@
-import EvenementOuvertureZone from 'securite/modeles/evenement_ouverture_zone';
+import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
 
 describe("l'événement de l'ouverture de la zone", function () {
   it('retourne son nom', function () {
