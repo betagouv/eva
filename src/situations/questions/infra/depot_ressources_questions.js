@@ -1,62 +1,9 @@
-import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
+import DepotRessourcesQuestionsBase from './depot_ressources_questions_base';
 
 import sonConsigne from 'questions/assets/consigne_demarrage.wav';
 
-export default class DepotRessourcesQuestions extends DepotRessourcesCommunes {
-  constructor (chargeurs, urlServeur = process.env.URL_SERVEUR) {
-    super(chargeurs, sonConsigne);
-    this.urlServeur = urlServeur;
-  }
-
-  chargeEvaluation (url, nomSituation) {
-    this.evaluationUrl = url;
-    this.nomSituation = nomSituation;
-    this.charge([url]);
-  }
-
-  questions () {
-    if (this.questionnaireUrl) {
-      return this.ressource(this.questionnaireUrl);
-    } else {
-      return this.ressource(this.evaluationUrl).questions;
-    }
-  }
-
-  questionsEntrainement () {
-    if (this.questionnaireEntrainementUrl) {
-      return this.ressource(this.questionnaireEntrainementUrl);
-    }
-    return [];
-  }
-
-  chargement () {
-    return super.chargement()
-      .then(() => this.chargeQuestionnaires())
-      .then(() => this.chargeIllustrations());
-  }
-
-  chargeQuestionnaires () {
-    const evaluationJSON = this.ressource(this.evaluationUrl);
-    const situation = evaluationJSON.situations.find(situation => situation.nom_technique === this.nomSituation);
-    if (!situation) return;
-
-    const promesses = [];
-    if (situation.questionnaire_id) {
-      this.questionnaireUrl = `${this.urlServeur}/api/questionnaires/${situation.questionnaire_id}.json`;
-      promesses.push(this.promesseRessource(this.questionnaireUrl));
-    }
-    if (situation.questionnaire_entrainement_id) {
-      this.questionnaireEntrainementUrl = `${this.urlServeur}/api/questionnaires/${situation.questionnaire_entrainement_id}.json`;
-      promesses.push(this.promesseRessource(this.questionnaireEntrainementUrl));
-    }
-    return Promise.all(promesses);
-  }
-
-  chargeIllustrations () {
-    const images = [...this.questions(), ...this.questionsEntrainement()]
-      .map(question => question.illustration)
-      .filter(illustration => illustration);
-    this.charge(images);
-    return super.chargement();
+export default class DepotRessourcesQuestions extends DepotRessourcesQuestionsBase {
+  constructor (chargeurs, urlServeur) {
+    super(chargeurs, sonConsigne, undefined, urlServeur);
   }
 }
