@@ -110,6 +110,7 @@ import { mapState } from 'vuex';
 import gsap from 'gsap';
 import 'prevention/styles/acte.scss';
 import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
+import EvenementEvaluationDanger from '../modeles/evenement_evaluation_danger';
 import TransitionFade from 'commun/vues/transition_fade';
 import ActionEvaluation from './action_evaluation';
 import ActionPrevention from './action_prevention';
@@ -179,6 +180,7 @@ export default {
       this.zonePrevention = this.zoneActive;
       this.zoneEvaluee = null;
       this.$store.commit('selectionEvaluation', { id: this.zoneActive.id, panneau });
+      this.$journal.enregistre(new EvenementEvaluationDanger({ zone: this.zoneActive.id, panneau }));
     },
 
     selectionPrevention () {
