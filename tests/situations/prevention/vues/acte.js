@@ -3,6 +3,7 @@ import ActePrevention from 'prevention/vues/acte';
 import { creeStore } from 'prevention/modeles/store';
 import MockDepotRessources from '../aides/mock_depot_ressources_prevention';
 import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
+import EvenementEvaluationDanger from 'prevention/modeles/evenement_evaluation_danger';
 
 describe("La vue de l'acte prévention", function () {
   let wrapper;
@@ -44,14 +45,14 @@ describe("La vue de l'acte prévention", function () {
       zone2 = store.state.zones[1];
     });
 
-    it('une zone survolé devient active ', function () {
+    it('une zone survolé devient active', function () {
       expect(wrapper.vm.zonesNonActive).to.eql([zone1, zone2]);
       wrapper.vm.survoleZone(zone1);
       expect(wrapper.vm.zoneActive).to.eql(zone1);
       expect(wrapper.vm.zonesNonActive).to.eql([zone2]);
     });
 
-    it('une zone évalué devient active ', function () {
+    it('une zone évalué devient active', function () {
       expect(wrapper.vm.zonesNonActive).to.eql([zone1, zone2]);
       wrapper.vm.survoleZone(zone1);
       wrapper.vm.evalueZone(zone1);
@@ -97,6 +98,16 @@ describe("La vue de l'acte prévention", function () {
         done();
       };
       wrapper.vm.evalueZone(zone1);
+    });
+
+    it("envoie l'événement evaluation danger à l'évaluation d'une zone", function (done) {
+      wrapper.vm.survoleZone(zone1);
+      journal.enregistre = (evenement) => {
+        expect(evenement).to.be.a(EvenementEvaluationDanger);
+        expect(evenement.donnees()).to.eql({ zone: zone1.id, panneau: 'danger' });
+        done();
+      };
+      wrapper.vm.previentZone('danger');
     });
   });
 });
