@@ -2,9 +2,9 @@ import DepotRessources from 'commun/infra/depot_ressources';
 import DepotRessourcesAccueil from 'accueil/infra/depot_ressources_accueil';
 import chargeurs from '../../commun/aides/mock_chargeurs';
 
-import batimentTri from 'accueil/assets/tri.png';
-import batimentInventaire from 'accueil/assets/inventaire.png';
-import batimentControle from 'accueil/assets/controle.png';
+import batimentTri from 'accueil/assets/batiment-tri.png';
+import batimentInventaire from 'accueil/assets/batiment-inventaire.png';
+import batimentControle from 'accueil/assets/batiment-controle.png';
 
 describe('Le dépôt de ressources de la situation accueil', function () {
   let depot;
