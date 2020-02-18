@@ -48,11 +48,11 @@ const configurationNormale = {
       action_prevention: [
         {
           image: 'prevention-alcool-gauche',
-          type: BON
+          type: MAUVAIS
         },
         {
           image: 'prevention-alcool-droite',
-          type: MAUVAIS
+          type: BON
         }
       ]
     },
@@ -96,11 +96,11 @@ const configurationNormale = {
       action_prevention: [
         {
           image: 'prevention-trou-gauche',
-          type: BON
+          type: MAUVAIS
         },
         {
           image: 'prevention-trou-droite',
-          type: MAUVAIS
+          type: BON
         }
       ]
     }
