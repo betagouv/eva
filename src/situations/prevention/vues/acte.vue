@@ -111,6 +111,7 @@ import gsap from 'gsap';
 import 'prevention/styles/acte.scss';
 import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
 import EvenementEvaluationDanger from '../modeles/evenement_evaluation_danger';
+import EvenementPreventionDanger from '../modeles/evenement_prevention_danger';
 import TransitionFade from 'commun/vues/transition_fade';
 import ActionEvaluation from './action_evaluation';
 import ActionPrevention from './action_prevention';
@@ -183,8 +184,9 @@ export default {
       this.$journal.enregistre(new EvenementEvaluationDanger({ zone: this.zoneActive.id, panneau }));
     },
 
-    selectionPrevention () {
+    selectionPrevention (reponse) {
       this.$store.commit('selectionPrevention', { id: this.zoneActive.id });
+      this.$journal.enregistre(new EvenementPreventionDanger({ zone: this.zoneActive.id, reponse }));
       this.zonePrevention = null;
     },
 
