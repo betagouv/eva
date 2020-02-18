@@ -4,6 +4,7 @@ import { creeStore } from 'prevention/modeles/store';
 import MockDepotRessources from '../aides/mock_depot_ressources_prevention';
 import EvenementOuvertureZone from 'commun/modeles/evenement_ouverture_zone';
 import EvenementEvaluationDanger from 'prevention/modeles/evenement_evaluation_danger';
+import EvenementPreventionDanger from 'prevention/modeles/evenement_prevention_danger';
 
 describe("La vue de l'acte prévention", function () {
   let wrapper;
@@ -108,6 +109,16 @@ describe("La vue de l'acte prévention", function () {
         done();
       };
       wrapper.vm.previentZone('danger');
+    });
+
+    it("envoie l'événement prevention danger à la sélection de l'action de prévention", function (done) {
+      wrapper.vm.survoleZone(zone1);
+      journal.enregistre = (evenement) => {
+        expect(evenement).to.be.a(EvenementPreventionDanger);
+        expect(evenement.donnees()).to.eql({ zone: zone1.id, reponse: 'correct' });
+        done();
+      };
+      wrapper.vm.selectionPrevention('correct');
     });
   });
 });
