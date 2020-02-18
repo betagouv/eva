@@ -1,14 +1,14 @@
 <template>
   <div class="action-prevention">
     <img
-      :src="$depotRessources.prevention(zone.images_prevention[0])"
+      :src="$depotRessources.prevention(zone.action_prevention[0].image)"
       :class="{ desactivee: survolDroite }"
       @mouseover="survolGauche = true"
       @mouseout="survolGauche = false"
       @click="$emit('selectionPrevention')"
     />
     <img
-      :src="$depotRessources.prevention(zone.images_prevention[1])"
+      :src="$depotRessources.prevention(zone.action_prevention[1].image)"
       :class="{ desactivee: survolGauche }"
       @mouseover="survolDroite = true"
       @mouseout="survolDroite = false"

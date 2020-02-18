@@ -1,5 +1,8 @@
 import { pourcentageX, pourcentageY } from 'commun/data/scene';
 
+const BON = 'bon';
+const MAUVAIS = 'mauvais';
+
 const configurationEntrainement = {
   zones: [
     {
@@ -7,7 +10,16 @@ const configurationEntrainement = {
       y: pourcentageY(380),
       r: pourcentageX(80),
       id: 'entrainement',
-      images_prevention: ['prevention-entrainement-gauche', 'prevention-entrainement-droite']
+      action_prevention: [
+        {
+          image: 'prevention-entrainement-gauche',
+          type: BON
+        },
+        {
+          image: 'prevention-entrainement-droite',
+          type: MAUVAIS
+        }
+      ]
     }
   ]
 };
@@ -18,35 +30,79 @@ const configurationNormale = {
       y: pourcentageY(460),
       r: pourcentageX(80),
       id: 'fuite-camion-citerne',
-      images_prevention: ['prevention-fuite-gauche', 'prevention-fuite-droite']
+      action_prevention: [
+        {
+          image: 'prevention-fuite-gauche',
+          type: BON
+        }, {
+          image: 'prevention-fuite-droite',
+          type: MAUVAIS
+        }
+      ]
     },
     {
       x: pourcentageX(450),
       y: pourcentageY(390),
       r: pourcentageX(80),
       id: 'alcool-pelleteuse',
-      images_prevention: ['prevention-alcool-gauche', 'prevention-alcool-droite']
+      action_prevention: [
+        {
+          image: 'prevention-alcool-gauche',
+          type: BON
+        },
+        {
+          image: 'prevention-alcool-droite',
+          type: MAUVAIS
+        }
+      ]
     },
     {
       x: pourcentageX(490),
       y: pourcentageY(250),
       r: pourcentageX(80),
       id: 'peintre',
-      images_prevention: ['prevention-peintre-gauche', 'prevention-peintre-droite']
+      action_prevention: [
+        {
+          image: 'prevention-peintre-gauche',
+          type: MAUVAIS
+        },
+        {
+          image: 'prevention-peintre-droite',
+          type: BON
+        }
+      ]
     },
     {
       x: pourcentageX(750),
       y: pourcentageY(340),
       r: pourcentageX(80),
       id: 'fuite-gaz',
-      images_prevention: ['prevention-gaz-gauche', 'prevention-gaz-droite']
+      action_prevention: [
+        {
+          image: 'prevention-gaz-gauche',
+          type: BON
+        },
+        {
+          image: 'prevention-gaz-droite',
+          type: MAUVAIS
+        }
+      ]
     },
     {
       x: pourcentageX(870),
       y: pourcentageY(420),
       r: pourcentageX(80),
       id: 'trou',
-      images_prevention: ['prevention-trou-gauche', 'prevention-trou-droite']
+      action_prevention: [
+        {
+          image: 'prevention-trou-gauche',
+          type: BON
+        },
+        {
+          image: 'prevention-trou-droite',
+          type: MAUVAIS
+        }
+      ]
     }
   ]
 };
