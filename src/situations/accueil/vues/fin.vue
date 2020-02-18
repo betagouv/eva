@@ -47,6 +47,11 @@
         </div>
       </div>
     </div>
+    <div class="voxusagers">
+      <a href="https://voxusagers.numerique.gouv.fr/Demarches/2381?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=e556745a003dc51aac047d6818d4e1d6">
+        <img src="https://voxusagers.numerique.gouv.fr/static/bouton-blanc.svg" alt="Je donne mon avis" title="Je donne mon avis sur cette démarche" />
+      </a>
+    </div>
   </div>
 </template>
 
