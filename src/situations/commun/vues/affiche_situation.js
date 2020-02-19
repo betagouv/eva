@@ -14,6 +14,12 @@ export function afficheSituation (identifiantSituation, modeleSituation, VueSitu
     const journal = creeJournalPourSituation(identifiantSituation);
 
     modeleSituation.identifiant = identifiantSituation;
+
+    if (!journal.registreUtilisateur.estConnecte()) {
+      window.location.assign('/');
+      return;
+    }
+
     const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources, barreDev);
     vueCadre.affiche(pointInsertion, $);
   }
