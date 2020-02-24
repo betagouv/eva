@@ -168,5 +168,8 @@
       "temps_passe": "Temps: {{nombre, duree}}",
       "erreurs": "Erreurs : {{nombre}}"
     }
+  },
+  "objets_trouves": {
+    "titre": "Objets trouvés"
   }
 }
