@@ -12,3 +12,21 @@ const rollbar = new Rollbar({
 export function erreur (...args) {
   rollbar.error(...args);
 }
+
+function formatComponentName (vm) {
+  if (vm.$root === vm) {
+    return 'root instance';
+  }
+  const name = vm._isVue
+    ? vm.$options.name || vm.$options._componentTag
+    : vm.name;
+  return (name ? 'component <' + name + '>' : 'anonymous component') +
+    (vm._isVue && vm.$options.__file ? ' at ' + vm.$options.__file : '');
+}
+
+export function erreurVue (err, vm, info) {
+  erreur(`Erreur vue.js dans la méthode ${info}`, err, {
+    componentName: formatComponentName(vm),
+    propsData: vm.$options.propsData
+  });
+}

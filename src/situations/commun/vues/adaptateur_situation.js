@@ -1,8 +1,11 @@
 import Vue from 'vue';
 
-import { traduction } from 'commun/infra/internationalisation';
-import { synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
-import VueSituation from 'commun/vues/situation';
+import { traduction } from '../infra/internationalisation';
+import { synchroniseStoreEtModeleSituation } from '../modeles/store';
+import VueSituation from './situation';
+import { erreurVue } from '../infra/report_erreurs';
+
+Vue.config.errorHandler = erreurVue;
 
 export default class AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources, creeStore, ComposantActe, configurationEntrainement, configurationNormale) {
