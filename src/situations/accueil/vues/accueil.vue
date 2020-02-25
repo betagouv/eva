@@ -38,11 +38,13 @@
         </button>
         <span>{{ $traduction('accueil.precedent') }}</span>
       </div>
-      <acces-situation
-        v-if="afficheBoutonSituation"
-        :situation="batiments[indexBatiment]"
-        class="bouton-arrondi"
-      />
+      <div>
+        <acces-situation
+          v-if="afficheBoutonSituation"
+          :situation="batiments[indexBatiment]"
+          class="bouton-arrondi"
+        />
+      </div>
       <div
         :class="{ desactivee: suivantDesactivee}"
         class="bouton-et-etiquette gauche"
