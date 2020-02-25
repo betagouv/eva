@@ -75,6 +75,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import queryString from 'query-string';
 import 'accueil/styles/accueil.scss';
 import 'commun/styles/cadre.scss';
 import 'commun/styles/actions.scss';
@@ -99,15 +100,15 @@ export default {
   components: { FormulaireIdentification, AccesSituation, IntroConsigne, Fin, TransitionFade },
 
   data () {
-    const parsedUrl = new URL(window.location.href);
+    const parametresUrl = queryString.parse(location.search);
     const { indexPrecedent } = this.recupereEtatDuPrecedentChargement();
     return {
       fondAccueil: `url(${this.$depotRessources.fondAccueil().src})`,
       personnage: this.$depotRessources.personnage().src,
       precedent: this.$depotRessources.precedent().src,
       suivant: this.$depotRessources.suivant().src,
-      forceCampagne: parsedUrl.searchParams.get('code') || '',
-      forceNom: parsedUrl.searchParams.get('nom') || '',
+      forceCampagne: parametresUrl.code || '',
+      forceNom: parametresUrl.nom || '',
       indexBatiment: indexPrecedent,
       ecranFinAfficher: false
     };
