@@ -63,7 +63,7 @@ module.exports = {
   module: {
     rules: [
       {
-        include: [path.resolve(__dirname, 'src/app')],
+        test: /\.js$/,
         loader: 'babel-loader',
 
         options: {
@@ -77,9 +77,7 @@ module.exports = {
               }
             ]
           ]
-        },
-
-        test: /\.js$/
+        }
       },
       {
         test: /\.(sa|sc|c)ss$/,
