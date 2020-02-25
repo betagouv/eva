@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapState } from 'vuex';
 import 'accueil/styles/fin.scss';
 
 export default {
@@ -65,8 +65,6 @@ export default {
   },
 
   methods: {
-    ...mapActions(['deconnecte']),
-
     lienSiteVitrine (competence) {
       return `https://eva.beta.gouv.fr/competences/${competence}`;
     },
