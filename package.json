@@ -5,7 +5,7 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "env $(cat .env | xargs) webpack-dev-server --history-api-fallback --inline --progress --mode development",
+    "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development",
     "test": "./bin/test.sh",
     "lint": "eslint --cache --ext .js,.vue src tests"
   },
