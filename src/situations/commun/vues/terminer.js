@@ -2,7 +2,6 @@ import { traduction } from 'commun/infra/internationalisation';
 import { afficheFenetreModale } from 'commun/vues/modale';
 
 import 'commun/styles/bouton.scss';
-import 'commun/styles/terminer.scss';
 
 export default class VueTerminer {
   constructor (situation, depotRessources, retourAccueil = () => window.location.assign('/')) {
