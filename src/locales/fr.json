@@ -5,7 +5,12 @@
   "minute_plural": "{{count}} minutes",
   "seconde": "{{count}} seconde",
   "seconde_plural": "{{count}} secondes",
-  "deconnexion": "Déconnexion",
+  "deconnexion": {
+    "confirmation": "Se déconnecter ?",
+    "oui": "Oui",
+    "non": "non",
+    "titre": "Déconnexion"
+  },
   "accueil": {
     "commencer": "Commencer {{situation}}",
     "conclure": "Accéder aux résultats",
