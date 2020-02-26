@@ -39,6 +39,7 @@ module.exports = {
     filename: 'js/[name].js',
     publicPath: '/' // public URL of the output directory when referenced in a browser
   },
+  devtool: devMode ? 'eval-cheap-source-map' : 'source-map',
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
