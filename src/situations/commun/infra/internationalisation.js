@@ -14,7 +14,7 @@ export function format (value, format) {
 export function initialise () {
   return i18next.init({
     lng: 'fr',
-    debug: process.env.NODE_ENV !== 'development',
+    debug: process.env.NODE_ENV === 'development',
     resources: {
       fr: {
         translation: locales
