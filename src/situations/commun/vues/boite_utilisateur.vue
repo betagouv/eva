@@ -12,6 +12,7 @@
       <div class="progression-actions">
         <div class="progression-utilisateur">{{ situationsFaites.length }}/{{ situations.length }}</div>
         <a
+          :title="$traduction('deconnexion')"
           class="deconnexion"
           href="#"
           @click.prevent="deconnecte"
