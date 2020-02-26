@@ -6,6 +6,13 @@ const rollbar = new Rollbar({
   captureUnhandledRejections: true,
   payload: {
     environment: process.env.NODE_ENV
+  },
+  client: {
+    javascript: {
+      source_map_enabled: true,
+      code_version: CODE_VERSION,
+      guess_uncaught_frames: true
+    }
   }
 });
 
