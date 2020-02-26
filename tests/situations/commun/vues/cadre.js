@@ -35,8 +35,8 @@ describe('Une vue du cadre', function () {
     situation.identifiant = 'tri';
     journal = { enregistre () {}, enregistreSituationFaite () {} };
 
-    uneVueCadre = function (classeVue = uneClasseVue(), barreDev = false) {
-      return new VueCadre(classeVue, situation, journal, depotRessources, barreDev);
+    uneVueCadre = function (classeVue = uneClasseVue()) {
+      return new VueCadre(classeVue, situation, journal, depotRessources);
     };
 
     return depotRessources.chargement();
@@ -128,20 +128,6 @@ describe('Une vue du cadre', function () {
     const contextmenu = $.Event('contextmenu');
     $('#cadre').trigger(contextmenu);
     expect(contextmenu.isDefaultPrevented()).to.be(true);
-  });
-
-  it("crée la barre d'outils de dev", function () {
-    const vueCadre = uneVueCadre(uneClasseVue(), true);
-    vueCadre.affiche('#point-insertion', $);
-
-    expect($('.barre-dev').length).to.equal(1);
-  });
-
-  it("ne crée pas la barre d'outils de dev", function () {
-    const vueCadre = uneVueCadre(uneClasseVue(), false);
-    vueCadre.affiche('#point-insertion', $);
-
-    expect($('.barre-dev').length).to.equal(0);
   });
 
   it("enregistre l'événement de démarrage de l'entrainement", function (done) {

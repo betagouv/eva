@@ -7,8 +7,6 @@ import creeJournalPourSituation from 'commun/modeles/journal';
 import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 
-const barreDev = process.env.AFFICHE_BARRE_DEV === 'true';
-
 export function afficheSituation (identifiantSituation, modeleSituation, VueSituation, depotRessources) {
   function affiche (pointInsertion, $) {
     const journal = creeJournalPourSituation(identifiantSituation);
@@ -20,7 +18,7 @@ export function afficheSituation (identifiantSituation, modeleSituation, VueSitu
       return;
     }
 
-    const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources, barreDev);
+    const vueCadre = new VueCadre(VueSituation, modeleSituation, journal, depotRessources);
     vueCadre.affiche(pointInsertion, $);
   }
 

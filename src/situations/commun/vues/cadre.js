@@ -18,16 +18,14 @@ import OverlayChargement from './overlay_chargement';
 import OverlayErreurChargement from './overlay_erreur_chargement';
 import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
-import VueBarreDev from 'commun/vues/barre_dev';
 
 export default class VueCadre {
-  constructor (VueSituation, situation, journal, depotRessources, barreDev) {
+  constructor (VueSituation, situation, journal, depotRessources) {
     this.VueSituation = VueSituation;
     this.journal = journal;
     this.situation = situation;
     this.depotRessources = depotRessources;
     this.registreUtilisateur = this.journal.registreUtilisateur;
-    this.barreDev = barreDev;
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, creeAdaptateur(OverlayChargement));
     this.vuesEtats.set(ERREUR_CHARGEMENT, creeAdaptateur(OverlayErreurChargement));
@@ -60,10 +58,6 @@ export default class VueCadre {
     this.situation.on(CHANGEMENT_ETAT, afficheEtat);
     this.previensLaFermetureDeLaSituation($);
     this.previensLeClickDroit($);
-    if (this.barreDev) {
-      const barreDev = new VueBarreDev(this.situation);
-      barreDev.affiche(pointInsertion, $);
-    }
 
     const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.registreUtilisateur);
     return this.depotRessources.chargement().then(() => {
