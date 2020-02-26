@@ -41,3 +41,15 @@
     }
   }
 }
+
+.confirmation-deconnexion {
+  .confirme-bouton {
+    margin-left: 1rem;
+  }
+
+  .annulation-deconnexion {
+    margin-left: 1rem;
+    margin-right: 2rem;
+    color: $couleur-texte;
+  }
+}
