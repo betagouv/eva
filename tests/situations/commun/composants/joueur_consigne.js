@@ -55,4 +55,15 @@ describe('joueur de consigne', function () {
       done();
     });
   });
+
+  it('peut stoper la consigne en cours', function () {
+    let consigneStopee = false;
+    uneConsigne.stop = () => {
+      consigneStopee = true;
+    };
+    joueur.joue(false, () => { });
+    joueur.stop();
+    expect(consigneStopee).to.be(true);
+    expect(joueur.cbTimer._idleTimeout).to.equal(-1);
+  });
 });

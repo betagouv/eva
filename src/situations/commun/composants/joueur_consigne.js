@@ -5,8 +5,9 @@ export default class JoueurConsigne {
   }
 
   joueSon (noeudSon, callbackFin) {
+    this.sonEnCours = noeudSon;
     noeudSon.start();
-    setTimeout(callbackFin, noeudSon.buffer.duration * 1000);
+    this.cbTimer = setTimeout(callbackFin, noeudSon.buffer.duration * 1000);
   }
 
   joue (jouerConsigneCommune, lectureTerminee) {
@@ -15,5 +16,10 @@ export default class JoueurConsigne {
     };
     this.joueSon(this.depot[this.ressourceConsigne](),
       jouerConsigneCommune ? joueConsigneCommune : lectureTerminee);
+  }
+
+  stop () {
+    clearTimeout(this.cbTimer);
+    this.sonEnCours.stop();
   }
 }
