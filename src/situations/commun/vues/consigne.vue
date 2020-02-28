@@ -2,7 +2,6 @@
   <div
     class="overlay modale"
     tabindex="0"
-    @keydown.s="fini"
   >
     <div class="modale-interieur">
       <h2 v-if="titreConsigne !== ''">{{ titreConsigne }}</h2>
@@ -11,7 +10,6 @@
        ></div>
       <button
         class="bouton-arrondi"
-        :disabled="aVousDeJouerDesactive"
         @click="fini"
       >{{ $traduction('accueil.intro_contexte.bouton') }}</button>
     </div>
@@ -43,16 +41,7 @@ export default {
     }
   },
 
-  data () {
-    return {
-      consigneEnCours: false
-    };
-  },
-
   computed: {
-    aVousDeJouerDesactive () {
-      return this.consigneEnCours;
-    }
   },
 
   mounted () {
@@ -62,16 +51,12 @@ export default {
   methods: {
 
     joueConsigne () {
-      this.consigneEnCours = true;
-      const consigne = new JoueurConsigne(this.$depotRessources, this.ressourceConsigne);
-      consigne.joue(true, this.lectureTerminee.bind(this));
-    },
-
-    lectureTerminee () {
-      this.consigneEnCours = false;
+      this.consigne = new JoueurConsigne(this.$depotRessources, this.ressourceConsigne);
+      this.consigne.joue(true, () => {});
     },
 
     fini () {
+      this.consigne.stop();
       this.$emit(CONSIGNE_FINI);
     }
   }

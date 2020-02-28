@@ -28,25 +28,23 @@ describe('La vue consigne', function () {
   });
 
   it("joue la consigne à l'affichage du composant", function () {
-    expect(wrapper.vm.consigneEnCours).to.eql(true);
-  });
-
-  it('désactive le bouton tant que la consigne est en cours de lecture', function () {
-    expect(wrapper.vm.aVousDeJouerDesactive).to.be(true);
-
-    wrapper.setData({ consigneEnCours: false });
-    expect(wrapper.vm.aVousDeJouerDesactive).to.be(false);
+    expect(wrapper.vm.consigne).to.be.an('object');
   });
 
   it('émets le message de la fin et se cache', function () {
-    wrapper.setData({ consigneEnCours: false });
-
     wrapper.find('button').trigger('click');
     expect(wrapper.emitted(CONSIGNE_FINI).length).to.eql(1);
   });
 
-  it('permet de passer directement au parc en appuyant sur S', function () {
-    wrapper.trigger('keydown', { key: 's' });
+  it('coupe le son quand on clique sur le bouton', function () {
+    let consigneArretee = false;
+    wrapper.vm.consigne = {
+      stop: () => {
+        consigneArretee = true;
+      }
+    };
+    wrapper.find('button').trigger('click');
     expect(wrapper.emitted(CONSIGNE_FINI).length).to.eql(1);
+    expect(consigneArretee).to.equal(true);
   });
 });
