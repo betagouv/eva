@@ -13,7 +13,7 @@
           :cx="`${zoneActive.x}%`"
           :cy="`${zoneActive.y}%`"
           :r="`${zoneActive.r}%`"
-          :class="{ 'transform-scale-1-5': zoneEvaluee || zonePrevention  }"
+          :class="{ 'transform-scale-1-5': zoneEvaluee  }"
           :style="{ 'transform-origin': zoneActiveTransformOrigin }"
           class="transition-transform"
         />
@@ -78,11 +78,12 @@
         v-if="zoneActive"
         :xlink:href="fondSituation"
         :style="[ { 'transform-origin': zoneActiveTransformOrigin },
-                     zoneEvaluee || zonePrevention ? { transform: transformZone(2) } : '' ]"
+                     zoneEvaluee  ? { transform: transformZone(2) } : '' ]"
         clip-path="url(#cercle-illustration-clip)"
         height="100%"
         width="100%"
         class="transition-transform"
+        :class="{ 'zone-cachee': zonePrevention }"
       />
     </transition>
     <!-- Cercle blanc autour du disque de l'image de fond découpé -->
@@ -155,11 +156,7 @@ export default {
 
   methods: {
     transformZone (scale) {
-      let transform = '';
-      if (this.zonePrevention) {
-        transform = `scale(0.5) translate(0, ${-5 / scale * 2}%)`;
-      }
-      return `scale(${scale}) translate(${(POSITION_CERCLE_EVALUATION.x - this.zoneActive.x) / scale}%, ${(POSITION_CERCLE_EVALUATION.y - this.zoneActive.y) / scale}%) ${transform}`;
+      return `scale(${scale}) translate(${(POSITION_CERCLE_EVALUATION.x - this.zoneActive.x) / scale}%, ${(POSITION_CERCLE_EVALUATION.y - this.zoneActive.y) / scale}%)`;
     },
 
     survoleZone (zone) {

@@ -16,9 +16,8 @@
     stroke: $blanc;
   }
 
-  &-reduite {
-    stroke-width: 8px;
-    stroke: $blanc;
+  &-cachee {
+    display: none;
   }
 
   &-traitee {
