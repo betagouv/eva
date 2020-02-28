@@ -1,5 +1,10 @@
 @import 'commun/styles/couleurs.scss';
 
+.conteneur-prevention {
+  height:100%;
+  width:100%;
+}
+
 .zone {
   fill: transparent;
   stroke: $orange;
@@ -24,6 +29,22 @@
     stroke: $blanc;
     fill: transparentize($orange, 0.2);
     pointer-events: none;
+  }
+}
+
+.vignette-danger {
+  transition: transform .3s ease, border .3s ease;
+  position: absolute;
+  border-radius: 50%;
+  top: 53px;
+  left: calc(50% - 192px);
+
+  &.affichee {
+    width: 384px;
+    height: 384px;
+    border: 24px solid $blanc;
+    transform: scale(0.5) translate(0, -100px);
+    background-size: 470%;
   }
 }
 

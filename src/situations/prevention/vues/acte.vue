@@ -1,109 +1,116 @@
 <template>
-  <svg height="100%" width="100%">
-    <image
-      :xlink:href="fondSituation"
-      height="100%"
-      width="100%"
-    />
-    <!-- Définition du disque découpé -->
-    <clipPath id="cercle-illustration-clip">
+  <div class='conteneur-prevention'>
+    <svg height="100%" width="100%">
+      <image
+        :xlink:href="fondSituation"
+        height="100%"
+        width="100%"
+      />
+      <!-- Définition du disque découpé -->
+      <clipPath id="cercle-illustration-clip">
+        <transition name="restaure-position">
+          <circle
+            v-if="zoneActive"
+            :cx="`${zoneActive.x}%`"
+            :cy="`${zoneActive.y}%`"
+            :r="`${zoneActive.r}%`"
+            :class="{ 'transform-scale-1-5': zoneEvaluee  }"
+            :style="{ 'transform-origin': zoneActiveTransformOrigin }"
+            class="transition-transform"
+          />
+        </transition>
+      </clipPath>
+      <!-- Cercles de zones sauf celui actif -->
+      <circle
+        v-for="zone in zonesNonActive"
+        :key="zone.id"
+        :cx="`${zone.x}%`"
+        :cy="`${zone.y}%`"
+        :r="`${zone.r}%`"
+        :class="{ 'zone-traitee': $store.getters.evaluationZone(zone.id) }"
+        class="zone"
+        @mouseover="survoleZone(zone)"
+      />
+      <!-- Calque orange de fond lorsqu'une zone est active -->
+      <transition-fade>
+        <rect
+          v-if="zoneActive"
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          class="overlay-zone"
+        />
+      </transition-fade>
+      <transition name="vient-du-bas">
+        <g v-if="zoneEvaluee || zonePrevention">
+          <!-- Rectangle blanc d'interaction -->
+          <rect
+            :width="`${rectActions.width}%`"
+            :height="`${rectActions.height}%`"
+            :x="`${rectActions.x}%`"
+            :y="`${rectActions.y}%`"
+            :rx="rectActions.rx"
+            fill="#FBF9FA"
+          />
+          <!-- Intérieur du rectangle blanc d'interaction -->
+          <foreignObject
+            :width="`${rectActions.width}%`"
+            :height="`${rectActions.height}%`"
+            :x="`${rectActions.x}%`"
+            :y="`${rectActions.y}%`"
+            :rx="rectActions.rx"
+          >
+            <action-prevention
+              v-if="zonePrevention"
+              :zone="zoneActive"
+              @selectionPrevention="selectionPrevention"
+            />
+            <action-evaluation
+              v-else
+              @selectionPanneau="previentZone"
+           />
+          </foreignObject>
+        </g>
+      </transition>
+      <!-- Disque découpé dans l'image de fond -->
+      <transition name="restaure-position">
+        <image
+          v-if="zoneActive"
+          :xlink:href="fondSituation"
+          :style="[ { 'transform-origin': zoneActiveTransformOrigin },
+                       zoneEvaluee  ? { transform: transformZone(2) } : '' ]"
+          clip-path="url(#cercle-illustration-clip)"
+          height="100%"
+          width="100%"
+          class="transition-transform"
+          :class="{ 'zone-cachee': zonePrevention }"
+        />
+      </transition>
+      <!-- Cercle blanc autour du disque de l'image de fond découpé -->
       <transition name="restaure-position">
         <circle
           v-if="zoneActive"
           :cx="`${zoneActive.x}%`"
           :cy="`${zoneActive.y}%`"
           :r="`${zoneActive.r}%`"
-          :class="{ 'transform-scale-1-5': zoneEvaluee  }"
-          :style="{ 'transform-origin': zoneActiveTransformOrigin }"
-          class="transition-transform"
+          :class="{ 'zone-agrandi': zoneEvaluee,
+                    'zone-clickable': zoneSurvolee,
+                    'zone-cachee':  zonePrevention }"
+          :style="[{ 'transform-origin': zoneActiveTransformOrigin },
+                     zoneEvaluee ? { transform: transformZone(3) } : '' ]"
+          class="zone transition-transform"
+          @mouseout="deSurvoleZone"
+          @click="evalueZone(zoneActive)"
         />
       </transition>
-    </clipPath>
-    <!-- Cercles de zones sauf celui actif -->
-    <circle
-      v-for="zone in zonesNonActive"
-      :key="zone.id"
-      :cx="`${zone.x}%`"
-      :cy="`${zone.y}%`"
-      :r="`${zone.r}%`"
-      :class="{ 'zone-traitee': $store.getters.evaluationZone(zone.id) }"
-      class="zone"
-      @mouseover="survoleZone(zone)"
+    </svg>
+    <div
+      class='vignette-danger'
+      :class="{ 'affichee': zonePrevention }"
+      :style="imageFondPositionnee"
     />
-    <!-- Calque orange de fond lorsqu'une zone est active -->
-    <transition-fade>
-      <rect
-        v-if="zoneActive"
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-        class="overlay-zone"
-      />
-    </transition-fade>
-    <transition name="vient-du-bas">
-      <g v-if="zoneEvaluee || zonePrevention">
-        <!-- Rectangle blanc d'interaction -->
-        <rect
-          :width="`${rectActions.width}%`"
-          :height="`${rectActions.height}%`"
-          :x="`${rectActions.x}%`"
-          :y="`${rectActions.y}%`"
-          :rx="rectActions.rx"
-          fill="#FBF9FA"
-        />
-        <!-- Intérieur du rectangle blanc d'interaction -->
-        <foreignObject
-          :width="`${rectActions.width}%`"
-          :height="`${rectActions.height}%`"
-          :x="`${rectActions.x}%`"
-          :y="`${rectActions.y}%`"
-          :rx="rectActions.rx"
-        >
-          <action-prevention
-            v-if="zonePrevention"
-            :zone="zoneActive"
-            @selectionPrevention="selectionPrevention"
-          />
-          <action-evaluation
-            v-else
-            @selectionPanneau="previentZone"
-         />
-        </foreignObject>
-      </g>
-    </transition>
-    <!-- Disque découpé dans l'image de fond -->
-    <transition name="restaure-position">
-      <image
-        v-if="zoneActive"
-        :xlink:href="fondSituation"
-        :style="[ { 'transform-origin': zoneActiveTransformOrigin },
-                     zoneEvaluee  ? { transform: transformZone(2) } : '' ]"
-        clip-path="url(#cercle-illustration-clip)"
-        height="100%"
-        width="100%"
-        class="transition-transform"
-        :class="{ 'zone-cachee': zonePrevention }"
-      />
-    </transition>
-    <!-- Cercle blanc autour du disque de l'image de fond découpé -->
-    <transition name="restaure-position">
-      <circle
-        v-if="zoneActive"
-        :cx="`${zoneActive.x}%`"
-        :cy="`${zoneActive.y}%`"
-        :r="`${zoneActive.r}%`"
-        :class="{ 'zone-agrandi': zoneEvaluee,
-                  'zone-clickable': zoneSurvolee,
-                  'zone-reduite':  zonePrevention }"
-        :style="[{ 'transform-origin': zoneActiveTransformOrigin },
-                   zoneEvaluee || zonePrevention ? { transform: transformZone(3) } : '' ]"
-        class="zone transition-transform"
-        @mouseout="deSurvoleZone"
-        @click="evalueZone(zoneActive)"
-      />
-    </transition>
-  </svg>
+  </div>
 </template>
 
 <script>
@@ -148,6 +155,13 @@ export default {
     },
     zoneActiveTransformOrigin () {
       return `${this.zoneActive.x}% ${this.zoneActive.y}%`;
+    },
+    imageFondPositionnee () {
+      if (!this.zonePrevention) return '';
+      return [
+        { 'background-image': `url('${this.fondSituation}')` },
+        { 'background-position': `${this.zoneActive.x + this.zoneActive.r}% ${this.zoneActive.y + this.zoneActive.r}%` }
+      ];
     },
     terminee () {
       return this.zones.every(zone => zone.prevention);
