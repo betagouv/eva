@@ -35,6 +35,11 @@ describe("La vue de l'acte prévention", function () {
     expect(wrapper.findAll('.zone').length).to.eql(1);
   });
 
+  it('affiche la vignette du danger', function () {
+    store.commit('configureActe', { zones: [] });
+    expect(wrapper.findAll('.vignette-danger').length).to.eql(1);
+  });
+
   describe('avec 2 zones', function () {
     let zone1;
     let zone2;
