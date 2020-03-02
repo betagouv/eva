@@ -32,7 +32,9 @@
 
 <script>
 import 'commun/styles/boutons.scss';
+import 'commun/styles/formulaire_qcm.scss';
 import 'questions/styles/situation.scss';
+
 import Question from './question';
 
 export default {

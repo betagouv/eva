@@ -1,0 +1,31 @@
+@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/dimensions.scss';
+
+.question {
+  background-color: $couleur-fond-module;
+  display: flex;
+  align-items: center;
+
+  &-illustration {
+    height: $hauteur-scene;
+  }
+
+  &-barre {
+    background-color: $blanc;
+    border-radius: 2rem;
+    padding: 1.25rem 1.875rem;
+    position: absolute;
+    right: 1.25rem;
+    width: 295px;
+    font-size: 0.875rem;
+  }
+
+  &-choix {
+    margin-top: 1rem;
+  }
+
+  &-bouton {
+    float: right;
+    margin-top: 0.625rem;
+  }
+}
