@@ -32,7 +32,7 @@ export default {
   computed: {
     ...mapState(['etat', 'fondSituation'])
   },
-  data() {
+  data () {
     return {
       icones: ['Photos', 'Répondeur'],
       iconesBarre: ['Rappels', 'Agenda', 'Messages']
