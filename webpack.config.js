@@ -76,7 +76,8 @@ module.exports = {
             [
               '@babel/env',
               {
-                modules: false
+                modules: false,
+                useBuiltIns: 'entry'
               }
             ]
           ]
