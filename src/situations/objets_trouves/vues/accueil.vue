@@ -1,17 +1,23 @@
 <template>
-  <div
-    :style="{ 'background-image': `url(${$depotRessources.fondSituation().src})` }"
-    class="fond-situation"
-  >
-    <span class="heure">17H49</span>
-     <div class="icones">
-       <div v-for="icone in icones" :key="icone" class="icone">
-         <p class='label'>{{ icone }}</p>
-       </div>
-     </div>
+  <div :style="{ 'background-image': `url(${$depotRessources.fondSituation().src})` }" class="fond-situation">
+    <div class="telephone-conteneur">
+      <span class="heure">17:49</span>
+      <div class="icones-conteneur">
+        <div class="icones">
+          <div v-for="icone in icones" :key="icone" class="icone">
+            <p class="label">{{ icone }}</p>
+          </div>
+        </div>
+        <div class="icones icones-barre">
+          <div v-for="iconeBarre in iconesBarre" :key="iconeBarre" class="icone">
+            <p class="label">{{ iconeBarre }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="question">
       <div class="question-barre">
-        Vous allez maintenant pouvoir commencer à chercher Sophie en utilisant les indices que vous trouverez dans son téléphone. Pensez à regarder ses messages texte et ses messages vocaux, ses photographies, ainsi que son agenda. Pensez à bien noter lorsque l'heure est indiquée.
+        {{ $traduction('objets_trouves.consigne_accueil_telephone') }}
       </div>
     </div>
   </div>
@@ -26,9 +32,10 @@ export default {
   computed: {
     ...mapState(['etat', 'fondSituation'])
   },
-  data () {
+  data() {
     return {
-      icones: ['Photos', 'Répondeur', 'Rappels', 'Agenda', 'Messages']
+      icones: ['Photos', 'Répondeur'],
+      iconesBarre: ['Rappels', 'Agenda', 'Messages']
     };
   }
 };
