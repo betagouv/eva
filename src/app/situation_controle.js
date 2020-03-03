@@ -1,3 +1,4 @@
+import 'core-js/stable';
 import 'commun/infra/report_erreurs';
 
 import { afficheSituation } from 'commun/vues/affiche_situation';
