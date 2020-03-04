@@ -15,6 +15,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import 'commun/styles/question.scss';
 
 export default {
   props: {

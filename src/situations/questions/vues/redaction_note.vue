@@ -25,9 +25,8 @@
 
 <script>
 import 'commun/styles/boutons.scss';
-import 'questions/styles/situation.scss';
 import 'questions/styles/redaction_note.scss';
-import Question from './question';
+import Question from 'commun/vues/question';
 
 export default {
   components: { Question },

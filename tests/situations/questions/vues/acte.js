@@ -3,7 +3,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { creeStore } from 'questions/modeles/store';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import Acte from 'questions/vues/acte';
-import QuestionQcm from 'questions/vues/qcm';
+import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from 'questions/vues/redaction_note';
 
 describe("La vue de l'acte « Question »", function () {

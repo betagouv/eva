@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import VueQCM from 'questions/vues/qcm';
+import VueQCM from 'commun/vues/qcm';
 
 describe('La vue de la question QCM', function () {
   let question;
