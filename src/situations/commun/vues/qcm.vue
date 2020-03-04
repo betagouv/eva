@@ -3,6 +3,7 @@
     :question="question"
     class="question--qcm"
   >
+    <slot />
     <p class="sans-marge">{{ question.description }}</p>
     <p class="question-intitule sans-marge">{{ question.intitule }}</p>
     <div

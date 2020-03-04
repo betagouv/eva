@@ -7,7 +7,11 @@
         :is="composantQuestion"
         :question="questionCourante"
         @reponse="repondQuestion"
-      ></component>
+      >
+        <div class="question-progression">
+          {{ numeroQuestionCourante }}/{{ nombreQuestions }}
+        </div>
+      </component>
     </transition-fade>
   </div>
 </template>
@@ -19,13 +23,14 @@ import EvenementReponse from '../modeles/evenement_reponse';
 import TransitionFade from 'commun/vues/transition_fade';
 import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from './redaction_note';
+import 'questions/styles/progression.scss';
 
 export default {
   components: { TransitionFade },
 
   computed: {
     ...mapState(['indexQuestions', 'etat']),
-    ...mapGetters(['questionCourante', 'nombreQuestions']),
+    ...mapGetters(['questionCourante', 'nombreQuestions', 'numeroQuestionCourante']),
 
     composantQuestion () {
       if (!this.questionCourante) return;

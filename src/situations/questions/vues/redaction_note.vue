@@ -3,6 +3,7 @@
     :question="question"
     class="question--redaction-note messagerie"
   >
+    <slot />
     <p class="messagerie-sujet">{{ question.intitule }}</p>
     <p class="messagerie-expediteur">{{ question.expediteur }}</p>
     <p
