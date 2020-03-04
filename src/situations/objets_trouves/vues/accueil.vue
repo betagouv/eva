@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
@@ -44,10 +43,6 @@ export default {
       icones: ['photos', 'repondeur'],
       iconesBarre: ['rappels', 'agenda', 'messages']
     };
-  },
-
-  computed: {
-    ...mapState(['etat', 'fondSituation'])
   }
 };
 </script>
