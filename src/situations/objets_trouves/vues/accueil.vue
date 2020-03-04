@@ -11,6 +11,7 @@
             v-for="icone in icones"
             :key="icone"
             :app="icone"
+            @click.native="afficheAppli(icone)"
           />
         </div>
         <div class="icones icones-barre">
@@ -18,6 +19,7 @@
             v-for="icone in iconesBarre"
             :key="icone"
             :app="icone"
+            @click.native="afficheAppli(icone)"
           />
         </div>
       </div>
@@ -31,6 +33,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
@@ -43,6 +46,8 @@ export default {
       icones: ['photos', 'repondeur'],
       iconesBarre: ['rappels', 'agenda', 'messages']
     };
-  }
+  },
+
+  methods: mapMutations(['afficheAppli'])
 };
 </script>
