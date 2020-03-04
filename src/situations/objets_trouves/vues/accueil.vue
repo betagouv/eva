@@ -1,15 +1,26 @@
 <template>
-  <div :style="{ 'background-image': `url(${$depotRessources.fondSituation().src})` }" class="fond-situation">
+  <div
+    :style="{ 'background-image': `url(${$depotRessources.fondSituation().src})` }"
+    class="fond-situation"
+  >
     <div class="telephone-conteneur">
       <span class="heure">17:49</span>
       <div class="icones-conteneur">
         <div class="icones">
-          <div v-for="icone in icones" :key="icone" class="icone">
+          <div
+            v-for="icone in icones"
+            :key="icone"
+            class="icone"
+          >
             <p class="label">{{ icone }}</p>
           </div>
         </div>
         <div class="icones icones-barre">
-          <div v-for="iconeBarre in iconesBarre" :key="iconeBarre" class="icone">
+          <div
+            v-for="iconeBarre in iconesBarre"
+            :key="iconeBarre"
+            class="icone"
+          >
             <p class="label">{{ iconeBarre }}</p>
           </div>
         </div>
