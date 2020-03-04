@@ -52,6 +52,7 @@
     background-color: $gris-clair;
   }
   .icone {
+    cursor: pointer;
     text-align: center;
     &:before {
       content: '';
@@ -59,8 +60,11 @@
       width: 50px;
       height: 50px;
       margin: 0 auto;
-      background: $bleu;
+      background: $couleur-fond-bouton-bleu;
       border-radius: 16px;
+    }
+    &:hover:before {
+      background: $couleur-fond-bouton-bleu-focus;
     }
     .label {
       margin: 0.3rem 0 0;
