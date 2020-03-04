@@ -21,4 +21,12 @@ describe("La vue de l'acte d'objets trouvés", function () {
     store.commit('afficheAppli', 'photos');
     expect(wrapper.contains(Qcm)).to.be(true);
   });
+
+  it("repasse sur l'accueil une fois répondu a une question", function () {
+    store.commit('afficheAppli', 'photos');
+    expect(wrapper.contains(Qcm)).to.be(true);
+    wrapper.vm.reponseApp();
+    expect(wrapper.contains(Qcm)).to.be(false);
+    expect(wrapper.contains(AppAccueil)).to.be(true);
+  });
 });
