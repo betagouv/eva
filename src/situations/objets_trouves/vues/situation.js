@@ -1,5 +1,4 @@
 import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
-import Vue from 'vue';
 import { creeStore } from '../modeles/store';
 import ActeObjetsTrouves from './acte';
 
