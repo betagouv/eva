@@ -1,5 +1,4 @@
 @import 'commun/styles/couleurs.scss';
-@import 'commun/styles/dimensions.scss';
 
 .question-progression {
   position: absolute;
@@ -10,12 +9,4 @@
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   color: #fff;
   font-size: 0.9rem;
-}
-
-.intitule-question {
-  color: $couleur-fond-bouton-bleu;
-}
-
-.sans-marge {
-  margin: 0;
 }

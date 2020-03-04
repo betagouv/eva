@@ -17,7 +17,7 @@ import { mapState, mapGetters } from 'vuex';
 
 import EvenementReponse from '../modeles/evenement_reponse';
 import TransitionFade from 'commun/vues/transition_fade';
-import QuestionQcm from './qcm';
+import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from './redaction_note';
 
 export default {

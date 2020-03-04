@@ -4,7 +4,7 @@
     class="question--qcm"
   >
     <p class="sans-marge">{{ question.description }}</p>
-    <p class="intitule-question sans-marge">{{ question.intitule }}</p>
+    <p class="question-intitule sans-marge">{{ question.intitule }}</p>
     <div
       v-for="element in question.choix"
       :key="element.id"
@@ -33,7 +33,6 @@
 <script>
 import 'commun/styles/boutons.scss';
 import 'commun/styles/formulaire_qcm.scss';
-import 'questions/styles/situation.scss';
 
 import Question from './question';
 
