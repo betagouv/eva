@@ -7,28 +7,24 @@
       <span class="heure">17:49</span>
       <div class="icones-conteneur">
         <div class="icones">
-          <div
+          <icone-app
             v-for="icone in icones"
             :key="icone"
-            class="icone"
-          >
-            <p class="label">{{ icone }}</p>
-          </div>
+            :app="icone"
+          />
         </div>
         <div class="icones icones-barre">
-          <div
-            v-for="iconeBarre in iconesBarre"
-            :key="iconeBarre"
-            class="icone"
-          >
-            <p class="label">{{ iconeBarre }}</p>
-          </div>
+          <icone-app
+            v-for="icone in iconesBarre"
+            :key="icone"
+            :app="icone"
+          />
         </div>
       </div>
     </div>
     <div class="question">
       <div class="question-barre">
-        {{ $traduction('objets_trouves.consigne_accueil_telephone') }}
+        {{ $traduction('objets_trouves.accueil.consigne') }}
       </div>
     </div>
   </div>
@@ -38,16 +34,20 @@
 import { mapState } from 'vuex';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
+import IconeApp from './icone_app';
 
 export default {
-  computed: {
-    ...mapState(['etat', 'fondSituation'])
-  },
+  components: { IconeApp },
+
   data () {
     return {
-      icones: ['Photos', 'Répondeur'],
-      iconesBarre: ['Rappels', 'Agenda', 'Messages']
+      icones: ['photos', 'repondeur'],
+      iconesBarre: ['rappels', 'agenda', 'messages']
     };
+  },
+
+  computed: {
+    ...mapState(['etat', 'fondSituation'])
   }
 };
 </script>

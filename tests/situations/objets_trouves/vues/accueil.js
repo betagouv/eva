@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { traduction } from 'commun/infra/internationalisation';
 import MockDepotRessources from '../aides/mock_depot_ressources_objets_trouves';
 import Accueil from 'objets_trouves/vues/accueil';
+import IconeApp from 'objets_trouves/vues/icone_app';
 
 describe("La vue de l'accueil", function () {
   let wrapper;
@@ -21,6 +22,6 @@ describe("La vue de l'accueil", function () {
   });
 
   it('affiche les icones', function () {
-    expect(wrapper.findAll('.icone').length).to.eql(5);
+    expect(wrapper.findAll(IconeApp).length).to.eql(5);
   });
 });
