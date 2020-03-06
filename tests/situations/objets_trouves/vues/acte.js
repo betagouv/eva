@@ -18,12 +18,14 @@ describe("La vue de l'acte d'objets trouvés", function () {
   });
 
   it('affiche une application', function () {
-    store.commit('afficheAppli', 'photos');
+    store.commit('configureActe', { apps: { photos: {} } });
+    store.commit('afficheApp', 'photos');
     expect(wrapper.contains(Qcm)).to.be(true);
   });
 
   it("repasse sur l'accueil une fois répondu a une question", function () {
-    store.commit('afficheAppli', 'photos');
+    store.commit('configureActe', { apps: { photos: {} } });
+    store.commit('afficheApp', 'photos');
     expect(wrapper.contains(Qcm)).to.be(true);
     wrapper.vm.reponseApp();
     expect(wrapper.contains(Qcm)).to.be(false);

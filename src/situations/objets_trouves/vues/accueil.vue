@@ -8,20 +8,11 @@
       <div class="icones-conteneur">
         <div class="icones">
           <icone-app
-            v-for="icone in icones"
-            :key="icone"
-            :app="icone"
-            :desactivee="iconeDesactivee(icone)"
-            @click.native="afficheAppli(icone)"
-          />
-        </div>
-        <div class="icones icones-barre">
-          <icone-app
-            v-for="icone in iconesBarre"
-            :key="icone"
-            :app="icone"
-            :desactivee="iconeDesactivee(icone)"
-            @click.native="afficheAppli(icone)"
+            v-for="(question, app) in apps"
+            :key="app"
+            :app="app"
+            :desactivee="appDesactivee(app)"
+            @click.native="afficheApp(app)"
           />
         </div>
       </div>
@@ -43,20 +34,13 @@ import IconeApp from './icone_app';
 export default {
   components: { IconeApp },
 
-  data () {
-    return {
-      icones: ['photos', 'repondeur'],
-      iconesBarre: ['rappels', 'agenda', 'messages']
-    };
-  },
-
   computed: {
-    ...mapState(['appsVisitees']),
-    iconeDesactivee () {
-      return (icone) => this.appsVisitees.includes(icone);
+    ...mapState(['appsVisitees', 'apps']),
+    appDesactivee () {
+      return (app) => this.appsVisitees.includes(app);
     }
   },
 
-  methods: mapMutations(['afficheAppli'])
+  methods: mapMutations(['afficheApp'])
 };
 </script>
