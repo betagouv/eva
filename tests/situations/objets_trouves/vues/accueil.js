@@ -26,19 +26,21 @@ describe("La vue de l'accueil", function () {
   });
 
   it('affiche les icones', function () {
-    expect(wrapper.findAll(IconeApp).length).to.eql(5);
+    store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
+    expect(wrapper.findAll(IconeApp).length).to.eql(2);
   });
 
   it("affiche l'appli clické", function (done) {
     store.commit = (mutation, args) => {
-      expect(mutation).to.eql('afficheAppli');
+      expect(mutation).to.eql('afficheApp');
       expect(args).to.eql('photos');
       done();
     };
-    wrapper.vm.afficheAppli('photos');
+    wrapper.vm.afficheApp('photos');
   });
 
   it("désactive l'application visitée", function () {
+    store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
     expect(wrapper.findAll('.icone--desactivee').length).to.equal(0);
     store.commit('ajouteAppVisitee', 'photos');
     expect(wrapper.findAll('.icone--desactivee').length).to.equal(1);

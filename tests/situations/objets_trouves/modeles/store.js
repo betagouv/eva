@@ -1,10 +1,21 @@
 import { creeStore } from 'objets_trouves/modeles/store';
 
 describe('Le store de la situation objets trouvés', function () {
-  it("afficheAppli change l'application active", function () {
+  it("permet de configurer l'acte", function () {
+    const store = creeStore();
+    expect(store.state.apps).to.eql({});
+    store.commit('configureActe', {
+      apps: {
+        photos: {}
+      }
+    });
+    expect(store.state.apps).to.eql({ photos: {} });
+  });
+
+  it("afficheApp change l'application active", function () {
     const store = creeStore();
     expect(store.state.appActive).to.be(null);
-    store.commit('afficheAppli', 'photos');
+    store.commit('afficheApp', 'photos');
     expect(store.state.appActive).to.be('photos');
   });
 

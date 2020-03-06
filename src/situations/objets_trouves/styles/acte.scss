@@ -38,18 +38,14 @@
 .icones {
   display: flex;
   position: relative;
+  flex-wrap: wrap;
+  justify-content: space-between;
   &:first-of-type {
     padding: 0.5rem;
     .icone {
       margin-right: 0.5rem;
+      margin-top: 0.5rem;
     }
-  }
-  &-barre {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-    border-radius: 16px;
-    background-color: $gris-clair;
   }
   .icone {
     cursor: pointer;

@@ -12,14 +12,16 @@ export function creeStore () {
   return creeStoreCommun({
     state: {
       fondSituation: '',
+      apps: {},
       appActive: null,
       appsVisitees: []
     },
     mutations: {
-      configureActe (state, { fondSituation }) {
+      configureActe (state, { fondSituation, apps }) {
         state.fondSituation = fondSituation;
+        state.apps = apps;
       },
-      afficheAppli (state, app) {
+      afficheApp (state, app) {
         state.appActive = app;
       },
       ajouteAppVisitee (state, app) {

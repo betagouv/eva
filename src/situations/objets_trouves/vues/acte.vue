@@ -1,7 +1,7 @@
 <template>
   <qcm
     v-if="appActive"
-    :question="question"
+    :question="apps[appActive]"
     @reponse="reponseApp"
   />
   <app-accueil v-else />
@@ -15,25 +15,12 @@ import Qcm from 'commun/vues/qcm';
 export default {
   components: { AppAccueil, Qcm },
 
-  data () {
-    return {
-      question: {
-        choix: [
-          {
-            id: '1',
-            intitule: '1'
-          }
-        ]
-      }
-    };
-  },
-
-  computed: mapState(['appActive']),
+  computed: mapState(['appActive', 'apps']),
 
   methods: {
     reponseApp () {
       this.$store.commit('ajouteAppVisitee', this.appActive);
-      this.$store.commit('afficheAppli', null);
+      this.$store.commit('afficheApp', null);
     }
   }
 };
