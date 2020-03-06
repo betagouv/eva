@@ -1,6 +1,6 @@
 <template>
   <qcm
-    v-if="afficheQuestionsFin"
+    v-if="afficheQuestionsFin && questionFin"
     :key="questionFin.id"
     :question="questionFin"
     @reponse="reponseQuestionFin"
@@ -47,6 +47,14 @@ export default {
 
     reponseQuestionFin () {
       this.$store.commit('repondQuestionFin');
+    }
+  },
+
+  watch: {
+    indexQuestionsFin () {
+      if (this.indexQuestionsFin === this.questionsFin.length) {
+        this.$emit('terminer');
+      }
     }
   }
 };
