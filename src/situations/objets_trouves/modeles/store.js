@@ -12,7 +12,8 @@ export function creeStore () {
   return creeStoreCommun({
     state: {
       fondSituation: '',
-      appActive: null
+      appActive: null,
+      appsVisitees: []
     },
     mutations: {
       configureActe (state, { fondSituation }) {
@@ -20,6 +21,9 @@ export function creeStore () {
       },
       afficheAppli (state, app) {
         state.appActive = app;
+      },
+      ajouteAppVisitee (state, app) {
+        state.appsVisitees.push(app);
       }
     }
   });

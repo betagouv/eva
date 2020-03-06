@@ -32,6 +32,7 @@ export default {
 
   methods: {
     reponseApp () {
+      this.$store.commit('ajouteAppVisitee', this.appActive);
       this.$store.commit('afficheAppli', null);
     }
   }
