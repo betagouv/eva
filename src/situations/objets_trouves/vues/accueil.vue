@@ -4,7 +4,7 @@
     class="fond-situation"
   >
     <div class="telephone-conteneur">
-      <span class="heure">17:49</span>
+      <heure />
       <div class="icones-conteneur">
         <div class="icones">
           <icone-app
@@ -30,9 +30,10 @@ import { mapMutations, mapState } from 'vuex';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
+import Heure from './heure';
 
 export default {
-  components: { IconeApp },
+  components: { Heure, IconeApp },
 
   computed: {
     ...mapState(['appsVisitees', 'apps']),
