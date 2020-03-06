@@ -11,6 +11,7 @@
             v-for="icone in icones"
             :key="icone"
             :app="icone"
+            :desactivee="iconeDesactivee(icone)"
             @click.native="afficheAppli(icone)"
           />
         </div>
@@ -19,6 +20,7 @@
             v-for="icone in iconesBarre"
             :key="icone"
             :app="icone"
+            :desactivee="iconeDesactivee(icone)"
             @click.native="afficheAppli(icone)"
           />
         </div>
@@ -33,7 +35,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
@@ -46,6 +48,13 @@ export default {
       icones: ['photos', 'repondeur'],
       iconesBarre: ['rappels', 'agenda', 'messages']
     };
+  },
+
+  computed: {
+    ...mapState(['appsVisitees']),
+    iconeDesactivee () {
+      return (icone) => this.appsVisitees.includes(icone);
+    }
   },
 
   methods: mapMutations(['afficheAppli'])

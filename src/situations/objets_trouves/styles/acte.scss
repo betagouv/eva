@@ -66,6 +66,12 @@
     &:hover:before {
       background: $couleur-fond-bouton-bleu-focus;
     }
+    &--desactivee {
+      pointer-events: none;
+      &:before {
+        opacity: 0.2;
+      }
+    }
     .label {
       margin: 0.3rem 0 0;
       font-size: 12px;
