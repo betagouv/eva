@@ -51,4 +51,13 @@ describe("La vue de l'acte d'objets trouvés", function () {
     wrapper.vm.reponseQuestionFin();
     expect(wrapper.vm.questionFin.id).to.eql(2);
   });
+
+  it("une fois toutes les questions de fin sont passés, envoi l'événement terminer", function () {
+    store.commit('configureActe', { apps: { agenda: {} }, questionsFin: [{ id: 1 }, { id: 2 }] });
+    store.commit('ajouteAppVisitee', 'agenda');
+    wrapper.vm.reponseQuestionFin();
+    expect(wrapper.emitted('terminer')).to.be(undefined);
+    wrapper.vm.reponseQuestionFin();
+    expect(wrapper.emitted('terminer').length).to.eql(1);
+  });
 });
