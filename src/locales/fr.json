@@ -40,11 +40,11 @@
       },
       "resultat": {
         "titre": "Votre potentiel",
-        "competences": "<p>Voici vos deux principaux potentiels identifiés.<br><em>Cliquez sur \"En savoir plus\" pour connaître les métiers associés à chaque compétence forte.</em></p>",
+        "competences": "Voici vos deux principaux potentiels identifiés.<br><em>Cliquez sur \"En savoir plus\" pour connaître les métiers associés à chaque compétence forte.</em>",
         "en-savoir-plus": "En savoir plus"
       },
       "avis": {
-        "label": "Aidez nous à améliorer votre expérience avec eva :",
+        "label": "Aidez nous à améliorer<br>votre expérience avec eva :",
         "oui": "Je donne mon avis",
         "non": "Non"
       }
