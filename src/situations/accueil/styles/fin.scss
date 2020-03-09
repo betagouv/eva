@@ -39,28 +39,44 @@
       display: flex;
       background: $couleur-fond;
       border: 1px solid $vert-clair;
-      box-sizing: border-box;
-      border-radius: 53px;
-      padding: 10px;
-      p { font-size: 14px; }
+      border-radius: 4rem;
+      padding: 1rem .5rem;
+      position: absolute;
+      bottom: 1.25rem;
+      margin-bottom: 0;
+      font-size: 0.875rem;
+
       .information-avis {
-        width: 21.5rem;
-        font-size: 14px;
+        flex-grow: 1;
         align-items: center;
         text-align: left;
-        span { margin-left: 1rem; }
+
+        span {
+          margin-left: 1rem;
+        }
       }
-      button {
-        font-size: 14px;
-        color: white;
+      a {
+        color: $blanc;
       }
-      .bouton-arrondi-vert { width: 12.6rem; }
-      .bouton-arrondi-orange { margin-left: 7px; }
+
+      .bouton-arrondi-vert {
+        padding-left: 1.125rem;
+        padding-right: 1.125rem;
+      }
+      .bouton-arrondi-orange {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        margin-left: .5rem;
+        margin-right: .5rem;
+      }
       .actions-avis, .information-avis { display: flex; }
     }
 
     .message-competences-fortes {
+      font-size: 1.125rem;
       margin-bottom: 1rem;
+      color: $noir;
+      margin-bottom: 0;
     }
 
     .competences-fortes {
@@ -75,7 +91,7 @@
         margin: 0;
       }
       &-description {
-        font-size: 1rem;
+        font-size: .875rem;
       }
       img {
         margin: 2rem;

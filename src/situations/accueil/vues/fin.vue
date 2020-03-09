@@ -49,15 +49,15 @@
       <div class='mon-avis'>
         <div class='information-avis'>
           <img class="avatar-avis" :src="avatarAvis"/>
-          <span>{{ $traduction('accueil.fin.avis.label') }}</span>
+          <span v-html="$traduction('accueil.fin.avis.label')" />
         </div>
         <div class='actions-avis'>
-          <button class="bouton-arrondi bouton-arrondi-vert">
+          <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert">
             {{ $traduction('accueil.fin.avis.oui') }}
-          </button>
-          <button class="bouton-arrondi bouton-arrondi-orange">
+          </a>
+          <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange">
             {{ $traduction('accueil.fin.avis.non') }}
-          </button>
+          </a>
         </div>
       </div>
 
