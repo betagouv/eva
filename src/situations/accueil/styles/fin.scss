@@ -33,6 +33,32 @@
       margin-bottom: 2rem;
     }
 
+    .mon-avis {
+      width: 40rem;
+      height: 4rem;
+      display: flex;
+      background: $couleur-fond;
+      border: 1px solid $vert-clair;
+      box-sizing: border-box;
+      border-radius: 53px;
+      padding: 10px;
+      p { font-size: 14px; }
+      .information-avis {
+        width: 21.5rem;
+        font-size: 14px;
+        align-items: center;
+        text-align: left;
+        span { margin-left: 1rem; }
+      }
+      button {
+        font-size: 14px;
+        color: white;
+      }
+      .bouton-arrondi-vert { width: 12.6rem; }
+      .bouton-arrondi-orange { margin-left: 7px; }
+      .actions-avis, .information-avis { display: flex; }
+    }
+
     .message-competences-fortes {
       margin-bottom: 1rem;
     }

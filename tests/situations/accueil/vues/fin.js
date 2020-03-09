@@ -18,6 +18,10 @@ describe('La vue de fin', function () {
       avatarFin () {
         return { src: '' };
       }
+
+      avatarAvis () {
+        return { src: '' };
+      }
     }();
     store = new Vuex.Store({
       state: {
@@ -66,5 +70,13 @@ describe('La vue de fin', function () {
 
     expect(wrapper.findAll('.contenu').length).to.equal(0);
     expect(wrapper.findAll('.button').length).to.equal(0);
+  });
+
+  it('affiche le module de collecte des avis si compétences', function () {
+    store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+    wrapper = mount(Fin, { store, localVue });
+    wrapper.find('button').trigger('click');
+
+    expect(wrapper.findAll('.mon-avis').length).to.equal(1);
   });
 });
