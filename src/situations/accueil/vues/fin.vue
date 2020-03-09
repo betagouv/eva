@@ -46,7 +46,23 @@
             <a target="_blank" class="bouton-arrondi bouton-arrondi--petit" :href="lienSiteVitrine(competence.id)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
         </div>
       </div>
+      <div class='mon-avis'>
+        <div class='information-avis'>
+          <img class="avatar-avis" :src="avatarAvis"/>
+          <span>{{ $traduction('accueil.fin.avis.label') }}</span>
+        </div>
+        <div class='actions-avis'>
+          <button class="bouton-arrondi bouton-arrondi-vert">
+            {{ $traduction('accueil.fin.avis.oui') }}
+          </button>
+          <button class="bouton-arrondi bouton-arrondi-orange">
+            {{ $traduction('accueil.fin.avis.non') }}
+          </button>
+        </div>
+      </div>
+
     </div>
+
   </div>
 </template>
 
@@ -60,7 +76,8 @@ export default {
   data () {
     return {
       ecran: 'bravo',
-      avatarFin: this.$depotRessources.avatarFin().src
+      avatarFin: this.$depotRessources.avatarFin().src,
+      avatarAvis: this.$depotRessources.avatarAvis().src
     };
   },
 

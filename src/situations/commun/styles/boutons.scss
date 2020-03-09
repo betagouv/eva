@@ -66,4 +66,8 @@
     @include bouton-arrondi-couleur($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
     color: $couleur-texte;
   }
+
+  &-orange {
+    @include bouton-arrondi-couleur($couleur-fond-bouton-orange, $couleur-fond-bouton-orange-focus);
+  }
 }
