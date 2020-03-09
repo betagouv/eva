@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { traduction } from 'commun/infra/internationalisation';
 import MockDepotRessources from '../aides/mock_depot_ressources_objets_trouves';
 import { creeStore } from 'objets_trouves/modeles/store';
@@ -15,7 +15,7 @@ describe("La vue de l'accueil", function () {
     localVue.prototype.$depotRessources = new MockDepotRessources();
     localVue.prototype.$traduction = traduction;
     store = creeStore();
-    wrapper = mount(Accueil, {
+    wrapper = shallowMount(Accueil, {
       localVue,
       store
     });
@@ -41,8 +41,8 @@ describe("La vue de l'accueil", function () {
 
   it("désactive l'application visitée", function () {
     store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
-    expect(wrapper.findAll('.icone--desactivee').length).to.equal(0);
+    expect(wrapper.vm.appDesactivee('photos')).to.be(false);
     store.commit('ajouteAppVisitee', 'photos');
-    expect(wrapper.findAll('.icone--desactivee').length).to.equal(1);
+    expect(wrapper.vm.appDesactivee('photos')).to.be(true);
   });
 });
