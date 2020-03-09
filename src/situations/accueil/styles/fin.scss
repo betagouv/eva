@@ -33,43 +33,52 @@
       margin-bottom: 2rem;
     }
 
-    .mon-avis {
-      width: 40rem;
-      height: 4rem;
-      display: flex;
-      background: $couleur-fond;
-      border: 1px solid $vert-clair;
-      border-radius: 4rem;
-      padding: 1rem .5rem;
+    .actions-fin {
       position: absolute;
       bottom: 1.25rem;
       margin-bottom: 0;
-      font-size: 0.875rem;
+      height: 4rem;
+      width: 100%;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      .information-avis {
-        flex-grow: 1;
-        align-items: center;
-        text-align: left;
+      .mon-avis {
+        height: 4rem;
+        width: 40rem;
+        display: flex;
+        background: $couleur-fond;
+        border: 1px solid $vert-clair;
+        border-radius: 4rem;
+        padding: 1rem .5rem;
+        font-size: 0.875rem;
 
-        span {
-          margin-left: 1rem;
+        .information-avis {
+          flex-grow: 1;
+          align-items: center;
+          text-align: left;
+
+          span {
+            margin-left: 1rem;
+          }
         }
-      }
-      a {
-        color: $blanc;
-      }
+        a {
+          color: $blanc;
+        }
 
-      .bouton-arrondi-vert {
-        padding-left: 1.125rem;
-        padding-right: 1.125rem;
+        .bouton-arrondi-vert {
+          padding-left: 1.125rem;
+          padding-right: 1.125rem;
+        }
+        .bouton-arrondi-orange {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          margin-left: .5rem;
+          margin-right: .5rem;
+        }
+        .actions-avis, .information-avis { display: flex; }
       }
-      .bouton-arrondi-orange {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        margin-left: .5rem;
-        margin-right: .5rem;
-      }
-      .actions-avis, .information-avis { display: flex; }
     }
 
     .message-competences-fortes {
