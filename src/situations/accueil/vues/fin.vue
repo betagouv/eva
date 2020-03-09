@@ -46,7 +46,9 @@
             <a target="_blank" class="bouton-arrondi bouton-arrondi--petit" :href="lienSiteVitrine(competence.id)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
         </div>
       </div>
-      <div class='mon-avis'>
+      <div class='mon-avis'
+        v-if="afficheDonnerAvis"
+      >
         <div class='information-avis'>
           <img class="avatar-avis" :src="avatarAvis"/>
           <span v-html="$traduction('accueil.fin.avis.label')" />
@@ -54,15 +56,17 @@
         <div class='actions-avis'>
           <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
             :href="lienDonnerAvis"
-            target='_blank'>
+            target='_blank'
+            @click="fermeDonnerAvis">
             {{ $traduction('accueil.fin.avis.oui') }}
           </a>
-          <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange">
+          <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
+             @click="fermeDonnerAvis"
+          >
             {{ $traduction('accueil.fin.avis.non') }}
           </a>
         </div>
       </div>
-
     </div>
 
   </div>
@@ -80,7 +84,8 @@ export default {
       ecran: 'bravo',
       avatarFin: this.$depotRessources.avatarFin().src,
       avatarAvis: this.$depotRessources.avatarAvis().src,
-      lienDonnerAvis: 'https://evabetagouv.typeform.com/to/G988nO'
+      lienDonnerAvis: 'https://evabetagouv.typeform.com/to/G988nO',
+      afficheDonnerAvis: true
     };
   },
 
@@ -91,6 +96,10 @@ export default {
 
     suivant () {
       this.ecran = 'resultat';
+    },
+
+    fermeDonnerAvis () {
+      this.afficheDonnerAvis = false;
     }
   }
 };
