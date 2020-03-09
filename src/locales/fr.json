@@ -9,7 +9,7 @@
     "confirmation": "Se déconnecter ?",
     "oui": "Oui",
     "non": "non",
-    "titre": "Déconnexion"
+    "titre": "Se déconnecter"
   },
   "accueil": {
     "commencer": "Commencer {{situation}}",

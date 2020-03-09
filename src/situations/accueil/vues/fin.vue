@@ -46,26 +46,36 @@
             <a target="_blank" class="bouton-arrondi bouton-arrondi--petit" :href="lienSiteVitrine(competence.id)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
         </div>
       </div>
-      <div class='mon-avis'
-        v-if="afficheDonnerAvis"
-      >
-        <div class='information-avis'>
-          <img class="avatar-avis" :src="avatarAvis"/>
-          <span v-html="$traduction('accueil.fin.avis.label')" />
+      <div class='actions-fin'>
+        <div class='mon-avis'
+          v-if="afficheDonnerAvis"
+        >
+          <div class='information-avis'>
+            <img class="avatar-avis" :src="avatarAvis"/>
+            <span v-html="$traduction('accueil.fin.avis.label')" />
+          </div>
+          <div class='actions-avis'>
+            <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
+              :href="lienDonnerAvis"
+              target='_blank'
+              @click="fermeDonnerAvis">
+              {{ $traduction('accueil.fin.avis.oui') }}
+            </a>
+            <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
+               @click="fermeDonnerAvis"
+            >
+              {{ $traduction('accueil.fin.avis.non') }}
+            </a>
+          </div>
         </div>
-        <div class='actions-avis'>
-          <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
-            :href="lienDonnerAvis"
-            target='_blank'
-            @click="fermeDonnerAvis">
-            {{ $traduction('accueil.fin.avis.oui') }}
+        <transition-fade>
+          <a v-if="!afficheDonnerAvis"
+             class='bouton-arrondi'
+             @click="deconnecte"
+             >
+            {{ $traduction('deconnexion.titre') }}
           </a>
-          <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
-             @click="fermeDonnerAvis"
-          >
-            {{ $traduction('accueil.fin.avis.non') }}
-          </a>
-        </div>
+        </transition-fade>
       </div>
     </div>
 
@@ -73,10 +83,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import 'accueil/styles/fin.scss';
+import TransitionFade from 'commun/vues/transition_fade';
 
 export default {
+  components: { TransitionFade },
   computed: mapState(['competencesFortes', 'nom']),
 
   data () {
@@ -90,6 +102,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['deconnecte']),
+
     lienSiteVitrine (competence) {
       return `https://eva.beta.gouv.fr/competences/${competence}`;
     },
