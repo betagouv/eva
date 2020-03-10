@@ -46,28 +46,31 @@
             <a target="_blank" class="bouton-arrondi bouton-arrondi--petit" :href="lienSiteVitrine(competence.id)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
         </div>
       </div>
+
       <div class='actions-fin'>
-        <div class='mon-avis'
-          v-if="afficheDonnerAvis"
-        >
-          <div class='information-avis'>
-            <img class="avatar-avis" :src="avatarAvis"/>
-            <span v-html="$traduction('accueil.fin.avis.label')" />
+        <transition-fade>
+          <div class='mon-avis'
+            v-if="afficheDonnerAvis"
+          >
+            <div class='information-avis'>
+              <img class="avatar-avis" :src="avatarAvis"/>
+              <span v-html="$traduction('accueil.fin.avis.label')" />
+            </div>
+            <div class='actions-avis'>
+              <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
+                :href="lienDonnerAvis"
+                target='_blank'
+                @click="fermeDonnerAvis">
+                {{ $traduction('accueil.fin.avis.oui') }}
+              </a>
+              <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
+                 @click="fermeDonnerAvis"
+              >
+                {{ $traduction('accueil.fin.avis.non') }}
+              </a>
+            </div>
           </div>
-          <div class='actions-avis'>
-            <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
-              :href="lienDonnerAvis"
-              target='_blank'
-              @click="fermeDonnerAvis">
-              {{ $traduction('accueil.fin.avis.oui') }}
-            </a>
-            <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
-               @click="fermeDonnerAvis"
-            >
-              {{ $traduction('accueil.fin.avis.non') }}
-            </a>
-          </div>
-        </div>
+        </transition-fade>
       </div>
     </div>
 
