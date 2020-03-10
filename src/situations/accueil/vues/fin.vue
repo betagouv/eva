@@ -68,14 +68,6 @@
             </a>
           </div>
         </div>
-        <transition-fade>
-          <a v-if="!afficheDonnerAvis"
-             class='bouton-arrondi'
-             @click="deconnecte"
-             >
-            {{ $traduction('deconnexion.titre') }}
-          </a>
-        </transition-fade>
       </div>
     </div>
 
@@ -83,7 +75,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
 import 'accueil/styles/fin.scss';
 import TransitionFade from 'commun/vues/transition_fade';
 
@@ -102,8 +94,6 @@ export default {
   },
 
   methods: {
-    ...mapActions(['deconnecte']),
-
     lienSiteVitrine (competence) {
       return `https://eva.beta.gouv.fr/competences/${competence}`;
     },
