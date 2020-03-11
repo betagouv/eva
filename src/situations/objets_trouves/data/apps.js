@@ -18,7 +18,12 @@ const question2 = {
   ]
 };
 
-const configurationEntrainement = { };
+const configurationEntrainement = {
+  apps: {
+    photos: question1
+  },
+  questionsFin: [question2]
+};
 const configurationNormale = {
   apps: {
     photos: question1,
