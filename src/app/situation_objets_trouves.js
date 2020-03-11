@@ -7,7 +7,7 @@ import DepotRessourcesObjetsTrouves from 'objets_trouves/infra/depot_ressources_
 import Situation from 'commun/modeles/situation';
 import VueSituation from 'objets_trouves/vues/situation';
 
-const situation = new Situation();
+const situation = new Situation({ modeEntrainement: true });
 
 const depotRessources = new DepotRessourcesObjetsTrouves();
 afficheSituation('objets_trouves', situation, VueSituation, depotRessources);

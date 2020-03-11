@@ -27,6 +27,9 @@ export function creeStore () {
       configureActe (state, { apps, questionsFin }) {
         state.apps = apps;
         state.questionsFin = questionsFin;
+        state.appsVisitees = [];
+        state.indexQuestionsFin = 0;
+        state.appActive = null;
       },
       afficheApp (state, app) {
         state.appActive = app;

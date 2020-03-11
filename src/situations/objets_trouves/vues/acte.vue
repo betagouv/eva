@@ -11,7 +11,7 @@
     :question="questionApp"
     @reponse="reponseApp"
   />
-  <app-accueil v-else />
+  <app-accueil v-else/>
 </template>
 
 <script>
