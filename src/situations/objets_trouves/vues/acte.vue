@@ -1,6 +1,6 @@
 <template>
   <qcm
-    v-if="afficheQuestionsFin && questionFin"
+    v-if="afficheQuestionsFin"
     :key="questionFin.id"
     :question="questionFin"
     @reponse="reponseQuestionFin"
@@ -34,8 +34,12 @@ export default {
       return this.questionsFin[this.indexQuestionsFin];
     },
 
+    appsTerminees () {
+      return this.appsVisitees.length === this.nombreApps;
+    },
+
     afficheQuestionsFin () {
-      return this.appsVisitees.length === this.nombreApps && this.questionsFin.length > 0;
+      return this.appsTerminees && !!this.questionsFin;
     }
   },
 
@@ -53,6 +57,11 @@ export default {
   watch: {
     indexQuestionsFin () {
       if (this.indexQuestionsFin === this.questionsFin.length) {
+        this.$emit('terminer');
+      }
+    },
+    appsTerminees () {
+      if (this.appsTerminees && !this.afficheQuestionsFin) {
         this.$emit('terminer');
       }
     }
