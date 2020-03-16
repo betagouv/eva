@@ -39,7 +39,7 @@ describe("La vue de l'acte d'objets trouvés", function () {
   });
 
   it("n'affiche pas les questions de fin si elles sont vide", function () {
-    store.commit('configureActe', { apps: { agenda: {} }, questionsFin: [] });
+    store.commit('configureActe', { apps: { agenda: {} } });
     store.commit('ajouteAppVisitee', 'agenda');
     expect(wrapper.vm.afficheQuestionsFin).to.be(false);
   });
@@ -58,6 +58,13 @@ describe("La vue de l'acte d'objets trouvés", function () {
     wrapper.vm.reponseQuestionFin();
     expect(wrapper.emitted('terminer')).to.be(undefined);
     wrapper.vm.reponseQuestionFin();
+    expect(wrapper.emitted('terminer').length).to.eql(1);
+  });
+
+  it("lorsqu'il n'y a pas de questions fin et que l'on a visité toute les applications on envoit l'événement terminé", function () {
+    store.commit('configureActe', { apps: { agenda: {} } });
+    expect(wrapper.emitted('terminer')).to.be(undefined);
+    store.commit('ajouteAppVisitee', 'agenda');
     expect(wrapper.emitted('terminer').length).to.eql(1);
   });
 });
