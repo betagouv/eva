@@ -24,6 +24,12 @@ describe('La vue de la question QCM', function () {
     expect(vue.findAll(LecteurAudio).length).to.equal(3);
   });
 
+  it('affiche une image sur chaque réponse', function () {
+    question.choix = [{ image: '1' }, { image: '1' }, { image: '1' }];
+    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    expect(vue.findAll('img').length).to.equal(3);
+  });
+
   it("affiche un bouton d'envoi de réponse", function () {
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
     expect(vue.contains('.question-bouton')).to.be(true);

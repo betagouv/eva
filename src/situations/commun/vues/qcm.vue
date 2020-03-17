@@ -24,6 +24,11 @@
           :src="element.audio"
           class="question-reponse-intitule"
         />
+        <img
+          v-if="element.image"
+          :src="element.image"
+          class="question-reponse-intitule"
+        />
         <span
           v-else
           class="question-reponse-intitule"
