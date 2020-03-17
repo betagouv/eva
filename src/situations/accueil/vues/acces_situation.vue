@@ -2,7 +2,7 @@
   <a
     :href="situation.chemin"
     :class="{ desactivee: desactivee }"
-    :style="{ 'background-image': afficheFond ? backgroundImage : null }"
+    :style="{ 'background-image': afficheBatiment ? backgroundImage : null }"
     v-on="situation.action ? { click: situation.action } : {}"
     @dragstart.prevent
   >
@@ -31,10 +31,14 @@ export default {
     }
   },
 
-  data () {
-    return {
-      backgroundImage: `url('${this.$depotRessources.batimentSituation(this.situation.identifiant).src}')`
-    };
+  computed: {
+    afficheBatiment () {
+      return this.afficheFond && this.$depotRessources.existeBatimentSituation(this.situation.identifiant);
+    },
+
+    backgroundImage () {
+      return `url('${this.$depotRessources.batimentSituation(this.situation.identifiant).src}')`;
+    }
   }
 };
 </script>
