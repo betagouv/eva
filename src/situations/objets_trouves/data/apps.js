@@ -1,4 +1,5 @@
 import AppPhoto from '../assets/app-photo.png';
+import AppAgenda from '../assets/app-agenda.png';
 import choix1 from 'maintenance/assets/consigne_demarrage.wav';
 
 const questionPhoto = {
@@ -31,6 +32,7 @@ const questionPhoto = {
 
 const questionAgenda = {
   id: 'agenda',
+  illustration: AppAgenda,
   intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
   choix: [
     {
