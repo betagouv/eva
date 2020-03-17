@@ -4,6 +4,14 @@ import AppPhoto from '../assets/app-photo.png';
 import AppRappels from '../assets/app-rappels.png';
 import Fin from '../assets/fin.png';
 import choix1 from 'maintenance/assets/consigne_demarrage.wav';
+import AppMessage1 from '../assets/app-message1.png';
+import AppMessage2 from '../assets/app-message2.png';
+import AppMessage3 from '../assets/app-message3.png';
+import entree from '../assets/entree.svg';
+import golf from '../assets/golf.svg';
+import restaurant from '../assets/restaurant.svg';
+import toilettes from '../assets/toilettes.svg';
+import zoo from '../assets/zoo.svg';
 
 const questionAgendaEntrainement = {
   id: 'agenda-entrainement',
@@ -197,22 +205,96 @@ const questionFin3 = {
   ]
 };
 
+const questionMessage1 = {
+  id: 'message1',
+  illustration: AppMessage1,
+  intitule: 'A quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
+  choix: [
+    {
+      id: '1',
+      intitule: '51'
+    },
+    {
+      id: '2',
+      intitule: '61'
+    },
+    {
+      id: '3',
+      intitule: '71'
+    },
+    {
+      id: '4',
+      intitule: '81'
+    },
+    {
+      id: '5',
+      intitule: '91'
+    }
+  ]
+};
+
+const questionMessage2 = {
+  id: 'message2',
+  illustration: AppMessage2,
+  intitule: 'Dans quelle salle de jeu Sophie a-t-elle décidé d’aller ?',
+  choix: [
+    {
+      id: '1',
+      intitule: 'salle 1 : capacité 80 personnes, 50€'
+    },
+    {
+      id: '2',
+      intitule: 'salle 2 : capacité 90 personnes, 60€'
+    },
+    {
+      id: '3',
+      intitule: 'salle 3 : capacité 105 personnes, 100€'
+    },
+    {
+      id: '4',
+      intitule: 'salle 4 : capacité 125 personnes, 150€'
+    },
+    {
+      id: '5',
+      intitule: 'salle 5 : capacité 15 personnes, 10€'
+    }
+  ]
+};
+
+const questionMessage3 = {
+  id: 'message3',
+  illustration: AppMessage3,
+  intitule: 'Où Sophie devait-elle retrouver Dounia ?',
+  choix: [
+    {
+      id: '1',
+      image: restaurant
+    },
+    {
+      id: '2',
+      image: entree
+    },
+    {
+      id: '3',
+      image: toilettes
+    },
+    {
+      id: '4',
+      image: zoo
+    },
+    {
+      id: '5',
+      image: golf
+    }
+  ]
+};
+
 const question1 = {
   id: 1,
   choix: [
     {
       id: '1',
       intitule: '1'
-    }
-  ]
-};
-
-const question2 = {
-  id: 2,
-  choix: [
-    {
-      id: '2',
-      intitule: '2'
     }
   ]
 };
@@ -228,7 +310,7 @@ const configurationNormale = {
     repondeur: [question1],
     rappels: [questionRappels],
     agenda: [questionAgenda],
-    messages: [question1, question2]
+    messages: [questionMessage1, questionMessage2, questionMessage3]
   },
   questionsFin: [questionFin1, questionFin2, questionFin3]
 };
