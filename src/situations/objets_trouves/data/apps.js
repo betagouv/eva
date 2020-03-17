@@ -1,4 +1,5 @@
 import AppPhoto from '../assets/app-photo.png';
+import choix1 from 'maintenance/assets/consigne_demarrage.wav';
 
 const questionPhoto = {
   id: 'photo',
@@ -34,27 +35,27 @@ const questionAgenda = {
   choix: [
     {
       id: '1',
-      intitule: ''
+      audio: choix1
     },
     {
       id: '2',
-      intitule: ''
+      audio: choix1
     },
     {
       id: '3',
-      intitule: ""
+      audio: choix1
     },
     {
       id: '4',
-      intitule: ''
+      audio: choix1
     },
     {
       id: '5',
-      intitule: ''
+      audio: choix1
     },
     {
       id: '6',
-      intitule: ''
+      audio: choix1
     }
   ]
 };
