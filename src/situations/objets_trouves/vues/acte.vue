@@ -5,28 +5,28 @@
     :question="questionFin"
     @reponse="reponseQuestionFin"
   />
-  <qcm
+  <questions-app
     v-else-if="appActive"
-    :key="questionApp.id"
-    :question="questionApp"
-    @reponse="reponseApp"
+    :questions="questionsApp"
+    @finQuestions="finQuestions"
   />
   <app-accueil v-else/>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import AppAccueil from './accueil';
 import Qcm from 'commun/vues/qcm';
+import AppAccueil from './accueil';
+import QuestionsApp from './questions_app';
 
 export default {
-  components: { AppAccueil, Qcm },
+  components: { AppAccueil, Qcm, QuestionsApp },
 
   computed: {
     ...mapState(['appActive', 'apps', 'appsVisitees', 'questionsFin', 'indexQuestionsFin']),
     ...mapGetters(['nombreApps']),
 
-    questionApp () {
+    questionsApp () {
       return this.apps[this.appActive];
     },
 
@@ -44,7 +44,7 @@ export default {
   },
 
   methods: {
-    reponseApp () {
+    finQuestions () {
       this.$store.commit('ajouteAppVisitee', this.appActive);
       this.$store.commit('afficheApp', null);
     },

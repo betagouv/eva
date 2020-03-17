@@ -219,16 +219,16 @@ const question2 = {
 
 const configurationEntrainement = {
   apps: {
-    agenda: questionAgendaEntrainement
+    agenda: [questionAgendaEntrainement]
   }
 };
 const configurationNormale = {
   apps: {
-    photos: questionPhoto,
-    repondeur: question1,
-    rappels: questionRappels,
-    agenda: questionAgenda,
-    messages: question2
+    photos: [questionPhoto],
+    repondeur: [question1],
+    rappels: [questionRappels],
+    agenda: [questionAgenda],
+    messages: [question1, question2]
   },
   questionsFin: [questionFin1, questionFin2, questionFin3]
 };
