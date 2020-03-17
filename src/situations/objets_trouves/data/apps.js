@@ -28,6 +28,37 @@ const questionPhoto = {
   ]
 };
 
+const questionAgenda = {
+  id: 'agenda',
+  intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
+  choix: [
+    {
+      id: '1',
+      intitule: ''
+    },
+    {
+      id: '2',
+      intitule: ''
+    },
+    {
+      id: '3',
+      intitule: ""
+    },
+    {
+      id: '4',
+      intitule: ''
+    },
+    {
+      id: '5',
+      intitule: ''
+    },
+    {
+      id: '6',
+      intitule: ''
+    }
+  ]
+};
+
 const question1 = {
   id: 1,
   choix: [
@@ -58,7 +89,7 @@ const configurationNormale = {
     photos: questionPhoto,
     repondeur: question1,
     rappels: question1,
-    agenda: question1,
+    agenda: questionAgenda,
     messages: question2
   },
   questionsFin: [question1, question2]
