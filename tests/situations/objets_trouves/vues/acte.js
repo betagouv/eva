@@ -2,6 +2,7 @@ import { shallowMount } from '@vue/test-utils';
 import { creeStore } from 'objets_trouves/modeles/store';
 import ActeObjetsTrouves from 'objets_trouves/vues/acte';
 import AppAccueil from 'objets_trouves/vues/accueil';
+import QuestionsApp from 'objets_trouves/vues/questions_app';
 import Qcm from 'commun/vues/qcm';
 
 describe("La vue de l'acte d'objets trouvés", function () {
@@ -10,7 +11,7 @@ describe("La vue de l'acte d'objets trouvés", function () {
 
   beforeEach(function () {
     store = creeStore();
-    store.commit('configureActe', { apps: { photos: {}, agenda: {} }, questionsFin: [{}] });
+    store.commit('configureActe', { apps: { photos: [{}], agenda: [{}] }, questionsFin: [{}] });
     wrapper = shallowMount(ActeObjetsTrouves, { store });
   });
 
@@ -20,14 +21,14 @@ describe("La vue de l'acte d'objets trouvés", function () {
 
   it('affiche une application', function () {
     store.commit('afficheApp', 'photos');
-    expect(wrapper.contains(Qcm)).to.be(true);
+    expect(wrapper.contains(QuestionsApp)).to.be(true);
   });
 
-  it("repasse sur l'accueil une fois répondu a une question", function () {
+  it("repasse sur l'accueil une fois répondu a toute les questions d'une app", function () {
     store.commit('afficheApp', 'photos');
-    expect(wrapper.contains(Qcm)).to.be(true);
-    wrapper.vm.reponseApp();
-    expect(wrapper.contains(Qcm)).to.be(false);
+    expect(wrapper.contains(QuestionsApp)).to.be(true);
+    wrapper.vm.finQuestions();
+    expect(wrapper.contains(QuestionsApp)).to.be(false);
     expect(wrapper.contains(AppAccueil)).to.be(true);
   });
 
@@ -39,13 +40,13 @@ describe("La vue de l'acte d'objets trouvés", function () {
   });
 
   it("n'affiche pas les questions de fin si elles sont vide", function () {
-    store.commit('configureActe', { apps: { agenda: {} } });
+    store.commit('configureActe', { apps: { agenda: [{}] } });
     store.commit('ajouteAppVisitee', 'agenda');
     expect(wrapper.vm.afficheQuestionsFin).to.be(false);
   });
 
   it('défile les différentes questions de fin', function () {
-    store.commit('configureActe', { apps: { agenda: {} }, questionsFin: [{ id: 1 }, { id: 2 }] });
+    store.commit('configureActe', { apps: { agenda: [{}] }, questionsFin: [{ id: 1 }, { id: 2 }] });
     store.commit('ajouteAppVisitee', 'agenda');
     expect(wrapper.vm.questionFin.id).to.eql(1);
     wrapper.vm.reponseQuestionFin();
@@ -53,7 +54,7 @@ describe("La vue de l'acte d'objets trouvés", function () {
   });
 
   it("une fois toutes les questions de fin sont passés, envoi l'événement terminer", function () {
-    store.commit('configureActe', { apps: { agenda: {} }, questionsFin: [{ id: 1 }, { id: 2 }] });
+    store.commit('configureActe', { apps: { agenda: [{}] }, questionsFin: [{ id: 1 }, { id: 2 }] });
     store.commit('ajouteAppVisitee', 'agenda');
     wrapper.vm.reponseQuestionFin();
     expect(wrapper.emitted('terminer')).to.be(undefined);
@@ -62,7 +63,7 @@ describe("La vue de l'acte d'objets trouvés", function () {
   });
 
   it("lorsqu'il n'y a pas de questions fin et que l'on a visité toute les applications on envoit l'événement terminé", function () {
-    store.commit('configureActe', { apps: { agenda: {} } });
+    store.commit('configureActe', { apps: { agenda: [{}] } });
     expect(wrapper.emitted('terminer')).to.be(undefined);
     store.commit('ajouteAppVisitee', 'agenda');
     expect(wrapper.emitted('terminer').length).to.eql(1);
