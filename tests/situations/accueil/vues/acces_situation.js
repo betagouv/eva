@@ -5,16 +5,21 @@ describe('La vue pour accéder à une situation', function () {
   let depotRessources;
   let wrapper;
   let localVue;
+  let existeBatiment;
+  let optionsMount;
 
   beforeEach(function () {
     localVue = createLocalVue();
     depotRessources = new class {
+      existeBatimentSituation (identifiant) {
+        return existeBatiment;
+      }
+
       batimentSituation (identifiant) {
         return { src: identifiant };
       }
     }();
-    localVue.prototype.$depotRessources = depotRessources;
-    wrapper = mount(AccesSituation, {
+    optionsMount = {
       localVue,
       propsData: {
         situation: {
@@ -26,17 +31,35 @@ describe('La vue pour accéder à une situation', function () {
         },
         desactivee: false
       }
-    });
+    };
+    localVue.prototype.$depotRessources = depotRessources;
   });
 
   it("sait s'afficher avec un fond", function () {
-    wrapper.setProps({ afficheFond: true });
+    existeBatiment = true;
+    optionsMount.propsData.afficheFond = true;
+    wrapper = mount(AccesSituation, optionsMount);
     expect(wrapper.text()).to.eql('ABC');
     expect(wrapper.attributes('href')).to.equal('abc.html');
     expect(wrapper.attributes('style')).to.equal('background-image: url(identifiant-abc);');
   });
 
+  it("N'affiche pas le fond s'il n'existe pas, même s'il est demandé", function () {
+    existeBatiment = false;
+    optionsMount.propsData.afficheFond = true;
+    wrapper = mount(AccesSituation, optionsMount);
+
+    expect(wrapper.text()).to.eql('ABC');
+    expect(wrapper.attributes('href')).to.equal('abc.html');
+    expect(wrapper.attributes('style')).to.equal(undefined);
+  });
+
   it("sait s'afficher sans fond", function () {
+    existeBatiment = true;
+    optionsMount.propsData.afficheFond = false;
+    wrapper = mount(AccesSituation, optionsMount);
+    expect(wrapper.text()).to.eql('ABC');
+    expect(wrapper.attributes('href')).to.equal('abc.html');
     expect(wrapper.attributes('style')).to.equal(undefined);
   });
 });

@@ -50,6 +50,10 @@ export default class DepotRessourcesAccueil extends DepotRessources {
     return this.ressource(avatarAvis);
   }
 
+  existeBatimentSituation (situation) {
+    return !!this.batiments[situation];
+  }
+
   batimentSituation (situation) {
     return this.ressource(this.batiments[situation]);
   }

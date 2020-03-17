@@ -27,4 +27,9 @@ describe('Le dépôt de ressources de la situation accueil', function () {
     expect(depot.batimentSituation('inventaire')).to.eql(batimentInventaire);
     expect(depot.batimentSituation('controle')).to.eql(batimentControle);
   });
+
+  it('Peut dire si un batiment existe', function () {
+    expect(depot.existeBatimentSituation('situation inconnue')).to.be(false);
+    expect(depot.existeBatimentSituation('tri')).to.be(true);
+  });
 });
