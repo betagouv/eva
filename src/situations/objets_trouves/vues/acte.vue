@@ -1,6 +1,6 @@
 <template>
   <qcm
-    v-if="afficheQuestionsFin"
+    v-if="afficheQuestionsFin && questionFin"
     :key="questionFin.id"
     :question="questionFin"
     @reponse="reponseQuestionFin"
