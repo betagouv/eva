@@ -1,4 +1,29 @@
+import AppAgendaEntrainement from '../assets/app-agenda-entrainement.png';
 import AppPhoto from '../assets/app-photo.png';
+
+const questionAgendaEntrainement = {
+  id: 'agenda-entrainement',
+  illustration: AppAgendaEntrainement,
+  intitule: 'Voici le téléphone de Sophie, que faisait Sophie ce matin ?',
+  choix: [
+    {
+      id: '1',
+      intitule: 'Elle distribuait le courrier'
+    },
+    {
+      id: '2',
+      intitule: "Elle s'occupait du zoo"
+    },
+    {
+      id: '3',
+      intitule: 'Elle réalisait un travail administratif'
+    },
+    {
+      id: '4',
+      intitule: 'Elle distribuait les colis'
+    }
+  ]
+};
 
 const questionPhoto = {
   id: 'photo',
@@ -50,7 +75,7 @@ const question2 = {
 
 const configurationEntrainement = {
   apps: {
-    photos: question1
+    agenda: questionAgendaEntrainement
   }
 };
 const configurationNormale = {
