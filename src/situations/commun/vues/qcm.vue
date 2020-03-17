@@ -18,10 +18,9 @@
           name="question"
           type="radio"
         />
-        <audio
+        <lecteur-audio
           v-if="element.audio"
           :src="element.audio"
-          controls
         />
         <template v-else>
           {{ element.intitule }}
@@ -42,10 +41,11 @@
 import 'commun/styles/boutons.scss';
 import 'commun/styles/formulaire_qcm.scss';
 
+import LecteurAudio from './lecteur_audio';
 import Question from './question';
 
 export default {
-  components: { Question },
+  components: { LecteurAudio, Question },
 
   props: {
     question: {
