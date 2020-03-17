@@ -11,20 +11,25 @@
       :key="element.id"
       class="question-choix"
     >
-      <label>
+      <label class="question-label">
         <input
           v-model="reponse"
           :value="element.id"
           name="question"
           type="radio"
+          class="question-input"
         />
         <lecteur-audio
           v-if="element.audio"
           :src="element.audio"
+          class="question-reponse-intitule"
         />
-        <template v-else>
+        <span
+          v-else
+          class="question-reponse-intitule"
+        >
           {{ element.intitule }}
-        </template>
+        </span>
       </label>
     </div>
     <button
