@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueQCM from 'commun/vues/qcm';
+import LecteurAudio from 'commun/vues/lecteur_audio';
 
 describe('La vue de la question QCM', function () {
   let question;
@@ -20,7 +21,7 @@ describe('La vue de la question QCM', function () {
   it('affiche un control audio sur chaque réponse', function () {
     question.choix = [{ audio: '1' }, { audio: '1' }, { audio: '1' }];
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
-    expect(vue.findAll('audio').length).to.equal(3);
+    expect(vue.findAll(LecteurAudio).length).to.equal(3);
   });
 
   it("affiche un bouton d'envoi de réponse", function () {
