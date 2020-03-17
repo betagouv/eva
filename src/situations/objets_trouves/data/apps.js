@@ -1,6 +1,7 @@
 import AppAgendaEntrainement from '../assets/app-agenda-entrainement.png';
-import AppPhoto from '../assets/app-photo.png';
 import AppAgenda from '../assets/app-agenda.png';
+import AppPhoto from '../assets/app-photo.png';
+import AppRappels from '../assets/app-rappels.png';
 import choix1 from 'maintenance/assets/consigne_demarrage.wav';
 
 const questionAgendaEntrainement = {
@@ -87,6 +88,34 @@ const questionAgenda = {
   ]
 };
 
+const questionRappels = {
+  id: 'rappels',
+  illustration: AppRappels,
+  intitule: 'Que Sophie doit-elle penser à faire ?',
+  choix: [
+    {
+      id: '1',
+      intitule: 'Sortir les poubelles'
+    },
+    {
+      id: '2',
+      intitule: 'Sortir le chien'
+    },
+    {
+      id: '3',
+      intitule: 'Sortir le chat'
+    },
+    {
+      id: '4',
+      intitule: 'Sortir le soleil'
+    },
+    {
+      id: '5',
+      intitule: 'Sortir la loutre'
+    }
+  ]
+};
+
 const question1 = {
   id: 1,
   choix: [
@@ -116,7 +145,7 @@ const configurationNormale = {
   apps: {
     photos: questionPhoto,
     repondeur: question1,
-    rappels: question1,
+    rappels: questionRappels,
     agenda: questionAgenda,
     messages: question2
   },
