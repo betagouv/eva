@@ -18,7 +18,14 @@
           name="question"
           type="radio"
         />
-        {{ element.intitule }}
+        <audio
+          v-if="element.audio"
+          :src="element.audio"
+          controls
+        />
+        <template v-else>
+          {{ element.intitule }}
+        </template>
       </label>
     </div>
     <button

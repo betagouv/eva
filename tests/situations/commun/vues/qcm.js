@@ -8,12 +8,19 @@ describe('La vue de la question QCM', function () {
   beforeEach(function () {
     question = { choix: [] };
     localVue = createLocalVue();
+    localVue.prototype.$traduction = () => {};
   });
 
   it('affiche des radios', function () {
     question.choix = [1, 2, 3, 4, 5];
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
     expect(vue.findAll('input[type=radio]').length).to.equal(5);
+  });
+
+  it('affiche un control audio sur chaque réponse', function () {
+    question.choix = [{ audio: '1' }, { audio: '1' }, { audio: '1' }];
+    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    expect(vue.findAll('audio').length).to.equal(3);
   });
 
   it("affiche un bouton d'envoi de réponse", function () {
