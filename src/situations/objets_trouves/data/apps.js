@@ -2,6 +2,7 @@ import AppAgendaEntrainement from '../assets/app-agenda-entrainement.png';
 import AppAgenda from '../assets/app-agenda.png';
 import AppPhoto from '../assets/app-photo.png';
 import AppRappels from '../assets/app-rappels.png';
+import Fin from '../assets/fin.png';
 import choix1 from 'maintenance/assets/consigne_demarrage.wav';
 
 const questionAgendaEntrainement = {
@@ -116,6 +117,86 @@ const questionRappels = {
   ]
 };
 
+const questionFin1 = {
+  id: 'fin1',
+  illustration: Fin,
+  intitule: 'Où est Sophie à 14h ?',
+  choix: [
+    {
+      id: '1',
+      intitule: 'A la librairie'
+    },
+    {
+      id: '2',
+      intitule: 'Au bureau'
+    },
+    {
+      id: '3',
+      intitule: 'A la grande roue'
+    },
+    {
+      id: '4',
+      intitule: 'Au zoo'
+    },
+    {
+      id: '5',
+      intitule: "A l'entrée"
+    }
+  ]
+};
+
+const questionFin2 = {
+  id: 'fin2',
+  illustration: Fin,
+  intitule: 'Pourquoi deviez-vous chercher Sophie ?',
+  choix: [
+    {
+      id: '1',
+      intitule: "Pour lui dire que le planning a été modifié et qu'elle doit prendre votre poste cet après-midi"
+    },
+    {
+      id: '2',
+      intitule: 'Pour lui demander son aide dans la conception du planning'
+    },
+    {
+      id: '3',
+      intitule: 'Pour lui dire de'
+    },
+    {
+      id: '4',
+      intitule: 'Pour lui demander de bien vouloir vous proposer'
+    }
+  ]
+};
+
+const questionFin3 = {
+  id: 'fin3',
+  illustration: Fin,
+  intitule: 'Avec qui Sophie a t-elle déjeuné ?',
+  choix: [
+    {
+      id: '1',
+      intitule: 'Denis'
+    },
+    {
+      id: '2',
+      intitule: 'Richard'
+    },
+    {
+      id: '3',
+      intitule: 'Michel'
+    },
+    {
+      id: '4',
+      intitule: 'Alexis'
+    },
+    {
+      id: '5',
+      intitule: 'Mickael'
+    }
+  ]
+};
+
 const question1 = {
   id: 1,
   choix: [
@@ -149,7 +230,7 @@ const configurationNormale = {
     agenda: questionAgenda,
     messages: question2
   },
-  questionsFin: [question1, question2]
+  questionsFin: [questionFin1, questionFin2, questionFin3]
 };
 
 export { configurationEntrainement, configurationNormale };
