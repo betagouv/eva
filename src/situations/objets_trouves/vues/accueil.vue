@@ -10,6 +10,7 @@
           <icone-app
             v-for="(question, app) in apps"
             :key="app"
+            :apps="apps"
             :app="app"
             :desactivee="appDesactivee(app)"
             @click.native="afficheApp(app)"

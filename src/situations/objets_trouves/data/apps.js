@@ -12,9 +12,12 @@ import golf from '../assets/golf.svg';
 import restaurant from '../assets/restaurant.svg';
 import toilettes from '../assets/toilettes.svg';
 import zoo from '../assets/zoo.svg';
+import illustration from '../assets/photo.png';
 
 const questionAgendaEntrainement = {
   id: 'agenda-entrainement',
+  couleur: '#4ED7E0',
+  icone: illustration,
   illustration: AppAgendaEntrainement,
   intitule: 'Voici le téléphone de Sophie. Que faisait Sophie ce matin ?',
   choix: [
@@ -39,6 +42,7 @@ const questionAgendaEntrainement = {
 
 const questionPhoto = {
   id: 'photo',
+  couleur: '#FE6E91',
   illustration: AppPhoto,
   intitule: "Qu'indique le badge de Denis ?",
   choix: [
@@ -67,6 +71,7 @@ const questionPhoto = {
 
 const questionAgenda = {
   id: 'agenda',
+  couleur: '#4ED7E0',
   illustration: AppAgenda,
   intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
   choix: [
@@ -99,6 +104,7 @@ const questionAgenda = {
 
 const questionRappels = {
   id: 'rappels',
+  couleur: '#FECD6E',
   illustration: AppRappels,
   intitule: 'Que Sophie doit-elle penser à faire ?',
   choix: [
@@ -207,6 +213,7 @@ const questionFin3 = {
 
 const questionMessage1 = {
   id: 'message1',
+  couleur: '#63D7AD',
   illustration: AppMessage1,
   intitule: 'A quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
   choix: [
@@ -235,6 +242,7 @@ const questionMessage1 = {
 
 const questionMessage2 = {
   id: 'message2',
+  couleur: '#63D7AD',
   illustration: AppMessage2,
   intitule: 'Dans quelle salle de jeu Sophie a-t-elle décidé d’aller ?',
   choix: [
@@ -263,6 +271,7 @@ const questionMessage2 = {
 
 const questionMessage3 = {
   id: 'message3',
+  couleur: '#63D7AD',
   illustration: AppMessage3,
   intitule: 'Où Sophie devait-elle retrouver Dounia ?',
   choix: [
@@ -291,6 +300,7 @@ const questionMessage3 = {
 
 const question1 = {
   id: 1,
+  couleur: '#5B7DD3',
   choix: [
     {
       id: '1',

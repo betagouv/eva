@@ -1,10 +1,14 @@
 <template>
-  <div
-    :class="{'icone--desactivee':desactivee}"
-    class="icone"
-  >
-    <p class="label">{{ $traduction(`objets_trouves.accueil.${app}`) }}</p>
+  <div :class="{'icone--desactivee':desactivee}">
+    <div
+      class="icone"
+      v-bind:style="{ background: couleur(app) }"
+    >
+    <img :src="appAttributes(app).icone">
+    </div>
+    <span class="label">{{ $traduction(`objets_trouves.accueil.${app}`) }}</span>
   </div>
+
 </template>
 
 <script>
@@ -14,9 +18,22 @@ export default {
       type: String,
       required: true
     },
+    apps: {
+      type: Object,
+      required: true
+    },
     desactivee: {
       type: Boolean,
       required: true
+    }
+  },
+
+  methods: {
+    appAttributes (app) {
+      return Object.assign({}, this.apps)[app][0];
+    },
+    couleur (app) {
+      return this.desactivee ? '#D6DAEC' : this.appAttributes(app).couleur;
     }
   }
 };
