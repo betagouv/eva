@@ -8,7 +8,7 @@ import choix1 from 'maintenance/assets/consigne_demarrage.wav';
 const questionAgendaEntrainement = {
   id: 'agenda-entrainement',
   illustration: AppAgendaEntrainement,
-  intitule: 'Voici le téléphone de Sophie, que faisait Sophie ce matin ?',
+  intitule: 'Voici le téléphone de Sophie. Que faisait Sophie ce matin ?',
   choix: [
     {
       id: '1',
