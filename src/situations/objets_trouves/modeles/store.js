@@ -15,8 +15,7 @@ export function creeStore () {
       apps: {},
       appActive: null,
       appsVisitees: [],
-      questionsFin: [],
-      indexQuestionsFin: 0
+      questionsFin: []
     },
     getters: {
       nombreApps (state) {
@@ -28,7 +27,6 @@ export function creeStore () {
         state.apps = apps;
         state.questionsFin = questionsFin;
         state.appsVisitees = [];
-        state.indexQuestionsFin = 0;
         state.appActive = null;
       },
       afficheApp (state, app) {
@@ -36,9 +34,6 @@ export function creeStore () {
       },
       ajouteAppVisitee (state, app) {
         state.appsVisitees.push(app);
-      },
-      repondQuestionFin (state) {
-        state.indexQuestionsFin += 1;
       }
     }
   });

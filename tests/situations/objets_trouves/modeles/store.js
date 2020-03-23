@@ -29,13 +29,6 @@ describe('Le store de la situation objets trouvés', function () {
     expect(store.state.appsVisitees).to.eql(['photos']);
   });
 
-  it('repondQuestionFin incrément indexQuestionsFin', function () {
-    const store = creeStore();
-    expect(store.state.indexQuestionsFin).to.eql(0);
-    store.commit('repondQuestionFin');
-    expect(store.state.indexQuestionsFin).to.eql(1);
-  });
-
   it("nombreApps retourne le nombre d'apps", function () {
     const store = creeStore();
     store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
@@ -50,11 +43,9 @@ describe('Le store de la situation objets trouvés', function () {
     store.commit('configureActe', { apps, questionsFin });
     store.commit('ajouteAppVisitee', 'photos');
     store.commit('afficheApp', 'photos');
-    store.commit('repondQuestionFin', '1');
 
     store.commit('configureActe', { apps, questionsFin });
     expect(store.state.appsVisitees).to.eql([]);
-    expect(store.state.indexQuestionsFin).to.eql(0);
     expect(store.state.appActive).to.eql(null);
   });
 });
