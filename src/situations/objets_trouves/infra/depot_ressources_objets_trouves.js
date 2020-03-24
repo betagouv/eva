@@ -1,7 +1,7 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.wav';
 
-import fondSituation from '../assets/fond-situation.png';
+import fondSituation from '../assets/accueil.png';
 import appPhoto from '../assets/app-photo.png';
 
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
