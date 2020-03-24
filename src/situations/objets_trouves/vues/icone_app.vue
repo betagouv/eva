@@ -2,13 +2,10 @@
   <div :class="{'icone--desactivee':desactivee}">
     <div
       class="icone"
-      v-bind:style="{ background: couleur(app) }"
-    >
-    <img :src="appAttributes(app).icone">
-    </div>
+      v-bind:style="{ 'background-color': couleur(app), 'background-image': `url(${appAttributes(app).icone})` }"
+    ></div>
     <span class="label">{{ $traduction(`objets_trouves.accueil.${app}`) }}</span>
   </div>
-
 </template>
 
 <script>
