@@ -15,7 +15,6 @@ describe("Les propriétés d'une app", function () {
         apps: {
           agenda: {
             0: {
-              couleur: 'white',
               icone: 'icon-agenda'
             }
           }
@@ -28,6 +27,7 @@ describe("Les propriétés d'une app", function () {
 
   it("affiche la couleur et l'icone", function () {
     const icone = wrapper.find('.icone');
-    expect(icone.attributes('style')).to.equal('background-color: white; background-image: url(icon-agenda);');
+    expect(icone.classes('icone--agenda')).to.be(true);
+    expect(icone.attributes('style')).to.equal('background-image: url(icon-agenda);');
   });
 });
