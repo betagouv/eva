@@ -32,6 +32,12 @@
   background: linear-gradient(180deg, rgba($couleur-sombre, 0) 0%, $couleur-fond 150%);
 }
 
+.deverouillage {
+  background: $bleu-fonce;
+  opacity: 0.75;
+  height: 100%;
+}
+
 .heure {
   position: absolute;
   color: $couleur-fond;
@@ -40,6 +46,7 @@
   top: 5rem;
   transform: translateX(-50%);
   text-shadow: 0px 0px 8px rgba($couleur-sombre, 0.5);
+  z-index: 1;
 }
 
 .icones-conteneur {
@@ -49,6 +56,20 @@
   bottom: 2rem;
   left: 0;
 }
+
+.ecran-verouille-conteneur { height: 100%; }
+.enigme-conteneur {
+  width: 100%;
+  padding: 0 0.5rem;
+  position: absolute;
+  bottom: 12rem;
+  left: 0;
+  color: $blanc;
+  text-align: center;
+  .indice { font-size: 1rem }
+  .intitule { font-size: 12px }
+}
+
 
 .icones {
   display: flex;

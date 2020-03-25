@@ -45,6 +45,9 @@ export default {
 
   methods: {
     finApp () {
+      if (this.appActive === 'deverouillage') {
+        this.$store.commit('deverouillageTelephone', this.appActive);
+      }
       this.$store.commit('ajouteAppVisitee', this.appActive);
       this.$store.commit('afficheApp', null);
       this.metAJourEtatTelephone();
