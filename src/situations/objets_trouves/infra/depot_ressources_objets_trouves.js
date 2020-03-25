@@ -3,6 +3,8 @@ import sonConsigne from 'objets_trouves/assets/consigne_demarrage.wav';
 import sonConsigneTransition from 'objets_trouves/assets/consigne_transition.wav';
 
 import fondSituation from '../assets/accueil.png';
+import fondDeverouillage from '../assets/fond-deverouillage.jpg';
+
 import appPhoto from '../assets/app-photo.png';
 
 import sonChoix1 from 'objets_trouves/assets/reponse_jardin_acclimatation.wav';
@@ -18,9 +20,14 @@ const choixReponsesAudioQcm = {
 
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
+<<<<<<< HEAD
     super(chargeurs, sonConsigne, sonConsigneTransition);
     this.charge([fondSituation, appPhoto]);
     this.charge(choixReponsesAudioQcm.agenda);
+=======
+    super(chargeurs, sonConsigneBlanche, sonConsigneBlanche);
+    this.charge([fondSituation, appPhoto, fondDeverouillage]);
+>>>>>>> e25626da... ajoute la vue de l'écran de verouillage
   }
 
   fondSituation () {
@@ -31,9 +38,14 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     return this.ressource(fondSituation);
   }
 
+<<<<<<< HEAD
   reponseAudio (nomQcm, numeroReponse) {
     const reponses = choixReponsesAudioQcm[nomQcm];
     if (!reponses) return;
     return reponses[numeroReponse - 1];
+=======
+  fondDeverouillage () {
+    return this.ressource(fondDeverouillage);
+>>>>>>> e25626da... ajoute la vue de l'écran de verouillage
   }
 }

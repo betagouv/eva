@@ -5,7 +5,13 @@
   >
     <div class="telephone-conteneur">
       <heure />
-      <div class="icones-conteneur">
+
+      <ecran-verouillage
+        app="deverouillage"
+        v-if='afficheEcranVerrouillage'
+      />
+
+      <div class="icones-conteneur" v-else>
         <div class="icones">
           <icone-app
             v-for="(question, app) in apps"
@@ -17,6 +23,7 @@
           />
         </div>
       </div>
+
     </div>
     <div class="question">
       <div
@@ -40,6 +47,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -49,14 +57,19 @@ import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
 import Heure from './heure';
+import EcranVerouillage from './ecran_verouillage';
 
 export default {
-  components: { Heure, IconeApp },
+  components: { Heure, IconeApp, EcranVerouillage },
 
   computed: {
+<<<<<<< HEAD
     ...mapState(['appsVisitees', 'apps', 'consigneEcranAccueil', 'questionsFin', 'etatTelephone']),
     ...mapGetters(['nombreApps']),
 
+=======
+    ...mapState(['appsVisitees', 'apps', 'etat', 'afficheEcranVerrouillage']),
+>>>>>>> e25626da... ajoute la vue de l'écran de verouillage
     appDesactivee () {
       return (app) => this.appsVisitees.includes(app);
     },
@@ -64,6 +77,7 @@ export default {
       return this.etatTelephone === TRANSITION;
     }
   },
+<<<<<<< HEAD
 
   methods: {
     ...mapMutations(['afficheApp']),
@@ -71,5 +85,8 @@ export default {
       this.$store.commit('modifieEtatTelephone', QUESTIONS_FIN);
     }
   }
+=======
+  methods: mapMutations(['afficheApp'])
+>>>>>>> e25626da... ajoute la vue de l'écran de verouillage
 };
 </script>
