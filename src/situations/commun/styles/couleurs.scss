@@ -2,12 +2,12 @@
 $blanc: #ffffff;
 $noir: #000000;
 $gris: #969696;
-$bleu-fonce: #1E416A;
-$bleu: #6E84FE;
-$rouge: #FD5C54;
-$vert-clair: #9ADBD0;
-$gris-clair: #DDDDDD;
-$orange: #FDAF54;
+$bleu-fonce: #1e416a;
+$bleu: #6e84fe;
+$rouge: #fd5c54;
+$vert-clair: #9adbd0;
+$gris-clair: #dddddd;
+$orange: #fdaf54;
 
 // branding & style-guide
 $couleur-sombre: $bleu-fonce;
@@ -17,7 +17,7 @@ $couleur-legere-accent-et-validation: $vert-clair;
 $couleur-clair: $gris-clair;
 
 // général
-$couleur-fond: #FBF9FA;
+$couleur-fond: #fbf9fa;
 $couleur-texte: $couleur-sombre;
 
 // boutons
@@ -26,7 +26,7 @@ $couleur-fond-bouton-vert: $vert-clair;
 $couleur-fond-bouton-vert-focus: darken($vert-clair, 10%);
 $couleur-fond-bouton-bleu: $bleu;
 $couleur-fond-bouton-bleu-focus: darken($bleu, 10%);
-$couleur-ombre: rgba(0,0,0,0.31);
+$couleur-ombre: rgba(0, 0, 0, 0.31);
 $couleur-fond-bouton-rouge: $rouge;
 $couleur-fond-bouton-rouge-focus: darken($rouge, 10%);
 $couleur-fond-bouton-orange: $orange;
@@ -46,4 +46,4 @@ $couleur-bordure-input-accueil: #75c5ff;
 $couleur-ombre-input-accueil: #c5c5c5;
 
 //litératie/numeratie
-$couleur-fond-module: #EFEEE4;
+$couleur-fond-module: #efeee4;
