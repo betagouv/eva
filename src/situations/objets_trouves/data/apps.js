@@ -20,7 +20,6 @@ import iconeMessages from '../assets/icone-messages.png';
 
 const questionAgendaEntrainement = {
   id: 'agenda-entrainement',
-  couleur: '#4ED7E0',
   icone: iconeAgenda,
   illustration: AppAgendaEntrainement,
   intitule: 'Voici le téléphone de Sophie. Que faisait Sophie ce matin ?',
@@ -46,7 +45,6 @@ const questionAgendaEntrainement = {
 
 const questionPhoto = {
   id: 'photo',
-  couleur: '#FE6E91',
   icone: iconePhotos,
   illustration: AppPhoto,
   intitule: "Qu'indique le badge de Denis ?",
@@ -76,7 +74,6 @@ const questionPhoto = {
 
 const questionAgenda = {
   id: 'agenda',
-  couleur: '#4ED7E0',
   illustration: AppAgenda,
   icone: iconeAgenda,
   intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
@@ -110,7 +107,6 @@ const questionAgenda = {
 
 const questionRappels = {
   id: 'rappels',
-  couleur: '#FECD6E',
   icone: iconeNotes,
   illustration: AppRappels,
   intitule: 'Que Sophie doit-elle penser à faire ?',
@@ -220,7 +216,6 @@ const questionFin3 = {
 
 const questionMessage1 = {
   id: 'message1',
-  couleur: '#63D7AD',
   icone: iconeMessages,
   illustration: AppMessage1,
   intitule: 'A quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
@@ -250,7 +245,6 @@ const questionMessage1 = {
 
 const questionMessage2 = {
   id: 'message2',
-  couleur: '#63D7AD',
   icone: iconeMessages,
   illustration: AppMessage2,
   intitule: 'Dans quelle salle de jeu Sophie a-t-elle décidé d’aller ?',
@@ -280,7 +274,6 @@ const questionMessage2 = {
 
 const questionMessage3 = {
   id: 'message3',
-  couleur: '#63D7AD',
   icone: iconeMessages,
   illustration: AppMessage3,
   intitule: 'Où Sophie devait-elle retrouver Dounia ?',
@@ -310,7 +303,6 @@ const questionMessage3 = {
 
 const question1 = {
   id: 1,
-  couleur: '#5B7DD3',
   icone: iconeRepondeur,
   choix: [
     {

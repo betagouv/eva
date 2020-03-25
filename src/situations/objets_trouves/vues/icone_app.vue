@@ -1,13 +1,13 @@
 <template>
-  <div :class="{'icone--desactivee':desactivee}">
+  <div>
     <div
       class="icone"
-      v-bind:style="{ 'background-color': couleur(app), 'background-image': `url(${appAttributes(app).icone})` }"
+      :class="[{'icone--desactivee':desactivee}, `icone--${app}`]"
+      v-bind:style="{ 'background-image': `url(${appAttributes(app).icone})` }"
     ></div>
     <span class="label">{{ $traduction(`objets_trouves.accueil.${app}`) }}</span>
   </div>
 </template>
-
 <script>
 export default {
   props: {
@@ -28,9 +28,6 @@ export default {
   methods: {
     appAttributes (app) {
       return Object.assign({}, this.apps)[app][0];
-    },
-    couleur (app) {
-      return this.desactivee ? '#D6DAEC' : this.appAttributes(app).couleur;
     }
   }
 };

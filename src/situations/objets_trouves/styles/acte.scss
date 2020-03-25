@@ -1,5 +1,11 @@
 @import 'commun/styles/couleurs.scss';
 
+$couleur-app-photos: #fe6e91;
+$couleur-app-agenda: #4ed7e0;
+$couleur-app-repondeur: #5b7dd3;
+$couleur-app-rappels: #fecd6e;
+$couleur-app-messages: #63d7ad;
+
 .fond-situation {
   display: flex;
   height: 100%;
@@ -63,7 +69,39 @@
     align-items: center;
     background-repeat: no-repeat;
     background-position: center;
+    transition: background-color 0.4s ease;
+    &--photos {
+      background-color: $couleur-app-photos;
+      &:hover {
+        background-color: darken($couleur-app-photos, 10%);
+      }
+    }
+    &--agenda {
+      background-color: $couleur-app-agenda;
+      &:hover {
+        background-color: darken($couleur-app-agenda, 10%);
+      }
+    }
+    &--repondeur {
+      background-color: $couleur-app-repondeur;
+      &:hover {
+        background-color: darken($couleur-app-repondeur, 10%);
+      }
+    }
+    &--rappels {
+      background-color: $couleur-app-rappels;
+      &:hover {
+        background-color: darken($couleur-app-rappels, 10%);
+      }
+    }
+    &--messages {
+      background-color: $couleur-app-messages;
+      &:hover {
+        background-color: darken($couleur-app-messages, 10%);
+      }
+    }
     &--desactivee {
+      background-color: $gris-clair;
       pointer-events: none;
 <<<<<<< HEAD
       &:before {
