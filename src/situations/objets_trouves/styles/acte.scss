@@ -95,14 +95,10 @@
       }
     }
     &--desactivee {
-      background-color: $gris-clair;
       pointer-events: none;
-<<<<<<< HEAD
-      &:before {
-        opacity: 0.5;
+      .icone {
+        background-color: $gris-clair;
       }
-=======
->>>>>>> e7a3fcb... Intégre les vraies icones des apps
     }
   }
   .label {
