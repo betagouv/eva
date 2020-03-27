@@ -5,30 +5,30 @@
 }
 
 .codepin-input-conteneur {
-	position: relative;
-	> span {
-		width: 1.5rem;
-		height: 1px;
-		position: absolute;
-		bottom: 0.6rem;
-		background-color: $bleu;
-		&:nth-of-type(1) {
-			left: 1.8rem;
-		};
-		&:nth-of-type(2) {
-			left: 4.1rem;
-		};
-		&:nth-of-type(3) {
-			left: 6.3rem;
-		};
-		&:nth-of-type(4) {
-			left: 8.6rem;
-		};
-	}
+  position: relative;
+  > span {
+    width: 1.5rem;
+    height: 1px;
+    position: absolute;
+    bottom: 0.6rem;
+    background-color: $bleu;
+    &:nth-of-type(1) {
+      left: 1.8rem;
+    };
+    &:nth-of-type(2) {
+      left: 4.1rem;
+    };
+    &:nth-of-type(3) {
+      left: 6.3rem;
+    };
+    &:nth-of-type(4) {
+      left: 8.6rem;
+    };
+  }
 }
 
 .codepin-input {
-	width: 12rem;
+  width: 12rem;
   height: 3rem;
   padding-left: 2rem;
   font-size: 1.5rem;

@@ -29,7 +29,9 @@
   top: 2.9rem;
   font-family: 'Quicksand', sans-serif;
   border-radius: 12px;
-  background: linear-gradient(180deg, rgba($couleur-sombre, 0) 0%, $couleur-fond 150%);
+  &--fond {
+    background: linear-gradient(180deg, rgba($couleur-sombre, 0) 0%, $couleur-fond 150%);
+  }
 }
 
 .heure {
@@ -50,6 +52,9 @@
   bottom: 2rem;
   left: 0;
   z-index: 2;
+  &--deverrouiller {
+    bottom: 0.5rem;
+  }
 }
 
 .ecran-verouille-conteneur {

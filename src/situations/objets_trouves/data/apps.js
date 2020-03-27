@@ -2,6 +2,7 @@ import AppAgendaEntrainement from '../assets/app-agenda-entrainement.png';
 import AppAgenda from '../assets/app-agenda.png';
 import AppPhoto from '../assets/app-photo.png';
 import AppRappels from '../assets/app-rappels.png';
+import AppDeverrouillage from '../assets/app-deverrouillage.png';
 import Fin from '../assets/fin.png';
 import AppMessage1 from '../assets/app-message1.png';
 import AppMessage2 from '../assets/app-message2.png';
@@ -72,7 +73,7 @@ const questionPhoto = {
 
 const questionDeverouillage = {
   id: 'deverouillage',
-  illustration: AppAgenda,
+  illustration: AppDeverrouillage,
   intitule: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
   question: 'Quel est le mot de passe ?'
 };
