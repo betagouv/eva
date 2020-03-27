@@ -218,7 +218,7 @@ const questionMessage1 = {
   id: 'message1',
   icone: iconeMessages,
   illustration: AppMessage1,
-  intitule: 'A quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
+  intitule: 'À quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
   choix: [
     {
       id: '1',
@@ -323,7 +323,7 @@ const configurationNormale = {
     repondeur: [question1],
     rappels: [questionRappels],
     agenda: [questionAgenda],
-    messages: [questionMessage1, questionMessage2, questionMessage3]
+    messages: [questionMessage3, questionMessage1, questionMessage2]
   },
   questionsFin: [questionFin1, questionFin2, questionFin3]
 };
