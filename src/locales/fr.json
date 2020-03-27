@@ -192,9 +192,9 @@
       "rappels": "Rappels",
       "agenda": "Agenda",
       "messages": "Messages",
-      "deverouillage": "Déverouiller"
+      "deverrouillage": "Déverrouiller"
     },
-    "verouillage": {
+    "verrouillage": {
       "indice": "Indice",
       "intitule": "Si j'ai 150 paquets de 12 mouchoirs, combien ai-je de mouchoirs ?",
       "valider": "Valider"

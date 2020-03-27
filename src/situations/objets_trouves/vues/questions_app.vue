@@ -3,7 +3,7 @@
     :key="question.id"
     :question="question"
     @reponse="reponseApp"
-    v-if='appDeverouillage'
+    v-if='appDeverrouillage'
   />
   <qcm
     :key="question.id"
@@ -40,8 +40,8 @@ export default {
   },
 
   computed: {
-    appDeverouillage () {
-      return this.app === 'deverouillage';
+    appDeverrouillage () {
+      return this.app === 'deverrouillage';
     },
     question () {
       return this.questions[this.indexQuestion];

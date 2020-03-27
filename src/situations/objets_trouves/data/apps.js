@@ -71,8 +71,8 @@ const questionPhoto = {
   ]
 };
 
-const questionDeverouillage = {
-  id: 'deverouillage',
+const questionDeverrouillage = {
+  id: 'deverrouillage',
   illustration: AppDeverrouillage,
   intitule: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
   question: 'Quel est le mot de passe ?'
@@ -315,7 +315,7 @@ const configurationEntrainement = {
 };
 const configurationNormale = {
   apps: {
-    deverouillage: [questionDeverouillage],
+    deverrouillage: [questionDeverrouillage],
     photos: [questionPhoto],
     rappels: [questionRappels],
     agenda: [questionAgenda],
