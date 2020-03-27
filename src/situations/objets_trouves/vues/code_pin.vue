@@ -4,12 +4,19 @@
   >
     <p class="codepin-explication">{{ question.intitule }}</p>
     <p class="codepin-question">{{ question.question }}</p>
-    <input
-      v-model.trim="reponse"
-      class="codepin-input"
-      maxlength="4"
-      type='text'
-      />
+
+    <div class="codepin-input-conteneur">
+      <input
+        v-model.trim="reponse"
+        class="codepin-input"
+        maxlength="4"
+        type='text'
+        />
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
     <button
       :disabled="disabled"

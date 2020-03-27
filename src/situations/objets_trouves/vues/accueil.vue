@@ -6,11 +6,10 @@
     <div class="telephone-conteneur">
       <heure />
 
-      <div
-        class="ecran-verouille-conteneur"
-        v-if='afficheEcranVerrouillage'
+      <div 
+        class="ecran-verouille-conteneur" 
+        v-if="afficheEcranVerrouillage"
       >
-        <div class="deverouillage"></div>
         <div class="icones-conteneur">
           <div class="icones">
             <icone-app
