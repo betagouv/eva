@@ -1,0 +1,13 @@
+@import 'commun/styles/couleurs.scss';
+
+.codepin-question {
+  color: $bleu;
+}
+
+.codepin-input {
+  height: 3rem;
+  border-radius: 1rem;
+  border: 1px solid $bleu-gris;
+  background: $couleur-fond;
+  width: 12rem;
+}

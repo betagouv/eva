@@ -6,10 +6,22 @@
     <div class="telephone-conteneur">
       <heure />
 
-      <ecran-verouillage
-        app="deverouillage"
+      <div
+        class="ecran-verouille-conteneur"
         v-if='afficheEcranVerrouillage'
-      />
+      >
+        <div class="deverouillage"></div>
+        <div class="icones-conteneur">
+          <div class="icones">
+            <icone-app
+              key="deverouillage"
+              app="deverouillage"
+              :desactivee="appDesactivee('deverouillage')"
+              @click.native="afficheApp('deverouillage')"
+            />
+          </div>
+        </div>
+      </div>
 
       <div class="icones-conteneur" v-else>
         <div class="icones">
@@ -57,19 +69,14 @@ import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
 import Heure from './heure';
-import EcranVerouillage from './ecran_verouillage';
 
 export default {
-  components: { Heure, IconeApp, EcranVerouillage },
+  components: { Heure, IconeApp },
 
   computed: {
-<<<<<<< HEAD
-    ...mapState(['appsVisitees', 'apps', 'consigneEcranAccueil', 'questionsFin', 'etatTelephone']),
+    ...mapState(['appsVisitees', 'apps', 'consigneEcranAccueil', 'questionsFin', 'etatTelephone', 'afficheEcranVerrouillage']),
     ...mapGetters(['nombreApps']),
 
-=======
-    ...mapState(['appsVisitees', 'apps', 'etat', 'afficheEcranVerrouillage']),
->>>>>>> e25626da... ajoute la vue de l'écran de verouillage
     appDesactivee () {
       return (app) => this.appsVisitees.includes(app);
     },
@@ -77,7 +84,6 @@ export default {
       return this.etatTelephone === TRANSITION;
     }
   },
-<<<<<<< HEAD
 
   methods: {
     ...mapMutations(['afficheApp']),
@@ -85,8 +91,5 @@ export default {
       this.$store.commit('modifieEtatTelephone', QUESTIONS_FIN);
     }
   }
-=======
-  methods: mapMutations(['afficheApp'])
->>>>>>> e25626da... ajoute la vue de l'écran de verouillage
 };
 </script>

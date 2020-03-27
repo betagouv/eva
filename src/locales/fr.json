@@ -196,7 +196,8 @@
     },
     "verouillage": {
       "indice": "Indice",
-      "intitule": "Si j'ai 150 paquets de 12 mouchoirs, combien ai-je de mouchoirs ?"
+      "intitule": "Si j'ai 150 paquets de 12 mouchoirs, combien ai-je de mouchoirs ?",
+      "valider": "Valider"
     },
     "intro_contexte": {
       "message": "<p>Vous venez de retrouver le téléphone de Sophie au restaurant. Sophie est une de vos collègues et vous devez la retrouver afin de lui transmettre une information importante : le planning a été modifié, et elle doit prendre votre poste cet après-midi.</p><p>Vous décidez de chercher dans son téléphone des informations pour la retrouver. Vous avez accès à ses sms, ses messages vocaux, ses photographies, ainsi que son agenda.</p><p>Commençons par un entraînement.</p>",
