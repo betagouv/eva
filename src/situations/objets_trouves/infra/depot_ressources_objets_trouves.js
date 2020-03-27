@@ -3,7 +3,7 @@ import sonConsigne from 'objets_trouves/assets/consigne_demarrage.wav';
 import sonConsigneTransition from 'objets_trouves/assets/consigne_transition.wav';
 
 import fondSituation from '../assets/accueil.png';
-import fondDeverouillage from '../assets/fond-deverouillage.jpg';
+import fondDeverouillage from '../assets/fond-vierge.jpg';
 
 import appPhoto from '../assets/app-photo.png';
 

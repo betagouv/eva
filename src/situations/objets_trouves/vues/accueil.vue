@@ -3,14 +3,14 @@
     :style="{ 'background-image': `url(${$depotRessources.fondSituation().src})` }"
     class="fond-situation"
   >
-    <div class="telephone-conteneur">
+    <div class="telephone-conteneur telephone-conteneur--fond">
       <heure />
 
-      <div 
-        class="ecran-verouille-conteneur" 
+      <div
+        class="ecran-verouille-conteneur"
         v-if="afficheEcranVerrouillage"
       >
-        <div class="icones-conteneur">
+        <div class="icones-conteneur icones-conteneur--deverrouiller">
           <div class="icones">
             <icone-app
               key="deverouillage"
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="icones-conteneur" v-else>
+      <div class="icones-conteneur " v-else>
         <div class="icones">
           <icone-app
             v-for="(question, app) in apps"
