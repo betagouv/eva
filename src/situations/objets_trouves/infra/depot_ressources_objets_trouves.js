@@ -20,14 +20,9 @@ const choixReponsesAudioQcm = {
 
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-<<<<<<< HEAD
     super(chargeurs, sonConsigne, sonConsigneTransition);
-    this.charge([fondSituation, appPhoto]);
-    this.charge(choixReponsesAudioQcm.agenda);
-=======
-    super(chargeurs, sonConsigneBlanche, sonConsigneBlanche);
     this.charge([fondSituation, appPhoto, fondDeverouillage]);
->>>>>>> e25626da... ajoute la vue de l'écran de verouillage
+    this.charge(choixReponsesAudioQcm.agenda);
   }
 
   fondSituation () {
@@ -38,14 +33,13 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     return this.ressource(fondSituation);
   }
 
-<<<<<<< HEAD
   reponseAudio (nomQcm, numeroReponse) {
     const reponses = choixReponsesAudioQcm[nomQcm];
     if (!reponses) return;
     return reponses[numeroReponse - 1];
-=======
+  }
+
   fondDeverouillage () {
     return this.ressource(fondDeverouillage);
->>>>>>> e25626da... ajoute la vue de l'écran de verouillage
   }
 }

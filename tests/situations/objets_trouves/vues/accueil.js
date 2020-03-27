@@ -5,7 +5,6 @@ import { creeStore } from 'objets_trouves/modeles/store';
 import Accueil from 'objets_trouves/vues/accueil';
 import IconeApp from 'objets_trouves/vues/icone_app';
 import { TRANSITION } from 'objets_trouves/modeles/situation';
-import EcranVerouillage from 'objets_trouves/vues/ecran_verouillage';
 
 describe("La vue de l'accueil", function () {
   let wrapper;
@@ -30,13 +29,13 @@ describe("La vue de l'accueil", function () {
   it('affiche les icones', function () {
     store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
     expect(wrapper.findAll(IconeApp).length).to.eql(2);
-    expect(wrapper.findAll(EcranVerouillage).length).to.eql(0);
+    expect(wrapper.findAll('.ecran-verouille-conteneur').length).to.eql(0);
   });
 
   it("affiche l'écran de verouillage si il y a l'app deverouillage", function () {
     store.commit('configureActe', { apps: { deverouillage: {}, photos: {}, agenda: {} } });
-    expect(wrapper.findAll(IconeApp).length).to.eql(0);
-    expect(wrapper.findAll(EcranVerouillage).length).to.eql(1);
+    expect(wrapper.findAll(IconeApp).length).to.eql(1);
+    expect(wrapper.findAll('.ecran-verouille-conteneur').length).to.eql(1);
   });
 
   it('affiche la consigne', function () {

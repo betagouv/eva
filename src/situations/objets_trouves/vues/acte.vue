@@ -7,6 +7,7 @@
   <questions-app
     v-else-if="afficheQuestionApp"
     :questions="questionsApp"
+    :app="appActive"
     @finQuestions="finApp"
   />
   <app-accueil v-else/>
