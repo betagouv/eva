@@ -2,6 +2,16 @@
   <div>
     <div class="telephone-conteneur">
       <heure />
+
+      <div class="icones-conteneur icones-conteneur--deverrouiller">
+        <div class="icones">
+          <icone-app
+            key="deverrouillage"
+            app="deverrouillage"
+            :desactivee="false"
+          />
+        </div>
+      </div>
     </div>
 
     <question
@@ -39,9 +49,10 @@ import 'commun/styles/boutons.scss';
 import 'objets_trouves/styles/code_pin.scss';
 import Question from 'commun/vues/question';
 import Heure from 'objets_trouves/vues/heure';
+import IconeApp from './icone_app';
 
 export default {
-  components: { Question, Heure },
+  components: { Question, Heure, IconeApp },
 
   props: {
     question: {
