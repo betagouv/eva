@@ -29,13 +29,13 @@ describe("La vue de l'accueil", function () {
   it('affiche les icones', function () {
     store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
     expect(wrapper.findAll(IconeApp).length).to.eql(2);
-    expect(wrapper.findAll('.ecran-verouille-conteneur').length).to.eql(0);
+    expect(wrapper.findAll('.ecran-verrouille-conteneur').length).to.eql(0);
   });
 
-  it("affiche l'écran de verouillage si il y a l'app deverouillage", function () {
-    store.commit('configureActe', { apps: { deverouillage: {}, photos: {}, agenda: {} } });
+  it("affiche l'écran de verrouillage si il y a l'app deverrouillage", function () {
+    store.commit('configureActe', { apps: { deverrouillage: {}, photos: {}, agenda: {} } });
     expect(wrapper.findAll(IconeApp).length).to.eql(1);
-    expect(wrapper.findAll('.ecran-verouille-conteneur').length).to.eql(1);
+    expect(wrapper.findAll('.ecran-verrouille-conteneur').length).to.eql(1);
   });
 
   it('affiche la consigne', function () {

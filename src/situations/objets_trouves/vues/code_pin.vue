@@ -28,7 +28,7 @@
         class="question-bouton bouton-arrondi bouton-arrondi--petit"
         @click="envoi"
       >
-        {{ $traduction('objets_trouves.verouillage.valider') }}
+        {{ $traduction('objets_trouves.verrouillage.valider') }}
       </button>
     </question>
   </div>

@@ -3,7 +3,7 @@ export default class MockDepotRessources {
     return { src: 'fond' };
   }
 
-  fondDeverouillage () {
-    return { src: 'fondDeverouillage' };
+  fondDeverrouillage () {
+    return { src: 'fondDeverrouillage' };
   }
 }

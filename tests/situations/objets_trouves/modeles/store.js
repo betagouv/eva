@@ -38,22 +38,22 @@ describe('Le store de la situation objets trouvés', function () {
     expect(store.getters.nombreApps).to.eql(2);
   });
 
-  it("deverouillageTelephone affiche l'accueil du téléphone", function () {
+  it("deverrouillageTelephone affiche l'accueil du téléphone", function () {
     const store = creeStore();
-    store.commit('configureActe', { apps: { deverouillage: {}, photos: {}, agenda: {} }, questionsFin: [{ question1: 'libelle' }] });
+    store.commit('configureActe', { apps: { deverrouillage: {}, photos: {}, agenda: {} }, questionsFin: [{ question1: 'libelle' }] });
     expect(store.state.afficheEcranVerrouillage).to.eql(true);
 
-    store.commit('deverouillageTelephone', 'deverouillage');
+    store.commit('deverrouillageTelephone', 'deverrouillage');
     expect(store.state.afficheEcranVerrouillage).to.eql(false);
   });
 
-  it("deverouillageTelephone supprime l'application déverouillage du téléphone lorsque l'on est sur l'accueil", function () {
+  it("deverrouillageTelephone supprime l'application déverrouillage du téléphone lorsque l'on est sur l'accueil", function () {
     const store = creeStore();
-    store.commit('configureActe', { apps: { deverouillage: {}, photos: {}, agenda: {} }, questionsFin: [{ question1: 'libelle' }] });
-    expect(store.state.apps.deverouillage).to.eql({});
+    store.commit('configureActe', { apps: { deverrouillage: {}, photos: {}, agenda: {} }, questionsFin: [{ question1: 'libelle' }] });
+    expect(store.state.apps.deverrouillage).to.eql({});
 
-    store.commit('deverouillageTelephone', 'deverouillage');
-    expect(store.state.apps.deverouillage).to.eql(undefined);
+    store.commit('deverrouillageTelephone', 'deverrouillage');
+    expect(store.state.apps.deverrouillage).to.eql(undefined);
   });
 
   it("réinitialise les apps visitées, les apps actives et l'index des questions fin", function () {

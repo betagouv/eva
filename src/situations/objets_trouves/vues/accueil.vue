@@ -7,16 +7,16 @@
       <heure />
 
       <div
-        class="ecran-verouille-conteneur"
+        class="ecran-verrouille-conteneur"
         v-if="afficheEcranVerrouillage"
       >
         <div class="icones-conteneur icones-conteneur--deverrouiller">
           <div class="icones">
             <icone-app
-              key="deverouillage"
-              app="deverouillage"
-              :desactivee="appDesactivee('deverouillage')"
-              @click.native="afficheApp('deverouillage')"
+              key="deverrouillage"
+              app="deverrouillage"
+              :desactivee="appDesactivee('deverrouillage')"
+              @click.native="afficheApp('deverrouillage')"
             />
           </div>
         </div>
