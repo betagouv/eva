@@ -173,15 +173,15 @@ const questionFin2 = {
     },
     {
       id: '2',
-      intitule: 'Pour lui demander son aide dans la conception du planning'
+      intitule: 'Pour lui demander son aide dans la conception du planning de l’équipe'
     },
     {
       id: '3',
-      intitule: 'Pour lui dire de'
+      intitule: 'Pour lui dire de vous accompagner à une activité dans le parc'
     },
     {
       id: '4',
-      intitule: 'Pour lui demander de bien vouloir vous proposer'
+      intitule: 'Pour lui demander de bien vouloir vous proposer des dates pour une réunion'
     }
   ]
 };
