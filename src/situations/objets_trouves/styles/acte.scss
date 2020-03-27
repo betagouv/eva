@@ -23,19 +23,13 @@
 
 .telephone-conteneur {
   width: 245px;
-  height: 470px;
+  height: 464px;
   position: absolute;
   left: 11.1rem;
-  top: 2.4rem;
+  top: 2.9rem;
   font-family: 'Quicksand', sans-serif;
   border-radius: 12px;
   background: linear-gradient(180deg, rgba($couleur-sombre, 0) 0%, $couleur-fond 150%);
-}
-
-.deverouillage {
-  background: $bleu-fonce;
-  opacity: 0.75;
-  height: 100%;
 }
 
 .heure {
@@ -46,7 +40,7 @@
   top: 5rem;
   transform: translateX(-50%);
   text-shadow: 0px 0px 8px rgba($couleur-sombre, 0.5);
-  z-index: 1;
+  z-index: 2;
 }
 
 .icones-conteneur {
@@ -55,13 +49,27 @@
   position: absolute;
   bottom: 2rem;
   left: 0;
+  z-index: 2;
 }
 
 .ecran-verouille-conteneur {
   height: 100%;
+  position: relative;
+  z-index: 1;
   color: $blanc;
+  &:after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.75;
+    border-radius: 12px;
+    background: $bleu-fonce;
+  }
   .icones {
-    display: flex;
     justify-content: center;
   }
 }
