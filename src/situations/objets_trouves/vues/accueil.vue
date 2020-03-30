@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="question">
-      <div class="question-barre" v-html="consigneEcranAccueil">
+      <div class="question-barre accueil" v-html="consigneEcranAccueil">
       </div>
     </div>
   </div>
