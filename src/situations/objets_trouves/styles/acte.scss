@@ -50,59 +50,68 @@
       margin: 0.5rem 0.25rem 0;
     }
   }
-  .icone {
-    cursor: pointer;
-    text-align: center;
-    display: block;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-    border-radius: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: background-color 0.4s ease;
-    &--photos {
-      background-color: $couleur-app-photos;
-      &:hover {
-        background-color: darken($couleur-app-photos, 10%);
-      }
-    }
-    &--agenda {
-      background-color: $couleur-app-agenda;
-      &:hover {
-        background-color: darken($couleur-app-agenda, 10%);
-      }
-    }
-    &--repondeur {
-      background-color: $couleur-app-repondeur;
-      &:hover {
-        background-color: darken($couleur-app-repondeur, 10%);
-      }
-    }
-    &--rappels {
-      background-color: $couleur-app-rappels;
-      &:hover {
-        background-color: darken($couleur-app-rappels, 10%);
-      }
-    }
-    &--messages {
-      background-color: $couleur-app-messages;
-      &:hover {
-        background-color: darken($couleur-app-messages, 10%);
-      }
-    }
-    &--desactivee {
-      pointer-events: none;
-      .icone {
-        background-color: $gris-clair;
-      }
+}
+
+.icone {
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-color 0.4s ease;
+  &--photos {
+    background-color: $couleur-app-photos;
+    &:hover {
+      background-color: darken($couleur-app-photos, 10%);
     }
   }
-  .label {
+  &--agenda {
+    background-color: $couleur-app-agenda;
+    &:hover {
+      background-color: darken($couleur-app-agenda, 10%);
+    }
+  }
+  &--repondeur {
+    background-color: $couleur-app-repondeur;
+    &:hover {
+      background-color: darken($couleur-app-repondeur, 10%);
+    }
+  }
+  &--rappels {
+    background-color: $couleur-app-rappels;
+    &:hover {
+      background-color: darken($couleur-app-rappels, 10%);
+    }
+  }
+  &--messages {
+    background-color: $couleur-app-messages;
+    &:hover {
+      background-color: darken($couleur-app-messages, 10%);
+    }
+  }
+  &--desactivee {
+    pointer-events: none;
+    .icone {
+      background-color: $gris-clair;
+    }
+  }
+  + .label {
     margin: 0.3rem 0 0;
     font-size: 12px;
+  }
+  &-conteneur {
+    position: absolute;
+    top: 4.7rem;
+    right: 24.25rem;
+    text-align: center;
+    color: $blanc;
+    pointer-events: none;
   }
 }
