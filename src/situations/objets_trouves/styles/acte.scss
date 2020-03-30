@@ -7,6 +7,11 @@
 
 .question-barre {
   min-height: 417px;
+
+  &.accueil {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .telephone-conteneur {
