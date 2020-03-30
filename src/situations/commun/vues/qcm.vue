@@ -53,6 +53,7 @@ import 'commun/styles/formulaire_qcm.scss';
 
 import LecteurAudio from './lecteur_audio';
 import Question from './question';
+import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
   components: { LecteurAudio, Question },
@@ -62,6 +63,11 @@ export default {
       type: Object,
       required: true
     }
+  },
+
+  mounted () {
+    const evenement = new EvenementAffichageQuestionQCM({ question: this.question.id });
+    this.$journal.enregistre(evenement);
   },
 
   data () {

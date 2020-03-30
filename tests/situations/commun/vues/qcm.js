@@ -1,14 +1,16 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueQCM from 'commun/vues/qcm';
 import LecteurAudio from 'commun/vues/lecteur_audio';
+import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 describe('La vue de la question QCM', function () {
   let question;
   let localVue;
 
   beforeEach(function () {
-    question = { choix: [] };
+    question = { id: 154, choix: [] };
     localVue = createLocalVue();
+    localVue.prototype.$journal = { enregistre () {} };
     localVue.prototype.$traduction = () => {};
   });
 
@@ -42,6 +44,15 @@ describe('La vue de la question QCM', function () {
 
     vue.find('input[type=radio][value=uid-32]').setChecked();
     expect(vue.find('.question-bouton').attributes('disabled')).to.be(undefined);
+  });
+
+  it('rapporte son ouverture au journal', function (done) {
+    localVue.prototype.$journal.enregistre = (evenement) => {
+      expect(evenement).to.be.a(EvenementAffichageQuestionQCM);
+      expect(evenement.donnees()).to.eql({ question: question.id });
+      done();
+    };
+    shallowMount(VueQCM, { localVue, propsData: { question } });
   });
 
   it('emet un événement réponse quand on appuie sur le bouton envoi', function () {
