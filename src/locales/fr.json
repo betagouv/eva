@@ -191,7 +191,7 @@
       "messages": "Messages"
     },
     "intro_contexte": {
-      "message": "<p>Vous venez de retrouver le téléphone de Sophie au restaurant. Sophie est une de vos collègues et vous devez la retrouver afin de lui transmettre une information importante : le planning a été modifié, et elle doit prendre votre poste cet après-midi.</p><p>Pour la trouver, vous devez fouiller son téléphone. Vous avez accès à ses messages texte et ses messages vocaux, ses photographies, ainsi que son agenda.</p><p>Avant de commencer, faisons un essai.</p>",
+      "message": "<p>Vous venez de retrouver le téléphone de Sophie au restaurant. Sophie est une de vos collègues et vous devez la retrouver afin de lui transmettre une information importante : le planning a été modifié, et elle doit prendre votre poste cet après-midi.</p><p>Pour la trouver, vous devez fouiller son téléphone. Vous avez accès à ses sms, ses messages vocaux, ses photographies, ainsi que son agenda.</p><p>Commençons par un entraînement.</p>",
       "message_transition": "<p>Vous allez maintenant pouvoir commencer à chercher Sophie en utilisant les indices que vous trouverez dans son téléphone.</p><p>Pensez à regarder ses messages texte et ses messages vocaux, ses photographies, ainsi que son agenda. Pensez à bien noter lorsque l'heure est indiquée.</p>"
     }
   }
