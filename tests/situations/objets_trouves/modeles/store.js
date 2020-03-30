@@ -4,14 +4,17 @@ describe('Le store de la situation objets trouvés', function () {
   it("permet de configurer l'acte", function () {
     const store = creeStore();
     expect(store.state.apps).to.eql({});
+    expect(store.state.consigneEcranAccueil).to.eql(null);
     expect(store.state.questionsFin).to.eql([]);
     store.commit('configureActe', {
       apps: {
         photos: {}
       },
+      consigneEcranAccueil: 'Consigne',
       questionsFin: [{}]
     });
     expect(store.state.apps).to.eql({ photos: {} });
+    expect(store.state.consigneEcranAccueil).to.eql('Consigne');
     expect(store.state.questionsFin).to.eql([{}]);
   });
 
