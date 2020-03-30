@@ -315,7 +315,8 @@ const question1 = {
 const configurationEntrainement = {
   apps: {
     agenda: [questionAgendaEntrainement]
-  }
+  },
+  consigneEcranAccueil: 'Veuillez cliquer sur l’application pour l’ouvrir.'
 };
 const configurationNormale = {
   apps: {
@@ -325,6 +326,7 @@ const configurationNormale = {
     agenda: [questionAgenda],
     messages: [questionMessage3, questionMessage1, questionMessage2]
   },
+  consigneEcranAccueil: 'Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.',
   questionsFin: [questionFin1, questionFin2, questionFin3]
 };
 

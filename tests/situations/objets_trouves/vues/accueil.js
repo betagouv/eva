@@ -30,6 +30,11 @@ describe("La vue de l'accueil", function () {
     expect(wrapper.findAll(IconeApp).length).to.eql(2);
   });
 
+  it('affiche la consigne', function () {
+    store.commit('configureActe', { consigneEcranAccueil: 'Ma consigne' });
+    expect(wrapper.find('.question-barre').text()).to.eql('Ma consigne');
+  });
+
   it("affiche l'appli clické", function (done) {
     store.commit = (mutation, args) => {
       expect(mutation).to.eql('afficheApp');

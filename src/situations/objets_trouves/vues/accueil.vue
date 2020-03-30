@@ -19,8 +19,7 @@
       </div>
     </div>
     <div class="question">
-      <div class="question-barre">
-        {{ $traduction('objets_trouves.accueil.consigne') }}
+      <div class="question-barre" v-html="consigneEcranAccueil">
       </div>
     </div>
   </div>
@@ -37,7 +36,7 @@ export default {
   components: { Heure, IconeApp },
 
   computed: {
-    ...mapState(['appsVisitees', 'apps']),
+    ...mapState(['appsVisitees', 'apps', 'consigneEcranAccueil']),
     appDesactivee () {
       return (app) => this.appsVisitees.includes(app);
     }

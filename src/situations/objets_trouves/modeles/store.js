@@ -15,7 +15,8 @@ export function creeStore () {
       apps: {},
       appActive: null,
       appsVisitees: [],
-      questionsFin: []
+      questionsFin: [],
+      consigneEcranAccueil: null
     },
     getters: {
       nombreApps (state) {
@@ -23,10 +24,11 @@ export function creeStore () {
       }
     },
     mutations: {
-      configureActe (state, { apps, questionsFin }) {
+      configureActe (state, { apps, consigneEcranAccueil, questionsFin }) {
         state.apps = apps;
         state.questionsFin = questionsFin;
         state.appsVisitees = [];
+        state.consigneEcranAccueil = consigneEcranAccueil;
         state.appActive = null;
       },
       afficheApp (state, app) {
