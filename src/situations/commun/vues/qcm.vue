@@ -21,7 +21,7 @@
         />
         <lecteur-audio
           v-if="element.audio"
-          :src="element.audio"
+          :src="son(element.audio, element.id)"
           class="question-reponse-intitule"
         />
         <img
@@ -81,6 +81,10 @@ export default {
     envoi () {
       this.envoyer = true;
       this.$emit('reponse', this.reponse);
+    },
+
+    son (nomQuestionnaire, idReponse) {
+      return this.$depotRessources.reponseAudio(nomQuestionnaire, idReponse);
     }
   }
 };

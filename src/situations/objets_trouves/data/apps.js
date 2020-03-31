@@ -3,7 +3,6 @@ import AppAgenda from '../assets/app-agenda.png';
 import AppPhoto from '../assets/app-photo.png';
 import AppRappels from '../assets/app-rappels.png';
 import Fin from '../assets/fin.png';
-import choix1 from 'maintenance/assets/consigne_demarrage.wav';
 import AppMessage1 from '../assets/app-message1.png';
 import AppMessage2 from '../assets/app-message2.png';
 import AppMessage3 from '../assets/app-message3.png';
@@ -79,28 +78,28 @@ const questionAgenda = {
   intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
   choix: [
     {
-      id: '1',
-      audio: choix1
+      id: 1,
+      audio: 'agenda'
     },
     {
-      id: '2',
-      audio: choix1
+      id: 2,
+      audio: 'agenda'
     },
     {
-      id: '3',
-      audio: choix1
+      id: 3,
+      audio: 'agenda'
     },
     {
-      id: '4',
-      audio: choix1
+      id: 4,
+      audio: 'agenda'
     },
     {
-      id: '5',
-      audio: choix1
+      id: 5,
+      audio: 'agenda'
     },
     {
-      id: '6',
-      audio: choix1
+      id: 6,
+      audio: 'agenda'
     }
   ]
 };
