@@ -12,6 +12,11 @@ describe('La vue de la question QCM', function () {
     localVue = createLocalVue();
     localVue.prototype.$journal = { enregistre () {} };
     localVue.prototype.$traduction = () => {};
+    localVue.prototype.$depotRessources = {
+      reponseAudio: () => {
+        return 'chemin de la ressource';
+      }
+    };
   });
 
   it('affiche des radios', function () {
