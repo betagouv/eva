@@ -1,3 +1,5 @@
+@import 'commun/styles/couleurs.scss';
+
 @keyframes son1 {
   0% {
     opacity: 0;
@@ -12,6 +14,11 @@
   }
   75% {
     opacity: 1;
+  }
+}
+.selectionne {
+  circle {
+    fill: $bleu-fonce;
   }
 }
 .enTrainDeJouer {
