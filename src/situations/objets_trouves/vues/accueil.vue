@@ -19,14 +19,31 @@
       </div>
     </div>
     <div class="question">
-      <div class="question-barre accueil" v-html="consigneEcranAccueil">
+      <div
+        v-if="afficheTransitionFin"
+        class="question-barre transition"
+      >
+        <div v-html="$traduction('objets_trouves.intro_contexte.message_transition_fin')" >
+        </div>
+        <button
+          class="bouton-arrondi bouton-arrondi--petit"
+          @click="afficheQuestionsFin"
+        >
+          {{ $traduction('objets_trouves.intro_contexte.suivant') }}
+        </button>
+      </div>
+      <div
+        v-else
+        class="question-barre accueil"
+        v-html="consigneEcranAccueil"
+      >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState, mapGetters } from 'vuex';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
@@ -36,12 +53,22 @@ export default {
   components: { Heure, IconeApp },
 
   computed: {
-    ...mapState(['appsVisitees', 'apps', 'consigneEcranAccueil']),
+    ...mapState(['appsVisitees', 'apps', 'consigneEcranAccueil', 'questionsFin']),
+    ...mapGetters(['nombreApps']),
+
     appDesactivee () {
       return (app) => this.appsVisitees.includes(app);
+    },
+    afficheTransitionFin () {
+      return (this.appsVisitees.length === this.nombreApps) && this.questionsFin;
     }
   },
 
-  methods: mapMutations(['afficheApp'])
+  methods: {
+    ...mapMutations(['afficheApp']),
+    afficheQuestionsFin () {
+      this.$store.commit('termineTransitionFin');
+    }
+  }
 };
 </script>

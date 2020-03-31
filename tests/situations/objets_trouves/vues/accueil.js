@@ -31,7 +31,7 @@ describe("La vue de l'accueil", function () {
   });
 
   it('affiche la consigne', function () {
-    store.commit('configureActe', { consigneEcranAccueil: 'Ma consigne' });
+    store.commit('configureActe', { apps: { photos: {}, agenda: {} }, consigneEcranAccueil: 'Ma consigne' });
     expect(wrapper.find('.question-barre').text()).to.eql('Ma consigne');
   });
 
@@ -49,5 +49,19 @@ describe("La vue de l'accueil", function () {
     expect(wrapper.vm.appDesactivee('photos')).to.be(false);
     store.commit('ajouteAppVisitee', 'photos');
     expect(wrapper.vm.appDesactivee('photos')).to.be(true);
+  });
+
+  it('affiche la transition de fin une fois les apps terminées', function () {
+    store.commit('configureActe', { apps: { photos: {}, agenda: {} }, questionsFin: [{}] });
+    store.commit('ajouteAppVisitee', 'photos');
+    store.commit('ajouteAppVisitee', 'agenda');
+    expect(wrapper.findAll('.transition').length).to.eql(1);
+  });
+
+  it("affiche les questions de fin lorsque l'on clique sur suivant", function () {
+    store.commit('configureActe', { apps: { photos: {} }, questionsFin: [{}] });
+    store.commit('ajouteAppVisitee', 'photos');
+    wrapper.find('.bouton-arrondi--petit').trigger('click');
+    expect(store.state.transitionFinTerminee).to.eql(true);
   });
 });

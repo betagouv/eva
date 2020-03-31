@@ -21,7 +21,7 @@ export default {
   components: { AppAccueil, QuestionsApp },
 
   computed: {
-    ...mapState(['appActive', 'apps', 'appsVisitees', 'questionsFin']),
+    ...mapState(['appActive', 'apps', 'appsVisitees', 'questionsFin', 'transitionFinTerminee']),
     ...mapGetters(['nombreApps']),
 
     questionsApp () {
@@ -33,6 +33,10 @@ export default {
     },
 
     afficheQuestionsFin () {
+      return this.transitionFinTerminee;
+    },
+
+    situationTerminee () {
       return this.appsTerminees && !!this.questionsFin;
     }
   },
@@ -49,7 +53,7 @@ export default {
 
   watch: {
     appsTerminees () {
-      if (this.appsTerminees && !this.afficheQuestionsFin) {
+      if (this.appsTerminees && !this.situationTerminee) {
         this.$emit('terminer');
       }
     }
