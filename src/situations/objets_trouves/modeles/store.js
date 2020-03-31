@@ -16,7 +16,8 @@ export function creeStore () {
       appActive: null,
       appsVisitees: [],
       questionsFin: [],
-      consigneEcranAccueil: null
+      consigneEcranAccueil: null,
+      transitionFinTerminee: false
     },
     getters: {
       nombreApps (state) {
@@ -30,12 +31,16 @@ export function creeStore () {
         state.appsVisitees = [];
         state.consigneEcranAccueil = consigneEcranAccueil;
         state.appActive = null;
+        state.transitionFinTerminee = false;
       },
       afficheApp (state, app) {
         state.appActive = app;
       },
       ajouteAppVisitee (state, app) {
         state.appsVisitees.push(app);
+      },
+      termineTransitionFin (state) {
+        state.transitionFinTerminee = true;
       }
     }
   });

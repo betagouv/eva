@@ -191,7 +191,9 @@
     },
     "intro_contexte": {
       "message": "<p>Vous venez de retrouver le téléphone de Sophie au restaurant. Sophie est une de vos collègues et vous devez la retrouver afin de lui transmettre une information importante : le planning a été modifié, et elle doit prendre votre poste cet après-midi.</p><p>Vous décidez de chercher dans son téléphone des informations pour la retrouver. Vous avez accès à ses sms, ses messages vocaux, ses photographies, ainsi que son agenda.</p><p>Commençons par un entraînement.</p>",
-      "message_transition": "<p>Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.</p>"
+      "message_transition": "<p>Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.</p>",
+      "message_transition_fin": "<p>Bravo ! Grâce à votre enquête dans son téléphone, vous avez retrouvé Sophie. </p><p>Allons la rejoindre !</p>",
+      "suivant": "Suivant"
     }
   }
 }

@@ -30,9 +30,10 @@ describe("La vue de l'acte d'objets trouvés", function () {
     expect(wrapper.contains(AppAccueil)).to.be(true);
   });
 
-  it('affiche les questions de fin une fois toute les apps terminées', function () {
+  it('affiche les questions de fin une fois la transition de fin terminée', function () {
     store.commit('ajouteAppVisitee', 'photos');
     store.commit('ajouteAppVisitee', 'agenda');
+    store.commit('termineTransitionFin');
     expect(wrapper.vm.afficheQuestionsFin).to.be(true);
     expect(wrapper.contains(QuestionsApp)).to.be(true);
   });
