@@ -21,6 +21,7 @@
         />
         <lecteur-audio
           v-if="element.audio"
+          :joue-son="reponse == element.id"
           :src="son(element.audio, element.id)"
           class="question-reponse-intitule"
         />
