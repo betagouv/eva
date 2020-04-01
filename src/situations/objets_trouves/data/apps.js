@@ -14,7 +14,6 @@ import zoo from '../assets/zoo.svg';
 import iconeAgenda from '../assets/icone-agenda.png';
 import iconePhotos from '../assets/icone-photos.png';
 import iconeNotes from '../assets/icone-notes.png';
-import iconeRepondeur from '../assets/icone-repondeur.png';
 import iconeMessages from '../assets/icone-messages.png';
 
 const questionAgendaEntrainement = {
@@ -300,17 +299,6 @@ const questionMessage3 = {
   ]
 };
 
-const question1 = {
-  id: 1,
-  icone: iconeRepondeur,
-  choix: [
-    {
-      id: '1',
-      intitule: '1'
-    }
-  ]
-};
-
 const configurationEntrainement = {
   apps: {
     agenda: [questionAgendaEntrainement]
@@ -320,7 +308,6 @@ const configurationEntrainement = {
 const configurationNormale = {
   apps: {
     photos: [questionPhoto],
-    repondeur: [question1],
     rappels: [questionRappels],
     agenda: [questionAgenda],
     messages: [questionMessage3, questionMessage1, questionMessage2]
