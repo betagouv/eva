@@ -8,6 +8,7 @@
 
 <script>
 import Qcm from 'commun/vues/qcm';
+import EvenementReponse from 'questions/modeles/evenement_reponse';
 
 export default {
   components: { Qcm },
@@ -32,7 +33,9 @@ export default {
   },
 
   methods: {
-    reponseApp () {
+    reponseApp (reponse) {
+      this.$journal.enregistre(new EvenementReponse({ question: this.question.id, reponse }));
+
       if (this.indexQuestion + 1 === this.questions.length) {
         this.$emit('finQuestions');
       } else {
