@@ -4,6 +4,7 @@ import MockDepotRessources from '../aides/mock_depot_ressources_objets_trouves';
 import { creeStore } from 'objets_trouves/modeles/store';
 import Accueil from 'objets_trouves/vues/accueil';
 import IconeApp from 'objets_trouves/vues/icone_app';
+import { TRANSITION } from 'objets_trouves/modeles/situation';
 
 describe("La vue de l'accueil", function () {
   let wrapper;
@@ -53,15 +54,15 @@ describe("La vue de l'accueil", function () {
 
   it('affiche la transition de fin une fois les apps terminées', function () {
     store.commit('configureActe', { apps: { photos: {}, agenda: {} }, questionsFin: [{}] });
-    store.commit('ajouteAppVisitee', 'photos');
-    store.commit('ajouteAppVisitee', 'agenda');
+    store.commit('modifieEtatTelephone', TRANSITION);
     expect(wrapper.findAll('.transition').length).to.eql(1);
   });
 
   it("affiche les questions de fin lorsque l'on clique sur suivant", function () {
     store.commit('configureActe', { apps: { photos: {} }, questionsFin: [{}] });
     store.commit('ajouteAppVisitee', 'photos');
+    store.commit('modifieEtatTelephone', TRANSITION);
     wrapper.find('.bouton-arrondi--petit').trigger('click');
-    expect(store.state.transitionFinTerminee).to.eql(true);
+    expect(store.state.etatTelephone).to.eql('questionsFin');
   });
 });
