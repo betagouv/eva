@@ -10,7 +10,7 @@ const rollbar = new Rollbar({
   client: {
     javascript: {
       source_map_enabled: true,
-      code_version: CODE_VERSION,
+      code_version: process.env.SOURCE_VERSION,
       guess_uncaught_frames: true
     }
   }

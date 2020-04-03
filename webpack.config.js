@@ -5,9 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
-const gitRevisionPlugin = new GitRevisionPlugin();
 const devMode = process.env.NODE_ENV !== 'production';
 const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves', 'bienvenue'];
 
@@ -123,11 +121,7 @@ module.exports = {
       inject: 'head'
     }),
     ...templatesSituations,
-    gitRevisionPlugin,
-    new webpack.DefinePlugin({
-      'CODE_VERSION': JSON.stringify(gitRevisionPlugin.commithash())
-    }),
-    new webpack.EnvironmentPlugin(['URL_SERVEUR', 'JETON_CLIENT_ROLLBAR']),
+    new webpack.EnvironmentPlugin(['URL_SERVEUR', 'JETON_CLIENT_ROLLBAR', 'SOURCE_VERSION']),
     new FaviconsWebpackPlugin('./src/public/logo.svg'),
     new VueLoaderPlugin()
   ],
