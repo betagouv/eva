@@ -6,6 +6,13 @@ import {
   FINI
 } from 'commun/modeles/situation';
 
+import {
+  QUESTIONS_APP,
+  QUESTIONS_FIN,
+  TRANSITION,
+  ACCUEIL
+} from './situation';
+
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
 
 export function creeStore () {
@@ -17,7 +24,7 @@ export function creeStore () {
       appsVisitees: [],
       questionsFin: [],
       consigneEcranAccueil: null,
-      transitionFinTerminee: false
+      etatTelephone: ACCUEIL
     },
     getters: {
       nombreApps (state) {
@@ -25,25 +32,26 @@ export function creeStore () {
       }
     },
     mutations: {
-      configureActe (state, { apps, consigneEcranAccueil, questionsFin }) {
+      configureActe (state, { apps, consigneEcranAccueil, questionsFin, etatTelephone }) {
         state.apps = apps;
         state.questionsFin = questionsFin;
         state.appsVisitees = [];
         state.consigneEcranAccueil = consigneEcranAccueil;
         state.appActive = null;
-        state.transitionFinTerminee = false;
+        state.etatTelephone = etatTelephone;
       },
       afficheApp (state, app) {
         state.appActive = app;
+        state.etatTelephone = QUESTIONS_APP;
       },
       ajouteAppVisitee (state, app) {
         state.appsVisitees.push(app);
       },
-      termineTransitionFin (state) {
-        state.transitionFinTerminee = true;
+      modifieEtatTelephone (state, etat) {
+        state.etatTelephone = etat;
       }
     }
   });
 }
 
-export { CHARGEMENT, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI };
+export { CHARGEMENT, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI, QUESTIONS_APP, QUESTIONS_FIN, TRANSITION, ACCUEIL };
