@@ -47,6 +47,10 @@
         "label": "Aidez nous à améliorer<br>votre expérience avec eva",
         "oui": "Je donne mon avis",
         "non": "Non"
+      },
+      "confirmation_deconnexion": {
+        "label": "Avez-vous bien pris connaissance<br>de vos potentiels ?",
+        "bouton": "Oui, me déconnecter"
       }
     },
     "titre": "eva"
