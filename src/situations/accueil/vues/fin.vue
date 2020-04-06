@@ -48,26 +48,50 @@
       </div>
 
       <div class='actions-fin'>
+        <div class='mon-avis'
+          v-if="afficheDonnerAvis"
+        >
+          <div class='information'>
+            <img class="avatar" :src="avatarAvis"/>
+            <span class="texte" v-html="$traduction('accueil.fin.avis.label')" />
+          </div>
+          <div class='actions-avis'>
+            <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
+              :href="lienDonnerAvis"
+              target='_blank'
+              @click="fermeDonnerAvis">
+              {{ $traduction('accueil.fin.avis.oui') }}
+            </a>
+            <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
+               @click="fermeDonnerAvis"
+            >
+              {{ $traduction('accueil.fin.avis.non') }}
+            </a>
+          </div>
+        </div>
+
+        <a
+          v-if="!afficheDonnerAvis && !confirmeDeconnexion"
+          class="bouton-deconnexion bouton-arrondi"
+          @click="afficheConfirmationDeconnexion"
+        >{{ $traduction('deconnexion.titre') }}</a>
+
         <transition-fade>
-          <div class='mon-avis'
-            v-if="afficheDonnerAvis"
+          <div
+            v-if="confirmeDeconnexion"
+            class="confirmation-deconnexion"
           >
-            <div class='information-avis'>
-              <img class="avatar-avis" :src="avatarAvis"/>
-              <span v-html="$traduction('accueil.fin.avis.label')" />
+            <div class="information">
+              <span class="avatar">
+                <img class :src="avatarDeconnexion" />
+              </span>
+              <span class="texte" v-html="$traduction('accueil.fin.confirmation_deconnexion.label')" />
             </div>
-            <div class='actions-avis'>
-              <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
-                :href="lienDonnerAvis"
-                target='_blank'
-                @click="fermeDonnerAvis">
-                {{ $traduction('accueil.fin.avis.oui') }}
-              </a>
-              <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
-                 @click="fermeDonnerAvis"
-              >
-                {{ $traduction('accueil.fin.avis.non') }}
-              </a>
+            <div class="actions-deconnexion">
+              <a
+                class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
+                @click="deconnecte"
+              >{{ $traduction('accueil.fin.confirmation_deconnexion.bouton') }}</a>
             </div>
           </div>
         </transition-fade>
@@ -78,7 +102,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import 'accueil/styles/fin.scss';
 import TransitionFade from 'commun/vues/transition_fade';
 
@@ -91,12 +115,16 @@ export default {
       ecran: 'bravo',
       avatarFin: this.$depotRessources.avatarFin().src,
       avatarAvis: this.$depotRessources.avatarAvis().src,
+      avatarDeconnexion: this.$depotRessources.avatarDeconnexion().src,
       lienDonnerAvis: 'https://evabetagouv.typeform.com/to/G988nO',
-      afficheDonnerAvis: true
+      afficheDonnerAvis: true,
+      confirmeDeconnexion: false
     };
   },
 
   methods: {
+    ...mapActions(['deconnecte']),
+
     lienSiteVitrine (competence) {
       return `https://eva.beta.gouv.fr/competences/${competence}`;
     },
@@ -107,6 +135,10 @@ export default {
 
     fermeDonnerAvis () {
       this.afficheDonnerAvis = false;
+    },
+
+    afficheConfirmationDeconnexion () {
+      this.confirmeDeconnexion = true;
     }
   }
 };

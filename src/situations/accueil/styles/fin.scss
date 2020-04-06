@@ -44,40 +44,58 @@
       align-items: center;
       justify-content: center;
 
-      .mon-avis {
+      .mon-avis,
+      .confirmation-deconnexion {
         height: 4rem;
         width: 40rem;
         display: flex;
         background: $blanc;
         border: 1px solid $vert-clair;
         border-radius: 4rem;
-        padding: 1rem .5rem;
+        padding: 1rem 0.5rem;
         font-size: 0.875rem;
-
-        .information-avis {
+        .actions-avis,
+        .actions-deconnexion,
+        .information {
+          display: flex;
+        }
+        .information {
           flex-grow: 1;
           align-items: center;
           text-align: left;
-
-          span {
+          .texte {
             margin-left: 1rem;
           }
-        }
-        a {
-          color: $blanc;
-        }
-
-        .bouton-arrondi-vert {
-          padding-left: 1.125rem;
-          padding-right: 1.125rem;
         }
         .bouton-arrondi-orange {
           padding-left: 1.5rem;
           padding-right: 1.5rem;
-          margin-left: .5rem;
-          margin-right: .5rem;
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
         }
-        .actions-avis, .information-avis { display: flex; }
+      }
+
+      .mon-avis {
+        border: 1px solid $vert-clair;
+        a {
+          color: $blanc;
+        }
+        .bouton-arrondi-vert {
+          padding-left: 1.125rem;
+          padding-right: 1.125rem;
+        }
+      }
+
+      .confirmation-deconnexion {
+        border: 1px solid $orange;
+        .avatar {
+          display: flex;
+          width: 48px;
+          height: 48px;
+          justify-content: center;
+          border-radius: 50%;
+          background-color: $orange;
+        }
       }
     }
 
@@ -100,7 +118,7 @@
         margin: 0;
       }
       &-description {
-        font-size: .875rem;
+        font-size: 0.875rem;
       }
       img {
         margin: 2rem;

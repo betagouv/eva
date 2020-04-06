@@ -10,7 +10,7 @@ describe('La vue de fin', function () {
   let localVue;
 
   beforeEach(function () {
-    depotRessources = new class {
+    depotRessources = new (class {
       comprehensionConsigne () {
         return { src: '' };
       }
@@ -22,7 +22,11 @@ describe('La vue de fin', function () {
       avatarAvis () {
         return { src: '' };
       }
-    }();
+
+      avatarDeconnexion () {
+        return { src: '' };
+      }
+    })();
     store = new Vuex.Store({
       state: {
         competencesFortes: []
@@ -72,11 +76,17 @@ describe('La vue de fin', function () {
     expect(wrapper.findAll('.button').length).to.equal(0);
   });
 
-  it('affiche le module de collecte des avis si compétences', function () {
+  it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function () {
     store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
     wrapper = mount(Fin, { store, localVue });
     wrapper.find('button').trigger('click');
 
     expect(wrapper.findAll('.mon-avis').length).to.equal(1);
+
+    wrapper.find('.actions-avis .bouton-arrondi-orange').trigger('click');
+    expect(wrapper.find('.actions-fin .bouton-deconnexion').isVisible()).to.be(true);
+
+    wrapper.find('.actions-fin .bouton-deconnexion').trigger('click');
+    expect(wrapper.find('.actions-fin .confirmation-deconnexion').isVisible()).to.be(true);
   });
 });
