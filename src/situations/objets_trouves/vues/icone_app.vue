@@ -9,20 +9,22 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: {
     app: {
       type: String,
       required: true
     },
-    apps: {
-      type: Object,
-      required: true
-    },
     desactivee: {
       type: Boolean,
       required: true
     }
+  },
+
+  computed: {
+    ...mapState(['apps'])
   },
 
   methods: {

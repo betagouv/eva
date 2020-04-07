@@ -4,6 +4,7 @@ import sonConsigneTransition from 'objets_trouves/assets/consigne_transition.wav
 
 import fondSituation from '../assets/accueil.png';
 import fondDeverrouillage from '../assets/fond-vierge.jpg';
+import iconeDeverrouillageDebloque from '../assets/icone-deverouillage-debloque.png';
 
 import appPhoto from '../assets/app-photo.png';
 
@@ -21,7 +22,7 @@ const choixReponsesAudioQcm = {
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigne, sonConsigneTransition);
-    this.charge([fondSituation, appPhoto, fondDeverouillage]);
+    this.charge([fondSituation, appPhoto, fondDeverrouillage, iconeDeverrouillageDebloque]);
     this.charge(choixReponsesAudioQcm.agenda);
   }
 
@@ -39,7 +40,11 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     return reponses[numeroReponse - 1];
   }
 
-  fondDeverouillage () {
-    return this.ressource(fondDeverouillage);
+  fondDeverrouillage () {
+    return this.ressource(fondDeverrouillage);
+  }
+
+  iconeDeverrouillageDebloque () {
+    return this.ressource(iconeDeverrouillageDebloque);
   }
 }

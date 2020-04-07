@@ -2,7 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { traduction } from 'commun/infra/internationalisation';
 import CodePin from 'objets_trouves/vues/code_pin';
 import Heure from 'objets_trouves/vues/heure';
-import IconeApp from 'objets_trouves/vues/icone_app';
+import MockDepotRessources from '../aides/mock_depot_ressources_objets_trouves';
 
 describe('Le code pin', function () {
   let wrapper;
@@ -11,6 +11,7 @@ describe('Le code pin', function () {
   beforeEach(function () {
     localVue = createLocalVue();
     localVue.prototype.$traduction = traduction;
+    localVue.prototype.$depotRessources = new MockDepotRessources();
     wrapper = shallowMount(CodePin, {
       localVue,
       propsData: {
@@ -23,9 +24,8 @@ describe('Le code pin', function () {
     });
   });
 
-  it("affiche l'heure et l'icone déverouiller", function () {
+  it("affiche l'heure", function () {
     expect(wrapper.contains(Heure)).to.be(true);
-    expect(wrapper.contains(IconeApp)).to.be(true);
   });
 
   it('affiche la question', function () {

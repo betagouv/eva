@@ -5,11 +5,13 @@
 
       <div class="icones-conteneur icones-conteneur--deverrouiller">
         <div class="icones">
-          <icone-app
-            key="deverrouillage"
-            app="deverrouillage"
-            :desactivee="false"
-          />
+          <div class="icone--desactivee">
+            <div
+              class="icone icone--deverrouillage"
+              :style="{ 'background-image': `url(${$depotRessources.iconeDeverrouillageDebloque().src})` }"
+            ></div>
+            <span class="label">{{ $traduction('objets_trouves.accueil.deverrouillage') }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -49,10 +51,9 @@ import 'commun/styles/boutons.scss';
 import 'objets_trouves/styles/code_pin.scss';
 import Question from 'commun/vues/question';
 import Heure from 'objets_trouves/vues/heure';
-import IconeApp from './icone_app';
 
 export default {
-  components: { Question, Heure, IconeApp },
+  components: { Question, Heure },
 
   props: {
     question: {
