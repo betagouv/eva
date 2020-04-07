@@ -213,7 +213,7 @@ const questionFin3 = {
 };
 
 const questionMessage1 = {
-  id: 'message1',
+  id: 'quel-bureau',
   icone: iconeMessages,
   illustration: AppMessage1,
   intitule: 'À quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
@@ -242,7 +242,7 @@ const questionMessage1 = {
 };
 
 const questionMessage2 = {
-  id: 'message2',
+  id: 'quelle-salle-reserver',
   icone: iconeMessages,
   illustration: AppMessage2,
   intitule: 'Dans quelle salle de jeu Sophie a-t-elle décidé d’aller ?',
@@ -271,7 +271,7 @@ const questionMessage2 = {
 };
 
 const questionMessage3 = {
-  id: 'message3',
+  id: 'ou-retrouver-dounia',
   icone: iconeMessages,
   illustration: AppMessage3,
   intitule: 'Où Sophie devait-elle retrouver Dounia ?',
