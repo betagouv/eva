@@ -16,6 +16,7 @@ import iconeAgenda from '../assets/icone-agenda.png';
 import iconePhotos from '../assets/icone-photos.png';
 import iconeNotes from '../assets/icone-notes.png';
 import iconeMessages from '../assets/icone-messages.png';
+import iconeDeverouillage from '../assets/icone-deverouillage.png';
 
 const questionAgendaEntrainement = {
   id: 'agenda-entrainement',
@@ -74,6 +75,7 @@ const questionPhoto = {
 const questionDeverrouillage = {
   id: 'deverrouillage',
   illustration: AppDeverrouillage,
+  icone: iconeDeverouillage,
   intitule: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
   question: 'Quel est le mot de passe ?'
 };

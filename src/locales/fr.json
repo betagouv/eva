@@ -195,8 +195,6 @@
       "deverrouillage": "Déverrouiller"
     },
     "verrouillage": {
-      "indice": "Indice",
-      "intitule": "Si j'ai 150 paquets de 12 mouchoirs, combien ai-je de mouchoirs ?",
       "valider": "Valider"
     },
     "intro_contexte": {

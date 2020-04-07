@@ -40,7 +40,7 @@ export function creeStore () {
         state.consigneEcranAccueil = consigneEcranAccueil;
         state.appActive = null;
         state.etatTelephone = etatTelephone;
-        state.afficheEcranVerrouillage = 'deverouillage' in apps;
+        state.afficheEcranVerrouillage = 'deverrouillage' in apps;
       },
       afficheApp (state, app) {
         state.appActive = app;
@@ -52,7 +52,7 @@ export function creeStore () {
       modifieEtatTelephone (state, etat) {
         state.etatTelephone = etat;
       },
-      deverouillageTelephone (state, app) {
+      deverrouillageTelephone (state, app) {
         state.afficheEcranVerrouillage = false;
         delete state.apps[app];
       }

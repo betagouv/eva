@@ -6,4 +6,8 @@ export default class MockDepotRessources {
   fondDeverrouillage () {
     return { src: 'fondDeverrouillage' };
   }
+
+  iconeDeverrouillageDebloque () {
+    return { src: 'iconeDeverrouillageDebloque' };
+  }
 }

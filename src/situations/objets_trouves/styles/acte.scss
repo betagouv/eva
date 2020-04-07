@@ -87,7 +87,7 @@
   text-align: center;
   &:first-of-type {
     padding: 0.5rem;
-    .icone {
+    .icone:not(.icone--deverrouillage) {
       margin: 0.5rem 0.25rem 0;
     }
   }
@@ -137,9 +137,15 @@
       background-color: darken($couleur-app-messages, 10%);
     }
   }
+  &--deverrouillage {
+    background-color: $bleu;
+    &:hover {
+      background-color: darken($bleu, 10%);
+    }
+  }
   &--desactivee {
     pointer-events: none;
-    .icone {
+    .icone:not(.icone--deverrouillage) {
       background-color: $gris-clair;
     }
   }
