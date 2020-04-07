@@ -47,55 +47,64 @@
         </div>
       </div>
 
-      <div class='actions-fin'>
-        <div class='mon-avis'
-          v-if="afficheDonnerAvis"
-        >
-          <div class='information'>
-            <img class="avatar" :src="avatarAvis"/>
-            <span class="texte" v-html="$traduction('accueil.fin.avis.label')" />
-          </div>
-          <div class='actions-avis'>
-            <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
-              :href="lienDonnerAvis"
-              target='_blank'
-              @click="fermeDonnerAvis">
-              {{ $traduction('accueil.fin.avis.oui') }}
-            </a>
-            <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
-               @click="fermeDonnerAvis"
-            >
-              {{ $traduction('accueil.fin.avis.non') }}
-            </a>
+      <transition-fade>
+        <div
+            v-if="afficheDonnerAvis"
+            key="mon-avis"
+            class='actions-fin'
+          >
+          <div class='mon-avis'>
+            <div class='information'>
+              <img class="avatar" :src="avatarAvis"/>
+              <span class="texte" v-html="$traduction('accueil.fin.avis.label')" />
+            </div>
+            <div class='actions-avis'>
+              <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
+                :href="lienDonnerAvis"
+                target='_blank'
+                @click="fermeDonnerAvis">
+                {{ $traduction('accueil.fin.avis.oui') }}
+              </a>
+              <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
+                 @click="fermeDonnerAvis"
+              >
+                {{ $traduction('accueil.fin.avis.non') }}
+              </a>
+            </div>
           </div>
         </div>
 
-        <a
-          v-if="!afficheDonnerAvis && !confirmeDeconnexion"
-          class="bouton-deconnexion bouton-arrondi"
-          @click="afficheConfirmationDeconnexion"
-        >{{ $traduction('deconnexion.titre') }}</a>
+        <div
+            v-else-if="confirmeDeconnexion"
+            key="confirme-deconnection"
+            class='actions-fin'
+        >
+            <div class="confirmation-deconnexion" >
+              <div class="information">
+                <span class="avatar">
+                  <img class :src="avatarDeconnexion" />
+                </span>
+                <span class="texte" v-html="$traduction('accueil.fin.confirmation_deconnexion.label')" />
+              </div>
+              <div class="actions-deconnexion">
+                <a
+                  class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
+                  @click="deconnecte"
+                >{{ $traduction('accueil.fin.confirmation_deconnexion.bouton') }}</a>
+              </div>
+            </div>
+        </div>
 
-        <transition-fade>
-          <div
-            v-if="confirmeDeconnexion"
-            class="confirmation-deconnexion"
-          >
-            <div class="information">
-              <span class="avatar">
-                <img class :src="avatarDeconnexion" />
-              </span>
-              <span class="texte" v-html="$traduction('accueil.fin.confirmation_deconnexion.label')" />
-            </div>
-            <div class="actions-deconnexion">
-              <a
-                class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
-                @click="deconnecte"
-              >{{ $traduction('accueil.fin.confirmation_deconnexion.bouton') }}</a>
-            </div>
-          </div>
-        </transition-fade>
-      </div>
+        <div v-else
+            key="buton-deconnexion"
+            class='actions-fin'
+        >
+          <a
+            class="bouton-deconnexion bouton-arrondi"
+            @click="afficheConfirmationDeconnexion"
+          >{{ $traduction('deconnexion.titre') }}</a>
+        </div>
+      </transition-fade>
     </div>
 
   </div>
