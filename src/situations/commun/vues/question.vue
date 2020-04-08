@@ -7,7 +7,7 @@
 
     <div
       class="icone-conteneur"
-      v-if="appActive"
+      v-if="appActive && appActive != 'deverrouillage'"
     >
       <div
         class="icone"
