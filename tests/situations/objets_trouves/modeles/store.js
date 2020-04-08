@@ -1,4 +1,5 @@
 import { creeStore } from 'objets_trouves/modeles/store';
+import { DEVERROUILLAGE, ACCUEIL } from 'objets_trouves/modeles/situation';
 
 describe('Le store de la situation objets trouvés', function () {
   it("permet de configurer l'acte", function () {
@@ -38,13 +39,16 @@ describe('Le store de la situation objets trouvés', function () {
     expect(store.getters.nombreApps).to.eql(2);
   });
 
-  it("deverrouillageTelephone affiche l'accueil du téléphone", function () {
+  it("affiche l'accueil si pas d'app deverrouillage", function () {
     const store = creeStore();
-    store.commit('configureActe', { apps: { deverrouillage: {}, photos: {}, agenda: {} }, questionsFin: [{ question1: 'libelle' }] });
-    expect(store.state.afficheEcranVerrouillage).to.eql(true);
+    store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
+    expect(store.state.etatTelephone).to.eql(ACCUEIL);
+  });
 
-    store.commit('deverrouillageTelephone', 'deverrouillage');
-    expect(store.state.afficheEcranVerrouillage).to.eql(false);
+  it("affiche l'écran de dévérrouillage si il y a l'app deverrouillage dans la configuration", function () {
+    const store = creeStore();
+    store.commit('configureActe', { apps: { deverrouillage: {}, photos: {} } });
+    expect(store.state.etatTelephone).to.eql(DEVERROUILLAGE);
   });
 
   it("deverrouillageTelephone supprime l'application déverrouillage du téléphone lorsque l'on est sur l'accueil", function () {

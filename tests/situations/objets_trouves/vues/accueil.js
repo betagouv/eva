@@ -4,7 +4,7 @@ import MockDepotRessources from '../aides/mock_depot_ressources_objets_trouves';
 import { creeStore } from 'objets_trouves/modeles/store';
 import Accueil from 'objets_trouves/vues/accueil';
 import IconeApp from 'objets_trouves/vues/icone_app';
-import { TRANSITION } from 'objets_trouves/modeles/situation';
+import { TRANSITION, DEVERROUILLAGE } from 'objets_trouves/modeles/situation';
 
 describe("La vue de l'accueil", function () {
   let wrapper;
@@ -71,5 +71,10 @@ describe("La vue de l'accueil", function () {
     store.commit('modifieEtatTelephone', TRANSITION);
     wrapper.find('.bouton-arrondi--petit').trigger('click');
     expect(store.state.etatTelephone).to.eql('questionsFin');
+  });
+
+  it("affiche l'écran de dévérrouillage lorsque que l'état de l'app est DEVERROUILLAGE", function () {
+    store.commit('modifieEtatTelephone', DEVERROUILLAGE);
+    expect(wrapper.findAll('.icones-conteneur--deverrouiller').length).to.equal(1);
   });
 });
