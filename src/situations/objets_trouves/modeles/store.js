@@ -10,7 +10,8 @@ import {
   QUESTIONS_APP,
   QUESTIONS_FIN,
   TRANSITION,
-  ACCUEIL
+  ACCUEIL,
+  DEVERROUILLAGE
 } from './situation';
 
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
@@ -24,8 +25,7 @@ export function creeStore () {
       appsVisitees: [],
       questionsFin: [],
       consigneEcranAccueil: null,
-      etatTelephone: ACCUEIL,
-      afficheEcranVerrouillage: null
+      etatTelephone: null
     },
     getters: {
       nombreApps (state) {
@@ -39,8 +39,7 @@ export function creeStore () {
         state.appsVisitees = [];
         state.consigneEcranAccueil = consigneEcranAccueil;
         state.appActive = null;
-        state.etatTelephone = etatTelephone;
-        state.afficheEcranVerrouillage = 'deverrouillage' in apps;
+        state.etatTelephone = DEVERROUILLAGE in apps ? DEVERROUILLAGE : ACCUEIL;
       },
       afficheApp (state, app) {
         state.appActive = app;
@@ -53,11 +52,10 @@ export function creeStore () {
         state.etatTelephone = etat;
       },
       deverrouillageTelephone (state, app) {
-        state.afficheEcranVerrouillage = false;
         delete state.apps[app];
       }
     }
   });
 }
 
-export { CHARGEMENT, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI, QUESTIONS_APP, QUESTIONS_FIN, TRANSITION, ACCUEIL };
+export { CHARGEMENT, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI, QUESTIONS_APP, QUESTIONS_FIN, TRANSITION, ACCUEIL, DEVERROUILLAGE };
