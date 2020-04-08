@@ -42,4 +42,11 @@ describe('La vue de la question', function () {
     expect(icone.classes('icone--agenda')).to.be(true);
     expect(icone.attributes('style')).to.equal('background-image: url(icone-agenda);');
   });
+
+  it("n'affiche pas d'icône si l'app active est deverrouillage", function () {
+    store.commit('configureActe', { apps: { deverrouillage: { 0: { icone: 'icone-deverrouillage' } } } });
+    store.commit('afficheApp', 'deverrouillage');
+
+    expect(wrapper.contains('.icone-conteneur')).to.be(false);
+  });
 });

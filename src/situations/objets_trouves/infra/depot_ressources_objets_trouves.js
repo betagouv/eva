@@ -4,7 +4,7 @@ import sonConsigneTransition from 'objets_trouves/assets/consigne_transition.wav
 
 import fondSituation from '../assets/accueil.png';
 import fondDeverrouillage from '../assets/fond-vierge.jpg';
-import iconeDeverrouillageDebloque from '../assets/icone-deverouillage-debloque.png';
+import iconeDeverrouillageDebloque from '../assets/icone-deverrouillage-debloque.png';
 
 import appPhoto from '../assets/app-photo.png';
 
