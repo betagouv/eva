@@ -7,8 +7,8 @@
       <heure />
 
       <div
-        class="ecran-verrouille-conteneur"
         v-if="afficheEcranVerrouille"
+        class="ecran-verrouille-conteneur"
       >
         <div class="icones-conteneur icones-conteneur--deverrouiller">
           <div class="icones">
@@ -22,7 +22,10 @@
         </div>
       </div>
 
-      <div class="icones-conteneur" v-else>
+      <div
+        v-else
+        class="icones-conteneur"
+      >
         <div class="icones">
           <icone-app
             v-for="(question, app) in apps"
