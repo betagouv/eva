@@ -5,7 +5,24 @@
   >
     <slot />
     <p class="sans-marge">{{ question.description }}</p>
-    <p class="question-intitule sans-marge">{{ question.intitule }}</p>
+    <p class="question-intitule">{{ question.intitule }}</p>
+    <div
+      v-if="question.numerique"
+      class="question-choix"
+    >
+      <div class="codepin-input-conteneur">
+        <input
+          v-model.trim="reponse"
+          class="codepin-input"
+          maxlength="4"
+          type='text'
+          />
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
     <div
       v-for="element in question.choix"
       :key="element.id"
