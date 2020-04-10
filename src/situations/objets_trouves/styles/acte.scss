@@ -143,9 +143,12 @@
       background-color: darken($bleu, 10%);
     }
   }
+  &--deverrouillee {
+    pointer-events: none;
+  }
   &--desactivee {
     pointer-events: none;
-    .icone:not(.icone--deverrouillage) {
+    .icone {
       background-color: $gris-clair;
     }
   }
