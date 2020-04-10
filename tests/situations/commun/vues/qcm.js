@@ -37,6 +37,14 @@ describe('La vue de la question QCM', function () {
     expect(vue.findAll('img').length).to.equal(3);
   });
 
+  it('affiche une question de type numérique', function () {
+    question.numerique = true;
+    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const inputNumerique = vue.findAll('input[type=text]');
+    expect(inputNumerique.length).to.equal(1);
+    expect(inputNumerique.at(0).classes('numerique-input')).to.be(true);
+  });
+
   it("affiche un bouton d'envoi de réponse", function () {
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
     expect(vue.contains('.question-bouton')).to.be(true);

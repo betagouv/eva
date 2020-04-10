@@ -30,10 +30,10 @@
         v-if="question.numerique"
         class="question-choix"
       >
-        <div class="codepin-input-conteneur">
+        <div class="numerique-input-conteneur">
           <input
             v-model.trim="reponse"
-            class="codepin-input"
+            class="numerique-input"
             maxlength="4"
             type='text'
             />
