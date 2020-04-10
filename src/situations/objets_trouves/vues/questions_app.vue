@@ -1,35 +1,22 @@
 <template>
-  <code-pin
-    :key="question.id"
-    :question="question"
-    @reponse="reponseApp"
-    v-if='appDeverrouillage'
-  />
   <qcm
     :key="question.id"
     :question="question"
     @reponse="reponseApp"
-    v-else
   />
-
 </template>
 
 <script>
 import Qcm from 'commun/vues/qcm';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
-import CodePin from 'objets_trouves/vues/code_pin';
 
 export default {
-  components: { Qcm, CodePin },
+  components: { Qcm },
 
   props: {
     questions: {
       type: Array,
       required: true
-    },
-    app: {
-      type: String,
-      required: false
     }
   },
 
@@ -40,9 +27,6 @@ export default {
   },
 
   computed: {
-    appDeverrouillage () {
-      return this.app === 'deverrouillage';
-    },
     question () {
       return this.questions[this.indexQuestion];
     }
