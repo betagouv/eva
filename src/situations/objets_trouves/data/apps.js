@@ -316,8 +316,10 @@ const configurationEntrainement = {
   consigneEcranAccueil: 'Veuillez cliquer sur l’application pour l’ouvrir.'
 };
 const configurationNormale = {
+  appsAccueilVerrouille: {
+    deverrouillage: [questionDeverrouillage]
+  },
   apps: {
-    deverrouillage: [questionDeverrouillage],
     photos: [questionPhoto],
     rappels: [questionRappels],
     agenda: [questionAgenda],

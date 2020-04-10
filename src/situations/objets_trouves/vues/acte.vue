@@ -6,7 +6,7 @@
   />
   <questions-app
     v-else-if="afficheQuestionApp"
-    :questions="questionsApp"
+    :questions="questionsAppActive"
     :app="appActive"
     @finQuestions="finApp"
   />
@@ -23,17 +23,14 @@ export default {
   components: { AppAccueil, QuestionsApp },
 
   computed: {
-    ...mapState(['appActive', 'apps', 'appsVisitees', 'questionsFin', 'etatTelephone']),
-    ...mapGetters(['nombreApps']),
+    ...mapState(['appActive', 'appsVisitees', 'questionsFin', 'etatTelephone']),
+    ...mapGetters(['nombreApps', 'questionsAppActive']),
 
     afficheQuestionFin () {
       return this.etatTelephone === QUESTIONS_FIN;
     },
     afficheQuestionApp () {
       return this.etatTelephone === QUESTIONS_APP;
-    },
-    questionsApp () {
-      return this.apps[this.appActive];
     },
 
     appsTerminees () {
@@ -46,9 +43,6 @@ export default {
 
   methods: {
     finApp () {
-      if (this.appActive === 'deverrouillage') {
-        this.$store.commit('deverrouillageTelephone', this.appActive);
-      }
       this.$store.commit('ajouteAppVisitee', this.appActive);
       this.$store.commit('afficheApp', null);
       this.metAJourEtatTelephone();

@@ -2,14 +2,14 @@
   <div :class="{'icone--desactivee':desactivee}">
     <div
       class="icone"
-      :class="icone(app)"
-      :style="{ 'background-image': `url(${appAttributes(app).icone})` }"
+      :class="classIcone(app)"
+      :style="{ 'background-image': `url(${urlIcone(app)})` }"
     ></div>
     <span class="label">{{ $traduction(`objets_trouves.accueil.${app}`) }}</span>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -24,14 +24,11 @@ export default {
   },
 
   computed: {
-    ...mapState(['apps'])
+    ...mapGetters(['urlIcone'])
   },
 
   methods: {
-    appAttributes (app) {
-      return Object.assign({}, this.apps)[app][0];
-    },
-    icone (app) {
+    classIcone (app) {
       return `icone--${app}`;
     }
   }
