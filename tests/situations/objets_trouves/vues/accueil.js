@@ -32,10 +32,11 @@ describe("La vue de l'accueil", function () {
     expect(wrapper.findAll('.ecran-verrouille-conteneur').length).to.eql(0);
   });
 
-  it("affiche l'écran de verrouillage si il y a l'app deverrouillage", function () {
-    store.commit('configureActe', { apps: { deverrouillage: {}, photos: {}, agenda: {} } });
+  it("affiche l'écran de dévérrouillage lorsque que l'état de l'app est ACCUEIL_VERROUILLE", function () {
+    store.commit('modifieEtatTelephone', ACCUEIL_VERROUILLE);
     expect(wrapper.findAll(IconeApp).length).to.eql(1);
     expect(wrapper.findAll('.ecran-verrouille-conteneur').length).to.eql(1);
+    expect(wrapper.findAll('.icones-conteneur--deverrouiller').length).to.equal(1);
   });
 
   it('affiche la consigne', function () {
@@ -71,10 +72,5 @@ describe("La vue de l'accueil", function () {
     store.commit('modifieEtatTelephone', TRANSITION);
     wrapper.find('.bouton-arrondi--petit').trigger('click');
     expect(store.state.etatTelephone).to.eql('questionsFin');
-  });
-
-  it("affiche l'écran de dévérrouillage lorsque que l'état de l'app est ACCUEIL_VERROUILLE", function () {
-    store.commit('modifieEtatTelephone', ACCUEIL_VERROUILLE);
-    expect(wrapper.findAll('.icones-conteneur--deverrouiller').length).to.equal(1);
   });
 });

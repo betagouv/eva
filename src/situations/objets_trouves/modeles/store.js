@@ -30,16 +30,31 @@ export function creeStore () {
     getters: {
       nombreApps (state) {
         return Object.keys(state.apps).length;
+      },
+      allApps (state) {
+        return {
+          ...state.apps,
+          ...state.appsAccueilVerrouille
+        };
+      },
+      questionsAppActive (state, getters) {
+        return getters.allApps[state.appActive];
+      },
+      urlIcone (state, getters) {
+        return (nomApp) => {
+          return getters.allApps[nomApp][0].icone;
+        };
       }
     },
     mutations: {
-      configureActe (state, { apps, consigneEcranAccueil, questionsFin, etatTelephone }) {
+      configureActe (state, { appsAccueilVerrouille, apps, consigneEcranAccueil, questionsFin, etatTelephone }) {
+        state.appsAccueilVerrouille = appsAccueilVerrouille;
         state.apps = apps;
         state.questionsFin = questionsFin;
         state.appsVisitees = [];
         state.consigneEcranAccueil = consigneEcranAccueil;
         state.appActive = null;
-        state.etatTelephone = 'deverrouillage' in apps ? ACCUEIL_VERROUILLE : ACCUEIL;
+        state.etatTelephone = appsAccueilVerrouille ? ACCUEIL_VERROUILLE : ACCUEIL;
       },
       afficheApp (state, app) {
         state.appActive = app;
@@ -50,9 +65,6 @@ export function creeStore () {
       },
       modifieEtatTelephone (state, etat) {
         state.etatTelephone = etat;
-      },
-      deverrouillageTelephone (state, app) {
-        delete state.apps[app];
       }
     }
   });
