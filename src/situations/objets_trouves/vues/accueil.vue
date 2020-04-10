@@ -62,7 +62,7 @@
 
 <script>
 import { mapMutations, mapState, mapGetters } from 'vuex';
-import { QUESTIONS_FIN, TRANSITION, DEVERROUILLAGE } from '../modeles/store';
+import { QUESTIONS_FIN, TRANSITION, ACCUEIL_VERROUILLE } from '../modeles/store';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
@@ -82,7 +82,7 @@ export default {
       return this.etatTelephone === TRANSITION;
     },
     afficheEcranVerrouille () {
-      return this.etatTelephone === DEVERROUILLAGE;
+      return this.etatTelephone === ACCUEIL_VERROUILLE;
     }
   },
 
