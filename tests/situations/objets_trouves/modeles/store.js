@@ -1,5 +1,5 @@
 import { creeStore } from 'objets_trouves/modeles/store';
-import { DEVERROUILLAGE, ACCUEIL } from 'objets_trouves/modeles/situation';
+import { ACCUEIL_VERROUILLE, ACCUEIL } from 'objets_trouves/modeles/situation';
 
 describe('Le store de la situation objets trouvés', function () {
   it("permet de configurer l'acte", function () {
@@ -48,7 +48,7 @@ describe('Le store de la situation objets trouvés', function () {
   it("affiche l'écran de dévérrouillage si il y a l'app deverrouillage dans la configuration", function () {
     const store = creeStore();
     store.commit('configureActe', { apps: { deverrouillage: {}, photos: {} } });
-    expect(store.state.etatTelephone).to.eql(DEVERROUILLAGE);
+    expect(store.state.etatTelephone).to.eql(ACCUEIL_VERROUILLE);
   });
 
   it("deverrouillageTelephone supprime l'application déverrouillage du téléphone lorsque l'on est sur l'accueil", function () {
