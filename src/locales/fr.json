@@ -68,8 +68,8 @@
   },
   "livraison": {
     "intro_contexte": {
-      "message": "<p> Vous êtes chargé·e des livraisons dans le parc. Vous devez effectuer les livraisons, mais vous rencontrez certains problèmes : des mots sont par exemple effacés sur les colis, sur les pancartes qui vous indiquent le chemin, ou vous entendez mal vos interlocuteurs. Vous devez donc retrouver les mots manquants. Avant de commencer l'exercice, débutons par un entrainement.</p>",
-      "message_transition": "<p>Vous avez terminé l'entrainement, Bravo! Vous pouvez maintenant commencer l'exercice en retrouvant les mots manquants.</p>"
+      "message": "<p>Vous êtes chargé·e des livraisons dans le parc mais vous rencontrez certains problèmes : des mots sont par exemple effacés sur les colis, sur les pancartes qui vous indiquent le chemin, ou vous entendez mal les personnes qui vous parlent.</p><p>Vous devez donc retrouver les mots manquants. Parfois, votre responsable vous demandera quelques informations pour suivre l’avancement des livraisons. Vous pouvez utiliser une calculatrice en cas de besoin.</p><p>Débutons par un entraînement.</p>",
+      "message_transition": "<p>Bravo, vous avez terminé l'entraînement. A vous de jouer ! Retrouvez les mots manquants et répondez aux questions de votre responsable.</p>"
     },
     "titre": "Livraison"
   },
