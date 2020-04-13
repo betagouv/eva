@@ -150,8 +150,8 @@
     "francais": "Mot français",
     "pas_francais": "Mot pas français",
     "intro_contexte": {
-      "message": "<p>Le parc d'attraction dans lequel vous travaillez a reçu un robot qui accueillera les visiteurs.</p><p>Ce robot n'a pas encore été réglé pour parler français, et vous devez lui apprendre quels mots sont français ou non.</p><p>Lorsqu'un mot s'affiche, vous devez le classer en utilisant les flèches de votre clavier. Si vous êtes sur tablette, utilisez les deux index de vos mains pour appuyer sur les flèches de l’écran en vert et rouge. Cliquez à gauche si le mot est français, à droite s'il n'est pas français.</p><p>Commençons d'abord par un entrainement avant de débuter l’exercice.</p>",
-      "message_transition": "<p>Vous venez de réussir l’entraînement, bravo&nbsp;! Vous allez maintenant pouvoir commencer l’exercice. Lorsqu'un mot s'affiche, vous devez le classer, à gauche s'il est français, à droite s'il ne l'est pas. Choisissez le plus rapidement possible, vous êtes chronométré·e.</p>"
+      "message": "<p>Le parc d'attraction dans lequel vous travaillez a reçu un robot qui accueillera les visiteurs.</p><p>Ce robot n'a pas encore été réglé pour parler français, et vous devez lui apprendre à différencier les mots qui existent de ceux qui n’existent pas.</p><p>Lorsqu'un mot s'affiche, vous devez le classer en utilisant les flèches de votre clavier. Appuyez sur la flèche gauche si le mot est français et sur la flèche droite si il n'est pas français. Prenez le temps de bien repérer les touches sur le clavier.</p><p>Si vous êtes sur tablette, appuyez sur la flèche verte si le mot est français et sur la flèche rouge si le mot n’est pas français.</p><p>Commençons d'abord par un entraînement avant de débuter l’exercice.</p>",
+      "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer ! Pour information, vous êtes chronométré·es</p>"
     },
     "titre": "Maintenance"
   },
