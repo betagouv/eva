@@ -41,6 +41,7 @@ describe("La vue de l'acte d'objets trouvés", function () {
 
   it("envois l'évenement terminé si il n'y a pas de questions de fin", function () {
     store.commit('configureActe', { apps: { agenda: [{}] } });
+    expect(wrapper.emitted('terminer')).to.be(undefined);
     store.commit('ajouteAppVisitee', 'agenda');
     expect(wrapper.emitted('terminer').length).to.eql(1);
   });
@@ -51,10 +52,20 @@ describe("La vue de l'acte d'objets trouvés", function () {
     expect(wrapper.emitted('terminer').length).to.eql(1);
   });
 
-  it("lorsqu'il n'y a pas de questions fin et que l'on a visité toute les applications on envoit l'événement terminé", function () {
-    store.commit('configureActe', { apps: { agenda: [{}] } });
-    expect(wrapper.emitted('terminer')).to.be(undefined);
-    store.commit('ajouteAppVisitee', 'agenda');
-    expect(wrapper.emitted('terminer').length).to.eql(1);
+  it("passe à la transition après avoir déverrouillé l'écran et fait toutes les apps", function () {
+    store.commit('configureActe', {
+      appsAccueilVerrouille: { deverrouillage: [{}] },
+      apps: { photos: [{}], agenda: [{}] },
+      questionsFin: [{}]
+    });
+
+    store.commit('afficheApp', 'deverrouillage');
+    wrapper.vm.finApp();
+    store.commit('afficheApp', 'photos');
+    wrapper.vm.finApp();
+    store.commit('afficheApp', 'agenda');
+    wrapper.vm.finApp();
+
+    expect(wrapper.vm.passeALaTransition).to.equal(true);
   });
 });

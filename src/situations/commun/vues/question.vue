@@ -6,7 +6,7 @@
     />
 
     <div
-      v-if="appActive && appActive != 'deverrouillage'"
+      v-if="appActive && etatQuestionApp"
       class="icone-conteneur"
     >
       <div
@@ -26,6 +26,7 @@
 <script>
 import { mapState } from 'vuex';
 import 'objets_trouves/styles/acte.scss';
+import { QUESTIONS_APP } from '../modeles/store';
 
 export default {
   props: {
@@ -35,7 +36,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['appActive', 'apps'])
+    ...mapState(['appActive', 'apps', 'etatTelephone']),
+
+    etatQuestionApp () {
+      return this.etatTelephone === QUESTIONS_APP;
+    }
   },
   methods: {
     appAttributes () {
