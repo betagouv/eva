@@ -80,6 +80,7 @@ const questionDeverrouillage = {
   icone: iconeDeverrouillage,
   description: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
   intitule: 'Quel est le mot de passe ?',
+  extentionVue: 'ecran-telephone-deverrouillage',
   numerique: true
 };
 
@@ -317,6 +318,7 @@ const questionRepondeur1 = {
   icone: iconeRepondeur,
   illustration: AppRepondeur1,
   intitule: 'A quelle heure devez-vous vous rendre dans le bureau de Mickael ?',
+  extentionVue: 'lecture-message',
   choix: [
     {
       id: '1',

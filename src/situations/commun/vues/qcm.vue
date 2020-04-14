@@ -1,28 +1,9 @@
 <template>
   <div>
-    <div class="telephone-conteneur">
-      <div
-        v-if="question.id === 'deverrouillage'"
-      >
-        <heure />
-        <div class="icones-conteneur icones-conteneur--deverrouiller">
-          <div class="icones">
-            <div>
-              <div
-                class="icone icone--deverrouillage icone--deverrouillee"
-                :style="{ 'background-image': `url(${$depotRessources.iconeDeverrouillageDebloque().src})` }"
-              ></div>
-              <span class="label">{{ $traduction('objets_trouves.accueil.deverrouillage') }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div v-if="question.id === 'heure-bureau-mickael'">
-        <bouton-lecture
-          :son-message="$depotRessources.messageAudio(question.id)"
-        />
-      </div>
-    </div>
+    <component
+      :is="question.extentionVue"
+      :question="question"
+    />
 
     <question
       :question="question"
@@ -97,12 +78,10 @@ import 'commun/styles/formulaire_qcm.scss';
 
 import LecteurAudio from './lecteur_audio';
 import Question from './question';
-import Heure from 'objets_trouves/vues/heure';
-import BoutonLecture from 'objets_trouves/vues/bouton-lecture';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
-  components: { LecteurAudio, Question, Heure, BoutonLecture },
+  components: { LecteurAudio, Question },
 
   props: {
     question: {
