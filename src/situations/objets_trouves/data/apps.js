@@ -7,6 +7,7 @@ import Fin from '../assets/fin.png';
 import AppMessage1 from '../assets/app-message1.png';
 import AppMessage2 from '../assets/app-message2.png';
 import AppMessage3 from '../assets/app-message3.png';
+import AppRepondeur1 from '../assets/app-repondeur1.png';
 import entree from '../assets/entree.svg';
 import golf from '../assets/golf.svg';
 import restaurant from '../assets/restaurant.svg';
@@ -16,6 +17,7 @@ import iconeAgenda from '../assets/icone-agenda.png';
 import iconePhotos from '../assets/icone-photos.png';
 import iconeNotes from '../assets/icone-notes.png';
 import iconeMessages from '../assets/icone-messages.png';
+import iconeRepondeur from '../assets/icone-repondeur.png';
 import iconeDeverrouillage from '../assets/icone-deverrouillage.png';
 
 const questionAgendaEntrainement = {
@@ -310,6 +312,51 @@ const questionMessage3 = {
   ]
 };
 
+const questionRepondeur1 = {
+  id: 'heure-bureau-mickael',
+  icone: iconeRepondeur,
+  illustration: AppRepondeur1,
+  intitule: 'A quelle heure devez-vous vous rendre dans le bureau de Mickael ?',
+  choix: [
+    {
+      id: '1',
+      intitule: '12h45'
+    },
+    {
+      id: '2',
+      intitule: '12h35'
+    },
+    {
+      id: '3',
+      intitule: '12h15'
+    },
+    {
+      id: '4',
+      intitule: '16h45'
+    },
+    {
+      id: '5',
+      intitule: '16h35'
+    },
+    {
+      id: '6',
+      intitule: '16h15'
+    },
+    {
+      id: '7',
+      intitule: '13h45'
+    },
+    {
+      id: '8',
+      intitule: '13h35'
+    },
+    {
+      id: '9',
+      intitule: '13h15'
+    }
+  ]
+};
+
 const configurationEntrainement = {
   apps: {
     agenda: [questionAgendaEntrainement]
@@ -322,11 +369,13 @@ const configurationNormale = {
   },
   apps: {
     photos: [questionPhoto],
+    repondeur: [questionRepondeur1],
     rappels: [questionRappels],
     agenda: [questionAgenda],
     messages: [questionMessage3, questionMessage1, questionMessage2]
   },
-  consigneEcranAccueil: 'Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.',
+  consigneEcranAccueil:
+    'Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.',
   questionsFin: [questionFin1, questionFin2, questionFin3]
 };
 

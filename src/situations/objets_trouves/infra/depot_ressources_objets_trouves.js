@@ -15,6 +15,8 @@ import sonChoix4 from 'objets_trouves/assets/reponse_bateau_cactus.wav';
 import sonChoix5 from 'objets_trouves/assets/reponse_zoo_vautours.wav';
 import sonChoix6 from 'objets_trouves/assets/reponse_zoo_tigres.wav';
 
+import messageMickael from 'objets_trouves/assets/repondeur-message-mickael.wav';
+
 const choixReponsesAudioQcm = {
   agenda: [sonChoix1, sonChoix2, sonChoix3, sonChoix4, sonChoix5, sonChoix6]
 };
@@ -22,7 +24,7 @@ const choixReponsesAudioQcm = {
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigne, sonConsigneTransition);
-    this.charge([fondSituation, appPhoto, fondDeverrouillage, iconeDeverrouillageDebloque]);
+    this.charge([fondSituation, appPhoto, fondDeverrouillage, iconeDeverrouillageDebloque, messageMickael]);
     this.charge(choixReponsesAudioQcm.agenda);
   }
 
@@ -46,5 +48,9 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
 
   iconeDeverrouillageDebloque () {
     return this.ressource(iconeDeverrouillageDebloque);
+  }
+
+  messageAudio () {
+    return messageMickael;
   }
 }
