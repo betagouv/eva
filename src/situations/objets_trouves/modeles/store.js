@@ -21,6 +21,7 @@ export function creeStore () {
     state: {
       fondSituation: '',
       apps: {},
+      appsAccueilVerrouille: {},
       appActive: null,
       appsVisitees: [],
       questionsFin: [],
@@ -28,21 +29,21 @@ export function creeStore () {
       etatTelephone: null
     },
     getters: {
-      nombreApps (state) {
-        return Object.keys(state.apps).length;
+      nombreApps (state, getters) {
+        return Object.keys(getters.toutesLesApps).length;
       },
-      allApps (state) {
+      toutesLesApps (state) {
         return {
           ...state.apps,
           ...state.appsAccueilVerrouille
         };
       },
       questionsAppActive (state, getters) {
-        return getters.allApps[state.appActive];
+        return getters.toutesLesApps[state.appActive];
       },
       urlIcone (state, getters) {
         return (nomApp) => {
-          return getters.allApps[nomApp][0].icone;
+          return getters.toutesLesApps[nomApp][0].icone;
         };
       }
     },

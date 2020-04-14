@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState, mapGetters } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 import { QUESTIONS_FIN, TRANSITION, ACCUEIL_VERROUILLE } from '../modeles/store';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
@@ -76,7 +76,6 @@ export default {
 
   computed: {
     ...mapState(['appsVisitees', 'apps', 'consigneEcranAccueil', 'questionsFin', 'etatTelephone']),
-    ...mapGetters(['nombreApps']),
 
     appDesactivee () {
       return (app) => this.appsVisitees.includes(app);

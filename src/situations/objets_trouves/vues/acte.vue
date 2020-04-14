@@ -35,7 +35,7 @@ export default {
     appsTerminees () {
       return this.appsVisitees.length === this.nombreApps;
     },
-    situationTerminee () {
+    passeALaTransition () {
       return this.appsTerminees && !!this.questionsFin;
     }
   },
@@ -43,15 +43,13 @@ export default {
   methods: {
     finApp () {
       this.$store.commit('ajouteAppVisitee', this.appActive);
-      this.$store.commit('afficheApp', null);
       this.metAJourEtatTelephone();
     },
     finDeLaFin () {
       this.$emit('terminer');
     },
     metAJourEtatTelephone () {
-      const passeALaTransition = (this.appsVisitees.length === this.nombreApps) && this.questionsFin;
-      if (passeALaTransition) {
+      if (this.passeALaTransition) {
         this.$store.commit('modifieEtatTelephone', TRANSITION);
       } else {
         this.$store.commit('modifieEtatTelephone', ACCUEIL);
@@ -61,8 +59,8 @@ export default {
 
   watch: {
     appsTerminees () {
-      if (this.appsTerminees && !this.situationTerminee) {
-        this.$emit('terminer');
+      if (this.appsTerminees && !this.passeALaTransition) {
+        this.finDeLaFin();
       }
     }
   }

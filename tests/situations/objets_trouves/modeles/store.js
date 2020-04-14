@@ -35,8 +35,11 @@ describe('Le store de la situation objets trouvés', function () {
 
   it("nombreApps retourne le nombre d'apps", function () {
     const store = creeStore();
-    store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
-    expect(store.getters.nombreApps).to.eql(2);
+    store.commit('configureActe', {
+      appsAccueilVerrouille: { deverrouillage: {} },
+      apps: { photos: {}, agenda: {} }
+    });
+    expect(store.getters.nombreApps).to.eql(3);
   });
 
   it("affiche l'accueil si pas d'app deverrouillage", function () {
@@ -72,7 +75,7 @@ describe('Le store de la situation objets trouvés', function () {
     expect(store.getters.urlIcone('photos')).to.eql('url de mon icone');
   });
 
-  it("sait retourner l'icone d'une app de l'accueil verouillé", function () {
+  it("sait retourner l'icone d'une app de l'accueil verrouillé", function () {
     const store = creeStore();
     const configuration = { appsAccueilVerrouille: { deverrouillage: [{ icone: 'url de mon icone' }] } };
     store.commit('configureActe', configuration);
