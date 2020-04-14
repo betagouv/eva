@@ -1,7 +1,7 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
 export default class DepotRessourcesQuestionsBase extends DepotRessourcesCommunes {
-  constructor (chargeurs, sonConsigne, sonConsigneTransition, urlServeur = process.env.URL_SERVEUR) {
+  constructor (chargeurs, sonConsigne, sonConsigneTransition, urlServeur = process.env.URL_API) {
     super(chargeurs, sonConsigne, sonConsigneTransition);
     this.urlServeur = urlServeur;
   }

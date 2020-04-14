@@ -7,7 +7,7 @@ export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
-  constructor ($ = jQuery, urlServeur = process.env.URL_SERVEUR) {
+  constructor ($ = jQuery, urlServeur = process.env.URL_API) {
     super();
     this.$ = $;
     this.urlServeur = urlServeur;

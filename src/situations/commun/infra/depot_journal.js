@@ -10,7 +10,7 @@ export default class DepotJournal {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
-        url: `${process.env.URL_SERVEUR}/api/evenements`,
+        url: `${process.env.URL_API}/api/evenements`,
         data: JSON.stringify(payload),
         contentType: 'application/json; charset=utf-8',
         retryTimeout: timeout,
