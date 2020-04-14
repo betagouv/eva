@@ -17,6 +17,11 @@
           </div>
         </div>
       </div>
+      <div v-if="question.id === 'heure-bureau-mickael'">
+        <bouton-lecture
+          :son-message="$depotRessources.messageAudio(question.id)"
+        />
+      </div>
     </div>
 
     <question
@@ -93,10 +98,11 @@ import 'commun/styles/formulaire_qcm.scss';
 import LecteurAudio from './lecteur_audio';
 import Question from './question';
 import Heure from 'objets_trouves/vues/heure';
+import BoutonLecture from 'objets_trouves/vues/bouton-lecture';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
-  components: { LecteurAudio, Question, Heure },
+  components: { LecteurAudio, Question, Heure, BoutonLecture },
 
   props: {
     question: {
