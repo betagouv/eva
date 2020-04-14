@@ -11,7 +11,7 @@
     "start": "node server.js"
   },
   "engines": {
-    "node": "10.11.x",
+    "node": "12.16.x",
     "npm": "6.4.x"
   },
   "repository": {
