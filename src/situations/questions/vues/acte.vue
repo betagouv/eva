@@ -24,6 +24,7 @@ import TransitionFade from 'commun/vues/transition_fade';
 import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from './redaction_note';
 import 'questions/styles/progression.scss';
+import { FINI } from 'commun/modeles/situation';
 
 export default {
   components: { TransitionFade },
@@ -33,7 +34,7 @@ export default {
     ...mapGetters(['questionCourante', 'nombreQuestions', 'numeroQuestionCourante']),
 
     composantQuestion () {
-      if (!this.questionCourante) return;
+      if (!this.questionCourante || this.etat === FINI) return;
 
       const classesQuestions = {
         redaction_note: QuestionRedactionNote,
