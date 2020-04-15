@@ -1,7 +1,7 @@
 <template>
   <div>
     <component
-      :is="question.extentionVue"
+      :is="question.extensionVue"
       :question="question"
     />
 

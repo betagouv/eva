@@ -1,0 +1,15 @@
+.telephone-conteneur {
+  .bouton-lecture {
+    button {
+      padding: 0;
+      position: absolute;
+      right: 28px;
+      background: none;
+    }
+    &--question-1 {
+      button {
+        top: 104px;
+      }
+    }
+  }
+}
