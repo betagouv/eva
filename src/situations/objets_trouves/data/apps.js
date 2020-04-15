@@ -318,7 +318,7 @@ const questionRepondeur1 = {
   icone: iconeRepondeur,
   illustration: AppRepondeur1,
   intitule: 'A quelle heure devez-vous vous rendre dans le bureau de Mickael ?',
-  extentionVue: 'lecture-message',
+  extensionVue: 'lecture-message',
   choix: [
     {
       id: '1',

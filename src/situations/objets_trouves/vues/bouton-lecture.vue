@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="bouton-repondeur bouton-repondeur--question-1" @click="basculeJoueSon">
+    <button @click="basculeJoueSon">
       <svg
         width="24"
         height="24"
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import 'objets_trouves/styles/repondeur.scss';
 
 export default {
   props: {
