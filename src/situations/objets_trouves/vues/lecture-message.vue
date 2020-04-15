@@ -1,8 +1,9 @@
 <template>
   <div class="telephone-conteneur">
     <bouton-lecture
-      :son-message="$depotRessources.messageAudio(question.id)"
-       class="bouton-lecture bouton-lecture--question-1"
+       class="bouton-lecture"
+       :son-message="$depotRessources.messageAudio(question.id)"
+       :class="classPositionBoutonLecture"
     />
   </div>
 </template>
@@ -18,6 +19,12 @@ export default {
     question: {
       type: Object,
       required: true
+    }
+  },
+
+  computed: {
+    classPositionBoutonLecture () {
+      return `bouton-lecture--${this.question.id}`;
     }
   }
 };
