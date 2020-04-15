@@ -63,4 +63,11 @@ describe("La vue de l'acte « Question »", function () {
     vue.vm.repondQuestion('Ma réponse');
     expect(vue.contains(QuestionQcm)).to.be(true);
   });
+
+  it('ne mount pas de composant question une fois que la situation est terminée', function () {
+    const vue = shallowMount(Acte, { store, localVue });
+    expect(vue.vm.composantQuestion).to.not.be(undefined);
+    store.commit('modifieEtat', 'fini');
+    expect(vue.vm.composantQuestion).to.be(undefined);
+  });
 });
