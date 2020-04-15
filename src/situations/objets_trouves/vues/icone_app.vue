@@ -2,7 +2,7 @@
   <div :class="{'icone--desactivee':desactivee}">
     <div
       class="icone"
-      :class="classIcone(app)"
+      :class="classIcone"
       :style="{ 'background-image': `url(${urlIcone(app)})` }"
     ></div>
     <span class="label">{{ $traduction(`objets_trouves.accueil.${app}`) }}</span>
@@ -24,12 +24,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['urlIcone'])
-  },
+    ...mapGetters(['urlIcone']),
 
-  methods: {
-    classIcone (app) {
-      return `icone--${app}`;
+    classIcone () {
+      return `icone--${this.app}`;
     }
   }
 };

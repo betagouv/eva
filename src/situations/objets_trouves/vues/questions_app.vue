@@ -1,17 +1,21 @@
 <template>
-  <qcm
-    :key="question.id"
-    :question="question"
-    @reponse="reponseApp"
-  />
+  <div>
+    <icone-app-active />
+    <qcm
+      :key="question.id"
+      :question="question"
+      @reponse="reponseApp"
+    />
+  </div>
 </template>
 
 <script>
 import Qcm from 'commun/vues/qcm';
+import IconeAppActive from 'objets_trouves/vues/icone-app-active';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 
 export default {
-  components: { Qcm },
+  components: { Qcm, IconeAppActive },
 
   props: {
     questions: {
