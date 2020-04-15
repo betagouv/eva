@@ -28,25 +28,4 @@ describe('La vue de la question', function () {
     expect(wrapper.contains('.question-illustration')).to.be(true);
     expect(wrapper.find('.question-illustration').attributes('src')).to.equal('palette');
   });
-
-  it("n'affiche pas d'icône si il n'y a pas d'apps active", function () {
-    expect(wrapper.contains('.icone-conteneur')).to.be(false);
-  });
-
-  it('affiche une icône si il y a une app active', function () {
-    store.commit('configureActe', { apps: { agenda: { 0: { icone: 'icone-agenda' } } } });
-    store.commit('afficheApp', 'agenda');
-
-    expect(wrapper.contains('.icone-conteneur')).to.be(true);
-    const icone = wrapper.find('.icone');
-    expect(icone.classes('icone--agenda')).to.be(true);
-    expect(icone.attributes('style')).to.equal('background-image: url(icone-agenda);');
-  });
-
-  it("n'affiche pas d'icône si l'app active est deverrouillage", function () {
-    store.commit('configureActe', { apps: { deverrouillage: { 0: { icone: 'icone-deverrouillage' } } } });
-    store.commit('afficheApp', 'deverrouillage');
-
-    expect(wrapper.contains('.icone-conteneur')).to.be(false);
-  });
 });
