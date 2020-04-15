@@ -7,7 +7,7 @@
           <div
             class="icone icone--deverrouillage icone--deverrouillee"
             :style="{ 'background-image': `url(${$depotRessources.iconeDeverrouillageDebloque().src})` }"
-          ></div>
+          />
           <span class="label">{{ $traduction('objets_trouves.accueil.deverrouillage') }}</span>
         </div>
       </div>
@@ -19,13 +19,7 @@
 import Heure from 'objets_trouves/vues/heure';
 
 export default {
-  components: { Heure },
+  components: { Heure }
 
-  props: {
-    question: {
-      type: Object,
-      required: true
-    }
-  }
 };
 </script>
