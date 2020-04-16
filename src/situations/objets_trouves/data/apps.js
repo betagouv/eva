@@ -22,7 +22,7 @@ const questionAgendaEntrainement = {
   id: 'agenda-entrainement',
   icone: iconeAgenda,
   illustration: AppAgendaEntrainement,
-  intitule: 'Voici le téléphone de Sophie. Que faisait Sophie ce matin ?',
+  intitule: 'Voici le téléphone de Sophie. Que faisait Sophie ce matin ?',
   choix: [
     {
       id: '1',
@@ -47,7 +47,7 @@ const questionPhoto = {
   id: 'photo',
   icone: iconePhotos,
   illustration: AppPhoto,
-  intitule: "Qu'indique le badge de Denis ?",
+  intitule: "Qu'indique le badge de Denis ?",
   choix: [
     {
       id: '1',
@@ -77,7 +77,7 @@ const questionDeverrouillage = {
   illustration: AppDeverrouillage,
   icone: iconeDeverrouillage,
   description: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
-  intitule: 'Quel est le mot de passe ?',
+  intitule: 'Quel est le mot de passe ?',
   numerique: true
 };
 
@@ -85,7 +85,7 @@ const questionAgenda = {
   id: 'agenda',
   illustration: AppAgenda,
   icone: iconeAgenda,
-  intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
+  intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
   choix: [
     {
       id: 1,
@@ -118,7 +118,7 @@ const questionRappels = {
   id: 'rappels',
   icone: iconeNotes,
   illustration: AppRappels,
-  intitule: 'Que Sophie doit-elle penser à faire ?',
+  intitule: 'Que Sophie doit-elle penser à faire ?',
   choix: [
     {
       id: '1',
@@ -146,7 +146,7 @@ const questionRappels = {
 const questionFin1 = {
   id: 'fin1',
   illustration: Fin,
-  intitule: 'Où est Sophie à 14h ?',
+  intitule: 'Où est Sophie à 14h ?',
   choix: [
     {
       id: '1',
@@ -174,7 +174,7 @@ const questionFin1 = {
 const questionFin2 = {
   id: 'fin2',
   illustration: Fin,
-  intitule: 'Pourquoi deviez-vous chercher Sophie ?',
+  intitule: 'Pourquoi deviez-vous chercher Sophie ?',
   choix: [
     {
       id: '1',
@@ -198,7 +198,7 @@ const questionFin2 = {
 const questionFin3 = {
   id: 'fin3',
   illustration: Fin,
-  intitule: 'Avec qui Sophie a t-elle déjeuné ?',
+  intitule: 'Avec qui Sophie a t-elle déjeuné ?',
   choix: [
     {
       id: '1',
@@ -227,7 +227,7 @@ const questionMessage1 = {
   id: 'quel-bureau',
   icone: iconeMessages,
   illustration: AppMessage1,
-  intitule: 'À quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
+  intitule: 'À quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
   choix: [
     {
       id: '1',
@@ -256,7 +256,7 @@ const questionMessage2 = {
   id: 'quelle-salle-reserver',
   icone: iconeMessages,
   illustration: AppMessage2,
-  intitule: 'Dans quelle salle de jeu Sophie a-t-elle décidé d’aller ?',
+  intitule: 'Dans quelle salle de jeu Sophie a-t-elle décidé d’aller ?',
   choix: [
     {
       id: '1',
@@ -285,7 +285,7 @@ const questionMessage3 = {
   id: 'ou-retrouver-dounia',
   icone: iconeMessages,
   illustration: AppMessage3,
-  intitule: 'Où Sophie devait-elle retrouver Dounia ?',
+  intitule: 'Où Sophie devait-elle retrouver Dounia ?',
   choix: [
     {
       id: '1',
