@@ -3,12 +3,17 @@
     button {
       padding: 0;
       position: absolute;
-      right: 28px;
+      right: 1.75rem;
       background: none;
     }
     &--heure-bureau-mickael {
       button {
-        top: 104px;
+        top: 6.5rem;
+      }
+    }
+    &--nombre-tours-de-manege {
+      button {
+        top: 11.2rem;
       }
     }
   }
