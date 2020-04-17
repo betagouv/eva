@@ -82,7 +82,8 @@ const questionDeverrouillage = {
   description: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
   intitule: 'Quel est le mot de passe ?',
   extentionVue: 'ecran-telephone-deverrouillage',
-  numerique: true
+  numerique: true,
+  espacerChiffres: true
 };
 
 const questionAgenda = {
@@ -367,7 +368,8 @@ const questionRepondeur2 = {
   description: 'Afin de rendre service à Sophie, vous décidez de répondre à sa place. Vous savez que Sophie lance un tour de manège pour 7 enfants.',
   intitule: 'Que répondez-vous ?',
   extensionVue: 'lecture-message',
-  numerique: true
+  numerique: true,
+  espacerChiffres: false
 };
 
 const configurationEntrainement = {

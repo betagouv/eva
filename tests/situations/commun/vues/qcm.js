@@ -37,12 +37,33 @@ describe('La vue de la question QCM', function () {
     expect(vue.findAll('img').length).to.equal(3);
   });
 
-  it('affiche une question de type numérique', function () {
-    question.numerique = true;
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
-    const inputNumerique = vue.findAll('input[type=text]');
-    expect(inputNumerique.length).to.equal(1);
-    expect(inputNumerique.at(0).classes('numerique-input')).to.be(true);
+  describe('affiche une question de type numérique', function () {
+    let uneQuestionNumerique;
+
+    before(function () {
+      uneQuestionNumerique = () => {
+        question.numerique = true;
+        return shallowMount(VueQCM, { localVue, propsData: { question } });
+      };
+    });
+
+    it('affiche un champ numérique', function () {
+      const inputNumerique = uneQuestionNumerique().findAll('input[type=text]');
+      expect(inputNumerique.length).to.equal(1);
+      expect(inputNumerique.at(0).classes('numerique-input')).to.be(true);
+    });
+
+    it("Sait espacer les chiffres dans l'input pour les question de type numérique", function () {
+      question.espacerChiffres = true;
+      const conteneurChiffresEspaces = uneQuestionNumerique().find('.numerique-input-conteneur');
+      expect(conteneurChiffresEspaces.classes('chiffres-espaces')).to.be(true);
+    });
+
+    it("Sait espacer les chiffres dans l'input pour les question de type numérique", function () {
+      question.espacerChiffres = false;
+      const conteneurChiffresNonEspaces = uneQuestionNumerique().find('.numerique-input-conteneur');
+      expect(conteneurChiffresNonEspaces.classes('chiffres-espaces')).to.be(false);
+    });
   });
 
   it("affiche un bouton d'envoi de réponse", function () {

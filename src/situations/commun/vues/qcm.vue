@@ -16,7 +16,8 @@
         v-if="question.numerique"
         class="question-choix"
       >
-        <div class="numerique-input-conteneur">
+        <div class="numerique-input-conteneur"
+             :class="{ 'chiffres-espaces' : question.espacerChiffres }">
           <div class="conteneur-traits-saisie">
             <span></span>
             <span></span>
