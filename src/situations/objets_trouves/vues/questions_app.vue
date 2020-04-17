@@ -38,7 +38,7 @@ export default {
 
   methods: {
     reponseApp (reponse) {
-      const donneesReponses = { question: this.question.id, metacompetence: this.question.metacompetence, reponse };
+      const donneesReponses = { question: this.question.id, metacompetence: this.question.metacompetence, ...reponse };
       this.$journal.enregistre(new EvenementReponse(donneesReponses));
 
       if (this.indexQuestion + 1 === this.questions.length) {

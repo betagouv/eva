@@ -114,7 +114,8 @@ export default {
   methods: {
     envoi () {
       this.envoyer = true;
-      this.$emit('reponse', this.reponse);
+      const choix = this.question.choix.find((choix) => choix.id === this.reponse);
+      this.$emit('reponse', { reponse: choix.id, type_choix: choix.type_choix });
     },
 
     son (nomQuestionnaire, idReponse) {
