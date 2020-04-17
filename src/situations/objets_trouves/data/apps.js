@@ -26,22 +26,27 @@ const questionAgendaEntrainement = {
   icone: iconeAgenda,
   illustration: AppAgendaEntrainement,
   intitule: 'Voici le téléphone de Sophie. Que faisait Sophie ce matin ?',
+  metacompetence: 'ccf',
   choix: [
     {
       id: '1',
-      intitule: 'Elle distribuait le courrier'
+      intitule: 'Elle distribuait le courrier',
+      type_choix: 'bon'
     },
     {
       id: '2',
-      intitule: "Elle s'occupait du zoo"
+      intitule: "Elle s'occupait du zoo",
+      type_choix: 'mauvais'
     },
     {
       id: '3',
-      intitule: 'Elle réalisait un travail administratif'
+      intitule: 'Elle réalisait un travail administratif',
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: 'Elle distribuait les colis'
+      intitule: 'Elle distribuait les colis',
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -51,26 +56,32 @@ const questionPhoto = {
   icone: iconePhotos,
   illustration: AppPhoto,
   intitule: "Qu'indique le badge de Denis ?",
+  metacompetence: 'ccf',
   choix: [
     {
       id: '1',
-      intitule: 'Il travaille dans le zoo'
+      intitule: 'Il travaille dans le zoo',
+      type_choix: 'bon'
     },
     {
       id: '2',
-      intitule: 'Il déjeune dans le zoo'
+      intitule: 'Il déjeune dans le zoo',
+      type_choix: 'mauvais'
     },
     {
       id: '3',
-      intitule: "Il doit retrouver quelqu'un dans le zoo"
+      intitule: "Il doit retrouver quelqu'un dans le zoo",
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: 'Il doit se déplacer au zoo'
+      intitule: 'Il doit se déplacer au zoo',
+      type_choix: 'mauvais'
     },
     {
       id: '5',
-      intitule: 'Il est perdu dans le zoo'
+      intitule: 'Il est perdu dans le zoo',
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -83,7 +94,9 @@ const questionDeverrouillage = {
   intitule: 'Quel est le mot de passe ?',
   extensionVue: 'ecran-telephone-deverrouillage',
   numerique: true,
-  espacerChiffres: true
+  espacerChiffres: true,
+  bonneReponse: '1800',
+  metacompetence: 'numeratie'
 };
 
 const questionAgenda = {
@@ -91,30 +104,37 @@ const questionAgenda = {
   illustration: AppAgenda,
   icone: iconeAgenda,
   intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
+  metacompetence: 'ccf',
   choix: [
     {
       id: 1,
-      audio: 'agenda'
+      audio: 'agenda',
+      type_choix: 'mauvais'
     },
     {
       id: 2,
-      audio: 'agenda'
+      audio: 'agenda',
+      type_choix: 'bon'
     },
     {
       id: 3,
-      audio: 'agenda'
+      audio: 'agenda',
+      type_choix: 'mauvais'
     },
     {
       id: 4,
-      audio: 'agenda'
+      audio: 'agenda',
+      type_choix: 'mauvais'
     },
     {
       id: 5,
-      audio: 'agenda'
+      audio: 'agenda',
+      type_choix: 'mauvais'
     },
     {
       id: 6,
-      audio: 'agenda'
+      audio: 'agenda',
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -124,26 +144,32 @@ const questionRappels = {
   icone: iconeNotes,
   illustration: AppRappels,
   intitule: 'Que Sophie doit-elle penser à faire ?',
+  metacompetence: 'ccf',
   choix: [
     {
       id: '1',
-      intitule: 'Sortir les poubelles'
+      intitule: 'Sortir les poubelles',
+      type_choix: 'mauvais'
     },
     {
       id: '2',
-      intitule: 'Sortir le chien'
+      intitule: 'Sortir le chien',
+      type_choix: 'bon'
     },
     {
       id: '3',
-      intitule: 'Sortir le chat'
+      intitule: 'Sortir le chat',
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: 'Sortir le soleil'
+      intitule: 'Sortir le soleil',
+      type_choix: 'mauvais'
     },
     {
       id: '5',
-      intitule: 'Sortir la loutre'
+      intitule: 'Sortir la loutre',
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -152,26 +178,32 @@ const questionFin1 = {
   id: 'fin1',
   illustration: Fin,
   intitule: 'Où est Sophie à 14h ?',
+  metacompetence: 'memorisation',
   choix: [
     {
       id: '1',
-      intitule: 'A la librairie'
+      intitule: 'A la librairie',
+      type_choix: 'mauvais'
     },
     {
       id: '2',
-      intitule: 'Au bureau'
+      intitule: 'Au bureau',
+      type_choix: 'mauvais'
     },
     {
       id: '3',
-      intitule: 'A la grande roue'
+      intitule: 'A la grande roue',
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: 'Au zoo'
+      intitule: 'Au zoo',
+      type_choix: 'mauvais'
     },
     {
       id: '5',
-      intitule: "A l'entrée"
+      intitule: "A l'entrée",
+      type_choix: 'bon'
     }
   ]
 };
@@ -180,22 +212,27 @@ const questionFin2 = {
   id: 'fin2',
   illustration: Fin,
   intitule: 'Pourquoi deviez-vous chercher Sophie ?',
+  metacompetence: 'memorisation',
   choix: [
     {
       id: '1',
-      intitule: "Pour lui dire que le planning a été modifié et qu'elle doit prendre votre poste cet après-midi"
+      intitule: "Pour lui dire que le planning a été modifié et qu'elle doit prendre votre poste cet après-midi",
+      type_choix: 'bon'
     },
     {
       id: '2',
-      intitule: 'Pour lui demander son aide dans la conception du planning de l’équipe'
+      intitule: 'Pour lui demander son aide dans la conception du planning de l’équipe',
+      type_choix: 'mauvais'
     },
     {
       id: '3',
-      intitule: 'Pour lui dire de vous accompagner à une activité dans le parc'
+      intitule: 'Pour lui dire de vous accompagner à une activité dans le parc',
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: 'Pour lui demander de bien vouloir vous proposer des dates pour une réunion'
+      intitule: 'Pour lui demander de bien vouloir vous proposer des dates pour une réunion',
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -204,26 +241,32 @@ const questionFin3 = {
   id: 'fin3',
   illustration: Fin,
   intitule: 'Avec qui Sophie a t-elle déjeuné ?',
+  metacompetence: 'memorisation',
   choix: [
     {
       id: '1',
-      intitule: 'Denis'
+      intitule: 'Denis',
+      type_choix: 'bon'
     },
     {
       id: '2',
-      intitule: 'Richard'
+      intitule: 'Richard',
+      type_choix: 'mauvais'
     },
     {
       id: '3',
-      intitule: 'Michel'
+      intitule: 'Michel',
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: 'Alexis'
+      intitule: 'Alexis',
+      type_choix: 'mauvais'
     },
     {
       id: '5',
-      intitule: 'Mickael'
+      intitule: 'Mickael',
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -233,26 +276,32 @@ const questionMessage1 = {
   icone: iconeMessages,
   illustration: AppMessage1,
   intitule: 'À quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
+  metacompetence: 'numeratie',
   choix: [
     {
       id: '1',
-      intitule: '51'
+      intitule: '51',
+      type_choix: 'mauvais'
     },
     {
       id: '2',
-      intitule: '61'
+      intitule: '61',
+      type_choix: 'mauvais'
     },
     {
       id: '3',
-      intitule: '71'
+      intitule: '71',
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: '81'
+      intitule: '81',
+      type_choix: 'mauvais'
     },
     {
       id: '5',
-      intitule: '91'
+      intitule: '91',
+      type_choix: 'bon'
     }
   ]
 };
@@ -262,26 +311,32 @@ const questionMessage2 = {
   icone: iconeMessages,
   illustration: AppMessage2,
   intitule: 'Dans quelle salle de jeu Sophie a-t-elle décidé d’aller ?',
+  metacompetence: 'numeratie',
   choix: [
     {
       id: '1',
-      intitule: 'salle 1 : capacité 80 personnes, 50€'
+      intitule: 'salle 1 : capacité 80 personnes, 50€',
+      type_choix: 'bon'
     },
     {
       id: '2',
-      intitule: 'salle 2 : capacité 90 personnes, 60€'
+      intitule: 'salle 2 : capacité 90 personnes, 60€',
+      type_choix: 'mauvais'
     },
     {
       id: '3',
-      intitule: 'salle 3 : capacité 105 personnes, 100€'
+      intitule: 'salle 3 : capacité 105 personnes, 100€',
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: 'salle 4 : capacité 125 personnes, 150€'
+      intitule: 'salle 4 : capacité 125 personnes, 150€',
+      type_choix: 'mauvais'
     },
     {
       id: '5',
-      intitule: 'salle 5 : capacité 15 personnes, 10€'
+      intitule: 'salle 5 : capacité 15 personnes, 10€',
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -291,26 +346,32 @@ const questionMessage3 = {
   icone: iconeMessages,
   illustration: AppMessage3,
   intitule: 'Où Sophie devait-elle retrouver Dounia ?',
+  metacompetence: 'ccf',
   choix: [
     {
       id: '1',
-      image: restaurant
+      image: restaurant,
+      type_choix: 'mauvais'
     },
     {
       id: '2',
-      image: entree
+      image: entree,
+      type_choix: 'bon'
     },
     {
       id: '3',
-      image: toilettes
+      image: toilettes,
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      image: zoo
+      image: zoo,
+      type_choix: 'mauvais'
     },
     {
       id: '5',
-      image: golf
+      image: golf,
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -321,42 +382,52 @@ const questionRepondeur1 = {
   illustration: AppRepondeur1,
   intitule: 'A quelle heure devez-vous vous rendre dans le bureau de Mickael ?',
   extensionVue: 'lecture-message',
+  metacompetence: 'ccf',
   choix: [
     {
       id: '1',
-      intitule: '12h45'
+      intitule: '12h45',
+      type_choix: 'mauvais'
     },
     {
       id: '2',
-      intitule: '12h35'
+      intitule: '12h35',
+      type_choix: 'mauvais'
     },
     {
       id: '3',
-      intitule: '12h15'
+      intitule: '12h15',
+      type_choix: 'mauvais'
     },
     {
       id: '4',
-      intitule: '16h45'
+      intitule: '16h45',
+      type_choix: 'mauvais'
     },
     {
       id: '5',
-      intitule: '16h35'
+      intitule: '16h35',
+      type_choix: 'mauvais'
     },
     {
       id: '6',
-      intitule: '16h15'
+      intitule: '16h15',
+      type_choix: 'mauvais'
     },
     {
       id: '7',
-      intitule: '13h45'
+      intitule: '13h45',
+      type_choix: 'bon'
     },
     {
       id: '8',
-      intitule: '13h35'
+      intitule: '13h35',
+      type_choix: 'mauvais'
     },
     {
       id: '9',
-      intitule: '13h15'
+      intitule: '13h15',
+      type_choix: 'mauvais'
     }
   ]
 };
@@ -369,7 +440,9 @@ const questionRepondeur2 = {
   intitule: 'Que répondez-vous ?',
   extensionVue: 'lecture-message',
   numerique: true,
-  espacerChiffres: false
+  espacerChiffres: false,
+  bonneReponse: '21',
+  metacompetence: 'numeratie'
 };
 
 const configurationEntrainement = {
