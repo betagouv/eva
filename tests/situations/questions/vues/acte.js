@@ -16,7 +16,7 @@ describe("La vue de l'acte « Question »", function () {
     store.commit('configureActe', {
       questions: [
         { id: 1, type: 'redaction_note' },
-        { id: 2, type: 'qcm', choix: [{ id: 1, type_choix: 'bon' }] }
+        { id: 2, type: 'qcm', choix: [{ id: 1, bonneReponse: true }] }
       ]
     });
     journal = { enregistre () {} };
