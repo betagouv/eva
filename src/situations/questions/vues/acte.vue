@@ -46,7 +46,7 @@ export default {
 
   methods: {
     repondQuestion (reponse) {
-      this.$journal.enregistre(new EvenementReponse({ question: this.questionCourante.id, reponse }));
+      this.$journal.enregistre(new EvenementReponse({ question: this.questionCourante.id, ...reponse }));
       this.$store.commit('repondQuestionCourante');
     }
   },

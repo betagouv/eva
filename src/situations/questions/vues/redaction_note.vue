@@ -47,7 +47,7 @@ export default {
 
   methods: {
     envoi () {
-      this.$emit('reponse', this.reponse);
+      this.$emit('reponse', { reponse: this.reponse });
     }
   }
 };

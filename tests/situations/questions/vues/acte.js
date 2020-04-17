@@ -36,7 +36,7 @@ describe("La vue de l'acte « Question »", function () {
       expect(mutation).to.eql('repondQuestionCourante');
       done();
     };
-    vue.vm.repondQuestion('Ma réponse');
+    vue.vm.repondQuestion({ reponse: 'Ma réponse' });
   });
 
   it('enregistre la réponse dans le journal', function (done) {
@@ -46,21 +46,21 @@ describe("La vue de l'acte « Question »", function () {
       done();
     };
     const vue = shallowMount(Acte, { store, localVue });
-    vue.vm.repondQuestion('Ma réponse');
+    vue.vm.repondQuestion({ reponse: 'Ma réponse' });
   });
 
   it("envoi l'événement terminer une fois toute les questions passées", function () {
     const vue = shallowMount(Acte, { store, localVue });
-    vue.vm.repondQuestion('Ma réponse');
+    vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     expect(vue.emitted('terminer')).to.be(undefined);
-    vue.vm.repondQuestion('Ma réponse');
+    vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     expect(vue.emitted('terminer').length).to.eql(1);
   });
 
   it('garde la dernière question affiché à la fin', function () {
     const vue = shallowMount(Acte, { store, localVue });
-    vue.vm.repondQuestion('Ma réponse');
-    vue.vm.repondQuestion('Ma réponse');
+    vue.vm.repondQuestion({ reponse: 'Ma réponse' });
+    vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     expect(vue.contains(QuestionQcm)).to.be(true);
   });
 

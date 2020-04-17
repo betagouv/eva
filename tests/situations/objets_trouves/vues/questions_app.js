@@ -28,7 +28,7 @@ describe("Les questions d'une app", function () {
     expect(wrapper.vm.question).to.eql(question2);
   });
 
-  it.only('enregistre les réponses au journal', function (done) {
+  it('enregistre les réponses au journal', function (done) {
     localVue.prototype.$journal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementReponse);
       expect(evenement.donnees()).to.eql({ question: 'mon-id', reponse: 'Ma super réponse', metacompetence: 'metacompetence' });
@@ -37,6 +37,6 @@ describe("Les questions d'une app", function () {
 
     const question = { id: 'mon-id', metacompetence: 'metacompetence' };
     const wrapper = shallowMount(QuestionsApp, { localVue, propsData: { questions: [question] } });
-    wrapper.vm.reponseApp('Ma super réponse');
+    wrapper.vm.reponseApp({ reponse: 'Ma super réponse' });
   });
 });

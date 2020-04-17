@@ -26,6 +26,6 @@ describe('La vue de la question RedactionNote', function () {
     vue.find('textarea').setValue('     Ma réponse  ');
     vue.find('button').trigger('click');
     expect(vue.emitted('reponse').length).to.eql(1);
-    expect(vue.emitted('reponse')[0][0]).to.eql('Ma réponse');
+    expect(vue.emitted('reponse')[0][0]).to.eql({ reponse: 'Ma réponse' });
   });
 });

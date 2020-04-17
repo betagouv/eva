@@ -91,12 +91,12 @@ describe('La vue de la question QCM', function () {
   });
 
   it('emet un événement réponse quand on appuie sur le bouton envoi', function () {
-    question.choix = [{ id: 'uid-32' }];
+    question.choix = [{ id: 'uid-32', type_choix: 'bon' }];
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
     vue.find('input[type=radio][value=uid-32]').setChecked();
     vue.find('.question-bouton').trigger('click');
     expect(vue.emitted('reponse').length).to.eql(1);
-    expect(vue.emitted('reponse')[0][0]).to.eql('uid-32');
+    expect(vue.emitted('reponse')[0][0]).to.eql({ reponse: 'uid-32', type_choix: 'bon' });
   });
 
   it('désactive le bouton une fois répondu pour éviter le double click', function () {
