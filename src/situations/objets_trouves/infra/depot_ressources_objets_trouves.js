@@ -16,16 +16,23 @@ import sonChoix5 from 'objets_trouves/assets/reponse_zoo_vautours.wav';
 import sonChoix6 from 'objets_trouves/assets/reponse_zoo_tigres.wav';
 
 import messageMickael from 'objets_trouves/assets/repondeur-message-mickael.wav';
+import messageRachel from 'objets_trouves/assets/repondeur-message-rachel.wav';
 
-const choixReponsesAudioQcm = {
+const CHOIX_REPONSES_AUDIO_QCM = {
   agenda: [sonChoix1, sonChoix2, sonChoix3, sonChoix4, sonChoix5, sonChoix6]
+};
+
+const MESSAGES = {
+  'heure-bureau-mickael': messageMickael,
+  'nombre-tours-de-manege': messageRachel
 };
 
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigne, sonConsigneTransition);
-    this.charge([fondSituation, appPhoto, fondDeverrouillage, iconeDeverrouillageDebloque, messageMickael]);
-    this.charge(choixReponsesAudioQcm.agenda);
+    this.charge([fondSituation, appPhoto, fondDeverrouillage, iconeDeverrouillageDebloque]);
+    this.charge(CHOIX_REPONSES_AUDIO_QCM.agenda);
+    this.charge(Object.values(MESSAGES));
   }
 
   fondSituation () {
@@ -37,7 +44,7 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
   }
 
   reponseAudio (nomQcm, numeroReponse) {
-    const reponses = choixReponsesAudioQcm[nomQcm];
+    const reponses = CHOIX_REPONSES_AUDIO_QCM[nomQcm];
     if (!reponses) return;
     return reponses[numeroReponse - 1];
   }
@@ -50,7 +57,7 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     return this.ressource(iconeDeverrouillageDebloque);
   }
 
-  messageAudio () {
-    return messageMickael;
+  messageAudio (questionId) {
+    return MESSAGES[questionId];
   }
 }

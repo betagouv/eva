@@ -8,6 +8,7 @@ import AppMessage1 from '../assets/app-message1.png';
 import AppMessage2 from '../assets/app-message2.png';
 import AppMessage3 from '../assets/app-message3.png';
 import AppRepondeur1 from '../assets/app-repondeur1.png';
+import AppRepondeur2 from '../assets/app-repondeur2.png';
 import entree from '../assets/entree.svg';
 import golf from '../assets/golf.svg';
 import restaurant from '../assets/restaurant.svg';
@@ -359,6 +360,16 @@ const questionRepondeur1 = {
   ]
 };
 
+const questionRepondeur2 = {
+  id: 'nombre-tours-de-manege',
+  icone: iconeRepondeur,
+  illustration: AppRepondeur2,
+  description: 'Afin de rendre service à Sophie, vous décidez de répondre à sa place. Vous savez que Sophie lance un tour de manège pour 7 enfants.',
+  intitule: 'Que répondez-vous ?',
+  extensionVue: 'lecture-message',
+  numerique: true
+};
+
 const configurationEntrainement = {
   apps: {
     agenda: [questionAgendaEntrainement]
@@ -371,7 +382,7 @@ const configurationNormale = {
   },
   apps: {
     photos: [questionPhoto],
-    repondeur: [questionRepondeur1],
+    repondeur: [questionRepondeur1, questionRepondeur2],
     rappels: [questionRappels],
     agenda: [questionAgenda],
     messages: [questionMessage3, questionMessage1, questionMessage2]
