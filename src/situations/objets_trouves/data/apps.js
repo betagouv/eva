@@ -31,22 +31,22 @@ const questionAgendaEntrainement = {
     {
       id: '1',
       intitule: 'Elle distribuait le courrier',
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: '2',
       intitule: "Elle s'occupait du zoo",
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '3',
       intitule: 'Elle réalisait un travail administratif',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: 'Elle distribuait les colis',
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };
@@ -61,27 +61,27 @@ const questionPhoto = {
     {
       id: '1',
       intitule: 'Il travaille dans le zoo',
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: '2',
       intitule: 'Il déjeune dans le zoo',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '3',
       intitule: "Il doit retrouver quelqu'un dans le zoo",
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: 'Il doit se déplacer au zoo',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '5',
       intitule: 'Il est perdu dans le zoo',
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };
@@ -109,32 +109,32 @@ const questionAgenda = {
     {
       id: 1,
       audio: 'agenda',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: 2,
       audio: 'agenda',
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: 3,
       audio: 'agenda',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: 4,
       audio: 'agenda',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: 5,
       audio: 'agenda',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: 6,
       audio: 'agenda',
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };
@@ -149,27 +149,27 @@ const questionRappels = {
     {
       id: '1',
       intitule: 'Sortir les poubelles',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '2',
       intitule: 'Sortir le chien',
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: '3',
       intitule: 'Sortir le chat',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: 'Sortir le soleil',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '5',
       intitule: 'Sortir la loutre',
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };
@@ -183,27 +183,27 @@ const questionFin1 = {
     {
       id: '1',
       intitule: 'A la librairie',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '2',
       intitule: 'Au bureau',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '3',
       intitule: 'A la grande roue',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: 'Au zoo',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '5',
       intitule: "A l'entrée",
-      type_choix: 'bon'
+      bonneReponse: true
     }
   ]
 };
@@ -217,22 +217,22 @@ const questionFin2 = {
     {
       id: '1',
       intitule: "Pour lui dire que le planning a été modifié et qu'elle doit prendre votre poste cet après-midi",
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: '2',
       intitule: 'Pour lui demander son aide dans la conception du planning de l’équipe',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '3',
       intitule: 'Pour lui dire de vous accompagner à une activité dans le parc',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: 'Pour lui demander de bien vouloir vous proposer des dates pour une réunion',
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };
@@ -246,27 +246,27 @@ const questionFin3 = {
     {
       id: '1',
       intitule: 'Denis',
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: '2',
       intitule: 'Richard',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '3',
       intitule: 'Michel',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: 'Alexis',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '5',
       intitule: 'Mickael',
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };
@@ -281,27 +281,27 @@ const questionMessage1 = {
     {
       id: '1',
       intitule: '51',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '2',
       intitule: '61',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '3',
       intitule: '71',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: '81',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '5',
       intitule: '91',
-      type_choix: 'bon'
+      bonneReponse: true
     }
   ]
 };
@@ -316,27 +316,27 @@ const questionMessage2 = {
     {
       id: '1',
       intitule: 'salle 1 : capacité 80 personnes, 50€',
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: '2',
       intitule: 'salle 2 : capacité 90 personnes, 60€',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '3',
       intitule: 'salle 3 : capacité 105 personnes, 100€',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: 'salle 4 : capacité 125 personnes, 150€',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '5',
       intitule: 'salle 5 : capacité 15 personnes, 10€',
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };
@@ -351,27 +351,27 @@ const questionMessage3 = {
     {
       id: '1',
       image: restaurant,
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '2',
       image: entree,
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: '3',
       image: toilettes,
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       image: zoo,
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '5',
       image: golf,
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };
@@ -387,47 +387,47 @@ const questionRepondeur1 = {
     {
       id: '1',
       intitule: '12h45',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '2',
       intitule: '12h35',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '3',
       intitule: '12h15',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '4',
       intitule: '16h45',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '5',
       intitule: '16h35',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '6',
       intitule: '16h15',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '7',
       intitule: '13h45',
-      type_choix: 'bon'
+      bonneReponse: true
     },
     {
       id: '8',
       intitule: '13h35',
-      type_choix: 'mauvais'
+      bonneReponse: false
     },
     {
       id: '9',
       intitule: '13h15',
-      type_choix: 'mauvais'
+      bonneReponse: false
     }
   ]
 };

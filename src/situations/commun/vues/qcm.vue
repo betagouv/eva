@@ -117,7 +117,7 @@ export default {
         donneesReponse = { reponse: this.reponse, succes: succes };
       } else {
         const choix = this.question.choix.find((choix) => choix.id === this.reponse);
-        donneesReponse = { reponse: choix.id, type_choix: choix.type_choix };
+        donneesReponse = { reponse: choix.id, succes: choix.bonneReponse };
       }
       return donneesReponse;
     }
