@@ -99,6 +99,16 @@ describe('La vue de la question QCM', function () {
     expect(vue.emitted('reponse')[0][0]).to.eql({ reponse: 'uid-32', type_choix: 'bon' });
   });
 
+  it('émet un évement réponse pour une question numérique', function () {
+    question.numerique = true;
+    question.bonneReponse = '1800';
+    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    vue.vm.reponse = '1800';
+    vue.vm.envoi();
+    expect(vue.emitted('reponse').length).to.eql(1);
+    expect(vue.emitted('reponse')[0][0]).to.eql({ reponse: '1800', succes: true });
+  });
+
   it('désactive le bouton une fois répondu pour éviter le double click', function () {
     question.choix = [{ id: 'uid-32' }];
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
