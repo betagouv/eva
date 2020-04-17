@@ -108,14 +108,25 @@ export default {
   computed: {
     disabled () {
       return !this.reponse || this.envoyer;
+    },
+
+    donneesReponse () {
+      let donneesReponse;
+      if (this.question.numerique) {
+        const succes = this.reponse === this.question.bonneReponse;
+        donneesReponse = { reponse: this.reponse, succes: succes };
+      } else {
+        const choix = this.question.choix.find((choix) => choix.id === this.reponse);
+        donneesReponse = { reponse: choix.id, type_choix: choix.type_choix };
+      }
+      return donneesReponse;
     }
   },
 
   methods: {
     envoi () {
       this.envoyer = true;
-      const choix = this.question.choix.find((choix) => choix.id === this.reponse);
-      this.$emit('reponse', { reponse: choix.id, type_choix: choix.type_choix });
+      this.$emit('reponse', this.donneesReponse);
     },
 
     son (nomQuestionnaire, idReponse) {
