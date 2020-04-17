@@ -17,16 +17,18 @@
         class="question-choix"
       >
         <div class="numerique-input-conteneur">
+          <div class="conteneur-traits-saisie">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
           <input
             v-model.trim="reponse"
             class="numerique-input"
             maxlength="4"
             type='text'
             />
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
         </div>
       </div>
       <div
