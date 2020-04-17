@@ -81,9 +81,10 @@ describe('La vue de la question QCM', function () {
   });
 
   it('rapporte son ouverture au journal', function (done) {
+    question.metacompetence = 'ma métacompétence';
     localVue.prototype.$journal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementAffichageQuestionQCM);
-      expect(evenement.donnees()).to.eql({ question: question.id });
+      expect(evenement.donnees()).to.eql({ question: question.id, metacompetence: 'ma métacompétence' });
       done();
     };
     shallowMount(VueQCM, { localVue, propsData: { question } });

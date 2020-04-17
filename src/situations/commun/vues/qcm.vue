@@ -94,7 +94,7 @@ export default {
   },
 
   mounted () {
-    const evenement = new EvenementAffichageQuestionQCM({ question: this.question.id });
+    const evenement = new EvenementAffichageQuestionQCM({ question: this.question.id, metacompetence: this.question.metacompetence });
     this.$journal.enregistre(evenement);
   },
 
