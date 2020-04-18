@@ -3,10 +3,7 @@ import sonConsigne from 'objets_trouves/assets/consigne_demarrage.wav';
 import sonConsigneTransition from 'objets_trouves/assets/consigne_transition.wav';
 
 import fondSituation from '../assets/accueil.png';
-import fondDeverrouillage from '../assets/fond-vierge.jpg';
 import iconeDeverrouillageDebloque from '../assets/icone-deverrouillage-debloque.png';
-
-import appPhoto from '../assets/app-photo.png';
 
 import sonChoix1 from 'objets_trouves/assets/reponse_jardin_acclimatation.wav';
 import sonChoix2 from 'objets_trouves/assets/reponse_jardin_cirque.wav';
@@ -30,9 +27,26 @@ const MESSAGES = {
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigne, sonConsigneTransition);
-    this.charge([fondSituation, appPhoto, fondDeverrouillage, iconeDeverrouillageDebloque]);
+    this.charge([fondSituation, iconeDeverrouillageDebloque]);
     this.charge(CHOIX_REPONSES_AUDIO_QCM.agenda);
     this.charge(Object.values(MESSAGES));
+  }
+
+  chargeRessourcesApps (apps) {
+    if (apps) {
+      Object.values(apps).forEach(app => {
+        this.charge(app.map(question => question.illustration));
+        this.charge(app.map(question => question.icone));
+      });
+    }
+  }
+
+  chargeConfigurations (configurationEntrainement, configurationNormale) {
+    const configurations = [configurationEntrainement, configurationNormale];
+    configurations.forEach((configuration) => {
+      this.chargeRessourcesApps(configuration.apps);
+      this.chargeRessourcesApps(configuration.appsAccueilVerrouille);
+    });
   }
 
   fondSituation () {
@@ -47,10 +61,6 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     const reponses = CHOIX_REPONSES_AUDIO_QCM[nomQcm];
     if (!reponses) return;
     return reponses[numeroReponse - 1];
-  }
-
-  fondDeverrouillage () {
-    return this.ressource(fondDeverrouillage);
   }
 
   iconeDeverrouillageDebloque () {

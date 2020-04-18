@@ -9,16 +9,54 @@ describe('Le dépot ressource de la situation Objects trouvés', function () {
 
   beforeEach(function () {
     depot = new DepotRessourcesObjetsTrouves(chargeurs());
-    return depot.chargement();
   });
 
-  it("Retourne la réponse d'audio d'un QCM", function () {
-    expect(depot.reponseAudio('agenda', 1)).to.equal(sonChoix1);
-    expect(depot.reponseAudio('questionnaire inconnu', 1)).to.be(undefined);
+  describe('charge les ressources audio', function () {
+    beforeEach(function () {
+      return depot.chargement();
+    });
+
+    it("Retourne la réponse d'audio d'un QCM", function () {
+      expect(depot.reponseAudio('agenda', 1)).to.equal(sonChoix1);
+      expect(depot.reponseAudio('questionnaire inconnu', 1)).to.be(undefined);
+    });
+
+    it("Retourne le message audio d'une question", function () {
+      expect(depot.messageAudio('heure-bureau-mickael')).to.equal(messageMickael);
+      expect(depot.messageAudio('nombre-tours-de-manege')).to.equal(messageRachel);
+    });
   });
 
-  it("Retourne le message audio d'une question", function () {
-    expect(depot.messageAudio('heure-bureau-mickael')).to.equal(messageMickael);
-    expect(depot.messageAudio('nombre-tours-de-manege')).to.equal(messageRachel);
+  describe('charge les ressources visuelles', function () {
+    it('de la configuration entrainement', function () {
+      depot.chargeConfigurations({
+        apps: {
+          agenda: [{ illustration: 'chemin_illustration.png', icone: 'chemin_icone.png' }]
+        }
+      }, {});
+
+      return depot.chargement().then(function () {
+        expect(depot.ressource('chemin_illustration.png')).to.not.be(undefined);
+        expect(depot.ressource('chemin_icone.png')).to.not.be(undefined);
+      });
+    });
+
+    it('de la configuration normale', function () {
+      depot.chargeConfigurations({}, {
+        appsAccueilVerrouille: {
+          deverouillage: [{ illustration: 'chemin_illustration_deverouillage.png', icone: 'chemin_icone_deverrouillage.png' }]
+        },
+        apps: {
+          agenda: [{ illustration: 'chemin_illustration.png', icone: 'chemin_icone.png' }]
+        }
+      });
+
+      return depot.chargement().then(function () {
+        expect(depot.ressource('chemin_illustration.png')).to.not.be(undefined);
+        expect(depot.ressource('chemin_icone.png')).to.not.be(undefined);
+        expect(depot.ressource('chemin_illustration_deverouillage.png')).to.not.be(undefined);
+        expect(depot.ressource('chemin_icone_deverrouillage.png')).to.not.be(undefined);
+      });
+    });
   });
 });

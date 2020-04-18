@@ -6,5 +6,6 @@ import ActeObjetsTrouves from './acte';
 export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources) {
     super(situation, journal, depotRessources, creeStore, ActeObjetsTrouves, configurationEntrainement, configurationNormale);
+    depotRessources.chargeConfigurations(configurationEntrainement, configurationNormale);
   }
 }
