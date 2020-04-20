@@ -380,7 +380,7 @@ const questionRepondeur1 = {
   id: 'heure-bureau-mickael',
   icone: iconeRepondeur,
   illustration: AppRepondeur1,
-  intitule: 'A quelle heure devez-vous vous rendre dans le bureau de Mickael ?',
+  intitule: 'A quelle heure Sophie doit-elle se rendre dans le bureau de Mickael ?',
   extensionVue: 'lecture-message',
   metacompetence: 'ccf',
   choix: [
