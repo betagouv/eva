@@ -55,7 +55,7 @@
       <div
         v-else
         class="question-barre accueil"
-        v-html="consigneEcranAccueil"
+        v-html="consigneEcranAccueil()"
       >
       </div>
     </div>
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState, mapGetters } from 'vuex';
 import { QUESTIONS_FIN, TRANSITION, ACCUEIL_VERROUILLE } from '../modeles/store';
 import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
@@ -75,7 +75,8 @@ export default {
   components: { Heure, IconeApp },
 
   computed: {
-    ...mapState(['appsVisitees', 'apps', 'consigneEcranAccueil', 'questionsFin', 'etatTelephone']),
+    ...mapState(['appsVisitees', 'apps', 'questionsFin', 'etatTelephone']),
+    ...mapGetters(['consigneEcranAccueil']),
 
     appDesactivee () {
       return (app) => this.appsVisitees.includes(app);

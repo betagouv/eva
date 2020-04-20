@@ -25,8 +25,8 @@ export function creeStore () {
       appActive: null,
       appsVisitees: [],
       questionsFin: [],
-      consigneEcranAccueil: null,
-      etatTelephone: null
+      etatTelephone: null,
+      consignesEcranAccueil: []
     },
     getters: {
       nombreApps (state, getters) {
@@ -45,15 +45,24 @@ export function creeStore () {
         return (nomApp) => {
           return getters.toutesLesApps[nomApp][0].icone;
         };
+      },
+      consigneEcranAccueil (state) {
+        return () => {
+          if (state.indexConsigne < state.consignesEcranAccueil.length - 1) {
+            state.indexConsigne++;
+          }
+          return state.consignesEcranAccueil[state.indexConsigne];
+        };
       }
     },
     mutations: {
-      configureActe (state, { appsAccueilVerrouille, apps, consigneEcranAccueil, questionsFin, etatTelephone }) {
+      configureActe (state, { appsAccueilVerrouille, apps, consignesEcranAccueil, questionsFin, etatTelephone }) {
         state.appsAccueilVerrouille = appsAccueilVerrouille;
         state.apps = apps;
         state.questionsFin = questionsFin;
         state.appsVisitees = [];
-        state.consigneEcranAccueil = consigneEcranAccueil;
+        state.indexConsigne = -1;
+        state.consignesEcranAccueil = consignesEcranAccueil;
         state.appActive = null;
         state.etatTelephone = appsAccueilVerrouille ? ACCUEIL_VERROUILLE : ACCUEIL;
       },

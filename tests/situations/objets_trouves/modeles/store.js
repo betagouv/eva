@@ -5,17 +5,16 @@ describe('Le store de la situation objets trouvés', function () {
   it("permet de configurer l'acte", function () {
     const store = creeStore();
     expect(store.state.apps).to.eql({});
-    expect(store.state.consigneEcranAccueil).to.eql(null);
     expect(store.state.questionsFin).to.eql([]);
     store.commit('configureActe', {
       apps: {
         photos: {}
       },
-      consigneEcranAccueil: 'Consigne',
+      consignesEcranAccueil: ['Consigne 1', 'Consigne 2'],
       questionsFin: [{}]
     });
     expect(store.state.apps).to.eql({ photos: {} });
-    expect(store.state.consigneEcranAccueil).to.eql('Consigne');
+    expect(store.state.consignesEcranAccueil).to.eql(['Consigne 1', 'Consigne 2']);
     expect(store.state.questionsFin).to.eql([{}]);
   });
 
@@ -95,5 +94,15 @@ describe('Le store de la situation objets trouvés', function () {
     expect(store.getters.questionsAppActive).to.eql(questions);
     store.commit('afficheApp', 'photos');
     expect(store.getters.questionsAppActive).to.eql(questions2);
+  });
+
+  it("retourne les consignes de l'accueil dans l'ordre puis reste sur la dernière consigne", function () {
+    const store = creeStore();
+    store.commit('configureActe', {
+      consignesEcranAccueil: ['Consigne 1', 'Consigne 2']
+    });
+    expect(store.getters.consigneEcranAccueil()).to.eql('Consigne 1');
+    expect(store.getters.consigneEcranAccueil()).to.eql('Consigne 2');
+    expect(store.getters.consigneEcranAccueil()).to.eql('Consigne 2');
   });
 });
