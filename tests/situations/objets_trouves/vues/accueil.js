@@ -40,7 +40,7 @@ describe("La vue de l'accueil", function () {
   });
 
   it('affiche la consigne', function () {
-    store.commit('configureActe', { apps: { photos: {}, agenda: {} }, consigneEcranAccueil: 'Ma consigne' });
+    store.commit('configureActe', { apps: { photos: {}, agenda: {} }, consignesEcranAccueil: ['Ma consigne'] });
     expect(wrapper.find('.question-barre').text()).to.eql('Ma consigne');
   });
 
