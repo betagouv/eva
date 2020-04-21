@@ -61,7 +61,7 @@
   "controle": {
     "titre": "Chaîne de fabrication",
     "intro_contexte": {
-      "message": "<p>Vous devez contrôler la production des biscuits en forme de bonhomme.</p><p>Le modèle conforme est présent sur le poste de travail.</p><p>À l'arrivée des biscuits, cliquez sur le biscuit et glissez-le dans la zone conforme ou non conforme en maintenant la pression.</p>"
+      "message": "<p>Vous devez contrôler la production des biscuits en forme de bonhommes.</p><p>Le modèle conforme est présent en haut, au milieu de l’écran.</p><p>À l'arrivée des biscuits sur le tapis, cliquez sur le biscuit et glissez le en maintenant la pression dans la zone verte «&nbsp;conforme&nbsp;» ou la zone rouge «&nbsp;non conforme&nbsp;».</p>"
     },
     "resultat": {
       "bien_placees": "Réussis : {{nombre}}",
