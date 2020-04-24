@@ -72,7 +72,7 @@ describe('La vue accueil', function () {
     expect(wrapper.vm.batiments.length).to.eql(3);
     expect(wrapper.vm.batiments[0]).to.eql({
       nom: '',
-      identifiant: 'bienvenue'
+      identifiant: 'accueil'
     });
     expect(wrapper.vm.batiments[1]).to.eql({
       nom: 'accueil.commencer',
