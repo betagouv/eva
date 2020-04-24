@@ -381,6 +381,7 @@ const questionRepondeur1 = {
   icone: iconeRepondeur,
   illustration: AppRepondeur1,
   intitule: 'A quelle heure Sophie doit-elle se rendre dans le bureau de Mickael ?',
+  consigne: 'Écoutez le message en cliquant sur le bouton lecture.',
   extensionVue: 'lecture-message',
   metacompetence: 'ccf',
   choix: [
@@ -391,11 +392,6 @@ const questionRepondeur1 = {
     },
     {
       id: '2',
-      intitule: '12h35',
-      bonneReponse: false
-    },
-    {
-      id: '3',
       intitule: '12h15',
       bonneReponse: false
     },
@@ -423,11 +419,6 @@ const questionRepondeur1 = {
       id: '8',
       intitule: '13h35',
       bonneReponse: false
-    },
-    {
-      id: '9',
-      intitule: '13h15',
-      bonneReponse: false
     }
   ]
 };
@@ -436,8 +427,8 @@ const questionRepondeur2 = {
   id: 'nombre-tours-de-manege',
   icone: iconeRepondeur,
   illustration: AppRepondeur2,
-  description: 'Afin de rendre service à Sophie, vous décidez de répondre à sa place. Vous savez que Sophie lance un tour de manège pour 7 enfants.',
-  intitule: 'Que répondez-vous ?',
+  description: 'Vous savez que Sophie lance un tour de manège pour 7 enfants.',
+  intitule: 'Que sophie devrait-elle répondre ?',
   extensionVue: 'lecture-message',
   numerique: true,
   espacerChiffres: false,

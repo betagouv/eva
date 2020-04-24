@@ -12,6 +12,7 @@
       <slot />
       <p class="sans-marge">{{ question.description }}</p>
       <p class="question-intitule">{{ question.intitule }}</p>
+      <p class="sans-marge">{{ question.consigne }}</p>
       <div
         v-if="question.numerique"
         class="question-choix"
