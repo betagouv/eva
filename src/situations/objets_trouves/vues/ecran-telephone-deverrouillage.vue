@@ -1,6 +1,10 @@
 <template>
   <div class="telephone-conteneur">
     <heure />
+    <div class="indice">
+      <strong class="indice-titre">{{ $traduction('objets_trouves.verrouillage.indice_titre') }}</strong>
+      <p class="indice-texte">{{ $traduction('objets_trouves.verrouillage.indice_texte') }}</p>
+    </div>
     <div class="icones-conteneur icones-conteneur--deverrouiller">
       <div class="icones">
         <div>

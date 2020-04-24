@@ -80,6 +80,28 @@
   }
 }
 
+.indice {
+  width: 14rem;
+  height: 4.5rem;
+  padding: 0.3rem 0.5rem;
+  position: absolute;
+  left: 0.68rem;
+  top: 11.62rem;
+  text-align: center;
+  font-size: 0.75rem;
+  border-radius: 1rem;
+  color: $bleu-fonce;
+  background-color: $couleur-fond;
+  &-titre {
+    font-size: 1.06rem;
+    font-weight: 500;
+  }
+  &-texte {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.75rem;
+  }
+}
+
 .icones {
   display: flex;
   position: relative;
