@@ -105,4 +105,10 @@ describe('Le store de la situation objets trouvés', function () {
     expect(store.getters.consigneEcranAccueil()).to.eql('Consigne 2');
     expect(store.getters.consigneEcranAccueil()).to.eql('Consigne 2');
   });
+
+  it("Ne renvoie pas de consigne s'il n'y a pas de consigne pour l'écran d'accueil", function () {
+    const store = creeStore();
+    store.commit('configureActe', { });
+    expect(store.getters.consigneEcranAccueil()).to.be(undefined);
+  });
 });
