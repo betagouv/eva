@@ -28,6 +28,7 @@ export function creeStore () {
       etatTelephone: null,
       consignesEcranAccueil: []
     },
+
     getters: {
       nombreApps (state, getters) {
         return Object.keys(getters.toutesLesApps).length;
@@ -48,13 +49,16 @@ export function creeStore () {
       },
       consigneEcranAccueil (state) {
         return () => {
-          if (state.indexConsigne < state.consignesEcranAccueil.length - 1) {
-            state.indexConsigne++;
+          if (state.consignesEcranAccueil) {
+            if (state.indexConsigne < state.consignesEcranAccueil.length - 1) {
+              state.indexConsigne++;
+            }
+            return state.consignesEcranAccueil[state.indexConsigne];
           }
-          return state.consignesEcranAccueil[state.indexConsigne];
         };
       }
     },
+
     mutations: {
       configureActe (state, { appsAccueilVerrouille, apps, consignesEcranAccueil, questionsFin, etatTelephone }) {
         state.appsAccueilVerrouille = appsAccueilVerrouille;
