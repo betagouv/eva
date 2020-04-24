@@ -145,7 +145,7 @@ export default {
       });
       return [
         {
-          identifiant: 'bienvenue',
+          identifiant: 'accueil',
           nom: ''
         },
         ...situations,
