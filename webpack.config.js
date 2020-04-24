@@ -9,7 +9,7 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
 
 const gitRevisionPlugin = new GitRevisionPlugin();
 const devMode = process.env.NODE_ENV !== 'production';
-const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves'];
+const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves', 'bienvenue'];
 
 const entriesSituations = situations.reduce(function (entries, situation) {
   entries[`situation_${situation}`] = path.resolve(__dirname, `src/app/situation_${situation}.js`);

@@ -187,6 +187,12 @@
       "erreurs": "Erreurs : {{nombre}}"
     }
   },
+  "bienvenue": {
+    "titre": "Bienvenue",
+    "intro_contexte": {
+      "message": "<p>Ce questionnaire nous servira à compléter les résultats obtenus grâce à Eva.</p> <p>Nous vous demandons de nous dire sincèrement à quel point chaque phrase vous correspond. Vous devez répondre en utilisant une échelle allant de 1 « pas du tout » à 7 « tout à fait ». </p>"
+    }
+  },
   "objets_trouves": {
     "titre": "Objets trouvés",
     "accueil": {
