@@ -449,7 +449,7 @@ const configurationEntrainement = {
   apps: {
     agenda: [questionAgendaEntrainement]
   },
-  consignesEcranAccueil: ['Veuillez cliquer sur l’application pour l’ouvrir.']
+  consignesEcranAccueil: ['Veuillez cliquer sur l’application Agenda pour l’ouvrir.']
 };
 const configurationNormale = {
   appsAccueilVerrouille: {
