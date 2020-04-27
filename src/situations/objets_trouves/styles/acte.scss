@@ -148,10 +148,10 @@
       background-color: darken($couleur-app-repondeur, 10%);
     }
   }
-  &--rappels {
-    background-color: $couleur-app-rappels;
+  &--notes {
+    background-color: $couleur-app-notes;
     &:hover {
-      background-color: darken($couleur-app-rappels, 10%);
+      background-color: darken($couleur-app-notes, 10%);
     }
   }
   &--messages {
