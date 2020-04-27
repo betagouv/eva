@@ -104,6 +104,7 @@ const questionAgenda = {
   illustration: AppAgenda,
   icone: iconeAgenda,
   intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
+  consigne: 'Écoutez chaque proposition en cliquant sur les hauts parleurs',
   metacompetence: 'ccf',
   choix: [
     {
