@@ -1,7 +1,7 @@
 import AppAgendaEntrainement from '../assets/app-agenda-entrainement.png';
 import AppAgenda from '../assets/app-agenda.png';
 import AppPhoto from '../assets/app-photo.png';
-import AppRappels from '../assets/app-rappels.png';
+import AppNotes from '../assets/app-notes.png';
 import AppDeverrouillage from '../assets/app-deverrouillage.png';
 import Fin from '../assets/fin.png';
 import AppMessage1 from '../assets/app-message1.png';
@@ -139,10 +139,10 @@ const questionAgenda = {
   ]
 };
 
-const questionRappels = {
-  id: 'rappels',
+const questionNotes = {
+  id: 'notes',
   icone: iconeNotes,
-  illustration: AppRappels,
+  illustration: AppNotes,
   intitule: 'Que Sophie doit-elle penser à faire ?',
   metacompetence: 'ccf',
   choix: [
@@ -449,7 +449,7 @@ const configurationNormale = {
   apps: {
     photos: [questionPhoto],
     repondeur: [questionRepondeur1, questionRepondeur2],
-    rappels: [questionRappels],
+    notes: [questionNotes],
     agenda: [questionAgenda],
     messages: [questionMessage3, questionMessage1, questionMessage2]
   },
