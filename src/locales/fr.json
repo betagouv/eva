@@ -32,9 +32,6 @@
       "bouton": "A vous de jouer !",
       "message": "<p>Bonjour et bienvenue,</p><p>Nous allons identifier ensemble vos compétences au travers de mini-jeux.</p><p>Tout au long du parcours, vous prendrez le rôle d’un employé d’un parc d’attraction et vous aurez plusieurs missions à réaliser. Si ces jeux reproduisent des activités particulières, les compétences mesurées s'appliquent à tous les métiers et tous les secteurs d'activité.</p><p>Lorsque vous aurez terminé, vous pourrez découvrir vos compétences fortes et les métiers associés qui vous serviront pour échanger avec votre accompagnant sur votre parcours professionnel.</p>"
     },
-
-
-
     "fin": {
       "bravo": {
         "titre": "Merci et bravo<br>{{nom}} !",
@@ -211,7 +208,7 @@
     "intro_contexte": {
       "message": "<p>Vous venez de retrouver le téléphone de Sophie au restaurant. Sophie est une de vos collègues et vous devez la retrouver afin de lui transmettre une information importante : le planning a été modifié, et elle doit prendre votre poste cet après-midi.</p><p>Vous décidez de chercher dans son téléphone des informations pour la retrouver. Vous avez accès à ses sms, ses messages vocaux, ses photographies, ainsi que son agenda.</p><p>Commençons par un entraînement.</p>",
       "message_transition": "<p>Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.</p>",
-      "message_transition_fin": "<p>Bravo ! Grâce à votre enquête dans son téléphone, vous avez retrouvé Sophie. </p><p>Allons la rejoindre !</p>",
+      "message_transition_fin": "<p>Bravo, vous avez retrouvé Sophie !</p><p>Allons la rejoindre !</p>",
       "suivant": "Suivant"
     }
   }
