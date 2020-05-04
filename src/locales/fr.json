@@ -142,7 +142,7 @@
   "prevention": {
     "intro_contexte": {
       "message": "<p>Vous allez observer une scène sur laquelle des situations sont entourées.</p><p>Cliquez sur chaque situation entourée et choisissez un niveau de risque correspondant.</p><p>S’agit-il d’une situation pas du tout risquée (dans laquelle tout va bien), d’une situation un peu risquée (dans laquelle il n’y a pas de danger immédiat) ou une situation très risquée (dans laquelle une ou plusieurs personnes sont en danger) ? <br>Vous devrez ensuite choisir comment agir face à chaque situation.</p><p>Commençons tout d’abord par un entraînement : cliquez sur la situation entourée sur cette image.</p>",
-      "message_transition": "<p>Bravo, Vous venez de réussir l’entraînement. A vous de jouer&nbsp;!</br>Déterminez si les cinq situations entourées sont risquées ou non et comment agir.</p>"
+      "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer&nbsp;!</br>Déterminez si les cinq situations entourées sont risquées ou non et comment agir.</p>"
     },
     "titre": "Prévention"
   },
