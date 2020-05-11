@@ -1,6 +1,6 @@
 import DepotRessourcesQuestionsBase from 'questions/infra/depot_ressources_questions_base';
 
-import sonConsigne from 'commun/assets/consigne_blanche.wav';
+import sonConsigne from 'bienvenue/assets/consigne_demarrage.wav';
 
 export default class DepotRessourcesBienvenue extends DepotRessourcesQuestionsBase {
   constructor (chargeurs) {
