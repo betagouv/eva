@@ -1,10 +1,12 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, createLocalVue, mount } from '@vue/test-utils';
 
 import { creeStore } from 'questions/modeles/store';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
+import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 import Acte from 'questions/vues/acte';
 import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from 'questions/vues/redaction_note';
+import { DEMARRE } from 'commun/modeles/situation';
 
 describe("La vue de l'acte « Question »", function () {
   let journal;
@@ -72,5 +74,26 @@ describe("La vue de l'acte « Question »", function () {
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     expect(vue.contains(QuestionQcm)).to.be(true);
+  });
+
+  it("ne renvoie pas l'événement d'ouverture quand il garde la dernière question affichée", function () {
+    localVue.prototype.$traduction = () => {};
+    var nombreOuverture = 0;
+    localVue.prototype.$journal.enregistre = (evenement) => {
+      if (evenement instanceof EvenementAffichageQuestionQCM) {
+        nombreOuverture++;
+      }
+    };
+    store.commit('configureActe', {
+      questions: [
+        { id: 1, type: 'qcm' },
+        { id: 2, type: 'qcm' }
+      ]
+    });
+    const wrapper = mount(Acte, { store, localVue });
+    store.state.etat = DEMARRE;
+    wrapper.vm.repondQuestion({ reponse: 'Ma réponse' });
+    wrapper.vm.repondQuestion({ reponse: 'Ma réponse' });
+    expect(nombreOuverture).to.eql(2);
   });
 });

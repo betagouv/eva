@@ -95,12 +95,22 @@ export default {
     question: {
       type: Object,
       required: true
+    },
+    envoyerEvenementAffichage: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
 
   mounted () {
-    const evenement = new EvenementAffichageQuestionQCM({ question: this.question.id, metacompetence: this.question.metacompetence });
-    this.$journal.enregistre(evenement);
+    if (this.envoyerEvenementAffichage) {
+      const evenement = new EvenementAffichageQuestionQCM({
+        question: this.question.id,
+        metacompetence: this.question.metacompetence
+      });
+      this.$journal.enregistre(evenement);
+    }
   },
 
   data () {
