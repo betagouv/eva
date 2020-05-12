@@ -49,7 +49,7 @@ describe("La vue de l'acte « Question »", function () {
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
   });
 
-  it("envoi l'événement terminer une fois toute les questions passées", function () {
+  it("envoie l'événement terminer une fois toute les questions passées", function () {
     const vue = shallowMount(Acte, { store, localVue });
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     expect(vue.emitted('terminer')).to.be(undefined);
@@ -57,17 +57,20 @@ describe("La vue de l'acte « Question »", function () {
     expect(vue.emitted('terminer').length).to.eql(1);
   });
 
-  it('garde la dernière question affiché à la fin', function () {
+  it("ne renvoie pas l'événement terminer quand on reconfigure l'acte après avoir terminé l'entrainement", function () {
+    const vue = shallowMount(Acte, { store, localVue });
+    vue.vm.repondQuestion({ reponse: 'Ma réponse' });
+    vue.vm.repondQuestion({ reponse: 'Ma réponse' });
+    store.commit('configureActe', {
+      questions: [{ id: 1, type: 'redaction_note' }]
+    });
+    expect(vue.emitted('terminer').length).to.eql(1);
+  });
+
+  it('garde la dernière question affichée à la fin', function () {
     const vue = shallowMount(Acte, { store, localVue });
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     expect(vue.contains(QuestionQcm)).to.be(true);
-  });
-
-  it('ne mount pas de composant question une fois que la situation est terminée', function () {
-    const vue = shallowMount(Acte, { store, localVue });
-    expect(vue.vm.composantQuestion).to.not.be(undefined);
-    store.commit('modifieEtat', 'fini');
-    expect(vue.vm.composantQuestion).to.be(undefined);
   });
 });
