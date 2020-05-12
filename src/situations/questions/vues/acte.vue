@@ -7,6 +7,7 @@
         :is="composantQuestion"
         :question="questionCourante"
         @reponse="repondQuestion"
+        :envoyerEvenementAffichage="acteEnCours"
       >
         <div class="question-progression">
           {{ indexQuestions + 1 }}/{{ nombreQuestions }}
@@ -24,6 +25,7 @@ import TransitionFade from 'commun/vues/transition_fade';
 import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from './redaction_note';
 import 'questions/styles/progression.scss';
+import { DEMARRE } from 'commun/modeles/situation';
 
 export default {
   components: { TransitionFade },
@@ -40,6 +42,9 @@ export default {
         qcm: QuestionQcm
       };
       return classesQuestions[this.questionCourante.type];
+    },
+    acteEnCours () {
+      return this.etat === DEMARRE;
     }
   },
 
