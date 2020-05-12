@@ -9,7 +9,7 @@
         @reponse="repondQuestion"
       >
         <div class="question-progression">
-          {{ numeroQuestionCourante }}/{{ nombreQuestions }}
+          {{ indexQuestions + 1 }}/{{ nombreQuestions }}
         </div>
       </component>
     </transition-fade>
@@ -24,17 +24,16 @@ import TransitionFade from 'commun/vues/transition_fade';
 import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from './redaction_note';
 import 'questions/styles/progression.scss';
-import { FINI } from 'commun/modeles/situation';
 
 export default {
   components: { TransitionFade },
 
   computed: {
-    ...mapState(['indexQuestions', 'etat']),
-    ...mapGetters(['questionCourante', 'nombreQuestions', 'numeroQuestionCourante']),
+    ...mapState(['indexQuestions', 'etat', 'fini']),
+    ...mapGetters(['questionCourante', 'nombreQuestions']),
 
     composantQuestion () {
-      if (!this.questionCourante || this.etat === FINI) return;
+      if (!this.questionCourante) return;
 
       const classesQuestions = {
         redaction_note: QuestionRedactionNote,
@@ -52,10 +51,8 @@ export default {
   },
 
   watch: {
-    indexQuestions (indexQuestions) {
-      if (indexQuestions === this.nombreQuestions) {
-        this.$emit('terminer');
-      }
+    fini (fini) {
+      if (fini) this.$emit('terminer');
     }
   }
 };

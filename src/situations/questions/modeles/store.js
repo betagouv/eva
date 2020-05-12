@@ -11,31 +11,30 @@ export function creeStore () {
   return creeStoreCommun({
     state: {
       questions: [],
-      indexQuestions: 0
+      indexQuestions: 0,
+      fini: false
     },
     getters: {
       nombreQuestions (state) {
         return state.questions.length;
       },
       questionCourante (state) {
-        let index = state.indexQuestions;
-        if (index === state.questions.length) {
-          index = index - 1;
-        }
-        return state.questions[index];
-      },
-      numeroQuestionCourante (state, getters) {
-        return state.questions.findIndex((question) => question === getters.questionCourante) + 1;
+        return state.questions[state.indexQuestions];
       }
     },
     mutations: {
       configureActe (state, { questions }) {
         state.questions = questions;
         state.indexQuestions = 0;
+        state.fini = false;
       },
 
       repondQuestionCourante (state, reponse) {
-        state.indexQuestions += 1;
+        if (state.indexQuestions + 1 === state.questions.length) {
+          state.fini = true;
+        } else {
+          state.indexQuestions++;
+        }
       }
     }
   });

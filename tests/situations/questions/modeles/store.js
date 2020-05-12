@@ -7,12 +7,13 @@ describe('Le store de la situation questions', function () {
     expect(store.state.questions.length).to.eql(1);
   });
 
-  it("réinitialise l'index des questions à la configuration d'un acte", function () {
+  it("réinitialise l'index des questions et l'état non fini à la configuration d'un acte", function () {
     const store = creeStore();
     store.commit('configureActe', { questions: [{ id: 1 }] });
     store.commit('repondQuestionCourante', 'reponse');
     store.commit('configureActe', { questions: [{ id: 1 }] });
     expect(store.state.indexQuestions).to.eql(0);
+    expect(store.state.fini).to.eql(false);
   });
 
   it('renvoit le nombre de questions', function () {
@@ -41,19 +42,13 @@ describe('Le store de la situation questions', function () {
     expect(store.getters.questionCourante).to.eql({ id: 1 });
   });
 
-  it('renvoit le numéro de la question courante', function () {
+  it("dit que c'est fini quand toutes les questions ont été répondues", function () {
     const store = creeStore();
-    store.commit('configureActe', { questions: [{ id: 1 }, { id: 2 }] });
-    expect(store.getters.numeroQuestionCourante).to.eql(1);
+    store.commit('configureActe', { questions: [{ id: 'question1' }, { id: 'question2' }] });
+    expect(store.state.fini).to.be(false);
     store.commit('repondQuestionCourante', 'reponse');
-    expect(store.getters.numeroQuestionCourante).to.eql(2);
-  });
-
-  it('renvoit le bon numéro de la question courante une fois terminée', function () {
-    const store = creeStore();
-    store.commit('configureActe', { questions: [{ id: 1 }, { id: 2 }] });
+    expect(store.state.fini).to.be(false);
     store.commit('repondQuestionCourante', 'reponse');
-    store.commit('repondQuestionCourante', 'reponse');
-    expect(store.getters.numeroQuestionCourante).to.eql(2);
+    expect(store.state.fini).to.be(true);
   });
 });
