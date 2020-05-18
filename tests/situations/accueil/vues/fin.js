@@ -26,6 +26,10 @@ describe('La vue de fin', function () {
       avatarDeconnexion () {
         return { src: '' };
       }
+
+      boutonAvis () {
+        return { src: '' };
+      }
     })();
     store = new Vuex.Store({
       state: {

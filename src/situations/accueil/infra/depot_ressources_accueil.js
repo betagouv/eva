@@ -9,13 +9,14 @@ import consigneAccueil from 'accueil/assets/consigne_accueil.wav';
 import consigneCommune from 'commun/assets/consigne_commune.wav';
 import avatarAvis from 'accueil/assets/avatar-avis.svg';
 import avatarDeconnexion from 'accueil/assets/avatar-deconnexion.svg';
+import boutonAvis from 'accueil/assets/bouton-avis.png';
 
 const batimentsContext = require.context('accueil/assets', false, /batiment-.+\.png$/);
 
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
     super(chargeurs);
-    this.charge([fondAccueil, personnage, precedent, suivant, casque, avatarFin, avatarAvis, avatarDeconnexion, consigneAccueil, consigneCommune]);
+    this.charge([fondAccueil, personnage, precedent, suivant, casque, avatarFin, avatarAvis, avatarDeconnexion, consigneAccueil, consigneCommune, boutonAvis]);
     this.chargeContexte(batimentsContext);
     this.batiments = batimentsContext.keys().reduce((memo, fichier) => {
       memo[fichier.match(/batiment-(.+)\.png/)[1]] = batimentsContext(fichier);
@@ -69,5 +70,9 @@ export default class DepotRessourcesAccueil extends DepotRessources {
 
   consigneCommune () {
     return this.ressource(consigneCommune);
+  }
+
+  boutonAvis () {
+    return this.ressource(boutonAvis);
   }
 }
