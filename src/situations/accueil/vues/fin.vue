@@ -59,11 +59,10 @@
               <span class="texte" v-html="$traduction('accueil.fin.avis.label')" />
             </div>
             <div class='actions-avis'>
-              <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-vert"
-                :href="lienDonnerAvis"
+              <a :href="lienDonnerAvis"
                 target='_blank'
                 @click="fermeDonnerAvis">
-                {{ $traduction('accueil.fin.avis.oui') }}
+                <img :src="boutonAvis" />
               </a>
               <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
                  @click="fermeDonnerAvis"
@@ -125,6 +124,7 @@ export default {
       avatarFin: this.$depotRessources.avatarFin().src,
       avatarAvis: this.$depotRessources.avatarAvis().src,
       avatarDeconnexion: this.$depotRessources.avatarDeconnexion().src,
+      boutonAvis: this.$depotRessources.boutonAvis().src,
       lienDonnerAvis: 'https://evabetagouv.typeform.com/to/G988nO',
       afficheDonnerAvis: true,
       confirmeDeconnexion: false
