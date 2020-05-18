@@ -10,60 +10,64 @@
       class="question--qcm"
     >
       <slot />
-      <p class="sans-marge">{{ question.description }}</p>
-      <p class="question-intitule">{{ question.intitule }}</p>
-      <p class="sans-marge">{{ question.consigne }}</p>
-      <div
-        v-if="question.numerique"
-        class="question-choix"
-      >
-        <div class="numerique-input-conteneur"
-             :class="{ 'chiffres-espaces' : question.espacerChiffres }">
-          <div class="conteneur-traits-saisie">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <input
-            v-model.trim="reponse"
-            class="numerique-input"
-            maxlength="4"
-            type='text'
-            />
-        </div>
+      <div class="question-entete">
+        <p v-if="question.description">{{ question.description }}</p>
+        <p class="question-intitule">{{ question.intitule }}</p>
+        <p v-if="question.consigne">{{ question.consigne }}</p>
       </div>
-      <div
-        v-for="element in question.choix"
-        :key="element.id"
-        class="question-choix"
-      >
-        <label class="question-label">
-          <input
-            v-model="reponse"
-            :value="element.id"
-            name="question"
-            type="radio"
-            class="question-input"
-          />
-          <lecteur-audio
-            v-if="element.audio"
-            :joue-son="reponse == element.id"
-            :src="son(element.audio, element.id)"
-            class="question-reponse-intitule"
-          />
-          <img
-            v-if="element.image"
-            :src="element.image"
-            class="question-reponse-intitule"
-          />
-          <span
-            v-else
-            class="question-reponse-intitule"
-          >
-            {{ element.intitule }}
-          </span>
-        </label>
+      <div class="question-contenu">
+        <div
+          v-if="question.numerique"
+          class="question-choix"
+        >
+          <div class="numerique-input-conteneur"
+               :class="{ 'chiffres-espaces' : question.espacerChiffres }">
+            <div class="conteneur-traits-saisie">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <input
+              v-model.trim="reponse"
+              class="numerique-input"
+              maxlength="4"
+              type='text'
+              />
+          </div>
+        </div>
+        <div
+          v-for="element in question.choix"
+          :key="element.id"
+          class="question-choix"
+        >
+          <label class="question-label">
+            <input
+              v-model="reponse"
+              :value="element.id"
+              name="question"
+              type="radio"
+              class="question-input"
+            />
+            <lecteur-audio
+              v-if="element.audio"
+              :joue-son="reponse == element.id"
+              :src="son(element.audio, element.id)"
+              class="question-reponse-intitule"
+            />
+            <img
+              v-if="element.image"
+              :src="element.image"
+              class="question-reponse-intitule"
+            />
+            <span
+              v-else
+              class="question-reponse-intitule"
+            >
+              {{ element.intitule }}
+            </span>
+          </label>
+        </div>
       </div>
       <button
         :disabled="disabled"

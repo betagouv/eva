@@ -6,19 +6,23 @@
 }
 
 .question-barre {
-  min-height: 417px;
-
   &.accueil {
-    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
   }
 
   &.transition {
-    display: flex;
-    align-items: flex-end;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    > div {
+      display: flex;
+      flex-grow: 2;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .bouton-arrondi {
+      align-self: flex-end;
+    }
   }
 }
 
@@ -182,7 +186,7 @@
   &-conteneur {
     position: absolute;
     top: 4.7rem;
-    right: 24.25rem;
+    right: 24.5rem;
     text-align: center;
     color: $blanc;
     pointer-events: none;
