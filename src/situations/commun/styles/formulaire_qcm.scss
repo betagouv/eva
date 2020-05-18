@@ -12,13 +12,30 @@
   }
 
   &-barre {
+    display: flex;
+    flex-direction: column;
     background-color: $blanc;
-    border-radius: 2rem;
-    padding: 1.25rem 1.875rem;
+    border-radius: 1rem;
+    padding: 1.5rem;
     position: absolute;
     right: 5rem;
-    width: 295px;
+    width: 300px;
+    min-height: 417px;
     font-size: 0.875rem;
+  }
+
+  &-entete {
+    p {
+      margin: 0;
+    }
+    p + p {
+      margin-top: 20px;
+    }
+  }
+
+  &-contenu {
+    flex-grow: 2;
+    margin-top: 0.5rem;
   }
 
   &-choix {
@@ -41,16 +58,13 @@
   }
 
   &-bouton {
+    align-self: flex-end;
     float: right;
     margin-top: 1rem;
   }
 
   &-intitule {
     color: $couleur-fond-bouton-bleu;
-  }
-
-  .sans-marge {
-    margin: 0;
   }
 
   .numerique-input-conteneur {
