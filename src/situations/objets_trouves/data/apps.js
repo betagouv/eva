@@ -25,7 +25,8 @@ const questionAgendaEntrainement = {
   id: 'agenda-entrainement',
   icone: iconeAgenda,
   illustration: AppAgendaEntrainement,
-  intitule: 'Voici le téléphone de Sophie. Que faisait Sophie ce matin ?',
+  description: 'Voici le téléphone de Sophie.',
+  intitule: 'Que faisait Sophie ce matin ?',
   metacompetence: 'ccf',
   choix: [
     {
