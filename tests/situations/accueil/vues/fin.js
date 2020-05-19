@@ -85,12 +85,13 @@ describe('La vue de fin', function () {
     wrapper = mount(Fin, { store, localVue });
     wrapper.find('button').trigger('click');
 
+    var boutonDeconnexion = wrapper.find('.actions-fin .bouton-deconnexion');
+    expect(boutonDeconnexion.isVisible()).to.be(true);
+    boutonDeconnexion.trigger('click');
+
     expect(wrapper.findAll('.mon-avis').length).to.equal(1);
-
     wrapper.find('.actions-avis .bouton-arrondi-orange').trigger('click');
-    expect(wrapper.find('.actions-fin .bouton-deconnexion').isVisible()).to.be(true);
 
-    wrapper.find('.actions-fin .bouton-deconnexion').trigger('click');
     expect(wrapper.find('.actions-fin .confirmation-deconnexion').isVisible()).to.be(true);
   });
 });
