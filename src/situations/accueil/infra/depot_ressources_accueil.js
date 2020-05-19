@@ -9,7 +9,7 @@ import consigneAccueil from 'accueil/assets/consigne_accueil.wav';
 import consigneCommune from 'commun/assets/consigne_commune.wav';
 import avatarAvis from 'accueil/assets/avatar-avis.svg';
 import avatarDeconnexion from 'accueil/assets/avatar-deconnexion.svg';
-import boutonAvis from 'accueil/assets/bouton-avis.png';
+import boutonAvis from 'accueil/assets/bouton-avis.svg';
 
 const batimentsContext = require.context('accueil/assets', false, /batiment-.+\.png$/);
 

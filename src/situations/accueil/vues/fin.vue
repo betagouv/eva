@@ -62,12 +62,12 @@
               <a :href="lienDonnerAvis"
                 target='_blank'
                 @click="fermeDonnerAvis">
-                <img :src="boutonAvis" />
+                <img style="height:40px;" :src="boutonAvis" alt="Je donne mon avis" title="Je donne mon avis sur cette démarche" />
               </a>
               <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi-orange"
                  @click="fermeDonnerAvis"
               >
-                {{ $traduction('accueil.fin.avis.non') }}
+                {{ $traduction('accueil.fin.avis.fermer') }}
               </a>
             </div>
           </div>
@@ -125,7 +125,7 @@ export default {
       avatarAvis: this.$depotRessources.avatarAvis().src,
       avatarDeconnexion: this.$depotRessources.avatarDeconnexion().src,
       boutonAvis: this.$depotRessources.boutonAvis().src,
-      lienDonnerAvis: 'https://evabetagouv.typeform.com/to/G988nO',
+      lienDonnerAvis: 'https://voxusagers.numerique.gouv.fr/Demarches/2381?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=e556745a003dc51aac047d6818d4e1d6',
       afficheDonnerAvis: true,
       confirmeDeconnexion: false
     };
