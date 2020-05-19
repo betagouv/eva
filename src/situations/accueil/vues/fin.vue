@@ -100,7 +100,7 @@
         >
           <a
             class="bouton-deconnexion bouton-arrondi"
-            @click="afficheConfirmationDeconnexion"
+            @click="afficheJeDonneMonAvis"
           >{{ $traduction('deconnexion.titre') }}</a>
         </div>
       </transition-fade>
@@ -126,7 +126,7 @@ export default {
       avatarDeconnexion: this.$depotRessources.avatarDeconnexion().src,
       boutonAvis: this.$depotRessources.boutonAvis().src,
       lienDonnerAvis: 'https://voxusagers.numerique.gouv.fr/Demarches/2381?&view-mode=formulaire-avis&nd_mode=en-ligne-enti%C3%A8rement&nd_source=button&key=e556745a003dc51aac047d6818d4e1d6',
-      afficheDonnerAvis: true,
+      afficheDonnerAvis: false,
       confirmeDeconnexion: false
     };
   },
@@ -144,10 +144,11 @@ export default {
 
     fermeDonnerAvis () {
       this.afficheDonnerAvis = false;
+      this.confirmeDeconnexion = true;
     },
 
-    afficheConfirmationDeconnexion () {
-      this.confirmeDeconnexion = true;
+    afficheJeDonneMonAvis () {
+      this.afficheDonnerAvis = true;
     }
   }
 };
