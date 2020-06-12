@@ -13,12 +13,12 @@ export default class RegistreUtilisateur extends EventEmitter {
     this.urlServeur = urlServeur;
   }
 
-  inscris (nom, codeCampagne) {
+  inscris (nom, codeCampagne, email, telephone) {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
         url: `${this.urlServeur}/api/evaluations`,
-        data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
+        data: JSON.stringify({ nom: nom, code_campagne: codeCampagne, email: email, telephone: telephone }),
         contentType: 'application/json; charset=utf-8',
         success: resolve,
         error: reject

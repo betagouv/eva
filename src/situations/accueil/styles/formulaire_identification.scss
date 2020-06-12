@@ -1,11 +1,19 @@
 @import 'commun/styles/couleurs.scss';
 
+.elements-formulaire {
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    width: 50%;
+  }
+}
+
 .input-accueil {
   box-shadow: inset .1rem .2rem .2rem $couleur-ombre-input-accueil;
   border-color: $couleur-bordure-input-accueil;
   border-style: solid;
   border-radius: .5rem;
-  width: 32%;
+  width: 62%;
   height: 3rem;
   padding: 1rem;
   transition: border .3s;
@@ -33,4 +41,7 @@
 
 .cgu-text {
   font-size: .9rem;
+  > a {
+    color: $bleu-fonce;
+  }
 }

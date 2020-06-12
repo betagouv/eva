@@ -19,9 +19,11 @@
     "identification": {
       "bouton": "Démarrer",
       "campagne": "Code de la campagne",
-      "cgu": "J'autorise eva à collecter et traiter mes données personnelles dans le cadre de l'utilisation de l'outil. Ces données ne seront pas exploitées commercialement. Dans le cadre d'un accompagnement de parcours ou d’une opération de recrutement spécifique, j'accepte que les données collectées soient transmises à l'entreprise ou à l’opérateur de service public partenaire. Vous pouvez utiliser votre droit de suppression de données personnelles en nous écrivant à l'adresse email support@eva.beta.gouv.fr",
+      "cgu": "Eva traite les données recueillies pour détecter et positionner vos compétences transversales. Ces données ne seront pas exploitées commercialement. Elles peuvent être transmises à l'entreprise ou à l’opérateur de service public partenaire. Vous pouvez en savoir plus en consultant nos <a href=\"https://eva.beta.gouv.fr/cgu/\">Conditions générales d'utilisation</a> et exercer votre droit de suppression de données personnelles en nous écrivant à l'adresse email support@eva.beta.gouv.fr",
       "label": "Entrez votre nom et prénom",
-      "titre": "Bienvenue !"
+      "titre": "Bienvenue !",
+      "email": "Entrez votre email",
+      "telephone": "Entrez votre numéro de téléphone"
     },
     "intro_consigne": {
       "bouton": "Lancer la consigne",
