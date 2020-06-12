@@ -37,9 +37,9 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
       }
     },
     actions: {
-      inscris ({ commit }, { nom, campagne }) {
+      inscris ({ commit }, { nom, campagne, email, telephone }) {
         return registreUtilisateur
-          .inscris(nom, campagne);
+          .inscris(nom, campagne, email, telephone);
       },
       deconnecte () {
         return registreUtilisateur

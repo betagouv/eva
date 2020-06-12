@@ -6,44 +6,83 @@
       @submit.prevent="envoieFormulaire">
       <div>
         <h2>{{ $traduction('accueil.identification.titre') }}</h2>
-        <label
-          v-if="!nomForce"
-          for="formulaire-identification-input-nom">
-          {{ $traduction('accueil.identification.label') }}
-        </label>
-        <div
-          class="element-formulaire"
-          v-if="!nomForce">
-          <input
-            id="formulaire-identification-input-nom"
-            v-model.trim="nom"
-            type="text"
-            class="input-accueil"
-            autofocus>
-          <span
-            v-if="erreurs.nom"
-            class="erreur">{{ erreurs.nom[0] }}</span>
-        </div>
-        <label
-          v-if="!campagneForcee"
-          for="formulaire-identification-input-campagne">
-          {{ $traduction('accueil.identification.campagne') }}
-        </label>
-        <div
-          v-if="!campagneForcee"
-          class="element-formulaire">
-          <input
-            id="formulaire-identification-input-campagne"
-            v-model.trim="campagne"
-            type="text"
-            class="input-accueil">
-          <span
-            v-if="erreurs.campagne"
-            class="erreur">{{ erreurs.campagne[0] }}</span>
+        <div class="elements-formulaire">
+          <div>
+            <label
+              v-if="!nomForce"
+              for="formulaire-identification-input-nom">
+              {{ $traduction('accueil.identification.label') }}
+            </label>
+            <div
+              class="element-formulaire"
+              v-if="!nomForce">
+              <input
+                id="formulaire-identification-input-nom"
+                v-model.trim="nom"
+                type="text"
+                class="input-accueil"
+                autofocus>
+              <span
+                v-if="erreurs.nom"
+                class="erreur">{{ erreurs.nom[0] }}</span>
+            </div>
+          </div>
+          <div>
+            <label
+              v-if="!campagneForcee"
+              for="formulaire-identification-input-campagne">
+              {{ $traduction('accueil.identification.campagne') }}
+            </label>
+            <div
+              v-if="!campagneForcee"
+              class="element-formulaire">
+              <input
+                id="formulaire-identification-input-campagne"
+                v-model.trim="campagne"
+                type="text"
+                class="input-accueil">
+              <span
+                v-if="erreurs.campagne"
+                class="erreur">{{ erreurs.campagne[0] }}</span>
+            </div>
+          </div>
+          <div>
+            <label
+              for="formulaire-identification-input-email">
+              {{ $traduction('accueil.identification.email') }}
+            </label>
+            <div class="element-formulaire">
+              <input
+                id="formulaire-identification-input-email"
+                v-model.trim="email"
+                type="text"
+                class="input-accueil">
+              <span
+                v-if="erreurs.email"
+                class="erreur">{{ erreurs.email[0] }}</span>
+            </div>
+          </div>
+          <div>
+            <label
+              for="formulaire-identification-input-telephone">
+              {{ $traduction('accueil.identification.telephone') }}
+            </label>
+            <div
+              class="element-formulaire">
+              <input
+                id="formulaire-identification-input-telephone"
+                v-model.trim="telephone"
+                type="text"
+                class="input-accueil">
+              <span
+                v-if="erreurs.telephone"
+                class="erreur">{{ erreurs.telephone[0] }}</span>
+            </div>
+          </div>
         </div>
         <label class="cgu-label">
           <input v-model="cgu" type="checkbox" />
-          <span class="cgu-text">{{ $traduction('accueil.identification.cgu') }}</span>
+          <span class="cgu-text" v-html="$traduction('accueil.identification.cgu')"></span>
         </label>
         <div class="element-formulaire">
           <button
@@ -81,6 +120,8 @@ export default {
     return {
       nom: this.forceNom,
       campagne: this.forceCampagne,
+      email: this.email,
+      telephone: this.telephone,
       enCours: false,
       erreurs: {},
       cgu: false
@@ -107,11 +148,18 @@ export default {
     envoieFormulaire () {
       this.enCours = true;
       this.erreurs = {};
-      return this.$store.dispatch('inscris', { nom: this.nom, campagne: this.campagne })
+      return this.$store.dispatch('inscris', {
+        nom: this.nom,
+        campagne: this.campagne,
+        email: this.email,
+        telephone: this.telephone
+      })
         .then(() => {
           this.nom = this.forceNom;
           this.cgu = false;
           this.campagne = this.forceCampagne;
+          this.email = '';
+          this.telephone = '';
         })
         .catch((xhr) => {
           this.erreurs = xhr.responseJSON;
