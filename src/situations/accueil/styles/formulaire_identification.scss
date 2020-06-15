@@ -1,5 +1,9 @@
 @import 'commun/styles/couleurs.scss';
 
+h2 {
+    margin-bottom: 4rem;
+}
+
 .elements-formulaire {
   display: flex;
   flex-wrap: wrap;
@@ -9,9 +13,7 @@
 }
 
 .input-accueil {
-  box-shadow: inset .1rem .2rem .2rem $couleur-ombre-input-accueil;
-  border-color: $couleur-bordure-input-accueil;
-  border-style: solid;
+  border: 1px solid $bleu-gris;
   border-radius: .5rem;
   width: 62%;
   height: 3rem;
@@ -20,7 +22,7 @@
   outline: none;
 
   &:active, &:focus, &:hover {
-    border-color: darken($couleur-bordure-input-accueil, 10%);
+    border-color: darken($bleu-gris, 10%);
   }
 }
 
@@ -32,7 +34,11 @@
   display: flex;
   align-items: flex-start;
   max-width: 70%;
+  padding: .8rem .6rem 1.3rem 1rem;
   margin: 1.5rem 0;
+  border-radius: .75rem;
+  border: 1px solid $bleu-gris;
+  background-color: $blanc;
 
   input[type="checkbox"] {
     flex-shrink: 0;
@@ -40,8 +46,11 @@
 }
 
 .cgu-text {
+  margin-left: 1.2rem;
   font-size: .9rem;
+  line-height: 1rem;
   > a {
-    color: $bleu-fonce;
+    color: $bleu;
+    text-decoration: none;
   }
 }

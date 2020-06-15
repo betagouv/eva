@@ -19,7 +19,7 @@
     "identification": {
       "bouton": "Démarrer",
       "campagne": "Code de la campagne",
-      "cgu": "Eva traite les données recueillies pour détecter et positionner vos compétences transversales. Ces données ne seront pas exploitées commercialement. Elles peuvent être transmises à l'entreprise ou à l’opérateur de service public partenaire. Vous pouvez en savoir plus en consultant nos <a href=\"https://eva.beta.gouv.fr/cgu/\">Conditions générales d'utilisation</a> et exercer votre droit de suppression de données personnelles en nous écrivant à l'adresse email support@eva.beta.gouv.fr",
+      "cgu": "Eva traite les données recueillies pour détecter et positionner vos compétences transversales. Ces données ne seront pas exploitées commercialement. Elles peuvent être transmises à l'entreprise ou à l’opérateur de service public partenaire. Vous pouvez en savoir plus en consultant nos <a href=\"https://eva.beta.gouv.fr/cgu/\">Conditions générales d'utilisation</a> et exercer votre droit de suppression de données personnelles en nous écrivant à l'adresse email <a href=\"mailto:support@eva.beta.gouv.fr\">support@eva.beta.gouv.fr</a>",
       "label": "Entrez votre nom et prénom",
       "titre": "Bienvenue !",
       "email": "Entrez votre email",
