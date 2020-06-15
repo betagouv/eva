@@ -5,7 +5,7 @@
       class="overlay modale"
       @submit.prevent="envoieFormulaire">
       <div>
-        <h2>{{ $traduction('accueil.identification.titre') }}</h2>
+        <h2 class="formulaire-identification-titre">{{ $traduction('accueil.identification.titre') }}</h2>
         <div class="elements-formulaire">
           <div>
             <label
@@ -44,39 +44,6 @@
               <span
                 v-if="erreurs.campagne"
                 class="erreur">{{ erreurs.campagne[0] }}</span>
-            </div>
-          </div>
-          <div>
-            <label
-              for="formulaire-identification-input-email">
-              {{ $traduction('accueil.identification.email') }}
-            </label>
-            <div class="element-formulaire">
-              <input
-                id="formulaire-identification-input-email"
-                v-model.trim="email"
-                type="text"
-                class="input-accueil">
-              <span
-                v-if="erreurs.email"
-                class="erreur">{{ erreurs.email[0] }}</span>
-            </div>
-          </div>
-          <div>
-            <label
-              for="formulaire-identification-input-telephone">
-              {{ $traduction('accueil.identification.telephone') }}
-            </label>
-            <div
-              class="element-formulaire">
-              <input
-                id="formulaire-identification-input-telephone"
-                v-model.trim="telephone"
-                type="text"
-                class="input-accueil">
-              <span
-                v-if="erreurs.telephone"
-                class="erreur">{{ erreurs.telephone[0] }}</span>
             </div>
           </div>
         </div>
@@ -120,8 +87,6 @@ export default {
     return {
       nom: this.forceNom,
       campagne: this.forceCampagne,
-      email: this.email,
-      telephone: this.telephone,
       enCours: false,
       erreurs: {},
       cgu: false
@@ -150,16 +115,12 @@ export default {
       this.erreurs = {};
       return this.$store.dispatch('inscris', {
         nom: this.nom,
-        campagne: this.campagne,
-        email: this.email,
-        telephone: this.telephone
+        campagne: this.campagne
       })
         .then(() => {
           this.nom = this.forceNom;
           this.cgu = false;
           this.campagne = this.forceCampagne;
-          this.email = '';
-          this.telephone = '';
         })
         .catch((xhr) => {
           this.erreurs = xhr.responseJSON;

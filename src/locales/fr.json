@@ -25,6 +25,9 @@
       "email": "Entrez votre email",
       "telephone": "Entrez votre numéro de téléphone"
     },
+    "contact": {
+      "description": "L'équipe eva s'intéresse à l'évolution de votre parcours suite<br>  aux résultats obtenus. Si vous acceptez d’être recontacté.e,<br> merci de nous laisser votre email et votre numéro de téléphone."
+    },
     "intro_consigne": {
       "bouton": "Lancer la consigne",
       "message": "Veuillez mettre vos écouteurs pour suivre les consignes audio.",
