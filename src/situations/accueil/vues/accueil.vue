@@ -60,6 +60,7 @@
       </div>
     </div>
     <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom" />
+    <formulaire-contact />
     <transition-fade>
       <intro-consigne
         v-if="estConnecte && indexBatiment === 0"
@@ -85,6 +86,7 @@ import 'commun/styles/bouton.scss';
 import 'commun/styles/overlay.scss';
 import 'commun/styles/modale.scss';
 import FormulaireIdentification from './formulaire_identification';
+import FormulaireContact from './formulaire_contact';
 import AccesSituation from 'accueil/vues/acces_situation';
 import Fin from 'accueil/vues/fin';
 import IntroConsigne from 'commun/vues/intro_consigne';
@@ -99,7 +101,7 @@ export const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 
 export default {
-  components: { FormulaireIdentification, AccesSituation, IntroConsigne, Fin, TransitionFade },
+  components: { FormulaireIdentification, FormulaireContact, AccesSituation, IntroConsigne, Fin, TransitionFade },
 
   data () {
     const parametresUrl = queryString.parse(location.search);
