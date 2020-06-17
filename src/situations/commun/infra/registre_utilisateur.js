@@ -13,12 +13,12 @@ export default class RegistreUtilisateur extends EventEmitter {
     this.urlServeur = urlServeur;
   }
 
-  inscris (nom, codeCampagne, email, telephone) {
+  inscris (nom, codeCampagne) {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
         url: `${this.urlServeur}/api/evaluations`,
-        data: JSON.stringify({ nom: nom, code_campagne: codeCampagne, email: email, telephone: telephone }),
+        data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
         contentType: 'application/json; charset=utf-8',
         success: resolve,
         error: reject
@@ -27,6 +27,19 @@ export default class RegistreUtilisateur extends EventEmitter {
       window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(data));
       window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
       this.emit(CHANGEMENT_CONNEXION);
+    });
+  }
+
+  enregistreContact (email, telephone) {
+    return new Promise((resolve, reject) => {
+      this.$.ajax({
+        type: 'PATCH',
+        url: `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`,
+        data: JSON.stringify({ email: email, telephone: telephone }),
+        contentType: 'application/json; charset=utf-8',
+        success: resolve,
+        error: reject
+      });
     });
   }
 

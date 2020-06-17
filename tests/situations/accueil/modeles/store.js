@@ -1,4 +1,4 @@
-import { creeStore } from 'accueil/modeles/store';
+import { creeStore, DECONNECTE, CONTACT, DEMARRE } from 'accueil/modeles/store';
 
 describe("Le store de l'accueil", function () {
   let registreUtilisateur;
@@ -8,7 +8,10 @@ describe("Le store de l'accueil", function () {
       estConnecte () {},
       nom () {},
       on () {},
-      situationsFaites () {}
+      situationsFaites () {},
+      enregistreContact () {
+        return Promise.resolve();
+      }
     };
   });
 
@@ -17,15 +20,17 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.nom = () => undefined;
     const store = creeStore(registreUtilisateur);
     expect(store.state.estConnecte).to.eql(false);
+    expect(store.state.etat).to.eql(DECONNECTE);
     expect(store.state.nom).to.eql(undefined);
   });
 
-  it('initialise son état connecté a partir du registre utilisateur', function () {
+  it('initialise son état connecté a partir du registre utilisateur avec une situation faites', function () {
     registreUtilisateur.estConnecte = () => true;
     registreUtilisateur.nom = () => 'Mon nom';
     registreUtilisateur.situationsFaites = () => [1];
     const store = creeStore(registreUtilisateur);
     expect(store.state.estConnecte).to.eql(true);
+    expect(store.state.etat).to.eql(DEMARRE);
     expect(store.state.nom).to.eql('Mon nom');
     expect(store.state.situationsFaites).to.eql([1]);
   });
@@ -38,6 +43,7 @@ describe("Le store de l'accueil", function () {
     store.commit('metsAJourSituations', [1, 2]);
     store.commit('deconnecte');
     expect(store.state.estConnecte).to.eql(false);
+    expect(store.state.etat).to.eql(DECONNECTE);
     expect(store.state.nom).to.eql('');
     expect(store.state.situationsFaites.length).to.eql(0);
     expect(store.state.situations.length).to.eql(0);
@@ -47,6 +53,7 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.situationsFaites = () => [1];
     const store = creeStore(registreUtilisateur);
     store.commit('connecte', 'nom évalué');
+    expect(store.state.etat).to.eql(CONTACT);
     expect(store.state.nom).to.equal('nom évalué');
     expect(store.state.situationsFaites.length).to.eql(0);
   });
@@ -68,6 +75,13 @@ describe("Le store de l'accueil", function () {
     callback();
     expect(store.state.estConnecte).to.eql(false);
     expect(store.state.nom).to.eql('');
+  });
+
+  it('mets à jour les informations de contact', function () {
+    const store = creeStore(registreUtilisateur);
+    return store.dispatch('enregistreContact', 'mail@entreprise.fr', '0987654321').then(() => {
+      expect(store.state.etat).to.eql(DEMARRE);
+    });
   });
 
   it('sait récupérer les situations depuis le serveur', function () {
