@@ -23,7 +23,7 @@ describe("Le formulaire d'identification", function () {
   it("s'affiche", function () {
     expect(wrapper.exists('form')).to.be(true);
     expect(wrapper.exists('label')).to.be(true);
-    expect(wrapper.findAll('input[type=text]').length).to.eql(4);
+    expect(wrapper.findAll('input[type=text]').length).to.eql(2);
     expect(wrapper.findAll('input[type=checkbox]').length).to.eql(1);
   });
 
@@ -32,21 +32,16 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.isEmpty()).to.be(true);
   });
 
-  it("inscrit la personne avec le nom, la campagne, l'email et le téléphone à l'appui sur le bouton", function (done) {
+  it("inscrit la personne avec le nom et la campagne à l'appui sur le bouton", function (done) {
     store.dispatch = (action, { nom, campagne, email, telephone }) => {
       expect(action).to.equal('inscris');
       expect(nom).to.equal('Mon pseudo');
       expect(campagne).to.equal('Mon code campagne');
-      expect(email).to.equal('monemail@eva.fr');
-      expect(telephone).to.equal('0987654321');
-
       done();
       return promesse;
     };
     wrapper.findAll('input[type=text]').at(0).setValue('  Mon pseudo  ');
     wrapper.findAll('input[type=text]').at(1).setValue('Mon code campagne');
-    wrapper.findAll('input[type=text]').at(2).setValue('monemail@eva.fr');
-    wrapper.findAll('input[type=text]').at(3).setValue('0987654321');
     wrapper.find('input[type=checkbox]').setChecked();
     wrapper.find('button').trigger('submit');
   });
@@ -54,14 +49,10 @@ describe("Le formulaire d'identification", function () {
   it('réinitialise les valeurs une fois sauvegardé', function () {
     wrapper.vm.nom = 'Mon pseudo';
     wrapper.vm.campagne = 'Ma campagne';
-    wrapper.vm.email = 'Mon email';
-    wrapper.vm.telephone = 'Mon téléphone';
     wrapper.vm.cgu = true;
     return wrapper.vm.envoieFormulaire().then(() => {
       expect(wrapper.vm.nom).to.eql('');
       expect(wrapper.vm.campagne).to.eql('');
-      expect(wrapper.vm.email).to.eql('');
-      expect(wrapper.vm.telephone).to.eql('');
       expect(wrapper.vm.cgu).to.eql(false);
     });
   });
@@ -131,18 +122,18 @@ describe("Le formulaire d'identification", function () {
   });
 
   it('cache le champ campagne si il y a une propriété forceCampagne', function () {
-    expect(wrapper.findAll('.input-accueil').length).to.equal(4);
+    expect(wrapper.findAll('.input-accueil').length).to.equal(2);
     wrapper = mount(FormulaireIdentificationVue, { store, localVue, propsData: { forceCampagne: 'ete-2019' } });
     expect(wrapper.vm.campagne).to.eql('ete-2019');
-    expect(wrapper.findAll('label').length).to.equal(4);
-    expect(wrapper.findAll('.input-accueil').length).to.equal(3);
+    expect(wrapper.findAll('label').length).to.equal(2);
+    expect(wrapper.findAll('.input-accueil').length).to.equal(1);
   });
 
   it('cache le champ nom/prénom si il y a une propriété forceNom', function () {
-    expect(wrapper.findAll('.input-accueil').length).to.equal(4);
+    expect(wrapper.findAll('.input-accueil').length).to.equal(2);
     wrapper = mount(FormulaireIdentificationVue, { store, localVue, propsData: { forceNom: 'franck-poulain' } });
     expect(wrapper.vm.nom).to.eql('franck-poulain');
-    expect(wrapper.findAll('label').length).to.equal(4);
-    expect(wrapper.findAll('.input-accueil').length).to.equal(3);
+    expect(wrapper.findAll('label').length).to.equal(2);
+    expect(wrapper.findAll('.input-accueil').length).to.equal(1);
   });
 });

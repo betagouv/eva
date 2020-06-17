@@ -4,6 +4,7 @@ import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECAL
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 import { traduction } from 'commun/infra/internationalisation';
+import { DECONNECTE } from 'accueil/modeles/store';
 
 describe('La vue accueil', function () {
   let depotRessources;
@@ -34,7 +35,8 @@ describe('La vue accueil', function () {
       state: {
         situations: [{}, {}],
         estConnecte: false,
-        situationsFaites: []
+        situationsFaites: [],
+        etat: DECONNECTE
       }
     });
     localVue = createLocalVue();

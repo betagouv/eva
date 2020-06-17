@@ -60,10 +60,12 @@
       </div>
     </div>
     <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom" />
-    <formulaire-contact />
+    <transition-fade>
+      <formulaire-contact v-if="estContact" />
+    </transition-fade>
     <transition-fade>
       <intro-consigne
-        v-if="estConnecte && indexBatiment === 0"
+        v-if="estDemarre && indexBatiment === 0"
         :titre="$traduction('accueil.intro_consigne.titre')"
         identifiant-situation="accueil"
         titre-consigne=""
@@ -92,6 +94,7 @@ import Fin from 'accueil/vues/fin';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
+import { CONTACT, DEMARRE } from '../modeles/store';
 
 const LARGEUR_SCENE = 1008;
 export const LARGEUR_BATIMENT = 411;
@@ -119,7 +122,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['situations', 'estConnecte', 'situationsFaites']),
+    ...mapState(['situations', 'estConnecte', 'situationsFaites', 'etat']),
 
     positionFond () {
       return (this.indexBatiment) * 80;
@@ -166,6 +169,14 @@ export default {
     afficheBoutonSituation () {
       const batiment = this.batiments[this.indexBatiment];
       return batiment && (batiment.action || batiment.chemin);
+    },
+
+    estDemarre () {
+      return this.etat === DEMARRE;
+    },
+
+    estContact () {
+      return this.etat === CONTACT;
     }
   },
 
