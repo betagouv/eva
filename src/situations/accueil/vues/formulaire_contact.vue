@@ -3,7 +3,7 @@
     class="overlay modale modale-formulaire-contact"
     @submit.prevent="envoieFormulaire">
     <div>
-      <h2>{{ $traduction('accueil.identification.titre') }}</h2>
+      <h2>{{ $traduction('accueil.contact.titre', { nom: nom }) }}</h2>
       <p class="formulaire-contact-description" v-html="$traduction('accueil.contact.description')"></p>
       <div class="elements-formulaire">
         <div>
@@ -65,7 +65,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['estConnecte'])
+    ...mapState(['estConnecte', 'nom'])
   },
 
   methods: {
