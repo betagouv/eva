@@ -1,19 +1,19 @@
 <template>
   <form
-    class="overlay modale modale-formulaire-contact"
+    class="overlay modale modale-formulaire"
     @submit.prevent="envoieFormulaire">
     <div>
-      <h2>{{ $traduction('accueil.contact.titre', { nom: nom }) }}</h2>
+      <h2 v-html="$traduction('accueil.contact.titre', { nom: nom })"></h2>
       <p class="formulaire-contact-description" v-html="$traduction('accueil.contact.description')"></p>
       <div class="elements-formulaire">
         <div>
           <label
-            for="formulaire-identification-input-email">
-            {{ $traduction('accueil.identification.email') }}
+            for="formulaire-contact-input-email">
+            {{ $traduction('accueil.contact.email') }}
           </label>
           <div class="element-formulaire">
             <input
-              id="formulaire-identification-input-email"
+              id="formulaire-contact-input-email"
               v-model.trim="email"
               type="text"
               class="input-accueil"
@@ -25,13 +25,13 @@
         </div>
         <div>
           <label
-            for="formulaire-identification-input-telephone">
-            {{ $traduction('accueil.identification.telephone') }}
+            for="formulaire-contact-input-telephone">
+            {{ $traduction('accueil.contact.telephone') }}
           </label>
           <div
             class="element-formulaire">
             <input
-              id="formulaire-identification-input-telephone"
+              id="formulaire-contact-input-telephone"
               v-model.trim="telephone"
               type="text"
               class="input-accueil"
@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="element-formulaire">
-        <button class="bouton-arrondi">{{ $traduction('accueil.identification.bouton') }}</button>
+        <button class="bouton-arrondi">{{ $traduction('accueil.contact.bouton') }}</button>
       </div>
     </div>
   </form>
@@ -51,7 +51,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import 'accueil/styles/formulaire_contact.scss';
+import 'accueil/styles/formulaire.scss';
 import 'commun/styles/boutons.scss';
 
 export default {
