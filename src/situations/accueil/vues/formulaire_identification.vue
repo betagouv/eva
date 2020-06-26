@@ -2,7 +2,7 @@
   <transition-fade>
     <form
       v-if="!estConnecte"
-      class="overlay modale"
+      class="overlay modale modale-formulaire"
       @submit.prevent="envoieFormulaire">
       <div>
         <h2 class="formulaire-identification-titre">{{ $traduction('accueil.identification.titre') }}</h2>
@@ -63,7 +63,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import 'accueil/styles/formulaire_identification.scss';
+import 'accueil/styles/formulaire.scss';
 import 'commun/styles/boutons.scss';
 import TransitionFade from 'commun/vues/transition_fade';
 

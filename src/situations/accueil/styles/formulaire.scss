@@ -1,24 +1,40 @@
 @import 'commun/styles/couleurs.scss';
 
+.modale-formulaire {
+  font-size: 1.1rem;
+  > div {
+    width: 100%;
+  }
+}
+
 .formulaire-identification-titre {
     margin-bottom: 4rem;
+}
+
+.formulaire-contact-description {
+  width: 60%;
+  margin-top: 0;
+  margin-bottom: 3rem;
 }
 
 .elements-formulaire {
   display: flex;
   flex-wrap: wrap;
   > div {
-    width: 50%;
+    margin-right: 1.9rem;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
 .input-accueil {
   border: 1px solid $bleu-gris;
-  border-radius: .5rem;
-  width: 62%;
+  border-radius: .75rem;
+  width: 18.4rem;
   height: 3rem;
   padding: 1rem;
-  font-size: 1.12rem;
+  font-size: 1.1rem;
   font-family: 'Work Sans', sans-serif;
   transition: border .3s;
   outline: none;
@@ -31,6 +47,9 @@
 
 .element-formulaire {
   margin: .5rem auto;
+  ::placeholder {
+    color: $bleu-gris;
+  }
 }
 
 .cgu-label {
