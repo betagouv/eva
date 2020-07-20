@@ -22,12 +22,21 @@ describe('le journal', function () {
 
     const enregistrement = mockDepot.evenements();
     expect(enregistrement.length).to.equal(1);
-    expect(enregistrement[0]).to.only.have.keys('date', 'session_id', 'nom', 'donnees', 'situation', 'evaluation_id');
+    expect(enregistrement[0]).to.only.have.keys('date', 'session_id', 'nom', 'donnees', 'situation', 'evaluation_id', 'position');
     expect(enregistrement[0]).to.have.property('nom', 'test');
     expect(enregistrement[0]).to.have.property('date', 123);
     expect(enregistrement[0]).to.have.property('session_id', sessionId);
     expect(enregistrement[0]).to.have.property('situation', identifiantSituation);
     expect(enregistrement[0]).to.have.property('evaluation_id', 'identifiant evaluation');
+    expect(enregistrement[0]).to.have.property('position', 0);
+  });
+
+  it('incrémente la position à chaque événement', function () {
+    journal.enregistre(new Evenement('événement 1'));
+    journal.enregistre(new Evenement('événement 2'));
+    const enregistrement = mockDepot.evenements();
+    expect(enregistrement[0]).to.have.property('position', 0);
+    expect(enregistrement[1]).to.have.property('position', 1);
   });
 
   it('enregistre la situation faite', function (done) {

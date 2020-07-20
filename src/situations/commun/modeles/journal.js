@@ -10,6 +10,7 @@ export class Journal {
     this.sessionId = session;
     this.situation = situation;
     this.registreUtilisateur = registre;
+    this.position = 0;
   }
 
   enregistre (evenement, timeout) {
@@ -19,7 +20,8 @@ export class Journal {
       situation: this.situation,
       nom: evenement.nom(),
       donnees: evenement.donnees(),
-      evaluation_id: this.registreUtilisateur.idEvaluation()
+      evaluation_id: this.registreUtilisateur.idEvaluation(),
+      position: this.position++
     };
     return this.depot.enregistre(payLoad, timeout);
   }
