@@ -5,7 +5,7 @@
         <img :src="chargement">
       </a>
     </div>
-    <div class="overlay-action-message">{{ $traduction('situation.chargement') }}</div>
+    <div class="overlay-action-message">{{ $traduction(`situation.${raison}`) }}</div>
   </div>
 </template>
 
@@ -17,6 +17,13 @@ import 'commun/styles/chargement.scss';
 import chargement from 'commun/assets/chargement.svg';
 
 export default {
+  props: {
+    raison: {
+      type: String,
+      require: true
+    }
+  },
+
   data () {
     return {
       chargement
