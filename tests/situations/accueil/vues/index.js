@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import Index from 'accueil/vues/index';
-import OverlayChargement from 'commun/vues/overlay_chargement';
+import OverlayAttente from 'commun/vues/overlay_attente';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import Accueil from 'accueil/vues/accueil';
 import { traduction } from 'commun/infra/internationalisation';
@@ -26,7 +26,7 @@ describe('La vue index', function () {
     const wrapper = shallowMount(Index, { localVue });
     expect(wrapper.contains(BoiteUtilisateur)).to.be(false);
     expect(wrapper.contains(Accueil)).to.be(false);
-    expect(wrapper.contains(OverlayChargement)).to.be(true);
+    expect(wrapper.contains(OverlayAttente)).to.be(true);
   });
 
   it('affiche les composants une fois chargé', function (done) {
@@ -34,7 +34,7 @@ describe('La vue index', function () {
     wrapper.vm.$nextTick(() => {
       expect(wrapper.contains(BoiteUtilisateur)).to.be(true);
       expect(wrapper.contains(Accueil)).to.be(true);
-      expect(wrapper.contains(OverlayChargement)).to.be(false);
+      expect(wrapper.contains(OverlayAttente)).to.be(false);
       done();
     });
   });
@@ -44,7 +44,7 @@ describe('La vue index', function () {
     wrapper.vm.erreurChargement = true;
     expect(wrapper.contains(BoiteUtilisateur)).to.be(false);
     expect(wrapper.contains(Accueil)).to.be(false);
-    expect(wrapper.contains(OverlayChargement)).to.be(false);
+    expect(wrapper.contains(OverlayAttente)).to.be(false);
     expect(wrapper.contains(OverlayErreurChargement)).to.be(true);
   });
 });

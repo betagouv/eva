@@ -9,7 +9,7 @@
       class="conteneur"
     >
       <overlay-erreur-chargement v-if="erreurChargement" />
-      <overlay-chargement v-else-if="chargement" />
+      <overlay-attente v-else-if="chargement" raison='chargement' />
     </div>
     <accueil v-else />
   </div>
@@ -18,13 +18,13 @@
 <script>
 import { traduction } from 'commun/infra/internationalisation';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
-import OverlayChargement from 'commun/vues/overlay_chargement';
+import OverlayAttente from 'commun/vues/overlay_attente';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import Accueil from './accueil';
 import logo from '../../../public/logo.svg';
 
 export default {
-  components: { Accueil, BoiteUtilisateur, OverlayChargement, OverlayErreurChargement },
+  components: { Accueil, BoiteUtilisateur, OverlayAttente, OverlayErreurChargement },
 
   data () {
     return {
