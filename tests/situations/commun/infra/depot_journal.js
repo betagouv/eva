@@ -15,4 +15,15 @@ describe('le depot du journal', function () {
 
     expect(depot.enregistre({})).to.be.a(Promise);
   });
+
+  it('peut attendre la fin de tous les enregistrements', function (done) {
+    const requetes = [];
+    const depot = new DepotJournal({ ajax (params) { requetes.push(params); } });
+    depot.enregistre({});
+    depot.enregistre({});
+
+    depot.attendFinEnregistrement().finally(() => { done(); });
+
+    requetes.forEach((requete) => { requete.success(); });
+  });
 });

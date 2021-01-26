@@ -3,11 +3,16 @@ import jQuery from 'jquery';
 export default class DepotJournal {
   constructor ($ = jQuery) {
     this.$ = $;
+    this.enregistrements = [];
+  }
+
+  attendFinEnregistrement () {
+    return Promise.all(this.enregistrements);
   }
 
   enregistre (payload, timeout = 60000) {
     let delay = 100;
-    return new Promise((resolve, reject) => {
+    const promesseDEnregistrement = new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
         url: `${process.env.URL_API}/api/evenements`,
@@ -29,5 +34,7 @@ export default class DepotJournal {
         }
       });
     });
+    this.enregistrements.push(promesseDEnregistrement);
+    return promesseDEnregistrement;
   }
 }

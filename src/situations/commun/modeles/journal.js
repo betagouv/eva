@@ -13,6 +13,10 @@ export class Journal {
     this.position = 0;
   }
 
+  attendFinEnregistrement () {
+    return this.depot.attendFinEnregistrement();
+  }
+
   enregistre (evenement, timeout) {
     const payLoad = {
       date: this.maintenant(),

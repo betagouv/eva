@@ -169,6 +169,7 @@
     "titre_transition": "Bravo !",
     "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
     "chargement": "Chargement en cours",
+    "attente_serveur": "Enregistrement en cours",
     "go": "Vous pouvez commencer",
     "modale": {
       "annuler": "Non",
