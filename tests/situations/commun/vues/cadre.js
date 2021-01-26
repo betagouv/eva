@@ -4,7 +4,7 @@ import SituationCommune, {
   CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT,
   ATTENTE_DEMARRAGE,
   ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI,
-  DEMARRE, FINI, STOPPEE
+  DEMARRE, FINI, RETOUR_ACCUEIL, STOPPEE
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementFinSituation from 'commun/modeles/evenement_fin_situation';
@@ -33,7 +33,11 @@ describe('Une vue du cadre', function () {
     depotRessources = new DepotRessourcesCommune(chargeurs(), 'sonConsigne.wav', 'sonConsigneTransition.wav');
     situation = new SituationCommune();
     situation.identifiant = 'tri';
-    journal = { enregistre () {}, enregistreSituationFaite () {} };
+    journal = {
+      enregistre () {},
+      enregistreSituationFaite () {},
+      attendFinEnregistrement () { return { finally () {} }; }
+    };
 
     uneVueCadre = function (classeVue = uneClasseVue()) {
       return new VueCadre(classeVue, situation, journal, depotRessources);
@@ -93,7 +97,7 @@ describe('Une vue du cadre', function () {
   it('affiche la vue terminer', function () {
     const vueCadre = uneVueCadre();
     return vueCadre.affiche('#point-insertion', $).then(() => {
-      situation.emit(CHANGEMENT_ETAT, FINI);
+      situation.emit(CHANGEMENT_ETAT, RETOUR_ACCUEIL);
       expect($('#fenetre-modale').text()).to.match(/situation.reussite/);
     });
   });
@@ -101,7 +105,7 @@ describe('Une vue du cadre', function () {
   it('demande une confirmation pour quitter la page lorsque la situation est démarré', function () {
     const vueCadre = uneVueCadre();
     return vueCadre.affiche('#point-insertion', $).then(() => {
-      [ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE].forEach((etat) => {
+      [ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE].forEach((etat) => {
         situation.modifieEtat(etat);
         const event = $.Event('beforeunload');
         $(window).trigger(event);
@@ -113,7 +117,7 @@ describe('Une vue du cadre', function () {
   it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
     const vueCadre = uneVueCadre();
     return vueCadre.affiche('#point-insertion', $).then(() => {
-      [CHARGEMENT, ERREUR_CHARGEMENT, FINI, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
+      [CHARGEMENT, ERREUR_CHARGEMENT, RETOUR_ACCUEIL, ATTENTE_DEMARRAGE, STOPPEE].forEach((etat) => {
         situation.modifieEtat(etat);
         const event = $.Event('beforeunload');
         $(window).trigger(event);
@@ -148,10 +152,18 @@ describe('Une vue du cadre', function () {
     vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
-  it("enregistre l'événement de fin de situation", function (done) {
+  it("enregistre l'événement de fin de situation puis attend la fin de tous les enregistrements", function (done) {
     journal.enregistre = (evenement) => {
       expect(evenement).to.be.a(EvenementFinSituation);
-      done();
+    };
+    journal.attendFinEnregistrement = () => {
+      return {
+        finally (cb) {
+          cb.call();
+          expect(vueCadre.situation.etat()).to.equal(RETOUR_ACCUEIL);
+          done();
+        }
+      };
     };
     const vueCadre = uneVueCadre();
     vueCadre.situation.emit(CHANGEMENT_ETAT, FINI);

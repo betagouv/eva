@@ -7,6 +7,7 @@ import {
   ENTRAINEMENT_FINI,
   DEMARRE,
   FINI,
+  RETOUR_ACCUEIL,
   CHANGEMENT_ETAT
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
@@ -15,6 +16,7 @@ import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainemen
 import VueActions from 'commun/vues/actions';
 import { creeAdaptateur } from './adaptateur_vue';
 import OverlayChargement from './overlay_chargement';
+import OverlayAttenteServeur from './overlay_attente_serveur';
 import OverlayErreurChargement from './overlay_erreur_chargement';
 import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
@@ -31,7 +33,8 @@ export default class VueCadre {
     this.vuesEtats.set(ERREUR_CHARGEMENT, creeAdaptateur(OverlayErreurChargement));
     this.vuesEtats.set(ATTENTE_DEMARRAGE, AdaptateurConsigne);
     this.vuesEtats.set(ENTRAINEMENT_FINI, AdaptateurConsigne);
-    this.vuesEtats.set(FINI, VueTerminer);
+    this.vuesEtats.set(FINI, creeAdaptateur(OverlayAttenteServeur));
+    this.vuesEtats.set(RETOUR_ACCUEIL, VueTerminer);
     this.envoiEvenementDemarrageUneFoisDemarre();
     this.envoiEvenementFinSituationUneFoisTermine();
   }
@@ -73,7 +76,7 @@ export default class VueCadre {
 
   previensLaFermetureDeLaSituation ($) {
     $(window).on('beforeunload', (e) => {
-      if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE].includes(this.situation.etat())) {
+      if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE].includes(this.situation.etat())) {
         e.preventDefault();
         return '';
       }
@@ -84,6 +87,9 @@ export default class VueCadre {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === FINI) {
         this.journal.enregistre(new EvenementFinSituation());
+        this.journal.attendFinEnregistrement().finally(() => {
+          this.situation.modifieEtat(RETOUR_ACCUEIL);
+        });
       }
     });
   }

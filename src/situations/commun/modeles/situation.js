@@ -7,6 +7,7 @@ export const ENTRAINEMENT_DEMARRE = 'entrainementDemarré';
 export const ENTRAINEMENT_FINI = 'entrainementFini';
 export const DEMARRE = 'démarré';
 export const FINI = 'fini';
+export const RETOUR_ACCUEIL = 'retourAccueil';
 export const STOPPEE = 'stoppée';
 
 export const CHANGEMENT_ETAT = 'changementEtat';
