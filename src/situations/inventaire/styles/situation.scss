@@ -27,6 +27,14 @@
   .contenant {
     position: absolute;
     cursor: pointer;
+
+    &:hover {
+      fill: white;
+      fill-opacity: .25;
+      stroke-opacity: .8;
+      stroke: white;
+      stroke-width: .5;
+    }
   }
 
   .barres {
