@@ -25,7 +25,7 @@ export default class DepotJournal {
         error: function (xhr) {
           if (Date.now() - this.datePremierAppel < this.retryTimeout) {
             setTimeout(() => {
-              delay = delay * 2;
+              delay = Math.min(delay * 2, 2000);
               this.appel.ajax(this);
             }, delay);
           } else {
