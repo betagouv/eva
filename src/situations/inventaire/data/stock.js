@@ -64,11 +64,11 @@ const contenus = {
 };
 
 const formes = {
-  grandBaril: { largeur: 233, hauteur: 260, profondeur: 0, dimensionsOuvert: { largeur: 422, hauteur: 265 } },
-  petitBaril: { largeur: 117, hauteur: 128, profondeur: 0, dimensionsOuvert: { largeur: 422, hauteur: 265 } },
-  caisse: { largeur: 187, hauteur: 82, profondeur: 95, dimensionsOuvert: { largeur: 463, hauteur: 336 } },
-  grandCarton: { largeur: 269, hauteur: 158, profondeur: 90, dimensionsOuvert: { largeur: 695, hauteur: 484 } },
-  petitCarton: { largeur: 170, hauteur: 90, profondeur: 75, dimensionsOuvert: { largeur: 587, hauteur: 391 } }
+  grandBaril: { largeur: 233, hauteur: 260, profondeur: 0, courbe: 40, dimensionsOuvert: { largeur: 422, hauteur: 265 } },
+  petitBaril: { largeur: 117, hauteur: 128, profondeur: 0, courbe: 20, dimensionsOuvert: { largeur: 422, hauteur: 265 } },
+  caisse: { largeur: 187, hauteur: 82, profondeur: 95, courbe: 0, dimensionsOuvert: { largeur: 463, hauteur: 336 } },
+  grandCarton: { largeur: 269, hauteur: 158, profondeur: 90, courbe: 0, dimensionsOuvert: { largeur: 695, hauteur: 484 } },
+  petitCarton: { largeur: 170, hauteur: 90, profondeur: 75, courbe: 0, dimensionsOuvert: { largeur: 587, hauteur: 391 } }
 };
 
 export { scene, contenants, contenus, formes };

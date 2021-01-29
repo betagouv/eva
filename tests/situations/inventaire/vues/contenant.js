@@ -7,7 +7,7 @@ describe('vue contenant', function () {
   let vue;
 
   const contenant = new Contenant(
-    { quantite: 12, posX: 40, posY: 80, largeur: 15, hauteur: 25, profondeurX: 10, profondeurY: 12 }
+    { quantite: 12, posX: 40, posY: 80, largeur: 15, hauteur: 25, profondeurX: 10, profondeurY: 12, courbe: 12 }
   );
 
   beforeEach(function () {
@@ -25,10 +25,10 @@ describe('vue contenant', function () {
       .eql(`M   40   80
            v  -25
            l  10  -6
-           h  15
+           c  3 -12  15 -12 15 0
            v  25
            l  -10  6
-           h  -15
+           c  -3 12 -15 12 -15 0
            Z`
       );
   });
