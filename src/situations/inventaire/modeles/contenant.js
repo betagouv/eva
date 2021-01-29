@@ -15,6 +15,7 @@ export default class Contenant {
 
       this.largeur = pourcentage(formes[this.forme].largeur, scene.largeur);
       this.hauteur = pourcentage(formes[this.forme].hauteur, scene.hauteur);
+      this.courbe = pourcentage(formes[this.forme].courbe, scene.hauteur);
       this.profondeurX = pourcentage(formes[this.forme].profondeur, scene.largeur);
       this.profondeurY = pourcentage(formes[this.forme].profondeur, scene.hauteur);
       this.dimensionsOuvert = {

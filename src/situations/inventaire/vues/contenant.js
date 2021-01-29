@@ -10,10 +10,10 @@ export default class VueContenant {
       `M   ${this.contenant.posX}   ${this.contenant.posY}
            v  -${this.contenant.hauteur}
            l  ${this.contenant.profondeurX}  -${this.contenant.profondeurY / 2}
-           h  ${this.contenant.largeur}
+           c  ${this.contenant.largeur * 0.2} -${this.contenant.courbe}  ${this.contenant.largeur} -${this.contenant.courbe} ${this.contenant.largeur} 0
            v  ${this.contenant.hauteur}
            l  -${this.contenant.profondeurX}  ${this.contenant.profondeurY / 2}
-           h  -${this.contenant.largeur}
+           c  -${this.contenant.largeur * 0.2} ${this.contenant.courbe} -${this.contenant.largeur} ${this.contenant.courbe} -${this.contenant.largeur} 0
            Z`);
     element.setAttribute('fill-opacity', '0');
     element.classList.add('contenant');
