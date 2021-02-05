@@ -1,12 +1,13 @@
 import DepotRessources from 'commun/infra/depot_ressources';
 import casque from 'commun/assets/casque.svg';
+import clavier from 'commun/assets/clavier.svg';
 import sonConsigneCommune from 'commun/assets/consigne_commune.wav';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.wav';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
   constructor (chargeurs, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
     super(chargeurs);
-    this.charge([sonConsigneCommune, sonConsigneDemarrage, sonConsigneTransition, casque]);
+    this.charge([sonConsigneCommune, sonConsigneDemarrage, sonConsigneTransition, casque, clavier]);
     this.sonConsigneDemarrage = sonConsigneDemarrage;
     this.sonConsigneTransition = sonConsigneTransition;
   }
@@ -25,5 +26,9 @@ export default class DepotRessourcesCommunes extends DepotRessources {
 
   casque () {
     return this.ressource(casque);
+  }
+
+  clavier () {
+    return this.ressource(clavier);
   }
 }
