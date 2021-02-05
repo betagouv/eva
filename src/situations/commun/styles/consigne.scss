@@ -1,0 +1,30 @@
+@import 'commun/styles/couleurs.scss';
+
+.conteneur-message-aide {
+  display: flex;
+  flex-wrap: wrap;
+}
+.message-aide {
+  width: 24rem;
+  margin-right: 0.3rem;
+  padding: 1rem 1.25rem;
+  border-radius: 1.2rem;
+  border: 3px solid $orange;
+  background-color: $couleur-fond;
+  strong {
+    font-size: 1.125rem;
+    text-transform: uppercase;
+  }
+}
+.image-aide {
+  width: 8.75rem;
+  img {
+    width: 100%;
+  }
+}
+.overlay.modale {
+  .modale-interieur .message-aide p {
+    margin: 0;
+    font-size: 1.125rem;
+  }
+}

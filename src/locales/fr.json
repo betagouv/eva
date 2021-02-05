@@ -156,8 +156,11 @@
     "francais": "Mot français",
     "pas_francais": "Mot pas français",
     "intro_contexte": {
-      "message": "<p>Le parc d'attraction dans lequel vous travaillez a reçu un robot qui accueillera les visiteurs.</p><p>Ce robot n'a pas encore été réglé pour parler français, et vous devez lui apprendre à différencier les mots qui existent de ceux qui n’existent pas.</p><p>Lorsqu'un mot s'affiche, vous devez le classer en utilisant les flèches de votre clavier. Appuyez sur la flèche gauche si le mot est français et sur la flèche droite si il n'est pas français. Prenez le temps de bien repérer les touches sur le clavier.</p><p>Si vous êtes sur tablette, appuyez sur la flèche verte si le mot est français et sur la flèche rouge si le mot n’est pas français.</p><p>Commençons d'abord par un entraînement avant de débuter l’exercice.</p>",
+      "message": "<p>Vous devez apprendre à un robot à parler français. Pour cela, le robot va vous montrer des mots, et vous devrez dire si les mots existent en français ou s'ils n'existent pas en appuyant sur les flèches de votre clavier.</p><p>Appuyez sur la flèche gauche si le mot est français et sur la flèche droite si il n’est pas français. Prenez le temps de bien repérer les touches sur le clavier avant de commencer !</p><p>Si vous êtes sur tablette, appuyez sur la flèche verte si le mot est français et sur la flèche rouge si le mot n’est pas français.</p><p>Commençons par un entraînement.</p>",
       "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer&nbsp;! Pour information, vous êtes chronométré·es</p>"
+    },
+    "aide_complementaire": {
+      "message": "<strong>Attention</strong><p>Veuillez utiliser les flèches ← et → de votre clavier pour cet exercice.</p>"
     },
     "titre": "Maintenance"
   },

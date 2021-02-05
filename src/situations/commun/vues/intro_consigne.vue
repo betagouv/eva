@@ -24,6 +24,7 @@
   </div>
   <consigne
     v-else
+    :identifiantSituation="identifiantSituation"
     :titreConsigne="titreConsigne"
     :message="message"
     ressourceConsigne="consigneDemarrage"

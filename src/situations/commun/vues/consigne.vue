@@ -8,6 +8,18 @@
       <div
         v-html="message"
        ></div>
+      <div
+        v-if="afficheAideComplementaire()"
+        class="conteneur-message-aide">
+        <div
+          class="message-aide"
+          v-html="messageAideComplementaire"
+        ></div>
+        <img
+          class="image-aide"
+          :src="imageAideClavier"
+        />
+      </div>
       <button
         class="bouton-arrondi"
         @click="fini"
@@ -17,7 +29,9 @@
 </template>
 
 <script>
+import i18next from 'i18next';
 import 'commun/styles/modale.scss';
+import 'commun/styles/consigne.scss';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
 import { traduction } from 'commun/infra/internationalisation';
 
@@ -38,10 +52,18 @@ export default {
     ressourceConsigne: {
       type: String,
       required: true
+    },
+    identifiantSituation: {
+      type: String,
+      required: true
     }
   },
 
-  computed: {
+  data () {
+    return {
+      messageAideComplementaire: traduction(`${this.identifiantSituation}.aide_complementaire.message`),
+      imageAideClavier: this.$depotRessources.clavier().src
+    };
   },
 
   mounted () {
@@ -49,6 +71,10 @@ export default {
   },
 
   methods: {
+    afficheAideComplementaire () {
+      return i18next.exists(`${this.identifiantSituation}.aide_complementaire`);
+    },
+
     joueConsigne () {
       this.consigne = new JoueurConsigne(this.$depotRessources, this.ressourceConsigne);
       this.consigne.joue(true, () => {});
