@@ -30,6 +30,10 @@
         margin-bottom: 3rem;
       }
 
+      h2 {
+        margin-bottom: 0.44rem;
+      }
+
       p {
         font-size: 1.1rem;
       }
@@ -50,5 +54,10 @@
   &-icone {
     margin-right: 2rem;
     flex-shrink: 0;
+  }
+  &-titre {
+    position: relative;
+    right: -0.5rem;
+    top: 0.3rem;
   }
 }

@@ -15,6 +15,10 @@ describe('La vue consigne', function () {
         return { src: '' };
       }
 
+      son () {
+        return { src: '' };
+      }
+
       consigneDemarrage () {
         return new MockAudioNode();
       }
