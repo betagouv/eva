@@ -4,7 +4,10 @@
     tabindex="0"
   >
     <div class="modale-interieur">
-      <h2 v-if="titreConsigne !== ''">{{ titreConsigne }}</h2>
+      <h2 v-if="titreConsigne !== ''">
+        {{ titreConsigne }}
+        <img :src="son" class="icone-description-titre" />
+      </h2>
       <div
         v-html="message"
        ></div>
@@ -62,7 +65,8 @@ export default {
   data () {
     return {
       messageAideComplementaire: traduction(`${this.identifiantSituation}.aide_complementaire.message`),
-      imageAideClavier: this.$depotRessources.clavier().src
+      imageAideClavier: this.$depotRessources.clavier().src,
+      son: this.$depotRessources.son().src
     };
   },
 

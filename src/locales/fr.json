@@ -74,7 +74,7 @@
   },
   "livraison": {
     "intro_contexte": {
-      "message": "<p>Vous êtes chargé·e des livraisons dans le parc mais vous rencontrez certains problèmes : des mots sont par exemple effacés sur les colis, sur les pancartes qui vous indiquent le chemin, ou vous entendez mal les personnes qui vous parlent.</p><p>Vous devez donc retrouver les mots manquants. Parfois, votre responsable vous demandera quelques informations pour suivre l’avancement des livraisons. Vous pouvez utiliser une calculatrice en cas de besoin.</p><p>Débutons par un entraînement.</p>",
+      "message": "<p>Pour assurer les livraisons dont vous êtes responsable, retrouvez les informations qui manquent sur les colis, les pancartes, ou les portes. Vous devez aussi parfois résoudre des calculs pour suivre l’avancement de votre livraison. N’hésitez pas à utiliser votre calculatrice !</p><p>Commençons par un entraînement.</p>",
       "message_transition": "<p>Bravo, vous avez terminé l'entraînement. A vous de jouer ! Retrouvez les mots manquants et répondez aux questions de votre responsable.</p>"
     },
     "titre": "Livraison"
@@ -216,7 +216,7 @@
       "valider": "Valider"
     },
     "intro_contexte": {
-      "message": "<p>Vous venez de retrouver le téléphone de Sophie au restaurant. Sophie est une de vos collègues et vous devez la retrouver afin de lui transmettre une information importante : le planning a été modifié, et elle doit prendre votre poste cet après-midi.</p><p>Vous décidez de chercher dans son téléphone des informations pour la retrouver. Vous avez accès à ses sms, ses messages vocaux, ses photographies, ainsi que son agenda.</p><p>Commençons par un entraînement.</p>",
+      "message": "<p>Vous venez de trouver le téléphone de Sophie, l'une de vos collègues. Vous décidez de chercher des informations en regardant dans son téléphone pour la retrouver et lui rendre. Vous avez accès à ses sms, ses messages vocaux, ses photographies, ainsi que son agenda.</p><p>Commençons par un entraînement.</p>",
       "message_transition": "<p>Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.</p>",
       "message_transition_fin": "<p>Bravo, vous avez retrouvé Sophie !</p><p>Allons la rejoindre !</p>",
       "suivant": "Suivant"
