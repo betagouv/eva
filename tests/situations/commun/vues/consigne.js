@@ -11,7 +11,7 @@ describe('La vue consigne', function () {
         return { src: '' };
       }
 
-      clavier () {
+      imageAideComplementaire () {
         return { src: '' };
       }
 
@@ -30,7 +30,11 @@ describe('La vue consigne', function () {
     const localVue = createLocalVue();
     localVue.prototype.$depotRessources = depotRessources;
     wrapper = shallowMount(Consigne, {
-      propsData: { message: 'contenu', ressourceConsigne: 'consigneDemarrage' },
+      propsData: {
+        message: 'contenu',
+        ressourceConsigne: 'consigneDemarrage',
+        identifiantSituation: 'any_situation'
+      },
       localVue
     });
   });

@@ -17,6 +17,14 @@ describe("L'adaptateur de la vue Consigne", function () {
         return { src: 'chemin casque' };
       }
 
+      imageAideComplementaire () {
+        return { src: 'chemin image aide complementaire' };
+      }
+
+      son () {
+        return { src: 'chemin icone son' };
+      }
+
       consigneCommune () {
         return new MockAudioNode();
       }

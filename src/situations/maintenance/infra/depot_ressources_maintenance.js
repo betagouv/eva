@@ -4,13 +4,14 @@ import sonConsigneDemarrage from 'maintenance/assets/consigne_demarrage.wav';
 import sonConsigneTransition from 'maintenance/assets/consigne_transition.wav';
 import fondSituation from '../assets/fond-situation.jpg';
 import croix from '../assets/croix.png';
+import clavier from '../assets/clavier.svg';
 import flecheGauche from '../assets/fleche_gauche.svg';
 import flecheDroite from '../assets/fleche_droite.svg';
 
 export default class DepotRessourcesMaintenance extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigneDemarrage, sonConsigneTransition);
-    this.charge([fondSituation, croix, flecheGauche, flecheDroite]);
+    this.charge([fondSituation, croix, flecheGauche, flecheDroite, clavier]);
   }
 
   fondSituation () {
@@ -19,6 +20,10 @@ export default class DepotRessourcesMaintenance extends DepotRessourcesCommunes 
 
   fondSituationEntrainement () {
     return this.ressource(fondSituation);
+  }
+
+  imageAideComplementaire () {
+    return this.ressource(clavier);
   }
 
   croix () {
