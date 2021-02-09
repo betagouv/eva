@@ -20,7 +20,7 @@
         ></div>
         <img
           class="image-aide"
-          :src="imageAideClavier"
+          :src="imageAideComplementaire"
         />
       </div>
       <button
@@ -65,13 +65,18 @@ export default {
   data () {
     return {
       messageAideComplementaire: traduction(`${this.identifiantSituation}.aide_complementaire.message`),
-      imageAideClavier: this.$depotRessources.clavier().src,
       son: this.$depotRessources.son().src
     };
   },
 
   mounted () {
     this.joueConsigne();
+  },
+
+  computed: {
+    imageAideComplementaire: function () {
+      return this.$depotRessources.imageAideComplementaire().src;
+    }
   },
 
   methods: {
