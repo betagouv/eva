@@ -50,6 +50,10 @@
   ::placeholder {
     color: $bleu-gris;
   }
+
+  .erreur {
+    color: $couleur-accent-et-erreur;
+  }
 }
 
 .cgu-label {
