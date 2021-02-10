@@ -42,8 +42,8 @@
                 type="text"
                 class="input-accueil">
               <span
-                v-if="erreurs.campagne"
-                class="erreur">{{ erreurs.campagne[0] }}</span>
+                v-if="erreurs.code_campagne"
+                class="erreur">{{ erreurs.code_campagne[0] }}</span>
             </div>
           </div>
         </div>

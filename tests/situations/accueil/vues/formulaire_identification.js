@@ -83,7 +83,7 @@ describe("Le formulaire d'identification", function () {
 
   it("ne réinitialise pas les valeurs rentrées lorsque l'on n'a pas réussi à s'identifier", function () {
     store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
-      responseJSON: { campagne: ['code inexistant'] }
+      responseJSON: { code_campagne: ['code inexistant'] }
     });
     wrapper.vm.nom = 'Pseudo';
     wrapper.vm.campagne = 'Campagne';
@@ -96,7 +96,7 @@ describe("Le formulaire d'identification", function () {
   it('affiche les erreurs au niveau des champs', function () {
     store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
       responseJSON: {
-        campagne: ['code inexistant'],
+        code_campagne: ['code inexistant'],
         nom: ['doit être rempli']
       }
     });
@@ -111,7 +111,7 @@ describe("Le formulaire d'identification", function () {
 
   it("enlève les erreurs lorsque l'on resoumet le formulaire", function () {
     store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
-      responseJSON: { campagne: ['code inexistant'] }
+      responseJSON: { code_campagne: ['code inexistant'] }
     });
     expect(wrapper.vm.erreurs).to.eql({});
     return wrapper.vm.envoieFormulaire().then(() => {
