@@ -28,6 +28,11 @@
     margin: auto;
     height: $hauteur-image;
   }
+
+  svg {
+    margin: auto;
+    height: $hauteur-image;
+  }
 }
 
 @mixin bouton-allonge($couleur-fond, $couleur-texte) {
