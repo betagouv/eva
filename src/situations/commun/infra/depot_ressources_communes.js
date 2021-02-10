@@ -8,7 +8,8 @@ import sonConsigneBlanche from 'commun/assets/consigne_blanche.wav';
 export default class DepotRessourcesCommunes extends DepotRessources {
   constructor (chargeurs, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
     super(chargeurs);
-    this.charge([sonConsigneCommune, sonConsigneDemarrage, sonConsigneTransition, casque, son, calculatrice]);
+    this.charge([casque, son, calculatrice,
+      sonConsigneCommune, sonConsigneDemarrage, sonConsigneTransition]);
     this.sonConsigneDemarrage = sonConsigneDemarrage;
     this.sonConsigneTransition = sonConsigneTransition;
   }
