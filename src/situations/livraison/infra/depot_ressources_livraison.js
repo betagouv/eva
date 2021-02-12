@@ -7,4 +7,8 @@ export default class DepotRessourcesLivraison extends DepotRessourcesQuestionsBa
   constructor (chargeurs) {
     super(chargeurs, sonConsigne, sonConsigneTransition);
   }
+
+  imageAideComplementaire () {
+    return this.calculatrice();
+  }
 }
