@@ -28,4 +28,8 @@ export default class DepotRessourcesInventaire extends DepotRessourcesCommunes {
   boutonSaisie () {
     return this.ressource(boutonSaisie);
   }
+
+  imageAideComplementaire () {
+    return this.calculatrice();
+  }
 }

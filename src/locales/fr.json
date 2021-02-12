@@ -77,6 +77,9 @@
       "message": "<p>Pour assurer les livraisons dont vous êtes responsable, retrouvez les informations qui manquent sur les colis, les pancartes, ou les portes. Vous devez aussi parfois résoudre des calculs pour suivre l’avancement de votre livraison. N’hésitez pas à utiliser votre calculatrice !</p><p>Commençons par un entraînement.</p>",
       "message_transition": "<p>Bravo, vous avez terminé l'entraînement. A vous de jouer ! Retrouvez les mots manquants et répondez aux questions de votre responsable.</p>"
     },
+    "aide_complementaire": {
+      "message": "<strong>Rappel</strong><p>Vous pouvez utiliser une calculatrice dans cette situation</p>"
+    },
     "titre": "Livraison"
   },
   "inventaire": {
@@ -91,7 +94,10 @@
     "texte_aide": "Vous avez activé l’aide. Cliquez sur chaque contenant pour connaître la boisson qu’il contient et sa quantité sans avoir à compter.",
     "retour": "Retour",
     "saisie_inventaire": "Ouvrir le tableau de saisie",
-    "erreur_saisie": "Retourner dans le stock pour recompter les produits"
+    "erreur_saisie": "Retourner dans le stock pour recompter les produits",
+    "aide_complementaire": {
+      "message": "<strong>Rappel</strong><p>Vous pouvez utiliser une calculatrice dans cette situation</p>"
+    }
   },
   "questions": {
     "titre": "Bureau",
@@ -220,6 +226,9 @@
       "message_transition": "<p>Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.</p>",
       "message_transition_fin": "<p>Bravo, vous avez retrouvé Sophie !</p><p>Allons la rejoindre !</p>",
       "suivant": "Suivant"
+    },
+    "aide_complementaire": {
+      "message": "<strong>Rappel</strong><p>Vous pouvez utiliser une calculatrice dans cette situation</p>"
     }
   }
 }
