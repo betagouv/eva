@@ -17,17 +17,8 @@
   &-objet-reponse {
     margin-bottom: 0;
     padding: 0.937rem 0 1.25rem;
-    border-top: 1px solid #eeeeee;
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
-  }
-
-  &-message {
-    font-size: 0.75rem;
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.875rem;
-    padding: 0 0.937rem;
   }
 
   &-reponse {
@@ -37,7 +28,6 @@
     text-align: left;
     resize: none;
     border: 1px solid $gris-clair;
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
 
     &::placeholder {
