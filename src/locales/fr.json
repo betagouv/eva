@@ -25,7 +25,7 @@
     },
     "contact": {
       "titre": "Bienvenue {{ nom }} !",
-      "description": "L'équipe eva s'intéresse à l'évolution de votre parcours suite  aux résultats obtenus. Si vous acceptez d’être recontacté·e, merci de nous laisser votre email et votre numéro de téléphone.",
+      "description": "L'équipe eva s'intéresse à l'évolution de votre parcours suite aux résultats obtenus. Si vous acceptez d’être recontacté·e, merci de nous laisser votre email et votre numéro de téléphone.",
       "email": "Votre adresse email",
       "telephone": "Votre numéro de téléphone",
       "bouton": "Démarrer"
