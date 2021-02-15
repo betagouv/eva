@@ -1,20 +1,23 @@
 <template>
   <question
     :question="question"
-    class="question--redaction-note messagerie"
+    class="question--redaction-note"
   >
     <slot />
-    <p class="messagerie-sujet">{{ question.intitule }}</p>
-    <p class="messagerie-expediteur">{{ question.expediteur }}</p>
-    <p
-      v-html="question.message"
-      class='question-intitule'
-    ></p>
-    <p class="messagerie-objet-reponse">{{ question.objet_reponse }}</p>
-    <textarea
-      v-model.trim="reponse"
-      :placeholder="question.entete_reponse"
-      class="messagerie-reponse"></textarea>
+    <div class="question-entete">
+      <p class="question-description">{{ question.description }}</p>
+      <p
+        v-html="question.intitule"
+        class='question-intitule'
+      ></p>
+    </div>
+    <div class="question-contenu">
+      <p class="intitule-reponse">{{ question.intitule_reponse }}</p>
+      <textarea
+        v-model.trim="reponse"
+        :placeholder="question.reponse_placeholder"
+        class="reponse-redaction"></textarea>
+    </div>
     <button
       class="question-bouton bouton-arrondi bouton-arrondi--petit"
       @click="envoi"
