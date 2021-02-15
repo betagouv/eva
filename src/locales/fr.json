@@ -11,6 +11,9 @@
     "non": "non",
     "titre": "Se déconnecter"
   },
+  "messages_communs": {
+    "aide_calculatrice": "<strong>Rappel</strong><p>Vous pouvez utiliser une calculatrice dans cette situation</p>"
+  },
   "accueil": {
     "commencer": "Commencer {{situation}}",
     "conclure": "Accéder aux résultats",
@@ -78,7 +81,7 @@
       "message_transition": "<p>Bravo, vous avez terminé l'entraînement. A vous de jouer ! Retrouvez les mots manquants et répondez aux questions de votre responsable.</p>"
     },
     "aide_complementaire": {
-      "message": "<strong>Rappel</strong><p>Vous pouvez utiliser une calculatrice dans cette situation</p>"
+      "message": "$t(messages_communs.aide_calculatrice)"
     },
     "titre": "Livraison"
   },
@@ -96,7 +99,7 @@
     "saisie_inventaire": "Ouvrir le tableau de saisie",
     "erreur_saisie": "Retourner dans le stock pour recompter les produits",
     "aide_complementaire": {
-      "message": "<strong>Rappel</strong><p>Vous pouvez utiliser une calculatrice dans cette situation</p>"
+      "message": "$t(messages_communs.aide_calculatrice)"
     }
   },
   "questions": {
@@ -228,7 +231,7 @@
       "suivant": "Suivant"
     },
     "aide_complementaire": {
-      "message": "<strong>Rappel</strong><p>Vous pouvez utiliser une calculatrice dans cette situation</p>"
+      "message": "$t(messages_communs.aide_calculatrice)"
     }
   }
 }
