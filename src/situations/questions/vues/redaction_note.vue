@@ -8,7 +8,7 @@
     <p class="messagerie-expediteur">{{ question.expediteur }}</p>
     <p
       v-html="question.message"
-      class='messagerie-message'
+      class='question-intitule'
     ></p>
     <p class="messagerie-objet-reponse">{{ question.objet_reponse }}</p>
     <textarea
