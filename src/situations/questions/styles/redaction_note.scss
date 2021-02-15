@@ -1,27 +1,10 @@
 @import 'commun/styles/couleurs.scss';
 
-.messagerie {
-  p {
-    margin-top: 0;
-  }
-  &-sujet {
-    margin-bottom: 3px;
-    font-weight: 500;
-    font-family: 'Quicksand', sans-serif;
-  }
-  &-expediteur {
-    color: $couleur-legere-accent-et-validation;
-    font-size: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-  &-objet-reponse {
-    margin-bottom: 0;
-    padding: 0.937rem 0 1.25rem;
-    font-family: 'Quicksand', sans-serif;
+.question-contenu {
+  .intitule-reponse {
     font-weight: 500;
   }
-
-  &-reponse {
+  .reponse-redaction {
     width: 100%;
     height: 184px;
     padding: 0.75rem;
