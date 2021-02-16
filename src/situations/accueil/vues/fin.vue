@@ -131,6 +131,10 @@ export default {
     };
   },
 
+  mounted () {
+    this.synchroniseCompetencesfortes();
+  },
+
   methods: {
     ...mapActions(['deconnecte']),
 
@@ -149,6 +153,10 @@ export default {
 
     afficheJeDonneMonAvis () {
       this.afficheDonnerAvis = true;
+    },
+
+    synchroniseCompetencesfortes () {
+      this.$store.dispatch('synchroniseCompetencesFortes');
     }
   }
 };

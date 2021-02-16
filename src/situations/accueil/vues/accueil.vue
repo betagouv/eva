@@ -186,10 +186,10 @@ export default {
 
   watch: {
     estConnecte () {
-      this.synchroniseEvaluation(false);
       if (!this.estConnecte) {
         this.reinitialiseDonnees();
       } else {
+        this.synchroniseEvaluation(false);
         this.indexBatiment = 0;
       }
     },

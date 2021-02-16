@@ -124,7 +124,7 @@ describe("Le store de l'accueil", function () {
       }
     });
     const store = creeStore(registreUtilisateur, fetch);
-    return store.dispatch('synchroniseEvaluation').then(() => {
+    return store.dispatch('synchroniseCompetencesFortes').then(() => {
       const competencesFortesAttendues = ['comprehension_consigne', 'rapidite'];
       expect(store.state.competencesFortes).to.eql(competencesFortesAttendues);
     });
