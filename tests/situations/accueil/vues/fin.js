@@ -45,7 +45,11 @@ describe('La vue de fin', function () {
   });
 
   it("sait s'afficher", function () {
-    store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+    store.dispatch = (evenement) => {
+      expect(evenement).to.eql('synchroniseCompetencesFortes');
+      store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+      return Promise.resolve();
+    };
     wrapper = mount(Fin, { store, localVue });
 
     expect(wrapper.find('h2').text()).to.eql('accueil.fin.bravo.titre');
@@ -53,15 +57,18 @@ describe('La vue de fin', function () {
   });
 
   it('récupère les compétences fortes', function () {
-    store.state.competencesFortes = [{
-      id: 'rapidite',
-      nom: "vitesse d'execution",
-      description: 'description rapidite'
-    }, {
-      id: 'comprehension_consigne',
-      nom: 'comprehension de la consigne',
-      description: 'description comprehentsion consigne'
-    }];
+    store.dispatch = (evenement) => {
+      store.state.competencesFortes = [{
+        id: 'rapidite',
+        nom: "vitesse d'execution",
+        description: 'description rapidite'
+      }, {
+        id: 'comprehension_consigne',
+        nom: 'comprehension de la consigne',
+        description: 'description comprehentsion consigne'
+      }];
+      return Promise.resolve();
+    };
     wrapper = mount(Fin, { store, localVue });
 
     wrapper.find('button').trigger('click');
@@ -72,8 +79,11 @@ describe('La vue de fin', function () {
     expect(wrapper.find('.competences-fortes-description').text()).to.contain('description rapidite');
   });
 
-  it("n'affiche pas de bouton suivant", function () {
-    store.state.competences = [];
+  it("n'affiche pas de bouton suivant s'il n'y a pas de compétences fortes", function () {
+    store.dispatch = (evenement) => {
+      store.state.competences = [];
+      return Promise.resolve();
+    };
     wrapper = mount(Fin, { store, localVue });
 
     expect(wrapper.findAll('.contenu').length).to.equal(0);
@@ -81,7 +91,10 @@ describe('La vue de fin', function () {
   });
 
   it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function () {
-    store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+    store.dispatch = (evenement) => {
+      store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+      return Promise.resolve();
+    };
     wrapper = mount(Fin, { store, localVue });
     wrapper.find('button').trigger('click');
 

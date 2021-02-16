@@ -80,6 +80,19 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
               };
             });
             commit('metsAJourSituations', situations);
+          });
+      },
+      synchroniseCompetencesFortes ({ commit }) {
+        return fetch(registreUtilisateur.urlEvaluation())
+          .then((reponse) => {
+            if (reponse.status === 404) {
+              commit('deconnecte');
+              throw reponse;
+            }
+            return reponse;
+          })
+          .then(reponse => reponse.json())
+          .then((json) => {
             commit('metsAJourCompetencesFortes', json.competences_fortes);
           });
       }
