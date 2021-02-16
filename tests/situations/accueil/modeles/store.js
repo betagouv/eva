@@ -89,7 +89,7 @@ describe("Le store de l'accueil", function () {
     const fetch = (url) => Promise.resolve({
       json: () => {
         const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
-        return { situations: [situation], competences_fortes: [] };
+        return { situations: [situation] };
       }
     });
     const store = creeStore(registreUtilisateur, fetch);
@@ -117,10 +117,13 @@ describe("Le store de l'accueil", function () {
   });
 
   it('sait récupérer les deux compétences fortes depuis le serveur', function () {
-    registreUtilisateur.urlEvaluation = () => '/evaluation/1';
+    registreUtilisateur.urlEvaluation = (element) => {
+      expect(element).to.eql('competences_fortes');
+      return '/evaluation/1/competences_fortes.json';
+    };
     const fetch = (url) => Promise.resolve({
       json: () => {
-        return { situations: [], competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
+        return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
       }
     });
     const store = creeStore(registreUtilisateur, fetch);

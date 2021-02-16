@@ -83,7 +83,7 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
           });
       },
       synchroniseCompetencesFortes ({ commit }) {
-        return fetch(registreUtilisateur.urlEvaluation())
+        return fetch(registreUtilisateur.urlEvaluation('competences_fortes'))
           .then((reponse) => {
             if (reponse.status === 404) {
               commit('deconnecte');
