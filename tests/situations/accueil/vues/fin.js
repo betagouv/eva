@@ -46,7 +46,7 @@ describe('La vue de fin', function () {
 
   it("sait s'afficher", function () {
     store.dispatch = (evenement) => {
-      expect(evenement).to.eql('synchroniseCompetencesFortes');
+      expect(evenement).to.eql('termineEvaluation');
       store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
       return Promise.resolve();
     };

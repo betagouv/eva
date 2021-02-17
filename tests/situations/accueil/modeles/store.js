@@ -118,8 +118,8 @@ describe("Le store de l'accueil", function () {
 
   it('sait récupérer les deux compétences fortes depuis le serveur', function () {
     registreUtilisateur.urlEvaluation = (element) => {
-      expect(element).to.eql('competences_fortes');
-      return '/evaluation/1/competences_fortes.json';
+      expect(element).to.eql('fin');
+      return '/evaluation/1/fin';
     };
     const fetch = (url) => Promise.resolve({
       json: () => {
@@ -127,7 +127,7 @@ describe("Le store de l'accueil", function () {
       }
     });
     const store = creeStore(registreUtilisateur, fetch);
-    return store.dispatch('synchroniseCompetencesFortes').then(() => {
+    return store.dispatch('termineEvaluation').then(() => {
       const competencesFortesAttendues = ['comprehension_consigne', 'rapidite'];
       expect(store.state.competencesFortes).to.eql(competencesFortesAttendues);
     });

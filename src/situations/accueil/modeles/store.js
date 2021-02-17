@@ -82,11 +82,10 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
             commit('metsAJourSituations', situations);
           });
       },
-      synchroniseCompetencesFortes ({ commit }) {
-        return fetch(registreUtilisateur.urlEvaluation('competences_fortes'))
+      termineEvaluation ({ commit }) {
+        return fetch(registreUtilisateur.urlEvaluation('fin'), { method: 'POST' })
           .then((reponse) => {
             if (reponse.status === 404) {
-              commit('deconnecte');
               throw reponse;
             }
             return reponse;

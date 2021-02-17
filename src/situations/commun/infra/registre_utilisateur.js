@@ -44,8 +44,12 @@ export default class RegistreUtilisateur extends EventEmitter {
   }
 
   urlEvaluation (element = '') {
-    if (element.length > 0) { element = `/${element}`; }
-    return `${this.urlServeur}/api/evaluations/${this.idEvaluation()}${element}.json`;
+    const urlEvaluation = `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`;
+    if (element.length > 0) {
+      return `${urlEvaluation}/${element}`;
+    } else {
+      return `${urlEvaluation}.json`;
+    }
   }
 
   estConnecte () {
