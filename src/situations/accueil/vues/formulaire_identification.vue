@@ -24,7 +24,7 @@
                 autofocus>
               <span
                 v-if="erreurs.nom"
-                class="erreur">{{ erreurs.nom[0] }}</span>
+                class="erreur-message">{{ erreurs.nom[0] }}</span>
             </div>
           </div>
           <div>
@@ -40,10 +40,11 @@
                 id="formulaire-identification-input-campagne"
                 v-model.trim="campagne"
                 type="text"
-                class="input-accueil">
+                class="input-accueil"
+                :class="{ erreur_champ: erreurs.code_campagne }">
               <span
                 v-if="erreurs.code_campagne"
-                class="erreur">{{ erreurs.code_campagne[0] }}</span>
+                class="erreur-message">{{ erreurs.code_campagne[0] }}</span>
             </div>
           </div>
         </div>

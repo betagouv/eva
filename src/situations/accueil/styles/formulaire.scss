@@ -52,7 +52,14 @@
   }
 
   .erreur {
-    color: $couleur-accent-et-erreur;
+    &_champ {
+      border: solid $couleur-accent-et-erreur 1px
+    }
+
+    &-message {
+      color: $couleur-accent-et-erreur;
+      margin-left: 1rem;
+    }
   }
 }
 
