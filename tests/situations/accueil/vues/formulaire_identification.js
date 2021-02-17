@@ -101,11 +101,11 @@ describe("Le formulaire d'identification", function () {
       }
     });
 
-    expect(wrapper.findAll('.erreur').length).to.equal(0);
+    expect(wrapper.findAll('.erreur-message').length).to.equal(0);
     return wrapper.vm.envoieFormulaire().then(() => {
-      expect(wrapper.findAll('.erreur').length).to.equal(2);
-      expect(wrapper.findAll('.erreur').at(0).text()).to.equal('doit être rempli');
-      expect(wrapper.findAll('.erreur').at(1).text()).to.equal('code inexistant');
+      expect(wrapper.findAll('.erreur-message').length).to.equal(2);
+      expect(wrapper.findAll('.erreur-message').at(0).text()).to.equal('doit être rempli');
+      expect(wrapper.findAll('.erreur-message').at(1).text()).to.equal('code inexistant');
     });
   });
 
