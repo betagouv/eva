@@ -132,7 +132,7 @@ export default {
   },
 
   mounted () {
-    this.synchroniseCompetencesfortes();
+    this.termineEvaluation();
   },
 
   methods: {
@@ -155,8 +155,8 @@ export default {
       this.afficheDonnerAvis = true;
     },
 
-    synchroniseCompetencesfortes () {
-      this.$store.dispatch('synchroniseCompetencesFortes');
+    termineEvaluation () {
+      this.$store.dispatch('termineEvaluation');
     }
   }
 };

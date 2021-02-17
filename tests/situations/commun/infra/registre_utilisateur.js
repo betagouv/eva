@@ -103,8 +103,8 @@ describe('le registre utilisateur', function () {
   it("retourne l'url d'un élément d'une évaluation", function () {
     const registre = unRegistre(1, 'test', 'http://localhost');
     return registre.inscris('test').then(() => {
-      expect(registre.urlEvaluation('competences_fortes'))
-        .to.eql('http://localhost/api/evaluations/1/competences_fortes.json');
+      expect(registre.urlEvaluation('termine'))
+        .to.eql('http://localhost/api/evaluations/1/termine');
     });
   });
 });
