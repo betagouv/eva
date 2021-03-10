@@ -1,5 +1,8 @@
 <template>
   <div class="conteneur">
+    <div class="annonce">
+      <p class="annonce-description">Attention : suite à l'incendie du data center de notre hébergeur d'images, l'outil eva n'est pas fonctionnel pour une durée indéterminée</p>
+    </div>
     <div
       :style="{ 'background-image': fondAccueil, 'background-position-x': `${positionFond}%` }"
       class="scene"
