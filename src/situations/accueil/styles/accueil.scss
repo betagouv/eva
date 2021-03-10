@@ -32,11 +32,27 @@
     bottom: 20px;
     left: 40%;
     pointer-events: none;
-    z-index: 100
+    z-index: 100;
   }
 
   .bouton-navigation-situation {
     @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
     border-radius: 3.125rem;
+  }
+
+  .annonce {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    text-align: center;
+    background-color: $rouge;
+    &-description {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: $couleur-fond;
+    }
   }
 }
