@@ -1,7 +1,7 @@
 <template>
   <div class="conteneur">
     <div class="annonce">
-      <p class="annonce-description">Attention : suite à l'incendie du data center de notre hébergeur d'images, l'outil eva n'est pas fonctionnel pour une durée indéterminée</p>
+      <p class="annonce-description" v-if="annonceGenerale">{{ annonceGenerale }}</p>
     </div>
     <div
       :style="{ 'background-image': fondAccueil, 'background-position-x': `${positionFond}%` }"
@@ -120,7 +120,8 @@ export default {
       forceCampagne: parametresUrl.code || '',
       forceNom: parametresUrl.nom || '',
       indexBatiment: indexPrecedent,
-      ecranFinAfficher: false
+      ecranFinAfficher: false,
+      annonceGenerale: process.env.ANNONCE_GENERALE
     };
   },
 
