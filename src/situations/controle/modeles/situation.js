@@ -83,6 +83,13 @@ export default class Situation extends SituationCommune {
     );
   }
 
+  termine () {
+    this._piecesAffichees.forEach((piece) => {
+      piece.removeAllListeners([CHANGEMENT_SELECTION]);
+    });
+    this.modifieEtat(FINI);
+  }
+
   faisApparaitreLaNouvellePiece () {
     const piece = this.pieceSuivante();
     this.ajoutePiece(piece);
@@ -125,7 +132,7 @@ export default class Situation extends SituationCommune {
     }
 
     if (this.nAPlusRienAFaire()) {
-      this.modifieEtat(FINI);
+      this.termine();
     }
   }
 

@@ -238,5 +238,14 @@ describe('La situation « Contrôle »', function () {
       });
       piece.deselectionne();
     });
+
+    it("n'écoute plus le changement de sélection après la fin de la situation", function () {
+      let appelsReinitialisation = 0;
+      situation.reinitialiseBacs = () => appelsReinitialisation++;
+      situation.termine();
+      piece.deselectionne();
+
+      expect(appelsReinitialisation).to.eql(0);
+    });
   });
 });
