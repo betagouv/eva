@@ -17,7 +17,7 @@ describe('La vue de la Maintenance', function () {
       propsData: {
         lexique: [{ mot: 'ballon', type: '' }, { mot: 'douermatho', type: '' }, { mot: 'saumon', type: '' }]
       },
-      methods: { motSuivantAvecDelai () {} }
+      methods: { prepareMotSuivant () {} }
     });
   });
 
@@ -34,7 +34,7 @@ describe('La vue de la Maintenance', function () {
 
   it('empêche de passer au mot suivant tant que la croix est affichée', function () {
     let appelAMotSuivant = 0;
-    wrapper.setMethods({ motSuivantAvecDelai () { appelAMotSuivant++; } });
+    wrapper.setMethods({ prepareMotSuivant () { appelAMotSuivant++; } });
     wrapper.vm.affichePointDeFixation();
     wrapper.trigger('keydown.left');
     expect(wrapper.findAll('.croix').length).to.eql(1);
@@ -43,7 +43,7 @@ describe('La vue de la Maintenance', function () {
 
   it("terminer est à true lorsque l'on a vu tout les mots", function () {
     let appelAMotSuivant = 0;
-    wrapper.setMethods({ motSuivantAvecDelai () { appelAMotSuivant++; } });
+    wrapper.setMethods({ prepareMotSuivant () { appelAMotSuivant++; } });
     expect(wrapper.vm.termine).to.be(false);
     wrapper.vm.afficheMot();
     wrapper.vm.afficheMot();
@@ -51,7 +51,7 @@ describe('La vue de la Maintenance', function () {
     wrapper.vm.afficheMot();
     expect(wrapper.vm.termine).to.be(true);
     expect(wrapper.emitted('terminer')).to.be(undefined);
-    wrapper.vm.motSuivant();
+    wrapper.vm.enregistreReponse();
     expect(wrapper.emitted('terminer').length).to.eql(1);
     expect(appelAMotSuivant).to.eql(0);
   });
@@ -78,7 +78,7 @@ describe('La vue de la Maintenance', function () {
         done();
       }
     };
-    wrapper.vm.motSuivant(CHOIX_FRANCAIS);
+    wrapper.vm.enregistreReponse(CHOIX_FRANCAIS);
   });
 
   it("enregistre l'événement apparitionMot", function (done) {

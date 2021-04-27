@@ -2,10 +2,10 @@
   <div
     class="mot-conteneur"
     tabindex="0"
-    @keydown.left="motSuivant(CHOIX_FRANCAIS)"
-    @keydown.right="motSuivant(CHOIX_PASFRANCAIS)"
-    @keydown.e="motSuivant(CHOIX_FRANCAIS)"
-    @keydown.i="motSuivant(CHOIX_PASFRANCAIS)"
+    @keydown.left="enregistreReponse(CHOIX_FRANCAIS)"
+    @keydown.right="enregistreReponse(CHOIX_PASFRANCAIS)"
+    @keydown.e="enregistreReponse(CHOIX_FRANCAIS)"
+    @keydown.i="enregistreReponse(CHOIX_PASFRANCAIS)"
   >
     <div
       v-if="mot"
@@ -21,7 +21,7 @@
       <button
         :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_FRANCAIS }"
         class="bouton-arrondi bouton-arrondi-vert"
-        @click="motSuivant(CHOIX_FRANCAIS)"
+        @click="enregistreReponse(CHOIX_FRANCAIS)"
       >
         <img
           :src="$depotRessources.flecheGauche().src"
@@ -32,7 +32,7 @@
       <button
         :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_PASFRANCAIS }"
         class="bouton-arrondi bouton-arrondi-rouge"
-        @click="motSuivant(CHOIX_PASFRANCAIS)"
+        @click="enregistreReponse(CHOIX_PASFRANCAIS)"
       >
         <img
           :src="$depotRessources.flecheDroite().src"
@@ -52,7 +52,6 @@ import EvenementIdentificationMot from '../modeles/evenement_identification_mot'
 import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
 
 const DELAI_CROIX = 500;
-const DELAI_MOT = 6000;
 
 export const CHOIX_FRANCAIS = 'francais';
 export const CHOIX_PASFRANCAIS = 'pasfrancais';
@@ -84,14 +83,12 @@ export default {
 
   mounted () {
     this.$el.focus();
-    this.motSuivantAvecDelai();
+    this.prepareMotSuivant();
   },
 
   methods: {
-    motSuivant (choix) {
+    enregistreReponse (choix) {
       if (this.croix) return;
-
-      clearTimeout(this.delaiAffichageMot);
 
       this.choixFait = choix;
       this.$journal.enregistre(
@@ -106,16 +103,13 @@ export default {
         return;
       }
 
-      this.motSuivantAvecDelai();
+      this.prepareMotSuivant();
     },
-    motSuivantAvecDelai () {
+    prepareMotSuivant () {
       this.affichePointDeFixation();
       setTimeout(() => {
         this.choixFait = null;
         this.afficheMot();
-        this.delaiAffichageMot = setTimeout(() => {
-          this.motSuivant();
-        }, DELAI_MOT);
       }, DELAI_CROIX);
     },
     afficheMot () {
