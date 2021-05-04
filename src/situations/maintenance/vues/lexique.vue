@@ -2,10 +2,10 @@
   <div
     class="mot-conteneur"
     tabindex="0"
-    @keydown.left="enregistreReponse(CHOIX_FRANCAIS)"
-    @keydown.right="enregistreReponse(CHOIX_PASFRANCAIS)"
-    @keydown.e="enregistreReponse(CHOIX_FRANCAIS)"
-    @keydown.i="enregistreReponse(CHOIX_PASFRANCAIS)"
+    @keydown.left="enregistreReponseViaClavier(CHOIX_FRANCAIS)"
+    @keydown.right="enregistreReponseViaClavier(CHOIX_PASFRANCAIS)"
+    @keydown.e="enregistreReponseViaClavier(CHOIX_FRANCAIS)"
+    @keydown.i="enregistreReponseViaClavier(CHOIX_PASFRANCAIS)"
   >
     <div
       v-if="mot"
@@ -19,9 +19,9 @@
     >
     <div class="boutons">
       <button
-        :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_FRANCAIS }"
+        :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_FRANCAIS, 'clavier': !estMobile }"
         class="bouton-arrondi bouton-arrondi-vert"
-        @click="enregistreReponse(CHOIX_FRANCAIS)"
+        @click="enregistreReponseViaSouris(CHOIX_FRANCAIS)"
       >
         <img
           :src="$depotRessources.flecheGauche().src"
@@ -30,9 +30,9 @@
         <span class="bouton-arrondi-texte">{{ $traduction('maintenance.francais') }}</span>
       </button>
       <button
-        :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_PASFRANCAIS }"
+        :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_PASFRANCAIS, 'clavier': !estMobile }"
         class="bouton-arrondi bouton-arrondi-rouge"
-        @click="enregistreReponse(CHOIX_PASFRANCAIS)"
+        @click="enregistreReponseViaSouris(CHOIX_PASFRANCAIS)"
       >
         <img
           :src="$depotRessources.flecheDroite().src"
@@ -50,6 +50,8 @@ import 'commun/styles/boutons.scss';
 
 import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
 import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
+
+import { isMobile } from 'mobile-device-detect';
 
 const DELAI_CROIX = 500;
 
@@ -71,7 +73,8 @@ export default {
       mot: false,
       choixFait: null,
       CHOIX_FRANCAIS,
-      CHOIX_PASFRANCAIS
+      CHOIX_PASFRANCAIS,
+      estMobile: isMobile
     };
   },
 
@@ -87,6 +90,14 @@ export default {
   },
 
   methods: {
+    enregistreReponseViaClavier (choix) {
+      this.enregistreReponse(choix);
+    },
+    enregistreReponseViaSouris (choix, estMobile = isMobile) {
+      if (estMobile) {
+        this.enregistreReponse(choix);
+      }
+    },
     enregistreReponse (choix) {
       if (this.croix) return;
 
