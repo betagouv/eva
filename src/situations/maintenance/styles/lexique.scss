@@ -44,5 +44,16 @@
     &.bouton-arrondi--animation {
       animation: grossit-bouton .3s;
     }
+
+    &.clavier {
+      cursor: auto;
+      &.bouton-arrondi-rouge {
+        background-color: $couleur-fond-bouton-rouge;
+      }
+
+      &.bouton-arrondi-vert {
+        background-color: $couleur-fond-bouton-vert;
+      }
+    }
   }
 }

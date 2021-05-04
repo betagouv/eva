@@ -81,6 +81,20 @@ describe('La vue de la Maintenance', function () {
     wrapper.vm.enregistreReponse(CHOIX_FRANCAIS);
   });
 
+  it("enregistre l'événement via la souris sur mobile", function (done) {
+    wrapper.setProps({ lexique: [{ mot: 'premiermot', type: 'neutre' }, { mot: 'deuxiemot', type: 'neutre' }] });
+    wrapper.vm.afficheMot();
+    localVue.prototype.$journal = {
+      enregistre (evenement) {
+        expect(evenement).to.be.a(EvenementIdentificationMot);
+        expect(evenement.donnees()).to.be.eql({ mot: 'premiermot', type: 'neutre', reponse: CHOIX_FRANCAIS });
+        done();
+      }
+    };
+
+    wrapper.vm.enregistreReponseViaSouris(CHOIX_FRANCAIS, true);
+  });
+
   it("enregistre l'événement apparitionMot", function (done) {
     localVue.prototype.$journal = {
       enregistre (evenement) {
