@@ -121,7 +121,14 @@ module.exports = {
       inject: 'head'
     }),
     ...templatesSituations,
-    new webpack.EnvironmentPlugin(['URL_API', 'JETON_CLIENT_ROLLBAR', 'SOURCE_VERSION', 'ANNONCE_GENERALE']),
+    new webpack.EnvironmentPlugin([
+      'URL_API',
+      'JETON_CLIENT_ROLLBAR',
+      'SOURCE_VERSION',
+      'ANNONCE_GENERALE',
+      'HOTJAR_ID',
+      'MATOMO_ID'
+    ]),
     new FaviconsWebpackPlugin('./src/public/logo.svg'),
     new VueLoaderPlugin()
   ],
