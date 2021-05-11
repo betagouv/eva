@@ -27,7 +27,7 @@
   }
 }
 
-.boutons {
+.actions-robot {
   background-color: $couleur-fond;
   position: absolute;
   bottom: 0;
@@ -36,23 +36,75 @@
   padding: 1.5rem;
   display: flex;
   width: 60%;
+  line-height: normal;
+
+  &.clavier {
+    padding: 1rem;
+    width: 42%;
+  }
 
   > button {
     flex: 50%;
     margin: 0 .5rem;
+  }
 
-    &.bouton-arrondi--animation {
-      animation: grossit-bouton .3s;
+  &--animation {
+    animation: grossit-bouton .3s;
+  }
+
+  .touches-verticales {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    svg {
+      rect, path {
+        stroke: $bleu-gris;
+      }
     }
 
-    &.clavier {
-      cursor: auto;
-      &.bouton-arrondi-rouge {
-        background-color: $couleur-fond-bouton-rouge;
-      }
+    .touche:first-child {
+      margin-bottom: 0.125rem;
+    }
+  }
 
-      &.bouton-arrondi-vert {
-        background-color: $couleur-fond-bouton-vert;
+  .touche {
+    display: flex;
+    align-items: center;
+  }
+
+  .touche-horizontale {
+    flex: 50%;
+    margin: 0 .125rem;
+    position: relative;
+    font-size: 1rem;
+    font-weight: normal;
+    display: flex;
+    align-items: flex-end;
+
+    &.touche-rouge {
+      color: $rouge;
+      span {
+        margin-left: 0.5rem;
+      }
+      svg {
+        rect, path {
+          stroke: $rouge;
+        }
+      }
+    }
+
+    &.touche-verte {
+      color: $vert-clair;
+      justify-content: end;
+
+      span {
+        color: $vert;
+        margin-right: 0.5rem;
+      }
+      svg {
+        rect, path {
+          stroke: $vert-clair;
+        }
       }
     }
   }
