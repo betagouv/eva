@@ -116,7 +116,8 @@ describe('La vue de la Maintenance', function () {
       }
     };
 
-    wrapper.vm.enregistreReponseViaSouris(CHOIX_FRANCAIS, true);
+    wrapper.vm.estMobile = true;
+    wrapper.vm.enregistreReponseViaSouris(CHOIX_FRANCAIS);
   });
 
   it("enregistre l'événement apparitionMot", function (done) {

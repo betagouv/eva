@@ -126,8 +126,8 @@ export default {
     enregistreReponseViaClavier (choix) {
       this.enregistreReponse(choix);
     },
-    enregistreReponseViaSouris (choix, estMobile = isMobile) {
-      if (estMobile) {
+    enregistreReponseViaSouris (choix) {
+      if (this.estMobile) {
         this.enregistreReponse(choix);
       }
     },
