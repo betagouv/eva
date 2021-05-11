@@ -16,11 +16,14 @@
       v-if="croix"
       :src="$depotRessources.croix().src"
       class="croix"
-    >
-    <div class="boutons">
+      >
+    <div
+      v-if="estMobile"
+      class="actions-robot"
+      >
       <button
-        :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_FRANCAIS, 'clavier': !estMobile }"
-        class="bouton-arrondi bouton-arrondi-vert"
+        :class="{ 'actions-robot--animation': choixFait === CHOIX_FRANCAIS }"
+         class="bouton-arrondi bouton-arrondi-vert"
         @click="enregistreReponseViaSouris(CHOIX_FRANCAIS)"
       >
         <img
@@ -30,7 +33,7 @@
         <span class="bouton-arrondi-texte">{{ $traduction('maintenance.francais') }}</span>
       </button>
       <button
-        :class="{ 'bouton-arrondi--animation': choixFait === CHOIX_PASFRANCAIS, 'clavier': !estMobile }"
+        :class="{ 'actions-robot--animation': choixFait === CHOIX_PASFRANCAIS }"
         class="bouton-arrondi bouton-arrondi-rouge"
         @click="enregistreReponseViaSouris(CHOIX_PASFRANCAIS)"
       >
@@ -41,12 +44,38 @@
         <span class="bouton-arrondi-texte">{{ $traduction('maintenance.pas_francais') }}</span>
       </button>
     </div>
+    <div
+       v-if="!estMobile"
+       class="actions-robot clavier"
+       >
+       <div
+         :class="{ 'actions-robot--animation': choixFait === CHOIX_FRANCAIS }"
+         class="touche-horizontale touche-verte"
+         @click="enregistreReponseViaSouris(CHOIX_FRANCAIS)"
+         >
+         <touche :label-gauche="$traduction('maintenance.francais')" />
+       </div>
+       <div class="touches-verticales" >
+         <touche :rotation=90 />
+         <touche :rotation=270 />
+       </div>
+       <div
+         :class="{ 'actions-robot--animation': choixFait === CHOIX_PASFRANCAIS }"
+         class="touche-horizontale touche-rouge"
+         @click="enregistreReponseViaSouris(CHOIX_PASFRANCAIS)"
+         >
+         <touche
+           :rotation=180
+           :label="$traduction('maintenance.pas_francais')" />
+       </div>
+    </div>
   </div>
 </template>
 
 <script>
 import 'maintenance/styles/lexique.scss';
 import 'commun/styles/boutons.scss';
+import Touche from './touche';
 
 import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
 import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
@@ -59,6 +88,10 @@ export const CHOIX_FRANCAIS = 'francais';
 export const CHOIX_PASFRANCAIS = 'pasfrancais';
 
 export default {
+  components: {
+    Touche
+  },
+
   props: {
     lexique: {
       type: Array,

@@ -56,16 +56,40 @@ describe('La vue de la Maintenance', function () {
     expect(appelAMotSuivant).to.eql(0);
   });
 
-  it("rajoute la classe bouton-arrondi--animation sur le premier bouton lorsqu'un choix est fait", function () {
-    expect(wrapper.find('.bouton-arrondi:first-child').classes('bouton-arrondi--animation')).to.be(false);
-    wrapper.vm.choixFait = wrapper.vm.CHOIX_FRANCAIS;
-    expect(wrapper.find('.bouton-arrondi:first-child').classes('bouton-arrondi--animation')).to.be(true);
+  describe('sur ordinateur', function () {
+    beforeEach(function () {
+      wrapper.vm.estMobile = false;
+    });
+
+    it("rajoute la classe action-robot--animation sur le premier bouton lorsqu'un choix est fait", function () {
+      expect(wrapper.find('.touche-horizontale:first-child').classes('actions-robot--animation')).to.be(false);
+      wrapper.vm.choixFait = wrapper.vm.CHOIX_FRANCAIS;
+      expect(wrapper.find('.touche-horizontale:first-child').classes('actions-robot--animation')).to.be(true);
+    });
+
+    it("rajoute la classe action-robot--animation lorsqu'un choix est fait", function () {
+      expect(wrapper.find('.touche-horizontale:last-child').classes('actions-robot--animation')).to.be(false);
+      wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
+      expect(wrapper.find('.touche-horizontale:last-child').classes('actions-robot--animation')).to.be(true);
+    });
   });
 
-  it("rajoute la classe bouton-arrondi--animation lorsqu'un choix est fait", function () {
-    expect(wrapper.find('.bouton-arrondi:last-child').classes('bouton-arrondi--animation')).to.be(false);
-    wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
-    expect(wrapper.find('.bouton-arrondi:last-child').classes('bouton-arrondi--animation')).to.be(true);
+  describe('sur tablette', function () {
+    beforeEach(function () {
+      wrapper.vm.estMobile = true;
+    });
+
+    it("rajoute la classe action-robot--animation sur le premier bouton lorsqu'un choix est fait", function () {
+      expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-robot--animation')).to.be(false);
+      wrapper.vm.choixFait = wrapper.vm.CHOIX_FRANCAIS;
+      expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-robot--animation')).to.be(true);
+    });
+
+    it("rajoute la classe action-robot--animation lorsqu'un choix est fait", function () {
+      expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-robot--animation')).to.be(false);
+      wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
+      expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-robot--animation')).to.be(true);
+    });
   });
 
   it("enregistre l'événement identificationMot", function (done) {
