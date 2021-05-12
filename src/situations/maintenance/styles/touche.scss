@@ -1,0 +1,33 @@
+@import 'commun/styles/couleurs.scss';
+
+.touche {
+  display: flex;
+  align-items: center;
+
+  .label-gauche {
+    margin-right: 0.5rem;
+  }
+
+  .label-droite {
+    margin-left: 0.5rem;
+  }
+
+  &.rouge {
+    color: $rouge;
+    svg {
+      rect, path {
+        stroke: $rouge;
+      }
+    }
+  }
+
+  &.verte {
+    color: $vert;
+    svg {
+      rect, path {
+        stroke: $vert-clair;
+      }
+    }
+  }
+}
+

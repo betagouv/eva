@@ -50,10 +50,10 @@
        >
        <div
          :class="{ 'actions-robot--animation': choixFait === CHOIX_FRANCAIS }"
-         class="touche-horizontale touche-verte"
+         class="touche-horizontale touche-gauche"
          @click="enregistreReponseViaSouris(CHOIX_FRANCAIS)"
          >
-         <touche :label-gauche="$traduction('maintenance.francais')" />
+         <touche :label-gauche="$traduction('maintenance.francais')" couleur="verte" />
        </div>
        <div class="touches-verticales" >
          <touche :rotation=90 />
@@ -61,11 +61,12 @@
        </div>
        <div
          :class="{ 'actions-robot--animation': choixFait === CHOIX_PASFRANCAIS }"
-         class="touche-horizontale touche-rouge"
+         class="touche-horizontale"
          @click="enregistreReponseViaSouris(CHOIX_PASFRANCAIS)"
          >
          <touche
            :rotation=180
+           couleur="rouge"
            :label="$traduction('maintenance.pas_francais')" />
        </div>
     </div>
