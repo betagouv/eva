@@ -2,10 +2,10 @@
   <div
     class="mot-conteneur"
     tabindex="0"
-    @keydown.left="enregistreReponseViaClavier(CHOIX_FRANCAIS)"
-    @keydown.right="enregistreReponseViaClavier(CHOIX_PASFRANCAIS)"
-    @keydown.e="enregistreReponseViaClavier(CHOIX_FRANCAIS)"
-    @keydown.i="enregistreReponseViaClavier(CHOIX_PASFRANCAIS)"
+    @keydown.left="enregistreReponse(CHOIX_FRANCAIS)"
+    @keydown.right="enregistreReponse(CHOIX_PASFRANCAIS)"
+    @keydown.e="enregistreReponse(CHOIX_FRANCAIS)"
+    @keydown.i="enregistreReponse(CHOIX_PASFRANCAIS)"
   >
     <div
       v-if="mot"
@@ -24,7 +24,7 @@
       <button
         :class="{ 'actions-robot--animation': choixFait === CHOIX_FRANCAIS }"
          class="bouton-arrondi bouton-arrondi-vert"
-        @click="enregistreReponseViaSouris(CHOIX_FRANCAIS)"
+        @click="enregistreReponse(CHOIX_FRANCAIS)"
       >
         <img
           :src="$depotRessources.flecheGauche().src"
@@ -35,7 +35,7 @@
       <button
         :class="{ 'actions-robot--animation': choixFait === CHOIX_PASFRANCAIS }"
         class="bouton-arrondi bouton-arrondi-rouge"
-        @click="enregistreReponseViaSouris(CHOIX_PASFRANCAIS)"
+        @click="enregistreReponse(CHOIX_PASFRANCAIS)"
       >
         <img
           :src="$depotRessources.flecheDroite().src"
@@ -45,13 +45,12 @@
       </button>
     </div>
     <div
-       v-if="!estMobile"
+       v-else
        class="actions-robot clavier"
        >
        <div
          :class="{ 'actions-robot--animation': choixFait === CHOIX_FRANCAIS }"
          class="touche-horizontale touche-gauche"
-         @click="enregistreReponseViaSouris(CHOIX_FRANCAIS)"
          >
          <touche :label-gauche="$traduction('maintenance.francais')" couleur="verte" />
        </div>
@@ -62,7 +61,6 @@
        <div
          :class="{ 'actions-robot--animation': choixFait === CHOIX_PASFRANCAIS }"
          class="touche-horizontale"
-         @click="enregistreReponseViaSouris(CHOIX_PASFRANCAIS)"
          >
          <touche
            :rotation=180
@@ -124,14 +122,6 @@ export default {
   },
 
   methods: {
-    enregistreReponseViaClavier (choix) {
-      this.enregistreReponse(choix);
-    },
-    enregistreReponseViaSouris (choix) {
-      if (this.estMobile) {
-        this.enregistreReponse(choix);
-      }
-    },
     enregistreReponse (choix) {
       if (this.croix) return;
 

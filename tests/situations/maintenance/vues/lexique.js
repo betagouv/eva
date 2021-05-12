@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Lexique, { CHOIX_FRANCAIS } from 'maintenance/vues/lexique';
+import Lexique, { CHOIX_FRANCAIS, CHOIX_PASFRANCAIS } from 'maintenance/vues/lexique';
 import EvenementIdentificationMot from 'maintenance/modeles/evenement_identification_mot';
 import EvenementApparitionMot from 'maintenance/modeles/evenement_apparition_mot';
 import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
@@ -61,13 +61,18 @@ describe('La vue de la Maintenance', function () {
       wrapper.vm.estMobile = false;
     });
 
-    it("rajoute la classe action-robot--animation sur le premier bouton lorsqu'un choix est fait", function () {
+    it("N'affiche pas les boutons permettant de répondre à la souris", function () {
+      expect(wrapper.find('button').exists()).to.be(false);
+      expect(wrapper.find('.touche-horizontale').exists()).to.be(true);
+    });
+
+    it("rajoute la classe action-robot--animation sur la touche de gauche pour le choix 'français'", function () {
       expect(wrapper.find('.touche-horizontale:first-child').classes('actions-robot--animation')).to.be(false);
-      wrapper.vm.choixFait = wrapper.vm.CHOIX_FRANCAIS;
+      wrapper.vm.choixFait = CHOIX_FRANCAIS;
       expect(wrapper.find('.touche-horizontale:first-child').classes('actions-robot--animation')).to.be(true);
     });
 
-    it("rajoute la classe action-robot--animation lorsqu'un choix est fait", function () {
+    it("rajoute la classe action-robot--animation sur la touche de droite pour le choix 'pas français'", function () {
       expect(wrapper.find('.touche-horizontale:last-child').classes('actions-robot--animation')).to.be(false);
       wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
       expect(wrapper.find('.touche-horizontale:last-child').classes('actions-robot--animation')).to.be(true);
@@ -79,16 +84,49 @@ describe('La vue de la Maintenance', function () {
       wrapper.vm.estMobile = true;
     });
 
-    it("rajoute la classe action-robot--animation sur le premier bouton lorsqu'un choix est fait", function () {
+    it('affiche les boutons permettant de répondre avec le doigt', function () {
+      expect(wrapper.find('button').exists()).to.be(true);
+      expect(wrapper.find('.touche-horizontale').exists()).to.be(false);
+    });
+
+    it("rajoute la classe action-robot--animation sur le bouton de gauche pour le choix 'français'", function () {
       expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-robot--animation')).to.be(false);
-      wrapper.vm.choixFait = wrapper.vm.CHOIX_FRANCAIS;
+      wrapper.vm.choixFait = CHOIX_FRANCAIS;
       expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-robot--animation')).to.be(true);
     });
 
-    it("rajoute la classe action-robot--animation lorsqu'un choix est fait", function () {
+    it("rajoute la classe action-robot--animation sur le bouton de droite pour le choix 'pas francais' ", function () {
       expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-robot--animation')).to.be(false);
       wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
       expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-robot--animation')).to.be(true);
+    });
+
+    it("enregistre l'événement identificationMot quand on touche le bouton de gauche", function (done) {
+      wrapper.setProps({ lexique: [{ mot: 'premiermot', type: 'neutre' }, { mot: 'deuxiemot', type: 'neutre' }] });
+      wrapper.vm.afficheMot();
+      localVue.prototype.$journal = {
+        enregistre (evenement) {
+          expect(evenement).to.be.a(EvenementIdentificationMot);
+          expect(evenement.donnees()).to.be.eql({ mot: 'premiermot', type: 'neutre', reponse: CHOIX_FRANCAIS });
+          done();
+        }
+      };
+
+      wrapper.find('.bouton-arrondi:first-child').trigger('click');
+    });
+
+    it("enregistre l'événement identificationMot quand on touche le bouton de droite", function (done) {
+      wrapper.setProps({ lexique: [{ mot: 'premiermot', type: 'neutre' }, { mot: 'deuxiemot', type: 'neutre' }] });
+      wrapper.vm.afficheMot();
+      localVue.prototype.$journal = {
+        enregistre (evenement) {
+          expect(evenement).to.be.a(EvenementIdentificationMot);
+          expect(evenement.donnees()).to.be.eql({ mot: 'premiermot', type: 'neutre', reponse: CHOIX_PASFRANCAIS });
+          done();
+        }
+      };
+
+      wrapper.find('.bouton-arrondi:last-child').trigger('click');
     });
   });
 
@@ -103,21 +141,6 @@ describe('La vue de la Maintenance', function () {
       }
     };
     wrapper.vm.enregistreReponse(CHOIX_FRANCAIS);
-  });
-
-  it("enregistre l'événement via la souris sur mobile", function (done) {
-    wrapper.setProps({ lexique: [{ mot: 'premiermot', type: 'neutre' }, { mot: 'deuxiemot', type: 'neutre' }] });
-    wrapper.vm.afficheMot();
-    localVue.prototype.$journal = {
-      enregistre (evenement) {
-        expect(evenement).to.be.a(EvenementIdentificationMot);
-        expect(evenement.donnees()).to.be.eql({ mot: 'premiermot', type: 'neutre', reponse: CHOIX_FRANCAIS });
-        done();
-      }
-    };
-
-    wrapper.vm.estMobile = true;
-    wrapper.vm.enregistreReponseViaSouris(CHOIX_FRANCAIS);
   });
 
   it("enregistre l'événement apparitionMot", function (done) {
