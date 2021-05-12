@@ -4,7 +4,7 @@ import EvenementIdentificationMot from 'maintenance/modeles/evenement_identifica
 import EvenementApparitionMot from 'maintenance/modeles/evenement_apparition_mot';
 import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
 
-describe('La vue de la Maintenance', function () {
+describe('La vue lexique de la Maintenance', function () {
   let wrapper;
   let localVue;
 
