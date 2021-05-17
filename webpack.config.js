@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves', 'bienvenue'];
@@ -22,7 +23,6 @@ const aliasSituations = situations.reduce(function (alias, situation) {
 const templatesSituations = situations.map(function (situation) {
   return new HtmlWebpackPlugin({
     filename: `${situation}.html`,
-    hash: true,
     template: path.resolve(__dirname, 'src/public/template_index.html'),
     chunks: [`situation_${situation}`],
     inject: 'head'
@@ -36,7 +36,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'js/[name].js',
+    filename: 'js/[name]_[contenthash].js',
     publicPath: '/' // public URL of the output directory when referenced in a browser
   },
   devtool: devMode ? 'eval-cheap-source-map' : 'source-map',
@@ -115,7 +115,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      hash: true,
       template: path.resolve(__dirname, 'src/public/template_index.html'),
       chunks: ['index'],
       inject: 'head'
@@ -130,7 +129,14 @@ module.exports = {
       'MATOMO_ID'
     ]),
     new FaviconsWebpackPlugin('./src/public/logo.svg'),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new WorkboxPlugin.GenerateSW({
+       // these options encourage the ServiceWorkers to get in there fast
+       // and not allow any straggling "old" SWs to hang around
+       clientsClaim: true,
+       skipWaiting: true,
+       maximumFileSizeToCacheInBytes: 50000000,
+     })
   ],
   devServer: {
     contentBase: './src/public',
