@@ -49,6 +49,7 @@
     "jsdom-global": "^3.0.2",
     "mini-css-extract-plugin": "^0.8.2",
     "mocha": "^7.2.0",
+    "node-forge": ">=0.10.0",
     "node-sass": "^4.14.1",
     "null-loader": "^3.0",
     "sass": "^1.26.9",
@@ -58,7 +59,7 @@
     "vue-template-compiler": "^2.6.11",
     "webpack-dev-server": "^3.11.0",
     "webpack-node-externals": "^1.7.2",
-    "node-forge": ">=0.10.0"
+    "workbox-webpack-plugin": "^6.1.5"
   },
   "dependencies": {
     "express": "^4.17.1",
