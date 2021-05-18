@@ -12,8 +12,8 @@
       xmlns="http://www.w3.org/2000/svg">
       <rect
       :transform="transformation"
-      width="24.8325" height="23.58"
-      x="1.5" y="2.14502"
+      width="24" height="24"
+      x="2" y="2"
       rx="6.5"
       stroke="#1E416A" stroke-width="3"/>
       <path
