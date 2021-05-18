@@ -35,7 +35,8 @@ describe('La vue touche de la Maintenance', function () {
     wrapper = shallowMount(Touche, {
       localVue, propsData: { rotation: 90 }
     });
-    expect(wrapper.find('svg').attributes('transform')).to.be('rotate(90)');
+    expect(wrapper.find('rect').attributes('transform')).to.be('rotate(90,14,14)');
+    expect(wrapper.find('path').attributes('transform')).to.be('rotate(90,14,14)');
   });
 
   it('peut changer de couleur', function () {
