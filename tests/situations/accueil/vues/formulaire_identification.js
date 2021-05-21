@@ -14,7 +14,11 @@ describe("Le formulaire d'identification", function () {
     localVue.prototype.$traduction = traduction;
     promesse = Promise.resolve();
     store = new Vuex.Store({
-      state: { estConnecte: false }
+      state: {
+        estConnecte: false,
+        erreurRecupereCampagne: '',
+        erreurInscription: ''
+      }
     });
     store.dispatch = () => promesse;
     wrapper = mount(FormulaireIdentificationVue, { store, localVue });
@@ -33,12 +37,18 @@ describe("Le formulaire d'identification", function () {
   });
 
   it("inscrit la personne avec le nom et la campagne à l'appui sur le bouton", function (done) {
-    store.dispatch = (action, { nom, campagne, email, telephone }) => {
-      expect(action).to.equal('inscris');
-      expect(nom).to.equal('Mon pseudo');
-      expect(campagne).to.equal('Mon code campagne');
-      done();
-      return promesse;
+    store.dispatch = (action, { codeCampagne }) => {
+      expect(action).to.equal('recupereCampagne');
+      expect(codeCampagne).to.equal('Mon code campagne');
+
+      store.dispatch = (action, { nom, campagne }) => {
+        expect(action).to.equal('inscris');
+        expect(nom).to.equal('Mon pseudo');
+        expect(campagne).to.equal('Mon code campagne');
+        done();
+        return Promise.resolve();
+      };
+      return Promise.resolve('{id: 1}');
     };
     wrapper.findAll('input[type=text]').at(0).setValue('  Mon pseudo  ');
     wrapper.findAll('input[type=text]').at(1).setValue('Mon code campagne');
@@ -47,6 +57,13 @@ describe("Le formulaire d'identification", function () {
   });
 
   it('réinitialise les valeurs une fois sauvegardé', function () {
+    store.dispatch = (action, { codeCampagne }) => {
+      store.dispatch = (action, { nom, campagne }) => {
+        return Promise.resolve('{id: evaluation_id}');
+      };
+      return Promise.resolve('{id: 1}');
+    };
+
     wrapper.vm.nom = 'Mon pseudo';
     wrapper.vm.campagne = 'Ma campagne';
     wrapper.vm.cgu = true;
@@ -54,6 +71,21 @@ describe("Le formulaire d'identification", function () {
       expect(wrapper.vm.nom).to.eql('');
       expect(wrapper.vm.campagne).to.eql('');
       expect(wrapper.vm.cgu).to.eql(false);
+    });
+  });
+
+  it("ne réinitialise pas les valeurs rentrées lorsque l'on n'a pas réussi à s'identifier", function () {
+    store.dispatch = (action, { codeCampagne }) => {
+      store.dispatch = (action, { nom, campagne }) => {
+        return Promise.resolve();
+      };
+      return Promise.resolve('{id: 1}');
+    };
+    wrapper.vm.nom = 'Pseudo';
+    wrapper.vm.campagne = 'Campagne';
+    return wrapper.vm.envoieFormulaire().finally(() => {
+      expect(wrapper.vm.nom).to.eql('Pseudo');
+      expect(wrapper.vm.campagne).to.eql('Campagne');
     });
   });
 
@@ -81,43 +113,33 @@ describe("Le formulaire d'identification", function () {
     });
   });
 
-  it("ne réinitialise pas les valeurs rentrées lorsque l'on n'a pas réussi à s'identifier", function () {
-    store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
-      responseJSON: { code_campagne: ['code inexistant'] }
-    });
-    wrapper.vm.nom = 'Pseudo';
-    wrapper.vm.campagne = 'Campagne';
-    return wrapper.vm.envoieFormulaire().then(() => {
-      expect(wrapper.vm.nom).to.eql('Pseudo');
-      expect(wrapper.vm.campagne).to.eql('Campagne');
-    });
-  });
-
-  it('affiche les erreurs au niveau des champs', function () {
-    store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
-      responseJSON: {
-        code_campagne: ['code inexistant'],
-        nom: ['doit être rempli']
-      }
-    });
+  it("affiche les erreurs de la campagne quand elle n'existe pas", function () {
+    store.dispatch = (action, { codeCampagne }) => {
+      store.state.erreurRecupereCampagne = 'Code inconnu';
+      return Promise.resolve();
+    };
 
     expect(wrapper.findAll('.erreur-message').length).to.equal(0);
     return wrapper.vm.envoieFormulaire().then(() => {
-      expect(wrapper.findAll('.erreur-message').length).to.equal(2);
-      expect(wrapper.findAll('.erreur-message').at(0).text()).to.equal('doit être rempli');
-      expect(wrapper.findAll('.erreur-message').at(1).text()).to.equal('code inexistant');
+      expect(wrapper.findAll('.erreur-message').length).to.equal(1);
+      expect(wrapper.findAll('.erreur-message').at(0).text()).to.equal('Code inconnu');
     });
   });
 
-  it("enlève les erreurs lorsque l'on resoumet le formulaire", function () {
-    store.dispatch = () => Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
-      responseJSON: { code_campagne: ['code inexistant'] }
-    });
-    expect(wrapper.vm.erreurs).to.eql({});
+  it("affiche les erreurs de l'inscription quand elle échoue", function () {
+    store.dispatch = (action, { codeCampagne }) => {
+      store.dispatch = (action, { nom, campagne }) => {
+        store.state.erreurInscription = 'doit être rempli';
+
+        return Promise.resolve();
+      };
+      return Promise.resolve('{id: 1}');
+    };
+
+    expect(wrapper.findAll('.erreur-message').length).to.equal(0);
     return wrapper.vm.envoieFormulaire().then(() => {
-      expect(wrapper.vm.erreurs).to.not.eql({});
-      wrapper.vm.envoieFormulaire();
-      expect(wrapper.vm.erreurs).to.eql({});
+      expect(wrapper.findAll('.erreur-message').length).to.equal(1);
+      expect(wrapper.findAll('.erreur-message').at(0).text()).to.equal('doit être rempli');
     });
   });
 

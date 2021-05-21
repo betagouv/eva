@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
+import ErreurCampagne from 'commun/infra/erreur_campagne';
 
 export const DECONNECTE = 'déconnecté';
 export const CONTACT = 'contact';
@@ -8,10 +9,12 @@ export const DEMARRE = 'démarré';
 
 Vue.use(Vuex);
 
-export function creeStore (registreUtilisateur, fetch = window.fetch) {
+export function creeStore (registreUtilisateur, registreCampagne, fetch = window.fetch) {
   const store = new Vuex.Store({
     state: {
       estConnecte: registreUtilisateur.estConnecte(),
+      erreurRecupereCampagne: '',
+      erreurInscription: '',
       nom: registreUtilisateur.nom(),
       situations: [],
       competencesFortes: [],
@@ -49,7 +52,34 @@ export function creeStore (registreUtilisateur, fetch = window.fetch) {
     },
     actions: {
       inscris ({ commit }, { nom, campagne }) {
-        return registreUtilisateur.inscris(nom, campagne);
+        this.state.erreurInscription = '';
+        return new Promise((resolve, reject) => {
+          registreUtilisateur.inscris(nom, campagne)
+            .then(resolve)
+            .catch((xhr) => {
+              if (xhr.status === 422) {
+                this.erreurInscription = xhr.responseJSON.nom;
+                resolve();
+              } else {
+                reject(xhr);
+              }
+            });
+        });
+      },
+      recupereCampagne ({ commit }, { codeCampagne }) {
+        this.state.erreurRecupereCampagne = '';
+        return new Promise((resolve, reject) => {
+          registreCampagne.recupereCampagne(codeCampagne)
+            .then(resolve)
+            .catch((erreur) => {
+              if (erreur instanceof ErreurCampagne) {
+                this.state.erreurRecupereCampagne = erreur.message;
+                resolve();
+              } else {
+                reject(erreur);
+              }
+            });
+        });
       },
       enregistreContact ({ commit }, { email, telephone }) {
         return registreUtilisateur.enregistreContact(email, telephone)

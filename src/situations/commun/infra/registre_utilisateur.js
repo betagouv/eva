@@ -7,24 +7,38 @@ export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
-  constructor ($ = jQuery, urlServeur = process.env.URL_API) {
+  constructor ($ = jQuery, urlServeur = process.env.URL_API, navigateur = navigator) {
     super();
     this.$ = $;
     this.urlServeur = urlServeur;
+    this.navigateur = navigateur;
   }
 
   inscris (nom, codeCampagne) {
     return new Promise((resolve, reject) => {
-      this.$.ajax({
-        type: 'POST',
-        url: `${this.urlServeur}/api/evaluations`,
-        data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
-        contentType: 'application/json; charset=utf-8',
-        success: resolve,
-        error: reject
-      });
-    }).then((data) => {
-      window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(data));
+      if (this.navigateur.onLine) {
+        this.$.ajax({
+          type: 'POST',
+          url: `${this.urlServeur}/api/evaluations`,
+          data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
+          contentType: 'application/json; charset=utf-8',
+          success: (data) => {
+            const utilisateur = JSON.stringify(data);
+            window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
+            resolve(utilisateur);
+          },
+          error: reject
+        });
+      } else {
+        var data = {
+          id: `temporaire_${nom}`,
+          nom: nom
+        };
+        const utilisateur = JSON.stringify(data);
+        window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
+        resolve(utilisateur);
+      }
+    }).finally(() => {
       window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
       this.emit(CHANGEMENT_CONNEXION);
     });
