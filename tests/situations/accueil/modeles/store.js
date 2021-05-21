@@ -1,7 +1,9 @@
 import { creeStore, DECONNECTE, CONTACT, DEMARRE } from 'accueil/modeles/store';
+import ErreurCampagne from 'commun/infra/erreur_campagne';
 
 describe("Le store de l'accueil", function () {
   let registreUtilisateur;
+  let registreCampagne;
 
   beforeEach(function () {
     registreUtilisateur = {
@@ -13,6 +15,7 @@ describe("Le store de l'accueil", function () {
         return Promise.resolve();
       }
     };
+    registreCampagne = {};
   });
 
   it("s'initialise a partir du registre utilisateur", function () {
@@ -92,7 +95,7 @@ describe("Le store de l'accueil", function () {
         return { situations: [situation] };
       }
     });
-    const store = creeStore(registreUtilisateur, fetch);
+    const store = creeStore(registreUtilisateur, registreCampagne, fetch);
     return store.dispatch('synchroniseEvaluation').then(() => {
       const situationAttendue = {
         identifiant: 'nom_technique',
@@ -109,7 +112,7 @@ describe("Le store de l'accueil", function () {
     const fetch = (url) => Promise.resolve({
       status: 404
     });
-    const store = creeStore(registreUtilisateur, fetch);
+    const store = creeStore(registreUtilisateur, registreCampagne, fetch);
     store.commit('connecte', 'test');
     return store.dispatch('synchroniseEvaluation').catch(() => {
       expect(store.state.estConnecte).to.eql(false);
@@ -126,10 +129,60 @@ describe("Le store de l'accueil", function () {
         return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
       }
     });
-    const store = creeStore(registreUtilisateur, fetch);
+    const store = creeStore(registreUtilisateur, registreCampagne, fetch);
     return store.dispatch('termineEvaluation').then(() => {
       const competencesFortesAttendues = ['comprehension_consigne', 'rapidite'];
       expect(store.state.competencesFortes).to.eql(competencesFortesAttendues);
+    });
+  });
+
+  describe('Action : inscris', function () {
+    beforeEach(function () {
+      registreUtilisateur.inscris = () => {
+        return Promise.resolve();
+      };
+    });
+
+    it("vide les erreurs de l'inscription à la soumission d'une nouvelle inscription", function () {
+      const store = creeStore(registreUtilisateur, registreCampagne);
+      store.state.erreurInscription = 'Nom invalide';
+      store.dispatch('inscris', { nom: 'Jean', campagne: 'code' });
+
+      expect(store.state.erreurInscription).to.eql('');
+    });
+  });
+
+  describe('Action : recupereCampagne', function () {
+    it('retourne la campagne quand elle est trouvée', function () {
+      const mockRegistre = { code: { id: 1, nom: 'ma campagne' } };
+      registreCampagne.recupereCampagne = (codeCampagne) => {
+        return Promise.resolve(mockRegistre[codeCampagne]);
+      };
+      const store = creeStore(registreUtilisateur, registreCampagne);
+      return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then((campagne) => {
+        expect(campagne).to.eql({ id: 1, nom: 'ma campagne' });
+      });
+    });
+
+    it('gères certaines erreurs', function () {
+      registreCampagne.recupereCampagne = () => {
+        return Promise.reject(new ErreurCampagne('une erreur à gérer'));
+      };
+      const store = creeStore(registreUtilisateur, registreCampagne);
+      return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then((campagne) => {
+        expect(campagne).to.be(undefined);
+        expect(store.state.erreurRecupereCampagne).to.eql('une erreur à gérer');
+      });
+    });
+
+    it('propage les erreurs inattendues', function () {
+      registreCampagne.recupereCampagne = () => {
+        return Promise.reject(new Error('non gérée'));
+      };
+      const store = creeStore(registreUtilisateur, registreCampagne);
+      return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).catch((erreur) => {
+        expect(erreur.message).to.eql('non gérée');
+      });
     });
   });
 });

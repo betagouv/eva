@@ -23,8 +23,8 @@
                 class="input-accueil"
                 autofocus>
               <span
-                v-if="erreurs.nom"
-                class="erreur-message">{{ erreurs.nom[0] }}</span>
+                v-if="erreurInscription"
+                class="erreur-message">{{ erreurInscription }}</span>
             </div>
           </div>
           <div>
@@ -41,10 +41,10 @@
                 v-model.trim="campagne"
                 type="text"
                 class="input-accueil"
-                :class="{ erreur_champ: erreurs.code_campagne }">
-              <span
-                v-if="erreurs.code_campagne"
-                class="erreur-message">{{ erreurs.code_campagne[0] }}</span>
+                :class="{ erreur_champ: erreurRecupereCampagne }">
+              <div
+                v-if="erreurRecupereCampagne"
+                class="erreur-message">{{ erreurRecupereCampagne }}</div>
             </div>
           </div>
         </div>
@@ -89,13 +89,12 @@ export default {
       nom: this.forceNom,
       campagne: this.forceCampagne,
       enCours: false,
-      erreurs: {},
       cgu: false
     };
   },
 
   computed: {
-    ...mapState(['estConnecte']),
+    ...mapState(['estConnecte', 'erreurRecupereCampagne', 'erreurInscription']),
 
     estDesactive () {
       return this.nom === '' || this.campagne === '' || !this.cgu || this.enCours;
@@ -113,21 +112,31 @@ export default {
   methods: {
     envoieFormulaire () {
       this.enCours = true;
-      this.erreurs = {};
+
+      return this.$store.dispatch('recupereCampagne', {
+        codeCampagne: this.campagne
+      })
+        .then((campagne) => {
+          if (campagne) {
+            return this.envoieFormulaireInscription();
+          }
+        })
+        .finally(() => {
+          this.enCours = false;
+        });
+    },
+
+    envoieFormulaireInscription () {
       return this.$store.dispatch('inscris', {
         nom: this.nom,
         campagne: this.campagne
       })
-        .then(() => {
-          this.nom = this.forceNom;
-          this.cgu = false;
-          this.campagne = this.forceCampagne;
-        })
-        .catch((xhr) => {
-          this.erreurs = xhr.responseJSON;
-        })
-        .finally(() => {
-          this.enCours = false;
+        .then((utilisateur) => {
+          if (utilisateur) {
+            this.nom = this.forceNom;
+            this.cgu = false;
+            this.campagne = this.forceCampagne;
+          }
         });
     }
   }

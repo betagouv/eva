@@ -1,23 +1,37 @@
 import RegistreUtilisateur, { CHANGEMENT_CONNEXION, CLEF_IDENTIFIANT } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
-  function unRegistre (id, nom, urlServeur) {
+  function unRegistre (id, nom, urlServeur, enLigne = true) {
     return new RegistreUtilisateur({
       ajax (options) {
         options.success({ id, nom });
       }
-    }, urlServeur);
+    }, urlServeur, { onLine: enLigne });
   }
 
   beforeEach(function () {
     window.localStorage.clear();
   });
 
-  it("permet d'inscrire et de récupérer un utilisateur", function () {
-    const registre = unRegistre(1, 'autre test');
-    return registre.inscris('test').then(() => {
-      expect(registre.nom()).to.eql('autre test');
-      expect(registre.idEvaluation()).to.eql(1);
+  describe('quand on est en ligne', function () {
+    it("permet d'inscrire et de récupérer un utilisateur", function () {
+      const registre = unRegistre(1, 'autre test', 'https://serveur.com/', true);
+      return registre.inscris('test').then((utilisateur) => {
+        expect(registre.nom()).to.eql('autre test');
+        expect(registre.idEvaluation()).to.eql(1);
+        expect(utilisateur).to.eql('{"id":1,"nom":"autre test"}');
+      });
+    });
+  });
+
+  describe('quand on est pas en ligne', function () {
+    it('enregistre en local un utilisateur temporaire', function () {
+      const registre = unRegistre(1, 'autre test', 'https://serveur.com/', false);
+      return registre.inscris('Jean').then((utilisateur) => {
+        expect(registre.nom()).to.eql('Jean');
+        expect(registre.idEvaluation()).to.eql('temporaire_Jean');
+        expect(utilisateur).to.eql('{"id":"temporaire_Jean","nom":"Jean"}');
+      });
     });
   });
 
