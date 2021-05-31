@@ -31,11 +31,11 @@
       <div
         :class="{ desactivee: precedentDesactivee}"
         class="bouton-et-etiquette"
+        @click="indexBatiment--"
       >
         <button
           :disabled="precedentDesactivee"
           class="bouton-navigation-situation"
-          @click="indexBatiment--"
          >
           <img :src="precedent">
         </button>
@@ -51,11 +51,11 @@
       <div
         :class="{ desactivee: suivantDesactivee}"
         class="bouton-et-etiquette gauche"
+        @click="indexBatiment++"
       >
         <button
           :disabled="suivantDesactivee"
           class="bouton-navigation-situation"
-          @click="indexBatiment++"
          >
           <img :src="suivant">
         </button>

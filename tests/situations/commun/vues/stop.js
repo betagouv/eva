@@ -33,7 +33,7 @@ describe('vue Stop', function () {
 
     $('#point-insertion .bouton-stop').click();
     expect($('#fenetre-modale').length).to.equal(1);
-    expect($('h2').text()).to.equal('situation.stop');
+    expect($('h2').text()).to.equal('situation.stopsituation.stop');
   });
 
   it("enregistre l'événement et redirige vers l'accueil quand on confirme la modale", function () {
