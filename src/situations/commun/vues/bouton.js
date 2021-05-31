@@ -17,6 +17,7 @@ export default class VueBouton {
       const $boutonEtEtiquette = $('<div class="bouton-et-etiquette"></div>');
       $boutonEtEtiquette.append($bouton);
       $boutonEtEtiquette.append(`<span>${this.etiquette}</span>`);
+      $boutonEtEtiquette.on('click', this.click);
       this.$element = $boutonEtEtiquette;
     }
     $(pointInsertion).append(this.$element);

@@ -4,3 +4,10 @@
 .bouton-aide {
   @include bouton($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
 }
+.bouton-et-etiquette {
+  &:hover {
+    .bouton-aide {
+      background-color: $couleur-fond-bouton-vert-focus;
+    }
+  }
+}

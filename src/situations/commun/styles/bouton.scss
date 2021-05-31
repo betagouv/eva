@@ -27,6 +27,18 @@
   }
 
   &.desactivee span {
-    opacity: .5;
+    opacity: 0.5;
+  }
+
+  &:hover {
+    .bouton-lire-consigne {
+      background-color: $couleur-fond-bouton-bleu-focus;
+    }
+  }
+
+  &:not(.desactivee) {
+    span {
+      cursor: pointer;
+    }
   }
 }
