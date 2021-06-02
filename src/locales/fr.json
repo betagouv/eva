@@ -187,13 +187,11 @@
       "annuler": "Non",
       "ok": "Oui"
     },
+    "stop": "Attention, vous n'avez pas terminé.<br>Votre résultat sera impacté.<br>Voulez-vous vraiment abandonner ?",
     "reussite": "C'est terminé, bravo !",
     "retour_accueil": "Retour au parc",
     "repeter_consigne": "Répéter la consigne",
-    "abandonner_situation": "Arrêter la situation",
-    "stopsituation": {
-      "stop": "Attention, vous n'avez pas terminé.<br>Votre résultat sera impacté.<br>Voulez-vous vraiment abandonner ?"
-    }
+    "abandonner_situation": "Arrêter la situation"
   },
   "tri": {
     "titre": "Magasin de friandises",

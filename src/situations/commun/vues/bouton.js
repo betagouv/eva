@@ -11,14 +11,15 @@ export default class VueBouton {
 
   affiche (pointInsertion, $) {
     const $bouton = $(`<a class="${this.classe}"><img src="${this.image}"></a>`);
-    $bouton.on('click', this.click);
-    this.$element = $bouton;
     if (this.etiquette) {
       const $boutonEtEtiquette = $('<div class="bouton-et-etiquette"></div>');
       $boutonEtEtiquette.append($bouton);
       $boutonEtEtiquette.append(`<span>${this.etiquette}</span>`);
       $boutonEtEtiquette.on('click', this.click);
       this.$element = $boutonEtEtiquette;
+    } else {
+      $bouton.on('click', this.click);
+      this.$element = $bouton;
     }
     $(pointInsertion).append(this.$element);
   }

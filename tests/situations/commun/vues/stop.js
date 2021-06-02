@@ -31,9 +31,9 @@ describe('vue Stop', function () {
   it('ouvre une fenêtre de confirmation avant de stopper', function () {
     vue.affiche('#point-insertion', $);
 
-    $('#point-insertion .bouton-stop').click();
+    $('#point-insertion .bouton-stop').trigger('click');
     expect($('#fenetre-modale').length).to.equal(1);
-    expect($('h2').text()).to.equal('situation.stopsituation.stop');
+    expect($('h2').text()).to.equal('situation.stop');
   });
 
   it("enregistre l'événement et redirige vers l'accueil quand on confirme la modale", function () {
