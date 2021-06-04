@@ -44,6 +44,8 @@
                 v-model.trim="campagne"
                 type="text"
                 class="input-accueil"
+                autocapitalize="characters"
+                v-uppercase
                 :class="{ erreur_champ: erreurFormulaireIdentification.code }">
               <div
                 v-if="erreurFormulaireIdentification.code"
@@ -95,7 +97,13 @@ export default {
       cgu: false
     };
   },
-
+  directives: {
+    uppercase: {
+      update: function (el) {
+        el.value = el.value.toUpperCase();
+      }
+    }
+  },
   computed: {
     ...mapState(['estConnecte', 'erreurFormulaireIdentification']),
 
