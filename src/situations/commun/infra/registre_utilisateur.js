@@ -23,8 +23,7 @@ export default class RegistreUtilisateur extends EventEmitter {
           data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
           contentType: 'application/json; charset=utf-8',
           success: (data) => {
-            const utilisateur = JSON.stringify(data);
-            window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
+            const utilisateur = this.ecraseUtilisateurEnLocal(data);
             resolve(utilisateur);
           },
           error: reject
@@ -34,8 +33,7 @@ export default class RegistreUtilisateur extends EventEmitter {
           id: `temporaire_${nom}`,
           nom: nom
         };
-        const utilisateur = JSON.stringify(data);
-        window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
+        const utilisateur = this.ecraseUtilisateurEnLocal(data);
         resolve(utilisateur);
       }
     }).finally(() => {
@@ -51,7 +49,10 @@ export default class RegistreUtilisateur extends EventEmitter {
         url: `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`,
         data: JSON.stringify({ email: email, telephone: telephone }),
         contentType: 'application/json; charset=utf-8',
-        success: resolve,
+        success: (data) => {
+          const utilisateur = this.ecraseUtilisateurEnLocal(data);
+          resolve(utilisateur);
+        },
         error: reject
       });
     });
@@ -64,6 +65,12 @@ export default class RegistreUtilisateur extends EventEmitter {
     } else {
       return `${urlEvaluation}.json`;
     }
+  }
+
+  ecraseUtilisateurEnLocal (data) {
+    const utilisateur = JSON.stringify(data);
+    window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
+    return data;
   }
 
   estConnecte () {

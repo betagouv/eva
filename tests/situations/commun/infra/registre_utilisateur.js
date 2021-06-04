@@ -19,7 +19,7 @@ describe('le registre utilisateur', function () {
       return registre.inscris('test').then((utilisateur) => {
         expect(registre.nom()).to.eql('autre test');
         expect(registre.idEvaluation()).to.eql(1);
-        expect(utilisateur).to.eql('{"id":1,"nom":"autre test"}');
+        expect(utilisateur).to.eql({ id: 1, nom: 'autre test' });
       });
     });
   });
@@ -30,7 +30,7 @@ describe('le registre utilisateur', function () {
       return registre.inscris('Jean').then((utilisateur) => {
         expect(registre.nom()).to.eql('Jean');
         expect(registre.idEvaluation()).to.eql('temporaire_Jean');
-        expect(utilisateur).to.eql('{"id":"temporaire_Jean","nom":"Jean"}');
+        expect(utilisateur).to.eql({ id: 'temporaire_Jean', nom: 'Jean' });
       });
     });
   });
@@ -119,6 +119,20 @@ describe('le registre utilisateur', function () {
     return registre.inscris('test').then(() => {
       expect(registre.urlEvaluation('termine'))
         .to.eql('http://localhost/api/evaluations/1/termine');
+    });
+  });
+
+  describe('enregistreContact', function () {
+    it("met à jour les informations de l'évaluation", function () {
+      const registre = new RegistreUtilisateur({
+        ajax (options) {
+          options.success({ id: 1, nom: 'Jean', email: 'email@contact.fr', telephone: '0612345678' });
+        }
+      });
+      return registre.enregistreContact('email@contact.fr', '0612345678').then((utilisateur) => {
+        expect(utilisateur.email).to.eql('email@contact.fr');
+        expect(utilisateur.telephone).to.eql('0612345678');
+      });
     });
   });
 });
