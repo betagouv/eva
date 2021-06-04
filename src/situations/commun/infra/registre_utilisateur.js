@@ -23,7 +23,7 @@ export default class RegistreUtilisateur extends EventEmitter {
           data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
           contentType: 'application/json; charset=utf-8',
           success: (data) => {
-            const utilisateur = this.ecraseUtilisateurEnLocal(data);
+            const utilisateur = this.enregistreUtilisateurEnLocal(data);
             resolve(utilisateur);
           },
           error: reject
@@ -33,7 +33,7 @@ export default class RegistreUtilisateur extends EventEmitter {
           id: `temporaire_${nom}`,
           nom: nom
         };
-        const utilisateur = this.ecraseUtilisateurEnLocal(data);
+        const utilisateur = this.enregistreUtilisateurEnLocal(data);
         resolve(utilisateur);
       }
     }).finally(() => {
@@ -44,17 +44,25 @@ export default class RegistreUtilisateur extends EventEmitter {
 
   enregistreContact (email, telephone) {
     return new Promise((resolve, reject) => {
-      this.$.ajax({
-        type: 'PATCH',
-        url: `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`,
-        data: JSON.stringify({ email: email, telephone: telephone }),
-        contentType: 'application/json; charset=utf-8',
-        success: (data) => {
-          const utilisateur = this.ecraseUtilisateurEnLocal(data);
-          resolve(utilisateur);
-        },
-        error: reject
-      });
+      if (this.navigateur.onLine) {
+        this.$.ajax({
+          type: 'PATCH',
+          url: `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`,
+          data: JSON.stringify({ email: email, telephone: telephone }),
+          contentType: 'application/json; charset=utf-8',
+          success: (data) => {
+            const utilisateur = this.enregistreUtilisateurEnLocal(data);
+            resolve(utilisateur);
+          },
+          error: reject
+        });
+      } else {
+        const data = this.parseLocalStorage(CLEF_IDENTIFIANT);
+        data.email = email;
+        data.telephone = telephone;
+        const utilisateur = this.enregistreUtilisateurEnLocal(data);
+        resolve(utilisateur);
+      }
     });
   }
 
@@ -67,7 +75,7 @@ export default class RegistreUtilisateur extends EventEmitter {
     }
   }
 
-  ecraseUtilisateurEnLocal (data) {
+  enregistreUtilisateurEnLocal (data) {
     const utilisateur = JSON.stringify(data);
     window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
     return data;
