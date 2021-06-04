@@ -35,6 +35,13 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.isEmpty()).to.be(true);
   });
 
+  it('écris un code de campagne en majuscule', function () {
+    const champCodeCampagne = wrapper.findAll('input[type=text]').at(1);
+    champCodeCampagne.setValue('Mon code campagne');
+
+    expect(champCodeCampagne.element.value).to.eql('MON CODE CAMPAGNE');
+  });
+
   it("inscrit la personne avec le nom et la campagne à l'appui sur le bouton", function (done) {
     store.dispatch = (action, { codeCampagne }) => {
       expect(action).to.equal('recupereCampagne');
