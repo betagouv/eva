@@ -1,9 +1,9 @@
 import jQuery from 'jquery';
 import EventEmitter from 'events';
 
-const CLEF_SITUATIONS_FAITES = 'situationsFaites';
-
+export const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
+export const CLEF_MODE_HORS_LIGNE = 'modeHorsLigne';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
@@ -85,12 +85,20 @@ export default class RegistreUtilisateur extends EventEmitter {
     return !!this.idEvaluation();
   }
 
-  parseLocalStorage (clef) {
-    const valeur = window.localStorage.getItem(clef) || '{}';
+  enregistreModeHorsLigne (estHorsLigne) {
+    window.localStorage.setItem(CLEF_MODE_HORS_LIGNE, JSON.stringify(estHorsLigne));
+  }
+
+  estModeHorsLigne () {
+    return this.parseLocalStorage(CLEF_MODE_HORS_LIGNE, false);
+  }
+
+  parseLocalStorage (clef, defaut = {}) {
+    const valeur = window.localStorage.getItem(clef) || JSON.stringify(defaut);
     try {
       return JSON.parse(valeur);
     } catch (ex) {
-      return {};
+      return defaut;
     }
   }
 
@@ -121,6 +129,7 @@ export default class RegistreUtilisateur extends EventEmitter {
   deconnecte () {
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
     window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
+    window.localStorage.removeItem(CLEF_MODE_HORS_LIGNE);
     this.emit(CHANGEMENT_CONNEXION);
   }
 }
