@@ -1,4 +1,10 @@
-import RegistreUtilisateur, { CHANGEMENT_CONNEXION, CLEF_IDENTIFIANT } from 'commun/infra/registre_utilisateur';
+import RegistreUtilisateur,
+{
+  CHANGEMENT_CONNEXION,
+  CLEF_IDENTIFIANT,
+  CLEF_SITUATIONS_FAITES,
+  CLEF_MODE_HORS_LIGNE
+} from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
   function unRegistre (data, urlServeur, enLigne = true) {
@@ -99,6 +105,15 @@ describe('le registre utilisateur', function () {
     });
   });
 
+  it("à la déconnexion, on vide les données de l'évaluation", function () {
+    const registre = unRegistre(1, 'test');
+    window.localStorage.setItem(CLEF_MODE_HORS_LIGNE, 'est hors ligne');
+    window.localStorage.setItem(CLEF_SITUATIONS_FAITES, 'liste de situations faites');
+    registre.deconnecte();
+    expect(window.localStorage.getItem(CLEF_MODE_HORS_LIGNE)).to.equal(null);
+    expect(window.localStorage.getItem(CLEF_SITUATIONS_FAITES)).to.equal(null);
+  });
+
   it("émet un événement lorsque l'utilisateur se déconnecte", function (done) {
     const registre = new RegistreUtilisateur();
     registre.on(CHANGEMENT_CONNEXION, done);
@@ -152,6 +167,23 @@ describe('le registre utilisateur', function () {
           expect(window.localStorage.identifiantUtilisateur).to.eql('{"id":1,"nom":"test","email":"email@contact.fr","telephone":"0612345678"}');
         });
       });
+    });
+  });
+
+  describe('mode hors-ligne', function () {
+    let registre;
+
+    beforeEach(function () {
+      registre = unRegistre(1, 'any');
+    });
+
+    it('est à faux par défaut', function () {
+      expect(registre.estModeHorsLigne()).to.equal(false);
+    });
+
+    it('enregistre un mode', function () {
+      registre.enregistreModeHorsLigne(true);
+      expect(registre.estModeHorsLigne()).to.eql(true);
     });
   });
 });
