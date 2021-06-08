@@ -45,6 +45,13 @@
   }
 }
 
+.modale-formulaire {
+  .erreur-generale {
+      color: $couleur-accent-et-erreur;
+      margin-bottom: 1rem;
+  }
+}
+
 .element-formulaire {
   margin: .5rem auto;
   ::placeholder {

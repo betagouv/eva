@@ -129,7 +129,7 @@ describe("Le formulaire d'identification", function () {
   it("affiche les erreurs de l'inscription quand elle échoue", function () {
     store.dispatch = (action, { codeCampagne }) => {
       store.dispatch = (action, { nom, campagne }) => {
-        store.state.erreurInscription = 'doit être rempli';
+        store.state.erreurInscription = { nom: 'doit être rempli' };
 
         return Promise.resolve();
       };
@@ -140,6 +140,23 @@ describe("Le formulaire d'identification", function () {
     return wrapper.vm.envoieFormulaire().then(() => {
       expect(wrapper.findAll('.erreur-message').length).to.equal(1);
       expect(wrapper.findAll('.erreur-message').at(0).text()).to.equal('doit être rempli');
+    });
+  });
+
+  it("affiche les erreurs generale de l'inscription quand elle échoue", function () {
+    store.dispatch = (action, { codeCampagne }) => {
+      store.dispatch = (action, { nom, campagne }) => {
+        store.state.erreurInscription = { generale: 'erreur réseau' };
+
+        return Promise.resolve();
+      };
+      return Promise.resolve('{id: 1}');
+    };
+
+    expect(wrapper.findAll('.erreur-generale').length).to.equal(0);
+    return wrapper.vm.envoieFormulaire().then(() => {
+      expect(wrapper.findAll('.erreur-generale').length).to.equal(1);
+      expect(wrapper.findAll('.erreur-generale').at(0).text()).to.equal('erreur réseau');
     });
   });
 
