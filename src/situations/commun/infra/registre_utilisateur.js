@@ -7,35 +7,36 @@ export const CLEF_MODE_HORS_LIGNE = 'modeHorsLigne';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
 export default class RegistreUtilisateur extends EventEmitter {
-  constructor ($ = jQuery, urlServeur = process.env.URL_API, navigateur = navigator) {
+  constructor ($ = jQuery, urlServeur = process.env.URL_API) {
     super();
     this.$ = $;
     this.urlServeur = urlServeur;
-    this.navigateur = navigateur;
   }
 
   inscris (nom, codeCampagne) {
     return new Promise((resolve, reject) => {
-      if (this.navigateur.onLine) {
-        this.$.ajax({
-          type: 'POST',
-          url: `${this.urlServeur}/api/evaluations`,
-          data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
-          contentType: 'application/json; charset=utf-8',
-          success: (data) => {
+      this.$.ajax({
+        type: 'POST',
+        url: `${this.urlServeur}/api/evaluations`,
+        data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
+        contentType: 'application/json; charset=utf-8',
+        success: (data) => {
+          const utilisateur = this.enregistreUtilisateurEnLocal(data);
+          resolve(utilisateur);
+        },
+        error: (xhr) => {
+          if (this.activeModeHorsLigne(xhr)) {
+            var data = {
+              id: `temporaire_${nom}`,
+              nom: nom
+            };
             const utilisateur = this.enregistreUtilisateurEnLocal(data);
             resolve(utilisateur);
-          },
-          error: reject
-        });
-      } else {
-        var data = {
-          id: `temporaire_${nom}`,
-          nom: nom
-        };
-        const utilisateur = this.enregistreUtilisateurEnLocal(data);
-        resolve(utilisateur);
-      }
+          } else {
+            reject(xhr);
+          }
+        }
+      });
     }).finally(() => {
       window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
       this.emit(CHANGEMENT_CONNEXION);
@@ -44,25 +45,27 @@ export default class RegistreUtilisateur extends EventEmitter {
 
   enregistreContact (email, telephone) {
     return new Promise((resolve, reject) => {
-      if (this.navigateur.onLine) {
-        this.$.ajax({
-          type: 'PATCH',
-          url: `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`,
-          data: JSON.stringify({ email: email, telephone: telephone }),
-          contentType: 'application/json; charset=utf-8',
-          success: (data) => {
+      this.$.ajax({
+        type: 'PATCH',
+        url: `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`,
+        data: JSON.stringify({ email: email, telephone: telephone }),
+        contentType: 'application/json; charset=utf-8',
+        success: (data) => {
+          const utilisateur = this.enregistreUtilisateurEnLocal(data);
+          resolve(utilisateur);
+        },
+        error: (xhr) => {
+          if (this.activeModeHorsLigne(xhr)) {
+            const data = this.parseLocalStorage(CLEF_IDENTIFIANT);
+            data.email = email;
+            data.telephone = telephone;
             const utilisateur = this.enregistreUtilisateurEnLocal(data);
             resolve(utilisateur);
-          },
-          error: reject
-        });
-      } else {
-        const data = this.parseLocalStorage(CLEF_IDENTIFIANT);
-        data.email = email;
-        data.telephone = telephone;
-        const utilisateur = this.enregistreUtilisateurEnLocal(data);
-        resolve(utilisateur);
-      }
+          } else {
+            reject(xhr);
+          }
+        }
+      });
     });
   }
 
@@ -87,6 +90,10 @@ export default class RegistreUtilisateur extends EventEmitter {
 
   enregistreModeHorsLigne (estHorsLigne) {
     window.localStorage.setItem(CLEF_MODE_HORS_LIGNE, JSON.stringify(estHorsLigne));
+  }
+
+  activeModeHorsLigne (xhr) {
+    return this.estModeHorsLigne() && xhr.status === 0;
   }
 
   estModeHorsLigne () {
