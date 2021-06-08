@@ -13,10 +13,10 @@ describe('le registre utilisateur', function () {
         if (enLigne) {
           options.success(data);
         } else {
-          options.error(new Error());
+          options.error({ status: 0 });
         }
       }
-    }, urlServeur, { onLine: enLigne });
+    }, urlServeur);
   }
 
   beforeEach(function () {
@@ -24,23 +24,90 @@ describe('le registre utilisateur', function () {
   });
 
   describe('quand on est en ligne', function () {
-    it("permet d'inscrire et de récupérer un utilisateur", function () {
-      const registre = unRegistre({ id: 1, nom: 'autre test' }, 'https://serveur.com/', true);
-      return registre.inscris('test').then((utilisateur) => {
-        expect(registre.nom()).to.eql('autre test');
-        expect(registre.idEvaluation()).to.eql(1);
-        expect(utilisateur).to.eql({ id: 1, nom: 'autre test' });
+    let registre;
+    let mockJQuery;
+
+    beforeEach(function () {
+      mockJQuery = {
+        ajax (options) {
+          options.success({ id: 1, nom: 'mon nom' });
+        }
+      };
+      registre = new RegistreUtilisateur(mockJQuery, 'url quelconque');
+    });
+
+    describe('avec le mode hors ligne non activé', function () {
+      beforeEach(function () {
+        registre.enregistreModeHorsLigne(false);
+      });
+
+      it("permet d'inscrire et de récupérer un utilisateur", function () {
+        return registre.inscris('test').then((utilisateur) => {
+          expect(registre.nom()).to.eql('mon nom');
+          expect(registre.idEvaluation()).to.eql(1);
+          expect(utilisateur).to.eql({ id: 1, nom: 'mon nom' });
+        });
+      });
+    });
+
+    describe('avec le mode hors ligne activé', function () {
+      beforeEach(function () {
+        registre.enregistreModeHorsLigne(true);
+      });
+
+      it("permet d'inscrire et de récupérer un utilisateur", function () {
+        return registre.inscris('test').then((utilisateur) => {
+          expect(registre.nom()).to.eql('mon nom');
+          expect(registre.idEvaluation()).to.eql(1);
+          expect(utilisateur).to.eql({ id: 1, nom: 'mon nom' });
+        });
+      });
+
+      it('remonte les erreus de validation', function (done) {
+        mockJQuery.ajax = (options) => {
+          options.error({ status: 422 });
+        };
+        registre.inscris('test')
+          .catch((xhr) => {
+            expect(xhr.status).to.eql(422);
+            done();
+          });
       });
     });
   });
 
   describe('quand on est pas en ligne', function () {
-    it('enregistre en local un utilisateur temporaire', function () {
-      const registre = unRegistre({ id: 1, nom: 'autre test' }, 'https://serveur.com/', false);
-      return registre.inscris('Jean').then((utilisateur) => {
-        expect(registre.nom()).to.eql('Jean');
-        expect(registre.idEvaluation()).to.eql('temporaire_Jean');
-        expect(utilisateur).to.eql({ id: 'temporaire_Jean', nom: 'Jean' });
+    let registre;
+
+    beforeEach(function () {
+      registre = unRegistre({ id: 1, nom: 'autre test' }, 'https://serveur.com/', false);
+    });
+
+    describe('avec le mode hors ligne activé', function () {
+      beforeEach(function () {
+        registre.enregistreModeHorsLigne(true);
+      });
+
+      it('enregistre en local un utilisateur temporaire', function () {
+        return registre.inscris('Jean').then((utilisateur) => {
+          expect(registre.nom()).to.eql('Jean');
+          expect(registre.idEvaluation()).to.eql('temporaire_Jean');
+          expect(utilisateur).to.eql({ id: 'temporaire_Jean', nom: 'Jean' });
+        });
+      });
+    });
+
+    describe('avec le mode hors ligne non activé', function () {
+      beforeEach(function () {
+        registre.enregistreModeHorsLigne(false);
+      });
+
+      it('remonte une erreur réseau', function (done) {
+        registre.inscris('test')
+          .catch((xhr) => {
+            expect(xhr.status).to.eql(0);
+            done();
+          });
       });
     });
   });
@@ -153,13 +220,19 @@ describe('le registre utilisateur', function () {
     });
 
     describe('quand on est pas en ligne', function () {
-      it("enregistre les informations de l'évaluation en local", function () {
-        window.localStorage.identifiantUtilisateur = '{"id":1,"nom":"test"}';
-        const registre = unRegistre(
+      let registre;
+
+      beforeEach(function () {
+        registre = unRegistre(
           { id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' },
           'https://serveur.com/',
           false
         );
+        registre.enregistreModeHorsLigne(true);
+      });
+
+      it("enregistre les informations de l'évaluation en local", function () {
+        window.localStorage.identifiantUtilisateur = '{"id":1,"nom":"test"}';
 
         return registre.enregistreContact('email@contact.fr', '0612345678').then((utilisateur) => {
           expect(utilisateur.email).to.eql('email@contact.fr');
