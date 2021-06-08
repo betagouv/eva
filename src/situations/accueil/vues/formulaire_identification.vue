@@ -6,6 +6,9 @@
       @submit.prevent="envoieFormulaire">
       <div>
         <h2 class="formulaire-identification-titre">{{ $traduction('accueil.identification.titre') }}</h2>
+        <div
+            v-if="erreurInscription.generale"
+            class="erreur-generale">{{ erreurInscription.generale }}</div>
         <div class="elements-formulaire">
           <div>
             <label
@@ -23,8 +26,8 @@
                 class="input-accueil"
                 autofocus>
               <span
-                v-if="erreurInscription"
-                class="erreur-message">{{ erreurInscription }}</span>
+                v-if="erreurInscription.nom"
+                class="erreur-message">{{ erreurInscription.nom }}</span>
             </div>
           </div>
           <div>
