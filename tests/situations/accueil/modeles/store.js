@@ -137,18 +137,49 @@ describe("Le store de l'accueil", function () {
   });
 
   describe('Action : inscris', function () {
-    beforeEach(function () {
-      registreUtilisateur.inscris = () => {
-        return Promise.resolve();
-      };
+    describe("quand l'inscription se passe bien", function () {
+      beforeEach(function () {
+        registreUtilisateur.inscris = () => {
+          return Promise.resolve();
+        };
+      });
+
+      it("vide les erreurs de l'inscription à la soumission d'une nouvelle inscription", function () {
+        const store = creeStore(registreUtilisateur, registreCampagne);
+        store.state.erreurInscription = 'Nom invalide';
+        store.dispatch('inscris', { nom: 'Jean', campagne: 'code' });
+
+        expect(store.state.erreurInscription).to.eql('');
+      });
     });
 
-    it("vide les erreurs de l'inscription à la soumission d'une nouvelle inscription", function () {
-      const store = creeStore(registreUtilisateur, registreCampagne);
-      store.state.erreurInscription = 'Nom invalide';
-      store.dispatch('inscris', { nom: 'Jean', campagne: 'code' });
+    describe("quand l'inscription se passe mal", function () {
+      it('traite les erreurs de validation', function () {
+        registreUtilisateur.inscris = () => {
+          return Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+            status: 422,
+            responseJSON: { nom: 'doit être rempli' }
+          });
+        };
+        const store = creeStore(registreUtilisateur, registreCampagne);
+        return store.dispatch('inscris', { nom: '', campagne: 'code' }).then((utilisateur) => {
+          expect(utilisateur).to.eql(undefined);
+          expect(store.state.erreurInscription).to.eql({ nom: 'doit être rempli' });
+        });
+      });
 
-      expect(store.state.erreurInscription).to.eql('');
+      it('traite une erreur réseau', function () {
+        registreUtilisateur.inscris = () => {
+          return Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+            status: 0
+          });
+        };
+        const store = creeStore(registreUtilisateur, registreCampagne);
+        return store.dispatch('inscris', { nom: '', campagne: 'code' }).then((utilisateur) => {
+          expect(utilisateur).to.eql(undefined);
+          expect(store.state.erreurInscription).to.eql({ general: 'Impossible de contacter le serveur, Vérifiez votre connexion réseau' });
+        });
+      });
     });
   });
 

@@ -58,7 +58,10 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
             .then(resolve)
             .catch((xhr) => {
               if (xhr.status === 422) {
-                this.erreurInscription = xhr.responseJSON.nom;
+                this.state.erreurInscription = xhr.responseJSON;
+                resolve();
+              } else if (xhr.status === 0) {
+                this.state.erreurInscription = { general: 'Impossible de contacter le serveur, Vérifiez votre connexion réseau' };
                 resolve();
               } else {
                 reject(xhr);
