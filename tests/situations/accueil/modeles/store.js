@@ -175,9 +175,10 @@ describe("Le store de l'accueil", function () {
           });
         };
         const store = creeStore(registreUtilisateur, registreCampagne);
+        store.traduction = (code) => { return code; };
         return store.dispatch('inscris', { nom: '', campagne: 'code' }).then((utilisateur) => {
           expect(utilisateur).to.eql(undefined);
-          expect(store.state.erreurInscription).to.eql({ generale: 'Impossible de contacter le serveur, Vérifiez votre connexion réseau' });
+          expect(store.state.erreurInscription).to.eql({ generale: 'accueil.erreur_reseau' });
         });
       });
     });

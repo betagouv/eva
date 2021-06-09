@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 import ErreurCampagne from 'commun/infra/erreur_campagne';
+import { traduction } from 'commun/infra/internationalisation';
 
 export const DECONNECTE = 'déconnecté';
 export const CONTACT = 'contact';
@@ -61,7 +62,7 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
                 this.state.erreurInscription = xhr.responseJSON;
                 resolve();
               } else if (xhr.status === 0) {
-                this.state.erreurInscription = { generale: 'Impossible de contacter le serveur, Vérifiez votre connexion réseau' };
+                this.state.erreurInscription = { generale: traduction('accueil.erreur_reseau') };
                 resolve();
               } else {
                 reject(xhr);
