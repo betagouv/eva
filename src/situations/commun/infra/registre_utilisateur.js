@@ -136,7 +136,6 @@ export default class RegistreUtilisateur extends EventEmitter {
   deconnecte () {
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
     window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
-    window.localStorage.removeItem(CLEF_MODE_HORS_LIGNE);
     this.emit(CHANGEMENT_CONNEXION);
   }
 }

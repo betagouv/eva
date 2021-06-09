@@ -2,8 +2,7 @@ import RegistreUtilisateur,
 {
   CHANGEMENT_CONNEXION,
   CLEF_IDENTIFIANT,
-  CLEF_SITUATIONS_FAITES,
-  CLEF_MODE_HORS_LIGNE
+  CLEF_SITUATIONS_FAITES
 } from 'commun/infra/registre_utilisateur';
 
 describe('le registre utilisateur', function () {
@@ -174,10 +173,8 @@ describe('le registre utilisateur', function () {
 
   it("à la déconnexion, on vide les données de l'évaluation", function () {
     const registre = unRegistre(1, 'test');
-    window.localStorage.setItem(CLEF_MODE_HORS_LIGNE, 'est hors ligne');
     window.localStorage.setItem(CLEF_SITUATIONS_FAITES, 'liste de situations faites');
     registre.deconnecte();
-    expect(window.localStorage.getItem(CLEF_MODE_HORS_LIGNE)).to.equal(null);
     expect(window.localStorage.getItem(CLEF_SITUATIONS_FAITES)).to.equal(null);
   });
 
