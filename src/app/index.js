@@ -1,4 +1,5 @@
 import 'core-js/stable';
+import queryString from 'query-string';
 import Vue from 'vue';
 import 'commun/styles/conteneur.scss';
 import 'commun/styles/commun.scss';
@@ -21,6 +22,8 @@ function afficheAccueil (pointInsertion) {
 
   Vue.prototype.$depotRessources = depotRessources;
   Vue.prototype.$traduction = traduction;
+  const parametresUrl = queryString.parse(location.search);
+  registreUtilisateur.enregistreModeHorsLigne(parametresUrl.horsligne === 'true');
 
   const store = creeStore(registreUtilisateur, registreCampagne);
 
