@@ -7,8 +7,8 @@
       <div>
         <h2 class="formulaire-identification-titre">{{ $traduction('accueil.identification.titre') }}</h2>
         <div
-            v-if="erreurInscription.generale"
-            class="erreur-generale">{{ erreurInscription.generale }}</div>
+            v-if="erreurFormulaireIdentification.generale"
+            class="erreur-generale">{{ erreurFormulaireIdentification.generale }}</div>
         <div class="elements-formulaire">
           <div>
             <label
@@ -26,8 +26,8 @@
                 class="input-accueil"
                 autofocus>
               <span
-                v-if="erreurInscription.nom"
-                class="erreur-message">{{ erreurInscription.nom }}</span>
+                v-if="erreurFormulaireIdentification.nom"
+                class="erreur-message">{{ erreurFormulaireIdentification.nom }}</span>
             </div>
           </div>
           <div>
@@ -44,10 +44,10 @@
                 v-model.trim="campagne"
                 type="text"
                 class="input-accueil"
-                :class="{ erreur_champ: erreurRecupereCampagne }">
+                :class="{ erreur_champ: erreurFormulaireIdentification.code }">
               <div
-                v-if="erreurRecupereCampagne"
-                class="erreur-message">{{ erreurRecupereCampagne }}</div>
+                v-if="erreurFormulaireIdentification.code"
+                class="erreur-message">{{ erreurFormulaireIdentification.code }}</div>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['estConnecte', 'erreurRecupereCampagne', 'erreurInscription']),
+    ...mapState(['estConnecte', 'erreurFormulaireIdentification']),
 
     estDesactive () {
       return this.nom === '' || this.campagne === '' || !this.cgu || this.enCours;

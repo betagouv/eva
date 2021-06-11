@@ -146,10 +146,10 @@ describe("Le store de l'accueil", function () {
 
       it("vide les erreurs de l'inscription à la soumission d'une nouvelle inscription", function () {
         const store = creeStore(registreUtilisateur, registreCampagne);
-        store.state.erreurInscription = 'Nom invalide';
+        store.state.erreurFormulaireIdentification = 'Nom invalide';
         store.dispatch('inscris', { nom: 'Jean', campagne: 'code' });
 
-        expect(store.state.erreurInscription).to.eql('');
+        expect(store.state.erreurFormulaireIdentification).to.eql('');
       });
     });
 
@@ -164,7 +164,7 @@ describe("Le store de l'accueil", function () {
         const store = creeStore(registreUtilisateur, registreCampagne);
         return store.dispatch('inscris', { nom: '', campagne: 'code' }).then((utilisateur) => {
           expect(utilisateur).to.eql(undefined);
-          expect(store.state.erreurInscription).to.eql({ nom: 'doit être rempli' });
+          expect(store.state.erreurFormulaireIdentification).to.eql({ nom: 'doit être rempli' });
         });
       });
 
@@ -178,7 +178,7 @@ describe("Le store de l'accueil", function () {
         store.traduction = (code) => { return code; };
         return store.dispatch('inscris', { nom: '', campagne: 'code' }).then((utilisateur) => {
           expect(utilisateur).to.eql(undefined);
-          expect(store.state.erreurInscription).to.eql({ generale: 'accueil.erreur_reseau' });
+          expect(store.state.erreurFormulaireIdentification).to.eql({ generale: 'accueil.erreurs.reseau' });
         });
       });
     });
@@ -203,7 +203,7 @@ describe("Le store de l'accueil", function () {
       const store = creeStore(registreUtilisateur, registreCampagne);
       return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then((campagne) => {
         expect(campagne).to.be(undefined);
-        expect(store.state.erreurRecupereCampagne).to.eql('une erreur à gérer');
+        expect(store.state.erreurFormulaireIdentification.code).to.eql('une erreur à gérer');
       });
     });
 

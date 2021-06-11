@@ -16,8 +16,7 @@ describe("Le formulaire d'identification", function () {
     store = new Vuex.Store({
       state: {
         estConnecte: false,
-        erreurRecupereCampagne: '',
-        erreurInscription: ''
+        erreurFormulaireIdentification: ''
       }
     });
     store.dispatch = () => promesse;
@@ -115,7 +114,7 @@ describe("Le formulaire d'identification", function () {
 
   it("affiche les erreurs de la campagne quand elle n'existe pas", function () {
     store.dispatch = (action, { codeCampagne }) => {
-      store.state.erreurRecupereCampagne = 'Code inconnu';
+      store.state.erreurFormulaireIdentification = { code: 'Code inconnu' };
       return Promise.resolve();
     };
 
@@ -129,7 +128,7 @@ describe("Le formulaire d'identification", function () {
   it("affiche les erreurs de l'inscription quand elle échoue", function () {
     store.dispatch = (action, { codeCampagne }) => {
       store.dispatch = (action, { nom, campagne }) => {
-        store.state.erreurInscription = { nom: 'doit être rempli' };
+        store.state.erreurFormulaireIdentification = { nom: 'doit être rempli' };
 
         return Promise.resolve();
       };
@@ -146,7 +145,7 @@ describe("Le formulaire d'identification", function () {
   it("affiche les erreurs generale de l'inscription quand elle échoue", function () {
     store.dispatch = (action, { codeCampagne }) => {
       store.dispatch = (action, { nom, campagne }) => {
-        store.state.erreurInscription = { generale: 'erreur réseau' };
+        store.state.erreurFormulaireIdentification = { generale: 'erreur réseau' };
 
         return Promise.resolve();
       };

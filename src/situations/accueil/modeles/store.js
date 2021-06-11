@@ -14,8 +14,7 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
   const store = new Vuex.Store({
     state: {
       estConnecte: registreUtilisateur.estConnecte(),
-      erreurRecupereCampagne: '',
-      erreurInscription: '',
+      erreurFormulaireIdentification: '',
       nom: registreUtilisateur.nom(),
       situations: [],
       competencesFortes: [],
@@ -53,16 +52,16 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
     },
     actions: {
       inscris ({ commit }, { nom, campagne }) {
-        this.state.erreurInscription = '';
+        this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
           registreUtilisateur.inscris(nom, campagne)
             .then(resolve)
             .catch((xhr) => {
               if (xhr.status === 422) {
-                this.state.erreurInscription = xhr.responseJSON;
+                this.state.erreurFormulaireIdentification = xhr.responseJSON;
                 resolve();
               } else if (xhr.status === 0) {
-                this.state.erreurInscription = { generale: traduction('accueil.erreur_reseau') };
+                this.state.erreurFormulaireIdentification = { generale: traduction('accueil.erreurs.reseau') };
                 resolve();
               } else {
                 reject(xhr);
@@ -71,13 +70,16 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
         });
       },
       recupereCampagne ({ commit }, { codeCampagne }) {
-        this.state.erreurRecupereCampagne = '';
+        this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
           registreCampagne.recupereCampagne(codeCampagne)
             .then(resolve)
             .catch((erreur) => {
               if (erreur instanceof ErreurCampagne) {
-                this.state.erreurRecupereCampagne = erreur.message;
+                this.state.erreurFormulaireIdentification = { code: erreur.message };
+                resolve();
+              } else if (erreur.status === 0) {
+                this.state.erreurFormulaireIdentification = { generale: traduction('accueil.erreurs.reseau') };
                 resolve();
               } else {
                 reject(erreur);
