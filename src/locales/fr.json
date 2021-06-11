@@ -19,7 +19,10 @@
     "conclure": "Accéder aux résultats",
     "precedent": "Situation précédente",
     "suivant": "Situation suivante",
-    "erreur_reseau": "Impossible de contacter le serveur, Vérifiez votre connexion réseau",
+    "erreurs": {
+      "reseau": "Impossible de contacter le serveur, Vérifiez votre connexion réseau",
+      "code_campagne_inconnu": "Code inconnu"
+    },
     "identification": {
       "bouton": "Démarrer",
       "campagne": "Code de la campagne",

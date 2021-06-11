@@ -4,9 +4,13 @@ describe('le registre campagne', function () {
   function unRegistre (id, nom, urlServeur, enLigne = true) {
     return new RegistreCampagne({
       ajax (options) {
-        options.success({ id, nom });
+        if (enLigne) {
+          options.success({ id, nom });
+        } else {
+          options.error({ status: 0 });
+        }
       }
-    }, urlServeur, { onLine: enLigne });
+    }, urlServeur);
   }
 
   beforeEach(function () {
@@ -36,8 +40,8 @@ describe('le registre campagne', function () {
             options.error({ status: 404 });
           }
         }, 'any url', { onLine: true });
-        return registre.recupereCampagne('inconnu').then((erreur) => {
-          expect(erreur.message).to.eql('Code inconnu');
+        return registre.recupereCampagne('inconnu').catch((erreur) => {
+          expect(erreur.message).to.eql('accueil.erreurs.code_campagne_inconnu');
         });
       });
 
@@ -55,25 +59,45 @@ describe('le registre campagne', function () {
     });
 
     describe('quand on est pas en ligne', function () {
-      describe('quand la campagne existe en locale', function () {
+      let registre;
+      beforeEach(function () {
+        registre = unRegistre(1, 'autre test', 'https://serveur.com/', false);
+      });
+
+      describe('mode horsligne active', function () {
         beforeEach(function () {
-          window.localStorage.campagne_campagne1 = JSON.stringify({ id: 1, nom: 'autre test' });
+          registre.enregistreModeHorsLigne(true);
         });
 
-        it("retourne une promesse où tout s'est bien passée", function () {
-          const registre = unRegistre(1, 'autre test', 'https://serveur.com/', false);
-          return registre.recupereCampagne('campagne1').then((campagne) => {
-            expect(campagne).to.eql({ id: 1, nom: 'autre test' });
+        describe('quand la campagne existe en locale', function () {
+          beforeEach(function () {
+            window.localStorage.campagne_campagne1 = JSON.stringify({ id: 1, nom: 'autre test' });
+          });
+
+          it("retourne une promesse où tout s'est bien passée", function () {
+            return registre.recupereCampagne('campagne1').then((campagne) => {
+              expect(campagne).to.eql({ id: 1, nom: 'autre test' });
+            });
+          });
+        });
+
+        describe("quand la campagne n'existe pas en locale", function () {
+          it('retourne une promesse avec une erreur gérée', function () {
+            return registre.recupereCampagne('campagne_absente').catch((erreur) => {
+              expect(erreur.message).to.eql('accueil.erreurs.code_campagne_inconnu');
+              expect(erreur.name).to.eql('ErreurCampagne');
+            });
           });
         });
       });
 
-      describe("quand la campagne n'existe pas en locale", function () {
-        it('retourne une promesse avec une erreur gérée', function () {
-          const registre = unRegistre(1, 'autre test', 'https://serveur.com/', false);
+      describe('mode horsligne non activé', function () {
+        beforeEach(function () {
+          registre.enregistreModeHorsLigne(false);
+        });
+        it("retourne l'erreur réseau", function () {
           return registre.recupereCampagne('campagne_absente').catch((erreur) => {
-            expect(erreur.message).to.eql('Code campagne inconnu ou erreur réseau');
-            expect(erreur.name).to.eql('ErreurCampagne');
+            expect(erreur.status).to.eql(0);
           });
         });
       });
