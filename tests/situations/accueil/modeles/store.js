@@ -185,16 +185,37 @@ describe("Le store de l'accueil", function () {
   });
 
   describe('Action : recupereCampagne', function () {
-    it('retourne la campagne quand elle est trouvée', function () {
-      const mockRegistre = { code: { id: 1, nom: 'ma campagne' } };
-      registreCampagne.recupereCampagne = (codeCampagne) => {
-        return Promise.resolve(mockRegistre[codeCampagne]);
-      };
-      const store = creeStore(registreUtilisateur, registreCampagne);
-      return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then((campagne) => {
-        expect(campagne).to.eql({ id: 1, nom: 'ma campagne' });
-      });
+    beforeEach(function () {
+      registreCampagne.assigneCampagneCourante = (codeCampagne) => {};
     });
+
+    describe('quand la campagne est récupérer', function () {
+      beforeEach(function () {
+        const mockRegistre = { code: { id: 1, nom: 'ma campagne' } };
+        registreCampagne.recupereCampagne = (codeCampagne) => {
+          return Promise.resolve(mockRegistre[codeCampagne]);
+        };
+      });
+
+      it('retourne la campagne', function () {
+        const store = creeStore(registreUtilisateur, registreCampagne);
+        return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then((campagne) => {
+          expect(campagne).to.eql({ id: 1, nom: 'ma campagne' });
+        });
+      });
+
+      it('assigne la campagne comme étant la campagne courante', function () {
+        let campagneAssigne = false;
+        registreCampagne.assigneCampagneCourante = (codeCampagne) => {
+          campagneAssigne = true;
+        };
+
+        const store = creeStore(registreUtilisateur, registreCampagne);
+        return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then((campagne) => {
+          expect(campagneAssigne).to.eql(true);
+        });
+      })
+    })
 
     it('gères certaines erreurs', function () {
       registreCampagne.recupereCampagne = () => {
