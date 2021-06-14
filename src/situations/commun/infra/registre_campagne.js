@@ -34,6 +34,19 @@ export default class RegistreCampagne extends BaseRegistre {
     });
   }
 
+  assigneCampagneCourante (codeCampagne) {
+    window.localStorage.setItem('campagneCourante', codeCampagne);
+  }
+
+  recupereCampagneCourante () {
+    const codeCampagne = window.localStorage.getItem('campagneCourante');
+    return this.recupereCampagneEnLocale(codeCampagne);
+  }
+
+  recupereCampagneEnLocale (codeCampagne) {
+    return this.parseLocalStorage(this.cleCampagnePourLocalStorage(codeCampagne));
+  }
+
   cleCampagnePourLocalStorage (codeCampagne) {
     return `campagne_${codeCampagne}`;
   }
