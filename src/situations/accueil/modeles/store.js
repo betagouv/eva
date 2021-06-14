@@ -73,7 +73,10 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
         this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
           registreCampagne.recupereCampagne(codeCampagne)
-            .then(resolve)
+            .then((campagne) => {
+              registreCampagne.assigneCampagneCourante(codeCampagne)
+              resolve(campagne)
+            })
             .catch((erreur) => {
               if (erreur instanceof ErreurCampagne) {
                 this.state.erreurFormulaireIdentification = { code: erreur.message };
