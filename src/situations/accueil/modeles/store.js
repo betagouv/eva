@@ -74,8 +74,8 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
         return new Promise((resolve, reject) => {
           registreCampagne.recupereCampagne(codeCampagne)
             .then((campagne) => {
-              registreCampagne.assigneCampagneCourante(codeCampagne)
-              resolve(campagne)
+              registreCampagne.assigneCampagneCourante(codeCampagne);
+              resolve(campagne);
             })
             .catch((erreur) => {
               if (erreur instanceof ErreurCampagne) {
@@ -108,9 +108,10 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
             }
             return reponse;
           })
-          .then(reponse => reponse.json())
-          .then((json) => {
-            const situations = json.situations.map(function (situation, index) {
+          .finally((reponse) => {
+            const campagne = registreCampagne.recupereCampagneCourante();
+
+            const situations = campagne.situations.map(function (situation, index) {
               return {
                 nom: situation.libelle,
                 chemin: `${situation.nom_technique}.html`,
