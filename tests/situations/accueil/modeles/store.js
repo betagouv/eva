@@ -89,11 +89,12 @@ describe("Le store de l'accueil", function () {
 
   it('sait récupérer les situations depuis le serveur', function () {
     registreUtilisateur.urlEvaluation = () => '/evaluation';
+    registreCampagne.recupereCampagneCourante = () => {
+      const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
+      return { situations: [situation] };
+    };
     const fetch = (url) => Promise.resolve({
-      json: () => {
-        const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
-        return { situations: [situation] };
-      }
+      json: () => {}
     });
     const store = creeStore(registreUtilisateur, registreCampagne, fetch);
     return store.dispatch('synchroniseEvaluation').then(() => {
@@ -214,8 +215,8 @@ describe("Le store de l'accueil", function () {
         return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then((campagne) => {
           expect(campagneAssigne).to.eql(true);
         });
-      })
-    })
+      });
+    });
 
     it('gères certaines erreurs', function () {
       registreCampagne.recupereCampagne = () => {

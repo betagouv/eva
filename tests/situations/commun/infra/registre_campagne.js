@@ -26,37 +26,37 @@ describe('le registre campagne', function () {
 
   describe('assigneCampagneCourante', function () {
     it('enregistre le code campagne de la campagne courante', function () {
-      const registre = new RegistreCampagne
-      registre.assigneCampagneCourante('code de ma campagne')
+      const registre = new RegistreCampagne();
+      registre.assigneCampagneCourante('code de ma campagne');
 
-      expect(window.localStorage.getItem('campagneCourante')).to.eql('code de ma campagne')
+      expect(window.localStorage.getItem('campagneCourante')).to.eql('code de ma campagne');
     });
   });
 
   describe('recupereCampagneCourante', function () {
     beforeEach(function () {
-      window.localStorage.setItem('campagneCourante', 'demo')
+      window.localStorage.setItem('campagneCourante', 'demo');
     });
 
     describe('quand la campagne existe en locale', function () {
       beforeEach(function () {
-        window.localStorage.setItem('campagne_demo', '{ "id": 1 }')
+        window.localStorage.setItem('campagne_demo', '{ "id": 1 }');
       });
 
       it('retourne la campagne courante sauvegardé en locale', function () {
-        const registre = new RegistreCampagne
+        const registre = new RegistreCampagne();
 
-        expect(registre.recupereCampagneCourante()).to.eql({ id: 1 })
+        expect(registre.recupereCampagneCourante()).to.eql({ id: 1 });
       });
     });
   });
 
   describe('recupereCampagneEnLocale', function () {
     it('récupère la campagne sauvegardé en locale', function () {
-      window.localStorage.setItem('campagne_demo', '{ "id": 1 }')
-      const registre = new RegistreCampagne
+      window.localStorage.setItem('campagne_demo', '{ "id": 1 }');
+      const registre = new RegistreCampagne();
 
-      expect(registre.recupereCampagneEnLocale('demo')).to.eql({ id: 1 })
+      expect(registre.recupereCampagneEnLocale('demo')).to.eql({ id: 1 });
     });
   });
 
