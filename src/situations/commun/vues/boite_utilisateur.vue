@@ -3,24 +3,26 @@
     v-if="estConnecte && !confirmationDeconnexion"
     class="boite-utilisateur"
   >
-    <div
-      :style="{ width: pourcentProgression }"
-      class="progression"
-    />
-    <div class="contenu">
-      <div>{{ nom }}</div>
-      <div class="progression-actions">
-        <div class="progression-utilisateur">{{ situationsFaites.length }}/{{ situations.length }}</div>
-        <a
-          :title="$traduction('deconnexion.titre')"
-          class="deconnexion"
-          href="#"
-          @click.prevent="demandeDeconnexion"
-        >
-          <img :src="signOutIcon" />
-        </a>
+    <div class="progression-conteneur">
+      <div
+        :style="{ width: pourcentProgression }"
+        class="progression"
+      />
+      <div class="contenu">
+        <div>{{ nom }}</div>
+        <div class="progression-actions">
+          <div class="progression-utilisateur">{{ situationsFaites.length }}/{{ situations.length }}</div>
+        </div>
       </div>
     </div>
+    <a
+      :title="$traduction('deconnexion.titre')"
+      class="deconnexion"
+      href="#"
+      @click.prevent="demandeDeconnexion"
+    >
+      <img :src="signOutIcon" />
+    </a>
   </div>
   <div
     v-else-if="confirmationDeconnexion"

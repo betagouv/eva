@@ -10,10 +10,20 @@
   .titre {
     display: flex;
     align-items: center;
+    width: 100%;
+    padding: 2rem 2rem 0;
+    position: absolute;
+    z-index: 100;
 
     .logo {
       height: 3.5rem;
-      margin: 1rem auto 1rem 0;
+    }
+    .titre-campagne {
+      margin-left: 2.8rem;
+      color: $blanc;
+      > span {
+        color: $bleu-fonce;
+      }
     }
   }
 

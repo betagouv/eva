@@ -1,9 +1,5 @@
 <template>
   <div id="accueil">
-    <div class="titre">
-      <img class="logo" :alt="altLogo" :src="logo"/>
-      <boite-utilisateur v-if="!chargement" />
-    </div>
     <div
       v-if="chargement || erreurChargement"
       class="conteneur"
@@ -16,22 +12,17 @@
 </template>
 
 <script>
-import { traduction } from 'commun/infra/internationalisation';
-import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import OverlayAttente from 'commun/vues/overlay_attente';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import Accueil from './accueil';
-import logo from '../../../public/logo.svg';
 
 export default {
-  components: { Accueil, BoiteUtilisateur, OverlayAttente, OverlayErreurChargement },
+  components: { Accueil, OverlayAttente, OverlayErreurChargement },
 
   data () {
     return {
       chargement: true,
-      erreurChargement: false,
-      logo,
-      altLogo: traduction('alt-logo')
+      erreurChargement: false
     };
   },
 

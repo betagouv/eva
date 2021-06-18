@@ -1,24 +1,33 @@
 @import 'commun/styles/couleurs.scss';
 
 .boite-utilisateur {
-  border: 1px solid $vert-clair;
-  border-radius: 3rem;
-  font-size: 1.125rem;
-  overflow: hidden;
-  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  .progression-conteneur {
+    overflow: hidden;
+    position: relative;
+    font-size: 0.875rem;
+    border: 1px solid $couleur-fond;
+    border-radius: 3rem;
+    background-color: $couleur-fond;
+  }
 
   .progression {
     position: absolute;
     background-color: $vert-clair;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
   }
 
   .contenu {
-    padding: 0.8rem 2rem;
+    padding: 0.285rem 1.5rem;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    min-width: 20rem;
+    min-width: 16rem;
+    position: relative;
+    z-index: 2;
 
     .progression-actions {
       display: flex;
@@ -27,13 +36,20 @@
 
   .progression-utilisateur {
     margin-left: 1rem;
+    font-size: 1.125rem;
   }
 
   .deconnexion {
+    width: 2rem;
+    height: 2rem;
     margin-left: 1rem;
     color: $couleur-texte;
     display: flex;
     align-items: center;
+    justify-content: center;
+    border: 2px solid $blanc;
+    border-radius: 50%;
+    background-color: $orange;
 
     img {
       width: 18px;
@@ -43,6 +59,7 @@
 }
 
 .confirmation-deconnexion {
+  margin-left: auto;
   .confirme-bouton {
     margin-left: 1rem;
   }

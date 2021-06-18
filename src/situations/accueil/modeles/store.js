@@ -90,6 +90,9 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
             });
         });
       },
+      recupereCampagneCourante () {
+        return registreCampagne.recupereCampagneCourante();
+      },
       enregistreContact ({ commit }, { email, telephone }) {
         return registreUtilisateur.enregistreContact(email, telephone)
           .then(() => {

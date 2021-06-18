@@ -1,5 +1,10 @@
 <template>
   <div class="conteneur">
+    <div class="titre">
+      <img class="logo" :alt="altLogo" :src="logo"/>
+      <div class="titre-campagne"><span>Campagne :</span> {{ campagne.libelle }}</div>
+      <boite-utilisateur />
+    </div>
     <div class="annonce">
       <p class="annonce-description" v-if="annonceGenerale">{{ annonceGenerale }}</p>
     </div>
@@ -90,6 +95,8 @@ import 'commun/styles/actions.scss';
 import 'commun/styles/bouton.scss';
 import 'commun/styles/overlay.scss';
 import 'commun/styles/modale.scss';
+import logo from '../../../public/logo-blanc.svg';
+import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import FormulaireIdentification from './formulaire_identification';
 import FormulaireContact from './formulaire_contact';
 import AccesSituation from 'accueil/vues/acces_situation';
@@ -107,12 +114,15 @@ export const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 
 export default {
-  components: { FormulaireIdentification, FormulaireContact, AccesSituation, IntroConsigne, Fin, TransitionFade },
+  components: { BoiteUtilisateur, FormulaireIdentification, FormulaireContact, AccesSituation, IntroConsigne, Fin, TransitionFade },
 
   data () {
     const parametresUrl = queryString.parse(location.search);
     const { indexPrecedent } = this.recupereEtatDuPrecedentChargement();
+
     return {
+      logo,
+      altLogo: traduction('alt-logo'),
       fondAccueil: `url(${this.$depotRessources.fondAccueil().src})`,
       personnage: this.$depotRessources.personnage().src,
       precedent: this.$depotRessources.precedent().src,
@@ -121,7 +131,8 @@ export default {
       forceNom: parametresUrl.nom || '',
       indexBatiment: indexPrecedent,
       ecranFinAfficher: false,
-      annonceGenerale: process.env.ANNONCE_GENERALE
+      annonceGenerale: process.env.ANNONCE_GENERALE,
+      campagne: {}
     };
   },
 
@@ -186,6 +197,7 @@ export default {
 
   mounted () {
     this.synchroniseEvaluation();
+    this.definiCampagne();
   },
 
   watch: {
@@ -211,6 +223,13 @@ export default {
           if (sync) {
             this.indexBatiment = this.niveauMax;
           }
+        });
+    },
+
+    definiCampagne () {
+      this.$store.dispatch('recupereCampagneCourante')
+        .then((campagne) => {
+          this.campagne = campagne;
         });
     },
 
