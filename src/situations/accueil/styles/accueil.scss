@@ -25,6 +25,18 @@
         color: $bleu-fonce;
       }
     }
+    .confirmation-deconnexion {
+      margin-left: auto;
+      .confirme-bouton {
+        margin-left: 1rem;
+      }
+
+      .annulation-deconnexion {
+        margin-left: 1rem;
+        margin-right: 2rem;
+        color: $couleur-texte;
+      }
+    }
   }
 
   .scene {

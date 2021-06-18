@@ -91,7 +91,7 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.urlEvaluation = () => '/evaluation';
     registreCampagne.recupereCampagneCourante = () => {
       const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
-      return { situations: [situation] };
+      return { situations: [situation], libelle: 'libellé campagne' };
     };
     const fetch = (url) => Promise.resolve({
       json: () => {}
@@ -104,6 +104,7 @@ describe("Le store de l'accueil", function () {
         chemin: 'nom_technique.html',
         niveauMinimum: 1
       };
+      expect(store.state.nomCampagne).to.eql('libellé campagne');
       expect(store.state.situations).to.eql([situationAttendue]);
     });
   });

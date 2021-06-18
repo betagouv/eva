@@ -16,6 +16,7 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
       estConnecte: registreUtilisateur.estConnecte(),
       erreurFormulaireIdentification: '',
       nom: registreUtilisateur.nom(),
+      nomCampagne: '',
       situations: [],
       competencesFortes: [],
       situationsFaites: registreUtilisateur.situationsFaites(),
@@ -90,9 +91,6 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
             });
         });
       },
-      recupereCampagneCourante () {
-        return registreCampagne.recupereCampagneCourante();
-      },
       enregistreContact ({ commit }, { email, telephone }) {
         return registreUtilisateur.enregistreContact(email, telephone)
           .then(() => {
@@ -113,6 +111,7 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
           })
           .finally((reponse) => {
             const campagne = registreCampagne.recupereCampagneCourante();
+            this.state.nomCampagne = campagne.libelle;
 
             const situations = campagne.situations.map(function (situation, index) {
               return {

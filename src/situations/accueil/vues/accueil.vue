@@ -2,7 +2,7 @@
   <div class="conteneur">
     <div class="titre">
       <img class="logo" :alt="altLogo" :src="logo"/>
-      <div class="titre-campagne"><span>Campagne :</span> {{ campagne.libelle }}</div>
+      <div class="titre-campagne"><span>Campagne :</span> {{ nomCampagne }}</div>
       <boite-utilisateur />
     </div>
     <div class="annonce">
@@ -131,13 +131,12 @@ export default {
       forceNom: parametresUrl.nom || '',
       indexBatiment: indexPrecedent,
       ecranFinAfficher: false,
-      annonceGenerale: process.env.ANNONCE_GENERALE,
-      campagne: {}
+      annonceGenerale: process.env.ANNONCE_GENERALE
     };
   },
 
   computed: {
-    ...mapState(['situations', 'estConnecte', 'situationsFaites', 'etat']),
+    ...mapState(['situations', 'estConnecte', 'situationsFaites', 'etat', 'nomCampagne']),
 
     positionFond () {
       return (this.indexBatiment) * 80;
@@ -197,7 +196,6 @@ export default {
 
   mounted () {
     this.synchroniseEvaluation();
-    this.definiCampagne();
   },
 
   watch: {
@@ -223,13 +221,6 @@ export default {
           if (sync) {
             this.indexBatiment = this.niveauMax;
           }
-        });
-    },
-
-    definiCampagne () {
-      this.$store.dispatch('recupereCampagneCourante')
-        .then((campagne) => {
-          this.campagne = campagne;
         });
     },
 
