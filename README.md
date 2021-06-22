@@ -33,9 +33,21 @@ $ docker build -t eva . && docker run --rm -ti -p 3000:80 eva
 
 Une fois le message `Successfully tagged eva:latest` affiché, se rendre à l'adresse http://localhost:3000
 
-## Travailler avec le linter
+## Lancer les tests
 
-Quand on lance les tests, le linter `semistandard` est executé automatiquement avant de démarrer les tests en mode "watch".
+Pour les tests, nous utilisons `jest`
+
+```
+npm test
+```
+
+Et en mode "watch" :
+
+```
+npm test -- --watch
+```
+
+## Travailler avec le linter
 
 Pour demander au linter de tenter de corriger les problèmes lancer :
 

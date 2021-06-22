@@ -1,5 +1,3 @@
-/* global jest */
-
 import JoueurConsigne from 'commun/composants/joueur_consigne';
 
 import MockAudioNode from '../aides/mock_audio_node';
