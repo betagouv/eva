@@ -34,7 +34,7 @@
     </div>
     <div class="actions">
       <div
-        :class="{ desactivee: precedentDesactivee}"
+        :class="{ desactivee: precedentDesactivee }"
         class="bouton-et-etiquette"
         @click="indexBatiment--"
       >
@@ -54,7 +54,7 @@
         />
       </div>
       <div
-        :class="{ desactivee: suivantDesactivee}"
+        :class="{ desactivee: suivantDesactivee }"
         class="bouton-et-etiquette gauche"
         @click="indexBatiment++"
       >

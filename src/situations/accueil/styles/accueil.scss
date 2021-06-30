@@ -62,11 +62,16 @@
     border-radius: 3.125rem;
   }
 
-  .bouton-et-etiquette:not(.desactivee) {
-    &:hover {
-      .bouton-navigation-situation {
-        background-color: $couleur-fond-bouton-bleu-focus;
+  .bouton-et-etiquette {
+    &:not(.desactivee) {
+      &:hover {
+        .bouton-navigation-situation {
+          background-color: $couleur-fond-bouton-bleu-focus;
+        }
       }
+    }
+    &.desactivee {
+      pointer-events: none;
     }
   }
 
