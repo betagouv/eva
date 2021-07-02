@@ -44,9 +44,8 @@
                 v-model.trim="campagne"
                 type="text"
                 class="input-accueil"
-                autocapitalize="characters"
-                v-uppercase
-                :class="{ erreur_champ: erreurFormulaireIdentification.code }">
+                :class="{ erreur_champ: erreurFormulaireIdentification.code }"
+                @focusout="forceMajuscule">
               <div
                 v-if="erreurFormulaireIdentification.code"
                 class="erreur-message">{{ erreurFormulaireIdentification.code }}</div>
@@ -97,13 +96,6 @@ export default {
       cgu: false
     };
   },
-  directives: {
-    uppercase: {
-      update: function (el) {
-        el.value = el.value.toUpperCase();
-      }
-    }
-  },
   computed: {
     ...mapState(['estConnecte', 'erreurFormulaireIdentification']),
 
@@ -149,6 +141,10 @@ export default {
             this.campagne = this.forceCampagne;
           }
         });
+    },
+
+    forceMajuscule () {
+      this.campagne = this.campagne.toUpperCase();
     }
   }
 };
