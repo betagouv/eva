@@ -39,6 +39,7 @@ describe("Le formulaire d'identification", function () {
     const champCodeCampagne = wrapper.findAll('input[type=text]').at(1);
     champCodeCampagne.setValue('Mon code campagne');
 
+    wrapper.vm.forceMajuscule();
     expect(champCodeCampagne.element.value).to.eql('MON CODE CAMPAGNE');
   });
 
