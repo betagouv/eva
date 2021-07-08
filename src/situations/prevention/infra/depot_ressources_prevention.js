@@ -8,7 +8,7 @@ import ok from '../assets/ok.svg';
 import danger from '../assets/danger.svg';
 import urgence from '../assets/urgence.svg';
 
-const preventionsContext = require.context('prevention/assets', false, /prevention.+\.png$/);
+const preventionsContext = require.context('../assets', false, /prevention.+\.png$/);
 
 export default class DepotRessourcesPrevention extends DepotRessourcesCommunes {
   constructor (chargeurs) {

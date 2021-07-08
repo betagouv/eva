@@ -8,7 +8,7 @@ import aiguilleCourte from 'tri/assets/aiguille-courte.png';
 import sonBonBac from 'tri/assets/bon-bac.wav';
 import sonMauvaisBac from 'tri/assets/mauvais-bac.wav';
 
-const bonbons = require.context('tri/assets', false, /bonbon[0-9]+\.png$/);
+const bonbons = require.context('../assets', false, /bonbon[0-9]+\.png$/);
 
 export default class DepotRessourcesTri extends DepotRessourcesCommunes {
   constructor (chargeurs) {

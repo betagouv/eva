@@ -33,8 +33,8 @@
     "babel-core": "^7.0.0-0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "babel-plugin-require-context-hook": "^1.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-plugin-transform-require-context": "^0.1.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.6.0",
     "eslint": "^6.8.0",
@@ -100,6 +100,9 @@
     }
   },
   "jest": {
+    "setupFiles": [
+      "<rootDir>/.jest/register-context.js"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/.jest/before-after.js"
     ],

@@ -10,7 +10,7 @@ export default class DepotRessourcesInventaire extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigne);
     this.charge([croixRetourStock, boutonSaisie, loupe, retour]);
-    this.chargeContexte(require.context('inventaire/assets'));
+    this.chargeContexte(require.context('../assets'));
   }
 
   croixRetourStock () {

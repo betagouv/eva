@@ -13,12 +13,12 @@ describe('La vue de la question RedactionNote', function () {
 
   it('affiche une zone de saisie de texte', function () {
     const vue = shallowMount(VueRedactionNote, { localVue, propsData: { question } });
-    expect(vue.contains('textarea')).toBe(true);
+    expect(vue.find('textarea').exists()).toBe(true);
   });
 
   it("affiche un bouton d'envoi de réponse", function () {
     const vue = shallowMount(VueRedactionNote, { localVue, propsData: { question } });
-    expect(vue.contains('.question-bouton')).toBe(true);
+    expect(vue.find('.question-bouton').exists()).toBe(true);
   });
 
   it('emet un événément réponse quand on appuie sur le bouton envoi', function () {
