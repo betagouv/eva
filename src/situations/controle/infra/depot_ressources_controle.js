@@ -6,7 +6,7 @@ import sonConsigne from 'controle/assets/consigne_demarrage.wav';
 import sonFondSonore from 'controle/assets/fond_sonore.wav';
 import sonKlaxon from 'controle/assets/klaxon.wav';
 
-const biscuits = require.context('controle/assets', false, /(def[0-9]+|biscuit-normal)\.png$/);
+const biscuits = require.context('../assets', false, /(def[0-9]+|biscuit-normal)\.png$/);
 
 export default class DepotRessourcesControle extends DepotRessourcesCommunes {
   constructor (chargeurs) {

@@ -11,7 +11,7 @@ import avatarAvis from 'accueil/assets/avatar-avis.svg';
 import avatarDeconnexion from 'accueil/assets/avatar-deconnexion.svg';
 import boutonAvis from 'accueil/assets/bouton-avis.svg';
 
-const batimentsContext = require.context('accueil/assets', false, /batiment-.+\.png$/);
+const batimentsContext = require.context('../assets', false, /batiment-.+\.png$/);
 
 export default class DepotRessourcesAccueil extends DepotRessources {
   constructor (chargeurs) {
