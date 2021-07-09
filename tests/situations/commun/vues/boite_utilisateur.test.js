@@ -1,10 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 
-import Vue from 'vue';
 import Vuex from 'vuex';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur.vue';
-
-Vue.use(Vuex);
 
 describe('La boite utilisateur', function () {
   let wrapper;
