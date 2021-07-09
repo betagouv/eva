@@ -1,5 +1,4 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Vue from 'vue';
 import Vuex from 'vuex';
 import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECALAGE_INITIAL } from 'accueil/vues/accueil';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
@@ -7,8 +6,6 @@ import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 import { traduction } from 'commun/infra/internationalisation';
 import { DECONNECTE } from 'accueil/modeles/store';
-
-Vue.use(Vuex);
 
 describe('La vue accueil', function () {
   let depotRessources;

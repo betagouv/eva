@@ -1,10 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import Vue from 'vue';
 import Vuex from 'vuex';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 import { traduction } from 'commun/infra/internationalisation';
-
-Vue.use(Vuex);
 
 describe("Le formulaire d'identification", function () {
   let wrapper;
