@@ -7,6 +7,7 @@ export default function (chargeurs = {}) {
     wav: () => Promise.resolve(() => new MockAudioNode()),
     png: chargeurDefaut,
     jpg: chargeurDefaut,
+    jpeg: chargeurDefaut,
     ...chargeurs
   };
 }
