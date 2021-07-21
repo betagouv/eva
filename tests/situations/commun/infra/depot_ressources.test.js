@@ -4,8 +4,8 @@ import chargeurs from '../../commun/aides/mock_chargeurs';
 describe('le dépôt de ressources', function () {
   it('permet de charger toutes les ressources', function () {
     const depot = new DepotRessources(chargeurs());
-    depot.charge(['test.png', 'test2.png', 'test.wav']);
-    expect(depot.promesses.length).toBe(3);
+    depot.charge(['test.png', 'test2.png', 'test.wav', 'test.jpeg']);
+    expect(depot.promesses.length).toBe(4);
   });
 
   it('résout la promesse lorsque toutes les ressources sont chargées', function (done) {
