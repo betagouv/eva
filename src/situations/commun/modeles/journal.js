@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 import DepotJournal from 'commun/infra/depot_journal';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
