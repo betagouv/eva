@@ -24,6 +24,10 @@ describe('Le fond sonore', function () {
       vue = new VueFondSonore(situation, mockDepotRessource);
     });
 
+    afterEach(function () {
+      vue.arrete();
+    });
+
     it("ne joue rien à l'affichage", function () {
       let jouee = 0;
       vue.audio.start = e => jouee++;
@@ -67,6 +71,10 @@ describe('Le fond sonore', function () {
         }
       }();
       vue = new VueFondSonore(situation, mockDepotRessource);
+    });
+
+    afterEach(function () {
+      vue.arrete();
     });
 
     it("joue à l'état DEMARRE", function (done) {

@@ -22,7 +22,7 @@ describe('le depot du journal', function () {
     depot.enregistre({});
     depot.enregistre({});
 
-    depot.attendFinEnregistrement().finally(() => { done(); });
+    depot.attendFinEnregistrement().finally(done);
 
     requetes.forEach((requete) => { requete.success(); });
   });
