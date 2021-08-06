@@ -33,6 +33,7 @@ export default class VueFondSonore {
   }
 
   joueKlaxon (delai) {
+    clearTimeout(this.idTimeoutKlaxon);
     if (delai) {
       this.idTimeoutKlaxon = setTimeout(
         () => {

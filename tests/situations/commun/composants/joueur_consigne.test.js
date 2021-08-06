@@ -18,6 +18,7 @@ describe('joueur de consigne', function () {
   });
 
   afterEach(function () {
+    joueur.stop();
     jest.useRealTimers();
   });
 
@@ -60,7 +61,7 @@ describe('joueur de consigne', function () {
     });
   });
 
-  test('peut stoper la consigne en cours', () => {
+  it('peut stoper la consigne en cours', () => {
     jest.useFakeTimers();
     let consigneStopee = false;
     uneConsigne.stop = () => {
