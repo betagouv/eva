@@ -62,7 +62,7 @@ describe('joueur de consigne', function () {
   });
 
   it('peut stoper la consigne en cours', () => {
-    jest.useFakeTimers();
+    jest.useFakeTimers('legacy');
     let consigneStopee = false;
     uneConsigne.stop = () => {
       consigneStopee = true;
