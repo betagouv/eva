@@ -1,4 +1,4 @@
-FROM node:10 as node
+FROM node:14 as node
 
 ARG URL_API
 ENV URL_API ${URL_API}
