@@ -75,7 +75,8 @@ module.exports = {
               '@babel/env',
               {
                 modules: false,
-                useBuiltIns: 'entry'
+                useBuiltIns: 'entry',
+                corejs: { version: '3.16', proposals: true }
               }
             ]
           ]
@@ -131,12 +132,12 @@ module.exports = {
     new FaviconsWebpackPlugin('./src/public/logo.svg'),
     new VueLoaderPlugin(),
     new WorkboxPlugin.GenerateSW({
-       // these options encourage the ServiceWorkers to get in there fast
-       // and not allow any straggling "old" SWs to hang around
-       clientsClaim: true,
-       skipWaiting: true,
-       maximumFileSizeToCacheInBytes: 50000000,
-     })
+      // these options encourage the ServiceWorkers to get in there fast
+      // and not allow any straggling "old" SWs to hang around
+      clientsClaim: true,
+      skipWaiting: true,
+      maximumFileSizeToCacheInBytes: 50000000
+    })
   ],
   devServer: {
     contentBase: './src/public',
