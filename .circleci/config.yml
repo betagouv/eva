@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:14
+      - image: circleci/node:14.17
     steps:
       - checkout
       - restore_cache:
@@ -15,4 +15,4 @@ jobs:
           paths:
             - node_modules
       - run: npm run lint
-      - run: npm test
+      - run: npm test -- --ci --maxWorkers=2
