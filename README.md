@@ -15,10 +15,21 @@ Pour voir les autres projets de eva:
 
 ## Démarrer un serveur Webpack en local (mode développement)
 
-Installer `npm` si nécessaire, et exécuter la commande suivante.
+### Pour installer npm version 14
+
+Sur mac, si vous avez déjà une autre version de node installée,
 
 ```
-$ npm install && npm run dev
+$> brew install node@14
+$> export CPPFLAGS="-I/usr/local/opt/node@14/include"
+$> export LDFLAGS="-L/usr/local/opt/node@14/lib"
+$> export PATH="/usr/local/opt/node@14/bin:$PATH"
+```
+
+### Démarrer l'application avec webpack server
+
+```
+$> npm install && npm run dev
 ```
 
 Et se rendre sur l'adresse affichée dans la sortie standard (http://localhost:7700 par défaut)
@@ -28,7 +39,7 @@ Et se rendre sur l'adresse affichée dans la sortie standard (http://localhost:7
 Installer `docker` si nécessaire, et exécuter la commande suivante.
 
 ```
-$ docker build -t eva . && docker run --rm -ti -p 3000:80 eva
+$> docker build -t eva . && docker run --rm -ti -p 3000:80 eva
 ```
 
 Une fois le message `Successfully tagged eva:latest` affiché, se rendre à l'adresse http://localhost:3000
@@ -44,7 +55,7 @@ npm test
 Et en mode "watch" :
 
 ```
-npm test -- --watch
+$> npm test -- --watch
 ```
 
 ## Travailler avec le linter
@@ -52,7 +63,7 @@ npm test -- --watch
 Pour demander au linter de tenter de corriger les problèmes lancer :
 
 ```
-$ npm run lint -- --fix
+$> npm run lint -- --fix
 ```
 
 Certaines dépendences sont définies globalement dans webpack (ex. jQuery, mocha, etc.) et, à moins qu'elles soient déclarées comme « à ignorer », génèreront une erreur au niveau du linter. Pour déclarer au linter une dépendance globale à ignorer, l'ajouter dans le hash de configuration défini dans `package.json` :
@@ -82,10 +93,6 @@ exec /usr/local/bin/npm run lint -- --silent
 ```
 
 Si vous êtes partis du template `.git/hooks/pre-commit.sample` vous pouvez simplement remplacer la ligne `exec git diff-index --check --cached $against --` car le linter fera le travail de vérification des espaces.
-
-## Suivre le développement
-
-Pour suivre les développements en cours, vous pouvez suivre le [projet github](https://github.com/orgs/betagouv/projects/2).
 
 ## Licence
 
