@@ -30,7 +30,6 @@ export default class DepotRessourcesQuestionsBase extends DepotRessourcesCommune
   chargement () {
     return super.chargement()
       .then(() => this.chargeQuestionnaires())
-      .then(() => this.chargeIllustrations());
   }
 
   chargeQuestionnaires () {

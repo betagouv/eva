@@ -1,7 +1,7 @@
 <template>
   <div class="question">
     <img
-      :src="question.illustration"
+      :src="urlIllustration(question)"
       class="question-illustration"
     />
 
@@ -19,6 +19,16 @@ export default {
       type: Object,
       required: true
     }
+  },
+
+
+  methods: {
+    urlIllustration (question) {
+      console.log(question)
+      console.log(question.nom_technique_illustration)
+      if (question.nom_technique_illustration == undefined) { return undefined };
+      return `./assets/illustration_questions/${question.nom_technique_illustration}`;
+    },
   }
 };
 </script>
