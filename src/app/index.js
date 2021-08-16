@@ -23,7 +23,9 @@ function afficheAccueil (pointInsertion) {
   Vue.prototype.$depotRessources = depotRessources;
   Vue.prototype.$traduction = traduction;
   const parametresUrl = queryString.parse(location.search);
-  registreUtilisateur.enregistreModeHorsLigne(parametresUrl.horsligne === 'true');
+  if (parametresUrl.horsligne) {
+    registreUtilisateur.enregistreModeHorsLigne(parametresUrl.horsligne === 'true');
+  }
 
   const store = creeStore(registreUtilisateur, registreCampagne);
 
