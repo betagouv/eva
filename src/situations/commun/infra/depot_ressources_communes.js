@@ -5,6 +5,8 @@ import son from 'commun/assets/son.svg';
 import sonConsigneCommune from 'commun/assets/consigne_commune.wav';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.wav';
 
+const ILLUSTRATIONS = require.context('../assets/illustration_questions');
+
 export default class DepotRessourcesCommunes extends DepotRessources {
   constructor (chargeurs, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
     super(chargeurs);
@@ -12,6 +14,11 @@ export default class DepotRessourcesCommunes extends DepotRessources {
       sonConsigneCommune, sonConsigneDemarrage, sonConsigneTransition]);
     this.sonConsigneDemarrage = sonConsigneDemarrage;
     this.sonConsigneTransition = sonConsigneTransition;
+    this.chargeContexte(ILLUSTRATIONS);
+    this.illustrationQuestions = ILLUSTRATIONS.keys().reduce((memo, fichier) => {
+      memo[fichier.match(/\.\/(.+)$/)[1]] = ILLUSTRATIONS(fichier);
+      return memo;
+    }, {});
   }
 
   consigneDemarrage () {
@@ -36,5 +43,11 @@ export default class DepotRessourcesCommunes extends DepotRessources {
 
   calculatrice () {
     return this.ressource(calculatrice);
+  }
+
+  illustrationQuestion (nomFichier) {
+    const fichier = this.illustrationQuestions[nomFichier];
+    if (!fichier) return;
+    return this.ressource(fichier);
   }
 }

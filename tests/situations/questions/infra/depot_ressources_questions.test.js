@@ -101,24 +101,4 @@ describe('Le dépot ressource de la situation Questions', function () {
       ]);
     });
   });
-
-  it('charge les illustrations du questionnaire', function () {
-    const nomSituation = 'nomSituation';
-    const reponsesJson = {
-      'urlEvaluation.json': {
-        situations: [],
-        questions: [
-          { illustration: 'illustration-url1' },
-          { illustration: 'illustration-url2' }
-        ]
-      }
-    };
-    const depotRessources = creeDepotRessources(reponsesJson);
-    depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
-    let illustrationsUrls;
-    depotRessources.charge = (illustrations) => { illustrationsUrls = illustrations; };
-    return depotRessources.chargement().then(() => {
-      expect(illustrationsUrls).toEqual(['illustration-url1', 'illustration-url2']);
-    });
-  });
 });

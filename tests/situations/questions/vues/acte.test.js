@@ -24,6 +24,11 @@ describe("La vue de l'acte « Question »", function () {
     journal = { enregistre () {} };
     localVue = createLocalVue();
     localVue.prototype.$journal = journal;
+    localVue.prototype.$depotRessources = {
+      illustrationQuestion: () => {
+        return { src: 'chemin-illustration' };
+      }
+    };
   });
 
   it('affiche la première question', function () {

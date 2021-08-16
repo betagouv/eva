@@ -12,9 +12,14 @@ describe('La vue de la question', function () {
   beforeEach(function () {
     localVue = createLocalVue();
     localVue.prototype.$traduction = traduction;
+    localVue.prototype.$depotRessources = {
+      illustrationQuestion: (nomTechniqueIllustration) => {
+        return { src: nomTechniqueIllustration };
+      }
+    };
     question = { choix: [] };
     store = creeStore();
-    question.illustration = 'palette';
+    question.nom_technique_illustration = 'palette';
     wrapper = shallowMount(VueQuestion, {
       propsData: {
         question
