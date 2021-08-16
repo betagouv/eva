@@ -12,7 +12,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     question: {
@@ -21,14 +20,10 @@ export default {
     }
   },
 
-
   methods: {
     urlIllustration (question) {
-      console.log(question)
-      console.log(question.nom_technique_illustration)
-      if (question.nom_technique_illustration == undefined) { return undefined };
-      return `./assets/illustration_questions/${question.nom_technique_illustration}`;
-    },
+      return this.$depotRessources.illustrationQuestion(question.nom_technique_illustration).src;
+    }
   }
 };
 </script>

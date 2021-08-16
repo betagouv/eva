@@ -29,7 +29,7 @@ export default class DepotRessourcesQuestionsBase extends DepotRessourcesCommune
 
   chargement () {
     return super.chargement()
-      .then(() => this.chargeQuestionnaires())
+      .then(() => this.chargeQuestionnaires());
   }
 
   chargeQuestionnaires () {
@@ -47,13 +47,5 @@ export default class DepotRessourcesQuestionsBase extends DepotRessourcesCommune
       promesses.push(this.promesseRessource(this.questionnaireEntrainementUrl));
     }
     return Promise.all(promesses);
-  }
-
-  chargeIllustrations () {
-    const images = [...this.questions(), ...this.questionsEntrainement()]
-      .map(question => question.illustration)
-      .filter(illustration => illustration);
-    this.charge(images);
-    return super.chargement();
   }
 }
