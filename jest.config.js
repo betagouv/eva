@@ -23,14 +23,11 @@ module.exports = {
   ],
   transform: {
     '^.+\\.js$': 'babel-jest',
-    '^.+\\.vue$': 'vue-jest'
+    '^.+\\.vue$': 'vue-jest',
+    '\\.(wav|png|jpg|jpeg|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileTransformer.js'
   },
   moduleNameMapper: {
     i18next: '<rootDir>/__mocks__/i18nextMock.js',
-    '\\.wav$': '<rootDir>/__mocks__/fileMock_wav.js',
-    '\\.png$': '<rootDir>/__mocks__/fileMock_png.js',
-    '\\.(jpg|jpeg)$': '<rootDir>/__mocks__/fileMock_jpg.js',
-    '\\.(gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.(css|less|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '^(commun|controle|inventaire|maintenance|objets_trouves|prevention|tri)/(.*)$': '<rootDir>/src/situations/$1/$2'
   }
