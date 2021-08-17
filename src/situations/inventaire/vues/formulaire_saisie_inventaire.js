@@ -99,10 +99,10 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
       journal.enregistre(new EvenementSaisieInventaire({ reussite, resultatValidation: saisieValide, reponses }));
       $('.erreur-saisie').toggleClass('invisible', reussite);
       if (reussite) {
-        situation.audios.reussite.play();
+        depotRessources.sonReussite().start();
         situation.modifieEtat(FINI);
       } else {
-        situation.audios.echec.play();
+        depotRessources.sonEchec().start();
       }
     });
 

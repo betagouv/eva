@@ -32,14 +32,10 @@ function creerContenants ({ contenants, contenus }) {
 }
 
 export default class Situation extends SituationCommune {
-  constructor (unStock, sons) {
+  constructor (unStock) {
     super({ aideDisponible: true });
     this.produits = inventaireProduits(unStock);
     this.contenants = creerContenants(unStock);
-    this.audios = {
-      reussite: new window.Audio(sons.reussite),
-      echec: new window.Audio(sons.echec)
-    };
   }
 
   inventaireReference () {

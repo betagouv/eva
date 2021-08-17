@@ -235,7 +235,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
 
   it("joue l'audio en cas de réussite", function (done) {
     const magasin = unMagasinVide();
-    magasin.audios.reussite.play = done;
+    depotRessources.sonReussite = () => { return { start: done }; };
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
   });
@@ -247,7 +247,7 @@ describe("Le formulaire de saisie d'inventaire", function () {
       new Contenant({ idContenu: '0', quantite: 12 })
     ).construit();
 
-    magasin.audios.echec.play = done;
+    depotRessources.sonEchec = () => { return { start: done }; };
 
     initialiseFormulaireSaisieInventaire(magasin, '#magasin', $, journal, depotRessources);
     $('.formulaire-saisie-inventaire .valide-saisie').click();
