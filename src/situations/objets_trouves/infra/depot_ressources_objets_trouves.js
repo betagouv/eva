@@ -60,7 +60,7 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
   reponseAudio (nomQcm, numeroReponse) {
     const reponses = CHOIX_REPONSES_AUDIO_QCM[nomQcm];
     if (!reponses) return;
-    return reponses[numeroReponse - 1];
+    return this.ressource(reponses[numeroReponse - 1]);
   }
 
   iconeDeverrouillageDebloque () {
@@ -68,7 +68,7 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
   }
 
   messageAudio (questionId) {
-    return MESSAGES[questionId];
+    return this.ressource(MESSAGES[questionId]);
   }
 
   imageAideComplementaire () {

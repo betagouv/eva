@@ -1,25 +1,17 @@
-export default class JoueurConsigne {
+import JoueurAudioBuffer from 'commun/composants/joueur_audio_buffer';
+
+export default class JoueurConsigne extends JoueurAudioBuffer {
   constructor (depot, ressourceConsigne) {
+    super();
     this.depot = depot;
     this.ressourceConsigne = ressourceConsigne;
   }
 
-  joueSon (noeudSon, callbackFin) {
-    this.sonEnCours = noeudSon;
-    noeudSon.start();
-    this.timeoutId = setTimeout(callbackFin, noeudSon.buffer.duration * 1000);
-  }
-
   joue (jouerConsigneCommune, lectureTerminee) {
     const joueConsigneCommune = () => {
-      this.joueSon(this.depot.consigneCommune(), lectureTerminee);
+      this.start(this.depot.consigneCommune(), lectureTerminee);
     };
-    this.joueSon(this.depot[this.ressourceConsigne](),
+    this.start(this.depot[this.ressourceConsigne](),
       jouerConsigneCommune ? joueConsigneCommune : lectureTerminee);
-  }
-
-  stop () {
-    clearTimeout(this.timeoutId);
-    this.sonEnCours.stop();
   }
 }

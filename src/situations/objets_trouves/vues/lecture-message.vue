@@ -2,7 +2,7 @@
   <div class="telephone-conteneur">
     <bouton-lecture
        class="bouton-lecture"
-       :son-message="$depotRessources.messageAudio(question.id)"
+       :idQuestion="question.id"
        :class="classPositionBoutonLecture"
     />
   </div>

@@ -26,15 +26,15 @@
         />
       </svg>
     </button>
-    <audio ref="audio" :src="sonMessage" />
   </div>
 </template>
 
 <script>
+import JoueurAudioBuffer from 'commun/composants/joueur_audio_buffer';
 
 export default {
   props: {
-    sonMessage: {
+    idQuestion: {
       type: String,
       required: true
     }
@@ -42,22 +42,27 @@ export default {
 
   data () {
     return {
-      joueSon: false
+      joueSon: false,
+      joueurSon: new JoueurAudioBuffer()
     };
   },
 
   methods: {
     basculeJoueSon () {
       this.joueSon = !this.joueSon;
+    },
+
+    audioBuffer (idQuestion) {
+      return this.$depotRessources.messageAudio(idQuestion);
     }
   },
 
   watch: {
-    joueSon (val) {
-      if (val) {
-        this.$refs.audio.play();
+    joueSon (joue) {
+      if (joue) {
+        this.joueurSon.start(this.audioBuffer(this.idQuestion), () => { this.joueSon = false; });
       } else {
-        this.$refs.audio.pause();
+        this.joueurSon.stop();
       }
     }
   }
