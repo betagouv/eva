@@ -1,12 +1,10 @@
 let audioCtx;
 
-const HOST = `${window.location.protocol}//${window.location.host}`;
-
 function chargeurAudio (src, timeout = 2000) {
   audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
   const request = new window.XMLHttpRequest();
 
-  request.open('GET', `${HOST}/${src}`, true);
+  request.open('GET', src, true);
   request.responseType = 'arraybuffer';
 
   const promesse = new Promise((resolve, reject) => {
