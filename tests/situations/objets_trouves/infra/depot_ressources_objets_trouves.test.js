@@ -1,4 +1,4 @@
-import chargeurs from '../../commun/aides/mock_chargeurs';
+import chargeurs, { chargeurDefaut } from '../../commun/aides/mock_chargeurs';
 import DepotRessourcesObjetsTrouves from 'objets_trouves/infra/depot_ressources_objets_trouves';
 import sonChoix1 from 'objets_trouves/assets/reponse_jardin_acclimatation.wav';
 import messageMickael from 'objets_trouves/assets/repondeur-message-mickael.wav';
@@ -8,7 +8,7 @@ describe('Le dépot ressource de la situation Objects trouvés', function () {
   let depot;
 
   beforeEach(function () {
-    depot = new DepotRessourcesObjetsTrouves(chargeurs());
+    depot = new DepotRessourcesObjetsTrouves(chargeurs({ wav: chargeurDefaut }));
   });
 
   describe('charge les ressources audio', function () {

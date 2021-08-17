@@ -1,5 +1,5 @@
 import MockAudioNode from '../aides/mock_audio_node';
-const chargeurDefaut = (src) => Promise.resolve(() => { return src; });
+export const chargeurDefaut = (src) => Promise.resolve(() => { return src; });
 
 export default function (chargeurs = {}) {
   return {

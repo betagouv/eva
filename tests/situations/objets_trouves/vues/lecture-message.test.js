@@ -1,30 +1,16 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VueLectureMessage from 'objets_trouves/vues/lecture-message';
-import { creeStore } from 'objets_trouves/modeles/store';
 import BoutonLecture from 'objets_trouves/vues/bouton-lecture';
 
 describe('La lecture de message pour objets trouvés', function () {
   let question;
-  let store;
   let wrapper;
-  let localVue;
-  let idQuestionMessageAudio;
 
   beforeEach(function () {
-    localVue = createLocalVue();
     question = { id: 'message-bureau-mickael' };
-    store = creeStore();
-    localVue.prototype.$depotRessources = {
-      messageAudio: (questionId) => {
-        idQuestionMessageAudio = questionId;
-        return 'chemin ressource audio';
-      }
-    };
 
     wrapper = shallowMount(VueLectureMessage, {
-      propsData: { question },
-      store,
-      localVue
+      propsData: { question }
     });
   });
 
@@ -34,7 +20,7 @@ describe('La lecture de message pour objets trouvés', function () {
   });
 
   it('joue le message audio de la question', function () {
-    expect(idQuestionMessageAudio).toEqual(question.id);
+    expect(wrapper.findComponent(BoutonLecture).props().idQuestion).toBe(question.id);
   });
 
   it('affiche le bouton à la bonne position en fonction de la question', function () {
