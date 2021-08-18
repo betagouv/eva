@@ -32,4 +32,16 @@ describe('Le bouton de lecture de message audio', function () {
       done();
     });
   });
+
+  it("stop le son quand le bouton n'est plus affiché", function () {
+    const wrapper = shallowMount(BoutonLecture, { propsData: { idQuestion: '1' } });
+    let sonStope = false;
+    wrapper.vm.joueurSon = {
+      stop: () => {
+        sonStope = true;
+      }
+    };
+    wrapper.destroy();
+    expect(sonStope).toBe(true);
+  });
 });

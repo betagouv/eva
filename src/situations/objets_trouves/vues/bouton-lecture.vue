@@ -65,6 +65,10 @@ export default {
         this.joueurSon.stop();
       }
     }
+  },
+
+  beforeDestroy: function () {
+    this.joueurSon.stop();
   }
 };
 </script>
