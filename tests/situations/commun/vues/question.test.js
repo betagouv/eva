@@ -12,14 +12,9 @@ describe('La vue de la question', function () {
   beforeEach(function () {
     localVue = createLocalVue();
     localVue.prototype.$traduction = traduction;
-    localVue.prototype.$depotRessources = {
-      illustrationQuestion: (nomTechniqueIllustration) => {
-        return { src: nomTechniqueIllustration };
-      }
-    };
     question = { choix: [] };
     store = creeStore();
-    question.nom_technique_illustration = 'palette';
+    question.illustration = 'bienvenue_background.jpg';
     wrapper = shallowMount(VueQuestion, {
       propsData: {
         question
@@ -31,6 +26,6 @@ describe('La vue de la question', function () {
 
   it("affiche l'image", function () {
     expect(wrapper.find('.question-illustration').exists()).toBe(true);
-    expect(wrapper.find('.question-illustration').attributes('src')).toBe('palette');
+    expect(wrapper.find('.question-illustration').attributes('src')).toBe('bienvenue_background.jpg');
   });
 });

@@ -1,7 +1,7 @@
 <template>
   <div class="question">
     <img
-      :src="urlIllustration(question)"
+      :src="question.illustration"
       class="question-illustration"
     />
 
@@ -17,15 +17,6 @@ export default {
     question: {
       type: Object,
       required: true
-    }
-  },
-
-  methods: {
-    urlIllustration (question) {
-      if (!question.nom_technique_illustration) {
-        return '';
-      }
-      return this.$depotRessources.illustrationQuestion(question.nom_technique_illustration).src;
     }
   }
 };
