@@ -22,6 +22,9 @@ export default {
 
   methods: {
     urlIllustration (question) {
+      if (!question.nom_technique_illustration) {
+        return '';
+      }
       return this.$depotRessources.illustrationQuestion(question.nom_technique_illustration).src;
     }
   }
