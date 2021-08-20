@@ -1,4 +1,5 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
+import { illustrationsQuestions } from '../data/apps';
 
 export default class DepotRessourcesQuestionsBase extends DepotRessourcesCommunes {
   constructor (chargeurs, sonConsigne, sonConsigneTransition, urlServeur = process.env.URL_API) {
@@ -29,7 +30,8 @@ export default class DepotRessourcesQuestionsBase extends DepotRessourcesCommune
 
   chargement () {
     return super.chargement()
-      .then(() => this.chargeQuestionnaires());
+      .then(() => this.chargeQuestionnaires())
+      .then(() => this.chargeIllustrations());
   }
 
   chargeQuestionnaires () {
@@ -47,5 +49,18 @@ export default class DepotRessourcesQuestionsBase extends DepotRessourcesCommune
       promesses.push(this.promesseRessource(this.questionnaireEntrainementUrl));
     }
     return Promise.all(promesses);
+  }
+
+  chargeIllustrations () {
+    const images = [...this.questions(), ...this.questionsEntrainement()].map(question => {
+      question.illustration = '';
+      if (question.nom_technique && illustrationsQuestions[question.nom_technique]) {
+        question.illustration = illustrationsQuestions[question.nom_technique];
+      }
+      return question.illustration;
+    })
+      .filter(illustration => illustration !== '');
+    this.charge(images);
+    return super.chargement();
   }
 }

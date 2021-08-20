@@ -27,7 +27,7 @@ describe('Le dépot ressource de la situation Questions', function () {
     depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
     return depotRessources.chargement().then(() => {
       expect(depotRessources.questions()).toEqual([
-        { id: '1' }
+        { id: '1', illustration: '' }
       ]);
     });
   });
@@ -46,7 +46,7 @@ describe('Le dépot ressource de la situation Questions', function () {
     depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
     return depotRessources.chargement().then(() => {
       expect(depotRessources.questions()).toEqual([
-        { id: '1' }
+        { id: '1', illustration: '' }
       ]);
     });
   });
@@ -68,7 +68,7 @@ describe('Le dépot ressource de la situation Questions', function () {
     depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
     return depotRessources.chargement().then(() => {
       expect(depotRessources.questions()).toEqual([
-        { id: '1' }
+        { id: '1', illustration: '' }
       ]);
     });
   });
@@ -94,11 +94,31 @@ describe('Le dépot ressource de la situation Questions', function () {
     depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
     return depotRessources.chargement().then(() => {
       expect(depotRessources.questions()).toEqual([
-        { id: '1' }
+        { id: '1', illustration: '' }
       ]);
       expect(depotRessources.questionsEntrainement()).toEqual([
-        { id: '2' }
+        { id: '2', illustration: '' }
       ]);
+    });
+  });
+
+  it('charge les illustrations du questionnaire', function () {
+    const nomSituation = 'nomSituation';
+    const reponsesJson = {
+      'urlEvaluation.json': {
+        situations: [],
+        questions: [
+          { nom_technique: 'bienvenue_1' },
+          { nom_technique: 'bienvenue_2' }
+        ]
+      }
+    };
+    const depotRessources = creeDepotRessources(reponsesJson);
+    depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
+    let illustrationsUrls;
+    depotRessources.charge = (illustrations) => { illustrationsUrls = illustrations; };
+    return depotRessources.chargement().then(() => {
+      expect(illustrationsUrls).toEqual(['bienvenue_background.jpg', 'bienvenue_background.jpg']);
     });
   });
 });
