@@ -110,18 +110,19 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
             return reponse;
           })
           .finally((reponse) => {
-            const campagne = registreCampagne.recupereCampagneCourante();
-            this.state.nomCampagne = campagne.libelle;
+            registreCampagne.recupereCampagneCourante().then((campagne) => {
+              this.state.nomCampagne = campagne.libelle;
 
-            const situations = campagne.situations.map(function (situation, index) {
-              return {
-                nom: situation.libelle,
-                chemin: `${situation.nom_technique}.html`,
-                identifiant: situation.nom_technique,
-                niveauMinimum: index + 1
-              };
-            });
-            commit('metsAJourSituations', situations);
+              const situations = campagne.situations.map(function (situation, index) {
+                return {
+                  nom: situation.libelle,
+                  chemin: `${situation.nom_technique}.html`,
+                  identifiant: situation.nom_technique,
+                  niveauMinimum: index + 1
+                };
+              });
+              commit('metsAJourSituations', situations);
+            });;
           });
       },
       termineEvaluation ({ commit }) {
