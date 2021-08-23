@@ -16,9 +16,9 @@ export default class RegistreCampagne extends BaseRegistre {
         },
         error: (xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
-            const localCampagne = window.localStorage.getItem(this.cleCampagnePourLocalStorage(codeCampagne));
-            if (localCampagne) {
-              resolve(JSON.parse(localCampagne));
+            const localCampagne = this.recupereCampagneEnLocale(codeCampagne);
+            if (Object.keys(localCampagne).length > 0) {
+              resolve(localCampagne);
             } else {
               reject(new ErreurCampagne(traduction('accueil.erreurs.code_campagne_inconnu')));
             }
@@ -40,7 +40,10 @@ export default class RegistreCampagne extends BaseRegistre {
 
   recupereCampagneCourante () {
     const codeCampagne = window.localStorage.getItem('campagneCourante');
-    return this.recupereCampagneEnLocale(codeCampagne);
+    return new Promise((resolve, reject) => {
+      this.recupereCampagne(codeCampagne)
+        .then((campagne) => { resolve(campagne) });
+    });
   }
 
   recupereCampagneEnLocale (codeCampagne) {
