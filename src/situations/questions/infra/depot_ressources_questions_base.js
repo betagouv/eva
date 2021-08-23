@@ -56,10 +56,12 @@ export default class DepotRessourcesQuestionsBase extends DepotRessourcesCommune
       question.illustration = '';
       if (question.nom_technique && illustrationsQuestions[question.nom_technique]) {
         question.illustration = illustrationsQuestions[question.nom_technique];
+      } else {
+        throw new Error(`La question ${question.id} ne possède pas d'illustration`);
       }
       return question.illustration;
-    })
-      .filter(illustration => illustration !== '');
+    });
+
     this.charge(images);
     return super.chargement();
   }

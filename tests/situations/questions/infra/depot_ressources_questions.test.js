@@ -1,7 +1,7 @@
 import DepotRessourcesQuestions from 'questions/infra/depot_ressources_questions';
 
 describe('Le dépot ressource de la situation Questions', function () {
-  function creeDepotRessources (reponsesJson) {
+  function creeDepotRessources (reponsesJson = {}) {
     return new DepotRessourcesQuestions({
       wav: () => Promise.resolve(),
       svg: () => Promise.resolve(),
@@ -18,7 +18,7 @@ describe('Le dépot ressource de la situation Questions', function () {
           nom_technique: nomSituation
         }],
         questions: [
-          { id: '1' }
+          { id: '1', nom_technique: 'bienvenue_1' }
         ]
       }
     };
@@ -27,7 +27,7 @@ describe('Le dépot ressource de la situation Questions', function () {
     depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
     return depotRessources.chargement().then(() => {
       expect(depotRessources.questions()).toEqual([
-        { id: '1', illustration: '' }
+        { id: '1', illustration: 'bienvenue_background.jpg', nom_technique: 'bienvenue_1' }
       ]);
     });
   });
@@ -38,7 +38,7 @@ describe('Le dépot ressource de la situation Questions', function () {
       'urlEvaluation.json': {
         situations: [],
         questions: [
-          { id: '1' }
+          { id: '1', nom_technique: 'bienvenue_1' }
         ]
       }
     };
@@ -46,7 +46,7 @@ describe('Le dépot ressource de la situation Questions', function () {
     depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
     return depotRessources.chargement().then(() => {
       expect(depotRessources.questions()).toEqual([
-        { id: '1', illustration: '' }
+        { id: '1', illustration: 'bienvenue_background.jpg', nom_technique: 'bienvenue_1' }
       ]);
     });
   });
@@ -61,14 +61,14 @@ describe('Le dépot ressource de la situation Questions', function () {
         }]
       },
       'http://api.localhost/api/questionnaires/monIdDeQuestionnaire.json': [
-        { id: '1' }
+        { id: '1', nom_technique: 'bienvenue_1' }
       ]
     };
     const depotRessources = creeDepotRessources(reponsesJson);
     depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
     return depotRessources.chargement().then(() => {
       expect(depotRessources.questions()).toEqual([
-        { id: '1', illustration: '' }
+        { id: '1', illustration: 'bienvenue_background.jpg', nom_technique: 'bienvenue_1' }
       ]);
     });
   });
@@ -84,20 +84,20 @@ describe('Le dépot ressource de la situation Questions', function () {
         }]
       },
       'http://api.localhost/api/questionnaires/monIdDeQuestionnaire.json': [
-        { id: '1' }
+        { id: '1', nom_technique: 'bienvenue_1' }
       ],
       'http://api.localhost/api/questionnaires/monIdDeQuestionnaireEntrainement.json': [
-        { id: '2' }
+        { id: '2', nom_technique: 'bienvenue_1' }
       ]
     };
     const depotRessources = creeDepotRessources(reponsesJson);
     depotRessources.chargeEvaluation('urlEvaluation.json', nomSituation);
     return depotRessources.chargement().then(() => {
       expect(depotRessources.questions()).toEqual([
-        { id: '1', illustration: '' }
+        { id: '1', illustration: 'bienvenue_background.jpg', nom_technique: 'bienvenue_1' }
       ]);
       expect(depotRessources.questionsEntrainement()).toEqual([
-        { id: '2', illustration: '' }
+        { id: '2', illustration: 'bienvenue_background.jpg', nom_technique: 'bienvenue_1' }
       ]);
     });
   });
@@ -120,5 +120,16 @@ describe('Le dépot ressource de la situation Questions', function () {
     return depotRessources.chargement().then(() => {
       expect(illustrationsUrls).toEqual(['bienvenue_background.jpg', 'bienvenue_background.jpg']);
     });
+  });
+
+  it("quand une question n'a pas d'illustration, retourne une erreur", function () {
+    const depotRessources = creeDepotRessources();
+
+    depotRessources.questions = () => { return [{ id: '1', nom_technique: 'inconnu' }]; };
+    depotRessources.questionsEntrainement = () => { return []; };
+
+    expect(() => {
+      depotRessources.chargeIllustrations();
+    }).toThrow("La question 1 ne possède pas d'illustration");
   });
 });
