@@ -1,7 +1,7 @@
 <template>
   <div class="question">
     <img
-      :src="question.illustration"
+      :src="illustrationQuestion(question)"
       class="question-illustration"
     />
 
@@ -12,12 +12,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   props: {
     question: {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    ...mapGetters(['illustrationQuestion'])
   }
 };
 </script>

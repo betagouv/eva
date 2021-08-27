@@ -10,9 +10,6 @@ import ActeQuestions from './acte';
 export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources, registreUtilisateur) {
     super(situation, journal, depotRessources, creeStore, ActeQuestions);
-
-    const urlEvaluation = registreUtilisateur.urlEvaluation();
-    depotRessources.chargeEvaluation(urlEvaluation, situation.identifiant);
   }
 
   affiche (pointInsertion, $) {
@@ -24,7 +21,8 @@ export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation
       store,
       render: createEle => createEle(VueSituation, {
         props: {
-          composantActe: this.ComposantActe
+          composantActe: this.ComposantActe,
+          idSituation: this.situation.identifiant
         }
       })
     }).$mount(div);

@@ -40,10 +40,7 @@ export default class RegistreCampagne extends BaseRegistre {
 
   recupereCampagneCourante () {
     const codeCampagne = window.localStorage.getItem('campagneCourante');
-    return new Promise((resolve, reject) => {
-      this.recupereCampagne(codeCampagne)
-        .then((campagne) => { resolve(campagne) });
-    });
+    return this.recupereCampagneEnLocale(codeCampagne);
   }
 
   recupereCampagneEnLocale (codeCampagne) {
@@ -52,5 +49,23 @@ export default class RegistreCampagne extends BaseRegistre {
 
   cleCampagnePourLocalStorage (codeCampagne) {
     return `campagne_${codeCampagne}`;
+  }
+
+  situation (identifiantSituation) {
+    const campagne = this.recupereCampagneCourante();
+    return campagne.situations.find(situation => situation.nom_technique === identifiantSituation);
+  }
+
+  questions (identifiantSituation) {
+    const situation = this.situation(identifiantSituation);
+    if (situation.questions) {
+      return situation.questions;
+    } else {
+      return this.recupereCampagneCourante().questions;
+    }
+  }
+
+  questionsEntrainement (identifiantSituation) {
+    return this.situation(identifiantSituation).questions_entrainement;
   }
 }

@@ -90,20 +90,6 @@ export default class DepotRessources {
     });
   }
 
-  setRessource (cle, valeur) {
-    const maFunction = (opt) => {
-      const promesse = new Promise((resolve, reject) => {
-        resolve(() => {
-          return valeur;
-        });
-      });
-      return promesse;
-    };
-    return maFunction(valeur).then((result) => {
-      this.cloneursRessource[cle] = result;
-    });
-  }
-
   chargeContexte (contexte) {
     const ressources = contexte.keys().map(contexte);
     this.charge(ressources);

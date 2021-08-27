@@ -104,8 +104,8 @@ describe("La vue de l'acte « Question »", function () {
     };
     store.commit('configureActe', {
       questions: [
-        { id: 1, type: 'qcm' },
-        { id: 2, type: 'qcm' }
+        { id: 1, type: 'qcm', nom_technique: 'bienvenue_1' },
+        { id: 2, type: 'qcm', nom_technique: 'bienvenue_2' }
       ]
     });
     const wrapper = mount(Acte, { store, localVue });

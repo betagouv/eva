@@ -1,6 +1,7 @@
 <script>
 import Situation from 'commun/vues/situation';
 import { DEMARRE, FINI } from 'commun/modeles/situation';
+import RegistreCampagne from 'commun/infra/registre_campagne';
 
 export default {
   extends: Situation,
@@ -13,6 +14,10 @@ export default {
     configurationNormale: {
       type: Object,
       required: false
+    },
+    idSituation: {
+      type: String,
+      required: true
     }
   },
 
@@ -20,11 +25,11 @@ export default {
     acte () {
       if ([DEMARRE, FINI].includes(this.etat)) {
         return {
-          questions: this.$depotRessources.questions()
+          questions: new RegistreCampagne().questions(this.idSituation)
         };
       }
       return {
-        questions: this.$depotRessources.questionsEntrainement()
+        questions: new RegistreCampagne().questionsEntrainement(this.idSituation)
       };
     }
   }
