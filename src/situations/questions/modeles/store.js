@@ -6,6 +6,7 @@ import {
   FINI
 } from 'commun/modeles/situation';
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
+import { illustrationsQuestions } from '../data/apps';
 
 export function creeStore () {
   return creeStoreCommun({
@@ -20,6 +21,13 @@ export function creeStore () {
       },
       questionCourante (state) {
         return state.questions[state.indexQuestions];
+      },
+      illustrationQuestion: (state) => (question) => {
+        if (question.nom_technique && illustrationsQuestions[question.nom_technique]) {
+          return illustrationsQuestions[question.nom_technique];
+        } else {
+          throw new Error(`La question ${question.id} avec le nom technique "${question.nom_technique}" ne possède pas d'illustration`);
+        }
       }
     },
     mutations: {

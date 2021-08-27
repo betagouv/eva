@@ -25,7 +25,12 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       },
       ...mutations
     },
-    getters,
+    getters: {
+      illustrationQuestion: (state) => (question) => {
+        return question.illustration;
+      },
+      ...getters
+    },
     actions
   });
 }

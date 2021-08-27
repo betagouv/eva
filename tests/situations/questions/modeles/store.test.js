@@ -51,4 +51,26 @@ describe('Le store de la situation questions', function () {
     store.commit('repondQuestionCourante', 'reponse');
     expect(store.state.fini).toBe(true);
   });
+
+  it("Retourne l'illustration d'une question", function () {
+    const store = creeStore();
+    expect(store.getters.illustrationQuestion({ nom_technique: 'bienvenue_1' }))
+      .toEqual('bienvenue_background.jpg');
+  });
+
+  it("Retourne une erreur si une question n'a pas d'illustration", function () {
+    const store = creeStore();
+    expect(() => {
+      store.getters.illustrationQuestion({ id: 'id1', nom_technique: 'inconnu' });
+    })
+      .toThrow('La question id1 avec le nom technique "inconnu" ne possède pas d\'illustration');
+  });
+
+  it("Retourne une erreur si une question n'a pas de nom technique", function () {
+    const store = creeStore();
+    expect(() => {
+      store.getters.illustrationQuestion({ id: 'id1' });
+    })
+      .toThrow('La question id1 avec le nom technique "undefined" ne possède pas d\'illustration');
+  });
 });
