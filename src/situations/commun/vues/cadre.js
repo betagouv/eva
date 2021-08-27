@@ -68,7 +68,8 @@ export default class VueCadre {
 
       this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources);
       this.vueActions.affiche(selecteurCadre, $);
-    }).catch(() => {
+    }).catch((err) => {
+      console.error(err)
       this.situation.modifieEtat(ERREUR_CHARGEMENT);
     });
   }
