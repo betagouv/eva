@@ -20,7 +20,7 @@ describe('le registre campagne', function () {
   describe('cleCampagnePourLocalStorage', function () {
     it('retourne la clé de la campagne du localStorage', function () {
       const registre = unRegistre(1, 'autre test');
-      expect(registre.cleCampagnePourLocalStorage('code de ma campagne')).to.eql('campagne_code de ma campagne');
+      expect(registre.cleCampagnePourLocalStorage('code de ma campagne')).toEqual('campagne_code de ma campagne');
     });
   });
 
@@ -29,7 +29,7 @@ describe('le registre campagne', function () {
       const registre = new RegistreCampagne();
       registre.assigneCampagneCourante('code de ma campagne');
 
-      expect(window.localStorage.getItem('campagneCourante')).to.eql('code de ma campagne');
+      expect(window.localStorage.getItem('campagneCourante')).toEqual('code de ma campagne');
     });
   });
 
@@ -46,7 +46,7 @@ describe('le registre campagne', function () {
       it('retourne la campagne courante sauvegardé en locale', function () {
         const registre = new RegistreCampagne();
 
-        expect(registre.recupereCampagneCourante()).to.eql({ id: 1 });
+        expect(registre.recupereCampagneCourante()).toEqual({ id: 1 });
       });
     });
   });
@@ -56,7 +56,7 @@ describe('le registre campagne', function () {
       window.localStorage.setItem('campagne_demo', '{ "id": 1 }');
       const registre = new RegistreCampagne();
 
-      expect(registre.recupereCampagneEnLocale('demo')).to.eql({ id: 1 });
+      expect(registre.recupereCampagneEnLocale('demo')).toEqual({ id: 1 });
     });
   });
 
@@ -65,8 +65,8 @@ describe('le registre campagne', function () {
       it('enregistre les informations de la campagne en locale', function () {
         const registre = unRegistre(1, 'autre test');
         return registre.recupereCampagne('campagne1').then((campagne) => {
-          expect(window.localStorage.campagne_campagne1).to.eql('{"id":1,"nom":"autre test"}');
-          expect(campagne).to.eql({ id: 1, nom: 'autre test' });
+          expect(window.localStorage.campagne_campagne1).toEqual('{"id":1,"nom":"autre test"}');
+          expect(campagne).toEqual({ id: 1, nom: 'autre test' });
         });
       });
 
@@ -77,7 +77,7 @@ describe('le registre campagne', function () {
           }
         }, 'any url', { onLine: true });
         return registre.recupereCampagne('inconnu').catch((erreur) => {
-          expect(erreur.message).to.eql('accueil.erreurs.code_campagne_inconnu');
+          expect(erreur.message).toEqual('accueil.erreurs.code_campagne_inconnu');
         });
       });
 
@@ -89,7 +89,7 @@ describe('le registre campagne', function () {
           }
         }, 'any url', { onLine: true });
         return registre.recupereCampagne('inconnu').catch((erreur) => {
-          expect(erreur).to.eql(uneErreur);
+          expect(erreur).toEqual(uneErreur);
         });
       });
     });
@@ -112,7 +112,7 @@ describe('le registre campagne', function () {
 
           it("retourne une promesse où tout s'est bien passée", function () {
             return registre.recupereCampagne('campagne1').then((campagne) => {
-              expect(campagne).to.eql({ id: 1, nom: 'autre test' });
+              expect(campagne).toEqual({ id: 1, nom: 'autre test' });
             });
           });
         });
@@ -120,8 +120,8 @@ describe('le registre campagne', function () {
         describe("quand la campagne n'existe pas en locale", function () {
           it('retourne une promesse avec une erreur gérée', function () {
             return registre.recupereCampagne('campagne_absente').catch((erreur) => {
-              expect(erreur.message).to.eql('accueil.erreurs.code_campagne_inconnu');
-              expect(erreur.name).to.eql('ErreurCampagne');
+              expect(erreur.message).toEqual('accueil.erreurs.code_campagne_inconnu');
+              expect(erreur.name).toEqual('ErreurCampagne');
             });
           });
         });
@@ -133,7 +133,7 @@ describe('le registre campagne', function () {
         });
         it("retourne l'erreur réseau", function () {
           return registre.recupereCampagne('campagne_absente').catch((erreur) => {
-            expect(erreur.status).to.eql(0);
+            expect(erreur.status).toEqual(0);
           });
         });
       });
