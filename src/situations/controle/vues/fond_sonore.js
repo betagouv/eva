@@ -29,24 +29,9 @@ export default class VueFondSonore {
 
   demarre () {
     this.audio.start();
-    this.joueKlaxon(this.situation.delaiKlaxonSuivant());
-  }
-
-  joueKlaxon (delai) {
-    clearTimeout(this.idTimeoutKlaxon);
-    if (delai) {
-      this.idTimeoutKlaxon = setTimeout(
-        () => {
-          this.depotRessources.klaxon().start();
-          this.joueKlaxon(this.situation.delaiKlaxonSuivant());
-        },
-        delai
-      );
-    }
   }
 
   arrete () {
     this.audio.stop();
-    clearTimeout(this.idTimeoutKlaxon);
   }
 }
