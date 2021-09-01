@@ -13,9 +13,7 @@ describe('Le fond sonore', function () {
 
   describe('joue le bruit du tapis', function () {
     beforeEach(function () {
-      situation = new Situation({
-        sequenceKlaxons: []
-      });
+      situation = new Situation({});
       const mockDepotRessource = new class {
         fondSonore () {
           return new MockAudioNode();
@@ -50,54 +48,6 @@ describe('Le fond sonore', function () {
       vue.affiche('#pointInsertion');
       situation.modifieEtat(FINI);
       expect(stope).toBe(1);
-    });
-  });
-
-  describe('joue les klaxons', function () {
-    let audioKlaxon;
-
-    beforeEach(function () {
-      situation = new Situation({
-        sequenceKlaxons: [1, 1]
-      });
-      audioKlaxon = new MockAudioNode();
-      const mockDepotRessource = new class {
-        fondSonore () {
-          return new MockAudioNode();
-        }
-
-        klaxon () {
-          return audioKlaxon;
-        }
-      }();
-      vue = new VueFondSonore(situation, mockDepotRessource);
-    });
-
-    afterEach(function () {
-      vue.arrete();
-    });
-
-    it("joue à l'état DEMARRE", function (done) {
-      let jouee = 0;
-      audioKlaxon.start = e => {
-        jouee++;
-        if (jouee === 2) done();
-      };
-      situation.modifieEtat(DEMARRE);
-      vue.affiche('#pointInsertion');
-    });
-
-    it("stoppe si c'est fini", function (done) {
-      let jouee = 0;
-      audioKlaxon.start = e => jouee++;
-      situation.modifieEtat(DEMARRE);
-      vue.affiche('#pointInsertion');
-      situation.modifieEtat(FINI);
-
-      setTimeout(() => {
-        expect(jouee).toBe(0);
-        done();
-      }, 5);
     });
   });
 });
