@@ -11,7 +11,7 @@ import { scenario, bacs } from 'controle/data/pieces';
 const situation = new Situation({
   scenario,
   bacs,
-  cadence: 5000,
+  cadence: 3000,
   positionApparitionPieces: { x: 100, y: 65.5 },
   dureeViePiece: 12000,
   sequenceKlaxons: [28000, 70000, 30000, 3000, 60000, 40000]
