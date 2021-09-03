@@ -64,7 +64,6 @@ export default {
 
   data () {
     return {
-      messageAideComplementaire: traduction(`${this.identifiantSituation}.aide_complementaire.message`),
       son: this.$depotRessources.son().src
     };
   },
@@ -74,6 +73,9 @@ export default {
   },
 
   computed: {
+    messageAideComplementaire: function () {
+      return traduction(`${this.identifiantSituation}.aide_complementaire.message`);
+    },
     imageAideComplementaire: function () {
       return this.$depotRessources.imageAideComplementaire().src;
     }
