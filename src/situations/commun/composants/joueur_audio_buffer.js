@@ -7,6 +7,8 @@ export default class JoueurAudioBuffer {
 
   stop () {
     clearTimeout(this.timeoutId);
-    this.sonEnCours.stop();
+    if (this.sonEnCours) {
+      this.sonEnCours.stop();
+    }
   }
 }
