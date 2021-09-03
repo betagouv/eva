@@ -25,7 +25,6 @@
   <consigne
     v-else
     :identifiantSituation="identifiantSituation"
-    :titreConsigne="titreConsigne"
     :message="message"
     ressourceConsigne="consigneDemarrage"
     @consigne-fini="fini"
@@ -46,9 +45,6 @@ export default {
       default: () => {
         return traduction('situation.ecouter-consigne');
       }
-    },
-    titreConsigne: {
-      type: String
     },
     identifiantSituation: {
       type: String,
