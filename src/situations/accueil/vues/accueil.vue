@@ -76,7 +76,6 @@
         v-if="estDemarre && indexBatiment === 0"
         :titre="$traduction('accueil.intro_consigne.titre')"
         identifiant-situation="accueil"
-        titre-consigne=""
         @consigne-fini="finiIntro"
       />
     </transition-fade>
