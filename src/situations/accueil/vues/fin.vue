@@ -6,7 +6,7 @@
       <img class="avatar-fin" :src="avatarFin"/>
       <div>
         <h2 v-html="$traduction('accueil.fin.bravo.titre', { nom: nom })"></h2>
-        <div v-if="this.competencesFortes.length != 0">
+        <div v-if="this.competencesFortes && this.competencesFortes.length != 0">
           <div class="contenu">
             <p class="message-fin">
             {{ $traduction('accueil.fin.bravo.message') }}
@@ -17,6 +17,8 @@
             @click="suivant"
             >{{ $traduction('accueil.fin.bravo.bouton') }}</button>
         </div>
+        <bouton-deconnexion v-else-if="this.competencesFortes"
+          :deconnexion-directe=true />
       </div>
     </div>
     <div
