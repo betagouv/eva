@@ -1,0 +1,64 @@
+@import 'commun/styles/couleurs.scss';
+
+.overlay.modale {
+  .actions-fin {
+    position: absolute;
+    bottom: 1.25rem;
+    margin-bottom: 0;
+    height: 4rem;
+    width: 100%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .mon-avis,
+    .confirmation-deconnexion {
+      height: 4rem;
+      width: 40rem;
+      display: flex;
+      background: $blanc;
+      border: 1px solid $orange;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, .3);
+      border-radius: 4rem;
+      padding: 1rem 0.5rem;
+      font-size: 0.875rem;
+      .actions-avis,
+      .actions-deconnexion,
+      .information {
+        display: flex;
+      }
+      .information {
+        flex-grow: 1;
+        align-items: center;
+        text-align: left;
+        .texte {
+          margin-left: 1rem;
+        }
+      }
+      .bouton-arrondi-orange {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .mon-avis {
+      a {
+        color: $blanc;
+      }
+    }
+
+    .confirmation-deconnexion {
+      .avatar {
+        display: flex;
+        width: 3rem;
+        height: 3rem;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: $orange;
+      }
+    }
+  }
+}
