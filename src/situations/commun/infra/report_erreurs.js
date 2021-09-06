@@ -5,7 +5,7 @@ const rollbar = new Rollbar({
   captureUncaught: true,
   captureUnhandledRejections: true,
   payload: {
-    environment: process.env.NODE_ENV
+    environment: process.env.ROLLBAR_ENV || process.env.NODE_ENV
   },
   client: {
     javascript: {
