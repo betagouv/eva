@@ -18,7 +18,7 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
       nom: registreUtilisateur.nom(),
       nomCampagne: '',
       situations: [],
-      competencesFortes: [],
+      competencesFortes: undefined,
       situationsFaites: registreUtilisateur.situationsFaites(),
       etat: registreUtilisateur.estConnecte() ? DEMARRE : DECONNECTE
     },

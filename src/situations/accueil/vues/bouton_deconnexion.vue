@@ -46,10 +46,27 @@
         </div>
     </div>
 
-    <div v-else
-        key="buton-deconnexion"
-        class='actions-fin'
+    <div
+       v-else-if="deconnexionDirecte"
+       class='actions-fin actions-fin--colonne'
     >
+        <a
+          :href="lienDonnerAvis"
+          target='_blank'
+          @click="deconnecte">
+          <img style="height:40px;" :src="boutonAvis" alt="Je donne mon avis" title="Je donne mon avis sur cette démarche" />
+        </a>
+        <a
+          class="bouton-deconnexion bouton-arrondi"
+          @click="deconnecte"
+        >{{ $traduction('deconnexion.titre') }}</a>
+    </div>
+
+    <div
+       v-else
+       key="buton-deconnexion"
+       class='actions-fin'
+      >
       <a
         class="bouton-deconnexion bouton-arrondi"
         @click="afficheJeDonneMonAvis"
@@ -65,6 +82,12 @@ import TransitionFade from 'commun/vues/transition_fade';
 
 export default {
   components: { TransitionFade },
+  props: {
+    deconnexionDirecte: {
+      type: Boolean,
+      required: false
+    }
+  },
   data () {
     return {
       avatarAvis: this.$depotRessources.avatarAvis().src,

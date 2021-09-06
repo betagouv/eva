@@ -33,7 +33,7 @@ describe('La vue de fin', function () {
     })();
     store = new Vuex.Store({
       state: {
-        competencesFortes: []
+        competencesFortes: undefined
       },
       actions: {
         deconnecte () {}
@@ -52,7 +52,6 @@ describe('La vue de fin', function () {
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
-    wrapper.vm.termineEvaluation(); // termineEvaluation est appelé dans mounted mais cette méthode est ignoré par vue test utils
 
     wrapper.vm.$nextTick(() => {
       expect(wrapper.find('h2').text()).toEqual('accueil.fin.bravo.titre{"nom":"Alexandre Legrand"}');
@@ -75,7 +74,6 @@ describe('La vue de fin', function () {
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
-    wrapper.vm.termineEvaluation();
 
     wrapper.vm.$nextTick(() => {
       wrapper.find('button').trigger('click');
@@ -90,15 +88,30 @@ describe('La vue de fin', function () {
     });
   });
 
-  it("n'affiche pas de bouton suivant s'il n'y a pas de compétences fortes", function () {
+  it("affiche le bouton de deconnexion s'il n'y a pas de compétences fortes", function (done) {
     store.dispatch = (evenement) => {
-      store.state.competences = [];
+      store.state.competencesFortes = [];
+      return Promise.resolve();
+    };
+    wrapper = mount(Fin, { store, localVue });
+
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.findAll('.contenu').length).toBe(0);
+      expect(wrapper.findAll('button').length).toBe(0);
+      expect(wrapper.findAll('.bouton-deconnexion').length).toBe(1);
+      done();
+    });
+  });
+
+  it("Attend que l'on sache s'il y a des compétences fortes avant d'afficher les boutons", function () {
+    store.dispatch = (evenement) => {
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
 
     expect(wrapper.findAll('.contenu').length).toBe(0);
-    expect(wrapper.findAll('.button').length).toBe(0);
+    expect(wrapper.findAll('button').length).toBe(0);
+    expect(wrapper.findAll('.bouton-deconnexion').length).toBe(0);
   });
 
   it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function (done) {
@@ -107,7 +120,6 @@ describe('La vue de fin', function () {
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
-    wrapper.vm.termineEvaluation();
     wrapper.vm.$nextTick(() => {
       wrapper.find('button').trigger('click');
 
