@@ -172,9 +172,22 @@ describe('La vue accueil', function () {
       localVue,
       store
     });
-    wrapper.vm.introFaite = true;
 
-    return Promise.resolve().then(() => {
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.vm.indexBatiment).toBe(2);
+    });
+  });
+
+  it('assigne indexBatiment au niveau max même si le chargement des situations à échoué', function () {
+    store.state.estConnecte = true;
+    store.state.situationsFaites = [''];
+    store.dispatch = () => Promise.reject(new Error('Pas de réseau'));
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store
+    });
+
+    wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.indexBatiment).toBe(2);
     });
   });

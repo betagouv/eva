@@ -216,7 +216,7 @@ export default {
     synchroniseEvaluation (sync = true) {
       if (!this.estConnecte) return;
       this.$store.dispatch('synchroniseEvaluation')
-        .then(() => {
+        .finally(() => {
           if (sync) {
             this.indexBatiment = this.niveauMax;
           }
