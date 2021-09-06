@@ -124,6 +124,7 @@ module.exports = {
     new webpack.EnvironmentPlugin([
       'URL_API',
       'JETON_CLIENT_ROLLBAR',
+      'ROLLBAR_ENV',
       'SOURCE_VERSION',
       'ANNONCE_GENERALE',
       'HOTJAR_ID',
