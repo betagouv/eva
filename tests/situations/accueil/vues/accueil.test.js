@@ -164,7 +164,7 @@ describe('La vue accueil', function () {
     });
   });
 
-  it('assigne indexBatiment au niveau max aprés avoir chargé les situations', function () {
+  it('assigne indexBatiment au niveau max aprés avoir chargé les situations', function (done) {
     store.state.estConnecte = true;
     store.state.situationsFaites = [''];
     store.dispatch = () => Promise.resolve();
@@ -175,10 +175,11 @@ describe('La vue accueil', function () {
 
     wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.indexBatiment).toBe(2);
+      done();
     });
   });
 
-  it('assigne indexBatiment au niveau max même si le chargement des situations à échoué', function () {
+  it('assigne indexBatiment au niveau max même si le chargement des situations à échoué', function (done) {
     store.state.estConnecte = true;
     store.state.situationsFaites = [''];
     store.dispatch = () => Promise.reject(new Error('Pas de réseau'));
@@ -189,6 +190,7 @@ describe('La vue accueil', function () {
 
     wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.indexBatiment).toBe(2);
+      done();
     });
   });
 
