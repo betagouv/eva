@@ -87,37 +87,26 @@ describe("Le store de l'accueil", function () {
     });
   });
 
-  it('sait récupérer les situations depuis le serveur', function () {
-    registreUtilisateur.urlEvaluation = () => '/evaluation';
-    registreCampagne.recupereCampagneCourante = () => {
-      const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
-      return { situations: [situation], libelle: 'libellé campagne' };
-    };
-    const fetch = (url) => Promise.resolve({
-      json: () => {}
-    });
-    const store = creeStore(registreUtilisateur, registreCampagne, fetch);
-    return store.dispatch('synchroniseEvaluation').then(() => {
-      const situationAttendue = {
-        identifiant: 'nom_technique',
-        nom: 'libelle',
-        chemin: 'nom_technique.html',
-        niveauMinimum: 1
+  describe('Action : recupereSituations', function () {
+    it('sait récupérer les situations avec le registreCampagne', function () {
+      registreUtilisateur.urlEvaluation = () => '/evaluation';
+      registreCampagne.recupereCampagneCourante = () => {
+        const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
+        return { situations: [situation], libelle: 'libellé campagne' };
       };
-      expect(store.state.nomCampagne).toEqual('libellé campagne');
-      expect(store.state.situations).toEqual([situationAttendue]);
+      const store = creeStore(registreUtilisateur, registreCampagne);
+      return store.dispatch('recupereSituations').then(() => {
+        const situationAttendue = {
+          identifiant: 'nom_technique',
+          nom: 'libelle',
+          chemin: 'nom_technique.html',
+          niveauMinimum: 1
+        };
+        expect(store.state.nomCampagne).toEqual('libellé campagne');
+        expect(store.state.situations).toEqual([situationAttendue]);
+      });
     });
-  });
 
-  it('se déconnecte en cas de 404 du serveur', function () {
-    registreUtilisateur.urlEvaluation = () => '/evaluation';
-    const fetch = (url) => Promise.resolve({
-      status: 404
-    });
-    const store = creeStore(registreUtilisateur, registreCampagne, fetch);
-    store.commit('connecte', 'test');
-    return store.dispatch('synchroniseEvaluation').catch(() => {
-      expect(store.state.estConnecte).toEqual(false);
     });
   });
 
@@ -191,7 +180,7 @@ describe("Le store de l'accueil", function () {
       registreCampagne.assigneCampagneCourante = (codeCampagne) => {};
     });
 
-    describe('quand la campagne est récupérer', function () {
+    describe('quand la campagne est récupérée', function () {
       beforeEach(function () {
         const mockRegistre = { code: { id: 1, nom: 'ma campagne' } };
         registreCampagne.recupereCampagne = (codeCampagne) => {

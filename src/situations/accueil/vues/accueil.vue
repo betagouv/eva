@@ -194,7 +194,7 @@ export default {
   },
 
   mounted () {
-    this.synchroniseEvaluation();
+    this.recupereSituations();
   },
 
   watch: {
@@ -202,7 +202,7 @@ export default {
       if (!this.estConnecte) {
         this.reinitialiseDonnees();
       } else {
-        this.synchroniseEvaluation(false);
+        this.recupereSituations(false);
         this.indexBatiment = 0;
       }
     },
@@ -213,11 +213,11 @@ export default {
   },
 
   methods: {
-    synchroniseEvaluation (sync = true) {
+    recupereSituations (syncIndexBatiment = true) {
       if (!this.estConnecte) return;
-      this.$store.dispatch('synchroniseEvaluation')
+      this.$store.dispatch('recupereSituations')
         .finally(() => {
-          if (sync) {
+          if (syncIndexBatiment) {
             this.indexBatiment = this.niveauMax;
           }
         });
