@@ -218,7 +218,7 @@ export default {
       this.$store.dispatch('recupereSituations')
         .finally(() => {
           if (syncIndexBatiment) {
-            this.indexBatiment = this.niveauMax;
+            setTimeout(() => { this.indexBatiment = this.niveauMax; }, 100);
           }
         });
     },
@@ -232,8 +232,8 @@ export default {
       return DECALAGE_INITIAL + index * (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
     },
 
-    decalageGaucheVue (niveau) {
-      return (niveau) * (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
+    decalageGaucheVue (index) {
+      return (index) * (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
     },
 
     sauvegardeEtatPourProchainChargement () {

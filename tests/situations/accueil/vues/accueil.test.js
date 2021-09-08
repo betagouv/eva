@@ -90,7 +90,64 @@ describe('La vue accueil', function () {
     });
   });
 
-  describe('niveauMax', function () {
+  describe('#recupereSituations', function () {
+    afterAll(function () {
+      jest.useRealTimers();
+    });
+
+    it("Récupère les situations quand un utilisateur affiche l'accueil en étant connecté", function (done) {
+      store.dispatch = (evenement) => {
+        expect(evenement).toEqual('recupereSituations');
+        done();
+        return Promise.resolve();
+      };
+      store.state.estConnecte = true;
+      shallowMount(Accueil, {
+        localVue,
+        store
+      });
+    });
+
+    it('Récupère les situations à la connexion', function (done) {
+      let nombreDispatch = 0;
+      store.dispatch = (evenement) => {
+        expect(evenement).toEqual('recupereSituations');
+        nombreDispatch++;
+        return Promise.resolve();
+      };
+      store.state.estConnecte = false;
+      const wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+      expect(nombreDispatch).toEqual(0);
+      store.state.estConnecte = true;
+      wrapper.vm.$nextTick(() => {
+        expect(nombreDispatch).toEqual(1);
+        done();
+      });
+    });
+
+    it("assigne indexBatiment au niveau max a retardement pour avoir l'animation", function (done) {
+      jest.useFakeTimers();
+
+      store.state.estConnecte = true;
+      store.state.situationsFaites = [''];
+      store.dispatch = () => Promise.resolve();
+      const wrapper = shallowMount(Accueil, {
+        localVue,
+        store
+      });
+
+      wrapper.vm.$nextTick(() => {
+        jest.advanceTimersByTime(110);
+        expect(wrapper.vm.indexBatiment).toBe(2);
+        done();
+      });
+    });
+  });
+
+  describe('#niveauMax', function () {
     let wrapper;
 
     beforeEach(function () {
@@ -131,54 +188,6 @@ describe('La vue accueil', function () {
     expect(wrapper.vm.decalageGaucheVue(2)).toBe((LARGEUR_BATIMENT + ESPACEMENT_BATIMENT) * 2);
   });
 
-  it("synchronise l'évaluation quand un utilisateur affiche l'accueil en étant connecté", function (done) {
-    store.dispatch = (evenement) => {
-      expect(evenement).toEqual('recupereSituations');
-      done();
-      return Promise.resolve();
-    };
-    store.state.estConnecte = true;
-    shallowMount(Accueil, {
-      localVue,
-      store
-    });
-  });
-
-  it("synchronise l'évaluation à la connexion", function (done) {
-    let nombreDispatch = 0;
-    store.dispatch = (evenement) => {
-      expect(evenement).toEqual('recupereSituations');
-      nombreDispatch++;
-      return Promise.resolve();
-    };
-    store.state.estConnecte = false;
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
-    expect(nombreDispatch).toEqual(0);
-    store.state.estConnecte = true;
-    wrapper.vm.$nextTick(() => {
-      expect(nombreDispatch).toEqual(1);
-      done();
-    });
-  });
-
-  it('assigne indexBatiment au niveau max aprés avoir chargé les situations', function (done) {
-    store.state.estConnecte = true;
-    store.state.situationsFaites = [''];
-    store.dispatch = () => Promise.resolve();
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
-
-    wrapper.vm.$nextTick(() => {
-      expect(wrapper.vm.indexBatiment).toBe(2);
-      done();
-    });
-  });
-
   it('sauvegarde le niveau pour le prochain chargement', function () {
     const wrapper = shallowMount(Accueil, {
       localVue,
@@ -190,7 +199,7 @@ describe('La vue accueil', function () {
     expect(etat.indexPrecedent).toEqual(2);
   });
 
-  describe('recupereEtatDuPrecedentChargement', function () {
+  describe('#recupereEtatDuPrecedentChargement', function () {
     it("lorsque aucune valeur n'est présente dans localStorage", function () {
       const wrapper = shallowMount(Accueil, {
         localVue,
@@ -213,7 +222,7 @@ describe('La vue accueil', function () {
     });
   });
 
-  describe('termine', function () {
+  describe('#termine', function () {
     let wrapper;
 
     beforeEach(function () {
@@ -235,7 +244,7 @@ describe('La vue accueil', function () {
     });
   });
 
-  describe('precedentDesactivee', function () {
+  describe('#precedentDesactivee', function () {
     let wrapper;
 
     beforeEach(function () {
@@ -256,7 +265,7 @@ describe('La vue accueil', function () {
     });
   });
 
-  describe('suivantDesactivee', function () {
+  describe('#suivantDesactivee', function () {
     let wrapper;
 
     beforeEach(function () {
