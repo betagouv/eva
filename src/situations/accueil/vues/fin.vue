@@ -6,7 +6,7 @@
       <img class="avatar-fin" :src="avatarFin"/>
       <div>
         <h2 v-html="$traduction('accueil.fin.bravo.titre', { nom: nom })"></h2>
-        <div v-if="this.competencesFortes && this.competencesFortes.length != 0">
+        <div v-if="this.evaluationTerminee && this.competencesFortes.length != 0">
           <div class="contenu">
             <p class="message-fin">
             {{ $traduction('accueil.fin.bravo.message') }}
@@ -17,7 +17,7 @@
             @click="suivant"
             >{{ $traduction('accueil.fin.bravo.bouton') }}</button>
         </div>
-        <bouton-deconnexion v-else-if="this.competencesFortes"
+        <bouton-deconnexion v-else-if="this.evaluationTerminee"
           :deconnexion-directe=true />
       </div>
     </div>
@@ -62,7 +62,7 @@ import BoutonDeconnexion from 'accueil/vues/bouton_deconnexion';
 
 export default {
   components: { BoutonDeconnexion },
-  computed: mapState(['competencesFortes', 'nom']),
+  computed: mapState(['competencesFortes', 'evaluationTerminee', 'nom']),
 
   data () {
     return {
