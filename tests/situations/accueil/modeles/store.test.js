@@ -107,6 +107,16 @@ describe("Le store de l'accueil", function () {
       });
     });
 
+    it("se déconnecte si la campagne récupérée n'a pas de situation pour forcer rechargement de la campagne", function () {
+      registreUtilisateur.urlEvaluation = () => '/evaluation';
+      registreCampagne.recupereCampagneCourante = () => {
+        return { libelle: 'libellé campagne' };
+      };
+      const store = creeStore(registreUtilisateur, registreCampagne);
+      store.commit('connecte', 'test');
+      return store.dispatch('recupereSituations').then(() => {
+        expect(store.state.estConnecte).toEqual(false);
+      });
     });
   });
 

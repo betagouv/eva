@@ -104,6 +104,11 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
         const campagne = registreCampagne.recupereCampagneCourante();
         this.state.nomCampagne = campagne.libelle;
 
+        if (!campagne.situations) {
+          commit('deconnecte');
+          return;
+        }
+
         const situations = campagne.situations.map(function (situation, index) {
           return {
             nom: situation.libelle,
