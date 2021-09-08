@@ -1,4 +1,5 @@
 import BaseRegistre from 'commun/infra/base_registre';
+import Cookies from 'js-cookie';
 
 export const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
@@ -74,11 +75,14 @@ export default class RegistreUtilisateur extends BaseRegistre {
   enregistreUtilisateurEnLocal (data) {
     const utilisateur = JSON.stringify(data);
     window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
+    const quatreHeures = 4 / 24;
+    Cookies.set('EVA_ID', data.id, { expires: quatreHeures });
+
     return data;
   }
 
   estConnecte () {
-    return !!this.idEvaluation();
+    return !!Cookies.get('EVA_ID');
   }
 
   nom () {
@@ -109,5 +113,6 @@ export default class RegistreUtilisateur extends BaseRegistre {
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
     window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
     this.emit(CHANGEMENT_CONNEXION);
+    Cookies.remove('EVA_ID');
   }
 }
