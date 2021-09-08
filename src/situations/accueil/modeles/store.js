@@ -100,29 +100,19 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
       deconnecte () {
         return registreUtilisateur.deconnecte();
       },
-      synchroniseEvaluation ({ commit }) {
-        return fetch(registreUtilisateur.urlEvaluation())
-          .then((reponse) => {
-            if (reponse.status === 404) {
-              commit('deconnecte');
-              throw reponse;
-            }
-            return reponse;
-          })
-          .finally((reponse) => {
-            const campagne = registreCampagne.recupereCampagneCourante();
-            this.state.nomCampagne = campagne.libelle;
+      recupereSituations ({ commit }) {
+        const campagne = registreCampagne.recupereCampagneCourante();
+        this.state.nomCampagne = campagne.libelle;
 
-            const situations = campagne.situations.map(function (situation, index) {
-              return {
-                nom: situation.libelle,
-                chemin: `${situation.nom_technique}.html`,
-                identifiant: situation.nom_technique,
-                niveauMinimum: index + 1
-              };
-            });
-            commit('metsAJourSituations', situations);
-          });
+        const situations = campagne.situations.map(function (situation, index) {
+          return {
+            nom: situation.libelle,
+            chemin: `${situation.nom_technique}.html`,
+            identifiant: situation.nom_technique,
+            niveauMinimum: index + 1
+          };
+        });
+        commit('metsAJourSituations', situations);
       },
       termineEvaluation ({ commit }) {
         return fetch(registreUtilisateur.urlEvaluation('fin'), { method: 'POST' })

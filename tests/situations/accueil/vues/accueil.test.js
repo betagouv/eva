@@ -133,7 +133,7 @@ describe('La vue accueil', function () {
 
   it("synchronise l'évaluation quand un utilisateur affiche l'accueil en étant connecté", function (done) {
     store.dispatch = (evenement) => {
-      expect(evenement).toEqual('synchroniseEvaluation');
+      expect(evenement).toEqual('recupereSituations');
       done();
       return Promise.resolve();
     };
@@ -147,7 +147,7 @@ describe('La vue accueil', function () {
   it("synchronise l'évaluation à la connexion", function (done) {
     let nombreDispatch = 0;
     store.dispatch = (evenement) => {
-      expect(evenement).toEqual('synchroniseEvaluation');
+      expect(evenement).toEqual('recupereSituations');
       nombreDispatch++;
       return Promise.resolve();
     };
@@ -168,21 +168,6 @@ describe('La vue accueil', function () {
     store.state.estConnecte = true;
     store.state.situationsFaites = [''];
     store.dispatch = () => Promise.resolve();
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
-
-    wrapper.vm.$nextTick(() => {
-      expect(wrapper.vm.indexBatiment).toBe(2);
-      done();
-    });
-  });
-
-  it('assigne indexBatiment au niveau max même si le chargement des situations à échoué', function (done) {
-    store.state.estConnecte = true;
-    store.state.situationsFaites = [''];
-    store.dispatch = () => Promise.reject(new Error('Pas de réseau'));
     const wrapper = shallowMount(Accueil, {
       localVue,
       store
