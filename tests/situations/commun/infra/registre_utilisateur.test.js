@@ -4,6 +4,7 @@ import RegistreUtilisateur,
   CLEF_IDENTIFIANT,
   CLEF_SITUATIONS_FAITES
 } from 'commun/infra/registre_utilisateur';
+import Cookies from 'js-cookie';
 
 describe('le registre utilisateur', function () {
   function unRegistre (data, urlServeur, enLigne = true) {
@@ -20,6 +21,7 @@ describe('le registre utilisateur', function () {
 
   beforeEach(function () {
     window.localStorage.clear();
+    Cookies.remove('EVA_ID');
   });
 
   describe('quand on est en ligne', function () {
@@ -235,6 +237,7 @@ describe('le registre utilisateur', function () {
           expect(utilisateur.email).toEqual('email@contact.fr');
           expect(utilisateur.telephone).toEqual('0612345678');
           expect(window.localStorage.identifiantUtilisateur).toEqual('{"id":1,"nom":"test","email":"email@contact.fr","telephone":"0612345678"}');
+          expect(Cookies.get('EVA_ID')).toEqual('1');
         });
       });
     });
