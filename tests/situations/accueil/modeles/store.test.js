@@ -120,20 +120,56 @@ describe("Le store de l'accueil", function () {
     });
   });
 
-  it('sait récupérer les deux compétences fortes depuis le serveur', function () {
-    registreUtilisateur.urlEvaluation = (element) => {
-      expect(element).toEqual('fin');
-      return '/evaluation/1/fin';
-    };
-    const fetch = (url) => Promise.resolve({
-      json: () => {
-        return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
-      }
+  describe('Action : terminerEvaluation', function () {
+    let store;
+
+    beforeEach(function () {
+      registreUtilisateur.urlEvaluation = (element) => {
+        expect(element).toEqual('fin');
+        return '/evaluation/1/fin';
+      };
     });
-    const store = creeStore(registreUtilisateur, registreCampagne, fetch);
-    return store.dispatch('termineEvaluation').then(() => {
-      const competencesFortesAttendues = ['comprehension_consigne', 'rapidite'];
-      expect(store.state.competencesFortes).toEqual(competencesFortesAttendues);
+
+    describe('quand la requete se termine avec succès', function () {
+      beforeEach(function () {
+        const fetch = (url) => Promise.resolve({
+          status: 200,
+          json: () => {
+            return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
+          }
+        });
+        store = creeStore(registreUtilisateur, registreCampagne, fetch);
+      });
+
+      it("indiquer par une variable que l'évaluation est terminée", function () {
+        expect(store.state.evaluationTerminee).toBe(false);
+        return store.dispatch('termineEvaluation').then(() => {
+          expect(store.state.evaluationTerminee).toBe(true);
+        });
+      });
+
+      it('sait récupérer les deux compétences fortes depuis le serveur', function () {
+        return store.dispatch('termineEvaluation').then(() => {
+          const competencesFortesAttendues = ['comprehension_consigne', 'rapidite'];
+          expect(store.state.competencesFortes).toEqual(competencesFortesAttendues);
+        });
+      });
+    });
+
+    describe('quand la requete se termine avec une erreur', function () {
+      beforeEach(function () {
+        const fetch = (url) => Promise.resolve({
+          status: 404
+        });
+        store = creeStore(registreUtilisateur, registreCampagne, fetch);
+      });
+
+      it("indiquer que l'évaluation est terminée", function () {
+        expect(store.state.evaluationTerminee).toBe(false);
+        return store.dispatch('termineEvaluation').catch(() => {
+          expect(store.state.evaluationTerminee).toBe(true);
+        });
+      });
     });
   });
 

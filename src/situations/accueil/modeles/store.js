@@ -18,7 +18,8 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
       nom: registreUtilisateur.nom(),
       nomCampagne: '',
       situations: [],
-      competencesFortes: undefined,
+      competencesFortes: [],
+      evaluationTerminee: false,
       situationsFaites: registreUtilisateur.situationsFaites(),
       etat: registreUtilisateur.estConnecte() ? DEMARRE : DECONNECTE
     },
@@ -45,6 +46,10 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
 
       metsAJourCompetencesFortes (state, competencesFortes) {
         state.competencesFortes = competencesFortes.slice(0, 2);
+      },
+
+      metsAJourEvaluationTerminee (state, evaluationTerminee) {
+        state.evaluationTerminee = evaluationTerminee;
       },
 
       demarre (state) {
@@ -122,14 +127,17 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
       termineEvaluation ({ commit }) {
         return fetch(registreUtilisateur.urlEvaluation('fin'), { method: 'POST' })
           .then((reponse) => {
-            if (reponse.status === 404) {
-              throw reponse;
+            if (reponse.status === 200) {
+              return reponse;
             }
-            return reponse;
+            throw reponse;
           })
           .then(reponse => reponse.json())
           .then((json) => {
             commit('metsAJourCompetencesFortes', json.competences_fortes);
+          })
+          .finally(() => {
+            commit('metsAJourEvaluationTerminee', true);
           });
       }
     }

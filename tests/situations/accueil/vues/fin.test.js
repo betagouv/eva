@@ -33,7 +33,8 @@ describe('La vue de fin', function () {
     })();
     store = new Vuex.Store({
       state: {
-        competencesFortes: undefined
+        competencesFortes: [],
+        evaluationTerminee: false
       },
       actions: {
         deconnecte () {}
@@ -49,6 +50,7 @@ describe('La vue de fin', function () {
     store.dispatch = (evenement) => {
       expect(evenement).toEqual('termineEvaluation');
       store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+      store.state.evaluationTerminee = true;
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
@@ -71,6 +73,7 @@ describe('La vue de fin', function () {
         nom: 'comprehension de la consigne',
         description: 'description comprehentsion consigne'
       }];
+      store.state.evaluationTerminee = true;
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
@@ -91,6 +94,7 @@ describe('La vue de fin', function () {
   it("affiche le bouton de deconnexion s'il n'y a pas de compétences fortes", function (done) {
     store.dispatch = (evenement) => {
       store.state.competencesFortes = [];
+      store.state.evaluationTerminee = true;
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
@@ -117,6 +121,7 @@ describe('La vue de fin', function () {
   it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function (done) {
     store.dispatch = (evenement) => {
       store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+      store.state.evaluationTerminee = true;
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
