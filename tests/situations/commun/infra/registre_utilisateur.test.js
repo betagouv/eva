@@ -23,14 +23,14 @@ describe('le registre utilisateur', function () {
     Cookies.remove('EVA_ID');
   });
 
-  describe('#situationsFaites', function () {
+  describe('#situationsFaites()', function () {
     it("retourne un tableau vide quand il n'y a pas de situations faites", function () {
       const registre = new RegistreUtilisateur();
       expect(registre.situationsFaites()).toEqual([]);
     });
   });
 
-  describe('#enregistreSituationFaite', function () {
+  describe('#enregistreSituationFaite()', function () {
     it("ré-initialise la progression au moment de l'inscription", function () {
       const registre = unRegistre({ id: 1, nom: 'autre test' });
       registre.enregistreSituationFaite('tri');
@@ -60,7 +60,7 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#inscris', function () {
+  describe('#inscris()', function () {
     it("émet un événement lorsque le nom de l'utilisateur change", function (done) {
       const registre = unRegistre({ id: 1, nom: 'test' });
       registre.on(CHANGEMENT_CONNEXION, done);
@@ -157,7 +157,7 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#estConnecte', function () {
+  describe('#estConnecte()', function () {
     it("retourne true lorsque l'utilisateur a rempli un nom", function () {
       const registre = unRegistre({ id: 1, nom: 'test' });
       return registre.inscris('test').then(() => {
@@ -171,7 +171,7 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#deconnecte', function () {
+  describe('#deconnecte()', function () {
     it('à la déconnexion, nous ne sommes plus connectés', function () {
       const registre = unRegistre({ id: 1, nom: 'test' });
       return registre.inscris('test').then(() => {
@@ -200,7 +200,7 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#urlEvaluation', function () {
+  describe('#urlEvaluation()', function () {
     it("retourne l'url de l'évaluation", function () {
       const registre = unRegistre({ id: 1, nom: 'test' }, 'http://localhost');
       return registre.inscris('test').then(() => {
@@ -217,7 +217,7 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#enregistreContact', function () {
+  describe('#enregistreContact()', function () {
     describe('quand on est en ligne', function () {
       it("met à jour les informations de l'évaluation", function () {
         const registre = unRegistre({ id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' });
@@ -253,7 +253,7 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#estModeHorsLigne', function () {
+  describe('#estModeHorsLigne()', function () {
     let registre;
 
     beforeEach(function () {
