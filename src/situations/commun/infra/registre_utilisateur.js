@@ -103,10 +103,10 @@ export default class RegistreUtilisateur extends BaseRegistre {
 
   situationsFaites () {
     const situations = window.localStorage.getItem(CLEF_SITUATIONS_FAITES);
-    if (situations) {
-      return JSON.parse(situations);
+    if (!situations) {
+      return [];
     }
-    return [];
+    return JSON.parse(situations);
   }
 
   deconnecte () {
