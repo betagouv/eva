@@ -1,5 +1,6 @@
 import BaseRegistre from 'commun/infra/base_registre';
 import Cookies from 'js-cookie';
+import { v4 as uuidv4 } from 'uuid';
 
 export const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
@@ -14,18 +15,17 @@ export default class RegistreUtilisateur extends BaseRegistre {
         url: `${this.urlServeur}/api/evaluations`,
         data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
         contentType: 'application/json; charset=utf-8',
-        success: (data) => {
-          const utilisateur = this.enregistreUtilisateurEnLocal(data);
+        success: (utilisateur) => {
+          this.enregistreIdClient();
+          this.enregistreUtilisateurEnLocal(utilisateur);
           resolve(utilisateur);
         },
         error: (xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
-            var data = {
-              id: `temporaire_${nom}`,
-              nom: nom
-            };
-            const utilisateur = this.enregistreUtilisateurEnLocal(data);
-            resolve(utilisateur);
+            this.enregistreIdClient();
+            const utilisateur_hors_ligne = { nom: nom };
+            this.enregistreUtilisateurEnLocal(utilisateur_hors_ligne);
+            resolve(utilisateur_hors_ligne);
           } else {
             reject(xhr);
           }
@@ -72,11 +72,14 @@ export default class RegistreUtilisateur extends BaseRegistre {
     }
   }
 
+  enregistreIdClient (identifiantClient = uuidv4()) {
+    const quatreHeures = 4 / 24;
+    Cookies.set('EVA_ID', identifiantClient, { expires: quatreHeures });
+  }
+
   enregistreUtilisateurEnLocal (data) {
     const utilisateur = JSON.stringify(data);
     window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
-    const quatreHeures = 4 / 24;
-    Cookies.set('EVA_ID', data.id, { expires: quatreHeures });
 
     return data;
   }
