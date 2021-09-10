@@ -1,6 +1,7 @@
 import RegistreUtilisateur,
 {
   CHANGEMENT_CONNEXION,
+  CLEF_IDENTIFIANT,
   CLEF_SITUATIONS_FAITES
 } from 'commun/infra/registre_utilisateur';
 import Cookies from 'js-cookie';
@@ -21,6 +22,23 @@ describe('le registre utilisateur', function () {
   beforeEach(function () {
     window.localStorage.clear();
     Cookies.remove('EVA_ID');
+  });
+
+  describe('#idEvaluation()', function () {
+    it("retourne l'identifiant serveur de l'évaluation courante", function () {
+      const utilisateur = { id: 'identifiant' }
+      window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(utilisateur));
+      const registre = new RegistreUtilisateur();
+      expect(registre.idEvaluation()).toEqual('identifiant');
+    });
+  });
+
+  describe('#enregistreIdClient()', function () {
+    it("génère un identifiant client pour l'évaluation", function () {
+      const registre = new RegistreUtilisateur();
+      registre.enregistreIdClient('502fb5e3-23bb-40af-acaa-0101e30ab767');
+      expect(Cookies.get('EVA_ID')).toEqual('502fb5e3-23bb-40af-acaa-0101e30ab767');
+    });
   });
 
   describe('#situationsFaites()', function () {
@@ -135,8 +153,8 @@ describe('le registre utilisateur', function () {
         it('enregistre en local un utilisateur temporaire', function () {
           return registre.inscris('Jean').then((utilisateur) => {
             expect(registre.nom()).toEqual('Jean');
-            expect(registre.idEvaluation()).toEqual('temporaire_Jean');
-            expect(utilisateur).toEqual({ id: 'temporaire_Jean', nom: 'Jean' });
+            expect(registre.idEvaluation()).toEqual(undefined);
+            expect(utilisateur).toEqual({ nom: 'Jean' });
           });
         });
       });
@@ -247,7 +265,6 @@ describe('le registre utilisateur', function () {
           expect(utilisateur.email).toEqual('email@contact.fr');
           expect(utilisateur.telephone).toEqual('0612345678');
           expect(window.localStorage.identifiantUtilisateur).toEqual('{"id":1,"nom":"test","email":"email@contact.fr","telephone":"0612345678"}');
-          expect(Cookies.get('EVA_ID')).toEqual('1');
         });
       });
     });
