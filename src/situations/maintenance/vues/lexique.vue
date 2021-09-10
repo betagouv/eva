@@ -79,7 +79,7 @@ import Touche from './touche';
 import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
 import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
 
-import { isMobile } from 'mobile-device-detect';
+import { isMobile, isIOs, isAndroid } from 'mobile-device-detect';
 
 const DELAI_CROIX = 500;
 
@@ -106,7 +106,7 @@ export default {
       choixFait: null,
       CHOIX_FRANCAIS,
       CHOIX_PASFRANCAIS,
-      estMobile: isMobile
+      estMobile: isMobile || isIOs || isAndroid
     };
   },
 
