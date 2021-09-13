@@ -62,13 +62,8 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  urlEvaluation (element = '') {
-    const urlEvaluation = `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`;
-    if (element.length > 0) {
-      return `${urlEvaluation}/${element}`;
-    } else {
-      return `${urlEvaluation}.json`;
-    }
+  urlFinEvaluation () {
+    return `${this.urlServeur}/api/evaluations/${this.idEvaluation()}/fin`;
   }
 
   enregistreIdClient () {

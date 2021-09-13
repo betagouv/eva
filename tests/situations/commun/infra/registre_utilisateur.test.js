@@ -244,19 +244,12 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#urlEvaluation()', function () {
-    it("retourne l'url de l'évaluation", function () {
-      const registre = unRegistre({ id: 1, nom: 'test' }, 'http://localhost');
-      return registre.inscris('test').then(() => {
-        expect(registre.urlEvaluation()).toEqual('http://localhost/api/evaluations/1.json');
-      });
-    });
-
+  describe('#urlFinEvaluation()', function () {
     it("retourne l'url d'un élément d'une évaluation", function () {
       const registre = unRegistre({ id: 1, nom: 'test' }, 'http://localhost');
       return registre.inscris('test').then(() => {
-        expect(registre.urlEvaluation('termine'))
-          .toEqual('http://localhost/api/evaluations/1/termine');
+        expect(registre.urlFinEvaluation())
+          .toEqual('http://localhost/api/evaluations/1/fin');
       });
     });
   });
