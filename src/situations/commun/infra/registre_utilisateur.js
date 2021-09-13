@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 
 export const CLEF_SITUATIONS_FAITES = 'situationsFaites';
-export const CLEF_IDENTIFIANT = 'identifiantUtilisateur';
 export const CLEF_MODE_HORS_LIGNE = 'modeHorsLigne';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
 
@@ -23,9 +22,9 @@ export default class RegistreUtilisateur extends BaseRegistre {
         error: (xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
             this.enregistreIdClient();
-            const utilisateur_hors_ligne = { nom: nom };
-            this.enregistreUtilisateurEnLocal(utilisateur_hors_ligne);
-            resolve(utilisateur_hors_ligne);
+            const utilisateurHorsLigne = { nom: nom };
+            this.enregistreUtilisateurEnLocal(utilisateurHorsLigne);
+            resolve(utilisateurHorsLigne);
           } else {
             reject(xhr);
           }
@@ -44,16 +43,16 @@ export default class RegistreUtilisateur extends BaseRegistre {
         url: `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`,
         data: JSON.stringify({ email: email, telephone: telephone }),
         contentType: 'application/json; charset=utf-8',
-        success: (data) => {
-          const utilisateur = this.enregistreUtilisateurEnLocal(data);
+        success: (utilisateur) => {
+          this.enregistreUtilisateurEnLocal(utilisateur);
           resolve(utilisateur);
         },
         error: (xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
-            const data = this.parseLocalStorage(CLEF_IDENTIFIANT);
-            data.email = email;
-            data.telephone = telephone;
-            const utilisateur = this.enregistreUtilisateurEnLocal(data);
+            const utilisateur = this.evaluationCourante();
+            utilisateur.email = email;
+            utilisateur.telephone = telephone;
+            this.enregistreUtilisateurEnLocal(utilisateur);
             resolve(utilisateur);
           } else {
             reject(xhr);
@@ -72,28 +71,47 @@ export default class RegistreUtilisateur extends BaseRegistre {
     }
   }
 
-  enregistreIdClient (identifiantClient = uuidv4()) {
+  enregistreIdClient () {
     const quatreHeures = 4 / 24;
-    Cookies.set('EVA_ID', identifiantClient, { expires: quatreHeures });
+    Cookies.set('EVA_ID', this.genereIdClient(), { expires: quatreHeures });
+  }
+
+  genereIdClient () {
+    return uuidv4();
   }
 
   enregistreUtilisateurEnLocal (data) {
     const utilisateur = JSON.stringify(data);
-    window.localStorage.setItem(CLEF_IDENTIFIANT, utilisateur);
+    window.localStorage.setItem(this.cleEvaluationPourLocalStorage(this.idClient()), utilisateur);
+  }
 
-    return data;
+  evaluationCourante () {
+    return this.evaluation(this.idClient());
   }
 
   estConnecte () {
-    return !!Cookies.get('EVA_ID');
+    return !!this.idClient();
   }
 
   nom () {
-    return this.parseLocalStorage(CLEF_IDENTIFIANT).nom;
+    return this.evaluationCourante().nom;
   }
 
   idEvaluation () {
-    return this.parseLocalStorage(CLEF_IDENTIFIANT).id;
+    return this.evaluationCourante().id;
+  }
+
+  idClient () {
+    return Cookies.get('EVA_ID');
+  }
+
+  evaluation (idClient) {
+    const cle = this.cleEvaluationPourLocalStorage(idClient);
+    return this.parseLocalStorage(cle);
+  }
+
+  cleEvaluationPourLocalStorage (idClient) {
+    return `evaluation_${idClient}`;
   }
 
   enregistreSituationFaite (situation) {
@@ -114,7 +132,6 @@ export default class RegistreUtilisateur extends BaseRegistre {
 
   deconnecte () {
     Cookies.remove('EVA_ID');
-    window.localStorage.removeItem(CLEF_IDENTIFIANT);
     window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
     this.emit(CHANGEMENT_CONNEXION);
   }

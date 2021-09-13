@@ -1,7 +1,6 @@
 import RegistreUtilisateur,
 {
   CHANGEMENT_CONNEXION,
-  CLEF_IDENTIFIANT,
   CLEF_SITUATIONS_FAITES
 } from 'commun/infra/registre_utilisateur';
 import Cookies from 'js-cookie';
@@ -26,17 +25,31 @@ describe('le registre utilisateur', function () {
 
   describe('#idEvaluation()', function () {
     it("retourne l'identifiant serveur de l'évaluation courante", function () {
-      const utilisateur = { id: 'identifiant' }
-      window.localStorage.setItem(CLEF_IDENTIFIANT, JSON.stringify(utilisateur));
+      const utilisateur = { id: 'identifiant' };
       const registre = new RegistreUtilisateur();
+      registre.enregistreIdClient();
+      registre.enregistreUtilisateurEnLocal(utilisateur);
+
       expect(registre.idEvaluation()).toEqual('identifiant');
+    });
+  });
+
+  describe('#idClient()', function () {
+    it("retourne l'identifiant client de l'évaluation courante", function () {
+      const registre = new RegistreUtilisateur();
+      jest.spyOn(registre, 'genereIdClient').mockImplementation(() => '502fb5e3-23bb-40af-acaa-0101e30ab767');
+
+      registre.enregistreIdClient();
+      expect(registre.idClient()).toEqual('502fb5e3-23bb-40af-acaa-0101e30ab767');
     });
   });
 
   describe('#enregistreIdClient()', function () {
     it("génère un identifiant client pour l'évaluation", function () {
       const registre = new RegistreUtilisateur();
-      registre.enregistreIdClient('502fb5e3-23bb-40af-acaa-0101e30ab767');
+      jest.spyOn(registre, 'genereIdClient').mockImplementation(() => '502fb5e3-23bb-40af-acaa-0101e30ab767');
+
+      registre.enregistreIdClient();
       expect(Cookies.get('EVA_ID')).toEqual('502fb5e3-23bb-40af-acaa-0101e30ab767');
     });
   });
@@ -189,6 +202,19 @@ describe('le registre utilisateur', function () {
     });
   });
 
+  describe('#enregistreUtilisateurEnLocal()', function () {
+    const registre = new RegistreUtilisateur();
+    const data = { id: 1 };
+
+    it("enregistre l'utilisateur dans le localStorage", function () {
+      jest.spyOn(registre, 'genereIdClient').mockImplementation(() => 'identifiant_client');
+      registre.enregistreIdClient();
+      registre.enregistreUtilisateurEnLocal(data);
+
+      expect(window.localStorage.getItem('evaluation_identifiant_client')).toBe(JSON.stringify(data));
+    });
+  });
+
   describe('#deconnecte()', function () {
     it('à la déconnexion, nous ne sommes plus connectés', function () {
       const registre = unRegistre({ id: 1, nom: 'test' });
@@ -259,12 +285,14 @@ describe('le registre utilisateur', function () {
       });
 
       it("enregistre les informations de l'évaluation en local", function () {
-        window.localStorage.identifiantUtilisateur = '{"id":1,"nom":"test"}';
+        const data = { id: 1, nom: 'test' };
+        registre.enregistreIdClient('identifiant_client');
+        registre.enregistreUtilisateurEnLocal(data);
 
         return registre.enregistreContact('email@contact.fr', '0612345678').then((utilisateur) => {
           expect(utilisateur.email).toEqual('email@contact.fr');
           expect(utilisateur.telephone).toEqual('0612345678');
-          expect(window.localStorage.identifiantUtilisateur).toEqual('{"id":1,"nom":"test","email":"email@contact.fr","telephone":"0612345678"}');
+          expect(registre.evaluationCourante()).toEqual({ id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' });
         });
       });
     });
