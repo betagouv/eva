@@ -16,44 +16,48 @@ describe('le journal', function () {
     journal = new Journal(mockMaintenant, sessionId, identifiantSituation, mockDepot, registre);
   });
 
-  it('enregistre un événement', function () {
-    registre.idEvaluation = () => 'identifiant evaluation';
-    journal.enregistre(new Evenement('test'));
+  describe('#enregistre()', function () {
+    it('enregistre un événement', function () {
+      registre.idEvaluation = () => 'identifiant evaluation';
+      journal.enregistre(new Evenement('test'));
 
-    const enregistrement = mockDepot.evenements();
-    expect(enregistrement.length).toBe(1);
-    expect(new Set(Object.keys(enregistrement[0])))
-      .toEqual(new Set([
-        'nom',
-        'date',
-        'session_id',
-        'situation',
-        'evaluation_id',
-        'position',
-        'donnees'
-      ]));
-    expect(enregistrement[0]).toHaveProperty('nom', 'test');
-    expect(enregistrement[0]).toHaveProperty('date', 123);
-    expect(enregistrement[0]).toHaveProperty('session_id', sessionId);
-    expect(enregistrement[0]).toHaveProperty('situation', identifiantSituation);
-    expect(enregistrement[0]).toHaveProperty('evaluation_id', 'identifiant evaluation');
-    expect(enregistrement[0]).toHaveProperty('position', 0);
+      const enregistrement = mockDepot.evenements();
+      expect(enregistrement.length).toBe(1);
+      expect(new Set(Object.keys(enregistrement[0])))
+        .toEqual(new Set([
+          'nom',
+          'date',
+          'session_id',
+          'situation',
+          'evaluation_id',
+          'position',
+          'donnees'
+        ]));
+      expect(enregistrement[0]).toHaveProperty('nom', 'test');
+      expect(enregistrement[0]).toHaveProperty('date', 123);
+      expect(enregistrement[0]).toHaveProperty('session_id', sessionId);
+      expect(enregistrement[0]).toHaveProperty('situation', identifiantSituation);
+      expect(enregistrement[0]).toHaveProperty('evaluation_id', 'identifiant evaluation');
+      expect(enregistrement[0]).toHaveProperty('position', 0);
+    });
+
+    it('incrémente la position à chaque événement', function () {
+      journal.enregistre(new Evenement('événement 1'));
+      journal.enregistre(new Evenement('événement 2'));
+      const enregistrement = mockDepot.evenements();
+      expect(enregistrement[0]).toHaveProperty('position', 0);
+      expect(enregistrement[1]).toHaveProperty('position', 1);
+    });
   });
 
-  it('incrémente la position à chaque événement', function () {
-    journal.enregistre(new Evenement('événement 1'));
-    journal.enregistre(new Evenement('événement 2'));
-    const enregistrement = mockDepot.evenements();
-    expect(enregistrement[0]).toHaveProperty('position', 0);
-    expect(enregistrement[1]).toHaveProperty('position', 1);
-  });
-
-  it('enregistre la situation faite', function (done) {
-    registre.enregistreSituationFaite = (nomSituation) => {
-      expect(nomSituation).toEqual('nom situation');
-      done();
-    };
-    journal.situation = 'nom situation';
-    journal.enregistreSituationFaite();
+  describe('#enregistreSituationFaite()', function () {
+    it('enregistre la situation faite', function (done) {
+      registre.enregistreSituationFaite = (nomSituation) => {
+        expect(nomSituation).toEqual('nom situation');
+        done();
+      };
+      journal.situation = 'nom situation';
+      journal.enregistreSituationFaite();
+    });
   });
 });
