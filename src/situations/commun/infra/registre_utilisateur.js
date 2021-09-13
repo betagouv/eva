@@ -110,9 +110,9 @@ export default class RegistreUtilisateur extends BaseRegistre {
   }
 
   deconnecte () {
+    Cookies.remove('EVA_ID');
     window.localStorage.removeItem(CLEF_IDENTIFIANT);
     window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
     this.emit(CHANGEMENT_CONNEXION);
-    Cookies.remove('EVA_ID');
   }
 }

@@ -190,6 +190,11 @@ describe('le registre utilisateur', function () {
 
     it("émet un événement lorsque l'utilisateur se déconnecte", function (done) {
       const registre = new RegistreUtilisateur();
+      jest.spyOn(Cookies, 'remove');
+      registre.emit = () => {
+        expect(Cookies.remove).toHaveBeenCalled();
+        done();
+      };
       registre.on(CHANGEMENT_CONNEXION, done);
       registre.deconnecte();
     });
