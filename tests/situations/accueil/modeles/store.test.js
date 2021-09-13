@@ -89,7 +89,6 @@ describe("Le store de l'accueil", function () {
 
   describe('Action : recupereSituations', function () {
     it('sait récupérer les situations avec le registreCampagne', function () {
-      registreUtilisateur.urlEvaluation = () => '/evaluation';
       registreCampagne.recupereCampagneCourante = () => {
         const situation = { nom_technique: 'nom_technique', libelle: 'libelle' };
         return { situations: [situation], libelle: 'libellé campagne' };
@@ -108,7 +107,6 @@ describe("Le store de l'accueil", function () {
     });
 
     it("se déconnecte si la campagne récupérée n'a pas de situation pour forcer rechargement de la campagne", function () {
-      registreUtilisateur.urlEvaluation = () => '/evaluation';
       registreCampagne.recupereCampagneCourante = () => {
         return { libelle: 'libellé campagne' };
       };
@@ -124,20 +122,22 @@ describe("Le store de l'accueil", function () {
     let store;
 
     beforeEach(function () {
-      registreUtilisateur.urlEvaluation = (element) => {
-        expect(element).toEqual('fin');
+      registreUtilisateur.urlFinEvaluation = () => {
         return '/evaluation/1/fin';
       };
     });
 
     describe('quand la requete se termine avec succès', function () {
       beforeEach(function () {
-        const fetch = (url) => Promise.resolve({
-          status: 200,
-          json: () => {
-            return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
-          }
-        });
+        const fetch = (url) => {
+          expect(url).toEqual('/evaluation/1/fin');
+          return Promise.resolve({
+            status: 200,
+            json: () => {
+              return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
+            }
+          });
+        };
         store = creeStore(registreUtilisateur, registreCampagne, fetch);
       });
 

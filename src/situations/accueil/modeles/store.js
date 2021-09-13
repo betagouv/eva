@@ -125,7 +125,7 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
         commit('metsAJourSituations', situations);
       },
       termineEvaluation ({ commit }) {
-        return fetch(registreUtilisateur.urlEvaluation('fin'), { method: 'POST' })
+        return fetch(registreUtilisateur.urlFinEvaluation(), { method: 'POST' })
           .then((reponse) => {
             if (reponse.status === 200) {
               return reponse;
