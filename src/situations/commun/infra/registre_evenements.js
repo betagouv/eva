@@ -1,9 +1,8 @@
 import jQuery from 'jquery';
 import BaseRegistre from 'commun/infra/base_registre';
-import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
-export default class DepotJournal extends BaseRegistre {
-  constructor ($ = jQuery, registreUtilisateur = new RegistreUtilisateur()) {
+export default class RegistreEvenements extends BaseRegistre {
+  constructor (registreUtilisateur, $ = jQuery) {
     super($);
     this.promesses = [];
     this.registreUtilisateur = registreUtilisateur;

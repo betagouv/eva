@@ -1,20 +1,20 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import DepotJournal from 'commun/infra/depot_journal';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
+import RegistreEvenements from 'commun/infra/registre_evenements';
 
 export class Journal {
-  constructor (maintenant, session, situation, depot, registre) {
+  constructor (maintenant, session, situation, registreEvenements, registreUtilisateur) {
     this.maintenant = maintenant;
-    this.depot = depot;
     this.sessionId = session;
     this.situation = situation;
-    this.registreUtilisateur = registre;
+    this.registreUtilisateur = registreUtilisateur;
+    this.registreEvenements = registreEvenements;
     this.position = 0;
   }
 
   attendFinEnregistrement () {
-    return this.depot.attendFinEnregistrement();
+    return this.registreEvenements.attendFinEnregistrement();
   }
 
   enregistre (evenement, timeout) {
@@ -27,7 +27,7 @@ export class Journal {
       evaluation_id: this.registreUtilisateur.idEvaluation(),
       position: this.position++
     };
-    return this.depot.enregistre(payLoad, timeout);
+    return this.registreEvenements.enregistre(payLoad, timeout);
   }
 
   enregistreSituationFaite () {
@@ -37,7 +37,7 @@ export class Journal {
 
 export default function creeJournalPourSituation (identifiantSituation) {
   const session = uuidv4();
-  const depotJournal = new DepotJournal();
   const registreUtilisateur = new RegistreUtilisateur();
-  return new Journal(Date.now, session, identifiantSituation, depotJournal, registreUtilisateur);
+  const registreEvenements = new RegistreEvenements(registreUtilisateur);
+  return new Journal(Date.now, session, identifiantSituation, registreEvenements, registreUtilisateur);
 }
