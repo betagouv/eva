@@ -22,6 +22,11 @@ export default class BaseRegistre extends EventEmitter {
     return this.parseLocalStorage(CLEF_MODE_HORS_LIGNE, false);
   }
 
+  enregistreEnLocale (cle, data) {
+    const dataStr = JSON.stringify(data);
+    window.localStorage.setItem(cle, dataStr);
+  }
+
   parseLocalStorage (clef, defaut = {}) {
     const valeur = window.localStorage.getItem(clef) || JSON.stringify(defaut);
     try {

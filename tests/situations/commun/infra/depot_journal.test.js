@@ -49,7 +49,7 @@ describe('le depot du journal', function () {
         window.localStorage.setItem('evenements_id_client', JSON.stringify([{ id: 1 }]));
         const payload = { id: 2 };
 
-        depot.enregistreEnLocale(payload);
+        depot.enregistreEvenementEnLocale(payload);
 
         const resultat = [{ id: 1 }, { id: 2 }];
         expect(window.localStorage.getItem('evenements_id_client')).toBe(JSON.stringify(resultat));
@@ -60,7 +60,7 @@ describe('le depot du journal', function () {
       it("ajoute l'évènement dans le localStorage", function () {
         const payload = { id: 1 };
 
-        depot.enregistreEnLocale(payload);
+        depot.enregistreEvenementEnLocale(payload);
 
         const resultat = [{ id: 1 }];
         expect(window.localStorage.getItem('evenements_id_client')).toBe(JSON.stringify(resultat));

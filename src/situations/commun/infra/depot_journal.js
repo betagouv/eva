@@ -1,15 +1,16 @@
 import jQuery from 'jquery';
+import BaseRegistre from 'commun/infra/base_registre';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
-export default class DepotJournal {
+export default class DepotJournal extends BaseRegistre {
   constructor ($ = jQuery, registreUtilisateur = new RegistreUtilisateur()) {
-    this.$ = $;
-    this.enregistrements = [];
+    super($);
+    this.promesses = [];
     this.registreUtilisateur = registreUtilisateur;
   }
 
   attendFinEnregistrement () {
-    return Promise.all(this.enregistrements);
+    return Promise.all(this.promesses);
   }
 
   enregistre (payload, timeout = 60000) {
@@ -24,7 +25,7 @@ export default class DepotJournal {
         success: resolve,
         error: (xhr) => {
           if (this.registreUtilisateur.activeModeHorsLigne(xhr)) {
-            this.enregistreEnLocale(payload);
+            this.enregistreEvenementEnLocale(payload);
             resolve(payload);
           } else {
             if (Date.now() - datePremierAppel < timeout) {
@@ -40,30 +41,17 @@ export default class DepotJournal {
       };
       this.$.ajax(settingsAjax);
     });
-    this.enregistrements.push(promesseDEnregistrement);
+    this.promesses.push(promesseDEnregistrement);
     return promesseDEnregistrement;
   }
 
-  enregistreEnLocale (payload) {
-    let evenements = this.parseLocalStorage(this.cleEvenementsPourLocalStorage());
-    if (Object.keys(evenements).length === 0) { evenements = []; }
-
+  enregistreEvenementEnLocale (payload) {
+    const evenements = this.parseLocalStorage(this.cleEvenementsPourLocalStorage(), []);
     evenements.push(payload);
-
-    const payloadStr = JSON.stringify(evenements);
-    window.localStorage.setItem(this.cleEvenementsPourLocalStorage(), payloadStr);
+    this.enregistreEnLocale(this.cleEvenementsPourLocalStorage(), evenements);
   }
 
   cleEvenementsPourLocalStorage () {
     return `evenements_${this.registreUtilisateur.idClient()}`;
-  }
-
-  parseLocalStorage (clef, defaut = {}) {
-    const valeur = window.localStorage.getItem(clef) || JSON.stringify(defaut);
-    try {
-      return JSON.parse(valeur);
-    } catch (ex) {
-      return defaut;
-    }
   }
 }
