@@ -10,8 +10,7 @@ export default class RegistreCampagne extends BaseRegistre {
         url: `${this.urlServeur}/api/campagnes/${encodeURI(codeCampagne)}`,
         contentType: 'application/json; charset=utf-8',
         success: (campagne) => {
-          const campagneStr = JSON.stringify(campagne);
-          window.localStorage.setItem(this.cleCampagnePourLocalStorage(codeCampagne), campagneStr);
+          this.enregistreEnLocale(this.cleCampagnePourLocalStorage(codeCampagne), campagne);
           resolve(campagne);
         },
         error: (xhr) => {

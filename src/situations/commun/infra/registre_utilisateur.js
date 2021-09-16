@@ -76,8 +76,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
   }
 
   enregistreUtilisateurEnLocal (data) {
-    const utilisateur = JSON.stringify(data);
-    window.localStorage.setItem(this.cleEvaluationPourLocalStorage(this.idClient()), utilisateur);
+    this.enregistreEnLocale(this.cleEvaluationPourLocalStorage(this.idClient()), data);
   }
 
   evaluationCourante () {
