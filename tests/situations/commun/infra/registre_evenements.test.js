@@ -1,7 +1,7 @@
-import DepotJournal from 'commun/infra/depot_journal';
+import RegistreEvenements from 'commun/infra/registre_evenements';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
-describe('le depot du journal', function () {
+describe('le registre des événements', function () {
   const requetes = [];
   let depot;
   let registreUtilisateur;
@@ -15,7 +15,7 @@ describe('le depot du journal', function () {
     window.localStorage.clear();
     requetes.length = 0;
 
-    depot = new DepotJournal({ ajax (params) { requetes.push(params); } }, registreUtilisateur);
+    depot = new RegistreEvenements(registreUtilisateur, { ajax (params) { requetes.push(params); } });
   });
 
   describe('#enregistre()', function () {
