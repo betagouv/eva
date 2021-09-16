@@ -26,7 +26,7 @@ export default class DepotJournal extends BaseRegistre {
         error: (xhr) => {
           if (this.registreUtilisateur.activeModeHorsLigne(xhr)) {
             this.enregistreEvenementEnLocale(payload);
-            resolve(payload);
+            resolve();
           } else {
             if (Date.now() - datePremierAppel < timeout) {
               setTimeout(() => {

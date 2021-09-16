@@ -3,30 +3,78 @@ import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 
 describe('le depot du journal', function () {
   const requetes = [];
+  let depot;
+  let registreUtilisateur;
+
+  beforeAll(function () {
+    registreUtilisateur = new RegistreUtilisateur();
+    jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => 'id_client');
+  });
 
   beforeEach(function () {
     window.localStorage.clear();
+    requetes.length = 0;
+
+    depot = new DepotJournal({ ajax (params) { requetes.push(params); } }, registreUtilisateur);
   });
 
   describe('#enregistre()', function () {
-    it('fait un POST des lignes du journal vers le serveur', function () {
-      const depot = new DepotJournal({ ajax (params) { requetes.push(params); } });
-      depot.enregistre({ autreCle: 'valeur2', description: { cle: 'valeur2' } });
+    describe('quand on est en ligne', function () {
+      beforeEach(function () {
+        jest.spyOn(registreUtilisateur, 'activeModeHorsLigne').mockImplementation(() => false);
+      });
 
-      expect(requetes.length).toBe(1);
-      expect(requetes[0].type).toBe('POST');
+      afterAll(function () {
+        jest.useRealTimers();
+      });
+
+      it('fait un POST de chaque evenement du journal vers le serveur', function () {
+        depot.enregistre({ autreCle: 'valeur2', description: { cle: 'valeur2' } });
+
+        expect(requetes.length).toBe(1);
+        expect(requetes[0].type).toBe('POST');
+        expect(requetes[0].data)
+          .toEqual('{"autreCle":"valeur2","description":{"cle":"valeur2"}}');
+      });
+
+      it("retourne une promesse d'enregistrement", function (done) {
+        depot.enregistre({}).then(done);
+
+        requetes[0].success();
+      });
+
+      it('re-essaye si le POST échoue', function (done) {
+        jest.useFakeTimers();
+        depot.enregistre({}).then(done);
+
+        expect(requetes.length).toBe(1);
+        requetes[0].error('xhr quelconque');
+
+        jest.advanceTimersByTime(110);
+
+        expect(requetes.length).toBe(2);
+        requetes[1].success();
+      });
     });
 
-    it('retourne une promesse standard javascript', function () {
-      const depot = new DepotJournal({ ajax (params) {} });
+    describe('quand on est hors ligne', function () {
+      beforeEach(function () {
+        jest.spyOn(registreUtilisateur, 'activeModeHorsLigne').mockImplementation(() => true);
+      });
 
-      expect(depot.enregistre({})).toBeInstanceOf(Promise);
+      it('tente un POST puis enregistre en local', function (done) {
+        depot.enregistre({}).then(done);
+
+        expect(requetes.length).toBe(1);
+        requetes[0].error();
+
+        expect(window.localStorage.getItem('evenements_id_client')).toBe('[{}]');
+      });
     });
   });
 
   describe('#attendFinEnregistrement()', function () {
     it('peut attendre la fin de tous les enregistrements', function (done) {
-      const depot = new DepotJournal({ ajax (params) { requetes.push(params); } });
       depot.enregistre({});
       depot.enregistre({});
 
@@ -36,44 +84,29 @@ describe('le depot du journal', function () {
     });
   });
 
-  describe('#enregistreEnLocale()', function () {
-    const registre = new RegistreUtilisateur();
-    const depot = new DepotJournal({ ajax (params) { requetes.push(params); } }, registre);
+  describe('#enregistreEvenementEnLocale()', function () {
+    it('ajoute un premier évènement dans le localStorage', function () {
+      const payload = { id: 1 };
 
-    beforeEach(function () {
-      registre.idClient = function () { return 'id_client'; };
+      depot.enregistreEvenementEnLocale(payload);
+
+      const resultat = JSON.stringify([{ id: 1 }]);
+      expect(window.localStorage.getItem('evenements_id_client')).toBe(resultat);
     });
 
-    describe("quand il y a déjà des événements d'enregistrés", function () {
-      it('ajoute un nouvel évènement à la liste', function () {
-        window.localStorage.setItem('evenements_id_client', JSON.stringify([{ id: 1 }]));
-        const payload = { id: 2 };
+    it('ajoute un nouvel évènement à une liste existante', function () {
+      window.localStorage.setItem('evenements_id_client', JSON.stringify([{ id: 1 }]));
+      const payload = { id: 2 };
 
-        depot.enregistreEvenementEnLocale(payload);
+      depot.enregistreEvenementEnLocale(payload);
 
-        const resultat = [{ id: 1 }, { id: 2 }];
-        expect(window.localStorage.getItem('evenements_id_client')).toBe(JSON.stringify(resultat));
-      });
-    });
-
-    describe("quand il n'y a pas d'événements d'enregistrés", function () {
-      it("ajoute l'évènement dans le localStorage", function () {
-        const payload = { id: 1 };
-
-        depot.enregistreEvenementEnLocale(payload);
-
-        const resultat = [{ id: 1 }];
-        expect(window.localStorage.getItem('evenements_id_client')).toBe(JSON.stringify(resultat));
-      });
+      const resultat = JSON.stringify([{ id: 1 }, { id: 2 }]);
+      expect(window.localStorage.getItem('evenements_id_client')).toBe(resultat);
     });
   });
 
   describe('#cleEvenementsPourLocalStorage()', function () {
     it("retourne la clé pour les événements d'un id client", function () {
-      const registre = new RegistreUtilisateur();
-      const depot = new DepotJournal({ ajax (params) { requetes.push(params); } }, registre);
-      registre.idClient = function () { return 'id_client'; };
-
       expect(depot.cleEvenementsPourLocalStorage()).toBe('evenements_id_client');
     });
   });
