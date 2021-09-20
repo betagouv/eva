@@ -11,11 +11,16 @@ import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 import RegistreCampagne from 'commun/infra/registre_campagne';
 import DepotRessourcesAccueil from 'accueil/infra/depot_ressources_accueil';
 import { erreurVue } from 'commun/infra/report_erreurs';
+import Synchronisateur from 'commun/infra/synchronisateur';
 
 Vue.config.errorHandler = erreurVue;
 
 function afficheAccueil (pointInsertion) {
   const registreUtilisateur = new RegistreUtilisateur();
+
+  const synchronisateur = new Synchronisateur(registreUtilisateur);
+  window.addEventListener('online', () => { synchronisateur.recupereReseau(); });
+
   const registreCampagne = new RegistreCampagne();
 
   const depotRessources = new DepotRessourcesAccueil();
