@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const CLEF_SITUATIONS_FAITES = 'situationsFaites';
 export const CLEF_MODE_HORS_LIGNE = 'modeHorsLigne';
 export const CHANGEMENT_CONNEXION = 'changementConnexion';
+export const PREFIX_EVALUATIONS = 'evaluation_';
 
 export default class RegistreUtilisateur extends BaseRegistre {
   inscris (nom, codeCampagne) {
@@ -79,6 +80,15 @@ export default class RegistreUtilisateur extends BaseRegistre {
     this.enregistreEnLocale(this.cleEvaluationPourLocalStorage(this.idClient()), data);
   }
 
+  listeEvaluationsLocales () {
+    return Object.keys(localStorage)
+      .filter((k) => k.startsWith(PREFIX_EVALUATIONS))
+      .reduce((liste, k) => {
+        const idClient = k.replace(PREFIX_EVALUATIONS, '');
+        return { ...liste, [idClient]: JSON.parse(localStorage.getItem(k)) };
+      }, {});
+  }
+
   evaluationCourante () {
     return this.evaluation(this.idClient());
   }
@@ -105,7 +115,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
   }
 
   cleEvaluationPourLocalStorage (idClient) {
-    return `evaluation_${idClient}`;
+    return `${PREFIX_EVALUATIONS}${idClient}`;
   }
 
   enregistreSituationFaite (situation) {
