@@ -7,8 +7,12 @@ export default class Synchronisateur {
     const evaluations = this.registreUtilisateur.listeEvaluationsLocales();
 
     Object.entries(evaluations).forEach(([idClient, evaluation]) => {
-      const data = { nom: evaluation.nom, code_campagne: evaluation.code_campagne };
-      this.registreUtilisateur.creeEvaluation(data);
+      if (evaluation.id) {
+        this.registreUtilisateur.enregistreContact(evaluation.email, evaluation.telephone);
+      } else {
+        const data = { nom: evaluation.nom, code_campagne: evaluation.code_campagne };
+        this.registreUtilisateur.creeEvaluation(data);
+      }
     });
   }
 }
