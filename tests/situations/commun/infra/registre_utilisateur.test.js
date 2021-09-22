@@ -164,10 +164,10 @@ describe('le registre utilisateur', function () {
         });
 
         it('enregistre en local un utilisateur temporaire', function () {
-          return registre.inscris('Jean').then((utilisateur) => {
+          return registre.inscris('Jean', 'CODE').then((utilisateur) => {
             expect(registre.nom()).toEqual('Jean');
             expect(registre.idEvaluation()).toEqual(undefined);
-            expect(utilisateur).toEqual({ nom: 'Jean' });
+            expect(utilisateur).toEqual({ nom: 'Jean', code_campagne: 'CODE' });
           });
         });
       });
