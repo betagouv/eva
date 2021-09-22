@@ -9,11 +9,12 @@ export const PREFIX_EVALUATIONS = 'evaluation_';
 
 export default class RegistreUtilisateur extends BaseRegistre {
   inscris (nom, codeCampagne) {
+    const data = { nom: nom, code_campagne: codeCampagne };
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
         url: `${this.urlServeur}/api/evaluations`,
-        data: JSON.stringify({ nom: nom, code_campagne: codeCampagne }),
+        data: JSON.stringify(data),
         contentType: 'application/json; charset=utf-8',
         success: (utilisateur) => {
           this.enregistreIdClient();
@@ -23,9 +24,8 @@ export default class RegistreUtilisateur extends BaseRegistre {
         error: (xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
             this.enregistreIdClient();
-            const utilisateurHorsLigne = { nom: nom };
-            this.enregistreUtilisateurEnLocal(utilisateurHorsLigne);
-            resolve(utilisateurHorsLigne);
+            this.enregistreUtilisateurEnLocal(data);
+            resolve(data);
           } else {
             reject(xhr);
           }
