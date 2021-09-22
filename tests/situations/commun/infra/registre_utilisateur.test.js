@@ -215,6 +215,20 @@ describe('le registre utilisateur', function () {
     });
   });
 
+  describe('#listeEvaluationsLocales', function () {
+    const registre = new RegistreUtilisateur();
+    it('retourne les évaluations', function () {
+      window.localStorage.setItem('campagne_CODE', JSON.stringify({ id: 1 }));
+      window.localStorage.setItem('evaluation_1', JSON.stringify({ id: 1 }));
+      window.localStorage.setItem('campagne_CODE2', JSON.stringify({ id: 1 }));
+      window.localStorage.setItem('evaluation_2', JSON.stringify({ id: 2 }));
+      expect(registre.listeEvaluationsLocales()).toEqual({
+        1: { id: 1 },
+        2: { id: 2 }
+      });
+    });
+  });
+
   describe('#deconnecte()', function () {
     it('à la déconnexion, nous ne sommes plus connectés', function () {
       const registre = unRegistre({ id: 1, nom: 'test' });

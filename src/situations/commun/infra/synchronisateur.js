@@ -4,6 +4,6 @@ export default class Synchronisateur {
   }
 
   recupereReseau (event) {
-    console.log("J'ai récupéré le réseau en vrai");
+    const evaluations = this.registreUtilisateur.listeEvaluationsLocales();
   }
 }
