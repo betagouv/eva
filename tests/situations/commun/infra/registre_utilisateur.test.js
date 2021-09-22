@@ -91,6 +91,22 @@ describe('le registre utilisateur', function () {
     });
   });
 
+  describe('#creeEvaluation()', function () {
+    it("permet d'inscrire et de récupérer un utilisateur", function () {
+      const data = { id: 1, nom: 'mon nom' };
+      const mockJQuery = {
+        ajax (options) {
+          expect(options.data).toEqual(JSON.stringify(data));
+          options.success(data);
+        }
+      };
+      const registre = new RegistreUtilisateur(mockJQuery, 'url quelconque');
+      return registre.creeEvaluation(data).then((utilisateur) => {
+        expect(utilisateur).toEqual(data);
+      });
+    });
+  });
+
   describe('#inscris()', function () {
     it("émet un événement lorsque le nom de l'utilisateur change", function (done) {
       const registre = unRegistre({ id: 1, nom: 'test' });

@@ -6,9 +6,9 @@ describe('Synchronisateur', function () {
     window.localStorage.setItem('evaluation_1', JSON.stringify({ nom: 'Marcelle', code_campagne: 'CODE' }));
     window.localStorage.setItem('evaluation_2', JSON.stringify({ nom: 'Clement', code_campagne: 'CODE' }));
     const registreUtilisateur = new RegistreUtilisateur();
-    const inscris = jest.spyOn(registreUtilisateur, 'inscris');
+    const creeEvaluation = jest.spyOn(registreUtilisateur, 'creeEvaluation');
     new Synchronisateur(registreUtilisateur).recupereReseau();
-    expect(inscris).toHaveBeenCalledTimes(2);
-    expect(inscris).toHaveBeenLastCalledWith('Clement', 'CODE');
+    expect(creeEvaluation).toHaveBeenCalledTimes(2);
+    expect(creeEvaluation).toHaveBeenLastCalledWith({ nom: 'Clement', code_campagne: 'CODE' });
   });
 });

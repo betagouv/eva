@@ -7,7 +7,8 @@ export default class Synchronisateur {
     const evaluations = this.registreUtilisateur.listeEvaluationsLocales();
 
     Object.entries(evaluations).forEach(([idClient, evaluation]) => {
-      this.registreUtilisateur.inscris(evaluation.nom, evaluation.code_campagne);
+      const data = { nom: evaluation.nom, code_campagne: evaluation.code_campagne };
+      this.registreUtilisateur.creeEvaluation(data);
     });
   }
 }
