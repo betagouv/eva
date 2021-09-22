@@ -8,20 +8,29 @@ export const CHANGEMENT_CONNEXION = 'changementConnexion';
 export const PREFIX_EVALUATIONS = 'evaluation_';
 
 export default class RegistreUtilisateur extends BaseRegistre {
-  inscris (nom, codeCampagne) {
-    const data = { nom: nom, code_campagne: codeCampagne };
+  creeEvaluation (data) {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
         url: `${this.urlServeur}/api/evaluations`,
         data: JSON.stringify(data),
         contentType: 'application/json; charset=utf-8',
-        success: (utilisateur) => {
+        success: resolve,
+        error: reject
+      });
+    });
+  }
+
+  inscris (nom, codeCampagne) {
+    const data = { nom: nom, code_campagne: codeCampagne };
+    return new Promise((resolve, reject) => {
+      this.creeEvaluation(data)
+        .then((utilisateur) => {
           this.enregistreIdClient();
           this.enregistreUtilisateurEnLocal(utilisateur);
           resolve(utilisateur);
-        },
-        error: (xhr) => {
+        })
+        .catch((xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
             this.enregistreIdClient();
             this.enregistreUtilisateurEnLocal(data);
@@ -29,8 +38,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
           } else {
             reject(xhr);
           }
-        }
-      });
+        });
     }).finally(() => {
       window.localStorage.removeItem(CLEF_SITUATIONS_FAITES);
       this.emit(CHANGEMENT_CONNEXION);
