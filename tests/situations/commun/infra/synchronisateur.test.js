@@ -23,6 +23,20 @@ describe('Synchronisateur', function () {
         expect(creeEvaluation).toHaveBeenCalledTimes(2);
         expect(creeEvaluation).toHaveBeenLastCalledWith({ nom: 'Clement', code_campagne: 'CODE' });
       });
+
+      it("enregistre dans le localstorage l'évaluation créée", function (done) {
+        window.localStorage.setItem('evaluation_1', JSON.stringify({ nom: 'Marcelle', code_campagne: 'CODE' }));
+
+        jest.spyOn(registreUtilisateur, 'creeEvaluation')
+          .mockImplementation((data) => {
+            return Promise.resolve({ id: 1 });
+          });
+        new Synchronisateur(registreUtilisateur).recupereReseau();
+        setTimeout(() => {
+          expect(window.localStorage.getItem('evaluation_1')).toEqual('{"id":1}');
+          done();
+        });
+      });
     });
 
     describe("quand l'évaluation existe coté serveur", function () {
