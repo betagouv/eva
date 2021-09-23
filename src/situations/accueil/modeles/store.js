@@ -97,7 +97,8 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
         });
       },
       enregistreContact ({ commit }, { email, telephone }) {
-        return registreUtilisateur.enregistreContact(email, telephone)
+        const idEvaluation = registreUtilisateur.idEvaluation();
+        return registreUtilisateur.enregistreContact(idEvaluation, email, telephone)
           .then(() => {
             commit('demarre');
           });
