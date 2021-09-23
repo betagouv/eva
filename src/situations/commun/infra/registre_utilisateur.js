@@ -45,11 +45,11 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  enregistreContact (email, telephone) {
+  enregistreContact (id, email, telephone) {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'PATCH',
-        url: `${this.urlServeur}/api/evaluations/${this.idEvaluation()}`,
+        url: `${this.urlServeur}/api/evaluations/${id}`,
         data: JSON.stringify({ email: email, telephone: telephone }),
         contentType: 'application/json; charset=utf-8',
         success: (utilisateur) => {

@@ -38,7 +38,7 @@ describe('Synchronisateur', function () {
           });
         new Synchronisateur(registreUtilisateur).recupereReseau();
         expect(enregistreContact).toHaveBeenCalled();
-        expect(enregistreContact).toHaveBeenLastCalledWith('Marcelle@paris.fr', '061234567');
+        expect(enregistreContact).toHaveBeenLastCalledWith(1, 'Marcelle@paris.fr', '061234567');
       });
     });
 

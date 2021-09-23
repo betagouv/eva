@@ -82,6 +82,7 @@ describe("Le store de l'accueil", function () {
 
   it('mets à jour les informations de contact', function () {
     const store = creeStore(registreUtilisateur);
+    registreUtilisateur.idEvaluation = () => { return 1; };
     return store.dispatch('enregistreContact', 'mail@entreprise.fr', '0987654321').then(() => {
       expect(store.state.etat).toEqual(DEMARRE);
     });

@@ -288,7 +288,7 @@ describe('le registre utilisateur', function () {
     describe('quand on est en ligne', function () {
       it("met à jour les informations de l'évaluation", function () {
         const registre = unRegistre({ id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' });
-        return registre.enregistreContact('email@contact.fr', '0612345678').then((utilisateur) => {
+        return registre.enregistreContact(1, 'email@contact.fr', '0612345678').then((utilisateur) => {
           expect(utilisateur.email).toEqual('email@contact.fr');
           expect(utilisateur.telephone).toEqual('0612345678');
         });
@@ -312,7 +312,7 @@ describe('le registre utilisateur', function () {
         registre.enregistreIdClient('identifiant_client');
         registre.enregistreUtilisateurEnLocal(data);
 
-        return registre.enregistreContact('email@contact.fr', '0612345678').then((utilisateur) => {
+        return registre.enregistreContact(1, 'email@contact.fr', '0612345678').then((utilisateur) => {
           expect(utilisateur.email).toEqual('email@contact.fr');
           expect(utilisateur.telephone).toEqual('0612345678');
           expect(registre.evaluationCourante()).toEqual({ id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' });
