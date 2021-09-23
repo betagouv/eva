@@ -84,8 +84,8 @@ export default class RegistreUtilisateur extends BaseRegistre {
     return uuidv4();
   }
 
-  enregistreUtilisateurEnLocal (data) {
-    this.enregistreEnLocale(this.cleEvaluationPourLocalStorage(this.idClient()), data);
+  enregistreUtilisateurEnLocal (data, idClient = this.idClient()) {
+    this.enregistreEnLocale(this.cleEvaluationPourLocalStorage(idClient), data);
   }
 
   listeEvaluationsLocales () {

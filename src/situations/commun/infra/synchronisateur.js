@@ -27,7 +27,9 @@ export default class Synchronisateur {
         promesse = this.registreUtilisateur.enregistreContact(evaluation.id, evaluation.email, evaluation.telephone);
       } else {
         const data = { nom: evaluation.nom, code_campagne: evaluation.code_campagne };
-        promesse = this.registreUtilisateur.creeEvaluation(data);
+        promesse = this.registreUtilisateur.creeEvaluation(data).then((utilisateur) => {
+          this.registreUtilisateur.enregistreUtilisateurEnLocal(utilisateur, idClient);
+        });
       }
       promesses.push(promesse);
     });
