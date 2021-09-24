@@ -46,9 +46,14 @@ export default class RegistreEvenements extends BaseRegistre {
 
   enregistreEvenementEnLocale (payload) {
     const idClient = this.registreUtilisateur.idClient();
-    const evenements = this.parseLocalStorage(this.cleEvenementsPourLocalStorage(idClient), []);
+    const evenements = this.evenements(idClient);
     evenements.push(payload);
     this.enregistreEnLocale(this.cleEvenementsPourLocalStorage(idClient), evenements);
+  }
+
+  evenements (idClient) {
+    const cle = this.cleEvenementsPourLocalStorage(idClient);
+    return this.parseLocalStorage(cle, []);
   }
 
   cleEvenementsPourLocalStorage (idClient) {
