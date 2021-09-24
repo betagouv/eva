@@ -1,6 +1,7 @@
 export default class Synchronisateur {
-  constructor (registreUtilisateur) {
+  constructor (registreUtilisateur, registreEvenements) {
     this.registreUtilisateur = registreUtilisateur;
+    this.registreEvenements = registreEvenements;
     this.enCoursDeSynchronisation = false;
   }
 
@@ -10,11 +11,15 @@ export default class Synchronisateur {
     this.enCoursDeSynchronisation = true;
     Promise.all(this.synchroniseEvaluations())
       .catch((erreur) => {
-        console.error(erreur);
+        this.echecSynchronisation(erreur);
       })
       .finally(() => {
         this.enCoursDeSynchronisation = false;
       });
+  }
+
+  echecSynchronisation (erreur) {
+    console.error(erreur);
   }
 
   synchroniseEvaluations () {
@@ -29,8 +34,12 @@ export default class Synchronisateur {
         const data = { nom: evaluation.nom, code_campagne: evaluation.code_campagne };
         promesse = this.registreUtilisateur.creeEvaluation(data).then((utilisateur) => {
           this.registreUtilisateur.enregistreUtilisateurEnLocal(utilisateur, idClient);
+          return utilisateur;
         });
       }
+      promesse = promesse.then((utilisateur) => {
+        this.registreEvenements.creeEvenements(idClient, utilisateur.id);
+      });
       promesses.push(promesse);
     });
     return promesses;

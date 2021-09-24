@@ -8,6 +8,7 @@ import { creeStore } from 'accueil/modeles/store';
 import Index from 'accueil/vues/index';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
+import RegistreEvenements from 'commun/infra/registre_evenements';
 import RegistreCampagne from 'commun/infra/registre_campagne';
 import DepotRessourcesAccueil from 'accueil/infra/depot_ressources_accueil';
 import { erreurVue } from 'commun/infra/report_erreurs';
@@ -17,8 +18,9 @@ Vue.config.errorHandler = erreurVue;
 
 function afficheAccueil (pointInsertion) {
   const registreUtilisateur = new RegistreUtilisateur();
+  const registreEvenements = new RegistreEvenements(registreUtilisateur);
 
-  const synchronisateur = new Synchronisateur(registreUtilisateur);
+  const synchronisateur = new Synchronisateur(registreUtilisateur, registreEvenements);
   window.addEventListener('online', () => { synchronisateur.recupereReseau(); });
 
   const registreCampagne = new RegistreCampagne();

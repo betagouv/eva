@@ -84,6 +84,47 @@ describe('le registre des événements', function () {
     });
   });
 
+  describe('#creeEvenements()', function () {
+    it("fait un POST pour l'ensemble des évènements à partir d'un id client", function () {
+      const evenements = [{ autreCle: 'valeur2', description: { cle: 'valeur2' } }];
+      window.localStorage.setItem('evenements_id_client', JSON.stringify(evenements));
+      depot.creeEvenements('id_client', 'id_evaluation');
+
+      expect(requetes.length).toBe(1);
+      expect(requetes[0].type).toBe('POST');
+      expect(requetes[0].url).toBe(`${process.env.URL_API}/api/evaluations/id_evaluation/collections_evenements`);
+      expect(requetes[0].data)
+        .toEqual('{"evenements":[{"autreCle":"valeur2","description":{"cle":"valeur2"}}]}');
+    });
+
+    it("retourne une promesse d'enregistrement", function (done) {
+      depot.creeEvenements('id_client', 'id_evaluation').then(done);
+
+      requetes[0].success();
+    });
+
+    it('supprime les évènements du localStorage en cas de succès', function (done) {
+      window.localStorage.setItem('evenements_id_client', JSON.stringify([]));
+
+      depot.creeEvenements('id_client', 'id_evaluation').then(() => {
+        expect(window.localStorage.getItem('evenements_id_client')).toBe(null);
+        done();
+      });
+
+      requetes[0].success();
+    });
+
+    it("rejete la promesse en cas d'erreur", function (done) {
+      const error = { status: 0 };
+      depot.creeEvenements('id_client', 'id_evaluation').catch((xhr) => {
+        expect(xhr).toEqual(error);
+        done();
+      });
+
+      requetes[0].error(error);
+    });
+  });
+
   describe('#enregistreEvenementEnLocale()', function () {
     it('ajoute un premier évènement dans le localStorage', function () {
       const payload = { id: 1 };
