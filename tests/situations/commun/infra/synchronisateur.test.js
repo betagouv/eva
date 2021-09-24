@@ -1,14 +1,22 @@
 import Synchronisateur from 'commun/infra/synchronisateur';
 import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
+import RegistreEvenements from 'commun/infra/registre_evenements';
 
 describe('Synchronisateur', function () {
   describe('#recupereReseau()', function () {
     let registreUtilisateur;
+    let registreEvenements;
     let synchronisateur;
+    let creeEvenements;
 
     beforeEach(function () {
       registreUtilisateur = new RegistreUtilisateur();
-      synchronisateur = new Synchronisateur(registreUtilisateur);
+      registreEvenements = new RegistreEvenements();
+      creeEvenements = jest.spyOn(registreEvenements, 'creeEvenements')
+        .mockImplementation(() => {
+          return Promise.resolve();
+        });
+      synchronisateur = new Synchronisateur(registreUtilisateur, registreEvenements);
 
       window.localStorage.clear();
     });
@@ -20,9 +28,11 @@ describe('Synchronisateur', function () {
         window.localStorage.setItem('evaluation_1', JSON.stringify({ nom: 'Marcelle', code_campagne: 'CODE' }));
         window.localStorage.setItem('evaluation_2', JSON.stringify({ nom: 'Clement', code_campagne: 'CODE' }));
 
+        let evaluationId = 0;
         creeEvaluation = jest.spyOn(registreUtilisateur, 'creeEvaluation')
           .mockImplementation((data) => {
-            return Promise.resolve(data);
+            evaluationId += 1;
+            return Promise.resolve({ ...data, id: 'evaluation_' + evaluationId });
           });
       });
 
@@ -37,7 +47,19 @@ describe('Synchronisateur', function () {
         synchronisateur.recupereReseau();
 
         setTimeout(() => {
-          expect(window.localStorage.getItem('evaluation_1')).toEqual('{"nom":"Marcelle","code_campagne":"CODE"}');
+          expect(window.localStorage.getItem('evaluation_1')).toEqual('{"nom":"Marcelle","code_campagne":"CODE","id":"evaluation_1"}');
+          done();
+        });
+      });
+
+      it('synchronise les évènements pour chaque évaluation', function (done) {
+        synchronisateur.recupereReseau();
+
+        setTimeout(() => {
+          expect(creeEvenements).toHaveBeenCalledTimes(2);
+          expect(creeEvenements).toHaveBeenNthCalledWith(1, '1', 'evaluation_1');
+          expect(creeEvenements).toHaveBeenNthCalledWith(2, '2', 'evaluation_2');
+
           done();
         });
       });
@@ -62,12 +84,17 @@ describe('Synchronisateur', function () {
 
     describe('ne peut être appelé deux fois en même temps', function () {
       let resoudLaPremierePromesse;
+      let rejeteLaPremierePromesse;
       let promesse;
+      let echecSynchronisation;
 
       beforeEach(() => {
         promesse = new Promise((resolve, reject) => {
           resoudLaPremierePromesse = resolve;
+          rejeteLaPremierePromesse = reject;
         });
+        echecSynchronisation = jest.spyOn(synchronisateur, 'echecSynchronisation')
+          .mockImplementation(() => {});
       });
 
       it('attend la fin de #creeEvaluation', function (done) {
@@ -85,8 +112,9 @@ describe('Synchronisateur', function () {
           synchronisateur.recupereReseau();
           expect(creeEvaluation).toHaveBeenCalledTimes(1);
 
-          resoudLaPremierePromesse({ nom: 'Marcelle', code_campagne: 'CODE' });
+          rejeteLaPremierePromesse('une erreur');
           setTimeout(() => {
+            expect(echecSynchronisation).toHaveBeenCalledWith('une erreur');
             synchronisateur.recupereReseau();
             expect(creeEvaluation).toHaveBeenCalledTimes(2);
             done();
