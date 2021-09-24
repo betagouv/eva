@@ -45,12 +45,13 @@ export default class RegistreEvenements extends BaseRegistre {
   }
 
   enregistreEvenementEnLocale (payload) {
-    const evenements = this.parseLocalStorage(this.cleEvenementsPourLocalStorage(), []);
+    const idClient = this.registreUtilisateur.idClient();
+    const evenements = this.parseLocalStorage(this.cleEvenementsPourLocalStorage(idClient), []);
     evenements.push(payload);
-    this.enregistreEnLocale(this.cleEvenementsPourLocalStorage(), evenements);
+    this.enregistreEnLocale(this.cleEvenementsPourLocalStorage(idClient), evenements);
   }
 
-  cleEvenementsPourLocalStorage () {
-    return `evenements_${this.registreUtilisateur.idClient()}`;
+  cleEvenementsPourLocalStorage (idClient) {
+    return `evenements_${idClient}`;
   }
 }
