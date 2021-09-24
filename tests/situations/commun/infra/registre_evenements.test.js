@@ -105,6 +105,21 @@ describe('le registre des événements', function () {
     });
   });
 
+  describe('#evenements()', function () {
+    it("retourne une liste d'évènements à partir d'un IdClient", function () {
+      const listeEvenements = [{ id: 1 }]
+      window.localStorage.setItem('evenements_id_client', JSON.stringify(listeEvenements));
+
+      expect(depot.evenements('id_client')).toStrictEqual(listeEvenements);
+    });
+
+    describe("quand il n'y a pas d'évènements pour un IdClient", function () {
+      it("retourne une liste vide", function () {
+        expect(depot.evenements('inconnu')).toStrictEqual([]);
+      });
+    });
+  });
+
   describe('#cleEvenementsPourLocalStorage()', function () {
     it("retourne la clé pour les événements d'un id client", function () {
       expect(depot.cleEvenementsPourLocalStorage('id_client')).toBe('evenements_id_client');
