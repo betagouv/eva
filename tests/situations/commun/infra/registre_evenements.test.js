@@ -107,7 +107,7 @@ describe('le registre des événements', function () {
 
   describe('#cleEvenementsPourLocalStorage()', function () {
     it("retourne la clé pour les événements d'un id client", function () {
-      expect(depot.cleEvenementsPourLocalStorage()).toBe('evenements_id_client');
+      expect(depot.cleEvenementsPourLocalStorage('id_client')).toBe('evenements_id_client');
     });
   });
 });
