@@ -4,36 +4,40 @@ import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 describe('Synchronisateur', function () {
   describe('#recupereReseau()', function () {
     let registreUtilisateur;
+    let synchronisateur;
 
     beforeEach(function () {
       registreUtilisateur = new RegistreUtilisateur();
+      synchronisateur = new Synchronisateur(registreUtilisateur);
+
       window.localStorage.clear();
     });
 
     describe("quand l'évaluation n'existe pas coté serveur", function () {
-      it('enregistre une évaluation locale', function () {
+      let creeEvaluation;
+
+      beforeEach(function () {
         window.localStorage.setItem('evaluation_1', JSON.stringify({ nom: 'Marcelle', code_campagne: 'CODE' }));
         window.localStorage.setItem('evaluation_2', JSON.stringify({ nom: 'Clement', code_campagne: 'CODE' }));
 
-        const creeEvaluation = jest.spyOn(registreUtilisateur, 'creeEvaluation')
+        creeEvaluation = jest.spyOn(registreUtilisateur, 'creeEvaluation')
           .mockImplementation((data) => {
             return Promise.resolve(data);
           });
-        new Synchronisateur(registreUtilisateur).recupereReseau();
+      });
+
+      it('enregistre une évaluation locale', function () {
+        synchronisateur.recupereReseau();
+
         expect(creeEvaluation).toHaveBeenCalledTimes(2);
         expect(creeEvaluation).toHaveBeenLastCalledWith({ nom: 'Clement', code_campagne: 'CODE' });
       });
 
       it("enregistre dans le localstorage l'évaluation créée", function (done) {
-        window.localStorage.setItem('evaluation_1', JSON.stringify({ nom: 'Marcelle', code_campagne: 'CODE' }));
+        synchronisateur.recupereReseau();
 
-        jest.spyOn(registreUtilisateur, 'creeEvaluation')
-          .mockImplementation((data) => {
-            return Promise.resolve({ id: 1 });
-          });
-        new Synchronisateur(registreUtilisateur).recupereReseau();
         setTimeout(() => {
-          expect(window.localStorage.getItem('evaluation_1')).toEqual('{"id":1}');
+          expect(window.localStorage.getItem('evaluation_1')).toEqual('{"nom":"Marcelle","code_campagne":"CODE"}');
           done();
         });
       });
@@ -50,7 +54,7 @@ describe('Synchronisateur', function () {
           .mockImplementation((data) => {
             return Promise.resolve(data);
           });
-        new Synchronisateur(registreUtilisateur).recupereReseau();
+        synchronisateur.recupereReseau();
         expect(enregistreContact).toHaveBeenCalled();
         expect(enregistreContact).toHaveBeenLastCalledWith(1, 'Marcelle@paris.fr', '061234567');
       });
@@ -73,7 +77,6 @@ describe('Synchronisateur', function () {
           .mockImplementation(() => {
             return promesse;
           });
-        const synchronisateur = new Synchronisateur(registreUtilisateur);
 
         synchronisateur.recupereReseau();
         expect(creeEvaluation).toHaveBeenCalledTimes(1);
@@ -99,7 +102,6 @@ describe('Synchronisateur', function () {
           .mockImplementation(() => {
             return promesse;
           });
-        const synchronisateur = new Synchronisateur(registreUtilisateur);
 
         synchronisateur.recupereReseau();
         expect(spy).toHaveBeenCalledTimes(1);
