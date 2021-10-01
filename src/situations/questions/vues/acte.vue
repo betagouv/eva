@@ -9,6 +9,10 @@
         @reponse="repondQuestion"
         :envoyerEvenementAffichage="acteEnCours"
       >
+        <bouton-son
+          class="bouton-son"
+          :question="questionCourante"
+        />
         <div class="question-progression">
           {{ indexQuestions + 1 }}/{{ nombreQuestions }}
         </div>
@@ -26,13 +30,13 @@ import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from './redaction_note';
 import 'questions/styles/progression.scss';
 import { DEMARRE } from 'commun/modeles/situation';
+import BoutonSon from './bouton-son.vue';
 
 export default {
-  components: { TransitionFade },
-
+  components: { TransitionFade, BoutonSon },
   computed: {
     ...mapState(['indexQuestions', 'etat', 'fini']),
-    ...mapGetters(['questionCourante', 'nombreQuestions']),
+    ...mapGetters(['questionCourante', 'nombreQuestions', 'audioQuestion']),
 
     composantQuestion () {
       if (!this.questionCourante) return;

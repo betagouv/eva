@@ -7,6 +7,7 @@ import {
 } from 'commun/modeles/situation';
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
 import { illustrationsQuestions } from '../data/apps';
+import { audioQuestions } from '../data/apps';
 
 export function creeStore () {
   return creeStoreCommun({
@@ -27,6 +28,13 @@ export function creeStore () {
           return illustrationsQuestions[question.nom_technique];
         } else {
           throw new Error(`La question ${question.id} avec le nom technique "${question.nom_technique}" ne possède pas d'illustration`);
+        }
+      },
+      audioQuestion: (state) => (question) => {
+        if (question.nom_technique && audioQuestions[question.nom_technique]) {
+          return audioQuestions[question.nom_technique];
+        } else {
+          throw new Error(`La question ${question.id} avec le nom technique "${question.nom_technique}" ne possède pas d'audio`);
         }
       }
     },
