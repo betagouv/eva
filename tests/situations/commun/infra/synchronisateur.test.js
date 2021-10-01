@@ -147,5 +147,40 @@ describe('Synchronisateur', function () {
         });
       });
     });
+
+    describe('récupère les erreurs', function () {
+      const spy = {};
+
+      beforeEach(() => {
+        spy.error = jest.spyOn(console, 'error').mockImplementation(() => {});
+      });
+
+      afterEach(() => {
+        spy.error.mockRestore();
+      });
+
+      it("lors de l'enregistrement des evenements", function (done) {
+        const erreur = new Error('erreur enregistrement evenement');
+        window.localStorage.setItem('evaluation_1',
+          JSON.stringify({ id: 1, email: 'Marcelle@paris.fr', telephone: '061234567' }));
+
+        jest.spyOn(registreUtilisateur, 'enregistreContact')
+          .mockImplementation(() => {
+            return Promise.resolve({ id: '1' });
+          });
+
+        jest.spyOn(registreEvenements, 'creeEvenements')
+          .mockImplementation(() => {
+            return Promise.reject(erreur);
+          });
+
+        synchronisateur.recupereReseau();
+
+        setTimeout(() => {
+          expect(spy.error).toHaveBeenCalledWith(erreur);
+          done();
+        });
+      });
+    });
   });
 });

@@ -38,7 +38,7 @@ export default class Synchronisateur {
         });
       }
       promesse = promesse.then((utilisateur) => {
-        this.registreEvenements.creeEvenements(idClient, utilisateur.id);
+        return this.registreEvenements.creeEvenements(idClient, utilisateur.id);
       });
       promesses.push(promesse);
     });
