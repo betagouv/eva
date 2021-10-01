@@ -6,9 +6,13 @@ import RegistreUtilisateur,
 import Cookies from 'js-cookie';
 
 describe('le registre utilisateur', function () {
+  const requetes = [];
+
   function unRegistre (data, urlServeur, enLigne = true) {
+    requetes.length = 0;
     return new RegistreUtilisateur({
       ajax (options) {
+        requetes.push(options);
         if (enLigne) {
           options.success(data);
         } else {
@@ -332,6 +336,44 @@ describe('le registre utilisateur', function () {
           expect(utilisateur.email).toEqual('email@contact.fr');
           expect(utilisateur.telephone).toEqual('0612345678');
           expect(registre.evaluationCourante()).toEqual({ id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' });
+        });
+      });
+    });
+  });
+
+  describe('#termineEvaluation()', function () {
+    let registre;
+
+    describe('quand on est en ligne', function () {
+      beforeEach(function () {
+        registre = unRegistre();
+      });
+
+      it("fait un POST pour terminer l'évaluation à partir d'un id", function () {
+        registre.termineEvaluation('id_evaluation');
+
+        expect(requetes.length).toBe(1);
+        expect(requetes[0].type).toBe('POST');
+        expect(requetes[0].url).toBe(`${process.env.URL_API}/api/evaluations/id_evaluation/fin`);
+      });
+
+      it("retourne une promesse d'enregistrement", function (done) {
+        registre.termineEvaluation('id_client').then(done);
+
+        requetes[0].success();
+      });
+    });
+
+    describe('quand on est pas en ligne', function () {
+      beforeEach(function () {
+        registre = unRegistre({}, '', false);
+        registre.enregistreModeHorsLigne(true);
+      });
+
+      it("enregistre la date de fin de l'évaluation en local", function () {
+        const date = new Date();
+        return registre.termineEvaluation('id_client', date).then(() => {
+          expect(window.localStorage.getItem('evaluation_id_client')).toBe(`{"terminee_le":"${date.toISOString()}"}`);
         });
       });
     });
