@@ -80,8 +80,31 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  urlFinEvaluation () {
-    return `${this.urlServeur}/api/evaluations/${this.idEvaluation()}/fin`;
+  termineEvaluation (id = this.idEvaluation(), dateFin = Date.now()) {
+    return new Promise((resolve, reject) => {
+      this.$.ajax({
+        type: 'POST',
+        url: this.urlFinEvaluation(id),
+        contentType: 'application/json; charset=utf-8',
+        success: (utilisateur) => {
+          resolve(utilisateur);
+        },
+        error: (xhr) => {
+          if (this.activeModeHorsLigne(xhr)) {
+            const utilisateur = this.evaluation(id);
+            utilisateur.terminee_le = dateFin.toISOString();
+            this.enregistreUtilisateurEnLocal(utilisateur, id);
+            resolve(utilisateur);
+          } else {
+            reject(xhr);
+          }
+        }
+      });
+    });
+  }
+
+  urlFinEvaluation (idEvaluation = this.idEvaluation()) {
+    return `${this.urlServeur}/api/evaluations/${idEvaluation}/fin`;
   }
 
   enregistreIdClient () {
