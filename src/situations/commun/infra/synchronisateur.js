@@ -38,7 +38,9 @@ export default class Synchronisateur {
         });
       }
       promesse = promesse.then((utilisateur) => {
-        return this.synchroniseEvenements(idClient, utilisateur);
+        return this.synchroniseEvenements(idClient, utilisateur).then(() => {
+          return this.supprimeEvaluationDuLocal(idClient, evaluation);
+        });
       });
       promesses.push(promesse);
     });
@@ -47,5 +49,11 @@ export default class Synchronisateur {
 
   synchroniseEvenements (idClient, utilisateur) {
     return this.registreEvenements.creeEvenements(idClient, utilisateur.id);
+  }
+
+  supprimeEvaluationDuLocal (idClient, evaluation) {
+    if (evaluation.terminee_le) {
+      this.registreUtilisateur.supprimeEvaluationLocale(idClient);
+    }
   }
 }

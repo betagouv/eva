@@ -337,4 +337,19 @@ describe('le registre utilisateur', function () {
       expect(registre.estModeHorsLigne()).toEqual(true);
     });
   });
+
+  describe('#supprimeEvaluationLocale()', function () {
+    let registre;
+
+    beforeEach(function () {
+      registre = unRegistre();
+    });
+
+    it("supprime l'évaluation du localStorage", function () {
+      window.localStorage.setItem('evaluation_id_client', JSON.stringify({ id: 1 }));
+      registre.supprimeEvaluationLocale('id_client');
+
+      expect(window.localStorage.getItem('evaluation_id_client')).toBe(null);
+    });
+  });
 });

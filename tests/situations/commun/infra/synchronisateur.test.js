@@ -3,20 +3,27 @@ import RegistreUtilisateur from 'commun/infra/registre_utilisateur';
 import RegistreEvenements from 'commun/infra/registre_evenements';
 
 describe('Synchronisateur', function () {
+  let registreUtilisateur;
+  let registreEvenements;
+  let synchronisateur;
+
+  beforeEach(function () {
+    registreUtilisateur = new RegistreUtilisateur();
+    registreEvenements = new RegistreEvenements();
+
+    synchronisateur = new Synchronisateur(registreUtilisateur, registreEvenements);
+  });
+
   describe('#recupereReseau()', function () {
-    let registreUtilisateur;
-    let registreEvenements;
-    let synchronisateur;
     let creeEvenements;
+    let supprimeEvaluationLocale;
 
     beforeEach(function () {
-      registreUtilisateur = new RegistreUtilisateur();
-      registreEvenements = new RegistreEvenements();
       creeEvenements = jest.spyOn(registreEvenements, 'creeEvenements')
         .mockImplementation(() => {
           return Promise.resolve();
         });
-      synchronisateur = new Synchronisateur(registreUtilisateur, registreEvenements);
+      supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeEvaluationLocale');
 
       window.localStorage.clear();
     });
@@ -59,6 +66,18 @@ describe('Synchronisateur', function () {
           expect(creeEvenements).toHaveBeenCalledTimes(2);
           expect(creeEvenements).toHaveBeenNthCalledWith(1, '1', 'evaluation_1');
           expect(creeEvenements).toHaveBeenNthCalledWith(2, '2', 'evaluation_2');
+
+          done();
+        });
+      });
+
+      it("supprime l'évaluation terminée du localStorage", function (done) {
+        window.localStorage.setItem('evaluation_3', JSON.stringify({ nom: 'Clement', code_campagne: 'CODE', terminee_le: new Date() }));
+
+        synchronisateur.recupereReseau();
+
+        setTimeout(() => {
+          expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
 
           done();
         });
@@ -180,6 +199,42 @@ describe('Synchronisateur', function () {
           expect(spy.error).toHaveBeenCalledWith(erreur);
           done();
         });
+      });
+    });
+  });
+
+  describe('#supprimeEvaluationDuLocal()', function () {
+    let evaluation;
+    let supprimeEvaluationLocale;
+    const idClient = 'id_client';
+
+    beforeEach(function () {
+      supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeEvaluationLocale');
+    });
+
+    describe("quand l'évaluation est terminée", function () {
+      beforeEach(function () {
+        evaluation = { terminee_le: Date.now() };
+        window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+      });
+
+      it("supprime l'évaluation du localStorage", function () {
+        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
+
+        expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe("quand l'évaluation n'est pas terminée", function () {
+      beforeEach(function () {
+        evaluation = { id: 1 };
+        window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+      });
+
+      it('ne fais rien', function () {
+        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
+
+        expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(0);
       });
     });
   });
