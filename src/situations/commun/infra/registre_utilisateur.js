@@ -134,6 +134,11 @@ export default class RegistreUtilisateur extends BaseRegistre {
     window.localStorage.setItem(CLEF_SITUATIONS_FAITES, JSON.stringify(situations));
   }
 
+  supprimeEvaluationLocale (idClient) {
+    const cle = this.cleEvaluationPourLocalStorage(idClient);
+    window.localStorage.removeItem(cle);
+  }
+
   situationsFaites () {
     const situations = window.localStorage.getItem(CLEF_SITUATIONS_FAITES);
     if (!situations) {
