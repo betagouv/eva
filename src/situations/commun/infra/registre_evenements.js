@@ -46,10 +46,17 @@ export default class RegistreEvenements extends BaseRegistre {
 
   creeEvenements (idClient, idEvaluation) {
     return new Promise((resolve, reject) => {
+      const evenements = this.evenements(idClient);
+
+      if (evenements.length === 0) {
+        resolve();
+        return;
+      }
+
       this.$.ajax({
         type: 'POST',
         url: `${this.urlServeur}/api/evaluations/${idEvaluation}/collections_evenements`,
-        data: JSON.stringify({ evenements: this.evenements(idClient) }),
+        data: JSON.stringify({ evenements: evenements }),
         contentType: 'application/json; charset=utf-8',
         success: () => {
           window.localStorage.removeItem(this.cleEvenementsPourLocalStorage(idClient));

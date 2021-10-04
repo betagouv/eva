@@ -85,9 +85,14 @@ describe('le registre des événements', function () {
   });
 
   describe('#creeEvenements()', function () {
-    it("fait un POST pour l'ensemble des évènements à partir d'un id client", function () {
-      const evenements = [{ autreCle: 'valeur2', description: { cle: 'valeur2' } }];
+    let evenements;
+
+    beforeEach(function () {
+      evenements = [{ autreCle: 'valeur2', description: { cle: 'valeur2' } }];
       window.localStorage.setItem('evenements_id_client', JSON.stringify(evenements));
+    });
+
+    it("fait un POST pour l'ensemble des évènements à partir d'un id client", function () {
       depot.creeEvenements('id_client', 'id_evaluation');
 
       expect(requetes.length).toBe(1);
@@ -104,8 +109,6 @@ describe('le registre des événements', function () {
     });
 
     it('supprime les évènements du localStorage en cas de succès', function (done) {
-      window.localStorage.setItem('evenements_id_client', JSON.stringify([]));
-
       depot.creeEvenements('id_client', 'id_evaluation').then(() => {
         expect(window.localStorage.getItem('evenements_id_client')).toBe(null);
         done();
@@ -122,6 +125,14 @@ describe('le registre des événements', function () {
       });
 
       requetes[0].error(error);
+    });
+
+    describe("quand il n'y a pas d'évènements dans le localStorage", function () {
+      it('ne fais rien', function () {
+        depot.creeEvenements('id_client_innexistant', 'id_evaluation');
+
+        expect(requetes.length).toBe(0);
+      });
     });
   });
 

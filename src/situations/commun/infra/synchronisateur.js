@@ -38,10 +38,14 @@ export default class Synchronisateur {
         });
       }
       promesse = promesse.then((utilisateur) => {
-        return this.registreEvenements.creeEvenements(idClient, utilisateur.id);
+        return this.synchroniseEvenements(idClient, utilisateur);
       });
       promesses.push(promesse);
     });
     return promesses;
+  }
+
+  synchroniseEvenements (idClient, utilisateur) {
+    return this.registreEvenements.creeEvenements(idClient, utilisateur.id);
   }
 }
