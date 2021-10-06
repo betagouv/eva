@@ -10,7 +10,7 @@ export const DEMARRE = 'démarré';
 
 Vue.use(Vuex);
 
-export function creeStore (registreUtilisateur, registreCampagne, fetch = window.fetch) {
+export function creeStore (registreUtilisateur, registreCampagne) {
   const store = new Vuex.Store({
     state: {
       estConnecte: registreUtilisateur.estConnecte(),
@@ -126,14 +126,7 @@ export function creeStore (registreUtilisateur, registreCampagne, fetch = window
         commit('metsAJourSituations', situations);
       },
       termineEvaluation ({ commit }) {
-        return fetch(registreUtilisateur.urlFinEvaluation(), { method: 'POST' })
-          .then((reponse) => {
-            if (reponse.status === 200) {
-              return reponse;
-            }
-            throw reponse;
-          })
-          .then(reponse => reponse.json())
+        return registreUtilisateur.termineEvaluation()
           .then((json) => {
             commit('metsAJourCompetencesFortes', json.competences_fortes);
           })
