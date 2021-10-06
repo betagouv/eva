@@ -25,6 +25,12 @@ describe('Le dépot ressource de la situation Objects trouvés', function () {
       expect(depot.messageAudio('heure-bureau-mickael')).toBe(messageMickael);
       expect(depot.messageAudio('nombre-tours-de-manege')).toBe(messageRachel);
     });
+
+    it("Teste l'existance d'un message audio d'une question", function () {
+      expect(depot.existeMessageAudio('heure-bureau-mickael')).toBe(true);
+      expect(depot.existeMessageAudio('inconnu')).toBe(false);
+      expect(depot.existeMessageAudio(undefined)).toBe(false);
+    });
   });
 
   describe('charge les ressources visuelles', function () {

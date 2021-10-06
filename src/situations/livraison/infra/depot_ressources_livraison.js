@@ -11,4 +11,8 @@ export default class DepotRessourcesLivraison extends DepotRessourcesCommunes {
   imageAideComplementaire () {
     return this.calculatrice();
   }
+
+  existeMessageAudio (nomTechniqueQuestion) {
+    return false;
+  }
 }
