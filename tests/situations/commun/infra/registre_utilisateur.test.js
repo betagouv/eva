@@ -107,6 +107,22 @@ describe('le registre utilisateur', function () {
     });
   });
 
+  describe('#metsAJourEvaluation()', function () {
+    it("mets à jour les informations d'évaluation", function () {
+      const data = { nom: 'mon nom' };
+      const mockJQuery = {
+        ajax (options) {
+          expect(options.data).toEqual(JSON.stringify(data));
+          options.success(data);
+        }
+      };
+      const registre = new RegistreUtilisateur(mockJQuery, 'url quelconque');
+      return registre.metsAJourEvaluation('id_evaluation', data).then((utilisateur) => {
+        expect(utilisateur).toEqual(data);
+      });
+    });
+  });
+
   describe('#inscris()', function () {
     it("émet un événement lorsque le nom de l'utilisateur change", function (done) {
       const registre = unRegistre({ id: 1, nom: 'test' });

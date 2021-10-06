@@ -21,6 +21,19 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
+  metsAJourEvaluation (id, data) {
+    return new Promise((resolve, reject) => {
+      this.$.ajax({
+        type: 'PATCH',
+        url: `${this.urlServeur}/api/evaluations/${id}`,
+        data: JSON.stringify(data),
+        contentType: 'application/json; charset=utf-8',
+        success: resolve,
+        error: reject
+      });
+    });
+  }
+
   inscris (nom, codeCampagne) {
     const data = { nom: nom, code_campagne: codeCampagne };
     return new Promise((resolve, reject) => {
@@ -47,16 +60,13 @@ export default class RegistreUtilisateur extends BaseRegistre {
 
   enregistreContact (id, email, telephone) {
     return new Promise((resolve, reject) => {
-      this.$.ajax({
-        type: 'PATCH',
-        url: `${this.urlServeur}/api/evaluations/${id}`,
-        data: JSON.stringify({ email: email, telephone: telephone }),
-        contentType: 'application/json; charset=utf-8',
-        success: (utilisateur) => {
+      const data = { email: email, telephone: telephone };
+      this.metsAJourEvaluation(id, data)
+        .then((utilisateur) => {
           this.enregistreUtilisateurEnLocal(utilisateur);
           resolve(utilisateur);
-        },
-        error: (xhr) => {
+        })
+        .catch((xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
             const utilisateur = this.evaluationCourante();
             utilisateur.email = email;
@@ -66,8 +76,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
           } else {
             reject(xhr);
           }
-        }
-      });
+        });
     });
   }
 
