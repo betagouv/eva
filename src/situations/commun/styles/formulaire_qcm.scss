@@ -25,11 +25,24 @@
   }
 
   &-entete {
+    display: flex;
+    .entete-audio {
+      margin-right: 1rem;
+    }
+    button {
+      padding: 0;
+      background: none;
+    }
     p {
       margin: 0;
     }
     p + p {
       margin-top: 20px;
+    }
+    .question-avec-son {
+      position: absolute;
+      top: -1rem;
+      left: 1.1875rem;
     }
   }
 

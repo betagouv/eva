@@ -9,11 +9,6 @@
         @reponse="repondQuestion"
         :envoyerEvenementAffichage="acteEnCours"
       >
-        <bouton-lecture
-          v-if="afficheLectureQuestion"
-          class="bouton-lecture"
-          :idQuestion="questionCourante.nom_technique"
-        />
         <div class="question-progression">
           {{ indexQuestions + 1 }}/{{ nombreQuestions }}
         </div>
@@ -31,10 +26,9 @@ import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from './redaction_note';
 import 'questions/styles/progression.scss';
 import { DEMARRE } from 'commun/modeles/situation';
-import BoutonLecture from 'commun/vues/bouton-lecture';
 
 export default {
-  components: { TransitionFade, BoutonLecture },
+  components: { TransitionFade },
   computed: {
     ...mapState(['indexQuestions', 'etat', 'fini']),
     ...mapGetters(['questionCourante', 'nombreQuestions']),
@@ -50,9 +44,6 @@ export default {
     },
     acteEnCours () {
       return this.etat === DEMARRE;
-    },
-    afficheLectureQuestion () {
-      return this.$depotRessources.existeMessageAudio(this.questionCourante.nom_technique);
     }
   },
 
@@ -60,6 +51,9 @@ export default {
     repondQuestion (reponse) {
       this.$journal.enregistre(new EvenementReponse({ question: this.questionCourante.id, ...reponse }));
       this.$store.commit('repondQuestionCourante');
+    },
+    afficheLectureQuestion () {
+      return this.$depotRessources.existeMessageAudio(this.questionCourante.nom_technique);
     }
   },
 
