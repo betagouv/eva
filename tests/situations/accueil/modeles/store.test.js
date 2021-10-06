@@ -123,23 +123,16 @@ describe("Le store de l'accueil", function () {
     let store;
 
     beforeEach(function () {
-      registreUtilisateur.urlFinEvaluation = () => {
-        return '/evaluation/1/fin';
+      registreUtilisateur.termineEvaluation = () => {
+        return Promise.resolve({
+          competences_fortes: ['comprehension_consigne', 'rapidite', 'tri']
+        });
       };
     });
 
     describe('quand la requete se termine avec succès', function () {
       beforeEach(function () {
-        const fetch = (url) => {
-          expect(url).toEqual('/evaluation/1/fin');
-          return Promise.resolve({
-            status: 200,
-            json: () => {
-              return { competences_fortes: ['comprehension_consigne', 'rapidite', 'tri'] };
-            }
-          });
-        };
-        store = creeStore(registreUtilisateur, registreCampagne, fetch);
+        store = creeStore(registreUtilisateur, registreCampagne);
       });
 
       it("indiquer par une variable que l'évaluation est terminée", function () {
@@ -159,10 +152,12 @@ describe("Le store de l'accueil", function () {
 
     describe('quand la requete se termine avec une erreur', function () {
       beforeEach(function () {
-        const fetch = (url) => Promise.resolve({
-          status: 404
-        });
-        store = creeStore(registreUtilisateur, registreCampagne, fetch);
+        registreUtilisateur.termineEvaluation = () => {
+          return Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+            status: 422
+          });
+        };
+        store = creeStore(registreUtilisateur, registreCampagne);
       });
 
       it("indiquer que l'évaluation est terminée", function () {

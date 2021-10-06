@@ -294,16 +294,6 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#urlFinEvaluation()', function () {
-    it("retourne l'url d'un élément d'une évaluation", function () {
-      const registre = unRegistre({ id: 1, nom: 'test' }, 'http://localhost');
-      return registre.inscris('test').then(() => {
-        expect(registre.urlFinEvaluation())
-          .toEqual('http://localhost/api/evaluations/1/fin');
-      });
-    });
-  });
-
   describe('#enregistreContact()', function () {
     describe('quand on est en ligne', function () {
       it("met à jour les informations de l'évaluation", function () {

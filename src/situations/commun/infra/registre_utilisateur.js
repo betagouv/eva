@@ -84,7 +84,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
-        url: this.urlFinEvaluation(id),
+        url: `${this.urlServeur}/api/evaluations/${id}/fin`,
         contentType: 'application/json; charset=utf-8',
         success: (utilisateur) => {
           resolve(utilisateur);
@@ -101,10 +101,6 @@ export default class RegistreUtilisateur extends BaseRegistre {
         }
       });
     });
-  }
-
-  urlFinEvaluation (idEvaluation = this.idEvaluation()) {
-    return `${this.urlServeur}/api/evaluations/${idEvaluation}/fin`;
   }
 
   enregistreIdClient () {
