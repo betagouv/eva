@@ -17,8 +17,8 @@ describe("La vue de l'acte « Question »", function () {
     store = creeStore();
     store.commit('configureActe', {
       questions: [
-        { id: 1, type: 'redaction_note' },
-        { id: 2, type: 'qcm', choix: [{ id: 1, bonneReponse: true }] }
+        { id: 1, type: 'redaction_note', nom_technique: 'question1' },
+        { id: 2, type: 'qcm', choix: [{ id: 1, bonneReponse: true }], nom_technique: 'question2' }
       ]
     });
     journal = { enregistre () {} };
@@ -75,7 +75,7 @@ describe("La vue de l'acte « Question »", function () {
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.$nextTick(() => {
       store.commit('configureActe', {
-        questions: [{ id: 1, type: 'redaction_note' }]
+        questions: [{ id: 1, type: 'redaction_note', nom_technique: 'question_1' }]
       });
       vue.vm.$nextTick(() => {
         expect(vue.emitted('terminer').length).toEqual(1);
