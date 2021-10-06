@@ -1,7 +1,7 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
 import sonConsigne from 'bienvenue/assets/consigne_demarrage.wav';
-import bienvenueConcentrationQuestion from 'questions/assets/audio_questions/concentration_question.wav';
+import bienvenueConcentrationQuestion from 'bienvenue/assets/audio_questions/concentration_question.wav';
 
 const AUDIOS_QUESTIONS = {
   bienvenue_1: bienvenueConcentrationQuestion

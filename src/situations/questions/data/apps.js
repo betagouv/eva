@@ -23,8 +23,6 @@ import SetO5 from '../assets/illustration_questions/SetO5.jpg';
 import SetO6 from '../assets/illustration_questions/SetO6.jpg';
 import SetO7 from '../assets/illustration_questions/SetO7.jpg';
 
-import bienvenueConcentrationQuestion from '../assets/audio_questions/concentration_question.wav';
-
 const illustrationsQuestions = {
   bienvenue_1: bienvenueBackground,
   bienvenue_2: bienvenueBackground,
@@ -67,8 +65,4 @@ const illustrationsQuestions = {
   syntaxe_et_orthographe_7: SetO7
 };
 
-const audioQuestions = {
-  bienvenue_1: bienvenueConcentrationQuestion
-};
-
-export { illustrationsQuestions, audioQuestions };
+export { illustrationsQuestions };
