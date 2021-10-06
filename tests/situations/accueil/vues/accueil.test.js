@@ -90,6 +90,31 @@ describe('La vue accueil', function () {
     });
   });
 
+  it('déconnecte si un code campagne est passé en propsData', function (done) {
+    let deconnecte = false;
+    store = new Vuex.Store({
+      state: {
+        situations: [],
+        situationsFaites: []
+      },
+      actions: {
+        deconnecte () { deconnecte = true; }
+      }
+    });
+
+    const wrapper = shallowMount(Accueil, {
+      localVue,
+      store,
+      propsData: {
+        forceCampagne: 'CODECAMPAGNE'
+      }
+    });
+    wrapper.vm.$nextTick(() => {
+      expect(deconnecte).toEqual(true);
+      done();
+    });
+  });
+
   describe('#recupereSituations', function () {
     afterAll(function () {
       jest.useRealTimers();

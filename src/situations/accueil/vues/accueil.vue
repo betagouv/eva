@@ -86,8 +86,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import queryString from 'query-string';
+import { mapState, mapActions } from 'vuex';
 import 'accueil/styles/accueil.scss';
 import 'commun/styles/cadre.scss';
 import 'commun/styles/actions.scss';
@@ -115,8 +114,18 @@ export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 export default {
   components: { BoiteUtilisateur, FormulaireIdentification, FormulaireContact, AccesSituation, IntroConsigne, Fin, TransitionFade },
 
+  props: {
+    forceCampagne: {
+      type: String,
+      required: false
+    },
+    forceNom: {
+      type: String,
+      required: false
+    }
+  },
+
   data () {
-    const parametresUrl = queryString.parse(location.search);
     const { indexPrecedent } = this.recupereEtatDuPrecedentChargement();
 
     return {
@@ -126,8 +135,6 @@ export default {
       personnage: this.$depotRessources.personnage().src,
       precedent: this.$depotRessources.precedent().src,
       suivant: this.$depotRessources.suivant().src,
-      forceCampagne: parametresUrl.code || '',
-      forceNom: parametresUrl.nom || '',
       indexBatiment: indexPrecedent,
       ecranFinAfficher: false,
       annonceGenerale: process.env.ANNONCE_GENERALE
@@ -194,6 +201,9 @@ export default {
   },
 
   mounted () {
+    if (this.forceCampagne) {
+      this.deconnecte();
+    }
     this.recupereSituations();
   },
 
@@ -213,6 +223,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['deconnecte']),
+
     recupereSituations (syncIndexBatiment = true) {
       if (!this.estConnecte) return;
       this.$store.dispatch('recupereSituations')
