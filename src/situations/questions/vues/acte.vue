@@ -10,6 +10,7 @@
         :envoyerEvenementAffichage="acteEnCours"
       >
         <bouton-lecture
+          v-if="afficheLectureQuestion"
           class="bouton-lecture"
           :idQuestion="questionCourante.nom_technique"
         />
@@ -49,6 +50,9 @@ export default {
     },
     acteEnCours () {
       return this.etat === DEMARRE;
+    },
+    afficheLectureQuestion () {
+      return this.$depotRessources.existeMessageAudio(this.questionCourante.nom_technique);
     }
   },
 

@@ -6,6 +6,7 @@ import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_qu
 import Acte from 'questions/vues/acte';
 import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from 'questions/vues/redaction_note';
+import BoutonLecture from 'commun/vues/bouton-lecture';
 import { DEMARRE } from 'commun/modeles/situation';
 
 describe("La vue de l'acte « Question »", function () {
@@ -27,14 +28,23 @@ describe("La vue de l'acte « Question »", function () {
     localVue.prototype.$depotRessources = {
       illustrationQuestion: () => {
         return { src: 'chemin-illustration' };
-      }
+      },
+      existeMessageAudio: () => false
     };
   });
 
   it('affiche la première question', function () {
-    const vue = shallowMount(Acte, { store });
+    const vue = shallowMount(Acte, { store, localVue });
 
     expect(vue.findComponent(QuestionRedactionNote).exists()).toBe(true);
+    expect(vue.findComponent(BoutonLecture).exists()).toBe(false);
+  });
+
+  it('affiche le bouton lecture si il existe un son', function () {
+    localVue.prototype.$depotRessources.existeMessageAudio = () => true;
+    const vue = shallowMount(Acte, { store, localVue });
+
+    expect(vue.findComponent(BoutonLecture).exists()).toBe(true);
   });
 
   it('enregistre la réponse dans le modèle lorsque la vue répond', function (done) {

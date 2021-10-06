@@ -71,6 +71,10 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     return this.ressource(MESSAGES[questionId]);
   }
 
+  existeMessageAudio (nomTechniqueQuestion) {
+    return nomTechniqueQuestion in MESSAGES;
+  }
+
   imageAideComplementaire () {
     return this.calculatrice();
   }

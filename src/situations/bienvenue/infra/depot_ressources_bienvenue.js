@@ -16,4 +16,8 @@ export default class DepotRessourcesBienvenue extends DepotRessourcesCommunes {
   messageAudio (nomTechniqueQuestion) {
     return this.ressource(AUDIOS_QUESTIONS[nomTechniqueQuestion]);
   }
+
+  existeMessageAudio (nomTechniqueQuestion) {
+    return nomTechniqueQuestion in AUDIOS_QUESTIONS;
+  }
 }
