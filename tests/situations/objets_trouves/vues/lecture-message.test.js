@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import VueLectureMessage from 'objets_trouves/vues/lecture-message';
-import BoutonLecture from 'objets_trouves/vues/bouton-lecture';
+import BoutonLecture from 'commun/vues/bouton-lecture';
 
 describe('La lecture de message pour objets trouvés', function () {
   let question;

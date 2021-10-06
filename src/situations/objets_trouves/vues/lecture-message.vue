@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import BoutonLecture from 'objets_trouves/vues/bouton-lecture';
+import BoutonLecture from 'commun/vues/bouton-lecture';
 import 'objets_trouves/styles/lecture-message.scss';
 
 export default {
