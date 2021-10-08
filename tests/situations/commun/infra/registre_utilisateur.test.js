@@ -341,12 +341,15 @@ describe('le registre utilisateur', function () {
 
       it("fait un POST pour terminer l'évaluation à partir d'un id", function () {
         const date = new Date('2021-10-08T08:45:50.084Z');
-        return registre.termineEvaluation('id_evaluation', date).then(() => {
+        const data = { id: 'id_evaluation' };
+        registre.enregistreUtilisateurEnLocal(data, 'identifiant_client');
+
+        return registre.termineEvaluation('identifiant_client', date).then(() => {
           expect(requetes.length).toBe(1);
           expect(requetes[0].type).toBe('POST');
           expect(requetes[0].url).toBe('https://url_serveur/api/evaluations/id_evaluation/fin');
-          expect(window.localStorage.getItem('evaluation_id_evaluation'))
-            .toBe('{"terminee_le":"2021-10-08T08:45:50.084Z"}');
+          expect(window.localStorage.getItem('evaluation_identifiant_client'))
+            .toBe('{"id":"id_evaluation","terminee_le":"2021-10-08T08:45:50.084Z"}');
         });
       });
 
