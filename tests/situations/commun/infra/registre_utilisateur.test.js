@@ -340,10 +340,13 @@ describe('le registre utilisateur', function () {
       });
 
       it("fait un POST pour terminer l'évaluation à partir d'un id", function () {
-        return registre.termineEvaluation('id_evaluation').then(() => {
+        const date = new Date('2021-10-08T08:45:50.084Z');
+        return registre.termineEvaluation('id_evaluation', date).then(() => {
           expect(requetes.length).toBe(1);
           expect(requetes[0].type).toBe('POST');
           expect(requetes[0].url).toBe('https://url_serveur/api/evaluations/id_evaluation/fin');
+          expect(window.localStorage.getItem('evaluation_id_evaluation'))
+            .toBe('{"terminee_le":"2021-10-08T08:45:50.084Z"}');
         });
       });
 
