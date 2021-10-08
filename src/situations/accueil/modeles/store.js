@@ -127,8 +127,8 @@ export function creeStore (registreUtilisateur, registreCampagne) {
       },
       termineEvaluation ({ commit }) {
         return registreUtilisateur.termineEvaluation()
-          .then((json) => {
-            commit('metsAJourCompetencesFortes', json.competences_fortes);
+          .then((competencesFortes) => {
+            commit('metsAJourCompetencesFortes', competencesFortes);
           })
           .finally(() => {
             commit('metsAJourEvaluationTerminee', true);
