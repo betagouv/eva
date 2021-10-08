@@ -80,21 +80,21 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  termineEvaluation (id = this.idEvaluation(), dateFin = Date.now()) {
+  termineEvaluation (id = this.idEvaluation(), dateFin = new Date()) {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
         url: `${this.urlServeur}/api/evaluations/${id}/fin`,
         contentType: 'application/json; charset=utf-8',
-        success: (utilisateur) => {
-          resolve(utilisateur);
+        success: (reponse) => {
+          resolve(reponse.competences_fortes);
         },
         error: (xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
             const utilisateur = this.evaluation(id);
-            utilisateur.terminee_le = dateFin.toISOString();
+            utilisateur.terminee_le = dateFin;
             this.enregistreUtilisateurEnLocal(utilisateur, id);
-            resolve(utilisateur);
+            resolve([]);
           } else {
             reject(xhr);
           }

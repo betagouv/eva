@@ -124,9 +124,7 @@ describe("Le store de l'accueil", function () {
 
     beforeEach(function () {
       registreUtilisateur.termineEvaluation = () => {
-        return Promise.resolve({
-          competences_fortes: ['comprehension_consigne', 'rapidite', 'tri']
-        });
+        return Promise.resolve(['comprehension_consigne', 'rapidite', 'tri']);
       };
     });
 
@@ -160,10 +158,12 @@ describe("Le store de l'accueil", function () {
         store = creeStore(registreUtilisateur, registreCampagne);
       });
 
-      it("indiquer que l'évaluation est terminée", function () {
+      it("indiquer que l'évaluation est terminée", function (done) {
         expect(store.state.evaluationTerminee).toBe(false);
-        return store.dispatch('termineEvaluation').catch(() => {
+        store.dispatch('termineEvaluation').catch((erreur) => {
           expect(store.state.evaluationTerminee).toBe(true);
+          expect(erreur).toEqual({ status: 422 });
+          done();
         });
       });
     });

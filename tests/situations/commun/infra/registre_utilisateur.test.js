@@ -334,23 +334,38 @@ describe('le registre utilisateur', function () {
   describe('#termineEvaluation()', function () {
     let registre;
 
-    describe('quand on est en ligne', function () {
+    describe('quand on est en ligne sans erreur', function () {
       beforeEach(function () {
-        registre = unRegistre();
+        registre = unRegistre({ competences_fortes: [] }, 'https://url_serveur', true);
       });
 
       it("fait un POST pour terminer l'évaluation à partir d'un id", function () {
-        registre.termineEvaluation('id_evaluation');
-
-        expect(requetes.length).toBe(1);
-        expect(requetes[0].type).toBe('POST');
-        expect(requetes[0].url).toBe(`${process.env.URL_API}/api/evaluations/id_evaluation/fin`);
+        return registre.termineEvaluation('id_evaluation').then(() => {
+          expect(requetes.length).toBe(1);
+          expect(requetes[0].type).toBe('POST');
+          expect(requetes[0].url).toBe('https://url_serveur/api/evaluations/id_evaluation/fin');
+        });
       });
 
-      it("retourne une promesse d'enregistrement", function (done) {
-        registre.termineEvaluation('id_client').then(done);
+      it("retourne une promesse d'enregistrement", function () {
+        return registre.termineEvaluation('id_client');
+      });
+    });
 
-        requetes[0].success();
+    describe('quand on est en ligne avec une erreur', function () {
+      beforeEach(function () {
+        registre = new RegistreUtilisateur({
+          ajax (options) {
+            options.error({ status: 404 });
+          }
+        });
+      });
+
+      it('remonte les erreurs réseau', function (done) {
+        registre.termineEvaluation('id_client').catch((erreur) => {
+          expect(erreur).toEqual({ status: 404 });
+          done();
+        });
       });
     });
 
@@ -361,9 +376,10 @@ describe('le registre utilisateur', function () {
       });
 
       it("enregistre la date de fin de l'évaluation en local", function () {
-        const date = new Date();
+        const date = new Date('2021-10-08T08:45:50.084Z');
         return registre.termineEvaluation('id_client', date).then(() => {
-          expect(window.localStorage.getItem('evaluation_id_client')).toBe(`{"terminee_le":"${date.toISOString()}"}`);
+          expect(window.localStorage.getItem('evaluation_id_client'))
+            .toBe('{"terminee_le":"2021-10-08T08:45:50.084Z"}');
         });
       });
     });

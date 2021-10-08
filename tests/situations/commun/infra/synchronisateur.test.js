@@ -214,7 +214,7 @@ describe('Synchronisateur', function () {
 
     describe("quand l'évaluation est terminée", function () {
       beforeEach(function () {
-        evaluation = { terminee_le: Date.now() };
+        evaluation = { terminee_le: new Date() };
         window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
       });
 
