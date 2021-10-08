@@ -29,10 +29,9 @@ export default class Synchronisateur {
     Object.entries(evaluations).forEach(([idClient, evaluation]) => {
       let promesse;
       if (evaluation.id) {
-        promesse = this.registreUtilisateur.enregistreContact(evaluation.id, evaluation.email, evaluation.telephone);
+        promesse = this.registreUtilisateur.metsAJourEvaluation(evaluation.id, evaluation);
       } else {
-        const data = { nom: evaluation.nom, code_campagne: evaluation.code_campagne };
-        promesse = this.registreUtilisateur.creeEvaluation(data).then((utilisateur) => {
+        promesse = this.registreUtilisateur.creeEvaluation(evaluation).then((utilisateur) => {
           this.registreUtilisateur.enregistreUtilisateurEnLocal(utilisateur, idClient);
           return utilisateur;
         });

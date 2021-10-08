@@ -30,10 +30,15 @@ describe('Synchronisateur', function () {
 
     describe("quand l'évaluation n'existe pas coté serveur", function () {
       let creeEvaluation;
+      const evaluationClement = {
+        nom: 'Clement',
+        code_campagne: 'CODE',
+        terminee_le: '2021-10-06T16:13:24.000+02:00'
+      };
 
       beforeEach(function () {
         window.localStorage.setItem('evaluation_1', JSON.stringify({ nom: 'Marcelle', code_campagne: 'CODE' }));
-        window.localStorage.setItem('evaluation_2', JSON.stringify({ nom: 'Clement', code_campagne: 'CODE' }));
+        window.localStorage.setItem('evaluation_2', JSON.stringify(evaluationClement));
 
         let evaluationId = 0;
         creeEvaluation = jest.spyOn(registreUtilisateur, 'creeEvaluation')
@@ -47,7 +52,7 @@ describe('Synchronisateur', function () {
         synchronisateur.recupereReseau();
 
         expect(creeEvaluation).toHaveBeenCalledTimes(2);
-        expect(creeEvaluation).toHaveBeenLastCalledWith({ nom: 'Clement', code_campagne: 'CODE' });
+        expect(creeEvaluation).toHaveBeenLastCalledWith(evaluationClement);
       });
 
       it("enregistre dans le localstorage l'évaluation créée", function (done) {
@@ -72,8 +77,6 @@ describe('Synchronisateur', function () {
       });
 
       it("supprime l'évaluation terminée du localStorage", function (done) {
-        window.localStorage.setItem('evaluation_3', JSON.stringify({ nom: 'Clement', code_campagne: 'CODE', terminee_le: new Date() }));
-
         synchronisateur.recupereReseau();
 
         setTimeout(() => {
@@ -85,19 +88,26 @@ describe('Synchronisateur', function () {
     });
 
     describe("quand l'évaluation existe coté serveur", function () {
+      const evaluation = {
+        id: 1,
+        email: 'Marcelle@paris.fr',
+        telephone: '061234567',
+        terminee_le: '2021-10-06T16:13:24.000+02:00'
+      };
+
       beforeEach(function () {
         window.localStorage.setItem('evaluation_1',
-          JSON.stringify({ id: 1, email: 'Marcelle@paris.fr', telephone: '061234567' }));
+          JSON.stringify(evaluation));
       });
 
-      it("Met à jour les informations de contact au cas où elles n'auraient pas été envoyées", function () {
-        const enregistreContact = jest.spyOn(registreUtilisateur, 'enregistreContact')
+      it("Met à jour les informations de l'évaluation au cas où elles n'auraient pas été envoyées", function () {
+        const metsAJourEvaluation = jest.spyOn(registreUtilisateur, 'metsAJourEvaluation')
           .mockImplementation((data) => {
             return Promise.resolve(data);
           });
         synchronisateur.recupereReseau();
-        expect(enregistreContact).toHaveBeenCalled();
-        expect(enregistreContact).toHaveBeenLastCalledWith(1, 'Marcelle@paris.fr', '061234567');
+        expect(metsAJourEvaluation).toHaveBeenCalled();
+        expect(metsAJourEvaluation).toHaveBeenLastCalledWith(1, evaluation);
       });
     });
 
@@ -141,11 +151,11 @@ describe('Synchronisateur', function () {
         });
       });
 
-      it('attend la fin de #enregistreContact', function (done) {
+      it('attend la fin de #metsAJourEvaluation', function (done) {
         window.localStorage.setItem('evaluation_1',
           JSON.stringify({ id: 1, email: 'Marcelle@paris.fr', telephone: '061234567' }));
 
-        const spy = jest.spyOn(registreUtilisateur, 'enregistreContact')
+        const spy = jest.spyOn(registreUtilisateur, 'metsAJourEvaluation')
           .mockImplementation(() => {
             return promesse;
           });
@@ -183,7 +193,7 @@ describe('Synchronisateur', function () {
         window.localStorage.setItem('evaluation_1',
           JSON.stringify({ id: 1, email: 'Marcelle@paris.fr', telephone: '061234567' }));
 
-        jest.spyOn(registreUtilisateur, 'enregistreContact')
+        jest.spyOn(registreUtilisateur, 'metsAJourEvaluation')
           .mockImplementation(() => {
             return Promise.resolve({ id: '1' });
           });
