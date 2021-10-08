@@ -81,6 +81,10 @@ export default class RegistreUtilisateur extends BaseRegistre {
   }
 
   termineEvaluation (id = this.idEvaluation(), dateFin = new Date()) {
+    const utilisateur = this.evaluation(id);
+    utilisateur.terminee_le = dateFin;
+    this.enregistreUtilisateurEnLocal(utilisateur, id);
+
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
@@ -91,9 +95,6 @@ export default class RegistreUtilisateur extends BaseRegistre {
         },
         error: (xhr) => {
           if (this.activeModeHorsLigne(xhr)) {
-            const utilisateur = this.evaluation(id);
-            utilisateur.terminee_le = dateFin;
-            this.enregistreUtilisateurEnLocal(utilisateur, id);
             resolve([]);
           } else {
             reject(xhr);
