@@ -80,7 +80,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  termineEvaluation (id = this.idEvaluation(), dateFin = new Date()) {
+  termineEvaluation (id = this.idClient(), dateFin = new Date()) {
     const utilisateur = this.evaluation(id);
     utilisateur.terminee_le = dateFin;
     this.enregistreUtilisateurEnLocal(utilisateur, id);
@@ -88,7 +88,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'POST',
-        url: `${this.urlServeur}/api/evaluations/${id}/fin`,
+        url: `${this.urlServeur}/api/evaluations/${utilisateur.id}/fin`,
         contentType: 'application/json; charset=utf-8',
         success: (reponse) => {
           resolve(reponse.competences_fortes);
