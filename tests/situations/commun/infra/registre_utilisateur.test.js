@@ -141,7 +141,7 @@ describe('le registre utilisateur', function () {
       beforeEach(function () {
         mockJQuery = {
           ajax (options) {
-            options.success({ id: 1, nom: 'mon nom' });
+            options.success({ id: 1, nom: 'mon nom', debutee_le: '2020-03-31T22:00:00.000Z' });
           }
         };
         registre = new RegistreUtilisateur(mockJQuery, 'url quelconque');
@@ -156,7 +156,7 @@ describe('le registre utilisateur', function () {
           return registre.inscris('test').then((utilisateur) => {
             expect(registre.nom()).toEqual('mon nom');
             expect(registre.idEvaluation()).toEqual(1);
-            expect(utilisateur).toEqual({ id: 1, nom: 'mon nom' });
+            expect(utilisateur).toEqual({ id: 1, nom: 'mon nom', debutee_le: '2020-03-31T22:00:00.000Z' });
           });
         });
       });
@@ -170,7 +170,7 @@ describe('le registre utilisateur', function () {
           return registre.inscris('test').then((utilisateur) => {
             expect(registre.nom()).toEqual('mon nom');
             expect(registre.idEvaluation()).toEqual(1);
-            expect(utilisateur).toEqual({ id: 1, nom: 'mon nom' });
+            expect(utilisateur).toEqual({ id: 1, nom: 'mon nom', debutee_le: '2020-03-31T22:00:00.000Z' });
           });
         });
 
@@ -191,7 +191,12 @@ describe('le registre utilisateur', function () {
       let registre;
 
       beforeEach(function () {
-        registre = unRegistre({ id: 1, nom: 'autre test' }, 'https://serveur.com/', false);
+        jest.useFakeTimers('modern');
+        registre = unRegistre({ id: 1, nom: 'autre test', debutee_le: '2020-03-31T22:00:00.000Z' }, 'https://serveur.com/', false);
+      });
+
+      afterEach(function () {
+        jest.useRealTimers();
       });
 
       describe('avec le mode hors ligne activé', function () {
@@ -203,7 +208,7 @@ describe('le registre utilisateur', function () {
           return registre.inscris('Jean', 'CODE').then((utilisateur) => {
             expect(registre.nom()).toEqual('Jean');
             expect(registre.idEvaluation()).toEqual(undefined);
-            expect(utilisateur).toEqual({ nom: 'Jean', code_campagne: 'CODE' });
+            expect(utilisateur).toEqual({ nom: 'Jean', code_campagne: 'CODE', debutee_le: new Date() });
           });
         });
       });
