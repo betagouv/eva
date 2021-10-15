@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import BoutonLecture from 'commun/vues/bouton-lecture';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 
 describe('Le bouton de lecture de message audio', function () {
   it("affiche le bouton play quand aucun son n'est joué", function () {

@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueQCM from 'commun/vues/qcm';
 import LecteurAudio from 'commun/vues/lecteur_audio';
-import BoutonLecture from 'commun/vues/bouton-lecture';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 describe('La vue de la question QCM', function () {

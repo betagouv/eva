@@ -109,7 +109,7 @@ import 'commun/styles/formulaire_qcm.scss';
 
 import LecteurAudio from './lecteur_audio';
 import Question from './question';
-import BoutonLecture from 'commun/vues/bouton-lecture';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
