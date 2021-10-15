@@ -13,9 +13,9 @@ Pour voir les autres projets de eva:
 - [la partie orchestration](https://github.com/betagouv/eva-orchestrateur)
 - [le site web](https://github.com/betagouv/eva-www)
 
-## Démarrer un serveur Webpack en local (mode développement)
+## Configuration de l'environnement
 
-### Pour installer npm version 14
+### Installer node version 14
 
 Sur mac, si vous avez déjà une autre version de node installée,
 
@@ -25,6 +25,44 @@ $> export CPPFLAGS="-I/usr/local/opt/node@14/include"
 $> export LDFLAGS="-L/usr/local/opt/node@14/lib"
 $> export PATH="/usr/local/opt/node@14/bin:$PATH"
 ```
+
+### Assigner les variables d'environnement
+
+#### Soit dans un fichier .env
+
+Nécessite que votre machine interprète le fichier, avec par exemple [le plugin dotenv](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv) de Oh My Zsh
+
+```
+# Indispensables
+# --------------
+
+# Adresse du serveur local
+URL_API=http://localhost:3000/pro
+
+# Optionnelles
+# ------------
+
+# Pour la gestion des erreurs
+JETON_CLIENT_ROLLBAR=
+ROLLBAR_ENV=
+SOURCE_VERSION=
+
+# Pour afficher un message à tout le monde
+ANNONCE_GENERALE=
+
+# Pour les analytics
+HOTJAR_ID=
+MATOMO_ID=
+```
+
+#### Soit directement en ligne de commande
+
+```
+export URL_API=http://localhost:3000/pro
+```
+
+## Démarrer un serveur Webpack en local (mode développement)
+
 
 ### Démarrer l'application avec webpack server
 
