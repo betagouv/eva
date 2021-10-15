@@ -21,6 +21,7 @@ function afficheAccueil (pointInsertion) {
   const registreEvenements = new RegistreEvenements(registreUtilisateur);
 
   const synchronisateur = new Synchronisateur(registreUtilisateur, registreEvenements);
+  if (navigator.onLine) { synchronisateur.recupereReseau(); }
   window.addEventListener('online', () => { synchronisateur.recupereReseau(); });
 
   const registreCampagne = new RegistreCampagne();
