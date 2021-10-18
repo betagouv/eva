@@ -7,7 +7,7 @@ describe('La lecture de message pour objets trouvés', function () {
   let wrapper;
 
   beforeEach(function () {
-    question = { id: 'message-bureau-mickael' };
+    question = { nomTechnique: 'message-bureau-mickael' };
 
     wrapper = shallowMount(VueLectureMessage, {
       propsData: { question }
@@ -20,7 +20,7 @@ describe('La lecture de message pour objets trouvés', function () {
   });
 
   it('joue le message audio de la question', function () {
-    expect(wrapper.findComponent(BoutonLecture).props().idQuestion).toBe(question.id);
+    expect(wrapper.findComponent(BoutonLecture).props().nomTechnique).toBe(question.nomTechnique);
   });
 
   it('affiche le bouton à la bonne position en fonction de la question', function () {

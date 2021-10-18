@@ -380,6 +380,7 @@ const questionMessage3 = {
 
 const questionRepondeur1 = {
   id: 'heure-bureau-mickael',
+  nomTechnique: 'heure-bureau-mickael',
   icone: iconeRepondeur,
   illustration: AppRepondeur1,
   intitule: 'A quelle heure Sophie doit-elle se rendre dans le bureau de Mickael ?',
@@ -427,6 +428,7 @@ const questionRepondeur1 = {
 
 const questionRepondeur2 = {
   id: 'nombre-tours-de-manege',
+  nomTechnique: 'nombre-tours-de-manege',
   icone: iconeRepondeur,
   illustration: AppRepondeur2,
   description: 'Vous savez que Sophie lance un tour de manège pour 7 enfants.',

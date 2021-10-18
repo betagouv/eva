@@ -2,7 +2,7 @@
   <div class="telephone-conteneur">
     <bouton-lecture
        class="bouton-lecture"
-       :idQuestion="question.id"
+       :nomTechnique="question.nomTechnique"
        :class="classPositionBoutonLecture"
     />
   </div>
@@ -24,7 +24,7 @@ export default {
 
   computed: {
     classPositionBoutonLecture () {
-      return `bouton-lecture--${this.question.id}`;
+      return `bouton-lecture--${this.question.nomTechnique}`;
     }
   }
 };
