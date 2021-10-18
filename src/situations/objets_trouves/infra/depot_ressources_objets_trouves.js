@@ -67,8 +67,8 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     return this.ressource(iconeDeverrouillageDebloque);
   }
 
-  messageAudio (questionId) {
-    return this.ressource(MESSAGES[questionId]);
+  messageAudio (nomTechniqueQuestion) {
+    return this.ressource(MESSAGES[nomTechniqueQuestion]);
   }
 
   existeMessageAudio (nomTechniqueQuestion) {

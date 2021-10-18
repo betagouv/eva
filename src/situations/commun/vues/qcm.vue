@@ -28,7 +28,7 @@
           </div>
           <bouton-lecture
             class="bouton-lecture"
-            :idQuestion="question.nom_technique"
+            :nomTechnique="question.nom_technique"
           />
         </div>
         <div class="entete-questions">

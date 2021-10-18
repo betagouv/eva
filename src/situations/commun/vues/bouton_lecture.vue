@@ -40,7 +40,7 @@ import JoueurAudioBuffer from 'commun/composants/joueur_audio_buffer';
 
 export default {
   props: {
-    idQuestion: {
+    nomTechnique: {
       type: String,
       required: true
     }
@@ -58,15 +58,15 @@ export default {
       this.joueSon = !this.joueSon;
     },
 
-    audioBuffer (idQuestion) {
-      return this.$depotRessources.messageAudio(idQuestion);
+    audioBuffer (nomTechnique) {
+      return this.$depotRessources.messageAudio(nomTechnique);
     }
   },
 
   watch: {
     joueSon (joue) {
       if (joue) {
-        this.joueurSon.start(this.audioBuffer(this.idQuestion), () => { this.joueSon = false; });
+        this.joueurSon.start(this.audioBuffer(this.nomTechnique), () => { this.joueSon = false; });
       } else {
         this.joueurSon.stop();
       }
