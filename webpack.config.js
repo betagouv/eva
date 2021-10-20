@@ -35,9 +35,9 @@ module.exports = {
     ...entriesSituations
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public/jeu/'),
     filename: 'js/[name]_[contenthash].js',
-    publicPath: '/' // public URL of the output directory when referenced in a browser
+    publicPath: '/jeu/' // public URL of the output directory when referenced in a browser
   },
   devtool: devMode ? 'eval-cheap-source-map' : 'source-map',
   resolve: {

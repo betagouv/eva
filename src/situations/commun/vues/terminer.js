@@ -4,7 +4,7 @@ import { afficheFenetreModale } from 'commun/vues/modale';
 import 'commun/styles/bouton.scss';
 
 export default class VueTerminer {
-  constructor (situation, depotRessources, retourAccueil = () => window.location.assign('/')) {
+  constructor (situation, depotRessources, retourAccueil = () => window.location.assign('/jeu')) {
     this.situation = situation;
     this.retourAccueil = retourAccueil;
   }

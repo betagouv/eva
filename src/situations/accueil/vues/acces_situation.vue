@@ -1,6 +1,6 @@
 <template>
   <a
-    :href="situation.chemin"
+    :href="'/jeu/'+situation.chemin"
     :class="{ desactivee: desactivee }"
     :style="{ 'background-image': afficheBatiment ? backgroundImage : null }"
     v-on="situation.action ? { click: situation.action } : {}"

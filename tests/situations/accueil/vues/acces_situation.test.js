@@ -40,7 +40,7 @@ describe('La vue pour accéder à une situation', function () {
     optionsMount.propsData.afficheFond = true;
     wrapper = mount(AccesSituation, optionsMount);
     expect(wrapper.text()).toEqual('ABC');
-    expect(wrapper.attributes('href')).toBe('abc.html');
+    expect(wrapper.attributes('href')).toBe('/jeu/abc.html');
     expect(wrapper.attributes('style')).toBe('background-image: url(identifiant-abc);');
   });
 
@@ -50,7 +50,7 @@ describe('La vue pour accéder à une situation', function () {
     wrapper = mount(AccesSituation, optionsMount);
 
     expect(wrapper.text()).toEqual('ABC');
-    expect(wrapper.attributes('href')).toBe('abc.html');
+    expect(wrapper.attributes('href')).toBe('/jeu/abc.html');
     expect(wrapper.attributes('style')).toBe(undefined);
   });
 
@@ -59,7 +59,7 @@ describe('La vue pour accéder à une situation', function () {
     optionsMount.propsData.afficheFond = false;
     wrapper = mount(AccesSituation, optionsMount);
     expect(wrapper.text()).toEqual('ABC');
-    expect(wrapper.attributes('href')).toBe('abc.html');
+    expect(wrapper.attributes('href')).toBe('/jeu/abc.html');
     expect(wrapper.attributes('style')).toBe(undefined);
   });
 });
