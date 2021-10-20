@@ -14,7 +14,7 @@ export function afficheSituation (identifiantSituation, modeleSituation, VueSitu
     modeleSituation.identifiant = identifiantSituation;
 
     if (!journal.registreUtilisateur.estConnecte()) {
-      window.location.assign('/');
+      window.location.assign('/jeu');
       return;
     }
 
