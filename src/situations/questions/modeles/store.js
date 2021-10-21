@@ -32,7 +32,7 @@ export function creeStore () {
     },
     mutations: {
       configureActe (state, { questions }) {
-        state.questions = questions;
+        state.questions = questions || [];
         state.indexQuestions = 0;
         state.fini = false;
       },

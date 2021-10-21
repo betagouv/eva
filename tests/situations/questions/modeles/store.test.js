@@ -28,6 +28,12 @@ describe('Le store de la situation questions', function () {
     expect(store.getters.questionCourante).toEqual({ id: 1 });
   });
 
+  it('ne plante pas si configureActe ne configure aucune question', function () {
+    const store = creeStore();
+    store.commit('configureActe', {});
+    expect(store.getters.questionCourante).toEqual(undefined);
+  });
+
   it('permet de répondre a une question et de changer la question courante', function () {
     const store = creeStore();
     store.commit('configureActe', { questions: [{ id: 1 }, { id: 2 }] });
