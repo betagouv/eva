@@ -1,10 +1,11 @@
 import { traduction } from 'commun/infra/internationalisation';
 import { afficheFenetreModale } from 'commun/vues/modale';
+import { SCOPE_URL } from 'commun/vues/affiche_situation';
 
 import 'commun/styles/bouton.scss';
 
 export default class VueTerminer {
-  constructor (situation, depotRessources, retourAccueil = () => window.location.assign('/jeu')) {
+  constructor (situation, depotRessources, retourAccueil = () => window.location.assign(SCOPE_URL)) {
     this.situation = situation;
     this.retourAccueil = retourAccueil;
   }

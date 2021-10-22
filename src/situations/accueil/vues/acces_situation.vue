@@ -1,6 +1,6 @@
 <template>
   <a
-    :href="'/jeu/'+situation.chemin"
+    :href="cheminSituation"
     :class="{ desactivee: desactivee }"
     :style="{ 'background-image': afficheBatiment ? backgroundImage : null }"
     v-on="situation.action ? { click: situation.action } : {}"
@@ -12,6 +12,7 @@
 
 <script>
 import 'accueil/styles/acces_situation.scss';
+import { SCOPE_URL } from 'commun/vues/affiche_situation';
 
 export default {
   props: {
@@ -38,7 +39,12 @@ export default {
 
     backgroundImage () {
       return `url('${this.$depotRessources.batimentSituation(this.situation.identifiant).src}')`;
+    },
+
+    cheminSituation () {
+      return `${SCOPE_URL}/${this.situation.chemin}`;
     }
+
   }
 };
 </script>
