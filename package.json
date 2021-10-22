@@ -5,7 +5,8 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server --history-api-fallback --inline --progress --mode development",
+    "build-dev": "webpack --watch --history-api-fallback --inline --progress --mode development",
+    "dev": "npm run start & npm run build-dev",
     "test": "jest",
     "lint": "eslint --cache --ext .js,.vue src tests",
     "start": "node server.js"
