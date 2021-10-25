@@ -62,4 +62,10 @@ describe('La vue pour accéder à une situation', function () {
     expect(wrapper.attributes('href')).toBe('/jeu/abc.html');
     expect(wrapper.attributes('style')).toBe(undefined);
   });
+
+  it("N'a pas d'href pour le batiment Resultat", function () {
+    optionsMount.propsData.situation.chemin = undefined;
+    wrapper = mount(AccesSituation, optionsMount);
+    expect(wrapper.attributes('href')).toBe(undefined);
+  });
 });

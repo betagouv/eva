@@ -42,6 +42,8 @@ export default {
     },
 
     cheminSituation () {
+      if (!this.situation.chemin) return;
+
       return `${SCOPE_URL}/${this.situation.chemin}`;
     }
 
