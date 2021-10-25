@@ -51,9 +51,6 @@ export default {
     repondQuestion (reponse) {
       this.$journal.enregistre(new EvenementReponse({ question: this.questionCourante.id, ...reponse }));
       this.$store.commit('repondQuestionCourante');
-    },
-    afficheLectureQuestion () {
-      return this.$depotRessources.existeMessageAudio(this.questionCourante.nom_technique);
     }
   },
 
