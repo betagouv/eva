@@ -1,0 +1,114 @@
+@import 'commun/styles/couleurs.scss';
+
+@mixin jaugeThumb {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: -0.3rem 0 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: $bleu;
+}
+
+@mixin jaugeTrack {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background: $couleur-fond;
+}
+
+.jauge-conteneur {
+  display: flex;
+}
+
+.jauge {
+  width: 1rem;
+  height: 14.5rem;
+  position: relative;
+  border-radius: 0.5rem;
+  input {
+    height: 1rem;
+    width: 14.5rem;
+    margin: 0 0 0 1rem;
+    outline: none;
+    appearance: none;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: 1px solid $bleu-gris;
+    background-color: $couleur-fond;
+    transform-origin: top left;
+    transform: rotate(90deg);
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      @include jaugeThumb;
+    }
+
+    &::-moz-range-thumb {
+      @include jaugeThumb;
+    }
+
+    &::-ms-thumb {
+      @include jaugeThumb;
+    }
+
+    // Track
+    &::-webkit-slider-runnable-track {
+      @include jaugeTrack;
+    }
+
+    &::-moz-range-track {
+      @include jaugeTrack;
+    }
+
+    &::-ms-track {
+      @include jaugeTrack;
+    }
+
+    &:focus {
+      outline: none;
+      background: none;
+    }
+  }
+
+  &-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 14.5rem;
+    width: 100%;
+    padding: 0;
+    position: relative;
+    list-style: none;
+
+    .label {
+      padding-left: 1.875rem;
+      position: relative;
+      font-size: 14px;
+      cursor: pointer;
+      color: $bleu-fonce;
+
+      &::before {
+        content: '';
+        width: 8px;
+        height: 1px;
+        position: absolute;
+        left: -0.75rem;
+        top: 0.5rem;
+        background: $bleu;
+      }
+
+      &.active {
+        color: $bleu;
+      }
+
+      &.selected::before {
+        background: $bleu;
+      }
+
+      &.active.selected::before {
+        display: none;
+      }
+    }
+  }
+}
