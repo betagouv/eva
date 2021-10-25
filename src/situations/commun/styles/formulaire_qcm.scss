@@ -53,6 +53,9 @@
 
   &-choix {
     margin-top: 1rem;
+    @at-root .jauge .question-choix {
+      margin-top: 0;
+    }
   }
 
   &-label {
