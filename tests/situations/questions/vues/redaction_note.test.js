@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueRedactionNote from 'questions/vues/redaction_note';
-import BoutonLecture from 'commun/vues/bouton_lecture';
+import QuestionEntete from 'commun/vues/question_entete';
 
 describe('La vue de la question RedactionNote', function () {
   let question;
@@ -15,18 +15,10 @@ describe('La vue de la question RedactionNote', function () {
     };
   });
 
-  it("affiche le bouton lecture s'il existe un son", function () {
-    localVue.prototype.$depotRessources.existeMessageAudio = () => true;
+  it("affiche l'entête de la question", function () {
     const vue = shallowMount(VueRedactionNote, { localVue, propsData: { question } });
 
-    expect(vue.findComponent(BoutonLecture).exists()).toBe(true);
-  });
-
-  it("n'affiche pas le bouton lecture s'il n'existe pas de son", function () {
-    localVue.prototype.$depotRessources.existeMessageAudio = () => false;
-    const vue = shallowMount(VueRedactionNote, { localVue, propsData: { question } });
-
-    expect(vue.findComponent(BoutonLecture).exists()).toBe(false);
+    expect(vue.findComponent(QuestionEntete).exists()).toBe(true);
   });
 
   it('affiche une zone de saisie de texte', function () {

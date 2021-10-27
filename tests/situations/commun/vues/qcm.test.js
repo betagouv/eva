@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueQCM from 'commun/vues/qcm';
 import LecteurAudio from 'commun/vues/lecteur_audio';
-import BoutonLecture from 'commun/vues/bouton_lecture';
+import QuestionEntete from 'commun/vues/question_entete';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 describe('La vue de la question QCM', function () {
@@ -21,18 +21,10 @@ describe('La vue de la question QCM', function () {
     };
   });
 
-  it("affiche le bouton lecture s'il existe un son", function () {
-    localVue.prototype.$depotRessources.existeMessageAudio = () => true;
+  it("affiche l'entête de la question", function () {
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
 
-    expect(vue.findComponent(BoutonLecture).exists()).toBe(true);
-  });
-
-  it("n'affiche pas le bouton lecture s'il n'existe pas de son", function () {
-    localVue.prototype.$depotRessources.existeMessageAudio = () => false;
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
-
-    expect(vue.findComponent(BoutonLecture).exists()).toBe(false);
+    expect(vue.findComponent(QuestionEntete).exists()).toBe(true);
   });
 
   it('affiche des radios', function () {
