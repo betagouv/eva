@@ -118,11 +118,11 @@ export default class RegistreUtilisateur extends BaseRegistre {
   }
 
   listeEvaluationsLocales () {
-    return Object.keys(localStorage)
+    return Object.keys(window.localStorage)
       .filter((k) => k.startsWith(PREFIX_EVALUATIONS))
       .reduce((liste, k) => {
         const idClient = k.replace(PREFIX_EVALUATIONS, '');
-        return { ...liste, [idClient]: JSON.parse(localStorage.getItem(k)) };
+        return { ...liste, [idClient]: JSON.parse(window.localStorage.getItem(k)) };
       }, {});
   }
 
