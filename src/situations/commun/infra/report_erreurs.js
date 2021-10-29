@@ -1,6 +1,7 @@
 import Rollbar from 'rollbar';
 
 const rollbar = new Rollbar({
+  enabled: !!process.env.JETON_CLIENT_ROLLBAR,
   accessToken: process.env.JETON_CLIENT_ROLLBAR,
   captureUncaught: true,
   captureUnhandledRejections: true,
