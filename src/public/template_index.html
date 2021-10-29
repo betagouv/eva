@@ -35,6 +35,15 @@
     <script type="text/javascript">
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
+          ['https://app.eva.beta.gouv.fr', 'https://preprod.eva.beta.gouv.fr'].forEach((scope) => {
+            navigator.serviceWorker.getRegistration(scope)
+              .then((registration) => {
+                registration.unregister();
+              })
+              .catch((err) => {
+                // on ignore volontairement les erreurs
+              });
+          });
           navigator.serviceWorker.register('/jeu/service-worker.js').then(registration => {
             console.log('SW registered: ', registration);
           }).catch(registrationError => {
