@@ -27,15 +27,8 @@ export default class Synchronisateur {
     const promesses = [];
 
     Object.entries(evaluations).forEach(([idClient, evaluation]) => {
-      let promesse;
-      if (evaluation.id) {
-        promesse = this.registreUtilisateur.metsAJourEvaluation(evaluation.id, evaluation);
-      } else {
-        promesse = this.registreUtilisateur.creeEvaluation(evaluation).then((utilisateur) => {
-          this.registreUtilisateur.enregistreUtilisateurEnLocal(utilisateur, idClient);
-          return utilisateur;
-        });
-      }
+      let promesse = this.creeOuMetsAJourEvaluation(evaluation, idClient);
+
       promesse = promesse.then((utilisateur) => {
         return this.synchroniseEvenements(idClient, utilisateur).then(() => {
           return this.supprimeEvaluationDuLocal(idClient, evaluation);
@@ -44,6 +37,20 @@ export default class Synchronisateur {
       promesses.push(promesse);
     });
     return promesses;
+  }
+
+  creeOuMetsAJourEvaluation (evaluation, idClient) {
+    let promesse;
+    if (evaluation.id) {
+      promesse = this.registreUtilisateur.metsAJourEvaluation(evaluation.id, evaluation);
+    } else {
+      promesse = this.registreUtilisateur.creeEvaluation(evaluation).then((utilisateur) => {
+        this.registreUtilisateur.enregistreUtilisateurEnLocal(utilisateur, idClient);
+        return utilisateur;
+      });
+    }
+
+    return promesse;
   }
 
   synchroniseEvenements (idClient, utilisateur) {
