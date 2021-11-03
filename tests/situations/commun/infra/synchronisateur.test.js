@@ -235,6 +235,23 @@ describe('Synchronisateur', function () {
       });
     });
 
+    describe("quand l'évaluation n'est pas terminée mais a été commencé il y a plus d'un mois", function () {
+      beforeEach(function () {
+        const debuteeLe = new Date();
+        debuteeLe.setMonth(debuteeLe.getMonth() - 1);
+        debuteeLe.setSeconds(debuteeLe.getSeconds() - 1);
+
+        evaluation = { id: 1, debutee_le: debuteeLe };
+        window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+      });
+
+      it("supprime l'évaluation du localStorage", function () {
+        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
+
+        expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
+      });
+    });
+
     describe("quand l'évaluation n'est pas terminée", function () {
       beforeEach(function () {
         evaluation = { id: 1 };
