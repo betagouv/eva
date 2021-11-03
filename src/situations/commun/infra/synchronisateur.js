@@ -30,10 +30,11 @@ export default class Synchronisateur {
       let promesse = this.creeOuMetsAJourEvaluation(evaluation, idClient);
 
       promesse = promesse.then((utilisateur) => {
-        return this.synchroniseEvenements(idClient, utilisateur).then(() => {
-          return this.supprimeEvaluationDuLocal(idClient, evaluation);
-        });
+        return this.synchroniseEvenements(idClient, utilisateur);
+      }).finally(() => {
+        return this.supprimeEvaluationDuLocal(idClient, evaluation);
       });
+
       promesses.push(promesse);
     });
     return promesses;
