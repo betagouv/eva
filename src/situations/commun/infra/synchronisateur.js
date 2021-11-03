@@ -62,6 +62,7 @@ export default class Synchronisateur {
     unMoisAvant.setMonth(unMoisAvant.getMonth() - 1);
 
     if (evaluation.terminee_le || new Date(evaluation.debutee_le) < unMoisAvant) {
+      this.registreEvenements.supprimeEvenementsLocale(idClient);
       this.registreUtilisateur.supprimeEvaluationLocale(idClient);
     }
   }
