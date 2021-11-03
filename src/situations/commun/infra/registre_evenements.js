@@ -59,7 +59,7 @@ export default class RegistreEvenements extends BaseRegistre {
         data: JSON.stringify({ evenements: evenements }),
         contentType: 'application/json; charset=utf-8',
         success: () => {
-          window.localStorage.removeItem(this.cleEvenementsPourLocalStorage(idClient));
+          this.supprimeEvenementsLocale(idClient);
           resolve();
         },
         error: reject
@@ -81,5 +81,10 @@ export default class RegistreEvenements extends BaseRegistre {
 
   cleEvenementsPourLocalStorage (idClient) {
     return `evenements_${idClient}`;
+  }
+
+  supprimeEvenementsLocale (idClient) {
+    const cle = this.cleEvenementsPourLocalStorage(idClient);
+    window.localStorage.removeItem(cle);
   }
 }
