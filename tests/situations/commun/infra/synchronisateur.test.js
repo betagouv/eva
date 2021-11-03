@@ -216,16 +216,24 @@ describe('Synchronisateur', function () {
   describe('#supprimeEvaluationDuLocal()', function () {
     let evaluation;
     let supprimeEvaluationLocale;
+    let supprimeEvenementsLocale;
     const idClient = 'id_client';
 
     beforeEach(function () {
       supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeEvaluationLocale');
+      supprimeEvenementsLocale = jest.spyOn(registreEvenements, 'supprimeEvenementsLocale');
     });
 
     describe("quand l'évaluation est terminée", function () {
       beforeEach(function () {
         evaluation = { terminee_le: new Date() };
         window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+      });
+
+      it('supprime les évènements du localStorage', function () {
+        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
+
+        expect(supprimeEvenementsLocale).toHaveBeenCalledTimes(1);
       });
 
       it("supprime l'évaluation du localStorage", function () {
@@ -243,6 +251,12 @@ describe('Synchronisateur', function () {
 
         evaluation = { id: 1, debutee_le: debuteeLe };
         window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+      });
+
+      it('supprime les évènements du localStorage', function () {
+        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
+
+        expect(supprimeEvenementsLocale).toHaveBeenCalledTimes(1);
       });
 
       it("supprime l'évaluation du localStorage", function () {
