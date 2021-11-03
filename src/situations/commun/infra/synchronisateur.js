@@ -58,7 +58,10 @@ export default class Synchronisateur {
   }
 
   supprimeEvaluationDuLocal (idClient, evaluation) {
-    if (evaluation.terminee_le) {
+    const unMoisAvant = new Date();
+    unMoisAvant.setMonth(unMoisAvant.getMonth() - 1);
+
+    if (evaluation.terminee_le || new Date(evaluation.debutee_le) < unMoisAvant) {
       this.registreUtilisateur.supprimeEvaluationLocale(idClient);
     }
   }
