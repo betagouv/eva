@@ -6,8 +6,9 @@
         min="1"
         :max="question.choix.length"
         steps="1"
-        :value="question.choix.length"
+        value="0"
         @input="styleTrack"
+        orient="vertical"
       >
     </div>
     <ul class="jauge-labels">
@@ -15,7 +16,7 @@
         v-for="(element, index) in question.choix"
         :key="element.id"
         :id="element.id"
-        :value="index"
+        :value="(question.choix.length - 1) - index"
         @click="assigneValeur"
         class="label"
       >
@@ -86,7 +87,7 @@ export default ({
         label.classList.remove('active', 'selected');
       });
 
-      const labelCourant = document.querySelector(`.jauge-labels li:nth-child(${valeurCourante})`);
+      const labelCourant = document.querySelector(`.jauge-labels li:nth-last-child(${valeurCourante})`);
       const idCourant = labelCourant.getAttribute('id');
 
       labelCourant.classList.add('active', 'selected');
@@ -95,7 +96,7 @@ export default ({
       this.recupereChoixPrecedents(labelCourant).forEach(el => { el.classList.add('selected'); });
 
       prefs.forEach(pref => {
-        style += `.jauge input::-${pref} {background: linear-gradient(to right, #fbf9fa 0%, #fbf9fa ${valeur}%, #9ADBD0 ${valeur}%, #9ADBD0 100%)}`;
+        style += `.jauge input::-${pref} {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 ${valeur}%, #d6daec ${valeur}%, #d6daec 100%)}`;
       });
       return style;
     }
