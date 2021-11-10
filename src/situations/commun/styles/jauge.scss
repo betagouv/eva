@@ -14,7 +14,7 @@
   height: 100%;
   cursor: pointer;
   border-radius: 0.5rem;
-  background: $couleur-fond;
+  background: $bleu-gris;
 }
 
 .jauge-conteneur {
@@ -27,17 +27,14 @@
   position: relative;
   border-radius: 0.5rem;
   input {
-    height: 1rem;
-    width: 14.5rem;
-    margin: 0 0 0 1rem;
+    width: 16px;
+    height: 14.5rem;
     outline: none;
     appearance: none;
     text-align: center;
     border-radius: 0.5rem;
-    border: 1px solid $bleu-gris;
-    background-color: $couleur-fond;
-    transform-origin: top left;
-    transform: rotate(90deg);
+    writing-mode: bt-lr;
+    -webkit-appearance: slider-vertical;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -93,9 +90,9 @@
         width: 8px;
         height: 1px;
         position: absolute;
-        left: -0.75rem;
+        left: -10px;
         top: 0.5rem;
-        background: $bleu;
+        background: $bleu-gris-fonce;
       }
 
       &.active {
@@ -103,7 +100,7 @@
       }
 
       &.selected::before {
-        background: $bleu;
+        background: $bleu-gris-fonce;
       }
 
       &.active.selected::before {
