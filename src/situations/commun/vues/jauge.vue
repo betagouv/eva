@@ -3,10 +3,10 @@
     <div class="jauge">
       <input
         type="range"
-        min="1"
-        :max="question.choix.length"
+        min="0"
+        :max="question.choix.length - 1"
         steps="1"
-        value="4"
+        :value="choixFait"
         @input="selectionJauge"
         orient="vertical"
       >
@@ -19,6 +19,7 @@
         :value="(question.choix.length - 1) - index"
         @click="selectioneLabel"
         class="label"
+        :class="{ 'selected': choixFait === (question.choix.length - 1) - index }"
       >
         {{element.intitule}}
       </li>
@@ -37,20 +38,14 @@ export default ({
 
   data () {
     return {
-      jaugeStyle: document.createElement('style')
+      jaugeStyle: document.createElement('style'),
+      choixFait: Math.floor(this.question.choix.length / 2)
     };
-  },
-
-  computed: {
-    jauge () {
-      return document.querySelector('.jauge input');
-    }
   },
 
   mounted () {
     document.body.appendChild(this.jaugeStyle);
-
-    this.appliqueStyles(this.jauge, this.labelChoisi());
+    this.ajustePourcentageJauge();
   },
 
   destroyed () {
@@ -59,37 +54,25 @@ export default ({
 
   methods: {
     selectioneLabel (label) {
-      const elementLabel = label.target;
-      this.jauge.value = elementLabel.value + 1;
-      this.appliqueStyles(this.jauge, elementLabel);
-      this.emetSelection(elementLabel);
+      this.choixFait = label.target.value;
+      this.emetSelection();
+      this.ajustePourcentageJauge();
     },
 
-    labelChoisi () {
-      return document.querySelector(`.jauge-labels li:nth-last-child(${this.jauge.value})`);
+    selectionJauge (input) {
+      this.choixFait = parseInt(input.target.value);
+      this.emetSelection();
+      this.ajustePourcentageJauge();
     },
 
-    selectionJauge () {
-      const label = this.labelChoisi();
-      this.appliqueStyles(this.jauge, label);
-      this.emetSelection(label);
+    emetSelection () {
+      const reponseChoisie = this.question.choix[this.choixFait];
+      this.$emit('choixjauge', reponseChoisie.id);
     },
 
-    emetSelection (label) {
-      this.$emit('choixjauge', label.getAttribute('id'));
-    },
-
-    appliqueStyles (jauge, label) {
-      const parentLabels = document.querySelector('.jauge-labels');
-      const labels = parentLabels.querySelectorAll('.label');
-
-      labels.forEach(label => {
-        label.classList.remove('selected');
-      });
-      label.classList.add('selected');
-
+    ajustePourcentageJauge () {
       let style = '';
-      const pourcentageValeur = (jauge.value - 1) * (100 / (labels.length - 1));
+      const pourcentageValeur = this.choixFait * (100 / (this.question.choix.length - 1));
       ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'].forEach(pref => {
         style += `.jauge input::-${pref} {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 ${pourcentageValeur}%, #d6daec ${pourcentageValeur}%, #d6daec 100%)}`;
       });
