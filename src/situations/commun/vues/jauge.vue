@@ -6,18 +6,18 @@
         min="1"
         :max="question.choix.length"
         steps="1"
-        value="0"
-        @input="styleTrack"
+        value="4"
+        @input="selectionJauge"
         orient="vertical"
       >
     </div>
     <ul class="jauge-labels">
       <li
-        v-for="(element, index) in question.choix"
+        v-for="(element, index) in question.choix.slice().reverse()"
         :key="element.id"
         :id="element.id"
         :value="(question.choix.length - 1) - index"
-        @click="assigneValeur"
+        @click="selectioneLabel"
         class="label"
       >
         {{element.intitule}}
@@ -41,10 +41,16 @@ export default ({
     };
   },
 
+  computed: {
+    jauge () {
+      return document.querySelector('.jauge input');
+    }
+  },
+
   mounted () {
-    this.jauge = document.querySelector('.jauge input');
-    this.inverseChoix();
     document.body.appendChild(this.jaugeStyle);
+
+    this.appliqueStyles(this.jauge, this.labelChoisi());
   },
 
   destroyed () {
@@ -52,53 +58,42 @@ export default ({
   },
 
   methods: {
-    assigneValeur (e) {
-      const index = e.target.value;
-
-      this.jauge.value = index + 1;
-      this.jaugeStyle.textContent = this.appliqueTrackStyle(this.jauge);
+    selectioneLabel (label) {
+      const elementLabel = label.target;
+      this.jauge.value = elementLabel.value + 1;
+      this.appliqueStyles(this.jauge, elementLabel);
+      this.emetSelection(elementLabel);
     },
 
-    styleTrack () {
-      this.jaugeStyle.textContent = this.appliqueTrackStyle(this.jauge);
+    labelChoisi () {
+      return document.querySelector(`.jauge-labels li:nth-last-child(${this.jauge.value})`);
     },
 
-    inverseChoix () {
-      this.question.choix.reverse();
+    selectionJauge () {
+      const label = this.labelChoisi();
+      this.appliqueStyles(this.jauge, label);
+      this.emetSelection(label);
     },
 
-    recupereChoixPrecedents (choix) {
-      const choixPrecedents = [];
-
-      while (choix === choix.previousElementSibling) { choixPrecedents.push(choix); }
-      return choixPrecedents;
+    emetSelection (label) {
+      this.$emit('choixjauge', label.getAttribute('id'));
     },
 
-    appliqueTrackStyle (el) {
+    appliqueStyles (jauge, label) {
       const parentLabels = document.querySelector('.jauge-labels');
       const labels = parentLabels.querySelectorAll('.label');
-      const prefs = ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'];
-
-      const valeurCourante = el.value;
-      const valeur = (valeurCourante - 1) * (100 / (labels.length - 1));
-      let style = '';
 
       labels.forEach(label => {
-        label.classList.remove('active', 'selected');
+        label.classList.remove('selected');
       });
+      label.classList.add('selected');
 
-      const labelCourant = document.querySelector(`.jauge-labels li:nth-last-child(${valeurCourante})`);
-      const idCourant = labelCourant.getAttribute('id');
-
-      labelCourant.classList.add('active', 'selected');
-      this.$emit('choixjauge', idCourant);
-
-      this.recupereChoixPrecedents(labelCourant).forEach(el => { el.classList.add('selected'); });
-
-      prefs.forEach(pref => {
-        style += `.jauge input::-${pref} {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 ${valeur}%, #d6daec ${valeur}%, #d6daec 100%)}`;
+      let style = '';
+      const pourcentageValeur = (jauge.value - 1) * (100 / (labels.length - 1));
+      ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'].forEach(pref => {
+        style += `.jauge input::-${pref} {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 ${pourcentageValeur}%, #d6daec ${pourcentageValeur}%, #d6daec 100%)}`;
       });
-      return style;
+      this.jaugeStyle.textContent = style;
     }
   }
 });
