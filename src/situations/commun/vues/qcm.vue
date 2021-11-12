@@ -38,7 +38,7 @@
           v-else-if="question.type_qcm === 'jauge'"
           class="question-choix"
         >
-          <jauge :question="question" v-on:choixjauge="assigneChoixJauge" />
+          <jauge :question="question" @choixjauge="assigneChoixJauge" />
         </div>
         <div v-else>
           <div
