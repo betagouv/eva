@@ -46,21 +46,22 @@ export default ({
       hauteurJauge: 14.5,
       largeurJauge: 1,
       tailleCurseur: 1.5,
-      choixFait: Math.floor(this.question.choix.length / 2)
+      choixFait: 0
     };
   },
 
   mounted () {
-    document.body.appendChild(this.jaugeStyle);
-    this.ajustePourcentageJauge();
+    this.jaugeStyle.type = 'text/css';
+    document.head.appendChild(this.jaugeStyle);
+    this.choixFait = Math.floor(this.question.choix.length / 2);
   },
 
   destroyed () {
-    document.body.removeChild(this.jaugeStyle);
+    document.head.removeChild(this.jaugeStyle);
   },
 
   computed: {
-    pourcentageValeur () {
+    pourcentageJauge () {
       return this.choixFait * (100 / (this.question.choix.length - 1));
     },
 
@@ -80,7 +81,7 @@ export default ({
       const hauteurBoutArrondi = this.largeurJauge / 2;
       const hauteurDeplacement = this.hauteurJauge - 2 * hauteurBoutArrondi;
       const position = hauteurBoutArrondi +
-        this.pourcentageValeur * hauteurDeplacement / 100 -
+        this.pourcentageJauge * hauteurDeplacement / 100 -
         this.tailleCurseur / 2;
       return {
         height: `${this.tailleCurseur}rem`,
@@ -91,30 +92,29 @@ export default ({
     }
   },
 
+  watch: {
+    pourcentageJauge (pourcentage) {
+      this.jaugeStyle.textContent =
+        ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track']
+          .map(pref => `.jauge input::-${pref} {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 ${pourcentage}%, #d6daec ${pourcentage}%, #d6daec 100%)}`)
+          .join('');
+    }
+  },
+
   methods: {
     selectioneLabel (label) {
       this.choixFait = label.target.value;
       this.emetSelection();
-      this.ajustePourcentageJauge();
     },
 
     selectionJauge (input) {
       this.choixFait = parseInt(input.target.value);
       this.emetSelection();
-      this.ajustePourcentageJauge();
     },
 
     emetSelection () {
       const reponseChoisie = this.question.choix[this.choixFait];
       this.$emit('choixjauge', reponseChoisie.id);
-    },
-
-    ajustePourcentageJauge () {
-      let style = '';
-      ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'].forEach(pref => {
-        style += `.jauge input::-${pref} {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 ${this.pourcentageValeur}%, #d6daec ${this.pourcentageValeur}%, #d6daec 100%)}`;
-      });
-      this.jaugeStyle.textContent = style;
     }
   }
 });
