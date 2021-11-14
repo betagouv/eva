@@ -81,4 +81,13 @@ describe('La vue jauge', function () {
       done();
     });
   });
+
+  it('calcule la position du curseur en fonction de choixFait', function () {
+    wrapper.vm.choixFait = 0;
+    expect(wrapper.vm.positionCurseur).toEqual('bottom: -0.25rem;');
+    wrapper.vm.choixFait = 1;
+    expect(wrapper.vm.positionCurseur).toEqual('bottom: 6.5rem;');
+    wrapper.vm.choixFait = 2;
+    expect(wrapper.vm.positionCurseur).toEqual('bottom: 13.25rem;');
+  });
 });
