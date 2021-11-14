@@ -24,10 +24,20 @@
         {{element.intitule}}
       </li>
     </ul>
+    <div class="curseur"
+         :style="positionCurseur"
+      >
+    </div>
   </div>
 </template>
 
 <script>
+
+// /!\ hauteurs aussi présésentes dans jauge.scss
+const TAILLE_CURSEUR = 1.5;
+const TAILLE_JAUGE = 1;
+const HAUTEUR_JAUGE = 14.5;
+
 export default ({
   props: {
     question: {
@@ -52,6 +62,20 @@ export default ({
     document.body.removeChild(this.jaugeStyle);
   },
 
+  computed: {
+    pourcentageValeur () {
+      return this.choixFait * (100 / (this.question.choix.length - 1));
+    },
+
+    positionCurseur () {
+      const hauteurDeplacement = HAUTEUR_JAUGE - TAILLE_JAUGE;
+      const position = TAILLE_JAUGE / 2 +
+        this.pourcentageValeur * hauteurDeplacement / 100 -
+        TAILLE_CURSEUR / 2;
+      return `bottom: ${position}rem;`;
+    }
+  },
+
   methods: {
     selectioneLabel (label) {
       this.choixFait = label.target.value;
@@ -72,9 +96,8 @@ export default ({
 
     ajustePourcentageJauge () {
       let style = '';
-      const pourcentageValeur = this.choixFait * (100 / (this.question.choix.length - 1));
       ['webkit-slider-runnable-track', 'moz-range-track', 'ms-track'].forEach(pref => {
-        style += `.jauge input::-${pref} {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 ${pourcentageValeur}%, #d6daec ${pourcentageValeur}%, #d6daec 100%)}`;
+        style += `.jauge input::-${pref} {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 ${this.pourcentageValeur}%, #d6daec ${this.pourcentageValeur}%, #d6daec 100%)}`;
       });
       this.jaugeStyle.textContent = style;
     }

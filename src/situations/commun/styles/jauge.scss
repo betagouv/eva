@@ -1,8 +1,13 @@
 @import 'commun/styles/couleurs.scss';
 
+// /!\ Hauteurs aussi présentes dans jauge.vue
+$tailleCurseur: 1.5rem;
+$tailleJauge: 1rem;
+$hauteurJauge: 14.5rem;
+
 @mixin jaugeThumb {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: $tailleCurseur;
+  height: $tailleCurseur;
   margin: -0.3rem 0 0;
   border-radius: 50%;
   border: none;
@@ -20,13 +25,22 @@
 
 .jauge-conteneur {
   display: flex;
-  height: 14.5rem;
+  position: relative;
+  height: $hauteurJauge;
+
+  .curseur {
+    @include jaugeThumb;
+    position: absolute;
+    left: -($tailleCurseur - $tailleJauge) / 2;
+    pointer-events: none;
+  }
 }
 
 .jauge {
   position: relative;
+
   input {
-    width: 1rem;
+    width: $tailleJauge;
     height: 100%;
     outline: none;
     appearance: none;
@@ -96,10 +110,6 @@
       &.selected {
         color: $bleu;
         font-weight: bold;
-      }
-
-      &.selected::before {
-        display: none;
       }
     }
   }
