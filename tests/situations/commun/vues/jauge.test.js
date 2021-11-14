@@ -82,12 +82,16 @@ describe('La vue jauge', function () {
     });
   });
 
-  it('calcule la position du curseur en fonction de choixFait', function () {
+  it('calcule la taille et la position du curseur', function () {
+    expect(wrapper.vm.styleCurseur.width).toEqual('1.5rem');
+    expect(wrapper.vm.styleCurseur.height).toEqual('1.5rem');
+    expect(wrapper.vm.styleCurseur.left).toEqual('-0.25rem');
+
     wrapper.vm.choixFait = 0;
-    expect(wrapper.vm.positionCurseur).toEqual('bottom: -0.25rem;');
+    expect(wrapper.vm.styleCurseur.bottom).toEqual('-0.25rem');
     wrapper.vm.choixFait = 1;
-    expect(wrapper.vm.positionCurseur).toEqual('bottom: 6.5rem;');
+    expect(wrapper.vm.styleCurseur.bottom).toEqual('6.5rem');
     wrapper.vm.choixFait = 2;
-    expect(wrapper.vm.positionCurseur).toEqual('bottom: 13.25rem;');
+    expect(wrapper.vm.styleCurseur.bottom).toEqual('13.25rem');
   });
 });

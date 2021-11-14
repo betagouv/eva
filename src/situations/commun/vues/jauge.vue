@@ -1,5 +1,5 @@
 <template>
-   <div class="jauge-conteneur">
+   <div class="jauge-conteneur" :style="styleJaugeConteneur">
     <div class="jauge">
       <input
         type="range"
@@ -9,6 +9,7 @@
         :value="choixFait"
         @input="selectionJauge"
         orient="vertical"
+        :style="styleJauge"
       >
     </div>
     <ul class="jauge-labels">
@@ -24,19 +25,12 @@
         {{element.intitule}}
       </li>
     </ul>
-    <div class="curseur"
-         :style="positionCurseur"
-      >
+    <div class="curseur" :style="styleCurseur">
     </div>
   </div>
 </template>
 
 <script>
-
-// /!\ hauteurs aussi présésentes dans jauge.scss
-const TAILLE_CURSEUR = 1.5;
-const TAILLE_JAUGE = 1;
-const HAUTEUR_JAUGE = 14.5;
 
 export default ({
   props: {
@@ -49,6 +43,9 @@ export default ({
   data () {
     return {
       jaugeStyle: document.createElement('style'),
+      hauteurJauge: 14.5,
+      largeurJauge: 1,
+      tailleCurseur: 1.5,
       choixFait: Math.floor(this.question.choix.length / 2)
     };
   },
@@ -67,12 +64,30 @@ export default ({
       return this.choixFait * (100 / (this.question.choix.length - 1));
     },
 
-    positionCurseur () {
-      const hauteurDeplacement = HAUTEUR_JAUGE - TAILLE_JAUGE;
-      const position = TAILLE_JAUGE / 2 +
+    styleJaugeConteneur () {
+      return {
+        height: `${this.hauteurJauge}rem`
+      };
+    },
+
+    styleJauge () {
+      return {
+        width: `${this.largeurJauge}rem`
+      };
+    },
+
+    styleCurseur () {
+      const hauteurBoutArrondi = this.largeurJauge / 2;
+      const hauteurDeplacement = this.hauteurJauge - 2 * hauteurBoutArrondi;
+      const position = hauteurBoutArrondi +
         this.pourcentageValeur * hauteurDeplacement / 100 -
-        TAILLE_CURSEUR / 2;
-      return `bottom: ${position}rem;`;
+        this.tailleCurseur / 2;
+      return {
+        height: `${this.tailleCurseur}rem`,
+        width: `${this.tailleCurseur}rem`,
+        left: `${-(this.tailleCurseur - this.largeurJauge) / 2}rem`,
+        bottom: `${position}rem`
+      };
     }
   },
 
