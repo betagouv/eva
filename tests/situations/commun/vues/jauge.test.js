@@ -94,4 +94,8 @@ describe('La vue jauge', function () {
     wrapper.vm.choixFait = 2;
     expect(wrapper.vm.styleCurseur.bottom).toEqual('13.25rem');
   });
+
+  it("crée une balise pour l'affichage du pourcentage de la jauge", function () {
+    expect(wrapper.vm.jaugeStyle.textContent).toEqual('.jauge input::-webkit-slider-runnable-track {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 50%, #d6daec 50%, #d6daec 100%)}.jauge input::-moz-range-track {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 50%, #d6daec 50%, #d6daec 100%)}.jauge input::-ms-track {background: linear-gradient(to top, #9ADBD0 0%, #9ADBD0 50%, #d6daec 50%, #d6daec 100%)}');
+  });
 });
