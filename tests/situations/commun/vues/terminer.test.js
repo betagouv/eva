@@ -36,9 +36,9 @@ describe('Affiche les éléments liés à la fin de la situation', function () {
     };
     vue.affiche('#pointInsertion', $);
     const $fenetre = $('#fenetre-modale');
-    expect($fenetre.find('.message-fin').length).toBe(1);
-    expect($fenetre.find('.message-fin p').length).toBe(2);
-    expect($fenetre.find('.message-fin p').first().text())
+    expect($fenetre.find('#message-fin').length).toBe(1);
+    expect($fenetre.find('#message-fin p').length).toBe(2);
+    expect($fenetre.find('#message-fin p').first().text())
       .toEqual('maSituation.resultat.resultat1{"nombre":"valeurResultat1"}');
   });
 });

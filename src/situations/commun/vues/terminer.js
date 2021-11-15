@@ -11,7 +11,7 @@ export default class VueTerminer {
   }
 
   affiche (pointInsertion, $) {
-    const $message = $('<div class="message-fin"></div>');
+    const $message = $('<div id="message-fin"></div>');
     for (const resultat in this.situation.resultat) {
       const message = traduction(`${this.situation.identifiant}.resultat.${resultat}`, { nombre: this.situation.resultat[resultat] });
       $message.append($(`<p>${message}</p>`));
