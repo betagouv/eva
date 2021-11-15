@@ -35,17 +35,6 @@
   }
 }
 
-@mixin bouton-allonge($couleur-fond, $couleur-texte) {
-  background: $couleur-fond;
-  color: $couleur-texte;
-  padding: .7rem 1.375rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: .025rem;
-  outline: none;
-  transition : background 200ms ease-out;
-}
-
 @mixin bouton-centre($background) {
   background: $background;
   width: 12.25rem;
