@@ -29,10 +29,6 @@
     .entete-audio {
       margin-right: 1rem;
     }
-    button {
-      padding: 0;
-      background: none;
-    }
     p {
       margin: 0;
     }
@@ -51,11 +47,18 @@
     margin-top: 0.5rem;
   }
 
-  &-choix {
+  &-reponse {
     margin-top: 1rem;
-    @at-root .jauge .question-choix {
-      margin-top: 0;
+    .bouton-lecture {
+      button {
+        margin-right: 1rem;
+      }
     }
+  }
+
+  &-reponse-multiple {
+    display: flex;
+    align-items: center;
   }
 
   &-label {
@@ -122,6 +125,13 @@
     .numerique-input {
       width: 12rem;
       letter-spacing: 1.39rem;
+    }
+  }
+
+  .bouton-lecture {
+    button {
+      padding: 0;
+      background: none;
     }
   }
 }
