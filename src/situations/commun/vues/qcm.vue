@@ -16,7 +16,7 @@
       <div class="question-contenu">
         <div
           v-if="question.numerique"
-          class="question-choix"
+          class="question-reponse"
         >
           <div class="numerique-input-conteneur"
                :class="{ 'chiffres-espaces' : question.espacerChiffres }">
@@ -34,44 +34,43 @@
               />
           </div>
         </div>
-        <div
-          v-else-if="question.type_qcm === 'jauge'"
-          class="question-choix"
-        >
+        <div v-else-if="question.type_qcm === 'jauge'">
           <jauge :question="question" @choixjauge="assigneChoixJauge" />
         </div>
         <div v-else>
           <div
             v-for="element in question.choix"
             :key="element.id"
-            class="question-choix"
+            class="question-reponse question-reponse-multiple"
           >
-            <label class="question-label">
-              <input
-                v-model="reponse"
-                :value="element.id"
-                name="question"
-                type="radio"
-                class="question-input"
-              />
+            <bouton-lecture
+              v-if="afficheLectureReponse(element.nom_technique)"
+              class="bouton-lecture"
+              :nomTechnique="element.nom_technique"
+            />
+            <input
+              v-model="reponse"
+              :value="element.id"
+              :id="element.id"
+              name="question"
+              type="radio"
+              class="question-input"
+            />
+            <label
+              :for="element.id"
+              class="question-reponse-intitule"
+            >
               <lecteur-audio
                 v-if="element.audio"
                 :joue-son="reponse == element.id"
                 :questionnaire="element.audio"
                 :idReponse="element.id"
-                class="question-reponse-intitule"
               />
               <img
                 v-if="element.image"
                 :src="element.image"
-                class="question-reponse-intitule"
               />
-              <span
-                v-else
-                class="question-reponse-intitule"
-              >
-                {{ element.intitule }}
-              </span>
+              {{ element.intitule }}
             </label>
           </div>
         </div>
@@ -93,13 +92,14 @@ import 'commun/styles/formulaire_qcm.scss';
 import 'commun/styles/jauge.scss';
 
 import LecteurAudio from './lecteur_audio';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 import Question from './question';
 import QuestionEntete from 'commun/vues/question_entete';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 import Jauge from './jauge';
 
 export default {
-  components: { LecteurAudio, Question, QuestionEntete, Jauge },
+  components: { LecteurAudio, BoutonLecture, Question, QuestionEntete, Jauge },
 
   props: {
     question: {
@@ -155,6 +155,9 @@ export default {
     },
     assigneChoixJauge (valeur) {
       this.reponse = valeur;
+    },
+    afficheLectureReponse (nomTechnique) {
+      return this.$depotRessources.existeMessageAudio(nomTechnique);
     }
   }
 };
