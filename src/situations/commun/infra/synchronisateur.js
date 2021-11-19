@@ -30,9 +30,11 @@ export default class Synchronisateur {
       let promesse = this.creeOuMetsAJourEvaluation(evaluation, idClient);
 
       promesse = promesse.then((utilisateur) => {
-        return this.synchroniseEvenements(idClient, utilisateur);
+        return this.synchroniseEvenements(idClient, utilisateur).then(() => {
+          this.supprimeEvaluationTermineDuLocal(idClient, evaluation);
+        });
       }).finally(() => {
-        return this.supprimeEvaluationDuLocal(idClient, evaluation);
+        return this.supprimeDuLocalSiObsolete(idClient, evaluation);
       });
 
       promesses.push(promesse);
@@ -58,11 +60,17 @@ export default class Synchronisateur {
     return this.registreEvenements.creeEvenements(idClient, utilisateur.id);
   }
 
-  supprimeEvaluationDuLocal (idClient, evaluation) {
+  supprimeEvaluationTermineDuLocal (idClient, evaluation) {
+    if (evaluation.terminee_le) {
+      this.registreUtilisateur.supprimeEvaluationLocale(idClient);
+    }
+  }
+
+  supprimeDuLocalSiObsolete (idClient, evaluation) {
     const unMoisAvant = new Date();
     unMoisAvant.setMonth(unMoisAvant.getMonth() - 1);
 
-    if (evaluation.terminee_le || new Date(evaluation.debutee_le) < unMoisAvant) {
+    if (new Date(evaluation.debutee_le) < unMoisAvant) {
       this.registreEvenements.supprimeEvenementsLocale(idClient);
       this.registreUtilisateur.supprimeEvaluationLocale(idClient);
     }

@@ -213,7 +213,7 @@ describe('Synchronisateur', function () {
     });
   });
 
-  describe('#supprimeEvaluationDuLocal()', function () {
+  describe('supprime les évaluations du local', function () {
     let evaluation;
     let supprimeEvaluationLocale;
     let supprimeEvenementsLocale;
@@ -224,26 +224,35 @@ describe('Synchronisateur', function () {
       supprimeEvenementsLocale = jest.spyOn(registreEvenements, 'supprimeEvenementsLocale');
     });
 
-    describe("quand l'évaluation est terminée", function () {
-      beforeEach(function () {
-        evaluation = { terminee_le: new Date() };
-        window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+    describe('#supprimeEvaluationTermineDuLocal()', function () {
+      describe("quand l'évaluation est terminée", function () {
+        beforeEach(function () {
+          evaluation = { terminee_le: new Date() };
+          window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+        });
+
+        it("supprime l'évaluation du localStorage", function () {
+          synchronisateur.supprimeEvaluationTermineDuLocal(idClient, evaluation);
+
+          expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
+        });
       });
 
-      it('supprime les évènements du localStorage', function () {
-        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
+      describe("quand l'évaluation n'est pas terminée", function () {
+        beforeEach(function () {
+          evaluation = { id: 1 };
+          window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+        });
 
-        expect(supprimeEvenementsLocale).toHaveBeenCalledTimes(1);
-      });
+        it('ne fais rien', function () {
+          synchronisateur.supprimeEvaluationTermineDuLocal(idClient, evaluation);
 
-      it("supprime l'évaluation du localStorage", function () {
-        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
-
-        expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
+          expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(0);
+        });
       });
     });
 
-    describe("quand l'évaluation n'est pas terminée mais a été commencé il y a plus d'un mois", function () {
+    describe('#supprimeDuLocalSiObsolete()', function () {
       beforeEach(function () {
         const debuteeLe = new Date();
         debuteeLe.setMonth(debuteeLe.getMonth() - 1);
@@ -254,28 +263,15 @@ describe('Synchronisateur', function () {
       });
 
       it('supprime les évènements du localStorage', function () {
-        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
+        synchronisateur.supprimeDuLocalSiObsolete(idClient, evaluation);
 
         expect(supprimeEvenementsLocale).toHaveBeenCalledTimes(1);
       });
 
       it("supprime l'évaluation du localStorage", function () {
-        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
+        synchronisateur.supprimeDuLocalSiObsolete(idClient, evaluation);
 
         expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    describe("quand l'évaluation n'est pas terminée", function () {
-      beforeEach(function () {
-        evaluation = { id: 1 };
-        window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
-      });
-
-      it('ne fais rien', function () {
-        synchronisateur.supprimeEvaluationDuLocal(idClient, evaluation);
-
-        expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(0);
       });
     });
   });
