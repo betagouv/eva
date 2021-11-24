@@ -413,7 +413,7 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#supprimeEvaluationLocale()', function () {
+  describe('#supprimeDuLocalStorage()', function () {
     let registre;
 
     beforeEach(function () {
@@ -422,7 +422,13 @@ describe('le registre utilisateur', function () {
 
     it("supprime l'évaluation du localStorage", function () {
       window.localStorage.setItem('evaluation_id_client', JSON.stringify({ id: 1 }));
-      registre.supprimeEvaluationLocale('id_client');
+      registre.supprimeDuLocalStorage('id_client');
+
+      expect(window.localStorage.getItem('evaluation_id_client')).toBe(null);
+    });
+
+    it("supprime un id inexistant du localStorage ne fait pas d'erreur", function () {
+      registre.supprimeDuLocalStorage('id_client');
 
       expect(window.localStorage.getItem('evaluation_id_client')).toBe(null);
     });

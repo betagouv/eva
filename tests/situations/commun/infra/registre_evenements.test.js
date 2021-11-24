@@ -172,9 +172,9 @@ describe('le registre des événements', function () {
     });
   });
 
-  describe('#cleEvenementsPourLocalStorage()', function () {
+  describe('#clePourLocalStorage()', function () {
     it("retourne la clé pour les événements d'un id client", function () {
-      expect(depot.cleEvenementsPourLocalStorage('id_client')).toBe('evenements_id_client');
+      expect(depot.clePourLocalStorage('id_client')).toBe('evenements_id_client');
     });
   });
 });

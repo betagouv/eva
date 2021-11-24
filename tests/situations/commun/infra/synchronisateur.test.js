@@ -23,7 +23,7 @@ describe('Synchronisateur', function () {
         .mockImplementation(() => {
           return Promise.resolve();
         });
-      supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeEvaluationLocale');
+      supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeDuLocalStorage');
 
       window.localStorage.clear();
     });
@@ -220,8 +220,8 @@ describe('Synchronisateur', function () {
     const idClient = 'id_client';
 
     beforeEach(function () {
-      supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeEvaluationLocale');
-      supprimeEvenementsLocale = jest.spyOn(registreEvenements, 'supprimeEvenementsLocale');
+      supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeDuLocalStorage');
+      supprimeEvenementsLocale = jest.spyOn(registreEvenements, 'supprimeDuLocalStorage');
     });
 
     describe('#supprimeEvaluationTermineDuLocal()', function () {

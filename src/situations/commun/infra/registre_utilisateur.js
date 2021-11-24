@@ -114,7 +114,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
   }
 
   enregistreUtilisateurEnLocal (data, idClient = this.idClient()) {
-    this.enregistreEnLocale(this.cleEvaluationPourLocalStorage(idClient), data);
+    this.enregistreEnLocale(this.clePourLocalStorage(idClient), data);
   }
 
   listeEvaluationsLocales () {
@@ -147,11 +147,11 @@ export default class RegistreUtilisateur extends BaseRegistre {
   }
 
   evaluation (idClient) {
-    const cle = this.cleEvaluationPourLocalStorage(idClient);
+    const cle = this.clePourLocalStorage(idClient);
     return this.parseLocalStorage(cle);
   }
 
-  cleEvaluationPourLocalStorage (idClient) {
+  clePourLocalStorage (idClient) {
     return `${PREFIX_EVALUATIONS}${idClient}`;
   }
 
@@ -161,11 +161,6 @@ export default class RegistreUtilisateur extends BaseRegistre {
       situations.push(situation);
     }
     window.localStorage.setItem(CLEF_SITUATIONS_FAITES, JSON.stringify(situations));
-  }
-
-  supprimeEvaluationLocale (idClient) {
-    const cle = this.cleEvaluationPourLocalStorage(idClient);
-    window.localStorage.removeItem(cle);
   }
 
   situationsFaites () {

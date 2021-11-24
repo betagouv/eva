@@ -59,7 +59,7 @@ export default class RegistreEvenements extends BaseRegistre {
         data: JSON.stringify({ evenements: evenements }),
         contentType: 'application/json; charset=utf-8',
         success: () => {
-          this.supprimeEvenementsLocale(idClient);
+          this.supprimeDuLocalStorage(idClient);
           resolve();
         },
         error: reject
@@ -71,20 +71,15 @@ export default class RegistreEvenements extends BaseRegistre {
     const idClient = this.registreUtilisateur.idClient();
     const evenements = this.evenements(idClient);
     evenements.push(payload);
-    this.enregistreEnLocale(this.cleEvenementsPourLocalStorage(idClient), evenements);
+    this.enregistreEnLocale(this.clePourLocalStorage(idClient), evenements);
   }
 
   evenements (idClient) {
-    const cle = this.cleEvenementsPourLocalStorage(idClient);
+    const cle = this.clePourLocalStorage(idClient);
     return this.parseLocalStorage(cle, []);
   }
 
-  cleEvenementsPourLocalStorage (idClient) {
+  clePourLocalStorage (idClient) {
     return `evenements_${idClient}`;
-  }
-
-  supprimeEvenementsLocale (idClient) {
-    const cle = this.cleEvenementsPourLocalStorage(idClient);
-    window.localStorage.removeItem(cle);
   }
 }
