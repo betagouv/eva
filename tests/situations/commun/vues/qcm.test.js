@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueQCM from 'commun/vues/qcm';
-import LecteurAudio from 'commun/vues/lecteur_audio';
+import ReponseAudioQcm from 'commun/vues/reponse_audio_qcm';
 import QuestionEntete from 'commun/vues/question_entete';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
@@ -36,7 +36,7 @@ describe('La vue de la question QCM', function () {
   it('affiche un control audio sur chaque réponse', function () {
     question.choix = [{ audio: '1' }, { audio: '1' }, { audio: '1' }];
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
-    expect(vue.findAllComponents(LecteurAudio).length).toBe(3);
+    expect(vue.findAllComponents(ReponseAudioQcm).length).toBe(3);
   });
 
   it('affiche une image sur chaque réponse', function () {
