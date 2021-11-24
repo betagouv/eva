@@ -27,6 +27,11 @@ export default class BaseRegistre extends EventEmitter {
     window.localStorage.setItem(cle, dataStr);
   }
 
+  supprimeDuLocalStorage (idClient) {
+    const cle = this.clePourLocalStorage(idClient);
+    window.localStorage.removeItem(cle);
+  }
+
   parseLocalStorage (clef, defaut = {}) {
     const valeur = window.localStorage.getItem(clef) || JSON.stringify(defaut);
     try {

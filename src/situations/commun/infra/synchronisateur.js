@@ -62,7 +62,7 @@ export default class Synchronisateur {
 
   supprimeEvaluationTermineDuLocal (idClient, evaluation) {
     if (evaluation.terminee_le) {
-      this.registreUtilisateur.supprimeEvaluationLocale(idClient);
+      this.registreUtilisateur.supprimeDuLocalStorage(idClient);
     }
   }
 
@@ -71,8 +71,8 @@ export default class Synchronisateur {
     unMoisAvant.setMonth(unMoisAvant.getMonth() - 1);
 
     if (new Date(evaluation.debutee_le) < unMoisAvant) {
-      this.registreEvenements.supprimeEvenementsLocale(idClient);
-      this.registreUtilisateur.supprimeEvaluationLocale(idClient);
+      this.registreEvenements.supprimeDuLocalStorage(idClient);
+      this.registreUtilisateur.supprimeDuLocalStorage(idClient);
     }
   }
 }
