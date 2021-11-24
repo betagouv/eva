@@ -218,6 +218,7 @@ describe('Synchronisateur', function () {
     let supprimeEvaluationLocale;
     let supprimeEvenementsLocale;
     const idClient = 'id_client';
+    const idClient2 = 'id_client2';
 
     beforeEach(function () {
       supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeDuLocalStorage');
@@ -253,25 +254,30 @@ describe('Synchronisateur', function () {
     });
 
     describe('#supprimeDuLocalSiObsolete()', function () {
+      let evaluationObsolette;
+      let evaluationValide;
+      let aujourdhui;
       beforeEach(function () {
-        const debuteeLe = new Date();
-        debuteeLe.setMonth(debuteeLe.getMonth() - 1);
-        debuteeLe.setSeconds(debuteeLe.getSeconds() - 1);
+        aujourdhui = new Date('December 17, 1995 03:24:00');
+        const debuteeUnMoisAvant = new Date(aujourdhui);
+        debuteeUnMoisAvant.setMonth(aujourdhui.getMonth() - 1);
+        debuteeUnMoisAvant.setSeconds(aujourdhui.getSeconds() - 1);
 
-        evaluation = { id: 1, debutee_le: debuteeLe };
-        window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+        const debuteeIlYAMoinsDUnMois = new Date(aujourdhui);
+        debuteeIlYAMoinsDUnMois.setMonth(aujourdhui.getMonth() - 1);
+
+        evaluationObsolette = { id: 1, debutee_le: debuteeUnMoisAvant };
+        window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluationObsolette));
+        evaluationValide = { id: 1, debutee_le: debuteeIlYAMoinsDUnMois };
+        window.localStorage.setItem('evaluation_id_client2', JSON.stringify(evaluationValide));
       });
 
-      it('supprime les évènements du localStorage', function () {
-        synchronisateur.supprimeDuLocalSiObsolete(idClient, evaluation);
+      it('supprime les évaluation et les évènements obsoletes du localStorage', function () {
+        synchronisateur.supprimeDuLocalSiObsolete(idClient, evaluationObsolette, aujourdhui);
+        synchronisateur.supprimeDuLocalSiObsolete(idClient2, evaluationValide, aujourdhui);
 
-        expect(supprimeEvenementsLocale).toHaveBeenCalledTimes(1);
-      });
-
-      it("supprime l'évaluation du localStorage", function () {
-        synchronisateur.supprimeDuLocalSiObsolete(idClient, evaluation);
-
-        expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
+        expect(supprimeEvenementsLocale).toHaveBeenNthCalledWith(1, idClient);
+        expect(supprimeEvaluationLocale).toHaveBeenNthCalledWith(1, idClient);
       });
     });
   });

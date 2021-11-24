@@ -66,8 +66,8 @@ export default class Synchronisateur {
     }
   }
 
-  supprimeDuLocalSiObsolete (idClient, evaluation) {
-    const unMoisAvant = new Date();
+  supprimeDuLocalSiObsolete (idClient, evaluation, aujourdhui = new Date()) {
+    const unMoisAvant = new Date(aujourdhui);
     unMoisAvant.setMonth(unMoisAvant.getMonth() - 1);
 
     if (new Date(evaluation.debutee_le) < unMoisAvant) {
