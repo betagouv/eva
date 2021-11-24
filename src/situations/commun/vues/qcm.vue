@@ -60,7 +60,7 @@
               :for="element.id"
               class="question-reponse-intitule"
             >
-              <lecteur-audio
+              <reponse-audio-qcm
                 v-if="element.audio"
                 :joue-son="reponse == element.id"
                 :questionnaire="element.audio"
@@ -91,7 +91,7 @@ import 'commun/styles/boutons.scss';
 import 'commun/styles/formulaire_qcm.scss';
 import 'commun/styles/jauge.scss';
 
-import LecteurAudio from './lecteur_audio';
+import ReponseAudioQcm from './reponse_audio_qcm';
 import BoutonLecture from 'commun/vues/bouton_lecture';
 import Question from './question';
 import QuestionEntete from 'commun/vues/question_entete';
@@ -99,7 +99,7 @@ import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_qu
 import Jauge from './jauge';
 
 export default {
-  components: { LecteurAudio, BoutonLecture, Question, QuestionEntete, Jauge },
+  components: { ReponseAudioQcm, BoutonLecture, Question, QuestionEntete, Jauge },
 
   props: {
     question: {

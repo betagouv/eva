@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import 'commun/styles/lecteur_audio.scss';
+import 'commun/styles/reponse_audio_qcm.scss';
 import JoueurAudioBuffer from 'commun/composants/joueur_audio_buffer';
 
 export default {
