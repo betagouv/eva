@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import path from 'path';
 import 'accueil/styles/acces_situation.scss';
 import { SCOPE_URL } from 'commun/vues/affiche_situation';
 
@@ -44,7 +45,7 @@ export default {
     cheminSituation () {
       if (!this.situation.chemin) return;
 
-      return `${SCOPE_URL}/${this.situation.chemin}`;
+      return path.join(SCOPE_URL, this.situation.chemin);
     }
 
   }
