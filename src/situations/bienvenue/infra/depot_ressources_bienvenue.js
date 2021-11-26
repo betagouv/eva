@@ -21,13 +21,13 @@ import alleEcole from 'bienvenue/assets/audio_questions/alle_ecole.wav';
 
 // REPONSES
 import lunettes from 'bienvenue/assets/audio_reponses/lunette.wav';
-import oui from 'bienvenue/assets/audio_reponses/oui.wav';
-import non from 'bienvenue/assets/audio_reponses/non.wav';
-import ouiEtranger from 'bienvenue/assets/audio_reponses/oui_etranger.wav';
-import ouiFrance from 'bienvenue/assets/audio_reponses/oui_france.wav';
 import nonCorrige from 'bienvenue/assets/audio_reponses/non_corrige.wav';
 import lunettesInefficaces from 'bienvenue/assets/audio_reponses/vous_avez_des_lunettes.wav';
 import pasDeProblemes from 'bienvenue/assets/audio_reponses/pas_de_problemes.wav';
+import ouiEtranger from 'bienvenue/assets/audio_reponses/oui_etranger.wav';
+import ouiFrance from 'bienvenue/assets/audio_reponses/oui_france.wav';
+import oui from 'bienvenue/assets/audio_reponses/oui.wav';
+import non from 'bienvenue/assets/audio_reponses/non.wav';
 
 const AUDIOS_QUESTIONS = {
   bienvenue_1: concentrationQuestion,
