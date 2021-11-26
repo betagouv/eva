@@ -273,8 +273,8 @@ describe('Synchronisateur', function () {
       });
 
       it('supprime les évaluation et les évènements obsoletes du localStorage', function () {
-        synchronisateur.supprimeDuLocalSiObsolete(idClient, evaluationObsolette, aujourdhui);
-        synchronisateur.supprimeDuLocalSiObsolete(idClient2, evaluationValide, aujourdhui);
+        expect(synchronisateur.supprimeDuLocalSiObsolete(idClient, evaluationObsolette, aujourdhui)).toBe(true);
+        expect(synchronisateur.supprimeDuLocalSiObsolete(idClient2, evaluationValide, aujourdhui)).toBe(false);
 
         expect(supprimeEvenementsLocale).toHaveBeenNthCalledWith(1, idClient);
         expect(supprimeEvaluationLocale).toHaveBeenNthCalledWith(1, idClient);

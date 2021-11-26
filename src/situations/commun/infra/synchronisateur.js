@@ -27,14 +27,15 @@ export default class Synchronisateur {
     const promesses = [];
 
     Object.entries(evaluations).forEach(([idClient, evaluation]) => {
+      if (this.supprimeDuLocalSiObsolete(idClient, evaluation)) {
+        return;
+      }
       let promesse = this.creeOuMetsAJourEvaluation(evaluation, idClient);
 
       promesse = promesse.then((utilisateur) => {
         return this.synchroniseEvenements(idClient, utilisateur).then(() => {
           this.supprimeEvaluationTermineDuLocal(idClient, evaluation);
         });
-      }).finally(() => {
-        return this.supprimeDuLocalSiObsolete(idClient, evaluation);
       });
 
       promesses.push(promesse);
@@ -73,6 +74,8 @@ export default class Synchronisateur {
     if (new Date(evaluation.debutee_le) < unMoisAvant) {
       this.registreEvenements.supprimeDuLocalStorage(idClient);
       this.registreUtilisateur.supprimeDuLocalStorage(idClient);
+      return true;
     }
+    return false;
   }
 }
