@@ -48,7 +48,7 @@ initialiseInternationalisation().then(function () {
     document.title = traduction('accueil.titre');
     const div = document.createElement('div');
     div.setAttribute('class', 'conteneur');
-    document.body.prepend(div);
+    document.body.insertBefore(div, document.body.firstChild);
     afficheAccueil(div);
   });
 });
