@@ -28,6 +28,27 @@ import ouiEtranger from 'bienvenue/assets/audio_reponses/oui_etranger.wav';
 import ouiFrance from 'bienvenue/assets/audio_reponses/oui_france.wav';
 import oui from 'bienvenue/assets/audio_reponses/oui.wav';
 import non from 'bienvenue/assets/audio_reponses/non.wav';
+import aLAise from 'bienvenue/assets/audio_reponses/a_l_aise.wav';
+import daccord from 'bienvenue/assets/audio_reponses/d_accord.wav';
+import facile from 'bienvenue/assets/audio_reponses/facile.wav';
+import niALAise from 'bienvenue/assets/audio_reponses/ni_a_l_aise.wav';
+import niDaccord from 'bienvenue/assets/audio_reponses/ni_d_accord.wav';
+import niFacileNiDifficile from 'bienvenue/assets/audio_reponses/ni_facile_ni_difficile.wav';
+import pasALAise from 'bienvenue/assets/audio_reponses/pas_a_l_aise.wav';
+import pasDaccord from 'bienvenue/assets/audio_reponses/pas_d_accord.wav';
+import pasDuToutALAise from 'bienvenue/assets/audio_reponses/pas_du_tout_a_l_aise.wav';
+import pasDuToutDaccord from 'bienvenue/assets/audio_reponses/pas_du_tout_d_accord.wav';
+import pasDuToutFacile from 'bienvenue/assets/audio_reponses/pas_du_tout_facile.wav';
+import pasFacile from 'bienvenue/assets/audio_reponses/pas_facile.wav';
+import plutotALAise from 'bienvenue/assets/audio_reponses/plutot_a_l_aise.wav';
+import plutotDaccord from 'bienvenue/assets/audio_reponses/plutot_d_accord.wav';
+import plutotFacile from 'bienvenue/assets/audio_reponses/plutot_facile.wav';
+import plutotPasALAise from 'bienvenue/assets/audio_reponses/plutot_pas_a_l_aise.wav';
+import plutotPasDaccord from 'bienvenue/assets/audio_reponses/plutot_pas_d_accord.wav';
+import plutotPasFacile from 'bienvenue/assets/audio_reponses/plutot_pas_facile.wav';
+import toutAFaitDaccord from 'bienvenue/assets/audio_reponses/tout_a_fait_d_accord.wav';
+import tresALAise from 'bienvenue/assets/audio_reponses/tres_a_l_aise.wav';
+import tresFacile from 'bienvenue/assets/audio_reponses/tres_facile.wav';
 
 const AUDIOS_QUESTIONS = {
   bienvenue_1: concentrationQuestion,
@@ -57,6 +78,30 @@ const AUDIOS_REPONSES = {
   bienvenue_16_reponse_2: ouiEtranger,
   bienvenue_oui: oui,
   bienvenue_non: non
+};
+
+const AUDIOS_REPONSES_JAUGE = {
+  bienvenue_pas_du_tout_facile: pasDuToutFacile,
+  bienvenue_pas_facile: pasFacile,
+  bienvenue_ni_facile: niFacileNiDifficile,
+  bienvenue_plutot_pas_facile: plutotPasFacile,
+  bienvenue_plutot_facile: plutotFacile,
+  bienvenue_facile: facile,
+  bienvenue_tres_facile: tresFacile,
+  bienvenue_pas_du_tout_a_l_aise: pasDuToutALAise,
+  bienvenue_pas_a_l_aise: pasALAise,
+  bienvenue_ni_a_l_aise: niALAise,
+  bienvenue_plutot_pas_a_l_aise: plutotPasALAise,
+  bienvenue_plutot_a_l_aise: plutotALAise,
+  bienvenue_a_l_aise: aLAise,
+  bienvenue_tres_a_l_aise: tresALAise,
+  bienvenue_pas_du_tout_daccord: pasDuToutDaccord,
+  bienvenue_pas_daccord: pasDaccord,
+  bienvenue_plutot_pas_daccord: plutotPasDaccord,
+  bienvenue_ni_daccord: niDaccord,
+  bienvenue_plutot_daccord: plutotDaccord,
+  bienvenue_dacoord: daccord,
+  bienvenue_tout_a_fait_daccord: toutAFaitDaccord
 };
 
 const AUDIOS_QUESTIONS_REPONSES = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
