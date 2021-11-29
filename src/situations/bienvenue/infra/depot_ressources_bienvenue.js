@@ -77,10 +77,7 @@ const AUDIOS_REPONSES = {
   bienvenue_16_reponse_1: ouiFrance,
   bienvenue_16_reponse_2: ouiEtranger,
   bienvenue_oui: oui,
-  bienvenue_non: non
-};
-
-const AUDIOS_REPONSES_JAUGE = {
+  bienvenue_non: non,
   bienvenue_pas_du_tout_facile: pasDuToutFacile,
   bienvenue_pas_facile: pasFacile,
   bienvenue_ni_facile: niFacileNiDifficile,
@@ -100,7 +97,7 @@ const AUDIOS_REPONSES_JAUGE = {
   bienvenue_plutot_pas_daccord: plutotPasDaccord,
   bienvenue_ni_daccord: niDaccord,
   bienvenue_plutot_daccord: plutotDaccord,
-  bienvenue_dacoord: daccord,
+  bienvenue_daccord: daccord,
   bienvenue_tout_a_fait_daccord: toutAFaitDaccord
 };
 

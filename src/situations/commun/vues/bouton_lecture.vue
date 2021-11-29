@@ -3,7 +3,7 @@
     <button @click="basculeJoueSon">
       <span v-if="joueSon">
         <svg
-          class="bouton-pause"
+          class="icone-pause"
           width="20"
           height="20"
           viewBox="0 0 24 24"
@@ -20,7 +20,7 @@
       </span>
       <span v-else>
         <svg
-          class="bouton-lecture"
+          class="icone-lecture"
           width="20"
           height="20"
           viewBox="0 0 20 20"
