@@ -27,7 +27,7 @@ describe('Le bouton de lecture de message audio', function () {
     };
     wrapper.vm.joueSon = true;
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.find('.bouton-pause').exists()).toBe(true);
+      expect(wrapper.find('.icone-pause').exists()).toBe(true);
       expect(sonJoue).toBe(true);
       done();
     });

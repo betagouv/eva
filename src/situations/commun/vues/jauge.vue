@@ -1,5 +1,5 @@
 <template>
-   <div class="jauge-conteneur" :style="styleJaugeConteneur">
+  <div class="jauge-conteneur" :style="styleJaugeConteneur">
     <div class="jauge">
       <input
         type="range"
@@ -16,13 +16,19 @@
       <li
         v-for="(element, index) in question.choix.slice().reverse()"
         :key="element.id"
-        :id="element.id"
-        :value="(question.choix.length - 1) - index"
-        @click="selectioneLabel"
         class="label"
         :class="{ 'selected': choixFait === (question.choix.length - 1) - index }"
       >
-        {{element.intitule}}
+        <bouton-lecture
+          v-if="afficheLectureReponse(element.nom_technique)"
+          class="bouton-lecture"
+          :nomTechnique="element.nom_technique"
+        />
+        <span
+          @click="selectioneLabel"
+          :value="definiValeur(index)"
+          :id="element.id"
+        >{{element.intitule}}</span>
       </li>
     </ul>
     <div class="curseur" :style="styleCurseur">
@@ -32,7 +38,11 @@
 
 <script>
 
+import BoutonLecture from 'commun/vues/bouton_lecture';
+
 export default ({
+  components: { BoutonLecture },
+
   props: {
     question: {
       type: Object,
@@ -103,18 +113,30 @@ export default ({
 
   methods: {
     selectioneLabel (label) {
-      this.choixFait = label.target.value;
-      this.emetSelection();
+      this.selectionne(label.target.getAttribute('value'));
     },
 
     selectionJauge (input) {
-      this.choixFait = parseInt(input.target.value);
+      this.selectionne(input.target.value);
+    },
+
+    selectionne (valeur) {
+      this.choixFait = parseInt(valeur);
       this.emetSelection();
     },
 
     emetSelection () {
       const reponseChoisie = this.question.choix[this.choixFait];
       this.$emit('choixjauge', reponseChoisie.id);
+    },
+
+    afficheLectureReponse (nomTechnique) {
+      return this.$depotRessources.existeMessageAudio(nomTechnique);
+    },
+
+    definiValeur (index) {
+      const valeur = (this.question.choix.length - 1) - index;
+      return valeur;
     }
   }
 });
