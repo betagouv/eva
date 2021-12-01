@@ -18,13 +18,17 @@
     margin: -0.3rem 0 0;
     border-radius: 50%;
     border: none;
+    z-index: 3;
     cursor: pointer;
     background: $bleu;
   }
 }
 
 .jauge {
-  position: relative;
+  position: absolute;
+  left: 3rem;
+  height: 100%;
+  z-index: 1;
 
   input {
     height: 100%;
@@ -70,15 +74,17 @@
       display: flex;
 
       .bouton-lecture {
-        margin-right: 1rem;
+        margin-right:4.25rem;
+        height: 1.25rem;
       }
 
       &::before {
         content: '';
         width: 0.5rem;
         height: 1px;
+        z-index: 2;
         position: absolute;
-        left: -2.6rem;
+        left: calc(3rem + 4px);
         top: 0.5rem;
         background: $bleu-gris-fonce;
       }

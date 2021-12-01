@@ -93,7 +93,7 @@ describe('La vue jauge', function () {
   it('calcule la taille et la position du curseur', function () {
     expect(wrapper.vm.styleCurseur.width).toEqual('1.5rem');
     expect(wrapper.vm.styleCurseur.height).toEqual('1.5rem');
-    expect(wrapper.vm.styleCurseur.left).toEqual('-0.25rem');
+    expect(wrapper.vm.styleCurseur.left).toEqual('2.75rem');
 
     wrapper.vm.choixFait = 0;
     expect(wrapper.vm.styleCurseur.bottom).toEqual('-0.25rem');
