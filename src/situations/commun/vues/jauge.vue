@@ -114,8 +114,8 @@ export default ({
   },
 
   methods: {
-    selectioneLabel (label) {
-      this.selectionne(label.target.getAttribute('value'));
+    selectioneLabel (pointerEvent) {
+      this.selectionne(pointerEvent.target.getAttribute('value'));
     },
 
     selectionJauge (input) {
