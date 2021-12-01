@@ -57,6 +57,7 @@ export default ({
       hauteurJauge: 14.5,
       largeurJauge: 1,
       tailleCurseur: 1.5,
+      decalageJauge: 3,
       choixFait: 0
     };
   },
@@ -97,7 +98,7 @@ export default ({
       return {
         height: `${this.tailleCurseur}rem`,
         width: `${this.tailleCurseur}rem`,
-        left: `${-(this.tailleCurseur - this.largeurJauge) / 2}rem`,
+        left: `${(-(this.tailleCurseur - this.largeurJauge) / 2) + this.decalageJauge}rem`,
         bottom: `${position}rem`
       };
     }
