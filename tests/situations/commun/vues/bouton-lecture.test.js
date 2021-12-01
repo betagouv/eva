@@ -2,9 +2,9 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BoutonLecture from 'commun/vues/bouton_lecture';
 
 describe('Le bouton de lecture de message audio', function () {
-  it("affiche le bouton play quand aucun son n'est joué", function () {
+  it("affiche l'icone play quand aucun son n'est joué", function () {
     const wrapper = shallowMount(BoutonLecture, { propsData: { nomTechnique: 'question1' } });
-    expect(wrapper.find('.bouton-lecture').exists()).toBe(true);
+    expect(wrapper.find('.icone-lecture').exists()).toBe(true);
   });
 
   it('joue le son et affiche le bouton pause', function (done) {

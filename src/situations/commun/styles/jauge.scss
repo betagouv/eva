@@ -52,15 +52,6 @@
     }
   }
 
-  &-audios {
-    justify-content: space-between;
-    display: flex;
-    flex-direction: column;
-    .bouton-lecture {
-      margin-right: 1.75rem;
-    }
-  }
-
   &-labels {
     display: flex;
     flex-direction: column;
@@ -77,6 +68,10 @@
       cursor: pointer;
       color: $bleu-fonce;
       display: flex;
+
+      .bouton-lecture {
+        margin-right: 1rem;
+      }
 
       &::before {
         content: '';

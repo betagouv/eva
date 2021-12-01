@@ -28,6 +28,7 @@
           @click="selectioneLabel"
           :value="definiValeur(index)"
           :id="element.id"
+          class="label-libelle"
         >{{element.intitule}}</span>
       </li>
     </ul>
