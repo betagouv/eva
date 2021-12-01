@@ -20,7 +20,7 @@ describe('le registre campagne', function () {
   describe('cleCampagnePourLocalStorage', function () {
     it('retourne la clé de la campagne du localStorage', function () {
       const registre = unRegistre(1, 'autre test');
-      expect(registre.cleCampagnePourLocalStorage('code de ma campagne')).toEqual('campagne_code de ma campagne');
+      expect(registre.cleCampagnePourLocalStorage('code de ma campagne')).toEqual('campagne_CODE DE MA CAMPAGNE');
     });
   });
 
@@ -35,12 +35,12 @@ describe('le registre campagne', function () {
 
   describe('recupereCampagneCourante', function () {
     beforeEach(function () {
-      window.localStorage.setItem('campagneCourante', 'demo');
+      window.localStorage.setItem('campagneCourante', 'DEMO');
     });
 
     describe('quand la campagne existe en locale', function () {
       beforeEach(function () {
-        window.localStorage.setItem('campagne_demo', '{ "id": 1 }');
+        window.localStorage.setItem('campagne_DEMO', '{ "id": 1 }');
       });
 
       it('retourne la campagne courante sauvegardé en locale', function () {
@@ -53,7 +53,7 @@ describe('le registre campagne', function () {
 
   describe('recupereCampagneEnLocale', function () {
     it('récupère la campagne sauvegardé en locale', function () {
-      window.localStorage.setItem('campagne_demo', '{ "id": 1 }');
+      window.localStorage.setItem('campagne_DEMO', '{ "id": 1 }');
       const registre = new RegistreCampagne();
 
       expect(registre.recupereCampagneEnLocale('demo')).toEqual({ id: 1 });
@@ -65,7 +65,7 @@ describe('le registre campagne', function () {
       it('enregistre les informations de la campagne en locale', function () {
         const registre = unRegistre(1, 'autre test');
         return registre.recupereCampagne('campagne1').then((campagne) => {
-          expect(window.localStorage.campagne_campagne1).toEqual('{"id":1,"nom":"autre test"}');
+          expect(window.localStorage.campagne_CAMPAGNE1).toEqual('{"id":1,"nom":"autre test"}');
           expect(campagne).toEqual({ id: 1, nom: 'autre test' });
         });
       });
@@ -107,7 +107,7 @@ describe('le registre campagne', function () {
 
         describe('quand la campagne existe en locale', function () {
           beforeEach(function () {
-            window.localStorage.campagne_campagne1 = JSON.stringify({ id: 1, nom: 'autre test' });
+            window.localStorage.campagne_CAMPAGNE1 = JSON.stringify({ id: 1, nom: 'autre test' });
           });
 
           it("retourne une promesse où tout s'est bien passée", function () {
@@ -166,7 +166,7 @@ describe('le registre campagne', function () {
             }
           ]
         };
-        window.localStorage.setItem('campagne_demo', JSON.stringify(campagne));
+        window.localStorage.setItem('campagne_DEMO', JSON.stringify(campagne));
         registre = new RegistreCampagne();
         registre.assigneCampagneCourante('demo');
       });
