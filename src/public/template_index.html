@@ -35,7 +35,11 @@
     <script type="text/javascript">
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          ['https://app.eva.beta.gouv.fr', 'https://preprod.eva.beta.gouv.fr'].forEach((scope) => {
+          [
+            'http://localhost:7700/services-worker.js',
+            'https://app.eva.beta.gouv.fr/services-worker.js',
+            'https://preprod.eva.beta.gouv.fr/services-worker.js'
+          ].forEach((scope) => {
             navigator.serviceWorker.getRegistration(scope)
               .then((registration) => {
                 registration.unregister();
