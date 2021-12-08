@@ -1,7 +1,6 @@
 @import 'commun/styles/couleurs.scss';
 
 .overlay.modale {
-
   .modale-interieur.bravo {
     display: flex;
     flex-direction: row;
@@ -19,18 +18,21 @@
   }
 
   .modale-interieur.resultat {
-    text-align: center;
     margin-bottom: 0;
 
     h2 {
       margin-bottom: 0;
     }
 
+    h2,
+    .message-competences-fortes {
+      text-align: center;
+    }
+
     .contenu {
       display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      margin-bottom: 2rem;
+      flex-direction: column;
+      margin: 3rem 0 2rem;
     }
 
     .message-competences-fortes {
@@ -42,22 +44,26 @@
 
     .competences-fortes {
       display: flex;
-      flex-direction: column;
-      width: 50%;
-      margin: 0 2rem;
-      text-align: left;
-
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &-informations {
+        max-width: 17.5rem;
+      }
       &-nom {
         color: $couleur-principale-marque-et-interaction;
         margin: 0;
       }
       &-description {
+        margin-bottom: 1rem;
         font-size: 0.875rem;
       }
       img {
-        margin: 2rem;
-        width: 5rem;
-        align-self: center;
+        width: 6rem;
+        height: 6rem;
       }
     }
   }
