@@ -5,6 +5,7 @@ import chargeurs from '../../commun/aides/mock_chargeurs';
 import batimentTri from 'accueil/assets/batiment-tri.png';
 import batimentInventaire from 'accueil/assets/batiment-inventaire.png';
 import batimentControle from 'accueil/assets/batiment-controle.png';
+import batimentPlanDeLaVille from 'accueil/assets/batiment-plan_de_la_ville.png';
 
 describe('Le dépôt de ressources de la situation accueil', function () {
   let depot;
@@ -26,6 +27,7 @@ describe('Le dépôt de ressources de la situation accueil', function () {
     expect(depot.batimentSituation('tri')).toEqual(batimentTri);
     expect(depot.batimentSituation('inventaire')).toEqual(batimentInventaire);
     expect(depot.batimentSituation('controle')).toEqual(batimentControle);
+    expect(depot.batimentSituation('plan_de_la_ville')).toEqual(batimentPlanDeLaVille);
   });
 
   it('Peut dire si un batiment existe', function () {
