@@ -38,6 +38,7 @@
           [
             'http://localhost:7700/services-worker.js',
             'https://app.eva.beta.gouv.fr/services-worker.js',
+            'https://app.eva.beta.gouv.fr/jeu/services-worker.js',
             'https://preprod.eva.beta.gouv.fr/services-worker.js'
           ].forEach((scope) => {
             navigator.serviceWorker.getRegistration(scope)
