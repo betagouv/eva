@@ -35,17 +35,12 @@
           :key="competence.id"
           class="competences-fortes"
           >
-          <img :src="competence.picto" />
-          <p class="competences-fortes-nom">{{ competence.nom }}</p>
-          <p class="competences-fortes-description">{{ competence.description }}</p>
-        </div>
-      </div>
-      <div class="contenu">
-        <div
-          v-for="competence in competencesFortes"
-          :key="competence.id"
-          >
+          <div class="competences-fortes-informations">
+            <p class="competences-fortes-nom">{{ competence.nom }}</p>
+            <p class="competences-fortes-description">{{ competence.description }}</p>
             <a target="_blank" class="bouton-arrondi bouton-arrondi--petit" :href="lienSiteVitrine(competence.id)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
+          </div>
+          <img :src="competence.picto" />
         </div>
       </div>
 
