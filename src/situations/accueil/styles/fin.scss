@@ -18,53 +18,82 @@
   }
 
   .modale-interieur.resultat {
-    margin-bottom: 0;
+    .contenu-resultat {
+      padding-left: 2.875rem;
+      position: relative;
+      &::before {
+        content: '';
+        width: 1.875rem;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid $bleu-gris;
+        border-radius: 1rem;
+        background-color: $blanc;
+      }
+    }
 
     h2 {
       margin-bottom: 0;
     }
 
-    h2,
     .message-competences-fortes {
-      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      font-size: 1.125rem;
     }
 
-    .contenu {
+    .contenu-competences-fortes {
       display: flex;
       flex-direction: column;
-      margin: 3rem 0 2rem;
-    }
-
-    .message-competences-fortes {
-      font-size: 1.125rem;
-      margin-bottom: 1rem;
-      color: $noir;
-      margin-bottom: 0;
+      margin-bottom: 4rem;
     }
 
     .competences-fortes {
       display: flex;
-      justify-content: space-between;
       align-items: center;
       margin-bottom: 3rem;
+      position: relative;
       &:last-child {
         margin-bottom: 0;
       }
       &-informations {
-        max-width: 17.5rem;
+        flex-grow: 1;
       }
       &-nom {
-        color: $couleur-principale-marque-et-interaction;
         margin: 0;
+        color: $couleur-principale-marque-et-interaction;
       }
       &-description {
+        max-width: 17.5rem;
         margin-bottom: 1rem;
         font-size: 0.875rem;
+      }
+      &-lien {
+        display: inline-block;
       }
       img {
         width: 6rem;
         height: 6rem;
       }
+    }
+
+    .indicateur-audio,
+    .bouton-lecture {
+      position: absolute;
+      top: 0;
+    }
+    .indicateur-audio {
+      left: 0;
+    }
+    .bouton-lecture {
+      left: -2.5rem;
+    }
+
+    .actions-fin {
+      margin-bottom: 0;
+      justify-content: center;
     }
   }
 }
