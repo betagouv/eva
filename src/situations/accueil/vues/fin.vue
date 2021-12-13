@@ -24,23 +24,42 @@
     <div
       v-else
       class="modale-interieur resultat">
-      <h2>{{ $traduction('accueil.fin.resultat.titre') }}</h2>
-      <div
-        class="message-competences-fortes"
-        v-html="$traduction('accueil.fin.resultat.competences')">
-      </div>
-      <div class="contenu">
-        <div
-          v-for="competence in competencesFortes"
-          :key="competence.id"
-          class="competences-fortes"
+      <div class="contenu-resultat">
+        <svg
+            width="32"
+            height="32"
+            class="indicateur-audio"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-          <div class="competences-fortes-informations">
-            <p class="competences-fortes-nom">{{ competence.nom }}</p>
-            <p class="competences-fortes-description">{{ competence.description }}</p>
-            <a target="_blank" class="bouton-arrondi bouton-arrondi--petit" :href="lienSiteVitrine(competence.id)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
+          <circle cx="16" cy="16" r="16" fill="#1E416A"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M10 19.903H8a1 1 0 0 1-1-1v-5.04a1 1 0 0 1 1-1h1.764a1 1 0 0 0 .447-.105l3.621-1.81a1 1 0 0 1 1.447.894v9.083a1 1 0 0 1-1.447.894L10 19.903Z" fill="#FBF9FA"/><path d="M23.48 10c.514.817.92 1.853 1.182 3.023.262 1.17.375 2.44.328 3.709-.047 1.268-.252 2.496-.598 3.586-.345 1.09-.823 2.008-1.392 2.682M19.48 12c.514.566.92 1.283 1.182 2.093.262.81.375 1.69.328 2.567a6.86 6.86 0 0 1-.598 2.483c-.345.754-.823 1.39-1.392 1.857" stroke="#FBF9FA" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h2>{{ $traduction('accueil.fin.resultat.titre') }}</h2>
+        <div class="message-competences-fortes">
+          <bouton-lecture
+            class="bouton-lecture"
+            nomTechnique='introduction'
+          />
+          <p v-html="$traduction('accueil.fin.resultat.competences')"></p>
+        </div>
+        <div class="contenu-competences-fortes">
+          <div
+            v-for="competence in competencesFortes"
+            :key="competence.nom_technique"
+            class="competences-fortes"
+            >
+            <bouton-lecture
+              class="bouton-lecture"
+              :nomTechnique="competence.nom_technique"
+            />
+            <div class="competences-fortes-informations">
+              <p class="competences-fortes-nom">{{ competence.nom }}</p>
+              <p class="competences-fortes-description">{{ competence.description }}</p>
+              <a target="_blank" class="competences-fortes-lien bouton-arrondi bouton-arrondi--petit" :href="lienSiteVitrine(competence.nom_technique)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
+            </div>
+            <img :src="competence.picto" />
           </div>
-          <img :src="competence.picto" />
         </div>
       </div>
 
@@ -53,10 +72,12 @@
 <script>
 import { mapState } from 'vuex';
 import 'accueil/styles/fin.scss';
+import 'commun/styles/bouton.scss';
 import BoutonDeconnexion from 'accueil/vues/bouton_deconnexion';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 
 export default {
-  components: { BoutonDeconnexion },
+  components: { BoutonDeconnexion, BoutonLecture },
   computed: mapState(['competencesFortes', 'evaluationTerminee', 'nom']),
 
   data () {

@@ -1,18 +1,6 @@
 @import 'commun/styles/couleurs.scss';
 
 .overlay.modale {
-  .modale-interieur.resultat {
-    .actions-fin {
-      position: absolute;
-      bottom: 1.25rem;
-      margin-bottom: 0;
-      height: 4rem;
-      left: 0;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
   .actions-fin {
     width: 100%;
     display: flex;

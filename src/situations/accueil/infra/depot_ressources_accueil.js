@@ -10,7 +10,23 @@ import avatarAvis from 'accueil/assets/avatar-avis.svg';
 import avatarDeconnexion from 'accueil/assets/avatar-deconnexion.svg';
 import boutonAvis from 'accueil/assets/bouton-avis.svg';
 
+import introduction from 'accueil/assets/audios_resultat/resultat_introduction.wav';
+import attentionConcentration from 'accueil/assets/audios_resultat/attention_concentration.wav';
+import comparaisonTri from 'accueil/assets/audios_resultat/comparaison_tri.wav';
+import organisationMethode from 'accueil/assets/audios_resultat/organisation_methode.wav';
+import vigilanceControle from 'accueil/assets/audios_resultat/vigilance_controle.wav';
+import vitesseExecution from 'accueil/assets/audios_resultat/vitesse_execution.wav';
+
 const batimentsContext = require.context('../assets', false, /batiment-.+\.png$/);
+
+const AUDIOS_RESULTAT = {
+  introduction: introduction,
+  attention_concentration: attentionConcentration,
+  comparaison_tri: comparaisonTri,
+  organisation_methode: organisationMethode,
+  vigilance_controle: vigilanceControle,
+  rapidite: vitesseExecution
+};
 
 export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
   constructor (chargeurs) {
@@ -21,6 +37,7 @@ export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
       memo[fichier.match(/batiment-(.+)\.png/)[1]] = batimentsContext(fichier);
       return memo;
     }, {});
+    this.charge(Object.values(AUDIOS_RESULTAT));
   }
 
   fondAccueil () {
@@ -65,5 +82,9 @@ export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
 
   boutonAvis () {
     return this.ressource(boutonAvis);
+  }
+
+  messageAudio (nomTechnique) {
+    return this.ressource(AUDIOS_RESULTAT[nomTechnique]);
   }
 }
