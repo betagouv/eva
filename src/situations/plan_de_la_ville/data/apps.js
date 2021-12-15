@@ -2,8 +2,10 @@ import MaisonRouge from '../assets/maison_rouge.png';
 
 const questionCouleur = {
   id: 'couleur-maison',
+  nom_technique: 'couleur_maison',
+  description: 'La maison est rouge',
   illustration: MaisonRouge,
-  intitule: 'La maison est rouge. Cliquez sur la case qui correspond à la couleur de la maison puis sur Valider.',
+  intitule: 'Cliquez sur la case qui correspond à la couleur de la maison puis sur Valider.',
   choix: [
     {
       id: 'rouge',
