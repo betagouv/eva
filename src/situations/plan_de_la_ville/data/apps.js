@@ -1,4 +1,7 @@
 import MaisonRouge from '../assets/maison_rouge.png';
+import rouge from '../assets/rouge.svg';
+import vert from '../assets/vert.svg';
+import bleu from '../assets/bleu.svg';
 
 const questionCouleur = {
   id: 'couleur-maison',
@@ -9,17 +12,17 @@ const questionCouleur = {
   choix: [
     {
       id: 'rouge',
-      intitule: 'rouge',
+      image: rouge,
       bonneReponse: true
     },
     {
       id: 'bleu',
-      intitule: 'bleu',
+      image: bleu,
       bonneReponse: false
     },
     {
       id: 'vert',
-      intitule: 'vert',
+      image: vert,
       bonneReponse: false
     }
   ]
