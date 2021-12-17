@@ -10,6 +10,11 @@ describe('La vue plan de la ville', function () {
 
   beforeEach(function () {
     store = creeStore();
+    depotRessources = new class {
+      fondSituation () {
+        return { src: 'fond-situation.png' };
+      }
+    }();
     localVue = createLocalVue();
     localVue.prototype.$journal = { enregistre () {} };
     wrapper = shallowMount(PlanDeLaVille, { localVue, store });
@@ -20,6 +25,14 @@ describe('La vue plan de la ville', function () {
     store.commit('configureActe', { questions: [{ id: 'ma-question' }] });
     wrapper.vm.$nextTick(() => {
       expect(wrapper.findComponent(Qcm).exists()).toBe(true);
+      done();
+    });
+  });
+
+  it("affiche l'image de fond de la situation", function (done) {
+    store.commit('configureActe', { questions: [{ id: 'ma-question' }], fondSituation: 'fond-situation.png' });
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.find('.fond-situation').attributes('style')).toEqual('background-image: url(fond-situation.png);');
       done();
     });
   });

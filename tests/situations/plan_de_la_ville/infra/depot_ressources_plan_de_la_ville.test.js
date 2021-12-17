@@ -9,8 +9,8 @@ describe('le dépôt ressource de la situation plan de la ville', function () {
     depot = new DepotRessourcesPlanDeLaVille(chargeurs({ wav: chargeurDefaut }));
   });
 
-  describe('charge les ressources visuelles', function () {
-    it('de la configuration normale', function () {
+  describe('Configuration normale', function () {
+    it('charge les ressources visuelles', function () {
       depot.chargeConfigurations({
         questions: [{ illustration: 'chemin_illustration.png' }]
       });
