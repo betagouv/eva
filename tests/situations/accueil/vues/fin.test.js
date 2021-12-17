@@ -8,6 +8,16 @@ describe('La vue de fin', function () {
   let store;
   let depotRessources;
   let localVue;
+  const rapidite = {
+    nom_technique: 'rapidite',
+    nom: "vitesse d'execution",
+    description: 'description rapidite'
+  };
+  const comprehensionConsigne = {
+    nom_technique: 'comprehension_consigne',
+    nom: 'comprehension de la consigne',
+    description: 'description comprehentsion consigne'
+  };
 
   beforeEach(function () {
     depotRessources = new (class {
@@ -49,7 +59,7 @@ describe('La vue de fin', function () {
     store.state.nom = 'Alexandre Legrand';
     store.dispatch = (evenement) => {
       expect(evenement).toEqual('termineEvaluation');
-      store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+      store.state.competencesFortes = [rapidite, comprehensionConsigne];
       store.state.evaluationTerminee = true;
       return Promise.resolve();
     };
@@ -64,15 +74,7 @@ describe('La vue de fin', function () {
 
   it('récupère les compétences fortes', function (done) {
     store.dispatch = (evenement) => {
-      store.state.competencesFortes = [{
-        id: 'rapidite',
-        nom: "vitesse d'execution",
-        description: 'description rapidite'
-      }, {
-        id: 'comprehension_consigne',
-        nom: 'comprehension de la consigne',
-        description: 'description comprehentsion consigne'
-      }];
+      store.state.competencesFortes = [rapidite, comprehensionConsigne];
       store.state.evaluationTerminee = true;
       return Promise.resolve();
     };
@@ -120,7 +122,7 @@ describe('La vue de fin', function () {
 
   it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function (done) {
     store.dispatch = (evenement) => {
-      store.state.competencesFortes = ['rapidite', 'comprehension_consigne'];
+      store.state.competencesFortes = [rapidite, comprehensionConsigne];
       store.state.evaluationTerminee = true;
       return Promise.resolve();
     };
