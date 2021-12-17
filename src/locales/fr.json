@@ -241,7 +241,7 @@
   "plan_de_la_ville": {
     "titre": "Plan de la ville",
     "intro_contexte": {
-      "message": "<p> Vous arrivez dans un village.<br> Vous allez effectuer quelques exercices pour apprendre à utiliser eva.<br><br> Cliquez sur le bouton Continuer</p>"
+      "message": "<p>Vous arrivez dans un village.<br>Vous allez effectuer quelques exercices pour apprendre à utiliser eva.</p><p>Cliquez sur le bouton Commencer</p>"
     }
   }
 }

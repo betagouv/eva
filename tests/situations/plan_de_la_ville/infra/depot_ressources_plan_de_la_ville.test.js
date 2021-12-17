@@ -1,6 +1,7 @@
 import chargeurs, { chargeurDefaut } from '../../commun/aides/mock_chargeurs';
 import DepotRessourcesPlanDeLaVille from 'plan_de_la_ville/infra/depot_ressources_plan_de_la_ville';
 import maisonRouge from 'plan_de_la_ville/assets/audio_questions/maison_rouge.wav';
+import sonConsigne from 'plan_de_la_ville/assets/consigne_plan_de_la_ville.wav';
 
 describe('le dépôt ressource de la situation plan de la ville', function () {
   let depot;
@@ -21,7 +22,7 @@ describe('le dépôt ressource de la situation plan de la ville', function () {
     });
   });
 
-  describe('charge les ressources audios', function () {
+  describe('Ressources audios', function () {
     beforeEach(function () {
       return depot.chargement();
     });
@@ -33,6 +34,14 @@ describe('le dépôt ressource de la situation plan de la ville', function () {
     it("Teste l'existance d'un message audio d'une question", function () {
       expect(depot.existeMessageAudio('couleur_maison')).toBe(true);
       expect(depot.existeMessageAudio('inconnu')).toBe(false);
+    });
+  });
+
+  describe('Consignes', function () {
+    it('retourne la consigne de démarrage personnalisée', function () {
+      return depot.chargement().then(() => {
+        expect(depot.consigneDemarrage()).toEqual(sonConsigne);
+      });
     });
   });
 });
