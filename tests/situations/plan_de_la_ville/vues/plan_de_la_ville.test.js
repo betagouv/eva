@@ -7,6 +7,7 @@ describe('La vue plan de la ville', function () {
   let wrapper;
   let store;
   let localVue;
+  let depotRessources;
 
   beforeEach(function () {
     store = creeStore();
@@ -18,6 +19,7 @@ describe('La vue plan de la ville', function () {
     localVue = createLocalVue();
     localVue.prototype.$journal = { enregistre () {} };
     wrapper = shallowMount(PlanDeLaVille, { localVue, store });
+    localVue.prototype.$depotRessources = depotRessources;
   });
 
   it('Affiche une question', function (done) {
