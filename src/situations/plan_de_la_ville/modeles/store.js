@@ -8,8 +8,9 @@ export function creeStore () {
     },
 
     mutations: {
-      configureActe (state, { questions }) {
+      configureActe (state, { questions, fondSituation }) {
         state.questions = questions;
+        state.fondSituation = fondSituation;
       }
     }
   });
