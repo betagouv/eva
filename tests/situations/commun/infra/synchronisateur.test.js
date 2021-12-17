@@ -77,6 +77,7 @@ describe('Synchronisateur', function () {
       });
 
       it("supprime l'évaluation terminée du localStorage", function (done) {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
         synchronisateur.recupereReseau();
 
         setTimeout(() => {
@@ -226,16 +227,31 @@ describe('Synchronisateur', function () {
     });
 
     describe('#supprimeEvaluationTermineDuLocal()', function () {
-      describe("quand l'évaluation est terminée", function () {
+      describe("quand l'évaluation est terminée et que l'utilisateur n'est pas connecté", function () {
         beforeEach(function () {
           evaluation = { terminee_le: new Date() };
           window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+          jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
         });
 
         it("supprime l'évaluation du localStorage", function () {
           synchronisateur.supprimeEvaluationTermineDuLocal(idClient, evaluation);
 
           expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
+        });
+      });
+
+      describe("quand l'évaluation est terminée et que l'utilisateur est connecté", function () {
+        beforeEach(function () {
+          evaluation = { terminee_le: new Date() };
+          window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
+          jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => idClient);
+        });
+
+        it("ne supprime pas l'évaluation du localStorage", function () {
+          synchronisateur.supprimeEvaluationTermineDuLocal(idClient, evaluation);
+
+          expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(0);
         });
       });
 
