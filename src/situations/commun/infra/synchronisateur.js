@@ -62,7 +62,7 @@ export default class Synchronisateur {
   }
 
   supprimeEvaluationTermineDuLocal (idClient, evaluation) {
-    if (evaluation.terminee_le) {
+    if (evaluation.terminee_le && this.registreUtilisateur.idClient() !== idClient) {
       this.registreUtilisateur.supprimeDuLocalStorage(idClient);
     }
   }
