@@ -21,63 +21,85 @@ describe('La vue de la question QCM', function () {
     };
   });
 
+  function composant (question) {
+    return shallowMount(VueQCM, { localVue, propsData: { question } });
+  }
+
   it("affiche l'entête de la question", function () {
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const vue = composant(question);
 
     expect(vue.findComponent(QuestionEntete).exists()).toBe(true);
   });
 
   it('affiche des radios', function () {
     question.choix = [1, 2, 3, 4, 5];
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const vue = composant(question);
     expect(vue.findAll('input[type=radio]').length).toBe(5);
   });
 
   it('affiche un control audio sur chaque réponse', function () {
     question.choix = [{ audio: '1' }, { audio: '1' }, { audio: '1' }];
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const vue = composant(question);
     expect(vue.findAllComponents(ReponseAudioQcm).length).toBe(3);
   });
 
   it('affiche une image sur chaque réponse', function () {
     question.choix = [{ image: '1' }, { image: '1' }, { image: '1' }];
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const vue = composant(question);
     expect(vue.findAll('img').length).toBe(3);
   });
 
-  describe('affiche une question de type numérique', function () {
-    function uneQuestionNumerique () {
+  describe('quand la question est de type numérique', function () {
+    beforeEach(function () {
       question.type = 'numerique';
-      return shallowMount(VueQCM, { localVue, propsData: { question } });
-    }
+    });
 
     it('affiche un champ numérique', function () {
-      const inputNumerique = uneQuestionNumerique().findAll('input[type=text]');
+      const inputNumerique = composant(question).findAll('input[type=text]');
       expect(inputNumerique.length).toBe(1);
       expect(inputNumerique.at(0).classes('numerique-input')).toBe(true);
     });
 
-    it("Sait espacer les chiffres dans l'input pour les question de type numérique", function () {
-      question.espacerChiffres = true;
-      const conteneurChiffresEspaces = uneQuestionNumerique().find('.numerique-input-conteneur');
-      expect(conteneurChiffresEspaces.classes('chiffres-espaces')).toBe(true);
+    describe('quand les chiffres doivent être espacés', function () {
+      beforeEach(function () {
+        question.espacerChiffres = true;
+      });
+
+      it('ajoute la classe css', function () {
+        const conteneur = composant(question).find('.numerique-input-conteneur');
+        expect(conteneur.classes('chiffres-espaces')).toBe(true);
+      });
     });
 
-    it("Sait espacer les chiffres dans l'input pour les question de type numérique", function () {
-      question.espacerChiffres = false;
-      const conteneurChiffresNonEspaces = uneQuestionNumerique().find('.numerique-input-conteneur');
-      expect(conteneurChiffresNonEspaces.classes('chiffres-espaces')).toBe(false);
+    describe('quand les chiffres ne doivent pas être espacés', function () {
+      beforeEach(function () {
+        question.espacerChiffres = false;
+      });
+
+      it("n'ajoute pas de classe css", function () {
+        const conteneur = composant(question).find('.numerique-input-conteneur');
+        expect(conteneur.classes('chiffres-espaces')).toBe(false);
+      });
+    });
+
+    it('émet un évement réponse', function () {
+      question.bonneReponse = '1800';
+      const vue = composant(question);
+      vue.vm.reponse = '1800';
+      vue.vm.envoi();
+      expect(vue.emitted('reponse').length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: '1800', succes: true });
     });
   });
 
   it("affiche un bouton d'envoi de réponse", function () {
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const vue = composant(question);
     expect(vue.find('.question-bouton').exists()).toBe(true);
   });
 
   it("désactive le bouton lorsqu'aucune réponse n'est sélectionnée", function (done) {
     question.choix = [{ id: 'uid-32' }];
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const vue = composant(question);
     expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
 
     vue.find('input[type=radio][value=uid-32]').setChecked();
@@ -94,12 +116,12 @@ describe('La vue de la question QCM', function () {
       expect(evenement.donnees()).toEqual({ question: question.id, metacompetence: 'ma métacompétence' });
       done();
     };
-    shallowMount(VueQCM, { localVue, propsData: { question } });
+    composant(question);
   });
 
   it('emet un événement réponse quand on appuie sur le bouton envoi', function (done) {
     question.choix = [{ id: 'uid-32', bonneReponse: true }];
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const vue = composant(question);
     vue.find('input[type=radio][value=uid-32]').setChecked();
     vue.vm.$nextTick(() => {
       vue.find('.question-bouton').trigger('click');
@@ -111,19 +133,9 @@ describe('La vue de la question QCM', function () {
     });
   });
 
-  it('émet un évement réponse pour une question numérique', function () {
-    question.type = 'numerique';
-    question.bonneReponse = '1800';
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
-    vue.vm.reponse = '1800';
-    vue.vm.envoi();
-    expect(vue.emitted('reponse').length).toEqual(1);
-    expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: '1800', succes: true });
-  });
-
   it('désactive le bouton une fois répondu pour éviter le double click', function () {
     question.choix = [{ id: 'uid-32' }];
-    const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
+    const vue = composant(question);
     vue.find('input[type=radio][value=uid-32]').setChecked();
     vue.find('.question-bouton').trigger('click');
     expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
