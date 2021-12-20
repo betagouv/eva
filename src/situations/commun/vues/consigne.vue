@@ -88,7 +88,7 @@ export default {
 
     joueConsigne () {
       this.consigne = new JoueurConsigne(this.$depotRessources, this.ressourceConsigne);
-      this.consigne.joue(true, () => {});
+      this.consigne.joue(() => {});
     },
 
     fini () {

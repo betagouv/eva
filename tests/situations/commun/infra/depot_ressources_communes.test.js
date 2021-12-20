@@ -2,8 +2,6 @@ import chargeurs from '../aides/mock_chargeurs';
 import DepotRessources from 'commun/infra/depot_ressources';
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
-import sonConsigneCommune from 'commun/assets/consigne_commune.wav';
-
 describe('Le dépot de ressources communes', function () {
   let depot;
   let sonConsigneDemarrage;
@@ -27,10 +25,6 @@ describe('Le dépot de ressources communes', function () {
     expect(depot).toBeInstanceOf(DepotRessources);
   });
 
-  it('charge la consigne commune', function () {
-    expect(sonsCharges).toContain(sonConsigneCommune);
-  });
-
   it('charge la consigne de demarrage', function () {
     expect(sonsCharges).toContain(sonConsigneDemarrage);
   });
@@ -42,12 +36,6 @@ describe('Le dépot de ressources communes', function () {
   it('retourne la consigne', function () {
     return depot.chargement().then(() => {
       expect(depot.consigneDemarrage()).toEqual('wav_precharge');
-    });
-  });
-
-  it('retourne la consigne commune', function () {
-    return depot.chargement().then(() => {
-      expect(depot.consigneCommune()).toEqual('wav_precharge');
     });
   });
 });
