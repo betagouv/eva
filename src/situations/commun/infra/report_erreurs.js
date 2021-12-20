@@ -1,7 +1,9 @@
 import Rollbar from 'rollbar';
 
+const rollbarEnabled = !!process.env.JETON_CLIENT_ROLLBAR;
+
 const rollbar = new Rollbar({
-  enabled: !!process.env.JETON_CLIENT_ROLLBAR,
+  enabled: rollbarEnabled,
   accessToken: process.env.JETON_CLIENT_ROLLBAR,
   captureUncaught: true,
   captureUnhandledRejections: true,
@@ -18,7 +20,11 @@ const rollbar = new Rollbar({
 });
 
 export function erreur (...args) {
-  rollbar.error(...args);
+  if (rollbarEnabled) {
+    rollbar.error(...args);
+  } else {
+    console.error(...args);
+  }
 }
 
 function formatComponentName (vm) {
