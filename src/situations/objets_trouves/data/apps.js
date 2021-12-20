@@ -89,12 +89,12 @@ const questionPhoto = {
 
 const questionDeverrouillage = {
   id: 'deverrouillage',
+  type: 'numerique',
   illustration: AppDeverrouillage,
   icone: iconeDeverrouillage,
   description: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
   intitule: 'Quel est le mot de passe ?',
   extensionVue: 'ecran-telephone-deverrouillage',
-  numerique: true,
   espacerChiffres: true,
   bonneReponse: '1800',
   metacompetence: 'numeratie'
@@ -428,13 +428,13 @@ const questionRepondeur1 = {
 
 const questionRepondeur2 = {
   id: 'nombre-tours-de-manege',
+  type: 'numerique',
   nomTechnique: 'nombre-tours-de-manege',
   icone: iconeRepondeur,
   illustration: AppRepondeur2,
   description: 'Vous savez que Sophie lance un tour de manège pour 7 enfants.',
   intitule: 'Que sophie devrait-elle répondre ?',
   extensionVue: 'lecture-message',
-  numerique: true,
   espacerChiffres: false,
   bonneReponse: '21',
   metacompetence: 'numeratie'

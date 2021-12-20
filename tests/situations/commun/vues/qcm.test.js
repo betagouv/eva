@@ -47,7 +47,7 @@ describe('La vue de la question QCM', function () {
 
   describe('affiche une question de type numérique', function () {
     function uneQuestionNumerique () {
-      question.numerique = true;
+      question.type = 'numerique';
       return shallowMount(VueQCM, { localVue, propsData: { question } });
     }
 
@@ -112,7 +112,7 @@ describe('La vue de la question QCM', function () {
   });
 
   it('émet un évement réponse pour une question numérique', function () {
-    question.numerique = true;
+    question.type = 'numerique';
     question.bonneReponse = '1800';
     const vue = shallowMount(VueQCM, { localVue, propsData: { question } });
     vue.vm.reponse = '1800';
