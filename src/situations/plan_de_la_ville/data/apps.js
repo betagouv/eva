@@ -1,7 +1,18 @@
 import MaisonRouge from '../assets/maison_rouge.png';
+import AccueilSansEglise from '../assets/accueil_sans_eglise.png';
 import rouge from '../assets/rouge.svg';
 import vert from '../assets/vert.svg';
 import bleu from '../assets/bleu.svg';
+
+const clicMaisonBleue = {
+  id: 'clic-maison-bleue',
+  type: 'action',
+  nom_technique: 'clic_maison_bleue',
+  illustration: AccueilSansEglise,
+  intitule: 'Cliquez sur la maison bleue',
+  extensionVue: 'clic-maison-bleue',
+  choix: []
+};
 
 const questionCouleur = {
   id: 'couleur-maison',
@@ -29,7 +40,7 @@ const questionCouleur = {
 };
 
 const configurationNormale = {
-  questions: [questionCouleur]
+  questions: [clicMaisonBleue, questionCouleur]
 };
 
 export { configurationNormale };

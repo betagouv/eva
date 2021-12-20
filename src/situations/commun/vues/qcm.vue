@@ -3,6 +3,7 @@
     <component
       :is="question.extensionVue"
       :question="question"
+      @reponse="envoi"
     />
 
     <question
@@ -141,6 +142,8 @@ export default {
       if (this.question.numerique) {
         const succes = this.reponse === this.question.bonneReponse;
         donneesReponse = { reponse: this.reponse, succes: succes };
+      } else if (this.question.type == 'action') {
+        donneesReponse = { succes: true };
       } else {
         const choix = this.question.choix.find((choix) => choix.id === this.reponse);
         donneesReponse = { reponse: choix.id, succes: choix.bonneReponse };
