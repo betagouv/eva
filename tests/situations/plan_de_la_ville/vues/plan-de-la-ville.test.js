@@ -1,9 +1,9 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { creeStore } from 'plan_de_la_ville/modeles/store';
 import Qcm from 'commun/vues/qcm';
-import Acte from 'plan_de_la_ville/vues/acte';
+import PlanDeLaVille from 'plan_de_la_ville/vues/plan-de-la-ville';
 
-describe("La vue de l'acte plan de la ville", function () {
+describe('La vue plan de la ville', function () {
   let wrapper;
   let store;
   let localVue;
@@ -12,7 +12,7 @@ describe("La vue de l'acte plan de la ville", function () {
     store = creeStore();
     localVue = createLocalVue();
     localVue.prototype.$journal = { enregistre () {} };
-    wrapper = shallowMount(Acte, { localVue, store });
+    wrapper = shallowMount(PlanDeLaVille, { localVue, store });
   });
 
   it('Affiche une question', function (done) {
