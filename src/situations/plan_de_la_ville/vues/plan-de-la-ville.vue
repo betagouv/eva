@@ -1,10 +1,12 @@
 <template>
-  <qcm
-    v-if='question.length'
-    :key="questionActive.id"
-    :question="questionActive"
-    @reponse="reponseQuestion"
-  />
+  <transition-fade>
+    <qcm
+      v-if='questions.length'
+      :key="questionActive.id"
+      :question="questionActive"
+      @reponse="reponseQuestion"
+    />
+  </transition-fade>
 </template>
 
 <script>
@@ -12,10 +14,11 @@ import { mapState } from 'vuex';
 import Qcm from 'commun/vues/qcm';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic-maison-bleue.vue';
+import TransitionFade from 'commun/vues/transition_fade';
 import Vue from 'vue';
 
 export default {
-  components: { Qcm },
+  components: { Qcm, TransitionFade },
 
   data () {
     return {
