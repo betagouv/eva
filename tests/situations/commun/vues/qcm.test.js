@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VueQCM from 'commun/vues/qcm';
 import ReponseAudioQcm from 'commun/vues/reponse_audio_qcm';
 import QuestionEntete from 'commun/vues/question_entete';
+import MockExtension from './mock_extension';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 describe('La vue de la question QCM', function () {
@@ -100,6 +101,18 @@ describe('La vue de la question QCM', function () {
     it("n'affiche pas le bouton 'valider'", function () {
       const conteneur = composant(question).find('.question-bouton');
       expect(conteneur.exists()).toBe(false);
+    });
+  });
+
+  describe('quand la question contient une extention', function () {
+    beforeEach(function () {
+      localVue.component('mock-extension', MockExtension);
+      question.extensionVue = 'mock-extension';
+    });
+
+    it("sait afficher l'extention", function () {
+      const vue = composant(question);
+      expect(vue.findComponent(MockExtension).exists()).toBe(true);
     });
   });
 
