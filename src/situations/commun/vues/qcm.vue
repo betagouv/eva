@@ -77,6 +77,7 @@
         </div>
       </div>
       <button
+        v-if="question.type != 'action'"
         :disabled="disabled"
         class="question-bouton bouton-arrondi bouton-arrondi--petit"
         @click="envoi"
