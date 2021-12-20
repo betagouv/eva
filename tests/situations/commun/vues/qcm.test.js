@@ -92,6 +92,17 @@ describe('La vue de la question QCM', function () {
     });
   });
 
+  describe('quand la question est de type action', function () {
+    beforeEach(function () {
+      question.type = 'action';
+    });
+
+    it("n'affiche pas le bouton 'valider'", function () {
+      const conteneur = composant(question).find('.question-bouton');
+      expect(conteneur.exists()).toBe(false);
+    });
+  });
+
   it("affiche un bouton d'envoi de réponse", function () {
     const vue = composant(question);
     expect(vue.find('.question-bouton').exists()).toBe(true);
