@@ -16,7 +16,7 @@
       />
       <div class="question-contenu">
         <div
-          v-if="question.numerique"
+          v-if="question.type === 'numerique'"
           class="question-reponse"
         >
           <div class="numerique-input-conteneur"
@@ -63,7 +63,7 @@
             >
               <reponse-audio-qcm
                 v-if="element.audio"
-                :joue-son="reponse == element.id"
+                :joue-son="reponse === element.id"
                 :questionnaire="element.audio"
                 :idReponse="element.id"
               />
@@ -140,10 +140,10 @@ export default {
 
     donneesReponse () {
       let donneesReponse;
-      if (this.question.numerique) {
+      if (this.question.type === 'numerique') {
         const succes = this.reponse === this.question.bonneReponse;
         donneesReponse = { reponse: this.reponse, succes: succes };
-      } else if (this.question.type == 'action') {
+      } else if (this.question.type === 'action') {
         donneesReponse = { succes: true };
       } else {
         const choix = this.question.choix.find((choix) => choix.id === this.reponse);
