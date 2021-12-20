@@ -3,13 +3,13 @@
 </template>
 
 <script>
-  import 'plan_de_la_ville/styles/clic-maison-bleue.scss';
+import 'plan_de_la_ville/styles/clic-maison-bleue.scss';
 
-  export default {
-    methods: {
-      clicValide: function (event) {
-        this.$emit('reponse');
-      }
+export default {
+  methods: {
+    clicValide: function (event) {
+      this.$emit('action');
     }
-  };
+  }
+};
 </script>

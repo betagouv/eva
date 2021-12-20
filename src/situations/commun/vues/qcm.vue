@@ -3,7 +3,7 @@
     <component
       :is="question.extensionVue"
       :question="question"
-      @reponse="envoi"
+      @action="envoi"
     />
 
     <question
