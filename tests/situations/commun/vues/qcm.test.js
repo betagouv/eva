@@ -96,11 +96,20 @@ describe('La vue de la question QCM', function () {
   describe('quand la question est de type action', function () {
     beforeEach(function () {
       question.type = 'action';
+      localVue.component('mock-extension', MockExtension);
+      question.extensionVue = 'mock-extension';
     });
 
     it("n'affiche pas le bouton 'valider'", function () {
       const conteneur = composant(question).find('.question-bouton');
       expect(conteneur.exists()).toBe(false);
+    });
+
+    it('émet un évenement réponse réussi quand une extention envoie un evenement action', function () {
+      const vue = composant(question);
+      vue.findComponent(MockExtension).vm.$emit('action');
+      expect(vue.emitted().reponse.length).toEqual(1);
+      expect(vue.emitted().reponse[0][0]).toEqual({ succes: true });
     });
   });
 
