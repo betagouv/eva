@@ -43,7 +43,7 @@
       "titre": "eva vous aide à évaluer vos compétences"
     },
     "intro_contexte": {
-      "bouton": "A vous de jouer !",
+      "bouton": "Commencer",
       "message": "<p>Bonjour et bienvenue,</p><p>Nous allons identifier ensemble vos compétences au travers de mini-jeux.</p><p>Tout au long du parcours, vous prendrez le rôle d’un employé d’un parc d’attraction et vous aurez plusieurs missions à réaliser. Si ces jeux reproduisent des activités particulières, les compétences mesurées s'appliquent à tous les métiers et tous les secteurs d'activité.</p><p>Lorsque vous aurez terminé, vous pourrez découvrir vos compétences fortes et les métiers associés qui vous serviront pour échanger avec votre accompagnant sur votre parcours professionnel.</p>"
     },
     "fin": {

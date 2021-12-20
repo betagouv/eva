@@ -7,11 +7,7 @@ export default class JoueurConsigne extends JoueurAudioBuffer {
     this.ressourceConsigne = ressourceConsigne;
   }
 
-  joue (jouerConsigneCommune, lectureTerminee) {
-    const joueConsigneCommune = () => {
-      this.start(this.depot.consigneCommune(), lectureTerminee);
-    };
-    this.start(this.depot[this.ressourceConsigne](),
-      jouerConsigneCommune ? joueConsigneCommune : lectureTerminee);
+  joue (lectureTerminee) {
+    this.start(this.depot[this.ressourceConsigne](), lectureTerminee);
   }
 }

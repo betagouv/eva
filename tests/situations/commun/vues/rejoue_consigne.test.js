@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
 import EvenementRejoueConsigne from 'commun/modeles/evenement_rejoue_consigne';
-import SituationCommune, { ATTENTE_DEMARRAGE, ENTRAINEMENT_DEMARRE, DEMARRE } from 'commun/modeles/situation';
+import SituationCommune from 'commun/modeles/situation';
 
 describe('vue Rejoue Consigne', function () {
   let vue;
@@ -14,7 +14,7 @@ describe('vue Rejoue Consigne', function () {
     journal = { enregistre () {} };
     situation = new SituationCommune();
     mockJoueurConsigne = new class {
-      joue (unused, cbFin) {
+      joue (cbFin) {
         this.cbFin = cbFin;
       }
 
@@ -61,35 +61,6 @@ describe('vue Rejoue Consigne', function () {
     mockJoueurConsigne.finConsigne();
     expect($('#pointInsertion .bouton-lire-consigne').length).toEqual(1);
     expect($('#pointInsertion .bouton-lecture-en-cours').length).toEqual(0);
-  });
-
-  it("rejoue aussi la consigne commune si la situation n'a pas encore demarre", function () {
-    mockJoueurConsigne.joue = (joueConsigneCommune, cbFin) => {
-      expect(joueConsigneCommune).toBe(true);
-    };
-    situation.modifieEtat(ATTENTE_DEMARRAGE);
-    vue.affiche('#pointInsertion', $);
-    vue.litConsigne($);
-  });
-
-  it("ne rejoue pas la consigne commune si l'entrainement a démarré", function () {
-    mockJoueurConsigne.joue = (joueConsigneCommune, cbFin) => {
-      expect(joueConsigneCommune).toBe(false);
-    };
-    vue.affiche('#pointInsertion', $);
-    situation.modifieEtat(ENTRAINEMENT_DEMARRE);
-    vue.affiche('#pointInsertion', $);
-    vue.litConsigne($);
-  });
-
-  it('ne rejoue pas la consigne commune si la situation a demarré', function () {
-    mockJoueurConsigne.joue = (joueConsigneCommune, cbFin) => {
-      expect(joueConsigneCommune).toBe(false);
-    };
-    vue.affiche('#pointInsertion', $);
-    situation.modifieEtat(DEMARRE);
-    vue.affiche('#pointInsertion', $);
-    vue.litConsigne($);
   });
 
   it('journalise un événement RejoueConsigne', function (done) {
