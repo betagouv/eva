@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import 'plan_de_la_ville/styles/clic-maison-bleue.scss';
+import 'plan_de_la_ville/styles/clic_maison_bleue.scss';
 
 export default {
   methods: {
