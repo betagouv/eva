@@ -23,20 +23,20 @@ const questionCouleur = {
   choix: [
     {
       id: 'rouge',
+      nom_technique: 'rouge',
       image: rouge,
-      audio: 'couleurs',
       bonneReponse: true
     },
     {
       id: 'bleu',
+      nom_technique: 'bleu',
       image: bleu,
-      audio: 'couleurs',
       bonneReponse: false
     },
     {
       id: 'vert',
+      nom_technique: 'vert',
       image: vert,
-      audio: 'couleurs',
       bonneReponse: false
     }
   ]

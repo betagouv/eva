@@ -11,16 +11,19 @@ const AUDIOS_QUESTIONS = {
   couleur_maison: maisonRouge
 };
 
-const CHOIX_REPONSES_AUDIO_QCM = {
-  couleurs: [sonChoixRouge, sonChoixBleue, sonChoixVerte]
+const AUDIOS_REPONSES = {
+  rouge: sonChoixRouge,
+  bleu: sonChoixBleue,
+  vert: sonChoixVerte
 };
+
+const AUDIOS_QUESTIONS_REPONSES = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigne);
     this.charge([fondSituation]);
-    this.charge(CHOIX_REPONSES_AUDIO_QCM.couleurs);
-    this.charge(Object.values(AUDIOS_QUESTIONS));
+    this.charge(Object.values(AUDIOS_QUESTIONS_REPONSES));
   }
 
   chargeRessourcesQuestions (questions) {
@@ -39,17 +42,11 @@ export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommune
     return this.ressource(fondSituation);
   }
 
-  reponseAudio (nomQcm, numeroReponse) {
-    const reponses = CHOIX_REPONSES_AUDIO_QCM[nomQcm];
-    if (!reponses) return;
-    return this.ressource(reponses[numeroReponse]);
-  }
-
   messageAudio (nomTechnique) {
-    return this.ressource(AUDIOS_QUESTIONS[nomTechnique]);
+    return this.ressource(AUDIOS_QUESTIONS_REPONSES[nomTechnique]);
   }
 
   existeMessageAudio (nomTechniqueQuestion) {
-    return nomTechniqueQuestion in AUDIOS_QUESTIONS;
+    return nomTechniqueQuestion in AUDIOS_QUESTIONS_REPONSES;
   }
 }
