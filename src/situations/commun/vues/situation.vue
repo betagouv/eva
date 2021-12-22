@@ -1,7 +1,7 @@
 <template>
   <component
     :is="composantActe"
-    @terminer="changeEtatSituation"
+    @terminer="termineActe"
   ></component>
 </template>
 
@@ -15,13 +15,13 @@ export default {
       type: Object,
       required: true
     },
-    configurationEntrainement: {
-      type: Object,
-      required: true
-    },
     configurationNormale: {
       type: Object,
       required: true
+    },
+    configurationEntrainement: {
+      type: Object,
+      required: false
     }
   },
 
@@ -29,7 +29,7 @@ export default {
     ...mapState(['etat']),
 
     acte () {
-      if ([DEMARRE, FINI].includes(this.etat)) {
+      if (!this.configurationEntrainement || [DEMARRE, FINI].includes(this.etat)) {
         return {
           fondSituation: this.$depotRessources.fondSituation().src,
           ...this.configurationNormale
@@ -42,16 +42,20 @@ export default {
     }
   },
 
+  mounted () {
+    this.$store.commit('configureActe', this.acte);
+  },
+
   watch: {
     etat (nouvelEtat) {
-      if (nouvelEtat === DEMARRE || nouvelEtat === ENTRAINEMENT_DEMARRE) {
+      if (nouvelEtat === DEMARRE) {
         this.$store.commit('configureActe', this.acte);
       }
     }
   },
 
   methods: {
-    changeEtatSituation () {
+    termineActe () {
       if (this.etat === ENTRAINEMENT_DEMARRE) {
         this.$store.commit('modifieEtat', ENTRAINEMENT_FINI);
       } else {

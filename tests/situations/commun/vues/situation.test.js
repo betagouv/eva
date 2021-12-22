@@ -30,60 +30,80 @@ describe('commun/vues/situation', function () {
         }
       }
     });
-    wrapper = shallowMount(Situation, {
+  });
+
+  function vueSituation (configurationNormale, configurationEntrainement) {
+    return shallowMount(Situation, {
       store,
       localVue,
       propsData: {
         composantActe: ActeSecurite,
-        configurationNormale: { zones: [] },
-        configurationEntrainement: { zones: [] }
+        configurationNormale: configurationNormale,
+        configurationEntrainement: configurationEntrainement
       }
     });
-  });
+  }
 
-  it("en mode entrainement, il rend le fond d'entrainement", function () {
-    store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
-    expect(wrapper.vm.acte.fondSituation).toEqual('fond-situation-entrainement');
-  });
+  describe('à la création de la vue', function () {
+    it("rend l'acte", function () {
+      wrapper = vueSituation({ zones: [] }, { zones: [] });
+      expect(wrapper.findComponent(ActeSecurite).exists()).toBe(true);
+    });
 
-  it('en mode normal, il rend le fond normal', function () {
-    store.commit('modifieEtat', DEMARRE);
-    expect(wrapper.vm.acte.fondSituation).toEqual('fond-situation');
-  });
+    it("charge la configuration entrainement s'il y en a un", function () {
+      wrapper = vueSituation({ zones: [] }, { zones: [1] });
+      expect(store.state.zones).toEqual([1]);
+      expect(wrapper.vm.acte.fondSituation).toEqual('fond-situation-entrainement');
+    });
 
-  it("rend l'acte", function () {
-    expect(wrapper.findComponent(ActeSecurite).exists()).toBe(true);
-  });
-
-  it("charge la condiguration de l'entrainement quand on démarre l'entrainement", function (done) {
-    wrapper.setProps({ configurationEntrainement: { zones: [1] } });
-    expect(store.state.zones.length).toEqual(0);
-    store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
-    wrapper.vm.$nextTick(() => {
-      expect(store.state.zones.length).toEqual(1);
-      done();
+    it("charge la configuration normale s'il n'y a pas d'entrainement", function () {
+      wrapper = vueSituation({ zones: [1] }, undefined);
+      expect(store.state.zones).toEqual([1]);
+      expect(wrapper.vm.acte.fondSituation).toEqual('fond-situation');
     });
   });
 
-  it('charge la configuration normale une fois démarré', function (done) {
-    wrapper.setProps({ configurationNormale: { zones: [1, 2] } });
-    expect(store.state.zones.length).toEqual(0);
-    store.commit('modifieEtat', DEMARRE);
-    wrapper.vm.$nextTick(() => {
-      expect(store.state.zones.length).toEqual(2);
-      done();
+  describe("changement d'état", function () {
+    beforeEach(function () {
+      wrapper = vueSituation({ zones: [] }, { zones: [] });
+    });
+
+    it("pour l'état DEMARRE, rend le fond normal", function () {
+      store.commit('modifieEtat', DEMARRE);
+      expect(wrapper.vm.acte.fondSituation).toEqual('fond-situation');
+    });
+
+    it("pour l'état FINI, rend le fond normal", function () {
+      store.commit('modifieEtat', FINI);
+      expect(wrapper.vm.acte.fondSituation).toEqual('fond-situation');
+    });
+
+    it("pour l'état DEMARRE, charge la configuration normale", function (done) {
+      wrapper.setProps({ configurationNormale: { zones: [1, 2] } });
+      expect(store.state.zones.length).toEqual(0);
+      store.commit('modifieEtat', DEMARRE);
+      wrapper.vm.$nextTick(() => {
+        expect(store.state.zones.length).toEqual(2);
+        done();
+      });
     });
   });
 
-  it("change l'état de la situation en ENTRAINEMENT_FINI une fois l'acte terminé", function () {
-    store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
-    wrapper.vm.changeEtatSituation();
-    expect(store.state.etat).toEqual(ENTRAINEMENT_FINI);
-  });
+  describe("fin d'un acte", function () {
+    beforeEach(function () {
+      wrapper = vueSituation({ zones: [] }, { zones: [] });
+    });
 
-  it("change l'état de la situation en FINI une fois l'acte terminé", function () {
-    store.commit('modifieEtat', DEMARRE);
-    wrapper.vm.changeEtatSituation();
-    expect(store.state.etat).toEqual(FINI);
+    it("change l'état en ENTRAINEMENT_FINI", function () {
+      store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
+      wrapper.vm.termineActe();
+      expect(store.state.etat).toEqual(ENTRAINEMENT_FINI);
+    });
+
+    it("change l'état en FINI", function () {
+      store.commit('modifieEtat', DEMARRE);
+      wrapper.vm.termineActe();
+      expect(store.state.etat).toEqual(FINI);
+    });
   });
 });
