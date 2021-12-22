@@ -10,7 +10,7 @@ import flecheDroite from '../assets/fleche_droite.svg';
 
 export default class DepotRessourcesMaintenance extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, sonConsigneDemarrage, sonConsigneTransition);
+    super(chargeurs, {}, sonConsigneDemarrage, sonConsigneTransition);
     this.charge([fondSituation, croix, flecheGauche, flecheDroite, clavier]);
   }
 

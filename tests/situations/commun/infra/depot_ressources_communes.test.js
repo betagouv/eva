@@ -6,19 +6,21 @@ describe('Le dépot de ressources communes', function () {
   let depot;
   let sonConsigneDemarrage;
   let sonConsigneTransition;
+  let sonAudioQuestion1;
   let sonsCharges;
 
   beforeEach(function () {
     sonConsigneDemarrage = 'consigneDemarrage.wav';
     sonConsigneTransition = 'consigneTransition.wav';
+    sonAudioQuestion1 = 'sonQuestion1.wav';
     sonsCharges = [];
     const _chargeurs = chargeurs({
       wav: (_son) => {
         sonsCharges.push(_son);
-        return Promise.resolve(() => 'wav_precharge');
+        return Promise.resolve(() => _son);
       }
     });
-    depot = new DepotRessourcesCommunes(_chargeurs, sonConsigneDemarrage, sonConsigneTransition);
+    depot = new DepotRessourcesCommunes(_chargeurs, { audioQuestion1: sonAudioQuestion1 }, sonConsigneDemarrage, sonConsigneTransition);
   });
 
   it('étend DépotRessources', function () {
@@ -33,9 +35,26 @@ describe('Le dépot de ressources communes', function () {
     expect(sonsCharges).toContain(sonConsigneTransition);
   });
 
-  it('retourne la consigne', function () {
+  it('retourne la consigne prechargée', function () {
     return depot.chargement().then(() => {
-      expect(depot.consigneDemarrage()).toEqual('wav_precharge');
+      expect(depot.consigneDemarrage()).toEqual(sonConsigneDemarrage);
+    });
+  });
+
+  describe('peut gérer des messages audios', function () {
+    it('charge les messages audio', function () {
+      expect(sonsCharges).toContain(sonAudioQuestion1);
+    });
+
+    it('retourne un message audio préchargé', function () {
+      return depot.chargement().then(() => {
+        expect(depot.messageAudio('audioQuestion1')).toEqual(sonAudioQuestion1);
+      });
+    });
+
+    it('retourne si un message audio existe ou pas', function () {
+      expect(depot.existeMessageAudio('audioQuestion1')).toBe(true);
+      expect(depot.existeMessageAudio('inconnu')).toBe(false);
     });
   });
 });

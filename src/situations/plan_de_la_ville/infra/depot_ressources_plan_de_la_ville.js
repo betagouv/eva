@@ -17,13 +17,12 @@ const AUDIOS_REPONSES = {
   vert: sonChoixVerte
 };
 
-const AUDIOS_QUESTIONS_REPONSES = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
+const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, sonConsigne);
+    super(chargeurs, messagesAudios, sonConsigne);
     this.charge([fondSituation]);
-    this.charge(Object.values(AUDIOS_QUESTIONS_REPONSES));
   }
 
   chargeRessourcesQuestions (questions) {
@@ -40,13 +39,5 @@ export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommune
 
   fondSituationEntrainement () {
     return this.ressource(fondSituation);
-  }
-
-  messageAudio (nomTechnique) {
-    return this.ressource(AUDIOS_QUESTIONS_REPONSES[nomTechnique]);
-  }
-
-  existeMessageAudio (nomTechniqueQuestion) {
-    return nomTechniqueQuestion in AUDIOS_QUESTIONS_REPONSES;
   }
 }
