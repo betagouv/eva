@@ -40,7 +40,7 @@
         </div>
         <div v-else>
           <div
-            v-for="element in question.choix"
+            v-for="(element, index) in question.choix"
             :key="element.id"
             class="question-reponse question-reponse-multiple"
           >
@@ -65,7 +65,7 @@
                 v-if="element.audio"
                 :joue-son="reponse === element.id"
                 :questionnaire="element.audio"
-                :idReponse="element.id"
+                :idReponse="index"
               />
               <img
                 v-if="element.image"

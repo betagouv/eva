@@ -57,10 +57,10 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     return this.ressource(fondSituation);
   }
 
-  reponseAudio (nomQcm, numeroReponse) {
+  reponseAudio (nomQcm, indexReponse) {
     const reponses = CHOIX_REPONSES_AUDIO_QCM[nomQcm];
     if (!reponses) return;
-    return this.ressource(reponses[numeroReponse - 1]);
+    return this.ressource(reponses[indexReponse]);
   }
 
   iconeDeverrouillageDebloque () {

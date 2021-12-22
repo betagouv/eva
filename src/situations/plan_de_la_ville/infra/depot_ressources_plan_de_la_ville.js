@@ -3,14 +3,23 @@ import fondSituation from 'plan_de_la_ville/assets/accueil_sans_eglise.png';
 import maisonRouge from 'plan_de_la_ville/assets/audio_questions/maison_rouge.wav';
 import sonConsigne from 'plan_de_la_ville/assets/consigne_plan_de_la_ville.wav';
 
+import sonChoixRouge from 'plan_de_la_ville/assets/audio_choix/rouge.wav';
+import sonChoixBleue from 'plan_de_la_ville/assets/audio_choix/bleue.wav';
+import sonChoixVerte from 'plan_de_la_ville/assets/audio_choix/verte.wav';
+
 const AUDIOS_QUESTIONS = {
   couleur_maison: maisonRouge
+};
+
+const CHOIX_REPONSES_AUDIO_QCM = {
+  couleurs: [sonChoixRouge, sonChoixBleue, sonChoixVerte]
 };
 
 export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, sonConsigne);
     this.charge([fondSituation]);
+    this.charge(CHOIX_REPONSES_AUDIO_QCM.couleurs);
     this.charge(Object.values(AUDIOS_QUESTIONS));
   }
 
@@ -28,6 +37,12 @@ export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommune
 
   fondSituationEntrainement () {
     return this.ressource(fondSituation);
+  }
+
+  reponseAudio (nomQcm, numeroReponse) {
+    const reponses = CHOIX_REPONSES_AUDIO_QCM[nomQcm];
+    if (!reponses) return;
+    return this.ressource(reponses[numeroReponse]);
   }
 
   messageAudio (nomTechnique) {
