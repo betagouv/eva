@@ -12,7 +12,7 @@ describe('Le store de la situation questions', function () {
     store.commit('configureActe', { questions: [{ id: 1 }] });
     store.commit('repondQuestionCourante', 'reponse');
     store.commit('configureActe', { questions: [{ id: 1 }] });
-    expect(store.state.indexQuestions).toEqual(0);
+    expect(store.state.indexQuestion).toEqual(0);
     expect(store.state.fini).toEqual(false);
   });
 

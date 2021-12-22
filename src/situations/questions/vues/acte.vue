@@ -9,9 +9,10 @@
         @reponse="repondQuestion"
         :envoyerEvenementAffichage="acteEnCours"
       >
-        <div class="question-progression">
-          {{ indexQuestions + 1 }}/{{ nombreQuestions }}
-        </div>
+        <pagination
+          :indexQuestion="indexQuestion"
+          :nombreQuestions="nombreQuestions"
+        />
       </component>
     </transition-fade>
   </div>
@@ -24,13 +25,13 @@ import EvenementReponse from '../modeles/evenement_reponse';
 import TransitionFade from 'commun/vues/transition_fade';
 import QuestionQcm from 'commun/vues/qcm';
 import QuestionRedactionNote from './redaction_note';
-import 'questions/styles/progression.scss';
 import { DEMARRE } from 'commun/modeles/situation';
+import Pagination from 'commun/vues/components/pagination';
 
 export default {
-  components: { TransitionFade },
+  components: { TransitionFade, Pagination },
   computed: {
-    ...mapState(['indexQuestions', 'etat', 'fini']),
+    ...mapState(['indexQuestion', 'etat', 'fini']),
     ...mapGetters(['questionCourante', 'nombreQuestions']),
 
     composantQuestion () {

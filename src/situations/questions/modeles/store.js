@@ -12,7 +12,7 @@ export function creeStore () {
   return creeStoreCommun({
     state: {
       questions: [],
-      indexQuestions: 0,
+      indexQuestion: 0,
       fini: false
     },
     getters: {
@@ -20,7 +20,7 @@ export function creeStore () {
         return state.questions.length;
       },
       questionCourante (state) {
-        return state.questions[state.indexQuestions];
+        return state.questions[state.indexQuestion];
       },
       illustrationQuestion: (state) => (question) => {
         if (question.nom_technique && illustrationsQuestions[question.nom_technique]) {
@@ -33,15 +33,15 @@ export function creeStore () {
     mutations: {
       configureActe (state, { questions }) {
         state.questions = questions || [];
-        state.indexQuestions = 0;
+        state.indexQuestion = 0;
         state.fini = false;
       },
 
       repondQuestionCourante (state, reponse) {
-        if (state.indexQuestions + 1 === state.questions.length) {
+        if (state.indexQuestion + 1 === state.questions.length) {
           state.fini = true;
         } else {
-          state.indexQuestions++;
+          state.indexQuestion++;
         }
       }
     }
