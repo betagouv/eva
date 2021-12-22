@@ -1,16 +1,11 @@
 <template>
   <transition-fade>
-    <div
-      :style="{ 'background-image': `url(${fondSituation})` }"
-      class="fond-situation"
-    >
-      <qcm
-          v-if='questions.length'
-          :key="questionActive.id"
-          :question="questionActive"
-          @reponse="reponseQuestion"
-        />
-    </div>
+    <qcm
+      v-if="questions.length"
+      :key="questionActive.id"
+      :question="questionActive"
+      @reponse="reponseQuestion"
+    />
   </transition-fade>
 </template>
 
@@ -21,7 +16,6 @@ import EvenementReponse from 'questions/modeles/evenement_reponse';
 import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic_maison_bleue.vue';
 import TransitionFade from 'commun/vues/transition_fade';
 import Vue from 'vue';
-import 'plan_de_la_ville/styles/acte.scss';
 
 export default {
   components: { Qcm, TransitionFade },
@@ -38,7 +32,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['questions', 'fondSituation']),
+    ...mapState(['questions']),
 
     questionActive () {
       return this.questions[this.indexQuestion];
