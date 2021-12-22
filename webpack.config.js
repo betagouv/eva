@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const RollbarSourceMapPlugin = require('rollbar-sourcemap-webpack-plugin')
 
 const devMode = process.env.NODE_ENV !== 'production';
 const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves', 'bienvenue', 'plan_de_la_ville'];
@@ -29,6 +30,8 @@ const templatesSituations = situations.map(function (situation) {
   });
 });
 
+const PUBLIC_PATH = '/jeu/'
+
 module.exports = {
   entry: {
     index: path.resolve(__dirname, 'src/app/index.js'),
@@ -37,7 +40,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public/jeu/'),
     filename: 'js/[name]_[contenthash].js',
-    publicPath: '/jeu/' // public URL of the output directory when referenced in a browser
+    publicPath: PUBLIC_PATH // public URL of the output directory when referenced in a browser
   },
   devtool: devMode ? 'eval-cheap-source-map' : 'source-map',
   resolve: {
@@ -109,6 +112,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new RollbarSourceMapPlugin({
+      accessToken: process.env.JETON_SERVEUR_ROLLBAR,
+      version: process.env.SOURCE_VERSION,
+      publicPath: PUBLIC_PATH
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
