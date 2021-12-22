@@ -55,11 +55,17 @@ describe('commun/vues/situation', function () {
     expect(wrapper.findComponent(ActeSecurite).exists()).toBe(true);
   });
 
-  it("charge les zones d'entrainement au chargement", function () {
+  it("charge la condiguration de l'entrainement quand on démarre l'entrainement", function (done) {
+    wrapper.setProps({ configurationEntrainement: { zones: [1] } });
     expect(store.state.zones.length).toEqual(0);
+    store.commit('modifieEtat', ENTRAINEMENT_DEMARRE);
+    wrapper.vm.$nextTick(() => {
+      expect(store.state.zones.length).toEqual(1);
+      done();
+    });
   });
 
-  it('charge les autres zones de la situation une fois démarré', function (done) {
+  it('charge la configuration normale une fois démarré', function (done) {
     wrapper.setProps({ configurationNormale: { zones: [1, 2] } });
     expect(store.state.zones.length).toEqual(0);
     store.commit('modifieEtat', DEMARRE);

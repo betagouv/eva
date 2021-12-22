@@ -42,13 +42,9 @@ export default {
     }
   },
 
-  mounted () {
-    this.$store.commit('configureActe', this.acte);
-  },
-
   watch: {
     etat (nouvelEtat) {
-      if (nouvelEtat === DEMARRE) {
+      if (nouvelEtat === DEMARRE || nouvelEtat === ENTRAINEMENT_DEMARRE) {
         this.$store.commit('configureActe', this.acte);
       }
     }
