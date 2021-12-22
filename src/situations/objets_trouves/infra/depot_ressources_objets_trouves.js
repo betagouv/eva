@@ -26,10 +26,9 @@ const AUDIOS_QUESTIONS = {
 
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, sonConsigne, sonConsigneTransition);
+    super(chargeurs, AUDIOS_QUESTIONS, sonConsigne, sonConsigneTransition);
     this.charge([fondSituation, iconeDeverrouillageDebloque]);
     this.charge(CHOIX_REPONSES_AUDIO_QCM.agenda);
-    this.charge(Object.values(AUDIOS_QUESTIONS));
   }
 
   chargeRessourcesApps (apps) {
@@ -65,14 +64,6 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
 
   iconeDeverrouillageDebloque () {
     return this.ressource(iconeDeverrouillageDebloque);
-  }
-
-  messageAudio (nomTechniqueQuestion) {
-    return this.ressource(AUDIOS_QUESTIONS[nomTechniqueQuestion]);
-  }
-
-  existeMessageAudio (nomTechniqueQuestion) {
-    return nomTechniqueQuestion in AUDIOS_QUESTIONS;
   }
 
   imageAideComplementaire () {

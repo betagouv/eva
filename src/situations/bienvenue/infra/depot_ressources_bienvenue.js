@@ -101,19 +101,10 @@ const AUDIOS_REPONSES = {
   bienvenue_tout_a_fait_daccord: toutAFaitDaccord
 };
 
-const AUDIOS_QUESTIONS_REPONSES = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
+const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesBienvenue extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, sonConsigne);
-    this.charge(Object.values(AUDIOS_QUESTIONS_REPONSES));
-  }
-
-  messageAudio (nomTechnique) {
-    return this.ressource(AUDIOS_QUESTIONS_REPONSES[nomTechnique]);
-  }
-
-  existeMessageAudio (nomTechnique) {
-    return nomTechnique in AUDIOS_QUESTIONS_REPONSES;
+    super(chargeurs, messagesAudios, sonConsigne);
   }
 }

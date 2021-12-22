@@ -30,14 +30,13 @@ const AUDIOS_RESULTAT = {
 
 export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, consigneAccueil);
+    super(chargeurs, AUDIOS_RESULTAT, consigneAccueil);
     this.charge([fondAccueil, personnage, precedent, suivant, casque, avatarFin, avatarAvis, avatarDeconnexion, boutonAvis]);
     this.chargeContexte(batimentsContext);
     this.batiments = batimentsContext.keys().reduce((memo, fichier) => {
       memo[fichier.match(/batiment-(.+)\.png/)[1]] = batimentsContext(fichier);
       return memo;
     }, {});
-    this.charge(Object.values(AUDIOS_RESULTAT));
   }
 
   fondAccueil () {
@@ -82,9 +81,5 @@ export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
 
   boutonAvis () {
     return this.ressource(boutonAvis);
-  }
-
-  messageAudio (nomTechnique) {
-    return this.ressource(AUDIOS_RESULTAT[nomTechnique]);
   }
 }

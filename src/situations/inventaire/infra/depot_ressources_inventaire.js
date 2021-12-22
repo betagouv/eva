@@ -11,7 +11,7 @@ import echec from 'inventaire/assets/echec.wav';
 
 export default class DepotRessourcesInventaire extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, sonConsigne);
+    super(chargeurs, {}, sonConsigne);
     this.charge([croixRetourStock, boutonSaisie, loupe, retour]);
     this.charge([reussite, echec]);
     this.chargeContexte(require.context('../assets'));

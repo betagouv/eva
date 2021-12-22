@@ -5,11 +5,13 @@ import son from 'commun/assets/son.svg';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.wav';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
-  constructor (chargeurs, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
+  constructor (chargeurs, messagesAudios, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
     super(chargeurs);
     this.charge([casque, son, calculatrice, sonConsigneDemarrage, sonConsigneTransition]);
+    this.charge(Object.values(messagesAudios));
     this.sonConsigneDemarrage = sonConsigneDemarrage;
     this.sonConsigneTransition = sonConsigneTransition;
+    this.messagesAudios = messagesAudios;
   }
 
   consigneDemarrage () {
@@ -30,5 +32,13 @@ export default class DepotRessourcesCommunes extends DepotRessources {
 
   calculatrice () {
     return this.ressource(calculatrice);
+  }
+
+  messageAudio (nomTechnique) {
+    return this.ressource(this.messagesAudios[nomTechnique]);
+  }
+
+  existeMessageAudio (nomTechnique) {
+    return nomTechnique in this.messagesAudios;
   }
 }

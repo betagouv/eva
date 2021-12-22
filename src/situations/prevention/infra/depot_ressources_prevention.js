@@ -12,7 +12,7 @@ const preventionsContext = require.context('../assets', false, /prevention.+\.pn
 
 export default class DepotRessourcesPrevention extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, sonConsigneDemarrage, sonConsigneTransition);
+    super(chargeurs, {}, sonConsigneDemarrage, sonConsigneTransition);
     this.charge([fondSituationEntrainement, fondSituation, ok, danger, urgence]);
     this.chargeContexte(preventionsContext);
     this.preventions = preventionsContext.keys().reduce((memo, fichier) => {
