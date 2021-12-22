@@ -17,8 +17,8 @@ describe('Le dépot ressource de la situation Objects trouvés', function () {
     });
 
     it("Retourne la réponse d'audio d'un QCM", function () {
-      expect(depot.reponseAudio('agenda', 1)).toBe(sonChoix1);
-      expect(depot.reponseAudio('questionnaire inconnu', 1)).toBe(undefined);
+      expect(depot.reponseAudio('agenda', 0)).toBe(sonChoix1);
+      expect(depot.reponseAudio('questionnaire inconnu', 0)).toBe(undefined);
     });
 
     it("Retourne le message audio d'une question", function () {

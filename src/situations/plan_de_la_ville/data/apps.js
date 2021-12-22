@@ -24,16 +24,19 @@ const questionCouleur = {
     {
       id: 'rouge',
       image: rouge,
+      audio: 'couleurs',
       bonneReponse: true
     },
     {
       id: 'bleu',
       image: bleu,
+      audio: 'couleurs',
       bonneReponse: false
     },
     {
       id: 'vert',
       image: vert,
+      audio: 'couleurs',
       bonneReponse: false
     }
   ]
