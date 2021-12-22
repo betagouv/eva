@@ -5,20 +5,26 @@
       :key="questionActive.id"
       :question="questionActive"
       @reponse="reponseQuestion"
-    />
+    >
+      <pagination
+        :indexQuestion="indexQuestion"
+        :nombreQuestions="questions.length"
+      />
+    </qcm>
   </transition-fade>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Vue from 'vue';
 import Qcm from 'commun/vues/qcm';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic_maison_bleue.vue';
 import TransitionFade from 'commun/vues/transition_fade';
-import Vue from 'vue';
+import Pagination from 'commun/vues/components/pagination';
 
 export default {
-  components: { Qcm, TransitionFade },
+  components: { Qcm, TransitionFade, Pagination },
 
   data () {
     return {
