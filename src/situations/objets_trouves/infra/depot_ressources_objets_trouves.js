@@ -19,7 +19,7 @@ const CHOIX_REPONSES_AUDIO_QCM = {
   agenda: [sonChoix1, sonChoix2, sonChoix3, sonChoix4, sonChoix5, sonChoix6]
 };
 
-const MESSAGES = {
+const AUDIOS_QUESTIONS = {
   'heure-bureau-mickael': messageMickael,
   'nombre-tours-de-manege': messageRachel
 };
@@ -29,7 +29,7 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     super(chargeurs, sonConsigne, sonConsigneTransition);
     this.charge([fondSituation, iconeDeverrouillageDebloque]);
     this.charge(CHOIX_REPONSES_AUDIO_QCM.agenda);
-    this.charge(Object.values(MESSAGES));
+    this.charge(Object.values(AUDIOS_QUESTIONS));
   }
 
   chargeRessourcesApps (apps) {
@@ -68,11 +68,11 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
   }
 
   messageAudio (nomTechniqueQuestion) {
-    return this.ressource(MESSAGES[nomTechniqueQuestion]);
+    return this.ressource(AUDIOS_QUESTIONS[nomTechniqueQuestion]);
   }
 
   existeMessageAudio (nomTechniqueQuestion) {
-    return nomTechniqueQuestion in MESSAGES;
+    return nomTechniqueQuestion in AUDIOS_QUESTIONS;
   }
 
   imageAideComplementaire () {
