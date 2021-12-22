@@ -52,6 +52,7 @@
     .bouton-lecture {
       button {
         margin-right: 1rem;
+        display: flex;
       }
     }
   }
@@ -72,6 +73,7 @@
   }
 
   &-reponse-intitule {
+    display: flex;
     margin-left: 1rem;
     cursor: pointer;
   }
