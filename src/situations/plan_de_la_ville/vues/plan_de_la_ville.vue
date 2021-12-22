@@ -13,7 +13,7 @@
 import { mapState } from 'vuex';
 import Qcm from 'commun/vues/qcm';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
-import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic-maison-bleue.vue';
+import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic_maison_bleue.vue';
 import TransitionFade from 'commun/vues/transition_fade';
 import Vue from 'vue';
 

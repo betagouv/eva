@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic-maison-bleue.vue';
+import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic_maison_bleue.vue';
 
 describe('Clic de la maison bleue', function () {
   let wrapper;

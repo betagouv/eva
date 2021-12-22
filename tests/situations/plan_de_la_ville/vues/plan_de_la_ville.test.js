@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { creeStore } from 'plan_de_la_ville/modeles/store';
 import Qcm from 'commun/vues/qcm';
-import PlanDeLaVille from 'plan_de_la_ville/vues/plan-de-la-ville';
+import PlanDeLaVille from 'plan_de_la_ville/vues/plan_de_la_ville';
 
 describe('La vue plan de la ville', function () {
   let wrapper;
