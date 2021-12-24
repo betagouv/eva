@@ -96,15 +96,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|wav|svg|woff|woff2|ttf|eot)(\?.*$|$)/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name]_[sha512:hash:base64:7].[ext]',
-              outputPath: 'assets'
-            }
-          }
-        ]
+        type: 'asset/resource'
       },
       {
         test: /\.vue$/,
