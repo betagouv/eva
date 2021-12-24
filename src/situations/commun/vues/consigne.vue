@@ -9,6 +9,7 @@
         <img :src="son" class="icone-description-titre" />
       </h2>
       <div
+        class="modale-interieur-message"
         v-html="message"
        ></div>
       <div

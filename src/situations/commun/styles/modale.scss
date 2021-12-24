@@ -26,10 +26,6 @@
     .modale-interieur {
       max-width: 70%;
 
-      > * {
-        margin-bottom: 3rem;
-      }
-
       h2 {
         margin-bottom: 0.44rem;
       }
@@ -50,6 +46,7 @@
 .icone-description {
   display: flex;
   align-items: center;
+  margin-bottom: 3rem;
 
   &-icone {
     margin-right: 2rem;

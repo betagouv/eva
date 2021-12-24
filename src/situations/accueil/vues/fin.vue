@@ -62,10 +62,8 @@
           </div>
         </div>
       </div>
-
       <bouton-deconnexion/>
     </div>
-
   </div>
 </template>
 
