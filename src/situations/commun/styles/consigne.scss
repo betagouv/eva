@@ -3,6 +3,7 @@
 .conteneur-message-aide {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 4rem;
 }
 .message-aide {
   width: 24rem;
@@ -23,8 +24,14 @@
   }
 }
 .overlay.modale {
-  .modale-interieur .message-aide p {
-    margin: 0;
-    font-size: 1.125rem;
+  .modale-interieur {
+    &-message {
+      margin-bottom: 3rem;
+    }
+
+    .message-aide p {
+      margin: 0;
+      font-size: 1.125rem;
+    }
   }
 }
