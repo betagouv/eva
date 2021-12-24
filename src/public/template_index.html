@@ -33,23 +33,9 @@
     <!-- End Matomo Code -->
     <% } %>
     <script type="text/javascript">
-      if ('serviceWorker' in navigator) {
+      if (window.navigator && 'serviceWorker' in window.navigator) {
         window.addEventListener('load', () => {
-          [
-            'http://localhost:7700/services-worker.js',
-            'https://app.eva.beta.gouv.fr/services-worker.js',
-            'https://app.eva.beta.gouv.fr/jeu/services-worker.js',
-            'https://preprod.eva.beta.gouv.fr/services-worker.js'
-          ].forEach((scope) => {
-            navigator.serviceWorker.getRegistration(scope)
-              .then((registration) => {
-                registration.unregister();
-              })
-              .catch((err) => {
-                // on ignore volontairement les erreurs
-              });
-          });
-          navigator.serviceWorker.register('/jeu/service-worker.js').then(registration => {
+          window.navigator.serviceWorker.register('/jeu/service-worker.js').then(registration => {
             console.log('SW registered: ', registration);
           }).catch(registrationError => {
             console.log('SW registration failed: ', registrationError);
