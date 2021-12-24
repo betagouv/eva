@@ -12,8 +12,8 @@
     "start": "node server.js"
   },
   "engines": {
-    "node": "14.17.x",
-    "npm": "7.20.x"
+    "node": "16.13.x",
+    "npm": "8.1.x"
   },
   "repository": {
     "type": "git",

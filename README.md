@@ -15,16 +15,18 @@ Pour voir les autres projets de eva:
 
 ## Configuration de l'environnement
 
-### Installer node version 14
+### Installer node version 16
 
 Sur mac, si vous avez déjà une autre version de node installée,
 
 ```
-$> brew install node@14
-$> export CPPFLAGS="-I/usr/local/opt/node@14/include"
-$> export LDFLAGS="-L/usr/local/opt/node@14/lib"
-$> export PATH="/usr/local/opt/node@14/bin:$PATH"
+$> brew install node@16
+$> export CPPFLAGS="-I/usr/local/opt/node@16/include"
+$> export LDFLAGS="-L/usr/local/opt/node@16/lib"
+$> export PATH="/usr/local/opt/node@16/bin:$PATH"
 ```
+
+Ajouter ces 3 variables dans votre fichier .env (voir ci dessous)
 
 ### Assigner les variables d'environnement
 
