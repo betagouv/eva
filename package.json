@@ -55,6 +55,7 @@
     "mini-css-extract-plugin": "^1.6",
     "node-forge": ">=0.10.0",
     "null-loader": "^4.0",
+    "path-browserify": "^1.0.1",
     "rollbar-sourcemap-webpack-plugin": "^3.3.0",
     "sass": "^1.45",
     "sass-loader": "^12.x",
