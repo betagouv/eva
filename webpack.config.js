@@ -4,9 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const RollbarSourceMapPlugin = require('rollbar-sourcemap-webpack-plugin')
+const RollbarSourceMapPlugin = require('rollbar-sourcemap-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves', 'bienvenue', 'plan_de_la_ville'];
@@ -30,7 +30,7 @@ const templatesSituations = situations.map(function (situation) {
   });
 });
 
-const PUBLIC_PATH = '/jeu/'
+const PUBLIC_PATH = '/jeu/';
 
 module.exports = {
   entry: {
