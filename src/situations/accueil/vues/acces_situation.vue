@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import path from 'path';
+import * as path from 'path';
 import 'accueil/styles/acces_situation.scss';
 import { SCOPE_URL } from 'commun/vues/affiche_situation';
 

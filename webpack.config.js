@@ -45,6 +45,7 @@ module.exports = {
   devtool: devMode ? 'eval-cheap-source-map' : 'source-map',
   resolve: {
     extensions: ['.js', '.vue'],
+    fallback: { path: require.resolve('path-browserify') },
     alias: {
       accueil: path.resolve(__dirname, 'src/situations/accueil/'),
       commun: path.resolve(__dirname, 'src/situations/commun/'),
