@@ -127,15 +127,15 @@ module.exports = {
       inject: 'head'
     }),
     ...templatesSituations,
-    new webpack.EnvironmentPlugin([
-      'URL_API',
-      'JETON_CLIENT_ROLLBAR',
-      'ROLLBAR_ENV',
-      'SOURCE_VERSION',
-      'ANNONCE_GENERALE',
-      'HOTJAR_ID',
-      'MATOMO_ID'
-    ]),
+    new webpack.EnvironmentPlugin({
+      URL_API: undefined, // valeur par défaut undefined quand la variable est obligatoire
+      JETON_CLIENT_ROLLBAR: null, // valeur par défaut null quand la variable est facultative
+      ROLLBAR_ENV: null,
+      SOURCE_VERSION: undefined,
+      ANNONCE_GENERALE: null,
+      HOTJAR_ID: null,
+      MATOMO_ID: null
+    }),
     new FaviconsWebpackPlugin('./src/public/logo.svg'),
     new VueLoaderPlugin(),
     new WorkboxPlugin.GenerateSW({
