@@ -20,6 +20,7 @@ import Vue from 'vue';
 import Qcm from 'commun/vues/qcm';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic_maison_bleue.vue';
+import DragAndDrop from 'plan_de_la_ville/vues/components/drag_and_drop.vue';
 import TransitionFade from 'commun/vues/transition_fade';
 import Pagination from 'commun/vues/components/pagination';
 
@@ -35,6 +36,7 @@ export default {
   mounted () {
     // enregistre globalement, les composants spécifiques utilisés par certaines questions
     Vue.component('clic-maison-bleue', ClicMaisonBleue);
+    Vue.component('drag-and-drop', DragAndDrop);
   },
 
   computed: {
