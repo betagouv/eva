@@ -1,4 +1,13 @@
 export default class DeplaceurPieces {
+  constructor (largeurZoneDeplacement, hauteurZoneDeplacement) {
+    this._positionEvenement = (e) => {
+      return {
+        x: 100 * e.clientX / largeurZoneDeplacement,
+        y: 100 * e.clientY / hauteurZoneDeplacement
+      };
+    };
+  }
+
   activeDeplacementPieces (pointInsertion, $) {
     const $pointInsertion = $(pointInsertion);
 
@@ -9,22 +18,24 @@ export default class DeplaceurPieces {
       };
     };
 
-    $pointInsertion.mousemove(e => {
-      if (e.buttons === 0) {
-        this.termineSelection();
-        return;
-      }
-      this.deplacePiecesSelectionnees(e);
-    });
+    $pointInsertion.on('mousemove', (e) => { this.deplaceSouris(e); });
     $pointInsertion.on('touchmove', (e) => {
       this.deplacePiecesSelectionnees(e.changedTouches[0]);
     });
   }
 
-  debuteSelection (piece, positionActuelle, e) {
+  deplaceSouris (e) {
+    if (e.buttons === 0) {
+      this.termineSelection();
+      return;
+    }
+    this.deplacePiecesSelectionnees(e);
+  }
+
+  debuteSelection (piece, e) {
     this.pieceSelectionne = piece;
-    this.pieceSelectionne.changePosition(positionActuelle);
-    this.pieceSelectionne.selectionne(this._positionEvenement(e));
+    const position = this._positionEvenement(e);
+    this.pieceSelectionne.selectionne(position);
   }
 
   deplacePiecesSelectionnees (e) {

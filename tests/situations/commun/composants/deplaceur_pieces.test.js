@@ -35,7 +35,7 @@ describe('Le composant DeplaceurPieces', function () {
     beforeEach(function () {
       $pointInsertion.width(50).height(200);
       piece = new Piece({ x: 90, y: 55, largeur: 10, hauteur: 10 });
-      deplaceur.debuteSelection(piece, { x: 90, y: 55 }, { clientX: 45, clientY: 110 });
+      deplaceur.debuteSelection(piece, { clientX: 45, clientY: 110 });
     });
 
     it('à la souris', function () {
@@ -57,7 +57,7 @@ describe('Le composant DeplaceurPieces', function () {
   it('déselectionne les pièces si il y a un mousemove sans maintien du clic', function () {
     const piece = new Piece({});
 
-    deplaceur.debuteSelection(piece, {}, {});
+    deplaceur.debuteSelection(piece, {});
     expect(piece.estSelectionnee()).toBe(true);
 
     $pointInsertion.trigger($.Event('mousemove', { buttons: 0 }));
