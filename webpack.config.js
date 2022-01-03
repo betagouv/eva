@@ -32,6 +32,15 @@ const templatesSituations = situations.map(function (situation) {
 
 const PUBLIC_PATH = '/jeu/';
 
+let rollbarSourceMapPlugin = [];
+if (process.env.JETON_SERVEUR_ROLLBAR) {
+  rollbarSourceMapPlugin = [new RollbarSourceMapPlugin({
+    accessToken: process.env.JETON_SERVEUR_ROLLBAR,
+    version: process.env.SOURCE_VERSION,
+    publicPath: PUBLIC_PATH
+  })];
+}
+
 module.exports = {
   entry: {
     index: path.resolve(__dirname, 'src/app/index.js'),
@@ -105,11 +114,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new RollbarSourceMapPlugin({
-      accessToken: process.env.JETON_SERVEUR_ROLLBAR,
-      version: process.env.SOURCE_VERSION,
-      publicPath: PUBLIC_PATH
-    }),
+    ...rollbarSourceMapPlugin,
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
