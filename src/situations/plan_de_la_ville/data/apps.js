@@ -1,6 +1,7 @@
 import MaisonRouge from '../assets/maison_rouge.png';
 import AccueilSansEglise from '../assets/accueil_sans_eglise.png';
 import SaisieBoulangerie from '../assets/saisie_boulangerie.png';
+import IllustrationDragAndDrop from '../assets/drag_and_drop.png';
 import rouge from '../assets/rouge.svg';
 import vert from '../assets/vert.svg';
 import bleu from '../assets/bleu.svg';
@@ -12,6 +13,17 @@ const clicMaisonBleue = {
   illustration: AccueilSansEglise,
   intitule: 'Cliquez sur la maison bleue',
   extensionVue: 'clic-maison-bleue',
+  choix: []
+};
+
+const dragAndDrop = {
+  id: 'drag-and-drop',
+  type: 'action',
+  nom_technique: 'drag_and_drop',
+  illustration: IllustrationDragAndDrop,
+  description: 'Super ! Maintenant, ajoutez une maison au village.',
+  intitule: 'Pour cela cliquez sur la maison en dessous de la carte, maintenez le bouton gauche de la souris enfoncée et glissez là dans la zone disponible. Consultez l’exemple ci-dessous.',
+  extensionVue: 'drag-and-drop',
   choix: []
 };
 
@@ -54,7 +66,7 @@ const saisieBoulangerie = {
 };
 
 const configurationNormale = {
-  questions: [clicMaisonBleue, questionCouleur, saisieBoulangerie]
+  questions: [clicMaisonBleue, dragAndDrop, questionCouleur, saisieBoulangerie]
 };
 
 export { configurationNormale };
