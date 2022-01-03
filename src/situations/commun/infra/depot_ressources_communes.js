@@ -1,13 +1,14 @@
 import DepotRessources from 'commun/infra/depot_ressources';
 import casque from 'commun/assets/casque.svg';
 import calculatrice from 'commun/assets/calculatrice.svg';
+import iconeDeconnexion from 'commun/assets/sign_out.svg';
 import son from 'commun/assets/son.svg';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.wav';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
   constructor (chargeurs, messagesAudios, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
     super(chargeurs);
-    this.charge([casque, son, calculatrice, sonConsigneDemarrage, sonConsigneTransition]);
+    this.charge([casque, son, calculatrice, sonConsigneDemarrage, sonConsigneTransition, iconeDeconnexion]);
     this.charge(Object.values(messagesAudios));
     this.sonConsigneDemarrage = sonConsigneDemarrage;
     this.sonConsigneTransition = sonConsigneTransition;
@@ -32,6 +33,10 @@ export default class DepotRessourcesCommunes extends DepotRessources {
 
   calculatrice () {
     return this.ressource(calculatrice);
+  }
+
+  iconeDeconnexion () {
+    return this.ressource(iconeDeconnexion);
   }
 
   messageAudio (nomTechnique) {

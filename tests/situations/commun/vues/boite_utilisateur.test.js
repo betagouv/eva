@@ -10,6 +10,11 @@ describe('La boite utilisateur', function () {
   beforeEach(function () {
     const localVue = createLocalVue();
     localVue.prototype.$traduction = () => {};
+    localVue.prototype.$depotRessources = new class {
+      iconeDeconnexion () {
+        return { src: '' };
+      }
+    }();
     store = new Vuex.Store({
       state: { estConnecte: true, nom: '', situations: [1, 2], situationsFaites: [1] }
     });

@@ -21,7 +21,7 @@
       href="#"
       @click.prevent="demandeDeconnexion"
     >
-      <img :src="signOutIcon" />
+      <img :src="iconeDeconnexion" />
     </a>
   </div>
   <div
@@ -45,13 +45,11 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import signOutIcon from '../assets/sign_out.svg';
 import 'commun/styles/boite_utilisateur.scss';
 
 export default {
   data () {
     return {
-      signOutIcon,
       confirmationDeconnexion: false
     };
   },
@@ -61,6 +59,9 @@ export default {
 
     pourcentProgression () {
       return `${this.situationsFaites.length * 100 / this.situations.length}%`;
+    },
+    iconeDeconnexion: function () {
+      return this.$depotRessources.iconeDeconnexion().src;
     }
   },
 
