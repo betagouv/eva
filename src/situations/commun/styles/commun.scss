@@ -134,6 +134,14 @@ h3 {
   pointer-events: none;
 }
 
+.chargement {
+  display: none;
+}
+
+.chargement-termine {
+  display: block;
+}
+
 .footer {
   width: 63rem;
   margin: 2rem auto;
