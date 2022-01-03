@@ -58,7 +58,7 @@ describe('La vue de la question QCM', function () {
     it('affiche un champ numérique', function () {
       const inputNumerique = composant(question).findAll('input[type=text]');
       expect(inputNumerique.length).toBe(1);
-      expect(inputNumerique.at(0).classes('numerique-input')).toBe(true);
+      expect(inputNumerique.at(0).classes('input-numerique')).toBe(true);
     });
 
     describe('quand les chiffres doivent être espacés', function () {
@@ -67,7 +67,7 @@ describe('La vue de la question QCM', function () {
       });
 
       it('ajoute la classe css', function () {
-        const conteneur = composant(question).find('.numerique-input-conteneur');
+        const conteneur = composant(question).find('.input-numerique-conteneur');
         expect(conteneur.classes('chiffres-espaces')).toBe(true);
       });
     });
@@ -78,7 +78,7 @@ describe('La vue de la question QCM', function () {
       });
 
       it("n'ajoute pas de classe css", function () {
-        const conteneur = composant(question).find('.numerique-input-conteneur');
+        const conteneur = composant(question).find('.input-numerique-conteneur');
         expect(conteneur.classes('chiffres-espaces')).toBe(false);
       });
     });

@@ -19,7 +19,7 @@
           v-if="question.type === 'numerique'"
           class="question-reponse"
         >
-          <div class="numerique-input-conteneur"
+          <div class="input-numerique-conteneur"
                :class="{ 'chiffres-espaces' : question.espacerChiffres }">
             <div class="conteneur-traits-saisie">
               <span></span>
@@ -29,11 +29,23 @@
             </div>
             <input
               v-model.trim="reponse"
-              class="numerique-input"
+              class="input input-numerique"
               maxlength="4"
               type='text'
               />
           </div>
+        </div>
+        <div
+          v-if="question.type === 'texte'"
+          class="question-reponse"
+        >
+          <input
+            v-model.trim="reponse"
+            class="input input-texte input-texte--decale"
+            placeholder="Réponse"
+            type='text'
+            @focusout="forceMinuscule"
+          />
         </div>
         <div v-else-if="question.type_qcm === 'jauge'">
           <jauge :question="question" @choixjauge="assigneChoixJauge" />
@@ -93,6 +105,7 @@ import 'commun/styles/boutons.scss';
 import 'commun/styles/bouton.scss';
 import 'commun/styles/formulaire_qcm.scss';
 import 'commun/styles/jauge.scss';
+import 'commun/styles/inputs.scss';
 
 import ReponseAudioQcm from './reponse_audio_qcm';
 import BoutonLecture from 'commun/vues/bouton_lecture';
@@ -140,7 +153,7 @@ export default {
 
     donneesReponse () {
       let donneesReponse;
-      if (this.question.type === 'numerique') {
+      if (this.question.type === 'numerique' || this.question.type === 'texte') {
         const succes = this.reponse === this.question.bonneReponse;
         donneesReponse = { reponse: this.reponse, succes: succes };
       } else if (this.question.type === 'action') {
@@ -163,6 +176,9 @@ export default {
     },
     afficheLectureReponse (nomTechnique) {
       return this.$depotRessources.existeMessageAudio(nomTechnique);
+    },
+    forceMinuscule () {
+      this.reponse = this.reponse.toLowerCase();
     }
   }
 };
