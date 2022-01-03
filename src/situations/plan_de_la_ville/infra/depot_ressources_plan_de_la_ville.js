@@ -1,5 +1,6 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 import fondSituation from 'plan_de_la_ville/assets/accueil_sans_eglise.png';
+import egliseMaisonAPlacer from 'plan_de_la_ville/assets/eglise_maison_a_placer.png';
 import maisonRouge from 'plan_de_la_ville/assets/audio_questions/maison_rouge.wav';
 import maisonBleue from 'plan_de_la_ville/assets/audio_questions/clic_maison_bleue.wav';
 import saisieBoulangerie from 'plan_de_la_ville/assets/audio_questions/saisie_boulangerie.wav';
@@ -28,7 +29,7 @@ const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, messagesAudios, sonConsigne);
-    this.charge([fondSituation]);
+    this.charge([fondSituation, egliseMaisonAPlacer]);
   }
 
   chargeRessourcesQuestions (questions) {
@@ -41,6 +42,10 @@ export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommune
 
   fondSituation () {
     return this.ressource(fondSituation);
+  }
+
+  egliseMaisonAPlacer () {
+    return this.ressource(egliseMaisonAPlacer);
   }
 
   fondSituationEntrainement () {
