@@ -1,5 +1,6 @@
 import MaisonRouge from '../assets/maison_rouge.png';
 import AccueilSansEglise from '../assets/accueil_sans_eglise.png';
+import SaisieBoulangerie from '../assets/saisie_boulangerie.png';
 import rouge from '../assets/rouge.svg';
 import vert from '../assets/vert.svg';
 import bleu from '../assets/bleu.svg';
@@ -42,8 +43,16 @@ const questionCouleur = {
   ]
 };
 
+const saisieBoulangerie = {
+  id: 'saisie-boulangerie',
+  nom_technique: 'saisie-boulangerie',
+  illustration: SaisieBoulangerie,
+  intitule: 'Recopiez le nom “Boulangerie” dans le cadre de texte ci-dessous, puis cliquez sur Valider',
+  choix: []
+};
+
 const configurationNormale = {
-  questions: [clicMaisonBleue, questionCouleur]
+  questions: [clicMaisonBleue, questionCouleur, saisieBoulangerie]
 };
 
 export { configurationNormale };
