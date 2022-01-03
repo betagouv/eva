@@ -88,7 +88,7 @@
     color: $couleur-fond-bouton-bleu;
   }
 
-  .numerique-input-conteneur {
+  .input-numerique-conteneur {
     position: relative;
     .conteneur-traits-saisie {
       position: absolute;
@@ -102,19 +102,6 @@
         background-color: $bleu;
       }
     }
-
-    .numerique-input {
-      width: 10rem;
-      height: 3rem;
-      padding-left: 2rem;
-      font-size: 1.5rem;
-      font-weight: 500;
-      font-family: 'Roboto Mono', monospace;
-      border-radius: 1rem;
-      border: 1px solid $bleu-gris;
-      color: $bleu;
-      background: $couleur-fond;
-    }
   }
 
   .chiffres-espaces {
@@ -124,7 +111,7 @@
       }
     }
 
-    .numerique-input {
+    .input-numerique {
       width: 12rem;
       letter-spacing: 1.39rem;
     }

@@ -1,0 +1,28 @@
+@import 'variables';
+
+.input {
+  border: 1px solid $bleu-gris;
+  background: $couleur-fond;
+  height: 3rem;
+  border-radius: 0.5rem;
+  color: $bleu;
+
+  &-texte {
+    width: 100%;
+    font-weight: normal;
+    font-family: $font-work-sans;
+    font-size: 1rem;
+    padding-left: 0.75rem;
+    &--decale {
+      margin-left: 2.25rem;
+      width: calc(100% - 2.25rem);
+    }
+  }
+  &-numerique {
+    width: 10rem;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: $font-roboto-mono;
+  }
+}
