@@ -112,7 +112,7 @@ describe('Une pièce', function () {
       const vuePiece = new VuePiece(piece, depot, deplaceur);
       vuePiece.affiche('#pointInsertion', $);
 
-      deplaceur.debuteSelection(piece, { x: 90, y: 40 }, { clientX: 95, clientY: 55 });
+      deplaceur.debuteSelection(piece, { clientX: 95, clientY: 55 });
     });
 
     it('à la souris', function () {

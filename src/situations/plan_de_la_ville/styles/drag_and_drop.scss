@@ -1,5 +1,12 @@
+.zone-deplacement {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .eglise-maison-a-placer {
   position: absolute;
   top: 355px;
   left: 480px;
+  cursor: grab;
 }

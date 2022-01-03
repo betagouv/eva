@@ -1,4 +1,4 @@
-const scene = {
+export const scene = {
   largeur: 1008,
   hauteur: 566
 };

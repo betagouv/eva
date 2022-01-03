@@ -53,7 +53,8 @@ export default class VuePiece extends EventEmitter {
         x: 100 * parseInt(this.$piece.css('left')) / this.$elementParent.width(),
         y: 100 * parseInt(this.$piece.css('top')) / this.$elementParent.height()
       };
-      this.deplaceur.debuteSelection(this.piece, positionActuelle, e);
+      this.piece.changePosition(positionActuelle);
+      this.deplaceur.debuteSelection(this.piece, e);
     };
     this.$piece.on('touchstart', (e) => {
       e.preventDefault();
