@@ -132,6 +132,7 @@ module.exports = {
       JETON_CLIENT_ROLLBAR: null, // valeur par défaut null quand la variable est facultative
       ROLLBAR_ENV: null,
       SOURCE_VERSION: undefined,
+      SOURCE_VERSION_COURTE: process.env.SOURCE_VERSION.substring(0, 8),
       ANNONCE_GENERALE: null,
       HOTJAR_ID: null,
       MATOMO_ID: null
