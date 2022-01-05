@@ -111,6 +111,9 @@
     "intro_contexte": {
       "message": "<p>Bienvenu·e,<p></p>Pour cette série de questions vous n'êtes pas chronometré·e·s et vous pouvez utiliser une calculatrice si vous le souhaitez. Si vous ne savez pas comment faire le calcul, selectionnez dans les choix multiples \"je ne sais pas faire ce calcul\".</p>"
     },
+    "aide_complementaire": {
+      "message": "$t(messages_communs.aide_calculatrice)"
+    },
     "redaction_note": {
       "envoyer": "Envoyer"
     },
