@@ -1,4 +1,4 @@
-@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/variables.scss';
 @import 'commun/styles/mixins/boutons.scss';
 
 .overlay-action {
@@ -11,7 +11,7 @@
    }
 
   .overlay-action-message {
-    font-family: 'Quicksand', sans-serif;
+    font-family: $font-quicksand;
     position:absolute;
     top: 7rem;
     text-align: center;

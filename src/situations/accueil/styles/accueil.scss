@@ -1,4 +1,4 @@
-@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/variables.scss';
 @import 'commun/styles/mixins/conteneur.scss';
 @import 'commun/styles/mixins/boutons.scss';
 
@@ -84,7 +84,7 @@
     text-align: center;
     background-color: $rouge;
     &-description {
-      font-family: 'Quicksand', sans-serif;
+      font-family: $font-quicksand;
       font-size: 0.875rem;
       font-weight: bold;
       color: $couleur-fond;

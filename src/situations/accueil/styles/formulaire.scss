@@ -1,4 +1,4 @@
-@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/variables.scss';
 
 .modale-formulaire {
   font-size: 1.1rem;
@@ -35,7 +35,7 @@
   height: 3rem;
   padding: 1rem;
   font-size: 1.1rem;
-  font-family: 'Work Sans', sans-serif;
+  font-family: $font-work-sans;
   transition: border .3s;
   outline: none;
   color: $bleu-fonce;
