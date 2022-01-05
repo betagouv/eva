@@ -1,4 +1,4 @@
-@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/variables.scss';
 
 @mixin bouton-arrondi-couleur($couleur, $couleur-focus) {
   background-color: $couleur;

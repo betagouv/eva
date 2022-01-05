@@ -1,4 +1,4 @@
-@import 'commun/styles/couleurs.scss';
+@import 'commun/styles/variables.scss';
 @import 'commun/styles/acte.scss';
 
 .question-barre {
@@ -28,7 +28,7 @@
   position: absolute;
   left: 11.15rem;
   top: 2.9rem;
-  font-family: 'Quicksand', sans-serif;
+  font-family: $font-quicksand;
   border-radius: 12px;
   &--fond {
     background: linear-gradient(180deg, rgba($couleur-sombre, 0) 0%, $couleur-fond 150%);
