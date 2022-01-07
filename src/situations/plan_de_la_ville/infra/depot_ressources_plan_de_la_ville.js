@@ -5,6 +5,7 @@ import maisonRouge from 'plan_de_la_ville/assets/audio_questions/maison_rouge.wa
 import maisonBleue from 'plan_de_la_ville/assets/audio_questions/clic_maison_bleue.wav';
 import saisieBoulangerie from 'plan_de_la_ville/assets/audio_questions/saisie_boulangerie.wav';
 import consigneDragAndDrop from 'plan_de_la_ville/assets/audio_questions/drag_and_drop.wav';
+import deplacementDroite from 'plan_de_la_ville/assets/audio_questions/deplacement_droite_maison_verte.wav';
 import sonConsigne from 'plan_de_la_ville/assets/consigne_plan_de_la_ville.wav';
 
 import sonChoixRouge from 'plan_de_la_ville/assets/audio_choix/rouge.wav';
@@ -15,7 +16,8 @@ const AUDIOS_QUESTIONS = {
   couleur_maison: maisonRouge,
   drag_and_drop: consigneDragAndDrop,
   clic_maison_bleue: maisonBleue,
-  saisie_boulangerie: saisieBoulangerie
+  saisie_boulangerie: saisieBoulangerie,
+  deplacement_droite_maison_verte: deplacementDroite
 };
 
 const AUDIOS_REPONSES = {
