@@ -1,17 +1,19 @@
 import $ from 'jquery';
 
 import Piece from 'commun/modeles/piece';
-import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
+import DeplaceurPieces from 'commun/modeles/deplaceur_pieces';
+import activeDeplacementPieces from 'commun/vues/deplacement_pieces';
 
-describe('Le composant DeplaceurPieces', function () {
+describe('Le model DeplaceurPieces une fois activé', function () {
   let $pointInsertion;
   let deplaceur;
 
   beforeEach(function () {
     $('body').append('<div id="point-insertion"></div>');
     $pointInsertion = $('#point-insertion');
+    $pointInsertion.width(50).height(200);
     deplaceur = new DeplaceurPieces();
-    deplaceur.activeDeplacementPieces('#point-insertion', $);
+    activeDeplacementPieces(deplaceur, '#point-insertion', $);
   });
 
   it("peut bouger la souris même si aucune pièce n'est selectionnée", function () {
@@ -33,7 +35,6 @@ describe('Le composant DeplaceurPieces', function () {
     let piece;
 
     beforeEach(function () {
-      $pointInsertion.width(50).height(200);
       piece = new Piece({ x: 90, y: 55, largeur: 10, hauteur: 10 });
       deplaceur.debuteSelection(piece, { clientX: 45, clientY: 110 });
     });
@@ -52,16 +53,5 @@ describe('Le composant DeplaceurPieces', function () {
 
       expect(piece.position()).toEqual({ x: 60, y: 10 });
     });
-  });
-
-  it('déselectionne les pièces si il y a un mousemove sans maintien du clic', function () {
-    const piece = new Piece({});
-
-    deplaceur.debuteSelection(piece, {});
-    expect(piece.estSelectionnee()).toBe(true);
-
-    $pointInsertion.trigger($.Event('mousemove', { buttons: 0 }));
-
-    expect(piece.estSelectionnee()).toBe(false);
   });
 });

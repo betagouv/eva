@@ -8,7 +8,8 @@ import {
 import VueBac from 'commun/vues/bac.js';
 import VuePiece from 'tri/vues/piece.js';
 import VueChronometre from 'tri/vues/chronometre.js';
-import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
+import activeDeplacementPieces from 'commun/vues/deplacement_pieces';
+import DeplaceurPieces from 'commun/modeles/deplaceur_pieces';
 import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee';
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
@@ -39,7 +40,7 @@ export default class VueSituationTri {
     });
 
     this.chronometre.affiche(pointInsertion, $);
-    this.deplaceurPieces.activeDeplacementPieces(pointInsertion, $);
+    activeDeplacementPieces(this.deplaceurPieces, pointInsertion, $);
   }
 
   envoiEvenementsAuJournal (journal) {

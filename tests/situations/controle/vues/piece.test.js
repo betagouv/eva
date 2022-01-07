@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
-import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
+import activeDeplacementPieces from 'commun/vues/deplacement_pieces';
+import DeplaceurPieces from 'commun/modeles/deplaceur_pieces';
 import Piece from 'commun/modeles/piece';
 import VuePiece from 'controle/vues/piece';
 
@@ -11,7 +12,7 @@ describe('Une pièce du Contrôle', function () {
   beforeEach(function () {
     $('body').append('<div id="controle" style="width: 100px; height: 100px"></div>');
     deplaceur = new DeplaceurPieces();
-    deplaceur.activeDeplacementPieces('#controle', $);
+    activeDeplacementPieces(deplaceur, '#controle', $);
     depot = { piece () { } };
   });
 

@@ -1,12 +1,13 @@
 import $ from 'jquery';
 
-import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
+import activeDeplacementPieces from 'commun/vues/deplacement_pieces';
+import DeplaceurPieces from 'commun/modeles/deplaceur_pieces';
 import Piece, { DISPARITION_PIECE } from 'commun/modeles/piece';
 import VuePiece from 'commun/vues/piece';
 
 function activeDeplaceur (pointInsertion = '#pointInsertion') {
   const deplaceur = new DeplaceurPieces();
-  deplaceur.activeDeplacementPieces(pointInsertion, $);
+  activeDeplacementPieces(deplaceur, pointInsertion, $);
   return deplaceur;
 }
 
