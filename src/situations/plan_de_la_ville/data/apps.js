@@ -2,6 +2,7 @@ import MaisonRouge from '../assets/maison_rouge.png';
 import AccueilSansEglise from '../assets/accueil_sans_eglise.png';
 import SaisieBoulangerie from '../assets/saisie_boulangerie.png';
 import IllustrationDragAndDrop from '../assets/drag_and_drop.png';
+import DeplacementDroiteMaisonVerte from '../assets/deplacement_droite_maison_verte.png';
 import rouge from '../assets/rouge.svg';
 import vert from '../assets/vert.svg';
 import bleu from '../assets/bleu.svg';
@@ -65,8 +66,19 @@ const saisieBoulangerie = {
   choix: []
 };
 
+const deplacementDroiteMaisonVerte = {
+  id: 'deplacement-droite-maison-verte',
+  type: 'action',
+  nom_technique: 'deplacement_droite_maison_verte',
+  illustration: DeplacementDroiteMaisonVerte,
+  description: 'Dans quelle direction le personnage situé au milieu de l’écran doit-il aller pour se rendre à la maison verte ?',
+  intitule: 'Pour répondre, appuyez sur la flèche gauche ou droite de votre clavier.',
+  extensionVue: 'deplacement-droite-maison-verte',
+  choix: []
+};
+
 const configurationNormale = {
-  questions: [clicMaisonBleue, dragAndDrop, questionCouleur, saisieBoulangerie]
+  questions: [clicMaisonBleue, dragAndDrop, saisieBoulangerie, deplacementDroiteMaisonVerte, questionCouleur]
 };
 
 export { configurationNormale };
