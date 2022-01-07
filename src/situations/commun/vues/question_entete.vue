@@ -22,7 +22,7 @@
         </div>
         <div class="entete-questions">
           <p v-if="question.description">{{ question.description }}</p>
-          <p class="question-intitule">{{ question.intitule }}</p>
+          <p class="question-intitule"> <span v-html="question.intitule"></span></p>
           <p v-if="question.consigne">{{ question.consigne }}</p>
         </div>
       </div>

@@ -22,7 +22,7 @@ const dragAndDrop = {
   nom_technique: 'drag_and_drop',
   illustration: IllustrationDragAndDrop,
   description: 'Super ! Maintenant, ajoutez une maison au village.',
-  intitule: 'Pour cela cliquez sur la maison en dessous de la carte, maintenez le bouton gauche de la souris enfoncée et glissez là dans la zone disponible. Consultez l’exemple ci-dessous.',
+  intitule: 'Pour cela cliquez sur la maison en dessous de la carte, maintenez le bouton gauche de la souris enfoncée et glissez là dans la zone disponible.<br><br>Consultez l’exemple ci-dessous.',
   extensionVue: 'drag-and-drop',
   choix: []
 };
