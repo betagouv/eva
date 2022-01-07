@@ -19,7 +19,8 @@ import VueBac from 'commun/vues/bac';
 import VuePiece from 'controle/vues/piece';
 import VueTapis from 'controle/vues/tapis';
 import VueFondSonore from 'controle/vues/fond_sonore';
-import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
+import activeDeplacementPieces from 'commun/vues/deplacement_pieces';
+import DeplaceurPieces from 'commun/modeles/deplaceur_pieces';
 
 export default class VueSituation {
   constructor (situation, journal, depotRessources) {
@@ -55,7 +56,7 @@ export default class VueSituation {
       }
     });
 
-    this.deplaceurPieces.activeDeplacementPieces(this.$situation, $);
+    activeDeplacementPieces(this.deplaceurPieces, this.$situation, $);
   }
 
   demarre (pointInsertion, $) {

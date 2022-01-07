@@ -16,7 +16,6 @@ describe('La situation « Tri »', function () {
   let situation;
   let journal;
   let vueSituation;
-  let mockDeplaceurPieces;
 
   beforeEach(function () {
     $('body').append('<div id="point-insertion"></div>');
@@ -24,10 +23,6 @@ describe('La situation « Tri »', function () {
     journal = { enregistre () {} };
     situation = new Situation({ pieces: [], bacs: [] });
     vueSituation = new VueSituation(situation, journal, mockDepotRessources);
-    mockDeplaceurPieces = {
-      activeDeplacementPieces () {}
-    };
-    vueSituation.deplaceurPieces = mockDeplaceurPieces;
   });
 
   it('affiche le fond', function () {
@@ -50,10 +45,12 @@ describe('La situation « Tri »', function () {
   });
 
   it('active le déplacement des pièces', function (done) {
-    mockDeplaceurPieces.activeDeplacementPieces = () => {
+    vueSituation.deplaceurPieces.deplaceSouris = () => {
       done();
     };
+
     vueSituation.affiche('#point-insertion', $);
+    $('#point-insertion').trigger('mousemove');
   });
 
   describe('avec une situation démarrée, une pièce et un journal', function () {

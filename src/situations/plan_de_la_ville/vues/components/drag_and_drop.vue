@@ -14,7 +14,7 @@
 
 <script>
 import 'plan_de_la_ville/styles/drag_and_drop.scss';
-import DeplaceurPieces from 'commun/composants/deplaceur_pieces';
+import DeplaceurPieces from 'commun/modeles/deplaceur_pieces';
 import Piece, { CHANGEMENT_SELECTION } from 'commun/modeles/piece';
 import Bac from 'commun/modeles/bac';
 import { scene, pourcentageX, pourcentageY } from 'commun/data/scene.js';
@@ -63,7 +63,7 @@ export default {
     },
 
     termineSelection: function (event) {
-      this.deplaceur.termineSelection(this.piece);
+      this.deplaceur.termineSelection();
     }
   }
 };
