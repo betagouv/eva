@@ -8,7 +8,8 @@
       v-on:mousedown="debuteSelection"
       v-on:mouseup="termineSelection"
       v-on:dragstart.prevent=""
-      class="eglise-maison-a-placer">
+      class="eglise-maison-a-placer"
+      :class="{ 'eglise-maison-selectionnee' : piece.selectionnee }">
   </div>
 </template>
 
