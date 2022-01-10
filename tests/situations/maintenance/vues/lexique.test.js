@@ -3,6 +3,7 @@ import Lexique, { CHOIX_FRANCAIS, CHOIX_PASFRANCAIS } from 'maintenance/vues/lex
 import EvenementIdentificationMot from 'maintenance/modeles/evenement_identification_mot';
 import EvenementApparitionMot from 'maintenance/modeles/evenement_apparition_mot';
 import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
+import Keypress from 'vue-keypress';
 
 describe('La vue lexique de la Maintenance', function () {
   let wrapper;
@@ -19,6 +20,10 @@ describe('La vue lexique de la Maintenance', function () {
         lexique: [{ mot: 'ballon', type: '' }, { mot: 'douermatho', type: '' }, { mot: 'saumon', type: '' }]
       }
     });
+  });
+
+  it('affiche les composants une fois chargé', function () {
+    expect(wrapper.findComponent(Keypress).exists()).toBe(true);
   });
 
   it('affiche la croix de fixation', function (done) {

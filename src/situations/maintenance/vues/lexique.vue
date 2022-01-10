@@ -1,12 +1,9 @@
 <template>
   <div
     class="mot-conteneur"
-    tabindex="0"
-    @keydown.left="enregistreReponse(CHOIX_FRANCAIS)"
-    @keydown.right="enregistreReponse(CHOIX_PASFRANCAIS)"
-    @keydown.e="enregistreReponse(CHOIX_FRANCAIS)"
-    @keydown.i="enregistreReponse(CHOIX_PASFRANCAIS)"
   >
+    <Keypress key-event="keydown" :multiple-keys="touches_francais" @success="enregistreReponse(CHOIX_FRANCAIS)" />
+    <Keypress key-event="keydown" :multiple-keys="touches_pas_francais" @success="enregistreReponse(CHOIX_PASFRANCAIS)" />
     <div
       v-if="mot"
       class="mot">
@@ -79,6 +76,7 @@ import Touche from './touche';
 import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
 import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
 
+import Keypress from 'vue-keypress';
 import { isMobile, isIOs, isAndroid } from 'mobile-device-detect';
 
 const DELAI_CROIX = 500;
@@ -87,9 +85,7 @@ export const CHOIX_FRANCAIS = 'francais';
 export const CHOIX_PASFRANCAIS = 'pasfrancais';
 
 export default {
-  components: {
-    Touche
-  },
+  components: { Touche, Keypress },
 
   props: {
     lexique: {
@@ -106,7 +102,31 @@ export default {
       choixFait: null,
       CHOIX_FRANCAIS,
       CHOIX_PASFRANCAIS,
-      estMobile: isMobile || isIOs || isAndroid
+      estMobile: isMobile || isIOs || isAndroid,
+      touches_francais: [
+        {
+          keyCode: 37, // Flèche gauche
+          modifiers: [],
+          preventDefault: false
+        },
+        {
+          keyCode: 69, // e
+          modifiers: [],
+          preventDefault: false
+        }
+      ],
+      touches_pas_francais: [
+        {
+          keyCode: 39, // Flèche droite
+          modifiers: [],
+          preventDefault: false
+        },
+        {
+          keyCode: 73, // i
+          modifiers: [],
+          preventDefault: false
+        }
+      ]
     };
   },
 
@@ -117,7 +137,6 @@ export default {
   },
 
   mounted () {
-    this.$el.focus();
     this.prepareMotSuivant();
   },
 
