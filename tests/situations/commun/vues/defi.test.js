@@ -4,6 +4,7 @@ import ReponseAudioQcm from 'commun/vues/reponse_audio_qcm';
 import QuestionEntete from 'commun/vues/question_entete';
 import MockExtension from './mock_extension';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
+import ChampSaisie from 'commun/vues/defi/champ_saisie';
 
 describe('La vue de la question QCM', function () {
   let question;
@@ -50,50 +51,36 @@ describe('La vue de la question QCM', function () {
     expect(vue.findAll('img').length).toBe(3);
   });
 
-  describe('quand la question est de type numérique', function () {
+  describe('quand la question est de type champ de saisie', function () {
     let vue;
 
     beforeEach(function () {
-      question.type = 'numerique';
+      question.type = 'champ-saisie';
       question.choix = undefined;
       question.bonneReponse = '1800';
       vue = composant(question);
     });
 
-    it('affiche un champ numérique', function () {
-      const inputNumerique = vue.findAll('input[type=text]');
-      expect(inputNumerique.length).toBe(1);
-      expect(inputNumerique.at(0).classes('input-numerique')).toBe(true);
+    it('affiche le composant champ de saisie', function () {
+      expect(vue.findComponent(ChampSaisie).exists()).toBe(true);
     });
 
-    describe('quand les chiffres doivent être espacés', function () {
-      beforeEach(function () {
-        question.espacerChiffres = true;
-        vue = composant(question);
-      });
-
-      it('ajoute la classe css', function () {
-        const conteneur = vue.find('.input-numerique-conteneur');
-        expect(conteneur.classes('chiffres-espaces')).toBe(true);
-      });
+    it('quand les chiffres doivent être espacés', function () {
+      question.espacerCaracteres = true;
+      vue = composant(question);
+      expect(vue.findComponent(ChampSaisie).vm.question.espacerCaracteres).toBe(true);
     });
 
-    describe('quand les chiffres ne doivent pas être espacés', function () {
-      beforeEach(function () {
-        question.espacerChiffres = false;
+    it('émet un évement réponse', function (done) {
+      vue.findComponent(ChampSaisie).vm.$emit('input', '1800');
+      vue.vm.$nextTick(() => {
+        vue.find('.question-bouton').trigger('click');
+        vue.vm.$nextTick(() => {
+          expect(vue.emitted('reponse').length).toEqual(1);
+          expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: '1800', succes: true });
+          done();
+        });
       });
-
-      it("n'ajoute pas de classe css", function () {
-        const conteneur = vue.find('.input-numerique-conteneur');
-        expect(conteneur.classes('chiffres-espaces')).toBe(false);
-      });
-    });
-
-    it('émet un évement réponse', function () {
-      vue.vm.reponse = '1800';
-      vue.vm.envoi();
-      expect(vue.emitted('reponse').length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: '1800', succes: true });
     });
 
     describe('#disabled', function () {
