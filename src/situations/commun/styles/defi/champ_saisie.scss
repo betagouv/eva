@@ -1,0 +1,32 @@
+@import 'commun/styles/variables.scss';
+
+.question {
+  .input-numerique-conteneur {
+    position: relative;
+    .conteneur-traits-saisie {
+      position: absolute;
+      left: 1.8rem;
+      bottom: 0.6rem;
+      font-size: 0;
+      span {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1px;
+        background-color: $bleu;
+      }
+    }
+  }
+
+  .chiffres-espaces {
+    .conteneur-traits-saisie {
+      span {
+        margin-right: 0.8rem;
+      }
+    }
+
+    .input-numerique {
+      width: 12rem;
+      letter-spacing: 1.39rem;
+    }
+  }
+}

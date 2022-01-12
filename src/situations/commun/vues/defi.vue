@@ -15,26 +15,12 @@
       :question="question"
       />
       <div class="question-contenu">
-        <div
-          v-if="question.type === 'numerique'"
-          class="question-reponse"
-        >
-          <div class="input-numerique-conteneur"
-               :class="{ 'chiffres-espaces' : question.espacerChiffres }">
-            <div class="conteneur-traits-saisie">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <input
-              v-model.trim="reponse"
-              class="input input-numerique"
-              maxlength="4"
-              type='text'
-              />
-          </div>
-        </div>
+        <component
+            v-if="question.type === 'champ-saisie'"
+            :is="question.type"
+            :question="question"
+            v-model="reponse"
+        />
         <div
           v-if="question.type === 'texte'"
           class="question-reponse"
@@ -109,13 +95,14 @@ import 'commun/styles/inputs.scss';
 
 import ReponseAudioQcm from './reponse_audio_qcm';
 import BoutonLecture from 'commun/vues/bouton_lecture';
+import ChampSaisie from 'commun/vues/defi/champ_saisie';
 import Question from './question';
 import QuestionEntete from 'commun/vues/question_entete';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 import Jauge from './jauge';
 
 export default {
-  components: { ReponseAudioQcm, BoutonLecture, Question, QuestionEntete, Jauge },
+  components: { ReponseAudioQcm, BoutonLecture, Question, QuestionEntete, Jauge, ChampSaisie },
 
   props: {
     question: {
@@ -152,7 +139,7 @@ export default {
     },
 
     contenuDeTypeChamp () {
-      return this.question.type === 'numerique' || this.question.type === 'texte';
+      return this.question.type === 'champ-saisie' || this.question.type === 'texte';
     },
 
     reponsesPossibles () {
