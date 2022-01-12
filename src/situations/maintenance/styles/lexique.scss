@@ -17,67 +17,8 @@
   top: 10%;
 }
 
-@keyframes grossit-bouton {
-  50% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-.actions-robot {
-  background-color: $couleur-fond;
-  position: absolute;
+.actions-fleches {
   bottom: 0;
   border-top-right-radius: 35px;
   border-top-left-radius: 35px;
-  padding: 1.5rem;
-  display: flex;
-  width: 60%;
-  line-height: normal;
-
-  &.clavier {
-    padding: 1rem;
-    width: 42%;
-  }
-
-  > button {
-    flex: 50%;
-    margin: 0 .5rem;
-  }
-
-  &--animation {
-    animation: grossit-bouton .3s;
-  }
-
-  .touches-verticales {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    svg {
-      rect, path {
-        stroke: $bleu-gris;
-      }
-    }
-
-    .touche:first-child {
-      margin-bottom: 0.125rem;
-    }
-  }
-
-  .touche-horizontale {
-    flex: 50%;
-    margin: 0 .125rem;
-    position: relative;
-    font-size: 1rem;
-    font-weight: normal;
-    display: flex;
-    align-items: flex-end;
-
-    &.touche-gauche {
-      justify-content: flex-end;
-    }
-  }
 }

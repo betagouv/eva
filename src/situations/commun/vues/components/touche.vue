@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import 'maintenance/styles/touche.scss';
+import 'commun/styles/touche.scss';
 
 export default {
   props: {

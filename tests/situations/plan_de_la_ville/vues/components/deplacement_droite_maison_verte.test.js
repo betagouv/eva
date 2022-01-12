@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 
 import DeplacementDroite from 'plan_de_la_ville/vues/components/deplacement_droite_maison_verte.vue';
-import Keypress from 'vue-keypress';
+import FlechesClavier from 'commun/vues/components/fleches_clavier';
 
 describe('La vue Déplacement droite maison verte', function () {
   let wrapper;
@@ -10,21 +10,22 @@ describe('La vue Déplacement droite maison verte', function () {
     wrapper = shallowMount(DeplacementDroite);
   });
 
-  it('affiche les composants une fois chargé', function () {
-    expect(wrapper.findComponent(Keypress).exists()).toBe(true);
-  });
-
   describe('#deplacementValide', function () {
-    it("emet l'évènement 'action'", function () {
+    it("émet l'évènement 'action'", function () {
       wrapper.vm.deplacementValide();
       expect(wrapper.emitted()).toHaveProperty('action');
     });
+  });
 
-    it("n'emet pas l'évènement 'action' quand la question est terminée", function () {
-      wrapper.setData({ termine: true });
+  describe('sur ordinateur', function () {
+    it('affiche les touches flèches du clavier', function () {
+      expect(wrapper.findComponent(FlechesClavier).exists()).toBe(true);
+    });
+  });
 
-      wrapper.vm.deplacementValide();
-      expect(wrapper.emitted()).not.toHaveProperty('action');
+  describe('sur ordinateur', function () {
+    it('affiche les touches flèches du clavier', function () {
+      expect(wrapper.findComponent(FlechesClavier).exists()).toBe(true);
     });
   });
 });

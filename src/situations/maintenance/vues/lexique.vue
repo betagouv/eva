@@ -2,8 +2,6 @@
   <div
     class="mot-conteneur"
   >
-    <Keypress key-event="keydown" :multiple-keys="touches_francais" @success="enregistreReponse(CHOIX_FRANCAIS)" />
-    <Keypress key-event="keydown" :multiple-keys="touches_pas_francais" @success="enregistreReponse(CHOIX_PASFRANCAIS)" />
     <div
       v-if="mot"
       class="mot">
@@ -16,12 +14,12 @@
       >
     <div
       v-if="estMobile"
-      class="actions-robot"
+      class="actions-fleches"
       >
       <button
-        :class="{ 'actions-robot--animation': choixFait === CHOIX_FRANCAIS }"
+        :class="{ 'actions-fleches--animation': choixFait === choixFrancais }"
          class="bouton-arrondi bouton-arrondi-vert"
-        @click="enregistreReponse(CHOIX_FRANCAIS)"
+        @click="enregistreReponse(choixFrancais)"
       >
         <img
           :src="$depotRessources.flecheGauche().src"
@@ -30,9 +28,9 @@
         <span class="bouton-arrondi-texte">{{ $traduction('maintenance.francais') }}</span>
       </button>
       <button
-        :class="{ 'actions-robot--animation': choixFait === CHOIX_PASFRANCAIS }"
+        :class="{ 'actions-fleches--animation': choixFait === choixPasFrancais }"
         class="bouton-arrondi bouton-arrondi-rouge"
-        @click="enregistreReponse(CHOIX_PASFRANCAIS)"
+        @click="enregistreReponse(choixPasFrancais)"
       >
         <img
           :src="$depotRessources.flecheDroite().src"
@@ -41,51 +39,34 @@
         <span class="bouton-arrondi-texte">{{ $traduction('maintenance.pas_francais') }}</span>
       </button>
     </div>
-    <div
-       v-else
-       class="actions-robot clavier"
-       >
-       <div
-         :class="{ 'actions-robot--animation': choixFait === CHOIX_FRANCAIS }"
-         class="touche-horizontale touche-gauche"
-         >
-         <touche :label-gauche="$traduction('maintenance.francais')" couleur="verte" />
-       </div>
-       <div class="touches-verticales" >
-         <touche :rotation=90 />
-         <touche :rotation=270 />
-       </div>
-       <div
-         :class="{ 'actions-robot--animation': choixFait === CHOIX_PASFRANCAIS }"
-         class="touche-horizontale"
-         >
-         <touche
-           :rotation=180
-           couleur="rouge"
-           :label="$traduction('maintenance.pas_francais')" />
-       </div>
-    </div>
+    <fleches-clavier
+      v-else
+      :labelGauche="$traduction('maintenance.francais')"
+      :labelDroit="$traduction('maintenance.pas_francais')"
+      @actionGauche="enregistreReponse(choixFrancais)"
+      @actionDroite="enregistreReponse(choixPasFrancais)"
+    />
   </div>
 </template>
 
 <script>
 import 'maintenance/styles/lexique.scss';
 import 'commun/styles/boutons.scss';
-import Touche from './touche';
 
 import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
 import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
 
-import Keypress from 'vue-keypress';
+import FlechesClavier from 'commun/vues/components/fleches_clavier';
+
 import { isMobile, isIOs, isAndroid } from 'mobile-device-detect';
 
 const DELAI_CROIX = 500;
 
-export const CHOIX_FRANCAIS = 'francais';
-export const CHOIX_PASFRANCAIS = 'pasfrancais';
+export const choixFrancais = 'francais';
+export const choixPasFrancais = 'pasfrancais';
 
 export default {
-  components: { Touche, Keypress },
+  components: { FlechesClavier },
 
   props: {
     lexique: {
@@ -100,33 +81,9 @@ export default {
       croix: false,
       mot: false,
       choixFait: null,
-      CHOIX_FRANCAIS,
-      CHOIX_PASFRANCAIS,
-      estMobile: isMobile || isIOs || isAndroid,
-      touches_francais: [
-        {
-          keyCode: 37, // Flèche gauche
-          modifiers: [],
-          preventDefault: false
-        },
-        {
-          keyCode: 69, // e
-          modifiers: [],
-          preventDefault: false
-        }
-      ],
-      touches_pas_francais: [
-        {
-          keyCode: 39, // Flèche droite
-          modifiers: [],
-          preventDefault: false
-        },
-        {
-          keyCode: 73, // i
-          modifiers: [],
-          preventDefault: false
-        }
-      ]
+      choixFrancais,
+      choixPasFrancais,
+      estMobile: isMobile || isIOs || isAndroid
     };
   },
 
@@ -141,24 +98,27 @@ export default {
   },
 
   methods: {
-    enregistreReponse (choix) {
+    enregistreReponse (reponse) {
       if (this.croix) return;
 
-      this.choixFait = choix;
+      this.choixFait = reponse;
+      this.enregistreJournal(this.choixFait);
+      if (this.termine) {
+        this.$emit('terminer');
+        return;
+      }
+      this.prepareMotSuivant();
+    },
+
+    enregistreJournal (choix) {
       this.$journal.enregistre(
         new EvenementIdentificationMot({
           ...this.lexique[this.index],
           reponse: choix
         })
       );
-
-      if (this.termine) {
-        this.$emit('terminer');
-        return;
-      }
-
-      this.prepareMotSuivant();
     },
+
     prepareMotSuivant () {
       this.affichePointDeFixation();
       setTimeout(() => {

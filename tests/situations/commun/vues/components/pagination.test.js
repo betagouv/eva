@@ -13,7 +13,7 @@ describe('Le composant pagination', function () {
     });
   });
 
-  it.only('affiche la pagination', function () {
+  it('affiche la pagination', function () {
     const pagination = wrapper.find('.question-pagination');
     expect(pagination.exists()).toBe(true);
     expect(pagination.text()).toBe('1/3');

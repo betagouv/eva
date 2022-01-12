@@ -1,26 +1,20 @@
 <template>
-  <Keypress key-event="keydown" :key-code="39" @success="deplacementValide" />
+  <fleches-clavier
+    @animationDroiteTerminee="deplacementValide"
+  />
 </template>
 
 <script>
 
-import Keypress from 'vue-keypress';
+import 'plan_de_la_ville/styles/deplacement_droite_maison_verte.scss';
+import FlechesClavier from 'commun/vues/components/fleches_clavier';
 
 export default {
-  components: { Keypress },
-
-  data () {
-    return {
-      termine: false
-    };
-  },
+  components: { FlechesClavier },
 
   methods: {
     deplacementValide () {
-      if (this.termine === false) {
-        this.$emit('action');
-        this.termine = true;
-      }
+      this.$emit('action');
     }
   }
 };
