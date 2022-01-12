@@ -51,12 +51,17 @@ describe('La vue de la question QCM', function () {
   });
 
   describe('quand la question est de type numérique', function () {
+    let vue;
+
     beforeEach(function () {
       question.type = 'numerique';
+      question.choix = undefined;
+      question.bonneReponse = '1800';
+      vue = composant(question);
     });
 
     it('affiche un champ numérique', function () {
-      const inputNumerique = composant(question).findAll('input[type=text]');
+      const inputNumerique = vue.findAll('input[type=text]');
       expect(inputNumerique.length).toBe(1);
       expect(inputNumerique.at(0).classes('input-numerique')).toBe(true);
     });
@@ -64,10 +69,11 @@ describe('La vue de la question QCM', function () {
     describe('quand les chiffres doivent être espacés', function () {
       beforeEach(function () {
         question.espacerChiffres = true;
+        vue = composant(question);
       });
 
       it('ajoute la classe css', function () {
-        const conteneur = composant(question).find('.input-numerique-conteneur');
+        const conteneur = vue.find('.input-numerique-conteneur');
         expect(conteneur.classes('chiffres-espaces')).toBe(true);
       });
     });
@@ -78,18 +84,22 @@ describe('La vue de la question QCM', function () {
       });
 
       it("n'ajoute pas de classe css", function () {
-        const conteneur = composant(question).find('.input-numerique-conteneur');
+        const conteneur = vue.find('.input-numerique-conteneur');
         expect(conteneur.classes('chiffres-espaces')).toBe(false);
       });
     });
 
     it('émet un évement réponse', function () {
-      question.bonneReponse = '1800';
-      const vue = composant(question);
       vue.vm.reponse = '1800';
       vue.vm.envoi();
       expect(vue.emitted('reponse').length).toEqual(1);
       expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: '1800', succes: true });
+    });
+
+    describe('#disabled', function () {
+      it("désactive le bouton quand aucune réponse numérique n'est donnée", function () {
+        expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
+      });
     });
   });
 
@@ -130,18 +140,6 @@ describe('La vue de la question QCM', function () {
     expect(vue.find('.question-bouton').exists()).toBe(true);
   });
 
-  it("désactive le bouton lorsqu'aucune réponse n'est sélectionnée", function (done) {
-    question.choix = [{ id: 'uid-32' }];
-    const vue = composant(question);
-    expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
-
-    vue.find('input[type=radio][value=uid-32]').setChecked();
-    vue.vm.$nextTick(() => {
-      expect(vue.find('.question-bouton').attributes('disabled')).toBe(undefined);
-      done();
-    });
-  });
-
   it('rapporte son ouverture au journal', function (done) {
     question.metacompetence = 'ma métacompétence';
     localVue.prototype.$journal.enregistre = (evenement) => {
@@ -166,11 +164,42 @@ describe('La vue de la question QCM', function () {
     });
   });
 
-  it('désactive le bouton une fois répondu pour éviter le double click', function () {
-    question.choix = [{ id: 'uid-32' }];
+  it("emet un événement réponse vide quand il n'y a pas de choix de réponse", function (done) {
+    question.choix = [];
     const vue = composant(question);
-    vue.find('input[type=radio][value=uid-32]').setChecked();
     vue.find('.question-bouton').trigger('click');
-    expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
+    vue.vm.$nextTick(() => {
+      expect(vue.emitted().reponse.length).toEqual(1);
+      expect(vue.emitted().reponse[0][0]).toEqual({ succes: true });
+      done();
+    });
+  });
+
+  describe('#disabled', function () {
+    it("désactive le bouton lorsqu'aucune réponse n'est sélectionnée", function (done) {
+      question.choix = [{ id: 'uid-32' }];
+      const vue = composant(question);
+      expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
+
+      vue.find('input[type=radio][value=uid-32]').setChecked();
+      vue.vm.$nextTick(() => {
+        expect(vue.find('.question-bouton').attributes('disabled')).toBe(undefined);
+        done();
+      });
+    });
+
+    it('désactive le bouton une fois répondu pour éviter le double click', function () {
+      question.choix = [{ id: 'uid-32' }];
+      const vue = composant(question);
+      vue.find('input[type=radio][value=uid-32]').setChecked();
+      vue.find('.question-bouton').trigger('click');
+      expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
+    });
+
+    it("active le bouton quand il n'y a pas de choix", function () {
+      question.choix = [];
+      const vue = composant(question);
+      expect(vue.find('.question-bouton').attributes('disabled')).not.toEqual('disabled');
+    });
   });
 });

@@ -23,8 +23,7 @@ const clicMaisonBleue = {
   nom_technique: 'clic_maison_bleue',
   illustration: AccueilSansEglise,
   intitule: 'Cliquez sur la maison bleue',
-  extensionVue: 'clic-maison-bleue',
-  choix: []
+  extensionVue: 'clic-maison-bleue'
 };
 
 const dragAndDrop = {
@@ -34,8 +33,7 @@ const dragAndDrop = {
   illustration: IllustrationDragAndDrop,
   description: 'Super ! Maintenant, ajoutez une maison au village.',
   intitule: 'Pour cela cliquez sur la maison en dessous de la carte, maintenez le bouton gauche de la souris enfoncée et glissez là dans la zone disponible.<br><br>Consultez l’exemple ci-dessous.',
-  extensionVue: 'drag-and-drop',
-  choix: []
+  extensionVue: 'drag-and-drop'
 };
 
 const questionCouleur = {
@@ -72,8 +70,7 @@ const saisieBoulangerie = {
   type: 'texte',
   bonneReponse: 'boulangerie',
   illustration: SaisieBoulangerie,
-  intitule: 'Recopiez le nom “Boulangerie” dans le cadre de texte ci-dessous, puis cliquez sur Valider',
-  choix: []
+  intitule: 'Recopiez le nom “Boulangerie” dans le cadre de texte ci-dessous, puis cliquez sur Valider'
 };
 
 const deplacementDroiteMaisonVerte = {
@@ -83,8 +80,7 @@ const deplacementDroiteMaisonVerte = {
   illustration: DeplacementDroiteMaisonVerte,
   description: 'Dans quelle direction le personnage situé au milieu de l’écran doit-il aller pour se rendre à la maison verte ?',
   intitule: 'Pour répondre, appuyez sur la flèche gauche ou droite de votre clavier.',
-  extensionVue: 'deplacement-droite-maison-verte',
-  choix: []
+  extensionVue: 'deplacement-droite-maison-verte'
 };
 
 const configurationNormale = {
