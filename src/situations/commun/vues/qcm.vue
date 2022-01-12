@@ -47,7 +47,7 @@
             @focusout="forceMinuscule"
           />
         </div>
-        <div v-else-if="question.type_qcm === 'jauge'">
+        <div v-else-if="contenuDeTypeJauge">
           <jauge :question="question" @choixjauge="assigneChoixJauge" />
         </div>
         <div v-else>
@@ -147,22 +147,36 @@ export default {
   },
 
   computed: {
+    contenuDeTypeJauge () {
+      return this.question.type_qcm === 'jauge';
+    },
+
+    contenuDeTypeChamp () {
+      return this.question.type === 'numerique' || this.question.type === 'texte';
+    },
+
+    reponsesPossibles () {
+      return this.contenuDeTypeChamp || this.contenuDeTypeJauge ||
+        (this.question.choix && this.question.choix.length > 0);
+    },
+
     disabled () {
-      return !this.reponse || this.envoyer;
+      return (!this.reponse || this.envoyer) && this.reponsesPossibles;
     },
 
     donneesReponse () {
-      let donneesReponse;
-      if (this.question.type === 'numerique' || this.question.type === 'texte') {
+      if (this.contenuDeTypeChamp) {
         const succes = this.reponse === this.question.bonneReponse;
-        donneesReponse = { reponse: this.reponse, succes: succes };
+        return { reponse: this.reponse, succes: succes };
       } else if (this.question.type === 'action') {
-        donneesReponse = { succes: true };
+        return { succes: true };
       } else {
+        if (this.question.choix.length === 0) {
+          return { succes: true };
+        }
         const choix = this.question.choix.find((choix) => choix.id === this.reponse);
-        donneesReponse = { reponse: choix.id, succes: choix.bonneReponse };
+        return { reponse: choix.id, succes: choix.bonneReponse };
       }
-      return donneesReponse;
     }
   },
 
