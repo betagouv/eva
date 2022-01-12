@@ -1,7 +1,7 @@
 <template>
   <div>
     <icone-app-active />
-    <qcm
+    <defi
       :key="question.id"
       :question="question"
       @reponse="reponseApp"
@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import Qcm from 'commun/vues/qcm';
+import Defi from 'commun/vues/defi';
 import IconeAppActive from 'objets_trouves/vues/icone-app-active';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 
 export default {
-  components: { Qcm, IconeAppActive },
+  components: { Defi, IconeAppActive },
 
   props: {
     questions: {

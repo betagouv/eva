@@ -23,8 +23,8 @@ import { mapState, mapGetters } from 'vuex';
 
 import EvenementReponse from '../modeles/evenement_reponse';
 import TransitionFade from 'commun/vues/transition_fade';
-import QuestionQcm from 'commun/vues/qcm';
-import QuestionRedactionNote from './redaction_note';
+import VueDefi from 'commun/vues/defi';
+import VueQuestionRedactionNote from './redaction_note';
 import { DEMARRE } from 'commun/modeles/situation';
 import Pagination from 'commun/vues/components/pagination';
 
@@ -38,8 +38,8 @@ export default {
       if (!this.questionCourante) return;
 
       const classesQuestions = {
-        redaction_note: QuestionRedactionNote,
-        qcm: QuestionQcm
+        redaction_note: VueQuestionRedactionNote,
+        qcm: VueDefi
       };
       return classesQuestions[this.questionCourante.type];
     },

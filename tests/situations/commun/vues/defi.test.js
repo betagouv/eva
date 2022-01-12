@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import VueQCM from 'commun/vues/qcm';
+import Defi from 'commun/vues/defi';
 import ReponseAudioQcm from 'commun/vues/reponse_audio_qcm';
 import QuestionEntete from 'commun/vues/question_entete';
 import MockExtension from './mock_extension';
@@ -23,7 +23,7 @@ describe('La vue de la question QCM', function () {
   });
 
   function composant (question) {
-    return shallowMount(VueQCM, { localVue, propsData: { question } });
+    return shallowMount(Defi, { localVue, propsData: { question } });
   }
 
   it("affiche l'entête de la question", function () {
