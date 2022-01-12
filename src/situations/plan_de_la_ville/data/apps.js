@@ -7,6 +7,16 @@ import rouge from '../assets/rouge.svg';
 import vert from '../assets/vert.svg';
 import bleu from '../assets/bleu.svg';
 
+const modeEmploi = {
+  id: 'mode-emploi',
+  nom_technique: 'mode_emploi',
+  illustration: AccueilSansEglise,
+  description: 'Pour écouter ou réécouter la question et les réponses, cliquez sur le bouton “Lecture” ( ) à gauche de la phrase que vous souhaitez entendre.',
+  intitule: 'Essayez avec le bouton en haut à gauche de ce cadre.',
+  extensionVue: 'mode-emploi',
+  choix: []
+};
+
 const clicMaisonBleue = {
   id: 'clic-maison-bleue',
   type: 'action',
@@ -78,7 +88,7 @@ const deplacementDroiteMaisonVerte = {
 };
 
 const configurationNormale = {
-  questions: [clicMaisonBleue, dragAndDrop, saisieBoulangerie, deplacementDroiteMaisonVerte, questionCouleur]
+  questions: [modeEmploi, clicMaisonBleue, dragAndDrop, saisieBoulangerie, deplacementDroiteMaisonVerte, questionCouleur]
 };
 
 export { configurationNormale };

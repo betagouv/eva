@@ -1,6 +1,7 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 import fondSituation from 'plan_de_la_ville/assets/accueil_sans_eglise.png';
 import egliseMaisonAPlacer from 'plan_de_la_ville/assets/eglise_maison_a_placer.png';
+import modeEmploi from 'plan_de_la_ville/assets/audio_questions/mode_emploi.wav';
 import maisonRouge from 'plan_de_la_ville/assets/audio_questions/maison_rouge.wav';
 import maisonBleue from 'plan_de_la_ville/assets/audio_questions/clic_maison_bleue.wav';
 import saisieBoulangerie from 'plan_de_la_ville/assets/audio_questions/saisie_boulangerie.wav';
@@ -13,6 +14,7 @@ import sonChoixBleue from 'plan_de_la_ville/assets/audio_choix/bleue.wav';
 import sonChoixVerte from 'plan_de_la_ville/assets/audio_choix/verte.wav';
 
 const AUDIOS_QUESTIONS = {
+  mode_emploi: modeEmploi,
   couleur_maison: maisonRouge,
   drag_and_drop: consigneDragAndDrop,
   clic_maison_bleue: maisonBleue,
