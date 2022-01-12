@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Touche from 'maintenance/vues/touche';
+import Touche from 'commun/vues/components/touche';
 
-describe('La vue touche de la Maintenance', function () {
+describe('Le composant touche', function () {
   let wrapper;
   let localVue;
 

@@ -1,9 +1,9 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Lexique, { CHOIX_FRANCAIS, CHOIX_PASFRANCAIS } from 'maintenance/vues/lexique';
+import Lexique, { choixFrancais, choixPasFrancais } from 'maintenance/vues/lexique';
 import EvenementIdentificationMot from 'maintenance/modeles/evenement_identification_mot';
 import EvenementApparitionMot from 'maintenance/modeles/evenement_apparition_mot';
 import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
-import Keypress from 'vue-keypress';
+import FlechesClavier from 'commun/vues/components/fleches_clavier';
 
 describe('La vue lexique de la Maintenance', function () {
   let wrapper;
@@ -20,10 +20,6 @@ describe('La vue lexique de la Maintenance', function () {
         lexique: [{ mot: 'ballon', type: '' }, { mot: 'douermatho', type: '' }, { mot: 'saumon', type: '' }]
       }
     });
-  });
-
-  it('affiche les composants une fois chargé', function () {
-    expect(wrapper.findComponent(Keypress).exists()).toBe(true);
   });
 
   it('affiche la croix de fixation', function (done) {
@@ -61,7 +57,7 @@ describe('La vue lexique de la Maintenance', function () {
     wrapper.vm.afficheMot();
     expect(wrapper.vm.termine).toBe(true);
     expect(wrapper.emitted('terminer')).toBe(undefined);
-    wrapper.vm.enregistreReponse();
+    wrapper.vm.enregistreReponse(choixFrancais);
     expect(wrapper.emitted('terminer').length).toEqual(1);
   });
 
@@ -70,27 +66,12 @@ describe('La vue lexique de la Maintenance', function () {
       wrapper.vm.estMobile = false;
     });
 
+    it('affiche les touches du clavier', function () {
+      expect(wrapper.findComponent(FlechesClavier).exists()).toBe(true);
+    });
+
     it("N'affiche pas les boutons permettant de répondre à la souris", function () {
       expect(wrapper.find('button').exists()).toBe(false);
-      expect(wrapper.find('.touche-horizontale').exists()).toBe(true);
-    });
-
-    it("rajoute la classe action-robot--animation sur la touche de gauche pour le choix 'français'", function (done) {
-      expect(wrapper.find('.touche-horizontale:first-child').classes('actions-robot--animation')).toBe(false);
-      wrapper.vm.choixFait = CHOIX_FRANCAIS;
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.touche-horizontale:first-child').classes('actions-robot--animation')).toBe(true);
-        done();
-      });
-    });
-
-    it("rajoute la classe action-robot--animation sur la touche de droite pour le choix 'pas français'", function (done) {
-      expect(wrapper.find('.touche-horizontale:last-child').classes('actions-robot--animation')).toBe(false);
-      wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.touche-horizontale:last-child').classes('actions-robot--animation')).toBe(true);
-        done();
-      });
     });
   });
 
@@ -101,24 +82,24 @@ describe('La vue lexique de la Maintenance', function () {
 
     it('affiche les boutons permettant de répondre avec le doigt', function () {
       expect(wrapper.find('button').exists()).toBe(true);
-      expect(wrapper.find('.touche-horizontale').exists()).toBe(false);
+      expect(wrapper.find('.touches-horizontales').exists()).toBe(false);
     });
 
-    it("rajoute la classe action-robot--animation sur le bouton de gauche pour le choix 'français'", function (done) {
-      expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-robot--animation')).toBe(false);
-      wrapper.vm.choixFait = CHOIX_FRANCAIS;
+    it("rajoute la classe action-fleches--animation sur le bouton de gauche pour le choix 'français'", function (done) {
+      expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-fleches--animation')).toBe(false);
+      wrapper.vm.choixFait = choixFrancais;
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-robot--animation')).toBe(true);
+        expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-fleches--animation')).toBe(true);
         done();
       });
     });
 
-    it("rajoute la classe action-robot--animation sur le bouton de droite pour le choix 'pas francais' ", function (done) {
-      expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-robot--animation')).toBe(false);
-      wrapper.vm.choixFait = wrapper.vm.CHOIX_PASFRANCAIS;
+    it("rajoute la classe action-fleches--animation sur le bouton de droite pour le choix 'pas francais' ", function (done) {
+      expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-fleches--animation')).toBe(false);
+      wrapper.vm.choixFait = choixPasFrancais;
 
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-robot--animation')).toBe(true);
+        expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-fleches--animation')).toBe(true);
         done();
       });
     });
@@ -130,7 +111,7 @@ describe('La vue lexique de la Maintenance', function () {
         localVue.prototype.$journal = {
           enregistre (evenement) {
             expect(evenement).toBeInstanceOf(EvenementIdentificationMot);
-            expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: CHOIX_FRANCAIS });
+            expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: choixFrancais });
             done();
           }
         };
@@ -146,7 +127,7 @@ describe('La vue lexique de la Maintenance', function () {
         localVue.prototype.$journal = {
           enregistre (evenement) {
             expect(evenement).toBeInstanceOf(EvenementIdentificationMot);
-            expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: CHOIX_PASFRANCAIS });
+            expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: choixPasFrancais });
             done();
           }
         };
@@ -163,11 +144,11 @@ describe('La vue lexique de la Maintenance', function () {
       localVue.prototype.$journal = {
         enregistre (evenement) {
           expect(evenement).toBeInstanceOf(EvenementIdentificationMot);
-          expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: CHOIX_FRANCAIS });
+          expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: choixFrancais });
           done();
         }
       };
-      wrapper.vm.enregistreReponse(CHOIX_FRANCAIS);
+      wrapper.vm.enregistreReponse(choixFrancais);
     });
   });
 
