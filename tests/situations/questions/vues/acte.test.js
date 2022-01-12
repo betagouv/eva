@@ -4,7 +4,7 @@ import { creeStore } from 'questions/modeles/store';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 import Acte from 'questions/vues/acte';
-import QuestionQcm from 'commun/vues/qcm';
+import Defi from 'commun/vues/defi';
 import QuestionRedactionNote from 'questions/vues/redaction_note';
 import { DEMARRE } from 'commun/modeles/situation';
 
@@ -90,7 +90,7 @@ describe("La vue de l'acte « Question »", function () {
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.$nextTick(() => {
-      expect(vue.findComponent(QuestionQcm).exists()).toBe(true);
+      expect(vue.findComponent(Defi).exists()).toBe(true);
       done();
     });
   });

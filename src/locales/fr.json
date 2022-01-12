@@ -106,6 +106,9 @@
       "message": "$t(messages_communs.aide_calculatrice)"
     }
   },
+  "defi": {
+    "valider": "Valider"
+  },
   "questions": {
     "titre": "Bureau",
     "intro_contexte": {
@@ -116,9 +119,6 @@
     },
     "redaction_note": {
       "envoyer": "Envoyer"
-    },
-    "qcm": {
-      "valider": "Valider"
     },
     "resultat": {
       "bon": "Bonnes réponses : {{nombre}}",

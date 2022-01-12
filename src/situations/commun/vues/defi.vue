@@ -94,7 +94,7 @@
         class="question-bouton bouton-arrondi bouton-arrondi--petit"
         @click="envoi"
       >
-        {{ $traduction('questions.qcm.valider') }}
+        {{ $traduction('defi.valider') }}
       </button>
     </question>
   </div>

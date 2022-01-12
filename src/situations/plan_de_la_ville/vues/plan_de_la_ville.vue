@@ -1,6 +1,6 @@
 <template>
   <transition-fade>
-    <qcm
+    <defi
       v-if="questions.length"
       :key="questionActive.id"
       :question="questionActive"
@@ -10,7 +10,7 @@
         :indexQuestion="indexQuestion"
         :nombreQuestions="questions.length"
       />
-    </qcm>
+    </defi>
   </transition-fade>
 </template>
 
@@ -19,7 +19,7 @@ import { mapState } from 'vuex';
 import Vue from 'vue';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 
-import Qcm from 'commun/vues/qcm';
+import Defi from 'commun/vues/defi';
 import TransitionFade from 'commun/vues/transition_fade';
 import Pagination from 'commun/vues/components/pagination';
 
@@ -29,7 +29,7 @@ import DragAndDrop from 'plan_de_la_ville/vues/components/drag_and_drop.vue';
 import DeplacementDroite from 'plan_de_la_ville/vues/components/deplacement_droite_maison_verte.vue';
 
 export default {
-  components: { Qcm, TransitionFade, Pagination },
+  components: { Defi, TransitionFade, Pagination },
 
   data () {
     return {

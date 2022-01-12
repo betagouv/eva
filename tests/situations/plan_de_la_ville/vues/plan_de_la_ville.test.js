@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { creeStore } from 'plan_de_la_ville/modeles/store';
-import Qcm from 'commun/vues/qcm';
+import Defi from 'commun/vues/defi';
 import PlanDeLaVille from 'plan_de_la_ville/vues/plan_de_la_ville';
 
 describe('La vue plan de la ville', function () {
@@ -16,10 +16,10 @@ describe('La vue plan de la ville', function () {
   });
 
   it('Affiche une question', function (done) {
-    expect(wrapper.findComponent(Qcm).exists()).toBe(false);
+    expect(wrapper.findComponent(Defi).exists()).toBe(false);
     store.commit('configureActe', { questions: [{ id: 'ma-question' }] });
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.findComponent(Qcm).exists()).toBe(true);
+      expect(wrapper.findComponent(Defi).exists()).toBe(true);
       done();
     });
   });
