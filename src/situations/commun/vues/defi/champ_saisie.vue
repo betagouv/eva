@@ -1,8 +1,11 @@
 <template>
   <div class="question-reponse">
-    <div class="input-numerique-conteneur"
-         :class="{ 'chiffres-espaces' : question.espacerCaracteres }">
-      <div class="conteneur-traits-saisie">
+    <div class="champ-numerique-conteneur"
+         :class="{ 'chiffres-espaces' : question.espacerChiffres }">
+      <div
+         v-if="estNumerique"
+         class="conteneur-traits-saisie"
+       >
         <span></span>
         <span></span>
         <span></span>
@@ -10,9 +13,12 @@
       </div>
       <input
           v-on:input="$emit('input', $event.target.value.trim())"
-          class="input input-numerique"
+          class="champ"
+          :class="{ 'champ-texte champ-texte--decale' : estTexte,
+                    'champ-numerique' : estNumerique }"
           :value="value"
-          maxlength="4"
+          :maxlength="maxLength"
+          :placeholder="question.placeholder"
           type='text'
           />
     </div>
@@ -20,6 +26,7 @@
 </template>
 
 <script>
+import 'commun/styles/champ.scss';
 import 'commun/styles/defi/champ_saisie.scss';
 
 export default {
@@ -30,6 +37,18 @@ export default {
     },
     value: {
       type: String
+    }
+  },
+
+  computed: {
+    estTexte () {
+      return this.question.sous_type === 'texte';
+    },
+    estNumerique () {
+      return this.question.sous_type === 'numerique';
+    },
+    maxLength () {
+      return this.estNumerique ? 4 : undefined;
     }
   }
 };

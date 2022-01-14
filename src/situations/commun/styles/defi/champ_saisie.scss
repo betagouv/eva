@@ -1,7 +1,7 @@
 @import 'commun/styles/variables.scss';
 
 .question {
-  .input-numerique-conteneur {
+  .champ-numerique-conteneur {
     position: relative;
     .conteneur-traits-saisie {
       position: absolute;
@@ -24,7 +24,7 @@
       }
     }
 
-    .input-numerique {
+    .champ-numerique {
       width: 12rem;
       letter-spacing: 1.39rem;
     }

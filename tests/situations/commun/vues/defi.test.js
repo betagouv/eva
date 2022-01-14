@@ -66,9 +66,9 @@ describe('La vue de la question QCM', function () {
     });
 
     it('quand les chiffres doivent être espacés', function () {
-      question.espacerCaracteres = true;
+      question.espacerChiffres = true;
       vue = composant(question);
-      expect(vue.findComponent(ChampSaisie).vm.question.espacerCaracteres).toBe(true);
+      expect(vue.findComponent(ChampSaisie).vm.question.espacerChiffres).toBe(true);
     });
 
     it('émet un évement réponse', function (done) {

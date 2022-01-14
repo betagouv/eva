@@ -17,7 +17,7 @@ describe('Le composant defi numérique', function () {
   it('affiche un champ de saisie', function () {
     const input = vue.findAll('input[type=text]');
     expect(input.length).toBe(1);
-    expect(input.at(0).classes('input-numerique')).toBe(true);
+    expect(input.at(0).classes('champ')).toBe(true);
   });
 
   describe('peut être utilisé avec la propriété v-model', function () {
@@ -35,21 +35,62 @@ describe('Le composant defi numérique', function () {
     });
   });
 
-  describe('quand les chiffres doivent être espacés', function () {
+  describe("quand il est d'un sous-type numérique", function () {
     beforeEach(function () {
-      vue = composant({ question: { espacerCaracteres: true } });
+      vue = composant({ question: { sous_type: 'numerique' } });
     });
 
-    it('ajoute la classe css', function () {
-      const conteneur = vue.find('.input-numerique-conteneur');
-      expect(conteneur.classes('chiffres-espaces')).toBe(true);
+    it('ajoute les classes css', function () {
+      const input = vue.find('input[type=text]');
+      expect(input.classes()).toEqual(['champ', 'champ-numerique']);
+    });
+
+    it('affiche des traits de saisie', function () {
+      expect(vue.find('.conteneur-traits-saisie').exists()).toBe(true);
+    });
+
+    it("limite la taille de l'input à 4", function () {
+      const input = vue.find('input[type=text]');
+      expect(input.element.getAttribute('maxlength')).toEqual('4');
+    });
+
+    describe("l'espacement des chiffres peut-être configuré", function () {
+      it('les chiffres peuvent être espacés à la demande', function () {
+        vue = composant({ question: { espacerChiffres: true } });
+        const conteneur = vue.find('.champ-numerique-conteneur');
+        expect(conteneur.classes('chiffres-espaces')).toBe(true);
+      });
+
+      it('par défaut les chiffres ne sont pas espacés', function () {
+        const conteneur = vue.find('.champ-numerique-conteneur');
+        expect(conteneur.classes('chiffres-espaces')).toBe(false);
+      });
     });
   });
 
-  describe('quand les chiffres ne doivent pas être espacés (par défaut)', function () {
-    it("n'ajoute pas de classe css", function () {
-      const conteneur = vue.find('.input-numerique-conteneur');
-      expect(conteneur.classes('chiffres-espaces')).toBe(false);
+  describe("quand il est d'un sous-type texte", function () {
+    beforeEach(function () {
+      vue = composant({ question: { sous_type: 'texte', placeholder: 'Réponce' } });
+    });
+
+    it('ajoute les classes css', function () {
+      vue = composant({ question: { sous_type: 'texte' } });
+      const input = vue.find('input[type=text]');
+      expect(input.classes()).toEqual(['champ', 'champ-texte', 'champ-texte--decale']);
+    });
+
+    it('affiche le placeholder', function () {
+      const input = vue.find('input[type=text]');
+      expect(input.element.getAttribute('placeholder')).toEqual('Réponce');
+    });
+
+    it("n'affiche pas de trais de saisie", function () {
+      expect(vue.find('.conteneur-traits-saisie').exists()).toBe(false);
+    });
+
+    it("ne limite pas la taille de l'input", function () {
+      const input = vue.find('input[type=text]');
+      expect(input.element.getAttribute('maxlength')).toEqual(null);
     });
   });
 });
