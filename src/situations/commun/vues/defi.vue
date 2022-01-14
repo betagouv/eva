@@ -21,18 +21,6 @@
             :question="question"
             v-model="reponse"
         />
-        <div
-          v-if="question.type === 'texte'"
-          class="question-reponse"
-        >
-          <input
-            v-model.trim="reponse"
-            class="input input-texte input-texte--decale"
-            placeholder="Réponse"
-            type='text'
-            @focusout="forceMinuscule"
-          />
-        </div>
         <div v-else-if="contenuDeTypeJauge">
           <jauge :question="question" @choixjauge="assigneChoixJauge" />
         </div>
@@ -91,7 +79,6 @@ import 'commun/styles/boutons.scss';
 import 'commun/styles/bouton.scss';
 import 'commun/styles/formulaire_qcm.scss';
 import 'commun/styles/jauge.scss';
-import 'commun/styles/inputs.scss';
 
 import ReponseAudioQcm from './reponse_audio_qcm';
 import BoutonLecture from 'commun/vues/bouton_lecture';
@@ -139,7 +126,7 @@ export default {
     },
 
     contenuDeTypeChamp () {
-      return this.question.type === 'champ-saisie' || this.question.type === 'texte';
+      return this.question.type === 'champ-saisie';
     },
 
     reponsesPossibles () {
@@ -153,7 +140,7 @@ export default {
 
     donneesReponse () {
       if (this.contenuDeTypeChamp) {
-        const succes = this.reponse === this.question.bonneReponse;
+        const succes = this.reponse.toLowerCase() === this.question.bonneReponse;
         return { reponse: this.reponse, succes: succes };
       } else if (this.question.type === 'action') {
         return { succes: true };
@@ -177,9 +164,6 @@ export default {
     },
     afficheLectureReponse (nomTechnique) {
       return this.$depotRessources.existeMessageAudio(nomTechnique);
-    },
-    forceMinuscule () {
-      this.reponse = this.reponse.toLowerCase();
     }
   }
 };

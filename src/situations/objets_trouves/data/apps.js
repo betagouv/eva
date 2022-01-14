@@ -90,7 +90,8 @@ const questionPhoto = {
 const questionDeverrouillage = {
   id: 'deverrouillage',
   type: 'champ-saisie',
-  espacerCaracteres: true,
+  sous_type: 'numerique',
+  espacerChiffres: true,
   illustration: AppDeverrouillage,
   icone: iconeDeverrouillage,
   description: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
@@ -429,7 +430,8 @@ const questionRepondeur1 = {
 const questionRepondeur2 = {
   id: 'nombre-tours-de-manege',
   type: 'champ-saisie',
-  espacerCaracteres: false,
+  sous_type: 'numerique',
+  espacerChiffres: false,
   nomTechnique: 'nombre-tours-de-manege',
   icone: iconeRepondeur,
   illustration: AppRepondeur2,

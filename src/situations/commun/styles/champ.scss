@@ -1,6 +1,6 @@
 @import 'variables';
 
-.input {
+.champ {
   border: 1px solid $bleu-gris;
   background: $couleur-fond;
   height: 3rem;
@@ -13,6 +13,7 @@
     font-family: $font-work-sans;
     font-size: 1rem;
     padding-left: 0.75rem;
+
     &--decale {
       margin-left: 2.25rem;
       width: calc(100% - 2.25rem);
@@ -26,3 +27,4 @@
     font-family: $font-roboto-mono;
   }
 }
+
