@@ -38,7 +38,7 @@
 </template>
 
 <script>
-
+import 'commun/styles/defi/jauge.scss';
 import BoutonLecture from 'commun/vues/bouton_lecture';
 
 export default ({

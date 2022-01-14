@@ -16,14 +16,11 @@
       />
       <div class="question-contenu">
         <component
-            v-if="question.type === 'champ-saisie'"
-            :is="question.type"
+            v-if="composantContenu"
+            :is="composantContenu"
             :question="question"
             v-model="reponse"
         />
-        <div v-else-if="question.type_qcm === 'jauge'">
-          <jauge :question="question" v-model="reponse"/>
-        </div>
         <div v-else>
           <div
             v-for="(element, index) in question.choix"
@@ -78,15 +75,14 @@
 import 'commun/styles/boutons.scss';
 import 'commun/styles/bouton.scss';
 import 'commun/styles/formulaire_qcm.scss';
-import 'commun/styles/jauge.scss';
 
 import ReponseAudioQcm from './reponse_audio_qcm';
 import BoutonLecture from 'commun/vues/bouton_lecture';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
 import Question from './question';
 import QuestionEntete from 'commun/vues/question_entete';
+import Jauge from 'commun/vues/defi/jauge';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
-import Jauge from './jauge';
 
 export default {
   components: { ReponseAudioQcm, BoutonLecture, Question, QuestionEntete, Jauge, ChampSaisie },
@@ -121,6 +117,14 @@ export default {
   },
 
   computed: {
+    composantContenu () {
+      if (this.question.type === 'action') return undefined;
+      if (this.question.type === 'qcm') {
+        return this.question.type_qcm === 'jauge' ? 'jauge' : undefined;
+      }
+      return this.question.type;
+    },
+
     contenuDeTypeChamp () {
       return this.question.type === 'champ-saisie';
     },
