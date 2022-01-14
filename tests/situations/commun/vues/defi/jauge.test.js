@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import VueJauge from 'commun/vues/jauge';
+import VueJauge from 'commun/vues/defi/jauge';
 import { creeStore } from 'objets_trouves/modeles/store';
 
 describe('La vue jauge', function () {
