@@ -21,8 +21,8 @@
             :question="question"
             v-model="reponse"
         />
-        <div v-else-if="contenuDeTypeJauge">
-          <jauge :question="question" @choixjauge="assigneChoixJauge" />
+        <div v-else-if="question.type_qcm === 'jauge'">
+          <jauge :question="question" v-model="reponse"/>
         </div>
         <div v-else>
           <div
@@ -121,17 +121,12 @@ export default {
   },
 
   computed: {
-    contenuDeTypeJauge () {
-      return this.question.type_qcm === 'jauge';
-    },
-
     contenuDeTypeChamp () {
       return this.question.type === 'champ-saisie';
     },
 
     reponsesPossibles () {
-      return this.contenuDeTypeChamp || this.contenuDeTypeJauge ||
-        (this.question.choix && this.question.choix.length > 0);
+      return this.contenuDeTypeChamp || (this.question.choix && this.question.choix.length > 0);
     },
 
     disabled () {
@@ -158,9 +153,6 @@ export default {
     envoi () {
       this.envoyer = true;
       this.$emit('reponse', this.donneesReponse);
-    },
-    assigneChoixJauge (valeur) {
-      this.reponse = valeur;
     },
     afficheLectureReponse (nomTechnique) {
       return this.$depotRessources.existeMessageAudio(nomTechnique);
