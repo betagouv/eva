@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 import DeplacementDroite from 'plan_de_la_ville/vues/components/deplacement_droite_maison_verte.vue';
 import FlechesClavier from 'commun/vues/components/fleches_clavier';
@@ -7,7 +7,11 @@ describe('La vue Déplacement droite maison verte', function () {
   let wrapper;
 
   beforeEach(function () {
-    wrapper = shallowMount(DeplacementDroite);
+    const localVue = createLocalVue();
+    localVue.prototype.$depotRessources = {
+      personnage: () => { return { src: 'personnage.png' }; }
+    };
+    wrapper = shallowMount(DeplacementDroite, { localVue });
   });
 
   describe('#deplacementValide', function () {
@@ -23,9 +27,25 @@ describe('La vue Déplacement droite maison verte', function () {
     });
   });
 
-  describe('sur ordinateur', function () {
-    it('affiche les touches flèches du clavier', function () {
-      expect(wrapper.findComponent(FlechesClavier).exists()).toBe(true);
+  describe('#deplacePersonnage', function () {
+    it('ajoute la classe deplacement-droite sur le personnage pour le choix déplacement droite', function (done) {
+      expect(wrapper.find('.personnage').classes('deplacement-droite')).toBe(false);
+      wrapper.vm.deplace = true;
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.find('.personnage').classes('deplacement-droite')).toBe(true);
+        done();
+      });
+    });
+  });
+
+  describe('#vacillePersonnage', function () {
+    it('ajoute la classe mauvais-deplacement sur le personnage pour le choix déplacement gauche', function (done) {
+      expect(wrapper.find('.personnage').classes('mauvais-deplacement')).toBe(false);
+      wrapper.vm.vacille = true;
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.find('.personnage').classes('mauvais-deplacement')).toBe(true);
+        done();
+      });
     });
   });
 });

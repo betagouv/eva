@@ -59,6 +59,11 @@ export default {
     animationDroiteTerminee: {
       type: Function,
       required: false
+    },
+    dureeAnimation: {
+      type: Number,
+      required: false,
+      default: 500
     }
   },
 
@@ -67,7 +72,6 @@ export default {
       choixGauche: 'gauche',
       choixDroit: 'droite',
       choixFait: null,
-      dureeAnimation: 500,
       flecheGauche,
       flecheDroite
     };
