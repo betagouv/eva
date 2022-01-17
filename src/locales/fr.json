@@ -117,9 +117,6 @@
     "aide_complementaire": {
       "message": "$t(messages_communs.aide_calculatrice)"
     },
-    "redaction_note": {
-      "envoyer": "Envoyer"
-    },
     "resultat": {
       "bon": "Bonnes réponses : {{nombre}}",
       "mauvais": "Mauvaises réponses : {{nombre}}",

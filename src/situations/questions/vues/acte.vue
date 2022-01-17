@@ -1,10 +1,9 @@
 <template>
   <div :key="etat">
     <transition-fade mode="out-in">
-      <component
+      <defi
         v-if="questionCourante"
         :key="questionCourante.id"
-        :is="composantQuestion"
         :question="questionCourante"
         @reponse="repondQuestion"
         :envoyerEvenementAffichage="acteEnCours"
@@ -13,7 +12,7 @@
           :indexQuestion="indexQuestion"
           :nombreQuestions="nombreQuestions"
         />
-      </component>
+      </defi>
     </transition-fade>
   </div>
 </template>
@@ -23,26 +22,16 @@ import { mapState, mapGetters } from 'vuex';
 
 import EvenementReponse from '../modeles/evenement_reponse';
 import TransitionFade from 'commun/vues/transition_fade';
-import VueDefi from 'commun/vues/defi';
-import VueQuestionRedactionNote from './redaction_note';
+import Defi from 'commun/vues/defi';
 import { DEMARRE } from 'commun/modeles/situation';
 import Pagination from 'commun/vues/components/pagination';
 
 export default {
-  components: { TransitionFade, Pagination },
+  components: { TransitionFade, Pagination, Defi },
   computed: {
     ...mapState(['indexQuestion', 'etat', 'fini']),
     ...mapGetters(['questionCourante', 'nombreQuestions']),
 
-    composantQuestion () {
-      if (!this.questionCourante) return;
-
-      const classesQuestions = {
-        redaction_note: VueQuestionRedactionNote,
-        qcm: VueDefi
-      };
-      return classesQuestions[this.questionCourante.type];
-    },
     acteEnCours () {
       return this.etat === DEMARRE;
     }

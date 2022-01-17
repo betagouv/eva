@@ -5,7 +5,6 @@ import EvenementReponse from 'questions/modeles/evenement_reponse';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 import Acte from 'questions/vues/acte';
 import Defi from 'commun/vues/defi';
-import QuestionRedactionNote from 'questions/vues/redaction_note';
 import { DEMARRE } from 'commun/modeles/situation';
 
 describe("La vue de l'acte « Question »", function () {
@@ -35,7 +34,7 @@ describe("La vue de l'acte « Question »", function () {
   it('affiche la première question', function () {
     const vue = shallowMount(Acte, { store, localVue });
 
-    expect(vue.findComponent(QuestionRedactionNote).exists()).toBe(true);
+    expect(vue.findComponent(Defi).exists()).toBe(true);
   });
 
   it('enregistre la réponse dans le modèle lorsque la vue répond', function (done) {

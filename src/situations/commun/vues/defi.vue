@@ -44,10 +44,11 @@ import QuestionEntete from 'commun/vues/question_entete';
 import Jauge from 'commun/vues/defi/jauge';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
 import Qcm from 'commun/vues/defi/qcm';
+import RedactionNote from 'commun/vues/defi/redaction_note';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
-  components: { Question, QuestionEntete, Jauge, ChampSaisie, Qcm },
+  components: { Question, QuestionEntete, Jauge, ChampSaisie, Qcm, RedactionNote },
 
   props: {
     question: {
@@ -80,9 +81,10 @@ export default {
 
   computed: {
     composantContenu () {
+      if (this.question.type === 'redaction_note') return RedactionNote;
       if (this.question.type === 'action') return undefined;
       if (this.question.type === 'qcm') {
-        return this.question.type_qcm === 'jauge' ? 'jauge' : 'qcm';
+        return this.question.type_qcm === 'jauge' ? Jauge : Qcm;
       }
       return this.question.type;
     },
@@ -103,6 +105,8 @@ export default {
       if (this.contenuDeTypeChamp) {
         const succes = this.reponse.toLowerCase() === this.question.bonneReponse;
         return { reponse: this.reponse, succes: succes };
+      } else if (this.question.type === 'redaction_note') {
+        return { reponse: this.reponse };
       } else if (this.question.type === 'action') {
         return { succes: true };
       } else {
