@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
 
-describe('Le composant defi numérique', function () {
+describe('Le composant champ de saisie', function () {
   let vue;
   let localVue;
 
