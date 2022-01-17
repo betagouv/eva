@@ -55,11 +55,21 @@ describe('Le componsant defi QCM', function () {
     expect(vue.findAll('img').length).toBe(3);
   });
 
-  it('envoie la réponse dans un événement input', function () {
-    question.choix = [{ id: 'uid-32', bonneReponse: true }];
-    const vue = composant(question);
-    vue.find('input[type=radio][value=uid-32]').setChecked();
-    expect(vue.emitted('input').length).toEqual(1);
-    expect(vue.emitted('input')[0][0]).toEqual('uid-32');
+  describe('envoie la réponse dans un événement input', function () {
+    it('quand il y a une bonne réponse', function () {
+      question.choix = [{ id: 'uid-32', bonneReponse: true }];
+      const vue = composant(question);
+      vue.find('input[type=radio][value=uid-32]').setChecked();
+      expect(vue.emitted('input').length).toEqual(1);
+      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32', succes: true });
+    });
+
+    it("quand il n'y a pas de bonne réponse", function () {
+      question.choix = [{ id: 'uid-32' }];
+      const vue = composant(question);
+      vue.find('input[type=radio][value=uid-32]').setChecked();
+      expect(vue.emitted('input').length).toEqual(1);
+      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32' });
+    });
   });
 });

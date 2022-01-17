@@ -1,7 +1,7 @@
 <template>
   <div class="question-contenu">
     <textarea
-        v-on:input="$emit('input', $event.target.value.trim())"
+        v-on:input="emetReponse($event.target.value)"
         :placeholder="question.reponse_placeholder"
         class="reponse-redaction"></textarea>
   </div>
@@ -15,6 +15,12 @@ export default {
     question: {
       type: Object,
       required: true
+    }
+  },
+
+  methods: {
+    emetReponse (valeur) {
+      this.$emit('input', { reponse: valeur.trim() });
     }
   }
 };
