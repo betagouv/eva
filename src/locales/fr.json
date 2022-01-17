@@ -30,13 +30,6 @@
       "label": "Entrez votre nom et prénom",
       "titre": "Bienvenue !"
     },
-    "contact": {
-      "titre": "Bienvenue {{ nom }} !",
-      "description": "L'équipe eva s'intéresse à l'évolution de votre parcours suite aux résultats obtenus. Si vous acceptez d’être recontacté·e, merci de nous laisser votre email et votre numéro de téléphone.",
-      "email": "Votre adresse email",
-      "telephone": "Votre numéro de téléphone",
-      "bouton": "Démarrer"
-    },
     "intro_consigne": {
       "bouton": "Lancer la consigne",
       "message": "Veuillez mettre vos écouteurs pour suivre les consignes audio.",

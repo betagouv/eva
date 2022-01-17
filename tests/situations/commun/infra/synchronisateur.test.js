@@ -91,8 +91,6 @@ describe('Synchronisateur', function () {
     describe("quand l'évaluation existe coté serveur", function () {
       const evaluation = {
         id: 1,
-        email: 'Marcelle@paris.fr',
-        telephone: '061234567',
         terminee_le: '2021-10-06T16:13:24.000+02:00'
       };
 
@@ -154,7 +152,7 @@ describe('Synchronisateur', function () {
 
       it('attend la fin de #metsAJourEvaluation', function (done) {
         window.localStorage.setItem('evaluation_1',
-          JSON.stringify({ id: 1, email: 'Marcelle@paris.fr', telephone: '061234567' }));
+          JSON.stringify({ id: 1 }));
 
         const spy = jest.spyOn(registreUtilisateur, 'metsAJourEvaluation')
           .mockImplementation(() => {
@@ -192,7 +190,7 @@ describe('Synchronisateur', function () {
       it("lors de l'enregistrement des evenements", function (done) {
         const erreur = new Error('erreur enregistrement evenement');
         window.localStorage.setItem('evaluation_1',
-          JSON.stringify({ id: 1, email: 'Marcelle@paris.fr', telephone: '061234567' }));
+          JSON.stringify({ id: 1 }));
 
         jest.spyOn(registreUtilisateur, 'metsAJourEvaluation')
           .mockImplementation(() => {

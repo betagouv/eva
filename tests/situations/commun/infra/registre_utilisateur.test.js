@@ -299,43 +299,6 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#enregistreContact()', function () {
-    describe('quand on est en ligne', function () {
-      it("met à jour les informations de l'évaluation", function () {
-        const registre = unRegistre({ id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' });
-        return registre.enregistreContact(1, 'email@contact.fr', '0612345678').then((utilisateur) => {
-          expect(utilisateur.email).toEqual('email@contact.fr');
-          expect(utilisateur.telephone).toEqual('0612345678');
-        });
-      });
-    });
-
-    describe('quand on est pas en ligne', function () {
-      let registre;
-
-      beforeEach(function () {
-        registre = unRegistre(
-          { id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' },
-          'https://serveur.com/',
-          false
-        );
-        registre.enregistreModeHorsLigne(true);
-      });
-
-      it("enregistre les informations de l'évaluation en local", function () {
-        const data = { id: 1, nom: 'test' };
-        registre.enregistreIdClient('identifiant_client');
-        registre.enregistreUtilisateurEnLocal(data);
-
-        return registre.enregistreContact(1, 'email@contact.fr', '0612345678').then((utilisateur) => {
-          expect(utilisateur.email).toEqual('email@contact.fr');
-          expect(utilisateur.telephone).toEqual('0612345678');
-          expect(registre.evaluationCourante()).toEqual({ id: 1, nom: 'test', email: 'email@contact.fr', telephone: '0612345678' });
-        });
-      });
-    });
-  });
-
   describe('#termineEvaluation()', function () {
     let registre;
 

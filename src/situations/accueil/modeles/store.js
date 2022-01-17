@@ -5,7 +5,6 @@ import ErreurCampagne from 'commun/infra/erreur_campagne';
 import { traduction } from 'commun/infra/internationalisation';
 
 export const DECONNECTE = 'déconnecté';
-export const CONTACT = 'contact';
 export const DEMARRE = 'démarré';
 
 Vue.use(Vuex);
@@ -28,7 +27,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         state.estConnecte = true;
         state.nom = nom;
         state.situationsFaites = [];
-        state.etat = CONTACT;
+        state.etat = DEMARRE;
       },
 
       deconnecte (state) {
@@ -50,10 +49,6 @@ export function creeStore (registreUtilisateur, registreCampagne) {
 
       metsAJourEvaluationTerminee (state, evaluationTerminee) {
         state.evaluationTerminee = evaluationTerminee;
-      },
-
-      demarre (state) {
-        state.etat = DEMARRE;
       }
     },
     actions: {
@@ -95,13 +90,6 @@ export function creeStore (registreUtilisateur, registreCampagne) {
               }
             });
         });
-      },
-      enregistreContact ({ commit }, { email, telephone }) {
-        const idEvaluation = registreUtilisateur.idEvaluation();
-        return registreUtilisateur.enregistreContact(idEvaluation, email, telephone)
-          .then(() => {
-            commit('demarre');
-          });
       },
       deconnecte () {
         return registreUtilisateur.deconnecte();
