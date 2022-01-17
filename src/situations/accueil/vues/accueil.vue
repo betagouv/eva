@@ -69,9 +69,6 @@
     </div>
     <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom" />
     <transition-fade>
-      <formulaire-contact v-if="estContact" />
-    </transition-fade>
-    <transition-fade>
       <intro-consigne
         v-if="estDemarre && indexBatiment === 0"
         :titre="$traduction('accueil.intro_consigne.titre')"
@@ -96,13 +93,12 @@ import 'commun/styles/modale.scss';
 import logo from '../../../public/logo-blanc.svg';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import FormulaireIdentification from './formulaire_identification';
-import FormulaireContact from './formulaire_contact';
 import AccesSituation from 'accueil/vues/acces_situation';
 import Fin from 'accueil/vues/fin';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
-import { CONTACT, DEMARRE } from '../modeles/store';
+import { DEMARRE } from '../modeles/store';
 
 const LARGEUR_SCENE = 1008;
 export const LARGEUR_BATIMENT = 411;
@@ -112,7 +108,7 @@ export const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 
 export default {
-  components: { BoiteUtilisateur, FormulaireIdentification, FormulaireContact, AccesSituation, IntroConsigne, Fin, TransitionFade },
+  components: { BoiteUtilisateur, FormulaireIdentification, AccesSituation, IntroConsigne, Fin, TransitionFade },
 
   props: {
     forceCampagne: {
@@ -193,10 +189,6 @@ export default {
 
     estDemarre () {
       return this.etat === DEMARRE;
-    },
-
-    estContact () {
-      return this.etat === CONTACT;
     }
   },
 

@@ -58,28 +58,6 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  enregistreContact (id, email, telephone) {
-    return new Promise((resolve, reject) => {
-      const data = { email: email, telephone: telephone };
-      this.metsAJourEvaluation(id, data)
-        .then((utilisateur) => {
-          this.enregistreUtilisateurEnLocal(utilisateur);
-          resolve(utilisateur);
-        })
-        .catch((xhr) => {
-          if (this.activeModeHorsLigne(xhr)) {
-            const utilisateur = this.evaluationCourante();
-            utilisateur.email = email;
-            utilisateur.telephone = telephone;
-            this.enregistreUtilisateurEnLocal(utilisateur);
-            resolve(utilisateur);
-          } else {
-            reject(xhr);
-          }
-        });
-    });
-  }
-
   termineEvaluation (id = this.idClient(), dateFin = new Date()) {
     const utilisateur = this.evaluation(id);
     utilisateur.terminee_le = dateFin;
