@@ -40,7 +40,8 @@ export default {
     },
     rotation: {
       type: Number,
-      required: false
+      required: false,
+      default: 0
     },
     couleur: {
       type: String,
