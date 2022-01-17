@@ -39,6 +39,7 @@ const dragAndDrop = {
 const questionCouleur = {
   id: 'couleur-maison',
   nom_technique: 'couleur_maison',
+  type: 'qcm',
   description: 'La maison est rouge',
   illustration: MaisonRouge,
   intitule: 'Cliquez sur la case qui correspond à la couleur de la maison puis sur Valider.',

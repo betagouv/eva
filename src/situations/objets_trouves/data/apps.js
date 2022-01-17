@@ -28,6 +28,7 @@ const questionAgendaEntrainement = {
   description: 'Voici le téléphone de Sophie.',
   intitule: 'Que faisait Sophie ce matin ?',
   metacompetence: 'ccf',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -58,6 +59,7 @@ const questionPhoto = {
   illustration: AppPhoto,
   intitule: "Qu'indique le badge de Denis ?",
   metacompetence: 'ccf',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -108,34 +110,35 @@ const questionAgenda = {
   intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
   consigne: 'Écoutez chaque proposition en cliquant sur les hauts parleurs',
   metacompetence: 'ccf',
+  type: 'qcm',
   choix: [
     {
-      id: 1,
+      id: '1',
       audio: 'agenda',
       bonneReponse: false
     },
     {
-      id: 2,
+      id: '2',
       audio: 'agenda',
       bonneReponse: true
     },
     {
-      id: 3,
+      id: '3',
       audio: 'agenda',
       bonneReponse: false
     },
     {
-      id: 4,
+      id: '4',
       audio: 'agenda',
       bonneReponse: false
     },
     {
-      id: 5,
+      id: '5',
       audio: 'agenda',
       bonneReponse: false
     },
     {
-      id: 6,
+      id: '6',
       audio: 'agenda',
       bonneReponse: false
     }
@@ -148,6 +151,7 @@ const questionNotes = {
   illustration: AppNotes,
   intitule: 'Que Sophie doit-elle penser à faire ?',
   metacompetence: 'ccf',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -182,6 +186,7 @@ const questionFin1 = {
   illustration: Fin,
   intitule: 'Où est Sophie à 14h ?',
   metacompetence: 'memorisation',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -216,6 +221,7 @@ const questionFin2 = {
   illustration: Fin,
   intitule: 'Pourquoi deviez-vous chercher Sophie ?',
   metacompetence: 'memorisation',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -245,6 +251,7 @@ const questionFin3 = {
   illustration: Fin,
   intitule: 'Avec qui Sophie a t-elle déjeuné ?',
   metacompetence: 'memorisation',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -280,6 +287,7 @@ const questionMessage1 = {
   illustration: AppMessage1,
   intitule: 'À quel bureau Sophie devrait-elle se rendre tout à l’heure ?',
   metacompetence: 'numeratie',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -315,6 +323,7 @@ const questionMessage2 = {
   illustration: AppMessage2,
   intitule: 'Dans quelle salle de jeu Sophie a-t-elle décidé d’aller ?',
   metacompetence: 'numeratie',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -350,6 +359,7 @@ const questionMessage3 = {
   illustration: AppMessage3,
   intitule: 'Où Sophie devait-elle retrouver Dounia ?',
   metacompetence: 'ccf',
+  type: 'qcm',
   choix: [
     {
       id: '1',
@@ -388,6 +398,7 @@ const questionRepondeur1 = {
   consigne: 'Écoutez le message en cliquant sur le bouton lecture.',
   extensionVue: 'lecture-message',
   metacompetence: 'ccf',
+  type: 'qcm',
   choix: [
     {
       id: '1',
