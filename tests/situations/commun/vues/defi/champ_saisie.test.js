@@ -21,17 +21,12 @@ describe('Le composant champ de saisie', function () {
   });
 
   describe('peut être utilisé avec la propriété v-model', function () {
-    it('afficher la valeur initial si elle est passé', function () {
-      vue = composant({ question: {}, value: 'valeurInitiale' });
-      const input = vue.find('input[type=text]');
-      expect(input.element.value).toEqual('valeurInitiale');
-    });
-
     it('envoie la réponse dans un événement input', function () {
+      vue = composant({ question: { bonneReponse: 'boulangerie' } });
       const input = vue.find('input[type=text]');
-      input.setValue('1800 ');
+      input.setValue('Boulangerie ');
       expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual('1800');
+      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'Boulangerie', succes: true });
     });
   });
 

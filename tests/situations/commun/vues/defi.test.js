@@ -40,25 +40,14 @@ describe("La vue d'un défi", function () {
       expect(vue.findComponent(Qcm).exists()).toBe(true);
     });
 
-    it('emet un événement réponse succès quand on appuie sur le bouton envoi', function (done) {
-      vue.findComponent(Qcm).vm.$emit('input', 'uid-32');
+    it('emet un événement réponse quand on appuie sur le bouton envoi', function (done) {
+      const reponse = { reponse: 'uid-32', succes: true };
+      vue.findComponent(Qcm).vm.$emit('input', reponse);
       vue.vm.$nextTick(() => {
         vue.find('.question-bouton').trigger('click');
         vue.vm.$nextTick(() => {
           expect(vue.emitted().reponse.length).toEqual(1);
-          expect(vue.emitted().reponse[0][0]).toEqual({ reponse: 'uid-32', succes: true });
-          done();
-        });
-      });
-    });
-
-    it('emet un événement réponse échec quand on appuie sur le bouton envoi', function (done) {
-      vue.findComponent(Qcm).vm.$emit('input', 'uid-32-2');
-      vue.vm.$nextTick(() => {
-        vue.find('.question-bouton').trigger('click');
-        vue.vm.$nextTick(() => {
-          expect(vue.emitted().reponse.length).toEqual(1);
-          expect(vue.emitted().reponse[0][0]).toEqual({ reponse: 'uid-32-2', succes: false });
+          expect(vue.emitted().reponse[0][0]).toEqual(reponse);
           done();
         });
       });
@@ -71,7 +60,7 @@ describe("La vue d'un défi", function () {
     vue.find('.question-bouton').trigger('click');
     vue.vm.$nextTick(() => {
       expect(vue.emitted().reponse.length).toEqual(1);
-      expect(vue.emitted().reponse[0][0]).toEqual({ succes: true });
+      expect(vue.emitted().reponse[0][0]).toEqual('');
       done();
     });
   });
@@ -94,18 +83,6 @@ describe("La vue d'un défi", function () {
       question.espacerChiffres = true;
       vue = composant(question);
       expect(vue.findComponent(ChampSaisie).vm.question.espacerChiffres).toBe(true);
-    });
-
-    it('émet un évement réponse', function (done) {
-      vue.findComponent(ChampSaisie).vm.$emit('input', '1800');
-      vue.vm.$nextTick(() => {
-        vue.find('.question-bouton').trigger('click');
-        vue.vm.$nextTick(() => {
-          expect(vue.emitted('reponse').length).toEqual(1);
-          expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: '1800', succes: true });
-          done();
-        });
-      });
     });
 
     describe('#disabled', function () {

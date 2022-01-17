@@ -12,7 +12,7 @@
         <span></span>
       </div>
       <input
-          v-on:input="$emit('input', $event.target.value.trim())"
+          v-on:input="emetReponse($event.target.value)"
           class="champ"
           :class="{ 'champ-texte champ-texte--decale' : estTexte,
                     'champ-numerique' : estNumerique }"
@@ -34,9 +34,6 @@ export default {
     question: {
       type: Object,
       required: true
-    },
-    value: {
-      type: String
     }
   },
 
@@ -49,6 +46,13 @@ export default {
     },
     maxLength () {
       return this.estNumerique ? 4 : undefined;
+    }
+  },
+
+  methods: {
+    emetReponse (valeur) {
+      const reponse = valeur.trim();
+      this.$emit('input', { reponse: reponse, succes: reponse.toLowerCase() === this.question.bonneReponse });
     }
   }
 };

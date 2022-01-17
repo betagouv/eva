@@ -64,7 +64,8 @@ export default {
     },
     selectReponse (valeur) {
       this.reponse = valeur;
-      this.$emit('input', valeur);
+      const choix = this.question.choix.find((choix) => choix.id === this.reponse);
+      this.$emit('input', { reponse: choix.id, succes: choix.bonneReponse });
     }
   }
 };

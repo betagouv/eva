@@ -75,7 +75,7 @@ export default {
   data () {
     return {
       envoyer: false,
-      reponse: ''
+      reponse: this.question.type === 'action' ? { succes: true } : ''
     };
   },
 
@@ -99,30 +99,13 @@ export default {
 
     disabled () {
       return (!this.reponse || this.envoyer) && this.reponsesPossibles;
-    },
-
-    donneesReponse () {
-      if (this.contenuDeTypeChamp) {
-        const succes = this.reponse.toLowerCase() === this.question.bonneReponse;
-        return { reponse: this.reponse, succes: succes };
-      } else if (this.question.type === 'redaction_note') {
-        return { reponse: this.reponse };
-      } else if (this.question.type === 'action') {
-        return { succes: true };
-      } else {
-        if (this.question.choix.length === 0) {
-          return { succes: true };
-        }
-        const choix = this.question.choix.find((choix) => choix.id === this.reponse);
-        return { reponse: choix.id, succes: choix.bonneReponse };
-      }
     }
   },
 
   methods: {
     envoi () {
       this.envoyer = true;
-      this.$emit('reponse', this.donneesReponse);
+      this.$emit('reponse', this.reponse);
     }
   }
 };

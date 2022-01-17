@@ -22,10 +22,10 @@ describe('Le composant RedactionNote', function () {
     it('envoie la réponse dans un événement input', function () {
       const vue = composant({ question: {} });
       const input = vue.find('textarea');
-      const reponse = 'Une rédaction de plusieurs\nlignes';
+      const reponse = 'Une rédaction de plusieurs\nlignes\n\n';
       input.setValue(reponse);
       expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual(reponse);
+      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'Une rédaction de plusieurs\nlignes' });
     });
   });
 });
