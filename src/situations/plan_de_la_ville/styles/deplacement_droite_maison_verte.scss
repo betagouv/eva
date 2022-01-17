@@ -1,6 +1,52 @@
+@keyframes deplacement-droite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(140px);
+  }
+}
+
+@keyframes mauvais-deplacement {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
+
 .actions-fleches {
   left: 2.5rem;
   top: 50%;
   transform: translateY(-50%);
   border-radius: 2.25rem;
+}
+
+.personnage {
+  position: absolute;
+  top: 6.5rem;
+  left: 13.875rem;
+}
+
+.deplacement-droite {
+  animation: deplacement-droite 1s steps(8, end) both;
+}
+
+.mauvais-deplacement {
+  animation: mauvais-deplacement 0.8s both;
 }
