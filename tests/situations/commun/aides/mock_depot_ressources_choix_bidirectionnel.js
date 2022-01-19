@@ -1,9 +1,9 @@
 export default class MockDepotRessources {
-  fondSituation () {
+  flecheGauche () {
     return { src: '' };
   }
 
-  croix () {
+  flecheDroite () {
     return { src: '' };
   }
 }

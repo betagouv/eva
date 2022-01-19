@@ -5,8 +5,8 @@ import sonConsigneTransition from 'maintenance/assets/consigne_transition_mainte
 import fondSituation from '../assets/fond-situation.jpg';
 import croix from '../assets/croix.png';
 import clavier from '../assets/clavier.svg';
-import flecheGauche from '../assets/fleche_gauche.svg';
-import flecheDroite from '../assets/fleche_droite.svg';
+import flecheGauche from 'commun/assets/choix_bidirectionnel/fleche_gauche.svg';
+import flecheDroite from 'commun/assets/choix_bidirectionnel/fleche_droite.svg';
 
 export default class DepotRessourcesMaintenance extends DepotRessourcesCommunes {
   constructor (chargeurs) {

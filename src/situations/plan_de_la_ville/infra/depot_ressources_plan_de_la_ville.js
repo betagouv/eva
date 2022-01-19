@@ -2,6 +2,7 @@ import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 import fondSituation from 'plan_de_la_ville/assets/accueil_sans_eglise.png';
 import egliseMaisonAPlacer from 'plan_de_la_ville/assets/eglise_maison_a_placer.png';
 import personnage from 'plan_de_la_ville/assets/personnage.png';
+
 import modeEmploi from 'plan_de_la_ville/assets/audio_questions/mode_emploi.mp3';
 import maisonRouge from 'plan_de_la_ville/assets/audio_questions/maison_rouge.mp3';
 import maisonBleue from 'plan_de_la_ville/assets/audio_questions/clic_maison_bleue.mp3';
@@ -13,6 +14,9 @@ import sonConsigne from 'plan_de_la_ville/assets/consigne_plan_de_la_ville.mp3';
 import sonChoixRouge from 'plan_de_la_ville/assets/audio_choix/rouge.mp3';
 import sonChoixBleue from 'plan_de_la_ville/assets/audio_choix/bleue.mp3';
 import sonChoixVerte from 'plan_de_la_ville/assets/audio_choix/verte.mp3';
+
+import flecheGauche from 'commun/assets/choix_bidirectionnel/fleche_gauche.svg';
+import flecheDroite from 'commun/assets/choix_bidirectionnel/fleche_droite.svg';
 
 const AUDIOS_QUESTIONS = {
   mode_emploi: modeEmploi,
@@ -34,7 +38,7 @@ const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, messagesAudios, fondSituation, sonConsigne);
-    this.charge([fondSituation, egliseMaisonAPlacer, personnage]);
+    this.charge([fondSituation, egliseMaisonAPlacer, personnage, flecheGauche, flecheDroite]);
   }
 
   chargeRessourcesQuestions (questions) {
@@ -59,5 +63,13 @@ export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommune
 
   personnage () {
     return this.ressource(personnage);
+  }
+
+  flecheGauche () {
+    return this.ressource(flecheGauche);
+  }
+
+  flecheDroite () {
+    return this.ressource(flecheDroite);
   }
 }

@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Lexique, { choixFrancais, choixPasFrancais } from 'maintenance/vues/lexique';
+import Lexique, { choixFrancais } from 'maintenance/vues/lexique';
 import EvenementIdentificationMot from 'maintenance/modeles/evenement_identification_mot';
 import EvenementApparitionMot from 'maintenance/modeles/evenement_apparition_mot';
 import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
@@ -61,80 +61,8 @@ describe('La vue lexique de la Maintenance', function () {
     expect(wrapper.emitted('terminer').length).toEqual(1);
   });
 
-  describe('sur ordinateur', function () {
-    beforeEach(function () {
-      wrapper.vm.estMobile = false;
-    });
-
-    it('affiche les touches du clavier', function () {
-      expect(wrapper.findComponent(ChoixBidirectionnel).exists()).toBe(true);
-    });
-
-    it("N'affiche pas les boutons permettant de répondre à la souris", function () {
-      expect(wrapper.find('button').exists()).toBe(false);
-    });
-  });
-
-  describe('sur tablette', function () {
-    beforeEach(function () {
-      wrapper.vm.estMobile = true;
-    });
-
-    it('affiche les boutons permettant de répondre avec le doigt', function () {
-      expect(wrapper.find('button').exists()).toBe(true);
-      expect(wrapper.find('.touches-horizontales').exists()).toBe(false);
-    });
-
-    it("rajoute la classe action-fleches--animation sur le bouton de gauche pour le choix 'français'", function (done) {
-      expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-fleches--animation')).toBe(false);
-      wrapper.vm.choixFait = choixFrancais;
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-fleches--animation')).toBe(true);
-        done();
-      });
-    });
-
-    it("rajoute la classe action-fleches--animation sur le bouton de droite pour le choix 'pas francais' ", function (done) {
-      expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-fleches--animation')).toBe(false);
-      wrapper.vm.choixFait = choixPasFrancais;
-
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-fleches--animation')).toBe(true);
-        done();
-      });
-    });
-
-    it("enregistre l'événement identificationMot quand on touche le bouton de gauche", function (done) {
-      wrapper.setProps({ lexique: [{ mot: 'premiermot', type: 'neutre' }, { mot: 'deuxiemot', type: 'neutre' }] });
-      wrapper.vm.afficheMot();
-      wrapper.vm.$nextTick(() => {
-        localVue.prototype.$journal = {
-          enregistre (evenement) {
-            expect(evenement).toBeInstanceOf(EvenementIdentificationMot);
-            expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: choixFrancais });
-            done();
-          }
-        };
-
-        wrapper.find('.bouton-arrondi:first-child').trigger('click');
-      });
-    });
-
-    it("enregistre l'événement identificationMot quand on touche le bouton de droite", function (done) {
-      wrapper.setProps({ lexique: [{ mot: 'premiermot', type: 'neutre' }, { mot: 'deuxiemot', type: 'neutre' }] });
-      wrapper.vm.afficheMot();
-      wrapper.vm.$nextTick(() => {
-        localVue.prototype.$journal = {
-          enregistre (evenement) {
-            expect(evenement).toBeInstanceOf(EvenementIdentificationMot);
-            expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: choixPasFrancais });
-            done();
-          }
-        };
-
-        wrapper.find('.bouton-arrondi:last-child').trigger('click');
-      });
-    });
+  it('affiche le composant de choix', function () {
+    expect(wrapper.findComponent(ChoixBidirectionnel).exists()).toBe(true);
   });
 
   it("enregistre l'événement identificationMot", function (done) {
