@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import FlechesClavier from 'commun/vues/components/fleches_clavier';
+import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
 import Touche from 'commun/vues/components/touche';
 import Keypress from 'vue-keypress';
 
@@ -8,7 +8,7 @@ describe('La vue flèches clavier', function () {
   let wrapper;
 
   beforeEach(function () {
-    wrapper = shallowMount(FlechesClavier);
+    wrapper = shallowMount(ChoixBidirectionnel);
   });
 
   it('affiche les composants une fois chargé', function () {
