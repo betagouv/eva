@@ -1,7 +1,7 @@
 <template>
   <div>
     <img :src="$depotRessources.personnage().src" :class="{ 'deplacement-droite': deplace, 'mauvais-deplacement': vacille  }" class="personnage" />
-    <fleches-clavier
+    <choix-bidirectionnel
       @animationDroiteTerminee="deplacementValide"
       @actionDroite="deplacePersonnage()"
       @actionGauche="vacillePersonnage()"
@@ -13,10 +13,10 @@
 <script>
 
 import 'plan_de_la_ville/styles/deplacement_droite_maison_verte.scss';
-import FlechesClavier from 'commun/vues/components/fleches_clavier';
+import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
 
 export default {
-  components: { FlechesClavier },
+  components: { ChoixBidirectionnel },
 
   data () {
     return {

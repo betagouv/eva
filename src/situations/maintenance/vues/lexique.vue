@@ -39,7 +39,7 @@
         <span class="bouton-arrondi-texte">{{ $traduction('maintenance.pas_francais') }}</span>
       </button>
     </div>
-    <fleches-clavier
+    <choix-bidirectionnel
       v-else
       :labelGauche="$traduction('maintenance.francais')"
       :labelDroit="$traduction('maintenance.pas_francais')"
@@ -56,7 +56,7 @@ import 'commun/styles/boutons.scss';
 import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
 import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
 
-import FlechesClavier from 'commun/vues/components/fleches_clavier';
+import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
 
 import { isMobile, isIOs, isAndroid } from 'mobile-device-detect';
 
@@ -66,7 +66,7 @@ export const choixFrancais = 'francais';
 export const choixPasFrancais = 'pasfrancais';
 
 export default {
-  components: { FlechesClavier },
+  components: { ChoixBidirectionnel },
 
   props: {
     lexique: {

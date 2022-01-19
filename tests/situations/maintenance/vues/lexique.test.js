@@ -3,7 +3,7 @@ import Lexique, { choixFrancais, choixPasFrancais } from 'maintenance/vues/lexiq
 import EvenementIdentificationMot from 'maintenance/modeles/evenement_identification_mot';
 import EvenementApparitionMot from 'maintenance/modeles/evenement_apparition_mot';
 import MockDepotRessources from '../aides/mock_depot_ressources_maintenance';
-import FlechesClavier from 'commun/vues/components/fleches_clavier';
+import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
 
 describe('La vue lexique de la Maintenance', function () {
   let wrapper;
@@ -67,7 +67,7 @@ describe('La vue lexique de la Maintenance', function () {
     });
 
     it('affiche les touches du clavier', function () {
-      expect(wrapper.findComponent(FlechesClavier).exists()).toBe(true);
+      expect(wrapper.findComponent(ChoixBidirectionnel).exists()).toBe(true);
     });
 
     it("N'affiche pas les boutons permettant de répondre à la souris", function () {
