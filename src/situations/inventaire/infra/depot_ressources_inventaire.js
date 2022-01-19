@@ -1,13 +1,13 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
-import sonConsigne from 'inventaire/assets/consigne_demarrage.wav';
+import sonConsigne from 'inventaire/assets/consigne_demarrage_inventaire.mp3';
 import croixRetourStock from 'inventaire/assets/croix.png';
 import boutonSaisie from 'inventaire/assets/saisie-reponse.svg';
 import loupe from 'inventaire/assets/loupe.svg';
 import retour from 'inventaire/assets/retour.svg';
 
-import reussite from 'inventaire/assets/reussite.wav';
-import echec from 'inventaire/assets/echec.wav';
+import reussite from 'inventaire/assets/reussite.mp3';
+import echec from 'inventaire/assets/echec.mp3';
 
 export default class DepotRessourcesInventaire extends DepotRessourcesCommunes {
   constructor (chargeurs) {

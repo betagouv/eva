@@ -1,7 +1,7 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
-import sonConsigneDemarrage from 'securite/assets/consigne_demarrage.wav';
-import sonConsigneTransition from 'securite/assets/consigne_transition.wav';
+import sonConsigneDemarrage from 'securite/assets/consigne_demarrage_securite.mp3';
+import sonConsigneTransition from 'securite/assets/consigne_transition_securite.mp3';
 import fondSituation from '../assets/fond-situation.jpg';
 import fondSituationEntrainement from '../assets/fond-situation-entrainement.jpg';
 import pictoDangerBienIdentifie from 'securite/assets/danger_bien_identifie.svg';

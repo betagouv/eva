@@ -1,12 +1,12 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
-import sonConsigne from 'tri/assets/consigne_demarrage.wav';
+import sonConsigne from 'tri/assets/consigne_demarrage_tri.mp3';
 import fondSituation from 'tri/assets/fond-situation.jpg';
 import fondChronometre from 'tri/assets/fond-chronometre.png';
 import aiguilleLongue from 'tri/assets/aiguille-longue.png';
 import aiguilleCourte from 'tri/assets/aiguille-courte.png';
-import sonBonBac from 'tri/assets/bon-bac.wav';
-import sonMauvaisBac from 'tri/assets/mauvais-bac.wav';
+import sonBonBac from 'tri/assets/bon-bac.mp3';
+import sonMauvaisBac from 'tri/assets/mauvais-bac.mp3';
 
 const bonbons = require.context('../assets', false, /bonbon[0-9]+\.png$/);
 

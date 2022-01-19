@@ -1,19 +1,19 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
-import sonConsigne from 'objets_trouves/assets/consigne_demarrage.wav';
-import sonConsigneTransition from 'objets_trouves/assets/consigne_transition.wav';
+import sonConsigne from 'objets_trouves/assets/consigne_demarrage_objets_trouves.mp3';
+import sonConsigneTransition from 'objets_trouves/assets/consigne_transition_objets_trouves.mp3';
 
 import fondSituation from '../assets/accueil.png';
 import iconeDeverrouillageDebloque from '../assets/icone-deverrouillage-debloque.png';
 
-import sonChoix1 from 'objets_trouves/assets/reponse_jardin_acclimatation.wav';
-import sonChoix2 from 'objets_trouves/assets/reponse_jardin_cirque.wav';
-import sonChoix3 from 'objets_trouves/assets/reponse_bateau_cirque.wav';
-import sonChoix4 from 'objets_trouves/assets/reponse_bateau_cactus.wav';
-import sonChoix5 from 'objets_trouves/assets/reponse_zoo_vautours.wav';
-import sonChoix6 from 'objets_trouves/assets/reponse_zoo_tigres.wav';
+import sonChoix1 from 'objets_trouves/assets/reponse_jardin_acclimatation.mp3';
+import sonChoix2 from 'objets_trouves/assets/reponse_jardin_cirque.mp3';
+import sonChoix3 from 'objets_trouves/assets/reponse_bateau_cirque.mp3';
+import sonChoix4 from 'objets_trouves/assets/reponse_bateau_cactus.mp3';
+import sonChoix5 from 'objets_trouves/assets/reponse_zoo_vautours.mp3';
+import sonChoix6 from 'objets_trouves/assets/reponse_zoo_tigres.mp3';
 
-import messageMickael from 'objets_trouves/assets/repondeur-message-mickael.wav';
-import messageRachel from 'objets_trouves/assets/repondeur-message-rachel.wav';
+import messageMickael from 'objets_trouves/assets/repondeur-message-mickael.mp3';
+import messageRachel from 'objets_trouves/assets/repondeur-message-rachel.mp3';
 
 const CHOIX_REPONSES_AUDIO_QCM = {
   agenda: [sonChoix1, sonChoix2, sonChoix3, sonChoix4, sonChoix5, sonChoix6]

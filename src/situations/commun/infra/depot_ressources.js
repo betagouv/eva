@@ -57,7 +57,7 @@ function chargeurJSON (src) {
 }
 
 const CHARGEURS = {
-  wav: chargeurAudio,
+  mp3: chargeurAudio,
   png: chargeurImage,
   svg: chargeurImage,
   jpg: chargeurImage,

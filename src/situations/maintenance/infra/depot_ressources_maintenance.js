@@ -1,7 +1,7 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
-import sonConsigneDemarrage from 'maintenance/assets/consigne_demarrage.wav';
-import sonConsigneTransition from 'maintenance/assets/consigne_transition.wav';
+import sonConsigneDemarrage from 'maintenance/assets/consigne_demarrage_maintenance.mp3';
+import sonConsigneTransition from 'maintenance/assets/consigne_transition_maintenance.mp3';
 import fondSituation from '../assets/fond-situation.jpg';
 import croix from '../assets/croix.png';
 import clavier from '../assets/clavier.svg';

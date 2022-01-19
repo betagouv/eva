@@ -5,17 +5,17 @@ import personnage from 'accueil/assets/personnage.png';
 import precedent from 'accueil/assets/precedent.svg';
 import suivant from 'accueil/assets/suivant.svg';
 import avatarFin from 'accueil/assets/avatar-fin.png';
-import consigneAccueil from 'accueil/assets/consigne_accueil.wav';
+import consigneAccueil from 'accueil/assets/consigne_accueil.mp3';
 import avatarAvis from 'accueil/assets/avatar-avis.svg';
 import avatarDeconnexion from 'accueil/assets/avatar-deconnexion.svg';
 import boutonAvis from 'accueil/assets/bouton-avis.svg';
 
-import introduction from 'accueil/assets/audios_resultat/resultat_introduction.wav';
-import attentionConcentration from 'accueil/assets/audios_resultat/attention_concentration.wav';
-import comparaisonTri from 'accueil/assets/audios_resultat/comparaison_tri.wav';
-import organisationMethode from 'accueil/assets/audios_resultat/organisation_methode.wav';
-import vigilanceControle from 'accueil/assets/audios_resultat/vigilance_controle.wav';
-import vitesseExecution from 'accueil/assets/audios_resultat/vitesse_execution.wav';
+import introduction from 'accueil/assets/audios_resultat/resultat_introduction.mp3';
+import attentionConcentration from 'accueil/assets/audios_resultat/attention_concentration.mp3';
+import comparaisonTri from 'accueil/assets/audios_resultat/comparaison_tri.mp3';
+import organisationMethode from 'accueil/assets/audios_resultat/organisation_methode.mp3';
+import vigilanceControle from 'accueil/assets/audios_resultat/vigilance_controle.mp3';
+import vitesseExecution from 'accueil/assets/audios_resultat/vitesse_execution.mp3';
 
 const batimentsContext = require.context('../assets', false, /batiment-.+\.png$/);
 

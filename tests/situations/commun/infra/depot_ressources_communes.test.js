@@ -10,12 +10,12 @@ describe('Le dépot de ressources communes', function () {
   let sonsCharges;
 
   beforeEach(function () {
-    sonConsigneDemarrage = 'consigneDemarrage.wav';
-    sonConsigneTransition = 'consigneTransition.wav';
-    sonAudioQuestion1 = 'sonQuestion1.wav';
+    sonConsigneDemarrage = 'consigneDemarrage.mp3';
+    sonConsigneTransition = 'consigneTransition.mp3';
+    sonAudioQuestion1 = 'sonQuestion1.mp3';
     sonsCharges = [];
     const _chargeurs = chargeurs({
-      wav: (_son) => {
+      mp3: (_son) => {
         sonsCharges.push(_son);
         return Promise.resolve(() => _son);
       }
