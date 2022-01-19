@@ -4,7 +4,7 @@ import sonConsigne from 'questions/assets/consigne_demarrage_questions.mp3';
 
 export default class DepotRessourcesQuestions extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, {}, sonConsigne);
+    super(chargeurs, {}, null, sonConsigne);
   }
 
   imageAideComplementaire () {

@@ -26,7 +26,7 @@ const AUDIOS_QUESTIONS = {
 
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, AUDIOS_QUESTIONS, sonConsigne, sonConsigneTransition);
+    super(chargeurs, AUDIOS_QUESTIONS, fondSituation, sonConsigne, sonConsigneTransition);
     this.charge([fondSituation, iconeDeverrouillageDebloque]);
     this.charge(CHOIX_REPONSES_AUDIO_QCM.agenda);
   }

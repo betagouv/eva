@@ -34,8 +34,6 @@
 
 <script>
 import i18next from 'i18next';
-import 'commun/styles/modale.scss';
-import 'commun/styles/consigne.scss';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
 import { traduction } from 'commun/infra/internationalisation';
 

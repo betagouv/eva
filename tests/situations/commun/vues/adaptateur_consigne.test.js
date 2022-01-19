@@ -21,6 +21,14 @@ describe("L'adaptateur de la vue Consigne", function () {
         return { src: 'chemin image aide complementaire' };
       }
 
+      existeFondConsigne () {
+        return false;
+      }
+
+      fondConsigne () {
+        return null;
+      }
+
       son () {
         return { src: 'chemin icone son' };
       }

@@ -105,6 +105,6 @@ const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesBienvenue extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, messagesAudios, sonConsigne);
+    super(chargeurs, messagesAudios, null, sonConsigne);
   }
 }

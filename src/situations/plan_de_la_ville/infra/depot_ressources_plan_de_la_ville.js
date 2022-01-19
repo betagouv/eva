@@ -33,7 +33,7 @@ const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, messagesAudios, sonConsigne);
+    super(chargeurs, messagesAudios, fondSituation, sonConsigne);
     this.charge([fondSituation, egliseMaisonAPlacer, personnage]);
   }
 
