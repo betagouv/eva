@@ -6,13 +6,25 @@ import son from 'commun/assets/son.svg';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.mp3';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
-  constructor (chargeurs, messagesAudios, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
+  constructor (chargeurs, messagesAudios, fondConsigne, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
     super(chargeurs);
     this.charge([casque, son, calculatrice, sonConsigneDemarrage, sonConsigneTransition, iconeDeconnexion]);
     this.charge(Object.values(messagesAudios));
+    if (fondConsigne) {
+      this.charge([fondConsigne]);
+      this.imgFondConsigne = fondConsigne;
+    }
     this.sonConsigneDemarrage = sonConsigneDemarrage;
     this.sonConsigneTransition = sonConsigneTransition;
     this.messagesAudios = messagesAudios;
+  }
+
+  fondConsigne () {
+    return this.ressource(this.imgFondConsigne);
+  }
+
+  existeFondConsigne () {
+    return !!this.imgFondConsigne;
   }
 
   consigneDemarrage () {

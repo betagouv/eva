@@ -5,11 +5,21 @@ import MockAudioNode from '../aides/mock_audio_node';
 
 describe('La vue intro-consigne', function () {
   let wrapper;
+  let localVue;
+  let depotRessources;
 
   beforeEach(function () {
-    const depotRessources = new class {
+    depotRessources = new class {
       casque () {
-        return { src: '' };
+        return { src: 'casque.png' };
+      }
+
+      existeFondConsigne () {
+        return false;
+      }
+
+      fondConsigne () {
+        throw new Error('fondConsigne non défini');
       }
 
       consigneDemarrage () {
@@ -20,7 +30,7 @@ describe('La vue intro-consigne', function () {
         return new MockAudioNode();
       }
     }();
-    const localVue = createLocalVue();
+    localVue = createLocalVue();
     localVue.prototype.$depotRessources = depotRessources;
     localVue.prototype.$traduction = () => {};
     wrapper = shallowMount(IntroConsigne, {
@@ -42,5 +52,21 @@ describe('La vue intro-consigne', function () {
   it('permet de passer directement au parc en appuyant sur S', function () {
     wrapper.trigger('keydown', { key: 's' });
     expect(wrapper.emitted(CONSIGNE_FINI).length).toEqual(1);
+  });
+
+  describe("l'image de fond", function () {
+    it("quand il n'y en a pas ne l'affiche pas", function () {
+      expect(wrapper.find('.fond-consigne').exists()).toBe(false);
+    });
+
+    it("quand il y en a une, l'affiche", function () {
+      depotRessources.existeFondConsigne = () => { return true; };
+      depotRessources.fondConsigne = () => { return { src: 'une_image.png' }; };
+      wrapper = shallowMount(IntroConsigne, {
+        propsData: { message: 'contenu', identifiantSituation: 'securite' },
+        localVue
+      });
+      expect(wrapper.find('.fond-consigne').element.getAttribute('src')).toEqual('une_image.png');
+    });
   });
 });

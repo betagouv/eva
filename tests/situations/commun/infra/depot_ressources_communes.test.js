@@ -3,28 +3,45 @@ import DepotRessources from 'commun/infra/depot_ressources';
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
 describe('Le dépot de ressources communes', function () {
+  const imgFondConsigne = 'fondConsigne.png';
+  const sonConsigneDemarrage = 'consigneDemarrage.mp3';
+  const sonConsigneTransition = 'consigneTransition.mp3';
+  const sonAudioQuestion1 = 'sonQuestion1.mp3';
   let depot;
-  let sonConsigneDemarrage;
-  let sonConsigneTransition;
-  let sonAudioQuestion1;
   let sonsCharges;
+  let imgCharges;
 
   beforeEach(function () {
-    sonConsigneDemarrage = 'consigneDemarrage.mp3';
-    sonConsigneTransition = 'consigneTransition.mp3';
-    sonAudioQuestion1 = 'sonQuestion1.mp3';
     sonsCharges = [];
+    imgCharges = [];
     const _chargeurs = chargeurs({
       mp3: (_son) => {
         sonsCharges.push(_son);
         return Promise.resolve(() => _son);
+      },
+      png: (_img) => {
+        imgCharges.push(_img);
+        return Promise.resolve(() => _img);
       }
     });
-    depot = new DepotRessourcesCommunes(_chargeurs, { audioQuestion1: sonAudioQuestion1 }, sonConsigneDemarrage, sonConsigneTransition);
+    depot = new DepotRessourcesCommunes(_chargeurs, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition);
   });
 
   it('étend DépotRessources', function () {
     expect(depot).toBeInstanceOf(DepotRessources);
+  });
+
+  describe('peut gérer une image de fond pour la consigne', function () {
+    it('charge le fond de la consigne', function () {
+      expect(imgCharges).toContain(imgFondConsigne);
+    });
+
+    it("retourne si l'image de fond de la consigne existe ou pas", function () {
+      expect(depot.existeFondConsigne()).toBe(true);
+      depot = new DepotRessourcesCommunes(chargeurs({}), {}, null, sonConsigneDemarrage);
+
+      expect(depot.existeFondConsigne()).toBe(false);
+    });
   });
 
   it('charge la consigne de demarrage', function () {

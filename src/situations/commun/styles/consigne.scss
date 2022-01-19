@@ -23,6 +23,15 @@
     width: 100%;
   }
 }
+
+.fond-consigne {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+
 .overlay.modale {
   .modale-interieur {
     &-message {

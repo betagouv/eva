@@ -5,7 +5,7 @@ import sonConsigneTransition from 'livraison/assets/consigne_transition_livraiso
 
 export default class DepotRessourcesLivraison extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, {}, sonConsigne, sonConsigneTransition);
+    super(chargeurs, {}, null, sonConsigne, sonConsigneTransition);
   }
 
   imageAideComplementaire () {

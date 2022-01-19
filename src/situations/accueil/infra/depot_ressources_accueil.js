@@ -30,7 +30,7 @@ const AUDIOS_RESULTAT = {
 
 export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, AUDIOS_RESULTAT, consigneAccueil);
+    super(chargeurs, AUDIOS_RESULTAT, fondAccueil, consigneAccueil);
     this.charge([fondAccueil, personnage, precedent, suivant, casque, avatarFin, avatarAvis, avatarDeconnexion, boutonAvis]);
     this.chargeContexte(batimentsContext);
     this.batiments = batimentsContext.keys().reduce((memo, fichier) => {
