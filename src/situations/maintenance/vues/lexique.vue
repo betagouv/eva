@@ -12,35 +12,7 @@
       :src="$depotRessources.croix().src"
       class="croix"
       >
-    <div
-      v-if="estMobile"
-      class="actions-fleches"
-      >
-      <button
-        :class="{ 'actions-fleches--animation': choixFait === choixFrancais }"
-         class="bouton-arrondi bouton-arrondi-vert"
-        @click="enregistreReponse(choixFrancais)"
-      >
-        <img
-          :src="$depotRessources.flecheGauche().src"
-          class="bouton-arrondi-icone bouton-arrondi-icone--droite"
-        />
-        <span class="bouton-arrondi-texte">{{ $traduction('maintenance.francais') }}</span>
-      </button>
-      <button
-        :class="{ 'actions-fleches--animation': choixFait === choixPasFrancais }"
-        class="bouton-arrondi bouton-arrondi-rouge"
-        @click="enregistreReponse(choixPasFrancais)"
-      >
-        <img
-          :src="$depotRessources.flecheDroite().src"
-          class="bouton-arrondi-icone"
-        />
-        <span class="bouton-arrondi-texte">{{ $traduction('maintenance.pas_francais') }}</span>
-      </button>
-    </div>
     <choix-bidirectionnel
-      v-else
       :labelGauche="$traduction('maintenance.francais')"
       :labelDroit="$traduction('maintenance.pas_francais')"
       @actionGauche="enregistreReponse(choixFrancais)"
@@ -51,14 +23,11 @@
 
 <script>
 import 'maintenance/styles/lexique.scss';
-import 'commun/styles/boutons.scss';
 
 import EvenementIdentificationMot from '../modeles/evenement_identification_mot';
 import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
 
 import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
-
-import { isMobile, isIOs, isAndroid } from 'mobile-device-detect';
 
 const DELAI_CROIX = 500;
 
@@ -82,8 +51,7 @@ export default {
       mot: false,
       choixFait: null,
       choixFrancais,
-      choixPasFrancais,
-      estMobile: isMobile || isIOs || isAndroid
+      choixPasFrancais
     };
   },
 

@@ -1,5 +1,32 @@
 <template>
-  <div class="actions-fleches clavier">
+  <div
+    v-if="estMobile"
+    class="actions-fleches mobile"
+    >
+    <button
+      :class="{ 'actions-fleches--animation': choixFait === choixGauche }"
+       class="bouton-arrondi bouton-arrondi-vert"
+      @click="selectionne(choixGauche)"
+    >
+      <img
+        :src="$depotRessources.flecheGauche().src"
+        class="bouton-arrondi-icone bouton-arrondi-icone--droite"
+      />
+      <span class="bouton-arrondi-texte">{{ labelGauche }}</span>
+    </button>
+    <button
+      :class="{ 'actions-fleches--animation': choixFait === choixDroit }"
+      class="bouton-arrondi bouton-arrondi-rouge"
+      @click="selectionne(choixDroit)"
+    >
+      <img
+        :src="$depotRessources.flecheDroite().src"
+        class="bouton-arrondi-icone bouton-arrondi-icone--gauche"
+      />
+      <span class="bouton-arrondi-texte">{{ labelDroit }}</span>
+    </button>
+  </div>
+  <div class="actions-fleches clavier" v-else>
     <Keypress key-event="keydown" :key-code="flecheGauche" @success="selectionne(choixGauche)" />
     <Keypress key-event="keydown" :key-code="flecheDroite" @success="selectionne(choixDroit)" />
     <div
@@ -26,6 +53,10 @@
 import Touche from './touche';
 import Keypress from 'vue-keypress';
 import 'commun/styles/fleches_clavier.scss';
+import 'commun/styles/boutons.scss';
+import 'commun/styles/choix_bidirectionnel.scss';
+
+import { isMobile, isIOs, isAndroid } from 'mobile-device-detect';
 
 export const flecheGauche = 37;
 export const flecheDroite = 39;
@@ -69,6 +100,7 @@ export default {
 
   data () {
     return {
+      estMobile: isMobile || isIOs || isAndroid,
       choixGauche: 'gauche',
       choixDroit: 'droite',
       choixFait: null,
