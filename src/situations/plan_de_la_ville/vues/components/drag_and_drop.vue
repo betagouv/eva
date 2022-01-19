@@ -4,7 +4,7 @@
     >
     <img
       :style="positionMaison"
-      :src="$depotRessources.egliseMaisonAPlacer().src"
+      :src="egliseMaisonAPlacer"
       v-on:mousedown="debuteSelection"
       v-on:mouseup="termineSelection"
       v-on:dragstart.prevent=""
@@ -42,7 +42,8 @@ export default {
       }
     });
     const deplaceur = new DeplaceurPieces(scene.largeur, scene.hauteur);
-    return { piece, emplacementCible, deplaceur };
+    const egliseMaisonAPlacer = this.$depotRessources.egliseMaisonAPlacer().src;
+    return { piece, emplacementCible, deplaceur, egliseMaisonAPlacer };
   },
 
   computed: {
