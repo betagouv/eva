@@ -4,7 +4,7 @@ export const chargeurDefaut = (src) => Promise.resolve(() => { return src; });
 export default function (chargeurs = {}) {
   return {
     svg: chargeurDefaut,
-    wav: () => Promise.resolve(() => new MockAudioNode()),
+    mp3: () => Promise.resolve(() => new MockAudioNode()),
     png: chargeurDefaut,
     jpg: chargeurDefaut,
     jpeg: chargeurDefaut,

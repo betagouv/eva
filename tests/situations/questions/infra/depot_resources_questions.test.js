@@ -6,7 +6,7 @@ describe('Le dépot ressource de la situation Question', function () {
   let depot;
 
   beforeEach(function () {
-    depot = new DepotRessourcesQuestions(chargeurs({ wav: chargeurDefaut }));
+    depot = new DepotRessourcesQuestions(chargeurs({ mp3: chargeurDefaut }));
   });
 
   it('étend DépotRessourcesCommune', function () {

@@ -3,7 +3,7 @@ import casque from 'commun/assets/casque.svg';
 import calculatrice from 'commun/assets/calculatrice.svg';
 import iconeDeconnexion from 'commun/assets/sign_out.svg';
 import son from 'commun/assets/son.svg';
-import sonConsigneBlanche from 'commun/assets/consigne_blanche.wav';
+import sonConsigneBlanche from 'commun/assets/consigne_blanche.mp3';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
   constructor (chargeurs, messagesAudios, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {

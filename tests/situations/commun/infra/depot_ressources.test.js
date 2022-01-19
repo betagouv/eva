@@ -4,28 +4,28 @@ import chargeurs from '../../commun/aides/mock_chargeurs';
 describe('le dépôt de ressources', function () {
   it('permet de charger toutes les ressources', function () {
     const depot = new DepotRessources(chargeurs());
-    depot.charge(['test.png', 'test2.png', 'test.wav', 'test.jpeg']);
+    depot.charge(['test.png', 'test2.png', 'test.mp3', 'test.jpeg']);
     expect(depot.promesses.length).toBe(4);
   });
 
   it('résout la promesse lorsque toutes les ressources sont chargées', function (done) {
     const depot = new DepotRessources(chargeurs());
-    depot.charge(['test.png', 'test.wav']);
+    depot.charge(['test.png', 'test.mp3']);
     depot.chargement().then(() => done());
   });
 
   it('rejette la promesse lorsque une ressource est en erreur', function (done) {
     const depot = new DepotRessources({
-      wav: () => Promise.resolve(),
+      mp3: () => Promise.resolve(),
       png: () => Promise.reject(new Error('test'))
     });
-    depot.charge(['test.png', 'test.wav']);
+    depot.charge(['test.png', 'test.mp3']);
     depot.chargement().catch(() => done());
   });
 
   it('sait charger des ressources en plusieurs fois', function () {
     const depot = new DepotRessources(chargeurs());
-    depot.charge(['test.png', 'test.wav']);
+    depot.charge(['test.png', 'test.mp3']);
     depot.charge(['unFichierSupplementaire.png']);
 
     expect(depot.promesses.length).toBe(3);

@@ -5,7 +5,7 @@ describe('le dépôt ressource de la situation plan de la ville', function () {
   let depot;
 
   beforeEach(function () {
-    depot = new DepotRessourcesPlanDeLaVille(chargeurs({ wav: chargeurDefaut }));
+    depot = new DepotRessourcesPlanDeLaVille(chargeurs({ mp3: chargeurDefaut }));
   });
 
   describe('#chargeConfigurations', function () {
