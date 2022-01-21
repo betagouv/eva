@@ -13,17 +13,17 @@
           <div>
             <label
               v-if="!nomForce"
-              for="formulaire-identification-input-nom">
+              for="formulaire-identification-champ-nom">
               {{ $traduction('accueil.identification.label') }}
             </label>
             <div
               class="element-formulaire"
               v-if="!nomForce">
               <input
-                id="formulaire-identification-input-nom"
+                id="formulaire-identification-champ-nom"
                 v-model.trim="nom"
                 type="text"
-                class="input-accueil"
+                class="champ champ-texte champ-texte-accueil"
                 autofocus>
               <span
                 v-if="erreurFormulaireIdentification.nom"
@@ -32,18 +32,17 @@
           </div>
           <div>
             <label
-              v-if="!campagneForcee"
-              for="formulaire-identification-input-campagne">
+              for="formulaire-identification-champ-campagne">
               {{ $traduction('accueil.identification.campagne') }}
             </label>
             <div
-              v-if="!campagneForcee"
               class="element-formulaire">
               <input
-                id="formulaire-identification-input-campagne"
+                id="formulaire-identification-champ-campagne"
                 v-model.trim="campagne"
                 type="text"
-                class="input-accueil"
+                class="champ champ-texte champ-texte-accueil"
+                :disabled="campagneForcee"
                 :class="{ erreur_champ: erreurFormulaireIdentification.code }"
                 @focusout="forceMajuscule">
               <div
@@ -68,6 +67,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import 'commun/styles/champ.scss';
 import 'accueil/styles/formulaire.scss';
 import 'commun/styles/boutons.scss';
 import TransitionFade from 'commun/vues/transition_fade';
@@ -91,7 +91,7 @@ export default {
   data () {
     return {
       nom: this.forceNom,
-      campagne: this.forceCampagne,
+      campagne: this.forceCampagne.toUpperCase(),
       enCours: false,
       cgu: false
     };

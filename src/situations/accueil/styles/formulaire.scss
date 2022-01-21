@@ -22,20 +22,23 @@
   }
 }
 
-.input-accueil {
-  border: 1px solid $bleu-gris;
+.champ-texte {
+  &-accueil {
   border-radius: .75rem;
   width: 18.4rem;
-  height: 3rem;
   padding: 1rem;
   font-size: 1.1rem;
-  font-family: $font-work-sans;
+  background: white;
   transition: border .3s;
   outline: none;
   color: $bleu-fonce;
 
-  &:active, &:focus, &:hover {
-    border-color: darken($bleu-gris, 10%);
+    &:active, &:focus, &:hover {
+      border-color: darken($bleu-gris, 10%);
+    }
+    &:disabled {
+      background-color: $bleu-gris;
+    }
   }
 }
 

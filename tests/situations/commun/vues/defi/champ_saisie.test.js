@@ -52,12 +52,12 @@ describe('Le composant champ de saisie', function () {
     describe("l'espacement des chiffres peut-être configuré", function () {
       it('les chiffres peuvent être espacés à la demande', function () {
         vue = composant({ question: { espacerChiffres: true } });
-        const conteneur = vue.find('.champ-numerique-conteneur');
+        const conteneur = vue.find('.champ-saisie-conteneur');
         expect(conteneur.classes('chiffres-espaces')).toBe(true);
       });
 
       it('par défaut les chiffres ne sont pas espacés', function () {
-        const conteneur = vue.find('.champ-numerique-conteneur');
+        const conteneur = vue.find('.champ-saisie-conteneur');
         expect(conteneur.classes('chiffres-espaces')).toBe(false);
       });
     });

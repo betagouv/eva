@@ -1,6 +1,6 @@
 <template>
   <div class="question-reponse">
-    <div class="champ-numerique-conteneur"
+    <div class="champ-saisie-conteneur"
          :class="{ 'chiffres-espaces' : question.espacerChiffres }">
       <div
          v-if="estNumerique"

@@ -38,15 +38,10 @@ describe("Le formulaire d'identification", function () {
     });
   });
 
-  it('écris un code de campagne en majuscule', function (done) {
-    const champCodeCampagne = wrapper.findAll('input[type=text]').at(1);
-    champCodeCampagne.setValue('Mon code campagne');
-
+  it('écris un code de campagne en majuscule', function () {
+    wrapper.vm.campagne = 'Mon code campagne';
     wrapper.vm.forceMajuscule();
-    wrapper.vm.$nextTick(() => {
-      expect(champCodeCampagne.element.value).toEqual('MON CODE CAMPAGNE');
-      done();
-    });
+    expect(wrapper.vm.campagne).toEqual('MON CODE CAMPAGNE');
   });
 
   it("inscrit la personne avec le nom et la campagne à l'appui sur le bouton", function (done) {
@@ -63,8 +58,8 @@ describe("Le formulaire d'identification", function () {
       };
       return Promise.resolve({ id: '1' });
     };
-    wrapper.findAll('input[type=text]').at(0).setValue('  Mon pseudo  ');
-    wrapper.findAll('input[type=text]').at(1).setValue('Mon code campagne');
+    wrapper.find('#formulaire-identification-champ-nom').setValue('  Mon pseudo  ');
+    wrapper.find('#formulaire-identification-champ-campagne').setValue('Mon code campagne');
     wrapper.find('input[type=checkbox]').setChecked();
     wrapper.vm.$nextTick(() => {
       wrapper.find('button').trigger('submit');
@@ -175,19 +170,20 @@ describe("Le formulaire d'identification", function () {
     });
   });
 
-  it('cache le champ campagne si il y a une propriété forceCampagne', function () {
-    expect(wrapper.findAll('.input-accueil').length).toBe(2);
+  it('désactive le champ campagne si il y a une propriété forceCampagne', function () {
+    expect(wrapper.findAll('.champ-texte-accueil').length).toBe(2);
     wrapper = mount(FormulaireIdentification, { store, localVue, propsData: { forceCampagne: 'ete-2019' } });
-    expect(wrapper.vm.campagne).toEqual('ete-2019');
-    expect(wrapper.findAll('label').length).toBe(2);
-    expect(wrapper.findAll('.input-accueil').length).toBe(1);
+    expect(wrapper.vm.campagne).toEqual('ETE-2019');
+    expect(wrapper.findAll('label').length).toBe(3);
+    const champs = wrapper.findAll('.champ-texte-accueil');
+    expect(champs.at(1).attributes('disabled')).toBe('disabled');
   });
 
   it('cache le champ nom/prénom si il y a une propriété forceNom', function () {
-    expect(wrapper.findAll('.input-accueil').length).toBe(2);
+    expect(wrapper.findAll('.champ-texte-accueil').length).toBe(2);
     wrapper = mount(FormulaireIdentification, { store, localVue, propsData: { forceNom: 'franck-poulain' } });
     expect(wrapper.vm.nom).toEqual('franck-poulain');
     expect(wrapper.findAll('label').length).toBe(2);
-    expect(wrapper.findAll('.input-accueil').length).toBe(1);
+    expect(wrapper.findAll('.champ-texte-accueil').length).toBe(1);
   });
 });
