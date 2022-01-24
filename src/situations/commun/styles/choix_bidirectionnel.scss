@@ -1,24 +1,89 @@
-.actions-fleches.mobile {
-  width: 26.25rem;
+@import 'commun/styles/variables.scss';
 
-  .bouton-arrondi {
-    padding: 0.375rem 0;
-    font-size: .875rem;
+@keyframes grossit-bouton {
+  50% {
+    transform: scale(1.1);
   }
 
-  .bouton-arrondi-vert {
-    text-align: right;
+  100% {
+    transform: scale(1);
+  }
+}
+
+.actions-fleches {
+  background-color: $couleur-fond;
+  position: absolute;
+  padding: 1.5rem;
+  display: flex;
+  width: 60%;
+  line-height: normal;
+
+  &.clavier {
+    padding: 0.5rem;
+    width: 42%;
   }
 
-  .bouton-arrondi-rouge {
-    text-align: left;
+  > button {
+    flex: 50%;
+    margin: 0 0.5rem;
   }
 
-  .bouton-arrondi-icone--droite + .bouton-arrondi-texte {
-    margin-right: 2.875rem;
+  &--animation {
+    animation: grossit-bouton 0.3s;
   }
 
-  .bouton-arrondi-icone--gauche + .bouton-arrondi-texte {
-    margin-left: 2.875rem;
+  .touches-verticales {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    svg {
+      rect,
+      path {
+        stroke: $bleu-gris;
+      }
+    }
+
+    .touche:first-child {
+      margin-bottom: 0.125rem;
+    }
+  }
+
+  .touches-horizontales {
+    flex: 50%;
+    margin: 0 0.125rem;
+    position: relative;
+    font-size: 1rem;
+    font-weight: normal;
+    display: flex;
+    align-items: flex-end;
+
+    &.touche-gauche {
+      justify-content: flex-end;
+    }
+  }
+
+  &.mobile {
+    width: 26.25rem;
+
+    .bouton-arrondi {
+      padding: 0.375rem 0;
+      font-size: 0.875rem;
+    }
+
+    .bouton-arrondi-vert {
+      text-align: right;
+    }
+
+    .bouton-arrondi-rouge {
+      text-align: left;
+    }
+
+    .bouton-arrondi-icone--droite + .bouton-arrondi-texte {
+      margin-right: 2.875rem;
+    }
+
+    .bouton-arrondi-icone--gauche + .bouton-arrondi-texte {
+      margin-left: 2.875rem;
+    }
   }
 }

@@ -52,7 +52,6 @@
 <script>
 import Touche from './touche';
 import Keypress from 'vue-keypress';
-import 'commun/styles/fleches_clavier.scss';
 import 'commun/styles/boutons.scss';
 import 'commun/styles/choix_bidirectionnel.scss';
 
