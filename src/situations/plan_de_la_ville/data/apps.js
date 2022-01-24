@@ -82,7 +82,7 @@ const deplacementDroiteMaisonVerte = {
   nom_technique: 'deplacement_droite_maison_verte',
   illustration: DeplacementDroiteMaisonVerte,
   description: 'Dans quelle direction le personnage situé au milieu de l’écran doit-il aller pour se rendre à la maison verte ?',
-  intitule: 'Pour répondre, appuyez sur la flèche gauche ou droite de votre clavier.',
+  intitule: 'Pour répondre, appuyez sur la flèche gauche ou droite de votre clavier.<br><br>Sur tablette, les boutons affichés vous permettent de déplacer le personnage. Le bouton vert pour aller à gauche et le bouton rouge pour aller à droite.',
   extensionVue: 'deplacement-droite-maison-verte'
 };
 
