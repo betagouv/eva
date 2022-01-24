@@ -42,7 +42,7 @@
                 v-model.trim="campagne"
                 type="text"
                 class="champ champ-texte champ-texte-accueil"
-                :disabled="campagneForcee"
+                :disabled="champCodeEstDesactive"
                 :class="{ erreur_champ: erreurFormulaireIdentification.code }"
                 @focusout="forceMajuscule">
               <div
@@ -109,6 +109,12 @@ export default {
 
     nomForce () {
       return this.forceNom !== '';
+    },
+
+    champCodeEstDesactive () {
+      if (this.erreurFormulaireIdentification) { return false; }
+      if (this.campagneForcee) { return true; }
+      return false;
     }
   },
 
