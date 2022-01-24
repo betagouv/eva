@@ -6,9 +6,10 @@ import { pourcentageX } from 'commun/data/scene.js';
 
 describe('glisser déposer', function () {
   let wrapper;
+  let localVue;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
+    localVue = createLocalVue();
     localVue.prototype.$traduction = () => {};
     localVue.prototype.$depotRessources = {
       egliseMaisonAPlacer: () => { return { src: 'maison.jpg' }; }
@@ -41,6 +42,39 @@ describe('glisser déposer', function () {
       wrapper.vm.piece.changePosition(nouvellePosition);
       wrapper.vm.piece.emit(CHANGEMENT_SELECTION, false);
       expect(wrapper.emitted()).toHaveProperty('action');
+    });
+
+    describe('peut sélectionnée/dé-sélectionner la maison et la déplacer', function () {
+      let deplaceSouris;
+
+      beforeEach(function () {
+        deplaceSouris = jest.spyOn(GlisserDeposer.methods, 'deplaceSouris');
+        wrapper = shallowMount(GlisserDeposer, { localVue });
+      });
+
+      afterEach(function () {
+        deplaceSouris.mockReset();
+      });
+
+      it('à la souris', function () {
+        expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
+        wrapper.find('.eglise-maison-a-placer').trigger('mousedown', { clientX: 95, clientY: 55 });
+        expect(wrapper.vm.piece.estSelectionnee()).toBe(true);
+        wrapper.find('.zone-deplacement').trigger('mousemove', { clientX: 0, clientY: 55 });
+        expect(deplaceSouris).toHaveBeenCalledTimes(1);
+        wrapper.find('.eglise-maison-a-placer').trigger('mouseup');
+        expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
+      });
+
+      it('au doight', function () {
+        expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
+        wrapper.find('.eglise-maison-a-placer').trigger('touchstart', { changedTouches: [{ clientX: 95, clientY: 55 }] });
+        expect(wrapper.vm.piece.estSelectionnee()).toBe(true);
+        wrapper.find('.zone-deplacement').trigger('touchmove', { clientX: 0, clientY: 55 });
+        expect(deplaceSouris).toHaveBeenCalledTimes(1);
+        wrapper.find('.eglise-maison-a-placer').trigger('touchend');
+        expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
+      });
     });
   });
 });
