@@ -1,15 +1,18 @@
 <template>
   <div class="zone-deplacement"
        v-on:mousemove="deplaceSouris"
+       v-on:touchmove="deplaceTouche"
     >
     <img
-      :style="positionMaison"
-      :src="egliseMaisonAPlacer"
-      v-on:mousedown="debuteSelection"
-      v-on:mouseup="termineSelection"
-      v-on:dragstart.prevent=""
-      class="eglise-maison-a-placer"
-      :class="{ 'eglise-maison-selectionnee' : piece.selectionnee }">
+        :style="positionMaison"
+        :src="egliseMaisonAPlacer"
+        v-on:mousedown="debuteSelection"
+        v-on:touchstart.prevent="debuteTouche"
+        v-on:mouseup="termineSelection"
+        v-on:touchend="termineSelection"
+        v-on:dragstart.prevent=""
+        class="eglise-maison-a-placer"
+        :class="{ 'eglise-maison-selectionnee' : piece.selectionnee }">
   </div>
 </template>
 
@@ -56,12 +59,20 @@ export default {
   },
 
   methods: {
+    debuteTouche: function (event) {
+      this.debuteSelection(event.changedTouches[0]);
+    },
+
     debuteSelection: function (event) {
       this.deplaceur.debuteSelection(this.piece, event);
     },
 
-    deplaceSouris (e) {
-      this.deplaceur.deplaceSouris(e);
+    deplaceTouche (event) {
+      this.deplaceSouris(event.changedTouches[0]);
+    },
+
+    deplaceSouris (event) {
+      this.deplaceur.deplaceSouris(event);
     },
 
     termineSelection: function (event) {
