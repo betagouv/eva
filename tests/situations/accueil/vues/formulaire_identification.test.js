@@ -186,4 +186,30 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.findAll('label').length).toBe(2);
     expect(wrapper.findAll('.champ-texte-accueil').length).toBe(1);
   });
+
+  describe('#champCodeEstDesactive', function () {
+    it('le champ est activé', function () {
+      expect(wrapper.vm.champCodeEstDesactive).toBe(false);
+    });
+
+    describe('quand il y a code campagne forcé', function () {
+      beforeEach(function () {
+        wrapper.vm.forceCampagne = 'monCode';
+      });
+
+      it('le champ est désactivé', function () {
+        expect(wrapper.vm.champCodeEstDesactive).toBe(true);
+      });
+
+      describe('quand il y a une erreur dans le code', function () {
+        beforeEach(function () {
+          store.state.erreurFormulaireIdentification = { code: 'invalide' };
+        });
+
+        it('le champ est activé', function () {
+          expect(wrapper.vm.champCodeEstDesactive).toBe(false);
+        });
+      });
+    });
+  });
 });
