@@ -236,5 +236,8 @@
     "intro_contexte": {
       "message": "<p>Vous arrivez dans un village.<br>Vous allez effectuer quelques exercices pour apprendre à utiliser eva.</p><p>Cliquez sur le bouton Commencer</p>"
     }
+  },
+  "cafe_de_la_place": {
+    "titre": "Café de la place"
   }
 }
