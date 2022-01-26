@@ -141,7 +141,7 @@ export default {
     ...mapState(['situations', 'estConnecte', 'situationsFaites', 'etat', 'nomCampagne']),
 
     positionFond () {
-      return (this.indexBatiment) * 80;
+      return (this.indexBatiment) * 20;
     },
 
     precedentDesactivee () {
