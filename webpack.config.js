@@ -9,7 +9,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const RollbarSourceMapPlugin = require('rollbar-sourcemap-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
-const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves', 'bienvenue', 'plan_de_la_ville'];
+const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves', 'bienvenue', 'plan_de_la_ville', 'cafe_de_la_place'];
 
 const entriesSituations = situations.reduce(function (entries, situation) {
   entries[`situation_${situation}`] = path.resolve(__dirname, `src/app/situation_${situation}.js`);
