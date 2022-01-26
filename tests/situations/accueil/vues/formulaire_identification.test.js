@@ -188,13 +188,13 @@ describe("Le formulaire d'identification", function () {
   });
 
   describe('#champCodeEstDesactive', function () {
-    it('le champ est activé', function () {
+    it('par défaut le champ est activé', function () {
       expect(wrapper.vm.champCodeEstDesactive).toBe(false);
     });
 
     describe('quand il y a code campagne forcé', function () {
       beforeEach(function () {
-        wrapper.vm.forceCampagne = 'monCode';
+        wrapper = mount(FormulaireIdentification, { store, localVue, propsData: { forceCampagne: 'monCode' } });
       });
 
       it('le champ est désactivé', function () {
