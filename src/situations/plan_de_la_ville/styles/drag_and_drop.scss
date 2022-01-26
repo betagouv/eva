@@ -12,6 +12,7 @@
 }
 
 .eglise-maison-selectionnee {
-  filter: drop-shadow(5px 5px 5px grey);
+  // Nous avons décidé de supprimer le drop-shadow car il est bugé sur Safari (et donc sur tablette Apple)
+  // https://over.wiki/ask/safari-bug-when-using-drop-shadow-and-transform
   cursor: grabbing;
 }
