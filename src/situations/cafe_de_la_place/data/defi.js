@@ -1,7 +1,7 @@
 import listeTitresMusique from '../assets/liste_titres_musique.png';
 
 const titre1 = {
-  id: 'titre1',
+  id: 'ALrd1',
   nom_technique: 'titre_1',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -27,7 +27,7 @@ const titre1 = {
 };
 
 const titre2 = {
-  id: 'titre2',
+  id: 'ALrd2',
   nom_technique: 'titre_2',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -52,7 +52,7 @@ const titre2 = {
 };
 
 const titre10 = {
-  id: 'titre10',
+  id: 'ALrd3',
   nom_technique: 'titre_10',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -77,7 +77,7 @@ const titre10 = {
 };
 
 const titre3 = {
-  id: 'titre3',
+  id: 'ALrd4',
   nom_technique: 'titre_3',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -102,7 +102,7 @@ const titre3 = {
 };
 
 const titre11 = {
-  id: 'titre11',
+  id: 'ALrd5',
   nom_technique: 'titre_11',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -127,7 +127,7 @@ const titre11 = {
 };
 
 const titre6 = {
-  id: 'titre6',
+  id: 'ALrd6',
   nom_technique: 'titre_6',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -152,7 +152,7 @@ const titre6 = {
 };
 
 const titre8 = {
-  id: 'titre8',
+  id: 'ALrd7',
   nom_technique: 'titre_8',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -177,7 +177,7 @@ const titre8 = {
 };
 
 const titre5 = {
-  id: 'titre5',
+  id: 'ALrd8',
   nom_technique: 'titre_5',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -202,7 +202,7 @@ const titre5 = {
 };
 
 const titre4 = {
-  id: 'titre4',
+  id: 'ALrd9',
   nom_technique: 'titre_4',
   type: 'qcm',
   illustration: listeTitresMusique,
@@ -227,7 +227,7 @@ const titre4 = {
 };
 
 const titre7 = {
-  id: 'titre7',
+  id: 'ALrd10',
   nom_technique: 'titre_7',
   type: 'qcm',
   illustration: listeTitresMusique,
