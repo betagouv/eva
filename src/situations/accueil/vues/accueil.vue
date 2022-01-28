@@ -1,6 +1,8 @@
 <template>
   <div class="conteneur">
-    <div class="titre">
+    <div
+      v-if="!afficheConsigne"
+      class="titre">
       <img class="logo" :alt="altLogo" :src="logo"/>
       <div class="titre-campagne"><span>Campagne :</span> {{ nomCampagne }}</div>
       <boite-utilisateur />
@@ -14,6 +16,7 @@
     >
 
       <img
+        v-if="!afficheConsigne"
         :src="personnage"
         class="personnage"
       />
@@ -70,7 +73,7 @@
     <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom" />
     <transition-fade>
       <intro-consigne
-        v-if="estDemarre && indexBatiment === 0"
+        v-if="afficheConsigne"
         :titre="$traduction('accueil.intro_consigne.titre')"
         identifiant-situation="accueil"
         @consigne-fini="finiIntro"
@@ -139,6 +142,10 @@ export default {
 
   computed: {
     ...mapState(['situations', 'estConnecte', 'situationsFaites', 'etat', 'nomCampagne']),
+
+    afficheConsigne () {
+      return this.estDemarre && this.indexBatiment === 0;
+    },
 
     positionFond () {
       return (this.indexBatiment) * 20;

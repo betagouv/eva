@@ -4,8 +4,9 @@ import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECAL
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
+import IntroConsigne from 'commun/vues/intro_consigne';
 import { traduction } from 'commun/infra/internationalisation';
-import { DECONNECTE } from 'accueil/modeles/store';
+import { DECONNECTE, DEMARRE } from 'accueil/modeles/store';
 
 describe('La vue accueil', function () {
   let depotRessources;
@@ -46,10 +47,7 @@ describe('La vue accueil', function () {
   });
 
   it('affiche les composants', function () {
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = shallowMount(Accueil, { localVue, store });
     expect(wrapper.findAllComponents(AccesSituation).length).toEqual(4);
     expect(wrapper.findComponent(FormulaireIdentification).exists()).toBe(true);
     expect(wrapper.findComponent(BoiteUtilisateur).exists()).toBe(true);
@@ -59,20 +57,14 @@ describe('La vue accueil', function () {
     depotRessources.fondAccueil = () => { return { src: 'image-fond' }; };
     depotRessources.personnage = () => { return { src: 'personnage' }; };
 
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = shallowMount(Accueil, { localVue, store });
     expect(wrapper.vm.fondAccueil).toEqual('url(image-fond)');
     expect(wrapper.vm.personnage).toEqual('personnage');
   });
 
   it('retourne les batiments', function () {
     store.state.situations = [{ chemin: '/', identifiant: 'test' }];
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = shallowMount(Accueil, { localVue, store });
     expect(wrapper.vm.batiments.length).toEqual(3);
     expect(wrapper.vm.batiments[0]).toEqual({
       nom: '',
@@ -273,10 +265,7 @@ describe('La vue accueil', function () {
     let wrapper;
 
     beforeEach(function () {
-      wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      wrapper = shallowMount(Accueil, { localVue, store });
     });
 
     it('vrai lorsque indexBatiment est à 0', function () {
@@ -294,10 +283,7 @@ describe('La vue accueil', function () {
     let wrapper;
 
     beforeEach(function () {
-      wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      wrapper = shallowMount(Accueil, { localVue, store });
     });
 
     it('vrai lorsque le niveauMax est atteint', function () {
@@ -316,10 +302,7 @@ describe('La vue accueil', function () {
   it("fait passer l'affichage des batiments à 0 à la connexion", function (done) {
     store.dispatch = () => Promise.resolve();
     store.state.estConnecte = false;
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = shallowMount(Accueil, { localVue, store });
     store.state.estConnecte = true;
     wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.indexBatiment).toEqual(0);
@@ -328,10 +311,7 @@ describe('La vue accueil', function () {
   });
 
   it("à la fin de l'intro, fait avancer l'index des batiments", function () {
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = shallowMount(Accueil, { localVue, store });
     wrapper.vm.indexBatiment = 0;
     wrapper.vm.finiIntro();
     expect(wrapper.vm.indexBatiment).toBe(1);
@@ -350,10 +330,7 @@ describe('La vue accueil', function () {
   it('réinitialise les données a la déconnexion', function (done) {
     store.dispatch = () => Promise.resolve();
     store.state.estConnecte = true;
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = shallowMount(Accueil, { localVue, store });
     wrapper.vm.ecranFinAfficher = true;
     wrapper.vm.indexBatiment = 1;
     store.state.estConnecte = false;
@@ -361,6 +338,35 @@ describe('La vue accueil', function () {
       expect(wrapper.vm.ecranFinAfficher).toBe(false);
       expect(wrapper.vm.indexBatiment).toBe(-0.5);
       done();
+    });
+  });
+
+  describe('#afficheConsigne', function () {
+    let wrapper;
+
+    beforeEach(function () {
+      wrapper = shallowMount(Accueil, { localVue, store });
+    });
+
+    it('affiche la consigne une fois démarré puis la masque', function (done) {
+      expect(wrapper.findComponent(IntroConsigne).exists()).toBe(false);
+      store.state.etat = DEMARRE;
+      wrapper.vm.indexBatiment = 0;
+
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.findComponent(IntroConsigne).exists()).toBe(true);
+        expect(wrapper.find('.titre').exists()).toBe(false);
+        expect(wrapper.find('.personnage').exists()).toBe(false);
+
+        wrapper.vm.finiIntro();
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.findComponent(IntroConsigne).exists()).toBe(false);
+          expect(wrapper.find('.titre').exists()).toBe(true);
+          expect(wrapper.find('.personnage').exists()).toBe(true);
+
+          done();
+        });
+      });
     });
   });
 });
