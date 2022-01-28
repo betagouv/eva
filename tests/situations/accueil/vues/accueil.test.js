@@ -46,8 +46,12 @@ describe('La vue accueil', function () {
     localVue.prototype.$traduction = traduction;
   });
 
+  function accueil (props = {}) {
+    return shallowMount(Accueil, { localVue, store, propsData: props });
+  }
+
   it('affiche les composants', function () {
-    const wrapper = shallowMount(Accueil, { localVue, store });
+    const wrapper = accueil();
     expect(wrapper.findAllComponents(AccesSituation).length).toEqual(4);
     expect(wrapper.findComponent(FormulaireIdentification).exists()).toBe(true);
     expect(wrapper.findComponent(BoiteUtilisateur).exists()).toBe(true);
@@ -57,14 +61,14 @@ describe('La vue accueil', function () {
     depotRessources.fondAccueil = () => { return { src: 'image-fond' }; };
     depotRessources.personnage = () => { return { src: 'personnage' }; };
 
-    const wrapper = shallowMount(Accueil, { localVue, store });
+    const wrapper = accueil();
     expect(wrapper.vm.fondAccueil).toEqual('url(image-fond)');
     expect(wrapper.vm.personnage).toEqual('personnage');
   });
 
   it('retourne les batiments', function () {
     store.state.situations = [{ chemin: '/', identifiant: 'test' }];
-    const wrapper = shallowMount(Accueil, { localVue, store });
+    const wrapper = accueil();
     expect(wrapper.vm.batiments.length).toEqual(3);
     expect(wrapper.vm.batiments[0]).toEqual({
       nom: '',
@@ -94,13 +98,7 @@ describe('La vue accueil', function () {
       }
     });
 
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store,
-      propsData: {
-        forceCampagne: 'CODECAMPAGNE'
-      }
-    });
+    const wrapper = accueil({ forceCampagne: 'CODECAMPAGNE' });
     wrapper.vm.$nextTick(() => {
       expect(deconnecte).toEqual(true);
       done();
@@ -119,10 +117,7 @@ describe('La vue accueil', function () {
         return Promise.resolve();
       };
       store.state.estConnecte = true;
-      shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      accueil();
     });
 
     it('Récupère les situations à la connexion', function (done) {
@@ -133,10 +128,7 @@ describe('La vue accueil', function () {
         return Promise.resolve();
       };
       store.state.estConnecte = false;
-      const wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      const wrapper = accueil();
       expect(nombreDispatch).toEqual(0);
       store.state.estConnecte = true;
       wrapper.vm.$nextTick(() => {
@@ -151,10 +143,7 @@ describe('La vue accueil', function () {
       store.state.estConnecte = true;
       store.state.situationsFaites = [''];
       store.dispatch = () => Promise.resolve();
-      const wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      const wrapper = accueil();
 
       wrapper.vm.$nextTick(() => {
         jest.advanceTimersByTime(110);
@@ -168,10 +157,7 @@ describe('La vue accueil', function () {
     let wrapper;
 
     beforeEach(function () {
-      wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      wrapper = accueil();
     });
 
     it('1 au début', function () {
@@ -186,30 +172,21 @@ describe('La vue accueil', function () {
   });
 
   it("donne le décalage a gauche d'une situation", function () {
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = accueil();
     expect(wrapper.vm.decalageGaucheBatiment(0)).toBe(DECALAGE_INITIAL);
     expect(wrapper.vm.decalageGaucheBatiment(1)).toBe(DECALAGE_INITIAL + LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
     expect(wrapper.vm.decalageGaucheBatiment(2)).toBe(DECALAGE_INITIAL + (LARGEUR_BATIMENT + ESPACEMENT_BATIMENT) * 2);
   });
 
   it('donne le déplacement à gauche de la vue', function () {
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = accueil();
     expect(wrapper.vm.decalageGaucheVue(0)).toBe(0);
     expect(wrapper.vm.decalageGaucheVue(1)).toBe(LARGEUR_BATIMENT + ESPACEMENT_BATIMENT);
     expect(wrapper.vm.decalageGaucheVue(2)).toBe((LARGEUR_BATIMENT + ESPACEMENT_BATIMENT) * 2);
   });
 
   it('sauvegarde le niveau pour le prochain chargement', function () {
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = accueil();
     wrapper.vm.indexBatiment = 2;
     wrapper.vm.sauvegardeEtatPourProchainChargement();
     const etat = JSON.parse(window.localStorage.getItem(CLE_ETAT_ACCUEIL));
@@ -218,19 +195,13 @@ describe('La vue accueil', function () {
 
   describe('#recupereEtatDuPrecedentChargement', function () {
     it("lorsque aucune valeur n'est présente dans localStorage", function () {
-      const wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      const wrapper = accueil();
       const etatPrecedent = wrapper.vm.recupereEtatDuPrecedentChargement();
       expect(etatPrecedent.indexPrecedent).toBe(-0.5);
     });
 
     it("lorsqu'une valeur est présente dans localStorage", function () {
-      const wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      const wrapper = accueil();
       window.localStorage.setItem(CLE_ETAT_ACCUEIL, JSON.stringify({
         indexPrecedent: 4
       }));
@@ -244,10 +215,7 @@ describe('La vue accueil', function () {
 
     beforeEach(function () {
       store.state.situations = [{ nom: 'Inventaire' }];
-      wrapper = shallowMount(Accueil, {
-        localVue,
-        store
-      });
+      wrapper = accueil();
     });
 
     it("faux lorsque toute les situations n'ont pas été faites", function () {
@@ -265,7 +233,7 @@ describe('La vue accueil', function () {
     let wrapper;
 
     beforeEach(function () {
-      wrapper = shallowMount(Accueil, { localVue, store });
+      wrapper = accueil();
     });
 
     it('vrai lorsque indexBatiment est à 0', function () {
@@ -283,7 +251,7 @@ describe('La vue accueil', function () {
     let wrapper;
 
     beforeEach(function () {
-      wrapper = shallowMount(Accueil, { localVue, store });
+      wrapper = accueil();
     });
 
     it('vrai lorsque le niveauMax est atteint', function () {
@@ -302,7 +270,7 @@ describe('La vue accueil', function () {
   it("fait passer l'affichage des batiments à 0 à la connexion", function (done) {
     store.dispatch = () => Promise.resolve();
     store.state.estConnecte = false;
-    const wrapper = shallowMount(Accueil, { localVue, store });
+    const wrapper = accueil();
     store.state.estConnecte = true;
     wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.indexBatiment).toEqual(0);
@@ -311,7 +279,7 @@ describe('La vue accueil', function () {
   });
 
   it("à la fin de l'intro, fait avancer l'index des batiments", function () {
-    const wrapper = shallowMount(Accueil, { localVue, store });
+    const wrapper = accueil();
     wrapper.vm.indexBatiment = 0;
     wrapper.vm.finiIntro();
     expect(wrapper.vm.indexBatiment).toBe(1);
@@ -319,10 +287,7 @@ describe('La vue accueil', function () {
 
   it("affiche l'écran de fin à l'appui du bouton conclure", function () {
     store.state.situations = [{ nom: 'Inventaire' }];
-    const wrapper = shallowMount(Accueil, {
-      localVue,
-      store
-    });
+    const wrapper = accueil();
     wrapper.vm.afficheEcranFin();
     expect(wrapper.vm.ecranFinAfficher).toEqual(true);
   });
@@ -330,7 +295,7 @@ describe('La vue accueil', function () {
   it('réinitialise les données a la déconnexion', function (done) {
     store.dispatch = () => Promise.resolve();
     store.state.estConnecte = true;
-    const wrapper = shallowMount(Accueil, { localVue, store });
+    const wrapper = accueil();
     wrapper.vm.ecranFinAfficher = true;
     wrapper.vm.indexBatiment = 1;
     store.state.estConnecte = false;
@@ -342,13 +307,8 @@ describe('La vue accueil', function () {
   });
 
   describe('#afficheConsigne', function () {
-    let wrapper;
-
-    beforeEach(function () {
-      wrapper = shallowMount(Accueil, { localVue, store });
-    });
-
     it('affiche la consigne une fois démarré puis la masque', function (done) {
+      const wrapper = accueil();
       expect(wrapper.findComponent(IntroConsigne).exists()).toBe(false);
       store.state.etat = DEMARRE;
       wrapper.vm.indexBatiment = 0;
