@@ -47,7 +47,7 @@ export default class RegistreCampagne extends BaseRegistre {
   }
 
   cleCampagnePourLocalStorage (codeCampagne) {
-    return `campagne_${codeCampagne.toUpperCase()}`;
+    if (codeCampagne) return `campagne_${codeCampagne.toUpperCase()}`;
   }
 
   situation (identifiantSituation) {

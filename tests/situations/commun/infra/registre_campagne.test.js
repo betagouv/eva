@@ -22,6 +22,11 @@ describe('le registre campagne', function () {
       const registre = unRegistre(1, 'autre test');
       expect(registre.cleCampagnePourLocalStorage('code de ma campagne')).toEqual('campagne_CODE DE MA CAMPAGNE');
     });
+
+    it("ne fait pas d'erreur si le code campagne n'est pas défini", function () {
+      const registre = unRegistre(1, 'autre test');
+      expect(registre.cleCampagnePourLocalStorage(null)).toEqual(undefined);
+    });
   });
 
   describe('assigneCampagneCourante', function () {
