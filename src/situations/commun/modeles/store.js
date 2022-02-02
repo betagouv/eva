@@ -4,7 +4,8 @@ import Vuex from 'vuex';
 import {
   CHARGEMENT,
   ACTIVATION_AIDE,
-  CHANGEMENT_ETAT
+  CHANGEMENT_ETAT,
+  DEMARRE
 } from 'commun/modeles/situation';
 
 Vue.use(Vuex);
@@ -28,6 +29,10 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
     getters: {
       illustrationQuestion: (state) => (question) => {
         return question.illustration;
+      },
+
+      acteEnCours: (state) => {
+        return state.etat === DEMARRE;
       },
       ...getters
     },

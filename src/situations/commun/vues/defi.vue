@@ -39,6 +39,7 @@ import 'commun/styles/boutons.scss';
 import 'commun/styles/bouton.scss';
 import 'commun/styles/formulaire_qcm.scss';
 
+import { mapGetters } from 'vuex';
 import Question from './question';
 import QuestionEntete from 'commun/vues/question_entete';
 import Jauge from 'commun/vues/defi/jauge';
@@ -54,22 +55,11 @@ export default {
     question: {
       type: Object,
       required: true
-    },
-    envoyerEvenementAffichage: {
-      type: Boolean,
-      required: false,
-      default: true
     }
   },
 
   mounted () {
-    if (this.envoyerEvenementAffichage) {
-      const evenement = new EvenementAffichageQuestionQCM({
-        question: this.question.id,
-        metacompetence: this.question.metacompetence
-      });
-      this.$journal.enregistre(evenement);
-    }
+    this.journaliserEvenementAffichage();
   },
 
   data () {
@@ -79,7 +69,15 @@ export default {
     };
   },
 
+  watch: {
+    acteEnCours () {
+      this.journaliserEvenementAffichage();
+    }
+  },
+
   computed: {
+    ...mapGetters(['acteEnCours']),
+
     composantContenu () {
       if (this.question.type === 'redaction_note') return RedactionNote;
       if (this.question.type === 'action') return undefined;
@@ -106,6 +104,16 @@ export default {
     envoi () {
       this.envoyer = true;
       this.$emit('reponse', this.reponse);
+    },
+
+    journaliserEvenementAffichage () {
+      if (this.acteEnCours) {
+        const evenement = new EvenementAffichageQuestionQCM({
+          question: this.question.id,
+          metacompetence: this.question.metacompetence
+        });
+        this.$journal.enregistre(evenement);
+      }
     }
   }
 };

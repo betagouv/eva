@@ -4,13 +4,17 @@ import Qcm from 'commun/vues/defi/qcm';
 import QuestionEntete from 'commun/vues/question_entete';
 import MockExtension from './mock_extension';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
+import { creeStore } from 'commun/modeles/store';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
+import { DEMARRE } from 'commun/modeles/situation';
 
 describe("La vue d'un défi", function () {
   let question;
   let localVue;
+  let store;
 
   beforeEach(function () {
+    store = creeStore();
     question = { id: 154, choix: [], nom_technique: 'question1' };
     localVue = createLocalVue();
     localVue.prototype.$journal = { enregistre () {} };
@@ -18,7 +22,7 @@ describe("La vue d'un défi", function () {
   });
 
   function composant (question) {
-    return shallowMount(Defi, { localVue, propsData: { question } });
+    return shallowMount(Defi, { localVue, store, propsData: { question } });
   }
 
   it("affiche l'entête de la question", function () {
@@ -129,14 +133,46 @@ describe("La vue d'un défi", function () {
     expect(vue.find('.question-bouton').exists()).toBe(true);
   });
 
-  it('rapporte son ouverture au journal', function (done) {
-    question.metacompetence = 'ma métacompétence';
-    localVue.prototype.$journal.enregistre = (evenement) => {
-      expect(evenement).toBeInstanceOf(EvenementAffichageQuestionQCM);
-      expect(evenement.donnees()).toEqual({ question: question.id, metacompetence: 'ma métacompétence' });
-      done();
-    };
-    composant(question);
+  describe("rapporte l'affichage d'une question au journal", function () {
+    it("ne journalise pas l'affichage si aucun acte n'est en cours", function () {
+      const journalEnregistre = jest.spyOn(localVue.prototype.$journal, 'enregistre');
+      composant(question);
+
+      expect(journalEnregistre).not.toHaveBeenCalled();
+    });
+
+    it('quand la situation est déja démarrée', function (done) {
+      localVue.prototype.$journal.enregistre = (evenement) => {
+        expect(evenement).toBeInstanceOf(EvenementAffichageQuestionQCM);
+        expect(evenement.donnees()).toEqual({ question: question.id });
+        done();
+      };
+
+      store.state.etat = DEMARRE;
+      composant(question);
+    });
+
+    it('quand la situation démarre après coup', function (done) {
+      localVue.prototype.$journal.enregistre = (evenement) => {
+        expect(evenement).toBeInstanceOf(EvenementAffichageQuestionQCM);
+        done();
+      };
+
+      composant(question);
+
+      store.state.etat = DEMARRE;
+    });
+
+    it('quand il y a une métacompétence', function (done) {
+      question.metacompetence = 'ma métacompétence';
+      localVue.prototype.$journal.enregistre = (evenement) => {
+        expect(evenement.donnees()).toEqual({ question: question.id, metacompetence: 'ma métacompétence' });
+        done();
+      };
+
+      store.state.etat = DEMARRE;
+      composant(question);
+    });
   });
 
   describe('#disabled', function () {
