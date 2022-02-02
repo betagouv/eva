@@ -1,5 +1,10 @@
 import { creeStore, synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
-import Situation, { CHARGEMENT, FINI } from 'commun/modeles/situation';
+import Situation, {
+  CHARGEMENT,
+  FINI,
+  DEMARRE,
+  ENTRAINEMENT_DEMARRE
+} from 'commun/modeles/situation';
 
 describe('Le store en commun pour les situations', function () {
   it("initialise l'état a CHARGEMENT", function () {
@@ -66,5 +71,27 @@ describe('Le store en commun pour les situations', function () {
     expect(store.state.aide).toBe(false);
     store.commit('activeAide');
     expect(store.state.aide).toBe(true);
+  });
+
+  describe('#acteEnCours', function () {
+    let store;
+
+    beforeEach(function () {
+      store = creeStore();
+    });
+
+    it("Quand l'acte n'est pas demarré", function () {
+      expect(store.getters.acteEnCours).toBe(false);
+    });
+
+    it("Quand l'acte principal est demarré", function () {
+      store.state.etat = DEMARRE;
+      expect(store.getters.acteEnCours).toBe(true);
+    });
+
+    it("Quand l'acte d'entrainement est demarré", function () {
+      store.state.etat = ENTRAINEMENT_DEMARRE;
+      expect(store.getters.acteEnCours).toBe(true);
+    });
   });
 });
