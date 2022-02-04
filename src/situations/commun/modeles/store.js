@@ -28,7 +28,7 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       ...mutations
     },
     getters: {
-      illustrationQuestion: (state) => (question) => {
+      illustrationQuestion: () => (question) => {
         return question.illustration;
       },
 
@@ -48,7 +48,7 @@ export function synchroniseStoreEtModeleSituation (situation, store) {
   situation.on(ACTIVATION_AIDE, () => {
     store.commit('activeAide');
   });
-  store.subscribe((mutation, state) => {
+  store.subscribe((mutation) => {
     switch (mutation.type) {
       case 'modifieEtat':
         situation.modifieEtat(mutation.payload);

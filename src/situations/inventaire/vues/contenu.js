@@ -19,7 +19,7 @@ export default class VueContenu {
   }
 
   ferme (contenant) {
-    this.calque.addEventListener('click', (e) => {
+    this.calque.addEventListener('click', () => {
       this.element.classList.replace('ouvrir', 'fermer');
       this.journal.enregistre(new EvenementFermetureContenant({ contenant: contenant.id }));
       setTimeout(() => {

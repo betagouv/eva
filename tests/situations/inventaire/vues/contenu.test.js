@@ -1,5 +1,3 @@
-/* global Event */
-
 import Contenant from 'inventaire/modeles/contenant';
 import VueContenu from 'inventaire/vues/contenu';
 import { unMagasin } from '../aides/magasin';

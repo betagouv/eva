@@ -73,7 +73,7 @@ describe('La vue de fin', function () {
   });
 
   it('récupère les compétences fortes', function (done) {
-    store.dispatch = (evenement) => {
+    store.dispatch = () => {
       store.state.competencesFortes = [rapidite, comprehensionConsigne];
       store.state.evaluationTerminee = true;
       return Promise.resolve();
@@ -94,7 +94,7 @@ describe('La vue de fin', function () {
   });
 
   it("affiche le bouton de deconnexion s'il n'y a pas de compétences fortes", function (done) {
-    store.dispatch = (evenement) => {
+    store.dispatch = () => {
       store.state.competencesFortes = [];
       store.state.evaluationTerminee = true;
       return Promise.resolve();
@@ -110,7 +110,7 @@ describe('La vue de fin', function () {
   });
 
   it("Attend que l'on sache s'il y a des compétences fortes avant d'afficher les boutons", function () {
-    store.dispatch = (evenement) => {
+    store.dispatch = () => {
       return Promise.resolve();
     };
     wrapper = mount(Fin, { store, localVue });
@@ -121,7 +121,7 @@ describe('La vue de fin', function () {
   });
 
   it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function (done) {
-    store.dispatch = (evenement) => {
+    store.dispatch = () => {
       store.state.competencesFortes = [rapidite, comprehensionConsigne];
       store.state.evaluationTerminee = true;
       return Promise.resolve();

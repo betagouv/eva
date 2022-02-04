@@ -62,7 +62,7 @@ export default class VuePiece extends EventEmitter {
     });
     this.$piece.mousedown(debuteSelection);
 
-    const termineSelection = (e) => {
+    const termineSelection = () => {
       this.deplaceur.termineSelection();
     };
     this.$piece.on('touchend', termineSelection);

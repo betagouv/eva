@@ -109,7 +109,7 @@ describe('La situation « Contrôle »', function () {
       bac.contient = () => true;
       bac.correspondALaCategorie = () => true;
 
-      situation.on(PIECE_BIEN_PLACEE, (piece) => {
+      situation.on(PIECE_BIEN_PLACEE, () => {
         expect(situation.resultat.bien_placees).toBe(1);
         done();
       });
@@ -120,7 +120,7 @@ describe('La situation « Contrôle »', function () {
       bac.contient = () => true;
       bac.correspondALaCategorie = () => false;
 
-      situation.on(PIECE_MAL_PLACEE, (piece) => {
+      situation.on(PIECE_MAL_PLACEE, () => {
         expect(situation.resultat.mal_placees).toBe(1);
         done();
       });
@@ -130,7 +130,7 @@ describe('La situation « Contrôle »', function () {
     it("déclenche l'événement PIECE_RATEE à la disparition", function (done) {
       bac.contient = () => false;
 
-      situation.on(PIECE_RATEE, (piece) => {
+      situation.on(PIECE_RATEE, () => {
         expect(situation.resultat.ratees).toBe(1);
         done();
       });

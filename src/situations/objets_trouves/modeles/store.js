@@ -60,7 +60,7 @@ export function creeStore () {
     },
 
     mutations: {
-      configureActe (state, { appsAccueilVerrouille, apps, consignesEcranAccueil, questionsFin, etatTelephone }) {
+      configureActe (state, { appsAccueilVerrouille, apps, consignesEcranAccueil, questionsFin}) {
         state.appsAccueilVerrouille = appsAccueilVerrouille;
         state.apps = apps;
         state.questionsFin = questionsFin;

@@ -7,7 +7,7 @@ import 'plan_de_la_ville/styles/clic_maison_bleue.scss';
 
 export default {
   methods: {
-    clicValide: function (event) {
+    clicValide: function () {
       this.$emit('action');
     }
   }

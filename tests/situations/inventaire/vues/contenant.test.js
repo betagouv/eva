@@ -1,5 +1,3 @@
-/* global Event */
-
 import Contenant from 'inventaire/modeles/contenant';
 import VueContenant from 'inventaire/vues/contenant';
 

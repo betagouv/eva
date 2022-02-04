@@ -11,7 +11,7 @@ describe('La vue pour accéder à une situation', function () {
   beforeEach(function () {
     localVue = createLocalVue();
     depotRessources = new class {
-      existeBatimentSituation (identifiant) {
+      existeBatimentSituation () {
         return existeBatiment;
       }
 

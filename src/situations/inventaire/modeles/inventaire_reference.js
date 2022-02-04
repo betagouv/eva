@@ -5,17 +5,17 @@ function ontLesMemesClefs (map1, map2) {
   return clefs.every((clef) => { return map2.has(clef); });
 }
 
-function quantiteProduit (clefProduit, inventaire) {
-  return inventaire.get(clefProduit).quantite.toString();
+function quantiteProduit (produit) {
+  return produit.quantite.toString();
 }
 
 function valide (reponses, inventaireReference) {
   if (!ontLesMemesClefs(reponses, inventaireReference)) throw new Error();
 
   const inventaire = Array.from(inventaireReference);
-  const resultat = inventaire.map(([k, v]) => {
-    const reponseCorrecte = (quantiteProduit(k, reponses) === quantiteProduit(k, inventaireReference));
-    return [k, reponseCorrecte];
+  const resultat = inventaire.map(([cleProduit, produit]) => {
+    const reponseCorrecte = (quantiteProduit(reponses.get(cleProduit)) === quantiteProduit(produit));
+    return [cleProduit, reponseCorrecte];
   });
   return new Map(resultat);
 }

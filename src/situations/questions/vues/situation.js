@@ -8,7 +8,7 @@ import VueSituation from './situation.vue';
 import ActeQuestions from './acte';
 
 export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
-  constructor (situation, journal, depotRessources, registreUtilisateur) {
+  constructor (situation, journal, depotRessources) {
     super(situation, journal, depotRessources, creeStore, ActeQuestions);
   }
 

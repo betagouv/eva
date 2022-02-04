@@ -129,7 +129,7 @@ describe("La vue de l'acte Sécurité", function () {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
     localVue.prototype.$journal = {
-      enregistre (evenement) {
+      enregistre () {
         enregistre++;
       }
     };
@@ -152,7 +152,7 @@ describe("La vue de l'acte Sécurité", function () {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
     localVue.prototype.$journal = {
-      enregistre (evenement) {
+      enregistre () {
         enregistre++;
       }
     };
@@ -167,7 +167,7 @@ describe("La vue de l'acte Sécurité", function () {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
     localVue.prototype.$journal = {
-      enregistre (evenement) {
+      enregistre () {
         enregistre++;
       }
     };

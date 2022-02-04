@@ -5,7 +5,7 @@ export default class Synchronisateur {
     this.enCoursDeSynchronisation = false;
   }
 
-  recupereReseau (event) {
+  recupereReseau () {
     if (this.enCoursDeSynchronisation) { return; }
 
     this.enCoursDeSynchronisation = true;

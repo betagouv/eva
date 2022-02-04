@@ -1,6 +1,6 @@
 let audioCtx;
 
-function chargeurAudio (src, timeout = 2000) {
+function chargeurAudio (src) {
   audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
   const request = new window.XMLHttpRequest();
 
@@ -110,4 +110,4 @@ export default class DepotRessources {
   }
 }
 
-export { chargeurAudio, chargeurJSON };
+export { chargeurJSON };

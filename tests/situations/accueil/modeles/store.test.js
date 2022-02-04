@@ -208,7 +208,7 @@ describe("Le store de l'accueil", function () {
 
   describe('Action : recupereCampagne', function () {
     beforeEach(function () {
-      registreCampagne.assigneCampagneCourante = (codeCampagne) => {};
+      registreCampagne.assigneCampagneCourante = () => {};
     });
 
     describe('quand la campagne est récupérée', function () {
@@ -228,12 +228,12 @@ describe("Le store de l'accueil", function () {
 
       it('assigne la campagne comme étant la campagne courante', function () {
         let campagneAssigne = false;
-        registreCampagne.assigneCampagneCourante = (codeCampagne) => {
+        registreCampagne.assigneCampagneCourante = () => {
           campagneAssigne = true;
         };
 
         const store = creeStore(registreUtilisateur, registreCampagne);
-        return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then((campagne) => {
+        return store.dispatch('recupereCampagne', { codeCampagne: 'code' }).then(() => {
           expect(campagneAssigne).toEqual(true);
         });
       });

@@ -67,8 +67,8 @@ describe("Le formulaire d'identification", function () {
   });
 
   it('réinitialise les valeurs une fois sauvegardé', function () {
-    store.dispatch = (action, { codeCampagne }) => {
-      store.dispatch = (action, { nom, campagne }) => {
+    store.dispatch = () => {
+      store.dispatch = () => {
         return Promise.resolve({ id: 'evaluation_id' });
       };
       return Promise.resolve({ id: '1' });
@@ -85,8 +85,8 @@ describe("Le formulaire d'identification", function () {
   });
 
   it("ne réinitialise pas les valeurs rentrées lorsque l'on n'a pas réussi à s'identifier", function () {
-    store.dispatch = (action, { codeCampagne }) => {
-      store.dispatch = (action, { nom, campagne }) => {
+    store.dispatch = () => {
+      store.dispatch = () => {
         return Promise.resolve();
       };
       return Promise.resolve({ id: '1' });
@@ -124,7 +124,7 @@ describe("Le formulaire d'identification", function () {
   });
 
   it("affiche les erreurs de la campagne quand elle n'existe pas", function () {
-    store.dispatch = (action, { codeCampagne }) => {
+    store.dispatch = () => {
       store.state.erreurFormulaireIdentification = { code: 'Code inconnu' };
       return Promise.resolve();
     };
@@ -137,8 +137,8 @@ describe("Le formulaire d'identification", function () {
   });
 
   it("affiche les erreurs de l'inscription quand elle échoue", function () {
-    store.dispatch = (action, { codeCampagne }) => {
-      store.dispatch = (action, { nom, campagne }) => {
+    store.dispatch = () => {
+      store.dispatch = () => {
         store.state.erreurFormulaireIdentification = { nom: 'doit être rempli' };
 
         return Promise.resolve();
@@ -154,8 +154,8 @@ describe("Le formulaire d'identification", function () {
   });
 
   it("affiche les erreurs generale de l'inscription quand elle échoue", function () {
-    store.dispatch = (action, { codeCampagne }) => {
-      store.dispatch = (action, { nom, campagne }) => {
+    store.dispatch = () => {
+      store.dispatch = () => {
         store.state.erreurFormulaireIdentification = { generale: 'erreur réseau' };
 
         return Promise.resolve();

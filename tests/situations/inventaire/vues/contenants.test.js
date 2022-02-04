@@ -1,5 +1,3 @@
-/* global Event */
-
 import Contenant from 'inventaire/modeles/contenant';
 import VueContenants from 'inventaire/vues/contenants';
 import EvenementOuvertureContenant from 'inventaire/modeles/evenement_ouverture_contenant';

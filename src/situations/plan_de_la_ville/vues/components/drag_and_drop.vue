@@ -59,11 +59,11 @@ export default {
   },
 
   methods: {
-    debuteTouche: function (event) {
+    debuteTouche (event) {
       this.debuteSelection(event.changedTouches[0]);
     },
 
-    debuteSelection: function (event) {
+    debuteSelection (event) {
       this.deplaceur.debuteSelection(this.piece, event);
     },
 
@@ -75,7 +75,7 @@ export default {
       this.deplaceur.deplaceSouris(event);
     },
 
-    termineSelection: function (event) {
+    termineSelection () {
       this.deplaceur.termineSelection();
     }
   }
