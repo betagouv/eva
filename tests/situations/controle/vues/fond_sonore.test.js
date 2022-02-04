@@ -7,10 +7,6 @@ describe('Le fond sonore', function () {
   let situation;
   let vue;
 
-  beforeEach(function () {
-    document.body.innerHTML = '<div id="pointInsertion"></div>';
-  });
-
   describe('joue le bruit du tapis', function () {
     beforeEach(function () {
       situation = new Situation({});
@@ -28,24 +24,24 @@ describe('Le fond sonore', function () {
 
     it("ne joue rien à l'affichage", function () {
       let jouee = 0;
-      vue.audio.start = e => jouee++;
-      vue.affiche('#pointInsertion');
+      vue.audio.start = () => jouee++;
+      vue.affiche();
       expect(jouee).toBe(0);
     });
 
     it("joue à l'état DEMARRE", function () {
       let jouee = 0;
-      vue.audio.start = e => jouee++;
+      vue.audio.start = () => jouee++;
       situation.modifieEtat(DEMARRE);
-      vue.affiche('#pointInsertion');
+      vue.affiche();
 
       expect(jouee).toBe(1);
     });
 
     it("stoppe lorsque c'est fini", function () {
       let stope = 0;
-      vue.audio.stop = e => stope++;
-      vue.affiche('#pointInsertion');
+      vue.audio.stop = () => stope++;
+      vue.affiche();
       situation.modifieEtat(FINI);
       expect(stope).toBe(1);
     });

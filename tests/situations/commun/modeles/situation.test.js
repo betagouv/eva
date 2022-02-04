@@ -25,7 +25,7 @@ describe('une situation', function () {
     let compteurChangementEtat = 0;
     const uneSituation = new Situation();
     uneSituation.modifieEtat(CHARGEMENT);
-    uneSituation.on(CHANGEMENT_ETAT, (etat) => {
+    uneSituation.on(CHANGEMENT_ETAT, () => {
       compteurChangementEtat++;
     });
     uneSituation.modifieEtat(CHARGEMENT);

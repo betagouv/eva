@@ -14,7 +14,7 @@ export default class VueContenants {
   afficheLesContenants (contenants, vueContenu) {
     contenants.forEach((contenant) => {
       const vueContenant = new VueContenant(this.svg, contenant);
-      vueContenant.affiche((event) => {
+      vueContenant.affiche(() => {
         vueContenu.affiche(contenant);
         this.journal.enregistre(new EvenementOuvertureContenant({ contenant: contenant.id }));
       });

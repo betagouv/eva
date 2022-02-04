@@ -52,7 +52,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
       }
     },
     actions: {
-      inscris ({ commit }, { nom, campagne }) {
+      inscris (pasUtile, { nom, campagne }) {
         this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
           registreUtilisateur.inscris(nom, campagne)
@@ -70,7 +70,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
             });
         });
       },
-      recupereCampagne ({ commit }, { codeCampagne }) {
+      recupereCampagne (pasUtile, { codeCampagne }) {
         this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
           registreCampagne.recupereCampagne(codeCampagne)

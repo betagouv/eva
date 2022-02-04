@@ -48,7 +48,7 @@ export default class VueSituation {
     this.situation.bacs().forEach(afficheBac);
     this.tapis.affiche(pointInsertion, $);
     this.fondSonore = new VueFondSonore(this.situation, this.depotRessources);
-    this.fondSonore.affiche(pointInsertion, $);
+    this.fondSonore.affiche();
 
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === DEMARRE) {

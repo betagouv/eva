@@ -46,7 +46,7 @@ describe('vue Stop', function () {
 
   it("Redirige vers l'accueil même si l'enregistrement échoue", function (done) {
     retourAccueil = false;
-    mockJournal.enregistre = (evenement) => {
+    mockJournal.enregistre = () => {
       return Promise.reject(new Error('serveur non joignable'));
     };
     vue.clickSurOk().catch(() => {

@@ -48,9 +48,9 @@ describe('La vue de la situation « Contrôle »', function () {
   });
 
   it('demarre la situation', function (done) {
-    const journal = { enregistre (e) {} };
+    const journal = { enregistre () {} };
     const vueSituation = vueSituationMinimaliste(journal);
-    vueSituation.demarre = (pointInsertion, $) => {
+    vueSituation.demarre = (pointInsertion) => {
       expect(pointInsertion).toEqual('#point-insertion');
       done();
     };

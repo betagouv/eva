@@ -22,7 +22,7 @@ export function creeStore () {
       questionCourante (state) {
         return state.questions[state.indexQuestion];
       },
-      illustrationQuestion: (state) => (question) => {
+      illustrationQuestion: () => (question) => {
         if (question.nom_technique && illustrationsQuestions[question.nom_technique]) {
           return illustrationsQuestions[question.nom_technique];
         } else {
@@ -37,7 +37,7 @@ export function creeStore () {
         state.fini = false;
       },
 
-      repondQuestionCourante (state, reponse) {
+      repondQuestionCourante (state) {
         if (state.indexQuestion + 1 === state.questions.length) {
           state.fini = true;
         } else {

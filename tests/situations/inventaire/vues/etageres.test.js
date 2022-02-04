@@ -1,5 +1,3 @@
-/* global Event */
-
 import VueEtageres from 'inventaire/vues/etageres';
 import { unMagasin } from '../aides/magasin';
 

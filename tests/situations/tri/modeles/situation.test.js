@@ -56,7 +56,7 @@ describe('La situation « Tri »', function () {
     let nombreAppelsPiecePrise = 0;
     const situation = new Situation({ pieces: [{}], bacs: [{ x: 1, y: 2 }] });
     const piece = situation.piecesAffichees()[0];
-    situation.on(PIECE_PRISE, (piece2) => {
+    situation.on(PIECE_PRISE, () => {
       nombreAppelsPiecePrise++;
     });
     piece.selectionne({});

@@ -81,8 +81,8 @@ describe('le dépôt de ressources', function () {
 
   it('peut charger des resources json', function () {
     const jsonString = '{ cle: "valeur"}';
-    window.fetch = (src) => {
-      return new Promise((resolve, reject) => {
+    window.fetch = () => {
+      return new Promise((resolve) => {
         resolve({
           ok: true,
           json: () => jsonString
@@ -95,8 +95,8 @@ describe('le dépôt de ressources', function () {
   });
 
   it("gère les erreurs reseau lors du chargement d'une resource json", function () {
-    window.fetch = (src) => {
-      return new Promise((resolve, reject) => {
+    window.fetch = () => {
+      return new Promise((resolve) => {
         resolve({
           ok: false,
           status: 404

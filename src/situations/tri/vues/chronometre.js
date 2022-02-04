@@ -23,7 +23,7 @@ export default class VueChronometre {
   }
 
   changeEtat (etat) {
-    const enMarche = this.situation.etat() === DEMARRE;
+    const enMarche = etat === DEMARRE;
     this.chronometreConteneur.toggleClass('actif', enMarche);
   }
 }

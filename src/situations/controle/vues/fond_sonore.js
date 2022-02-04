@@ -14,14 +14,14 @@ export default class VueFondSonore {
     this.actionsEtats.set(FINI, this.arrete.bind(this));
   }
 
-  affiche (pointInsertion) {
-    this.changeEtat(pointInsertion);
+  affiche () {
+    this.changeEtat();
     this.situation.on(CHANGEMENT_ETAT, () => {
-      this.changeEtat(pointInsertion);
+      this.changeEtat();
     });
   }
 
-  changeEtat (pointInsertion) {
+  changeEtat () {
     if (this.actionsEtats.get(this.situation.etat())) {
       this.actionsEtats.get(this.situation.etat())();
     }
