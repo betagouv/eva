@@ -1,6 +1,6 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
-import sonConsigne from 'commun/assets/consigne_blanche.mp3';
-import fondSituation from 'cafe_de_la_place/assets/liste_titres_musique.png';
+import sonConsigne from 'cafe_de_la_place/assets/consigne_cafe_de_la_place.mp3';
+import fondSituation from 'cafe_de_la_place/assets/terrasse_cafe.png';
 
 import titre1 from 'cafe_de_la_place/assets/audio_questions/titre1.mp3';
 import titre2 from 'cafe_de_la_place/assets/audio_questions/titre2.mp3';
