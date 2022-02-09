@@ -100,7 +100,8 @@
     }
   },
   "defi": {
-    "valider": "Valider"
+    "valider": "Valider",
+    "suivant": "Suivant"
   },
   "questions": {
     "titre": "Bureau",

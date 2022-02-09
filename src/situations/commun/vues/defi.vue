@@ -28,7 +28,7 @@
         class="question-bouton bouton-arrondi bouton-arrondi--petit"
         @click="envoi"
       >
-        {{ $traduction('defi.valider') }}
+      {{$traduction(texteBouton)}}
       </button>
     </question>
   </div>
@@ -80,7 +80,7 @@ export default {
 
     composantContenu () {
       if (this.question.type === 'redaction_note') return RedactionNote;
-      if (this.question.type === 'action') return undefined;
+      if (this.question.type === 'action' || this.question.type === 'sous-consigne') return undefined;
       if (this.question.type === 'qcm') {
         return this.question.type_qcm === 'jauge' ? Jauge : Qcm;
       }
@@ -97,6 +97,10 @@ export default {
 
     disabled () {
       return (!this.reponse || this.envoyer) && this.reponsesPossibles;
+    },
+
+    texteBouton () {
+      return this.question.type == 'sous-consigne' ? 'defi.suivant' : 'defi.valider';
     }
   },
 

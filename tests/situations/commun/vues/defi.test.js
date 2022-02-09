@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Defi from 'commun/vues/defi';
 import Qcm from 'commun/vues/defi/qcm';
+import RedactionNote from 'commun/vues/defi/redaction_note';
 import QuestionEntete from 'commun/vues/question_entete';
 import MockExtension from './mock_extension';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
@@ -29,6 +30,26 @@ describe("La vue d'un défi", function () {
     const vue = composant(question);
 
     expect(vue.findComponent(QuestionEntete).exists()).toBe(true);
+  });
+
+  describe('#texteBouton', function () {
+    it("renvoie le texte 'valider'", function () {
+      const vue = composant(question);
+      expect(vue.vm.texteBouton).toEqual('defi.valider');
+    });
+  });
+
+  describe('quand le défi est de type rédaction note', function () {
+    let vue;
+
+    beforeEach(function () {
+      question.type = 'redaction_note';
+      vue = composant(question);
+    });
+
+    it('affiche le composant rédaction note', function () {
+      expect(vue.findComponent(RedactionNote).exists()).toBe(true);
+    });
   });
 
   describe('quand le défi est de type qcm', function () {
@@ -97,22 +118,47 @@ describe("La vue d'un défi", function () {
   });
 
   describe('quand le défi est de type action', function () {
+    let vue;
+
     beforeEach(function () {
       question.type = 'action';
       localVue.component('mock-extension', MockExtension);
       question.extensionVue = 'mock-extension';
+      vue = composant(question);
     });
 
     it("n'affiche pas le bouton 'valider'", function () {
-      const conteneur = composant(question).find('.question-bouton');
+      const conteneur = vue.find('.question-bouton');
       expect(conteneur.exists()).toBe(false);
     });
 
+    it("n'a pas de composant contenu", function () {
+      expect(vue.vm.composantContenu).not.toBeDefined();
+    });
+
     it('émet un évenement réponse réussi quand une extention envoie un evenement action', function () {
-      const vue = composant(question);
       vue.findComponent(MockExtension).vm.$emit('action');
       expect(vue.emitted().reponse.length).toEqual(1);
       expect(vue.emitted().reponse[0][0]).toEqual({ succes: true });
+    });
+  });
+
+  describe('quand le défi est de type sous consigne', function () {
+    let vue;
+
+    beforeEach(function () {
+      question.type = 'sous-consigne';
+      vue = composant(question);
+    });
+
+    it("n'a pas de composant contenu", function () {
+      expect(vue.vm.composantContenu).not.toBeDefined();
+    });
+
+    describe('#texteBouton', function () {
+      it("renvoie le texte 'suivant'", function () {
+        expect(vue.vm.texteBouton).toEqual('defi.suivant');
+      });
     });
   });
 
@@ -184,7 +230,7 @@ describe("La vue d'un défi", function () {
       vue.findComponent(Qcm).vm.$emit('input', 'uid-32');
 
       vue.vm.$nextTick(() => {
-        expect(vue.find('.question-bouton').attributes('disabled')).toBe(undefined);
+        expect(vue.find('.question-bouton').attributes('disabled')).not.toBeDefined();
         done();
       });
     });

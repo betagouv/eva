@@ -1,6 +1,8 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
-import sonConsigne from 'cafe_de_la_place/assets/consigne_cafe_de_la_place.mp3';
+import sonConsigne from 'cafe_de_la_place/assets/audio_consignes/consigne_cafe_de_la_place.mp3';
 import fondSituation from 'cafe_de_la_place/assets/terrasse_cafe.png';
+
+import sousConsigne1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_1.mp3';
 
 import titre1 from 'cafe_de_la_place/assets/audio_questions/titre1.mp3';
 import titre2 from 'cafe_de_la_place/assets/audio_questions/titre2.mp3';
@@ -43,6 +45,10 @@ import sonChoixLeFilDuTemps from 'cafe_de_la_place/assets/audio_reponses/le_fil_
 import sonChoixSoupconDAmertume from 'cafe_de_la_place/assets/audio_reponses/soupcon_d_amertume.mp3';
 import sonChoixSouponDAmertume from 'cafe_de_la_place/assets/audio_reponses/soupon_d_amertume.mp3';
 import sonChoixSoupconDAbertube from 'cafe_de_la_place/assets/audio_reponses/soupcon_d_abertube.mp3';
+
+const AUDIOS_CONSIGNES = {
+  sous_consigne_1: sousConsigne1
+};
 
 const AUDIOS_QUESTIONS = {
   titre_1: titre1,
@@ -90,7 +96,7 @@ const AUDIOS_REPONSES = {
   soupcon_d_abertube: sonChoixSoupconDAbertube
 };
 
-const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
+const messagesAudios = { ...AUDIOS_CONSIGNES, ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesCafeDeLaPlace extends DepotRessourcesCommunes {
   constructor (chargeurs) {

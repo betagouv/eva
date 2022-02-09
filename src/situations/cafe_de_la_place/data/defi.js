@@ -1,4 +1,13 @@
 import listeTitresMusique from '../assets/liste_titres_musique.png';
+import terrasseCafe from '../assets/terrasse_cafe.png';
+
+const sousConsigne1 = {
+  id: 'ALrd-sous-consigne-1',
+  type: 'sous-consigne',
+  illustration: terrasseCafe,
+  nom_technique: 'sous_consigne_1',
+  description: "Vous décidez d'écouter de la musique sur votre téléphone. Une amie vous a conseillé un groupe de jazz à découvrir."
+};
 
 const titre1 = {
   id: 'ALrd1',
@@ -252,7 +261,7 @@ const titre7 = {
 };
 
 const configurationNormale = {
-  questions: [titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7]
+  questions: [sousConsigne1, titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7]
 };
 
 export { configurationNormale };
