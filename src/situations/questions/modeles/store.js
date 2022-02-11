@@ -6,7 +6,7 @@ import {
   FINI
 } from 'commun/modeles/situation';
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
-import { illustrationsQuestions } from '../data/apps';
+import { illustrationsQuestions } from '../data/illustrations';
 
 export function creeStore () {
   return creeStoreCommun({

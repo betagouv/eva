@@ -1,5 +1,5 @@
 import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
-import { configurationNormale } from '../data/apps';
+import { configurationNormale } from '../data/defis';
 import { creeStore } from '../modeles/store';
 import PlanDeLaVille from './plan_de_la_ville';
 
