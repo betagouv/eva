@@ -3,6 +3,7 @@ import sonConsigne from 'cafe_de_la_place/assets/audio_consignes/consigne_cafe_d
 import fondSituation from 'cafe_de_la_place/assets/terrasse_cafe.png';
 
 import sousConsigne1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_1.mp3';
+import sousConsigne2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_2.mp3';
 
 import titre1 from 'cafe_de_la_place/assets/audio_questions/titre1.mp3';
 import titre2 from 'cafe_de_la_place/assets/audio_questions/titre2.mp3';
@@ -47,7 +48,8 @@ import sonChoixSouponDAmertume from 'cafe_de_la_place/assets/audio_reponses/soup
 import sonChoixSoupconDAbertube from 'cafe_de_la_place/assets/audio_reponses/soupcon_d_abertube.mp3';
 
 const AUDIOS_CONSIGNES = {
-  sous_consigne_1: sousConsigne1
+  sous_consigne_1: sousConsigne1,
+  sous_consigne_2: sousConsigne2
 };
 
 const AUDIOS_QUESTIONS = {
