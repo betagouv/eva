@@ -15,7 +15,7 @@ const sousConsigne2 = {
   illustration: listeTitresMusique,
   nom_technique: 'sous_consigne_2',
   description: "Voici la liste des titres. J'ai quelques questions pour vous.",
-  intitule:  'Faites moi signe en cliquant sur "Suivant" lorsque vous voulez vous lancer !'
+  intitule:  'Faites moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !'
 };
 
 const titre1 = {
@@ -23,7 +23,7 @@ const titre1 = {
   nom_technique: 'titre_1',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 1, quel est la bonne lecture ?',
+  description: 'Pour le titre 1, quel est la bonne lecture ?',
   intitule: 'Dès que vous aurez reconnu la bonne lecture, choisissez  une de ces réponses en cliquant sur un des ronds. Pour confirmer votre réponse, cliquer sur Valider.',
   choix: [
     {
@@ -49,7 +49,7 @@ const titre2 = {
   nom_technique: 'titre_2',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 2 :',
+  description: 'Titre 2 :',
   choix: [
     {
       id: 'jazzABimoudon',
@@ -74,7 +74,7 @@ const titre10 = {
   nom_technique: 'titre_10',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 10 :',
+  description: 'Titre 10 :',
   choix: [
     {
       id: 'unAmiEnAmont',
@@ -99,7 +99,7 @@ const titre3 = {
   nom_technique: 'titre_3',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 3 :',
+  description: 'Titre 3 :',
   choix: [
     {
       id: 'balleEtTalle',
@@ -124,7 +124,7 @@ const titre11 = {
   nom_technique: 'titre_11',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 11 :',
+  description: 'Titre 11 :',
   choix: [
     {
       id: 'dussoEtMatura',
@@ -149,7 +149,7 @@ const titre6 = {
   nom_technique: 'titre_6',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 6 :',
+  description: 'Titre 6 :',
   choix: [
     {
       id: 'amourSugulent',
@@ -174,7 +174,7 @@ const titre8 = {
   nom_technique: 'titre_8',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 8 :',
+  description: 'Titre 8 :',
   choix: [
     {
       id: 'anguilEtDouceMer',
@@ -199,7 +199,7 @@ const titre5 = {
   nom_technique: 'titre_5',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 5 :',
+  description: 'Titre 5 :',
   choix: [
     {
       id: 'exerciceDeStyle',
@@ -224,7 +224,7 @@ const titre4 = {
   nom_technique: 'titre_4',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 4 :',
+  description: 'Titre 4 :',
   choix: [
     {
       id: 'leVilDuTemps',
@@ -249,7 +249,7 @@ const titre7 = {
   nom_technique: 'titre_7',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 7 :',
+  description: 'Titre 7 :',
   choix: [
     {
       id: 'soupconDAmertume',
