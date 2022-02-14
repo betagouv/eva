@@ -15,7 +15,7 @@ const sousConsigne2 = {
   illustration: listeTitresMusique,
   nom_technique: 'sous_consigne_2',
   description: "Voici la liste des titres. J'ai quelques questions pour vous.",
-  intitule:  'Faites moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !'
+  intitule:  'Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !'
 };
 
 const titre1 = {
