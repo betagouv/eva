@@ -270,7 +270,10 @@ const titre7 = {
 };
 
 const configurationNormale = {
-  questions: [sousConsigne1, sousConsigne2, titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7]
+  chapitreALrd: {
+    sousConsignes: [sousConsigne1, sousConsigne2],
+    questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7 ]
+  }
 };
 
 export { configurationNormale };
