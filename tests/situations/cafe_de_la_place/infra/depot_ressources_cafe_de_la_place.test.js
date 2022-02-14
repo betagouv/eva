@@ -11,7 +11,10 @@ describe('le dépôt ressource de la situation café de la place', function () {
   describe('#chargeConfigurations', function () {
     it('charge les ressources visuelles', function () {
       depot.chargeConfigurations({
-        questions: [{ illustration: 'chemin_illustration.png' }]
+        chapitreALrd: {
+          sousConsignes: [{ illustration: 'chemin_illustration.png'}],
+          questions: [{ illustration: 'chemin_illustration.png' }]
+        }
       });
 
       return depot.chargement().then(function () {

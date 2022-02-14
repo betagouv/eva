@@ -4,12 +4,16 @@ export function creeStore () {
   return creeStoreCommun({
     state: {
       fondSituation: '',
-      questions: []
+      chapitreALrd: {
+        sousConsignes:[],
+        questions: []
+      },
     },
 
     mutations: {
-      configureActe (state, { questions }) {
-        state.questions = questions;
+      configureActe (state, { chapitreALrd }) {
+        state.chapitreALrd.sousConsignes = chapitreALrd.sousConsignes;
+        state.chapitreALrd.questions = chapitreALrd.questions;
       }
     }
   });

@@ -1,14 +1,15 @@
 <template>
   <transition-fade>
     <defi
-      v-if="questions.length"
-      :key="questionActive.id"
-      :question="questionActive"
-      @reponse="reponseQuestion"
+      v-if="chapitreALrd.questions.length"
+      :key="carteActive.id"
+      :question="carteActive"
+      @reponse="reponse"
     >
       <pagination
-        :indexQuestion="indexQuestion"
-        :nombreQuestions="questions.length"
+        v-if="carteActive.type != 'sous-consigne'"
+        :indexQuestion="indexCarte - this.chapitreALrd.sousConsignes.length"
+        :nombreQuestions="this.chapitreALrd.questions.length"
       />
     </defi>
   </transition-fade>
@@ -27,28 +28,34 @@ export default {
 
   data () {
     return {
-      indexQuestion: 0
+      indexCarte: 0
     };
   },
 
   computed: {
-    ...mapState(['questions']),
+    ...mapState({
+      chapitreALrd: state => state.chapitreALrd
+    }),
 
-    questionActive () {
-      return this.questions[this.indexQuestion];
+    carteActive: function  () {
+      return this.elementsChapitreALrd()[this.indexCarte];
     }
   },
 
   methods: {
-    reponseQuestion (reponse) {
-      const donneesReponses = { question: this.questionActive.id, ...reponse };
+    reponse (reponse) {
+      const donneesReponses = { question: this.carteActive.id, ...reponse };
       this.$journal.enregistre(new EvenementReponse(donneesReponses));
 
-      if (this.indexQuestion + 1 === this.questions.length) {
+      if (this.indexCarte + 1 === this.elementsChapitreALrd().length) {
         this.$emit('terminer');
       } else {
-        this.indexQuestion++;
+        this.indexCarte++;
       }
+    },
+
+    elementsChapitreALrd() {
+      return this.chapitreALrd.sousConsignes.concat(this.chapitreALrd.questions);
     }
   }
 };
