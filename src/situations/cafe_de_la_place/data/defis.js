@@ -9,6 +9,15 @@ const sousConsigne1 = {
   description: "Vous décidez d'écouter de la musique sur votre téléphone. Une amie vous a conseillé un groupe de jazz à découvrir."
 };
 
+const sousConsigne2 = {
+  id: 'ALrd-sous-consigne-2',
+  type: 'sous-consigne',
+  illustration: listeTitresMusique,
+  nom_technique: 'sous_consigne_2',
+  description: "Voici la liste des titres. J'ai quelques questions pour vous.",
+  intitule:  'Faites moi signe en cliquant sur "Suivant" lorsque vous voulez vous lancer !'
+};
+
 const titre1 = {
   id: 'ALrd1',
   nom_technique: 'titre_1',
@@ -261,7 +270,7 @@ const titre7 = {
 };
 
 const configurationNormale = {
-  questions: [sousConsigne1, titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7]
+  questions: [sousConsigne1, sousConsigne2, titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7]
 };
 
 export { configurationNormale };
