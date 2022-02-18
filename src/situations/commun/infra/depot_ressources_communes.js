@@ -58,4 +58,29 @@ export default class DepotRessourcesCommunes extends DepotRessources {
   existeMessageAudio (nomTechnique) {
     return nomTechnique in this.messagesAudios;
   }
+  
+  trouveIllustrations(configuration) {
+    let illustrations = [];
+    if (Array.isArray(configuration)) {
+      configuration.forEach(objet => {
+        illustrations = illustrations.concat(this.trouveIllustrations(objet));
+      });
+    } else {
+      ['illustration', 'icone'].forEach(key => {
+        if (key in configuration) {
+          illustrations.push(configuration[key]);
+        }
+      });
+      Object.values(configuration).forEach(value => {
+        if (value instanceof Object) {
+          illustrations = illustrations.concat(this.trouveIllustrations(value));
+        }
+      });
+    }
+    return illustrations;
+  }
+
+  chargeIllustrationsConfigurations(configurations) {
+    this.charge(this.trouveIllustrations(configurations));
+  }
 }

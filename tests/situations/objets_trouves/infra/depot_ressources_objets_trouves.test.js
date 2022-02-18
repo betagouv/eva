@@ -19,37 +19,4 @@ describe('Le dépot ressource de la situation Objects trouvés', function () {
       expect(depot.reponseAudio('questionnaire inconnu', 0)).toBe(undefined);
     });
   });
-
-  describe('charge les ressources visuelles', function () {
-    it('de la configuration entrainement', function () {
-      depot.chargeConfigurations({
-        apps: {
-          agenda: [{ illustration: 'chemin_illustration.png', icone: 'chemin_icone.png' }]
-        }
-      }, {});
-
-      return depot.chargement().then(function () {
-        expect(depot.ressource('chemin_illustration.png')).not.toBe(undefined);
-        expect(depot.ressource('chemin_icone.png')).not.toBe(undefined);
-      });
-    });
-
-    it('de la configuration normale', function () {
-      depot.chargeConfigurations({}, {
-        appsAccueilVerrouille: {
-          deverouillage: [{ illustration: 'chemin_illustration_deverouillage.png', icone: 'chemin_icone_deverrouillage.png' }]
-        },
-        apps: {
-          agenda: [{ illustration: 'chemin_illustration.png', icone: 'chemin_icone.png' }]
-        }
-      });
-
-      return depot.chargement().then(function () {
-        expect(depot.ressource('chemin_illustration.png')).not.toBe(undefined);
-        expect(depot.ressource('chemin_icone.png')).not.toBe(undefined);
-        expect(depot.ressource('chemin_illustration_deverouillage.png')).not.toBe(undefined);
-        expect(depot.ressource('chemin_icone_deverrouillage.png')).not.toBe(undefined);
-      });
-    });
-  });
 });

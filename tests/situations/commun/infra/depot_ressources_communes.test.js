@@ -74,4 +74,32 @@ describe('Le dépot de ressources communes', function () {
       expect(depot.existeMessageAudio('inconnu')).toBe(false);
     });
   });
+
+  describe('charge les ressources visuelles', function () {
+    it('#trouveIllustrations', function () {
+      expect(depot.trouveIllustrations({})).toEqual([]);
+      expect(depot.trouveIllustrations({illustration: 'cheming.png', icone: 'icone.png'})).toEqual(['cheming.png', 'icone.png']);
+      expect(depot.trouveIllustrations([{illustration: 'cheming.png'}])).toEqual(['cheming.png']);
+      expect(depot.trouveIllustrations({chapitre: {illustration: 'cheming.png'}})).toEqual(['cheming.png']);
+    });
+
+    it("#chargeIllustrationsConfigurations", function () {
+      depot.chargeIllustrationsConfigurations([{
+        appsAccueilVerrouille: {
+          deverouillage: [{ illustration: 'chemin_illustration_deverouillage.png', icone: 'chemin_icone_deverrouillage.png' }]
+        },
+        apps: {
+          agenda: [{ illustration: 'chemin_illustration.png', icone: 'chemin_icone.png' }]
+        }
+      }, {illustration: 'chemin.png'}]);
+
+      return depot.chargement().then(function () {
+        expect(depot.ressource('chemin_illustration.png')).toBeDefined();
+        expect(depot.ressource('chemin.png')).toBeDefined();
+        expect(depot.ressource('chemin_icone.png')).toBeDefined();
+        expect(depot.ressource('chemin_illustration_deverouillage.png')).toBeDefined();
+        expect(depot.ressource('chemin_icone_deverrouillage.png')).toBeDefined();
+      });
+    });
+  });
 });
