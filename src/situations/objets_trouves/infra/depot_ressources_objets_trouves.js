@@ -31,23 +31,6 @@ export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommune
     this.charge(CHOIX_REPONSES_AUDIO_QCM.agenda);
   }
 
-  chargeRessourcesApps (apps) {
-    if (apps) {
-      Object.values(apps).forEach(app => {
-        this.charge(app.map(question => question.illustration));
-        this.charge(app.map(question => question.icone));
-      });
-    }
-  }
-
-  chargeConfigurations (configurationEntrainement, configurationNormale) {
-    const configurations = [configurationEntrainement, configurationNormale];
-    configurations.forEach((configuration) => {
-      this.chargeRessourcesApps(configuration.apps);
-      this.chargeRessourcesApps(configuration.appsAccueilVerrouille);
-    });
-  }
-
   fondSituation () {
     return this.ressource(fondSituation);
   }

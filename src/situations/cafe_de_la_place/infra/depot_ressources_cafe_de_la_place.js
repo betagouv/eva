@@ -106,19 +106,6 @@ export default class DepotRessourcesCafeDeLaPlace extends DepotRessourcesCommune
     this.charge([fondSituation]);
   }
 
-  chargeRessourcesQuestions (questions) {
-    this.charge(questions.map(question => question.illustration));
-  }
-
-  chargeRessourcesSousConsignes (sousConsignes) {
-    this.charge(sousConsignes.map(sousConsigne => sousConsigne.illustration));
-  }
-
-  chargeConfigurations (configurationNormale) {
-    this.chargeRessourcesQuestions(configurationNormale.chapitreALrd.questions);
-    this.chargeRessourcesSousConsignes(configurationNormale.chapitreALrd.sousConsignes);
-  }
-
   fondSituation () {
     return this.ressource(fondSituation);
   }
