@@ -1,14 +1,14 @@
 <template>
   <transition-fade>
     <defi
-      v-if="chapitreALrd.questions.length"
+      v-if="carteActive.id"
       :key="carteActive.id"
       :question="carteActive"
       @reponse="reponse"
     >
       <pagination
-        v-if="carteActive.type != 'sous-consigne'"
-        :indexQuestion="indexCarte - this.chapitreALrd.sousConsignes.length"
+        v-if="affichePagination"
+        :indexQuestion="indexCarte"
         :nombreQuestions="this.chapitreALrd.questions.length"
       />
     </defi>
@@ -28,34 +28,43 @@ export default {
 
   data () {
     return {
-      indexCarte: 0
+      indexCarte: 0,
+      affichePagination: false,
+      carteActive: {}
     };
   },
 
   computed: {
-    ...mapState({
-      chapitreALrd: state => state.chapitreALrd
-    }),
+    ...mapState(['chapitreALrd'])
+  },
 
-    carteActive: function  () {
-      return this.elementsChapitreALrd()[this.indexCarte];
+  watch: {
+    chapitreALrd (chapitre) {
+      this.carteActive = chapitre.sousConsignes[0];
     }
   },
 
   methods: {
     reponse (reponse) {
-      const donneesReponses = { question: this.carteActive.id, ...reponse };
-      this.$journal.enregistre(new EvenementReponse(donneesReponses));
-
-      if (this.indexCarte + 1 === this.elementsChapitreALrd().length) {
-        this.$emit('terminer');
-      } else {
-        this.indexCarte++;
+      this.indexCarte++;
+      if(this.carteActive.type === 'sous-consigne') {
+        if (this.indexCarte < this.chapitreALrd.sousConsignes.length) {
+          this.carteActive = this.chapitreALrd.sousConsignes[this.indexCarte];
+        } else {
+          this.indexCarte = 0;
+          this.affichePagination = true;
+          this.carteActive = this.chapitreALrd.questions[0];
+        }
       }
-    },
-
-    elementsChapitreALrd() {
-      return this.chapitreALrd.sousConsignes.concat(this.chapitreALrd.questions);
+      else {
+        const donneesReponses = { question: this.carteActive.id, ...reponse };
+        this.$journal.enregistre(new EvenementReponse(donneesReponses));
+        if (this.indexCarte < this.chapitreALrd.questions.length) {
+           this.carteActive = this.chapitreALrd.questions[this.indexCarte];
+        } else {
+          this.$emit('terminer');
+        }
+      }
     }
   }
 };

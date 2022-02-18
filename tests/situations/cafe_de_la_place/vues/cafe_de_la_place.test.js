@@ -26,34 +26,46 @@ describe('La vue café de la place', function () {
         done();
       });
     });
-  
-    it('affiche les sous consignes et les questions les unes après les autres', function () {
-      const sousConsigne = { id: 'sous-consigne'};
-      const question1 = { id: 'première' };
-      const question2 = { id: 'seconde' };
-      store.commit('configureActe', { chapitreALrd: { sousConsignes: [sousConsigne], questions: [question1, question2]} });
-      expect(wrapper.vm.carteActive).toEqual(sousConsigne);
-      wrapper.vm.reponse();
-      expect(wrapper.vm.carteActive).toEqual(question1);
-      wrapper.vm.reponse();
-      expect(wrapper.vm.carteActive).toEqual(question2);
-      expect(wrapper.emitted('terminer')).toBe(undefined);
-      wrapper.vm.reponse();
-      expect(wrapper.emitted('terminer').length).toEqual(1);
-      expect(wrapper.vm.carteActive).toEqual(question2);
+
+    it('affiche les sous consignes et les questions les unes après les autres', function (done) {
+      const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne'};
+      const sousConsigne2 = { id: 'sous-consigne-2', type: 'sous-consigne'};
+      const question1 = { id: 'première', type: 'qcm' };
+      const question2 = { id: 'seconde', type: 'qcm' };
+      store.commit('configureActe', { chapitreALrd: {
+          sousConsignes: [sousConsigne, sousConsigne2],
+          questions: [question1, question2]
+        }
+      });
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.vm.carteActive).toEqual(sousConsigne);
+        wrapper.vm.reponse();
+        expect(wrapper.vm.carteActive).toEqual(sousConsigne2);
+        wrapper.vm.reponse();
+        expect(wrapper.vm.carteActive).toEqual(question1);
+        wrapper.vm.reponse();
+        expect(wrapper.vm.carteActive).toEqual(question2);
+        expect(wrapper.emitted('terminer')).toBe(undefined);
+        wrapper.vm.reponse();
+        expect(wrapper.emitted('terminer').length).toEqual(1);
+        expect(wrapper.vm.carteActive).toEqual(question2);
+        done();
+      });
     });
   
     it("n'affiche pas la pagination si la carte active est une sous consigne", function (done) {
       const sousConsigne = { id: 'sous-consigne', type: "sous-consigne"};
       const question = { id: 'première', type: 'qcm' };
       store.commit('configureActe', { chapitreALrd: { sousConsignes: [sousConsigne], questions: [question]} });
-      expect(wrapper.vm.carteActive).toEqual(sousConsigne);
-      expect(wrapper.findComponent(Pagination).exists()).toBe(false);
-      wrapper.vm.reponse();
-      expect(wrapper.vm.carteActive).toEqual(question);
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.findComponent(Pagination).exists()).toBe(true);
-        done();
+        expect(wrapper.vm.carteActive).toEqual(sousConsigne);
+        expect(wrapper.findComponent(Pagination).exists()).toBe(false);
+        wrapper.vm.reponse();
+        expect(wrapper.vm.carteActive).toEqual(question);
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.findComponent(Pagination).exists()).toBe(true);
+          done();
+        });
       });
     });
   });

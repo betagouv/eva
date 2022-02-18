@@ -5,15 +5,14 @@ export function creeStore () {
     state: {
       fondSituation: '',
       chapitreALrd: {
-        sousConsignes:[],
+        sousConsignes: [],
         questions: []
       },
     },
 
     mutations: {
       configureActe (state, { chapitreALrd }) {
-        state.chapitreALrd.sousConsignes = chapitreALrd.sousConsignes;
-        state.chapitreALrd.questions = chapitreALrd.questions;
+        state.chapitreALrd = chapitreALrd;
       }
     }
   });
