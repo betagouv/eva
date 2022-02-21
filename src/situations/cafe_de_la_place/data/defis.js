@@ -269,10 +269,17 @@ const titre7 = {
   ]
 };
 
+const clicSurMot = {
+  id: 'ALrd11',
+  nom_technique: 'clic_sur_mot',
+  illustration: listeTitresMusique,
+  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».'
+};
+
 const configurationNormale = {
   chapitreALrd: {
     sousConsignes: [ sousConsigne1, sousConsigne2 ],
-    questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7 ]
+    questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, clicSurMot ]
   }
 };
 

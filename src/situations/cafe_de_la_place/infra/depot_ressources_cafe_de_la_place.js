@@ -15,6 +15,7 @@ import titre8 from 'cafe_de_la_place/assets/audio_questions/titre8.mp3';
 import titre5 from 'cafe_de_la_place/assets/audio_questions/titre5.mp3';
 import titre4 from 'cafe_de_la_place/assets/audio_questions/titre4.mp3';
 import titre7 from 'cafe_de_la_place/assets/audio_questions/titre7.mp3';
+import clicSurMot from 'cafe_de_la_place/assets/audio_questions/clic_sur_mot.mp3';
 
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/bax.mp3';
 import sonChoixMasse from 'cafe_de_la_place/assets/audio_reponses/masse.mp3';
@@ -62,7 +63,8 @@ const AUDIOS_QUESTIONS = {
   titre_8: titre8,
   titre_5: titre5,
   titre_4: titre4,
-  titre_7: titre7
+  titre_7: titre7,
+  clic_sur_mot: clicSurMot
 };
 
 const AUDIOS_REPONSES = {
