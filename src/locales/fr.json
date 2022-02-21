@@ -243,5 +243,9 @@
     "intro_contexte": {
       "message": "<p>Vous vous installez à la terrasse d'un café situé en face de la mairie.</p>"
     }
+  },
+  "bouton_lecture": {
+    "lecture": "Lecture",
+    "stop": "Stop"
   }
 }

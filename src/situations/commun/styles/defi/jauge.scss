@@ -75,7 +75,6 @@
       display: flex;
 
       .bouton-lecture {
-        margin-right:4.25rem;
         height: 1.25rem;
       }
 
@@ -93,6 +92,10 @@
       &.selected {
         color: $bleu;
         font-weight: 600;
+      }
+
+      &-libelle {
+        margin-left: 4.25rem;
       }
     }
   }

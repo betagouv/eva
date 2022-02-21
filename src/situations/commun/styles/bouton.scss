@@ -44,8 +44,30 @@
 }
 
 .bouton-lecture {
-  button {
-    padding: 0;
-    background: none;
+  padding: 0;
+  border-radius: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $couleur-principale-marque-et-interaction;
+
+  &-texte {
+    margin-left: 0.4rem;
   }
+
+  &--avec-texte {
+    padding: 0.75rem 1rem;
+    border-radius: 2.875rem;
+    min-width: 6.25rem;
+    min-height: 2.5rem;
+    justify-content: start;
+    color: $blanc;
+    font-family: $font-work-sans;
+    font-size: 0.875rem;
+  }
+}
+.bouton-lecture--pause {
+  background-color: $orange;
 }

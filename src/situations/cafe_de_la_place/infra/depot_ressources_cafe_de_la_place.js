@@ -47,6 +47,7 @@ import sonChoixLeFilDuTemps from 'cafe_de_la_place/assets/audio_reponses/le_fil_
 import sonChoixSoupconDAmertume from 'cafe_de_la_place/assets/audio_reponses/soupcon_d_amertume.mp3';
 import sonChoixSouponDAmertume from 'cafe_de_la_place/assets/audio_reponses/soupon_d_amertume.mp3';
 import sonChoixSoupconDAbertube from 'cafe_de_la_place/assets/audio_reponses/soupcon_d_abertube.mp3';
+import sonExercice from 'cafe_de_la_place/assets/audio_reponses/exercice.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_1: sousConsigne1,
@@ -97,7 +98,8 @@ const AUDIOS_REPONSES = {
   le_fil_du_temps: sonChoixLeFilDuTemps,
   soupcon_d_amertume: sonChoixSoupconDAmertume,
   soupon_d_amertume: sonChoixSouponDAmertume,
-  soupcon_d_abertube: sonChoixSoupconDAbertube
+  soupcon_d_abertube: sonChoixSoupconDAbertube,
+  exercice: sonExercice
 };
 
 const messagesAudios = { ...AUDIOS_CONSIGNES, ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };

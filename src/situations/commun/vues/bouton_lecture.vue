@@ -1,36 +1,34 @@
 <template>
-  <div>
-    <button @click="basculeJoueSon">
-      <svg
+    <button
+      class="bouton-lecture"
+      @click="basculeJoueSon"
+      :class="{'bouton-lecture--pause': this.joueSon, 'bouton-lecture--avec-texte': this.avecTexte }"
+    >
+      <svg 
         v-if="joueSon"
         class="icone-pause"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
+        width="6"
+        height="10"
+        viewBox="0 0 6 10"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM9 16.5V8H11V16.5H9ZM13 16.5V8H15V16.5H13Z"
-          fill="#6E84FE"
-        />
+        <path d="M2 1C2 0.447715 1.55228 0 1 0C0.447715 0 0 0.447715 0 1V8.97872C0 9.53101 0.447715 9.97872 1 9.97872C1.55228 9.97872 2 9.53101 2 8.97872V1Z" fill="white"/>
+        <path d="M6 1.01978C6 0.467491 5.55228 0.0197754 5 0.0197754C4.44772 0.0197754 4 0.467491 4 1.01978V8.9985C4 9.55078 4.44772 9.9985 5 9.9985C5.55228 9.9985 6 9.55078 6 8.9985V1.01978Z" fill="white"/>
       </svg>
       <svg
         v-else
         class="icone-lecture"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
+        width="10"
+        height="10"
+        viewBox="0 0 10 10"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="10" cy="10" fill="#6e84fe" r="10"/>
-        <path d="M14 8.701c1 .577 1 2.02 0 2.598l-5.813 3.356a1.5 1.5 0 0 1-2.25-1.3v-6.71a1.5 1.5 0 0 1 2.25-1.3z" fill="#fff"/>
+        <path d="M9 3.70096C10 4.27831 10 5.72169 9 6.29904L3.1875 9.65489C2.1875 10.2322 0.9375 9.51055 0.937501 8.35585L0.937501 1.64415C0.937501 0.489454 2.1875 -0.232237 3.1875 0.345113L9 3.70096Z" fill="white"/>
       </svg>
+      <span v-if="this.avecTexte" class="bouton-lecture-texte">{{$traduction(texteBouton)}}</span>
     </button>
-  </div>
 </template>
 
 <script>
@@ -41,6 +39,11 @@ export default {
     nomTechnique: {
       type: String,
       required: true
+    },
+    avecTexte: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   },
 
@@ -68,6 +71,12 @@ export default {
       } else {
         this.joueurSon.stop();
       }
+    }
+  },
+
+  computed: {
+    texteBouton () {
+      return this.joueSon === true ? 'bouton_lecture.stop' : 'bouton_lecture.lecture';
     }
   },
 
