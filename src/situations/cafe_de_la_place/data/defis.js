@@ -23,8 +23,8 @@ const titre1 = {
   nom_technique: 'titre_1',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 1, quel est la bonne lecture ?',
-  intitule: 'Dès que vous aurez reconnu la bonne lecture, choisissez  une de ces réponses en cliquant sur un des ronds. Pour confirmer votre réponse, cliquer sur Valider.',
+  description: 'Pour le titre 1, quelle est la bonne lecture ?',
+  intitule: 'Dès que vous aurez reconnu la bonne lecture, choisissez une des réponses ci-dessous. Pour confirmer votre réponse, cliquez sur Valider.',
   choix: [
     {
       id: 'bax',
@@ -49,7 +49,7 @@ const titre2 = {
   nom_technique: 'titre_2',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 2 :',
+  description: 'Pour le titre 2, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'jazzABimoudon',
@@ -74,7 +74,7 @@ const titre10 = {
   nom_technique: 'titre_10',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 10 :',
+  description: 'Pour le titre 10, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'unAmiEnAmont',
@@ -99,7 +99,7 @@ const titre3 = {
   nom_technique: 'titre_3',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 3 :',
+  description: 'Pour le titre 3, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'balleEtTalle',
@@ -124,7 +124,7 @@ const titre11 = {
   nom_technique: 'titre_11',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 11 :',
+  description: 'Pour le titre 11, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'dussoEtMatura',
@@ -149,7 +149,7 @@ const titre6 = {
   nom_technique: 'titre_6',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 6 :',
+  description: 'Pour le titre 6, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'amourSugulent',
@@ -174,7 +174,7 @@ const titre8 = {
   nom_technique: 'titre_8',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 8 :',
+  description: 'Pour le titre 8, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'anguilEtDouceMer',
@@ -199,7 +199,7 @@ const titre5 = {
   nom_technique: 'titre_5',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 5 :',
+  description: 'Pour le titre 5, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'exerciceDeStyle',
@@ -224,7 +224,7 @@ const titre4 = {
   nom_technique: 'titre_4',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 4 :',
+  description: 'Pour le titre 4, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'leVilDuTemps',
@@ -249,7 +249,7 @@ const titre7 = {
   nom_technique: 'titre_7',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Titre 7 :',
+  description: 'Pour le titre 7, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'soupconDAmertume',
