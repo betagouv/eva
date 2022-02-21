@@ -272,8 +272,10 @@ const titre7 = {
 const clicSurMot = {
   id: 'ALrd11',
   nom_technique: 'clic_sur_mot',
+  type: 'ecoute',
   illustration: listeTitresMusique,
-  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».'
+  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  reponse : 'exercice'
 };
 
 const configurationNormale = {
