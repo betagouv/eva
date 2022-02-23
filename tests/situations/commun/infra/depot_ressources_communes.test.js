@@ -81,6 +81,7 @@ describe('Le dépot de ressources communes', function () {
       expect(depot.trouveIllustrations({illustration: 'cheming.png', icone: 'icone.png'})).toEqual(['cheming.png', 'icone.png']);
       expect(depot.trouveIllustrations([{illustration: 'cheming.png'}])).toEqual(['cheming.png']);
       expect(depot.trouveIllustrations({chapitre: {illustration: 'cheming.png'}})).toEqual(['cheming.png']);
+      expect(depot.trouveIllustrations(['une liste de string', 'autre string'])).toEqual([]);
     });
 
     it("#chargeIllustrationsConfigurations", function () {

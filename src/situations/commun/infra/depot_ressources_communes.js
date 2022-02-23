@@ -60,6 +60,9 @@ export default class DepotRessourcesCommunes extends DepotRessources {
   }
   
   trouveIllustrations(configuration) {
+    if (! (configuration instanceof Object)) {
+      return [];
+    }
     let illustrations = [];
     if (Array.isArray(configuration)) {
       configuration.forEach(objet => {
@@ -72,9 +75,7 @@ export default class DepotRessourcesCommunes extends DepotRessources {
         }
       });
       Object.values(configuration).forEach(value => {
-        if (value instanceof Object) {
-          illustrations = illustrations.concat(this.trouveIllustrations(value));
-        }
+        illustrations = illustrations.concat(this.trouveIllustrations(value));
       });
     }
     return illustrations;
