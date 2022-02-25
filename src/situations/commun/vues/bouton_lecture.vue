@@ -2,12 +2,16 @@
     <button
       class="bouton-lecture"
       @click="basculeJoueSon"
-      :class="{'bouton-lecture--pause': this.joueSon, 'bouton-lecture--avec-texte': this.avecTexte }"
+      :class="{
+               'bouton-lecture--pause': this.joueSon,
+               'bouton-arrondi': this.avecTexte,
+               'bouton-lecture--sans-texte': !this.avecTexte
+      }"
     >
       <svg
         v-if="joueSon"
         class="icone-pause"
-        width="6"
+        width="10"
         height="10"
         viewBox="0 0 6 10"
         fill="none"
@@ -27,7 +31,7 @@
       >
         <path d="M9 3.70096C10 4.27831 10 5.72169 9 6.29904L3.1875 9.65489C2.1875 10.2322 0.9375 9.51055 0.937501 8.35585L0.937501 1.64415C0.937501 0.489454 2.1875 -0.232237 3.1875 0.345113L9 3.70096Z" fill="white"/>
       </svg>
-      <span v-if="this.avecTexte" class="bouton-lecture-texte">{{$traduction(texteBouton)}}</span>
+      <span v-if="avecTexte" class="bouton-lecture-texte">{{$traduction(texteBouton)}}</span>
     </button>
 </template>
 
@@ -50,7 +54,8 @@ export default {
   data () {
     return {
       joueSon: false,
-      joueurSon: new JoueurAudioBuffer()
+      joueurSon: new JoueurAudioBuffer(),
+      texteBouton: 'bouton_lecture.lecture'
     };
   },
 
@@ -71,12 +76,6 @@ export default {
       } else {
         this.joueurSon.stop();
       }
-    }
-  },
-
-  computed: {
-    texteBouton () {
-      return this.joueSon === true ? 'bouton_lecture.stop' : 'bouton_lecture.lecture';
     }
   },
 

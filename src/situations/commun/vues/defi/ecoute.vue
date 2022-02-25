@@ -1,8 +1,10 @@
 <template>
-  <bouton-lecture
-    :nomTechnique="question.reponse"
-    :avecTexte="true"
-  />
+  <div class="defi-ecoute">
+    <bouton-lecture
+      :nomTechnique="question.reponse"
+      :avecTexte="true"
+    />
+  </div>
 </template>
 
 <script>
