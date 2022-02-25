@@ -1,27 +1,14 @@
 .telephone-conteneur {
   .bouton-lecture {
-    button {
-      width: 13.87rem;
-      height: 3.75rem;
-      padding: 0;
-      position: absolute;
-      left: 0.75rem;
-      background: none;
-    }
-    svg {
-      position: absolute;
-      top: 1.2rem;
-      right: 1rem;
-    }
+    left: 12.125rem;
+    position: absolute;
+
     &--heure-bureau-mickael {
-      button {
-        top: 5.3rem;
-      }
+      top: 6.5rem;
     }
+
     &--nombre-tours-de-manege {
-      button {
-        top: 10rem;
-      }
+      top: 11.25rem;
     }
   }
 }
