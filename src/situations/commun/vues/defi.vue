@@ -18,8 +18,6 @@
             v-if="composantContenu"
             :is="composantContenu"
             :question="question"
-            :nomTechnique="question.reponse"
-            :avecTexte="this.question.type === 'ecoute'"
             v-model="reponse"
         />
       </div>
@@ -39,7 +37,6 @@
 import 'commun/styles/boutons.scss';
 import 'commun/styles/bouton.scss';
 import 'commun/styles/formulaire_qcm.scss';
-import 'commun/styles/defi/ecoute.scss';
 
 import { mapGetters } from 'vuex';
 import Question from './question';
@@ -48,11 +45,11 @@ import Jauge from 'commun/vues/defi/jauge';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
 import Qcm from 'commun/vues/defi/qcm';
 import RedactionNote from 'commun/vues/defi/redaction_note';
-import BoutonLecture from 'commun/vues/bouton_lecture';
+import Ecoute from 'commun/vues/defi/ecoute';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
-  components: { Question, QuestionEntete, Jauge, ChampSaisie, Qcm, RedactionNote },
+  components: { Question, QuestionEntete, Jauge, ChampSaisie, Qcm, RedactionNote, Ecoute },
 
   props: {
     question: {
@@ -83,7 +80,6 @@ export default {
 
     composantContenu () {
       if (this.question.type === 'redaction_note') return RedactionNote;
-      if (this.question.type === 'ecoute') return BoutonLecture;
       if (this.question.type === 'action' || this.question.type === 'sous-consigne') return undefined;
       if (this.question.type === 'qcm') {
         return this.question.type_qcm === 'jauge' ? Jauge : Qcm;

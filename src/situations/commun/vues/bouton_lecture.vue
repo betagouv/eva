@@ -4,7 +4,7 @@
       @click="basculeJoueSon"
       :class="{'bouton-lecture--pause': this.joueSon, 'bouton-lecture--avec-texte': this.avecTexte }"
     >
-      <svg 
+      <svg
         v-if="joueSon"
         class="icone-pause"
         width="6"
