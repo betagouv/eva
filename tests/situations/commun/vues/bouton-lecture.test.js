@@ -45,6 +45,32 @@ describe('Le bouton de lecture de message audio', function () {
     expect(sonStope).toBe(true);
   });
 
+  describe('sans texte', function () {
+    let wrapper;
+    let localVue;
+
+    beforeEach(function () {
+      localVue = createLocalVue();
+      localVue.prototype.$traduction = () => {};
+      wrapper = shallowMount(BoutonLecture, {
+        localVue,
+        propsData: {
+          nomTechnique: 'question1',
+          avecTexte: false
+        }
+      });
+    });
+
+    it("ajoute la classe", function () {
+      expect(wrapper.find('.bouton-lecture').classes('bouton-arrondi')).toBe(false);
+      expect(wrapper.find('.bouton-lecture').classes('bouton-lecture--sans-texte')).toBe(true);
+    });
+
+    it("n'affiche pas de texte", function () {
+      expect(wrapper.find('.bouton-lecture-texte').exists()).toBe(false);
+    });
+  });
+
   describe('avec du texte', function () {
     let wrapper;
     let localVue;
@@ -55,50 +81,20 @@ describe('Le bouton de lecture de message audio', function () {
       wrapper = shallowMount(BoutonLecture, {
         localVue,
         propsData: {
-          nomTechnique: 'question1'
+          nomTechnique: 'question1',
+          avecTexte: true
         }
       });
     });
 
-    it("ajoute la classe bouton-lecture--avec-texte", function (done) {
-      expect(wrapper.find('.bouton-lecture').classes('bouton-lecture--avec-texte')).toBe(false);
-      wrapper.setProps({ avecTexte: true });
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.bouton-lecture').classes('bouton-lecture--avec-texte')).toBe(true);
-        done();
-      });
+    it("ajoute la classe", function () {
+      expect(wrapper.find('.bouton-lecture').classes('bouton-arrondi')).toBe(true);
+      expect(wrapper.find('.bouton-lecture').classes('bouton-lecture--sans-texte')).toBe(false);
     });
 
-    describe("quand le son n'est pas joué", function () {
-      it("renvoie le texte 'Lecture'", function (done) {
-        wrapper.setProps({ avecTexte: true });
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.find('.bouton-lecture').classes('bouton-lecture--avec-texte')).toBe(true);
-          expect(wrapper.vm.texteBouton).toEqual('bouton_lecture.lecture');
-          done();
-        });
-      });
-    });
-
-    describe("quand le son est joué", function () {
-      it('renvoie le texte "stop"', function (done) {
-        wrapper.setProps({ avecTexte: true });
-        localVue.prototype.$depotRessources = {
-          messageAudio: (nomTechnique) => {
-            expect(nomTechnique).toEqual('question1');
-          }
-        };
-        wrapper.vm.joueurSon = {
-          start: () => {
-            true;
-          }
-        };
-        wrapper.vm.joueSon = true;
-        wrapper.vm.$nextTick(() => {
-          expect(wrapper.vm.texteBouton).toEqual('bouton_lecture.stop');
-          done();
-        });
-      });
+    it("renvoie le texte 'Lecture'", function () {
+      expect(wrapper.find('.bouton-lecture-texte').exists()).toBe(true);
+      expect(wrapper.vm.texteBouton).toEqual('bouton_lecture.lecture');
     });
   });
 });
