@@ -47,6 +47,10 @@
   display: flex;
   align-items: center;
 
+  .icone-lecture, .icone-pause {
+    width: 1.25rem;
+  }
+
   &-texte {
     margin-left: 0.4rem;
     font-size: 0.875rem;

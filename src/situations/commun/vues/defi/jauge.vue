@@ -21,7 +21,7 @@
       >
         <bouton-lecture
           v-if="afficheLectureReponse(element.nom_technique)"
-          class="bouton-lecture"
+          class="bouton-lecture--jauge"
           :nomTechnique="element.nom_technique"
         />
         <span
