@@ -74,8 +74,8 @@
       color: $bleu-fonce;
       display: flex;
 
-      .bouton-lecture {
-        height: 1.25rem;
+      .bouton-lecture--jauge {
+        margin-right:4.25rem; // pour les tablettes pour prendre suffisament de place pour le doigt
       }
 
       &::before {
@@ -92,10 +92,6 @@
       &.selected {
         color: $bleu;
         font-weight: 600;
-      }
-
-      &-libelle {
-        margin-left: 4.25rem;
       }
     }
   }
