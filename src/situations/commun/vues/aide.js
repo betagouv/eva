@@ -5,7 +5,7 @@ import { creeAdaptateur } from './adaptateur_vue';
 import EvenementActivationAide from 'commun/modeles/evenement_activation_aide';
 import VueFenetreAide, { FERME } from 'commun/vues/fenetre_aide';
 
-import 'commun/styles/bouton.scss';
+import 'commun/styles/boutons.scss';
 import 'commun/styles/aide.scss';
 
 const AdapteurFenetreAide = creeAdaptateur(VueFenetreAide);

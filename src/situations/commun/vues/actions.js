@@ -1,5 +1,5 @@
 import 'commun/styles/actions.scss';
-import 'commun/styles/bouton.scss';
+import 'commun/styles/boutons.scss';
 import { CHANGEMENT_ETAT, DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
 
 import VueStop from 'commun/vues/stop';

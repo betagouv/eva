@@ -6,7 +6,7 @@ import VueBouton from './bouton';
 import { afficheFenetreModale } from 'commun/vues/modale';
 import { SCOPE_URL } from 'commun/vues/affiche_situation';
 
-import 'commun/styles/bouton.scss';
+import 'commun/styles/boutons.scss';
 import 'commun/styles/stop.scss';
 
 export default class VueStop {

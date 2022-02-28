@@ -70,7 +70,7 @@
 <script>
 import { mapState } from 'vuex';
 import 'accueil/styles/fin.scss';
-import 'commun/styles/bouton.scss';
+import 'commun/styles/boutons.scss';
 import BoutonDeconnexion from 'accueil/vues/bouton_deconnexion';
 import BoutonLecture from 'commun/vues/bouton_lecture';
 
