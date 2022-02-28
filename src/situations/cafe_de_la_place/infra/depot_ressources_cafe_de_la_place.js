@@ -65,7 +65,7 @@ const AUDIOS_QUESTIONS = {
   titre_5: titre5,
   titre_4: titre4,
   titre_7: titre7,
-  clic_sur_mot: clicSurMot
+  clic_sur_exercice: clicSurMot
 };
 
 const AUDIOS_REPONSES = {
