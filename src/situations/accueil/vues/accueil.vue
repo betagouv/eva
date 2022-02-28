@@ -90,7 +90,7 @@ import { mapState, mapActions } from 'vuex';
 import 'accueil/styles/accueil.scss';
 import 'commun/styles/cadre.scss';
 import 'commun/styles/actions.scss';
-import 'commun/styles/bouton.scss';
+import 'commun/styles/boutons.scss';
 import 'commun/styles/overlay.scss';
 import 'commun/styles/modale.scss';
 import logo from '../../../public/logo-blanc.svg';
