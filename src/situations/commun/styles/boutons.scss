@@ -142,7 +142,7 @@
     padding: .5rem 1rem;
   }
 
-  &--pause {
-    background-color: $orange !important;
+  &--pause, &--pause:focus {
+    background-color: $orange
   }
 }

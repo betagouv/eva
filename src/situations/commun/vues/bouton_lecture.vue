@@ -3,9 +3,9 @@
       class="bouton-lecture"
       @click="basculeJoueSon"
       :class="{
-               'bouton-lecture--pause': this.joueSon,
-               'bouton-arrondi': this.avecTexte,
-               'bouton-lecture--sans-texte': !this.avecTexte
+               'bouton-arrondi bouton-lecture--avec-texte': this.avecTexte,
+               'bouton-lecture--sans-texte': !this.avecTexte,
+               'bouton-lecture--pause': this.joueSon
       }"
     >
       <svg
@@ -54,8 +54,7 @@ export default {
   data () {
     return {
       joueSon: false,
-      joueurSon: new JoueurAudioBuffer(),
-      texteBouton: 'bouton_lecture.lecture'
+      joueurSon: new JoueurAudioBuffer()
     };
   },
 
@@ -76,6 +75,12 @@ export default {
       } else {
         this.joueurSon.stop();
       }
+    }
+  },
+
+  computed: {
+    texteBouton () {
+      return this.joueSon === true ? 'bouton_lecture.pause' : 'bouton_lecture.lecture';
     }
   },
 
