@@ -245,6 +245,7 @@
     }
   },
   "bouton_lecture": {
-    "lecture": "Lecture"
+    "lecture": "Lecture",
+    "pause": "Pause"
   }
 }

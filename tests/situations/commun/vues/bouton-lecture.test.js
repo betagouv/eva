@@ -92,9 +92,34 @@ describe('Le bouton de lecture de message audio', function () {
       expect(wrapper.find('.bouton-lecture').classes('bouton-lecture--sans-texte')).toBe(false);
     });
 
-    it("renvoie le texte 'Lecture'", function () {
-      expect(wrapper.find('.bouton-lecture-texte').exists()).toBe(true);
-      expect(wrapper.vm.texteBouton).toEqual('bouton_lecture.lecture');
+    describe("quand le son n'est pas joué", function () {
+      it("renvoie le texte 'Lecture'", function () {
+        wrapper.setProps({ avecTexte: true });
+        expect(wrapper.find('.bouton-lecture-texte').exists()).toBe(true);
+        expect(wrapper.vm.texteBouton).toEqual('bouton_lecture.lecture');
+      });
+    });
+
+    describe("quand le son est joué", function () {
+      it("renvoie le texte 'Pause'", function (done) {
+        expect(wrapper.find('.bouton-lecture-texte').exists()).toBe(true);
+        wrapper.setProps({ avecTexte: true });
+        localVue.prototype.$depotRessources = {
+          messageAudio: (nomTechnique) => {
+            expect(nomTechnique).toEqual('question1');
+          }
+        };
+        wrapper.vm.joueurSon = {
+          start: () => {
+            true;
+          }
+        };
+        wrapper.vm.joueSon = true;
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.vm.texteBouton).toEqual('bouton_lecture.pause');
+          done();
+        });
+      });
     });
   });
 });
