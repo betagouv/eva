@@ -17,11 +17,14 @@
 
 <script>
 import { mapState } from 'vuex';
+import Vue from 'vue';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 
 import Defi from 'commun/vues/defi';
 import TransitionFade from 'commun/vues/transition_fade';
 import Pagination from 'commun/vues/components/pagination';
+
+import ClicSurMots from 'cafe_de_la_place/vues/components/clic_sur_mots.vue';
 
 export default {
   components: { Defi, TransitionFade, Pagination },
@@ -32,6 +35,11 @@ export default {
       affichePagination: false,
       carteActive: {}
     };
+  },
+
+  mounted () {
+  // enregistre globalement, les composants spécifiques utilisés par certaines questions
+    Vue.component('clic_sur_mots', ClicSurMots);
   },
 
   computed: {

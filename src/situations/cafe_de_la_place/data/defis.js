@@ -1,4 +1,5 @@
 import listeTitresMusique from '../assets/liste_titres_musique.png';
+import telephoneSansTitres from '../assets/telephone_sans_titres.png';
 import terrasseCafe from '../assets/terrasse_cafe.png';
 
 const sousConsigne1 = {
@@ -269,19 +270,20 @@ const titre7 = {
   ]
 };
 
-const clicSurMot = {
+const clicSurExercice = {
   id: 'ALrd11',
-  nom_technique: 'clic_sur_mot',
+  nom_technique: 'clic_sur_exercice',
   type: 'ecoute',
-  illustration: listeTitresMusique,
+  illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse : 'exercice'
+  reponse : 'exercice',
+  extensionVue: 'clic_sur_mots'
 };
 
 const configurationNormale = {
   chapitreALrd: {
     sousConsignes: [ sousConsigne1, sousConsigne2 ],
-    questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, clicSurMot ]
+    questions: [ clicSurExercice , titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7 ]
   }
 };
 

@@ -1,0 +1,27 @@
+@import 'commun/styles/variables.scss';
+
+.liste-chansons {
+  position: absolute;
+  left: 11.5rem;
+  top: 9.2rem;
+  width: 13rem;
+  color: #fff;
+
+  li {
+    line-height: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .mot {
+    border: 1px dotted $vert-clair;
+    border-radius: 0.25rem;
+    background: rgba(251, 249, 250, 0.1);
+    cursor: pointer;
+
+    &--selectionne {
+      background: $bleu;
+      border: 1px solid $bleu;
+      mix-blend-mode: lighten;
+    }
+  }
+}
