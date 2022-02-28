@@ -4,7 +4,7 @@ import EvenementRejoueConsigne from '../modeles/evenement_rejoue_consigne';
 
 import play from 'commun/assets/play.svg';
 import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
-import 'commun/styles/bouton.scss';
+import 'commun/styles/boutons.scss';
 
 export default class VueRejoueConsigne {
   constructor (situation, joueurConsigne, journal) {
