@@ -1,53 +1,124 @@
 <template>
   <ul class="liste-chansons">
     <li>
-      <span class="mot"
-              @click="selectionneMot"
-              :class="{ 'mot--selectionne': estSelectionne('Max') }"
-              >Max
-      </span>
+      <mot-cliquable :libelle="'Max'"
+                     :estSelectionne="estSelectionne('Max')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>
-      <span class="mot">Jazz</span> à <span class="mot">Dimoudon</span>
+      <mot-cliquable :libelle="'Jazz'"
+                     :estSelectionne="estSelectionne('Jazz')"
+                     @click.native="selectionneMot"
+      /> à 
+      <mot-cliquable :libelle="'Dimoudon'"
+                     :estSelectionne="estSelectionne('Dimoudon')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>
-      <span class="mot">Baille</span> et <span class="mot">taille</span>
+      <mot-cliquable :libelle="'Baille'"
+                     :estSelectionne="estSelectionne('Baille')"
+                     @click.native="selectionneMot"
+      /> et 
+      <mot-cliquable :libelle="'taille'"
+                     :estSelectionne="estSelectionne('taille')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>Le 
-      <span class="mot">fil</span> du <span class="mot">temps</span>
+      <mot-cliquable :libelle="'fil'"
+                     :estSelectionne="estSelectionne('fil')"
+                     @click.native="selectionneMot"
+      /> du 
+      <mot-cliquable :libelle="'temps'"
+                     :estSelectionne="estSelectionne('temps')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>
-      <span
-          class="mot"
-          @click="selectionneMot"
-          :class="{ 'mot--selectionne': estSelectionne('Exercice') }"
-        >Exercice</span> de <span class="mot">style</span>
+      <mot-cliquable :libelle="'Exercice'"
+                     :estSelectionne="estSelectionne('Exercice')"
+                     @click.native="selectionneMot"
+      /> de 
+      <mot-cliquable :libelle="'style'"
+                     :estSelectionne="estSelectionne('style')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>
-      <span class="mot">Amour</span> <span class="mot">succulent</span>
+      <mot-cliquable :libelle="'Amour'"
+                     :estSelectionne="estSelectionne('Amour')"
+                     @click.native="selectionneMot"
+      /> 
+      <mot-cliquable :libelle="'succulent'"
+                     :estSelectionne="estSelectionne('succulent')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>
-      <span class="mot">Soupçon</span> d'<span class="mot">amertume</span>
+      <mot-cliquable :libelle="'Soupçon'"
+                     :estSelectionne="estSelectionne('Soupçon')"
+                     @click.native="selectionneMot"
+      /> d'
+      <mot-cliquable :libelle="'amertume'"
+                     :estSelectionne="estSelectionne('amertume')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>
-      <span class="mot">Anguille</span> et <span class="mot">douce</span> <span class="mot">mer</span>
+      <mot-cliquable :libelle="'Anguille'"
+                     :estSelectionne="estSelectionne('Anguille')"
+                     @click.native="selectionneMot"
+      /> et 
+      <mot-cliquable :libelle="'douce'"
+                     :estSelectionne="estSelectionne('douce')"
+                     @click.native="selectionneMot"
+      /> 
+      <mot-cliquable :libelle="'mer'"
+                     :estSelectionne="estSelectionne('mer')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>
-      <span class="mot">Sourire</span> <span class="mot">toujours</span>
+      <mot-cliquable :libelle="'Sourire'"
+                     :estSelectionne="estSelectionne('Sourire')"
+                     @click.native="selectionneMot"
+      /> 
+      <mot-cliquable :libelle="'toujours'"
+                     :estSelectionne="estSelectionne('toujours')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>Un 
-      <span class="mot">ami</span>, un <span class="mot">amant</span>
+      <mot-cliquable :libelle="'ami'"
+                     :estSelectionne="estSelectionne('ami')"
+                     @click.native="selectionneMot"
+      />, un 
+      <mot-cliquable :libelle="'amant'"
+                     :estSelectionne="estSelectionne('amant')"
+                     @click.native="selectionneMot"
+      />
     </li>
     <li>
-      <span class="mot">Duxo</span> et <span class="mot">matura</span>
+      <mot-cliquable :libelle="'Duxo'"
+                     @click.native="selectionneMot"
+                     :estSelectionne="estSelectionne('Duxo')"
+      /><mot-cliquable :libelle="'matura'"
+                     @click.native="selectionneMot"
+                     :estSelectionne="estSelectionne('matura')"
+      />
     </li>
   </ul>
 </template>
 
 <script>
 import 'cafe_de_la_place/styles/clic_sur_mots.scss';
+import motCliquable from './mot_cliquable.vue';
 
 export default {
+  components: { motCliquable },
+
   data () {
     return {
       motSelectionne: ''
@@ -56,11 +127,11 @@ export default {
 
   methods: {
     selectionneMot(event) {
-      this.motSelectionne = event.target.innerText;
+      return this.motSelectionne = event.target.innerText.trim();
     },
 
     estSelectionne (mot) {
-      return mot === this.motSelectionne;
+      return mot.trim() === this.motSelectionne;
     }
   }
 };
