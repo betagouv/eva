@@ -1,9 +1,7 @@
 <template>
   <span class="mot"
         :class="{ 'mot--selectionne': estSelectionne }"
-      >
-      {{libelle}}
-  </span>
+      >{{libelle}}</span>
 </template>
 
 <script>

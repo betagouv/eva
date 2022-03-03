@@ -277,13 +277,20 @@ const clicSurExercice = {
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   reponse : 'exercice',
-  extensionVue: 'clic_sur_mots'
+  extensionVue: 'clic_sur_mots',
+  choix: [
+    {
+      id: 'Exercice',
+      nom_technique: 'exercice',
+      bonneReponse: true
+    }
+  ]
 };
 
 const configurationNormale = {
   chapitreALrd: {
     sousConsignes: [ sousConsigne1, sousConsigne2 ],
-    questions: [ clicSurExercice , titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7 ]
+    questions: [titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, clicSurExercice]
   }
 };
 

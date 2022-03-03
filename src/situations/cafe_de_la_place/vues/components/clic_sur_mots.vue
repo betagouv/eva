@@ -60,8 +60,7 @@
       <mot-cliquable :libelle="'Soupçon'"
                      :estSelectionne="estSelectionne('Soupçon')"
                      @click.native="selectionneMot"
-      /> d'
-      <mot-cliquable :libelle="'amertume'"
+      /> d'<mot-cliquable :libelle="'amertume'"
                      :estSelectionne="estSelectionne('amertume')"
                      @click.native="selectionneMot"
       />
@@ -104,7 +103,7 @@
       <mot-cliquable :libelle="'Duxo'"
                      @click.native="selectionneMot"
                      :estSelectionne="estSelectionne('Duxo')"
-      /><mot-cliquable :libelle="'matura'"
+      /> <mot-cliquable :libelle="'matura'"
                      @click.native="selectionneMot"
                      :estSelectionne="estSelectionne('matura')"
       />
@@ -119,7 +118,14 @@ import motCliquable from './mot_cliquable.vue';
 export default {
   components: { motCliquable },
 
-  data () {
+  props: {
+    question: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data: function () {
     return {
       motSelectionne: ''
     };
@@ -127,7 +133,13 @@ export default {
 
   methods: {
     selectionneMot(event) {
-      return this.motSelectionne = event.target.innerText.trim();
+      this.motSelectionne = event.target.innerText.trim();
+      const choix = this.question.choix[0];
+      if (choix.id === this.motSelectionne) {
+        this.$emit('reponse', { reponse: choix.id, succes: choix.bonneReponse } );
+      } else {
+        this.$emit('reponse', { succes: false } );
+      }
     },
 
     estSelectionne (mot) {
