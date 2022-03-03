@@ -1,8 +1,10 @@
 <template>
   <div>
     <component
+      v-if="question.extensionVue"
       :is="question.extensionVue"
       :question="question"
+      @reponse="attribueReponse"
       @action="envoi"
     />
     <question
@@ -108,6 +110,10 @@ export default {
     envoi () {
       this.envoyer = true;
       this.$emit('reponse', this.reponse);
+    },
+
+    attribueReponse (reponse) {
+      this.reponse = reponse;
     },
 
     journaliserEvenementAffichage () {
