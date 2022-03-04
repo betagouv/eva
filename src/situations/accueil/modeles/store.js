@@ -107,7 +107,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
           return {
             nom: situation.libelle,
             chemin: `${situation.nom_technique}.html`,
-            identifiant: situation.nom_technique,
+            identifiant: situation.nom_technique === 'livraison_sans_redaction' ? 'livraison' : situation.nom_technique,
             niveauMinimum: index + 1
           };
         });

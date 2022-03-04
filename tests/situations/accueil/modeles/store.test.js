@@ -96,6 +96,23 @@ describe("Le store de l'accueil", function () {
       });
     });
 
+    it('retourne la situation livraison pour le nom technique livraison_sans_redaction', function () {
+      registreCampagne.recupereCampagneCourante = () => {
+        const situation = { nom_technique: 'livraison_sans_redaction', libelle: 'libelle' };
+        return { situations: [situation], libelle: 'libellé campagne' };
+      };
+      const store = creeStore(registreUtilisateur, registreCampagne);
+      return store.dispatch('recupereSituations').then(() => {
+        const situationAttendue = {
+          identifiant: 'livraison',
+          nom: 'libelle',
+          chemin: 'livraison_sans_redaction.html',
+          niveauMinimum: 1
+        };
+        expect(store.state.situations).toEqual([situationAttendue]);
+      });
+    });
+
     it("se déconnecte si la campagne récupérée n'a pas de situation pour forcer rechargement de la campagne", function () {
       registreCampagne.recupereCampagneCourante = () => {
         return { libelle: 'libellé campagne' };
