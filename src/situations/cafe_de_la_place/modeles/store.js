@@ -8,11 +8,16 @@ export function creeStore () {
         sousConsignes: [],
         questions: []
       },
+      chapitreACrd: {
+        sousConsignes: [],
+        questions: []
+      },
     },
 
     mutations: {
-      configureActe (state, { chapitreALrd }) {
+      configureActe (state, { chapitreALrd, chapitreACrd }) {
         state.chapitreALrd = chapitreALrd;
+        state.chapitreACrd = chapitreACrd;
       }
     }
   });
