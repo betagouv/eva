@@ -9,7 +9,7 @@
       <pagination
         v-if="affichePagination"
         :indexQuestion="indexCarte"
-        :nombreQuestions="this.chapitreALrd.questions.length"
+        :nombreQuestions="this.chapitreEnCours.questions.length"
       />
     </defi>
   </transition-fade>
@@ -33,7 +33,8 @@ export default {
     return {
       indexCarte: 0,
       affichePagination: false,
-      carteActive: {}
+      carteActive: {},
+      chapitreEnCours: {}
     };
   },
 
@@ -43,12 +44,12 @@ export default {
   },
 
   computed: {
-    ...mapState(['chapitreALrd'])
+    ...mapState(['chapitreALrd', 'chapitreACrd'])
   },
 
   watch: {
     chapitreALrd (chapitre) {
-      this.carteActive = chapitre.sousConsignes[0];
+      this.changeChapitre(chapitre);
     }
   },
 
@@ -56,23 +57,36 @@ export default {
     reponse (reponse) {
       this.indexCarte++;
       if(this.carteActive.type === 'sous-consigne') {
-        if (this.indexCarte < this.chapitreALrd.sousConsignes.length) {
-          this.carteActive = this.chapitreALrd.sousConsignes[this.indexCarte];
+        if (this.indexCarte < this.chapitreEnCours.sousConsignes.length) {
+          this.carteActive = this.chapitreEnCours.sousConsignes[this.indexCarte];
         } else {
-          this.indexCarte = 0;
-          this.affichePagination = true;
-          this.carteActive = this.chapitreALrd.questions[0];
+          this.demarreQuestions();
         }
       }
       else {
         const donneesReponses = { question: this.carteActive.id, ...reponse };
         this.$journal.enregistre(new EvenementReponse(donneesReponses));
-        if (this.indexCarte < this.chapitreALrd.questions.length) {
-           this.carteActive = this.chapitreALrd.questions[this.indexCarte];
+        if (this.indexCarte < this.chapitreEnCours.questions.length) {
+          this.carteActive = this.chapitreEnCours.questions[this.indexCarte];
+        } else if (this.chapitreEnCours === this.chapitreALrd) {
+          this.changeChapitre(this.chapitreACrd);
         } else {
           this.$emit('terminer');
         }
       }
+    },
+
+    changeChapitre (nouveauChapitre) {
+      this.chapitreEnCours = nouveauChapitre;
+      this.carteActive = nouveauChapitre.sousConsignes[0];
+      this.indexCarte = 0;
+      this.affichePagination = false;
+    },
+
+    demarreQuestions() {
+      this.indexCarte = 0;
+      this.affichePagination = true;
+      this.carteActive = this.chapitreEnCours.questions[0];
     }
   }
 };

@@ -1,22 +1,32 @@
 import listeTitresMusique from '../assets/liste_titres_musique.png';
 import telephoneSansTitres from '../assets/telephone_sans_titres.png';
 import terrasseCafe from '../assets/terrasse_cafe.png';
+import magazine from '../assets/magazine.png';
 
-const sousConsigne1 = {
+const sousConsigneALrd1 = {
   id: 'ALrd-sous-consigne-1',
   type: 'sous-consigne',
   illustration: terrasseCafe,
-  nom_technique: 'sous_consigne_1',
+  nom_technique: 'sous_consigne_ALrd_1',
   description: "Vous décidez d'écouter de la musique sur votre téléphone. Une amie vous a conseillé un groupe de jazz à découvrir."
 };
 
-const sousConsigne2 = {
+const sousConsigneALrd2 = {
   id: 'ALrd-sous-consigne-2',
   type: 'sous-consigne',
   illustration: listeTitresMusique,
-  nom_technique: 'sous_consigne_2',
+  nom_technique: 'sous_consigne_ALrd_2',
   description: "Voici la liste des titres. J'ai quelques questions pour vous.",
   intitule:  'Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !'
+};
+
+const sousConsigneACrd1 = {
+  id: 'ACrd-sous-consigne-1',
+  type: 'sous-consigne',
+  illustration: magazine,
+  nom_technique: 'sous_consigne_ACrd_1',
+  description: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.',
+  intitule: 'Pour commencer à répondre aux questions, cliquez sur “Suivant”.'
 };
 
 const titre1 = {
@@ -338,10 +348,21 @@ const alrd14 = {
   ]
 };
 
+const ACrd1 = {
+  id: 'ACrd1',
+  description: 'Comment s’appelle le groupe ?',
+  illustration: magazine,
+  intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur “Valider”.'
+};
+
 const configurationNormale = {
   chapitreALrd: {
-    sousConsignes: [ sousConsigne1, sousConsigne2 ],
-    questions: [titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14]
+    sousConsignes: [ sousConsigneALrd1, sousConsigneALrd2 ],
+    questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
+  },
+  chapitreACrd: {
+    sousConsignes: [ sousConsigneACrd1 ],
+    questions: [ ACrd1 ]
   }
 };
 

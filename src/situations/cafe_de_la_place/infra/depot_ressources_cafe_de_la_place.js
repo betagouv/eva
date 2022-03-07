@@ -2,8 +2,9 @@ import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 import sonConsigne from 'cafe_de_la_place/assets/audio_consignes/consigne_cafe_de_la_place.mp3';
 import fondSituation from 'cafe_de_la_place/assets/terrasse_cafe.png';
 
-import sousConsigne1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_1.mp3';
-import sousConsigne2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_2.mp3';
+import sousConsigneALrd1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ALrd_1.mp3';
+import sousConsigneALrd2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ALrd_2.mp3';
+import sousConsigneACrd1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ACrd_1.mp3';
 
 import titre1 from 'cafe_de_la_place/assets/audio_questions/titre1.mp3';
 import titre2 from 'cafe_de_la_place/assets/audio_questions/titre2.mp3';
@@ -53,8 +54,9 @@ import sonDimoudon from 'cafe_de_la_place/assets/audio_reponses/dimoudon.mp3';
 import sonSoupcon from 'cafe_de_la_place/assets/audio_reponses/soupcon.mp3';
 
 const AUDIOS_CONSIGNES = {
-  sous_consigne_1: sousConsigne1,
-  sous_consigne_2: sousConsigne2
+  sous_consigne_ALrd_1: sousConsigneALrd1,
+  sous_consigne_ALrd_2: sousConsigneALrd2,
+  sous_consigne_ACrd_1: sousConsigneACrd1
 };
 
 const AUDIOS_QUESTIONS = {
