@@ -270,13 +270,13 @@ const titre7 = {
   ]
 };
 
-const clicSurExercice = {
+const alrd11 = {
   id: 'ALrd11',
-  nom_technique: 'clic_sur_exercice',
+  nom_technique: 'alrd_11',
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse : 'exercice',
+  reponse: 'exercice',
   extensionVue: 'clic_sur_mots',
   choix: [
     {
@@ -287,10 +287,61 @@ const clicSurExercice = {
   ]
 };
 
+const alrd12 = {
+  id: 'ALrd12',
+  nom_technique: 'alrd_12',
+  type: 'ecoute',
+  illustration: telephoneSansTitres,
+  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  reponse: 'anguille',
+  extensionVue: 'clic_sur_mots',
+  choix: [
+    {
+      id: 'Anguille',
+      nom_technique: 'anguille',
+      bonneReponse: true
+    }
+  ]
+};
+
+const alrd13 = {
+  id: 'ALrd13',
+  nom_technique: 'alrd_13',
+  type: 'ecoute',
+  illustration: telephoneSansTitres,
+  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  reponse: 'dimoudon',
+  extensionVue: 'clic_sur_mots',
+  choix: [
+    {
+      id: 'Dimoudon',
+      nom_technique: 'dimoudon',
+      bonneReponse: true
+    }
+  ]
+};
+
+const alrd14 = {
+  id: 'ALrd14',
+  nom_technique: 'alrd_14',
+  type: 'ecoute',
+  illustration: telephoneSansTitres,
+  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  reponse: 'soupcon',
+  extensionVue: 'clic_sur_mots',
+  choix: [
+    {
+      id: 'Soupçon',
+      nom_technique: 'soupcon',
+      bonneReponse: true
+    }
+  ]
+};
+
 const configurationNormale = {
   chapitreALrd: {
     sousConsignes: [ sousConsigne1, sousConsigne2 ],
-    questions: [titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, clicSurExercice]
+    questions: [titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14]
   }
 };
 

@@ -48,6 +48,9 @@ import sonChoixSoupconDAmertume from 'cafe_de_la_place/assets/audio_reponses/sou
 import sonChoixSouponDAmertume from 'cafe_de_la_place/assets/audio_reponses/soupon_d_amertume.mp3';
 import sonChoixSoupconDAbertube from 'cafe_de_la_place/assets/audio_reponses/soupcon_d_abertube.mp3';
 import sonExercice from 'cafe_de_la_place/assets/audio_reponses/exercice.mp3';
+import sonAnguille from 'cafe_de_la_place/assets/audio_reponses/anguille.mp3';
+import sonDimoudon from 'cafe_de_la_place/assets/audio_reponses/dimoudon.mp3';
+import sonSoupcon from 'cafe_de_la_place/assets/audio_reponses/soupcon.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_1: sousConsigne1,
@@ -65,7 +68,10 @@ const AUDIOS_QUESTIONS = {
   titre_5: titre5,
   titre_4: titre4,
   titre_7: titre7,
-  clic_sur_exercice: clicSurMot
+  alrd_11: clicSurMot,
+  alrd_12: clicSurMot,
+  alrd_13: clicSurMot,
+  alrd_14: clicSurMot
 };
 
 const AUDIOS_REPONSES = {
@@ -99,7 +105,10 @@ const AUDIOS_REPONSES = {
   soupcon_d_amertume: sonChoixSoupconDAmertume,
   soupon_d_amertume: sonChoixSouponDAmertume,
   soupcon_d_abertube: sonChoixSoupconDAbertube,
-  exercice: sonExercice
+  exercice: sonExercice,
+  anguille: sonAnguille,
+  dimoudon: sonDimoudon,
+  soupcon: sonSoupcon,
 };
 
 const messagesAudios = { ...AUDIOS_CONSIGNES, ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
