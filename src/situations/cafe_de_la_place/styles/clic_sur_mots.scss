@@ -5,7 +5,7 @@
   left: 11.5rem;
   top: 9.2rem;
   width: 13rem;
-  color: #fff;
+  color: $couleur-fond;
 
   li {
     line-height: 2.25rem;
@@ -18,6 +18,8 @@
     background: rgba(251, 249, 250, 0.1);
     cursor: pointer;
     padding: 0 2px;
+    color: $couleur-fond;
+    text-decoration: none;
 
     &--selectionne {
       background: $bleu;

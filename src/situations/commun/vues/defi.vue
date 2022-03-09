@@ -89,12 +89,12 @@ export default {
       return this.question.type;
     },
 
-    contenuDeTypeChamp () {
-      return this.question.type === 'champ-saisie';
+    contenuSansChoix () {
+      return this.question.type === 'champ-saisie' || this.question.type === 'ecoute';
     },
 
     reponsesPossibles () {
-      return this.contenuDeTypeChamp || (this.question.choix && this.question.choix.length > 0);
+      return this.contenuSansChoix || (this.question.choix && this.question.choix.length > 0);
     },
 
     disabled () {
