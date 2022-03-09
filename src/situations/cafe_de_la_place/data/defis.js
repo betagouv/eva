@@ -357,8 +357,22 @@ const ACrd1 = {
   intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur “Valider”.'
 };
 
+const listeChansons = `* [Max]()
+* [Jazz]() à [Dimoudon]()
+* [Baille]() et [taille]()
+* Le [fil]() du [temps]()
+* [Exercice]() de [style]()
+* [Amour]() [succulent]()
+* [Soupçon]() d'[amertume]()
+* [Anguille]() et [douce]() [mer]()
+* [Sourire]() [toujours]()
+* Un [ami](), un [amant]()
+* [Duxo]() et [matura]()
+`;
+
 const configurationNormale = {
   chapitreALrd: {
+    texteCliquable: listeChansons,
     sousConsignes: [ sousConsigneALrd1, sousConsigneALrd2 ],
     questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
   },
