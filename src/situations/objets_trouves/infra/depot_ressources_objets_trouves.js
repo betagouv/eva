@@ -19,6 +19,7 @@ const CHOIX_REPONSES_AUDIO_QCM = {
   agenda: [sonChoix1, sonChoix2, sonChoix3, sonChoix4, sonChoix5, sonChoix6]
 };
 
+const messagesVideos = {};
 const AUDIOS_QUESTIONS = {
   'heure-bureau-mickael': messageMickael,
   'nombre-tours-de-manege': messageRachel
@@ -26,7 +27,7 @@ const AUDIOS_QUESTIONS = {
 
 export default class DepotRessourcesObjetsTrouves extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, AUDIOS_QUESTIONS, fondSituation, sonConsigne, sonConsigneTransition);
+    super(chargeurs, messagesVideos, AUDIOS_QUESTIONS, fondSituation, sonConsigne, sonConsigneTransition);
     this.charge([fondSituation, iconeDeverrouillageDebloque]);
     this.charge(CHOIX_REPONSES_AUDIO_QCM.agenda);
   }

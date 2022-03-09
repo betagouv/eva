@@ -27,7 +27,8 @@ describe("La vue de l'acte « Question »", function () {
       illustrationQuestion: () => {
         return { src: 'chemin-illustration' };
       },
-      existeMessageAudio: () => false
+      existeMessageAudio: () => false,
+      existeMessageVideo: () => false
     };
   });
 

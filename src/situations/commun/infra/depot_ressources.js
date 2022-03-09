@@ -29,6 +29,33 @@ function chargeurAudio (src) {
   return promesse;
 }
 
+function chargeurVideo (src) {
+  var request = new window.XMLHttpRequest();
+  request.open('GET', src, true);
+  request.responseType = 'blob';
+
+  const promesse = new Promise((resolve, reject) => {
+    request.onload = function() {
+      if (request.status === 200) {
+        resolve(() => {
+          return request.response;
+        });
+      }
+    };
+    request.onerror = function() {
+      reject(new Error(`Erreur au chargement de ${src}`));
+    };
+    request.onprogress = function(e){
+      if(e.lengthComputable) {
+        var percentComplete = ((e.loaded/e.total)*100|0) + '%';
+        console.log('progress: ', src, percentComplete);
+      }
+    };
+  });
+  request.send();
+  return promesse;
+}
+
 function chargeurImage (src) {
   const img = new window.Image();
   const promesse = new Promise((resolve, reject) => {
@@ -61,6 +88,7 @@ function chargeurJSON (src) {
 
 const CHARGEURS = {
   mp3: chargeurAudio,
+  mp4: chargeurVideo,
   png: chargeurImage,
   svg: chargeurImage,
   jpg: chargeurImage,

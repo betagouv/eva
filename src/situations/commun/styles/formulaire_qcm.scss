@@ -83,6 +83,12 @@
     cursor: pointer;
   }
 
+  &-video {
+    border-radius: 1rem;
+    border: 1px solid $bleu;
+    margin-left: 2.25rem;
+  }
+
   &-bouton {
     align-self: flex-end;
     float: right;

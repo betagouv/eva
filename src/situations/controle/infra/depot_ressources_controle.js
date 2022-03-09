@@ -7,9 +7,11 @@ import sonFondSonore from 'controle/assets/fond_sonore.mp3';
 
 const biscuits = require.context('../assets', false, /(def[0-9]+|biscuit-normal)\.png$/);
 
+const messagesVideos = {};
+
 export default class DepotRessourcesControle extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, {}, null, sonConsigne);
+    super(chargeurs, messagesVideos, {}, null, sonConsigne);
     this.chargeContexte(biscuits);
     this.charge([fondSituation, tapis, sonFondSonore]);
 

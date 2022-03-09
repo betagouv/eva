@@ -30,7 +30,7 @@ describe('Une vue du cadre', function () {
   beforeEach(function () {
     $(window).off();
     $('body').append('<div id="point-insertion"></div>');
-    depotRessources = new DepotRessourcesCommune(chargeurs(), {}, 'sonConsigne.mp3', 'sonConsigneTransition.mp3');
+    depotRessources = new DepotRessourcesCommune(chargeurs(), {}, {}, 'sonConsigne.mp3', 'sonConsigneTransition.mp3');
     situation = new SituationCommune();
     situation.identifiant = 'tri';
     journal = {

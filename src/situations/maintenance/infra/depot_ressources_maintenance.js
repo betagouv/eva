@@ -8,9 +8,11 @@ import clavier from '../assets/clavier.svg';
 import flecheGauche from 'commun/assets/choix_bidirectionnel/fleche_gauche.svg';
 import flecheDroite from 'commun/assets/choix_bidirectionnel/fleche_droite.svg';
 
+const messagesVideos = {};
+
 export default class DepotRessourcesMaintenance extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, {}, fondSituation, sonConsigneDemarrage, sonConsigneTransition);
+    super(chargeurs, messagesVideos, {}, fondSituation, sonConsigneDemarrage, sonConsigneTransition);
     this.charge([fondSituation, croix, flecheGauche, flecheDroite, clavier]);
   }
 

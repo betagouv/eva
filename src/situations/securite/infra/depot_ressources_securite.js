@@ -7,9 +7,11 @@ import fondSituationEntrainement from '../assets/fond-situation-entrainement.jpg
 import pictoDangerBienIdentifie from 'securite/assets/danger_bien_identifie.svg';
 import pictoDangerMalIdentifie from 'securite/assets/danger_mal_identifie.svg';
 
+const messagesVideos = {};
+
 export default class DepotRessourcesSecurite extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, {}, fondSituationEntrainement, sonConsigneDemarrage, sonConsigneTransition);
+    super(chargeurs, messagesVideos, {}, fondSituationEntrainement, sonConsigneDemarrage, sonConsigneTransition);
     this.charge([fondSituation, fondSituationEntrainement, pictoDangerBienIdentifie, pictoDangerMalIdentifie]);
   }
 

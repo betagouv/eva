@@ -4,13 +4,13 @@ import chargeurs from '../../commun/aides/mock_chargeurs';
 describe('le dépôt de ressources', function () {
   it('permet de charger toutes les ressources', function () {
     const depot = new DepotRessources(chargeurs());
-    depot.charge(['test.png', 'test2.png', 'test.mp3', 'test.jpeg']);
-    expect(depot.promesses.length).toBe(4);
+    depot.charge(['test.png', 'test2.png', 'test.mp3', 'test.mp4', 'test.jpeg']);
+    expect(depot.promesses.length).toBe(5);
   });
 
   it('résout la promesse lorsque toutes les ressources sont chargées', function (done) {
     const depot = new DepotRessources(chargeurs());
-    depot.charge(['test.png', 'test.mp3']);
+    depot.charge(['test.png', 'test.mp3', 'test.mp4']);
     depot.chargement().then(() => done());
   });
 

@@ -19,6 +19,7 @@ import vitesseExecution from 'accueil/assets/audios_resultat/vitesse_execution.m
 
 const batimentsContext = require.context('../assets', false, /batiment-.+\.png$/);
 
+const messagesVideos = {};
 const AUDIOS_RESULTAT = {
   introduction: introduction,
   attention_concentration: attentionConcentration,
@@ -30,7 +31,7 @@ const AUDIOS_RESULTAT = {
 
 export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, AUDIOS_RESULTAT, fondAccueil, consigneAccueil);
+    super(chargeurs, messagesVideos, AUDIOS_RESULTAT, fondAccueil, consigneAccueil);
     this.charge([fondAccueil, personnage, precedent, suivant, casque, avatarFin, avatarAvis, avatarDeconnexion, boutonAvis]);
     this.chargeContexte(batimentsContext);
     this.batiments = batimentsContext.keys().reduce((memo, fichier) => {
