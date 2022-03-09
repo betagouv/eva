@@ -101,10 +101,11 @@ const AUDIOS_REPONSES = {
   bienvenue_tout_a_fait_daccord: toutAFaitDaccord
 };
 
+const messagesVideos = {};
 const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesBienvenue extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, messagesAudios, null, sonConsigne);
+    super(chargeurs, messagesVideos, messagesAudios, null, sonConsigne);
   }
 }

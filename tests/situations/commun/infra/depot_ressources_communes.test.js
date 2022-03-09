@@ -7,13 +7,16 @@ describe('Le dépot de ressources communes', function () {
   const sonConsigneDemarrage = 'consigneDemarrage.mp3';
   const sonConsigneTransition = 'consigneTransition.mp3';
   const sonAudioQuestion1 = 'sonQuestion1.mp3';
+  const videoQuestion1 = 'videoQuestion1.mp4';
   let depot;
   let sonsCharges;
   let imgCharges;
+  let videosCharges;
 
   beforeEach(function () {
     sonsCharges = [];
     imgCharges = [];
+    videosCharges = [];
     const _chargeurs = chargeurs({
       mp3: (_son) => {
         sonsCharges.push(_son);
@@ -22,9 +25,13 @@ describe('Le dépot de ressources communes', function () {
       png: (_img) => {
         imgCharges.push(_img);
         return Promise.resolve(() => _img);
+      },
+      mp4: (_video) => {
+        videosCharges.push(_video);
+        return Promise.resolve(() => _video);
       }
     });
-    depot = new DepotRessourcesCommunes(_chargeurs, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition);
+    depot = new DepotRessourcesCommunes(_chargeurs, { videoQuestion1: videoQuestion1 }, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition);
   });
 
   it('étend DépotRessources', function () {
@@ -38,7 +45,7 @@ describe('Le dépot de ressources communes', function () {
 
     it("retourne si l'image de fond de la consigne existe ou pas", function () {
       expect(depot.existeFondConsigne()).toBe(true);
-      depot = new DepotRessourcesCommunes(chargeurs({}), {}, null, sonConsigneDemarrage);
+      depot = new DepotRessourcesCommunes(chargeurs({}), {}, {}, null, sonConsigneDemarrage);
 
       expect(depot.existeFondConsigne()).toBe(false);
     });
@@ -72,6 +79,23 @@ describe('Le dépot de ressources communes', function () {
     it('retourne si un message audio existe ou pas', function () {
       expect(depot.existeMessageAudio('audioQuestion1')).toBe(true);
       expect(depot.existeMessageAudio('inconnu')).toBe(false);
+    });
+  });
+
+  describe('peut gérer des videos', function () {
+    it('charge les messages videos', function () {
+      expect(videosCharges).toContain(videoQuestion1);
+    });
+
+    it('retourne un message video préchargé', function () {
+      return depot.chargement().then(() => {
+        expect(depot.messageVideo('videoQuestion1')).toEqual(videoQuestion1);
+      });
+    });
+
+    it('retourne si un message video existe ou pas', function () {
+      expect(depot.existeMessageVideo('videoQuestion1')).toBe(true);
+      expect(depot.existeMessageVideo('inconnu')).toBe(false);
     });
   });
 

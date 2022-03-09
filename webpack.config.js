@@ -104,7 +104,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|mp3|svg|woff|woff2|ttf|eot)(\?.*$|$)/i,
+        test: /\.(png|jpg|mp3|mp4|svg|woff|woff2|ttf|eot)(\?.*$|$)/i,
         type: 'asset/resource'
       },
       {

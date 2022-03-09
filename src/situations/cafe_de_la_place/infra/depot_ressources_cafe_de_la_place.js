@@ -163,11 +163,12 @@ const AUDIOS_REPONSES = {
   temps_passe: sonChoixTempsPasse
 };
 
+const messagesVideos = {};
 const messagesAudios = { ...AUDIOS_CONSIGNES, ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesCafeDeLaPlace extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, messagesAudios, fondSituation, sonConsigne);
+    super(chargeurs, messagesVideos, messagesAudios, fondSituation, sonConsigne);
     this.charge([fondSituation]);
   }
 

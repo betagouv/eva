@@ -10,9 +10,11 @@ import urgence from '../assets/urgence.svg';
 
 const preventionsContext = require.context('../assets', false, /prevention.+\.png$/);
 
+const messagesVideos = {};
+
 export default class DepotRessourcesPrevention extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, {}, fondSituation, sonConsigneDemarrage, sonConsigneTransition);
+    super(chargeurs, messagesVideos, {}, fondSituation, sonConsigneDemarrage, sonConsigneTransition);
     this.charge([fondSituationEntrainement, fondSituation, ok, danger, urgence]);
     this.chargeContexte(preventionsContext);
     this.preventions = preventionsContext.keys().reduce((memo, fichier) => {

@@ -23,6 +23,7 @@
             v-model="reponse"
         />
       </div>
+      <video-question :nomTechnique="question.nom_technique"/>
       <button
         v-if="question.type != 'action'"
         :disabled="disabled"
@@ -43,6 +44,7 @@ import 'commun/styles/formulaire_qcm.scss';
 import { mapGetters } from 'vuex';
 import Question from './question';
 import QuestionEntete from 'commun/vues/question_entete';
+import VideoQuestion from 'commun/vues/video_question';
 import Jauge from 'commun/vues/defi/jauge';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
 import Qcm from 'commun/vues/defi/qcm';
@@ -51,7 +53,7 @@ import Ecoute from 'commun/vues/defi/ecoute';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
-  components: { Question, QuestionEntete, Jauge, ChampSaisie, Qcm, RedactionNote, Ecoute },
+  components: { Question, QuestionEntete, VideoQuestion, Jauge, ChampSaisie, Qcm, RedactionNote, Ecoute },
 
   props: {
     question: {

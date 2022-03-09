@@ -9,9 +9,11 @@ import retour from 'inventaire/assets/retour.svg';
 import reussite from 'inventaire/assets/reussite.mp3';
 import echec from 'inventaire/assets/echec.mp3';
 
+const messagesVideos = {};
+
 export default class DepotRessourcesInventaire extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, {}, null, sonConsigne);
+    super(chargeurs, messagesVideos, {}, null, sonConsigne);
     this.charge([croixRetourStock, boutonSaisie, loupe, retour]);
     this.charge([reussite, echec]);
     this.chargeContexte(require.context('../assets'));

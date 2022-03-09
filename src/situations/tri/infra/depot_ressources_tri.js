@@ -10,9 +10,11 @@ import sonMauvaisBac from 'tri/assets/mauvais-bac.mp3';
 
 const bonbons = require.context('../assets', false, /bonbon[0-9]+\.png$/);
 
+const messagesVideos = {};
+
 export default class DepotRessourcesTri extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, {}, null, sonConsigne);
+    super(chargeurs, messagesVideos, {}, null, sonConsigne);
     this.charge([fondSituation, fondChronometre, aiguilleLongue, aiguilleCourte, sonBonBac, sonMauvaisBac]);
     this.chargeContexte(bonbons);
     this.bonbons = bonbons.keys().reduce((memo, fichier) => {

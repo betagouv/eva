@@ -3,6 +3,10 @@ import fondSituation from 'plan_de_la_ville/assets/accueil_sans_eglise.png';
 import egliseMaisonAPlacer from 'plan_de_la_ville/assets/eglise_maison_a_placer.png';
 import personnage from 'plan_de_la_ville/assets/personnage.png';
 
+import videoMaisonBleue from 'plan_de_la_ville/assets/video_questions/clic_maison_bleue.mp4';
+import videoConsigneDragAndDrop from 'plan_de_la_ville/assets/video_questions/drag_and_drop.mp4';
+import videoDeplacementDroite from 'plan_de_la_ville/assets/video_questions/deplacement_droite_maison_verte.mp4';
+
 import modeEmploi from 'plan_de_la_ville/assets/audio_questions/mode_emploi.mp3';
 import maisonRouge from 'plan_de_la_ville/assets/audio_questions/maison_rouge.mp3';
 import maisonBleue from 'plan_de_la_ville/assets/audio_questions/clic_maison_bleue.mp3';
@@ -33,11 +37,16 @@ const AUDIOS_REPONSES = {
   vert: sonChoixVerte
 };
 
+const messagesVideos = {
+  clic_maison_bleue: videoMaisonBleue,
+  drag_and_drop: videoConsigneDragAndDrop,
+  deplacement_droite_maison_verte: videoDeplacementDroite
+};
 const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, messagesAudios, fondSituation, sonConsigne);
+    super(chargeurs, messagesVideos, messagesAudios, fondSituation, sonConsigne);
     this.charge([fondSituation, egliseMaisonAPlacer, personnage, flecheGauche, flecheDroite]);
   }
 
