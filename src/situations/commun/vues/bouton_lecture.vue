@@ -63,6 +63,14 @@ export default {
       this.joueSon = !this.joueSon;
     },
 
+    demarreSon () {
+      this.joueSon = true;
+    },
+
+    coupeSon () {
+      this.joueSon = false;
+    },
+
     audioBuffer (nomTechnique) {
       return this.$depotRessources.messageAudio(nomTechnique);
     }
@@ -71,11 +79,11 @@ export default {
   watch: {
     joueSon (joue) {
       if (joue) {
-        this.joueurSon.start(this.audioBuffer(this.nomTechnique), () => { this.joueSon = false; });
+        this.joueurSon.start(this.audioBuffer(this.nomTechnique), () => { this.coupeSon(); });
       } else {
         this.joueurSon.stop();
       }
-    }
+    },
   },
 
   computed: {
