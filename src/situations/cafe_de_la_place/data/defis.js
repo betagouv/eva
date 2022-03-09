@@ -2,6 +2,7 @@ import listeTitresMusique from '../assets/liste_titres_musique.png';
 import telephoneSansTitres from '../assets/telephone_sans_titres.png';
 import terrasseCafe from '../assets/terrasse_cafe.png';
 import magazine from '../assets/magazine.png';
+import magazineSansTexte from '../assets/magazine_sans_texte.png';
 
 const sousConsigneALrd1 = {
   id: 'ALrd-sous-consigne-1',
@@ -350,8 +351,9 @@ const alrd14 = {
 
 const ACrd1 = {
   id: 'ACrd1',
+  nom_technique: 'acrd_1',
   description: 'Comment s’appelle le groupe ?',
-  illustration: magazine,
+  illustration: magazineSansTexte,
   intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur “Valider”.'
 };
 
