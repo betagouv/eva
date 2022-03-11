@@ -1,5 +1,8 @@
 <template>
-  <div class="liste-chansons" ref="listeChansons" v-html="htmlTexteCliquable"></div>
+  <div ref="zoneCliquable"
+       v-html="htmlTexteCliquable"
+       :class="presentationZoneCliquable"
+  ></div>
 </template>
 
 <script>
@@ -8,7 +11,6 @@ import 'cafe_de_la_place/styles/clic_sur_mots.scss';
 import { marked } from 'marked';
 
 export default {
-
   props: {
     question: {
       type: Object,
@@ -22,12 +24,16 @@ export default {
     htmlTexteCliquable() {
       return marked(this.chapitreEnCours.texteCliquable);
     },
+
+    presentationZoneCliquable() {
+      return 'zone-cliquable ' + this.question.zone_cliquable;
+    }
   },
 
   mounted() {
-    const listeLiens = Array.from(this.$refs.listeChansons.getElementsByTagName("a"));
+    const listeLiens = Array.from(this.$refs.zoneCliquable.getElementsByTagName("a"));
     listeLiens.forEach(lien => {
-      lien.classList.add('mot');
+      lien.classList.add('mot-cliquable');
       lien.addEventListener('click', (event) => {
         event.preventDefault(); // empêche le comportement par défaut du lien
         this.envoiReponse(lien);
@@ -44,9 +50,9 @@ export default {
 
     metAJourSelection(listeLiens, lien) {
       listeLiens.forEach(lien => {
-          lien.classList.remove('mot--selectionne');
+          lien.classList.remove('mot-cliquable--selectionne');
         });
-      lien.classList.add('mot--selectionne');
+      lien.classList.add('mot-cliquable--selectionne');
     }
   }
 };

@@ -22,17 +22,17 @@ describe('Le composant Clic Sur Mots', function () {
   });
 
   describe('quand je clique sur un mot', function () {
-    it("ajoute la classe mot--selectionne", function (done) {
-      const lien = wrapper.findAll('.mot').at(0);
-      const lien2 = wrapper.findAll('.mot').at(1);
-      expect(lien.classes('mot--selectionne')).toBe(false);
+    it("ajoute la classe mot-cliquable--selectionne", function (done) {
+      const lien = wrapper.findAll('.mot-cliquable').at(0);
+      const lien2 = wrapper.findAll('.mot-cliquable').at(1);
+      expect(lien.classes('mot-cliquable--selectionne')).toBe(false);
       lien.trigger('click');
       wrapper.vm.$nextTick(() => {
-        expect(lien.classes('mot--selectionne')).toBe(true);
+        expect(lien.classes('mot-cliquable--selectionne')).toBe(true);
         lien2.trigger('click');
         wrapper.vm.$nextTick(() => {
-          expect(lien.classes('mot--selectionne')).toBe(false);
-          expect(lien2.classes('mot--selectionne')).toBe(true);
+          expect(lien.classes('mot-cliquable--selectionne')).toBe(false);
+          expect(lien2.classes('mot-cliquable--selectionne')).toBe(true);
           done();
         });
       });
@@ -42,7 +42,7 @@ describe('Le composant Clic Sur Mots', function () {
   describe('#envoiReponse', function () {
     describe('quand je sélectionne le bon mot', function () {
       it('emet une réponse valide', function () {
-        const lien = wrapper.findAll('.mot').at(1);
+        const lien = wrapper.findAll('.mot-cliquable').at(1);
         wrapper.vm.envoiReponse(lien.element);
         expect(wrapper.emitted().reponse.length).toEqual(1);
         expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'exercice', succes: true });
@@ -51,7 +51,7 @@ describe('Le composant Clic Sur Mots', function () {
 
     describe('quand je sélectionne un mot invalide', function () {
       it('emet une réponse invalide', function () {
-        const lien = wrapper.findAll('.mot').at(0);
+        const lien = wrapper.findAll('.mot-cliquable').at(0);
         wrapper.vm.envoiReponse(lien.element);
         expect(wrapper.emitted().reponse.length).toEqual(1);
         expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'invalide', succes: false });
