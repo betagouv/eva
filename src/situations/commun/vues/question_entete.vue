@@ -44,8 +44,13 @@ export default {
   },
 
   watch: {
-    acteEnCours () {
-      this.demarreSonConsigne();
+    acteEnCours (acteEnCours) {
+      if(acteEnCours) {
+        this.demarreSonConsigne();
+      }
+      else {
+        this.$refs.boutonLecture.coupeSon();
+      }
     }
   },
 
