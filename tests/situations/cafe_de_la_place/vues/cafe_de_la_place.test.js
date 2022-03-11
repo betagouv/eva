@@ -37,10 +37,10 @@ describe('La vue café de la place', function () {
       const question1 = { id: 'première', type: 'qcm' };
       const question2 = { id: 'seconde', type: 'qcm' };
       store.commit('configureActe', { chapitreALrd: {
-          sousConsignes: [sousConsigne, sousConsigne2],
-          questions: [question1, question2]
-        },
-        chapitreACrd: { sousConsignes: [sousConsigne], questions: [question1]}
+        sousConsignes: [sousConsigne, sousConsigne2],
+        questions: [question1, question2]
+      },
+      chapitreACrd: { sousConsignes: [sousConsigne], questions: [question1]}
       });
       wrapper.vm.$nextTick(() => {
         expect(wrapper.vm.carteActive).toEqual(sousConsigne);
@@ -83,7 +83,7 @@ describe('La vue café de la place', function () {
     });
   
     it("n'affiche pas la pagination si la carte active est une sous consigne", function (done) {
-      const sousConsigne = { id: 'sous-consigne', type: "sous-consigne"};
+      const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne'};
       const question = { id: 'première', type: 'qcm' };
       store.commit('configureActe', { chapitreALrd: { sousConsignes: [sousConsigne], questions: [question]} });
       wrapper.vm.$nextTick(() => {

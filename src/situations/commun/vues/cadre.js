@@ -103,14 +103,14 @@ export default class VueCadre {
   envoiEvenementDemarrageUneFoisDemarre () {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       switch (etat) {
-        case ENTRAINEMENT_DEMARRE:
-          this.journal.enregistre(new EvenementEntrainementDemarrage());
-          this.journal.enregistreSituationFaite();
-          break;
-        case DEMARRE:
-          this.journal.enregistre(new EvenementDemarrage());
-          this.journal.enregistreSituationFaite();
-          break;
+      case ENTRAINEMENT_DEMARRE:
+        this.journal.enregistre(new EvenementEntrainementDemarrage());
+        this.journal.enregistreSituationFaite();
+        break;
+      case DEMARRE:
+        this.journal.enregistre(new EvenementDemarrage());
+        this.journal.enregistreSituationFaite();
+        break;
       }
     });
   }

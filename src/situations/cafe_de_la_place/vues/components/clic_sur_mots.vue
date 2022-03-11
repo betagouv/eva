@@ -50,8 +50,8 @@ export default {
 
     metAJourSelection(listeLiens, lien) {
       listeLiens.forEach(lien => {
-          lien.classList.remove('mot-cliquable--selectionne');
-        });
+        lien.classList.remove('mot-cliquable--selectionne');
+      });
       lien.classList.add('mot-cliquable--selectionne');
     }
   }

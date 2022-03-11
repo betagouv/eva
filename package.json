@@ -98,10 +98,9 @@
       "process": "readonly"
     },
     "rules": {
-      "semi": [
-        "error",
-        "always"
-      ]
+      "indent": ["error", 2],
+      "linebreak-style": ["error", "unix"],
+      "semi": ["error", "always"]
     },
     "overrides": [
       {
