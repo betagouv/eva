@@ -1,7 +1,16 @@
 @import 'commun/styles/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+
+.zone-cliquable {
+  position: absolute;
+  .mot-cliquable {
+    padding: 0 2px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
 
 .liste-chansons {
-  position: absolute;
   left: 11.5rem;
   top: 9.2rem;
   width: 13rem;
@@ -12,19 +21,51 @@
     height: 2.25rem;
   }
 
-  .mot {
+  .mot-cliquable {
+    background: rgba(251, 249, 250, 0.1);
+    color: $couleur-fond;
     border: 1px dotted $vert-clair;
     border-radius: 0.25rem;
-    background: rgba(251, 249, 250, 0.1);
-    cursor: pointer;
-    padding: 0 2px;
-    color: $couleur-fond;
-    text-decoration: none;
-
     &--selectionne {
       background: $bleu;
       border: 1px solid $bleu;
       mix-blend-mode: lighten;
     }
+  }
+}
+
+.revue-magazine {
+  top: 2rem;
+  left: 4.3rem;
+  width: 33rem;
+  line-height: 135%;
+  font-family: 'Sarabun';
+  color: $noir;
+  
+  tr {
+    vertical-align: top;
+
+    td:first-child {
+      width: 14.5rem;
+    }
+    td:last-child {
+      width: auto;
+      padding-left: 2.625rem;
+    }
+  }
+
+  .legende {
+    &, a {
+      color:#2F80ED;
+    }
+  }
+
+  span {
+    display: inline-block;
+    margin-bottom: 0.625rem;
+  }
+
+  .mot-cliquable {
+    color: $noir;
   }
 }

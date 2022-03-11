@@ -11,6 +11,7 @@ export function creeStore () {
         questions: []
       },
       chapitreACrd: {
+        texteCliquable: '',
         sousConsignes: [],
         questions: []
       },

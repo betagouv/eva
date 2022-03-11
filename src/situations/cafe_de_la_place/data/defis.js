@@ -288,6 +288,7 @@ const alrd11 = {
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'liste-chansons',
   bonne_reponse: {
     mot: 'Exercice',
     nom_technique: 'exercice'
@@ -301,6 +302,7 @@ const alrd12 = {
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'liste-chansons',
   bonne_reponse: {
     mot: 'Anguille',
     nom_technique: 'anguille'
@@ -314,6 +316,7 @@ const alrd13 = {
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'liste-chansons',
   bonne_reponse: {
     mot: 'Dimoudon',
     nom_technique: 'dimoudon'
@@ -327,6 +330,7 @@ const alrd14 = {
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'liste-chansons',
   bonne_reponse: {
     mot: 'Soupçon',
     nom_technique: 'soupcon'
@@ -337,8 +341,13 @@ const ACrd1 = {
   id: 'ACrd1',
   nom_technique: 'acrd_1',
   description: 'Comment s’appelle le groupe ?',
+  zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
-  intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur “Valider”.'
+  intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur “Valider”.',
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: 'Rick Duxol & Mori Morino',
+  }
 };
 
 const listeChansons = `* [Max]()
@@ -354,6 +363,17 @@ const listeChansons = `* [Max]()
 * [Duxo]() et [matura]()
 `;
 
+const texteMagazineColonne1 = `<span>C'est encore une très belle [production]() que nous propose le groupe [Rick Duxol & Mori Morino]() avec [«Jazz impressions»](), leur dernier [album](), créé en [2013]() et enregistré à [New-York]().</span><span>Ils avaient déjà séduit la presse et le public à leurs débuts en [2011](), au moment du[Festival international de jazz de Londres](). Très influencés par le «[Jazz Band]() de [Londres]()», ils ont pourtant un style nouveau bien à eux, qui évoque l'avenir dans tous les morceaux.</span><span>Le saxophoniste américain [Rick Duxol]() nous enchante avec ses solos qui ne manquent pas de souffle ! Quant au contrebassiste [Georges Tiporanet](), il est excellent sur cet album.</span>`;
+const texteMagazineColonne2 = `<span>Les différents morceaux se font sur un ton énergique mais aussi très intime parfois. Le pianiste, [Mori Morino]() crée une ambiance [«cocon»](), dont la sensibilité nous rappelle les ambiances nocturnes de [«Taxi Konnera»](), un autre orchestre de [jazz]() célèbre.</span><span>Jusqu'à la fin, c'est en mesure et en finesse que l'orchestre met en valeur la voix étonnante de [Lily Molli](), jeune femme de [30]() ans, arrivée dans le groupe en [2012](), au moment où le groupe est devenu célèbre...</span><span>Le groupe [Rick Duxol & Mori Morino]() démontre de belle manière avec ce disque que cet orchestre venu de [Bulgarie]() n'a rien à envier au Jazz des [américains]().</span>`;
+const legende = `<span class="legende">[Ivano Karanadoff]()<br>Critique d'art musical à [Paris]() Jazz [Janvier 2015]()</span>`;
+
+const texteMagazine = 
+`
+|||
+|:---|:---|
+|${texteMagazineColonne1}|${texteMagazineColonne2}${legende}|
+`;
+
 const configurationNormale = {
   chapitreALrd: {
     texteCliquable: listeChansons,
@@ -361,6 +381,7 @@ const configurationNormale = {
     questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
   },
   chapitreACrd: {
+    texteCliquable: texteMagazine,
     sousConsignes: [ sousConsigneACrd1 ],
     questions: [ ACrd1 ]
   }
