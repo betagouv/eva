@@ -31,14 +31,14 @@ describe('la vue du composant entête', function () {
   });
 
   function composant(question) {
-      return shallowMount(VueQuestionEntete, {
-        localVue,
-        store,
-        propsData: { question },
-        stubs: {
-          'bouton-lecture': BoutonLectureStub
-        }
-      });
+    return shallowMount(VueQuestionEntete, {
+      localVue,
+      store,
+      propsData: { question },
+      stubs: {
+        'bouton-lecture': BoutonLectureStub
+      }
+    });
   }
 
   describe('quand il existe un son', function() {
