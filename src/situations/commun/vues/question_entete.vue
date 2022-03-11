@@ -49,7 +49,9 @@ export default {
         this.demarreSonConsigne();
       }
       else {
-        this.$refs.boutonLecture.coupeSon();
+        if(this.afficheLectureQuestion) {
+          this.$refs.boutonLecture.coupeSon();
+        }
       }
     }
   },
