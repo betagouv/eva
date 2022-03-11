@@ -59,7 +59,7 @@ export default {
 
   methods: {
     demarreSonConsigne () {
-      if (this.acteEnCours === true && this.afficheLectureQuestion) {
+      if (this.acteEnCours && this.afficheLectureQuestion) {
         this.$refs.boutonLecture.demarreSon();
       }
     }
