@@ -16,7 +16,6 @@
           class="champ"
           :class="{ 'champ-texte champ-texte--decale' : estTexte,
                     'champ-numerique' : estNumerique }"
-          :value="value"
           :maxlength="maxLength"
           :placeholder="question.placeholder"
           type='text'
