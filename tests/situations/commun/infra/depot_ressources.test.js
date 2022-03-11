@@ -15,12 +15,16 @@ describe('le dépôt de ressources', function () {
   });
 
   it('rejette la promesse lorsque une ressource est en erreur', function (done) {
+    const une_erreur = new Error('cette erreur doit être attrapée et traitée');
     const depot = new DepotRessources({
       mp3: () => Promise.resolve(),
-      png: () => Promise.reject(new Error('test'))
+      png: () => Promise.reject(une_erreur)
     });
     depot.charge(['test.png', 'test.mp3']);
-    depot.chargement().catch(() => done());
+    depot.chargement().catch((erreur) => {
+      expect(erreur).toEqual(une_erreur);
+      done();
+    });
   });
 
   it('sait charger des ressources en plusieurs fois', function () {
