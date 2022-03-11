@@ -83,12 +83,12 @@ export default {
       } else {
         this.joueurSon.stop();
       }
-    },
+    }
   },
 
   computed: {
     texteBouton () {
-      return this.joueSon === true ? 'bouton_lecture.pause' : 'bouton_lecture.lecture';
+      return this.joueSon ? 'bouton_lecture.pause' : 'bouton_lecture.lecture';
     }
   },
 
