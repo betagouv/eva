@@ -18,7 +18,10 @@ function chargeurAudio (src) {
             return source;
           });
         },
-        reject);
+        function (erreur) {
+          const message = `Erreur au décodage de ${src} : ${erreur}`;
+          reject(new Error(message));
+        });
     };
   });
 
