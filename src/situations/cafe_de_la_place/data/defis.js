@@ -287,15 +287,11 @@ const alrd11 = {
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse: 'exercice',
   extensionVue: 'clic_sur_mots',
-  choix: [
-    {
-      id: 'Exercice',
-      nom_technique: 'exercice',
-      bonneReponse: true
-    }
-  ]
+  bonne_reponse: {
+    mot: 'Exercice',
+    nom_technique: 'exercice'
+  }
 };
 
 const alrd12 = {
@@ -304,15 +300,11 @@ const alrd12 = {
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse: 'anguille',
   extensionVue: 'clic_sur_mots',
-  choix: [
-    {
-      id: 'Anguille',
-      nom_technique: 'anguille',
-      bonneReponse: true
-    }
-  ]
+  bonne_reponse: {
+    mot: 'Anguille',
+    nom_technique: 'anguille'
+  }
 };
 
 const alrd13 = {
@@ -321,15 +313,11 @@ const alrd13 = {
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse: 'dimoudon',
   extensionVue: 'clic_sur_mots',
-  choix: [
-    {
-      id: 'Dimoudon',
-      nom_technique: 'dimoudon',
-      bonneReponse: true
-    }
-  ]
+  bonne_reponse: {
+    mot: 'Dimoudon',
+    nom_technique: 'dimoudon'
+  }
 };
 
 const alrd14 = {
@@ -338,15 +326,11 @@ const alrd14 = {
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse: 'soupcon',
   extensionVue: 'clic_sur_mots',
-  choix: [
-    {
-      id: 'Soupçon',
-      nom_technique: 'soupcon',
-      bonneReponse: true
-    }
-  ]
+  bonne_reponse: {
+    mot: 'Soupçon',
+    nom_technique: 'soupcon'
+  }
 };
 
 const ACrd1 = {

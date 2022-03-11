@@ -45,7 +45,7 @@ describe('Le composant Clic Sur Mots', function () {
         const lien = wrapper.findAll('.mot').at(1);
         wrapper.vm.envoiReponse(lien.element);
         expect(wrapper.emitted().reponse.length).toEqual(1);
-        expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: "exercice", succes: true });
+        expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'exercice', succes: true });
       });
     });
 
@@ -54,7 +54,7 @@ describe('Le composant Clic Sur Mots', function () {
         const lien = wrapper.findAll('.mot').at(0);
         wrapper.vm.envoiReponse(lien.element);
         expect(wrapper.emitted().reponse.length).toEqual(1);
-        expect(wrapper.emitted().reponse[0][0]).toEqual({ succes: false });
+        expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'invalide', succes: false });
       });
     });
   });
