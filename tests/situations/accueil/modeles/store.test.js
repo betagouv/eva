@@ -106,6 +106,17 @@ describe("Le store de l'accueil", function () {
         expect(store.state.estConnecte).toEqual(false);
       });
     });
+
+    it("se déconnecte s'il n'y a pas de campagne courrante", function () {
+      registreCampagne.recupereCampagneCourante = () => {
+        return null;
+      };
+      const store = creeStore(registreUtilisateur, registreCampagne);
+      store.commit('connecte', 'test');
+      return store.dispatch('recupereSituations').then(() => {
+        expect(store.state.estConnecte).toEqual(false);
+      });
+    });
   });
 
   describe('Action : terminerEvaluation', function () {
