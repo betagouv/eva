@@ -7,6 +7,14 @@
     padding: 0 2px;
     cursor: pointer;
     text-decoration: none;
+    border: 1px dashed $vert-clair;
+    border-radius: 0.25rem;
+    background: rgba(251, 249, 250, 0.1);
+
+    &--selectionne {
+      border: 1px solid $bleu;
+      background: $bleu;
+    }
   }
 }
 
@@ -22,13 +30,8 @@
   }
 
   .mot-cliquable {
-    background: rgba(251, 249, 250, 0.1);
     color: $couleur-fond;
-    border: 1px dotted $vert-clair;
-    border-radius: 0.25rem;
     &--selectionne {
-      background: $bleu;
-      border: 1px solid $bleu;
       mix-blend-mode: lighten;
     }
   }
@@ -41,6 +44,11 @@
   line-height: 135%;
   font-family: 'Sarabun';
   color: $noir;
+
+  &:hover a:not(.mot-cliquable--selectionne) {
+    background: $bleu-gris;
+    mix-blend-mode: multiply;
+  }
   
   tr {
     vertical-align: top;
@@ -67,5 +75,7 @@
 
   .mot-cliquable {
     color: $noir;
+    border-color: $bleu-gris-fonce;
+    mix-blend-mode: multiply;
   }
 }
