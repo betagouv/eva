@@ -38,10 +38,10 @@
 }
 
 .revue-magazine {
-  top: 2rem;
-  left: 4.3rem;
-  width: 33rem;
+  top: 2.5rem;
+  left: 4.375rem;
   line-height: 135%;
+  width: 33.25rem;
   font-family: 'Sarabun';
   color: $noir;
 
@@ -49,16 +49,20 @@
     background: $bleu-gris;
     mix-blend-mode: multiply;
   }
-  
-  tr {
-    vertical-align: top;
 
-    td:first-child {
-      width: 14.5rem;
-    }
-    td:last-child {
-      width: auto;
-      padding-left: 2.625rem;
+  table {
+    border-spacing: 0rem;
+
+    tr {
+      vertical-align: top;
+
+      td:first-child {
+        width: 15.125rem;
+      }
+      td:last-child {
+        width: auto;
+        padding-left: 2rem;
+      }
     }
   }
 
@@ -77,5 +81,8 @@
     color: $noir;
     border-color: $bleu-gris-fonce;
     mix-blend-mode: multiply;
+    &--selectionne {
+      color: $couleur-fond;
+    }
   }
 }
