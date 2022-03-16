@@ -340,6 +340,7 @@ const alrd14 = {
 const ACrd1 = {
   id: 'ACrd1',
   nom_technique: 'acrd_1',
+  type: 'clic',
   description: 'Comment s’appelle le groupe ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
