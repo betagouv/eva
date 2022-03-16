@@ -16,7 +16,7 @@ describe("La vue d'un défi", function () {
 
   beforeEach(function () {
     store = creeStore();
-    question = { id: 154, choix: [], nom_technique: 'question1' };
+    question = { id: 154, nom_technique: 'question1' };
     localVue = createLocalVue();
     localVue.prototype.$journal = { enregistre () {} };
     localVue.prototype.$traduction = () => {};
@@ -81,6 +81,7 @@ describe("La vue d'un défi", function () {
 
   it("emet un événement réponse vide quand il n'y a pas de choix de réponse", function (done) {
     question.choix = [];
+    question.type= 'qcm';
     const vue = composant(question);
     vue.find('.question-bouton').trigger('click');
     vue.vm.$nextTick(() => {
@@ -251,6 +252,7 @@ describe("La vue d'un défi", function () {
 
     it("active le bouton quand il n'y a pas de choix", function () {
       question.choix = [];
+      question.type = 'qcm';
       const vue = composant(question);
       expect(vue.find('.question-bouton').attributes('disabled')).not.toEqual('disabled');
     });
