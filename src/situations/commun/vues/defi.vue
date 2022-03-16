@@ -90,7 +90,7 @@ export default {
     },
 
     contenuSansChoix () {
-      return this.question.type === 'champ-saisie' || this.question.type === 'ecoute';
+      return this.question.type === 'champ-saisie' || this.question.type === 'ecoute' || this.question.type === 'clic';
     },
 
     reponsesPossibles () {
