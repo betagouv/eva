@@ -346,7 +346,55 @@ const ACrd1 = {
   intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur “Valider”.',
   extensionVue: 'clic_sur_mots',
   bonne_reponse: {
-    mot: 'Rick Duxol & Mori Morino',
+    mot: 'Rick Duxol & Mori Morino'
+  }
+};
+
+const ACrd2 = {
+  id: 'ACrd2',
+  nom_technique: 'acrd_2',
+  description: 'Comment s’appelle le joueur de contrebasse ?',
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: 'Georges Tiporanet'
+  }
+};
+
+const ACrd3 = {
+  id: 'ACrd3',
+  nom_technique: 'acrd_3',
+  description: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: 'New-York'
+  }
+};
+
+const ACrd4 = {
+  id: 'ACrd4',
+  nom_technique: 'acrd_4',
+  description: 'De quel pays le groupe vient-il ?',
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: 'Bulgarie'
+  }
+};
+
+const ACrd5 = {
+  id: 'ACrd5',
+  nom_technique: 'acrd_5',
+  description: 'En quelle année le groupe a-t-il débuté ?',
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: '2011'
   }
 };
 
@@ -383,7 +431,7 @@ const configurationNormale = {
   chapitreACrd: {
     texteCliquable: texteMagazine,
     sousConsignes: [ sousConsigneACrd1 ],
-    questions: [ ACrd1 ]
+    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
   }
 };
 
