@@ -427,6 +427,117 @@ const ACrd6 = {
   ]
 };
 
+const ACrd7 = {
+  id: 'ACrd7',
+  nom_technique: 'acrd_7',
+  description: 'Quel est le genre de musique que produit ce groupe ?',
+  illustration: magazine,
+  type: 'qcm',
+  choix: [
+    {
+      id: 'reggae',
+      nom_technique: 'reggae',
+      bonneReponse: false,
+      intitule: 'Reggae'
+    },
+    {
+      id: 'jazz',
+      nom_technique: 'jazz',
+      bonneReponse: true,
+      intitule: 'Jazz'
+    },
+    {
+      id: 'rockFrancais',
+      nom_technique: 'rock_francais',
+      bonneReponse: false,
+      intitule: 'Rock français'
+    }
+  ]
+};
+const ACrd8 = {
+  id: 'ACrd8',
+  nom_technique: 'acrd_8',
+  description: 'Qui a influencé ce groupe ?',
+  illustration: magazine,
+  type: 'qcm',
+  choix: [
+    {
+      id: 'ntm',
+      nom_technique: 'ntm',
+      bonneReponse: false,
+      intitule: 'NTM'
+    },
+    {
+      id: 'jazzBandDeLondres',
+      nom_technique: 'jazz_band_de_londres',
+      bonneReponse: true,
+      intitule: 'Jazz band de Londres'
+    },
+    {
+      id: 'rockerset',
+      nom_technique: 'rockerset',
+      bonneReponse: false,
+      intitule: 'Rockerset'
+    }
+  ]
+};
+
+const ACrd9 = {
+  id: 'ACrd9',
+  nom_technique: 'acrd_9',
+  description: 'Que pense la critique de ce style musical ?',
+  illustration: magazine,
+  type: 'qcm',
+  choix: [
+    {
+      id: 'inventif',
+      nom_technique: 'inventif',
+      bonneReponse: false,
+      intitule: 'Inventif'
+    },
+    {
+      id: 'drole',
+      nom_technique: 'drole',
+      bonneReponse: false,
+      intitule: 'Drôle'
+    },
+    {
+      id: 'neuf',
+      nom_technique: 'neuf',
+      bonneReponse: true,
+      intitule: 'Neuf'
+    }
+  ]
+};
+
+const ACrd10 = {
+  id: 'ACrd10',
+  nom_technique: 'acrd_10',
+  description: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
+  illustration: magazine,
+  type: 'qcm',
+  choix: [
+    {
+      id: 'tempsPresent',
+      nom_technique: 'temps_present',
+      bonneReponse: false,
+      intitule: 'Le temps présent'
+    },
+    {
+      id: 'tempsFutur',
+      nom_technique: 'temps_futur',
+      bonneReponse: true,
+      intitule: 'Le temps futur'
+    },
+    {
+      id: 'tempsPasse',
+      nom_technique: 'temps_passe',
+      bonneReponse: false,
+      intitule: 'Le temps passé'
+    }
+  ]
+};
+
 const listeChansons = `* [Max]()
 * [Jazz]() à [Dimoudon]()
 * [Baille]() et [taille]()
@@ -460,7 +571,7 @@ const configurationNormale = {
   chapitreACrd: {
     texteCliquable: texteMagazine,
     sousConsignes: [ sousConsigneACrd1 ],
-    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5, ACrd6 ]
+    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5, ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
   }
 };
 
