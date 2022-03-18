@@ -1,38 +1,38 @@
 <template>
   <div>
     <div
-      v-for="(element, index) in question.choix"
-      :key="element.id"
+      v-for="(choix, index) in question.choix"
+      :key="choix.id"
       class="question-reponse question-reponse-multiple"
     >
       <bouton-lecture
-        v-if="afficheLectureReponse(element.nom_technique)"
+        v-if="afficheLectureReponse(choix.nom_technique)"
         class="bouton-lecture"
-        :nomTechnique="element.nom_technique"
+        :nomTechnique="choix.nom_technique"
       />
       <input
         v-on:change="selectReponse($event.target.value)"
-        :value="element.id"
-        :id="element.id"
+        :value="choix.id"
+        :id="choix.id"
         name="question"
         type="radio"
         class="question-input"
       />
       <label
-        :for="element.id"
+        :for="choix.id"
         class="question-reponse-intitule"
       >
         <reponse-audio-qcm
-          v-if="element.audio"
-          :joue-son="reponse === element.id"
-          :questionnaire="element.audio"
+          v-if="choix.audio"
+          :joue-son="reponse === choix.id"
+          :questionnaire="choix.audio"
           :idReponse="index"
         />
         <img
-          v-if="element.image"
-          :src="element.image"
+          v-if="choix.image"
+          :src="choix.image"
         />
-        {{ element.intitule }}
+        {{ choix.intitule }}
       </label>
     </div>
   </div>
