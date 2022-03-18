@@ -343,7 +343,7 @@ const ACrd1 = {
   description: 'Comment s’appelle le groupe ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
-  intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur “Valider”.',
+  intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   bonne_reponse: {
     mot: 'Rick Duxol & Mori Morino'
@@ -398,6 +398,35 @@ const ACrd5 = {
   }
 };
 
+const ACrd6 = {
+  id: 'ACrd6',
+  nom_technique: 'acrd_6',
+  description: 'Qui est Ivano Karanadoff ?',
+  illustration: magazine,
+  type: 'qcm',
+  intitule: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
+  choix: [
+    {
+      id: 'membreDuGroupe',
+      nom_technique: 'membre_du_groupe',
+      bonneReponse: false,
+      intitule: 'Un membre du groupe Rick Duxol et Mori Morino'
+    },
+    {
+      id: 'producteur',
+      nom_technique: 'producteur',
+      bonneReponse: false,
+      intitule: 'Un producteur de disque'
+    },
+    {
+      id: 'critiqueMusical',
+      nom_technique: 'critique_musical',
+      bonneReponse: true,
+      intitule: 'Un critique musical'
+    }
+  ]
+};
+
 const listeChansons = `* [Max]()
 * [Jazz]() à [Dimoudon]()
 * [Baille]() et [taille]()
@@ -431,7 +460,7 @@ const configurationNormale = {
   chapitreACrd: {
     texteCliquable: texteMagazine,
     sousConsignes: [ sousConsigneACrd1 ],
-    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
+    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5, ACrd6 ]
   }
 };
 
