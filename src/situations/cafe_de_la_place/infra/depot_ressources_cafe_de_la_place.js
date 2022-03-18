@@ -23,6 +23,10 @@ import ACrd3 from 'cafe_de_la_place/assets/audio_questions/ACrd3.mp3';
 import ACrd4 from 'cafe_de_la_place/assets/audio_questions/ACrd4.mp3';
 import ACrd5 from 'cafe_de_la_place/assets/audio_questions/ACrd5.mp3';
 import ACrd6 from 'cafe_de_la_place/assets/audio_questions/ACrd6.mp3';
+import ACrd7 from 'cafe_de_la_place/assets/audio_questions/ACrd7.mp3';
+import ACrd8 from 'cafe_de_la_place/assets/audio_questions/ACrd8.mp3';
+import ACrd9 from 'cafe_de_la_place/assets/audio_questions/ACrd9.mp3';
+import ACrd10 from 'cafe_de_la_place/assets/audio_questions/ACrd10.mp3';
 
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
 import sonChoixMasse from 'cafe_de_la_place/assets/audio_reponses/ALrd/masse.mp3';
@@ -61,6 +65,18 @@ import sonSoupcon from 'cafe_de_la_place/assets/audio_reponses/ALrd/soupcon.mp3'
 import sonChoixMembreGroupe from 'cafe_de_la_place/assets/audio_reponses/ACrd/membre_du_groupe.mp3';
 import sonChoixProducteur from 'cafe_de_la_place/assets/audio_reponses/ACrd/producteur.mp3';
 import sonChoixCritiqueMusical from 'cafe_de_la_place/assets/audio_reponses/ACrd/critique_musical.mp3';
+import sonChoixReggae from 'cafe_de_la_place/assets/audio_reponses/ACrd/reggae.mp3';
+import sonChoixJazz from 'cafe_de_la_place/assets/audio_reponses/ACrd/jazz.mp3';
+import sonChoixRockFrancais from 'cafe_de_la_place/assets/audio_reponses/ACrd/rock_francais.mp3';
+import sonChoixJazzBandDeLondres from 'cafe_de_la_place/assets/audio_reponses/ACrd/jazz_band_de_londres.mp3';
+import sonChoixNtm from 'cafe_de_la_place/assets/audio_reponses/ACrd/ntm.mp3';
+import sonChoixRockerset from 'cafe_de_la_place/assets/audio_reponses/ACrd/rockerset.mp3';
+import sonChoixDrole from 'cafe_de_la_place/assets/audio_reponses/ACrd/drole.mp3';
+import sonChoixInventif from 'cafe_de_la_place/assets/audio_reponses/ACrd/inventif.mp3';
+import sonChoixNeuf from 'cafe_de_la_place/assets/audio_reponses/ACrd/neuf.mp3';
+import sonChoixTempsPresent from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_present.mp3';
+import sonChoixTempsFutur from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_futur.mp3';
+import sonChoixTempsPasse from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_passe.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_ALrd_1: sousConsigneALrd1,
@@ -88,7 +104,11 @@ const AUDIOS_QUESTIONS = {
   acrd_3: ACrd3,
   acrd_4: ACrd4,
   acrd_5: ACrd5,
-  acrd_6: ACrd6
+  acrd_6: ACrd6,
+  acrd_7: ACrd7,
+  acrd_8: ACrd8,
+  acrd_9: ACrd9,
+  acrd_10: ACrd10
 };
 
 const AUDIOS_REPONSES = {
@@ -128,7 +148,19 @@ const AUDIOS_REPONSES = {
   soupcon: sonSoupcon,
   membre_du_groupe: sonChoixMembreGroupe,
   producteur: sonChoixProducteur,
-  critique_musical: sonChoixCritiqueMusical
+  critique_musical: sonChoixCritiqueMusical,
+  reggae: sonChoixReggae,
+  jazz: sonChoixJazz,
+  rock_francais: sonChoixRockFrancais,
+  jazz_band_de_londres: sonChoixJazzBandDeLondres,
+  ntm: sonChoixNtm,
+  rockerset: sonChoixRockerset,
+  drole: sonChoixDrole,
+  inventif: sonChoixInventif,
+  neuf: sonChoixNeuf,
+  temps_present: sonChoixTempsPresent,
+  temps_futur: sonChoixTempsFutur,
+  temps_passe: sonChoixTempsPasse
 };
 
 const messagesAudios = { ...AUDIOS_CONSIGNES, ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
