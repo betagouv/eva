@@ -66,7 +66,6 @@
 <script>
 import { mapMutations, mapState, mapGetters } from 'vuex';
 import { QUESTIONS_FIN, TRANSITION, ACCUEIL_VERROUILLE } from '../modeles/store';
-import 'commun/styles/formulaire_qcm.scss';
 import 'objets_trouves/styles/acte.scss';
 import IconeApp from './icone_app';
 import Heure from './heure';
