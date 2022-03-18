@@ -39,7 +39,7 @@
 <script>
 import 'commun/styles/boutons.scss';
 import 'commun/styles/boutons.scss';
-import 'commun/styles/formulaire_qcm.scss';
+import 'commun/styles/defi.scss';
 
 import { mapGetters } from 'vuex';
 import Question from './question';
