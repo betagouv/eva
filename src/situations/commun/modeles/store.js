@@ -50,15 +50,15 @@ export function synchroniseStoreEtModeleSituation (situation, store) {
   });
   store.subscribe((mutation) => {
     switch (mutation.type) {
-      case 'modifieEtat':
-        situation.modifieEtat(mutation.payload);
-        break;
-      case 'activeAide':
-        if (situation.aideActivee) {
-          return;
-        }
-        situation.activeAide();
-        break;
+    case 'modifieEtat':
+      situation.modifieEtat(mutation.payload);
+      break;
+    case 'activeAide':
+      if (situation.aideActivee) {
+        return;
+      }
+      situation.activeAide();
+      break;
     }
   });
   store.commit('modifieEtat', situation.etat());

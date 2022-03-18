@@ -1,28 +1,91 @@
 @import 'commun/styles/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+
+.zone-cliquable {
+  position: absolute;
+  .mot-cliquable {
+    padding: 0 2px;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px dashed $vert-clair;
+    border-radius: 0.25rem;
+    background: rgba(251, 249, 250, 0.1);
+
+    &--selectionne {
+      border: 1px solid $bleu;
+      background: $bleu;
+    }
+  }
+}
 
 .liste-chansons {
-  position: absolute;
   left: 11.5rem;
   top: 9.2rem;
   width: 13rem;
-  color: #fff;
+  color: $couleur-fond;
 
   li {
     line-height: 2.25rem;
     height: 2.25rem;
   }
 
-  .mot {
-    border: 1px dotted $vert-clair;
-    border-radius: 0.25rem;
-    background: rgba(251, 249, 250, 0.1);
-    cursor: pointer;
-    padding: 0 2px;
-
+  .mot-cliquable {
+    color: $couleur-fond;
     &--selectionne {
-      background: $bleu;
-      border: 1px solid $bleu;
       mix-blend-mode: lighten;
+    }
+  }
+}
+
+.revue-magazine {
+  top: 2.5rem;
+  left: 4.375rem;
+  line-height: 135%;
+  width: 33.25rem;
+  font-family: 'Sarabun';
+  color: $noir;
+
+  &:hover a:not(.mot-cliquable--selectionne) {
+    background: $bleu-gris;
+    mix-blend-mode: multiply;
+  }
+
+  table {
+    border-spacing: 0rem;
+
+    tr {
+      vertical-align: top;
+
+      td:first-child {
+        width: 15.125rem;
+      }
+      td:last-child {
+        width: auto;
+        padding-left: 2rem;
+      }
+    }
+  }
+
+  .legende {
+    &, a {
+      color:#2F80ED;
+    }
+    .mot-cliquable--selectionne {
+      color: $couleur-fond;
+    }
+  }
+
+  span {
+    display: inline-block;
+    margin-bottom: 0.625rem;
+  }
+
+  .mot-cliquable {
+    color: $noir;
+    border-color: $bleu-gris-fonce;
+    mix-blend-mode: multiply;
+    &--selectionne {
+      color: $couleur-fond;
     }
   }
 }

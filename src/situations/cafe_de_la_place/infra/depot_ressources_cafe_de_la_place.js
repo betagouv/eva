@@ -17,41 +17,50 @@ import titre5 from 'cafe_de_la_place/assets/audio_questions/titre5.mp3';
 import titre4 from 'cafe_de_la_place/assets/audio_questions/titre4.mp3';
 import titre7 from 'cafe_de_la_place/assets/audio_questions/titre7.mp3';
 import clicSurMot from 'cafe_de_la_place/assets/audio_questions/clic_sur_mot.mp3';
+import ACrd1 from 'cafe_de_la_place/assets/audio_questions/ACrd1.mp3';
+import ACrd2 from 'cafe_de_la_place/assets/audio_questions/ACrd2.mp3';
+import ACrd3 from 'cafe_de_la_place/assets/audio_questions/ACrd3.mp3';
+import ACrd4 from 'cafe_de_la_place/assets/audio_questions/ACrd4.mp3';
+import ACrd5 from 'cafe_de_la_place/assets/audio_questions/ACrd5.mp3';
+import ACrd6 from 'cafe_de_la_place/assets/audio_questions/ACrd6.mp3';
 
-import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/bax.mp3';
-import sonChoixMasse from 'cafe_de_la_place/assets/audio_reponses/masse.mp3';
-import sonChoixMax from 'cafe_de_la_place/assets/audio_reponses/max.mp3';
-import sonChoixJazzDiboudon from 'cafe_de_la_place/assets/audio_reponses/jazz_a_diboudon.mp3';
-import sonChoixJazzBimoudon from 'cafe_de_la_place/assets/audio_reponses/jazz_a_bimoudon.mp3';
-import sonChoixJazzDimoudon from 'cafe_de_la_place/assets/audio_reponses/jazz_a_dimoudon.mp3';
-import sonChoixUnAmiEnAmont from 'cafe_de_la_place/assets/audio_reponses/un_ami_en_amont.mp3';
-import sonChoixUnAmiAmant from 'cafe_de_la_place/assets/audio_reponses/un_ami_amant.mp3';
-import sonChoixUnAmiUnAmant from 'cafe_de_la_place/assets/audio_reponses/un_ami_un_amant.mp3';
-import sonChoixBalleEtTalle from 'cafe_de_la_place/assets/audio_reponses/balle_et_talle.mp3';
-import sonChoixPailleEtDaille from 'cafe_de_la_place/assets/audio_reponses/paille_et_daille.mp3';
-import sonChoixBailleEtTaille from 'cafe_de_la_place/assets/audio_reponses/baille_et_taille.mp3';
-import sonChoixDussoEtMatura from 'cafe_de_la_place/assets/audio_reponses/dusso_et_matura.mp3';
-import sonChoixDuxoEtMatura from 'cafe_de_la_place/assets/audio_reponses/duxo_et_matura.mp3';
-import sonChoixDuxoEtMadura from 'cafe_de_la_place/assets/audio_reponses/duxo_et_madura.mp3';
-import sonChoixAmourSugulent from 'cafe_de_la_place/assets/audio_reponses/amour_sugulent.mp3';
-import sonChoixAmourSucculent from 'cafe_de_la_place/assets/audio_reponses/amour_succulent.mp3';
-import sonChoixAmourSuccule from 'cafe_de_la_place/assets/audio_reponses/amour_succule.mp3';
-import sonChoixAnguilEtDouceMer from 'cafe_de_la_place/assets/audio_reponses/anguil_et_douce_mer.mp3';
-import sonChoixAnquilleEtDouceMer from 'cafe_de_la_place/assets/audio_reponses/anquille_et_douce_mer.mp3';
-import sonChoixAnguilleEtDouceMer from 'cafe_de_la_place/assets/audio_reponses/anguille_et_douce_mer.mp3';
-import sonChoixExerciceDeStyle from 'cafe_de_la_place/assets/audio_reponses/exercice_de_style.mp3';
-import sonChoixEzerciceDeStyle from 'cafe_de_la_place/assets/audio_reponses/ezercice_de_style.mp3';
-import sonChoixEsserciceDeStyle from 'cafe_de_la_place/assets/audio_reponses/essercice_de_style.mp3';
-import sonChoixLeVilDuTemps from 'cafe_de_la_place/assets/audio_reponses/le_vil_du_temps.mp3';
-import sonChoixLeFilsDuTemps from 'cafe_de_la_place/assets/audio_reponses/le_fils_du_temps.mp3';
-import sonChoixLeFilDuTemps from 'cafe_de_la_place/assets/audio_reponses/le_fil_du_temps.mp3';
-import sonChoixSoupconDAmertume from 'cafe_de_la_place/assets/audio_reponses/soupcon_d_amertume.mp3';
-import sonChoixSouponDAmertume from 'cafe_de_la_place/assets/audio_reponses/soupon_d_amertume.mp3';
-import sonChoixSoupconDAbertube from 'cafe_de_la_place/assets/audio_reponses/soupcon_d_abertube.mp3';
-import sonExercice from 'cafe_de_la_place/assets/audio_reponses/exercice.mp3';
-import sonAnguille from 'cafe_de_la_place/assets/audio_reponses/anguille.mp3';
-import sonDimoudon from 'cafe_de_la_place/assets/audio_reponses/dimoudon.mp3';
-import sonSoupcon from 'cafe_de_la_place/assets/audio_reponses/soupcon.mp3';
+import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
+import sonChoixMasse from 'cafe_de_la_place/assets/audio_reponses/ALrd/masse.mp3';
+import sonChoixMax from 'cafe_de_la_place/assets/audio_reponses/ALrd/max.mp3';
+import sonChoixJazzDiboudon from 'cafe_de_la_place/assets/audio_reponses/ALrd/jazz_a_diboudon.mp3';
+import sonChoixJazzBimoudon from 'cafe_de_la_place/assets/audio_reponses/ALrd/jazz_a_bimoudon.mp3';
+import sonChoixJazzDimoudon from 'cafe_de_la_place/assets/audio_reponses/ALrd/jazz_a_dimoudon.mp3';
+import sonChoixUnAmiEnAmont from 'cafe_de_la_place/assets/audio_reponses/ALrd/un_ami_en_amont.mp3';
+import sonChoixUnAmiAmant from 'cafe_de_la_place/assets/audio_reponses/ALrd/un_ami_amant.mp3';
+import sonChoixUnAmiUnAmant from 'cafe_de_la_place/assets/audio_reponses/ALrd/un_ami_un_amant.mp3';
+import sonChoixBalleEtTalle from 'cafe_de_la_place/assets/audio_reponses/ALrd/balle_et_talle.mp3';
+import sonChoixPailleEtDaille from 'cafe_de_la_place/assets/audio_reponses/ALrd/paille_et_daille.mp3';
+import sonChoixBailleEtTaille from 'cafe_de_la_place/assets/audio_reponses/ALrd/baille_et_taille.mp3';
+import sonChoixDussoEtMatura from 'cafe_de_la_place/assets/audio_reponses/ALrd/dusso_et_matura.mp3';
+import sonChoixDuxoEtMatura from 'cafe_de_la_place/assets/audio_reponses/ALrd/duxo_et_matura.mp3';
+import sonChoixDuxoEtMadura from 'cafe_de_la_place/assets/audio_reponses/ALrd/duxo_et_madura.mp3';
+import sonChoixAmourSugulent from 'cafe_de_la_place/assets/audio_reponses/ALrd/amour_sugulent.mp3';
+import sonChoixAmourSucculent from 'cafe_de_la_place/assets/audio_reponses/ALrd/amour_succulent.mp3';
+import sonChoixAmourSuccule from 'cafe_de_la_place/assets/audio_reponses/ALrd/amour_succule.mp3';
+import sonChoixAnguilEtDouceMer from 'cafe_de_la_place/assets/audio_reponses/ALrd/anguil_et_douce_mer.mp3';
+import sonChoixAnquilleEtDouceMer from 'cafe_de_la_place/assets/audio_reponses/ALrd/anquille_et_douce_mer.mp3';
+import sonChoixAnguilleEtDouceMer from 'cafe_de_la_place/assets/audio_reponses/ALrd/anguille_et_douce_mer.mp3';
+import sonChoixExerciceDeStyle from 'cafe_de_la_place/assets/audio_reponses/ALrd/exercice_de_style.mp3';
+import sonChoixEzerciceDeStyle from 'cafe_de_la_place/assets/audio_reponses/ALrd/ezercice_de_style.mp3';
+import sonChoixEsserciceDeStyle from 'cafe_de_la_place/assets/audio_reponses/ALrd/essercice_de_style.mp3';
+import sonChoixLeVilDuTemps from 'cafe_de_la_place/assets/audio_reponses/ALrd/le_vil_du_temps.mp3';
+import sonChoixLeFilsDuTemps from 'cafe_de_la_place/assets/audio_reponses/ALrd/le_fils_du_temps.mp3';
+import sonChoixLeFilDuTemps from 'cafe_de_la_place/assets/audio_reponses/ALrd/le_fil_du_temps.mp3';
+import sonChoixSoupconDAmertume from 'cafe_de_la_place/assets/audio_reponses/ALrd/soupcon_d_amertume.mp3';
+import sonChoixSouponDAmertume from 'cafe_de_la_place/assets/audio_reponses/ALrd/soupon_d_amertume.mp3';
+import sonChoixSoupconDAbertube from 'cafe_de_la_place/assets/audio_reponses/ALrd/soupcon_d_abertube.mp3';
+import sonExercice from 'cafe_de_la_place/assets/audio_reponses/ALrd/exercice.mp3';
+import sonAnguille from 'cafe_de_la_place/assets/audio_reponses/ALrd/anguille.mp3';
+import sonDimoudon from 'cafe_de_la_place/assets/audio_reponses/ALrd/dimoudon.mp3';
+import sonSoupcon from 'cafe_de_la_place/assets/audio_reponses/ALrd/soupcon.mp3';
+import sonChoixMembreGroupe from 'cafe_de_la_place/assets/audio_reponses/ACrd/membre_du_groupe.mp3';
+import sonChoixProducteur from 'cafe_de_la_place/assets/audio_reponses/ACrd/producteur.mp3';
+import sonChoixCritiqueMusical from 'cafe_de_la_place/assets/audio_reponses/ACrd/critique_musical.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_ALrd_1: sousConsigneALrd1,
@@ -73,7 +82,13 @@ const AUDIOS_QUESTIONS = {
   alrd_11: clicSurMot,
   alrd_12: clicSurMot,
   alrd_13: clicSurMot,
-  alrd_14: clicSurMot
+  alrd_14: clicSurMot,
+  acrd_1: ACrd1,
+  acrd_2: ACrd2,
+  acrd_3: ACrd3,
+  acrd_4: ACrd4,
+  acrd_5: ACrd5,
+  acrd_6: ACrd6
 };
 
 const AUDIOS_REPONSES = {
@@ -111,6 +126,9 @@ const AUDIOS_REPONSES = {
   anguille: sonAnguille,
   dimoudon: sonDimoudon,
   soupcon: sonSoupcon,
+  membre_du_groupe: sonChoixMembreGroupe,
+  producteur: sonChoixProducteur,
+  critique_musical: sonChoixCritiqueMusical
 };
 
 const messagesAudios = { ...AUDIOS_CONSIGNES, ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };

@@ -63,6 +63,14 @@ export default {
       this.joueSon = !this.joueSon;
     },
 
+    demarreSon () {
+      this.joueSon = true;
+    },
+
+    coupeSon () {
+      this.joueSon = false;
+    },
+
     audioBuffer (nomTechnique) {
       return this.$depotRessources.messageAudio(nomTechnique);
     }
@@ -71,7 +79,7 @@ export default {
   watch: {
     joueSon (joue) {
       if (joue) {
-        this.joueurSon.start(this.audioBuffer(this.nomTechnique), () => { this.joueSon = false; });
+        this.joueurSon.start(this.audioBuffer(this.nomTechnique), () => { this.coupeSon(); });
       } else {
         this.joueurSon.stop();
       }
@@ -80,7 +88,7 @@ export default {
 
   computed: {
     texteBouton () {
-      return this.joueSon === true ? 'bouton_lecture.pause' : 'bouton_lecture.lecture';
+      return this.joueSon ? 'bouton_lecture.pause' : 'bouton_lecture.lecture';
     }
   },
 

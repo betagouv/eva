@@ -96,13 +96,12 @@ export function creeStore (registreUtilisateur, registreCampagne) {
       },
       recupereSituations ({ commit }) {
         const campagne = registreCampagne.recupereCampagneCourante();
-        this.state.nomCampagne = campagne.libelle;
-
-        if (!campagne.situations) {
+        if (!campagne || !campagne.situations) {
           commit('deconnecte');
           return;
         }
 
+        this.state.nomCampagne = campagne.libelle;
         const situations = campagne.situations.map(function (situation, index) {
           return {
             nom: situation.libelle,

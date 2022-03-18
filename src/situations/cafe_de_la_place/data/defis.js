@@ -2,6 +2,7 @@ import listeTitresMusique from '../assets/liste_titres_musique.png';
 import telephoneSansTitres from '../assets/telephone_sans_titres.png';
 import terrasseCafe from '../assets/terrasse_cafe.png';
 import magazine from '../assets/magazine.png';
+import magazineSansTexte from '../assets/magazine_sans_texte.png';
 
 const sousConsigneALrd1 = {
   id: 'ALrd-sous-consigne-1',
@@ -286,15 +287,12 @@ const alrd11 = {
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse: 'exercice',
   extensionVue: 'clic_sur_mots',
-  choix: [
-    {
-      id: 'Exercice',
-      nom_technique: 'exercice',
-      bonneReponse: true
-    }
-  ]
+  zone_cliquable: 'liste-chansons',
+  bonne_reponse: {
+    mot: 'Exercice',
+    nom_technique: 'exercice'
+  }
 };
 
 const alrd12 = {
@@ -303,15 +301,12 @@ const alrd12 = {
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse: 'anguille',
   extensionVue: 'clic_sur_mots',
-  choix: [
-    {
-      id: 'Anguille',
-      nom_technique: 'anguille',
-      bonneReponse: true
-    }
-  ]
+  zone_cliquable: 'liste-chansons',
+  bonne_reponse: {
+    mot: 'Anguille',
+    nom_technique: 'anguille'
+  }
 };
 
 const alrd13 = {
@@ -320,15 +315,12 @@ const alrd13 = {
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse: 'dimoudon',
   extensionVue: 'clic_sur_mots',
-  choix: [
-    {
-      id: 'Dimoudon',
-      nom_technique: 'dimoudon',
-      bonneReponse: true
-    }
-  ]
+  zone_cliquable: 'liste-chansons',
+  bonne_reponse: {
+    mot: 'Dimoudon',
+    nom_technique: 'dimoudon'
+  }
 };
 
 const alrd14 = {
@@ -337,32 +329,138 @@ const alrd14 = {
   type: 'ecoute',
   illustration: telephoneSansTitres,
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  reponse: 'soupcon',
   extensionVue: 'clic_sur_mots',
-  choix: [
-    {
-      id: 'Soupçon',
-      nom_technique: 'soupcon',
-      bonneReponse: true
-    }
-  ]
+  zone_cliquable: 'liste-chansons',
+  bonne_reponse: {
+    mot: 'Soupçon',
+    nom_technique: 'soupcon'
+  }
 };
 
 const ACrd1 = {
   id: 'ACrd1',
+  nom_technique: 'acrd_1',
   description: 'Comment s’appelle le groupe ?',
-  illustration: magazine,
-  intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur “Valider”.'
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: 'Rick Duxol & Mori Morino'
+  }
 };
+
+const ACrd2 = {
+  id: 'ACrd2',
+  nom_technique: 'acrd_2',
+  description: 'Comment s’appelle le joueur de contrebasse ?',
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: 'Georges Tiporanet'
+  }
+};
+
+const ACrd3 = {
+  id: 'ACrd3',
+  nom_technique: 'acrd_3',
+  description: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: 'New-York'
+  }
+};
+
+const ACrd4 = {
+  id: 'ACrd4',
+  nom_technique: 'acrd_4',
+  description: 'De quel pays le groupe vient-il ?',
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: 'Bulgarie'
+  }
+};
+
+const ACrd5 = {
+  id: 'ACrd5',
+  nom_technique: 'acrd_5',
+  description: 'En quelle année le groupe a-t-il débuté ?',
+  zone_cliquable: 'revue-magazine',
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  bonne_reponse: {
+    mot: '2011'
+  }
+};
+
+const ACrd6 = {
+  id: 'ACrd6',
+  nom_technique: 'acrd_6',
+  description: 'Qui est Ivano Karanadoff ?',
+  illustration: magazine,
+  type: 'qcm',
+  intitule: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
+  choix: [
+    {
+      id: 'membreDuGroupe',
+      nom_technique: 'membre_du_groupe',
+      bonneReponse: false,
+      intitule: 'Un membre du groupe Rick Duxol et Mori Morino'
+    },
+    {
+      id: 'producteur',
+      nom_technique: 'producteur',
+      bonneReponse: false,
+      intitule: 'Un producteur de disque'
+    },
+    {
+      id: 'critiqueMusical',
+      nom_technique: 'critique_musical',
+      bonneReponse: true,
+      intitule: 'Un critique musical'
+    }
+  ]
+};
+
+const listeChansons = `* [Max]()
+* [Jazz]() à [Dimoudon]()
+* [Baille]() et [taille]()
+* Le [fil]() du [temps]()
+* [Exercice]() de [style]()
+* [Amour]() [succulent]()
+* [Soupçon]() d'[amertume]()
+* [Anguille]() et [douce]() [mer]()
+* [Sourire]() [toujours]()
+* Un [ami](), un [amant]()
+* [Duxo]() et [matura]()
+`;
+
+const texteMagazineColonne1 = `<span>C'est encore une très belle [production]() que nous propose le groupe [Rick Duxol & Mori Morino]() avec [«Jazz impressions»](), leur dernier [album](), créé en [2013]() et enregistré à [New-York]().</span><span>Ils avaient déjà séduit la presse et le public à leurs débuts en [2011](), au moment du[Festival international de jazz de Londres](). Très influencés par le «[Jazz Band]() de [Londres]()», ils ont pourtant un style nouveau bien à eux, qui évoque l'avenir dans tous les morceaux.</span><span>Le saxophoniste américain [Rick Duxol]() nous enchante avec ses solos qui ne manquent pas de souffle ! Quant au contrebassiste [Georges Tiporanet](), il est excellent sur cet album.</span>`;
+const texteMagazineColonne2 = `<span>Les différents morceaux se font sur un ton énergique mais aussi très intime parfois. Le pianiste, [Mori Morino]() crée une ambiance [«cocon»](), dont la sensibilité nous rappelle les ambiances nocturnes de [«Taxi Konnera»](), un autre orchestre de [jazz]() célèbre.</span><span>Jusqu'à la fin, c'est en mesure et en finesse que l'orchestre met en valeur la voix étonnante de [Lily Molli](), jeune femme de [30]() ans, arrivée dans le groupe en [2012](), au moment où le groupe est devenu célèbre...</span><span>Le groupe [Rick Duxol & Mori Morino]() démontre de belle manière avec ce disque que cet orchestre venu de [Bulgarie]() n'a rien à envier au Jazz des [américains]().</span>`;
+const legende = `<span class="legende">[Ivano Karanadoff]()<br>Critique d'art musical à [Paris]() Jazz [Janvier 2015]()</span>`;
+
+const texteMagazine = 
+`
+|||
+|:---|:---|
+|${texteMagazineColonne1}|${texteMagazineColonne2}${legende}|
+`;
 
 const configurationNormale = {
   chapitreALrd: {
+    texteCliquable: listeChansons,
     sousConsignes: [ sousConsigneALrd1, sousConsigneALrd2 ],
     questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
   },
   chapitreACrd: {
+    texteCliquable: texteMagazine,
     sousConsignes: [ sousConsigneACrd1 ],
-    questions: [ ACrd1 ]
+    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5, ACrd6 ]
   }
 };
 

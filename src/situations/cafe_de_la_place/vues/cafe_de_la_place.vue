@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 import Vue from 'vue';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 
@@ -33,8 +33,7 @@ export default {
     return {
       indexCarte: 0,
       affichePagination: false,
-      carteActive: {},
-      chapitreEnCours: {}
+      carteActive: {}
     };
   },
 
@@ -44,7 +43,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['chapitreALrd', 'chapitreACrd'])
+    ...mapState(['chapitreALrd', 'chapitreACrd', 'chapitreEnCours'])
   },
 
   watch: {
@@ -54,6 +53,8 @@ export default {
   },
 
   methods: {
+    ...mapMutations([ 'configureChapitre' ]),
+
     reponse (reponse) {
       this.indexCarte++;
       if(this.carteActive.type === 'sous-consigne') {
@@ -77,7 +78,7 @@ export default {
     },
 
     changeChapitre (nouveauChapitre) {
-      this.chapitreEnCours = nouveauChapitre;
+      this.configureChapitre(nouveauChapitre);
       this.carteActive = nouveauChapitre.sousConsignes[0];
       this.indexCarte = 0;
       this.affichePagination = false;
