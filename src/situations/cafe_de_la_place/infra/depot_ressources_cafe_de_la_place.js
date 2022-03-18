@@ -18,6 +18,10 @@ import titre4 from 'cafe_de_la_place/assets/audio_questions/titre4.mp3';
 import titre7 from 'cafe_de_la_place/assets/audio_questions/titre7.mp3';
 import clicSurMot from 'cafe_de_la_place/assets/audio_questions/clic_sur_mot.mp3';
 import ACrd1 from 'cafe_de_la_place/assets/audio_questions/ACrd1.mp3';
+import ACrd2 from 'cafe_de_la_place/assets/audio_questions/ACrd2.mp3';
+import ACrd3 from 'cafe_de_la_place/assets/audio_questions/ACrd3.mp3';
+import ACrd4 from 'cafe_de_la_place/assets/audio_questions/ACrd4.mp3';
+import ACrd5 from 'cafe_de_la_place/assets/audio_questions/ACrd5.mp3';
 
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/bax.mp3';
 import sonChoixMasse from 'cafe_de_la_place/assets/audio_reponses/masse.mp3';
@@ -75,7 +79,11 @@ const AUDIOS_QUESTIONS = {
   alrd_12: clicSurMot,
   alrd_13: clicSurMot,
   alrd_14: clicSurMot,
-  acrd_1: ACrd1
+  acrd_1: ACrd1,
+  acrd_2: ACrd2,
+  acrd_3: ACrd3,
+  acrd_4: ACrd4,
+  acrd_5: ACrd5
 };
 
 const AUDIOS_REPONSES = {
