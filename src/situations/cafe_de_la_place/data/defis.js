@@ -27,7 +27,7 @@ const sousConsigneACrd1 = {
   illustration: magazine,
   nom_technique: 'sous_consigne_ACrd_1',
   description: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.',
-  intitule: 'Pour commencer à répondre aux questions, cliquez sur “Suivant”.'
+  intitule: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
 const titre1 = {
@@ -36,7 +36,7 @@ const titre1 = {
   type: 'qcm',
   illustration: listeTitresMusique,
   description: 'Pour le titre 1, quelle est la bonne lecture ?',
-  intitule: 'Dès que vous aurez reconnu la bonne lecture, choisissez une des réponses ci-dessous. Pour confirmer votre réponse, cliquez sur Valider.',
+  intitule: 'Dès que vous aurez reconnu la bonne lecture, choisissez une des réponses ci-dessous. Pour confirmer votre réponse, cliquez sur « Valider ».',
   choix: [
     {
       id: 'bax',
