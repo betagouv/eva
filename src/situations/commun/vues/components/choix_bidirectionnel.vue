@@ -55,7 +55,7 @@ import Keypress from 'vue-keypress';
 import 'commun/styles/boutons.scss';
 import 'commun/styles/choix_bidirectionnel.scss';
 
-import { isMobile, isIOs, isAndroid } from 'mobile-device-detect';
+import { estMobile } from 'commun/helpers/mobile';
 
 export const flecheGauche = 37;
 export const flecheDroite = 39;
@@ -99,7 +99,7 @@ export default {
 
   data () {
     return {
-      estMobile: isMobile || isIOs || isAndroid,
+      estMobile: estMobile,
       choixGauche: 'gauche',
       choixDroit: 'droite',
       choixFait: null,
