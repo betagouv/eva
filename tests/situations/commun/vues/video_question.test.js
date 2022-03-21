@@ -48,9 +48,14 @@ describe('Le composant vidéo question', function () {
       vue.destroy();
       expect(mockRevokeObjectURL).toHaveBeenCalledWith(createdObjectURL);
     });
+
+    it("n'affiche pas la vidéo sur mobile", function () {
+      vue.vm.estMobile = true;
+      expect(vue.vm.afficheVideo).toBe(false);
+    });
   });
 
-  it("n'affiche pas de video si il n'y en a pas", function () {
+  it("n'affiche pas de video s'il n'y en a pas", function () {
     localVue.prototype.$depotRessources = { existeMessageVideo: () =>  { return false; } };
     vue = composant({ nomTechnique: 'un-nom' });
     expect(vue.vm.afficheVideo).toEqual(false);
