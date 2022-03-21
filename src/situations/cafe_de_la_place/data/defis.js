@@ -61,7 +61,7 @@ const titre2 = {
   nom_technique: 'titre_2',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 2, quelle est la bonne lecture ?',
+  description: 'Pour le titre 2, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'jazzABimoudon',
@@ -86,7 +86,7 @@ const titre10 = {
   nom_technique: 'titre_10',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 10, quelle est la bonne lecture ?',
+  description: 'Pour le titre 10, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'unAmiEnAmont',
@@ -111,7 +111,7 @@ const titre3 = {
   nom_technique: 'titre_3',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 3, quelle est la bonne lecture ?',
+  description: 'Pour le titre 3, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'balleEtTalle',
@@ -136,7 +136,7 @@ const titre11 = {
   nom_technique: 'titre_11',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 11, quelle est la bonne lecture ?',
+  description: 'Pour le titre 11, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'dussoEtMatura',
@@ -161,7 +161,7 @@ const titre6 = {
   nom_technique: 'titre_6',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 6, quelle est la bonne lecture ?',
+  description: 'Pour le titre 6, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'amourSugulent',
@@ -186,7 +186,7 @@ const titre8 = {
   nom_technique: 'titre_8',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 8, quelle est la bonne lecture ?',
+  description: 'Pour le titre 8, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'anguilEtDouceMer',
@@ -211,7 +211,7 @@ const titre5 = {
   nom_technique: 'titre_5',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 5, quelle est la bonne lecture ?',
+  description: 'Pour le titre 5, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'exerciceDeStyle',
@@ -236,7 +236,7 @@ const titre4 = {
   nom_technique: 'titre_4',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 4, quelle est la bonne lecture ?',
+  description: 'Pour le titre 4, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'leVilDuTemps',
@@ -261,7 +261,7 @@ const titre7 = {
   nom_technique: 'titre_7',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 7, quelle est la bonne lecture ?',
+  description: 'Pour le titre 7, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'soupconDAmertume',
@@ -340,7 +340,7 @@ const alrd14 = {
 const ACrd1 = {
   id: 'ACrd1',
   nom_technique: 'acrd_1',
-  description: 'Comment s’appelle le groupe ?',
+  description: 'Comment s’appelle le groupe ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
@@ -353,7 +353,7 @@ const ACrd1 = {
 const ACrd2 = {
   id: 'ACrd2',
   nom_technique: 'acrd_2',
-  description: 'Comment s’appelle le joueur de contrebasse ?',
+  description: 'Comment s’appelle le joueur de contrebasse ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -365,7 +365,7 @@ const ACrd2 = {
 const ACrd3 = {
   id: 'ACrd3',
   nom_technique: 'acrd_3',
-  description: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
+  description: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -377,7 +377,7 @@ const ACrd3 = {
 const ACrd4 = {
   id: 'ACrd4',
   nom_technique: 'acrd_4',
-  description: 'De quel pays le groupe vient-il ?',
+  description: 'De quel pays le groupe vient-il ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -389,7 +389,7 @@ const ACrd4 = {
 const ACrd5 = {
   id: 'ACrd5',
   nom_technique: 'acrd_5',
-  description: 'En quelle année le groupe a-t-il débuté ?',
+  description: 'En quelle année le groupe a-t-il débuté ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -401,7 +401,7 @@ const ACrd5 = {
 const ACrd6 = {
   id: 'ACrd6',
   nom_technique: 'acrd_6',
-  description: 'Qui est Ivano Karanadoff ?',
+  description: 'Qui est Ivano Karanadoff ?',
   illustration: magazine,
   type: 'qcm',
   intitule: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
@@ -430,7 +430,7 @@ const ACrd6 = {
 const ACrd7 = {
   id: 'ACrd7',
   nom_technique: 'acrd_7',
-  description: 'Quel est le genre de musique que produit ce groupe ?',
+  description: 'Quel est le genre de musique que produit ce groupe ?',
   illustration: magazine,
   type: 'qcm',
   choix: [
@@ -457,7 +457,7 @@ const ACrd7 = {
 const ACrd8 = {
   id: 'ACrd8',
   nom_technique: 'acrd_8',
-  description: 'Qui a influencé ce groupe ?',
+  description: 'Qui a influencé ce groupe ?',
   illustration: magazine,
   type: 'qcm',
   choix: [
@@ -485,7 +485,7 @@ const ACrd8 = {
 const ACrd9 = {
   id: 'ACrd9',
   nom_technique: 'acrd_9',
-  description: 'Que pense la critique de ce style musical ?',
+  description: 'Que pense la critique de ce style musical ?',
   illustration: magazine,
   type: 'qcm',
   choix: [
@@ -513,7 +513,7 @@ const ACrd9 = {
 const ACrd10 = {
   id: 'ACrd10',
   nom_technique: 'acrd_10',
-  description: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
+  description: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
   illustration: magazine,
   type: 'qcm',
   choix: [
@@ -551,11 +551,11 @@ const listeChansons = `* [Max]()
 * [Duxo]() et [matura]()
 `;
 
-const texteMagazineColonne1 = `<span>C'est encore une très belle [production]() que nous propose le groupe [Rick Duxol & Mori Morino]() avec [«Jazz impressions»](), leur dernier [album](), créé en [2013]() et enregistré à [New-York]().</span><span>Ils avaient déjà séduit la presse et le public à leurs débuts en [2011](), au moment du[Festival international de jazz de Londres](). Très influencés par le «[Jazz Band]() de [Londres]()», ils ont pourtant un style nouveau bien à eux, qui évoque l'avenir dans tous les morceaux.</span><span>Le saxophoniste américain [Rick Duxol]() nous enchante avec ses solos qui ne manquent pas de souffle ! Quant au contrebassiste [Georges Tiporanet](), il est excellent sur cet album.</span>`;
+const texteMagazineColonne1 = `<span>C'est encore une très belle [production]() que nous propose le groupe [Rick Duxol & Mori Morino]() avec [«Jazz impressions»](), leur dernier [album](), créé en [2013]() et enregistré à [New-York]().</span><span>Ils avaient déjà séduit la presse et le public à leurs débuts en [2011](), au moment du[Festival international de jazz de Londres](). Très influencés par le «[Jazz Band]() de [Londres]()», ils ont pourtant un style nouveau bien à eux, qui évoque l'avenir dans tous les morceaux.</span><span>Le saxophoniste américain [Rick Duxol]() nous enchante avec ses solos qui ne manquent pas de souffle&nbsp;! Quant au contrebassiste [Georges Tiporanet](), il est excellent sur cet album.</span>`;
 const texteMagazineColonne2 = `<span>Les différents morceaux se font sur un ton énergique mais aussi très intime parfois. Le pianiste, [Mori Morino]() crée une ambiance [«cocon»](), dont la sensibilité nous rappelle les ambiances nocturnes de [«Taxi Konnera»](), un autre orchestre de [jazz]() célèbre.</span><span>Jusqu'à la fin, c'est en mesure et en finesse que l'orchestre met en valeur la voix étonnante de [Lily Molli](), jeune femme de [30]() ans, arrivée dans le groupe en [2012](), au moment où le groupe est devenu célèbre...</span><span>Le groupe [Rick Duxol & Mori Morino]() démontre de belle manière avec ce disque que cet orchestre venu de [Bulgarie]() n'a rien à envier au Jazz des [américains]().</span>`;
 const legende = `<span class="legende">[Ivano Karanadoff]()<br>Critique d'art musical à [Paris]() Jazz [Janvier 2015]()</span>`;
 
-const texteMagazine = 
+const texteMagazine =
 `
 |||
 |:---|:---|
