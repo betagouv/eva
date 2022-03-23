@@ -43,8 +43,9 @@ describe('La vue de fin', function () {
     })();
     store = new Vuex.Store({
       state: {
-        competencesFortes: [],
-        evaluationTerminee: false
+        nom: 'Alexandre Legrand',
+        competencesFortes: [rapidite, comprehensionConsigne],
+        evaluationTerminee: true
       },
       actions: {
         deconnecte () {}
@@ -55,64 +56,23 @@ describe('La vue de fin', function () {
     localVue.prototype.$traduction = traduction;
   });
 
-  it("sait s'afficher", function (done) {
-    store.state.nom = 'Alexandre Legrand';
-    store.dispatch = (evenement) => {
-      expect(evenement).toEqual('termineEvaluation');
-      store.state.competencesFortes = [rapidite, comprehensionConsigne];
-      store.state.evaluationTerminee = true;
-      return Promise.resolve();
-    };
+  it("sait s'afficher", function () {
     wrapper = mount(Fin, { store, localVue });
-
-    wrapper.vm.$nextTick(() => {
-      expect(wrapper.find('h2').text()).toEqual('accueil.fin.bravo.titre{"nom":"Alexandre Legrand"}');
-      expect(wrapper.find('button').text()).toEqual('accueil.fin.bravo.bouton');
-      done();
-    });
+    expect(wrapper.find('h2').text()).toEqual('accueil.fin.bravo.titre{"nom":"Alexandre Legrand"}');
+    expect(wrapper.find('button').text()).toEqual('accueil.fin.bravo.bouton');
   });
 
-  it('récupère les compétences fortes', function (done) {
-    store.dispatch = () => {
-      store.state.competencesFortes = [rapidite, comprehensionConsigne];
-      store.state.evaluationTerminee = true;
-      return Promise.resolve();
-    };
+  it("affiche le bouton de deconnexion s'il n'y a pas de compétences fortes", function () {
+    store.state.competencesFortes = [];
+    store.state.evaluationTerminee = true;
     wrapper = mount(Fin, { store, localVue });
-
-    wrapper.vm.$nextTick(() => {
-      wrapper.find('button').trigger('click');
-
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.findAll('.message-competences-fortes').length).toBe(1);
-        expect(wrapper.find('.message-competences-fortes').text()).toEqual('accueil.fin.resultat.competences');
-        expect(wrapper.find('.competences-fortes-nom').text()).toEqual("vitesse d'execution");
-        expect(wrapper.find('.competences-fortes-description').text()).toContain('description rapidite');
-        done();
-      });
-    });
-  });
-
-  it("affiche le bouton de deconnexion s'il n'y a pas de compétences fortes", function (done) {
-    store.dispatch = () => {
-      store.state.competencesFortes = [];
-      store.state.evaluationTerminee = true;
-      return Promise.resolve();
-    };
-    wrapper = mount(Fin, { store, localVue });
-
-    wrapper.vm.$nextTick(() => {
-      expect(wrapper.findAll('.contenu').length).toBe(0);
-      expect(wrapper.findAll('button').length).toBe(0);
-      expect(wrapper.findAll('.bouton-deconnexion').length).toBe(1);
-      done();
-    });
+    expect(wrapper.findAll('.contenu').length).toBe(0);
+    expect(wrapper.findAll('button').length).toBe(0);
+    expect(wrapper.findAll('.bouton-deconnexion').length).toBe(1);
   });
 
   it("Attend que l'on sache s'il y a des compétences fortes avant d'afficher les boutons", function () {
-    store.dispatch = () => {
-      return Promise.resolve();
-    };
+    store.state.evaluationTerminee = false;
     wrapper = mount(Fin, { store, localVue });
 
     expect(wrapper.findAll('.contenu').length).toBe(0);
@@ -120,29 +80,36 @@ describe('La vue de fin', function () {
     expect(wrapper.findAll('.bouton-deconnexion').length).toBe(0);
   });
 
-  it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function (done) {
-    store.dispatch = () => {
-      store.state.competencesFortes = [rapidite, comprehensionConsigne];
-      store.state.evaluationTerminee = true;
-      return Promise.resolve();
-    };
+
+  it('affiche les compétences fortes', function (done) {
     wrapper = mount(Fin, { store, localVue });
+
+    wrapper.find('button').trigger('click');
+
     wrapper.vm.$nextTick(() => {
-      wrapper.find('button').trigger('click');
+      expect(wrapper.findAll('.message-competences-fortes').length).toBe(1);
+      expect(wrapper.find('.message-competences-fortes').text()).toEqual('accueil.fin.resultat.competences');
+      expect(wrapper.find('.competences-fortes-nom').text()).toEqual("vitesse d'execution");
+      expect(wrapper.find('.competences-fortes-description').text()).toContain('description rapidite');
+      done();
+    });
+  });
+
+  it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function (done) {
+    wrapper = mount(Fin, { store, localVue });
+    wrapper.find('button').trigger('click');
+    wrapper.vm.$nextTick(() => {
+      var boutonDeconnexion = wrapper.find('.actions-fin .bouton-deconnexion');
+      expect(boutonDeconnexion.isVisible()).toBe(true);
+      boutonDeconnexion.trigger('click');
 
       wrapper.vm.$nextTick(() => {
-        var boutonDeconnexion = wrapper.find('.actions-fin .bouton-deconnexion');
-        expect(boutonDeconnexion.isVisible()).toBe(true);
-        boutonDeconnexion.trigger('click');
+        expect(wrapper.findAll('.mon-avis').length).toBe(1);
+        wrapper.find('.actions-avis .bouton-arrondi-orange').trigger('click');
 
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.findAll('.mon-avis').length).toBe(1);
-          wrapper.find('.actions-avis .bouton-arrondi-orange').trigger('click');
-
-          wrapper.vm.$nextTick(() => {
-            expect(wrapper.find('.actions-fin .confirmation-deconnexion').isVisible()).toBe(true);
-            done();
-          });
+          expect(wrapper.find('.actions-fin .confirmation-deconnexion').isVisible()).toBe(true);
+          done();
         });
       });
     });
