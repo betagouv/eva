@@ -5,6 +5,7 @@ import fondSituation from 'cafe_de_la_place/assets/terrasse_cafe.png';
 import sousConsigneALrd1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ALrd_1.mp3';
 import sousConsigneALrd2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ALrd_2.mp3';
 import sousConsigneACrd1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ACrd_1.mp3';
+import sousConsigneACrd2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ACrd_2.mp3';
 
 import titre1 from 'cafe_de_la_place/assets/audio_questions/titre1.mp3';
 import titre2 from 'cafe_de_la_place/assets/audio_questions/titre2.mp3';
@@ -81,7 +82,8 @@ import sonChoixTempsPasse from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_t
 const AUDIOS_CONSIGNES = {
   sous_consigne_ALrd_1: sousConsigneALrd1,
   sous_consigne_ALrd_2: sousConsigneALrd2,
-  sous_consigne_ACrd_1: sousConsigneACrd1
+  sous_consigne_ACrd_1: sousConsigneACrd1,
+  sous_consigne_ACrd_2: sousConsigneACrd2
 };
 
 const AUDIOS_QUESTIONS = {

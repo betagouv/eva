@@ -36,12 +36,16 @@ describe('La vue café de la place', function () {
       const sousConsigne2 = { id: 'sous-consigne-2', type: 'sous-consigne'};
       const question1 = { id: 'première', type: 'qcm' };
       const question2 = { id: 'seconde', type: 'qcm' };
-      store.commit('configureActe', { chapitreALrd: {
-        sousConsignes: [sousConsigne, sousConsigne2],
-        questions: [question1, question2]
-      },
-      chapitreACrd: { sousConsignes: [sousConsigne], questions: [question1]}
-      });
+      store.commit('configureActe',
+        {
+          chapitreALrd: {
+            sousConsignes: [sousConsigne, sousConsigne2],
+            questions: [question1, question2]
+          },
+          chapitreACrdClic: { sousConsignes: [sousConsigne], questions: [question1] },
+          chapitreACrdChoix: { sousConsignes: [sousConsigne], questions: [question1] },
+        }
+      );
       wrapper.vm.$nextTick(() => {
         expect(wrapper.vm.carteActive).toEqual(sousConsigne);
         wrapper.vm.reponse();
@@ -51,6 +55,8 @@ describe('La vue café de la place', function () {
         wrapper.vm.reponse();
         expect(wrapper.vm.carteActive).toEqual(question2);
         expect(wrapper.emitted('terminer')).toBe(undefined);
+        wrapper.vm.reponse();
+        wrapper.vm.reponse();
         wrapper.vm.reponse();
         wrapper.vm.reponse();
         wrapper.vm.reponse();

@@ -43,7 +43,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['chapitreALrd', 'chapitreACrd', 'chapitreEnCours'])
+    ...mapState(['chapitreALrd', 'chapitreACrdClic', 'chapitreACrdChoix', 'chapitreEnCours'])
   },
 
   watch: {
@@ -67,10 +67,13 @@ export default {
       else {
         const donneesReponses = { question: this.carteActive.id, ...reponse };
         this.$journal.enregistre(new EvenementReponse(donneesReponses));
+
         if (this.indexCarte < this.chapitreEnCours.questions.length) {
           this.carteActive = this.chapitreEnCours.questions[this.indexCarte];
         } else if (this.chapitreEnCours === this.chapitreALrd) {
-          this.changeChapitre(this.chapitreACrd);
+          this.changeChapitre(this.chapitreACrdClic);
+        } else if (this.chapitreEnCours === this.chapitreACrdClic) {
+          this.changeChapitre(this.chapitreACrdChoix);
         } else {
           this.$emit('terminer');
         }
