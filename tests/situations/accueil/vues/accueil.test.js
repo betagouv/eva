@@ -210,7 +210,7 @@ describe('La vue accueil', function () {
     });
   });
 
-  describe('#termine', function () {
+  describe('#terminé', function () {
     let wrapper;
 
     beforeEach(function () {
@@ -332,6 +332,24 @@ describe('La vue accueil', function () {
           done();
         });
       });
+    });
+  });
+
+  describe("#glisseVersDernierBatimentNonVisité", function () {
+    let wrapper;
+
+    beforeEach(function () {
+      store.state.situations = [{ nom: 'Inventaire' }];
+      store.state.situationsFaites = ['Inventaire'];
+      wrapper = accueil();
+    });
+
+    it("termine l'évaluation si on est arrivé sur le dernier batiment", function (done) {
+      store.dispatch = (evenement) => {
+        expect(evenement).toEqual('termineEvaluation');
+        done();
+      };
+      wrapper.vm.glisseVersDernierBatimentNonVisite();
     });
   });
 });

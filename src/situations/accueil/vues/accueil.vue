@@ -236,6 +236,10 @@ export default {
 
     glisseVersDernierBatimentNonVisite () {
       this.indexBatiment = this.niveauMax;
+
+      if(this.termine) {
+        this.$store.dispatch('termineEvaluation');
+      }
     },
 
     reinitialiseDonnees () {
