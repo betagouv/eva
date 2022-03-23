@@ -398,6 +398,15 @@ const ACrd5 = {
   }
 };
 
+const sousConsigneACrd2 = {
+  id: 'ACrd-sous-consigne-2',
+  type: 'sous-consigne',
+  illustration: magazine,
+  nom_technique: 'sous_consigne_ACrd_2',
+  description: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.',
+  intitule: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
+};
+
 const ACrd6 = {
   id: 'ACrd6',
   nom_technique: 'acrd_6',
@@ -568,10 +577,14 @@ const configurationNormale = {
     sousConsignes: [ sousConsigneALrd1, sousConsigneALrd2 ],
     questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
   },
-  chapitreACrd: {
+  chapitreACrdClic: {
     texteCliquable: texteMagazine,
     sousConsignes: [ sousConsigneACrd1 ],
-    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5, ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
+    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
+  },
+  chapitreACrdChoix: {
+    sousConsignes: [ sousConsigneACrd2 ],
+    questions: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
   }
 };
 
