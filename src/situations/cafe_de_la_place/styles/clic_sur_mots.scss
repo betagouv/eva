@@ -1,5 +1,4 @@
 @import 'commun/styles/variables.scss';
-@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
 
 .zone-cliquable {
   position: absolute;
@@ -42,7 +41,7 @@
   left: 4.375rem;
   line-height: 135%;
   width: 33.25rem;
-  font-family: 'Sarabun';
+  font-family: $font-sarabun;
   color: $noir;
 
   &:hover a:not(.mot-cliquable--selectionne) {
