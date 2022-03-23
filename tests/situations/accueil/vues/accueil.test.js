@@ -219,12 +219,17 @@ describe('La vue accueil', function () {
     });
 
     it("faux lorsque toute les situations n'ont pas été faites", function () {
-      wrapper.vm.indexBatiment = 1;
       expect(wrapper.vm.termine).toBe(false);
     });
 
     it('vraie lorsque toute les situations ont été faites', function () {
-      wrapper.vm.indexBatiment = 2;
+      store.state.situationsFaites.push('Inventaire');
+      expect(wrapper.vm.termine).toBe(true);
+    });
+
+    it("toujours vraie lorsque qu'on dépasse le nombre de situations à faire", function () {
+      store.state.situationsFaites.push('Inventaire');
+      store.state.situationsFaites.push('Tri');
       expect(wrapper.vm.termine).toBe(true);
     });
   });

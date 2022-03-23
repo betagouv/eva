@@ -70,6 +70,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
             });
         });
       },
+
       recupereCampagne (pasUtile, { codeCampagne }) {
         this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
@@ -91,9 +92,11 @@ export function creeStore (registreUtilisateur, registreCampagne) {
             });
         });
       },
+
       deconnecte () {
         return registreUtilisateur.deconnecte();
       },
+
       recupereSituations ({ commit }) {
         const campagne = registreCampagne.recupereCampagneCourante();
         if (!campagne || !campagne.situations) {
@@ -112,6 +115,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         });
         commit('metsAJourSituations', situations);
       },
+
       termineEvaluation ({ commit }) {
         return registreUtilisateur.termineEvaluation()
           .then((competencesFortes) => {
