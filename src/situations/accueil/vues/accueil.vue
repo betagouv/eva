@@ -160,7 +160,7 @@ export default {
     },
 
     termine () {
-      return this.indexBatiment === this.batiments.length - 1;
+      return this.situationsFaites.length >= this.situations.length;
     },
 
     batiments () {
@@ -229,9 +229,13 @@ export default {
       this.$store.dispatch('recupereSituations')
         .finally(() => {
           if (syncIndexBatiment) {
-            setTimeout(() => { this.indexBatiment = this.niveauMax; }, 100);
+            setTimeout(this.glisseVersDernierBatimentNonVisite, 100);
           }
         });
+    },
+
+    glisseVersDernierBatimentNonVisite () {
+      this.indexBatiment = this.niveauMax;
     },
 
     reinitialiseDonnees () {
