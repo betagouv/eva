@@ -85,10 +85,6 @@ export default {
     };
   },
 
-  mounted () {
-    this.termineEvaluation();
-  },
-
   methods: {
     lienSiteVitrine (competence) {
       return `https://eva.beta.gouv.fr/competences/${competence}`;
@@ -97,10 +93,6 @@ export default {
     suivant () {
       this.ecran = 'resultat';
     },
-
-    termineEvaluation () {
-      this.$store.dispatch('termineEvaluation');
-    }
   }
 };
 </script>
