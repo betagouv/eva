@@ -6,14 +6,17 @@ import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import { traduction } from 'commun/infra/internationalisation';
-import { DECONNECTE, DEMARRE } from 'accueil/modeles/store';
 
 describe('La vue accueil', function () {
   let depotRessources;
   let store;
   let localVue;
+  let mockEstTermine;
+  let mockDeconnecte;
 
   beforeEach(function () {
+    mockEstTermine = jest.fn();
+    mockDeconnecte = jest.fn();
     window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
     depotRessources = new class {
       fondAccueil () {
@@ -38,7 +41,15 @@ describe('La vue accueil', function () {
         situations: [{}, {}],
         estConnecte: false,
         situationsFaites: [],
-        etat: DECONNECTE
+        estDemarre : false
+      },
+
+      getters: {
+        estDemarre: (state) => state.estDemarre,
+        estTermine: mockEstTermine
+      },
+      actions: {
+        deconnecte: mockDeconnecte
       }
     });
     localVue = createLocalVue();
@@ -86,23 +97,9 @@ describe('La vue accueil', function () {
     });
   });
 
-  it('déconnecte si un code campagne est passé en propsData', function (done) {
-    let deconnecte = false;
-    store = new Vuex.Store({
-      state: {
-        situations: [],
-        situationsFaites: []
-      },
-      actions: {
-        deconnecte () { deconnecte = true; }
-      }
-    });
-
-    const wrapper = accueil({ forceCampagne: 'CODECAMPAGNE' });
-    wrapper.vm.$nextTick(() => {
-      expect(deconnecte).toEqual(true);
-      done();
-    });
+  it('déconnecte si un code campagne est passé en propsData', function () {
+    accueil({ forceCampagne: 'CODECAMPAGNE' });
+    expect(mockDeconnecte).toHaveBeenCalled();
   });
 
   describe('#recupereSituations', function () {
@@ -210,30 +207,6 @@ describe('La vue accueil', function () {
     });
   });
 
-  describe('#terminé', function () {
-    let wrapper;
-
-    beforeEach(function () {
-      store.state.situations = [{ nom: 'Inventaire' }];
-      wrapper = accueil();
-    });
-
-    it("faux lorsque toute les situations n'ont pas été faites", function () {
-      expect(wrapper.vm.termine).toBe(false);
-    });
-
-    it('vraie lorsque toute les situations ont été faites', function () {
-      store.state.situationsFaites.push('Inventaire');
-      expect(wrapper.vm.termine).toBe(true);
-    });
-
-    it("toujours vraie lorsque qu'on dépasse le nombre de situations à faire", function () {
-      store.state.situationsFaites.push('Inventaire');
-      store.state.situationsFaites.push('Tri');
-      expect(wrapper.vm.termine).toBe(true);
-    });
-  });
-
   describe('#precedentDesactivee', function () {
     let wrapper;
 
@@ -315,7 +288,7 @@ describe('La vue accueil', function () {
     it('affiche la consigne une fois démarré puis la masque', function (done) {
       const wrapper = accueil();
       expect(wrapper.findComponent(IntroConsigne).exists()).toBe(false);
-      store.state.etat = DEMARRE;
+      store.state.estDemarre = true;
       wrapper.vm.indexBatiment = 0;
 
       wrapper.vm.$nextTick(() => {
@@ -339,8 +312,7 @@ describe('La vue accueil', function () {
     let wrapper;
 
     beforeEach(function () {
-      store.state.situations = [{ nom: 'Inventaire' }];
-      store.state.situationsFaites = ['Inventaire'];
+      mockEstTermine.mockReturnValueOnce(true);
       wrapper = accueil();
     });
 

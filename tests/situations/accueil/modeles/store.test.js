@@ -270,5 +270,36 @@ describe("Le store de l'accueil", function () {
         expect(erreur.message).toEqual('non gérée');
       });
     });
+
+    describe('#estTermine', function () {
+      const situation = { nom_technique: 'inventaire' };
+
+      it("n'indique pas l'évaluation terminée tant que les situations n'ont pas été mise à jour", function () {
+        registreUtilisateur.situationsFaites = () => ['inventaire'];
+        const store = creeStore(registreUtilisateur);
+        expect(store.getters.estTermine).toBe(false);
+      });
+
+      it("faux lorsque toute les situations n'ont pas été faites", function () {
+        registreUtilisateur.situationsFaites = () => [];
+        const store = creeStore(registreUtilisateur);
+        store.commit('metsAJourSituations', [situation]);
+        expect(store.getters.estTermine).toBe(false);
+      });
+
+      it('vraie lorsque toute les situations ont été faites', function () {
+        registreUtilisateur.situationsFaites = () => ['inventaire'];
+        const store = creeStore(registreUtilisateur);
+        store.commit('metsAJourSituations', [situation]);
+        expect(store.getters.estTermine).toBe(true);
+      });
+
+      it("toujours vraie lorsque qu'on dépasse le nombre de situations à faire", function () {
+        registreUtilisateur.situationsFaites = () => ['inventaire', 'tri'];
+        const store = creeStore(registreUtilisateur);
+        store.commit('metsAJourSituations', [situation]);
+        expect(store.getters.estTermine).toBe(true);
+      });
+    });
   });
 });

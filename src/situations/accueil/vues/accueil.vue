@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import 'accueil/styles/accueil.scss';
 import 'commun/styles/cadre.scss';
 import 'commun/styles/actions.scss';
@@ -101,7 +101,6 @@ import Fin from 'accueil/vues/fin';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
-import { DEMARRE } from '../modeles/store';
 
 const LARGEUR_SCENE = 1008;
 export const LARGEUR_BATIMENT = 411;
@@ -141,7 +140,8 @@ export default {
   },
 
   computed: {
-    ...mapState(['situations', 'estConnecte', 'situationsFaites', 'etat', 'nomCampagne']),
+    ...mapState(['situations', 'estConnecte', 'situationsFaites', 'nomCampagne']),
+    ...mapGetters(['estDemarre', 'estTermine']),
 
     afficheConsigne () {
       return this.estDemarre && this.indexBatiment === 0;
@@ -157,10 +157,6 @@ export default {
 
     suivantDesactivee () {
       return this.indexBatiment === this.niveauMax;
-    },
-
-    termine () {
-      return this.situationsFaites.length >= this.situations.length;
     },
 
     batiments () {
@@ -193,10 +189,6 @@ export default {
       const batiment = this.batiments[this.indexBatiment];
       return batiment && (batiment.action || batiment.chemin);
     },
-
-    estDemarre () {
-      return this.etat === DEMARRE;
-    }
   },
 
   mounted () {
@@ -237,7 +229,7 @@ export default {
     glisseVersDernierBatimentNonVisite () {
       this.indexBatiment = this.niveauMax;
 
-      if(this.termine) {
+      if(this.estTermine) {
         this.$store.dispatch('termineEvaluation');
       }
     },
