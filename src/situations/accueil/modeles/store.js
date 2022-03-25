@@ -22,6 +22,18 @@ export function creeStore (registreUtilisateur, registreCampagne) {
       situationsFaites: registreUtilisateur.situationsFaites(),
       etat: registreUtilisateur.estConnecte() ? DEMARRE : DECONNECTE
     },
+
+    getters: {
+      estDemarre (state) {
+        return state.etat === DEMARRE;
+      },
+
+      estTermine (state) {
+        return state.situations.length > 0 &&
+          state.situationsFaites.length >= state.situations.length;
+      }
+    },
+
     mutations: {
       connecte (state, nom) {
         state.estConnecte = true;
