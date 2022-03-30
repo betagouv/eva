@@ -44,6 +44,7 @@ describe('La vue café de la place', function () {
           },
           chapitreACrdClic: { sousConsignes: [sousConsigne], questions: [question1] },
           chapitreACrdChoix: { sousConsignes: [sousConsigne], questions: [question1] },
+          chapitreAPlc: { sousConsignes: [sousConsigne], questions: [question1] }
         }
       );
       wrapper.vm.$nextTick(() => {
@@ -55,11 +56,9 @@ describe('La vue café de la place', function () {
         wrapper.vm.reponse();
         expect(wrapper.vm.carteActive).toEqual(question2);
         expect(wrapper.emitted('terminer')).toBe(undefined);
-        wrapper.vm.reponse();
-        wrapper.vm.reponse();
-        wrapper.vm.reponse();
-        wrapper.vm.reponse();
-        wrapper.vm.reponse();
+        for (let i = 0; i < 7; i++) {
+          wrapper.vm.reponse();
+        }
         expect(wrapper.emitted('terminer').length).toEqual(1);
         expect(wrapper.vm.carteActive).toEqual(question1);
         done();

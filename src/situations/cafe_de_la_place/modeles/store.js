@@ -20,13 +20,17 @@ export function creeStore () {
         sousConsignes: [],
         questions: []
       },
+      chapitreAPlc: {
+        questions: []
+      }
     },
 
     mutations: {
-      configureActe (state, { chapitreALrd, chapitreACrdClic, chapitreACrdChoix }) {
+      configureActe (state, { chapitreALrd, chapitreACrdClic, chapitreACrdChoix, chapitreAPlc }) {
         state.chapitreALrd = chapitreALrd;
         state.chapitreACrdClic = chapitreACrdClic;
         state.chapitreACrdChoix = chapitreACrdChoix;
+        state.chapitreAPlc = chapitreAPlc;
       },
 
       configureChapitre(state, nouveauChapitre) {

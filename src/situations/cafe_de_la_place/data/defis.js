@@ -3,6 +3,7 @@ import telephoneSansTitres from '../assets/telephone_sans_titres.png';
 import terrasseCafe from '../assets/terrasse_cafe.png';
 import magazine from '../assets/magazine.png';
 import magazineSansTexte from '../assets/magazine_sans_texte.png';
+import listeDeCourse from '../assets/telephone_liste_de_courses.png';
 
 const sousConsigneALrd1 = {
   id: 'ALrd-sous-consigne-1',
@@ -571,6 +572,23 @@ const texteMagazine =
 |${texteMagazineColonne1}|${texteMagazineColonne2}${legende}|
 `;
 
+const sousConsigneAPlc1 = {
+  id: 'APlc-sous-consigne-1',
+  nom_technique: 'sous_consigne_APlc_1',
+  type: 'sous-consigne',
+  illustration: terrasseCafe,
+  description: "Ce soir, vous recevez des amis. Vous avez décidé de cuisiner, même si vous n'en avez pas l'habitude. Il vous faut donc acheter du matériel de cuisine et des aliments à cuisiner. Pour cela, vous avez commencé votre liste de courses, mais vous devez la compléter."
+};
+
+const APlc1 = {
+  id: 'APlc1',
+  nom_technique: 'aplc_1',
+  type: 'ecoute-et-saisi',
+  description: 'Pour répondre, écrivez le mot que vous avez entendu dans le cadre de texte ci-dessous.',
+  illustration: listeDeCourse,
+  intitule: 'Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur valider.'
+};
+
 const configurationNormale = {
   chapitreALrd: {
     texteCliquable: listeChansons,
@@ -585,7 +603,11 @@ const configurationNormale = {
   chapitreACrdChoix: {
     sousConsignes: [ sousConsigneACrd2 ],
     questions: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
-  }
+  },
+  chapitreAPlc: {
+    sousConsignes: [ sousConsigneAPlc1 ],
+    questions: [ APlc1 ]
+  },
 };
 
 export { configurationNormale };

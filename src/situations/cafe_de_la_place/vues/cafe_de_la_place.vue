@@ -43,7 +43,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['chapitreALrd', 'chapitreACrdClic', 'chapitreACrdChoix', 'chapitreEnCours'])
+    ...mapState(['chapitreALrd', 'chapitreACrdClic', 'chapitreACrdChoix', 'chapitreAPlc', 'chapitreEnCours'])
   },
 
   watch: {
@@ -74,6 +74,8 @@ export default {
           this.changeChapitre(this.chapitreACrdClic);
         } else if (this.chapitreEnCours === this.chapitreACrdClic) {
           this.changeChapitre(this.chapitreACrdChoix);
+        } else if (this.chapitreEnCours === this.chapitreACrdChoix) {
+          this.changeChapitre(this.chapitreAPlc);
         } else {
           this.$emit('terminer');
         }
