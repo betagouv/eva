@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import 'cafe_de_la_place/styles/clic_sur_mots.scss';
 import { marked } from 'marked';
 
@@ -19,10 +19,10 @@ export default {
   },
 
   computed: {
-    ...mapState(['chapitreEnCours']),
+    ...mapGetters(['texteCliquable']),
 
     htmlTexteCliquable() {
-      return marked(this.chapitreEnCours.texteCliquable);
+      return marked(this.texteCliquable);
     },
 
     presentationZoneCliquable() {
