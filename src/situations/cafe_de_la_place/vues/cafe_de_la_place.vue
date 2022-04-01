@@ -9,14 +9,14 @@
       <pagination
         v-if="affichePagination"
         :indexQuestion="indexCarte"
-        :nombreQuestions="this.chapitreEnCours.questions.length"
+        :nombreQuestions="nombreQuestions"
       />
     </defi>
   </transition-fade>
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState, mapGetters } from 'vuex';
 import Vue from 'vue';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 
@@ -35,7 +35,8 @@ export default {
   },
 
   computed: {
-    ...mapState(['chapitreEnCours', 'indexCarte', 'carteActive', 'termine']),
+    ...mapState(['indexCarte', 'carteActive', 'termine']),
+    ...mapGetters(['nombreQuestions']),
 
     affichePagination () {
       return this.carteActive.type !== 'sous-consigne';

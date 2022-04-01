@@ -34,6 +34,16 @@ describe('Le store de la situation café de la place', function () {
       expect(store.state.carteActive).toEqual(premiereSousConsigne);
     });
 
+    describe("#nombreQuestions", function() {
+      it('retourne le nombre de question du chapitre en cours', function() {
+        store.state.chapitreEnCours = chapitre1;
+        expect(store.getters.nombreQuestions).toEqual(2);
+
+        store.state.chapitreEnCours = chapitre2;
+        expect(store.getters.nombreQuestions).toEqual(1);
+      });
+    });
+
     describe('#carteSuivante', function () {
       it("passe à la consigne suivante", function() {
         store.commit('carteSuivante');

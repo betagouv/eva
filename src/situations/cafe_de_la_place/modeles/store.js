@@ -12,6 +12,12 @@ export function creeStore () {
       termine: false
     },
 
+    getters: {
+      nombreQuestions (state) {
+        return state.chapitreEnCours.questions.length;
+      }
+    },
+
     mutations: {
       configureActe (state, { chapitres }) {
         state.chapitres = chapitres;
