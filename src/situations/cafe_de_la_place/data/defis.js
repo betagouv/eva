@@ -591,21 +591,29 @@ const APlc1 = {
 
 const chapitreALrd = {
   texteCliquable: listeChansons,
-  sousConsignes: [ sousConsigneALrd1, sousConsigneALrd2 ],
-  questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
+  series: [
+    [ sousConsigneALrd1, sousConsigneALrd2 ],
+    [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
+  ]
 };
 const chapitreACrdClic = {
   texteCliquable: texteMagazine,
-  sousConsignes: [ sousConsigneACrd1 ],
-  questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
+  series: [
+    [ sousConsigneACrd1 ],
+    [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
+  ]
 };
 const chapitreACrdChoix = {
-  sousConsignes: [ sousConsigneACrd2 ],
-  questions: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
+  series:[
+    [ sousConsigneACrd2 ],
+    [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
+  ]
 };
 const chapitreAPlc = {
-  sousConsignes: [ sousConsigneAPlc1 ],
-  questions: [ APlc1 ]
+  series: [
+    [ sousConsigneAPlc1 ],
+    [ APlc1 ]
+  ]
 };
 
 const configurationNormale = {

@@ -8,13 +8,18 @@ describe('Le store de la situation café de la place', function () {
   const premiereQuestion = { id: 'question1'};
   const question2 = { id: 'question2'};
   const question3 = { id: 'question3'};
+  const question4 = { id: 'question4'};
   const chapitre1 = {
-    sousConsignes: [premiereSousConsigne, deuxiemeSousConsigne],
-    questions: [premiereQuestion, question2]
+    series: [
+      [premiereSousConsigne, deuxiemeSousConsigne],
+      [premiereQuestion, question2]
+    ]
   };
   const chapitre2 = {
-    sousConsignes: [sousConsigne3],
-    questions: [question3]
+    series: [
+      [sousConsigne3],
+      [question3, question4]
+    ]
   };
 
   const configuration = {
@@ -34,13 +39,16 @@ describe('Le store de la situation café de la place', function () {
       expect(store.state.carteActive).toEqual(premiereSousConsigne);
     });
 
-    describe("#nombreQuestions", function() {
-      it('retourne le nombre de question du chapitre en cours', function() {
+    describe("#nombreCarte", function() {
+      it('retourne le nombre de carte du chapitre en cours de la série en cours', function() {
         store.state.chapitreEnCours = chapitre1;
-        expect(store.getters.nombreQuestions).toEqual(2);
+        expect(store.getters.nombreCartes).toEqual(2);
 
         store.state.chapitreEnCours = chapitre2;
-        expect(store.getters.nombreQuestions).toEqual(1);
+        expect(store.getters.nombreCartes).toEqual(1);
+
+        store.state.indexSerie = 1;
+        expect(store.getters.nombreCartes).toEqual(2);
       });
     });
 
@@ -61,6 +69,7 @@ describe('Le store de la situation café de la place', function () {
 
       it("passe à la deuxième question", function () {
         store.state.indexCarte = 0;
+        store.state.indexSerie = 1;
         store.state.carteActive = premiereQuestion;
         store.commit('carteSuivante');
 
@@ -69,6 +78,7 @@ describe('Le store de la situation café de la place', function () {
 
       it("passe au chapitre suivant", function() {
         store.state.indexCarte = 1;
+        store.state.indexSerie = 1;
         store.state.carteActive = question2;
         store.commit('carteSuivante');
 
@@ -80,6 +90,7 @@ describe('Le store de la situation café de la place', function () {
         store.state.indexChapitre = 1;
         store.state.chapitreEnCours = chapitre2;
         store.state.indexCarte = 1;
+        store.state.indexSerie = 1;
         store.state.carteActive = question3;
         store.commit('carteSuivante');
 

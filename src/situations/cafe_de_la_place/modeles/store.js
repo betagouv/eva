@@ -6,6 +6,7 @@ export function creeStore () {
       fondSituation: '',
       chapitreEnCours: {},
       indexCarte: 0,
+      indexSerie: 0,
       indexChapitre: 0,
       carteActive: {},
       chapitres: [],
@@ -13,8 +14,8 @@ export function creeStore () {
     },
 
     getters: {
-      nombreQuestions (state) {
-        return state.chapitreEnCours.questions.length;
+      nombreCartes (state) {
+        return state.chapitreEnCours.series[state.indexSerie].length;
       }
     },
 
@@ -22,30 +23,26 @@ export function creeStore () {
       configureActe (state, { chapitres }) {
         state.chapitres = chapitres;
         state.chapitreEnCours = chapitres[0];
-        state.carteActive = state.chapitreEnCours.sousConsignes[0];
+        state.carteActive = state.chapitreEnCours.series[0][0];
       },
 
       carteSuivante(state) {
         state.indexCarte++;
-        if(state.carteActive.type === 'sous-consigne') {
-          if (state.indexCarte < state.chapitreEnCours.sousConsignes.length) {
-            state.carteActive = state.chapitreEnCours.sousConsignes[state.indexCarte];
-          }
-          else {
-            state.indexCarte = 0;
-            state.carteActive = state.chapitreEnCours.questions[state.indexCarte];
-          }
+        if (state.indexCarte < state.chapitreEnCours.series[state.indexSerie].length) {
+          state.carteActive = state.chapitreEnCours.series[state.indexSerie][state.indexCarte];
         }
         else {
-          if (state.indexCarte < state.chapitreEnCours.questions.length) {
-            state.carteActive = state.chapitreEnCours.questions[state.indexCarte];
+          state.indexCarte = 0;
+          state.indexSerie++;
+          if (state.indexSerie < state.chapitreEnCours.series.length) {
+            state.carteActive = state.chapitreEnCours.series[state.indexSerie][state.indexCarte];
           }
           else {
+            state.indexSerie = 0;
             state.indexChapitre++;
             if(state.indexChapitre < state.chapitres.length) {
               state.chapitreEnCours = state.chapitres[state.indexChapitre];
-              state.indexCarte = 0;
-              state.carteActive = state.chapitreEnCours.sousConsignes[0];
+              state.carteActive = state.chapitreEnCours.series[state.indexSerie][state.indexCarte];
             }
             else {
               state.termine = true;
