@@ -47,6 +47,7 @@ describe('La vue café de la place', function () {
       store.state.carteActive = question;
       expect(wrapper.vm.affichePagination).toBe(true);
       wrapper.vm.$nextTick(() => {
+        expect(wrapper.vm.nombreQuestions).toBe(1);
         expect(wrapper.findComponent(Pagination).exists()).toBe(true);
         done();
       });
