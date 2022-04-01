@@ -589,25 +589,27 @@ const APlc1 = {
   intitule: 'Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur valider.'
 };
 
+const chapitreALrd = {
+  texteCliquable: listeChansons,
+  sousConsignes: [ sousConsigneALrd1, sousConsigneALrd2 ],
+  questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
+};
+const chapitreACrdClic = {
+  texteCliquable: texteMagazine,
+  sousConsignes: [ sousConsigneACrd1 ],
+  questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
+};
+const chapitreACrdChoix = {
+  sousConsignes: [ sousConsigneACrd2 ],
+  questions: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
+};
+const chapitreAPlc = {
+  sousConsignes: [ sousConsigneAPlc1 ],
+  questions: [ APlc1 ]
+};
+
 const configurationNormale = {
-  chapitreALrd: {
-    texteCliquable: listeChansons,
-    sousConsignes: [ sousConsigneALrd1, sousConsigneALrd2 ],
-    questions: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
-  },
-  chapitreACrdClic: {
-    texteCliquable: texteMagazine,
-    sousConsignes: [ sousConsigneACrd1 ],
-    questions: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
-  },
-  chapitreACrdChoix: {
-    sousConsignes: [ sousConsigneACrd2 ],
-    questions: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
-  },
-  chapitreAPlc: {
-    sousConsignes: [ sousConsigneAPlc1 ],
-    questions: [ APlc1 ]
-  },
+  chapitres: [ chapitreALrd, chapitreACrdClic, chapitreACrdChoix, chapitreAPlc ]
 };
 
 export { configurationNormale };
