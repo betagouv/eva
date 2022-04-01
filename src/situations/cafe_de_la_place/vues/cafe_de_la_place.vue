@@ -9,7 +9,7 @@
       <pagination
         v-if="affichePagination"
         :indexQuestion="indexCarte"
-        :nombreQuestions="nombreQuestions"
+        :nombreQuestions="nombreCartes"
       />
     </defi>
   </transition-fade>
@@ -36,7 +36,7 @@ export default {
 
   computed: {
     ...mapState(['indexCarte', 'carteActive', 'termine']),
-    ...mapGetters(['nombreQuestions']),
+    ...mapGetters(['nombreCartes']),
 
     affichePagination () {
       return this.carteActive.type !== 'sous-consigne';
