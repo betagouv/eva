@@ -16,6 +16,10 @@ export function creeStore () {
     getters: {
       nombreCartes (state) {
         return state.chapitreEnCours.series[state.indexSerie].length;
+      },
+
+      texteCliquable(state) {
+        return state.chapitreEnCours.texteCliquable;
       }
     },
 
