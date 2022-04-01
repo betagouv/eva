@@ -8,96 +8,56 @@ describe('La vue café de la place', function () {
   let wrapper;
   let store;
   let localVue;
+  const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne' };
+  const question = { id: 'question1' };
 
   beforeEach(function () {
     store = creeStore();
     localVue = createLocalVue();
     localVue.prototype.$journal = { enregistre () {} };
-    wrapper = shallowMount(CafeDeLaPlace, {
-      propsData: {
-        chapitreEnCours: {}
-      },
-      localVue, store });
+    wrapper = shallowMount(CafeDeLaPlace, { localVue, store });
   });
 
-  describe('La vue Cafe de la Place', function () {
-    it('Affiche une sous consigne', function (done) {
+  describe("quand elle n'est pas configurée", function () {
+    it("n'affiche pas de défi", function () {
       expect(wrapper.findComponent(Defi).exists()).toBe(false);
-      store.commit('configureActe', { chapitreALrd: { sousConsignes: [{ id: 'sous-consigne'}], questions: [{ id: 'question1' }]}
-      });
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.findComponent(Defi).exists()).toBe(true);
-        done();
+    });
+  });
+
+  describe('quand elle est configurée', function () {
+    beforeEach(function() {
+      store.commit('configureActe', {
+        chapitres: [
+          {
+            sousConsignes: [sousConsigne], questions: [question]
+          }
+        ]
       });
     });
 
-    it('affiche les sous consignes et les questions les unes après les autres', function (done) {
-      const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne'};
-      const sousConsigne2 = { id: 'sous-consigne-2', type: 'sous-consigne'};
-      const question1 = { id: 'première', type: 'qcm' };
-      const question2 = { id: 'seconde', type: 'qcm' };
-      store.commit('configureActe',
-        {
-          chapitreALrd: {
-            sousConsignes: [sousConsigne, sousConsigne2],
-            questions: [question1, question2]
-          },
-          chapitreACrdClic: { sousConsignes: [sousConsigne], questions: [question1] },
-          chapitreACrdChoix: { sousConsignes: [sousConsigne], questions: [question1] },
-          chapitreAPlc: { sousConsignes: [sousConsigne], questions: [question1] }
-        }
-      );
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.vm.carteActive).toEqual(sousConsigne);
-        wrapper.vm.reponse();
-        expect(wrapper.vm.carteActive).toEqual(sousConsigne2);
-        wrapper.vm.reponse();
-        expect(wrapper.vm.carteActive).toEqual(question1);
-        wrapper.vm.reponse();
-        expect(wrapper.vm.carteActive).toEqual(question2);
-        expect(wrapper.emitted('terminer')).toBe(undefined);
-        for (let i = 0; i < 7; i++) {
-          wrapper.vm.reponse();
-        }
-        expect(wrapper.emitted('terminer').length).toEqual(1);
-        expect(wrapper.vm.carteActive).toEqual(question1);
-        done();
-      });
+    it('Affiche un défi', function () {
+      expect(wrapper.findComponent(Defi).exists()).toBe(true);
     });
 
-    describe('#changeChapitre', function () {
-      it('enchaine le chapitre suivant', function() {
-        const nouveauChapitre = { sousConsignes: [{id: 'sous-consigne'}] };
-        wrapper.vm.changeChapitre(nouveauChapitre);
-        expect(wrapper.vm.chapitreEnCours).toEqual(nouveauChapitre);
-        expect(wrapper.vm.carteActive).toEqual(nouveauChapitre.sousConsignes[0]);
-        expect(wrapper.vm.indexCarte).toEqual (0);
-        expect(wrapper.vm.affichePagination).toBe (false);
-      });
-    });
-
-    describe('#demarreQuestions', function () {
-      it('enchaine les questions après les sous consignes', function() {
-        const nouveauChapitre = { questions: [{id: 'question'}] };
-        wrapper.setData({ chapitreEnCours: nouveauChapitre });
-        wrapper.vm.demarreQuestions();
-        expect(wrapper.vm.indexCarte).toEqual(0);
-        expect(wrapper.vm.affichePagination).toBe (true);
-        expect(wrapper.vm.carteActive).toEqual(nouveauChapitre.questions[0]);
-      });
-    });
-  
     it("n'affiche pas la pagination si la carte active est une sous consigne", function (done) {
-      const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne'};
-      const question = { id: 'première', type: 'qcm' };
-      store.commit('configureActe', { chapitreALrd: { sousConsignes: [sousConsigne], questions: [question]} });
+      store.state.carteActive = sousConsigne;
+      expect(wrapper.vm.affichePagination).toBe(false);
+      expect(wrapper.findComponent(Pagination).exists()).toBe(false);
+
+      store.state.carteActive = question;
+      expect(wrapper.vm.affichePagination).toBe(true);
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.vm.carteActive).toEqual(sousConsigne);
-        expect(wrapper.findComponent(Pagination).exists()).toBe(false);
-        wrapper.vm.reponse();
-        expect(wrapper.vm.carteActive).toEqual(question);
+        expect(wrapper.findComponent(Pagination).exists()).toBe(true);
+        done();
+      });
+    });
+
+    it("emet 'terminer' quand c'est terminé", function (done) {
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.emitted().terminer).not.toBeDefined();
+        store.state.termine = true;
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.findComponent(Pagination).exists()).toBe(true);
+          expect(wrapper.emitted().terminer).toBeTruthy();
           done();
         });
       });

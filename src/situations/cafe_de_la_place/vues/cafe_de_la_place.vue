@@ -29,70 +29,34 @@ import ClicSurMots from 'cafe_de_la_place/vues/components/clic_sur_mots.vue';
 export default {
   components: { Defi, TransitionFade, Pagination },
 
-  data () {
-    return {
-      indexCarte: 0,
-      affichePagination: false,
-      carteActive: {}
-    };
-  },
-
   mounted () {
-  // enregistre globalement, les composants spécifiques utilisés par certaines questions
+    // enregistre globalement, les composants spécifiques utilisés par certaines questions
     Vue.component('clic_sur_mots', ClicSurMots);
   },
 
   computed: {
-    ...mapState(['chapitreALrd', 'chapitreACrdClic', 'chapitreACrdChoix', 'chapitreAPlc', 'chapitreEnCours'])
+    ...mapState(['chapitreEnCours', 'indexCarte', 'carteActive', 'termine']),
+
+    affichePagination () {
+      return this.carteActive.type !== 'sous-consigne';
+    }
   },
 
   watch: {
-    chapitreALrd (chapitre) {
-      this.changeChapitre(chapitre);
+    termine () {
+      this.$emit('terminer');
     }
   },
 
   methods: {
-    ...mapMutations([ 'configureChapitre' ]),
+    ...mapMutations([ 'carteSuivante' ]),
 
     reponse (reponse) {
-      this.indexCarte++;
-      if(this.carteActive.type === 'sous-consigne') {
-        if (this.indexCarte < this.chapitreEnCours.sousConsignes.length) {
-          this.carteActive = this.chapitreEnCours.sousConsignes[this.indexCarte];
-        } else {
-          this.demarreQuestions();
-        }
-      }
-      else {
+      if(this.carteActive.type !== 'sous-consigne') {
         const donneesReponses = { question: this.carteActive.id, ...reponse };
         this.$journal.enregistre(new EvenementReponse(donneesReponses));
-
-        if (this.indexCarte < this.chapitreEnCours.questions.length) {
-          this.carteActive = this.chapitreEnCours.questions[this.indexCarte];
-        } else if (this.chapitreEnCours === this.chapitreALrd) {
-          this.changeChapitre(this.chapitreACrdClic);
-        } else if (this.chapitreEnCours === this.chapitreACrdClic) {
-          this.changeChapitre(this.chapitreACrdChoix);
-        } else if (this.chapitreEnCours === this.chapitreACrdChoix) {
-          this.changeChapitre(this.chapitreAPlc);
-        } else {
-          this.$emit('terminer');
-        }
       }
-    },
-
-    changeChapitre (nouveauChapitre) {
-      this.configureChapitre(nouveauChapitre);
-      this.carteActive = nouveauChapitre.sousConsignes[0];
-      this.indexCarte = 0;
-      this.affichePagination = false;
-    },
-
-    demarreQuestions() {
-      this.indexCarte = 0;
-      this.affichePagination = true;
-      this.carteActive = this.chapitreEnCours.questions[0];
+      this.carteSuivante();
     }
   }
 };
