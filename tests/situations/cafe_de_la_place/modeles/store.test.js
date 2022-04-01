@@ -9,21 +9,17 @@ describe('Le store de la situation café de la place', function () {
   const question2 = { id: 'question2'};
   const question3 = { id: 'question3'};
   const question4 = { id: 'question4'};
-  const chapitre1 = {
-    series: [
-      [premiereSousConsigne, deuxiemeSousConsigne],
-      [premiereQuestion, question2]
-    ]
-  };
-  const chapitre2 = {
-    series: [
-      [sousConsigne3],
-      [question3, question4]
-    ]
-  };
 
   const configuration = {
-    chapitres: [ chapitre1, chapitre2 ]
+    series: [
+      {
+        cartes: [premiereSousConsigne, deuxiemeSousConsigne],
+        texteCliquable: 'un texte clicable'
+      },
+      { cartes: [premiereQuestion, question2] },
+      { cartes: [sousConsigne3] },
+      { cartes: [question3, question4] }
+    ]
   };
 
   describe('quand un act est configuré', function() {
@@ -33,22 +29,22 @@ describe('Le store de la situation café de la place', function () {
     });
 
     it("s'initialise avec le premier chapitre et la première carte du chapitre", function () {
-      expect(store.state.chapitres[0]).toEqual(chapitre1);
       expect(store.state.indexCarte).toEqual(0);
-      expect(store.state.chapitreEnCours).toEqual(chapitre1);
       expect(store.state.carteActive).toEqual(premiereSousConsigne);
     });
 
     describe("#nombreCarte", function() {
-      it('retourne le nombre de carte du chapitre en cours de la série en cours', function() {
-        store.state.chapitreEnCours = chapitre1;
+      it('retourne le nombre de carte de la série en cours', function() {
         expect(store.getters.nombreCartes).toEqual(2);
 
-        store.state.chapitreEnCours = chapitre2;
+        store.state.indexSerie = 2;
         expect(store.getters.nombreCartes).toEqual(1);
+      });
+    });
 
-        store.state.indexSerie = 1;
-        expect(store.getters.nombreCartes).toEqual(2);
+    describe("#texteCliquable", function() {
+      it('retourne le texte cliquable de la série en cours', function() {
+        expect(store.getters.texteCliquable).toEqual('un texte clicable');
       });
     });
 
@@ -76,26 +72,14 @@ describe('Le store de la situation café de la place', function () {
         expect(store.state.carteActive).toEqual(question2);
       });
 
-      it("passe au chapitre suivant", function() {
-        store.state.indexCarte = 1;
-        store.state.indexSerie = 1;
-        store.state.carteActive = question2;
-        store.commit('carteSuivante');
-
-        expect(store.state.chapitreEnCours).toEqual(chapitre2);
-        expect(store.state.carteActive).toEqual(sousConsigne3);
-      });
-
       it("termine après la dernière question", function() {
-        store.state.indexChapitre = 1;
-        store.state.chapitreEnCours = chapitre2;
         store.state.indexCarte = 1;
-        store.state.indexSerie = 1;
-        store.state.carteActive = question3;
+        store.state.indexSerie = 3;
+        store.state.carteActive = question4;
         store.commit('carteSuivante');
 
         expect(store.state.termine).toBe(true);
-        expect(store.state.carteActive).toEqual(question3);
+        expect(store.state.carteActive).toEqual(question4);
       });
     });
   });

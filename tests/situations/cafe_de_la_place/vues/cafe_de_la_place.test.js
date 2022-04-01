@@ -27,10 +27,9 @@ describe('La vue café de la place', function () {
   describe('quand elle est configurée', function () {
     beforeEach(function() {
       store.commit('configureActe', {
-        chapitres: [
-          {
-            series: [ [sousConsigne], [question] ]
-          }
+        series: [
+          { cartes: [sousConsigne] },
+          { cartes: [question] }
         ]
       });
     });

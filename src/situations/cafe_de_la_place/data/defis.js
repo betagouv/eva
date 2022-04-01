@@ -589,35 +589,23 @@ const APlc1 = {
   intitule: 'Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur valider.'
 };
 
-const chapitreALrd = {
-  texteCliquable: listeChansons,
-  series: [
-    [ sousConsigneALrd1, sousConsigneALrd2 ],
-    [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
-  ]
-};
-const chapitreACrdClic = {
-  texteCliquable: texteMagazine,
-  series: [
-    [ sousConsigneACrd1 ],
-    [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
-  ]
-};
-const chapitreACrdChoix = {
-  series:[
-    [ sousConsigneACrd2 ],
-    [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
-  ]
-};
-const chapitreAPlc = {
-  series: [
-    [ sousConsigneAPlc1 ],
-    [ APlc1 ]
-  ]
-};
-
 const configurationNormale = {
-  chapitres: [ chapitreALrd, chapitreACrdClic, chapitreACrdChoix, chapitreAPlc ]
+  series: [
+    { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
+    {
+      texteCliquable: listeChansons,
+      cartes: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
+    },
+    { cartes: [ sousConsigneACrd1 ] },
+    {
+      texteCliquable: texteMagazine,
+      cartes: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
+    },
+    { cartes: [ sousConsigneACrd2 ] },
+    { cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ] },
+    { cartes: [ sousConsigneAPlc1 ] },
+    { cartes: [ APlc1 ] }
+  ]
 };
 
 export { configurationNormale };
