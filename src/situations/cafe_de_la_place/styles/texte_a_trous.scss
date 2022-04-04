@@ -1,0 +1,40 @@
+@import 'commun/styles/variables.scss';
+
+.contenu-telephone {
+  padding: 1rem;
+  position: absolute;
+  width: 19.5rem;
+  left: 9.063rem;
+  top: 5.188rem;
+
+  &__titre {
+    color: #E4912F;
+    font-weight: 600;
+    font-size: 1.125rem;
+    font-family: $font-work-sans;
+    margin-top: 0px;
+    margin-bottom: 1rem;
+    line-height: 1.25rem;
+  }
+
+  &__liste {
+    list-style: outside;
+    margin-left: 1.5rem;
+    line-height: 1.25rem;
+    font-size: 1rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  span {
+    color: $bleu-gris;
+    font-weight: 500;
+
+    &.reponse--a-completer {
+      border: 2px dashed $bleu-gris-fonce;
+      border-radius: 4px;
+    }
+  }
+}
