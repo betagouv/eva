@@ -80,6 +80,7 @@ describe('Le store de la situation café de la place', function () {
 
         expect(store.state.termine).toBe(true);
         expect(store.state.carteActive).toEqual(question4);
+        expect(store.getters.nombreCartes).toEqual(2);
       });
     });
   });

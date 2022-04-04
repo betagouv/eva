@@ -39,6 +39,7 @@ export function creeStore () {
             state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
           }
           else {
+            state.indexSerie--;
             state.termine = true;
           }
         }
