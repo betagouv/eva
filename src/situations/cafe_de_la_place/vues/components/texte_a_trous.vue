@@ -1,6 +1,6 @@
 <template>
   <div class="contenu-telephone">
-    <h1 class="contenu-telephone__titre">Courses pour la <span>______</span></h1>
+    <h1 class="contenu-telephone__titre">Courses pour la <trou-a-completer id="APlc1"/></h1>
     <ul class="contenu-telephone__liste">
       <li>2 <trou-a-completer id="APlc2"/> en <trou-a-completer id="APlc3"/></li>
       <li>1 pot de <trou-a-completer id="APlc4"/></li>
@@ -21,7 +21,9 @@
 
 <script>
 import 'cafe_de_la_place/styles/texte_a_trous.scss';
+import TrouACompleter from 'cafe_de_la_place/vues/components/trou_a_completer.vue';
 
 export default {
+  components: { TrouACompleter },
 };
 </script>
