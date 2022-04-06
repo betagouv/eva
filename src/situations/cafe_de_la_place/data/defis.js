@@ -1,7 +1,6 @@
 import listeTitresMusique from '../assets/liste_titres_musique.png';
 import telephoneSansTitres from '../assets/telephone_sans_titres.png';
 import terrasseCafe from '../assets/terrasse_cafe.png';
-import magazine from '../assets/magazine.png';
 import magazineSansTexte from '../assets/magazine_sans_texte.png';
 import listeDeCourse from '../assets/telephone_liste_de_courses.png';
 
@@ -25,7 +24,9 @@ const sousConsigneALrd2 = {
 const sousConsigneACrd1 = {
   id: 'ACrd-sous-consigne-1',
   type: 'sous-consigne',
-  illustration: magazine,
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'revue-magazine',
   nom_technique: 'sous_consigne_ACrd_1',
   description: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.',
   intitule: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
@@ -402,7 +403,9 @@ const ACrd5 = {
 const sousConsigneACrd2 = {
   id: 'ACrd-sous-consigne-2',
   type: 'sous-consigne',
-  illustration: magazine,
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'revue-magazine',
   nom_technique: 'sous_consigne_ACrd_2',
   description: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.',
   intitule: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
@@ -412,7 +415,9 @@ const ACrd6 = {
   id: 'ACrd6',
   nom_technique: 'acrd_6',
   description: 'Qui est Ivano Karanadoff ?',
-  illustration: magazine,
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'revue-magazine',
   type: 'qcm',
   intitule: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
   choix: [
@@ -441,7 +446,9 @@ const ACrd7 = {
   id: 'ACrd7',
   nom_technique: 'acrd_7',
   description: 'Quel est le genre de musique que produit ce groupe ?',
-  illustration: magazine,
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'revue-magazine',
   type: 'qcm',
   choix: [
     {
@@ -468,7 +475,9 @@ const ACrd8 = {
   id: 'ACrd8',
   nom_technique: 'acrd_8',
   description: 'Qui a influencé ce groupe ?',
-  illustration: magazine,
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'revue-magazine',
   type: 'qcm',
   choix: [
     {
@@ -496,7 +505,9 @@ const ACrd9 = {
   id: 'ACrd9',
   nom_technique: 'acrd_9',
   description: 'Que pense la critique de ce style musical ?',
-  illustration: magazine,
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'revue-magazine',
   type: 'qcm',
   choix: [
     {
@@ -524,7 +535,9 @@ const ACrd10 = {
   id: 'ACrd10',
   nom_technique: 'acrd_10',
   description: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
-  illustration: magazine,
+  illustration: magazineSansTexte,
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'revue-magazine',
   type: 'qcm',
   choix: [
     {
@@ -572,6 +585,8 @@ const texteMagazine =
 |${texteMagazineColonne1}|${texteMagazineColonne2}${legende}|
 `;
 
+const texteMagazineNonCliquable = texteMagazine.replaceAll('[','').replaceAll(']()', '');
+
 const sousConsigneAPlc1 = {
   id: 'APlc-sous-consigne-1',
   nom_technique: 'sous_consigne_APlc_1',
@@ -597,13 +612,22 @@ const configurationNormale = {
       texteCliquable: listeChansons,
       cartes: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
     },
-    { cartes: [ sousConsigneACrd1 ] },
+    {
+      texteCliquable: texteMagazineNonCliquable,
+      cartes: [ sousConsigneACrd1 ]
+    },
     {
       texteCliquable: texteMagazine,
       cartes: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
     },
-    { cartes: [ sousConsigneACrd2 ] },
-    { cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ] },
+    {
+      texteCliquable: texteMagazineNonCliquable,
+      cartes: [ sousConsigneACrd2 ]
+    },
+    {
+      texteCliquable: texteMagazineNonCliquable,
+      cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
+    },
     { cartes: [ sousConsigneAPlc1 ] },
     { cartes: [ APlc1 ] }
   ]
