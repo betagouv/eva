@@ -25,6 +25,7 @@ import TransitionFade from 'commun/vues/transition_fade';
 import Pagination from 'commun/vues/components/pagination';
 
 import ClicSurMots from 'cafe_de_la_place/vues/components/clic_sur_mots.vue';
+import texteATrous from 'cafe_de_la_place/vues/components/texte_a_trous.vue';
 
 export default {
   components: { Defi, TransitionFade, Pagination },
@@ -32,6 +33,7 @@ export default {
   mounted () {
     // enregistre globalement, les composants spécifiques utilisés par certaines questions
     Vue.component('clic_sur_mots', ClicSurMots);
+    Vue.component('texte_a_trous', texteATrous);
   },
 
   computed: {
