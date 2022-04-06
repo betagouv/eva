@@ -92,7 +92,7 @@ export default {
     },
 
     contenuSansChoix () {
-      return !this.question.type || this.question.type === 'champ-saisie' || this.question.type === 'ecoute';
+      return !this.question.type || this.question.type === 'champ-saisie' || this.question.extensionVue === 'clic_sur_mots';
     },
 
     reponsesPossibles () {
