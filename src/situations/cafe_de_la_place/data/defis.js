@@ -598,11 +598,13 @@ const sousConsigneAPlc1 = {
 const APlc1 = {
   id: 'APlc1',
   nom_technique: 'aplc_1',
-  type: 'ecoute-et-saisi',
+  type: 'ecoute',
   extensionVue: 'texte_a_trous',
-  description: 'Pour répondre, écrivez le mot que vous avez entendu dans le cadre de texte ci-dessous.',
+  intitule: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
-  intitule: 'Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur valider.'
+  bonne_reponse: {
+    nom_technique: 'cuisine'
+  }
 };
 
 const configurationNormale = {
