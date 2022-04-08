@@ -30,6 +30,7 @@ import ACrd7 from 'cafe_de_la_place/assets/audio_questions/ACrd7.mp3';
 import ACrd8 from 'cafe_de_la_place/assets/audio_questions/ACrd8.mp3';
 import ACrd9 from 'cafe_de_la_place/assets/audio_questions/ACrd9.mp3';
 import ACrd10 from 'cafe_de_la_place/assets/audio_questions/ACrd10.mp3';
+import APlc1 from 'cafe_de_la_place/assets/audio_questions/APlc1.mp3';
 
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
 import sonChoixMasse from 'cafe_de_la_place/assets/audio_reponses/ALrd/masse.mp3';
@@ -80,6 +81,7 @@ import sonChoixNeuf from 'cafe_de_la_place/assets/audio_reponses/ACrd/neuf.mp3';
 import sonChoixTempsPresent from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_present.mp3';
 import sonChoixTempsFutur from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_futur.mp3';
 import sonChoixTempsPasse from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_passe.mp3';
+import sonCuisine from 'cafe_de_la_place/assets/audio_reponses/APlc/cuisine.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_ALrd_1: sousConsigneALrd1,
@@ -114,7 +116,8 @@ const AUDIOS_QUESTIONS = {
   acrd_7: ACrd7,
   acrd_8: ACrd8,
   acrd_9: ACrd9,
-  acrd_10: ACrd10
+  acrd_10: ACrd10,
+  aplc_1: APlc1
 };
 
 const AUDIOS_REPONSES = {
@@ -166,7 +169,8 @@ const AUDIOS_REPONSES = {
   neuf: sonChoixNeuf,
   temps_present: sonChoixTempsPresent,
   temps_futur: sonChoixTempsFutur,
-  temps_passe: sonChoixTempsPasse
+  temps_passe: sonChoixTempsPasse,
+  cuisine: sonCuisine
 };
 
 const messagesVideos = {};

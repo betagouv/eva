@@ -1,6 +1,13 @@
 @import 'commun/styles/variables.scss';
 
-.question {
+.defi-champ-saisie {
+  &--decale {
+    margin-left: 2.25rem;
+  }
+  .bouton-lecture--avec-texte {
+    margin-top: 1.5rem;
+  }
+
   .champ-saisie-conteneur {
     position: relative;
     .conteneur-traits-saisie {
@@ -14,6 +21,9 @@
         height: 1px;
         background-color: $bleu;
       }
+    }
+    .champ {
+      margin-top: 1rem;
     }
   }
 

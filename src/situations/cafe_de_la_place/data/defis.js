@@ -291,8 +291,8 @@ const alrd11 = {
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
-  bonne_reponse: {
-    mot: 'Exercice',
+  reponse: {
+    texte: 'Exercice',
     nom_technique: 'exercice'
   }
 };
@@ -305,8 +305,8 @@ const alrd12 = {
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
-  bonne_reponse: {
-    mot: 'Anguille',
+  reponse: {
+    texte: 'Anguille',
     nom_technique: 'anguille'
   }
 };
@@ -319,8 +319,8 @@ const alrd13 = {
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
-  bonne_reponse: {
-    mot: 'Dimoudon',
+  reponse: {
+    texte: 'Dimoudon',
     nom_technique: 'dimoudon'
   }
 };
@@ -333,8 +333,8 @@ const alrd14 = {
   intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
-  bonne_reponse: {
-    mot: 'Soupçon',
+  reponse: {
+    texte: 'Soupçon',
     nom_technique: 'soupcon'
   }
 };
@@ -347,8 +347,8 @@ const ACrd1 = {
   illustration: magazineSansTexte,
   intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
-  bonne_reponse: {
-    mot: 'Rick Duxol & Mori Morino'
+  reponse: {
+    texte: 'Rick Duxol & Mori Morino'
   }
 };
 
@@ -359,8 +359,8 @@ const ACrd2 = {
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  bonne_reponse: {
-    mot: 'Georges Tiporanet'
+  reponse: {
+    texte: 'Georges Tiporanet'
   }
 };
 
@@ -371,8 +371,8 @@ const ACrd3 = {
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  bonne_reponse: {
-    mot: 'New-York'
+  reponse: {
+    texte: 'New-York'
   }
 };
 
@@ -383,8 +383,8 @@ const ACrd4 = {
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  bonne_reponse: {
-    mot: 'Bulgarie'
+  reponse: {
+    texte: 'Bulgarie'
   }
 };
 
@@ -395,8 +395,8 @@ const ACrd5 = {
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  bonne_reponse: {
-    mot: '2011'
+  reponse: {
+    texte: '2011'
   }
 };
 
@@ -608,11 +608,15 @@ const sousConsigneAPlc2 = {
 const APlc1 = {
   id: 'APlc1',
   nom_technique: 'aplc_1',
-  type: 'ecoute-et-saisi',
+  type: 'champ-saisie',
+  sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  description: 'Pour répondre, écrivez le mot que vous avez entendu dans le cadre de texte ci-dessous.',
+  intitule: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
-  intitule: 'Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur valider.'
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'cuisine'
+  }
 };
 
 const configurationNormale = {

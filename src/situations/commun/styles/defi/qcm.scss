@@ -1,0 +1,17 @@
+.defi-qcm {
+  .bouton-lecture {
+    margin-right: 1rem;
+  }
+
+  &-intitule {
+    display: flex;
+    margin-left: 1rem;
+    cursor: pointer;
+  }
+
+  &-reponses-multiples {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+  }
+}

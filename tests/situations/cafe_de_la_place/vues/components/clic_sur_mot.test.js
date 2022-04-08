@@ -16,7 +16,7 @@ describe('Le composant Clic Sur Mots', function () {
 
   beforeEach(function () {
     store = new Vuex.Store({ getters: { texteCliquable () { return '* [invalide]()\n* [exercice]()';}}});
-    question = { id: 1, bonne_reponse: { mot: 'exercice'}, nom_technique: 'question1' };
+    question = { id: 1, reponse: { texte: 'exercice' }, nom_technique: 'question1' };
     localVue = createLocalVue();
     wrapper = shallowMount(ClicSurMots, { localVue, store, propsData: { question } });
   });

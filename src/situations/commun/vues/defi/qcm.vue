@@ -3,7 +3,7 @@
     <div
       v-for="(choix, index) in question.choix"
       :key="choix.id"
-      class="question-reponse question-reponse-multiple"
+      class="defi-qcm defi-qcm-reponses-multiples"
     >
       <bouton-lecture
         v-if="afficheLectureReponse(choix.nom_technique)"
@@ -20,7 +20,7 @@
       />
       <label
         :for="choix.id"
-        class="question-reponse-intitule"
+        class="defi-qcm-intitule"
       >
         <reponse-audio-qcm
           v-if="choix.audio"
@@ -41,6 +41,7 @@
 <script>
 import ReponseAudioQcm from 'commun/vues/reponse_audio_qcm';
 import BoutonLecture from 'commun/vues/bouton_lecture';
+import 'commun/styles/defi/qcm.scss';
 
 export default {
   components: { ReponseAudioQcm, BoutonLecture },
