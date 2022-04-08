@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 
 describe('Le composant champ de saisie', function () {
   let vue;
@@ -7,7 +8,12 @@ describe('Le composant champ de saisie', function () {
 
   beforeEach(function () {
     localVue = createLocalVue();
-    vue = composant({ question: {} });
+    const depotRessources = new class {
+      existeMessageAudio () {
+        return false;
+      }
+    }();
+    localVue.prototype.$depotRessources = depotRessources;
   });
 
   function composant (props) {
@@ -15,6 +21,7 @@ describe('Le composant champ de saisie', function () {
   }
 
   it('affiche un champ de saisie', function () {
+    vue = composant({ question: {} });
     const input = vue.findAll('input[type=text]');
     expect(input.length).toBe(1);
     expect(input.at(0).classes('champ')).toBe(true);
@@ -71,7 +78,7 @@ describe('Le composant champ de saisie', function () {
     it('ajoute les classes css', function () {
       vue = composant({ question: { sous_type: 'texte' } });
       const input = vue.find('input[type=text]');
-      expect(input.classes()).toEqual(['champ', 'champ-texte', 'champ-texte--decale']);
+      expect(input.classes()).toEqual(['champ', 'champ-texte']);
     });
 
     it('affiche le placeholder', function () {
@@ -83,9 +90,51 @@ describe('Le composant champ de saisie', function () {
       expect(vue.find('.conteneur-traits-saisie').exists()).toBe(false);
     });
 
-    it("ne limite pas la taille de l'input", function () {
+    it("limite la taille de l'input à 12", function () {
       const input = vue.find('input[type=text]');
-      expect(input.element.getAttribute('maxlength')).toEqual(null);
+      expect(input.element.getAttribute('maxlength')).toEqual("12");
+    });
+  });
+
+  describe('#afficheLectureReponse', function () {
+    beforeEach(function () {
+      const depotRessources = new class {
+        existeMessageAudio (nomTechnique) {
+          return nomTechnique == 'cuisine';
+        }
+      }();
+      localVue.prototype.$depotRessources = depotRessources;
+    });
+
+    it('affiche un bouton lecture lorsque la réponse a un audio associé', function () {
+      vue = composant({ question: { reponse: { nom_technique: 'cuisine' } } });
+      expect(vue.findComponent(BoutonLecture).exists()).toBe(true);
+    });
+
+    it("n'affiche pas de bouton lecture lorsque la réponse n'a pas d'audio associé", function () {
+      vue = composant({ question: { reponse: { texte: 'sans audio' } } });
+      expect(vue.findComponent(BoutonLecture).exists()).toBe(false);
+    });
+  });
+
+  describe('#afficheLectureQuestion', function () {
+    beforeEach(function () {
+      const depotRessources = new class {
+        existeMessageAudio (nomTechnique) {
+          return nomTechnique == 'question-avec-audio';
+        }
+      }();
+      localVue.prototype.$depotRessources = depotRessources;
+    });
+
+    it("décale l'affichage de la réponse", function () {
+      vue = composant({ question: { nom_technique: 'question-avec-audio' } });
+      expect(vue.find('.defi-champ-saisie--decale').exists()).toBe(true);
+    });
+
+    it("ne décale pas l'affichage de la réponse", function () {
+      vue = composant({ question: { nom_technique: 'question-sans-audio' } });
+      expect(vue.find('.defi-champ-saisie--decale').exists()).toBe(false);
     });
   });
 });
