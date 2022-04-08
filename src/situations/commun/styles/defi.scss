@@ -55,18 +55,6 @@
     margin-top: 0.5rem;
   }
 
-  &-reponse {
-    margin-top: 1rem;
-    .bouton-lecture {
-      margin-right: 1rem;
-    }
-  }
-
-  &-reponse-multiple {
-    display: flex;
-    align-items: center;
-  }
-
   &-label {
     display: flex;
     align-items: center;
@@ -75,12 +63,6 @@
   &-input {
     margin: 0;
     flex-shrink: 0;
-  }
-
-  &-reponse-intitule {
-    display: flex;
-    margin-left: 1rem;
-    cursor: pointer;
   }
 
   &-video {

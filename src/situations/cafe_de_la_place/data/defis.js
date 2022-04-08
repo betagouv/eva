@@ -598,7 +598,8 @@ const sousConsigneAPlc1 = {
 const APlc1 = {
   id: 'APlc1',
   nom_technique: 'aplc_1',
-  type: 'ecoute',
+  type: 'champ-saisie',
+  sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   intitule: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
