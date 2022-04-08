@@ -1,7 +1,7 @@
 <template>
   <div class="defi-ecoute">
     <bouton-lecture
-      :nomTechnique="question.bonne_reponse.nom_technique"
+      :nomTechnique="question.reponse.nom_technique"
       :avecTexte="true"
     />
   </div>

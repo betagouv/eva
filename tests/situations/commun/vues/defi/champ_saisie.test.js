@@ -29,7 +29,7 @@ describe('Le composant champ de saisie', function () {
 
   describe('peut être utilisé avec la propriété v-model', function () {
     it('envoie la réponse dans un événement input', function () {
-      vue = composant({ question: { bonneReponse: 'boulangerie' } });
+      vue = composant({ question: { reponse: { texte: 'boulangerie' } } });
       const input = vue.find('input[type=text]');
       input.setValue('Boulangerie ');
       expect(vue.emitted('input').length).toEqual(1);
