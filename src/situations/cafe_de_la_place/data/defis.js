@@ -595,6 +595,16 @@ const sousConsigneAPlc1 = {
   description: "Ce soir, vous recevez des amis. Vous avez décidé de cuisiner, même si vous n'en avez pas l'habitude. Il vous faut donc acheter du matériel de cuisine et des aliments à cuisiner. Pour cela, vous avez commencé votre liste de courses, mais vous devez la compléter."
 };
 
+const sousConsigneAPlc2 = {
+  id: 'APlc-sous-consigne-2',
+  nom_technique: 'sous_consigne_APlc_2',
+  type: 'sous-consigne',
+  extensionVue: 'texte_a_trous',
+  illustration: listeDeCourse,
+  description: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
+  intitule: 'Pour commencer, cliquez sur « Suivant ».'
+};
+
 const APlc1 = {
   id: 'APlc1',
   nom_technique: 'aplc_1',
@@ -632,7 +642,7 @@ const configurationNormale = {
       texteCliquable: texteMagazineNonCliquable,
       cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
     },
-    { cartes: [ sousConsigneAPlc1 ] },
+    { cartes: [ sousConsigneAPlc1, sousConsigneAPlc2 ] },
     { cartes: [ APlc1 ] }
   ]
 };
