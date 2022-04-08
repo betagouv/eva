@@ -45,7 +45,7 @@ export default {
   methods: {
     envoiReponse(lien) {
       const mot = lien.textContent.trim();
-      this.$emit('reponse', { reponse: mot, succes: this.question.bonne_reponse.mot === mot } );
+      this.$emit('reponse', { reponse: mot, succes: this.question.reponse.texte === mot } );
     },
 
     metAJourSelection(listeLiens, lien) {

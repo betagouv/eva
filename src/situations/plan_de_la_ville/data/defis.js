@@ -71,7 +71,9 @@ const saisieBoulangerie = {
   type: 'champ-saisie',
   sous_type: 'texte',
   placeholder: 'Réponse',
-  bonneReponse: 'boulangerie',
+  reponse: {
+    texte: 'boulangerie'
+  },
   illustration: SaisieBoulangerie,
   intitule: 'Recopiez le nom “Boulangerie” dans le cadre de texte ci-dessous, puis cliquez sur Valider'
 };

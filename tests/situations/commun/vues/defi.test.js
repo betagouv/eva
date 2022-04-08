@@ -97,7 +97,7 @@ describe("La vue d'un défi", function () {
     beforeEach(function () {
       question.type = 'champ-saisie';
       question.choix = undefined;
-      question.bonneReponse = '1800';
+      question.reponse = { texte: '1800' };
       vue = composant(question);
     });
 

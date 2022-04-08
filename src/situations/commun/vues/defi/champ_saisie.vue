@@ -3,7 +3,7 @@
        :class="{'defi-champ-saisie--decale': afficheLectureQuestion }">
     <bouton-lecture
       v-if="afficheLectureReponse"
-      :nomTechnique="question.bonne_reponse.nom_technique"
+      :nomTechnique="question.reponse.nom_technique"
       :avecTexte="true"
     />
     <div class="champ-saisie-conteneur"
@@ -68,7 +68,7 @@ export default {
   methods: {
     emetReponse (valeur) {
       const reponse = valeur.trim();
-      this.$emit('input', { reponse: reponse, succes: reponse.toLowerCase() === this.question.bonneReponse });
+      this.$emit('input', { reponse: reponse, succes: reponse.toLowerCase() === this.question.reponse.texte });
     }
   }
 };
