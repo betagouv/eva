@@ -615,7 +615,8 @@ const APlc1 = {
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
-    nom_technique: 'cuisine'
+    nom_technique: 'cuisine',
+    texte: 'cuisine'
   }
 };
 
