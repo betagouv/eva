@@ -99,7 +99,7 @@ import sonAssiettes from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_as
 import sonFouets from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_fouets.mp3';
 import sonLouche from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_louche.mp3';
 import sonPassoire from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_passoire.mp3';
-import sonPoele from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_Poele.mp3';
+import sonPoele from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_poele.mp3';
 import sonLuxe from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_luxe.mp3';
 import sonCasserole from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_casserole.mp3';
 import sonAdhere from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_adhere.mp3';
