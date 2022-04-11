@@ -1,6 +1,6 @@
 import TrouACompleter from 'cafe_de_la_place/vues/components/trou_a_completer.vue';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Vuex from 'vuex';
+import { creeStore } from 'cafe_de_la_place/modeles/store';
 
 describe('Le composant Trou A completer', function () {
   let wrapper;
@@ -11,7 +11,12 @@ describe('Le composant Trou A completer', function () {
   const reponse2 = 'aplc2';
 
   beforeEach(function () {
-    store = new Vuex.Store({ state: { carteActive: premiereQuestion }});
+    store = creeStore();
+    store.commit('configureActe', {
+      series: [
+        { cartes: [premiereQuestion] }
+      ]
+    });
     localVue = createLocalVue();
   });
 

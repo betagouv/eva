@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -20,6 +20,19 @@ export default {
 
   computed: {
     ...mapState(['carteActive']),
+    ...mapGetters(['reponse']),
+
+    trouEnCours() {
+      return this.idQuestion === this.carteActive.id;
+    },
+
+    valeur() {
+      return this.reponseEnAttente ? '______' : this.reponse(this.idQuestion).reponse;
+    },
+
+    reponseEnAttente() {
+      return !this.reponse(this.idQuestion);
+    },
 
     selectionneTrou() {
       return this.id === this.carteActive.id;
