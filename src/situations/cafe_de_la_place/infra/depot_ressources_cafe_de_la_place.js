@@ -2,6 +2,7 @@ import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 import sonConsigne from 'cafe_de_la_place/assets/audio_consignes/consigne_cafe_de_la_place.mp3';
 import fondSituation from 'cafe_de_la_place/assets/terrasse_cafe.png';
 
+// AUDIOS SOUS CONSIGNES
 import sousConsigneALrd1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ALrd_1.mp3';
 import sousConsigneALrd2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ALrd_2.mp3';
 import sousConsigneACrd1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ACrd_1.mp3';
@@ -9,6 +10,7 @@ import sousConsigneACrd2 from 'cafe_de_la_place/assets/audio_consignes/sous_cons
 import sousConsigneAPlc1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_APlc_1.mp3';
 import sousConsigneAPlc2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_APlc_2.mp3';
 
+// AUDIOS QUESTIONS
 import titre1 from 'cafe_de_la_place/assets/audio_questions/titre1.mp3';
 import titre2 from 'cafe_de_la_place/assets/audio_questions/titre2.mp3';
 import titre10 from 'cafe_de_la_place/assets/audio_questions/titre10.mp3';
@@ -30,8 +32,9 @@ import ACrd7 from 'cafe_de_la_place/assets/audio_questions/ACrd7.mp3';
 import ACrd8 from 'cafe_de_la_place/assets/audio_questions/ACrd8.mp3';
 import ACrd9 from 'cafe_de_la_place/assets/audio_questions/ACrd9.mp3';
 import ACrd10 from 'cafe_de_la_place/assets/audio_questions/ACrd10.mp3';
-import APlc1 from 'cafe_de_la_place/assets/audio_questions/APlc1.mp3';
+import questionAPlc from 'cafe_de_la_place/assets/audio_questions/APlc.mp3';
 
+// AUDIOS REPONSES
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
 import sonChoixMasse from 'cafe_de_la_place/assets/audio_reponses/ALrd/masse.mp3';
 import sonChoixMax from 'cafe_de_la_place/assets/audio_reponses/ALrd/max.mp3';
@@ -81,7 +84,26 @@ import sonChoixNeuf from 'cafe_de_la_place/assets/audio_reponses/ACrd/neuf.mp3';
 import sonChoixTempsPresent from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_present.mp3';
 import sonChoixTempsFutur from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_futur.mp3';
 import sonChoixTempsPasse from 'cafe_de_la_place/assets/audio_reponses/ACrd/le_temps_passe.mp3';
-import sonCuisine from 'cafe_de_la_place/assets/audio_reponses/APlc/cuisine.mp3';
+import sonCuisine from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_cuisine.mp3';
+import sonSaladiers from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_saladiers.mp3';
+import sonVerre from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_verre.mp3';
+import sonMayonnaise from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_mayonnaise.mp3';
+import sonSel from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_sel.mp3';
+import sonTomates from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_tomates.mp3';
+import sonPays from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_pays.mp3';
+import sonPoivrons from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_poivrons.mp3';
+import sonEpices from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_epices.mp3';
+import sonDonnent from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_donnent.mp3';
+import sonDouzaines from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_douzaines.mp3';
+import sonAssiettes from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_assiettes.mp3';
+import sonFouets from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_fouets.mp3';
+import sonLouche from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_louche.mp3';
+import sonPassoire from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_passoire.mp3';
+import sonPoele from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_Poele.mp3';
+import sonLuxe from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_luxe.mp3';
+import sonCasserole from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_casserole.mp3';
+import sonAdhere from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_adhere.mp3';
+import sonAlcoolique from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_alcoolique.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_ALrd_1: sousConsigneALrd1,
@@ -117,7 +139,26 @@ const AUDIOS_QUESTIONS = {
   acrd_8: ACrd8,
   acrd_9: ACrd9,
   acrd_10: ACrd10,
-  aplc_1: APlc1
+  aplc_1: questionAPlc,
+  aplc_2: questionAPlc,
+  aplc_3: questionAPlc,
+  aplc_4: questionAPlc,
+  aplc_5: questionAPlc,
+  aplc_6: questionAPlc,
+  aplc_7: questionAPlc,
+  aplc_8: questionAPlc,
+  aplc_9: questionAPlc,
+  aplc_10: questionAPlc,
+  aplc_11: questionAPlc,
+  aplc_12: questionAPlc,
+  aplc_13: questionAPlc,
+  aplc_14: questionAPlc,
+  aplc_15: questionAPlc,
+  aplc_16: questionAPlc,
+  aplc_17: questionAPlc,
+  aplc_18: questionAPlc,
+  aplc_19: questionAPlc,
+  aplc_20: questionAPlc
 };
 
 const AUDIOS_REPONSES = {
@@ -170,7 +211,26 @@ const AUDIOS_REPONSES = {
   temps_present: sonChoixTempsPresent,
   temps_futur: sonChoixTempsFutur,
   temps_passe: sonChoixTempsPasse,
-  cuisine: sonCuisine
+  cuisine: sonCuisine,
+  saladiers: sonSaladiers,
+  verre: sonVerre,
+  mayonnaise: sonMayonnaise,
+  sel: sonSel,
+  tomates: sonTomates,
+  pays: sonPays,
+  poivrons: sonPoivrons,
+  epices: sonEpices,
+  donnent: sonDonnent,
+  douzaines: sonDouzaines,
+  assiettes: sonAssiettes,
+  fouets: sonFouets,
+  louche: sonLouche,
+  passoire: sonPassoire,
+  poele: sonPoele,
+  luxe: sonLuxe,
+  casserole: sonCasserole,
+  adhere: sonAdhere,
+  alcoolique: sonAlcoolique
 };
 
 const messagesVideos = {};
