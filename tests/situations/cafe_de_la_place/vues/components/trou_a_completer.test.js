@@ -28,4 +28,14 @@ describe('Le composant Trou A completer', function () {
       expect(trou.classes('reponse--a-completer')).toBe(false);
     });
   });
+
+  it("affiche par défaut le contenu '______' quand il n'y a pas de valeur", function () {
+    wrapper = shallowMount(TrouACompleter, { localVue, store, propsData: { id: reponse2 } });
+    expect(wrapper.find('span').text()).toContain('______');
+  });
+
+  it("affiche le contenu quand il y a une valeur", function () {
+    wrapper = shallowMount(TrouACompleter, { localVue, store, propsData: { id: reponse2, valeur: 'saladiers' } });
+    expect(wrapper.find('span').text()).toContain('saladiers');
+  });
 });

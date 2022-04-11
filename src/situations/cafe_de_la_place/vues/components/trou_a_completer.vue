@@ -1,5 +1,5 @@
 <template>
-  <span :class="{ 'reponse--a-completer': selectionneTrou }">______</span>
+  <span :class="{ 'reponse--a-completer': selectionneTrou }">{{valeur}}</span>
 </template>
 
 <script>
@@ -11,6 +11,11 @@ export default {
       type: String,
       required: true
     },
+    valeur: {
+      type: String,
+      required: false,
+      default: '______'
+    }
   },
 
   computed: {
