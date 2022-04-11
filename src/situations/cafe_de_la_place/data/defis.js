@@ -605,18 +605,305 @@ const sousConsigneAPlc2 = {
   intitule: 'Pour commencer, cliquez sur « Suivant ».'
 };
 
+const intituleAPlc = 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».';
+
 const APlc1 = {
   id: 'APlc1',
   nom_technique: 'aplc_1',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
+  intitule: intituleAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'cuisine',
     texte: 'cuisine'
+  }
+};
+
+const APlc2 = {
+  id: 'APlc2',
+  nom_technique: 'aplc_2',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'saladiers',
+    texte: 'saladiers'
+  }
+};
+
+const APlc3 = {
+  id: 'APlc3',
+  nom_technique: 'aplc_3',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'verre',
+    texte: 'verre'
+  }
+};
+
+const APlc4 = {
+  id: 'APlc4',
+  nom_technique: 'aplc_4',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'mayonnaise',
+    texte: 'mayonnaise'
+  }
+};
+
+const APlc5 = {
+  id: 'APlc5',
+  nom_technique: 'aplc_5',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'sel',
+    texte: 'sel'
+  }
+};
+
+const APlc6 = {
+  id: 'APlc6',
+  nom_technique: 'aplc_6',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'tomates',
+    texte: 'tomates'
+  }
+};
+
+const APlc7 = {
+  id: 'APlc7',
+  nom_technique: 'aplc_7',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'pays',
+    texte: 'pays'
+  }
+};
+
+const APlc8 = {
+  id: 'APlc8',
+  nom_technique: 'aplc_8',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'poivrons',
+    texte: 'poivrons'
+  }
+};
+
+const APlc9 = {
+  id: 'APlc9',
+  nom_technique: 'aplc_9',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'epices',
+    texte: 'épices'
+  }
+};
+
+const APlc10 = {
+  id: 'APlc10',
+  nom_technique: 'aplc_10',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'donnent',
+    texte: 'donnent'
+  }
+};
+
+const APlc11 = {
+  id: 'APlc11',
+  nom_technique: 'aplc_11',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'douzaines',
+    texte: 'douzaines'
+  }
+};
+
+const APlc12 = {
+  id: 'APlc12',
+  nom_technique: 'aplc_12',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'assiettes',
+    texte: 'assiettes'
+  }
+};
+
+const APlc13 = {
+  id: 'APlc13',
+  nom_technique: 'aplc_13',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'fouets',
+    texte: 'fouets'
+  }
+};
+
+const APlc14 = {
+  id: 'APlc14',
+  nom_technique: 'aplc_14',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'louche',
+    texte: 'louche'
+  }
+};
+
+const APlc15 = {
+  id: 'APlc15',
+  nom_technique: 'aplc_15',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'passoire',
+    texte: 'passoire'
+  }
+};
+
+const APlc16 = {
+  id: 'APlc16',
+  nom_technique: 'aplc_16',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'poele',
+    texte: 'poêle'
+  }
+};
+
+const APlc17 = {
+  id: 'APlc17',
+  nom_technique: 'aplc_17',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'luxe',
+    texte: 'luxe'
+  }
+};
+
+const APlc18 = {
+  id: 'APlc18',
+  nom_technique: 'aplc_18',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'casserole',
+    texte: 'casserole'
+  }
+};
+
+const APlc19 = {
+  id: 'APlc19',
+  nom_technique: 'aplc_19',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'adhere',
+    texte: 'adhère'
+  }
+};
+
+const APlc20 = {
+  id: 'APlc20',
+  nom_technique: 'aplc_20',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'texte_a_trous',
+  intitule: intituleAPlc,
+  illustration: listeDeCourse,
+  placeholder: 'Réponse',
+  reponse: {
+    nom_technique: 'alcoolique',
+    texte: 'alcoolique'
   }
 };
 
@@ -644,7 +931,7 @@ const configurationNormale = {
       cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
     },
     { cartes: [ sousConsigneAPlc1, sousConsigneAPlc2 ] },
-    { cartes: [ APlc1 ] }
+    { cartes: [ APlc1, APlc2, APlc3, APlc4, APlc5, APlc6, APlc7, APlc8, APlc9, APlc10, APlc11, APlc12, APlc13, APlc14, APlc15, APlc16, APlc17, APlc18, APlc19, APlc20 ] }
   ]
 };
 
