@@ -84,4 +84,10 @@ describe('Le store de la situation café de la place', function () {
       });
     });
   });
+
+  it('peut enregistrer une réponse et la restituer', function() {
+    const laReponse = { question: 'id1', reponse: 'ma reponse' };
+    store.commit('enregistreReponse', laReponse);
+    expect(store.getters.reponse('id1')).toEqual(laReponse);
+  });
 });

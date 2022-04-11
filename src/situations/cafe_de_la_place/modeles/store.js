@@ -8,7 +8,8 @@ export function creeStore () {
       indexSerie: 0,
       carteActive: {},
       series: [],
-      termine: false
+      termine: false,
+      reponses: []
     },
 
     getters: {
@@ -18,6 +19,10 @@ export function creeStore () {
 
       texteCliquable(state) {
         return state.series[state.indexSerie].texteCliquable;
+      },
+
+      reponse: (state) => (idQuestion) => {
+        return state.reponses[idQuestion];
       }
     },
 
@@ -43,6 +48,10 @@ export function creeStore () {
             state.termine = true;
           }
         }
+      },
+
+      enregistreReponse(state, reponse) {
+        state.reponses[reponse.question] = reponse;
       }
     }
   });

@@ -62,5 +62,37 @@ describe('La vue café de la place', function () {
         });
       });
     });
+
+    describe('#reponse', function () {
+      describe('quand la carte active est de type sous consigne', function () {
+        it('passes à la carte suivante', function () {
+          store.state.carteActive = sousConsigne;
+          const question_courante = wrapper.vm.carteActive.id;
+          wrapper.vm.reponse({});
+          expect(wrapper.vm.carteActive.id).not.toEqual(question_courante);
+        });
+      });
+
+      describe("quand la carte active n'est pas de type sous consigne", function () {
+        beforeEach(function () {
+          store.state.carteActive = question;
+        });
+
+        it('enregistre les réponses dans le store', function () {
+          wrapper.vm.reponse({ reponse: 'cuisine' });
+          expect(store.state.reponses['question1'])
+            .toEqual({ question: 'question1', reponse: 'cuisine' });
+        });
+
+        it('enregistre les réponses dans le journal', function (done) {
+          localVue.prototype.$journal = {
+            enregistre () {
+              done();
+            }
+          };
+          wrapper.vm.reponse({});
+        });
+      });
+    });
   });
 });

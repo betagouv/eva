@@ -52,11 +52,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations([ 'carteSuivante' ]),
+    ...mapMutations([ 'carteSuivante', 'enregistreReponse' ]),
 
-    reponse (reponse) {
+    reponse (eventReponse) {
       if(this.carteActive.type !== 'sous-consigne') {
-        const donneesReponses = { question: this.carteActive.id, ...reponse };
+        const donneesReponses = { question: this.carteActive.id, ...eventReponse };
+        this.enregistreReponse(donneesReponses);
         this.$journal.enregistre(new EvenementReponse(donneesReponses));
       }
       this.carteSuivante();
