@@ -1,5 +1,5 @@
 <template>
-  <span :class="{ 'reponse--a-completer': selectionneTrou }">{{valeur}}</span>
+  <span :class="classCss">{{valeur}}</span>
 </template>
 
 <script>
@@ -7,14 +7,9 @@ import { mapState, mapGetters } from 'vuex';
 
 export default {
   props: {
-    id: {
+    idQuestion: {
       type: String,
       required: true
-    },
-    valeur: {
-      type: String,
-      required: false,
-      default: '______'
     }
   },
 
@@ -34,9 +29,13 @@ export default {
       return !this.reponse(this.idQuestion);
     },
 
-    selectionneTrou() {
-      return this.id === this.carteActive.id;
+    classCss() {
+      let classes = [];
+      if (this.trouEnCours) { classes.push('reponse--en-cours'); }
+      classes.push(this.reponseEnAttente ? 'reponse--en-attente' : 'reponse--completee');
+
+      return classes.join(' ');
     }
-  }
+  },
 };
 </script>

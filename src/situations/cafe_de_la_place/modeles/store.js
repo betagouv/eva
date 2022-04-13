@@ -9,7 +9,7 @@ export function creeStore () {
       carteActive: {},
       series: [],
       termine: false,
-      reponses: []
+      reponses: {}
     },
 
     getters: {
