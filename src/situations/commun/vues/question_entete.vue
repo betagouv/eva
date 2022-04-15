@@ -45,10 +45,7 @@ export default {
 
   watch: {
     acteEnCours (acteEnCours) {
-      if(acteEnCours) {
-        this.demarreSonConsigne();
-      }
-      else {
+      if(!acteEnCours) {
         if(this.afficheLectureQuestion) {
           this.$refs.boutonLecture.coupeSon();
         }
@@ -65,15 +62,11 @@ export default {
   },
 
   methods: {
-    demarreSonConsigne () {
-      if (this.acteEnCours && this.afficheLectureQuestion) {
+    demarreSon() {
+      if (this.afficheLectureQuestion) {
         this.$refs.boutonLecture.demarreSon();
       }
     }
-  },
-
-  mounted () {
-    this.demarreSonConsigne();
   }
 };
 </script>

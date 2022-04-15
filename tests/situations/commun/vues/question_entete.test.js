@@ -1,24 +1,24 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { creeStore } from 'commun/modeles/store';
 import VueQuestionEntete from 'commun/vues/question_entete';
-import { CHARGEMENT, DEMARRE, FINI } from 'commun/modeles/situation';
+import { DEMARRE, FINI } from 'commun/modeles/situation';
 
 describe('la vue du composant entête', function () {
   let question;
   let localVue;
   let store;
-  let mockDemareSon;
+  let mockDemarreSon;
   let mockCoupeSon;
   let BoutonLectureStub;
 
   beforeEach(function () {
-    mockDemareSon = jest.fn();
+    mockDemarreSon = jest.fn();
     mockCoupeSon = jest.fn();
     BoutonLectureStub = {
       name: 'BoutonLecture',
       template: '<span />',
       methods: {
-        demarreSon: mockDemareSon,
+        demarreSon: mockDemarreSon,
         coupeSon: mockCoupeSon
       }
     };
@@ -42,37 +42,18 @@ describe('la vue du composant entête', function () {
   }
 
   describe('quand il existe un son', function() {
-    let vue;
-
     beforeEach(function() {
       localVue.prototype.$depotRessources.existeMessageAudio = () => true;
     });
 
     it("affiche le bouton lecture", function () {
-      vue = composant(question);
+      const vue = composant(question);
       expect(vue.findComponent(BoutonLectureStub).exists()).toBe(true);
-    });
-
-    it("joue le son à l'ouverture si l'acte est démarré", function () {
-      store.state.etat = DEMARRE;
-      vue = composant(question);
-      expect(mockDemareSon).toHaveBeenCalled();
-    });
-
-    it("joue le son quand l'acte démarre", function (done) {
-      store.state.etat = CHARGEMENT;
-      vue = composant(question);
-      expect(mockDemareSon).toHaveBeenCalledTimes(0);
-      store.commit('modifieEtat', DEMARRE);
-      vue.vm.$nextTick(() => {
-        expect(mockDemareSon).toHaveBeenCalledTimes(1);
-        done();
-      });
     });
 
     it('coupe le son si la situation est terminée', function (done) {
       store.state.etat = DEMARRE;
-      vue = composant(question);
+      const vue = composant(question);
       store.commit('modifieEtat', FINI);
       vue.vm.$nextTick(() => {
         expect(mockCoupeSon).toHaveBeenCalledTimes(1);
@@ -82,25 +63,38 @@ describe('la vue du composant entête', function () {
   });
 
   describe("quand il n'existe pas de son", function() {
-    let vue;
-
     beforeEach(function() {
       localVue.prototype.$depotRessources.existeMessageAudio = () => false;
     });
 
     it("n'affiche pas le bouton lecture", function () {
-      vue = composant(question);
+      const vue = composant(question);
       expect(vue.findComponent(BoutonLectureStub).exists()).toBe(false);
     });
 
     it('ne coupe pas le son si la situation est terminée', function (done) {
       store.state.etat = DEMARRE;
-      vue = composant(question);
+      const vue = composant(question);
       store.commit('modifieEtat', FINI);
       vue.vm.$nextTick(() => {
         expect(mockCoupeSon).toHaveBeenCalledTimes(0);
         done();
       });
+    });
+  });
+
+  describe('#demarreSon', function (){
+    it("ne démarre pas le son quand il n'y a pas de son pour la question", function () {
+      const vue = composant(question);
+      vue.vm.demarreSon();
+      expect(mockDemarreSon).not.toHaveBeenCalled();
+    });
+
+    it("démarre le son quand il y a un son pour la question", function () {
+      localVue.prototype.$depotRessources.existeMessageAudio = () => true;
+      const vue = composant(question);
+      vue.vm.demarreSon();
+      expect(mockDemarreSon).toHaveBeenCalled();
     });
   });
 });

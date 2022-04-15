@@ -5,6 +5,7 @@
       v-if="afficheLectureReponse"
       :nomTechnique="question.reponse.nom_technique"
       :avecTexte="true"
+      ref="boutonLecture"
     />
     <div class="champ-saisie-conteneur"
          :class="{ 'chiffres-espaces' : question.espacerChiffres }">
@@ -69,7 +70,13 @@ export default {
     emetReponse (valeur) {
       const reponse = valeur.trim();
       this.$emit('input', { reponse: reponse, succes: reponse.toLowerCase() === this.question.reponse.texte });
+    },
+
+    demarreSon() {
+      if (this.afficheLectureReponse) {
+        this.$refs.boutonLecture.demarreSon();
+      }
     }
-  }
+  },
 };
 </script>
