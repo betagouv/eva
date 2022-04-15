@@ -22,6 +22,7 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       modifieEtat (state, etat) {
         state.etat = etat;
       },
+
       activeAide (state) {
         state.aide = true;
       },

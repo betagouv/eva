@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { createLocalVue, mount } from '@vue/test-utils';
 import Defi from 'commun/vues/defi';
 import Qcm from 'commun/vues/defi/qcm';
 import RedactionNote from 'commun/vues/defi/redaction_note';
@@ -7,6 +7,7 @@ import MockExtension from './mock_extension';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 import { creeStore } from 'commun/modeles/store';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
+
 import { DEMARRE } from 'commun/modeles/situation';
 
 describe("La vue d'un défi", function () {
@@ -16,14 +17,22 @@ describe("La vue d'un défi", function () {
 
   beforeEach(function () {
     store = creeStore();
-    question = { id: 154, nom_technique: 'question1' };
+    question = { id: 154, nom_technique: 'question1', intitule: 'quelle couleur ?'};
     localVue = createLocalVue();
+    localVue.prototype.$depotRessources = {
+      existeMessageAudio: () => false,
+      existeMessageVideo: () => false
+    };
     localVue.prototype.$journal = { enregistre () {} };
     localVue.prototype.$traduction = () => {};
   });
 
   function composant (question) {
-    return shallowMount(Defi, { localVue, store, propsData: { question } });
+    return mount(Defi, {
+      localVue, 
+      store, 
+      propsData: { question }
+    });
   }
 
   it("affiche l'entête de la question", function () {
@@ -255,6 +264,54 @@ describe("La vue d'un défi", function () {
       question.type = 'qcm';
       const vue = composant(question);
       expect(vue.find('.question-bouton').attributes('disabled')).not.toEqual('disabled');
+    });
+  });
+
+  describe('#sonModaliteReponseExiste', function() {
+    it('retourne true si la modalité de réponse a un audio associé', function() {
+      question = { modalite_reponse: 'cliquez ici', reponse: { nom_technique: 'reponse1' } };
+      localVue.prototype.$depotRessources.existeMessageAudio = (nomTechnique) => nomTechnique == 'reponse1';
+      const vue = composant(question);
+      expect(vue.vm.sonModaliteReponseExiste).toBe(true);
+    });
+  });
+
+  describe('#demarreSon', function() {
+    describe("quand l'acte est en cours", function() {
+      it("démarre la lecture du son de l'entête question", function() {
+        localVue.prototype.$depotRessources.existeMessageAudio = (nomTechnique) => nomTechnique == 'question1';
+        const vue = composant(question);
+        const componsantEnteteQuestion = vue.findComponent(QuestionEntete);
+        componsantEnteteQuestion.vm.demarreSon = jest.fn();
+        store.state.etat = DEMARRE;
+        vue.vm.demarreSon();
+        expect(componsantEnteteQuestion.vm.demarreSon).toHaveBeenCalled();
+      });
+
+      describe("quand il n'y a pas d'intitule pour la question", function() {
+        beforeEach(function () {
+          question.intitule = undefined;
+        });
+
+        it("démarre la lecture du son si le contenu peut le faire", function() {
+          question.type= 'champ-saisie';
+          question.reponse = { nom_technique: 'reponse1' };
+          localVue.prototype.$depotRessources.existeMessageAudio = (nomTechnique) => nomTechnique == 'reponse1';
+          const vue = composant(question);
+          const composantContenu = vue.findComponent(ChampSaisie);
+          composantContenu.vm.demarreSon = jest.fn();
+          store.state.etat = DEMARRE;
+          vue.vm.demarreSon();
+          expect(composantContenu.vm.demarreSon).toHaveBeenCalled();
+        });
+
+        it("ne retourne pas d'erreur si le contenu ne sait pas le faire", function() {
+          question.type = 'qcm';
+          const vue = composant(question);
+          store.state.etat = DEMARRE;
+          vue.vm.demarreSon();
+        });
+      });
     });
   });
 });

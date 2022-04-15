@@ -14,6 +14,7 @@
       <slot />
       <question-entete
       :question="question"
+      ref="questionEntete"
       />
       <div class="question-contenu">
         <component
@@ -21,6 +22,7 @@
             :is="composantContenu"
             :question="question"
             v-model="reponse"
+            ref="composantContenu"
         />
       </div>
       <video-question :nomTechnique="question.nom_technique"/>
@@ -64,6 +66,7 @@ export default {
 
   mounted () {
     this.journaliserEvenementAffichage();
+    this.demarreSon();
   },
 
   data () {
@@ -76,6 +79,7 @@ export default {
   watch: {
     acteEnCours () {
       this.journaliserEvenementAffichage();
+      this.demarreSon();
     }
   },
 
@@ -105,6 +109,10 @@ export default {
 
     texteBouton () {
       return this.question.type == 'sous-consigne' ? 'defi.suivant' : 'defi.valider';
+    },
+
+    sonModaliteReponseExiste () {
+      return this.question.modalite_reponse && this.$depotRessources.existeMessageAudio(this.question.reponse.nom_technique);
     }
   },
 
@@ -125,6 +133,16 @@ export default {
           metacompetence: this.question.metacompetence
         });
         this.$journal.enregistre(evenement);
+      }
+    },
+
+    demarreSon () {
+      if (this.acteEnCours) {
+        if (!this.question.intitule && this.$refs.composantContenu.demarreSon) {
+          this.$refs.composantContenu.demarreSon();
+        } else {
+          this.$refs.questionEntete.demarreSon();
+        }
       }
     }
   }
