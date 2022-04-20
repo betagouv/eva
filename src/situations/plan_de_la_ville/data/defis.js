@@ -12,8 +12,8 @@ const modeEmploi = {
   nom_technique: 'mode_emploi',
   type: 'sous-consigne',
   illustration: AccueilSansEglise,
-  description: 'Pour écouter ou réécouter la question et les réponses, cliquez sur le bouton « Lecture » ( <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="#6e84fe" r="10"/><path d="M14 8.701c1 .577 1 2.02 0 2.598l-5.813 3.356a1.5 1.5 0 0 1-2.25-1.3v-6.71a1.5 1.5 0 0 1 2.25-1.3z" fill="#fff"/></svg> ) à gauche de la phrase que vous souhaitez entendre.',
-  intitule: 'Essayez avec le bouton en haut à gauche de ce cadre.',
+  intitule: 'Pour écouter ou réécouter la question et les réponses, cliquez sur le bouton « Lecture » ( <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="#6e84fe" r="10"/><path d="M14 8.701c1 .577 1 2.02 0 2.598l-5.813 3.356a1.5 1.5 0 0 1-2.25-1.3v-6.71a1.5 1.5 0 0 1 2.25-1.3z" fill="#fff"/></svg> ) à gauche de la phrase que vous souhaitez entendre.',
+  modalite_reponse: 'Essayez avec le bouton en haut à gauche de ce cadre.',
   extensionVue: 'mode-emploi'
 };
 
@@ -31,8 +31,8 @@ const dragAndDrop = {
   type: 'action',
   nom_technique: 'drag_and_drop',
   illustration: IllustrationDragAndDrop,
-  description: 'Super ! Maintenant, ajoutez une maison au village.',
-  intitule: 'Pour cela cliquez sur la maison en dessous de la carte, maintenez le bouton gauche de la souris enfoncée et glissez là dans la zone disponible.<br><br>Consultez l’exemple ci-dessous.',
+  intitule: 'Super ! Maintenant, ajoutez une maison au village.',
+  modalite_reponse: 'Pour cela cliquez sur la maison en dessous de la carte, maintenez le bouton gauche de la souris enfoncée et glissez là dans la zone disponible.<br><br>Consultez l’exemple ci-dessous.',
   extensionVue: 'drag-and-drop'
 };
 
@@ -40,9 +40,9 @@ const questionCouleur = {
   id: 'couleur-maison',
   nom_technique: 'couleur_maison',
   type: 'qcm',
-  description: 'La maison est rouge',
+  intitule: 'La maison est rouge',
   illustration: MaisonRouge,
-  intitule: 'Cliquez sur la case qui correspond à la couleur de la maison puis sur Valider.',
+  modalite_reponse: 'Cliquez sur la case qui correspond à la couleur de la maison puis sur Valider.',
   choix: [
     {
       id: 'rouge',
@@ -83,8 +83,8 @@ const deplacementDroiteMaisonVerte = {
   type: 'action',
   nom_technique: 'deplacement_droite_maison_verte',
   illustration: DeplacementDroiteMaisonVerte,
-  description: 'Dans quelle direction le personnage situé au milieu de l’écran doit-il aller pour se rendre à la maison verte ?',
-  intitule: 'Pour répondre, appuyez sur la flèche gauche ou droite de votre clavier.<br><br>Sur tablette, les boutons affichés vous permettent de déplacer le personnage. Le bouton vert pour aller à gauche et le bouton rouge pour aller à droite.',
+  intitule: 'Dans quelle direction le personnage situé au milieu de l’écran doit-il aller pour se rendre à la maison verte ?',
+  modalite_reponse: 'Pour répondre, appuyez sur la flèche gauche ou droite de votre clavier.<br><br>Sur tablette, les boutons affichés vous permettent de déplacer le personnage. Le bouton vert pour aller à gauche et le bouton rouge pour aller à droite.',
   extensionVue: 'deplacement-droite-maison-verte'
 };
 

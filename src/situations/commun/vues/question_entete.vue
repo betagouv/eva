@@ -23,8 +23,8 @@
     </div>
     <div class="entete-questions">
       <p v-if="question.description" v-html="question.description"></p>
-      <p class="question-intitule"> <span v-html="question.intitule"></span></p>
-      <p v-if="question.consigne">{{ question.consigne }}</p>
+      <p v-if="question.intitule" v-html="question.intitule"></p>
+      <p v-if="question.modalite_reponse" class="question-modalite-reponse"><span v-html="question.modalite_reponse"></span></p>
     </div>
   </div>
 </template>
