@@ -9,7 +9,7 @@ const sousConsigneALrd1 = {
   type: 'sous-consigne',
   illustration: terrasseCafe,
   nom_technique: 'sous_consigne_ALrd_1',
-  description: "Vous décidez d'écouter de la musique sur votre téléphone. Une amie vous a conseillé un groupe de jazz à découvrir."
+  intitule: "Vous décidez d'écouter de la musique sur votre téléphone. Une amie vous a conseillé un groupe de jazz à découvrir."
 };
 
 const sousConsigneALrd2 = {
@@ -17,8 +17,8 @@ const sousConsigneALrd2 = {
   type: 'sous-consigne',
   illustration: listeTitresMusique,
   nom_technique: 'sous_consigne_ALrd_2',
-  description: "Voici la liste des titres. J'ai quelques questions pour vous.",
-  intitule:  'Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !'
+  intitule: "Voici la liste des titres. J'ai quelques questions pour vous.",
+  modalite_reponse:  'Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !'
 };
 
 const sousConsigneACrd1 = {
@@ -28,8 +28,8 @@ const sousConsigneACrd1 = {
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
   nom_technique: 'sous_consigne_ACrd_1',
-  description: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.',
-  intitule: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
+  intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.',
+  modalite_reponse: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
 const titre1 = {
@@ -37,8 +37,8 @@ const titre1 = {
   nom_technique: 'titre_1',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 1, quelle est la bonne lecture ?',
-  intitule: 'Dès que vous aurez reconnu la bonne lecture, choisissez une des réponses ci-dessous. Pour confirmer votre réponse, cliquez sur « Valider ».',
+  intitule: 'Pour le titre 1, quelle est la bonne lecture ?',
+  modalite_reponse: 'Dès que vous aurez reconnu la bonne lecture, choisissez une des réponses ci-dessous. Pour confirmer votre réponse, cliquez sur « Valider ».',
   choix: [
     {
       id: 'bax',
@@ -63,7 +63,7 @@ const titre2 = {
   nom_technique: 'titre_2',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 2, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 2, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'jazzABimoudon',
@@ -88,7 +88,7 @@ const titre10 = {
   nom_technique: 'titre_10',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 10, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 10, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'unAmiEnAmont',
@@ -113,7 +113,7 @@ const titre3 = {
   nom_technique: 'titre_3',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 3, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 3, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'balleEtTalle',
@@ -138,7 +138,7 @@ const titre11 = {
   nom_technique: 'titre_11',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 11, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 11, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'dussoEtMatura',
@@ -163,7 +163,7 @@ const titre6 = {
   nom_technique: 'titre_6',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 6, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 6, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'amourSugulent',
@@ -188,7 +188,7 @@ const titre8 = {
   nom_technique: 'titre_8',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 8, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 8, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'anguilEtDouceMer',
@@ -213,7 +213,7 @@ const titre5 = {
   nom_technique: 'titre_5',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 5, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 5, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'exerciceDeStyle',
@@ -238,7 +238,7 @@ const titre4 = {
   nom_technique: 'titre_4',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 4, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 4, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'leVilDuTemps',
@@ -263,7 +263,7 @@ const titre7 = {
   nom_technique: 'titre_7',
   type: 'qcm',
   illustration: listeTitresMusique,
-  description: 'Pour le titre 7, quelle est la bonne lecture ?',
+  intitule: 'Pour le titre 7, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'soupconDAmertume',
@@ -288,7 +288,7 @@ const alrd11 = {
   nom_technique: 'alrd_11',
   type: 'ecoute',
   illustration: telephoneSansTitres,
-  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
   reponse: {
@@ -302,7 +302,7 @@ const alrd12 = {
   nom_technique: 'alrd_12',
   type: 'ecoute',
   illustration: telephoneSansTitres,
-  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
   reponse: {
@@ -316,7 +316,7 @@ const alrd13 = {
   nom_technique: 'alrd_13',
   type: 'ecoute',
   illustration: telephoneSansTitres,
-  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
   reponse: {
@@ -330,7 +330,7 @@ const alrd14 = {
   nom_technique: 'alrd_14',
   type: 'ecoute',
   illustration: telephoneSansTitres,
-  intitule: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
   reponse: {
@@ -342,10 +342,10 @@ const alrd14 = {
 const ACrd1 = {
   id: 'ACrd1',
   nom_technique: 'acrd_1',
-  description: 'Comment s’appelle le groupe ?',
+  intitule: 'Comment s’appelle le groupe ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
-  intitule: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
+  modalite_reponse: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   reponse: {
     texte: 'Rick Duxol & Mori Morino'
@@ -355,7 +355,7 @@ const ACrd1 = {
 const ACrd2 = {
   id: 'ACrd2',
   nom_technique: 'acrd_2',
-  description: 'Comment s’appelle le joueur de contrebasse ?',
+  intitule: 'Comment s’appelle le joueur de contrebasse ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -367,7 +367,7 @@ const ACrd2 = {
 const ACrd3 = {
   id: 'ACrd3',
   nom_technique: 'acrd_3',
-  description: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
+  intitule: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -379,7 +379,7 @@ const ACrd3 = {
 const ACrd4 = {
   id: 'ACrd4',
   nom_technique: 'acrd_4',
-  description: 'De quel pays le groupe vient-il ?',
+  intitule: 'De quel pays le groupe vient-il ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -391,7 +391,7 @@ const ACrd4 = {
 const ACrd5 = {
   id: 'ACrd5',
   nom_technique: 'acrd_5',
-  description: 'En quelle année le groupe a-t-il débuté ?',
+  intitule: 'En quelle année le groupe a-t-il débuté ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -407,19 +407,19 @@ const sousConsigneACrd2 = {
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
   nom_technique: 'sous_consigne_ACrd_2',
-  description: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.',
-  intitule: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
+  intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.',
+  modalite_reponse: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
 const ACrd6 = {
   id: 'ACrd6',
   nom_technique: 'acrd_6',
-  description: 'Qui est Ivano Karanadoff ?',
+  intitule: 'Qui est Ivano Karanadoff ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
   type: 'qcm',
-  intitule: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
+  modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
   choix: [
     {
       id: 'membreDuGroupe',
@@ -445,7 +445,7 @@ const ACrd6 = {
 const ACrd7 = {
   id: 'ACrd7',
   nom_technique: 'acrd_7',
-  description: 'Quel est le genre de musique que produit ce groupe ?',
+  intitule: 'Quel est le genre de musique que produit ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
@@ -474,7 +474,7 @@ const ACrd7 = {
 const ACrd8 = {
   id: 'ACrd8',
   nom_technique: 'acrd_8',
-  description: 'Qui a influencé ce groupe ?',
+  intitule: 'Qui a influencé ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
@@ -504,7 +504,7 @@ const ACrd8 = {
 const ACrd9 = {
   id: 'ACrd9',
   nom_technique: 'acrd_9',
-  description: 'Que pense la critique de ce style musical ?',
+  intitule: 'Que pense la critique de ce style musical ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
@@ -534,7 +534,7 @@ const ACrd9 = {
 const ACrd10 = {
   id: 'ACrd10',
   nom_technique: 'acrd_10',
-  description: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
+  intitule: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
@@ -592,7 +592,7 @@ const sousConsigneAPlc1 = {
   nom_technique: 'sous_consigne_APlc_1',
   type: 'sous-consigne',
   illustration: terrasseCafe,
-  description: "Ce soir, vous recevez des amis. Vous avez décidé de cuisiner, même si vous n'en avez pas l'habitude. Il vous faut donc acheter du matériel de cuisine et des aliments à cuisiner. Pour cela, vous avez commencé votre liste de courses, mais vous devez la compléter."
+  intitule: "Ce soir, vous recevez des amis. Vous avez décidé de cuisiner, même si vous n'en avez pas l'habitude. Il vous faut donc acheter du matériel de cuisine et des aliments à cuisiner. Pour cela, vous avez commencé votre liste de courses, mais vous devez la compléter."
 };
 
 const sousConsigneAPlc2 = {
@@ -601,11 +601,11 @@ const sousConsigneAPlc2 = {
   type: 'sous-consigne',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  description: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
-  intitule: 'Pour commencer, cliquez sur « Suivant ».'
+  intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
+  modalite_reponse: 'Pour commencer, cliquez sur « Suivant ».'
 };
 
-const intituleAPlc = 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».';
+const modaliteDeReponseAPlc = 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».';
 
 const APlc1 = {
   id: 'APlc1',
@@ -613,7 +613,7 @@ const APlc1 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -628,7 +628,7 @@ const APlc2 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -643,7 +643,7 @@ const APlc3 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -658,7 +658,7 @@ const APlc4 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -673,7 +673,7 @@ const APlc5 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -688,7 +688,7 @@ const APlc6 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -703,7 +703,7 @@ const APlc7 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -718,7 +718,7 @@ const APlc8 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -733,7 +733,7 @@ const APlc9 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -748,7 +748,7 @@ const APlc10 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -763,7 +763,7 @@ const APlc11 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -778,7 +778,7 @@ const APlc12 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -793,7 +793,7 @@ const APlc13 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -808,7 +808,7 @@ const APlc14 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -823,7 +823,7 @@ const APlc15 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -838,7 +838,7 @@ const APlc16 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -853,7 +853,7 @@ const APlc17 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -868,7 +868,7 @@ const APlc18 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -883,7 +883,7 @@ const APlc19 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -898,7 +898,7 @@ const APlc20 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  intitule: intituleAPlc,
+  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {

@@ -110,7 +110,7 @@ const questionAgenda = {
   illustration: AppAgenda,
   icone: iconeAgenda,
   intitule: "Où Sophie doit-elle travailler de 14h30 à 16h, d'après son agenda ?",
-  consigne: 'Écoutez chaque proposition en cliquant sur les hauts parleurs',
+  modalite_reponse: 'Écoutez chaque proposition en cliquant sur les hauts parleurs',
   metacompetence: 'ccf',
   type: 'qcm',
   choix: [
@@ -397,7 +397,7 @@ const questionRepondeur1 = {
   icone: iconeRepondeur,
   illustration: AppRepondeur1,
   intitule: 'A quelle heure Sophie doit-elle se rendre dans le bureau de Mickael ?',
-  consigne: 'Écoutez le message en cliquant sur le bouton lecture.',
+  modalite_reponse: 'Écoutez le message en cliquant sur le bouton lecture.',
   extensionVue: 'lecture-message',
   metacompetence: 'ccf',
   type: 'qcm',
