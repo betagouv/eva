@@ -77,6 +77,6 @@ export default {
         this.$refs.boutonLecture.demarreSon();
       }
     }
-  },
+  }
 };
 </script>

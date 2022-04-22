@@ -83,10 +83,20 @@ export default {
       } else {
         this.joueurSon.stop();
       }
+    },
+
+    acteEnCours (acteEnCours) {
+      if(!acteEnCours) {
+        this.coupeSon();
+      }
     }
   },
 
   computed: {
+    acteEnCours () {
+      return this.$store.getters.acteEnCours;
+    },
+
     texteBouton () {
       return this.joueSon ? 'bouton_lecture.pause' : 'bouton_lecture.lecture';
     }

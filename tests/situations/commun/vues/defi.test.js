@@ -267,15 +267,6 @@ describe("La vue d'un défi", function () {
     });
   });
 
-  describe('#sonModaliteReponseExiste', function() {
-    it('retourne true si la modalité de réponse a un audio associé', function() {
-      question = { modalite_reponse: 'cliquez ici', reponse: { nom_technique: 'reponse1' } };
-      localVue.prototype.$depotRessources.existeMessageAudio = (nomTechnique) => nomTechnique == 'reponse1';
-      const vue = composant(question);
-      expect(vue.vm.sonModaliteReponseExiste).toBe(true);
-    });
-  });
-
   describe('#demarreSon', function() {
     describe("quand l'acte est en cours", function() {
       it("démarre la lecture du son de l'entête question", function() {

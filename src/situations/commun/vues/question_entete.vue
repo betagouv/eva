@@ -31,7 +31,6 @@
 
 <script>
 import BoutonLecture from 'commun/vues/bouton_lecture';
-import { mapGetters } from 'vuex';
 
 export default {
   components: { BoutonLecture },
@@ -43,19 +42,7 @@ export default {
     }
   },
 
-  watch: {
-    acteEnCours (acteEnCours) {
-      if(!acteEnCours) {
-        if(this.afficheLectureQuestion) {
-          this.$refs.boutonLecture.coupeSon();
-        }
-      }
-    }
-  },
-
   computed: {
-    ...mapGetters(['acteEnCours']),
-
     afficheLectureQuestion () {
       return this.$depotRessources.existeMessageAudio(this.question.nom_technique);
     }
