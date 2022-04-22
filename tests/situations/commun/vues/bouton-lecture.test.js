@@ -1,24 +1,39 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BoutonLecture from 'commun/vues/bouton_lecture';
+import { creeStore } from 'commun/modeles/store';
+import { DEMARRE, FINI } from 'commun/modeles/situation';
+import Vuex from 'vuex';
 
 describe('Le bouton de lecture de message audio', function () {
+  let localVue;
+  let store;
+
+  beforeEach(function () {
+    localVue = createLocalVue();
+    localVue.prototype.$traduction = () => {};
+    store = creeStore();
+  });
+
+  function composant(question) {
+    return shallowMount(BoutonLecture, {
+      localVue,
+      store,
+      propsData: question
+    });
+  }
+
   it("affiche l'icone play quand aucun son n'est joué", function () {
-    const wrapper = shallowMount(BoutonLecture, { propsData: { nomTechnique: 'question1' } });
+    const wrapper = composant({ nomTechnique: 'question1' });
     expect(wrapper.find('.icone-lecture').exists()).toBe(true);
   });
 
   it("joue le son et affiche l'icone pause", function (done) {
-    const localVue = createLocalVue();
     localVue.prototype.$depotRessources = {
       messageAudio: (nomTechnique) => {
         expect(nomTechnique).toEqual('question1');
       }
     };
-
-    const wrapper = shallowMount(BoutonLecture, {
-      localVue: localVue,
-      propsData: { nomTechnique: 'question1', joueSon: true }
-    });
+    const wrapper = composant({ nomTechnique: 'question1', joueSon: true });
     let sonJoue = false;
     wrapper.vm.joueurSon = {
       start: () => {
@@ -34,7 +49,7 @@ describe('Le bouton de lecture de message audio', function () {
   });
 
   it("stop le son quand le bouton n'est plus affiché", function () {
-    const wrapper = shallowMount(BoutonLecture, { propsData: { nomTechnique: 'question1' } });
+    const wrapper = composant({ nomTechnique: 'question1' });
     let sonStope = false;
     wrapper.vm.joueurSon = {
       stop: () => {
@@ -47,18 +62,9 @@ describe('Le bouton de lecture de message audio', function () {
 
   describe('sans texte', function () {
     let wrapper;
-    let localVue;
 
     beforeEach(function () {
-      localVue = createLocalVue();
-      localVue.prototype.$traduction = () => {};
-      wrapper = shallowMount(BoutonLecture, {
-        localVue,
-        propsData: {
-          nomTechnique: 'question1',
-          avecTexte: false
-        }
-      });
+      wrapper = composant({ nomTechnique: 'question1', avecTexte: false });
     });
 
     it("ajoute la classe", function () {
@@ -73,18 +79,9 @@ describe('Le bouton de lecture de message audio', function () {
 
   describe('avec du texte', function () {
     let wrapper;
-    let localVue;
 
     beforeEach(function () {
-      localVue = createLocalVue();
-      localVue.prototype.$traduction = () => {};
-      wrapper = shallowMount(BoutonLecture, {
-        localVue,
-        propsData: {
-          nomTechnique: 'question1',
-          avecTexte: true
-        }
-      });
+      wrapper = composant({ nomTechnique: 'question1', avecTexte: true });
     });
 
     it("ajoute la classe", function () {
@@ -120,6 +117,27 @@ describe('Le bouton de lecture de message audio', function () {
           done();
         });
       });
+    });
+  });
+
+  describe("coupe le son", function() {
+    it('quand le store à un état et que la situation est terminée', function (done) {
+      store.state.etat = DEMARRE;
+      const wrapper = composant({ nomTechnique: 'question1' });
+      wrapper.vm.coupeSon = jest.fn();
+      store.commit('modifieEtat', FINI);
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.vm.coupeSon).toHaveBeenCalledTimes(1);
+        done();
+      });
+    });
+
+    it("quand le store n'a pas de notion d'état (comme l'accueil)", function () {
+      console.error = jest.fn();
+      store = new Vuex.Store();
+      composant({ nomTechnique: 'question1' });
+      expect(console.error).not.toHaveBeenCalled();
+      console.error.mockRestore();
     });
   });
 });

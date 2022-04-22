@@ -109,10 +109,6 @@ export default {
 
     texteBouton () {
       return this.question.type == 'sous-consigne' ? 'defi.suivant' : 'defi.valider';
-    },
-
-    sonModaliteReponseExiste () {
-      return this.question.modalite_reponse && this.$depotRessources.existeMessageAudio(this.question.reponse.nom_technique);
     }
   },
 

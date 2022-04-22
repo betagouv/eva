@@ -1,25 +1,21 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { creeStore } from 'commun/modeles/store';
 import VueQuestionEntete from 'commun/vues/question_entete';
-import { DEMARRE, FINI } from 'commun/modeles/situation';
 
 describe('la vue du composant entête', function () {
   let question;
   let localVue;
   let store;
   let mockDemarreSon;
-  let mockCoupeSon;
   let BoutonLectureStub;
 
   beforeEach(function () {
     mockDemarreSon = jest.fn();
-    mockCoupeSon = jest.fn();
     BoutonLectureStub = {
       name: 'BoutonLecture',
       template: '<span />',
       methods: {
-        demarreSon: mockDemarreSon,
-        coupeSon: mockCoupeSon
+        demarreSon: mockDemarreSon
       }
     };
     store = creeStore();
@@ -50,36 +46,13 @@ describe('la vue du composant entête', function () {
       const vue = composant(question);
       expect(vue.findComponent(BoutonLectureStub).exists()).toBe(true);
     });
-
-    it('coupe le son si la situation est terminée', function (done) {
-      store.state.etat = DEMARRE;
-      const vue = composant(question);
-      store.commit('modifieEtat', FINI);
-      vue.vm.$nextTick(() => {
-        expect(mockCoupeSon).toHaveBeenCalledTimes(1);
-        done();
-      });
-    });
   });
 
   describe("quand il n'existe pas de son", function() {
-    beforeEach(function() {
-      localVue.prototype.$depotRessources.existeMessageAudio = () => false;
-    });
-
     it("n'affiche pas le bouton lecture", function () {
+      localVue.prototype.$depotRessources.existeMessageAudio = () => false;
       const vue = composant(question);
       expect(vue.findComponent(BoutonLectureStub).exists()).toBe(false);
-    });
-
-    it('ne coupe pas le son si la situation est terminée', function (done) {
-      store.state.etat = DEMARRE;
-      const vue = composant(question);
-      store.commit('modifieEtat', FINI);
-      vue.vm.$nextTick(() => {
-        expect(mockCoupeSon).toHaveBeenCalledTimes(0);
-        done();
-      });
     });
   });
 
