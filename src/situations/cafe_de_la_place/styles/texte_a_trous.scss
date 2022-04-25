@@ -38,9 +38,9 @@
       border: 2px dotted $bleu-gris-fonce;
       border-radius: 4px;
     }
-  }
 
-  li .reponse--completee {
-    color: $bleu;
+    &--completee {
+      color: $bleu;
+    }
   }
 }
