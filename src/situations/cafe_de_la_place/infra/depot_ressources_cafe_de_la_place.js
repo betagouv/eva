@@ -139,26 +139,7 @@ const AUDIOS_QUESTIONS = {
   acrd_8: ACrd8,
   acrd_9: ACrd9,
   acrd_10: ACrd10,
-  aplc_1: questionAPlc,
-  aplc_2: questionAPlc,
-  aplc_3: questionAPlc,
-  aplc_4: questionAPlc,
-  aplc_5: questionAPlc,
-  aplc_6: questionAPlc,
-  aplc_7: questionAPlc,
-  aplc_8: questionAPlc,
-  aplc_9: questionAPlc,
-  aplc_10: questionAPlc,
-  aplc_11: questionAPlc,
-  aplc_12: questionAPlc,
-  aplc_13: questionAPlc,
-  aplc_14: questionAPlc,
-  aplc_15: questionAPlc,
-  aplc_16: questionAPlc,
-  aplc_17: questionAPlc,
-  aplc_18: questionAPlc,
-  aplc_19: questionAPlc,
-  aplc_20: questionAPlc
+  aplc_1: questionAPlc
 };
 
 const AUDIOS_REPONSES = {
