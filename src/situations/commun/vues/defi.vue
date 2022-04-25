@@ -13,16 +13,19 @@
     >
       <slot />
       <question-entete
-      :question="question"
-      ref="questionEntete"
+        :question="question"
+        ref="questionEntete"
       />
-      <div class="question-contenu">
+      <div 
+        class="question-contenu" 
+        :class="{'question-contenu--centre': questionSansEntete }"
+      >
         <component
-            v-if="composantContenu"
-            :is="composantContenu"
-            :question="question"
-            v-model="reponse"
-            ref="composantContenu"
+          v-if="composantContenu"
+          :is="composantContenu"
+          :question="question"
+          v-model="reponse"
+          ref="composantContenu"
         />
       </div>
       <video-question :nomTechnique="question.nom_technique"/>
@@ -109,6 +112,10 @@ export default {
 
     texteBouton () {
       return this.question.type == 'sous-consigne' ? 'defi.suivant' : 'defi.valider';
+    },
+
+    questionSansEntete () {
+      return (!this.question.intitule && !this.question.description && !this.question.modalite_reponse);
     }
   },
 

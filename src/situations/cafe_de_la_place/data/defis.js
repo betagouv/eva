@@ -888,7 +888,6 @@ const APlc20 = {
 
 const configurationNormale = {
   series: [
-    { cartes: [ APlc1, APlc2, APlc3, APlc4, APlc5, APlc6, APlc7, APlc8, APlc9, APlc10, APlc11, APlc12, APlc13, APlc14, APlc15, APlc16, APlc17, APlc18, APlc19, APlc20 ] },
     { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
     {
       texteCliquable: listeChansons,
