@@ -53,6 +53,12 @@
   &-contenu {
     flex-grow: 2;
     margin-top: 0.5rem;
+
+    &--centre {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   &-label {
