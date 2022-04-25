@@ -605,15 +605,13 @@ const sousConsigneAPlc2 = {
   modalite_reponse: 'Pour commencer, cliquez sur « Suivant ».'
 };
 
-const modaliteDeReponseAPlc = 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».';
-
 const APlc1 = {
   id: 'APlc1',
   nom_technique: 'aplc_1',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
+  modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -628,7 +626,6 @@ const APlc2 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -643,7 +640,6 @@ const APlc3 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -658,7 +654,6 @@ const APlc4 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -673,7 +668,6 @@ const APlc5 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -688,7 +682,6 @@ const APlc6 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -703,7 +696,6 @@ const APlc7 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -718,7 +710,6 @@ const APlc8 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -733,7 +724,6 @@ const APlc9 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -748,7 +738,6 @@ const APlc10 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -763,7 +752,6 @@ const APlc11 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -778,7 +766,6 @@ const APlc12 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -793,7 +780,6 @@ const APlc13 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -808,7 +794,6 @@ const APlc14 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -823,7 +808,6 @@ const APlc15 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -838,7 +822,6 @@ const APlc16 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -853,7 +836,6 @@ const APlc17 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -868,7 +850,6 @@ const APlc18 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -883,7 +864,6 @@ const APlc19 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -898,7 +878,6 @@ const APlc20 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
-  modalite_reponse: modaliteDeReponseAPlc,
   illustration: listeDeCourse,
   placeholder: 'Réponse',
   reponse: {
@@ -909,6 +888,7 @@ const APlc20 = {
 
 const configurationNormale = {
   series: [
+    { cartes: [ APlc1, APlc2, APlc3, APlc4, APlc5, APlc6, APlc7, APlc8, APlc9, APlc10, APlc11, APlc12, APlc13, APlc14, APlc15, APlc16, APlc17, APlc18, APlc19, APlc20 ] },
     { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
     {
       texteCliquable: listeChansons,
