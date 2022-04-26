@@ -22,7 +22,7 @@ describe('Le store de la situation café de la place', function () {
     ]
   };
 
-  describe('quand un act est configuré', function() {
+  describe('quand un acte est configuré', function() {
     beforeEach(function() {
       store = creeStore();
       store.commit('configureActe', configuration);

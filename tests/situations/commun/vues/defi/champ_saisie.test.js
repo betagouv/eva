@@ -148,22 +148,22 @@ describe('Le composant champ de saisie', function () {
       vue = composant({ question: { nom_technique: 'question-sans-audio' } });
       expect(vue.find('.defi-champ-saisie--decale').exists()).toBe(false);
     });
+  });
 
-    describe('#demarreSon', function (){
-      it("ne démarre pas le son quand il n'y a pas de son pour la réponse", function () {
-        const question = { nom_technique: 'question1', id: 154, reponse: { nom_technique: 'reponse1'} };
-        const vue = composant({ question });
-        vue.vm.demarreSon();
-        expect(mockDemarreSon).not.toHaveBeenCalled();
-      });
+  describe('#demarreSon', function (){
+    it("ne démarre pas le son quand il n'y a pas de son pour la réponse", function () {
+      const question = { nom_technique: 'question1', id: 154, reponse: { nom_technique: 'reponse1'} };
+      const vue = composant({ question });
+      vue.vm.demarreSon();
+      expect(mockDemarreSon).not.toHaveBeenCalled();
+    });
 
-      it("démarre le son quand il y a un son pour la réponse", function () {
-        const question = { id: 154, reponse: { nom_technique: 'reponse1'} };
-        localVue.prototype.$depotRessources.existeMessageAudio = () => true;
-        const vue = composant({ question });
-        vue.vm.demarreSon();
-        expect(mockDemarreSon).toHaveBeenCalled();
-      });
+    it("démarre le son quand il y a un son pour la réponse", function () {
+      const question = { id: 154, reponse: { nom_technique: 'reponse1'} };
+      localVue.prototype.$depotRessources.existeMessageAudio = () => true;
+      const vue = composant({ question });
+      vue.vm.demarreSon();
+      expect(mockDemarreSon).toHaveBeenCalled();
     });
   });
 });
