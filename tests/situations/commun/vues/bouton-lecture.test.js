@@ -27,37 +27,64 @@ describe('Le bouton de lecture de message audio', function () {
     expect(wrapper.find('.icone-lecture').exists()).toBe(true);
   });
 
-  it("joue le son et affiche l'icone pause", function (done) {
-    localVue.prototype.$depotRessources = {
-      messageAudio: (nomTechnique) => {
-        expect(nomTechnique).toEqual('question1');
-      }
-    };
-    const wrapper = composant({ nomTechnique: 'question1', joueSon: true });
-    let sonJoue = false;
-    wrapper.vm.joueurSon = {
-      start: () => {
-        sonJoue = true;
-      }
-    };
-    wrapper.vm.joueSon = true;
-    wrapper.vm.$nextTick(() => {
-      expect(wrapper.find('.icone-pause').exists()).toBe(true);
-      expect(sonJoue).toBe(true);
-      done();
+  describe('#start', function() {
+    beforeEach(function () {
+      localVue.prototype.$depotRessources = {
+        messageAudio: (nomTechnique) => {
+          expect(nomTechnique).toEqual('question1');
+        }
+      };
     });
-  });
 
-  it("stop le son quand le bouton n'est plus affiché", function () {
-    const wrapper = composant({ nomTechnique: 'question1' });
-    let sonStope = false;
-    wrapper.vm.joueurSon = {
-      stop: () => {
-        sonStope = true;
-      }
-    };
-    wrapper.destroy();
-    expect(sonStope).toBe(true);
+    it("joue le son et affiche l'icone pause", function (done) {
+      const wrapper = composant({ nomTechnique: 'question1', joueSon: true });
+      let sonJoue = false;
+      wrapper.vm.joueurSon = {
+        start: () => {
+          sonJoue = true;
+        }
+      };
+      wrapper.vm.joueSon = true;
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.find('.icone-pause').exists()).toBe(true);
+        expect(sonJoue).toBe(true);
+        done();
+      });
+    });
+
+    it("stop le son quand le bouton n'est plus affiché", function () {
+      const wrapper = composant({ nomTechnique: 'question1' });
+      let sonStope = false;
+      wrapper.vm.joueurSon = {
+        stop: () => {
+          sonStope = true;
+        }
+      };
+      wrapper.destroy();
+      expect(sonStope).toBe(true);
+    });
+
+    it("Joue la callback de fin une seule fois après la fin du son", function (done) {
+      const wrapper = composant({ nomTechnique: 'question1' });
+      wrapper.vm.audioBuffer = jest.fn();
+      wrapper.vm.joueurSon = {
+        stop: () => {},
+        start: (buffer, callback) => {
+          callback();
+        }
+      };
+      const aFaireApresLeSon = jest.fn();
+      wrapper.vm.demarreSon(aFaireApresLeSon);
+      wrapper.vm.$nextTick(() => {
+        expect(aFaireApresLeSon).toHaveBeenCalledTimes(1);
+        expect(wrapper.vm.joueSon).toBe(false);
+        wrapper.vm.joueSon = true;
+        wrapper.vm.$nextTick(() => {
+          expect(aFaireApresLeSon).toHaveBeenCalledTimes(1);
+          done();
+        });
+      });
+    });
   });
 
   describe('sans texte', function () {

@@ -142,7 +142,9 @@ export default {
     demarreSon () {
       if (this.acteEnCours) {
         if (!this.question.intitule && this.$refs.composantContenu.demarreSon) {
-          this.$refs.composantContenu.demarreSon();
+          this.$refs.composantContenu.demarreSon(() => {
+            this.$refs.questionEntete.demarreSon();
+          });
         } else {
           this.$refs.questionEntete.demarreSon();
         }

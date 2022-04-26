@@ -76,9 +76,9 @@ export default {
       this.$emit('input', { reponse: reponse, succes: reponse.toLowerCase() === this.question.reponse.texte });
     },
 
-    demarreSon() {
+    demarreSon(callbackFin) {
       if (this.afficheLectureReponse) {
-        this.$refs.boutonLecture.demarreSon();
+        this.$refs.boutonLecture.demarreSon(callbackFin);
       }
     }
   }

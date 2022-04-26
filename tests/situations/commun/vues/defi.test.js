@@ -272,11 +272,11 @@ describe("La vue d'un défi", function () {
       it("démarre la lecture du son de l'entête question", function() {
         localVue.prototype.$depotRessources.existeMessageAudio = (nomTechnique) => nomTechnique == 'question1';
         const vue = composant(question);
-        const componsantEnteteQuestion = vue.findComponent(QuestionEntete);
-        componsantEnteteQuestion.vm.demarreSon = jest.fn();
+        const composantEnteteQuestion = vue.findComponent(QuestionEntete);
+        composantEnteteQuestion.vm.demarreSon = jest.fn();
         store.state.etat = DEMARRE;
         vue.vm.demarreSon();
-        expect(componsantEnteteQuestion.vm.demarreSon).toHaveBeenCalled();
+        expect(composantEnteteQuestion.vm.demarreSon).toHaveBeenCalled();
       });
 
       describe("quand il n'y a pas d'intitule pour la question", function() {
@@ -284,16 +284,24 @@ describe("La vue d'un défi", function () {
           question.intitule = undefined;
         });
 
-        it("démarre la lecture du son si le contenu peut le faire", function() {
+        it("démarre la lecture du son du composant contenu et enchaine sur le son de l'entete", function() {
           question.type= 'champ-saisie';
           question.reponse = { nom_technique: 'reponse1' };
           localVue.prototype.$depotRessources.existeMessageAudio = (nomTechnique) => nomTechnique == 'reponse1';
           const vue = composant(question);
           const composantContenu = vue.findComponent(ChampSaisie);
-          composantContenu.vm.demarreSon = jest.fn();
+          let callbackFin;
+          composantContenu.vm.demarreSon = jest.fn((cb) => {
+            callbackFin = cb;
+          });
+          const composantEnteteQuestion = vue.findComponent(QuestionEntete);
+          composantEnteteQuestion.vm.demarreSon = jest.fn();
           store.state.etat = DEMARRE;
           vue.vm.demarreSon();
           expect(composantContenu.vm.demarreSon).toHaveBeenCalled();
+          expect(composantEnteteQuestion.vm.demarreSon).not.toHaveBeenCalled();
+          callbackFin();
+          expect(composantEnteteQuestion.vm.demarreSon).toHaveBeenCalled();
         });
 
         it("ne retourne pas d'erreur si le contenu ne sait pas le faire", function() {

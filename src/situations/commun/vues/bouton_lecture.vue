@@ -63,8 +63,9 @@ export default {
       this.joueSon = !this.joueSon;
     },
 
-    demarreSon () {
+    demarreSon (callbackFin) {
       this.joueSon = true;
+      this.callbackFin = callbackFin;
     },
 
     coupeSon () {
@@ -79,7 +80,13 @@ export default {
   watch: {
     joueSon (joue) {
       if (joue) {
-        this.joueurSon.start(this.audioBuffer(this.nomTechnique), () => { this.coupeSon(); });
+        this.joueurSon.start(this.audioBuffer(this.nomTechnique), () => {
+          this.coupeSon();
+          if(this.callbackFin) {
+            this.callbackFin();
+            delete this.callbackFin;
+          }
+        });
       } else {
         this.joueurSon.stop();
       }

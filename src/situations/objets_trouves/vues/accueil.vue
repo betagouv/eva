@@ -90,6 +90,7 @@ export default {
 
   methods: {
     ...mapMutations(['afficheApp']),
+
     afficheQuestionsFin () {
       this.$store.commit('modifieEtatTelephone', QUESTIONS_FIN);
     }
