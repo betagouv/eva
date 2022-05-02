@@ -21,6 +21,10 @@
       <input
           v-on:input="emetReponse($event.target.value)"
           class="champ"
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
           :class="{ 'champ-texte' : estTexte,
                     'champ-numerique' : estNumerique }"
           :maxlength="maxLength"
