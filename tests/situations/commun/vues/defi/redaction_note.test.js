@@ -18,6 +18,15 @@ describe('Le composant RedactionNote', function () {
     expect(input.element.getAttribute('placeholder')).toEqual('écrire ici');
   });
 
+  it('désactive la correction automatique', function () {
+    const vue = composant({ question: {} });
+    const input = vue.find('textarea');
+    expect(input.element.getAttribute('spellCheck')).toEqual('false');
+    expect(input.element.getAttribute('autocomplete')).toEqual('off');
+    expect(input.element.getAttribute('autocapitalize')).toEqual('off');
+    expect(input.element.getAttribute('autocorrect')).toEqual('off');
+  });
+
   describe('peut être utilisé avec la propriété v-model', function () {
     it('envoie la réponse dans un événement input', function () {
       const vue = composant({ question: {} });
