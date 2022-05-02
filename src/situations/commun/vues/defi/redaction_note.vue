@@ -2,6 +2,10 @@
   <div class="question-contenu">
     <textarea
         v-on:input="emetReponse($event.target.value)"
+        spellcheck="false"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
         :placeholder="question.reponse_placeholder"
         class="reponse-redaction"></textarea>
   </div>
