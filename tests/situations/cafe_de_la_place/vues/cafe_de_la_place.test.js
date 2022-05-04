@@ -3,6 +3,7 @@ import { creeStore } from 'cafe_de_la_place/modeles/store';
 import Defi from 'commun/vues/defi';
 import CafeDeLaPlace from 'cafe_de_la_place/vues/cafe_de_la_place';
 import Pagination from 'commun/vues/components/pagination';
+import { DEMARRE } from 'commun/modeles/situation';
 
 describe('La vue café de la place', function () {
   let wrapper;
@@ -60,6 +61,16 @@ describe('La vue café de la place', function () {
           expect(wrapper.emitted().terminer).toBeTruthy();
           done();
         });
+      });
+    });
+
+    it("A la configuration, saute directement à un défi si son id est mentionné dans l'ancre", function(done) {
+      location.hash = '#question1';
+      store.state.etat = DEMARRE;
+
+      wrapper.vm.$nextTick(() => {
+        expect(store.state.carteActive).toEqual(question);
+        done();
       });
     });
 
