@@ -38,7 +38,7 @@ export default {
 
   computed: {
     ...mapState(['indexCarte', 'carteActive', 'termine']),
-    ...mapGetters(['nombreCartes']),
+    ...mapGetters(['nombreCartes', 'acteEnCours']),
 
     affichePagination () {
       return this.carteActive.type !== 'sous-consigne';
@@ -46,13 +46,19 @@ export default {
   },
 
   watch: {
+    acteEnCours (actEnCours) {
+      if(actEnCours){
+        this.sauteALaCarte(location.hash.substring(1));
+      }
+    },
+
     termine () {
       this.$emit('terminer');
     }
   },
 
   methods: {
-    ...mapMutations([ 'carteSuivante', 'enregistreReponse' ]),
+    ...mapMutations([ 'carteSuivante', 'enregistreReponse', 'sauteALaCarte' ]),
 
     reponse (eventReponse) {
       if(this.carteActive.type !== 'sous-consigne') {

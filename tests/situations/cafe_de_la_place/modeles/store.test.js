@@ -83,6 +83,18 @@ describe('Le store de la situation café de la place', function () {
         expect(store.getters.nombreCartes).toEqual(2);
       });
     });
+
+    describe("#sauteALaCarte", function () {
+      it("peut sauter à une carte", function () {
+        store.commit('sauteALaCarte', 'question2');
+        expect(store.state.carteActive).toEqual(question2);
+      });
+
+      it("saute jusqu'a la fin si la carte n'est pas connue", function () {
+        store.commit('sauteALaCarte', 'inconnue');
+        expect(store.state.termine).toBe(true);
+      });
+    });
   });
 
   it('peut enregistrer une réponse et la restituer', function() {

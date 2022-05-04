@@ -52,6 +52,12 @@ export function creeStore () {
 
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
+      },
+
+      sauteALaCarte(state, idCarte) {
+        while(!state.termine && state.carteActive.id != idCarte) {
+          this.commit('carteSuivante');
+        }
       }
     }
   });
