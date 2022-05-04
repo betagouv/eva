@@ -74,6 +74,16 @@ describe('La vue café de la place', function () {
       });
     });
 
+    it("A la configuration, démarre avec la première carte s'il n'y a pas d'ancre", function(done) {
+      location.hash = '';
+      store.state.etat = DEMARRE;
+
+      wrapper.vm.$nextTick(() => {
+        expect(store.state.carteActive).toEqual(sousConsigne);
+        done();
+      });
+    });
+
     describe('#reponse', function () {
       describe('quand la carte active est de type sous consigne', function () {
         it('passes à la carte suivante', function () {
