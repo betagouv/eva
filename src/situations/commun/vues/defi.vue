@@ -16,8 +16,8 @@
         :question="question"
         ref="questionEntete"
       />
-      <div 
-        class="question-contenu" 
+      <div
+        class="question-contenu"
         :class="{'question-contenu--centre': questionSansEntete }"
       >
         <component
