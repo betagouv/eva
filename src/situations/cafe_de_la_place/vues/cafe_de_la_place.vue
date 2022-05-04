@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import Vue from 'vue';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 
@@ -48,7 +48,7 @@ export default {
   watch: {
     acteEnCours (actEnCours) {
       if(actEnCours){
-        this.sauteALaCarte(location.hash.substring(1));
+        this.$store.commit('sauteALaCarte', location.hash.substring(1));
       }
     },
 
@@ -58,15 +58,13 @@ export default {
   },
 
   methods: {
-    ...mapMutations([ 'carteSuivante', 'enregistreReponse', 'sauteALaCarte' ]),
-
     reponse (eventReponse) {
       if(this.carteActive.type !== 'sous-consigne') {
         const donneesReponses = { question: this.carteActive.id, ...eventReponse };
-        this.enregistreReponse(donneesReponses);
+        this.$store.commit('enregistreReponse', donneesReponses);
         this.$journal.enregistre(new EvenementReponse(donneesReponses));
       }
-      this.carteSuivante();
+      this.$store.commit('carteSuivante');
     }
   }
 };
