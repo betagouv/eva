@@ -1,0 +1,29 @@
+.question-entete {
+  display: flex;
+
+  .entete-audio {
+    margin-right: 1rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 20px;
+  }
+
+  .question-avec-son {
+    position: absolute;
+    top: -1rem;
+    left: 1.1875rem;
+  }
+
+  svg {
+    vertical-align: middle;
+  }
+
+  .bouton-lecture--avec-texte {
+    margin-top: 1.5rem;
+  }
+}

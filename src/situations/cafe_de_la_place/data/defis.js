@@ -286,7 +286,6 @@ const titre7 = {
 const alrd11 = {
   id: 'ALrd11',
   nom_technique: 'alrd_11',
-  type: 'ecoute',
   illustration: telephoneSansTitres,
   modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
@@ -300,7 +299,6 @@ const alrd11 = {
 const alrd12 = {
   id: 'ALrd12',
   nom_technique: 'alrd_12',
-  type: 'ecoute',
   illustration: telephoneSansTitres,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
@@ -313,7 +311,6 @@ const alrd12 = {
 const alrd13 = {
   id: 'ALrd13',
   nom_technique: 'alrd_13',
-  type: 'ecoute',
   illustration: telephoneSansTitres,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
@@ -326,7 +323,6 @@ const alrd13 = {
 const alrd14 = {
   id: 'ALrd14',
   nom_technique: 'alrd_14',
-  type: 'ecoute',
   illustration: telephoneSansTitres,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',

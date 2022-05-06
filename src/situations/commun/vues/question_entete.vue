@@ -1,7 +1,7 @@
 <template>
   <div class="question-entete">
     <div
-      v-if="afficheLectureQuestion"
+      v-if="afficheLectureTexteEntete"
       class="entete-audio"
     >
       <div class="question-avec-son">
@@ -18,18 +18,25 @@
       <bouton-lecture
         class="bouton-lecture"
         :nomTechnique="question.nom_technique"
-        ref="boutonLecture"
+        ref="boutonLectureTexteEntete"
       />
     </div>
     <div class="entete-questions">
       <p v-if="question.description" v-html="question.description"></p>
       <p v-if="question.intitule" v-html="question.intitule"></p>
       <p v-if="question.modalite_reponse" class="question-modalite-reponse"><span v-html="question.modalite_reponse"></span></p>
+      <bouton-lecture
+        v-if="afficheLectureQuestionAudio"
+        :nomTechnique="question.reponse.nom_technique"
+        :avecTexte="true"
+        ref="boutonLectureQuestionAudio"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import 'commun/styles/question_entete.scss';
 import BoutonLecture from 'commun/vues/bouton_lecture';
 
 export default {
@@ -43,15 +50,29 @@ export default {
   },
 
   computed: {
-    afficheLectureQuestion () {
+    afficheLectureTexteEntete () {
       return this.$depotRessources.existeMessageAudio(this.question.nom_technique);
+    },
+
+    afficheLectureQuestionAudio () {
+      return this.question.reponse && this.$depotRessources.existeMessageAudio(this.question.reponse.nom_technique);
     }
   },
 
   methods: {
-    demarreSon() {
-      if (this.afficheLectureQuestion) {
-        this.$refs.boutonLecture.demarreSon();
+    demarreSonBouton (ref, callbackFin) {
+      if(ref in this.$refs) {
+        this.$refs[ref].demarreSon(callbackFin);
+      }
+    },
+
+    demarreSon () {
+      if (!this.question.intitule && this.afficheLectureQuestionAudio) {
+        this.demarreSonBouton('boutonLectureQuestionAudio', () => {
+          this.demarreSonBouton('boutonLectureTexteEntete');
+        });
+      } else {
+        this.demarreSonBouton('boutonLectureTexteEntete');
       }
     }
   }
