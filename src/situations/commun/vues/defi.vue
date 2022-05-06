@@ -9,24 +9,26 @@
     />
     <question
       :question="question"
-      class="question--qcm"
     >
       <slot />
-      <question-entete
-        :question="question"
-        ref="questionEntete"
-      />
       <div
-        class="question-contenu"
-        :class="{'question-contenu--centre': questionSansEntete }"
-      >
-        <component
-          v-if="composantContenu"
-          :is="composantContenu"
+        class="question-defi"
+        :class="{'question-defi--centre': questionSansTexte }">
+        <question-entete
           :question="question"
-          v-model="reponse"
-          ref="composantContenu"
+          ref="questionEntete"
         />
+        <div
+          class="question-contenu"
+        >
+          <component
+            v-if="composantContenu"
+            :is="composantContenu"
+            :question="question"
+            v-model="reponse"
+            ref="composantContenu"
+          />
+        </div>
       </div>
       <video-question :nomTechnique="question.nom_technique"/>
       <button
@@ -54,11 +56,10 @@ import Jauge from 'commun/vues/defi/jauge';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
 import Qcm from 'commun/vues/defi/qcm';
 import RedactionNote from 'commun/vues/defi/redaction_note';
-import Ecoute from 'commun/vues/defi/ecoute';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
-  components: { Question, QuestionEntete, VideoQuestion, Jauge, ChampSaisie, Qcm, RedactionNote, Ecoute },
+  components: { Question, QuestionEntete, VideoQuestion, Jauge, ChampSaisie, Qcm, RedactionNote },
 
   props: {
     question: {
@@ -99,7 +100,7 @@ export default {
     },
 
     contenuSansChoix () {
-      return !this.question.type || this.question.type === 'champ-saisie' || this.question.type === 'ecoute';
+      return !this.question.type || this.question.type === 'champ-saisie';
     },
 
     reponsesPossibles () {
@@ -114,7 +115,7 @@ export default {
       return this.question.type == 'sous-consigne' ? 'defi.suivant' : 'defi.valider';
     },
 
-    questionSansEntete () {
+    questionSansTexte () {
       return (!this.question.intitule && !this.question.description && !this.question.modalite_reponse);
     }
   },
@@ -141,13 +142,7 @@ export default {
 
     demarreSon () {
       if (this.acteEnCours) {
-        if (!this.question.intitule && this.$refs.composantContenu.demarreSon) {
-          this.$refs.composantContenu.demarreSon(() => {
-            this.$refs.questionEntete.demarreSon();
-          });
-        } else {
-          this.$refs.questionEntete.demarreSon();
-        }
+        this.$refs.questionEntete.demarreSon();
       }
     }
   }

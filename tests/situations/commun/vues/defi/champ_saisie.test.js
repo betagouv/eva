@@ -108,27 +108,6 @@ describe('Le composant champ de saisie', function () {
     });
   });
 
-  describe('#afficheLectureReponse', function () {
-    beforeEach(function () {
-      const depotRessources = new class {
-        existeMessageAudio (nomTechnique) {
-          return nomTechnique == 'cuisine';
-        }
-      }();
-      localVue.prototype.$depotRessources = depotRessources;
-    });
-
-    it('affiche un bouton lecture lorsque la réponse a un audio associé', function () {
-      vue = composant({ question: { reponse: { nom_technique: 'cuisine' } } });
-      expect(vue.findComponent(BoutonLectureStub).exists()).toBe(true);
-    });
-
-    it("n'affiche pas de bouton lecture lorsque la réponse n'a pas d'audio associé", function () {
-      vue = composant({ question: { reponse: { texte: 'sans audio' } } });
-      expect(vue.findComponent(BoutonLectureStub).exists()).toBe(false);
-    });
-  });
-
   describe('#afficheLectureQuestion', function () {
     beforeEach(function () {
       const depotRessources = new class {
@@ -147,23 +126,6 @@ describe('Le composant champ de saisie', function () {
     it("ne décale pas l'affichage de la réponse", function () {
       vue = composant({ question: { nom_technique: 'question-sans-audio' } });
       expect(vue.find('.defi-champ-saisie--decale').exists()).toBe(false);
-    });
-  });
-
-  describe('#demarreSon', function (){
-    it("ne démarre pas le son quand il n'y a pas de son pour la réponse", function () {
-      const question = { nom_technique: 'question1', id: 154, reponse: { nom_technique: 'reponse1'} };
-      const vue = composant({ question });
-      vue.vm.demarreSon();
-      expect(mockDemarreSon).not.toHaveBeenCalled();
-    });
-
-    it("démarre le son quand il y a un son pour la réponse", function () {
-      const question = { id: 154, reponse: { nom_technique: 'reponse1'} };
-      localVue.prototype.$depotRessources.existeMessageAudio = () => true;
-      const vue = composant({ question });
-      vue.vm.demarreSon();
-      expect(mockDemarreSon).toHaveBeenCalled();
     });
   });
 });
