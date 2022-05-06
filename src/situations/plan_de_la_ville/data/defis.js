@@ -42,7 +42,7 @@ const questionCouleur = {
   type: 'qcm',
   intitule: 'La maison est rouge',
   illustration: MaisonRouge,
-  modalite_reponse: 'Cliquez sur la case qui correspond à la couleur de la maison puis sur Valider.',
+  modalite_reponse: 'Cliquez sur la case qui correspond à la couleur de la maison puis sur « Valider ».',
   choix: [
     {
       id: 'rouge',
@@ -75,7 +75,7 @@ const saisieBoulangerie = {
     texte: 'boulangerie'
   },
   illustration: SaisieBoulangerie,
-  intitule: 'Recopiez le nom “Boulangerie” dans le cadre de texte ci-dessous, puis cliquez sur Valider'
+  intitule: 'Recopiez le nom « Boulangerie » dans le cadre de texte ci-dessous, puis cliquez sur « Valider »'
 };
 
 const deplacementDroiteMaisonVerte = {
