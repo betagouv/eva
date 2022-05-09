@@ -4,6 +4,7 @@ import terrasseCafe from '../assets/terrasse_cafe.png';
 import magazineSansTexte from '../assets/magazine_sans_texte.png';
 import listeDeCourse from '../assets/telephone_liste_de_courses.png';
 import programmeTele from '../assets/programme_tele.png';
+import programmeTeleZoom from '../assets/programme_tele_zoom.png';
 
 const sousConsigneLOdi1 = {
   id: 'LOdi-sous-consigne-1',
@@ -12,6 +13,14 @@ const sousConsigneLOdi1 = {
   nom_technique: 'sous_consigne_LOdi_1',
   intitule: "Vous prenez le magazine qui se trouve sur la table devant vous. Regardez attentivement cette page. Je vais vous poser quelques questions.",
   modalite_reponse: "Faites moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
+};
+
+const sousConsigneLOdi2 = {
+  id: 'LOdi-sous-consigne-2',
+  type: 'sous-consigne',
+  illustration: programmeTeleZoom,
+  nom_technique: 'sous_consigne_LOdi_2',
+  intitule: "Regardons plus en détail le film de 20h45.<br><br>Prenez le temps de lire ce texte, je vous poserai ensuite quelques questions. Rassurez-vous, le texte restera à l'écran et vous pourrez toujours le consulter quand je vous poserai des questions.<br><br>Pour commencer, cliquez sur « Suivant »"
 };
 
 const sousConsigneALrd1 = {
@@ -891,7 +900,7 @@ const APlc20 = {
 
 const configurationNormale = {
   series: [
-    { cartes: [ sousConsigneLOdi1 ] },
+    { cartes: [ sousConsigneLOdi1, sousConsigneLOdi2 ] },
     { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
     {
       texteCliquable: listeChansons,
