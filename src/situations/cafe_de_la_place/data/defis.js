@@ -11,8 +11,7 @@ const sousConsigneLOdi1 = {
   type: 'sous-consigne',
   illustration: programmeTele,
   nom_technique: 'sous_consigne_LOdi_1',
-  intitule: "Vous prenez le magazine qui se trouve sur la table devant vous. Regardez attentivement cette page. Je vais vous poser quelques questions.",
-  modalite_reponse: "Faites moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
+  intitule: "Vous prenez le magazine qui se trouve sur la table devant vous. Regardez attentivement cette page. Je vais vous poser quelques questions.<br><br>Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
 };
 
 const sousConsigneLOdi2 = {
@@ -36,8 +35,7 @@ const sousConsigneALrd2 = {
   type: 'sous-consigne',
   illustration: listeTitresMusique,
   nom_technique: 'sous_consigne_ALrd_2',
-  intitule: "Voici la liste des titres. J'ai quelques questions pour vous.",
-  modalite_reponse:  'Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !'
+  intitule: "Voici la liste des titres. J'ai quelques questions pour vous.<br><br>Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
 };
 
 const sousConsigneACrd1 = {
@@ -47,8 +45,7 @@ const sousConsigneACrd1 = {
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
   nom_technique: 'sous_consigne_ACrd_1',
-  intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.',
-  modalite_reponse: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
+  intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
 const titre1 = {
@@ -419,8 +416,7 @@ const sousConsigneACrd2 = {
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
   nom_technique: 'sous_consigne_ACrd_2',
-  intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.',
-  modalite_reponse: 'Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
+  intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
 const ACrd6 = {
@@ -613,8 +609,7 @@ const sousConsigneAPlc2 = {
   type: 'sous-consigne',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
-  modalite_reponse: 'Pour commencer, cliquez sur « Suivant ».'
+  intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.<br><br>Pour commencer, cliquez sur « Suivant »."
 };
 
 const APlc1 = {
