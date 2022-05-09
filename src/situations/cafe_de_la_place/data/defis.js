@@ -3,6 +3,16 @@ import telephoneSansTitres from '../assets/telephone_sans_titres.png';
 import terrasseCafe from '../assets/terrasse_cafe.png';
 import magazineSansTexte from '../assets/magazine_sans_texte.png';
 import listeDeCourse from '../assets/telephone_liste_de_courses.png';
+import programmeTele from '../assets/programme_tele.png';
+
+const sousConsigneLOdi1 = {
+  id: 'LOdi-sous-consigne-1',
+  type: 'sous-consigne',
+  illustration: programmeTele,
+  nom_technique: 'sous_consigne_LOdi_1',
+  intitule: "Vous prenez le magazine qui se trouve sur la table devant vous. Regardez attentivement cette page. Je vais vous poser quelques questions.",
+  modalite_reponse: "Faites moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
+};
 
 const sousConsigneALrd1 = {
   id: 'ALrd-sous-consigne-1',
@@ -881,6 +891,7 @@ const APlc20 = {
 
 const configurationNormale = {
   series: [
+    { cartes: [ sousConsigneLOdi1 ] },
     { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
     {
       texteCliquable: listeChansons,
