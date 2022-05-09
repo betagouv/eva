@@ -35,6 +35,16 @@ import ACrd8 from 'cafe_de_la_place/assets/audio_questions/ACrd8.mp3';
 import ACrd9 from 'cafe_de_la_place/assets/audio_questions/ACrd9.mp3';
 import ACrd10 from 'cafe_de_la_place/assets/audio_questions/ACrd10.mp3';
 import questionAPlc from 'cafe_de_la_place/assets/audio_questions/APlc.mp3';
+import LOdi1 from 'cafe_de_la_place/assets/audio_questions/LOdi1.mp3';
+import LOdi2 from 'cafe_de_la_place/assets/audio_questions/LOdi2.mp3';
+import LOdi3 from 'cafe_de_la_place/assets/audio_questions/LOdi3.mp3';
+import LOdi4 from 'cafe_de_la_place/assets/audio_questions/LOdi4.mp3';
+import LOdi5 from 'cafe_de_la_place/assets/audio_questions/LOdi5.mp3';
+import LOdi6 from 'cafe_de_la_place/assets/audio_questions/LOdi6.mp3';
+import LOdi7 from 'cafe_de_la_place/assets/audio_questions/LOdi7.mp3';
+import LOdi8 from 'cafe_de_la_place/assets/audio_questions/LOdi8.mp3';
+import LOdi9 from 'cafe_de_la_place/assets/audio_questions/LOdi9.mp3';
+import LOdi10 from 'cafe_de_la_place/assets/audio_questions/LOdi10.mp3';
 
 // AUDIOS REPONSES
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
@@ -106,6 +116,39 @@ import sonLuxe from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_luxe.mp
 import sonCasserole from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_casserole.mp3';
 import sonAdhere from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_adhere.mp3';
 import sonAlcoolique from 'cafe_de_la_place/assets/audio_reponses/APlc/ecrivez_alcoolique.mp3';
+import sonCouverture from 'cafe_de_la_place/assets/audio_reponses/LOdi/couverture.mp3';
+import sonMotsCroises from 'cafe_de_la_place/assets/audio_reponses/LOdi/mots_croises.mp3';
+import sonProgrammeTele from 'cafe_de_la_place/assets/audio_reponses/LOdi/programme_tele.mp3';
+import soncercleDicotino from 'cafe_de_la_place/assets/audio_reponses/LOdi/cercle_dicotino.mp3';
+import soncirqueDicotino from 'cafe_de_la_place/assets/audio_reponses/LOdi/cirque_dicotino.mp3';
+import sonCirqueEtClown from 'cafe_de_la_place/assets/audio_reponses/LOdi/cirque_et_clown.mp3';
+import sonCirqueTino from 'cafe_de_la_place/assets/audio_reponses/LOdi/cirque_tino.mp3';
+import madameCoupin from 'cafe_de_la_place/assets/audio_reponses/LOdi/madame_coupin.mp3';
+import modeChapeau from 'cafe_de_la_place/assets/audio_reponses/LOdi/mode_chapeau.mp3';
+import livre from 'cafe_de_la_place/assets/audio_reponses/LOdi/livre.mp3';
+import confectionChapeau from 'cafe_de_la_place/assets/audio_reponses/LOdi/confection_chapeau.mp3';
+import chapeauMadameCoupin from 'cafe_de_la_place/assets/audio_reponses/LOdi/chapeau_madame_coupin.mp3';
+import chapeauMadameCoutin from 'cafe_de_la_place/assets/audio_reponses/LOdi/chapeau_madame_coutin.mp3';
+import chapeauMadameGoubin from 'cafe_de_la_place/assets/audio_reponses/LOdi/chapeau_madame_goubin.mp3';
+import chatMadameCoupin from 'cafe_de_la_place/assets/audio_reponses/LOdi/chat_madame_coupin.mp3';
+import dinoDepanto from 'cafe_de_la_place/assets/audio_reponses/LOdi/Dino_depanto.mp3';
+import dinoDepianto from 'cafe_de_la_place/assets/audio_reponses/LOdi/Dino_depianto.mp3';
+import binoBepanto from 'cafe_de_la_place/assets/audio_reponses/LOdi/bino_bepanto.mp3';
+import binoBepianto from 'cafe_de_la_place/assets/audio_reponses/LOdi/bino_bepianto.mp3';
+import belgique from 'cafe_de_la_place/assets/audio_reponses/LOdi/belgique.mp3';
+import brousse from 'cafe_de_la_place/assets/audio_reponses/LOdi/brousse.mp3';
+import bresse from 'cafe_de_la_place/assets/audio_reponses/LOdi/bresse.mp3';
+import bruges from 'cafe_de_la_place/assets/audio_reponses/LOdi/bruges.mp3';
+import son17Ans from 'cafe_de_la_place/assets/audio_reponses/LOdi/17_ans.mp3';
+import son18Ans from 'cafe_de_la_place/assets/audio_reponses/LOdi/18_ans.mp3';
+import son24Ans from 'cafe_de_la_place/assets/audio_reponses/LOdi/24_ans.mp3';
+import sonPlusAge from 'cafe_de_la_place/assets/audio_reponses/LOdi/plus_age.mp3';
+import sonPlusJeune from 'cafe_de_la_place/assets/audio_reponses/LOdi/plus_jeune.mp3';
+import sonMemeAge from 'cafe_de_la_place/assets/audio_reponses/LOdi/meme_age.mp3';
+import sonDramatique from 'cafe_de_la_place/assets/audio_reponses/LOdi/dramatique.mp3';
+import sonChoquant from 'cafe_de_la_place/assets/audio_reponses/LOdi/choquant.mp3';
+import sonErotique from 'cafe_de_la_place/assets/audio_reponses/LOdi/erotique.mp3';
+import sonPoetique from 'cafe_de_la_place/assets/audio_reponses/LOdi/poetique.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_ALrd_1: sousConsigneALrd1,
@@ -140,7 +183,17 @@ const AUDIOS_QUESTIONS = {
   acrd_8: ACrd8,
   acrd_9: ACrd9,
   acrd_10: ACrd10,
-  aplc_1: questionAPlc
+  aplc_1: questionAPlc,
+  lodi_1: LOdi1,
+  lodi_2: LOdi2,
+  lodi_3: LOdi3,
+  lodi_4: LOdi4,
+  lodi_5: LOdi5,
+  lodi_6: LOdi6,
+  lodi_7: LOdi7,
+  lodi_8: LOdi8,
+  lodi_9: LOdi9,
+  lodi_10: LOdi10
 };
 
 const AUDIOS_REPONSES = {
@@ -212,7 +265,40 @@ const AUDIOS_REPONSES = {
   luxe: sonLuxe,
   casserole: sonCasserole,
   adhere: sonAdhere,
-  alcoolique: sonAlcoolique
+  alcoolique: sonAlcoolique,
+  couverture: sonCouverture,
+  programme_tele: sonProgrammeTele,
+  mots_croises: sonMotsCroises,
+  cercle_dicotino: soncercleDicotino,
+  cirque_et_clown: sonCirqueEtClown,
+  cirque_dicotino: soncirqueDicotino,
+  cirque_tino: sonCirqueTino,
+  madame_coupin: madameCoupin,
+  mode_chapeau: modeChapeau,
+  livre: livre,
+  confection_chapeau: confectionChapeau,
+  chapeau_madame_coupin: chapeauMadameCoupin,
+  chapeau_madame_coutin: chapeauMadameCoutin,
+  chapeau_madame_goubin: chapeauMadameGoubin,
+  chat_madame_coupin: chatMadameCoupin,
+  dino_depanto: dinoDepanto,
+  dino_depianto: dinoDepianto,
+  bino_bepanto: binoBepanto,
+  bino_bepianto: binoBepianto,
+  belgique: belgique,
+  brousse: brousse,
+  bresse: bresse,
+  bruges: bruges,
+  dix_sept_ans: son17Ans,
+  dix_huit_ans: son18Ans,
+  vingt_quatre_ans: son24Ans,
+  plus_age: sonPlusAge,
+  plus_jeune: sonPlusJeune,
+  meme_age: sonMemeAge,
+  dramatique: sonDramatique,
+  choquant: sonChoquant,
+  erotique: sonErotique,
+  poetique: sonPoetique
 };
 
 const messagesVideos = {};
