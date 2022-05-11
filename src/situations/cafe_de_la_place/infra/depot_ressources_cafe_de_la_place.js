@@ -131,8 +131,8 @@ import chapeauMadameCoupin from 'cafe_de_la_place/assets/audio_reponses/LOdi/cha
 import chapeauMadameCoutin from 'cafe_de_la_place/assets/audio_reponses/LOdi/chapeau_madame_coutin.mp3';
 import chapeauMadameGoubin from 'cafe_de_la_place/assets/audio_reponses/LOdi/chapeau_madame_goubin.mp3';
 import chatMadameCoupin from 'cafe_de_la_place/assets/audio_reponses/LOdi/chat_madame_coupin.mp3';
-import dinoDepanto from 'cafe_de_la_place/assets/audio_reponses/LOdi/Dino_depanto.mp3';
-import dinoDepianto from 'cafe_de_la_place/assets/audio_reponses/LOdi/Dino_depianto.mp3';
+import dinoDepanto from 'cafe_de_la_place/assets/audio_reponses/LOdi/dino_depanto.mp3';
+import dinoDepianto from 'cafe_de_la_place/assets/audio_reponses/LOdi/dino_depianto.mp3';
 import binoBepanto from 'cafe_de_la_place/assets/audio_reponses/LOdi/bino_bepanto.mp3';
 import binoBepianto from 'cafe_de_la_place/assets/audio_reponses/LOdi/bino_bepianto.mp3';
 import belgique from 'cafe_de_la_place/assets/audio_reponses/LOdi/belgique.mp3';
