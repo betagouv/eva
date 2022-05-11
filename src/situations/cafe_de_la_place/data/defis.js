@@ -295,6 +295,85 @@ const LOdi10 = {
   ]
 };
 
+const LOdi11 = {
+  id: 'LOdi11',
+  nom_technique: 'lodi_11',
+  type: 'qcm',
+  illustration: programmeTeleZoom,
+  intitule: "À votre avis, l’image représente-t-elle Charles au début du film ou à la fin du film ?",
+  choix: [
+    {
+      id: 'debutFilm',
+      nom_technique: 'debut_film',
+      bonneReponse: false,
+      intitule: 'Au début du film'
+    },
+    {
+      id: 'finFilm',
+      nom_technique: 'fin_film',
+      bonneReponse: true,
+      intitule: 'À la fin du film'
+    }
+  ]
+};
+
+const LOdi12 = {
+  id: 'LOdi12',
+  nom_technique: 'lodi_12',
+  type: 'qcm',
+  illustration: programmeTeleZoom,
+  intitule: "Pourquoi Charles est-il devenu clown dans le cirque ?",
+  choix: [
+    {
+      id: 'sautPerilleux',
+      nom_technique: 'saut_perilleux',
+      bonneReponse: true,
+      intitule: 'Parce qu’il a été accidenté en faisant un saut périlleux'
+    },
+    {
+      id: 'trapeze',
+      nom_technique: 'trapeze',
+      bonneReponse: false,
+      intitule: 'Parce qu’il n’aime plus faire du trapèze'
+    },
+    {
+      id: 'numerosDangereux',
+      nom_technique: 'numeros_dangeureux',
+      bonneReponse: false,
+      intitule: 'Pour faire des numéros de plus en plus dangereux'
+    }
+  ]
+};
+
+const LOdi13 = {
+  id: 'LOdi13',
+  nom_technique: 'lodi_13',
+  type: 'qcm',
+  illustration: programmeTeleZoom,
+  intitule: "Lisez ces affirmations. Laquelle correspond à l’histoire du film ?",
+  choix: [
+    {
+      id: 'trapezisteTombe',
+      nom_technique: 'trapeziste_tombe',
+      bonneReponse: true,
+      intitule: 'Un trapéziste tombe et se blesse'
+    },
+    {
+      id: 'vide',
+      nom_technique: 'vide',
+      bonneReponse: false,
+      intitule: 'Bruno a jeté Charles dans le vide'
+    },
+    {
+      id: 'aventuresHandicape',
+      nom_technique: 'aventures_handicape',
+      bonneReponse: false,
+      intitule: 'Les aventures d’un handicapé'
+    }
+  ]
+};
+
+
 const sousConsigneALrd1 = {
   id: 'ALrd-sous-consigne-1',
   type: 'sous-consigne',
@@ -1171,7 +1250,7 @@ const configurationNormale = {
     { cartes: [ sousConsigneLOdi1 ] },
     { cartes: [ LOdi1, LOdi2, LOdi3, LOdi4, LOdi5 ] },
     { cartes: [ sousConsigneLOdi2 ] },
-    { cartes: [ LOdi6, LOdi7, LOdi8, LOdi9, LOdi10 ] },
+    { cartes: [ LOdi6, LOdi7, LOdi8, LOdi9, LOdi10, LOdi11, LOdi12, LOdi13 ] },
     { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
     {
       texteCliquable: listeChansons,

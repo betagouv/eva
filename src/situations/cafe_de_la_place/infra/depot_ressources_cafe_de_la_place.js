@@ -45,6 +45,9 @@ import LOdi7 from 'cafe_de_la_place/assets/audio_questions/LOdi7.mp3';
 import LOdi8 from 'cafe_de_la_place/assets/audio_questions/LOdi8.mp3';
 import LOdi9 from 'cafe_de_la_place/assets/audio_questions/LOdi9.mp3';
 import LOdi10 from 'cafe_de_la_place/assets/audio_questions/LOdi10.mp3';
+import LOdi11 from 'cafe_de_la_place/assets/audio_questions/LOdi11.mp3';
+import LOdi12 from 'cafe_de_la_place/assets/audio_questions/LOdi12.mp3';
+import LOdi13 from 'cafe_de_la_place/assets/audio_questions/LOdi13.mp3';
 
 // AUDIOS REPONSES
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
@@ -149,6 +152,14 @@ import sonDramatique from 'cafe_de_la_place/assets/audio_reponses/LOdi/dramatiqu
 import sonChoquant from 'cafe_de_la_place/assets/audio_reponses/LOdi/choquant.mp3';
 import sonErotique from 'cafe_de_la_place/assets/audio_reponses/LOdi/erotique.mp3';
 import sonPoetique from 'cafe_de_la_place/assets/audio_reponses/LOdi/poetique.mp3';
+import sonDebutFilm from 'cafe_de_la_place/assets/audio_reponses/LOdi/debut_film.mp3';
+import sonFinFilm from 'cafe_de_la_place/assets/audio_reponses/LOdi/fin_film.mp3';
+import sautPerilleux from 'cafe_de_la_place/assets/audio_reponses/LOdi/saut_perilleux.mp3';
+import trapeze from 'cafe_de_la_place/assets/audio_reponses/LOdi/trapeze.mp3';
+import numerosDangereux from 'cafe_de_la_place/assets/audio_reponses/LOdi/numeros_dangeureux.mp3';
+import trapezisteTombe from 'cafe_de_la_place/assets/audio_reponses/LOdi/trapeziste_tombe.mp3';
+import vide from 'cafe_de_la_place/assets/audio_reponses/LOdi/vide.mp3';
+import aventuresHandicape from 'cafe_de_la_place/assets/audio_reponses/LOdi/aventures_handicape.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_ALrd_1: sousConsigneALrd1,
@@ -193,7 +204,11 @@ const AUDIOS_QUESTIONS = {
   lodi_7: LOdi7,
   lodi_8: LOdi8,
   lodi_9: LOdi9,
-  lodi_10: LOdi10
+  lodi_10: LOdi10,
+  lodi_11: LOdi11,
+  lodi_12: LOdi12,
+  lodi_13: LOdi13
+
 };
 
 const AUDIOS_REPONSES = {
@@ -298,7 +313,15 @@ const AUDIOS_REPONSES = {
   dramatique: sonDramatique,
   choquant: sonChoquant,
   erotique: sonErotique,
-  poetique: sonPoetique
+  poetique: sonPoetique,
+  aventures_handicape: aventuresHandicape,
+  trapeziste_tombe: trapezisteTombe,
+  numeros_dangeureux: numerosDangereux,
+  trapeze: trapeze,
+  saut_perilleux: sautPerilleux,
+  vide: vide,
+  fin_film: sonFinFilm,
+  debut_film: sonDebutFilm
 };
 
 const messagesVideos = {};
