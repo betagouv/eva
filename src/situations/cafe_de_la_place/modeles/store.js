@@ -9,7 +9,6 @@ export function creeStore () {
       carteActive: {},
       series: [],
       termine: false,
-      parcoursTermine: false,
       reponses: {},
       score: 0
     },
@@ -31,9 +30,7 @@ export function creeStore () {
     mutations: {
       configureActe (state, configuration) {
         state.configuration = configuration;
-        state.parcours = 'orientation';
-        state.series = state.configuration.orientation.series;
-        state.carteActive = state.series[0].cartes[0];
+        this.commit('demarreParcours', 'orientation');
       },
 
       carteSuivanteParcours(state) {
@@ -54,15 +51,20 @@ export function creeStore () {
         }
       },
 
+      demarreParcours(state, parcours) {
+        state.parcours = parcours;
+        state.parcoursTermine = false;
+        state.indexSerie = 0;
+        state.indexCarte = 0;
+        state.series = state.configuration[state.parcours].series;
+        state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+      },
+
       carteSuivante(state) {
         this.commit('carteSuivanteParcours');
         if(state.parcoursTermine) {
           if(state.parcours == 'orientation') {
-            state.parcours = state.score < 10 ? 'parcoursBas' : 'parcoursHaut';
-            state.parcoursTermine = false;
-            state.indexSerie = 0;
-            state.series = state.configuration[state.parcours].series;
-            state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+            this.commit('demarreParcours', state.score < 10 ? 'parcoursBas' : 'parcoursHaut');
           }
           else {
             state.termine = true;
@@ -79,7 +81,14 @@ export function creeStore () {
 
       sauteALaCarte(state, idCarte) {
         while(!state.parcoursTermine && state.carteActive.id != idCarte) {
-          this.commit('carteSuivanteParcours');
+          this.commit('carteSuivante');
+        }
+        if(state.termine){
+          state.termine = false;
+          this.commit('demarreParcours', 'parcoursHaut');
+          while(!state.parcoursTermine && state.carteActive.id != idCarte) {
+            this.commit('carteSuivante');
+          }
         }
       }
     }
