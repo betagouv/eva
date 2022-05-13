@@ -62,7 +62,7 @@ export function creeStore () {
 
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
-        if(reponse.succes) {
+        if(reponse.succes && reponse.score) {
           state.score += reponse.score;
         }
       },

@@ -56,6 +56,7 @@ const LOdi2 = {
   type: 'qcm',
   illustration: programmeTeleCirque,
   intitule: "Il s'agit d'un programme télé ! Il y a un film à 20 h 45. Quel est son titre ?",
+  score: 1,
   choix: [
     {
       id: 'cirqueEtClown',
@@ -86,6 +87,7 @@ const LOdi3 = {
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "18 h 55<br>« Les livres ont la parole ». En lisant le sous-titre, pouvez-vous dire quel est le sujet de l’émission ?",
+  score: 1,
   choix: [
     {
       id: 'madame_coupin',
@@ -116,6 +118,7 @@ const LOdi4 = {
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "Donc, c’est une émission sur les livres. Quel est le nom du livre dont on parle ?",
+  score: 1,
   choix: [
     {
       id: 'chatMadameCoupin',
@@ -146,6 +149,7 @@ const LOdi5 = {
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "Comment s’appelle le premier invité de cette émission ?",
+  score: 1,
   choix: [
     {
       id: 'dinoDepianto',
@@ -176,6 +180,7 @@ const LOdi6 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Dans quelle ville a été créé le cirque ?",
+  score: 1,
   choix: [
     {
       id: 'belgique',
@@ -206,6 +211,7 @@ const LOdi7 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Quel âge a la personne accidentée ?",
+  score: 1,
   choix: [
     {
       id: '17ans',
@@ -231,6 +237,7 @@ const LOdi8 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Charles est-il plus âgé ou plus jeune que Bruno ?",
+  score: 1,
   choix: [
     {
       id: 'plusAge',
@@ -256,6 +263,7 @@ const LOdi9 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "D’après l’avis du programme télé, s’agit-il d’un film dramatique ou d’un film drôle ?",
+  score: 1,
   choix: [
     {
       id: 'dramatique',
@@ -276,6 +284,7 @@ const LOdi10 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Ce film est-il poétique, choquant ou érotique ?",
+  score: 1,
   choix: [
     {
       id: 'poetique',
@@ -301,6 +310,7 @@ const LOdi11 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "À votre avis, l’image représente-t-elle Charles au début du film ou à la fin du film ?",
+  score: 1,
   choix: [
     {
       id: 'debutFilm',
@@ -323,6 +333,7 @@ const LOdi12 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Pourquoi Charles est-il devenu clown dans le cirque ?",
+  score: 1,
   choix: [
     {
       id: 'sautPerilleux',
@@ -351,6 +362,7 @@ const LOdi13 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Lisez ces affirmations. Laquelle correspond à l’histoire du film ?",
+  score: 1,
   choix: [
     {
       id: 'trapezisteTombe',
