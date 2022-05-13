@@ -9,6 +9,7 @@ export function creeStore () {
       carteActive: {},
       series: [],
       termine: false,
+      parcoursTermine: false,
       reponses: {},
       score: 0
     },
@@ -28,12 +29,14 @@ export function creeStore () {
     },
 
     mutations: {
-      configureActe (state, { series }) {
-        state.series = series;
+      configureActe (state, configuration) {
+        state.configuration = configuration;
+        state.parcours = 'orientation';
+        state.series = state.configuration.orientation.series;
         state.carteActive = state.series[0].cartes[0];
       },
 
-      avanceDUneCarte(state) {
+      carteSuivanteParcours(state) {
         state.indexCarte++;
         if (state.indexCarte < state.series[state.indexSerie].cartes.length) {
           state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
@@ -46,17 +49,24 @@ export function creeStore () {
           }
           else {
             state.indexSerie--;
-            state.termine = true;
+            state.parcoursTermine = true;
           }
         }
       },
 
       carteSuivante(state) {
-        if(state.carteActive.id == 'LOdi13') {
-          this.commit('avanceDUneCarte');
-        }
-        else {
-          this.commit('avanceDUneCarte');
+        this.commit('carteSuivanteParcours');
+        if(state.parcoursTermine) {
+          if(state.parcours == 'orientation') {
+            state.parcours = state.score < 10 ? 'parcoursBas' : 'parcoursHaut';
+            state.parcoursTermine = false;
+            state.indexSerie = 0;
+            state.series = state.configuration[state.parcours].series;
+            state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+          }
+          else {
+            state.termine = true;
+          }
         }
       },
 
@@ -68,8 +78,8 @@ export function creeStore () {
       },
 
       sauteALaCarte(state, idCarte) {
-        while(!state.termine && state.carteActive.id != idCarte) {
-          this.commit('avanceDUneCarte');
+        while(!state.parcoursTermine && state.carteActive.id != idCarte) {
+          this.commit('carteSuivanteParcours');
         }
       }
     }

@@ -1257,36 +1257,54 @@ const APlc20 = {
   }
 };
 
+const sousConsigneHPar1 = {
+  id: 'HPar-sous-consigne-1',
+  nom_technique: 'sous_consigne_HPar_1',
+  type: 'sous-consigne',
+  intitule: "Première sous-consigne du parcours Haut à venir",
+};
+
 const configurationNormale = {
-  series: [
-    { cartes: [ sousConsigneLOdi1 ] },
-    { cartes: [ LOdi1, LOdi2, LOdi3, LOdi4, LOdi5 ] },
-    { cartes: [ sousConsigneLOdi2 ] },
-    { cartes: [ LOdi6, LOdi7, LOdi8, LOdi9, LOdi10, LOdi11, LOdi12, LOdi13 ] },
-    { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
-    {
-      texteCliquable: listeChansons,
-      cartes: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
-    },
-    {
-      texteCliquable: texteMagazineNonCliquable,
-      cartes: [ sousConsigneACrd1 ]
-    },
-    {
-      texteCliquable: texteMagazine,
-      cartes: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
-    },
-    {
-      texteCliquable: texteMagazineNonCliquable,
-      cartes: [ sousConsigneACrd2 ]
-    },
-    {
-      texteCliquable: texteMagazineNonCliquable,
-      cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
-    },
-    { cartes: [ sousConsigneAPlc1, sousConsigneAPlc2 ] },
-    { cartes: [ APlc1, APlc2, APlc3, APlc4, APlc5, APlc6, APlc7, APlc8, APlc9, APlc10, APlc11, APlc12, APlc13, APlc14, APlc15, APlc16, APlc17, APlc18, APlc19, APlc20 ] }
-  ]
+  orientation: {
+    series: [
+      { cartes: [ sousConsigneLOdi1 ] },
+      { cartes: [ LOdi1, LOdi2, LOdi3, LOdi4, LOdi5 ] },
+      { cartes: [ sousConsigneLOdi2 ] },
+      { cartes: [ LOdi6, LOdi7, LOdi8, LOdi9, LOdi10, LOdi11, LOdi12, LOdi13 ] },
+    ]
+  },
+  parcoursBas: {
+    series: [
+      { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
+      {
+        texteCliquable: listeChansons,
+        cartes: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
+      },
+      {
+        texteCliquable: texteMagazineNonCliquable,
+        cartes: [ sousConsigneACrd1 ]
+      },
+      {
+        texteCliquable: texteMagazine,
+        cartes: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
+      },
+      {
+        texteCliquable: texteMagazineNonCliquable,
+        cartes: [ sousConsigneACrd2 ]
+      },
+      {
+        texteCliquable: texteMagazineNonCliquable,
+        cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
+      },
+      { cartes: [ sousConsigneAPlc1, sousConsigneAPlc2 ] },
+      { cartes: [ APlc1, APlc2, APlc3, APlc4, APlc5, APlc6, APlc7, APlc8, APlc9, APlc10, APlc11, APlc12, APlc13, APlc14, APlc15, APlc16, APlc17, APlc18, APlc19, APlc20 ] }
+    ]
+  },
+  parcoursHaut: {
+    series: [
+      { cartes: [ sousConsigneHPar1 ] },
+    ]
+  }
 };
 
 export { configurationNormale };
