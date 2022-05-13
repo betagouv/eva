@@ -107,6 +107,12 @@ describe('Le store de la situation café de la place', function () {
       expect(store.getters.reponse('id1')).toEqual(laReponse);
     });
 
+    it("quand une réponse correcte n'a pas de score", function() {
+      const laReponse = { succes: true };
+      store.commit('enregistreReponse', laReponse);
+      expect(store.state.score).toEqual(0);
+    });
+
     it("Ajoute le score d'une réponse correcte", function() {
       const laReponse = { score: 1, succes: true };
       store.commit('enregistreReponse', laReponse);
@@ -119,7 +125,7 @@ describe('Le store de la situation café de la place', function () {
       expect(store.state.score).toEqual(0);
     });
 
-    it("accumule les scores au fure et a mesure des reponses", function() {
+    it("accumule les scores au fur et a mesure des reponses", function() {
       const reponse1 = { score: 1, succes: true };
       store.commit('enregistreReponse', reponse1);
       const reponse2 = { score: 2, succes: true };
