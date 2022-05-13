@@ -9,7 +9,8 @@ export function creeStore () {
       carteActive: {},
       series: [],
       termine: false,
-      reponses: {}
+      reponses: {},
+      score: 0
     },
 
     getters: {
@@ -32,7 +33,7 @@ export function creeStore () {
         state.carteActive = state.series[0].cartes[0];
       },
 
-      carteSuivante(state) {
+      avanceDUneCarte(state) {
         state.indexCarte++;
         if (state.indexCarte < state.series[state.indexSerie].cartes.length) {
           state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
@@ -50,13 +51,25 @@ export function creeStore () {
         }
       },
 
+      carteSuivante(state) {
+        if(state.carteActive.id == 'LOdi13') {
+          this.commit('avanceDUneCarte');
+        }
+        else {
+          this.commit('avanceDUneCarte');
+        }
+      },
+
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
+        if(reponse.succes) {
+          state.score += reponse.score;
+        }
       },
 
       sauteALaCarte(state, idCarte) {
         while(!state.termine && state.carteActive.id != idCarte) {
-          this.commit('carteSuivante');
+          this.commit('avanceDUneCarte');
         }
       }
     }

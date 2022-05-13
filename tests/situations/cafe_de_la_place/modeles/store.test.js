@@ -22,9 +22,12 @@ describe('Le store de la situation café de la place', function () {
     ]
   };
 
+  beforeEach(function() {
+    store = creeStore();
+  });
+
   describe('quand un acte est configuré', function() {
     beforeEach(function() {
-      store = creeStore();
       store.commit('configureActe', configuration);
     });
 
@@ -97,9 +100,31 @@ describe('Le store de la situation café de la place', function () {
     });
   });
 
-  it('peut enregistrer une réponse et la restituer', function() {
-    const laReponse = { question: 'id1', reponse: 'ma reponse' };
-    store.commit('enregistreReponse', laReponse);
-    expect(store.getters.reponse('id1')).toEqual(laReponse);
+  describe("#enregistreReponse", function() {
+    it('peut enregistrer une réponse et la restituer', function() {
+      const laReponse = { question: 'id1', reponse: 'ma reponse' };
+      store.commit('enregistreReponse', laReponse);
+      expect(store.getters.reponse('id1')).toEqual(laReponse);
+    });
+
+    it("Ajoute le score d'une réponse correcte", function() {
+      const laReponse = { score: 1, succes: true };
+      store.commit('enregistreReponse', laReponse);
+      expect(store.state.score).toEqual(1);
+    });
+
+    it("n'ajoute pas le score d'une réponse incorrecte", function() {
+      const laReponse = { score: 1, succes: false };
+      store.commit('enregistreReponse', laReponse);
+      expect(store.state.score).toEqual(0);
+    });
+
+    it("accumule les scores au fure et a mesure des reponses", function() {
+      const reponse1 = { score: 1, succes: true };
+      store.commit('enregistreReponse', reponse1);
+      const reponse2 = { score: 2, succes: true };
+      store.commit('enregistreReponse', reponse2);
+      expect(store.state.score).toEqual(3);
+    });
   });
 });
