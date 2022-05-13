@@ -28,10 +28,12 @@ describe('La vue café de la place', function () {
   describe('quand elle est configurée', function () {
     beforeEach(function() {
       store.commit('configureActe', {
-        series: [
-          { cartes: [sousConsigne] },
-          { cartes: [question] }
-        ]
+        orientation: {
+          series: [
+            { cartes: [sousConsigne] },
+            { cartes: [question] }
+          ]
+        }
       });
     });
 

@@ -6,29 +6,31 @@ describe('Le composant Trou A completer', function () {
   let wrapper;
   let localVue;
   let store;
-  const premiereQuestion = { id: 'aplc1'};
   const question1 = 'aplc1';
-  const question2 = 'aplc2';
 
   beforeEach(function () {
     store = creeStore();
-    store.commit('configureActe', {
-      series: [
-        { cartes: [premiereQuestion] }
-      ]
-    });
     localVue = createLocalVue();
   });
 
+  function composant(idQuestion) {
+    return shallowMount(TrouACompleter, {
+      localVue,
+      store,
+      propsData: { idQuestion: idQuestion }
+    });
+  }
+
   describe('#trouEnCours', function () {
     it("ajoute la classe reponse--en-cours quand il s'agit de la réponse à compléter", function () {
-      wrapper = shallowMount(TrouACompleter, { localVue, store, propsData: { idQuestion: question1 } });
+      store.state.carteActive = { id: question1 };
+      wrapper = composant(question1);
       const trou = wrapper.find('span');
       expect(trou.classes('reponse--en-cours')).toBe(true);
     });
 
     it("ne rajoute pas la classe reponse--en-cours quand il ne s'agit pas de la réponse à completer", function () {
-      wrapper = shallowMount(TrouACompleter, { localVue, store, propsData: { idQuestion: question2 } });
+      wrapper = composant(question1);
       const trou = wrapper.find('span');
       expect(trou.classes('reponse--en-cours')).toBe(false);
     });
@@ -36,7 +38,7 @@ describe('Le composant Trou A completer', function () {
 
   describe("quand il n'y a pas de réponse", function () {
     beforeEach(function () {
-      wrapper = shallowMount(TrouACompleter, { localVue, store, propsData: { idQuestion: question1 } });
+      wrapper = composant(question1);
     });
 
     it("affiche par défaut le contenu de remplissage", function () {
@@ -54,7 +56,7 @@ describe('Le composant Trou A completer', function () {
   describe("quand il y a une réponse", function () {
     beforeEach(function () {
       store.state.reponses = { aplc1: { question: 'aplc1', reponse: 'saladiers' }};
-      wrapper = shallowMount(TrouACompleter, { localVue, store, propsData: { idQuestion: question1 } });
+      wrapper = composant(question1);
     });
 
     it("affiche le contenu de la valeur", function () {
