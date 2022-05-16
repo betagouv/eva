@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { creeStore } from 'cafe_de_la_place/modeles/store';
+import { creeStore, ORIENTATION } from 'cafe_de_la_place/modeles/store';
 import Defi from 'commun/vues/defi';
 import CafeDeLaPlace from 'cafe_de_la_place/vues/cafe_de_la_place';
 import Pagination from 'commun/vues/components/pagination';
@@ -28,7 +28,7 @@ describe('La vue café de la place', function () {
   describe('quand elle est configurée', function () {
     beforeEach(function() {
       store.commit('configureActe', {
-        orientation: {
+        [ORIENTATION]: {
           series: [
             { cartes: [sousConsigne] },
             { cartes: [question] }
