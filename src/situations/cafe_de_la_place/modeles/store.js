@@ -1,5 +1,9 @@
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
 
+export const ORIENTATION = 'orientation';
+export const PARCOURS_BAS = 'parcoursBas';
+export const PARCOURS_HAUT = 'parcoursHaut';
+
 export function creeStore () {
   return creeStoreCommun({
     state: {
@@ -30,7 +34,7 @@ export function creeStore () {
     mutations: {
       configureActe (state, configuration) {
         state.configuration = configuration;
-        this.commit('demarreParcours', 'orientation');
+        this.commit('demarreParcours', ORIENTATION);
       },
 
       carteSuivanteParcours(state) {
@@ -63,8 +67,8 @@ export function creeStore () {
       carteSuivante(state) {
         this.commit('carteSuivanteParcours');
         if(state.parcoursTermine) {
-          if(state.parcours == 'orientation') {
-            this.commit('demarreParcours', state.score < 10 ? 'parcoursBas' : 'parcoursHaut');
+          if(state.parcours == ORIENTATION) {
+            this.commit('demarreParcours', state.score < 10 ? PARCOURS_BAS : PARCOURS_HAUT);
           }
           else {
             state.termine = true;
@@ -85,7 +89,7 @@ export function creeStore () {
         }
         if(state.termine){
           state.termine = false;
-          this.commit('demarreParcours', 'parcoursHaut');
+          this.commit('demarreParcours', PARCOURS_HAUT);
           while(!state.parcoursTermine && state.carteActive.id != idCarte) {
             this.commit('carteSuivante');
           }

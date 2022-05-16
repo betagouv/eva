@@ -8,6 +8,8 @@ import programmeTeleZoom from '../assets/programme_tele_zoom.png';
 import programmeTeleCirque from '../assets/programme_tele_cirque.png';
 import programmeTele18h55 from '../assets/programme_tele_18h55.png';
 
+import { ORIENTATION, PARCOURS_BAS, PARCOURS_HAUT } from '../modeles/store.js';
+
 const sousConsigneLOdi1 = {
   id: 'LOdi-sous-consigne-1',
   type: 'sous-consigne',
@@ -1265,7 +1267,7 @@ const sousConsigneHPar1 = {
 };
 
 const configurationNormale = {
-  orientation: {
+  [ORIENTATION]: {
     series: [
       { cartes: [ sousConsigneLOdi1 ] },
       { cartes: [ LOdi1, LOdi2, LOdi3, LOdi4, LOdi5 ] },
@@ -1273,7 +1275,7 @@ const configurationNormale = {
       { cartes: [ LOdi6, LOdi7, LOdi8, LOdi9, LOdi10, LOdi11, LOdi12, LOdi13 ] },
     ]
   },
-  parcoursBas: {
+  [PARCOURS_BAS]: {
     series: [
       { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
       {
@@ -1300,7 +1302,7 @@ const configurationNormale = {
       { cartes: [ APlc1, APlc2, APlc3, APlc4, APlc5, APlc6, APlc7, APlc8, APlc9, APlc10, APlc11, APlc12, APlc13, APlc14, APlc15, APlc16, APlc17, APlc18, APlc19, APlc20 ] }
     ]
   },
-  parcoursHaut: {
+  [PARCOURS_HAUT]: {
     series: [
       { cartes: [ sousConsigneHPar1 ] },
     ]

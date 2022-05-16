@@ -1,4 +1,4 @@
-import { creeStore } from 'cafe_de_la_place/modeles/store';
+import { creeStore, ORIENTATION, PARCOURS_BAS, PARCOURS_HAUT } from 'cafe_de_la_place/modeles/store';
 
 describe('Le store de la situation café de la place', function () {
   let store;
@@ -14,7 +14,7 @@ describe('Le store de la situation café de la place', function () {
   const question1Haut = { id: 'question1Haut'};
 
   const configuration = {
-    orientation: {
+    [ORIENTATION]: {
       series: [
         {
           cartes: [premiereSousConsigne, deuxiemeSousConsigne],
@@ -25,12 +25,12 @@ describe('Le store de la situation café de la place', function () {
         { cartes: [question3, question4] }
       ]
     },
-    parcoursBas: {
+    [PARCOURS_BAS]: {
       series: [
         { cartes: [question1Bas, question2Bas] }
       ]
     },
-    parcoursHaut: {
+    [PARCOURS_HAUT]: {
       series: [
         { cartes: [question1Haut] }
       ]
