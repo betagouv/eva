@@ -30,7 +30,7 @@
           />
         </div>
       </div>
-      <video-question :nomTechnique="question.nom_technique"/>
+      <video-question :nomTechnique="question.nom_technique_mini_tuto"/>
       <button
         v-if="question.type != 'action'"
         :disabled="disabled"

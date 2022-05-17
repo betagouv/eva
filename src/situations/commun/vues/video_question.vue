@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import { estMobile } from 'commun/helpers/mobile';
-
 export default {
   props: {
     nomTechnique: {
@@ -15,13 +13,9 @@ export default {
     }
   },
 
-  data() {
-    return { estMobile };
-  },
-
   computed: {
     afficheVideo () {
-      return !this.estMobile && this.$depotRessources.existeMessageVideo(this.nomTechnique);
+      return this.$depotRessources.existeMessageVideo(this.nomTechnique);
     },
 
     source () {

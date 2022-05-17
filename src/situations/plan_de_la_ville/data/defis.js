@@ -6,6 +6,8 @@ import DeplacementDroiteMaisonVerte from '../assets/deplacement_droite_maison_ve
 import rouge from '../assets/rouge.svg';
 import vert from '../assets/vert.svg';
 import bleu from '../assets/bleu.svg';
+import { estMobile } from 'commun/helpers/mobile';
+
 
 const modeEmploi = {
   id: 'mode-emploi',
@@ -21,6 +23,7 @@ const clicMaisonBleue = {
   id: 'clic-maison-bleue',
   type: 'action',
   nom_technique: 'clic_maison_bleue',
+  nom_technique_mini_tuto: estMobile ? undefined : 'clic_maison_bleue',
   illustration: AccueilSansEglise,
   intitule: 'Cliquez sur la maison bleue',
   extensionVue: 'clic-maison-bleue'
@@ -29,10 +32,13 @@ const clicMaisonBleue = {
 const dragAndDrop = {
   id: 'drag-and-drop',
   type: 'action',
-  nom_technique: 'drag_and_drop',
+  nom_technique: estMobile ? 'drag_and_drop_mobile' : 'drag_and_drop',
+  nom_technique_mini_tuto: estMobile ? undefined : 'drag_and_drop',
   illustration: IllustrationDragAndDrop,
   intitule: 'Super ! Maintenant, ajoutez une maison au village.',
-  modalite_reponse: 'Pour cela cliquez sur la maison en dessous de la carte, maintenez le bouton gauche de la souris enfoncée et glissez là dans la zone disponible.<br><br>Consultez l’exemple ci-dessous.',
+  modalite_reponse: estMobile ?
+    "Pour cela, posez votre doigt sur la maison dans le cadre blanc, et sans lever votre doigt, glissez jusqu'à la zone disponible." :
+    "Pour cela cliquez sur la maison dans le cadre blanc, maintenez le bouton gauche de la souris enfoncé et glissez la dans la zone disponible.<br><br>Consultez l’exemple ci-dessous.",
   extensionVue: 'drag-and-drop'
 };
 
@@ -82,6 +88,7 @@ const deplacementDroiteMaisonVerte = {
   id: 'deplacement-droite-maison-verte',
   type: 'action',
   nom_technique: 'deplacement_droite_maison_verte',
+  nom_technique_mini_tuto: estMobile ? undefined : 'deplacement_droite_maison_verte',
   illustration: DeplacementDroiteMaisonVerte,
   intitule: 'Dans quelle direction le personnage situé au milieu de l’écran doit-il aller pour se rendre à la maison verte ?',
   modalite_reponse: 'Pour répondre, appuyez sur la flèche gauche ou droite de votre clavier.<br><br>Sur tablette, les boutons affichés vous permettent de déplacer le personnage. Le bouton vert pour aller à gauche et le bouton rouge pour aller à droite.',

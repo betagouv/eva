@@ -48,11 +48,6 @@ describe('Le composant vidéo question', function () {
       vue.destroy();
       expect(mockRevokeObjectURL).toHaveBeenCalledWith(createdObjectURL);
     });
-
-    it("n'affiche pas la vidéo sur mobile", function () {
-      vue.vm.estMobile = true;
-      expect(vue.vm.afficheVideo).toBe(false);
-    });
   });
 
   it("n'affiche pas de video s'il n'y en a pas", function () {
