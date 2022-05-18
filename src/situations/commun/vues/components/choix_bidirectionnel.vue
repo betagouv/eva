@@ -27,8 +27,8 @@
     </button>
   </div>
   <div class="actions-fleches clavier" v-else>
-    <Keypress key-event="keydown" :key-code="flecheGauche" @success="selectionne(choixGauche)" />
-    <Keypress key-event="keydown" :key-code="flecheDroite" @success="selectionne(choixDroit)" />
+    <keypress key-event="keydown" :key-code="flecheGauche" @success="selectionne(choixGauche)" />
+    <keypress key-event="keydown" :key-code="flecheDroite" @success="selectionne(choixDroit)" />
     <div
       :class="{ 'actions-fleches--animation': choixFait === choixGauche }"
       class="touches-horizontales touche-gauche">
