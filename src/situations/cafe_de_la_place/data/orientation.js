@@ -81,7 +81,7 @@ const LOdi3 = {
   nom_technique: 'lodi_3',
   type: 'qcm',
   illustration: programmeTele18h55,
-  intitule: "18 h 55<br>« Les livres ont la parole ». En lisant le sous-titre, pouvez-vous dire quel est le sujet de l’émission ?",
+  intitule: "18 h 55<br>« Les livres ont la parole ». Quel est le sujet de l’émission ?",
   score: 1,
   choix: [
     {
