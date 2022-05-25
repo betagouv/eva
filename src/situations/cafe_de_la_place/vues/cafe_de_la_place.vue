@@ -62,7 +62,6 @@ export default {
       if(this.carteActive.type !== 'sous-consigne') {
         const donneesReponses = {
           question: this.carteActive.id,
-          score: this.carteActive.score,
           ...eventReponse
         };
         this.$store.commit('enregistreReponse', donneesReponses);

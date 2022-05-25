@@ -51,7 +51,6 @@ const LOdi2 = {
   type: 'qcm',
   illustration: programmeTeleCirque,
   intitule: "Il s'agit d'un programme télé ! Il y a un film à 20 h 45. Quel est son titre ?",
-  score: 1,
   choix: [
     {
       id: 'cirqueEtClown',
@@ -71,6 +70,7 @@ const LOdi2 = {
     {
       id: 'cirqueDicotino',
       nom_technique: 'cirque_dicotino',
+      score: 1,
       bonneReponse: true
     }
   ]
@@ -82,7 +82,6 @@ const LOdi3 = {
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "18 h 55<br>« Les livres ont la parole ». Quel est le sujet de l’émission ?",
-  score: 1,
   choix: [
     {
       id: 'madame_coupin',
@@ -97,6 +96,7 @@ const LOdi3 = {
     {
       id: 'livre',
       nom_technique: 'livre',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -113,7 +113,6 @@ const LOdi4 = {
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "Donc, c’est une émission sur les livres. Quel est le nom du livre dont on parle ?",
-  score: 1,
   choix: [
     {
       id: 'chatMadameCoupin',
@@ -123,6 +122,7 @@ const LOdi4 = {
     {
       id: 'chapeauMadameCoupin',
       nom_technique: 'chapeau_madame_coupin',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -144,11 +144,11 @@ const LOdi5 = {
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "Comment s’appelle le premier invité de cette émission ?",
-  score: 1,
   choix: [
     {
       id: 'dinoDepianto',
       nom_technique: 'dino_depianto',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -175,7 +175,6 @@ const LOdi6 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Dans quelle ville a été créé le cirque ?",
-  score: 1,
   choix: [
     {
       id: 'belgique',
@@ -190,6 +189,7 @@ const LOdi6 = {
     {
       id: 'bruges',
       nom_technique: 'bruges',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -206,7 +206,6 @@ const LOdi7 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Quel âge a la personne accidentée ?",
-  score: 1,
   choix: [
     {
       id: '17ans',
@@ -216,6 +215,7 @@ const LOdi7 = {
     {
       id: '24ans',
       nom_technique: 'vingt_quatre_ans',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -232,7 +232,6 @@ const LOdi8 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Charles est-il plus âgé ou plus jeune que Bruno ?",
-  score: 1,
   choix: [
     {
       id: 'plusAge',
@@ -242,6 +241,7 @@ const LOdi8 = {
     {
       id: 'plusJeune',
       nom_technique: 'plus_jeune',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -258,11 +258,11 @@ const LOdi9 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "D’après l’avis du programme télé, s’agit-il d’un film dramatique ou d’un film drôle ?",
-  score: 1,
   choix: [
     {
       id: 'dramatique',
       nom_technique: 'dramatique',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -279,11 +279,11 @@ const LOdi10 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Ce film est-il poétique, choquant ou érotique ?",
-  score: 1,
   choix: [
     {
       id: 'poetique',
       nom_technique: 'poetique',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -305,7 +305,6 @@ const LOdi11 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "À votre avis, l’image représente-t-elle Charles au début du film ou à la fin du film ?",
-  score: 1,
   choix: [
     {
       id: 'debutFilm',
@@ -316,6 +315,7 @@ const LOdi11 = {
     {
       id: 'finFilm',
       nom_technique: 'fin_film',
+      score: 1,
       bonneReponse: true,
       intitule: 'À la fin du film'
     }
@@ -328,11 +328,11 @@ const LOdi12 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Pourquoi Charles est-il devenu clown dans le cirque ?",
-  score: 1,
   choix: [
     {
       id: 'sautPerilleux',
       nom_technique: 'saut_perilleux',
+      score: 1,
       bonneReponse: true,
       intitule: 'Parce qu’il a été accidenté en faisant un saut périlleux'
     },
@@ -357,11 +357,11 @@ const LOdi13 = {
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Lisez ces affirmations. Laquelle correspond à l’histoire du film ?",
-  score: 1,
   choix: [
     {
       id: 'trapezisteTombe',
       nom_technique: 'trapeziste_tombe',
+      score: 1,
       bonneReponse: true,
       intitule: 'Un trapéziste tombe et se blesse'
     },

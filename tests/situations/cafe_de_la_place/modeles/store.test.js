@@ -169,22 +169,16 @@ describe('Le store de la situation café de la place', function () {
       expect(store.state.score).toEqual(0);
     });
 
-    it("Ajoute le score d'une réponse correcte", function() {
-      const laReponse = { score: 1, succes: true };
+    it("Ajoute le score d'une réponse", function() {
+      const laReponse = { score: 1, score_max: 2 };
       store.commit('enregistreReponse', laReponse);
       expect(store.state.score).toEqual(1);
     });
 
-    it("n'ajoute pas le score d'une réponse incorrecte", function() {
-      const laReponse = { score: 1, succes: false };
-      store.commit('enregistreReponse', laReponse);
-      expect(store.state.score).toEqual(0);
-    });
-
     it("accumule les scores au fur et a mesure des reponses", function() {
-      const reponse1 = { score: 1, succes: true };
+      const reponse1 = { score: 1 };
       store.commit('enregistreReponse', reponse1);
-      const reponse2 = { score: 2, succes: true };
+      const reponse2 = { score: 2 };
       store.commit('enregistreReponse', reponse2);
       expect(store.state.score).toEqual(3);
     });
