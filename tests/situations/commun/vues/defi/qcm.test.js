@@ -57,11 +57,27 @@ describe('Le componsant defi QCM', function () {
 
   describe('envoie la réponse dans un événement input', function () {
     it('quand il y a une bonne réponse', function () {
-      question.choix = [{ id: 'uid-32', bonneReponse: true }];
+      question.choix = [{ id: 'uid-32', score: 1, bonneReponse: true }];
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
       expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32', succes: true });
+      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32', succes: true, score: 1 });
+    });
+
+    it('quand il y a une mauvaise réponse', function () {
+      question.choix = [{ id: 'uid-32', bonneReponse: false }];
+      const vue = composant(question);
+      vue.find('input[type=radio][value=uid-32]').setChecked();
+      expect(vue.emitted('input').length).toEqual(1);
+      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32', succes: false });
+    });
+
+    it('quand il y a une mauvaise réponse avec un score', function () {
+      question.choix = [{ id: 'uid-32', score: 0.5, bonneReponse: false }];
+      const vue = composant(question);
+      vue.find('input[type=radio][value=uid-32]').setChecked();
+      expect(vue.emitted('input').length).toEqual(1);
+      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0.5 });
     });
 
     it("quand il n'y a pas de bonne réponse", function () {

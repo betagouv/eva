@@ -10,7 +10,7 @@ describe('La vue café de la place', function () {
   let store;
   let localVue;
   const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne' };
-  const question = { id: 'question1', score: 1 };
+  const question = { id: 'question1' };
 
   beforeEach(function () {
     store = creeStore();
@@ -104,7 +104,7 @@ describe('La vue café de la place', function () {
         it('enregistre les réponses dans le store', function () {
           wrapper.vm.reponse({ reponse: 'cuisine' });
           expect(store.state.reponses['question1'])
-            .toEqual({ question: 'question1', score: 1, reponse: 'cuisine' });
+            .toEqual({ question: 'question1', reponse: 'cuisine' });
         });
 
         it('enregistre les réponses dans le journal', function (done) {
