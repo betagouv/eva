@@ -126,7 +126,6 @@ import soncercleDicotino from 'cafe_de_la_place/assets/audio_reponses/LOdi/cercl
 import soncirqueDicotino from 'cafe_de_la_place/assets/audio_reponses/LOdi/cirque_dicotino.mp3';
 import sonCirqueEtClown from 'cafe_de_la_place/assets/audio_reponses/LOdi/cirque_et_clown.mp3';
 import sonCirqueTino from 'cafe_de_la_place/assets/audio_reponses/LOdi/cirque_tino.mp3';
-import madameCoupin from 'cafe_de_la_place/assets/audio_reponses/LOdi/madame_coupin.mp3';
 import modeChapeau from 'cafe_de_la_place/assets/audio_reponses/LOdi/mode_chapeau.mp3';
 import livre from 'cafe_de_la_place/assets/audio_reponses/LOdi/livre.mp3';
 import confectionChapeau from 'cafe_de_la_place/assets/audio_reponses/LOdi/confection_chapeau.mp3';
@@ -288,7 +287,6 @@ const AUDIOS_REPONSES = {
   cirque_et_clown: sonCirqueEtClown,
   cirque_dicotino: soncirqueDicotino,
   cirque_tino: sonCirqueTino,
-  madame_coupin: madameCoupin,
   mode_chapeau: modeChapeau,
   livre: livre,
   confection_chapeau: confectionChapeau,

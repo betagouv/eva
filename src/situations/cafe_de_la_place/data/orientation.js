@@ -84,11 +84,6 @@ const LOdi3 = {
   intitule: "18 h 55<br>« Les livres ont la parole ». Quel est le sujet de l’émission ?",
   choix: [
     {
-      id: 'madame_coupin',
-      nom_technique: 'madame_coupin',
-      bonneReponse: false
-    },
-    {
       id: 'mode_chapeau',
       nom_technique: 'mode_chapeau',
       bonneReponse: false
