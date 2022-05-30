@@ -51,7 +51,6 @@ import 'commun/styles/defi.scss';
 import { mapGetters } from 'vuex';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
 import Jauge from 'commun/vues/defi/jauge';
-import Puzzle from 'commun/vues/defi/puzzle';
 import Qcm from 'commun/vues/defi/qcm';
 import Question from './question';
 import QuestionEntete from 'commun/vues/question_entete';
@@ -60,7 +59,7 @@ import VideoQuestion from 'commun/vues/video_question';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
 export default {
-  components: { ChampSaisie, Jauge, Puzzle, Qcm,
+  components: { ChampSaisie, Jauge, Qcm,
     Question, QuestionEntete, RedactionNote, VideoQuestion },
 
   props: {
