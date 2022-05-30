@@ -77,6 +77,7 @@
     "uuid": "^8.3.2",
     "vue": "^2.6.14",
     "vue-keypress": "^2.1.1",
+    "vuedraggable": "^2.24.3",
     "vuex": "^3.6.2",
     "webpack": "^5.x",
     "webpack-cli": "^4.9"
@@ -98,9 +99,18 @@
       "process": "readonly"
     },
     "rules": {
-      "indent": ["error", 2],
-      "linebreak-style": ["error", "unix"],
-      "semi": ["error", "always"]
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
     },
     "overrides": [
       {
