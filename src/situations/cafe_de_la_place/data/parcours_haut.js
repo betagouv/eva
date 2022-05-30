@@ -10,8 +10,8 @@ const sousConsigneHPar1 = {
 const HPar1 = {
   id: 'HPar1',
   nom_technique: 'HPar_1',
-  type: 'puzzle',
   illustration: journalVide,
+  extensionVue: 'puzzle',
   description: "Vous avez placé tous les blocs de texte !<br>Vous pouvez toujours modifier leur ordre directement dans la page du journal.",
   intitule: "Si l’ordre vous convient, cliquez sur « Valider ».",
 };
