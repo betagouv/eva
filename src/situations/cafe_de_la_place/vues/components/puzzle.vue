@@ -1,6 +1,6 @@
 <template>
   <div class="puzzle">
-    <draggable v-model="nouvellesDuJour" :list="nouvellesDuJour">
+    <draggable v-model="nouvellesDuJour" :list="nouvellesDuJour" @end="envoiReponse">
       <div
         v-for="nouvelle in nouvellesDuJour"
         :key="nouvelle.id"
@@ -37,5 +37,11 @@ export default {
       return this.nouvellesDuJourNonClassees;
     }
   },
+
+  methods: {
+    envoiReponse() {
+      this.$emit('reponse', this.nouvellesDuJour );
+    },
+  }
 };
 </script>
