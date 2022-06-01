@@ -51,6 +51,7 @@ const titre1 = {
     {
       id: 'max',
       nom_technique: 'max',
+      score: 1,
       bonneReponse: true
     }
   ]
@@ -71,6 +72,7 @@ const titre2 = {
     {
       id: 'jazzADimoudon',
       nom_technique: 'jazz_a_dimoudon',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -101,6 +103,7 @@ const titre10 = {
     {
       id: 'unAmiUnAmant',
       nom_technique: 'un_ami_un_amant',
+      score: 1,
       bonneReponse: true
     }
   ]
@@ -126,6 +129,7 @@ const titre3 = {
     {
       id: 'bailleEtTaille',
       nom_technique: 'baille_et_taille',
+      score: 1,
       bonneReponse: true
     }
   ]
@@ -146,6 +150,7 @@ const titre11 = {
     {
       id: 'duxoEtMatura',
       nom_technique: 'duxo_et_matura',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -171,6 +176,7 @@ const titre6 = {
     {
       id: 'amourSucculent',
       nom_technique: 'amour_succulent',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -201,6 +207,7 @@ const titre8 = {
     {
       id: 'anguilleEtDouceMer',
       nom_technique: 'anguille_et_douce_mer',
+      score: 1,
       bonneReponse: true
     }
   ]
@@ -216,6 +223,7 @@ const titre5 = {
     {
       id: 'exerciceDeStyle',
       nom_technique: 'exercice_de_style',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -251,6 +259,7 @@ const titre4 = {
     {
       id: 'leFilDuTemps',
       nom_technique: 'le_fil_du_temps',
+      score: 1,
       bonneReponse: true
     }
   ]
@@ -266,6 +275,7 @@ const titre7 = {
     {
       id: 'soupconDAmertume',
       nom_technique: 'soupcon_d_amertume',
+      score: 1,
       bonneReponse: true
     },
     {
@@ -290,7 +300,8 @@ const alrd11 = {
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Exercice',
-    nom_technique: 'exercice'
+    nom_technique: 'exercice',
+    score: 1
   }
 };
 
@@ -302,7 +313,8 @@ const alrd12 = {
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Anguille',
-    nom_technique: 'anguille'
+    nom_technique: 'anguille',
+    score: 1
   }
 };
 
@@ -314,7 +326,8 @@ const alrd13 = {
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Dimoudon',
-    nom_technique: 'dimoudon'
+    nom_technique: 'dimoudon',
+    score: 1
   }
 };
 
@@ -326,7 +339,8 @@ const alrd14 = {
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Soupçon',
-    nom_technique: 'soupcon'
+    nom_technique: 'soupcon',
+    score: 1
   }
 };
 
