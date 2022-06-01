@@ -17,8 +17,7 @@
   @include puzzle();
   right: 32px;
   padding: 1.5rem;
-  height: 494px;
-  width: 456px;
+  min-height: 494px;
   z-index: 1;
   background: $couleur-fond;
   border-radius: 1rem;
