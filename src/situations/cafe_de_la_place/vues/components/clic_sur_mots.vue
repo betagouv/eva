@@ -44,8 +44,10 @@ export default {
 
   methods: {
     envoiReponse(lien) {
-      const mot = lien.textContent.trim();
-      this.$emit('reponse', { reponse: mot, succes: this.question.reponse.texte === mot } );
+      const reponse = lien.textContent.trim();
+      const succes = this.question.reponse.texte === reponse;
+      const score = succes ? this.question.reponse.score : 0;
+      this.$emit('reponse', { reponse, succes, score } );
     },
 
     metAJourSelection(listeLiens, lien) {

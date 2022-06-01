@@ -16,7 +16,7 @@ describe('Le composant Clic Sur Mots', function () {
 
   beforeEach(function () {
     store = new Vuex.Store({ getters: { texteCliquable () { return '* [invalide]()\n* [exercice]()';}}});
-    question = { id: 1, reponse: { texte: 'exercice' }, nom_technique: 'question1' };
+    question = { id: 1, reponse: { texte: 'exercice', score: 1 }, nom_technique: 'question1' };
     localVue = createLocalVue();
     wrapper = shallowMount(ClicSurMots, { localVue, store, propsData: { question } });
   });
@@ -45,7 +45,7 @@ describe('Le composant Clic Sur Mots', function () {
         const lien = wrapper.findAll('.mot-cliquable').at(1);
         wrapper.vm.envoiReponse(lien.element);
         expect(wrapper.emitted().reponse.length).toEqual(1);
-        expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'exercice', succes: true });
+        expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'exercice', succes: true, score: 1 });
       });
     });
 
@@ -54,7 +54,7 @@ describe('Le composant Clic Sur Mots', function () {
         const lien = wrapper.findAll('.mot-cliquable').at(0);
         wrapper.vm.envoiReponse(lien.element);
         expect(wrapper.emitted().reponse.length).toEqual(1);
-        expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'invalide', succes: false });
+        expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'invalide', succes: false, score: 0 });
       });
     });
   });
