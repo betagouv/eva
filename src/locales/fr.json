@@ -242,6 +242,9 @@
     "titre": "Café de la place",
     "intro_contexte": {
       "message": "<p>Vous vous installez à la terrasse d'un café situé en face de la mairie.</p>"
+    },
+    "puzzle": {
+      "texte_zone_depot": "DÉPOSER ICI"
     }
   },
   "bouton_lecture": {

@@ -10,7 +10,15 @@
 .puzzle-gauche {
   @include puzzle();
   left: 32px;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+
+  .puzzle-item.invisible {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
 }
 
 .puzzle-droite {
@@ -34,6 +42,7 @@
   border-radius: .25rem;
   margin-bottom: 0.5rem;
   cursor: grab;
+  flex-grow:0;
 
   &.sortable-chosen {
     cursor: grabbing;
@@ -50,4 +59,18 @@
   display: flex;
   align-items: center;
   margin-right: .625rem;
+}
+
+.zone-de-depot {
+  background: $bleu-gris;
+  border: 1px solid $couleur-fond;
+  box-shadow: inset 0px 0px 8px rgba(30, 65, 106, 0.25);
+  border-radius: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $bleu-gris-fonce;
 }

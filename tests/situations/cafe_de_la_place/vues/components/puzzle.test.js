@@ -7,28 +7,37 @@ describe('Le composant Puzzle', function () {
   let localVue;
   let store;
 
-  function composant() {
-    return shallowMount(puzzle, {
+  function genereVue(nouvelles) {
+    store = new Vuex.Store({ getters: { nouvellesDuJourNonClassees () { return nouvelles; }}});
+    localVue = createLocalVue();
+    localVue.prototype.$traduction = () => {};
+    wrapper = shallowMount(puzzle, {
       localVue,
       store
     });
   }
 
-  function genereVue(nouvelles) {
-    store = new Vuex.Store({ getters: { nouvellesDuJourNonClassees () { return nouvelles; }}});
-    localVue = createLocalVue();
-    wrapper = composant({});
-  }
+  it("affiche le puzzle de gauche", function () {
+    genereVue([]);
+    expect(wrapper.findComponent('.puzzle-gauche').exists()).toBe(true);
+  });
 
-  describe("quand il n'y a plus de nouvelles à classer", function () {
+  describe("Évite que le premier ghost n'apparaisse en dessous du footer", function () {
     beforeEach(function () {
-      const nouvellesDuJourNonClassees = [];
+      const nouvellesDuJourNonClassees = [{ id: 'nouvelle_1', contenu: 'Ma super nouvelle !' }];
       genereVue(nouvellesDuJourNonClassees);
     });
 
-    it("n'affiche plus le puzzle à droite", function () {
-      expect(wrapper.vm.affichePuzzleDroite).toEqual(false);
-      expect(wrapper.findComponent('.puzzle-droite').exists()).toBe(false);
+    it("affiche un puzzle-item invisible au démarrage", function () {
+      expect(wrapper.findComponent('.puzzle-item.invisible').exists()).toBe(true);
+    });
+
+    it("n'affiche plus le puzzle-item invisible après avoir classé une première nouvelle", function (done) {
+      wrapper.vm.nouvellesDuJourClassees.push({ id: 'nouvelle_1', contenu: 'Ma super nouvelle !' });
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.findComponent('.puzzle-item.entete-invisible').exists()).toBe(false);
+        done();
+      });
     });
   });
 
@@ -41,6 +50,27 @@ describe('Le composant Puzzle', function () {
     it("affiche le puzzle à droite", function () {
       expect(wrapper.vm.affichePuzzleDroite).toEqual(true);
       expect(wrapper.findComponent('.puzzle-droite').exists()).toBe(true);
+    });
+
+    it("affiche la zone de dépot", function () {
+      const zoneDeDepot = wrapper.find('.zone-de-depot');
+      expect(zoneDeDepot.exists()).toBe(true);
+    });
+  });
+
+  describe("quand il n'y a plus de nouvelles à classer", function () {
+    beforeEach(function () {
+      const nouvellesDuJourNonClassees = [];
+      genereVue(nouvellesDuJourNonClassees);
+    });
+
+    it("n'affiche plus le puzzle à droite", function () {
+      expect(wrapper.vm.affichePuzzleDroite).toEqual(false);
+      expect(wrapper.findComponent('.puzzle-droite').exists()).toBe(false);
+    });
+
+    it("n'affiche plus la zone de dépot", function () {
+      expect(wrapper.find('.zone-de-depot').exists()).toBe(false);
     });
   });
 });
