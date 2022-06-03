@@ -60,14 +60,10 @@ export default {
   },
 
   methods: {
-    reponse (eventReponse) {
+    reponse (reponse) {
       if(this.carteActive.type !== 'sous-consigne') {
-        const donneesReponses = {
-          question: this.carteActive.id,
-          ...eventReponse
-        };
-        this.$store.commit('enregistreReponse', donneesReponses);
-        this.$journal.enregistre(new EvenementReponse(donneesReponses));
+        this.$store.commit('enregistreReponse', reponse);
+        this.$journal.enregistre(new EvenementReponse(reponse));
       }
       this.$store.commit('carteSuivante');
     }

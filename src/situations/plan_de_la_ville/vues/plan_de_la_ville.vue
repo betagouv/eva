@@ -55,8 +55,7 @@ export default {
 
   methods: {
     reponseQuestion (reponse) {
-      const donneesReponses = { question: this.questionActive.id, ...reponse };
-      this.$journal.enregistre(new EvenementReponse(donneesReponses));
+      this.$journal.enregistre(new EvenementReponse(reponse));
 
       if (this.indexQuestion + 1 === this.questions.length) {
         this.$emit('terminer');

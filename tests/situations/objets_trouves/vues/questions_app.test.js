@@ -31,7 +31,7 @@ describe("Les questions d'une app", function () {
   it('enregistre les réponses au journal', function (done) {
     localVue.prototype.$journal.enregistre = (evenement) => {
       expect(evenement).toBeInstanceOf(EvenementReponse);
-      expect(evenement.donnees()).toEqual({ question: 'mon-id', reponse: 'Ma super réponse', metacompetence: 'metacompetence' });
+      expect(evenement.donnees()).toEqual({ reponse: 'Ma super réponse' });
       done();
     };
 
