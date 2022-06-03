@@ -50,7 +50,7 @@ describe("La vue de l'acte « Question »", function () {
   it('enregistre la réponse dans le journal', function (done) {
     journal.enregistre = (evenement) => {
       expect(evenement).toBeInstanceOf(EvenementReponse);
-      expect(evenement.donnees()).toEqual({ question: 1, reponse: 'Ma réponse' });
+      expect(evenement.donnees()).toEqual({ reponse: 'Ma réponse' });
       done();
     };
     const vue = shallowMount(Acte, { store, localVue });

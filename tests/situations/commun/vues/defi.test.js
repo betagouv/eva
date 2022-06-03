@@ -75,7 +75,7 @@ describe("La vue d'un défi", function () {
     });
 
     it('emet un événement réponse quand on appuie sur le bouton envoi', function (done) {
-      const reponse = { reponse: 'uid-32', succes: true };
+      const reponse = { question: 154, reponse: 'uid-32', succes: true };
       vue.findComponent(Qcm).vm.$emit('input', reponse);
       vue.vm.$nextTick(() => {
         vue.find('.question-bouton').trigger('click');
@@ -95,7 +95,19 @@ describe("La vue d'un défi", function () {
     vue.find('.question-bouton').trigger('click');
     vue.vm.$nextTick(() => {
       expect(vue.emitted().reponse.length).toEqual(1);
-      expect(vue.emitted().reponse[0][0]).toEqual('');
+      expect(vue.emitted().reponse[0][0]).toEqual({ question: 154 });
+      done();
+    });
+  });
+
+  it("emet la métacompétence quand il y en a une sur la question", function (done) {
+    question.type= 'qcm';
+    question.metacompetence = 'lecture';
+    const vue = composant(question);
+    vue.find('.question-bouton').trigger('click');
+    vue.vm.$nextTick(() => {
+      expect(vue.emitted().reponse.length).toEqual(1);
+      expect(vue.emitted().reponse[0][0]).toEqual({ question: 154, metacompetence: 'lecture' });
       done();
     });
   });
@@ -149,7 +161,8 @@ describe("La vue d'un défi", function () {
     it('émet un évenement réponse réussi quand une extention envoie un evenement action', function () {
       vue.findComponent(MockExtension).vm.$emit('action');
       expect(vue.emitted().reponse.length).toEqual(1);
-      expect(vue.emitted().reponse[0][0]).toEqual({ succes: true });
+
+      expect(vue.emitted().reponse[0][0]).toEqual({ question: 154, succes: true });
     });
   });
 

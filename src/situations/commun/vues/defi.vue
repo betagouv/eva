@@ -124,7 +124,11 @@ export default {
   methods: {
     envoi () {
       this.envoyer = true;
-      this.$emit('reponse', this.reponse);
+      this.$emit('reponse', {
+        question: this.question.id,
+        metacompetence: this.question.metacompetence,
+        ...this.reponse
+      });
     },
 
     attribueReponse (reponse) {

@@ -102,7 +102,7 @@ describe('La vue café de la place', function () {
         });
 
         it('enregistre les réponses dans le store', function () {
-          wrapper.vm.reponse({ reponse: 'cuisine' });
+          wrapper.vm.reponse({ question: 'question1', reponse: 'cuisine' });
           expect(store.state.reponses['question1'])
             .toEqual({ question: 'question1', reponse: 'cuisine' });
         });
