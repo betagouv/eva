@@ -33,6 +33,7 @@ const sousConsigneACrd1 = {
 const titre1 = {
   id: 'ALrd1',
   nom_technique: 'titre_1',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 1, quelle est la bonne lecture ?',
@@ -60,6 +61,7 @@ const titre1 = {
 const titre2 = {
   id: 'ALrd2',
   nom_technique: 'titre_2',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 2, quelle est la bonne lecture ?',
@@ -86,6 +88,7 @@ const titre2 = {
 const titre10 = {
   id: 'ALrd3',
   nom_technique: 'titre_10',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 10, quelle est la bonne lecture ?',
@@ -112,6 +115,7 @@ const titre10 = {
 const titre3 = {
   id: 'ALrd4',
   nom_technique: 'titre_3',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 3, quelle est la bonne lecture ?',
@@ -138,6 +142,7 @@ const titre3 = {
 const titre11 = {
   id: 'ALrd5',
   nom_technique: 'titre_11',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 11, quelle est la bonne lecture ?',
@@ -164,6 +169,7 @@ const titre11 = {
 const titre6 = {
   id: 'ALrd6',
   nom_technique: 'titre_6',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 6, quelle est la bonne lecture ?',
@@ -190,6 +196,7 @@ const titre6 = {
 const titre8 = {
   id: 'ALrd7',
   nom_technique: 'titre_8',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 8, quelle est la bonne lecture ?',
@@ -216,6 +223,7 @@ const titre8 = {
 const titre5 = {
   id: 'ALrd8',
   nom_technique: 'titre_5',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 5, quelle est la bonne lecture ?',
@@ -242,6 +250,7 @@ const titre5 = {
 const titre4 = {
   id: 'ALrd9',
   nom_technique: 'titre_4',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 4, quelle est la bonne lecture ?',
@@ -268,6 +277,7 @@ const titre4 = {
 const titre7 = {
   id: 'ALrd10',
   nom_technique: 'titre_7',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 7, quelle est la bonne lecture ?',
@@ -294,6 +304,7 @@ const titre7 = {
 const alrd11 = {
   id: 'ALrd11',
   nom_technique: 'alrd_11',
+  metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
@@ -308,6 +319,7 @@ const alrd11 = {
 const alrd12 = {
   id: 'ALrd12',
   nom_technique: 'alrd_12',
+  metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
@@ -321,6 +333,7 @@ const alrd12 = {
 const alrd13 = {
   id: 'ALrd13',
   nom_technique: 'alrd_13',
+  metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
@@ -334,6 +347,7 @@ const alrd13 = {
 const alrd14 = {
   id: 'ALrd14',
   nom_technique: 'alrd_14',
+  metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'liste-chansons',
@@ -347,6 +361,7 @@ const alrd14 = {
 const ACrd1 = {
   id: 'ACrd1',
   nom_technique: 'acrd_1',
+  metacompetence: 'comprehention',
   intitule: 'Comment s’appelle le groupe ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
@@ -360,6 +375,7 @@ const ACrd1 = {
 const ACrd2 = {
   id: 'ACrd2',
   nom_technique: 'acrd_2',
+  metacompetence: 'comprehention',
   intitule: 'Comment s’appelle le joueur de contrebasse ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
@@ -372,6 +388,7 @@ const ACrd2 = {
 const ACrd3 = {
   id: 'ACrd3',
   nom_technique: 'acrd_3',
+  metacompetence: 'comprehention',
   intitule: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
@@ -384,6 +401,7 @@ const ACrd3 = {
 const ACrd4 = {
   id: 'ACrd4',
   nom_technique: 'acrd_4',
+  metacompetence: 'comprehention',
   intitule: 'De quel pays le groupe vient-il ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
@@ -396,6 +414,7 @@ const ACrd4 = {
 const ACrd5 = {
   id: 'ACrd5',
   nom_technique: 'acrd_5',
+  metacompetence: 'comprehention',
   intitule: 'En quelle année le groupe a-t-il débuté ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
@@ -407,17 +426,18 @@ const ACrd5 = {
 
 const sousConsigneACrd2 = {
   id: 'ACrd-sous-consigne-2',
+  nom_technique: 'sous_consigne_ACrd_2',
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   zone_cliquable: 'revue-magazine',
-  nom_technique: 'sous_consigne_ACrd_2',
   intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
 const ACrd6 = {
   id: 'ACrd6',
   nom_technique: 'acrd_6',
+  metacompetence: 'comprehention',
   intitule: 'Qui est Ivano Karanadoff ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -449,6 +469,7 @@ const ACrd6 = {
 const ACrd7 = {
   id: 'ACrd7',
   nom_technique: 'acrd_7',
+  metacompetence: 'comprehention',
   intitule: 'Quel est le genre de musique que produit ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -478,6 +499,7 @@ const ACrd7 = {
 const ACrd8 = {
   id: 'ACrd8',
   nom_technique: 'acrd_8',
+  metacompetence: 'comprehention',
   intitule: 'Qui a influencé ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -508,6 +530,7 @@ const ACrd8 = {
 const ACrd9 = {
   id: 'ACrd9',
   nom_technique: 'acrd_9',
+  metacompetence: 'comprehention',
   intitule: 'Que pense la critique de ce style musical ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -538,6 +561,7 @@ const ACrd9 = {
 const ACrd10 = {
   id: 'ACrd10',
   nom_technique: 'acrd_10',
+  metacompetence: 'comprehention',
   intitule: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -611,6 +635,7 @@ const sousConsigneAPlc2 = {
 const APlc1 = {
   id: 'APlc1',
   nom_technique: 'aplc_1',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -626,6 +651,7 @@ const APlc1 = {
 const APlc2 = {
   id: 'APlc2',
   nom_technique: 'aplc_2',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -640,6 +666,7 @@ const APlc2 = {
 const APlc3 = {
   id: 'APlc3',
   nom_technique: 'aplc_3',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -654,6 +681,7 @@ const APlc3 = {
 const APlc4 = {
   id: 'APlc4',
   nom_technique: 'aplc_4',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -668,6 +696,7 @@ const APlc4 = {
 const APlc5 = {
   id: 'APlc5',
   nom_technique: 'aplc_5',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -682,6 +711,7 @@ const APlc5 = {
 const APlc6 = {
   id: 'APlc6',
   nom_technique: 'aplc_6',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -696,6 +726,7 @@ const APlc6 = {
 const APlc7 = {
   id: 'APlc7',
   nom_technique: 'aplc_7',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -710,6 +741,7 @@ const APlc7 = {
 const APlc8 = {
   id: 'APlc8',
   nom_technique: 'aplc_8',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -724,6 +756,7 @@ const APlc8 = {
 const APlc9 = {
   id: 'APlc9',
   nom_technique: 'aplc_9',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -738,6 +771,7 @@ const APlc9 = {
 const APlc10 = {
   id: 'APlc10',
   nom_technique: 'aplc_10',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -752,6 +786,7 @@ const APlc10 = {
 const APlc11 = {
   id: 'APlc11',
   nom_technique: 'aplc_11',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -766,6 +801,7 @@ const APlc11 = {
 const APlc12 = {
   id: 'APlc12',
   nom_technique: 'aplc_12',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -780,6 +816,7 @@ const APlc12 = {
 const APlc13 = {
   id: 'APlc13',
   nom_technique: 'aplc_13',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -794,6 +831,7 @@ const APlc13 = {
 const APlc14 = {
   id: 'APlc14',
   nom_technique: 'aplc_14',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -808,6 +846,7 @@ const APlc14 = {
 const APlc15 = {
   id: 'APlc15',
   nom_technique: 'aplc_15',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -822,6 +861,7 @@ const APlc15 = {
 const APlc16 = {
   id: 'APlc16',
   nom_technique: 'aplc_16',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -836,6 +876,7 @@ const APlc16 = {
 const APlc17 = {
   id: 'APlc17',
   nom_technique: 'aplc_17',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -850,6 +891,7 @@ const APlc17 = {
 const APlc18 = {
   id: 'APlc18',
   nom_technique: 'aplc_18',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -864,6 +906,7 @@ const APlc18 = {
 const APlc19 = {
   id: 'APlc19',
   nom_technique: 'aplc_19',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
@@ -878,6 +921,7 @@ const APlc19 = {
 const APlc20 = {
   id: 'APlc20',
   nom_technique: 'aplc_20',
+  metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',

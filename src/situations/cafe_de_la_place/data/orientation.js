@@ -48,6 +48,7 @@ const LOdi1 = {
 const LOdi2 = {
   id: 'LOdi2',
   nom_technique: 'lodi_2',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: programmeTeleCirque,
   intitule: "Il s'agit d'un programme télé ! Il y a un film à 20 h 45. Quel est son titre ?",
@@ -79,6 +80,7 @@ const LOdi2 = {
 const LOdi3 = {
   id: 'LOdi3',
   nom_technique: 'lodi_3',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "18 h 55<br>« Les livres ont la parole ». Quel est le sujet de l’émission ?",
@@ -105,6 +107,7 @@ const LOdi3 = {
 const LOdi4 = {
   id: 'LOdi4',
   nom_technique: 'lodi_4',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "Donc, c’est une émission sur les livres. Quel est le nom du livre dont on parle ?",
@@ -136,6 +139,7 @@ const LOdi4 = {
 const LOdi5 = {
   id: 'LOdi5',
   nom_technique: 'lodi_5',
+  metacompetence: 'lecture',
   type: 'qcm',
   illustration: programmeTele18h55,
   intitule: "Comment s’appelle le premier invité de cette émission ?",
@@ -167,6 +171,7 @@ const LOdi5 = {
 const LOdi6 = {
   id: 'LOdi6',
   nom_technique: 'lodi_6',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Dans quelle ville a été créé le cirque ?",
@@ -198,6 +203,7 @@ const LOdi6 = {
 const LOdi7 = {
   id: 'LOdi7',
   nom_technique: 'lodi_7',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Quel âge a la personne accidentée ?",
@@ -224,6 +230,7 @@ const LOdi7 = {
 const LOdi8 = {
   id: 'LOdi8',
   nom_technique: 'lodi_8',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Charles est-il plus âgé ou plus jeune que Bruno ?",
@@ -250,6 +257,7 @@ const LOdi8 = {
 const LOdi9 = {
   id: 'LOdi9',
   nom_technique: 'lodi_9',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "D’après l’avis du programme télé, s’agit-il d’un film dramatique ou d’un film drôle ?",
@@ -271,6 +279,7 @@ const LOdi9 = {
 const LOdi10 = {
   id: 'LOdi10',
   nom_technique: 'lodi_10',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Ce film est-il poétique, choquant ou érotique ?",
@@ -297,6 +306,7 @@ const LOdi10 = {
 const LOdi11 = {
   id: 'LOdi11',
   nom_technique: 'lodi_11',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "À votre avis, l’image représente-t-elle Charles au début du film ou à la fin du film ?",
@@ -320,6 +330,7 @@ const LOdi11 = {
 const LOdi12 = {
   id: 'LOdi12',
   nom_technique: 'lodi_12',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Pourquoi Charles est-il devenu clown dans le cirque ?",
@@ -349,6 +360,7 @@ const LOdi12 = {
 const LOdi13 = {
   id: 'LOdi13',
   nom_technique: 'lodi_13',
+  metacompetence: 'comprehention',
   type: 'qcm',
   illustration: programmeTeleZoom,
   intitule: "Lisez ces affirmations. Laquelle correspond à l’histoire du film ?",
