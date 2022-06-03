@@ -12,8 +12,8 @@
     "start": "node server.js"
   },
   "engines": {
-    "node": "16.13.x",
-    "npm": "8.1.x"
+    "node": "16.15.x",
+    "npm": "8.11.x"
   },
   "repository": {
     "type": "git",
@@ -81,6 +81,11 @@
     "vuex": "^3.6.2",
     "webpack": "^5.x",
     "webpack-cli": "^4.9"
+  },
+  "overrides": {
+    "vuedraggable": {
+      "sortablejs": "^1.15.0"
+    }
   },
   "eslintConfig": {
     "plugins": [
