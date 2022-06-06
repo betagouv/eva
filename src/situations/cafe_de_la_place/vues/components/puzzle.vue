@@ -2,13 +2,13 @@
   <div class="puzzle-container">
     <draggable
         class="puzzle-gauche"
-        :list="nouvellesDuJourClassees"
-        group="nouvelles"
+        :list="fragmentsClasses"
+        group="puzzle"
         draggable=".puzzle-item"
     >
       <div
-        v-for="nouvelle in nouvellesDuJourClassees"
-        :key="nouvelle.id"
+        v-for="fragment in fragmentsClasses"
+        :key="fragment.id"
         class="puzzle-item"
       >
         <div class="puzzle-icone">
@@ -21,9 +21,9 @@
           <circle cx="10" cy="2" r="2" fill="#D6DAEC"/>
           </svg>
         </div>
-        <span>{{nouvelle.contenu}}</span>
+        <span>{{fragment.contenu}}</span>
       </div>
-      <div v-if="nouvellesDuJourClassees.length == 0"
+      <div v-if="fragmentsClasses.length == 0"
         class="puzzle-item invisible">
         <!-- cette div permet d'éviter que le premier ghost n'apparaisse en dessous du footer -->
       </div>
@@ -35,14 +35,14 @@
     <draggable
       v-if="affichePuzzleDroite"
       class="puzzle-droite"
-      :list="nouvellesDuJourNonClassees"
-      group="nouvelles"
+      :list="fragmentsNonClasses"
+      group="puzzle"
       @end="envoiReponse"
       :sort="false"
     >
       <div
-        v-for="nouvelle in nouvellesDuJourNonClassees"
-        :key="nouvelle.id"
+        v-for="fragment in fragmentsNonClasses"
+        :key="fragment.id"
         class="puzzle-item"
       >
         <div class="puzzle-icone">
@@ -55,14 +55,13 @@
           <circle cx="10" cy="2" r="2" fill="#D6DAEC"/>
           </svg>
         </div>
-        <span>{{nouvelle.contenu}}</span>
+        <span>{{fragment.contenu}}</span>
       </div>
     </draggable>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import 'cafe_de_la_place/styles/puzzle.scss';
 import draggable from 'vuedraggable';
 
@@ -78,19 +77,16 @@ export default {
 
   data() {
     return {
-      nouvellesDuJourClassees: [],
+      fragmentsClasses: [],
+      fragmentsNonClasses: [...this.question.fragmentsNonClasses],
       bonOrdre: this.question.reponse.bonOrdre,
       affichePuzzleDroite: true
     };
   },
 
-  computed: {
-    ...mapGetters(['nouvellesDuJourNonClassees']),
-  },
-
   methods: {
     envoiReponse() {
-      const reponse = this.nouvellesDuJourClassees.map((nouvelle) => nouvelle.id);
+      const reponse = this.fragmentsClasses.map((fragment) => fragment.id);
       const score = this.calculeScore(reponse);
       const succes = this.succes(reponse);
       this.affichePuzzleDroite = reponse.length < this.bonOrdre.length;
