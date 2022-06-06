@@ -5,6 +5,7 @@
         :list="fragmentsClasses"
         group="puzzle"
         draggable=".puzzle-item"
+        @end="envoiReponse"
     >
       <div
         v-for="fragment in fragmentsClasses"

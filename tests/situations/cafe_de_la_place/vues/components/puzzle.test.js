@@ -25,6 +25,20 @@ describe('Le composant Puzzle', function () {
     expect(wrapper.findComponent('.puzzle-gauche').exists()).toBe(true);
   });
 
+  describe("les composants draggable envoie une réponse à chaque fois qu'on pose un fragement", function() {
+    it("le puzzle de gauche emet ses réponses", function() {
+      genereVue([], bonOrdre);
+      wrapper.findComponent('.puzzle-gauche').vm.$emit('end');
+      expect(wrapper.emitted('reponse').length).toEqual(1);
+    });
+
+    it("le puzzle de droite emet ses réponses", function() {
+      genereVue([], bonOrdre);
+      wrapper.findComponent('.puzzle-droite').vm.$emit('end');
+      expect(wrapper.emitted('reponse').length).toEqual(1);
+    });
+  });
+
   describe("Évite que le premier ghost n'apparaisse en dessous du footer", function () {
     beforeEach(function () {
       genereVue([]);
