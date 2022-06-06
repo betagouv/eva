@@ -26,10 +26,6 @@ export function creeStore () {
         return state.series[state.indexSerie].texteCliquable;
       },
 
-      nouvellesDuJourNonClassees(state) {
-        return state.series[state.indexSerie].nouvellesDuJour;
-      },
-
       reponse: (state) => (idQuestion) => {
         return state.reponses[idQuestion];
       }

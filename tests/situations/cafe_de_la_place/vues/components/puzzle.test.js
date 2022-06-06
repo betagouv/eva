@@ -1,22 +1,19 @@
 import puzzle from 'cafe_de_la_place/vues/components/puzzle.vue';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Vuex from 'vuex';
 
 describe('Le composant Puzzle', function () {
   let wrapper;
   let localVue;
-  let store;
   const bonOrdre = [1, 2, 3, 4, 5, 6, 7];
 
-  function genereVue(nouvelles, bonOrdre) {
-    store = new Vuex.Store({ getters: { nouvellesDuJourNonClassees () { return nouvelles; }}});
+  function genereVue(fragmentsNonClasses, bonOrdre) {
     localVue = createLocalVue();
     localVue.prototype.$traduction = () => {};
     wrapper = shallowMount(puzzle, {
       localVue,
-      store,
       propsData: {
         question: {
+          fragmentsNonClasses: fragmentsNonClasses,
           reponse: { bonOrdre }
         }
       }
@@ -38,7 +35,7 @@ describe('Le composant Puzzle', function () {
     });
 
     it("n'affiche plus le puzzle-item invisible après avoir classé une première nouvelle", function (done) {
-      wrapper.vm.nouvellesDuJourClassees.push({ id: 'nouvelle_1', contenu: 'Ma super nouvelle !' });
+      wrapper.vm.fragmentsClasses.push({ id: 'nouvelle_1', contenu: 'Ma super nouvelle !' });
       wrapper.vm.$nextTick(() => {
         expect(wrapper.findComponent('.puzzle-item.entete-invisible').exists()).toBe(false);
         done();
@@ -49,7 +46,7 @@ describe('Le composant Puzzle', function () {
   describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
     beforeEach(function () {
       genereVue([], [1, 2]);
-      wrapper.vm.nouvellesDuJourClassees.push({ id: 1 });
+      wrapper.vm.fragmentsClasses.push({ id: 1 });
       wrapper.vm.envoiReponse();
     });
 
@@ -67,8 +64,8 @@ describe('Le composant Puzzle', function () {
   describe("quand on a envoyé un ensemble de réponse complet", function () {
     beforeEach(function () {
       genereVue([], [1, 2]);
-      wrapper.vm.nouvellesDuJourClassees.push({ id: 1 });
-      wrapper.vm.nouvellesDuJourClassees.push({ id: 2 });
+      wrapper.vm.fragmentsClasses.push({ id: 1 });
+      wrapper.vm.fragmentsClasses.push({ id: 2 });
       wrapper.vm.envoiReponse();
     });
 
@@ -86,7 +83,7 @@ describe('Le composant Puzzle', function () {
     it('envoie le score, le sucess et la réponse', function () {
       genereVue([], bonOrdre);
       for(const id of bonOrdre) {
-        wrapper.vm.nouvellesDuJourClassees.push({ id });
+        wrapper.vm.fragmentsClasses.push({ id });
       }
       wrapper.vm.envoiReponse();
       expect(wrapper.emitted('reponse').length).toEqual(1);
