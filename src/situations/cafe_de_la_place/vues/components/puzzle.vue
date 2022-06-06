@@ -1,6 +1,11 @@
 <template>
   <div class="puzzle-container">
-    <draggable class="puzzle-gauche" :list="nouvellesDuJourClassees" group="nouvelles" draggable=".puzzle-item">
+    <draggable
+        class="puzzle-gauche"
+        :list="nouvellesDuJourClassees"
+        group="nouvelles"
+        draggable=".puzzle-item"
+    >
       <div
         v-for="nouvelle in nouvellesDuJourClassees"
         :key="nouvelle.id"
@@ -64,23 +69,46 @@ import draggable from 'vuedraggable';
 export default {
   components: { draggable },
 
+  props: {
+    question: {
+      type: Object,
+      required: true
+    },
+  },
+
   data() {
     return {
-      nouvellesDuJourClassees: []
+      nouvellesDuJourClassees: [],
+      bonOrdre: this.question.reponse.bonOrdre,
+      affichePuzzleDroite: true
     };
   },
 
   computed: {
     ...mapGetters(['nouvellesDuJourNonClassees']),
-
-    affichePuzzleDroite () {
-      return this.nouvellesDuJourNonClassees.length !== 0;
-    }
   },
 
   methods: {
     envoiReponse() {
-      this.$emit('reponse', this.nouvellesDuJourClassees );
+      const reponse = this.nouvellesDuJourClassees.map((nouvelle) => nouvelle.id);
+      const score = this.calculeScore(reponse);
+      const succes = this.succes(reponse);
+      this.affichePuzzleDroite = reponse.length < this.bonOrdre.length;
+      this.$emit('reponse', { score, succes, reponse });
+    },
+
+    calculeScore(reponse) {
+      const nombre_biens_places = this.bonOrdre
+        .map((bonId, i) => bonId == reponse[i] ? 1 : 0)
+        .reduce((a, b) => a + b);
+
+      let score = nombre_biens_places;
+      if(nombre_biens_places >= 5) score++;
+      return score;
+    },
+
+    succes(reponse) {
+      return this.bonOrdre.every((bonId, index) => bonId === reponse[index]);
     }
   }
 };

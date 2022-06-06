@@ -6,14 +6,20 @@ describe('Le composant Puzzle', function () {
   let wrapper;
   let localVue;
   let store;
+  const bonOrdre = [1, 2, 3, 4, 5, 6, 7];
 
-  function genereVue(nouvelles) {
+  function genereVue(nouvelles, bonOrdre) {
     store = new Vuex.Store({ getters: { nouvellesDuJourNonClassees () { return nouvelles; }}});
     localVue = createLocalVue();
     localVue.prototype.$traduction = () => {};
     wrapper = shallowMount(puzzle, {
       localVue,
-      store
+      store,
+      propsData: {
+        question: {
+          reponse: { bonOrdre }
+        }
+      }
     });
   }
 
@@ -24,8 +30,7 @@ describe('Le composant Puzzle', function () {
 
   describe("Évite que le premier ghost n'apparaisse en dessous du footer", function () {
     beforeEach(function () {
-      const nouvellesDuJourNonClassees = [{ id: 'nouvelle_1', contenu: 'Ma super nouvelle !' }];
-      genereVue(nouvellesDuJourNonClassees);
+      genereVue([]);
     });
 
     it("affiche un puzzle-item invisible au démarrage", function () {
@@ -41,10 +46,11 @@ describe('Le composant Puzzle', function () {
     });
   });
 
-  describe("quand il y a des nouvelles à classer", function () {
+  describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
     beforeEach(function () {
-      const nouvellesDuJourNonClassees = [{ id: 'nouvelle_1', contenu: 'Ma super nouvelle !' }];
-      genereVue(nouvellesDuJourNonClassees);
+      genereVue([], [1, 2]);
+      wrapper.vm.nouvellesDuJourClassees.push({ id: 1 });
+      wrapper.vm.envoiReponse();
     });
 
     it("affiche le puzzle à droite", function () {
@@ -58,10 +64,12 @@ describe('Le composant Puzzle', function () {
     });
   });
 
-  describe("quand il n'y a plus de nouvelles à classer", function () {
+  describe("quand on a envoyé un ensemble de réponse complet", function () {
     beforeEach(function () {
-      const nouvellesDuJourNonClassees = [];
-      genereVue(nouvellesDuJourNonClassees);
+      genereVue([], [1, 2]);
+      wrapper.vm.nouvellesDuJourClassees.push({ id: 1 });
+      wrapper.vm.nouvellesDuJourClassees.push({ id: 2 });
+      wrapper.vm.envoiReponse();
     });
 
     it("n'affiche plus le puzzle à droite", function () {
@@ -71,6 +79,54 @@ describe('Le composant Puzzle', function () {
 
     it("n'affiche plus la zone de dépot", function () {
       expect(wrapper.find('.zone-de-depot').exists()).toBe(false);
+    });
+  });
+
+  describe("envoie la réponse au serveur", function() {
+    it('envoie le score, le sucess et la réponse', function () {
+      genereVue([], bonOrdre);
+      for(const id of bonOrdre) {
+        wrapper.vm.nouvellesDuJourClassees.push({ id });
+      }
+      wrapper.vm.envoiReponse();
+      expect(wrapper.emitted('reponse').length).toEqual(1);
+      expect(wrapper.emitted('reponse')[0][0]).toEqual({
+        score: 8,
+        succes: true,
+        reponse: bonOrdre
+      });
+    });
+
+    describe("#score", function() {
+      beforeEach(function() {
+        genereVue([], bonOrdre);
+      });
+
+      it('avec aucun fragment à la bonne place', function() {
+        expect(wrapper.vm.calculeScore([2, 3, 4, 5, 6, 7, 1])).toEqual(0);
+      });
+
+      it('avec 1 fragment à la bonne place', function() {
+        expect(wrapper.vm.calculeScore([1, 3, 4, 5, 6, 7, 2])).toEqual(1);
+      });
+
+      it('avec 5 fragments à la bonne place', function() {
+        expect(wrapper.vm.calculeScore([1, 2, 3, 4, 5, 7, 6])).toEqual(6);
+      });
+
+      it('avec tout bien placé', function() {
+        expect(wrapper.vm.calculeScore(bonOrdre)).toEqual(8);
+      });
+    });
+
+    describe('#succes', function() {
+      it("quand tout est à la bonne place", function() {
+        expect(wrapper.vm.succes(bonOrdre)).toBe(true);
+      });
+
+      it("quand ce n'est pas le bon ordre", function() {
+        expect(wrapper.vm.succes([1, 2, 3, 4, 5, 7, 6])).toBe(false);
+      });
     });
   });
 });
