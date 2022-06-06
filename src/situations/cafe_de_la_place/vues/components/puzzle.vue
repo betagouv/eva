@@ -12,16 +12,7 @@
         :key="fragment.id"
         class="puzzle-item"
       >
-        <div class="puzzle-icone">
-          <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="2" cy="2" r="2" fill="#D6DAEC"/>
-          <circle cx="2" cy="10" r="2" fill="#D6DAEC"/>
-          <circle cx="2" cy="18" r="2" fill="#D6DAEC"/>
-          <circle cx="10" cy="18" r="2" fill="#D6DAEC"/>
-          <circle cx="10" cy="10" r="2" fill="#D6DAEC"/>
-          <circle cx="10" cy="2" r="2" fill="#D6DAEC"/>
-          </svg>
-        </div>
+        <poignee-puzzle/>
         <span>{{fragment.contenu}}</span>
       </div>
       <div v-if="fragmentsClasses.length == 0"
@@ -46,16 +37,7 @@
         :key="fragment.id"
         class="puzzle-item"
       >
-        <div class="puzzle-icone">
-          <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="2" cy="2" r="2" fill="#D6DAEC"/>
-          <circle cx="2" cy="10" r="2" fill="#D6DAEC"/>
-          <circle cx="2" cy="18" r="2" fill="#D6DAEC"/>
-          <circle cx="10" cy="18" r="2" fill="#D6DAEC"/>
-          <circle cx="10" cy="10" r="2" fill="#D6DAEC"/>
-          <circle cx="10" cy="2" r="2" fill="#D6DAEC"/>
-          </svg>
-        </div>
+        <poignee-puzzle/>
         <span>{{fragment.contenu}}</span>
       </div>
     </draggable>
@@ -64,10 +46,11 @@
 
 <script>
 import 'cafe_de_la_place/styles/puzzle.scss';
-import draggable from 'vuedraggable';
+import Draggable from 'vuedraggable';
+import PoigneePuzzle from './poignee_puzzle';
 
 export default {
-  components: { draggable },
+  components: { Draggable, PoigneePuzzle },
 
   props: {
     question: {
