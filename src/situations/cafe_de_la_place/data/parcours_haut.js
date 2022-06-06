@@ -14,6 +14,17 @@ const HPar1 = {
   extensionVue: 'puzzle',
   description: "Vous avez placé tous les blocs de texte !<br>Vous pouvez toujours modifier leur ordre directement dans la page du journal.",
   intitule: "Si l’ordre vous convient, cliquez sur « Valider ».",
+  reponse: {
+    bonOrdre: [
+      'nouvelle_6',
+      'nouvelle_2',
+      'nouvelle_3',
+      'nouvelle_5',
+      'nouvelle_7',
+      'nouvelle_4',
+      'nouvelle_1'
+    ]
+  }
 };
 
 const nouvellesDuJour = [
