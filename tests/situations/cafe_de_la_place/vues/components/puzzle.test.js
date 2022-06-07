@@ -4,17 +4,16 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 describe('Le composant Puzzle', function () {
   let wrapper;
   let localVue;
-  const bonOrdre = [1, 2, 3, 4, 5, 6, 7];
+  const bonOrdre = [0, 1, 2, 3, 4, 5, 6];
 
-  function genereVue(fragmentsNonClasses, bonOrdre) {
+  function genereVue(fragmentsNonClasses) {
     localVue = createLocalVue();
     localVue.prototype.$traduction = () => {};
     wrapper = shallowMount(puzzle, {
       localVue,
       propsData: {
         question: {
-          fragmentsNonClasses: fragmentsNonClasses,
-          reponse: { bonOrdre }
+          fragmentsNonClasses
         }
       }
     });
@@ -27,13 +26,13 @@ describe('Le composant Puzzle', function () {
 
   describe("les composants draggable envoie une réponse à chaque fois qu'on pose un fragement", function() {
     it("le puzzle de gauche emet ses réponses", function() {
-      genereVue([], bonOrdre);
+      genereVue([1, 2]);
       wrapper.findComponent('.puzzle-gauche').vm.$emit('end');
       expect(wrapper.emitted('reponse').length).toEqual(1);
     });
 
     it("le puzzle de droite emet ses réponses", function() {
-      genereVue([], bonOrdre);
+      genereVue([1, 2]);
       wrapper.findComponent('.puzzle-droite').vm.$emit('end');
       expect(wrapper.emitted('reponse').length).toEqual(1);
     });
@@ -59,7 +58,7 @@ describe('Le composant Puzzle', function () {
 
   describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
     beforeEach(function () {
-      genereVue([], [1, 2]);
+      genereVue([2, 1]);
       wrapper.vm.fragmentsClasses.push({ id: 1 });
       wrapper.vm.envoiReponse();
     });
@@ -77,7 +76,7 @@ describe('Le composant Puzzle', function () {
 
   describe("quand on a envoyé un ensemble de réponse complet", function () {
     beforeEach(function () {
-      genereVue([], [1, 2]);
+      genereVue([2, 1]);
       wrapper.vm.fragmentsClasses.push({ id: 1 });
       wrapper.vm.fragmentsClasses.push({ id: 2 });
       wrapper.vm.envoiReponse();
@@ -95,7 +94,7 @@ describe('Le composant Puzzle', function () {
 
   describe("envoie la réponse au serveur", function() {
     it('envoie le score, le sucess et la réponse', function () {
-      genereVue([], bonOrdre);
+      genereVue([1, 0, 2, 3, 4, 5, 6]);
       for(const id of bonOrdre) {
         wrapper.vm.fragmentsClasses.push({ id });
       }
@@ -110,19 +109,19 @@ describe('Le composant Puzzle', function () {
 
     describe("#score", function() {
       beforeEach(function() {
-        genereVue([], bonOrdre);
+        genereVue([1, 2, 3, 4, 5, 6, 0]);
       });
 
       it('avec aucun fragment à la bonne place', function() {
-        expect(wrapper.vm.calculeScore([2, 3, 4, 5, 6, 7, 1])).toEqual(0);
+        expect(wrapper.vm.calculeScore([1, 2, 3, 4, 5, 6, 0])).toEqual(0);
       });
 
       it('avec 1 fragment à la bonne place', function() {
-        expect(wrapper.vm.calculeScore([1, 3, 4, 5, 6, 7, 2])).toEqual(1);
+        expect(wrapper.vm.calculeScore([0, 2, 3, 4, 5, 6, 1])).toEqual(1);
       });
 
       it('avec 5 fragments à la bonne place', function() {
-        expect(wrapper.vm.calculeScore([1, 2, 3, 4, 5, 7, 6])).toEqual(6);
+        expect(wrapper.vm.calculeScore([0, 1, 2, 3, 4, 6, 5])).toEqual(6);
       });
 
       it('avec tout bien placé', function() {

@@ -63,7 +63,7 @@ export default {
     return {
       fragmentsClasses: [],
       fragmentsNonClasses: [...this.question.fragmentsNonClasses],
-      bonOrdre: this.question.reponse.bonOrdre,
+      nombreFragment: this.question.fragmentsNonClasses.length,
       affichePuzzleDroite: true
     };
   },
@@ -73,14 +73,14 @@ export default {
       const reponse = this.fragmentsClasses.map((fragment) => fragment.id);
       const score = this.calculeScore(reponse);
       const succes = this.succes(reponse);
-      this.affichePuzzleDroite = reponse.length < this.bonOrdre.length;
+      this.affichePuzzleDroite = reponse.length < this.nombreFragment;
       this.$emit('reponse', { score, succes, reponse });
     },
 
     calculeScore(reponse) {
-      const nombre_biens_places = this.bonOrdre
-        .map((bonId, i) => bonId == reponse[i] ? 1 : 0)
-        .reduce((a, b) => a + b);
+      const nombre_biens_places = reponse
+        .map((id, i) => id === i ? 1 : 0)
+        .reduce((somme, element) => somme + element, 0);
 
       let score = nombre_biens_places;
       if(nombre_biens_places >= 5) score++;
@@ -88,7 +88,7 @@ export default {
     },
 
     succes(reponse) {
-      return this.bonOrdre.every((bonId, index) => bonId === reponse[index]);
+      return reponse.every((id, index) => id === index);
     }
   }
 };

@@ -9,25 +9,25 @@ const sousConsigneHPar1 = {
 
 const fragmentsNouvelleDuJour = [
   {
-    id: 'fragment_1',
+    id: 6,
     contenu: "Durant leur séjour à l'hôpital, ils auront tout loisir de se raconter leurs petites histoires..."
   }, {
-    id: 'fragment_2',
+    id: 1,
     contenu: "En effet, il est 8 h 45 quand le jeune David G. s'apprête à traverser la chaussée."
   }, {
-    id: 'fragment_3',
+    id: 2,
     contenu: "Un de ses copains de classe, Rémi P. qui était déjà devant l'école, se met lui aussi à traverser la chaussée pour aller à sa rencontre."
   }, {
-    id: 'fragment_4',
+    id: 5,
     contenu: "Les deux amis, blessés au visage pour l'un et à la jambe pour l'autre, ont été transportés à l'hôpital tout proche."
   }, {
-    id: 'fragment_5',
+    id: 3,
     contenu: "Les deux garçons se dirigent l'un vers l'autre sans regarder la circulation."
   }, {
-    id: 'fragment_6',
+    id: 0,
     contenu: "Ce matin, alors que les enfants arrivaient à proximité de l'école, deux garçons particulièrement distraits ont provoqué un accident sur la voie publique près de l'école Jules Ferry."
   }, {
-    id: 'fragment_7',
+    id: 4,
     contenu: "Deux voitures qui arrivaient en sens contraire, ont chacune projeté violemment un garçon à terre provoquant la frayeur des témoins."
   }
 ];
@@ -39,18 +39,7 @@ const HPar1 = {
   extensionVue: 'puzzle',
   description: "Vous avez placé tous les blocs de texte !<br>Vous pouvez toujours modifier leur ordre directement dans la page du journal.",
   intitule: "Si l’ordre vous convient, cliquez sur « Valider ».",
-  fragmentsNonClasses: fragmentsNouvelleDuJour,
-  reponse: {
-    bonOrdre: [
-      'fragment_6',
-      'fragment_2',
-      'fragment_3',
-      'fragment_5',
-      'fragment_7',
-      'fragment_4',
-      'fragment_1'
-    ]
-  }
+  fragmentsNonClasses: fragmentsNouvelleDuJour
 };
 
 const parcoursHaut = {
