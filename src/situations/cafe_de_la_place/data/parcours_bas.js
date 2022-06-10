@@ -361,66 +361,71 @@ const alrd14 = {
 const ACrd1 = {
   id: 'ACrd1',
   nom_technique: 'acrd_1',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'Comment s’appelle le groupe ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   modalite_reponse: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
   reponse: {
-    texte: 'Rick Duxol & Mori Morino'
+    texte: 'Rick Duxol & Mori Morino',
+    score: 1
   }
 };
 
 const ACrd2 = {
   id: 'ACrd2',
   nom_technique: 'acrd_2',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'Comment s’appelle le joueur de contrebasse ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   reponse: {
-    texte: 'Georges Tiporanet'
+    texte: 'Georges Tiporanet',
+    score: 1
   }
 };
 
 const ACrd3 = {
   id: 'ACrd3',
   nom_technique: 'acrd_3',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   reponse: {
-    texte: 'New-York'
+    texte: 'New-York',
+    score: 1
   }
 };
 
 const ACrd4 = {
   id: 'ACrd4',
   nom_technique: 'acrd_4',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'De quel pays le groupe vient-il ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   reponse: {
-    texte: 'Bulgarie'
+    texte: 'Bulgarie',
+    score: 1
   }
 };
 
 const ACrd5 = {
   id: 'ACrd5',
   nom_technique: 'acrd_5',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'En quelle année le groupe a-t-il débuté ?',
   zone_cliquable: 'revue-magazine',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   reponse: {
-    texte: '2011'
+    texte: '2011',
+    score: 1
   }
 };
 
@@ -437,7 +442,7 @@ const sousConsigneACrd2 = {
 const ACrd6 = {
   id: 'ACrd6',
   nom_technique: 'acrd_6',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'Qui est Ivano Karanadoff ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -461,6 +466,7 @@ const ACrd6 = {
       id: 'critiqueMusical',
       nom_technique: 'critique_musical',
       bonneReponse: true,
+      score: 1,
       intitule: 'Un critique musical'
     }
   ]
@@ -469,7 +475,7 @@ const ACrd6 = {
 const ACrd7 = {
   id: 'ACrd7',
   nom_technique: 'acrd_7',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'Quel est le genre de musique que produit ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -486,6 +492,7 @@ const ACrd7 = {
       id: 'jazz',
       nom_technique: 'jazz',
       bonneReponse: true,
+      score: 1,
       intitule: 'Jazz'
     },
     {
@@ -499,7 +506,7 @@ const ACrd7 = {
 const ACrd8 = {
   id: 'ACrd8',
   nom_technique: 'acrd_8',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'Qui a influencé ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -516,6 +523,7 @@ const ACrd8 = {
       id: 'jazzBandDeLondres',
       nom_technique: 'jazz_band_de_londres',
       bonneReponse: true,
+      score: 1,
       intitule: 'Jazz band de Londres'
     },
     {
@@ -530,7 +538,7 @@ const ACrd8 = {
 const ACrd9 = {
   id: 'ACrd9',
   nom_technique: 'acrd_9',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'Que pense la critique de ce style musical ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -553,6 +561,7 @@ const ACrd9 = {
       id: 'neuf',
       nom_technique: 'neuf',
       bonneReponse: true,
+      score: 1,
       intitule: 'Neuf'
     }
   ]
@@ -561,7 +570,7 @@ const ACrd9 = {
 const ACrd10 = {
   id: 'ACrd10',
   nom_technique: 'acrd_10',
-  metacompetence: 'comprehention',
+  metacompetence: 'comprehension',
   intitule: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
@@ -578,6 +587,7 @@ const ACrd10 = {
       id: 'tempsFutur',
       nom_technique: 'temps_futur',
       bonneReponse: true,
+      score: 1,
       intitule: 'Le temps futur'
     },
     {
