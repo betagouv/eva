@@ -100,7 +100,7 @@ const questionDeverrouillage = {
   intitule: 'Quel est le mot de passe ?',
   extensionVue: 'ecran-telephone-deverrouillage',
   reponse: {
-    texte: '1800'
+    textes: ['1800']
   },
   metacompetence: 'numeratie'
 };
@@ -452,7 +452,7 @@ const questionRepondeur2 = {
   intitule: 'Que sophie devrait-elle répondre ?',
   extensionVue: 'lecture-message',
   reponse: {
-    texte: '21'
+    textes: ['21']
   },
   metacompetence: 'numeratie'
 };

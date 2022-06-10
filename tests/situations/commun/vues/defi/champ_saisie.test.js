@@ -41,11 +41,46 @@ describe('Le composant champ de saisie', function () {
 
   describe('peut être utilisé avec la propriété v-model', function () {
     it('envoie la réponse dans un événement input', function () {
-      vue = composant({ question: { reponse: { texte: 'boulangerie' } } });
+      vue = composant({ question: { reponse: { textes: ['boulangerie'] } } });
       const input = vue.find('input[type=text]');
       input.setValue('Boulangerie ');
       expect(vue.emitted('input').length).toEqual(1);
       expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'Boulangerie', succes: true });
+    });
+  });
+
+  describe('#emetReponse', function() {
+    beforeEach(function() {
+      vue = composant({ question: { reponse: {
+        textes: ['boulangerie', 'boulangeries'],
+        scores: [1, 1.5]
+      } } });
+    });
+
+    it("echoue si la réponse n'est pas dans la liste", function() {
+      vue.vm.emetReponse('boulangery');
+      expect(vue.emitted('input')[0][0]).toEqual({
+        reponse: 'boulangery',
+        succes: false
+      });
+    });
+
+    it("accepte la première réponse", function() {
+      vue.vm.emetReponse('boulangerie');
+      expect(vue.emitted('input')[0][0]).toEqual({
+        reponse: 'boulangerie',
+        succes: true,
+        score: 1
+      });
+    });
+
+    it("accepte la seconde réponse", function() {
+      vue.vm.emetReponse('boulangeries');
+      expect(vue.emitted('input')[0][0]).toEqual({
+        reponse: 'boulangeries',
+        succes: true,
+        score: 1.5
+      });
     });
   });
 

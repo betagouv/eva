@@ -78,7 +78,7 @@ const saisieBoulangerie = {
   sous_type: 'texte',
   placeholder: 'Réponse',
   reponse: {
-    texte: 'boulangerie'
+    textes: ['boulangerie']
   },
   illustration: SaisieBoulangerie,
   intitule: 'Recopiez le nom « Boulangerie » dans le cadre de texte ci-dessous, puis cliquez sur « Valider »'
