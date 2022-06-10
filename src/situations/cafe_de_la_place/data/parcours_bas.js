@@ -654,7 +654,8 @@ const APlc1 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'cuisine',
-    texte: 'cuisine'
+    textes: ['cuisine', 'cuisines'],
+    scores: [1, 0.75]
   }
 };
 
@@ -669,7 +670,8 @@ const APlc2 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'saladiers',
-    texte: 'saladiers'
+    textes: ['saladier', 'saladiers'],
+    scores: [1, 1.25]
   }
 };
 
@@ -684,7 +686,8 @@ const APlc3 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'verre',
-    texte: 'verre'
+    textes: ['verre', 'verres'],
+    scores: [1, 0.75]
   }
 };
 
@@ -699,7 +702,8 @@ const APlc4 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'mayonnaise',
-    texte: 'mayonnaise'
+    textes: ['mayonnaise', 'mayonnaises'],
+    scores: [1, 0.75]
   }
 };
 
@@ -714,7 +718,8 @@ const APlc5 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'sel',
-    texte: 'sel'
+    textes: ['sel', 'sels'],
+    scores: [1, 0.75]
   }
 };
 
@@ -729,7 +734,8 @@ const APlc6 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'tomates',
-    texte: 'tomates'
+    textes: ['tomate', 'tomates'],
+    scores: [1, 1.25]
   }
 };
 
@@ -744,7 +750,8 @@ const APlc7 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'pays',
-    texte: 'pays'
+    textes: ['pays'],
+    scores: [1]
   }
 };
 
@@ -759,7 +766,8 @@ const APlc8 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'poivrons',
-    texte: 'poivrons'
+    textes: ['poivron', 'poivrons'],
+    scores: [1, 1.25]
   }
 };
 
@@ -774,7 +782,10 @@ const APlc9 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'epices',
-    texte: 'épices'
+    textes: ['épice', 'epice', 'èpice', 'êpice', 'ëpice',
+      'épices', 'epices', 'èpices', 'êpices', 'ëpices'],
+    scores: [1, 0.75, 0.75, 0.75, 0.75,
+      1.25, 1, 1, 1, 1]
   }
 };
 
@@ -789,7 +800,8 @@ const APlc10 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'donnent',
-    texte: 'donnent'
+    textes: ['donne', 'donnent'],
+    scores: [1, 1.25]
   }
 };
 
@@ -804,7 +816,8 @@ const APlc11 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'douzaines',
-    texte: 'douzaines'
+    textes: ['douzaine', 'douzaines'],
+    scores: [1, 1.25]
   }
 };
 
@@ -819,7 +832,8 @@ const APlc12 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'assiettes',
-    texte: 'assiettes'
+    textes: ['assiette', 'assiettes'],
+    scores: [1, 1.25]
   }
 };
 
@@ -834,7 +848,8 @@ const APlc13 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'fouets',
-    texte: 'fouets'
+    textes: ['fouet', 'fouets'],
+    scores: [1, 1.25]
   }
 };
 
@@ -849,7 +864,8 @@ const APlc14 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'louche',
-    texte: 'louche'
+    textes: ['louche', 'louches'],
+    scores: [1, 0.75]
   }
 };
 
@@ -864,7 +880,8 @@ const APlc15 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'passoire',
-    texte: 'passoire'
+    textes: ['passoire', 'passoires'],
+    scores: [1, 0.75]
   }
 };
 
@@ -879,7 +896,10 @@ const APlc16 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'poele',
-    texte: 'poêle'
+    textes: ['poêle', 'poele', 'poéle', 'poèle', 'poële',
+      'poêles', 'poeles', 'poéles', 'poèles', 'poëles'],
+    scores: [1, 0.75, 0.75, 0.75, 0.75,
+      0.75, 0.75, 0.75, 0.75, 0.75]
   }
 };
 
@@ -894,7 +914,8 @@ const APlc17 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'luxe',
-    texte: 'luxe'
+    textes: ['luxe', 'luxes'],
+    scores: [1, 0.75]
   }
 };
 
@@ -909,7 +930,8 @@ const APlc18 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'casserole',
-    texte: 'casserole'
+    textes: ['casserole', 'casseroles'],
+    scores: [1, 0.75]
   }
 };
 
@@ -924,7 +946,8 @@ const APlc19 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'adhere',
-    texte: 'adhère'
+    textes: ['adhère', 'adhere', 'adhére', 'adhêre', 'adhëre'],
+    scores: [1, 0.75, 0.75, 0.75, 0.75]
   }
 };
 
@@ -939,7 +962,8 @@ const APlc20 = {
   placeholder: 'Réponse',
   reponse: {
     nom_technique: 'alcoolique',
-    texte: 'alcoolique'
+    textes: ['alcoolique', 'alcooliques'],
+    scores: [1, 0.75]
   }
 };
 

@@ -60,7 +60,10 @@ export default {
   methods: {
     emetReponse (valeur) {
       const reponse = valeur.trim();
-      this.$emit('input', { reponse: reponse, succes: reponse.toLowerCase() === this.question.reponse.texte });
+      const indexReponse = this.question.reponse.textes.indexOf(reponse.toLowerCase());
+      const succes = indexReponse != -1;
+      const score = this.question.reponse.scores && this.question.reponse.scores[indexReponse];
+      this.$emit('input', { reponse, succes, score });
     }
   }
 };
