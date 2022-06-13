@@ -1,10 +1,13 @@
 import journalVide from '../assets/journal_vide.png';
+import hParConsigne from '../assets/hpar_c1.png';
 
 const sousConsigneHPar1 = {
   id: 'HPar-sous-consigne-1',
   nom_technique: 'sous_consigne_HPar_1',
   type: 'sous-consigne',
-  intitule: "Première sous-consigne du parcours Haut à venir",
+  illustration: hParConsigne,
+  intitule: "Après le programme télé, vous lisez les « Nouvelles du jour ».<br><br>Un accident de la route a eu lieu dans votre ville ! Mais le texte est un peu bizarre, les phrases sont mélangées.",
+  modalite_reponse: "Déplacez les blocs de texte sur la page du journal à gauche en remettant l'article dans l'ordre.<br>Vous pouvez modifier l'ordre autant de fois que vous le souhaitez. Une fois que l’ordre des phrases vous convient, cliquez sur « Valider ».<br><br>Pour commencer, cliquez sur « Suivant »."
 };
 
 const fragmentsNouvelleDuJour = [
