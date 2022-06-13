@@ -15,7 +15,7 @@ const modeEmploi = {
   type: 'sous-consigne',
   illustration: AccueilSansEglise,
   intitule: 'Pour écouter ou réécouter la question et les réponses, cliquez sur le bouton « Lecture » ( <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="#6e84fe" r="10"/><path d="M14 8.701c1 .577 1 2.02 0 2.598l-5.813 3.356a1.5 1.5 0 0 1-2.25-1.3v-6.71a1.5 1.5 0 0 1 2.25-1.3z" fill="#fff"/></svg> ) à gauche de la phrase que vous souhaitez entendre.',
-  modalite_reponse: 'Essayez avec le bouton en haut à gauche de ce cadre.',
+  modalite_reponse: 'Essayez avec le bouton en haut à gauche de ce cadre.<br><br>Lorsque vous aurez testé le bouton « Lecture », cliquez sur « Suivant »',
   extensionVue: 'mode-emploi'
 };
 
