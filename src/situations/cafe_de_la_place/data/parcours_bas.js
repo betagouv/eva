@@ -639,7 +639,8 @@ const sousConsigneAPlc2 = {
   type: 'sous-consigne',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.<br><br>Pour commencer, cliquez sur « Suivant »."
+  intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Soyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
+  modalite_reponse: 'Pour commencer, cliquez sur « Suivant ».'
 };
 
 const APlc1 = {
