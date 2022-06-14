@@ -1,4 +1,6 @@
 import journalVide from '../assets/journal_vide.png';
+import journalAvecNouvelle from '../assets/journal_avec_nouvelle.png';
+import journalAvecNouvelleZoom from '../assets/journal_avec_nouvelle_zoom.png';
 import hParConsigne from '../assets/hpar_c1.png';
 
 const sousConsigneHPar1 = {
@@ -37,7 +39,7 @@ const fragmentsNouvelleDuJour = [
 
 const HPar1 = {
   id: 'HPar1',
-  nom_technique: 'HPar_1',
+  nom_technique: 'hpar_1',
   illustration: journalVide,
   extensionVue: 'puzzle',
   description: "Vous avez placé tous les blocs de texte !<br>Vous pouvez toujours modifier leur ordre directement dans la page du journal.",
@@ -45,11 +47,82 @@ const HPar1 = {
   fragmentsNonClasses: fragmentsNouvelleDuJour
 };
 
+const HPar2 = {
+  id: 'HPar2',
+  nom_technique: 'hpar_2',
+  type: 'qcm',
+  illustration: journalAvecNouvelle,
+  intitule: "C'est plus clair comme ça ! Mais quel pourrait être le titre de cet article ?",
+  modalite_reponse: "Choisissez le titre qui résume le mieux le texte. Pour confirmer votre réponse, cliquez sur « Valider »",
+  choix: [
+    {
+      id: 'deux_blesses_ecole',
+      nom_technique: 'deux_blesses_ecole',
+      score: 1,
+      bonneReponse: true,
+      intitule: "Deux enfants blessés sur la route de l'école"
+    },
+    {
+      id: 'trois_blesses',
+      nom_technique: 'trois_blesses',
+      bonneReponse: false,
+      intitule: 'Trois blessés à Jules Ferry'
+    },
+    {
+      id: 'deux_morts',
+      nom_technique: 'deux_morts',
+      bonneReponse: false,
+      intitule: 'Deux morts dans une collision frontale'
+    },
+    {
+      id: 'deux_blesses_hopital',
+      nom_technique: 'deux_blesses_hopital',
+      bonneReponse: false,
+      intitule: "Deux enfants blessés devant l'hôpital Jules Ferry"
+    }
+  ]
+};
+
+const HPar3 = {
+  id: 'HPar3',
+  nom_technique: 'hpar_3',
+  illustration: journalAvecNouvelleZoom,
+  type: 'qcm',
+  intitule: "L'article utilise le mot « frayeur ». Si on voulait le remplacer par un autre mot qui a un sens proche, lequel pourrait-on choisir ?",
+  choix: [
+    {
+      id: 'surprise',
+      nom_technique: 'surprise',
+      bonneReponse: false,
+      intitule: 'Surprise'
+    },
+    {
+      id: 'peur',
+      nom_technique: 'peur',
+      score: 1,
+      bonneReponse: true,
+      intitule: 'Peur'
+    },
+    {
+      id: 'inquietude',
+      nom_technique: 'inquietude',
+      bonneReponse: false,
+      intitule: 'Inquiétude'
+    },
+    {
+      id: 'agitation',
+      nom_technique: 'agitation',
+      bonneReponse: false,
+      intitule: 'Agitation'
+    }
+  ]
+};
+
 const parcoursHaut = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
     {
-      cartes: [ HPar1 ]
+      cartes: [ HPar1, HPar2, HPar3 ]
     }
   ]
 };
