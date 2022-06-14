@@ -49,6 +49,8 @@ import LOdi10 from 'cafe_de_la_place/assets/audio_questions/LOdi10.mp3';
 import LOdi11 from 'cafe_de_la_place/assets/audio_questions/LOdi11.mp3';
 import LOdi12 from 'cafe_de_la_place/assets/audio_questions/LOdi12.mp3';
 import LOdi13 from 'cafe_de_la_place/assets/audio_questions/LOdi13.mp3';
+import HPar2 from 'cafe_de_la_place/assets/audio_questions/HPar2.mp3';
+import HPar3 from 'cafe_de_la_place/assets/audio_questions/HPar3.mp3';
 
 // AUDIOS REPONSES
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
@@ -160,6 +162,14 @@ import numerosDangereux from 'cafe_de_la_place/assets/audio_reponses/LOdi/numero
 import trapezisteTombe from 'cafe_de_la_place/assets/audio_reponses/LOdi/trapeziste_tombe.mp3';
 import vide from 'cafe_de_la_place/assets/audio_reponses/LOdi/vide.mp3';
 import aventuresHandicape from 'cafe_de_la_place/assets/audio_reponses/LOdi/aventures_handicape.mp3';
+import deuxBlessesEcole from 'cafe_de_la_place/assets/audio_reponses/HPar/deux_blesses_ecole.mp3';
+import deuxBlessesHopital from 'cafe_de_la_place/assets/audio_reponses/HPar/deux_blesses_hopital.mp3';
+import deuxMorts from 'cafe_de_la_place/assets/audio_reponses/HPar/deux_morts.mp3';
+import troisBlesses from 'cafe_de_la_place/assets/audio_reponses/HPar/trois_blesses.mp3';
+import surprise from 'cafe_de_la_place/assets/audio_reponses/HPar/surprise.mp3';
+import inquietude from 'cafe_de_la_place/assets/audio_reponses/HPar/inquietude.mp3';
+import peur from 'cafe_de_la_place/assets/audio_reponses/HPar/peur.mp3';
+import agitation from 'cafe_de_la_place/assets/audio_reponses/HPar/agitation.mp3';
 
 const AUDIOS_CONSIGNES = {
   sous_consigne_ALrd_1: sousConsigneALrd1,
@@ -208,8 +218,9 @@ const AUDIOS_QUESTIONS = {
   lodi_10: LOdi10,
   lodi_11: LOdi11,
   lodi_12: LOdi12,
-  lodi_13: LOdi13
-
+  lodi_13: LOdi13,
+  hpar_2: HPar2,
+  hpar_3: HPar3
 };
 
 const AUDIOS_REPONSES = {
@@ -321,7 +332,15 @@ const AUDIOS_REPONSES = {
   saut_perilleux: sautPerilleux,
   vide: vide,
   fin_film: sonFinFilm,
-  debut_film: sonDebutFilm
+  debut_film: sonDebutFilm,
+  deux_blesses_ecole: deuxBlessesEcole,
+  deux_blesses_hopital: deuxBlessesHopital,
+  deux_morts: deuxMorts,
+  trois_blesses: troisBlesses,
+  surprise: surprise,
+  inquietude: inquietude,
+  agitation: agitation,
+  peur: peur
 };
 
 const messagesVideos = {};
