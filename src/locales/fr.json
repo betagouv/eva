@@ -178,6 +178,11 @@
     "bouton_aide": "Continuer",
     "titre_transition": "Bravo !",
     "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
+    "erreur_lecture_son": {
+      "titre": "Attention : la passation d'eva n'est pas possible !",
+      "description": "Votre navigateur ou votre appareil ne semble pas compatible avec la lecture des sons au format mp3.",
+      "action": "Veuillez contacter la personne qui vous accompagne."
+    },
     "chargement": "Chargement en cours",
     "enregistrement": "Enregistrement en cours",
     "go": "Vous pouvez commencer",
