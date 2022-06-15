@@ -10,7 +10,7 @@
       @include bouton-centre(transparent);
    }
 
-  .overlay-action-message {
+  &-message {
     font-family: $font-quicksand;
     position:absolute;
     top: 7rem;

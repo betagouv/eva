@@ -20,4 +20,22 @@
   &.hors-actions {
     height: $hauteur-scene;
   }
+
+  h2.titre-avec-illustration {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 1.375rem;
+    }
+
+    .etiquette-titre {
+      width: 35rem;
+    }
+  }
+
+  &-recommandation {
+    margin-top: 1rem;
+    font-weight: 600;
+  }
 }
