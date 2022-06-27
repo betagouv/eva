@@ -95,12 +95,14 @@ export default class RegistreUtilisateur extends BaseRegistre {
     this.enregistreEnLocale(this.clePourLocalStorage(idClient), data);
   }
 
-  listeEvaluationsLocales () {
-    return Object.keys(window.localStorage)
+  listeEvaluationsLocales (stockageLocal = window.localStorage) {
+    if(!stockageLocal) { return {}; }
+
+    return Object.keys(stockageLocal)
       .filter((k) => k.startsWith(PREFIX_EVALUATIONS))
       .reduce((liste, k) => {
         const idClient = k.replace(PREFIX_EVALUATIONS, '');
-        return { ...liste, [idClient]: JSON.parse(window.localStorage.getItem(k)) };
+        return { ...liste, [idClient]: JSON.parse(stockageLocal.getItem(k)) };
       }, {});
   }
 
