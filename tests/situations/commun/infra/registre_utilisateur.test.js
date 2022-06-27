@@ -268,6 +268,10 @@ describe('le registre utilisateur', function () {
         2: { id: 2 }
       });
     });
+
+    it('quand window.localStorage est null', function() {
+      expect(registre.listeEvaluationsLocales(null)).toEqual({});
+    });
   });
 
   describe('#deconnecte()', function () {
