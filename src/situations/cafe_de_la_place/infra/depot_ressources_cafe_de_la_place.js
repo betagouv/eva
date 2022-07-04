@@ -51,6 +51,7 @@ import LOdi12 from 'cafe_de_la_place/assets/audio_questions/LOdi12.mp3';
 import LOdi13 from 'cafe_de_la_place/assets/audio_questions/LOdi13.mp3';
 import HPar2 from 'cafe_de_la_place/assets/audio_questions/HPar2.mp3';
 import HPar3 from 'cafe_de_la_place/assets/audio_questions/HPar3.mp3';
+import HGac1 from 'cafe_de_la_place/assets/audio_questions/HGac1.mp3';
 
 // AUDIOS REPONSES
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
@@ -220,7 +221,8 @@ const AUDIOS_QUESTIONS = {
   lodi_12: LOdi12,
   lodi_13: LOdi13,
   hpar_2: HPar2,
-  hpar_3: HPar3
+  hpar_3: HPar3,
+  hgac_1: HGac1
 };
 
 const AUDIOS_REPONSES = {
