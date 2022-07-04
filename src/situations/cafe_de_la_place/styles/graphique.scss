@@ -1,7 +1,58 @@
-.zone-cliquable {
+@import 'commun/styles/variables.scss';
+
+.graphique {
   position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  top: 11rem;
   left: 9.25rem;
   width: 22.5rem;
-  top: 11rem;
   height: 17.375rem;
+  gap: .5rem;
+
+  .moyenne {
+    background-color: $couleur-sombre;
+    height: 10rem;
+    span {
+      color: $blanc;
+    }
+  }
+
+  &-barre {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: $couleur-graph;
+    width: 2.375rem;
+
+    &--selectionnable {
+      border: 3px solid $couleur-graph;
+      &:hover {
+        border: 3px dotted $couleur-principale-marque-et-interaction;
+      }
+    }
+
+    span {
+      color:#1B4991;
+      font-size: .875rem;
+      margin-top: .5rem;
+    }
+
+    &--selectionnee {
+      border: 3px solid $couleur-principale-marque-et-interaction;
+      &::before {
+        content: '';
+        background-image: url(../assets/icone_valide.svg);
+        position: absolute;
+        height: 2rem;
+        width: 2rem;
+        top: -2.5rem;
+      }
+    }
+
+    .checkbox {
+      display: none;
+    }
+  }
 }
