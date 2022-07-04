@@ -2,6 +2,7 @@ import journalVide from '../assets/journal_vide.png';
 import journalAvecNouvelle from '../assets/journal_avec_nouvelle.png';
 import journalAvecNouvelleZoom from '../assets/journal_avec_nouvelle_zoom.png';
 import hParConsigne from '../assets/hpar_c1.png';
+import graphique from '../assets/graphique.png';
 
 const sousConsigneHPar1 = {
   id: 'HPar-sous-consigne-1',
@@ -118,12 +119,20 @@ const HPar3 = {
   ]
 };
 
+const HGac1 = {
+  id: 'HGac1',
+  nom_technique: 'hgac_1',
+  illustration: graphique,
+  type: 'clic_graphique',
+  intitule: "D'après ce graphique, dans quel pays trouve-t-on le plus de foyers qui accueillent des chats ?",
+  modalite_reponse: "Pour répondre, cliquez sur les barres du graphique.<br>Attention, il peut y avoir plusieurs bonnes réponses. Quand votre choix vous convient, cliquez sur « Valider ».",
+};
+
 const parcoursHaut = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
-    {
-      cartes: [ HPar1, HPar2, HPar3 ]
-    }
+    { cartes: [ HPar1, HPar2, HPar3 ] },
+    { cartes: [ HGac1 ] }
   ]
 };
 
