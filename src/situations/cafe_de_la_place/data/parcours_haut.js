@@ -123,7 +123,7 @@ const HGac1 = {
   id: 'HGac1',
   nom_technique: 'hgac_1',
   illustration: graphique,
-  type: 'clic_graphique',
+  extensionVue: 'graphique',
   intitule: "D'après ce graphique, dans quel pays trouve-t-on le plus de foyers qui accueillent des chats ?",
   modalite_reponse: "Pour répondre, cliquez sur les barres du graphique.<br>Attention, il peut y avoir plusieurs bonnes réponses. Quand votre choix vous convient, cliquez sur « Valider ».",
 };

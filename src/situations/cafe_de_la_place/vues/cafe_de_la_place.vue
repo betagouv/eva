@@ -27,6 +27,7 @@ import Pagination from 'commun/vues/components/pagination';
 import ClicSurMots from 'cafe_de_la_place/vues/components/clic_sur_mots.vue';
 import texteATrous from 'cafe_de_la_place/vues/components/texte_a_trous.vue';
 import Puzzle from 'cafe_de_la_place/vues/components/puzzle.vue';
+import Graphique from 'cafe_de_la_place/vues/components/graphique.vue';
 
 export default {
   components: { Defi, TransitionFade, Pagination },
@@ -36,6 +37,7 @@ export default {
     Vue.component('clic_sur_mots', ClicSurMots);
     Vue.component('texte_a_trous', texteATrous);
     Vue.component('puzzle', Puzzle);
+    Vue.component('graphique', Graphique);
   },
 
   computed: {
