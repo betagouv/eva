@@ -3,6 +3,7 @@ import journalAvecNouvelle from '../assets/journal_avec_nouvelle.png';
 import journalAvecNouvelleZoom from '../assets/journal_avec_nouvelle_zoom.png';
 import hParConsigne from '../assets/hpar_c1.png';
 import graphique from '../assets/graphique.png';
+import graphiqueAvecSelection from '../assets/graphique_avec_selection.png';
 
 const sousConsigneHPar1 = {
   id: 'HPar-sous-consigne-1',
@@ -119,6 +120,15 @@ const HPar3 = {
   ]
 };
 
+const sousConsigneHGac1 = {
+  id: 'HGac-sous-consigne-1',
+  nom_technique: 'sous_consigne_HGac_1',
+  type: 'sous-consigne',
+  illustration: graphiqueAvecSelection,
+  intitule: "Tiens, il y a un article sur les animaux de compagnie à la page suivante. Regardez attentivement le graphique présenté dans l'article, j'ai quelques questions pour vous.",
+  modalite_reponse: "Pour commencer, cliquez sur  « Suivant »."
+};
+
 const HGac1 = {
   id: 'HGac1',
   nom_technique: 'hgac_1',
@@ -132,6 +142,7 @@ const parcoursHaut = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
     { cartes: [ HPar1, HPar2, HPar3 ] },
+    { cartes: [ sousConsigneHGac1 ] },
     { cartes: [ HGac1 ] }
   ]
 };
