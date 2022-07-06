@@ -12,6 +12,7 @@ import sousConsigneAPlc2 from 'cafe_de_la_place/assets/audio_consignes/sous_cons
 import sousConsigneHPar1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_HPar_1.mp3';
 import sousConsigneLOdi1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_LOdi_1.mp3';
 import sousConsigneLOdi2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_LOdi_2.mp3';
+import sousConsigneHGac1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_HGac_1.mp3';
 
 // AUDIOS QUESTIONS
 import titre1 from 'cafe_de_la_place/assets/audio_questions/titre1.mp3';
@@ -181,7 +182,9 @@ const AUDIOS_CONSIGNES = {
   sous_consigne_APlc_2: sousConsigneAPlc2,
   sous_consigne_HPar_1: sousConsigneHPar1,
   sous_consigne_LOdi_1: sousConsigneLOdi1,
-  sous_consigne_LOdi_2: sousConsigneLOdi2
+  sous_consigne_LOdi_2: sousConsigneLOdi2,
+  sous_consigne_HGac_1: sousConsigneHGac1
+
 };
 
 const AUDIOS_QUESTIONS = {
