@@ -11,35 +11,26 @@ describe('Le composant Graphique', function () {
     localVue = createLocalVue();
   });
 
-  function composant (question, paysSelectionnes) {
+  function composant (question) {
     return shallowMount(Graphique, {
       localVue,
-      data() {
-        return {
-          paysSelectionnes: paysSelectionnes,
-          pays: [
-            {
-              id: 'allemagne',
-              pourcentage: 23
-            },
-            {
-              id: 'pologne',
-              pourcentage: 18
-            }
-          ]
-        };
-      },
       propsData: { question }
     });
   }
 
+  it("Affiche les barres des pays", function () {
+    const wrapper = composant(question);
+    expect(wrapper.findAll('.graphique-barre--selectionnable').length).toEqual(7);
+  });
+
   describe('quand je clique sur une barre du graphique', function () {
     it("ajoute la classe graphique-barre--selectionnee", function (done) {
-      const wrapper = composant(question, []);
+      const wrapper = composant(question);
       expect(wrapper.find('.graphique-barre--selectionnee').exists()).toBe(false);
-      wrapper.vm.paysSelectionnes.push('allemagne');
+      const premiereBarre = wrapper.findAll('.graphique-barre--selectionnable').at(0);
+      premiereBarre.find('input').setChecked();
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.graphique-barre--selectionnee').exists()).toBe(true);
+        expect(premiereBarre.classes()).toContain('graphique-barre--selectionnee');
         done();
       });
     });
@@ -49,22 +40,25 @@ describe('Le composant Graphique', function () {
     let wrapper;
 
     beforeEach(function () {
-      wrapper = composant(question, ['allemagne']);
+      wrapper = composant(question);
     });
 
     describe('quand je sélectionne un pays', function () {
       it('emet une réponse avec la sélection en cours', function (done) {
-        wrapper.vm.paysSelectionnes.push('pologne');
+        const premiereBarre = wrapper.findAll('.graphique-barre--selectionnable').at(0);
+        premiereBarre.find('input').setChecked();
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.emitted().reponse[0][0]).toEqual({"reponse": ["allemagne", "pologne"]});
+          expect(wrapper.emitted().reponse[0][0]).toEqual({"reponse": ["allemagne"]});
           done();
         });
       });
     });
 
-    describe('quand je ne selectionne aucun pays', function () {
+    describe('quand je déselectionne le dernier pays', function () {
       it("emet l'absence de réponse", function (done) {
-        wrapper.vm.paysSelectionnes = [];
+        const premiereBarre = wrapper.findAll('.graphique-barre--selectionnable').at(0);
+        premiereBarre.find('input').setChecked(true);
+        premiereBarre.find('input').setChecked(false);
         wrapper.vm.$nextTick(() => {
           expect(wrapper.emitted().reponse[0][0]).toEqual(undefined);
           done();
