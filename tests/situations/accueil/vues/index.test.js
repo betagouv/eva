@@ -51,6 +51,23 @@ describe('La vue index', function () {
       console.error.mockRestore();
     });
 
+    describe("quand c'est une erreur sans message", function() {
+      beforeEach(function () {
+        localVue.prototype.$depotRessources = {
+          chargement: () => { return Promise.reject({}); }
+        };
+
+        wrapper = shallowMount(Index, { localVue });
+      });
+
+      it('affiche la vue erreur de chargement', function () {
+        expect(wrapper.findComponent(Accueil).exists()).toBe(false);
+        expect(wrapper.findComponent(OverlayAttente).exists()).toBe(false);
+        expect(wrapper.findComponent(OverlayErreurChargement).exists()).toBe(true);
+        expect(consoleError).toHaveBeenCalled();
+      });
+    });
+
     describe("quand c'est une erreur innatendue", function() {
       beforeEach(function () {
         localVue.prototype.$depotRessources = {
