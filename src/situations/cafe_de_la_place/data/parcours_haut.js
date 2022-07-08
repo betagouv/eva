@@ -138,12 +138,36 @@ const HGac1 = {
   modalite_reponse: "Pour répondre, cliquez sur les barres du graphique.<br>Attention, il peut y avoir plusieurs bonnes réponses. Quand votre choix vous convient, cliquez sur « Valider ».",
 };
 
+const HGac2 = {
+  id: 'HGac2',
+  nom_technique: 'hgac_2',
+  illustration: graphique,
+  extensionVue: 'graphique',
+  intitule: "Quels sont les pays qui ont le même pourcentage de foyers qui accueillent des chats ?"
+};
+
+const HGac3 = {
+  id: 'HGac3',
+  nom_technique: 'hgac_3',
+  illustration: graphique,
+  extensionVue: 'graphique',
+  intitule: "Quels pays ont plus de foyers qui accueillent des chats que la moyenne en Europe ?"
+};
+
+const HGac4 = {
+  id: 'HGac4',
+  nom_technique: 'hgac_4',
+  illustration: graphique,
+  extensionVue: 'graphique',
+  intitule: "D’après ce graphique, dans quel pays y a-t-il le moins de foyers qui accueillent des chats ?"
+};
+
 const parcoursHaut = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
     { cartes: [ HPar1, HPar2, HPar3 ] },
     { cartes: [ sousConsigneHGac1 ] },
-    { cartes: [ HGac1 ] }
+    { cartes: [ HGac1, HGac2, HGac3, HGac4 ] }
   ]
 };
 
