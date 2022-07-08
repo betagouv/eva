@@ -110,7 +110,7 @@ describe('Le store de la situation café de la place', function () {
         });
 
         it("passe au parcours bas pour le score < 10", function() {
-          store.state.score = 9;
+          store.state.scoreOrientation = 9;
           store.commit('carteSuivante');
           expect(store.state.parcours).toEqual('parcoursBas');
           expect(store.state.termine).toBe(false);
@@ -118,7 +118,7 @@ describe('Le store de la situation café de la place', function () {
         });
 
         it("passe au parcours haut si le score est >= 10", function() {
-          store.state.score = 10;
+          store.state.scoreOrientation = 10;
           store.commit('carteSuivante');
           expect(store.state.parcours).toEqual('parcoursHaut');
           expect(store.state.termine).toBe(false);
@@ -126,7 +126,7 @@ describe('Le store de la situation café de la place', function () {
         });
 
         it("termine après la dernière question du parcours suivant orientation", function () {
-          store.state.score = 9;
+          store.state.scoreOrientation = 9;
           store.commit('carteSuivante'); // dernière question d'orientation
           store.commit('carteSuivante'); // passe la première question
           expect(store.state.carteActive).toEqual(question2Bas);
@@ -134,6 +134,25 @@ describe('Le store de la situation café de la place', function () {
           store.commit('carteSuivante');
           expect(store.state.carteActive).toEqual(question2Bas);
           expect(store.state.termine).toBe(true);
+        });
+      });
+
+      describe('quand parcours haut est terminé', function() {
+        beforeEach(function() {
+          store.commit('demarreParcours', PARCOURS_HAUT);
+        });
+
+        it("termine si le score est supérieur à 5", function () {
+          store.state.scoreHaut = 6;
+          store.commit('carteSuivante'); // dernière question du parcours haut
+          expect(store.state.termine).toBe(true);
+        });
+
+        it("démarre le parcours bas si le score est inférieur ou égal à 5", function () {
+          store.state.scoreHaut = 5;
+          store.commit('carteSuivante'); // dernière question du parcours haut
+          expect(store.state.termine).toBe(false);
+          expect(store.state.carteActive).toEqual(question1Bas);
         });
       });
     });
@@ -163,24 +182,56 @@ describe('Le store de la situation café de la place', function () {
       expect(store.getters.reponse('id1')).toEqual(laReponse);
     });
 
-    it("quand une réponse correcte n'a pas de score", function() {
-      const laReponse = { succes: true };
-      store.commit('enregistreReponse', laReponse);
-      expect(store.state.score).toEqual(0);
+    describe("enregistre le score d'orientation", function() {
+      beforeEach(function() {
+        store.state.parcours = ORIENTATION;
+      });
+
+      it("quand une réponse correcte n'a pas de score", function() {
+        const laReponse = { succes: true };
+        store.commit('enregistreReponse', laReponse);
+        expect(store.state.scoreOrientation).toEqual(0);
+      });
+
+      it("Ajoute le score d'une réponse", function() {
+        const laReponse = { score: 1, score_max: 2 };
+        store.commit('enregistreReponse', laReponse);
+        expect(store.state.scoreOrientation).toEqual(1);
+      });
+
+      it("accumule les scores au fur et à mesure des reponses", function() {
+        const reponse1 = { score: 1 };
+        store.commit('enregistreReponse', reponse1);
+        const reponse2 = { score: 2 };
+        store.commit('enregistreReponse', reponse2);
+        expect(store.state.scoreOrientation).toEqual(3);
+      });
     });
 
-    it("Ajoute le score d'une réponse", function() {
-      const laReponse = { score: 1, score_max: 2 };
-      store.commit('enregistreReponse', laReponse);
-      expect(store.state.score).toEqual(1);
-    });
+    describe("enregistre le score du parcours haut", function() {
+      beforeEach(function() {
+        store.state.parcours = PARCOURS_HAUT;
+      });
 
-    it("accumule les scores au fur et a mesure des reponses", function() {
-      const reponse1 = { score: 1 };
-      store.commit('enregistreReponse', reponse1);
-      const reponse2 = { score: 2 };
-      store.commit('enregistreReponse', reponse2);
-      expect(store.state.score).toEqual(3);
+      it("quand une réponse correcte n'a pas de score", function() {
+        const laReponse = { succes: true };
+        store.commit('enregistreReponse', laReponse);
+        expect(store.state.scoreHaut).toEqual(0);
+      });
+
+      it("Ajoute le score d'une réponse", function() {
+        const laReponse = { score: 1, score_max: 2 };
+        store.commit('enregistreReponse', laReponse);
+        expect(store.state.scoreHaut).toEqual(1);
+      });
+
+      it("accumule les scores au fur et à mesure des reponses", function() {
+        const reponse1 = { score: 1 };
+        store.commit('enregistreReponse', reponse1);
+        const reponse2 = { score: 2 };
+        store.commit('enregistreReponse', reponse2);
+        expect(store.state.scoreHaut).toEqual(3);
+      });
     });
   });
 });
