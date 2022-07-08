@@ -20,6 +20,14 @@
 import 'cafe_de_la_place/styles/graphique.scss';
 
 export default {
+
+  props: {
+    question: {
+      type: Object,
+      required: true
+    },
+  },
+
   data() {
     return {
       paysSelectionnes: [],
@@ -65,11 +73,29 @@ export default {
 
   watch: {
     paysSelectionnes () {
-      if (this.paysSelectionnes.length === 0) {
+      this.emetReponse(this.paysSelectionnes);
+    }
+  },
+
+  methods: {
+    emetReponse(reponse) {
+      if (reponse.length === 0) {
         this.$emit('reponse');
       } else {
-        this.$emit('reponse', { reponse: this.paysSelectionnes } );
+        const succes = this.estSucces(reponse, this.question.reponse.bonne_reponse);
+        let score;
+        if(succes) {
+          score = this.question.reponse.score;
+        }
+        this.$emit('reponse', { score, succes, reponse });
       }
+    },
+
+    estSucces(reponses, reponsesAttendues) {
+      const reponsesTriees = Array.from(reponses).sort();
+      const reponseAttenduesTriees = Array.from(reponsesAttendues).sort();
+      return reponseAttenduesTriees.length === reponsesTriees.length &&
+        reponseAttenduesTriees.every((pays, index) => pays === reponsesTriees[index]);
     }
   }
 };

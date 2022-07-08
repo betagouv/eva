@@ -136,6 +136,10 @@ const HGac1 = {
   extensionVue: 'graphique',
   intitule: "D'après ce graphique, dans quel pays trouve-t-on le plus de foyers qui accueillent des chats ?",
   modalite_reponse: "Pour répondre, cliquez sur les barres du graphique.<br>Attention, il peut y avoir plusieurs bonnes réponses. Quand votre choix vous convient, cliquez sur « Valider ».",
+  reponse: {
+    bonne_reponse: ['allemagne'],
+    score: 1
+  }
 };
 
 const HGac2 = {
@@ -143,7 +147,11 @@ const HGac2 = {
   nom_technique: 'hgac_2',
   illustration: graphique,
   extensionVue: 'graphique',
-  intitule: "Quels sont les pays qui ont le même pourcentage de foyers qui accueillent des chats ?"
+  intitule: "Quels sont les pays qui ont le même pourcentage de foyers qui accueillent des chats ?",
+  reponse: {
+    bonne_reponse: ['danemark', 'italie'],
+    score: 1
+  }
 };
 
 const HGac3 = {
@@ -151,7 +159,11 @@ const HGac3 = {
   nom_technique: 'hgac_3',
   illustration: graphique,
   extensionVue: 'graphique',
-  intitule: "Quels pays ont plus de foyers qui accueillent des chats que la moyenne en Europe ?"
+  intitule: "Quels pays ont plus de foyers qui accueillent des chats que la moyenne en Europe ?",
+  reponse: {
+    bonne_reponse: ['allemagne', 'pologne', 'grece'],
+    score: 1
+  }
 };
 
 const HGac4 = {
@@ -159,7 +171,11 @@ const HGac4 = {
   nom_technique: 'hgac_4',
   illustration: graphique,
   extensionVue: 'graphique',
-  intitule: "D’après ce graphique, dans quel pays y a-t-il le moins de foyers qui accueillent des chats ?"
+  intitule: "D’après ce graphique, dans quel pays y a-t-il le moins de foyers qui accueillent des chats ?",
+  reponse: {
+    bonne_reponse: ['roumanie'],
+    score: 1
+  }
 };
 
 const parcoursHaut = {
