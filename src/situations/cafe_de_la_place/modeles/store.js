@@ -14,7 +14,8 @@ export function creeStore () {
       series: [],
       termine: false,
       reponses: {},
-      score: 0
+      scoreOrientation: 0,
+      scoreHaut: 0
     },
 
     getters: {
@@ -68,7 +69,10 @@ export function creeStore () {
         this.commit('carteSuivanteParcours');
         if(state.parcoursTermine) {
           if(state.parcours == ORIENTATION) {
-            this.commit('demarreParcours', state.score < 10 ? PARCOURS_BAS : PARCOURS_HAUT);
+            this.commit('demarreParcours', state.scoreOrientation < 10 ? PARCOURS_BAS : PARCOURS_HAUT);
+          }
+          else if(state.parcours == PARCOURS_HAUT && state.scoreHaut <= 5 ) {
+            this.commit('demarreParcours', PARCOURS_BAS);
           }
           else {
             state.termine = true;
@@ -79,7 +83,12 @@ export function creeStore () {
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
         if(reponse.score) {
-          state.score += reponse.score;
+          if(state.parcours == ORIENTATION) {
+            state.scoreOrientation += reponse.score;
+          }
+          if(state.parcours == PARCOURS_HAUT) {
+            state.scoreHaut += reponse.score;
+          }
         }
       },
 
