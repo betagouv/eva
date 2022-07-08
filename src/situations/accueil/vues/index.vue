@@ -38,8 +38,9 @@ export default {
     this.$depotRessources.chargement().then(() => {
       this.chargement = false;
     }).catch((erreur) => {
-      if(erreur.message.includes('Unable to decode audio data') ||
-         erreur.message.includes('decodeAudioData')) {
+      if(erreur.message &&
+        (erreur.message.includes('Unable to decode audio data') ||
+         erreur.message.includes('decodeAudioData'))) {
         this.erreurLectureSon = true;
       }
       else {
