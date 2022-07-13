@@ -25,7 +25,7 @@ const sousConsigneACrd1 = {
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   nom_technique: 'sous_consigne_ACrd_1',
   intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
@@ -363,7 +363,7 @@ const ACrd1 = {
   nom_technique: 'acrd_1',
   metacompetence: 'comprehension',
   intitule: 'Comment s’appelle le groupe ?',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
   modalite_reponse: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
   extensionVue: 'clic_sur_mots',
@@ -378,7 +378,7 @@ const ACrd2 = {
   nom_technique: 'acrd_2',
   metacompetence: 'comprehension',
   intitule: 'Comment s’appelle le joueur de contrebasse ?',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   reponse: {
@@ -392,7 +392,7 @@ const ACrd3 = {
   nom_technique: 'acrd_3',
   metacompetence: 'comprehension',
   intitule: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   reponse: {
@@ -406,7 +406,7 @@ const ACrd4 = {
   nom_technique: 'acrd_4',
   metacompetence: 'comprehension',
   intitule: 'De quel pays le groupe vient-il ?',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   reponse: {
@@ -420,7 +420,7 @@ const ACrd5 = {
   nom_technique: 'acrd_5',
   metacompetence: 'comprehension',
   intitule: 'En quelle année le groupe a-t-il débuté ?',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
   reponse: {
@@ -435,7 +435,7 @@ const sousConsigneACrd2 = {
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
@@ -446,7 +446,7 @@ const ACrd6 = {
   intitule: 'Qui est Ivano Karanadoff ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   type: 'qcm',
   modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
   choix: [
@@ -479,7 +479,7 @@ const ACrd7 = {
   intitule: 'Quel est le genre de musique que produit ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
     {
@@ -510,7 +510,7 @@ const ACrd8 = {
   intitule: 'Qui a influencé ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
     {
@@ -542,7 +542,7 @@ const ACrd9 = {
   intitule: 'Que pense la critique de ce style musical ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
     {
@@ -574,7 +574,7 @@ const ACrd10 = {
   intitule: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
   illustration: magazineSansTexte,
   extensionVue: 'clic_sur_mots',
-  zone_cliquable: 'revue-magazine',
+  zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
     {

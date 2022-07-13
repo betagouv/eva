@@ -36,11 +36,7 @@
   }
 }
 
-.revue-magazine {
-  top: 2.5rem;
-  left: 4.375rem;
-  line-height: 135%;
-  width: 33.25rem;
+.article {
   font-family: $font-sarabun;
   color: $noir;
 
@@ -54,14 +50,6 @@
 
     tr {
       vertical-align: top;
-
-      td:first-child {
-        width: 15.125rem;
-      }
-      td:last-child {
-        width: auto;
-        padding-left: 2rem;
-      }
     }
   }
 
@@ -88,3 +76,43 @@
     }
   }
 }
+
+.article--disque {
+  top: 2.5rem;
+  left: 4.375rem;
+  line-height: 135%;
+  width: 33.25rem;
+
+  table {
+    tr {
+      td:first-child {
+        width: 15.125rem;
+      }
+      td:last-child {
+        width: auto;
+        padding-left: 2rem;
+      }
+    }
+  }
+}
+
+.article--villes-fleuries {
+  top: 5.5rem;
+  left: 5.25rem;
+  line-height: 125.5%;
+  width: 31.45rem;
+  font-size: 0.875rem;
+
+  table {
+
+    tr {
+      td:first-child {
+        width: 15.2rem;
+      }
+      td:last-child {
+        padding-left: 1.23rem;
+      }
+    }
+  }
+}
+

@@ -4,6 +4,7 @@ import journalAvecNouvelleZoom from '../assets/journal_avec_nouvelle_zoom.png';
 import hParConsigne from '../assets/hpar_c1.png';
 import graphique from '../assets/graphique.png';
 import graphiqueAvecSelection from '../assets/graphique_avec_selection.png';
+import rubriqueEnvironnement from '../assets/rubrique_environnement.png';
 
 const sousConsigneHPar1 = {
   id: 'HPar-sous-consigne-1',
@@ -178,12 +179,36 @@ const HGac4 = {
   }
 };
 
+const sousConsigneHCvf1 = {
+  id: 'HCvf-sous-consigne-1',
+  nom_technique: 'sous_consigne_HCvf_1',
+  type: 'sous-consigne',
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'article article--villes-fleuries',
+  illustration: rubriqueEnvironnement,
+  intitule: "A la page suivante vous tombez sur la rubrique « La minute environnement ». Un article parle du concours des villes fleuries.<br><br>J'ai quelques questions à vous poser sur cet article, lisez-le avec attention. Quand vous avez fini de lire, cliquez sur « Suivant »."
+};
+
+const texteHCvfColonne1 = "<span>Hier après-midi, les membres du jury du concours régional des villes fleuries ont sillonné les rues de la commune.</span><span>Déjà distinguée sur le plan départemental, la ville participe pour la première fois à cette manifestation et espère décrocher sa première fleur, symbole d'une reconnaissance régionale.</span><span>L'an dernier, un premier prix départemental est venu récompenser l'énergie des agents municipaux qui fleurissent leur commune.</span><span>Cette fois, l'équipe vise plus haut et s'est donné les moyens de ses ambitions. Elle compte sur un détail important pour tirer son épingle du jeu : *« Pour la première fois cette année, le règlement prend en compte la gestion différenciée des espaces verts »*, indique André Laurent, adjoint à l'environnement. *« Nous travaillons déjà avec ce système depuis plusieurs années »*.</span>";
+const texteHCvfColonne2 = "<span>Cette technique, qui permet à la nature de se réapproprier l'espace en ville, est visible à plusieurs endroits, *« Dans le centre, où l'on tond moins, nous privilégions les graines qui permettent d'avoir des fleurs en permanence »*, résume l'élu.</span><span>*« A l'extérieur de la ville, le long de la Route nationale ou du boulevard Clémenceau, par exemple, nous travaillons avec des graminées, qui sont fauchées deux fois par an seulement »*.</span><span>Au cœur de la ville, le plus gros du travail a concerné les ronds-points. Les agents des espaces verts les ont bichonnés dès cet hiver pour préparer leur floraison printanière.</span><span>Résultat, bien avant le 14 Juillet, les habitants ont droit à un feu d'artifice de couleurs. Aura-t-il séduit le jury ? Réponse à l'automne.</span>";
+
+const texteHCvfNonCliquable =
+`
+|||
+|:---|:---|
+|${texteHCvfColonne1}|${texteHCvfColonne2}|
+`;
+
 const parcoursHaut = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
     { cartes: [ HPar1, HPar2, HPar3 ] },
     { cartes: [ sousConsigneHGac1 ] },
-    { cartes: [ HGac1, HGac2, HGac3, HGac4 ] }
+    { cartes: [ HGac1, HGac2, HGac3, HGac4 ] },
+    {
+      texteCliquable: texteHCvfNonCliquable,
+      cartes: [ sousConsigneHCvf1 ]
+    }
   ]
 };
 
