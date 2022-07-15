@@ -32,8 +32,12 @@ export function creeStore () {
         return serie.texte;
       },
 
-      reponse: (state) => (idQuestion) => {
-        return state.reponses[idQuestion];
+      reponse(state) {
+        return (idQuestion) => state.reponses[idQuestion];
+      },
+
+      estCarteActive(state) {
+        return (idCarte) => state.carteActive.id == idCarte;
       }
     },
 
@@ -64,6 +68,7 @@ export function creeStore () {
       demarreParcours(state, parcours) {
         state.parcours = parcours;
         state.parcoursTermine = false;
+        state.termine = false;
         state.indexSerie = 0;
         state.indexCarte = 0;
         state.series = state.configuration[state.parcours].series;
@@ -98,16 +103,18 @@ export function creeStore () {
         }
       },
 
-      sauteALaCarte(state, idCarte) {
-        while(!state.parcoursTermine && state.carteActive.id != idCarte) {
+      sauteALaCarteDansUnParcours(state, { idCarte, parcours }) {
+        this.commit('demarreParcours', parcours);
+        while(!state.parcoursTermine) {
+          if(this.getters.estCarteActive(idCarte)) return;
           this.commit('carteSuivante');
         }
-        if(state.termine){
-          state.termine = false;
-          this.commit('demarreParcours', PARCOURS_HAUT_1);
-          while(!state.parcoursTermine && state.carteActive.id != idCarte) {
-            this.commit('carteSuivante');
-          }
+      },
+
+      sauteALaCarte(state, idCarte) {
+        for(const parcours of [ORIENTATION, PARCOURS_HAUT_1, PARCOURS_HAUT_2]) {
+          this.commit('sauteALaCarteDansUnParcours', { idCarte, parcours });
+          if(this.getters.estCarteActive(idCarte)) return;
         }
       }
     }
