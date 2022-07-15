@@ -24,7 +24,11 @@ export function creeStore () {
       },
 
       texteCliquable(state) {
-        return state.series[state.indexSerie].texteCliquable;
+        const serie = state.series[state.indexSerie];
+        if(serie.texteNonCliquable) {
+          return serie.texte.replaceAll('[','').replaceAll(']()', '');
+        }
+        return serie.texte;
       },
 
       reponse: (state) => (idQuestion) => {
