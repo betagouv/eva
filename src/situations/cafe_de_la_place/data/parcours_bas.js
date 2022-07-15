@@ -623,8 +623,6 @@ const texteMagazine =
 |${texteMagazineColonne1}|${texteMagazineColonne2}${legende}|
 `;
 
-const texteMagazineNonCliquable = texteMagazine.replaceAll('[','').replaceAll(']()', '');
-
 const sousConsigneAPlc1 = {
   id: 'APlc-sous-consigne-1',
   nom_technique: 'sous_consigne_APlc_1',
@@ -972,23 +970,26 @@ const parcoursBas = {
   series: [
     { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
     {
-      texteCliquable: listeChansons,
+      texte: listeChansons,
       cartes: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
     },
     {
-      texteCliquable: texteMagazineNonCliquable,
+      texte: texteMagazine,
+      texteNonCliquable: true,
       cartes: [ sousConsigneACrd1 ]
     },
     {
-      texteCliquable: texteMagazine,
+      texte: texteMagazine,
       cartes: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
     },
     {
-      texteCliquable: texteMagazineNonCliquable,
+      texte: texteMagazine,
+      texteNonCliquable: true,
       cartes: [ sousConsigneACrd2 ]
     },
     {
-      texteCliquable: texteMagazineNonCliquable,
+      texte: texteMagazine,
+      texteNonCliquable: true,
       cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
     },
     { cartes: [ sousConsigneAPlc1, sousConsigneAPlc2 ] },

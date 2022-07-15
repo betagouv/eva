@@ -18,9 +18,13 @@ describe('Le store de la situation café de la place', function () {
       series: [
         {
           cartes: [premiereSousConsigne, deuxiemeSousConsigne],
-          texteCliquable: 'un texte clicable'
+          texte: 'un texte [cliquable]()'
         },
-        { cartes: [premiereQuestion, question2] },
+        {
+          cartes: [premiereQuestion, question2],
+          texte: 'un texte [cliquable]()',
+          texteNonCliquable: true
+        },
         { cartes: [sousConsigne3] },
         { cartes: [question3, question4] }
       ]
@@ -62,7 +66,12 @@ describe('Le store de la situation café de la place', function () {
 
     describe("#texteCliquable", function() {
       it('retourne le texte cliquable de la série en cours', function() {
-        expect(store.getters.texteCliquable).toEqual('un texte clicable');
+        expect(store.getters.texteCliquable).toEqual('un texte [cliquable]()');
+      });
+
+      it('rends le texte non cliquable à la demande', function() {
+        store.state.indexSerie = 1;
+        expect(store.getters.texteCliquable).toEqual('un texte cliquable');
       });
     });
 
