@@ -1,13 +1,14 @@
 import { orientation } from './orientation';
 import { parcoursBas } from './parcours_bas';
-import { parcoursHaut } from './parcours_haut';
+import { parcoursHaut1, parcoursHaut2 } from './parcours_haut';
 
-import { ORIENTATION, PARCOURS_BAS, PARCOURS_HAUT } from '../modeles/store.js';
+import { ORIENTATION, PARCOURS_BAS, PARCOURS_HAUT_1, PARCOURS_HAUT_2 } from '../modeles/store.js';
 
 const configurationNormale = {
   [ORIENTATION]: orientation,
   [PARCOURS_BAS]: parcoursBas,
-  [PARCOURS_HAUT]: parcoursHaut
+  [PARCOURS_HAUT_1]: parcoursHaut1,
+  [PARCOURS_HAUT_2]: parcoursHaut2
 };
 
 export { configurationNormale };

@@ -2,7 +2,8 @@ import { creeStore as creeStoreCommun } from 'commun/modeles/store';
 
 export const ORIENTATION = 'orientation';
 export const PARCOURS_BAS = 'parcoursBas';
-export const PARCOURS_HAUT = 'parcoursHaut';
+export const PARCOURS_HAUT_1 = 'parcoursHaut1';
+export const PARCOURS_HAUT_2 = 'parcoursHaut2';
 
 export function creeStore () {
   return creeStoreCommun({
@@ -15,7 +16,7 @@ export function creeStore () {
       termine: false,
       reponses: {},
       scoreOrientation: 0,
-      scoreHaut: 0
+      scoreHaut1: 0
     },
 
     getters: {
@@ -73,10 +74,11 @@ export function creeStore () {
         this.commit('carteSuivanteParcours');
         if(state.parcoursTermine) {
           if(state.parcours == ORIENTATION) {
-            this.commit('demarreParcours', state.scoreOrientation < 10 ? PARCOURS_BAS : PARCOURS_HAUT);
+            this.commit('demarreParcours', state.scoreOrientation < 10 ? PARCOURS_BAS : PARCOURS_HAUT_1);
           }
-          else if(state.parcours == PARCOURS_HAUT && state.scoreHaut <= 5 ) {
-            this.commit('demarreParcours', PARCOURS_BAS);
+          else if(state.parcours == PARCOURS_HAUT_1) {
+            const parcoursSuivant = state.scoreHaut1 <= 5 ? PARCOURS_BAS : PARCOURS_HAUT_2;
+            this.commit('demarreParcours', parcoursSuivant);
           }
           else {
             state.termine = true;
@@ -90,8 +92,8 @@ export function creeStore () {
           if(state.parcours == ORIENTATION) {
             state.scoreOrientation += reponse.score;
           }
-          if(state.parcours == PARCOURS_HAUT) {
-            state.scoreHaut += reponse.score;
+          if(state.parcours == PARCOURS_HAUT_1) {
+            state.scoreHaut1 += reponse.score;
           }
         }
       },
@@ -102,7 +104,7 @@ export function creeStore () {
         }
         if(state.termine){
           state.termine = false;
-          this.commit('demarreParcours', PARCOURS_HAUT);
+          this.commit('demarreParcours', PARCOURS_HAUT_1);
           while(!state.parcoursTermine && state.carteActive.id != idCarte) {
             this.commit('carteSuivante');
           }

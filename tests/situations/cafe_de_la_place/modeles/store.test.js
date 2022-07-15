@@ -1,4 +1,10 @@
-import { creeStore, ORIENTATION, PARCOURS_BAS, PARCOURS_HAUT } from 'cafe_de_la_place/modeles/store';
+import {
+  creeStore,
+  ORIENTATION,
+  PARCOURS_BAS,
+  PARCOURS_HAUT_1,
+  PARCOURS_HAUT_2
+} from 'cafe_de_la_place/modeles/store';
 
 describe('Le store de la situation café de la place', function () {
   let store;
@@ -12,6 +18,7 @@ describe('Le store de la situation café de la place', function () {
   const question1Bas = { id: 'question1Bas'};
   const question2Bas = { id: 'question2Bas'};
   const question1Haut = { id: 'question1Haut'};
+  const question1Haut2 = { id: 'question1Haut2'};
 
   const configuration = {
     [ORIENTATION]: {
@@ -34,9 +41,14 @@ describe('Le store de la situation café de la place', function () {
         { cartes: [question1Bas, question2Bas] }
       ]
     },
-    [PARCOURS_HAUT]: {
+    [PARCOURS_HAUT_1]: {
       series: [
         { cartes: [question1Haut] }
+      ]
+    },
+    [PARCOURS_HAUT_2]: {
+      series: [
+        { cartes: [question1Haut2] }
       ]
     }
   };
@@ -121,7 +133,7 @@ describe('Le store de la situation café de la place', function () {
         it("passe au parcours bas pour le score < 10", function() {
           store.state.scoreOrientation = 9;
           store.commit('carteSuivante');
-          expect(store.state.parcours).toEqual('parcoursBas');
+          expect(store.state.parcours).toEqual(PARCOURS_BAS);
           expect(store.state.termine).toBe(false);
           expect(store.state.carteActive).toEqual(question1Bas);
         });
@@ -129,7 +141,7 @@ describe('Le store de la situation café de la place', function () {
         it("passe au parcours haut si le score est >= 10", function() {
           store.state.scoreOrientation = 10;
           store.commit('carteSuivante');
-          expect(store.state.parcours).toEqual('parcoursHaut');
+          expect(store.state.parcours).toEqual(PARCOURS_HAUT_1);
           expect(store.state.termine).toBe(false);
           expect(store.state.carteActive).toEqual(question1Haut);
         });
@@ -146,20 +158,21 @@ describe('Le store de la situation café de la place', function () {
         });
       });
 
-      describe('quand parcours haut est terminé', function() {
+      describe('quand la première partie du parcours haut est terminé', function() {
         beforeEach(function() {
-          store.commit('demarreParcours', PARCOURS_HAUT);
+          store.commit('demarreParcours', PARCOURS_HAUT_1);
         });
 
-        it("termine si le score est supérieur à 5", function () {
-          store.state.scoreHaut = 6;
-          store.commit('carteSuivante'); // dernière question du parcours haut
-          expect(store.state.termine).toBe(true);
+        it("passe à la partie 2 si le score est supérieur à 5", function () {
+          store.state.scoreHaut1 = 6;
+          store.commit('carteSuivante'); // dernière question du parcours haut 1
+          expect(store.state.termine).toBe(false);
+          expect(store.state.carteActive).toEqual(question1Haut2);
         });
 
         it("démarre le parcours bas si le score est inférieur ou égal à 5", function () {
-          store.state.scoreHaut = 5;
-          store.commit('carteSuivante'); // dernière question du parcours haut
+          store.state.scoreHaut1 = 5;
+          store.commit('carteSuivante'); // dernière question du parcours haut 1
           expect(store.state.termine).toBe(false);
           expect(store.state.carteActive).toEqual(question1Bas);
         });
@@ -217,21 +230,21 @@ describe('Le store de la situation café de la place', function () {
       });
     });
 
-    describe("enregistre le score du parcours haut", function() {
+    describe("enregistre le score de la première partie du parcours haut", function() {
       beforeEach(function() {
-        store.state.parcours = PARCOURS_HAUT;
+        store.state.parcours = PARCOURS_HAUT_1;
       });
 
       it("quand une réponse correcte n'a pas de score", function() {
         const laReponse = { succes: true };
         store.commit('enregistreReponse', laReponse);
-        expect(store.state.scoreHaut).toEqual(0);
+        expect(store.state.scoreHaut1).toEqual(0);
       });
 
       it("Ajoute le score d'une réponse", function() {
         const laReponse = { score: 1, score_max: 2 };
         store.commit('enregistreReponse', laReponse);
-        expect(store.state.scoreHaut).toEqual(1);
+        expect(store.state.scoreHaut1).toEqual(1);
       });
 
       it("accumule les scores au fur et à mesure des reponses", function() {
@@ -239,7 +252,7 @@ describe('Le store de la situation café de la place', function () {
         store.commit('enregistreReponse', reponse1);
         const reponse2 = { score: 2 };
         store.commit('enregistreReponse', reponse2);
-        expect(store.state.scoreHaut).toEqual(3);
+        expect(store.state.scoreHaut1).toEqual(3);
       });
     });
   });
