@@ -199,12 +199,17 @@ const texteHCvf =
 |${texteHCvfColonne1}|${texteHCvfColonne2}|
 `;
 
-const parcoursHaut = {
+const parcoursHaut1 = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
     { cartes: [ HPar1, HPar2, HPar3 ] },
     { cartes: [ sousConsigneHGac1 ] },
-    { cartes: [ HGac1, HGac2, HGac3, HGac4 ] },
+    { cartes: [ HGac1, HGac2, HGac3, HGac4 ] }
+  ]
+};
+
+const parcoursHaut2 = {
+  series: [
     {
       texte: texteHCvf,
       texteNonCliquable: true,
@@ -213,4 +218,4 @@ const parcoursHaut = {
   ]
 };
 
-export { parcoursHaut };
+export { parcoursHaut1, parcoursHaut2 };
