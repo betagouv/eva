@@ -189,8 +189,22 @@ const sousConsigneHCvf1 = {
   intitule: "A la page suivante vous tombez sur la rubrique « La minute environnement ». Un article parle du concours des villes fleuries.<br><br>J'ai quelques questions à vous poser sur cet article, lisez-le avec attention. Quand vous avez fini de lire, cliquez sur « Suivant »."
 };
 
-const texteHCvfColonne1 = "<span>Hier après-midi, les membres du jury du concours régional des villes fleuries ont sillonné les rues de la commune.</span><span>Déjà distinguée sur le plan départemental, la ville participe pour la première fois à cette manifestation et espère décrocher sa première fleur, symbole d'une reconnaissance régionale.</span><span>L'an dernier, un premier prix départemental est venu récompenser l'énergie des agents municipaux qui fleurissent leur commune.</span><span>Cette fois, l'équipe vise plus haut et s'est donné les moyens de ses ambitions. Elle compte sur un détail important pour tirer son épingle du jeu : *« Pour la première fois cette année, le règlement prend en compte la gestion différenciée des espaces verts »*, indique André Laurent, adjoint à l'environnement. *« Nous travaillons déjà avec ce système depuis plusieurs années »*.</span>";
-const texteHCvfColonne2 = "<span>Cette technique, qui permet à la nature de se réapproprier l'espace en ville, est visible à plusieurs endroits, *« Dans le centre, où l'on tond moins, nous privilégions les graines qui permettent d'avoir des fleurs en permanence »*, résume l'élu.</span><span>*« A l'extérieur de la ville, le long de la Route nationale ou du boulevard Clémenceau, par exemple, nous travaillons avec des graminées, qui sont fauchées deux fois par an seulement »*.</span><span>Au cœur de la ville, le plus gros du travail a concerné les ronds-points. Les agents des espaces verts les ont bichonnés dès cet hiver pour préparer leur floraison printanière.</span><span>Résultat, bien avant le 14 Juillet, les habitants ont droit à un feu d'artifice de couleurs. Aura-t-il séduit le jury ? Réponse à l'automne.</span>";
+const HCvf1 = {
+  id: 'HCvf1',
+  nom_technique: 'hcvf_1',
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'article article--villes-fleuries',
+  illustration: rubriqueEnvironnement,
+  intitule: "« Pour le concours des villes fleuries, ils ont sillonné la ville ». Mais de qui parle-t-on ?",
+  modalite_reponse: "Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous êtes sûr, cliquez sur « Valider ».",
+  reponse: {
+    texte: 'les membres du jury du concours régional des villes fleuries',
+    score: 1
+  }
+};
+
+const texteHCvfColonne1 = "<span>Hier après-midi, [les membres du jury du concours régional des villes fleuries]() ont sillonné les rues de la commune.</span><span>Déjà distinguée sur le plan départemental, la ville participe pour la première fois à cette manifestation et espère décrocher sa première fleur, symbole d'une reconnaissance régionale.</span><span>L'an dernier, un premier prix départemental est venu récompenser l'énergie des [agents municipaux]() qui fleurissent leur commune.</span><span>Cette fois, l'équipe vise plus haut et s'est donné les moyens de ses ambitions. Elle compte sur un détail important pour tirer son épingle du jeu : *« Pour la première fois cette année, le règlement prend en compte la gestion différenciée des espaces verts »*, indique André Laurent, adjoint à l'environnement. *« Nous travaillons déjà avec ce système depuis plusieurs années »*.</span>";
+const texteHCvfColonne2 = "<span>Cette technique, qui permet à la nature de se réapproprier l'espace en ville, est visible à plusieurs endroits, *« Dans le centre, où l'on tond moins, nous privilégions les graines qui permettent d'avoir des fleurs en permanence »*, résume l'élu.</span><span>*« A l'extérieur de la ville, le long de la Route nationale ou du boulevard Clémenceau, par exemple, nous travaillons avec des graminées, qui sont fauchées deux fois par an seulement »*.</span><span>Au cœur de la ville, le plus gros du travail a concerné les ronds-points. Les agents des espaces verts les ont bichonnés dès cet hiver pour préparer leur floraison printanière.</span><span>Résultat, bien avant le 14 Juillet, [les habitants]() ont droit à un feu d'artifice de couleurs. Aura-t-il séduit le jury ? Réponse à l'automne.</span>";
 
 const texteHCvf =
 `
@@ -214,6 +228,10 @@ const parcoursHaut2 = {
       texte: texteHCvf,
       texteNonCliquable: true,
       cartes: [ sousConsigneHCvf1 ]
+    },
+    {
+      texte: texteHCvf,
+      cartes: [ HCvf1 ]
     }
   ]
 };
