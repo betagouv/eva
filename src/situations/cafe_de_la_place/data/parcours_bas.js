@@ -650,7 +650,6 @@ const APlc1 = {
   extensionVue: 'texte_a_trous',
   modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'cuisine',
     textes: ['cuisine', 'cuisines'],
@@ -666,7 +665,6 @@ const APlc2 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'saladiers',
     textes: ['saladier', 'saladiers'],
@@ -682,7 +680,6 @@ const APlc3 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'verre',
     textes: ['verre', 'verres'],
@@ -698,7 +695,6 @@ const APlc4 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'mayonnaise',
     textes: ['mayonnaise', 'mayonnaises'],
@@ -714,7 +710,6 @@ const APlc5 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'sel',
     textes: ['sel', 'sels'],
@@ -730,7 +725,6 @@ const APlc6 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'tomates',
     textes: ['tomate', 'tomates'],
@@ -746,7 +740,6 @@ const APlc7 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'pays',
     textes: ['pays'],
@@ -762,7 +755,6 @@ const APlc8 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'poivrons',
     textes: ['poivron', 'poivrons'],
@@ -778,7 +770,6 @@ const APlc9 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'epices',
     textes: ['épice', 'epice', 'èpice', 'êpice', 'ëpice',
@@ -796,7 +787,6 @@ const APlc10 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'donnent',
     textes: ['donne', 'donnent'],
@@ -812,7 +802,6 @@ const APlc11 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'douzaines',
     textes: ['douzaine', 'douzaines'],
@@ -828,7 +817,6 @@ const APlc12 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'assiettes',
     textes: ['assiette', 'assiettes'],
@@ -844,7 +832,6 @@ const APlc13 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'fouets',
     textes: ['fouet', 'fouets'],
@@ -860,7 +847,6 @@ const APlc14 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'louche',
     textes: ['louche', 'louches'],
@@ -876,7 +862,6 @@ const APlc15 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'passoire',
     textes: ['passoire', 'passoires'],
@@ -892,7 +877,6 @@ const APlc16 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'poele',
     textes: ['poêle', 'poele', 'poéle', 'poèle', 'poële',
@@ -910,7 +894,6 @@ const APlc17 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'luxe',
     textes: ['luxe', 'luxes'],
@@ -926,7 +909,6 @@ const APlc18 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'casserole',
     textes: ['casserole', 'casseroles'],
@@ -942,7 +924,6 @@ const APlc19 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'adhere',
     textes: ['adhère', 'adhere', 'adhére', 'adhêre', 'adhëre'],
@@ -958,7 +939,6 @@ const APlc20 = {
   sous_type: 'texte',
   extensionVue: 'texte_a_trous',
   illustration: listeDeCourse,
-  placeholder: 'Réponse',
   reponse: {
     nom_technique: 'alcoolique',
     textes: ['alcoolique', 'alcooliques'],

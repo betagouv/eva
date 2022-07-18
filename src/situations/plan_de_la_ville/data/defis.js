@@ -76,7 +76,6 @@ const saisieBoulangerie = {
   nom_technique: 'saisie_boulangerie',
   type: 'champ-saisie',
   sous_type: 'texte',
-  placeholder: 'Réponse',
   reponse: {
     textes: ['boulangerie']
   },

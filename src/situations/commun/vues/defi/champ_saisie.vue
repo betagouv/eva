@@ -23,7 +23,7 @@
           :class="{ 'champ-texte' : estTexte,
                     'champ-numerique' : estNumerique }"
           :maxlength="maxLength"
-          :placeholder="question.placeholder"
+          :placeholder="placeholder"
           type='text'
           />
     </div>
@@ -52,9 +52,18 @@ export default {
     maxLength () {
       return this.estNumerique ? 4 : 12;
     },
-
     afficheLectureQuestion () {
       return this.$depotRessources.existeMessageAudio(this.question.nom_technique);
+    },
+    placeholder () {
+      if (this.question.placeholder) {
+        return this.question.placeholder;
+      }
+      if (this.estTexte) {
+        return 'Réponse';
+      }
+
+      return null;
     }
   },
 
