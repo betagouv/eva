@@ -19,6 +19,7 @@
           autocomplete="off"
           autocapitalize="off"
           autocorrect="off"
+          autofocus
           :class="{ 'champ-texte' : estTexte,
                     'champ-numerique' : estNumerique }"
           :maxlength="maxLength"
