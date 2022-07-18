@@ -9,14 +9,10 @@
 import { mapGetters } from 'vuex';
 import 'cafe_de_la_place/styles/clic_sur_mots.scss';
 import { marked } from 'marked';
+import MultiSelectMixin from './multi_select_mixin';
 
 export default {
-  props: {
-    question: {
-      type: Object,
-      required: true
-    },
-  },
+  mixins: [MultiSelectMixin],
 
   computed: {
     ...mapGetters(['texteCliquable']),
@@ -36,8 +32,14 @@ export default {
       lien.classList.add('mot-cliquable');
       lien.addEventListener('click', (event) => {
         event.preventDefault(); // empêche le comportement par défaut du lien
-        this.envoiReponse(lien);
-        this.metAJourSelection(listeLiens, lien);
+        if(this.question.reponses_multiples) {
+          this.metAJourSelectionMultiple(lien);
+          this.envoiReponseMultiple(listeLiens);
+        }
+        else {
+          this.metAJourSelection(listeLiens, lien);
+          this.envoiReponse(lien);
+        }
       });
     });
   },
@@ -50,11 +52,22 @@ export default {
       this.$emit('reponse', { reponse, succes, score } );
     },
 
+    envoiReponseMultiple(listeLiens) {
+      const reponse = listeLiens
+        .filter(lien => lien.classList.contains('mot-cliquable--selectionne'))
+        .map(lien => lien.textContent.trim());
+      this.emetReponseMultiple(reponse);
+    },
+
     metAJourSelection(listeLiens, lien) {
       listeLiens.forEach(lien => {
         lien.classList.remove('mot-cliquable--selectionne');
       });
       lien.classList.add('mot-cliquable--selectionne');
+    },
+
+    metAJourSelectionMultiple(lien) {
+      lien.classList.toggle('mot-cliquable--selectionne');
     }
   }
 };

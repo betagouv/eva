@@ -207,6 +207,7 @@ const HCvf2 = {
   id: 'HCvf2',
   nom_technique: 'hcvf_2',
   extensionVue: 'clic_sur_mots',
+  reponses_multiples: true,
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
   intitule: "Choisissez la phrase ou les phrases qui montrent que la commune permet à la nature de reprendre ses droits dans les espaces verts.",
