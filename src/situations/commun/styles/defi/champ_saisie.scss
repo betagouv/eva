@@ -24,6 +24,12 @@
     }
   }
 
+  .champ-texte {
+    &:focus {
+      outline: 3px solid $bleu;
+    }
+  }
+
   .chiffres-espaces {
     .conteneur-traits-saisie {
       span {
