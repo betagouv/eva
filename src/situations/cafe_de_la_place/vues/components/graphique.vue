@@ -18,15 +18,10 @@
 
 <script>
 import 'cafe_de_la_place/styles/graphique.scss';
+import MultiSelectMixin from './multi_select_mixin';
 
 export default {
-
-  props: {
-    question: {
-      type: Object,
-      required: true
-    },
-  },
+  mixins: [ MultiSelectMixin ],
 
   data() {
     return {
@@ -73,29 +68,7 @@ export default {
 
   watch: {
     paysSelectionnes () {
-      this.emetReponse(this.paysSelectionnes);
-    }
-  },
-
-  methods: {
-    emetReponse(reponse) {
-      if (reponse.length === 0) {
-        this.$emit('reponse');
-      } else {
-        const succes = this.estSucces(reponse, this.question.reponse.bonne_reponse);
-        let score;
-        if(succes) {
-          score = this.question.reponse.score;
-        }
-        this.$emit('reponse', { score, succes, reponse });
-      }
-    },
-
-    estSucces(reponses, reponsesAttendues) {
-      const reponsesTriees = Array.from(reponses).sort();
-      const reponseAttenduesTriees = Array.from(reponsesAttendues).sort();
-      return reponseAttenduesTriees.length === reponsesTriees.length &&
-        reponseAttenduesTriees.every((pays, index) => pays === reponsesTriees[index]);
+      this.emetReponseMultiple(this.paysSelectionnes);
     }
   }
 };
