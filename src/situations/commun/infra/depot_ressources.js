@@ -141,4 +141,11 @@ export default class DepotRessources {
   }
 }
 
-export { chargeurJSON };
+function extraitDictionnaire (webpackContext, regExp, dictionnaire = {}) {
+  return webpackContext.keys().reduce((dictionnaire, fichier) => {
+    dictionnaire[fichier.match(regExp)[1]] = webpackContext(fichier);
+    return dictionnaire;
+  }, dictionnaire);
+}
+
+export { chargeurJSON, extraitDictionnaire };

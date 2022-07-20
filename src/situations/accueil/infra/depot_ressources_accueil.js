@@ -16,6 +16,7 @@ import comparaisonTri from 'accueil/assets/audios_resultat/comparaison_tri.mp3';
 import organisationMethode from 'accueil/assets/audios_resultat/organisation_methode.mp3';
 import vigilanceControle from 'accueil/assets/audios_resultat/vigilance_controle.mp3';
 import vitesseExecution from 'accueil/assets/audios_resultat/vitesse_execution.mp3';
+import { extraitDictionnaire } from 'commun/infra/depot_ressources';
 
 const batimentsContext = require.context('../assets', false, /batiment-.+\.png$/);
 
@@ -34,10 +35,7 @@ export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
     super(chargeurs, messagesVideos, AUDIOS_RESULTAT, fondAccueil, consigneAccueil);
     this.charge([fondAccueil, personnage, precedent, suivant, casque, avatarFin, avatarAvis, avatarDeconnexion, boutonAvis]);
     this.chargeContexte(batimentsContext);
-    this.batiments = batimentsContext.keys().reduce((memo, fichier) => {
-      memo[fichier.match(/batiment-(.+)\.png/)[1]] = batimentsContext(fichier);
-      return memo;
-    }, {});
+    this.batiments = extraitDictionnaire(batimentsContext, /batiment-(.+)\.png/);
   }
 
   fondAccueil () {

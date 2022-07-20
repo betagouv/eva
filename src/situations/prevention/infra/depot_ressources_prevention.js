@@ -1,3 +1,4 @@
+import { extraitDictionnaire } from 'commun/infra/depot_ressources';
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
 import sonConsigneDemarrage from 'prevention/assets/consigne_demarrage_prevention.mp3';
@@ -17,10 +18,7 @@ export default class DepotRessourcesPrevention extends DepotRessourcesCommunes {
     super(chargeurs, messagesVideos, {}, fondSituation, sonConsigneDemarrage, sonConsigneTransition);
     this.charge([fondSituationEntrainement, fondSituation, ok, danger, urgence]);
     this.chargeContexte(preventionsContext);
-    this.preventions = preventionsContext.keys().reduce((memo, fichier) => {
-      memo[fichier.match(/(prevention-.+)\.png/)[1]] = preventionsContext(fichier);
-      return memo;
-    }, {});
+    this.preventions = extraitDictionnaire(preventionsContext, /(prevention-.+)\.png/);
   }
 
   fondSituation () {
