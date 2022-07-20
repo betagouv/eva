@@ -16,51 +16,7 @@ import sousConsigneHGac1 from 'cafe_de_la_place/assets/audio_consignes/sous_cons
 import sousConsigneHCvf1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_HCvf_1.mp3';
 
 // AUDIOS QUESTIONS
-import titre1 from 'cafe_de_la_place/assets/audio_questions/titre1.mp3';
-import titre2 from 'cafe_de_la_place/assets/audio_questions/titre2.mp3';
-import titre10 from 'cafe_de_la_place/assets/audio_questions/titre10.mp3';
-import titre3 from 'cafe_de_la_place/assets/audio_questions/titre3.mp3';
-import titre11 from 'cafe_de_la_place/assets/audio_questions/titre11.mp3';
-import titre6 from 'cafe_de_la_place/assets/audio_questions/titre6.mp3';
-import titre8 from 'cafe_de_la_place/assets/audio_questions/titre8.mp3';
-import titre5 from 'cafe_de_la_place/assets/audio_questions/titre5.mp3';
-import titre4 from 'cafe_de_la_place/assets/audio_questions/titre4.mp3';
-import titre7 from 'cafe_de_la_place/assets/audio_questions/titre7.mp3';
-import clicSurMot from 'cafe_de_la_place/assets/audio_questions/clic_sur_mot.mp3';
-import ACrd1 from 'cafe_de_la_place/assets/audio_questions/ACrd1.mp3';
-import ACrd2 from 'cafe_de_la_place/assets/audio_questions/ACrd2.mp3';
-import ACrd3 from 'cafe_de_la_place/assets/audio_questions/ACrd3.mp3';
-import ACrd4 from 'cafe_de_la_place/assets/audio_questions/ACrd4.mp3';
-import ACrd5 from 'cafe_de_la_place/assets/audio_questions/ACrd5.mp3';
-import ACrd6 from 'cafe_de_la_place/assets/audio_questions/ACrd6.mp3';
-import ACrd7 from 'cafe_de_la_place/assets/audio_questions/ACrd7.mp3';
-import ACrd8 from 'cafe_de_la_place/assets/audio_questions/ACrd8.mp3';
-import ACrd9 from 'cafe_de_la_place/assets/audio_questions/ACrd9.mp3';
-import ACrd10 from 'cafe_de_la_place/assets/audio_questions/ACrd10.mp3';
-import questionAPlc from 'cafe_de_la_place/assets/audio_questions/APlc.mp3';
-import LOdi1 from 'cafe_de_la_place/assets/audio_questions/LOdi1.mp3';
-import LOdi2 from 'cafe_de_la_place/assets/audio_questions/LOdi2.mp3';
-import LOdi3 from 'cafe_de_la_place/assets/audio_questions/LOdi3.mp3';
-import LOdi4 from 'cafe_de_la_place/assets/audio_questions/LOdi4.mp3';
-import LOdi5 from 'cafe_de_la_place/assets/audio_questions/LOdi5.mp3';
-import LOdi6 from 'cafe_de_la_place/assets/audio_questions/LOdi6.mp3';
-import LOdi7 from 'cafe_de_la_place/assets/audio_questions/LOdi7.mp3';
-import LOdi8 from 'cafe_de_la_place/assets/audio_questions/LOdi8.mp3';
-import LOdi9 from 'cafe_de_la_place/assets/audio_questions/LOdi9.mp3';
-import LOdi10 from 'cafe_de_la_place/assets/audio_questions/LOdi10.mp3';
-import LOdi11 from 'cafe_de_la_place/assets/audio_questions/LOdi11.mp3';
-import LOdi12 from 'cafe_de_la_place/assets/audio_questions/LOdi12.mp3';
-import LOdi13 from 'cafe_de_la_place/assets/audio_questions/LOdi13.mp3';
-import HPar2 from 'cafe_de_la_place/assets/audio_questions/HPar2.mp3';
-import HPar3 from 'cafe_de_la_place/assets/audio_questions/HPar3.mp3';
-import HGac1 from 'cafe_de_la_place/assets/audio_questions/HGac1.mp3';
-import HGac2 from 'cafe_de_la_place/assets/audio_questions/HGac2.mp3';
-import HGac3 from 'cafe_de_la_place/assets/audio_questions/HGac3.mp3';
-import HGac4 from 'cafe_de_la_place/assets/audio_questions/HGac4.mp3';
-import HCvf1 from 'cafe_de_la_place/assets/audio_questions/HCvf1.mp3';
-import HCvf2 from 'cafe_de_la_place/assets/audio_questions/HCvf2.mp3';
-import HCvf3 from 'cafe_de_la_place/assets/audio_questions/HCvf3.mp3';
-import HCvf4 from 'cafe_de_la_place/assets/audio_questions/HCvf4.mp3';
+const audiosQuestionsContext = require.context('cafe_de_la_place/assets/audio_questions', false, /.mp3$/);
 
 // AUDIOS REPONSES
 import sonChoixBax from 'cafe_de_la_place/assets/audio_reponses/ALrd/bax.mp3';
@@ -195,53 +151,11 @@ const AUDIOS_CONSIGNES = {
   sous_consigne_HCvf_1: sousConsigneHCvf1
 };
 
-const AUDIOS_QUESTIONS = {
-  titre_1: titre1,
-  titre_2: titre2,
-  titre_10: titre10,
-  titre_3: titre3,
-  titre_11: titre11,
-  titre_6: titre6,
-  titre_8: titre8,
-  titre_5: titre5,
-  titre_4: titre4,
-  titre_7: titre7,
-  alrd_11: clicSurMot,
-  acrd_1: ACrd1,
-  acrd_2: ACrd2,
-  acrd_3: ACrd3,
-  acrd_4: ACrd4,
-  acrd_5: ACrd5,
-  acrd_6: ACrd6,
-  acrd_7: ACrd7,
-  acrd_8: ACrd8,
-  acrd_9: ACrd9,
-  acrd_10: ACrd10,
-  aplc_1: questionAPlc,
-  lodi_1: LOdi1,
-  lodi_2: LOdi2,
-  lodi_3: LOdi3,
-  lodi_4: LOdi4,
-  lodi_5: LOdi5,
-  lodi_6: LOdi6,
-  lodi_7: LOdi7,
-  lodi_8: LOdi8,
-  lodi_9: LOdi9,
-  lodi_10: LOdi10,
-  lodi_11: LOdi11,
-  lodi_12: LOdi12,
-  lodi_13: LOdi13,
-  hpar_2: HPar2,
-  hpar_3: HPar3,
-  hgac_1: HGac1,
-  hgac_2: HGac2,
-  hgac_3: HGac3,
-  hgac_4: HGac4,
-  hcvf_1: HCvf1,
-  hcvf_2: HCvf2,
-  hcvf_3: HCvf3,
-  hcvf_4: HCvf4
-};
+const AUDIOS_QUESTIONS = audiosQuestionsContext.keys().reduce((memo, fichier) => {
+  memo[fichier.match(/\.\/(.+)\.mp3/)[1]] = audiosQuestionsContext(fichier);
+  return memo;
+}, {});
+console.log(AUDIOS_QUESTIONS);
 
 const AUDIOS_REPONSES = {
   bax: sonChoixBax,
