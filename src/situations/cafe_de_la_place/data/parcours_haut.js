@@ -221,6 +221,69 @@ const HCvf2 = {
   }
 };
 
+const HCvf3 = {
+  id: 'HCvf3',
+  nom_technique: 'hcvf_3',
+  type: 'qcm',
+  illustration: rubriqueEnvironnement,
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'article article--villes-fleuries',
+  intitule: "Combien de fois la ville s’est-elle inscrite au concours régional des villes fleuries ?",
+  modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
+  choix: [
+    {
+      id: 'une_fois',
+      nom_technique: 'une_fois',
+      score: 1,
+      bonneReponse: true,
+      intitule: "Une fois"
+    },
+    {
+      id: 'deux_fois',
+      nom_technique: 'deux_fois',
+      bonneReponse: false,
+      intitule: 'Deux fois'
+    }
+  ]
+};
+
+const HCvf4 = {
+  id: 'HCvf4',
+  nom_technique: 'hcvf_4',
+  type: 'qcm',
+  extensionVue: 'clic_sur_mots',
+  zone_cliquable: 'article article--villes-fleuries',
+  illustration: rubriqueEnvironnement,
+  intitule: "Lequel de ces quatre mots ne peut en aucun cas remplacer le mot « bichonner » ?",
+  choix: [
+    {
+      id: 'choyer',
+      nom_technique: 'choyer',
+      bonneReponse: false,
+      intitule: "Choyer"
+    },
+    {
+      id: 'prendre_soin',
+      nom_technique: 'prendre_soin',
+      bonneReponse: false,
+      intitule: 'Prendre soin'
+    },
+    {
+      id: 'maltraiter',
+      nom_technique: 'maltraiter',
+      score: 1,
+      bonneReponse: true,
+      intitule: 'Maltraiter'
+    },
+    {
+      id: 'soigner',
+      nom_technique: 'soigner',
+      bonneReponse: false,
+      intitule: 'Soigner'
+    }
+  ]
+};
+
 const texteHCvf1Colonne1 = "<span>Hier après-midi, [les membres du jury du concours régional des villes fleuries]() ont sillonné les rues de la commune.</span><span>Déjà distinguée sur le plan départemental, la ville participe pour la première fois à cette manifestation et espère décrocher sa première fleur, symbole d'une reconnaissance régionale.</span><span>L'an dernier, un premier prix départemental est venu récompenser l'énergie des [agents municipaux]() qui fleurissent leur commune.</span><span>Cette fois, l'équipe vise plus haut et s'est donné les moyens de ses ambitions. Elle compte sur un détail important pour tirer son épingle du jeu : *« Pour la première fois cette année, le règlement prend en compte la gestion différenciée des espaces verts »*, indique André Laurent, adjoint à l'environnement. *« Nous travaillons déjà avec ce système depuis plusieurs années »*.</span>";
 
 const texteHCvf1Colonne2 = "<span>Cette technique, qui permet à la nature de se réapproprier l'espace en ville, est visible à plusieurs endroits, *« Dans le centre, où l'on tond moins, nous privilégions les graines qui permettent d'avoir des fleurs en permanence »*, résume l'élu.</span><span>*« A l'extérieur de la ville, le long de la Route nationale ou du boulevard Clémenceau, par exemple, nous travaillons avec des graminées, qui sont fauchées deux fois par an seulement »*.</span><span>Au cœur de la ville, le plus gros du travail a concerné les ronds-points. Les agents des espaces verts les ont bichonnés dès cet hiver pour préparer leur floraison printanière.</span><span>Résultat, bien avant le 14 Juillet, [les habitants]() ont droit à un feu d'artifice de couleurs. Aura-t-il séduit le jury ? Réponse à l'automne.</span>";
@@ -266,8 +329,11 @@ const parcoursHaut2 = {
     {
       texte: texteHCvf2,
       cartes: [ HCvf2 ]
+    },
+    { texte: texteHCvf1,
+      texteNonCliquable: true,
+      cartes: [ HCvf3, HCvf4 ]
     }
-
   ]
 };
 

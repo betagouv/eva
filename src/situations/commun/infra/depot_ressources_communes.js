@@ -68,7 +68,7 @@ export default class DepotRessourcesCommunes extends DepotRessources {
   existeMessageAudio (nomTechnique) {
     return nomTechnique in this.messagesAudios;
   }
-  
+
   trouveIllustrations(configuration) {
     if (! (configuration instanceof Object)) {
       return [];
