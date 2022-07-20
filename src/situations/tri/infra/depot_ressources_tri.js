@@ -1,3 +1,4 @@
+import { extraitDictionnaire } from 'commun/infra/depot_ressources';
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
 import sonConsigne from 'tri/assets/consigne_demarrage_tri.mp3';
@@ -17,10 +18,7 @@ export default class DepotRessourcesTri extends DepotRessourcesCommunes {
     super(chargeurs, messagesVideos, {}, null, sonConsigne);
     this.charge([fondSituation, fondChronometre, aiguilleLongue, aiguilleCourte, sonBonBac, sonMauvaisBac]);
     this.chargeContexte(bonbons);
-    this.bonbons = bonbons.keys().reduce((memo, fichier) => {
-      memo[fichier.match(/(bonbon[0-9]+).png/)[1]] = bonbons(fichier);
-      return memo;
-    }, {});
+    this.bonbons = extraitDictionnaire(bonbons, /(bonbon[0-9]+).png/);
   }
 
   fondSituation () {

@@ -1,6 +1,7 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
 import fondSituation from 'controle/assets/fond-situation.png';
+import { extraitDictionnaire } from 'commun/infra/depot_ressources';
 import tapis from 'controle/assets/tapis.png';
 import sonConsigne from 'controle/assets/consigne_demarrage_controle.mp3';
 import sonFondSonore from 'controle/assets/fond_sonore.mp3';
@@ -15,10 +16,7 @@ export default class DepotRessourcesControle extends DepotRessourcesCommunes {
     this.chargeContexte(biscuits);
     this.charge([fondSituation, tapis, sonFondSonore]);
 
-    this.biscuits = biscuits.keys().reduce((memo, fichier) => {
-      memo[fichier.match(/(def[0-9]+|biscuit-normal).png/)[1]] = biscuits(fichier);
-      return memo;
-    }, {});
+    this.biscuits = extraitDictionnaire(biscuits, /(def[0-9]+|biscuit-normal).png/);
   }
 
   fondSituation () {
