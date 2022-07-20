@@ -1,19 +1,9 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
-import sonConsigne from 'cafe_de_la_place/assets/audio_consignes/consigne_cafe_de_la_place.mp3';
+import sonConsigne from 'cafe_de_la_place/assets/consigne_cafe_de_la_place.mp3';
 import fondSituation from 'cafe_de_la_place/assets/terrasse_cafe.png';
 
 // AUDIOS SOUS CONSIGNES
-import sousConsigneALrd1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ALrd_1.mp3';
-import sousConsigneALrd2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ALrd_2.mp3';
-import sousConsigneACrd1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ACrd_1.mp3';
-import sousConsigneACrd2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_ACrd_2.mp3';
-import sousConsigneAPlc1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_APlc_1.mp3';
-import sousConsigneAPlc2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_APlc_2.mp3';
-import sousConsigneHPar1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_HPar_1.mp3';
-import sousConsigneLOdi1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_LOdi_1.mp3';
-import sousConsigneLOdi2 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_LOdi_2.mp3';
-import sousConsigneHGac1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_HGac_1.mp3';
-import sousConsigneHCvf1 from 'cafe_de_la_place/assets/audio_consignes/sous_consigne_HCvf_1.mp3';
+const audiosConsignesContext = require.context('cafe_de_la_place/assets/audio_sous_consignes', false, /.mp3$/);
 
 // AUDIOS QUESTIONS
 const audiosQuestionsContext = require.context('cafe_de_la_place/assets/audio_questions', false, /.mp3$/);
@@ -137,25 +127,15 @@ import inquietude from 'cafe_de_la_place/assets/audio_reponses/HPar/inquietude.m
 import peur from 'cafe_de_la_place/assets/audio_reponses/HPar/peur.mp3';
 import agitation from 'cafe_de_la_place/assets/audio_reponses/HPar/agitation.mp3';
 
-const AUDIOS_CONSIGNES = {
-  sous_consigne_ALrd_1: sousConsigneALrd1,
-  sous_consigne_ALrd_2: sousConsigneALrd2,
-  sous_consigne_ACrd_1: sousConsigneACrd1,
-  sous_consigne_ACrd_2: sousConsigneACrd2,
-  sous_consigne_APlc_1: sousConsigneAPlc1,
-  sous_consigne_APlc_2: sousConsigneAPlc2,
-  sous_consigne_HPar_1: sousConsigneHPar1,
-  sous_consigne_LOdi_1: sousConsigneLOdi1,
-  sous_consigne_LOdi_2: sousConsigneLOdi2,
-  sous_consigne_HGac_1: sousConsigneHGac1,
-  sous_consigne_HCvf_1: sousConsigneHCvf1
-};
+const AUDIOS_CONSIGNES = audiosConsignesContext.keys().reduce((memo, fichier) => {
+  memo[fichier.match(/\.\/(.+)\.mp3/)[1]] = audiosConsignesContext(fichier);
+  return memo;
+}, {});
 
 const AUDIOS_QUESTIONS = audiosQuestionsContext.keys().reduce((memo, fichier) => {
   memo[fichier.match(/\.\/(.+)\.mp3/)[1]] = audiosQuestionsContext(fichier);
   return memo;
 }, {});
-console.log(AUDIOS_QUESTIONS);
 
 const AUDIOS_REPONSES = {
   bax: sonChoixBax,
