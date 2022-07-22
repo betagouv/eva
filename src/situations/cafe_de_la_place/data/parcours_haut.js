@@ -5,6 +5,7 @@ import hParConsigne from '../assets/hpar_c1.png';
 import graphique from '../assets/graphique.png';
 import graphiqueAvecSelection from '../assets/graphique_avec_selection.png';
 import rubriqueEnvironnement from '../assets/rubrique_environnement.png';
+import terrasseCafe from '../assets/terrasse_cafe.png';
 
 const sousConsigneHPar1 = {
   id: 'HPar-sous-consigne-1',
@@ -306,6 +307,15 @@ const texteHCvf2 =
 |${texteHCvf2Colonne1}|${texteHCvf2Colonne2}|
 `;
 
+const sousConsigneHPfb1 = {
+  id: 'HPfb-sous-consigne-1',
+  nom_technique: 'sous_consigne_HPfb_1',
+  type: 'sous-consigne',
+  illustration: terrasseCafe,
+  intitule: "Maintenant, il est temps d’envoyer un message à votre ami Charles. Hier vous l’avez remplacé à sa boutique « Fleurs et bibelots » et vous avez reçu une livraison qui n'était pas conforme. Vous devez le prévenir !",
+  modalite_reponse: "Pour commencer, cliquez sur « Suivant »."
+};
+
 const parcoursHaut1 = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
@@ -333,7 +343,8 @@ const parcoursHaut2 = {
     { texte: texteHCvf1,
       texteNonCliquable: true,
       cartes: [ HCvf3, HCvf4 ]
-    }
+    },
+    { cartes: [ sousConsigneHPfb1 ] }
   ]
 };
 
