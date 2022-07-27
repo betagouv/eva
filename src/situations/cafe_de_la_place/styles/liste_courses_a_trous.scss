@@ -1,6 +1,6 @@
 @import 'commun/styles/variables.scss';
 
-.contenu-telephone {
+.liste-de-courses {
   padding: 1rem;
   position: absolute;
   width: 19.5rem;
@@ -25,22 +25,6 @@
 
     li {
       margin-bottom: 0.5rem;
-    }
-  }
-
-  .reponse {
-    &--en-attente {
-      color: $bleu-gris;
-      font-weight: 500;
-    }
-
-    &--en-cours {
-      border: 2px dotted $bleu-gris-fonce;
-      border-radius: 4px;
-    }
-
-    &--completee {
-      color: $bleu;
     }
   }
 }

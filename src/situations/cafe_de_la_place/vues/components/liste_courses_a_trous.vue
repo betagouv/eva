@@ -1,7 +1,7 @@
 <template>
-  <div class="contenu-telephone">
-    <h1 class="contenu-telephone__titre">Courses pour la <trou-a-completer idQuestion="APlc1"/></h1>
-    <ul class="contenu-telephone__liste">
+  <div class="liste-de-courses">
+    <h1 class="liste-de-courses__titre">Courses pour la <trou-a-completer idQuestion="APlc1"/></h1>
+    <ul class="liste-de-courses__liste">
       <li>2 <trou-a-completer idQuestion="APlc2"/> en <trou-a-completer idQuestion="APlc3"/></li>
       <li>1 pot de <trou-a-completer idQuestion="APlc4"/></li>
       <li>Du <trou-a-completer idQuestion="APlc5"/></li>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import 'cafe_de_la_place/styles/texte_a_trous.scss';
+import 'cafe_de_la_place/styles/liste_courses_a_trous.scss';
 import TrouACompleter from 'cafe_de_la_place/vues/components/trou_a_completer.vue';
 
 export default {

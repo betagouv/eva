@@ -26,6 +26,7 @@ import Pagination from 'commun/vues/components/pagination';
 
 import ClicSurMots from 'cafe_de_la_place/vues/components/clic_sur_mots.vue';
 import listeCoursesATrous from 'cafe_de_la_place/vues/components/liste_courses_a_trous.vue';
+import emailHPfbATrous from 'cafe_de_la_place/vues/components/email_HPfb_a_trous.vue';
 import Puzzle from 'cafe_de_la_place/vues/components/puzzle.vue';
 import Graphique from 'cafe_de_la_place/vues/components/graphique.vue';
 
@@ -36,6 +37,7 @@ export default {
     // enregistre globalement, les composants spécifiques utilisés par certaines questions
     Vue.component('clic_sur_mots', ClicSurMots);
     Vue.component('liste_courses_a_trous', listeCoursesATrous);
+    Vue.component('email_HPfb_a_trous', emailHPfbATrous);
     Vue.component('puzzle', Puzzle);
     Vue.component('graphique', Graphique);
   },
