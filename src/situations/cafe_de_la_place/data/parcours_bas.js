@@ -579,20 +579,20 @@ const ACrd10 = {
   choix: [
     {
       id: 'tempsPresent',
-      nom_technique: 'temps_present',
+      nom_technique: 'le_temps_present',
       bonneReponse: false,
       intitule: 'Le temps présent'
     },
     {
       id: 'tempsFutur',
-      nom_technique: 'temps_futur',
+      nom_technique: 'le_temps_futur',
       bonneReponse: true,
       score: 1,
       intitule: 'Le temps futur'
     },
     {
       id: 'tempsPasse',
-      nom_technique: 'temps_passe',
+      nom_technique: 'le_temps_passe',
       bonneReponse: false,
       intitule: 'Le temps passé'
     }
