@@ -6,6 +6,7 @@ import graphique from '../assets/graphique.png';
 import graphiqueAvecSelection from '../assets/graphique_avec_selection.png';
 import rubriqueEnvironnement from '../assets/rubrique_environnement.png';
 import terrasseCafe from '../assets/terrasse_cafe.png';
+import telephoneEMail from '../assets/telephone_email.png';
 
 const sousConsigneHPar1 = {
   id: 'HPar-sous-consigne-1',
@@ -316,6 +317,16 @@ const sousConsigneHPfb1 = {
   modalite_reponse: "Pour commencer, cliquez sur « Suivant »."
 };
 
+const sousConsigneHPfb2 = {
+  id: 'HPfb-sous-consigne-2',
+  nom_technique: 'sous_consigne_HPfb_2',
+  type: 'sous-consigne',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  intitule: "Vous avez commencé à écrire un message un peu plus tôt, vous devez maintenant le compléter. Je vais vous lire les mots qui manquent, alors écoutez bien !<br><br>Soyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
+  modalite_reponse: "Pour commencer, cliquez sur « Suivant »."
+};
+
 const parcoursHaut1 = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
@@ -340,11 +351,14 @@ const parcoursHaut2 = {
       texte: texteHCvf2,
       cartes: [ HCvf2 ]
     },
-    { texte: texteHCvf1,
+    {
+      texte: texteHCvf1,
       texteNonCliquable: true,
       cartes: [ HCvf3, HCvf4 ]
     },
-    { cartes: [ sousConsigneHPfb1 ] }
+    {
+      cartes: [ sousConsigneHPfb1, sousConsigneHPfb2 ]
+    }
   ]
 };
 

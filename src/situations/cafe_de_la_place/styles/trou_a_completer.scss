@@ -1,0 +1,18 @@
+@import 'commun/styles/variables.scss';
+
+.reponse {
+  &--en-attente {
+    color: $bleu-gris;
+    font-weight: 500;
+  }
+
+  &--en-cours {
+    border: 2px dotted $bleu-gris-fonce;
+    border-radius: 4px;
+  }
+
+  &--completee {
+    color: $bleu;
+  }
+}
+

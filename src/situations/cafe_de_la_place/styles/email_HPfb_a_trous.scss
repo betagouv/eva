@@ -1,0 +1,38 @@
+@import 'commun/styles/variables.scss';
+
+.email-fleurs-bibelots {
+  padding: 1.5rem;
+  position: absolute;
+  width: 23.75rem;
+  left: 8.5rem;
+  top: 0.5rem;
+  font-family: $font-sarabun;
+
+  hr {
+    border: 0.9px solid $bleu-gris;
+  }
+
+  p {
+    margin: 0.875rem 0;
+  }
+
+  &__ascenseur {
+    position: absolute;
+    right: 0.5rem;
+    top: 1.75rem;
+  }
+
+  &__destinataire {
+    color: $bleu-gris-fonce;
+    font-size: 0.875rem;
+
+    .nom {
+      color: $bleu;
+    }
+  }
+
+  &__message {
+    padding-top: 0.625rem;
+  }
+}
+

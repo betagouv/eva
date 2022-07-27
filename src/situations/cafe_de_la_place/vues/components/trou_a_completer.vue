@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import 'cafe_de_la_place/styles/trou_a_completer.scss';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
