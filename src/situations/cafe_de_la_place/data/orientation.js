@@ -207,18 +207,18 @@ const LOdi7 = {
   choix: [
     {
       id: '17ans',
-      nom_technique: 'dix_sept_ans',
+      nom_technique: '17_ans',
       bonneReponse: false
     },
     {
       id: '24ans',
-      nom_technique: 'vingt_quatre_ans',
+      nom_technique: '24_ans',
       score: 1,
       bonneReponse: true
     },
     {
       id: '18ans',
-      nom_technique: 'dix_huit_ans',
+      nom_technique: '18_ans',
       bonneReponse: false
     }
   ]
