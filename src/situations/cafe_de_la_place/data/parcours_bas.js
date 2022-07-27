@@ -635,7 +635,7 @@ const sousConsigneAPlc2 = {
   id: 'APlc-sous-consigne-2',
   nom_technique: 'sous_consigne_APlc_2',
   type: 'sous-consigne',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Soyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
   modalite_reponse: 'Pour commencer, cliquez sur « Suivant ».'
@@ -647,7 +647,7 @@ const APlc1 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
   reponse: {
@@ -663,7 +663,7 @@ const APlc2 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'saladiers',
@@ -678,7 +678,7 @@ const APlc3 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'verre',
@@ -693,7 +693,7 @@ const APlc4 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'mayonnaise',
@@ -708,7 +708,7 @@ const APlc5 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'sel',
@@ -723,7 +723,7 @@ const APlc6 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'tomates',
@@ -738,7 +738,7 @@ const APlc7 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'pays',
@@ -753,7 +753,7 @@ const APlc8 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'poivrons',
@@ -768,7 +768,7 @@ const APlc9 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'epices',
@@ -785,7 +785,7 @@ const APlc10 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'donnent',
@@ -800,7 +800,7 @@ const APlc11 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'douzaines',
@@ -815,7 +815,7 @@ const APlc12 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'assiettes',
@@ -830,7 +830,7 @@ const APlc13 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'fouets',
@@ -845,7 +845,7 @@ const APlc14 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'louche',
@@ -860,7 +860,7 @@ const APlc15 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'passoire',
@@ -875,7 +875,7 @@ const APlc16 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'poele',
@@ -892,7 +892,7 @@ const APlc17 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'luxe',
@@ -907,7 +907,7 @@ const APlc18 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'casserole',
@@ -922,7 +922,7 @@ const APlc19 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'adhere',
@@ -937,7 +937,7 @@ const APlc20 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'texte_a_trous',
+  extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'alcoolique',
