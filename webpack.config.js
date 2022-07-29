@@ -56,6 +56,7 @@ module.exports = {
     extensions: ['.js', '.vue'],
     fallback: { path: require.resolve('path-browserify') },
     alias: {
+      vue: '@vue/compat',
       accueil: path.resolve(__dirname, 'src/situations/accueil/'),
       commun: path.resolve(__dirname, 'src/situations/commun/'),
       src: path.resolve(__dirname, 'src/'),
@@ -79,7 +80,6 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-
         options: {
           plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-object-rest-spread'],
 
@@ -109,7 +109,14 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            compatConfig: {
+              MODE: 2
+            }
+          }
+        }
       }
     ]
   },
