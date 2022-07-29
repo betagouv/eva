@@ -1,11 +1,6 @@
 @import 'commun/styles/variables.scss';
 
 .email-fleurs-bibelots {
-  padding: 1.5rem;
-  position: absolute;
-  width: 23.75rem;
-  left: 8.5rem;
-  top: 0.5rem;
   font-family: $font-sarabun;
 
   hr {
@@ -13,13 +8,8 @@
   }
 
   p {
-    margin: 0.875rem 0;
-  }
-
-  &__ascenseur {
-    position: absolute;
-    right: 0.5rem;
-    top: 1.75rem;
+    margin: 0;
+    margin-bottom: 0.875rem;
   }
 
   &__destinataire {
@@ -32,7 +22,22 @@
   }
 
   &__message {
-    padding-top: 0.625rem;
+    padding-top: 1.5rem;
   }
 }
 
+.zone-scroll {
+  position: absolute;
+  display: flex;
+  justify-content: end;
+  padding: 1.5rem;
+  width: 23.75rem;
+  top: 0.5rem;
+  left: 8.5rem;
+
+  &__ascenseur {
+    position: absolute;
+    right: 0.5rem;
+    top: 1.75rem;
+  }
+}

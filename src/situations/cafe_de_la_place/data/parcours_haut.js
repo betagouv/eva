@@ -346,6 +346,7 @@ const HPfb2 = {
   nom_technique: 'hpfb_2',
   type: 'champ-saisie',
   sous_type: 'texte',
+  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
   illustration: telephoneEMail,
   reponse: {
@@ -359,6 +360,7 @@ const HPfb3 = {
   nom_technique: 'hpfb_3',
   type: 'champ-saisie',
   sous_type: 'texte',
+  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
   illustration: telephoneEMail,
   reponse: {
@@ -372,6 +374,7 @@ const HPfb4 = {
   nom_technique: 'hpfb_4',
   type: 'champ-saisie',
   sous_type: 'texte',
+  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
   illustration: telephoneEMail,
   reponse: {
@@ -385,6 +388,7 @@ const HPfb5 = {
   nom_technique: 'hpfb_5',
   type: 'champ-saisie',
   sous_type: 'texte',
+  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
   illustration: telephoneEMail,
   reponse: {
@@ -398,6 +402,7 @@ const HPfb6 = {
   nom_technique: 'hpfb_6',
   type: 'champ-saisie',
   sous_type: 'texte',
+  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
   illustration: telephoneEMail,
   reponse: {
@@ -411,6 +416,7 @@ const HPfb7 = {
   nom_technique: 'hpfb_7',
   type: 'champ-saisie',
   sous_type: 'texte',
+  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
   illustration: telephoneEMail,
   reponse: {
@@ -424,11 +430,180 @@ const HPfb8 = {
   nom_technique: 'hpfb_8',
   type: 'champ-saisie',
   sous_type: 'texte',
+  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'rouge',
     textes: ['rouge']
+  }
+};
+
+const HPfb9 = {
+  id: 'HPfb9',
+  nom_technique: 'hpfb_9',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'roses',
+    textes: ['roses']
+  }
+};
+
+const HPfb10 = {
+  id: 'HPfb10',
+  nom_technique: 'hpfb_10',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'sentaient',
+    textes: ['sentaient']
+  }
+};
+
+const HPfb11 = {
+  id: 'HPfb11',
+  nom_technique: 'hpfb_11',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'parfum',
+    textes: ['parfum']
+  }
+};
+
+const HPfb12 = {
+  id: 'HPfb12',
+  nom_technique: 'hpfb_12',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'catalogue',
+    textes: ['catalogue']
+  }
+};
+
+const HPfb13 = {
+  id: 'HPfb13',
+  nom_technique: 'hpfb_13',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'bras',
+    textes: ['bras']
+  }
+};
+
+const HPfb14 = {
+  id: 'HPfb14',
+  nom_technique: 'hpfb_14',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'cyclistes',
+    textes: ['cyclistes']
+  }
+};
+
+const HPfb15 = {
+  id: 'HPfb15',
+  nom_technique: 'hpfb_15',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'bananier',
+    textes: ['bananier']
+  }
+};
+
+const HPfb16 = {
+  id: 'HPfb16',
+  nom_technique: 'hpfb_16',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'alcoolique',
+    textes: ['alcoolique']
+  }
+};
+
+const HPfb17 = {
+  id: 'HPfb17',
+  nom_technique: 'hpfb_17',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'intervention',
+    textes: ['intervention']
+  }
+};
+
+const HPfb18 = {
+  id: 'HPfb18',
+  nom_technique: 'hpfb_18',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'remboursement',
+    textes: ['remboursement']
+  }
+};
+
+const HPfb19 = {
+  id: 'HPfb19',
+  nom_technique: 'hpfb_19',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'marchandises',
+    textes: ['marchandises']
+  }
+};
+
+const HPfb20 = {
+  id: 'HPfb20',
+  nom_technique: 'hpfb_20',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  scrollEffectue: true,
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'hate',
+    textes: ['hâte']
   }
 };
 
@@ -464,7 +639,7 @@ const parcoursHaut2 = {
     {
       cartes: [ sousConsigneHPfb1, sousConsigneHPfb2 ]
     },
-    { cartes: [ HPfb1, HPfb2, HPfb3, HPfb4, HPfb5, HPfb6, HPfb7, HPfb8 ] }
+    { cartes: [ HPfb1, HPfb2, HPfb3, HPfb4, HPfb5, HPfb6, HPfb7, HPfb8, HPfb9, HPfb10, HPfb11, HPfb12, HPfb13, HPfb14, HPfb15, HPfb16, HPfb17, HPfb18, HPfb19, HPfb20 ] }
   ]
 };
 
