@@ -327,6 +327,97 @@ const sousConsigneHPfb2 = {
   modalite_reponse: "Pour commencer, cliquez sur « Suivant »."
 };
 
+const HPfb2 = {
+  id: 'HPfb2',
+  nom_technique: 'hpfb_2',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'demande',
+    textes: ['demande']
+  }
+};
+
+const HPfb3 = {
+  id: 'HPfb3',
+  nom_technique: 'hpfb_3',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'nombre',
+    textes: ['nombre']
+  }
+};
+
+const HPfb4 = {
+  id: 'HPfb4',
+  nom_technique: 'hpfb_4',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'articles',
+    textes: ['articles']
+  }
+};
+
+const HPfb5 = {
+  id: 'HPfb5',
+  nom_technique: 'hpfb_5',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'accord',
+    textes: ['accord']
+  }
+};
+
+const HPfb6 = {
+  id: 'HPfb6',
+  nom_technique: 'hpfb_6',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'etat',
+    textes: ['état']
+  }
+};
+
+const HPfb7 = {
+  id: 'HPfb7',
+  nom_technique: 'hpfb_7',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'correspondaient',
+    textes: ['correspondaient']
+  }
+};
+
+const HPfb8 = {
+  id: 'HPfb8',
+  nom_technique: 'hpfb_8',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  reponse: {
+    nom_technique: 'rouge',
+    textes: ['rouge']
+  }
+};
+
 const parcoursHaut1 = {
   series: [
     { cartes: [ sousConsigneHPar1 ] },
@@ -358,7 +449,8 @@ const parcoursHaut2 = {
     },
     {
       cartes: [ sousConsigneHPfb1, sousConsigneHPfb2 ]
-    }
+    },
+    { cartes: [ HPfb2, HPfb3, HPfb4, HPfb5, HPfb6, HPfb7, HPfb8 ] }
   ]
 };
 
