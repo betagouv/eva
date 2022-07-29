@@ -137,9 +137,9 @@ describe('Le composant champ de saisie', function () {
       expect(vue.find('.conteneur-traits-saisie').exists()).toBe(false);
     });
 
-    it("limite la taille de l'input à 12", function () {
+    it("limite la taille de l'input à 15", function () {
       const input = vue.find('input[type=text]');
-      expect(input.element.getAttribute('maxlength')).toEqual("12");
+      expect(input.element.getAttribute('maxlength')).toEqual("15");
     });
   });
 
