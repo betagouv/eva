@@ -327,6 +327,20 @@ const sousConsigneHPfb2 = {
   modalite_reponse: "Pour commencer, cliquez sur « Suivant »."
 };
 
+const HPfb1 = {
+  id: 'HPfb1',
+  nom_technique: 'hpfb_1',
+  type: 'champ-saisie',
+  sous_type: 'texte',
+  extensionVue: 'email_HPfb_a_trous',
+  illustration: telephoneEMail,
+  modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
+  reponse: {
+    nom_technique: 'aout',
+    textes: ['août']
+  }
+};
+
 const HPfb2 = {
   id: 'HPfb2',
   nom_technique: 'hpfb_2',
@@ -450,7 +464,7 @@ const parcoursHaut2 = {
     {
       cartes: [ sousConsigneHPfb1, sousConsigneHPfb2 ]
     },
-    { cartes: [ HPfb2, HPfb3, HPfb4, HPfb5, HPfb6, HPfb7, HPfb8 ] }
+    { cartes: [ HPfb1, HPfb2, HPfb3, HPfb4, HPfb5, HPfb6, HPfb7, HPfb8 ] }
   ]
 };
 
