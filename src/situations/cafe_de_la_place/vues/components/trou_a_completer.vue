@@ -10,7 +10,7 @@ export default {
   props: {
     idQuestion: {
       type: String,
-      required: true
+      required: false
     }
   },
 
