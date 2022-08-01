@@ -337,7 +337,8 @@ const HPfb1 = {
   modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
   reponse: {
     nom_technique: 'aout',
-    textes: ['août']
+    textes: ['août', 'aoút', 'aoùt', 'aout', 'aoüt', 'aôut'],
+    scores: [1, 0.75, 0.75, 0.75, 0.75, 0.75]
   }
 };
 
@@ -351,7 +352,8 @@ const HPfb2 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'demande',
-    textes: ['demande']
+    textes: ['demande', 'demandes'],
+    scores: [1, 0.75]
   }
 };
 
@@ -365,7 +367,8 @@ const HPfb3 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'nombre',
-    textes: ['nombre']
+    textes: ['nombre', 'nombres'],
+    scores: [1, 0.75]
   }
 };
 
@@ -379,7 +382,8 @@ const HPfb4 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'articles',
-    textes: ['articles']
+    textes: ['articles', 'article'],
+    scores: [1.25, 1]
   }
 };
 
@@ -393,7 +397,8 @@ const HPfb5 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'accord',
-    textes: ['accord']
+    textes: ['accord', 'accords'],
+    scores: [1, 0.75]
   }
 };
 
@@ -407,7 +412,8 @@ const HPfb6 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'etat',
-    textes: ['état']
+    textes: ['état', 'etat', 'ètat', 'états', 'etats', 'ètats'],
+    scores: [1, 0.75, 0.75, 0.75, 0.75, 0.75]
   }
 };
 
@@ -421,7 +427,8 @@ const HPfb7 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'correspondaient',
-    textes: ['correspondaient']
+    textes: ['correspondaient', 'correspondait'],
+    scores: [1.5, 1]
   }
 };
 
@@ -435,7 +442,8 @@ const HPfb8 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'rouge',
-    textes: ['rouge']
+    textes: ['rouge', 'rouges'],
+    scores: [1, 0.75]
   }
 };
 
@@ -449,7 +457,8 @@ const HPfb9 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'roses',
-    textes: ['roses']
+    textes: ['roses', 'rose'],
+    scores: [1.25, 1]
   }
 };
 
@@ -463,7 +472,8 @@ const HPfb10 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'sentaient',
-    textes: ['sentaient']
+    textes: ['sentaient', 'sentait'],
+    scores: [1.5, 1]
   }
 };
 
@@ -477,7 +487,8 @@ const HPfb11 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'parfum',
-    textes: ['parfum']
+    textes: ['parfum', 'parfums'],
+    scores: [1, 0.75]
   }
 };
 
@@ -491,7 +502,8 @@ const HPfb12 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'catalogue',
-    textes: ['catalogue']
+    textes: ['catalogue', 'catalogues'],
+    scores: [1, 0.75]
   }
 };
 
@@ -505,7 +517,8 @@ const HPfb13 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'bras',
-    textes: ['bras']
+    textes: ['bras'],
+    scores: [1]
   }
 };
 
@@ -519,7 +532,8 @@ const HPfb14 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'cyclistes',
-    textes: ['cyclistes']
+    textes: ['cyclistes', 'cycliste'],
+    scores: [1.25, 1]
   }
 };
 
@@ -533,7 +547,8 @@ const HPfb15 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'bananier',
-    textes: ['bananier']
+    textes: ['bananier', 'bananiers'],
+    scores: [1, 1]
   }
 };
 
@@ -547,7 +562,8 @@ const HPfb16 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'alcoolique',
-    textes: ['alcoolique']
+    textes: ['alcoolique', 'alcooliques'],
+    scores: [1, 0.75]
   }
 };
 
@@ -561,7 +577,8 @@ const HPfb17 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'intervention',
-    textes: ['intervention']
+    textes: ['intervention', 'interventions'],
+    scores: [1, 0.75]
   }
 };
 
@@ -575,7 +592,8 @@ const HPfb18 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'remboursement',
-    textes: ['remboursement']
+    textes: ['remboursement', 'remboursements'],
+    scores: [1, 0.75]
   }
 };
 
@@ -589,7 +607,8 @@ const HPfb19 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'marchandises',
-    textes: ['marchandises']
+    textes: ['marchandises', 'marchandise'],
+    scores: [1.25, 1]
   }
 };
 
@@ -603,7 +622,8 @@ const HPfb20 = {
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'hate',
-    textes: ['hâte']
+    textes: ['hâte', 'hate', 'häte', 'hàte', 'hâtes', 'hates', 'hätes', 'hàtes'],
+    scores: [1, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75]
   }
 };
 
