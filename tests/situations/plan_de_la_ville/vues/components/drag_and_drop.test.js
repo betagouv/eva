@@ -12,7 +12,8 @@ describe('glisser déposer', function () {
     localVue = createLocalVue();
     localVue.prototype.$traduction = () => {};
     localVue.prototype.$depotRessources = {
-      egliseMaisonAPlacer: () => { return { src: 'maison.jpg' }; }
+      egliseMaisonAPlacer: () => { return { src: 'maison.jpg' }; },
+      emplacementEglise: () => { return { src: 'emplacement.jpg' }; }
     };
     wrapper = shallowMount(GlisserDeposer, { localVue });
   });
@@ -74,6 +75,16 @@ describe('glisser déposer', function () {
         expect(deplaceSouris).toHaveBeenCalledTimes(1);
         wrapper.find('.eglise-maison-a-placer').trigger('touchend');
         expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
+      });
+
+      it("entoure d'un cercle bleu l'emplacement de l'église lorsque la maison est selectionnée", function () {
+        const cercleBleu = wrapper.find('.cercle-bleu');
+        expect(cercleBleu.classes('cercle-bleu--cache')).toBe(true);
+        expect(cercleBleu.classes('cercle-bleu--visible')).toBe(false);
+        wrapper.find('.eglise-maison-a-placer').trigger('mousedown', { clientX: 95, clientY: 55 });
+        expect(wrapper.vm.piece.estSelectionnee()).toBe(true);
+        expect(cercleBleu.classes('cercle-bleu--cache')).toBe(false);
+        expect(cercleBleu.classes('cercle-bleu--visible')).toBe(true);
       });
     });
   });

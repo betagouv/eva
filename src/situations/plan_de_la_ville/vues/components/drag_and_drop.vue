@@ -4,6 +4,12 @@
        v-on:touchmove="deplaceTouche"
     >
     <img
+        :src="emplacementEglise"
+        class="emplacement-eglise">
+    <svg ref="cercleBleu" class="cercle-bleu cercle-bleu--cache" width="222" height="222" viewBox="0 0 222 222" fill="none">
+      <circle cx="111" cy="111" r="109.5" fill-opacity="0.8" stroke-width="3"/>
+    </svg>
+    <img
         :style="positionMaison"
         :src="egliseMaisonAPlacer"
         v-on:mousedown="debuteSelection"
@@ -46,7 +52,8 @@ export default {
     });
     const deplaceur = new DeplaceurPieces(scene.largeur, scene.hauteur);
     const egliseMaisonAPlacer = this.$depotRessources.egliseMaisonAPlacer().src;
-    return { piece, emplacementCible, deplaceur, egliseMaisonAPlacer };
+    const emplacementEglise = this.$depotRessources.emplacementEglise().src;
+    return { piece, emplacementCible, deplaceur, egliseMaisonAPlacer, emplacementEglise };
   },
 
   computed: {
@@ -64,6 +71,7 @@ export default {
     },
 
     debuteSelection (event) {
+      this.$refs.cercleBleu.classList.replace('cercle-bleu--cache', 'cercle-bleu--visible');
       this.deplaceur.debuteSelection(this.piece, event);
     },
 
@@ -76,6 +84,7 @@ export default {
     },
 
     termineSelection () {
+      this.$refs.cercleBleu.classList.replace('cercle-bleu--visible', 'cercle-bleu--cache');
       this.deplaceur.termineSelection();
     }
   }

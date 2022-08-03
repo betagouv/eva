@@ -1,3 +1,5 @@
+@import 'commun/styles/variables.scss';
+
 .zone-deplacement {
   position: absolute;
   width: 100%;
@@ -10,6 +12,34 @@
   top: 355px;
   left: 480px;
   cursor: grab;
+}
+
+.emplacement-eglise {
+  position: absolute;
+  z-index: 1;
+  top: 173px;
+  left: 131px;
+}
+
+.cercle-bleu {
+  position: absolute;
+  top: 122px;
+  left: 71px;
+
+  circle {
+    fill: $bleu;
+    stroke: $bleu;
+  }
+
+  &--cache {
+    transform: scale(0);
+    transition-duration: 1s;
+  }
+
+  &--visible {
+    transform: scale(1);
+    transition-duration: 1s;
+  }
 }
 
 .eglise-maison-selectionnee {
