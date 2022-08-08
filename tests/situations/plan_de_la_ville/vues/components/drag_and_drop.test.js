@@ -2,7 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 import GlisserDeposer from 'plan_de_la_ville/vues/components/drag_and_drop.vue';
 import { CHANGEMENT_SELECTION } from 'commun/modeles/piece';
-import { pourcentageX } from 'commun/data/scene.js';
+import { pourcentageX, pourcentageY } from 'commun/data/scene.js';
 
 describe('glisser déposer', function () {
   let wrapper;
@@ -85,6 +85,13 @@ describe('glisser déposer', function () {
         expect(wrapper.vm.piece.estSelectionnee()).toBe(true);
         expect(cercleBleu.classes('cercle-bleu--cache')).toBe(false);
         expect(cercleBleu.classes('cercle-bleu--visible')).toBe(true);
+      });
+
+      it("replace la pièce à sa position initiale", function () {
+        expect(wrapper.vm.positionMaison).toEqual({ left: `${pourcentageX(480)}%`, top: `${pourcentageY(355)}%` });
+        wrapper.vm.piece.changePosition({ x: 10, y: 20 });
+        wrapper.find('.eglise-maison-a-placer').trigger('mouseup');
+        expect(wrapper.vm.positionMaison).toEqual({ left: `${pourcentageX(480)}%`, top: `${pourcentageY(355)}%` });
       });
     });
   });

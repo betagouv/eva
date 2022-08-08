@@ -86,6 +86,12 @@ export default {
     termineSelection () {
       this.$refs.cercleBleu.classList.replace('cercle-bleu--visible', 'cercle-bleu--cache');
       this.deplaceur.termineSelection();
+      this.reinitialisePositionPiece();
+    },
+
+    reinitialisePositionPiece() {
+      this.piece.x = pourcentageX(480);
+      this.piece.y = pourcentageY(355);
     }
   }
 };
