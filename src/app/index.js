@@ -1,6 +1,7 @@
 import 'core-js/stable';
 import queryString from 'query-string';
 import Vue from 'vue';
+import { createApp } from 'vue';
 import 'commun/styles/conteneur.scss';
 import 'commun/styles/commun.scss';
 
@@ -37,10 +38,9 @@ function afficheAccueil (pointInsertion) {
 
   const store = creeStore(registreUtilisateur, registreCampagne);
 
-  new Vue({
-    store,
-    render: createEle => createEle(Index)
-  }).$mount(pointInsertion);
+  const app = createApp(Index);
+  app.use(store);
+  app.mount(pointInsertion);
 }
 
 initialiseInternationalisation().then(function () {

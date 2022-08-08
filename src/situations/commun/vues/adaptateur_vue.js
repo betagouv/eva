@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue, { createApp } from 'vue';
 
 import { traduction } from 'commun/infra/internationalisation';
 
@@ -16,16 +16,14 @@ export function creeAdaptateur (component, proprietes = {}) {
       }
       const div = document.createElement('div');
       $(pointInsertion).append(div);
-      this.vm = new Vue({
-        render: createEle => createEle(component, { props: this.props })
-      }).$mount(div);
+      this.app = createApp(component, this.props);
+      this.app.mount(div);
     }
 
     cache () {
-      if (this.vm) {
-        this.vm.$el.remove();
-        this.vm.$destroy();
-        this.vm = null;
+      if (this.app) {
+        this.app.unmount();
+        this.app = null;
       }
     }
   };

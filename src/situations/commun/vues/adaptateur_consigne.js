@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue, { createApp } from 'vue';
 
 import { ATTENTE_DEMARRAGE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE } from 'commun/modeles/situation';
 import { CONSIGNE_FINI } from 'commun/vues/consigne';
@@ -18,14 +18,9 @@ export default class AdaptateurConsigne {
     const div = document.createElement('div');
     $(pointInsertion).append(div);
     const vue = this.situation.etat() === ATTENTE_DEMARRAGE ? IntroConsigne : Transition;
-    this.vm = new Vue({
-      render: createEle => createEle(vue, {
-        props: {
-          identifiantSituation: this.situation.identifiant
-        }
-      })
-    }).$mount(div);
-    this.vm.$children[0].$on(CONSIGNE_FINI, () => {
+    this.app = createApp(vue, { identifiantSituation: this.situation.identifiant });
+    this.app.mount(div);
+    this.app.$refs[0].on(CONSIGNE_FINI, () => {
       this.situation.modifieEtat(this.prochainEtat());
     });
   }
@@ -39,7 +34,6 @@ export default class AdaptateurConsigne {
   }
 
   cache () {
-    this.vm.$el.remove();
-    this.vm.$destroy();
+    this.app.unmount();
   }
 }

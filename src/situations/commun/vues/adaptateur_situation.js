@@ -1,11 +1,9 @@
-import Vue from 'vue';
+import Vue, { createApp } from 'vue';
 
 import { traduction } from '../infra/internationalisation';
 import { synchroniseStoreEtModeleSituation } from '../modeles/store';
 import VueSituation from './situation';
 import { erreurVue } from '../infra/report_erreurs';
-
-Vue.config.errorHandler = erreurVue;
 
 export default class AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources, creeStore, ComposantActe, configurationEntrainement, configurationNormale) {
@@ -25,15 +23,15 @@ export default class AdaptateurCommunVueSituation {
     $(pointInsertion).append(div);
     const store = this.creeStore();
     synchroniseStoreEtModeleSituation(this.situation, store);
-    new Vue({
-      store,
-      render: createEle => createEle(VueSituation, {
-        props: {
-          composantActe: this.ComposantActe,
-          configurationEntrainement: this.configurationEntrainement,
-          configurationNormale: this.configurationNormale
-        }
-      })
-    }).$mount(div);
+    const app = createApp(VueSituation,
+      {
+        composantActe: this.ComposantActe,
+        configurationEntrainement: this.configurationEntrainement,
+        configurationNormale: this.configurationNormale
+      }
+    );
+    app.config.errorHandler = erreurVue;
+    app.use(store);
+    app.mount(div);
   }
 }

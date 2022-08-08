@@ -1,5 +1,4 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 
 import {
   CHARGEMENT,
@@ -9,10 +8,8 @@ import {
   ENTRAINEMENT_DEMARRE
 } from 'commun/modeles/situation';
 
-Vue.use(Vuex);
-
 export function creeStore ({ state, mutations, getters, actions } = {}) {
-  return new Vuex.Store({
+  return createStore({
     state: {
       etat: CHARGEMENT,
       aide: false,

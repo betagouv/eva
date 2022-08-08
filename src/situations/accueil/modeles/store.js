@@ -1,5 +1,4 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 import ErreurCampagne from 'commun/infra/erreur_campagne';
 import { traduction } from 'commun/infra/internationalisation';
@@ -8,10 +7,8 @@ export const DECONNECTE = 'déconnecté';
 export const DONNEES = 'donnees';
 export const DEMARRE = 'démarré';
 
-Vue.use(Vuex);
-
 export function creeStore (registreUtilisateur, registreCampagne) {
-  const store = new Vuex.Store({
+  const store = createStore({
     state: {
       estConnecte: registreUtilisateur.estConnecte(),
       erreurFormulaireIdentification: '',
