@@ -1,7 +1,8 @@
 <template>
   <div class="zone-scroll">
     <div class="email-fleurs-bibelots">
-      <component :is="messageEmail"/>
+      <email-partie-1 v-if="question.numero_page == 1"/>
+      <email-partie-2 v-else />
     </div>
     <svg
       class="zone-scroll__ascenseur"
@@ -19,12 +20,11 @@
 
 <script>
 import 'cafe_de_la_place/styles/email_HPfb_a_trous.scss';
-import TrouACompleter from 'cafe_de_la_place/vues/components/trou_a_completer.vue';
 import emailPartie1 from 'cafe_de_la_place/vues/components/email_partie_1.vue';
 import emailPartie2 from 'cafe_de_la_place/vues/components/email_partie_2.vue';
 
 export default {
-  components: { TrouACompleter, emailPartie1, emailPartie2 },
+  components: { emailPartie1, emailPartie2 },
 
   props: {
     question: {
@@ -35,13 +35,8 @@ export default {
 
   computed: {
     topPositionScrollBar() {
-      return this.question.scrollEffectue ? '25.625rem' : '0rem';
-    },
-
-    messageEmail () {
-      if (this.question.scrollEffectue) return emailPartie2;
-      return emailPartie1;
-    },
+      return this.question.numero_page == 1 ? '0rem' : '25.625rem';
+    }
   }
 };
 </script>

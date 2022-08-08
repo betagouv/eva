@@ -333,6 +333,7 @@ const HPfb1 = {
   type: 'champ-saisie',
   sous_type: 'texte',
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
   reponse: {
@@ -347,8 +348,8 @@ const HPfb2 = {
   nom_technique: 'hpfb_2',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'demande',
@@ -362,8 +363,8 @@ const HPfb3 = {
   nom_technique: 'hpfb_3',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'nombre',
@@ -377,8 +378,8 @@ const HPfb4 = {
   nom_technique: 'hpfb_4',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'articles',
@@ -392,8 +393,8 @@ const HPfb5 = {
   nom_technique: 'hpfb_5',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'accord',
@@ -407,8 +408,8 @@ const HPfb6 = {
   nom_technique: 'hpfb_6',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'etat',
@@ -422,8 +423,8 @@ const HPfb7 = {
   nom_technique: 'hpfb_7',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'correspondaient',
@@ -437,8 +438,8 @@ const HPfb8 = {
   nom_technique: 'hpfb_8',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: false,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'rouge',
@@ -452,8 +453,8 @@ const HPfb9 = {
   nom_technique: 'hpfb_9',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'roses',
@@ -467,8 +468,8 @@ const HPfb10 = {
   nom_technique: 'hpfb_10',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'sentaient',
@@ -482,8 +483,8 @@ const HPfb11 = {
   nom_technique: 'hpfb_11',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'parfum',
@@ -497,8 +498,8 @@ const HPfb12 = {
   nom_technique: 'hpfb_12',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'catalogue',
@@ -512,8 +513,8 @@ const HPfb13 = {
   nom_technique: 'hpfb_13',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'bras',
@@ -527,8 +528,8 @@ const HPfb14 = {
   nom_technique: 'hpfb_14',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'cyclistes',
@@ -542,8 +543,8 @@ const HPfb15 = {
   nom_technique: 'hpfb_15',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'bananier',
@@ -557,8 +558,8 @@ const HPfb16 = {
   nom_technique: 'hpfb_16',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'alcoolique',
@@ -572,8 +573,8 @@ const HPfb17 = {
   nom_technique: 'hpfb_17',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'intervention',
@@ -587,8 +588,8 @@ const HPfb18 = {
   nom_technique: 'hpfb_18',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'remboursement',
@@ -602,8 +603,8 @@ const HPfb19 = {
   nom_technique: 'hpfb_19',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'marchandises',
@@ -617,8 +618,8 @@ const HPfb20 = {
   nom_technique: 'hpfb_20',
   type: 'champ-saisie',
   sous_type: 'texte',
-  scrollEffectue: true,
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
     nom_technique: 'hate',
