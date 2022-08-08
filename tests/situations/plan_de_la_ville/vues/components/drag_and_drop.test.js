@@ -59,21 +59,21 @@ describe('glisser déposer', function () {
 
       it('à la souris', function () {
         expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
-        wrapper.find('.eglise-maison-a-placer').trigger('mousedown', { clientX: 95, clientY: 55 });
+        wrapper.find('.eglise-maison--a-placer').trigger('mousedown', { clientX: 95, clientY: 55 });
         expect(wrapper.vm.piece.estSelectionnee()).toBe(true);
         wrapper.find('.zone-deplacement').trigger('mousemove', { clientX: 0, clientY: 55 });
         expect(deplaceSouris).toHaveBeenCalledTimes(1);
-        wrapper.find('.eglise-maison-a-placer').trigger('mouseup');
+        wrapper.find('.eglise-maison--a-placer').trigger('mouseup');
         expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
       });
 
       it('au doight', function () {
         expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
-        wrapper.find('.eglise-maison-a-placer').trigger('touchstart', { changedTouches: [{ clientX: 95, clientY: 55 }] });
+        wrapper.find('.eglise-maison--a-placer').trigger('touchstart', { changedTouches: [{ clientX: 95, clientY: 55 }] });
         expect(wrapper.vm.piece.estSelectionnee()).toBe(true);
         wrapper.find('.zone-deplacement').trigger('touchmove', { clientX: 0, clientY: 55 });
         expect(deplaceSouris).toHaveBeenCalledTimes(1);
-        wrapper.find('.eglise-maison-a-placer').trigger('touchend');
+        wrapper.find('.eglise-maison--a-placer').trigger('touchend');
         expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
       });
 
@@ -81,7 +81,7 @@ describe('glisser déposer', function () {
         const cercleBleu = wrapper.find('.cercle-bleu');
         expect(cercleBleu.classes('cercle-bleu--cache')).toBe(true);
         expect(cercleBleu.classes('cercle-bleu--visible')).toBe(false);
-        wrapper.find('.eglise-maison-a-placer').trigger('mousedown', { clientX: 95, clientY: 55 });
+        wrapper.find('.eglise-maison--a-placer').trigger('mousedown', { clientX: 95, clientY: 55 });
         expect(wrapper.vm.piece.estSelectionnee()).toBe(true);
         expect(cercleBleu.classes('cercle-bleu--cache')).toBe(false);
         expect(cercleBleu.classes('cercle-bleu--visible')).toBe(true);
@@ -90,7 +90,7 @@ describe('glisser déposer', function () {
       it("replace la pièce à sa position initiale", function () {
         expect(wrapper.vm.positionMaison).toEqual({ left: `${pourcentageX(480)}%`, top: `${pourcentageY(355)}%` });
         wrapper.vm.piece.changePosition({ x: 10, y: 20 });
-        wrapper.find('.eglise-maison-a-placer').trigger('mouseup');
+        wrapper.find('.eglise-maison--a-placer').trigger('mouseup');
         expect(wrapper.vm.positionMaison).toEqual({ left: `${pourcentageX(480)}%`, top: `${pourcentageY(355)}%` });
       });
     });
