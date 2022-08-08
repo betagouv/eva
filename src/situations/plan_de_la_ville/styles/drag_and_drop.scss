@@ -1,15 +1,39 @@
 @import 'commun/styles/variables.scss';
 
+@keyframes flottement {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-15px);
+  }
+    100% {
+    transform: translatey(0px);
+  }
+}
+
 .zone-deplacement {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-.eglise-maison-a-placer {
-  position: absolute;
-  z-index: 1;
-  cursor: grab;
+.eglise-maison {
+  &--a-placer {
+    position: absolute;
+    z-index: 1;
+    cursor: grab;
+  }
+
+  &--flottante {
+    animation: flottement 3s ease-in-out infinite;
+  }
+
+  &--selectionnee {
+    // Nous avons décidé de supprimer le drop-shadow car il est bugé sur Safari (et donc sur tablette Apple)
+    // https://over.wiki/ask/safari-bug-when-using-drop-shadow-and-transform
+    cursor: grabbing;
+  }
 }
 
 .emplacement-eglise {
@@ -40,8 +64,3 @@
   }
 }
 
-.eglise-maison-selectionnee {
-  // Nous avons décidé de supprimer le drop-shadow car il est bugé sur Safari (et donc sur tablette Apple)
-  // https://over.wiki/ask/safari-bug-when-using-drop-shadow-and-transform
-  cursor: grabbing;
-}

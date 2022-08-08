@@ -17,8 +17,9 @@
         v-on:mouseup="termineSelection"
         v-on:touchend="termineSelection"
         v-on:dragstart.prevent=""
-        class="eglise-maison-a-placer"
-        :class="{ 'eglise-maison-selectionnee' : piece.selectionnee }">
+        class="eglise-maison--a-placer"
+        :class="{ 'eglise-maison--selectionnee': piece.selectionnee,
+                  'eglise-maison--flottante': !piece.selectionnee }">
   </div>
 </template>
 
