@@ -23,7 +23,7 @@ export default {
     }
   },
 
-  destroyed () {
+  unmounted () {
     if(this.afficheVideo) {
       window.URL.revokeObjectURL(this.source);
     }

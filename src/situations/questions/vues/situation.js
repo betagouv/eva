@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 
 import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
 import { synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
@@ -17,14 +17,11 @@ export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation
     $(pointInsertion).append(div);
     const store = this.creeStore();
     synchroniseStoreEtModeleSituation(this.situation, store);
-    new Vue({
-      store,
-      render: createEle => createEle(VueSituation, {
-        props: {
-          composantActe: this.ComposantActe,
-          idSituation: this.situation.identifiant
-        }
-      })
-    }).$mount(div);
+    const app = createApp(VueSituation, {
+      composantActe: this.ComposantActe,
+      idSituation: this.situation.identifiant
+    });
+    app.use(store);
+    app.mount(div);
   }
 }

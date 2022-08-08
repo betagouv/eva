@@ -68,7 +68,7 @@ export default ({
     this.choixFait = Math.floor(this.question.choix.length / 2);
   },
 
-  destroyed () {
+  unmounted () {
     document.head.removeChild(this.jaugeStyle);
   },
 
