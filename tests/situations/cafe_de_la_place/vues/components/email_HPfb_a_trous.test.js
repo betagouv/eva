@@ -20,7 +20,7 @@ describe('Le composant Email HPfb à trous', function () {
 
   describe("pour une question qui concerne la première partie de l'email", function () {
     beforeEach(function () {
-      const question = { id: 'hpfb1', scrollEffectue: false };
+      const question = { id: 'hpfb1', numero_page: 1 };
       wrapper = composant(question);
     });
 
@@ -33,7 +33,7 @@ describe('Le composant Email HPfb à trous', function () {
 
   describe("pour une question qui concerne la deuxième partie de l'email", function () {
     beforeEach(function () {
-      const question = { id: 'hpfb2', scrollEffectue: true };
+      const question = { id: 'hpfb2', numero_page: 2 };
       wrapper = composant(question);
     });
 
