@@ -14,7 +14,7 @@
       </div>
       <input
           v-on:input="emetReponse($event.target.value)"
-          id="reponsecafedelaplace"
+          ref="reponseCafeDeLaPlace"
           class="champ"
           spellcheck="false"
           autocomplete="off"
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { isFirefox } from 'mobile-device-detect';
 import 'commun/styles/champ.scss';
 import 'commun/styles/defi/champ_saisie.scss';
 
@@ -69,11 +70,6 @@ export default {
   },
 
   methods: {
-    focusInput() {
-      var reponsecafedelaplace = document.getElementById('reponsecafedelaplace');
-      reponsecafedelaplace.focus({ preventScroll: true });
-    },
-
     emetReponse (valeur) {
       const reponse = valeur.trim();
       const indexReponse = this.question.reponse.textes.indexOf(reponse.toLowerCase());
@@ -84,8 +80,8 @@ export default {
   },
 
   mounted: function () {
-    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-      this.focusInput();
+    if (isFirefox) {
+      this.$refs.reponseCafeDeLaPlace.focus({ preventScroll: true });
     }
   }
 };
