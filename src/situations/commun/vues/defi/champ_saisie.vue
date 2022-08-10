@@ -41,6 +41,10 @@ export default {
     question: {
       type: Object,
       required: true
+    },
+    estFirefox: {
+      type: Boolean,
+      default: isFirefox
     }
   },
 
@@ -80,7 +84,7 @@ export default {
   },
 
   mounted: function () {
-    if (isFirefox) {
+    if (this.estFirefox) {
       this.$refs.reponseCafeDeLaPlace.focus({ preventScroll: true });
     }
   }

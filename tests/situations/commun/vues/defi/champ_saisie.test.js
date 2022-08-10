@@ -26,6 +26,7 @@ describe('Le composant champ de saisie', function () {
     return shallowMount(ChampSaisie, {
       localVue,
       propsData: props,
+      attachTo: document.body,
       stubs: {
         'bouton-lecture': BoutonLectureStub
       }
@@ -162,5 +163,20 @@ describe('Le composant champ de saisie', function () {
       vue = composant({ question: { nom_technique: 'question-sans-audio' } });
       expect(vue.find('.defi-champ-saisie--decale').exists()).toBe(false);
     });
+  });
+
+  describe("met le focus sur l'input au démarrage", function() {
+    it("quand on est sur firefox", function() {
+      vue = composant({ question: { nom_technique: 'question' }, estFirefox: true });
+      const input = vue.find('input[type=text]');
+      expect(document.activeElement).toBe(input.element);
+    });
+
+    it("sur les autres navigateurs", function() {
+      vue = composant({ question: { nom_technique: 'question' } });
+      const input = vue.find('input[type=text]');
+      expect(input.attributes('autofocus')).toBe("autofocus");
+    });
+
   });
 });
