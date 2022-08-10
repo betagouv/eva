@@ -26,7 +26,8 @@
 
   .champ-texte {
     &:focus {
-      outline: 3px solid $bleu;
+      border: 3px solid $bleu;
+      outline: none; // outline sur des bords arrondis n'est pas suporté par Safari
     }
   }
 
