@@ -14,6 +14,7 @@
       </div>
       <input
           v-on:input="emetReponse($event.target.value)"
+          id="reponsecafedelaplace"
           class="champ"
           spellcheck="false"
           autocomplete="off"
@@ -68,12 +69,23 @@ export default {
   },
 
   methods: {
+    focusInput() {
+      var reponsecafedelaplace = document.getElementById('reponsecafedelaplace');
+      reponsecafedelaplace.focus({ preventScroll: true });
+    },
+
     emetReponse (valeur) {
       const reponse = valeur.trim();
       const indexReponse = this.question.reponse.textes.indexOf(reponse.toLowerCase());
       const succes = indexReponse != -1;
       const score = this.question.reponse.scores && this.question.reponse.scores[indexReponse];
       this.$emit('input', { reponse, succes, score });
+    },
+  },
+
+  mounted: function () {
+    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+      this.focusInput();
     }
   }
 };
