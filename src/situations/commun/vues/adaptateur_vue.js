@@ -1,12 +1,11 @@
-import Vue, { createApp } from 'vue';
+import { createApp } from 'vue';
 
 import { traduction } from 'commun/infra/internationalisation';
 
 export function creeAdaptateur (component, proprietes = {}) {
   return class AdaptateurVue {
     constructor (situation, depotRessources, props = proprietes) {
-      Vue.prototype.$depotRessources = depotRessources;
-      Vue.prototype.$traduction = traduction;
+      this.depotRessources = depotRessources;
       this.props = props;
     }
 
@@ -22,6 +21,8 @@ export function creeAdaptateur (component, proprietes = {}) {
           this.cache();
         }
       });
+      this.app.config.globalProperties.$depotRessources = this.depotRessources;
+      this.app.config.globalProperties.$traduction = traduction;
       this.app.mount(div);
     }
 
