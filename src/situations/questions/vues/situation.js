@@ -6,6 +6,7 @@ import { synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
 import { creeStore } from '../modeles/store';
 import VueSituation from './situation.vue';
 import ActeQuestions from './acte';
+import { traduction } from 'commun/infra/internationalisation';
 
 export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources) {
@@ -21,6 +22,9 @@ export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation
       composantActe: this.ComposantActe,
       idSituation: this.situation.identifiant
     });
+    app.config.globalProperties.$depotRessources = this.depotRessources;
+    app.config.globalProperties.$traduction = traduction;
+    app.config.globalProperties.$journal = this.journal;
     app.use(store);
     app.mount(div);
   }

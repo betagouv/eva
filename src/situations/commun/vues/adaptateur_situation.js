@@ -1,4 +1,4 @@
-import Vue, { createApp } from 'vue';
+import { createApp } from 'vue';
 
 import { traduction } from '../infra/internationalisation';
 import { synchroniseStoreEtModeleSituation } from '../modeles/store';
@@ -13,9 +13,8 @@ export default class AdaptateurCommunVueSituation {
     this.configurationEntrainement = configurationEntrainement;
     this.configurationNormale = configurationNormale;
 
-    Vue.prototype.$depotRessources = depotRessources;
-    Vue.prototype.$traduction = traduction;
-    Vue.prototype.$journal = journal;
+    this.depotRessources = depotRessources;
+    this.journal = journal;
   }
 
   affiche (pointInsertion, $) {
@@ -30,6 +29,9 @@ export default class AdaptateurCommunVueSituation {
         configurationNormale: this.configurationNormale
       }
     );
+    app.config.globalProperties.$depotRessources = this.depotRessources;
+    app.config.globalProperties.$traduction = traduction;
+    app.config.globalProperties.$journal = this.journal;
     app.config.errorHandler = erreurVue;
     app.use(store);
     app.mount(div);

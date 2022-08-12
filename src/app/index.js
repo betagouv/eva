@@ -1,6 +1,5 @@
 import 'core-js/stable';
 import queryString from 'query-string';
-import Vue from 'vue';
 import { createApp } from 'vue';
 import 'commun/styles/conteneur.scss';
 import 'commun/styles/commun.scss';
@@ -15,8 +14,6 @@ import DepotRessourcesAccueil from 'accueil/infra/depot_ressources_accueil';
 import { erreurVue } from 'commun/infra/report_erreurs';
 import Synchronisateur from 'commun/infra/synchronisateur';
 
-Vue.config.errorHandler = erreurVue;
-
 function afficheAccueil (pointInsertion) {
   const registreUtilisateur = new RegistreUtilisateur();
   const registreEvenements = new RegistreEvenements(registreUtilisateur);
@@ -29,8 +26,6 @@ function afficheAccueil (pointInsertion) {
 
   const depotRessources = new DepotRessourcesAccueil();
 
-  Vue.prototype.$depotRessources = depotRessources;
-  Vue.prototype.$traduction = traduction;
   const parametresUrl = queryString.parse(location.search);
   if (parametresUrl.horsligne) {
     registreUtilisateur.enregistreModeHorsLigne(parametresUrl.horsligne === 'true');
@@ -39,6 +34,9 @@ function afficheAccueil (pointInsertion) {
   const store = creeStore(registreUtilisateur, registreCampagne);
 
   const app = createApp(Index);
+  app.config.globalProperties.$depotRessources = depotRessources;
+  app.config.globalProperties.$traduction = traduction;
+  app.config.errorHandler = erreurVue;
   app.use(store);
   app.mount(pointInsertion);
 }
