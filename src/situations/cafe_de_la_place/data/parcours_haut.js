@@ -322,6 +322,7 @@ const sousConsigneHPfb2 = {
   nom_technique: 'sous_consigne_HPfb_2',
   type: 'sous-consigne',
   extensionVue: 'email_HPfb_a_trous',
+  numero_page: 1,
   illustration: telephoneEMail,
   intitule: "Vous avez commencé à écrire un message un peu plus tôt, vous devez maintenant le compléter. Je vais vous lire les mots qui manquent, alors écoutez bien !<br><br>Soyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
   modalite_reponse: "Pour commencer, cliquez sur « Suivant »."
