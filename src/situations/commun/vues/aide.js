@@ -3,7 +3,7 @@ import aide from 'commun/assets/aide.svg';
 import VueBouton from './bouton';
 import { creeAdaptateur } from './adaptateur_vue';
 import EvenementActivationAide from 'commun/modeles/evenement_activation_aide';
-import VueFenetreAide, { FERME } from 'commun/vues/fenetre_aide';
+import VueFenetreAide from 'commun/vues/fenetre_aide';
 
 import 'commun/styles/boutons.scss';
 import 'commun/styles/aide.scss';
@@ -34,8 +34,5 @@ export default class VueAide {
       this.journal.enregistre(new EvenementActivationAide());
     }
     this.fenetreAide.affiche(pointInsertion, $);
-    this.fenetreAide.vm.$children[0].$on(FERME, () => {
-      this.fenetreAide.cache();
-    });
   }
 }

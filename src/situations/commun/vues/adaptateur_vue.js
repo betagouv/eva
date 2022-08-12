@@ -11,12 +11,17 @@ export function creeAdaptateur (component, proprietes = {}) {
     }
 
     affiche (pointInsertion, $) {
-      if (this.vm) {
+      if (this.app) {
         return;
       }
       const div = document.createElement('div');
       $(pointInsertion).append(div);
-      this.app = createApp(component, this.props);
+      this.app = createApp(component, {
+        ...this.props,
+        onFerme: () => {
+          this.cache();
+        }
+      });
       this.app.mount(div);
     }
 
