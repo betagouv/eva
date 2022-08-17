@@ -16,11 +16,38 @@ describe("Le formulaire d'identification", function () {
     store = new Vuex.Store({
       state: {
         estConnecte: false,
-        erreurFormulaireIdentification: ''
+        erreurFormulaireIdentification: '',
+        conditionsDePassation: {}
+      },
+      mutations: {
+        metsAJourConditionsDePassation (state, { conditionsDePassation }) {
+          state.conditionsDePassation = conditionsDePassation;
+        }
       }
     });
     store.dispatch = () => promesse;
-    wrapper = mount(FormulaireIdentification, { store, localVue });
+    wrapper = mount(FormulaireIdentification, {
+      store,
+      localVue,
+      data() {
+        return {
+          computedSwitcher: {
+            materielUtilise: "desktop",
+            modeleMateriel: 'mac',
+            nomNavigateur: "chrome",
+            versionNavigateur: 56,
+            resolutionEcran: "1366x768"
+          }
+        };
+      },
+      computed: {
+        conditionsDePassation: {
+          get() {
+            return this.computedSwitcher;
+          }
+        }
+      }
+    });
   });
 
   it("s'affiche", function () {
@@ -44,25 +71,41 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.vm.campagne).toEqual('MON CODE CAMPAGNE');
   });
 
-  it("inscrit la personne avec le nom et la campagne à l'appui sur le bouton", function (done) {
-    store.dispatch = (action, { codeCampagne }) => {
-      expect(action).toBe('recupereCampagne');
-      expect(codeCampagne).toBe('Mon code campagne');
+  describe('#envoieFormulaire', function () {
+    it("inscrit la personne avec le nom et la campagne à l'appui sur le bouton", function (done) {
+      store.dispatch = (action, { codeCampagne }) => {
+        expect(action).toBe('recupereCampagne');
+        expect(codeCampagne).toBe('Mon code campagne');
 
-      store.dispatch = (action, { nom, campagne }) => {
-        expect(action).toBe('inscris');
-        expect(nom).toBe('Mon pseudo');
-        expect(campagne).toBe('Mon code campagne');
-        done();
-        return Promise.resolve();
+        store.dispatch = (action, { nom, campagne }) => {
+          expect(action).toBe('inscris');
+          expect(nom).toBe('Mon pseudo');
+          expect(campagne).toBe('Mon code campagne');
+          done();
+          return Promise.resolve();
+        };
+        return Promise.resolve({ id: '1' });
       };
-      return Promise.resolve({ id: '1' });
-    };
-    wrapper.find('#formulaire-identification-champ-nom').setValue('  Mon pseudo  ');
-    wrapper.find('#formulaire-identification-champ-campagne').setValue('Mon code campagne');
-    wrapper.find('input[type=checkbox]').setChecked();
-    wrapper.vm.$nextTick(() => {
-      wrapper.find('button').trigger('submit');
+      wrapper.find('#formulaire-identification-champ-nom').setValue('  Mon pseudo  ');
+      wrapper.find('#formulaire-identification-champ-campagne').setValue('Mon code campagne');
+      wrapper.find('input[type=checkbox]').setChecked();
+      wrapper.vm.$nextTick(() => {
+        wrapper.find('button').trigger('submit');
+      });
+    });
+
+    it("envoie les conditions de passation au store", function (done) {
+      wrapper.vm.envoieFormulaireInscription();
+      wrapper.vm.$nextTick(() => {
+        expect(store.state.conditionsDePassation).toEqual({
+          materielUtilise: "desktop",
+          modeleMateriel: 'mac',
+          nomNavigateur: "chrome",
+          versionNavigateur: 56,
+          resolutionEcran: "1366x768"
+        });
+        done();
+      });
     });
   });
 
