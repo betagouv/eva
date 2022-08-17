@@ -17,6 +17,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
       nom: registreUtilisateur.nom(),
       nomCampagne: '',
       situations: [],
+      conditionsDePassation: {},
       competencesFortes: [],
       evaluationTerminee: false,
       situationsFaites: registreUtilisateur.situationsFaites(),
@@ -61,7 +62,11 @@ export function creeStore (registreUtilisateur, registreCampagne) {
 
       metsAJourEvaluationTerminee (state, evaluationTerminee) {
         state.evaluationTerminee = evaluationTerminee;
-      }
+      },
+
+      metsAJourConditionsDePassation (state, { conditionsDePassation }) {
+        state.conditionsDePassation = conditionsDePassation;
+      },
     },
     actions: {
       inscris (pasUtile, { nom, campagne }) {

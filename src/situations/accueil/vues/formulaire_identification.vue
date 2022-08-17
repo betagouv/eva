@@ -71,6 +71,8 @@ import 'commun/styles/champ.scss';
 import 'accueil/styles/formulaire.scss';
 import 'commun/styles/boutons.scss';
 import TransitionFade from 'commun/vues/transition_fade';
+import DeviceDetector from "device-detector-js";
+import { browserName, browserVersion } from 'mobile-device-detect';
 
 export default {
   components: { TransitionFade },
@@ -96,6 +98,7 @@ export default {
       cgu: false
     };
   },
+
   computed: {
     ...mapState(['estConnecte', 'erreurFormulaireIdentification']),
 
@@ -115,6 +118,18 @@ export default {
       if (this.erreurFormulaireIdentification) { return false; }
       if (this.campagneForcee) { return true; }
       return false;
+    },
+
+    conditionsDePassation () {
+      const deviceDetector = new DeviceDetector();
+      const deviceInformations = deviceDetector.parse(window.navigator.userAgent);
+      return {
+        materielUtilise: deviceInformations.device.type,
+        modeleMateriel: deviceInformations.device.model,
+        nomNavigateur : browserName,
+        versionNavigateur: browserVersion,
+        resolutionEcran: `${window.screen.width}*${window.screen.height}`
+      };
     }
   },
 
@@ -136,6 +151,7 @@ export default {
     },
 
     envoieFormulaireInscription () {
+      this.$store.commit('metsAJourConditionsDePassation', { conditionsDePassation: this.conditionsDePassation });
       return this.$store.dispatch('inscris', {
         nom: this.nom,
         campagne: this.campagne
