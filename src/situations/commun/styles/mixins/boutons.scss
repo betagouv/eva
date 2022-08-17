@@ -1,8 +1,8 @@
-@mixin bouton($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc, $hauteur-image: 1rem) {
+@mixin bouton($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc, $hauteur-image: .625rem) {
   border-radius: 3.125rem;
   cursor: pointer;
-  height: 3rem;
-  width: 3rem;
+  height: 1.5rem;
+  width: 1.5rem;
   background-color: $couleur-fond;
   display: flex;
   align-items: center;
@@ -27,11 +27,13 @@
     position: relative;
     margin: auto;
     height: $hauteur-image;
+    width: $hauteur-image;
   }
 
   svg {
     margin: auto;
     height: $hauteur-image;
+    width: $hauteur-image;
   }
 }
 
