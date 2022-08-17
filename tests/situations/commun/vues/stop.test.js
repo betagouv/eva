@@ -10,7 +10,7 @@ describe('vue Stop', function () {
   let situation;
 
   beforeEach(function () {
-    $('body').append('<div id="point-insertion"></div>');
+    $('body').append('<div id="cadre"><div id="point-insertion"></div></div>');
     mockJournal = {
       enregistre () {}
     };
