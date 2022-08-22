@@ -35,7 +35,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
   }
 
   inscris (nom, codeCampagne, conditionsDePassation) {
-    const data = { nom: nom, code_campagne: codeCampagne, debutee_le: new Date(), conditions_de_passation: conditionsDePassation };
+    const data = { nom: nom, code_campagne: codeCampagne, debutee_le: new Date(), condition_passation_attributes: conditionsDePassation };
     return new Promise((resolve, reject) => {
       this.creeEvaluation(data)
         .then((utilisateur) => {

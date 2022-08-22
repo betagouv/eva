@@ -124,11 +124,11 @@ export default {
       const deviceDetector = new DeviceDetector();
       const deviceInformations = deviceDetector.parse(window.navigator.userAgent);
       return {
-        materielUtilise: deviceInformations.device.type,
-        modeleMateriel: deviceInformations.device.model,
-        nomNavigateur : browserName,
-        versionNavigateur: browserVersion,
-        resolutionEcran: `${window.screen.width}*${window.screen.height}`
+        materiel_utilise: deviceInformations.device.type,
+        modele_materiel: deviceInformations.device.model,
+        nom_navigateur : browserName,
+        version_navigateur: browserVersion,
+        resolution_ecran: `${window.screen.width}x${window.screen.height}`
       };
     }
   },
