@@ -32,11 +32,11 @@ describe("Le formulaire d'identification", function () {
       data() {
         return {
           computedSwitcher: {
-            materielUtilise: "desktop",
-            modeleMateriel: 'mac',
-            nomNavigateur: "chrome",
-            versionNavigateur: 56,
-            resolutionEcran: "1366x768"
+            materiel_utilise: "desktop",
+            modele_materiel: 'mac',
+            nom_navigateur: "chrome",
+            version_navigateur: 56,
+            resolution_ecran: "1366x768"
           }
         };
       },
@@ -98,11 +98,11 @@ describe("Le formulaire d'identification", function () {
       wrapper.vm.envoieFormulaireInscription();
       wrapper.vm.$nextTick(() => {
         expect(store.state.conditionsDePassation).toEqual({
-          materielUtilise: "desktop",
-          modeleMateriel: 'mac',
-          nomNavigateur: "chrome",
-          versionNavigateur: 56,
-          resolutionEcran: "1366x768"
+          materiel_utilise: "desktop",
+          modele_materiel: 'mac',
+          nom_navigateur: "chrome",
+          version_navigateur: 56,
+          resolution_ecran: "1366x768"
         });
         done();
       });
