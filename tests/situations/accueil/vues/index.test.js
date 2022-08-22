@@ -2,9 +2,10 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Index from 'accueil/vues/index';
 import OverlayAttente from 'commun/vues/overlay_attente';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
-import OverlayErreurLectureSon from 'accueil/vues/overlay_erreur_lecture_son';
+import OverlayErreur from 'accueil/vues/overlay_erreur';
 import Accueil from 'accueil/vues/accueil';
 import { traduction } from 'commun/infra/internationalisation';
+import Vuex from 'vuex';
 
 describe('La vue index', function () {
   let depotRessources;
@@ -98,7 +99,8 @@ describe('La vue index', function () {
         expect(wrapper.findComponent(Accueil).exists()).toBe(false);
         expect(wrapper.findComponent(OverlayAttente).exists()).toBe(false);
         expect(wrapper.findComponent(OverlayErreurChargement).exists()).toBe(false);
-        expect(wrapper.findComponent(OverlayErreurLectureSon).exists()).toBe(true);
+        expect(wrapper.findComponent(OverlayErreur).exists()).toBe(true);
+        expect(wrapper.findComponent(OverlayErreur).props('titre')).toBe('situation.erreur_lecture_son.titre');
         expect(consoleError).not.toHaveBeenCalled();
       });
     });
@@ -113,8 +115,34 @@ describe('La vue index', function () {
       });
 
       it('affiche la vue erreur lecture son impossible', function () {
-        expect(wrapper.findComponent(OverlayErreurLectureSon).exists()).toBe(true);
-        expect(consoleError).not.toHaveBeenCalled();
+        expect(wrapper.findComponent(OverlayErreur).exists()).toBe(true);
+        expect(wrapper.findComponent(OverlayErreur).props('titre')).toBe('situation.erreur_lecture_son.titre');
+      });
+    });
+
+    describe("quand la passation est faite sur smartphone", function() {
+      beforeEach(function () {
+        const store = new Vuex.Store({
+          state: {
+            estConnecte: false,
+            evaluationTerminee: false
+          }
+        });
+        wrapper = shallowMount(Index, {
+          localVue,
+          store,
+          data() {
+            return {
+              estMobile: true
+            };
+          }
+        });
+      });
+
+      it("affiche la vue erreur utilisation d'un smartphone", function () {
+        expect(wrapper.vm.afficheErreurMobile).toBe(true);
+        expect(wrapper.findComponent(OverlayErreur).exists()).toBe(true);
+        expect(wrapper.findComponent(OverlayErreur).props('titre')).toBe('situation.erreur_utilisation_smartphone.titre');
       });
     });
   });
