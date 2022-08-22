@@ -183,6 +183,12 @@
       "description": "Votre navigateur ou votre appareil ne semble pas compatible avec la lecture des sons au format mp3.",
       "action": "Veuillez contacter la personne qui vous accompagne."
     },
+    "erreur_utilisation_smartphone": {
+      "titre": "Attention, eva ne doit pas être utilisé sur smartphone !",
+      "description": "Si vous utilisez eva sur un smartphone, vos résultats pourront être faussés.",
+      "action": "Utilisez plutôt un ordinateur ou une tablette.",
+      "bouton": "Ignorer"
+    },
     "chargement": "Chargement en cours",
     "enregistrement": "Enregistrement en cours",
     "go": "Vous pouvez commencer",

@@ -1,14 +1,30 @@
 <template>
   <div id="accueil">
     <div
+      v-if="estMobile && afficheErreurMobile && !estConnecte && !evaluationTerminee"
+      class="conteneur"
+      style="position: absolute;"
+    >
+      <overlay-erreur
+        :titre="$traduction('situation.erreur_utilisation_smartphone.titre')"
+        :description="$traduction('situation.erreur_utilisation_smartphone.description')"
+        :action="$traduction('situation.erreur_utilisation_smartphone.action')"
+        :boutonIgnorer="true"
+        @ignoreErreur="afficheErreurMobile = false"/>
+    </div>
+    <div
       v-if="chargement || erreurChargement || erreurLectureSon"
       class="conteneur"
     >
-      <overlay-erreur-lecture-son v-if="erreurLectureSon" />
+      <overlay-erreur
+        v-if="erreurLectureSon"
+        :titre="$traduction('situation.erreur_lecture_son.titre')"
+        :description="$traduction('situation.erreur_lecture_son.description')"
+        :action="$traduction('situation.erreur_lecture_son.action')" />
       <overlay-erreur-chargement v-else-if="erreurChargement" />
       <overlay-attente v-else raison='chargement' />
     </div>
-    <accueil :force-campagne="forceCampagne" :force-nom="forceNom" v-else />
+    <accueil :force-campagne="forceCampagne" :force-nom="forceNom" v-else style="z-index: 0;"/>
   </div>
 </template>
 
@@ -16,11 +32,13 @@
 import queryString from 'query-string';
 import OverlayAttente from 'commun/vues/overlay_attente';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
-import OverlayErreurLectureSon from 'accueil/vues/overlay_erreur_lecture_son';
+import OverlayErreur from 'accueil/vues/overlay_erreur';
 import Accueil from './accueil';
+import { estMobile } from 'commun/helpers/mobile';
+import { mapState } from 'vuex';
 
 export default {
-  components: { Accueil, OverlayAttente, OverlayErreurChargement, OverlayErreurLectureSon },
+  components: { Accueil, OverlayAttente, OverlayErreurChargement, OverlayErreur },
 
   data () {
     const parametresUrl = queryString.parse(location.search);
@@ -30,11 +48,20 @@ export default {
       erreurChargement: false,
       erreurLectureSon: false,
       forceCampagne: parametresUrl.code || '',
-      forceNom: parametresUrl.nom || ''
+      forceNom: parametresUrl.nom || '',
+      estMobile: estMobile,
+      afficheErreurMobile: false
     };
   },
 
+  computed: {
+    ...mapState(['estConnecte', 'evaluationTerminee'])
+  },
+
   mounted () {
+    if(this.estMobile) {
+      this.afficheErreurMobile = true;
+    }
     this.$depotRessources.chargement().then(() => {
       this.chargement = false;
     }).catch((erreur) => {
