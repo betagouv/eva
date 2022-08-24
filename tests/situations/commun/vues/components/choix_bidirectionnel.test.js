@@ -47,7 +47,7 @@ describe('La vue flèches clavier', function () {
 
   describe('sur ordinateur', function () {
     beforeEach(function () {
-      wrapper.vm.estMobile = false;
+      wrapper.vm.estSmartphoneOuTablette = false;
     });
 
     it("N'affiche pas les boutons permettant de répondre à la souris", function () {
@@ -57,7 +57,7 @@ describe('La vue flèches clavier', function () {
 
   describe('sur tablette', function () {
     beforeEach(function () {
-      wrapper.vm.estMobile = true;
+      wrapper.vm.estSmartphoneOuTablette = true;
     });
 
     it('affiche les boutons permettant de répondre avec le doigt', function () {

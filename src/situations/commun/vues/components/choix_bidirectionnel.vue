@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="estMobile"
+    v-if="estSmartphoneOuTablette"
     class="actions-fleches mobile"
     >
     <button
@@ -55,7 +55,7 @@ import Keypress from 'vue-keypress';
 import 'commun/styles/boutons.scss';
 import 'commun/styles/choix_bidirectionnel.scss';
 
-import { estMobile } from 'commun/helpers/mobile';
+import { estSmartphoneOuTablette } from 'commun/helpers/mobile';
 
 export const flecheGauche = 37;
 export const flecheDroite = 39;
@@ -99,7 +99,7 @@ export default {
 
   data () {
     return {
-      estMobile: estMobile,
+      estSmartphoneOuTablette: estSmartphoneOuTablette,
       choixGauche: 'gauche',
       choixDroit: 'droite',
       choixFait: null,
