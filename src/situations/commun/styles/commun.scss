@@ -84,11 +84,11 @@ html, body {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   font-family: 'Work Sans', sans-serif;
   font-size: 16px;
-  display: flex;
-  flex-direction: column;
   position: relative;
   color: $couleur-texte;
   background-color: $couleur-fond;
@@ -151,7 +151,8 @@ h3 {
 }
 
 .footer {
-  width: 63rem;
+  width: 100%;
+  max-width: $taille-conteneur;
   margin: 2rem auto;
   color: $blanc;
 

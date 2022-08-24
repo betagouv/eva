@@ -1,5 +1,8 @@
+@import 'commun/styles/variables.scss';
+
 @mixin conteneur() {
-  width: 63rem;
+  width: 100%;
+  max-width: $taille-conteneur;
   margin: auto;
   position: relative;
 }
