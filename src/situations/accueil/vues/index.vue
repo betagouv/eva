@@ -1,7 +1,7 @@
 <template>
   <div id="accueil">
     <div
-      v-if="estMobile && afficheErreurMobile && !estConnecte && !evaluationTerminee"
+      v-if="estSmartphone && afficheErreurSmartphone && !estConnecte && !evaluationTerminee"
       class="conteneur"
       style="position: absolute;"
     >
@@ -10,7 +10,7 @@
         :description="$traduction('situation.erreur_utilisation_smartphone.description')"
         :action="$traduction('situation.erreur_utilisation_smartphone.action')"
         :boutonIgnorer="true"
-        @ignoreErreur="afficheErreurMobile = false"/>
+        @ignoreErreur="afficheErreurSmartphone = false"/>
     </div>
     <div
       v-if="chargement || erreurChargement || erreurLectureSon"
@@ -34,7 +34,7 @@ import OverlayAttente from 'commun/vues/overlay_attente';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
 import OverlayErreur from 'accueil/vues/overlay_erreur';
 import Accueil from './accueil';
-import { estMobile } from 'commun/helpers/mobile';
+import { estSmartphone } from 'commun/helpers/mobile';
 import { mapState } from 'vuex';
 
 export default {
@@ -49,8 +49,8 @@ export default {
       erreurLectureSon: false,
       forceCampagne: parametresUrl.code || '',
       forceNom: parametresUrl.nom || '',
-      estMobile: estMobile,
-      afficheErreurMobile: false
+      estSmartphone: estSmartphone,
+      afficheErreurSmartphone: false
     };
   },
 
@@ -59,8 +59,8 @@ export default {
   },
 
   mounted () {
-    if(this.estMobile) {
-      this.afficheErreurMobile = true;
+    if(this.estSmartphone) {
+      this.afficheErreurSmartphone = true;
     }
     this.$depotRessources.chargement().then(() => {
       this.chargement = false;

@@ -133,14 +133,14 @@ describe('La vue index', function () {
           store,
           data() {
             return {
-              estMobile: true
+              estSmartphone: true
             };
           }
         });
       });
 
       it("affiche la vue erreur utilisation d'un smartphone", function () {
-        expect(wrapper.vm.afficheErreurMobile).toBe(true);
+        expect(wrapper.vm.afficheErreurSmartphone).toBe(true);
         expect(wrapper.findComponent(OverlayErreur).exists()).toBe(true);
         expect(wrapper.findComponent(OverlayErreur).props('titre')).toBe('situation.erreur_utilisation_smartphone.titre');
       });
