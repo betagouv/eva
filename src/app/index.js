@@ -3,7 +3,6 @@ import queryString from 'query-string';
 import Vue from 'vue';
 import 'commun/styles/conteneur.scss';
 import 'commun/styles/commun.scss';
-import 'accueil/styles/index.scss';
 
 import { creeStore } from 'accueil/modeles/store';
 import Index from 'accueil/vues/index';
