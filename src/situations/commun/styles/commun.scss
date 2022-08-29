@@ -151,8 +151,7 @@ h3 {
 }
 
 .footer {
-  width: 100%;
-  max-width: $taille-conteneur;
+  width: $taille-conteneur;
   margin: 2rem auto;
   color: $blanc;
 
@@ -177,4 +176,52 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+/* Portrait orientation */
+.popup-portrait {
+  display: none;
+}
+
+@media screen and (orientation: portrait) and (max-width: $taille-conteneur) {
+  html, body {
+    overflow: hidden;
+  }
+
+  .popup-portrait {
+    display: flex;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 99999;
+    width: 100%;
+    background: rgba(110, 132, 254, 0.9);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+
+    &__titre, &__instructions {
+      color: $blanc;
+      text-align: center;
+      strong {
+        font-weight: 600;
+      }
+    }
+
+    &__titre {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    svg {
+      circle, path {
+        fill: $couleur-fond;
+      }
+      rect {
+        stroke: $couleur-fond;
+      }
+    }
+  }
 }
