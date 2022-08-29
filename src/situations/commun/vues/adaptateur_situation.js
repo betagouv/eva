@@ -17,9 +17,7 @@ export default class AdaptateurCommunVueSituation {
     this.journal = journal;
   }
 
-  affiche (pointInsertion, $) {
-    const div = document.createElement('div');
-    $(pointInsertion).append(div);
+  affiche (pointInsertion) {
     const store = this.creeStore();
     synchroniseStoreEtModeleSituation(this.situation, store);
     const app = createApp(VueSituation,
@@ -34,6 +32,6 @@ export default class AdaptateurCommunVueSituation {
     app.config.globalProperties.$journal = this.journal;
     app.config.errorHandler = erreurVue;
     app.use(store);
-    app.mount(div);
+    app.mount(pointInsertion);
   }
 }
