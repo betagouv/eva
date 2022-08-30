@@ -128,7 +128,7 @@ export default {
         modele_materiel: deviceInformations.device.model,
         nom_navigateur : browserName,
         version_navigateur: browserVersion,
-        resolution_ecran: `${window.screen.width}x${window.screen.height}`
+        resolution_ecran: `${window.screen.availWidth}x${window.screen.availHeight}`
       };
     }
   },
