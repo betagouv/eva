@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { traduction } from 'commun/infra/internationalisation';
 import MockDepotRessources from '../aides/mock_depot_ressources_objets_trouves';
 import { creeStore } from 'objets_trouves/modeles/store';
@@ -8,17 +8,18 @@ import { TRANSITION, ACCUEIL_VERROUILLE } from 'objets_trouves/modeles/situation
 
 describe("La vue de l'accueil", function () {
   let wrapper;
-  let localVue;
   let store;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = new MockDepotRessources();
-    localVue.prototype.$traduction = traduction;
     store = creeStore();
     wrapper = shallowMount(Accueil, {
-      localVue,
-      store
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: new MockDepotRessources(),
+          $traduction: traduction
+        }
+      }
     });
   });
 

@@ -1,20 +1,14 @@
 import emailHPfb from 'cafe_de_la_place/vues/components/email_HPfb_a_trous.vue';
 import emailPartie1 from 'cafe_de_la_place/vues/components/email_partie_1.vue';
 import emailPartie2 from 'cafe_de_la_place/vues/components/email_partie_2.vue';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 describe('Le composant Email HPfb à trous', function () {
   let wrapper;
-  let localVue;
-
-  beforeEach(function () {
-    localVue = createLocalVue();
-  });
 
   function composant(question) {
     return shallowMount(emailHPfb, {
-      localVue,
-      propsData: { question: question }
+      props: { question: question }
     });
   }
 

@@ -75,10 +75,13 @@ export default {
   },
 
   watch: {
-    dangersQualifies () {
-      if (this.nombreDangersQualifies === this.nombreDangersAQualifies) {
-        this.$emit('terminer');
-      }
+    dangersQualifies: {
+      handler() {
+        if (this.nombreDangersQualifies === this.nombreDangersAQualifies) {
+          this.$emit('terminer');
+        }
+      },
+      deep:true
     }
   },
 

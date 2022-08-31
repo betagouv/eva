@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 
 import GlisserDeposer from 'plan_de_la_ville/vues/components/drag_and_drop.vue';
 import { CHANGEMENT_SELECTION } from 'commun/modeles/piece';
@@ -6,16 +6,26 @@ import { pourcentageX, pourcentageY } from 'commun/data/scene.js';
 
 describe('glisser déposer', function () {
   let wrapper;
-  let localVue;
+  let depotRessources;
+
+  function composant () {
+    return mount(GlisserDeposer, {
+      shallow: true,
+      global: {
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: () => {}
+        }
+      }
+    });
+  }
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = () => {};
-    localVue.prototype.$depotRessources = {
+    depotRessources = {
       egliseMaisonAPlacer: () => { return { src: 'maison.jpg' }; },
       emplacementEglise: () => { return { src: 'emplacement.jpg' }; }
     };
-    wrapper = shallowMount(GlisserDeposer, { localVue });
+    wrapper = composant();
   });
 
   describe('#positionMaison', function () {
@@ -50,7 +60,7 @@ describe('glisser déposer', function () {
 
       beforeEach(function () {
         deplaceSouris = jest.spyOn(GlisserDeposer.methods, 'deplaceSouris');
-        wrapper = shallowMount(GlisserDeposer, { localVue });
+        wrapper = composant();
       });
 
       afterEach(function () {

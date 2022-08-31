@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import DeplacementDroite from 'plan_de_la_ville/vues/components/deplacement_droite_maison_verte.vue';
 import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
@@ -7,11 +7,16 @@ describe('La vue Déplacement droite maison verte', function () {
   let wrapper;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
-    localVue.prototype.$depotRessources = {
+    const depotRessources = {
       personnage: () => { return { src: 'personnage.png' }; }
     };
-    wrapper = shallowMount(DeplacementDroite, { localVue });
+    wrapper = shallowMount(DeplacementDroite, {
+      global: {
+        mocks: {
+          $depotRessources: depotRessources
+        }
+      }
+    });
   });
 
   describe('#deplacementValide', function () {

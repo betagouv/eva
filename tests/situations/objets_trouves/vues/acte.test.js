@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { creeStore } from 'objets_trouves/modeles/store';
 import ActeObjetsTrouves from 'objets_trouves/vues/acte';
 import AppAccueil from 'objets_trouves/vues/accueil';
@@ -12,7 +12,12 @@ describe("La vue de l'acte d'objets trouvés", function () {
   beforeEach(function () {
     store = creeStore();
     store.commit('configureActe', { apps: { photos: [{}], agenda: [{}] }, questionsFin: [{}] });
-    wrapper = shallowMount(ActeObjetsTrouves, { store });
+    wrapper = mount(ActeObjetsTrouves, {
+      shallow: true,
+      global: {
+        plugins: [store]
+      }
+    });
   });
 
   it("affiche l'application accueil", function () {

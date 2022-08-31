@@ -129,7 +129,7 @@ export default ({
 
     emetSelection () {
       const reponseChoisie = this.question.choix[this.choixFait];
-      this.$emit('input', { reponse: reponseChoisie.id });
+      this.$emit('reponse', { reponse: reponseChoisie.id });
     },
 
     afficheLectureReponse (nomTechnique) {

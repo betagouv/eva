@@ -1,17 +1,20 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import FenetreAide, { FERME } from 'commun/vues/fenetre_aide';
+import { traduction } from 'commun/infra/internationalisation';
 
 describe("La fenêtre d'aide", function () {
   let wrapper;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
-    localVue.prototype.$traduction = () => {};
-    wrapper = shallowMount(FenetreAide, {
-      propsData: {
+    wrapper = mount(FenetreAide, {
+      props: {
         contexte: ''
       },
-      localVue
+      global: {
+        mocks: {
+          $traduction: traduction
+        }
+      }
     });
   });
 

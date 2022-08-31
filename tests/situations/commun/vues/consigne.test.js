@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import Consigne, { CONSIGNE_FINI } from 'commun/vues/consigne';
 import MockAudioNode from '../aides/mock_audio_node';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
@@ -28,16 +28,18 @@ describe('La vue consigne', function () {
         return new MockAudioNode();
       }
     }();
-    const localVue = createLocalVue();
-    localVue.prototype.$depotRessources = depotRessources;
-    localVue.prototype.$traduction = () => {};
     wrapper = shallowMount(Consigne, {
       propsData: {
         message: 'contenu',
         ressourceConsigne: 'consigneDemarrage',
         identifiantSituation: 'any_situation'
       },
-      localVue
+      global: {
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: () => {}
+        }
+      }
     });
   });
 

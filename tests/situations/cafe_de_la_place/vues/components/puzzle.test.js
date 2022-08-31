@@ -1,17 +1,27 @@
 import puzzle from 'cafe_de_la_place/vues/components/puzzle.vue';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { config, mount } from '@vue/test-utils';
 
 describe('Le composant Puzzle', function () {
   let wrapper;
-  let localVue;
   const bonOrdre = [0, 1, 2, 3, 4, 5, 6];
 
+  beforeAll(() => {
+    config.renderStubDefaultSlot = true;
+  });
+
+  afterAll(() => {
+    config.renderStubDefaultSlot = false;
+  });
+
   function genereVue(fragmentsNonClasses) {
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = () => {};
-    wrapper = shallowMount(puzzle, {
-      localVue,
-      propsData: {
+    wrapper = mount(puzzle, {
+      shallow: true,
+      global: {
+        mocks: {
+          $traduction: () => {}
+        }
+      },
+      props: {
         question: {
           fragmentsNonClasses
         }
@@ -21,7 +31,7 @@ describe('Le composant Puzzle', function () {
 
   it("affiche le puzzle de gauche", function () {
     genereVue([]);
-    expect(wrapper.findComponent('.puzzle-gauche').exists()).toBe(true);
+    expect(wrapper.find('.puzzle-gauche').exists()).toBe(true);
   });
 
   describe("les composants draggable envoie une réponse à chaque fois qu'on pose un fragement", function() {
@@ -44,13 +54,13 @@ describe('Le composant Puzzle', function () {
     });
 
     it("affiche un puzzle-item invisible au démarrage", function () {
-      expect(wrapper.findComponent('.puzzle-item.invisible').exists()).toBe(true);
+      expect(wrapper.find('.puzzle-item.invisible').exists()).toBe(true);
     });
 
     it("n'affiche plus le puzzle-item invisible après avoir classé une première nouvelle", function (done) {
       wrapper.vm.fragmentsClasses.push({ id: 'nouvelle_1', contenu: 'Ma super nouvelle !' });
       wrapper.vm.$nextTick(() => {
-        expect(wrapper.findComponent('.puzzle-item.entete-invisible').exists()).toBe(false);
+        expect(wrapper.find('.puzzle-item.entete-invisible').exists()).toBe(false);
         done();
       });
     });
@@ -65,7 +75,7 @@ describe('Le composant Puzzle', function () {
 
     it("affiche le puzzle à droite", function () {
       expect(wrapper.vm.affichePuzzleDroite).toEqual(true);
-      expect(wrapper.findComponent('.puzzle-droite').exists()).toBe(true);
+      expect(wrapper.find('.puzzle-droite').exists()).toBe(true);
     });
 
     it("affiche la zone de dépot", function () {
@@ -84,7 +94,7 @@ describe('Le composant Puzzle', function () {
 
     it("n'affiche plus le puzzle à droite", function () {
       expect(wrapper.vm.affichePuzzleDroite).toEqual(false);
-      expect(wrapper.findComponent('.puzzle-droite').exists()).toBe(false);
+      expect(wrapper.find('.puzzle-droite').exists()).toBe(false);
     });
 
     it("n'affiche plus la zone de dépot", function () {

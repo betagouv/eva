@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Fin from 'accueil/vues/fin';
 import { traduction } from 'commun/infra/internationalisation';
@@ -7,7 +7,6 @@ describe('La vue de fin', function () {
   let wrapper;
   let store;
   let depotRessources;
-  let localVue;
   const rapidite = {
     nom_technique: 'rapidite',
     nom: "vitesse d'execution",
@@ -51,13 +50,23 @@ describe('La vue de fin', function () {
         deconnecte () {}
       }
     });
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = depotRessources;
-    localVue.prototype.$traduction = traduction;
   });
 
+  function composant (props = {}) {
+    return mount(Fin, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: traduction
+        }
+      },
+      props: props
+    });
+  }
+
   it("sait s'afficher", function () {
-    wrapper = mount(Fin, { store, localVue });
+    wrapper = composant();
     expect(wrapper.find('h2').text()).toEqual('accueil.fin.bravo.titre{"nom":"Alexandre Legrand"}');
     expect(wrapper.find('button').text()).toEqual('accueil.fin.bravo.bouton');
   });
@@ -65,7 +74,7 @@ describe('La vue de fin', function () {
   it("affiche le bouton de deconnexion s'il n'y a pas de compétences fortes", function () {
     store.state.competencesFortes = [];
     store.state.evaluationTerminee = true;
-    wrapper = mount(Fin, { store, localVue });
+    wrapper = composant();
     expect(wrapper.findAll('.contenu').length).toBe(0);
     expect(wrapper.findAll('button').length).toBe(0);
     expect(wrapper.findAll('.bouton-deconnexion').length).toBe(1);
@@ -73,7 +82,7 @@ describe('La vue de fin', function () {
 
   it("Attend que l'on sache s'il y a des compétences fortes avant d'afficher les boutons", function () {
     store.state.evaluationTerminee = false;
-    wrapper = mount(Fin, { store, localVue });
+    wrapper = composant();
 
     expect(wrapper.findAll('.contenu').length).toBe(0);
     expect(wrapper.findAll('button').length).toBe(0);
@@ -82,7 +91,7 @@ describe('La vue de fin', function () {
 
 
   it('affiche les compétences fortes', function (done) {
-    wrapper = mount(Fin, { store, localVue });
+    wrapper = composant();
 
     wrapper.find('button').trigger('click');
 
@@ -96,7 +105,7 @@ describe('La vue de fin', function () {
   });
 
   it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function (done) {
-    wrapper = mount(Fin, { store, localVue });
+    wrapper = composant();
     wrapper.find('button').trigger('click');
     wrapper.vm.$nextTick(() => {
       var boutonDeconnexion = wrapper.find('.actions-fin .bouton-deconnexion');

@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECALAGE_INITIAL } from 'accueil/vues/accueil';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
@@ -11,8 +11,6 @@ import { traduction } from 'commun/infra/internationalisation';
 describe('La vue accueil', function () {
   let depotRessources;
   let store;
-
-  let localVue;
   let mockEstTermine;
   let mockDeconnecte;
 
@@ -36,6 +34,18 @@ describe('La vue accueil', function () {
       suivant () {
         return { src: '' };
       }
+
+      casque () {
+        return { src: '' };
+      }
+
+      existeBatimentSituation () {
+        return false;
+      }
+
+      existeFondConsigne () {
+        return false;
+      }
     }();
 
     store = new Vuex.Store({
@@ -44,7 +54,8 @@ describe('La vue accueil', function () {
         estConnecte: false,
         situationsFaites: [],
         estDemarre: false,
-        collecteDonnees: false
+        collecteDonnees: false,
+        erreurFormulaireIdentification: false
       },
 
       getters: {
@@ -56,13 +67,19 @@ describe('La vue accueil', function () {
         deconnecte: mockDeconnecte
       }
     });
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = depotRessources;
-    localVue.prototype.$traduction = traduction;
   });
 
   function accueil (props = {}) {
-    return shallowMount(Accueil, { localVue, store, propsData: props });
+    return shallowMount(Accueil, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: traduction
+        }
+      },
+      props: props
+    });
   }
 
   it('affiche les composants', function () {
@@ -300,7 +317,15 @@ describe('La vue accueil', function () {
 
   describe('#afficheConsigne', function () {
     it('affiche la consigne une fois démarré puis la masque', function (done) {
-      const wrapper = accueil();
+      const wrapper = mount(Accueil, {
+        global: {
+          plugins: [store],
+          mocks: {
+            $depotRessources: depotRessources,
+            $traduction: traduction
+          }
+        }
+      });
       expect(wrapper.findComponent(IntroConsigne).exists()).toBe(false);
       store.state.estDemarre = true;
       wrapper.vm.indexBatiment = 0;

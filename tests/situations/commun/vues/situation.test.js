@@ -1,17 +1,24 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { markRaw } from 'vue';
+import { mount } from '@vue/test-utils';
+import { traduction } from 'commun/infra/internationalisation';
 import Situation from 'commun/vues/situation';
-import ActeSecurite from 'securite/vues/acte';
 import { creeStore } from 'commun/modeles/store';
 import { ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE, FINI } from 'commun/modeles/situation';
 
 describe('commun/vues/situation', function () {
   let wrapper;
+  let depotRessources;
   let store;
-  let localVue;
+  let ComposantAct;
+  const configurationEntrainement = { config: 'entrainement' };
+  const configurationNormale = { config: 'normale' };
+
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = new class {
+    ComposantAct = markRaw({
+      template: '<h2>une vue act</h2>'
+    });
+    depotRessources = new class {
       fondSituation () {
         return { src: 'fond-situation' };
       }
@@ -21,23 +28,28 @@ describe('commun/vues/situation', function () {
       }
     }();
     store = creeStore({
-      state: {
-        zones: []
-      },
       mutations: {
-        configureActe (state, { zones }) {
-          state.zones = zones;
+        configureActe (state, configuration) {
+          state.configuration = configuration;
         }
       }
     });
   });
 
   function vueSituation (configurationNormale, configurationEntrainement) {
-    return shallowMount(Situation, {
-      store,
-      localVue,
-      propsData: {
-        composantActe: ActeSecurite,
+    return mount(Situation, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: traduction
+        },
+        stubs: {
+          ComposantAct
+        }
+      },
+      props: {
+        composantActe: ComposantAct,
         configurationNormale: configurationNormale,
         configurationEntrainement: configurationEntrainement
       }
@@ -46,26 +58,30 @@ describe('commun/vues/situation', function () {
 
   describe('à la création de la vue', function () {
     it("rend l'acte", function () {
-      wrapper = vueSituation({ zones: [] }, { zones: [] });
-      expect(wrapper.findComponent(ActeSecurite).exists()).toBe(true);
+      wrapper = vueSituation({}, {});
+      expect(wrapper.findComponent(ComposantAct).exists()).toBe(true);
     });
 
     it("charge la configuration entrainement s'il y en a un", function () {
-      wrapper = vueSituation({ zones: [] }, { zones: [1] });
-      expect(store.state.zones).toEqual([1]);
-      expect(wrapper.vm.acte.fondSituation).toEqual('fond-situation-entrainement');
+      wrapper = vueSituation({}, configurationEntrainement);
+      expect(store.state.configuration).toEqual({
+        fondSituation: 'fond-situation-entrainement',
+        ...configurationEntrainement
+      });
     });
 
     it("charge la configuration normale s'il n'y a pas d'entrainement", function () {
-      wrapper = vueSituation({ zones: [1] }, undefined);
-      expect(store.state.zones).toEqual([1]);
-      expect(wrapper.vm.acte.fondSituation).toEqual('fond-situation');
+      wrapper = vueSituation(configurationNormale, undefined);
+      expect(store.state.configuration).toEqual({
+        fondSituation: 'fond-situation',
+        ...configurationNormale
+      });
     });
   });
 
   describe("changement d'état", function () {
     beforeEach(function () {
-      wrapper = vueSituation({ zones: [] }, { zones: [] });
+      wrapper = vueSituation(configurationNormale, configurationEntrainement);
     });
 
     it("pour l'état DEMARRE, rend le fond normal", function () {
@@ -79,11 +95,10 @@ describe('commun/vues/situation', function () {
     });
 
     it("pour l'état DEMARRE, charge la configuration normale", function (done) {
-      wrapper.setProps({ configurationNormale: { zones: [1, 2] } });
-      expect(store.state.zones.length).toEqual(0);
+      expect(store.state.configuration.config).toEqual('entrainement');
       store.commit('modifieEtat', DEMARRE);
       wrapper.vm.$nextTick(() => {
-        expect(store.state.zones.length).toEqual(2);
+        expect(store.state.configuration.config).toEqual('normale');
         done();
       });
     });
@@ -91,7 +106,7 @@ describe('commun/vues/situation', function () {
 
   describe("fin d'un acte", function () {
     beforeEach(function () {
-      wrapper = vueSituation({ zones: [] }, { zones: [] });
+      wrapper = vueSituation(configurationNormale, configurationEntrainement);
     });
 
     it("change l'état en ENTRAINEMENT_FINI", function () {

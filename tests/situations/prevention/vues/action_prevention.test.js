@@ -1,19 +1,20 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import ActionPrevention from 'prevention/vues/action_prevention';
 import MockDepotRessources from '../aides/mock_depot_ressources_prevention';
 
 describe('Action Prevention', function () {
   let depotRessources;
-  let localVue;
   let wrapper;
 
   beforeEach(function () {
-    localVue = createLocalVue();
     depotRessources = new MockDepotRessources();
-    localVue.prototype.$depotRessources = depotRessources;
     wrapper = shallowMount(ActionPrevention, {
-      localVue,
-      propsData: {
+      global: {
+        mocks: {
+          $depotRessources: depotRessources
+        }
+      },
+      props: {
         zone: {
           action_prevention: [{ type: 'correct' }, { type: 'mauvais' }]
         }

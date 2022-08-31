@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, config } from '@vue/test-utils';
 import { creeStore, ORIENTATION } from 'cafe_de_la_place/modeles/store';
 import Defi from 'commun/vues/defi';
 import CafeDeLaPlace from 'cafe_de_la_place/vues/cafe_de_la_place';
@@ -8,15 +8,33 @@ import { DEMARRE } from 'commun/modeles/situation';
 describe('La vue café de la place', function () {
   let wrapper;
   let store;
-  let localVue;
+  let journal;
   const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne' };
   const question = { id: 'question1' };
 
+
+  beforeAll(() => {
+    config.renderStubDefaultSlot = true;
+  });
+
+  afterAll(() => {
+    config.renderStubDefaultSlot = false;
+  });
+
   beforeEach(function () {
     store = creeStore();
-    localVue = createLocalVue();
-    localVue.prototype.$journal = { enregistre () {} };
-    wrapper = shallowMount(CafeDeLaPlace, { localVue, store });
+    journal = { enregistre () {} };
+    wrapper = shallowMount(CafeDeLaPlace, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $journal: journal
+        },
+        stubs: {
+          TransitionFade: false
+        }
+      }
+    });
   });
 
   describe("quand elle n'est pas configurée", function () {
@@ -108,10 +126,8 @@ describe('La vue café de la place', function () {
         });
 
         it('enregistre les réponses dans le journal', function (done) {
-          localVue.prototype.$journal = {
-            enregistre () {
-              done();
-            }
+          journal.enregistre = () => {
+            done();
           };
           wrapper.vm.reponse({});
         });

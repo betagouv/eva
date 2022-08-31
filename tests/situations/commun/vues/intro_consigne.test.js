@@ -1,11 +1,10 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { CONSIGNE_FINI } from 'commun/vues/consigne';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import MockAudioNode from '../aides/mock_audio_node';
 
 describe('La vue intro-consigne', function () {
   let wrapper;
-  let localVue;
   let depotRessources;
 
   beforeEach(function () {
@@ -30,12 +29,14 @@ describe('La vue intro-consigne', function () {
         return new MockAudioNode();
       }
     }();
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = depotRessources;
-    localVue.prototype.$traduction = () => {};
     wrapper = shallowMount(IntroConsigne, {
-      propsData: { message: 'contenu', identifiantSituation: 'securite' },
-      localVue
+      props: { message: 'contenu', identifiantSituation: 'securite' },
+      global: {
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: () => {}
+        }
+      }
     });
   });
 
@@ -63,8 +64,13 @@ describe('La vue intro-consigne', function () {
       depotRessources.existeFondConsigne = () => { return true; };
       depotRessources.fondConsigne = () => { return { src: 'une_image.png' }; };
       wrapper = shallowMount(IntroConsigne, {
-        propsData: { message: 'contenu', identifiantSituation: 'securite' },
-        localVue
+        props: { message: 'contenu', identifiantSituation: 'securite' },
+        global: {
+          mocks: {
+            $depotRessources: depotRessources,
+            $traduction: () => {}
+          }
+        }
       });
       expect(wrapper.find('.fond-consigne').element.getAttribute('src')).toEqual('une_image.png');
     });

@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { creeStore } from 'plan_de_la_ville/modeles/store';
 import Defi from 'commun/vues/defi';
 import PlanDeLaVille from 'plan_de_la_ville/vues/plan_de_la_ville';
@@ -6,13 +6,20 @@ import PlanDeLaVille from 'plan_de_la_ville/vues/plan_de_la_ville';
 describe('La vue plan de la ville', function () {
   let wrapper;
   let store;
-  let localVue;
 
   beforeEach(function () {
     store = creeStore();
-    localVue = createLocalVue();
-    localVue.prototype.$journal = { enregistre () {} };
-    wrapper = shallowMount(PlanDeLaVille, { localVue, store });
+    wrapper = shallowMount(PlanDeLaVille, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $journal:  { enregistre () {} }
+        },
+        stubs: {
+          TransitionFade: false
+        }
+      }
+    });
   });
 
   it('Affiche une question', function (done) {

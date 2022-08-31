@@ -40,6 +40,14 @@ import { mapState } from 'vuex';
 export default {
   components: { Accueil, OverlayAttente, OverlayErreurChargement, OverlayErreur },
 
+  props: {
+    estSmartphone: {
+      type: Boolean,
+      required: false,
+      default: estSmartphone
+    }
+  },
+
   data () {
     const parametresUrl = queryString.parse(location.search);
 
@@ -49,7 +57,6 @@ export default {
       erreurLectureSon: false,
       forceCampagne: parametresUrl.code || '',
       forceNom: parametresUrl.nom || '',
-      estSmartphone: estSmartphone,
       afficheErreurSmartphone: false
     };
   },

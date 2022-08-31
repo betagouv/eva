@@ -25,7 +25,7 @@
             v-if="composantContenu"
             :is="composantContenu"
             :question="question"
-            v-model="reponse"
+            @reponse="valeur => reponse = valeur"
             ref="composantContenu"
           />
         </div>
@@ -58,9 +58,27 @@ import RedactionNote from 'commun/vues/defi/redaction_note';
 import VideoQuestion from 'commun/vues/video_question';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 
+import LectureMessage from 'objets_trouves/vues/lecture-message';
+import EcranTelephoneDeverrouillage from 'objets_trouves/vues/ecran-telephone-deverrouillage';
+
+import ClicSurMots from 'cafe_de_la_place/vues/components/clic_sur_mots';
+import ListeCoursesATrous from 'cafe_de_la_place/vues/components/liste_courses_a_trous';
+import EmailHPfbATrous from 'cafe_de_la_place/vues/components/email_HPfb_a_trous';
+import Puzzle from 'cafe_de_la_place/vues/components/puzzle';
+import Graphique from 'cafe_de_la_place/vues/components/graphique';
+
+import ModeEmploi from 'plan_de_la_ville/vues/components/mode_emploi';
+import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic_maison_bleue';
+import DragAndDrop from 'plan_de_la_ville/vues/components/drag_and_drop';
+import DeplacementDroiteMaisonVerte from 'plan_de_la_ville/vues/components/deplacement_droite_maison_verte';
+
 export default {
   components: { ChampSaisie, Jauge, Qcm,
-    Question, QuestionEntete, RedactionNote, VideoQuestion },
+    Question, QuestionEntete, RedactionNote, VideoQuestion,
+    LectureMessage, EcranTelephoneDeverrouillage,
+    ClicSurMots, ListeCoursesATrous, EmailHPfbATrous, Puzzle, Graphique,
+    ModeEmploi, ClicMaisonBleue, DragAndDrop, DeplacementDroiteMaisonVerte
+  },
 
   props: {
     question: {

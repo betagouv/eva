@@ -1,17 +1,12 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import Touche from 'commun/vues/components/touche';
 
 describe('Le composant touche', function () {
   let wrapper;
-  let localVue;
-
-  beforeEach(function () {
-    localVue = createLocalVue();
-  });
 
   it('affiche un label à droite', function () {
     wrapper = shallowMount(Touche, {
-      localVue, propsData: { label: 'texte' }
+      props: { label: 'texte' }
     });
     expect(wrapper.find('.label-droite').exists()).toEqual(true);
     expect(wrapper.find('.label-gauche').exists()).toEqual(false);
@@ -19,21 +14,21 @@ describe('Le composant touche', function () {
 
   it('affiche un label à gauche', function () {
     wrapper = shallowMount(Touche, {
-      localVue, propsData: { labelGauche: 'texte' }
+      props: { labelGauche: 'texte' }
     });
     expect(wrapper.find('.label-droite').exists()).toEqual(false);
     expect(wrapper.find('.label-gauche').exists()).toEqual(true);
   });
 
   it("n'affiche aucun label", function () {
-    wrapper = shallowMount(Touche, { localVue });
+    wrapper = shallowMount(Touche);
     expect(wrapper.find('.label-droite').exists()).toEqual(false);
     expect(wrapper.find('.label-gauche').exists()).toEqual(false);
   });
 
   it('fait tourner le svg', function () {
     wrapper = shallowMount(Touche, {
-      localVue, propsData: { rotation: 90 }
+      props: { rotation: 90 }
     });
     expect(wrapper.find('rect').attributes('transform')).toEqual('rotate(90,14,14)');
     expect(wrapper.find('path').attributes('transform')).toEqual('rotate(90,14,14)');
@@ -41,7 +36,7 @@ describe('Le composant touche', function () {
 
   it('peut changer de couleur', function () {
     wrapper = shallowMount(Touche, {
-      localVue, propsData: { couleur: 'verte' }
+      props: { couleur: 'verte' }
     });
     expect(wrapper.find('.touche.verte').exists()).toEqual(true);
   });

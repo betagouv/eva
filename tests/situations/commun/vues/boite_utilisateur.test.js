@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 
 import Vuex from 'vuex';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur.vue';
@@ -8,9 +8,7 @@ describe('La boite utilisateur', function () {
   let store;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
-    localVue.prototype.$traduction = () => {};
-    localVue.prototype.$depotRessources = new class {
+    const depotRessources = new class {
       iconeDeconnexion () {
         return { src: '' };
       }
@@ -18,7 +16,15 @@ describe('La boite utilisateur', function () {
     store = new Vuex.Store({
       state: { estConnecte: true, nom: '', situations: [1, 2], situationsFaites: [1] }
     });
-    wrapper = mount(BoiteUtilisateur, { store, localVue });
+    wrapper = mount(BoiteUtilisateur, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: () => {}
+        }
+      }
+    });
   });
 
   it('affiche le bouton de déconnexion', function () {

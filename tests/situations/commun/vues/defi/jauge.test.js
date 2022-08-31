@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VueJauge from 'commun/vues/defi/jauge';
 import { creeStore } from 'objets_trouves/modeles/store';
 
@@ -6,10 +6,8 @@ describe('La vue jauge', function () {
   let question;
   let store;
   let wrapper;
-  let localVue;
 
   beforeEach(function () {
-    localVue = createLocalVue();
     question = {
       choix: [
         {
@@ -34,14 +32,17 @@ describe('La vue jauge', function () {
         return true;
       }
     }();
-    localVue.prototype.$depotRessources = depotRessources;
     store = creeStore();
     wrapper = shallowMount(VueJauge, {
-      propsData: {
+      props: {
         question
       },
-      store,
-      localVue
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources
+        }
+      }
     });
   });
 
@@ -75,7 +76,7 @@ describe('La vue jauge', function () {
   it('emet le choix de la jauge quand on clique sur un label', function (done) {
     wrapper.find('.label-libelle').trigger('click');
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.emitted().input[0])
+      expect(wrapper.emitted('reponse')[0])
         .toEqual([{ reponse: '3c178015-a7c1-4ff8-a344-8553a61e754a' }]);
       done();
     });
@@ -84,7 +85,7 @@ describe('La vue jauge', function () {
   it('emet le choix de la jauge quand on utilise la jauge', function (done) {
     wrapper.find('.jauge input').setValue(2);
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.emitted().input[0])
+      expect(wrapper.emitted('reponse')[0])
         .toEqual([{ reponse: '3c178015-a7c1-4ff8-a344-8553a61e754a' }]);
       done();
     });

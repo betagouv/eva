@@ -1,24 +1,27 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import BoutonLecture from 'commun/vues/bouton_lecture';
 import { creeStore } from 'commun/modeles/store';
 import { DEMARRE, FINI } from 'commun/modeles/situation';
 import Vuex from 'vuex';
 
 describe('Le bouton de lecture de message audio', function () {
-  let localVue;
   let store;
+  let depotRessources;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = () => {};
     store = creeStore();
   });
 
   function composant(question) {
     return shallowMount(BoutonLecture, {
-      localVue,
-      store,
-      propsData: question
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: () => {}
+        }
+      },
+      props: question
     });
   }
 
@@ -29,7 +32,7 @@ describe('Le bouton de lecture de message audio', function () {
 
   describe('#start', function() {
     beforeEach(function () {
-      localVue.prototype.$depotRessources = {
+      depotRessources = {
         messageAudio: (nomTechnique) => {
           expect(nomTechnique).toEqual('question1');
         }
@@ -60,7 +63,7 @@ describe('Le bouton de lecture de message audio', function () {
           sonStope = true;
         }
       };
-      wrapper.destroy();
+      wrapper.unmount();
       expect(sonStope).toBe(true);
     });
 
@@ -128,7 +131,7 @@ describe('Le bouton de lecture de message audio', function () {
       it("renvoie le texte 'Pause'", function (done) {
         expect(wrapper.find('.bouton-lecture-texte').exists()).toBe(true);
         wrapper.setProps({ avecTexte: true });
-        localVue.prototype.$depotRessources = {
+        depotRessources = {
           messageAudio: (nomTechnique) => {
             expect(nomTechnique).toEqual('question1');
           }
