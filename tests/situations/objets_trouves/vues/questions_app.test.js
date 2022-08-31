@@ -1,21 +1,24 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import QuestionsApp from 'objets_trouves/vues/questions_app';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
 
 describe("Les questions d'une app", function () {
-  let localVue;
+  let journal;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$journal = { enregistre () {} };
+    journal = { enregistre () {} };
   });
 
   it('affiche les questions les une après les autres', function () {
     const question1 = {};
     const question2 = {};
     const wrapper = shallowMount(QuestionsApp, {
-      localVue,
-      propsData: {
+      global: {
+        mocks: {
+          $journal: journal
+        }
+      },
+      props: {
         questions: [question1, question2]
       }
     });
@@ -29,14 +32,21 @@ describe("Les questions d'une app", function () {
   });
 
   it('enregistre les réponses au journal', function (done) {
-    localVue.prototype.$journal.enregistre = (evenement) => {
+    journal.enregistre = (evenement) => {
       expect(evenement).toBeInstanceOf(EvenementReponse);
       expect(evenement.donnees()).toEqual({ reponse: 'Ma super réponse' });
       done();
     };
 
     const question = { id: 'mon-id', metacompetence: 'metacompetence' };
-    const wrapper = shallowMount(QuestionsApp, { localVue, propsData: { questions: [question] } });
+    const wrapper = shallowMount(QuestionsApp, {
+      global: {
+        mocks: {
+          $journal: journal
+        }
+      },
+      props: { questions: [question] }
+    });
     wrapper.vm.reponseApp({ reponse: 'Ma super réponse' });
   });
 });

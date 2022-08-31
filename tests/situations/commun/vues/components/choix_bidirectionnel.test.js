@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import MockDepotRessources from '../../aides/mock_depot_ressources_choix_bidirectionnel';
 import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
@@ -7,12 +7,15 @@ import Keypress from 'vue-keypress';
 
 describe('La vue flèches clavier', function () {
   let wrapper;
-  let localVue;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = new MockDepotRessources();
-    wrapper = shallowMount(ChoixBidirectionnel, { localVue });
+    wrapper = shallowMount(ChoixBidirectionnel, {
+      global: {
+        mocks: {
+          $depotRessources: new MockDepotRessources()
+        }
+      },
+    });
   });
 
   it('affiche les composants une fois chargé', function () {

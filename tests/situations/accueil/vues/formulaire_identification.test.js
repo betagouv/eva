@@ -1,35 +1,30 @@
-import { mount, createLocalVue } from '@vue/test-utils';
-import Vuex from 'vuex';
+import { mount } from '@vue/test-utils';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 import { traduction } from 'commun/infra/internationalisation';
+import { creeStore } from 'accueil/modeles/store';
 
 describe("Le formulaire d'identification", function () {
   let wrapper;
-  let promesse;
   let store;
-  let localVue;
   const unUserAgent = "Mozilla/5.0 (platform; rv:geckoversion) Gecko/geckotrail Firefox/firefoxversion";
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = traduction;
-    promesse = Promise.resolve();
-    store = new Vuex.Store({
-      state: {
-        estConnecte: false,
-        erreurFormulaireIdentification: '',
-        conditionsDePassation: {}
-      },
-      mutations: {
-        metsAJourConditionsDePassation (state, { conditionsDePassation }) {
-          state.conditionsDePassation = conditionsDePassation;
-        }
-      }
-    });
+    const promesse = Promise.resolve();
+    const registreUtilisateur = {
+      estConnecte () { return false; },
+      nom () {},
+      on () {},
+      situationsFaites () {}
+    };
+    store = creeStore(registreUtilisateur);
     store.dispatch = () => promesse;
     wrapper = mount(FormulaireIdentification, {
-      store,
-      localVue
+      global: {
+        plugins: [store],
+        mocks: {
+          $traduction: traduction
+        }
+      }
     });
   });
 
@@ -207,18 +202,30 @@ describe("Le formulaire d'identification", function () {
     });
   });
 
+  function composant (props = {}) {
+    return mount(FormulaireIdentification, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $traduction: traduction
+        }
+      },
+      props: props
+    });
+  }
+
   it('désactive le champ campagne si il y a une propriété forceCampagne', function () {
     expect(wrapper.findAll('.champ-texte-accueil').length).toBe(2);
-    wrapper = mount(FormulaireIdentification, { store, localVue, propsData: { forceCampagne: 'ete-2019' } });
+    wrapper = composant({ forceCampagne: 'ete-2019' });
     expect(wrapper.vm.campagne).toEqual('ETE-2019');
     expect(wrapper.findAll('label').length).toBe(3);
     const champs = wrapper.findAll('.champ-texte-accueil');
-    expect(champs.at(1).attributes('disabled')).toBe('disabled');
+    expect(champs.at(1).attributes('disabled')).toBe('');
   });
 
   it('cache le champ nom/prénom si il y a une propriété forceNom', function () {
     expect(wrapper.findAll('.champ-texte-accueil').length).toBe(2);
-    wrapper = mount(FormulaireIdentification, { store, localVue, propsData: { forceNom: 'franck-poulain' } });
+    wrapper = composant({ forceNom: 'franck-poulain' });
     expect(wrapper.vm.nom).toEqual('franck-poulain');
     expect(wrapper.findAll('label').length).toBe(2);
     expect(wrapper.findAll('.champ-texte-accueil').length).toBe(1);
@@ -231,7 +238,7 @@ describe("Le formulaire d'identification", function () {
 
     describe('quand il y a code campagne forcé', function () {
       beforeEach(function () {
-        wrapper = mount(FormulaireIdentification, { store, localVue, propsData: { forceCampagne: 'monCode' } });
+        wrapper = composant({ forceCampagne: 'monCode' });
       });
 
       it('le champ est désactivé', function () {

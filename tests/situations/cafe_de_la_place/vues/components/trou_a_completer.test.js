@@ -1,23 +1,22 @@
 import TrouACompleter from 'cafe_de_la_place/vues/components/trou_a_completer.vue';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { creeStore } from 'cafe_de_la_place/modeles/store';
 
 describe('Le composant Trou A completer', function () {
   let wrapper;
-  let localVue;
   let store;
   const question1 = 'aplc1';
 
   beforeEach(function () {
     store = creeStore();
-    localVue = createLocalVue();
   });
 
   function composant(idQuestion) {
     return shallowMount(TrouACompleter, {
-      localVue,
-      store,
-      propsData: { idQuestion: idQuestion }
+      global: {
+        plugins: [store]
+      },
+      props: { idQuestion: idQuestion }
     });
   }
 

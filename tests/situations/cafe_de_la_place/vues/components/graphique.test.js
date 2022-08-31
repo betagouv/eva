@@ -1,10 +1,9 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import Graphique from 'cafe_de_la_place/vues/components/graphique.vue';
 
 describe('Le composant Graphique', function () {
   let question;
-  let localVue;
 
   beforeEach(function () {
     question = {
@@ -14,13 +13,11 @@ describe('Le composant Graphique', function () {
         score: 1
       }
     };
-    localVue = createLocalVue();
   });
 
   function composant (question) {
     return shallowMount(Graphique, {
-      localVue,
-      propsData: { question }
+      props: { question }
     });
   }
 
@@ -50,10 +47,11 @@ describe('Le composant Graphique', function () {
     });
 
     describe('quand je sélectionne un pays', function () {
-      it('emet une réponse avec la sélection en cours', function (done) {
+      it('émet une réponse avec la sélection en cours', function (done) {
         const premiereBarre = wrapper.findAll('.graphique-barre--selectionnable').at(0);
         premiereBarre.find('input').setChecked();
         wrapper.vm.$nextTick(() => {
+          expect(wrapper.emitted().reponse.length).toEqual(1);
           expect(wrapper.emitted().reponse[0][0].reponse).toEqual(["allemagne"]);
           done();
         });
@@ -61,13 +59,16 @@ describe('Le composant Graphique', function () {
     });
 
     describe('quand je déselectionne le dernier pays', function () {
-      it("emet l'absence de réponse", function (done) {
+      it("émet l'absence de réponse", function (done) {
         const premiereBarre = wrapper.findAll('.graphique-barre--selectionnable').at(0);
         premiereBarre.find('input').setChecked(true);
-        premiereBarre.find('input').setChecked(false);
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.emitted().reponse[0][0]).toEqual(undefined);
-          done();
+          premiereBarre.find('input').setChecked(false);
+          wrapper.vm.$nextTick(() => {
+            expect(wrapper.emitted().reponse.length).toEqual(2);
+            expect(wrapper.emitted().reponse[1][0]).toEqual(undefined);
+            done();
+          });
         });
       });
     });

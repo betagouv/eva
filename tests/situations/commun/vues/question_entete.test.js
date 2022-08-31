@@ -1,10 +1,10 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { creeStore } from 'commun/modeles/store';
 import VueQuestionEntete from 'commun/vues/question_entete';
 
 describe('la vue du composant entête', function () {
   let question;
-  let localVue;
+  let depotRessources;
   let store;
   let mockDemarreSonTexteEntete;
   let mockDemarreSonQuestionAudio;
@@ -13,17 +13,20 @@ describe('la vue du composant entête', function () {
   beforeEach(function () {
     store = creeStore();
     question = { id: 154, choix: [], nom_technique: 'question1' };
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = {
+    depotRessources = {
       existeMessageAudio: () => false
     };
   });
 
   function composant(question) {
     const composant = shallowMount(VueQuestionEntete, {
-      localVue,
-      store,
-      propsData: { question }
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources
+        }
+      },
+      props: { question }
     });
     mockDemarreSonTexteEntete = jest.fn();
     mockDemarreSonQuestionAudio = jest.fn((cb) => { callbackFinQuestionAudio = cb; });
@@ -36,14 +39,14 @@ describe('la vue du composant entête', function () {
 
   describe('#afficheLectureTexteEntete', function () {
     it("Quand la question à un son, affiche le bouton lecture texte entete", function () {
-      localVue.prototype.$depotRessources.existeMessageAudio = () => true;
+      depotRessources.existeMessageAudio = () => true;
       const vue = composant(question);
       expect(vue.vm.afficheLectureTexteEntete).toBe(true);
       expect(vue.vm.$refs.boutonLectureTexteEntete).toBeDefined();
     });
 
     it("Quand la question n'a pas de son, n'affiche pas le bouton lecture texte entete", function () {
-      localVue.prototype.$depotRessources.existeMessageAudio = () => false;
+      depotRessources.existeMessageAudio = () => false;
       const vue = composant(question);
       expect(vue.vm.afficheLectureTexteEntete).toBe(false);
       expect(vue.vm.$refs.boutonLectureTexteEntete).not.toBeDefined();
@@ -52,7 +55,7 @@ describe('la vue du composant entête', function () {
 
   describe('#afficheLectureQuestionAudio', function () {
     beforeEach(function () {
-      localVue.prototype.$depotRessources.existeMessageAudio =
+      depotRessources.existeMessageAudio =
         (nom_technique) => nom_technique == 'cuisine';
     });
 
@@ -74,7 +77,7 @@ describe('la vue du composant entête', function () {
       const question = {
         reponse: { nom_technique: 'reponse1'}
       };
-      localVue.prototype.$depotRessources.existeMessageAudio =
+      depotRessources.existeMessageAudio =
         (nom_technique) => nom_technique == 'reponse1';
       const vue = composant(question);
       vue.vm.demarreSon();
@@ -89,7 +92,7 @@ describe('la vue du composant entête', function () {
         nom_technique: 'question1',
         reponse: { nom_technique: 'reponse1'}
       };
-      localVue.prototype.$depotRessources.existeMessageAudio = () => true;
+      depotRessources.existeMessageAudio = () => true;
       const vue = composant(question);
       vue.vm.demarreSon();
       expect(mockDemarreSonQuestionAudio).toHaveBeenCalled();
@@ -106,7 +109,7 @@ describe('la vue du composant entête', function () {
     });
 
     it("démarre le son quand il y a une question écrite uniquement", function () {
-      localVue.prototype.$depotRessources.existeMessageAudio = () => true;
+      depotRessources.existeMessageAudio = () => true;
       const vue = composant(question);
       vue.vm.demarreSon();
       expect(mockDemarreSonQuestionAudio).not.toHaveBeenCalled();

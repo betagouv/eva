@@ -1,15 +1,14 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import Qcm from 'commun/vues/defi/qcm';
 import ReponseAudioQcm from 'commun/vues/reponse_audio_qcm';
 
 describe('Le componsant defi QCM', function () {
   let question;
-  let localVue;
+  let depotRessources;
 
   beforeEach(function () {
     question = { id: 154, choix: [], nom_technique: 'question1' };
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = {
+    depotRessources = {
       reponseAudio: () => {
         return 'chemin de la ressource';
       },
@@ -18,7 +17,14 @@ describe('Le componsant defi QCM', function () {
   });
 
   function composant (question) {
-    return shallowMount(Qcm, { localVue, propsData: { question } });
+    return shallowMount(Qcm, {
+      global: {
+        mocks: {
+          $depotRessources: depotRessources
+        },
+      },
+      props: { question }
+    });
   }
 
   it('affiche des radios', function () {
@@ -60,32 +66,32 @@ describe('Le componsant defi QCM', function () {
       question.choix = [{ id: 'uid-32', score: 1, bonneReponse: true }];
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
-      expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32', succes: true, score: 1 });
+      expect(vue.emitted('reponse').length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: true, score: 1 });
     });
 
     it('quand il y a une mauvaise réponse', function () {
       question.choix = [{ id: 'uid-32', bonneReponse: false }];
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
-      expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32', succes: false });
+      expect(vue.emitted('reponse').length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false });
     });
 
     it('quand il y a une mauvaise réponse avec un score', function () {
       question.choix = [{ id: 'uid-32', score: 0.5, bonneReponse: false }];
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
-      expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0.5 });
+      expect(vue.emitted('reponse').length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0.5 });
     });
 
     it("quand il n'y a pas de bonne réponse", function () {
       question.choix = [{ id: 'uid-32' }];
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
-      expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'uid-32' });
+      expect(vue.emitted('reponse').length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32' });
     });
   });
 });

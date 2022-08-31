@@ -1,16 +1,14 @@
-import { shallowMount, createLocalVue, mount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 
 import { creeStore } from 'questions/modeles/store';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
-import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
 import Acte from 'questions/vues/acte';
 import Defi from 'commun/vues/defi';
-import { DEMARRE } from 'commun/modeles/situation';
 
 describe("La vue de l'acte « Question »", function () {
   let journal;
   let store;
-  let localVue;
+  let depotRessources;
 
   beforeEach(function () {
     store = creeStore();
@@ -21,9 +19,7 @@ describe("La vue de l'acte « Question »", function () {
       ]
     });
     journal = { enregistre () {} };
-    localVue = createLocalVue();
-    localVue.prototype.$journal = journal;
-    localVue.prototype.$depotRessources = {
+    depotRessources = {
       illustrationQuestion: () => {
         return { src: 'chemin-illustration' };
       },
@@ -32,14 +28,32 @@ describe("La vue de l'acte « Question »", function () {
     };
   });
 
+  function composant (shallow = true) {
+    return mount(Acte, {
+      shallow: shallow,
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: () => {},
+          $journal: journal
+        },
+        stubs: {
+          TransitionFade: false
+        }
+      }
+    });
+  }
+
+
   it('affiche la première question', function () {
-    const vue = shallowMount(Acte, { store, localVue });
+    const vue = composant();
 
     expect(vue.findComponent(Defi).exists()).toBe(true);
   });
 
   it('enregistre la réponse dans le modèle lorsque la vue répond', function (done) {
-    const vue = shallowMount(Acte, { store, localVue });
+    const vue = composant();
     store.commit = (mutation) => {
       expect(mutation).toEqual('repondQuestionCourante');
       done();
@@ -53,12 +67,12 @@ describe("La vue de l'acte « Question »", function () {
       expect(evenement.donnees()).toEqual({ reponse: 'Ma réponse' });
       done();
     };
-    const vue = shallowMount(Acte, { store, localVue });
+    const vue = composant();
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
   });
 
   it("envoie l'événement terminer une fois toute les questions passées", function (done) {
-    const vue = shallowMount(Acte, { store, localVue });
+    const vue = composant();
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.$nextTick(() => {
       expect(vue.emitted('terminer')).toBe(undefined);
@@ -71,7 +85,7 @@ describe("La vue de l'acte « Question »", function () {
   });
 
   it("ne renvoie pas l'événement terminer quand on reconfigure l'acte après avoir terminé l'entrainement", function (done) {
-    const vue = shallowMount(Acte, { store, localVue });
+    const vue = composant();
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.$nextTick(() => {
@@ -86,38 +100,12 @@ describe("La vue de l'acte « Question »", function () {
   });
 
   it('garde la dernière question affichée à la fin', function (done) {
-    const vue = shallowMount(Acte, { store, localVue });
+    const vue = composant();
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.repondQuestion({ reponse: 'Ma réponse' });
     vue.vm.$nextTick(() => {
       expect(vue.findComponent(Defi).exists()).toBe(true);
       done();
-    });
-  });
-
-  it("ne renvoie pas l'événement d'ouverture quand il garde la dernière question affichée", function (done) {
-    localVue.prototype.$traduction = () => {};
-    var nombreOuverture = 0;
-    localVue.prototype.$journal.enregistre = (evenement) => {
-      if (evenement instanceof EvenementAffichageQuestionQCM) {
-        nombreOuverture++;
-      }
-    };
-    store.commit('configureActe', {
-      questions: [
-        { id: 1, type: 'qcm', nom_technique: 'bienvenue_1' },
-        { id: 2, type: 'qcm', nom_technique: 'bienvenue_2' }
-      ]
-    });
-    const wrapper = mount(Acte, { store, localVue });
-    store.state.etat = DEMARRE;
-    wrapper.vm.$nextTick(() => {
-      wrapper.vm.repondQuestion({ reponse: 'Ma réponse' });
-      wrapper.vm.repondQuestion({ reponse: 'Ma réponse' });
-      wrapper.vm.$nextTick(() => {
-        expect(nombreOuverture).toEqual(2);
-        done();
-      });
     });
   });
 });

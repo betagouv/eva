@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import ActeSecurite from 'securite/vues/acte';
 import EvenementClickHorsZone from 'securite/modeles/evenement_click_hors_zone';
 import { creeStore } from 'securite/modeles/store';
@@ -6,15 +6,19 @@ import { creeStore } from 'securite/modeles/store';
 describe("La vue de l'acte Sécurité", function () {
   let wrapper;
   let store;
-  let localVue;
+  let journal = {};
 
   beforeEach(function () {
     store = creeStore();
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = () => {};
-    wrapper = shallowMount(ActeSecurite, {
-      store,
-      localVue
+    wrapper = mount(ActeSecurite, {
+      shallow: true,
+      global: {
+        plugins: [store],
+        mocks: {
+          $traduction: () => {},
+          $journal: journal
+        }
+      },
     });
   });
 
@@ -112,12 +116,10 @@ describe("La vue de l'acte Sécurité", function () {
   });
 
   it('un click sur le fond de la situation enregistre un événement click hors zone', function (done) {
-    localVue.prototype.$journal = {
-      enregistre (evenement) {
-        expect(evenement).toBeInstanceOf(EvenementClickHorsZone);
-        expect(evenement.donnees()).toEqual({ x: 50, y: 10 });
-        done();
-      }
+    journal.enregistre = (evenement) => {
+      expect(evenement).toBeInstanceOf(EvenementClickHorsZone);
+      expect(evenement.donnees()).toEqual({ x: 50, y: 10 });
+      done();
     };
     wrapper.trigger('click', {
       layerX: 504,
@@ -128,10 +130,8 @@ describe("La vue de l'acte Sécurité", function () {
   it("un click hors zone alors qu'une zone est sélectionné n'enregistre pas un événement click hors zone", function (done) {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
-    localVue.prototype.$journal = {
-      enregistre () {
-        enregistre++;
-      }
+    journal.enregistre = () => {
+      enregistre++;
     };
     wrapper.vm.$nextTick(() => {
       wrapper.find('circle').trigger('click');
@@ -151,10 +151,8 @@ describe("La vue de l'acte Sécurité", function () {
   it("un click sur une zone n'enregistre pas d'événement click hors zone", function (done) {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
-    localVue.prototype.$journal = {
-      enregistre () {
-        enregistre++;
-      }
+    journal.enregistre = () => {
+      enregistre++;
     };
     wrapper.vm.$nextTick(() => {
       wrapper.find('circle').trigger('click');
@@ -166,10 +164,8 @@ describe("La vue de l'acte Sécurité", function () {
   it("un click sur le compteur n'enregistre pas d'événement click hors zone", function (done) {
     store.commit('configureActe', { zones: [{ x: 1, y: 2, r: 3 }], dangers: {} });
     let enregistre = 0;
-    localVue.prototype.$journal = {
-      enregistre () {
-        enregistre++;
-      }
+    journal.enregistre = () => {
+      enregistre++;
     };
     wrapper.vm.$nextTick(() => {
       wrapper.find('.compteur-statut').trigger('click');

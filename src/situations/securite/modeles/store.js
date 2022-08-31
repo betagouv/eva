@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 import {
   CHARGEMENT,
   ENTRAINEMENT_DEMARRE,
@@ -37,7 +35,7 @@ export function creeStore () {
         state.nonDangersIdentifies = [];
       },
       ajouteDangerQualifie (state, dangerQualifie) {
-        Vue.set(state.dangersQualifies, dangerQualifie.nom, dangerQualifie.choix);
+        state.dangersQualifies[dangerQualifie.nom] = dangerQualifie.choix;
       },
       ajouteNonDangerIdentifie (state, zoneId) {
         if (!state.nonDangersIdentifies.includes(zoneId)) {

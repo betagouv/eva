@@ -50,7 +50,7 @@ export default {
     question: {
       type: Object,
       required: true
-    }
+    },
   },
 
   data: function () {
@@ -66,7 +66,7 @@ export default {
     selectReponse (valeur) {
       this.reponse = valeur;
       const choix = this.question.choix.find((choix) => choix.id === this.reponse);
-      this.$emit('input', { reponse: choix.id, succes: choix.bonneReponse, score: choix.score });
+      this.$emit('reponse', { reponse: choix.id, succes: choix.bonneReponse, score: choix.score });
     }
   }
 };

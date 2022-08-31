@@ -1,15 +1,13 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import AccesSituation from 'accueil/vues/acces_situation.vue';
 
 describe('La vue pour accéder à une situation', function () {
   let depotRessources;
   let wrapper;
-  let localVue;
   let existeBatiment;
   let optionsMount;
 
   beforeEach(function () {
-    localVue = createLocalVue();
     depotRessources = new class {
       existeBatimentSituation () {
         return existeBatiment;
@@ -20,8 +18,12 @@ describe('La vue pour accéder à une situation', function () {
       }
     }();
     optionsMount = {
-      localVue,
-      propsData: {
+      global: {
+        mocks: {
+          $depotRessources: depotRessources
+        }
+      },
+      props: {
         situation: {
           nom: 'ABC',
           chemin: 'abc.html',
@@ -32,12 +34,11 @@ describe('La vue pour accéder à une situation', function () {
         desactivee: false
       }
     };
-    localVue.prototype.$depotRessources = depotRessources;
   });
 
   it("sait s'afficher avec un fond", function () {
     existeBatiment = true;
-    optionsMount.propsData.afficheFond = true;
+    optionsMount.props.afficheFond = true;
     wrapper = mount(AccesSituation, optionsMount);
     expect(wrapper.text()).toEqual('ABC');
     expect(wrapper.attributes('href')).toBe('/jeu/abc.html');
@@ -46,7 +47,7 @@ describe('La vue pour accéder à une situation', function () {
 
   it("N'affiche pas le fond s'il n'existe pas, même s'il est demandé", function () {
     existeBatiment = false;
-    optionsMount.propsData.afficheFond = true;
+    optionsMount.props.afficheFond = true;
     wrapper = mount(AccesSituation, optionsMount);
 
     expect(wrapper.text()).toEqual('ABC');
@@ -56,7 +57,7 @@ describe('La vue pour accéder à une situation', function () {
 
   it("sait s'afficher sans fond", function () {
     existeBatiment = true;
-    optionsMount.propsData.afficheFond = false;
+    optionsMount.props.afficheFond = false;
     wrapper = mount(AccesSituation, optionsMount);
     expect(wrapper.text()).toEqual('ABC');
     expect(wrapper.attributes('href')).toBe('/jeu/abc.html');
@@ -64,7 +65,7 @@ describe('La vue pour accéder à une situation', function () {
   });
 
   it("N'a pas d'href pour le batiment Resultat", function () {
-    optionsMount.propsData.situation.chemin = undefined;
+    optionsMount.props.situation.chemin = undefined;
     wrapper = mount(AccesSituation, optionsMount);
     expect(wrapper.attributes('href')).toBe(undefined);
   });

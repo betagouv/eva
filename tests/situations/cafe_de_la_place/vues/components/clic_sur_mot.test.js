@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 
 import ClicSurMots from 'cafe_de_la_place/vues/components/clic_sur_mots.vue';
@@ -11,18 +11,23 @@ const htmlAttendu = `<ul>
 describe('Le composant Clic Sur Mots', function () {
   let question;
   let wrapper;
-  let localVue;
   let store;
 
-  beforeEach(function () {
-    localVue = createLocalVue();
-  });
+  function composant (props = {}) {
+    return mount(ClicSurMots, {
+      shallow: true,
+      global: {
+        plugins: [store]
+      },
+      props: props
+    });
+  }
 
   describe('#htmlTexteCliquable', function () {
     beforeEach(function () {
       store = new Vuex.Store({ getters: { texteCliquable () { return '* [invalide]()\n* [exercice]()';}}});
       question = { id: 1 };
-      wrapper = shallowMount(ClicSurMots, { localVue, store, propsData: { question } });
+      wrapper = composant({ question });
     });
 
     it('construit le html pour le texte cliquable en markdown', function () {
@@ -34,7 +39,7 @@ describe('Le composant Clic Sur Mots', function () {
     beforeEach(function () {
       store = new Vuex.Store({ getters: { texteCliquable () { return '* [invalide]()\n* [exercice]()';}}});
       question = { id: 1, reponse: { texte: 'exercice', score: 1 }, nom_technique: 'question1' };
-      wrapper = shallowMount(ClicSurMots, { localVue, store, propsData: { question } });
+      wrapper = composant({ question });
     });
 
     describe('#metAJourSelection', function () {
@@ -85,7 +90,7 @@ describe('Le composant Clic Sur Mots', function () {
         reponse: { bonne_reponse: ['reponse2'], score: 1 },
         nom_technique: 'question1'
       };
-      wrapper = shallowMount(ClicSurMots, { localVue, store, propsData: { question } });
+      wrapper = composant({ question });
     });
 
     describe('#metAJourSelectionMultiple', function () {
@@ -139,7 +144,7 @@ describe('Le composant Clic Sur Mots', function () {
       describe("quand je de-sélectionne et que je n'ai plus aucun mot selectionné", function () {
         it('emet une réponse invalide', function () {
           const liens = wrapper.findAll('.mot-cliquable');
-          wrapper.vm.envoiReponseMultiple(liens.wrappers.map(lien => lien.element));
+          wrapper.vm.envoiReponseMultiple(liens.map(lien => lien.element));
           expect(wrapper.emitted().reponse.length).toEqual(1);
           expect(wrapper.emitted().reponse[0][0]).toEqual(undefined);
         });

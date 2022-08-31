@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import ActePrevention from 'prevention/vues/acte';
 import { creeStore } from 'prevention/modeles/store';
 import MockDepotRessources from '../aides/mock_depot_ressources_prevention';
@@ -10,18 +10,19 @@ describe("La vue de l'acte prévention", function () {
   let wrapper;
   let store;
   let journal;
-  let depotRessources;
 
   beforeEach(function () {
-    const localVue = createLocalVue();
-    depotRessources = new MockDepotRessources();
+    const depotRessources = new MockDepotRessources();
     journal = { enregistre () {} };
-    localVue.prototype.$depotRessources = depotRessources;
-    localVue.prototype.$journal = journal;
     store = creeStore();
     wrapper = shallowMount(ActePrevention, {
-      store,
-      localVue
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $journal: journal
+        }
+      },
     });
   });
 

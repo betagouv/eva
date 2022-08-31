@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VueQuestion from 'commun/vues/question';
 import { creeStore } from 'objets_trouves/modeles/store';
 import { traduction } from 'commun/infra/internationalisation';
@@ -7,20 +7,19 @@ describe('La vue de la question', function () {
   let question;
   let store;
   let wrapper;
-  let localVue;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = traduction;
     question = { choix: [] };
     store = creeStore();
     question.illustration = 'bienvenue_background.jpg';
     wrapper = shallowMount(VueQuestion, {
-      propsData: {
-        question
+      props: { question },
+      global: {
+        plugins: [store]
       },
-      store,
-      localVue
+      mocks: {
+        $traduction: traduction
+      }
     });
   });
 

@@ -86,8 +86,9 @@ export default {
       type: String,
       required: false,
       default: ''
-    }
+    },
   },
+
   data () {
     return {
       nom: this.forceNom,
@@ -116,7 +117,7 @@ export default {
       if (this.erreurFormulaireIdentification) { return false; }
       if (this.campagneForcee) { return true; }
       return false;
-    }
+    },
   },
 
   methods: {

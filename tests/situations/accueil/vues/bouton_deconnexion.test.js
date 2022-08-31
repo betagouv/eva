@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import BoutonDeconnexion from 'accueil/vues/bouton_deconnexion';
 import { traduction } from 'commun/infra/internationalisation';
@@ -7,7 +7,6 @@ describe('Les boutons de déconnexion', function () {
   let wrapper;
   let store;
   let depotRessources;
-  let localVue;
 
   beforeEach(function () {
     depotRessources = new (class {
@@ -36,13 +35,23 @@ describe('Les boutons de déconnexion', function () {
         deconnecte () {}
       }
     });
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = depotRessources;
-    localVue.prototype.$traduction = traduction;
   });
 
+  function composant (props = {}) {
+    return mount(BoutonDeconnexion, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: traduction
+        }
+      },
+      props: props
+    });
+  }
+
   it("sait s'afficher en mode standard", function () {
-    wrapper = mount(BoutonDeconnexion, { store, localVue });
+    wrapper = composant();
 
     expect(wrapper.find('.bouton-deconnexion').text()).toEqual('deconnexion.titre');
   });
@@ -57,7 +66,7 @@ describe('Les boutons de déconnexion', function () {
         }
       });
 
-      wrapper = mount(BoutonDeconnexion, { store, localVue, propsData: { deconnexionDirecte: true } });
+      wrapper = composant({ deconnexionDirecte: true });
     });
 
     it("sait s'afficher", function () {

@@ -1,19 +1,18 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import Acte from 'maintenance/vues/acte';
 import Lexique from 'maintenance/vues/lexique';
 import { creeStore, ENTRAINEMENT_DEMARRE, DEMARRE } from 'maintenance/modeles/store';
 
 describe("La vue de l'acte", function () {
   let wrapper;
-  let localVue;
   let store;
 
   beforeEach(function () {
-    localVue = createLocalVue();
     store = creeStore();
     wrapper = shallowMount(Acte, {
-      store,
-      localVue
+      global: {
+        plugins: [store]
+      }
     });
   });
 

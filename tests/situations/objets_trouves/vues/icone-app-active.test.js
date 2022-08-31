@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VueIconeAppActive from 'objets_trouves/vues/icone-app-active.vue';
 import { creeStore } from 'objets_trouves/modeles/store';
 import { traduction } from 'commun/infra/internationalisation';
@@ -8,11 +8,8 @@ describe("L'icone de l'application active", function () {
   let question;
   let store;
   let wrapper;
-  let localVue;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = traduction;
     question = { choix: [] };
     store = creeStore();
     question.illustration = 'palette';
@@ -20,8 +17,12 @@ describe("L'icone de l'application active", function () {
       propsData: {
         question
       },
-      store,
-      localVue
+      global: {
+        plugins: [store],
+        mocks: {
+          $traduction: traduction
+        }
+      }
     });
   });
 

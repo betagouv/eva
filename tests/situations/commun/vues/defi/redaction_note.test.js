@@ -3,7 +3,7 @@ import RedactionNote from 'commun/vues/defi/redaction_note';
 
 describe('Le composant RedactionNote', function () {
   function composant (props) {
-    return shallowMount(RedactionNote, { propsData: props });
+    return shallowMount(RedactionNote, { props: props });
   }
 
   it('affiche une zone de saisie de texte', function () {
@@ -33,8 +33,8 @@ describe('Le composant RedactionNote', function () {
       const input = vue.find('textarea');
       const reponse = 'Une rédaction de plusieurs\nlignes\n\n';
       input.setValue(reponse);
-      expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'Une rédaction de plusieurs\nlignes' });
+      expect(vue.emitted('reponse')[0].length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'Une rédaction de plusieurs\nlignes' });
     });
   });
 });

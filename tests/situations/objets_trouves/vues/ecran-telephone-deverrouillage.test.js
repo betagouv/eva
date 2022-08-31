@@ -1,15 +1,12 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VueEcranTelephoneVerouillage from 'objets_trouves/vues/ecran-telephone-deverrouillage';
 import Heure from 'objets_trouves/vues/heure';
 
 describe("L'écran du telephone quand on veut le déverrouiller", function () {
   let wrapper;
-  let localVue;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = () => { };
-    localVue.prototype.$depotRessources = {
+    const depotRessources = {
       iconeDeverrouillageDebloque: () => {
         return {
           src: 'chemin-icone'
@@ -18,7 +15,12 @@ describe("L'écran du telephone quand on veut le déverrouiller", function () {
     };
 
     wrapper = shallowMount(VueEcranTelephoneVerouillage, {
-      localVue
+      global: {
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: () => {}
+        }
+      }
     });
   });
 

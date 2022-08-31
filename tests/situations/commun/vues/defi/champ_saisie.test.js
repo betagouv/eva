@@ -1,15 +1,14 @@
-import { createLocalVue, shallowMount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import ChampSaisie from 'commun/vues/defi/champ_saisie';
 
 describe('Le composant champ de saisie', function () {
   let vue;
   let mockDemarreSon;
-  let localVue;
   let BoutonLectureStub;
+  let depotRessources;
 
   beforeEach(function () {
     mockDemarreSon = jest.fn();
-    localVue = createLocalVue();
     BoutonLectureStub = {
       name: 'BoutonLecture',
       template: '<span />',
@@ -17,15 +16,19 @@ describe('Le composant champ de saisie', function () {
         demarreSon: mockDemarreSon
       }
     };
-    localVue.prototype.$depotRessources = {
+    depotRessources = {
       existeMessageAudio: () => false
     };
   });
 
   function composant (props) {
     return shallowMount(ChampSaisie, {
-      localVue,
-      propsData: props,
+      global: {
+        mocks: {
+          $depotRessources: depotRessources
+        }
+      },
+      props: props,
       attachTo: document.body,
       stubs: {
         'bouton-lecture': BoutonLectureStub
@@ -45,8 +48,8 @@ describe('Le composant champ de saisie', function () {
       vue = composant({ question: { reponse: { textes: ['boulangerie'] } } });
       const input = vue.find('input[type=text]');
       input.setValue('Boulangerie ');
-      expect(vue.emitted('input').length).toEqual(1);
-      expect(vue.emitted('input')[0][0]).toEqual({ reponse: 'Boulangerie', succes: true });
+      expect(vue.emitted('reponse')[0].length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'Boulangerie', succes: true });
     });
   });
 
@@ -60,7 +63,7 @@ describe('Le composant champ de saisie', function () {
 
     it("echoue si la réponse n'est pas dans la liste", function() {
       vue.vm.emetReponse('boulangery');
-      expect(vue.emitted('input')[0][0]).toEqual({
+      expect(vue.emitted('reponse')[0][0]).toEqual({
         reponse: 'boulangery',
         succes: false
       });
@@ -68,7 +71,7 @@ describe('Le composant champ de saisie', function () {
 
     it("accepte la première réponse", function() {
       vue.vm.emetReponse('boulangerie');
-      expect(vue.emitted('input')[0][0]).toEqual({
+      expect(vue.emitted('reponse')[0][0]).toEqual({
         reponse: 'boulangerie',
         succes: true,
         score: 1
@@ -77,7 +80,7 @@ describe('Le composant champ de saisie', function () {
 
     it("accepte la seconde réponse", function() {
       vue.vm.emetReponse('boulangeries');
-      expect(vue.emitted('input')[0][0]).toEqual({
+      expect(vue.emitted('reponse')[0][0]).toEqual({
         reponse: 'boulangeries',
         succes: true,
         score: 1.5
@@ -146,12 +149,11 @@ describe('Le composant champ de saisie', function () {
 
   describe('#afficheLectureQuestion', function () {
     beforeEach(function () {
-      const depotRessources = new class {
+      depotRessources = new class {
         existeMessageAudio (nomTechnique) {
           return nomTechnique == 'question-avec-audio';
         }
       }();
-      localVue.prototype.$depotRessources = depotRessources;
     });
 
     it("décale l'affichage de la réponse", function () {
@@ -175,8 +177,7 @@ describe('Le composant champ de saisie', function () {
     it("sur les autres navigateurs", function() {
       vue = composant({ question: { nom_technique: 'question' } });
       const input = vue.find('input[type=text]');
-      expect(input.attributes('autofocus')).toBe("autofocus");
+      expect(input.attributes('autofocus')).toBe("");
     });
-
   });
 });

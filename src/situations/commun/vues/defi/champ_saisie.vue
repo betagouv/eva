@@ -79,7 +79,7 @@ export default {
       const indexReponse = this.question.reponse.textes.indexOf(reponse.toLowerCase());
       const succes = indexReponse != -1;
       const score = this.question.reponse.scores && this.question.reponse.scores[indexReponse];
-      this.$emit('input', { reponse, succes, score });
+      this.$emit('reponse', { reponse, succes, score });
     },
   },
 

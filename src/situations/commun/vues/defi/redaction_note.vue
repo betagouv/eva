@@ -24,7 +24,7 @@ export default {
 
   methods: {
     emetReponse (valeur) {
-      this.$emit('input', { reponse: valeur.trim() });
+      this.$emit('reponse', { reponse: valeur.trim() });
     }
   }
 };

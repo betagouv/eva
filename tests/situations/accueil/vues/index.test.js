@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Index from 'accueil/vues/index';
 import OverlayAttente from 'commun/vues/overlay_attente';
 import OverlayErreurChargement from 'commun/vues/overlay_erreur_chargement';
@@ -9,20 +9,30 @@ import Vuex from 'vuex';
 
 describe('La vue index', function () {
   let depotRessources;
-  let localVue;
 
   beforeEach(function () {
     depotRessources = new class {
       chargement () { return Promise.resolve(); }
     }();
-
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = depotRessources;
-    localVue.prototype.$traduction = traduction;
   });
 
+  function composant (store, props = {}) {
+    const plugins = store ? [store]: [];
+    return mount(Index, {
+      shallow: true,
+      global: {
+        plugins: plugins,
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: traduction
+        }
+      },
+      props: props
+    });
+  }
+
   it('affiche les composants en chargement', function () {
-    const wrapper = shallowMount(Index, { localVue });
+    const wrapper = composant();
     expect(wrapper.findComponent(Accueil).exists()).toBe(false);
     expect(wrapper.findComponent(OverlayAttente).exists()).toBe(true);
   });
@@ -31,7 +41,7 @@ describe('La vue index', function () {
     let wrapper;
 
     beforeEach(function () {
-      wrapper = shallowMount(Index, { localVue });
+      wrapper = composant();
     });
 
     it('affiche les composants une fois chargé', function () {
@@ -54,11 +64,11 @@ describe('La vue index', function () {
 
     describe("quand c'est une erreur sans message", function() {
       beforeEach(function () {
-        localVue.prototype.$depotRessources = {
+        depotRessources = {
           chargement: () => { return Promise.reject({}); }
         };
 
-        wrapper = shallowMount(Index, { localVue });
+        wrapper = composant();
       });
 
       it('affiche la vue erreur de chargement', function () {
@@ -71,11 +81,11 @@ describe('La vue index', function () {
 
     describe("quand c'est une erreur innatendue", function() {
       beforeEach(function () {
-        localVue.prototype.$depotRessources = {
+        depotRessources = {
           chargement: () => { return Promise.reject(new Error('erreur innatendue')); }
         };
 
-        wrapper = shallowMount(Index, { localVue });
+        wrapper = composant();
       });
 
       it('affiche la vue erreur de chargement', function () {
@@ -88,11 +98,11 @@ describe('La vue index', function () {
 
     describe('quand elle ne peut pas lire les mp3', function () {
       beforeEach(function () {
-        localVue.prototype.$depotRessources = {
+        depotRessources = {
           chargement: () => { return Promise.reject(new Error('Unable to decode audio data')); }
         };
 
-        wrapper = shallowMount(Index, { localVue });
+        wrapper = composant();
       });
 
       it('affiche la vue erreur lecture son impossible', function () {
@@ -107,11 +117,11 @@ describe('La vue index', function () {
 
     describe('quand elle rencontre une erreur de décodage audio', function () {
       beforeEach(function () {
-        localVue.prototype.$depotRessources = {
+        depotRessources = {
           chargement: () => { return Promise.reject(new Error('An unknown error occured while processing decodeAudioData')); }
         };
 
-        wrapper = shallowMount(Index, { localVue });
+        wrapper = composant();
       });
 
       it('affiche la vue erreur lecture son impossible', function () {
@@ -128,15 +138,7 @@ describe('La vue index', function () {
             evaluationTerminee: false
           }
         });
-        wrapper = shallowMount(Index, {
-          localVue,
-          store,
-          data() {
-            return {
-              estSmartphone: true
-            };
-          }
-        });
+        wrapper=composant(store, { estSmartphone: true });
       });
 
       it("affiche la vue erreur utilisation d'un smartphone", function () {

@@ -1,12 +1,11 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import ResultatIdentification from 'securite/vues/resultat_identification';
 
 describe('Le composant RésultatIdentification', function () {
-  let localVue;
+  let depotRessources;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = new class {
+    depotRessources = new class {
       pictoDangerMalIdentifie () {
         return { src: 'danger-mal-identifie' };
       }
@@ -19,9 +18,12 @@ describe('Le composant RésultatIdentification', function () {
 
   function verifie (danger, succesIdentification, messageAttendu, pictoAttendu) {
     const wrapper = shallowMount(ResultatIdentification, {
-      localVue,
-      propsData: {
-        localVue,
+      global: {
+        mocks: {
+          $depotRessources: depotRessources
+        }
+      },
+      props: {
         danger: danger,
         succesIdentification: succesIdentification
       }

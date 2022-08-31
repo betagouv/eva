@@ -1,4 +1,4 @@
-import { createLocalVue, mount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Defi from 'commun/vues/defi';
 import Qcm from 'commun/vues/defi/qcm';
 import RedactionNote from 'commun/vues/defi/redaction_note';
@@ -12,26 +12,34 @@ import { DEMARRE } from 'commun/modeles/situation';
 
 describe("La vue d'un défi", function () {
   let question;
-  let localVue;
   let store;
+  let depotRessources;
+  let journal;
 
   beforeEach(function () {
     store = creeStore();
     question = { id: 154, nom_technique: 'question1', intitule: 'quelle couleur ?'};
-    localVue = createLocalVue();
-    localVue.prototype.$depotRessources = {
+    depotRessources = {
       existeMessageAudio: () => false,
       existeMessageVideo: () => false
     };
-    localVue.prototype.$journal = { enregistre () {} };
-    localVue.prototype.$traduction = () => {};
+    journal = { enregistre: () => {} };
   });
 
   function composant (question) {
     return mount(Defi, {
-      localVue,
-      store,
-      propsData: { question }
+      global: {
+        plugins: [store],
+        mocks: {
+          $depotRessources: depotRessources,
+          $traduction: () => {},
+          $journal: journal
+        },
+        stubs: {
+          MockExtension: MockExtension
+        }
+      },
+      props: { question }
     });
   }
 
@@ -76,10 +84,11 @@ describe("La vue d'un défi", function () {
 
     it('emet un événement réponse quand on appuie sur le bouton envoi', function (done) {
       const reponse = { question: 154, reponse: 'uid-32', succes: true };
-      vue.findComponent(Qcm).vm.$emit('input', reponse);
+      vue.findComponent(Qcm).vm.$emit('reponse', reponse);
       vue.vm.$nextTick(() => {
         vue.find('.question-bouton').trigger('click');
         vue.vm.$nextTick(() => {
+          expect(vue.vm.envoyer).toBe(true);
           expect(vue.emitted().reponse.length).toEqual(1);
           expect(vue.emitted().reponse[0][0]).toEqual(reponse);
           done();
@@ -134,7 +143,7 @@ describe("La vue d'un défi", function () {
 
     describe('#disabled', function () {
       it("désactive le bouton quand aucune réponse numérique n'est donnée", function () {
-        expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
+        expect(vue.find('.question-bouton').attributes('disabled')).toEqual('');
       });
     });
   });
@@ -144,7 +153,6 @@ describe("La vue d'un défi", function () {
 
     beforeEach(function () {
       question.type = 'action';
-      localVue.component('mock-extension', MockExtension);
       question.extensionVue = 'mock-extension';
       vue = composant(question);
     });
@@ -187,7 +195,6 @@ describe("La vue d'un défi", function () {
 
   describe('quand le défi contient une extention', function () {
     beforeEach(function () {
-      localVue.component('mock-extension', MockExtension);
       question.extensionVue = 'mock-extension';
     });
 
@@ -204,14 +211,14 @@ describe("La vue d'un défi", function () {
 
   describe("rapporte l'affichage d'une question au journal", function () {
     it("ne journalise pas l'affichage si aucun acte n'est en cours", function () {
-      const journalEnregistre = jest.spyOn(localVue.prototype.$journal, 'enregistre');
+      const journalEnregistre = jest.spyOn(journal, 'enregistre');
       composant(question);
 
       expect(journalEnregistre).not.toHaveBeenCalled();
     });
 
     it('quand la situation est déja démarrée', function (done) {
-      localVue.prototype.$journal.enregistre = (evenement) => {
+      journal.enregistre = (evenement) => {
         expect(evenement).toBeInstanceOf(EvenementAffichageQuestionQCM);
         expect(evenement.donnees()).toEqual({ question: question.id });
         done();
@@ -222,7 +229,7 @@ describe("La vue d'un défi", function () {
     });
 
     it('quand la situation démarre après coup', function (done) {
-      localVue.prototype.$journal.enregistre = (evenement) => {
+      journal.enregistre = (evenement) => {
         expect(evenement).toBeInstanceOf(EvenementAffichageQuestionQCM);
         done();
       };
@@ -234,7 +241,7 @@ describe("La vue d'un défi", function () {
 
     it('quand il y a une métacompétence', function (done) {
       question.metacompetence = 'ma métacompétence';
-      localVue.prototype.$journal.enregistre = (evenement) => {
+      journal.enregistre = (evenement) => {
         expect(evenement.donnees()).toEqual({ question: question.id, metacompetence: 'ma métacompétence' });
         done();
       };
@@ -249,8 +256,8 @@ describe("La vue d'un défi", function () {
       question.choix = [{ id: 'uid-32' }];
       question.type = 'qcm';
       const vue = composant(question);
-      expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
-      vue.findComponent(Qcm).vm.$emit('input', 'uid-32');
+      expect(vue.find('.question-bouton').attributes('disabled')).toEqual('');
+      vue.findComponent(Qcm).vm.$emit('reponse', 'uid-32');
 
       vue.vm.$nextTick(() => {
         expect(vue.find('.question-bouton').attributes('disabled')).not.toBeDefined();
@@ -262,11 +269,11 @@ describe("La vue d'un défi", function () {
       question.choix = [{ id: 'uid-32' }];
       question.type = 'qcm';
       const vue = composant(question);
-      vue.findComponent(Qcm).vm.$emit('input', 'uid-32');
+      vue.findComponent(Qcm).vm.$emit('reponse', 'uid-32');
       vue.vm.$nextTick(() => {
         vue.find('.question-bouton').trigger('click');
         vue.vm.$nextTick(() => {
-          expect(vue.find('.question-bouton').attributes('disabled')).toEqual('disabled');
+          expect(vue.find('.question-bouton').attributes('disabled')).toEqual('');
           done();
         });
       });
@@ -276,7 +283,7 @@ describe("La vue d'un défi", function () {
       question.choix = [];
       question.type = 'qcm';
       const vue = composant(question);
-      expect(vue.find('.question-bouton').attributes('disabled')).not.toEqual('disabled');
+      expect(vue.find('.question-bouton').attributes('disabled')).not.toEqual('');
     });
   });
 
