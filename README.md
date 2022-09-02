@@ -50,7 +50,6 @@ URL_API=http://localhost:3000/pro
 # Pour la gestion des erreurs
 JETON_CLIENT_ROLLBAR=
 ROLLBAR_ENV=
-SOURCE_VERSION=
 
 # Pour afficher un message à tout le monde
 ANNONCE_GENERALE=
