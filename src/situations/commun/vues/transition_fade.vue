@@ -23,7 +23,7 @@ export default {
     transition: opacity .3s;
     pointer-events: none;
   }
-  .fade-enter, .fade-leave-to {
+  .fade-enter-from, .fade-leave-to {
     opacity: 0;
   }
 </style>
