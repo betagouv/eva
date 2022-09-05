@@ -26,9 +26,9 @@
       <span class="bouton-arrondi-texte">{{ labelDroit }}</span>
     </button>
   </div>
-  <div class="actions-fleches clavier" v-else>
-    <keypress key-event="keydown" :key-code="flecheGauche" @success="selectionne(choixGauche)" />
-    <keypress key-event="keydown" :key-code="flecheDroite" @success="selectionne(choixDroit)" />
+  <div
+      v-else
+      class="actions-fleches clavier">
     <div
       :class="{ 'actions-fleches--animation': choixFait === choixGauche }"
       class="touches-horizontales touche-gauche">
@@ -50,18 +50,20 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import { useKeypress } from 'vue3-keypress';
 import Touche from './touche';
-import Keypress from 'vue-keypress';
 import 'commun/styles/boutons.scss';
 import 'commun/styles/choix_bidirectionnel.scss';
 
 import { estSmartphoneOuTablette } from 'commun/helpers/mobile';
 
+
 export const flecheGauche = 37;
 export const flecheDroite = 39;
 
 export default {
-  components: { Touche, Keypress },
+  components: { Touche },
 
   props: {
     labelGauche: {
@@ -97,30 +99,58 @@ export default {
     }
   },
 
+  setup(props) {
+    const choixFait = ref(null);
+    const choixGauche = 'gauche';
+    const choixDroit = 'droite';
+
+    function selectionne (reponse) {
+      if (choixFait.value !== null) { return; }
+
+      choixFait.value = reponse;
+      setTimeout(() => { choixFait.value = null; }, props.dureeAnimation);
+    }
+
+    useKeypress({
+      keyEvent: "keydown",
+      keyBinds: [
+        {
+          keyCode: flecheGauche,
+          success: () => selectionne(choixGauche)
+        },
+        {
+          keyCode: flecheDroite,
+          success: () => selectionne(choixDroit)
+        },
+      ]
+    });
+    return {
+      choixFait,
+      choixGauche,
+      choixDroit
+    };
+  },
+
   data () {
     return {
-      estSmartphoneOuTablette: estSmartphoneOuTablette,
-      choixGauche: 'gauche',
-      choixDroit: 'droite',
-      choixFait: null,
-      flecheGauche,
-      flecheDroite
+      estSmartphoneOuTablette: estSmartphoneOuTablette
     };
   },
 
   methods: {
-    selectionne (reponse) {
-      if (this.choixFait !== null) { return; }
-
-      this.choixFait = reponse;
-      this.$emit(`action${this.capitalizeFirstLetter(reponse)}`, reponse);
-      setTimeout(() => {
-        this.choixFait = null;
-        this.$emit(`animation${this.capitalizeFirstLetter(reponse)}Terminee`, reponse);
-      }, this.dureeAnimation);
-    },
-    capitalizeFirstLetter (string) {
+    capitalize (string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+  },
+
+  watch: {
+    choixFait (nouveauChoix, ancienChoix) {
+      if(nouveauChoix == null) {
+        this.$emit(`animation${this.capitalize(ancienChoix)}Terminee`, ancienChoix);
+      }
+      else {
+        this.$emit(`action${this.capitalize(nouveauChoix)}`, nouveauChoix);
+      }
     }
   }
 };

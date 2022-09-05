@@ -1,9 +1,9 @@
 import { shallowMount } from '@vue/test-utils';
 
 import MockDepotRessources from '../../aides/mock_depot_ressources_choix_bidirectionnel';
-import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
+import ChoixBidirectionnel, { flecheGauche, flecheDroite } from 'commun/vues/components/choix_bidirectionnel';
 import Touche from 'commun/vues/components/touche';
-import Keypress from 'vue-keypress';
+import { keyConfiguration } from 'vue3-keypress';
 
 describe('La vue flèches clavier', function () {
   let wrapper;
@@ -20,7 +20,12 @@ describe('La vue flèches clavier', function () {
 
   it('affiche les composants une fois chargé', function () {
     expect(wrapper.findComponent(Touche).exists()).toBe(true);
-    expect(wrapper.findComponent(Keypress).exists()).toBe(true);
+  });
+
+  it('configure les touches du clavier', function () {
+    expect(keyConfiguration["keydown"].map(c => c.keyCode)).toEqual([flecheGauche, flecheDroite]);
+    keyConfiguration["keydown"][0].success();
+    expect(wrapper.vm.choixFait).toEqual('gauche');
   });
 
   it('rajoute la classe action-fleches--animation sur la touche de gauche pour le choix gauche', function (done) {
@@ -41,10 +46,17 @@ describe('La vue flèches clavier', function () {
     });
   });
 
-  describe('#selectionne(reponse)', function () {
-    it("émet l'évènement actionGauche", function () {
-      wrapper.vm.selectionne('gauche');
-      expect(wrapper.emitted()).toHaveProperty('actionGauche');
+  describe('événements émis quand on fait un choix', function () {
+    it("quand on choisit la gauche", function (done) {
+      wrapper.vm.choixFait = 'gauche';
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.emitted()).toHaveProperty('actionGauche');
+        wrapper.vm.choixFait = null;
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.emitted()).toHaveProperty('animationGaucheTerminee');
+          done();
+        });
+      });
     });
   });
 
