@@ -79,15 +79,10 @@
     "vue-keypress": "^2.1.1",
     "vue-select": "^4.0.0-beta.5",
     "vue3-jest": "^27.0.0-alpha.1",
-    "vuedraggable": "^2.24.3",
+    "vuedraggable": "^4.1.0",
     "vuex": "^4.0.2",
     "webpack": "^5.x",
     "webpack-cli": "^4.9"
-  },
-  "overrides": {
-    "vuedraggable": {
-      "sortablejs": "^1.15.0"
-    }
   },
   "eslintConfig": {
     "plugins": [

@@ -2,19 +2,18 @@
   <div class="puzzle-container">
     <draggable
         class="puzzle-gauche"
-        :list="fragmentsClasses"
+        v-model="fragmentsClasses"
+        item-key="id"
         group="puzzle"
         draggable=".puzzle-item"
         @end="envoiReponse"
     >
-      <div
-        v-for="fragment in fragmentsClasses"
-        :key="fragment.id"
-        class="puzzle-item"
-      >
-        <poignee-puzzle/>
-        <span>{{fragment.contenu}}</span>
-      </div>
+      <template #item="{fragment}" >
+        <div class="puzzle-item">
+          <poignee-puzzle/>
+          <span>{{fragment.contenu}}</span>
+        </div>
+      </template>
       <div v-if="fragmentsClasses.length == 0"
         class="puzzle-item invisible">
         <!-- cette div permet d'éviter que le premier ghost n'apparaisse en dessous du footer -->
@@ -25,21 +24,20 @@
       </div>
     </draggable>
     <draggable
-      v-if="affichePuzzleDroite"
-      class="puzzle-droite"
-      :list="fragmentsNonClasses"
-      group="puzzle"
-      @end="envoiReponse"
-      :sort="false"
+        v-if="affichePuzzleDroite"
+        class="puzzle-droite"
+        v-model="fragmentsNonClasses"
+        item-key="id"
+        group="puzzle"
+        @end="envoiReponse"
+        :sort="false"
     >
-      <div
-        v-for="fragment in fragmentsNonClasses"
-        :key="fragment.id"
-        class="puzzle-item"
-      >
-        <poignee-puzzle/>
-        <span>{{fragment.contenu}}</span>
-      </div>
+      <template #item="{fragment}" >
+        <div class="puzzle-item">
+          <poignee-puzzle/>
+          <span>{{fragment.contenu}}</span>
+        </div>
+      </template>
     </draggable>
   </div>
 </template>

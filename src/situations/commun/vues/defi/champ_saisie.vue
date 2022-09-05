@@ -11,12 +11,12 @@
         <span></span>
         <span></span>
         <span></span>
-      </div>
+    </div>
       <input
           v-on:input="emetReponse($event.target.value)"
           ref="reponseCafeDeLaPlace"
           class="champ"
-          spellcheck="false"
+          :spellcheck="false"
           autocomplete="off"
           autocapitalize="off"
           autocorrect="off"
