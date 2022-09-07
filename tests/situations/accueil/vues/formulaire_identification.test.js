@@ -8,6 +8,7 @@ describe("Le formulaire d'identification", function () {
   let promesse;
   let store;
   let localVue;
+  const unUserAgent = "Mozilla/5.0 (platform; rv:geckoversion) Gecko/geckotrail Firefox/firefoxversion";
 
   beforeEach(function () {
     localVue = createLocalVue();
@@ -28,25 +29,7 @@ describe("Le formulaire d'identification", function () {
     store.dispatch = () => promesse;
     wrapper = mount(FormulaireIdentification, {
       store,
-      localVue,
-      data() {
-        return {
-          computedSwitcher: {
-            materiel_utilise: "desktop",
-            modele_materiel: 'mac',
-            nom_navigateur: "chrome",
-            version_navigateur: 56,
-            resolution_ecran: "1366x768"
-          }
-        };
-      },
-      computed: {
-        conditionsDePassation: {
-          get() {
-            return this.computedSwitcher;
-          }
-        }
-      }
+      localVue
     });
   });
 
@@ -72,6 +55,16 @@ describe("Le formulaire d'identification", function () {
   });
 
   describe('#envoieFormulaire', function () {
+    let userAgentGetter;
+
+    beforeEach(function () {
+      userAgentGetter = jest.spyOn(window.navigator, 'userAgent', 'get');
+    });
+
+    afterEach(() => {
+      userAgentGetter.mockRestore();
+    });
+
     it("inscrit la personne avec le nom et la campagne à l'appui sur le bouton", function (done) {
       store.dispatch = (action, { codeCampagne }) => {
         expect(action).toBe('recupereCampagne');
@@ -95,14 +88,15 @@ describe("Le formulaire d'identification", function () {
     });
 
     it("envoie les conditions de passation au store", function (done) {
+      userAgentGetter.mockReturnValue(unUserAgent);
+      window.innerWidth = 1366;
+      window.innerHeight = 768;
       wrapper.vm.envoieFormulaireInscription();
       wrapper.vm.$nextTick(() => {
         expect(store.state.conditionsDePassation).toEqual({
-          materiel_utilise: "desktop",
-          modele_materiel: 'mac',
-          nom_navigateur: "chrome",
-          version_navigateur: 56,
-          resolution_ecran: "1366x768"
+          user_agent: unUserAgent,
+          hauteur_fenetre_navigation: 768,
+          largeur_fenetre_navigation: 1366
         });
         done();
       });

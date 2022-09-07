@@ -64,7 +64,6 @@
     "workbox-webpack-plugin": "^6.4"
   },
   "dependencies": {
-    "device-detector-js": "^3.0.3",
     "express": "^4.17.1",
     "gsap": "^3.7.1",
     "i18next": "^21.6",
