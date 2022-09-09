@@ -113,7 +113,7 @@ module.exports = {
         options: {
           compilerOptions: {
             compatConfig: {
-              MODE: 3
+              MODE: 2
             }
           }
         }
@@ -152,6 +152,10 @@ module.exports = {
       clientsClaim: true,
       skipWaiting: true,
       maximumFileSizeToCacheInBytes: 50000000
+    }),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false
     })
   ],
   devServer: {
