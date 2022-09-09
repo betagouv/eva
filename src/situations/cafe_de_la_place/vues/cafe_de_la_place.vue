@@ -35,9 +35,9 @@ export default {
 
   mounted () {
     // enregistre globalement, les composants spécifiques utilisés par certaines questions
-    Vue.component('clic_sur_mots', ClicSurMots);
-    Vue.component('liste_courses_a_trous', listeCoursesATrous);
-    Vue.component('email_HPfb_a_trous', emailHPfbATrous);
+    Vue.component('clic-sur-mots', ClicSurMots);
+    Vue.component('liste-courses-a-trous', listeCoursesATrous);
+    Vue.component('email-HPfb-a-trous', emailHPfbATrous);
     Vue.component('puzzle', Puzzle);
     Vue.component('graphique', Graphique);
   },
