@@ -24,7 +24,7 @@ const sousConsigneACrd1 = {
   id: 'ACrd-sous-consigne-1',
   type: 'sous-consigne',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
   nom_technique: 'sous_consigne_ACrd_1',
   intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
@@ -307,7 +307,7 @@ const alrd11 = {
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Exercice',
@@ -321,7 +321,7 @@ const alrd12 = {
   nom_technique: 'alrd_12',
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Anguille',
@@ -335,7 +335,7 @@ const alrd13 = {
   nom_technique: 'alrd_13',
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Dimoudon',
@@ -349,7 +349,7 @@ const alrd14 = {
   nom_technique: 'alrd_14',
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Soupçon',
@@ -366,7 +366,7 @@ const ACrd1 = {
   zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
   modalite_reponse: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   reponse: {
     texte: 'Rick Duxol & Mori Morino',
     score: 1
@@ -380,7 +380,7 @@ const ACrd2 = {
   intitule: 'Comment s’appelle le joueur de contrebasse ?',
   zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   reponse: {
     texte: 'Georges Tiporanet',
     score: 1
@@ -394,7 +394,7 @@ const ACrd3 = {
   intitule: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
   zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   reponse: {
     texte: 'New-York',
     score: 1
@@ -408,7 +408,7 @@ const ACrd4 = {
   intitule: 'De quel pays le groupe vient-il ?',
   zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   reponse: {
     texte: 'Bulgarie',
     score: 1
@@ -422,7 +422,7 @@ const ACrd5 = {
   intitule: 'En quelle année le groupe a-t-il débuté ?',
   zone_cliquable: 'article article--disque',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   reponse: {
     texte: '2011',
     score: 1
@@ -434,7 +434,7 @@ const sousConsigneACrd2 = {
   nom_technique: 'sous_consigne_ACrd_2',
   type: 'sous-consigne',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
   intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
@@ -445,7 +445,7 @@ const ACrd6 = {
   metacompetence: 'comprehension',
   intitule: 'Qui est Ivano Karanadoff ?',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
   type: 'qcm',
   modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
@@ -478,7 +478,7 @@ const ACrd7 = {
   metacompetence: 'comprehension',
   intitule: 'Quel est le genre de musique que produit ce groupe ?',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
@@ -509,7 +509,7 @@ const ACrd8 = {
   metacompetence: 'comprehension',
   intitule: 'Qui a influencé ce groupe ?',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
@@ -541,7 +541,7 @@ const ACrd9 = {
   metacompetence: 'comprehension',
   intitule: 'Que pense la critique de ce style musical ?',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
@@ -573,7 +573,7 @@ const ACrd10 = {
   metacompetence: 'comprehension',
   intitule: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
   illustration: magazineSansTexte,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
@@ -635,7 +635,7 @@ const sousConsigneAPlc2 = {
   id: 'APlc-sous-consigne-2',
   nom_technique: 'sous_consigne_APlc_2',
   type: 'sous-consigne',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Soyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
   modalite_reponse: 'Pour commencer, cliquez sur « Suivant ».'
@@ -647,7 +647,7 @@ const APlc1 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
   reponse: {
@@ -663,7 +663,7 @@ const APlc2 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/saladiers',
@@ -678,7 +678,7 @@ const APlc3 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/verre',
@@ -693,7 +693,7 @@ const APlc4 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/mayonnaise',
@@ -708,7 +708,7 @@ const APlc5 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/sel',
@@ -723,7 +723,7 @@ const APlc6 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/tomates',
@@ -738,7 +738,7 @@ const APlc7 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/pays',
@@ -753,7 +753,7 @@ const APlc8 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/poivrons',
@@ -768,7 +768,7 @@ const APlc9 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/epices',
@@ -785,7 +785,7 @@ const APlc10 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/donnent',
@@ -800,7 +800,7 @@ const APlc11 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/douzaines',
@@ -815,7 +815,7 @@ const APlc12 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/assiettes',
@@ -830,7 +830,7 @@ const APlc13 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/fouets',
@@ -845,7 +845,7 @@ const APlc14 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/louche',
@@ -860,7 +860,7 @@ const APlc15 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/passoire',
@@ -875,7 +875,7 @@ const APlc16 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/poele',
@@ -892,7 +892,7 @@ const APlc17 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/luxe',
@@ -907,7 +907,7 @@ const APlc18 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/casserole',
@@ -922,7 +922,7 @@ const APlc19 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/adhere',
@@ -937,7 +937,7 @@ const APlc20 = {
   metacompetence: 'production',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'liste_courses_a_trous',
+  extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   reponse: {
     nom_technique: 'APlc/alcoolique',

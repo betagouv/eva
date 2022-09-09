@@ -185,7 +185,7 @@ const sousConsigneHCvf1 = {
   id: 'HCvf-sous-consigne-1',
   nom_technique: 'sous_consigne_HCvf_1',
   type: 'sous-consigne',
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
   intitule: "A la page suivante vous tombez sur la rubrique « La minute environnement ». Un article parle du concours des villes fleuries.<br><br>J'ai quelques questions à vous poser sur cet article, lisez-le avec attention. Quand vous avez fini de lire, cliquez sur « Suivant »."
@@ -194,7 +194,7 @@ const sousConsigneHCvf1 = {
 const HCvf1 = {
   id: 'HCvf1',
   nom_technique: 'hcvf_1',
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
   intitule: "« Pour le concours des villes fleuries, ils ont sillonné la ville ». Mais de qui parle-t-on ?",
@@ -208,7 +208,7 @@ const HCvf1 = {
 const HCvf2 = {
   id: 'HCvf2',
   nom_technique: 'hcvf_2',
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   reponses_multiples: true,
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
@@ -228,7 +228,7 @@ const HCvf3 = {
   nom_technique: 'hcvf_3',
   type: 'qcm',
   illustration: rubriqueEnvironnement,
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--villes-fleuries',
   intitule: "Combien de fois la ville s’est-elle inscrite au concours régional des villes fleuries ?",
   modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
@@ -253,7 +253,7 @@ const HCvf4 = {
   id: 'HCvf4',
   nom_technique: 'hcvf_4',
   type: 'qcm',
-  extensionVue: 'clic_sur_mots',
+  extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
   intitule: "Lequel de ces quatre mots ne peut en aucun cas remplacer le mot « bichonner » ?",
@@ -321,7 +321,7 @@ const sousConsigneHPfb2 = {
   id: 'HPfb-sous-consigne-2',
   nom_technique: 'sous_consigne_HPfb_2',
   type: 'sous-consigne',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   intitule: "Vous avez commencé à écrire un message un peu plus tôt, vous devez maintenant le compléter. Je vais vous lire les mots qui manquent, alors écoutez bien !<br><br>Soyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
@@ -333,7 +333,7 @@ const HPfb1 = {
   nom_technique: 'hpfb_1',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
@@ -349,7 +349,7 @@ const HPfb2 = {
   nom_technique: 'hpfb_2',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
@@ -364,7 +364,7 @@ const HPfb3 = {
   nom_technique: 'hpfb_3',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
@@ -379,7 +379,7 @@ const HPfb4 = {
   nom_technique: 'hpfb_4',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
@@ -394,7 +394,7 @@ const HPfb5 = {
   nom_technique: 'hpfb_5',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
@@ -409,7 +409,7 @@ const HPfb6 = {
   nom_technique: 'hpfb_6',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
@@ -424,7 +424,7 @@ const HPfb7 = {
   nom_technique: 'hpfb_7',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
@@ -439,7 +439,7 @@ const HPfb8 = {
   nom_technique: 'hpfb_8',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   reponse: {
@@ -454,7 +454,7 @@ const HPfb9 = {
   nom_technique: 'hpfb_9',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -469,7 +469,7 @@ const HPfb10 = {
   nom_technique: 'hpfb_10',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -484,7 +484,7 @@ const HPfb11 = {
   nom_technique: 'hpfb_11',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -499,7 +499,7 @@ const HPfb12 = {
   nom_technique: 'hpfb_12',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -514,7 +514,7 @@ const HPfb13 = {
   nom_technique: 'hpfb_13',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -529,7 +529,7 @@ const HPfb14 = {
   nom_technique: 'hpfb_14',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -544,7 +544,7 @@ const HPfb15 = {
   nom_technique: 'hpfb_15',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -559,7 +559,7 @@ const HPfb16 = {
   nom_technique: 'hpfb_16',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -574,7 +574,7 @@ const HPfb17 = {
   nom_technique: 'hpfb_17',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -589,7 +589,7 @@ const HPfb18 = {
   nom_technique: 'hpfb_18',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -604,7 +604,7 @@ const HPfb19 = {
   nom_technique: 'hpfb_19',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
@@ -619,7 +619,7 @@ const HPfb20 = {
   nom_technique: 'hpfb_20',
   type: 'champ-saisie',
   sous_type: 'texte',
-  extensionVue: 'email_HPfb_a_trous',
+  extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   reponse: {
