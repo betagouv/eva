@@ -2,8 +2,6 @@ import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 import fondAccueil from 'accueil/assets/fond-accueil.jpg';
 import casque from 'commun/assets/casque.svg';
 import personnage from 'accueil/assets/personnage.png';
-import precedent from 'accueil/assets/precedent.svg';
-import suivant from 'accueil/assets/suivant.svg';
 import avatarFin from 'accueil/assets/avatar-fin.png';
 import consigneAccueil from 'accueil/assets/consigne_accueil.mp3';
 import avatarAvis from 'accueil/assets/avatar-avis.svg';
@@ -33,7 +31,7 @@ const AUDIOS_RESULTAT = {
 export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     super(chargeurs, messagesVideos, AUDIOS_RESULTAT, fondAccueil, consigneAccueil);
-    this.charge([fondAccueil, personnage, precedent, suivant, casque, avatarFin, avatarAvis, avatarDeconnexion, boutonAvis]);
+    this.charge([fondAccueil, personnage, casque, avatarFin, avatarAvis, avatarDeconnexion, boutonAvis]);
     this.chargeContexte(batimentsContext);
     this.batiments = extraitDictionnaire(batimentsContext, /batiment-(.+)\.png/);
   }
@@ -44,14 +42,6 @@ export default class DepotRessourcesAccueil extends DepotRessourcesCommunes {
 
   personnage () {
     return this.ressource(personnage);
-  }
-
-  precedent () {
-    return this.ressource(precedent);
-  }
-
-  suivant () {
-    return this.ressource(suivant);
   }
 
   casque () {
