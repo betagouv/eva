@@ -11,6 +11,7 @@ $gris-clair: #DDDDDD;
 $orange: #FDAF54;
 $bleu-gris: #D6DAEC;
 $bleu-gris-fonce: #7b83b0;
+$eva-light: #fbf9fa;
 
 // branding & style-guide
 $couleur-sombre: $bleu-fonce;
@@ -20,7 +21,7 @@ $couleur-legere-accent-et-validation: $vert-clair;
 $couleur-clair: $gris-clair;
 
 // général
-$couleur-fond: #fbf9fa;
+$couleur-fond: $eva-light;
 $couleur-texte: $couleur-sombre;
 
 // boutons
@@ -29,6 +30,8 @@ $couleur-fond-bouton-vert: $vert-clair;
 $couleur-fond-bouton-vert-focus: darken($vert-clair, 10%);
 $couleur-fond-bouton-bleu: $bleu;
 $couleur-fond-bouton-bleu-focus: darken($bleu, 10%);
+$couleur-fond-bouton-blanc: $blanc;
+$couleur-fond-bouton-blanc-focus: darken($blanc, 10%);
 $couleur-ombre: rgba(0, 0, 0, 0.31);
 $couleur-fond-bouton-rouge: $rouge;
 $couleur-fond-bouton-rouge-focus: darken($rouge, 10%);

@@ -1,7 +1,7 @@
 @import 'commun/styles/variables.scss';
 @import 'commun/styles/mixins/boutons.scss';
 
-@mixin bouton-arrondi-couleur($couleur, $couleur-focus) {
+@mixin bouton-couleur($couleur, $couleur-focus) {
   background-color: $couleur;
 
   &:hover,
@@ -11,7 +11,7 @@
 }
 
 .bouton-arrondi {
-  @include bouton-arrondi-couleur($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+  @include bouton-couleur($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
   padding: .5rem 2.5rem;
   text-decoration: none;
   border-radius: 2rem;
@@ -60,16 +60,21 @@
   }
 
   &-rouge {
-    @include bouton-arrondi-couleur($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
+    @include bouton-couleur($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
   }
 
   &-vert {
-    @include bouton-arrondi-couleur($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
+    @include bouton-couleur($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
     color: $couleur-texte;
   }
 
   &-orange {
-    @include bouton-arrondi-couleur($couleur-fond-bouton-orange, $couleur-fond-bouton-orange-focus);
+    @include bouton-couleur($couleur-fond-bouton-orange, $couleur-fond-bouton-orange-focus);
+  }
+
+  &-blanc {
+    @include bouton-couleur($couleur-fond-bouton-blanc, $couleur-fond-bouton-blanc-focus);
+    color: $couleur-texte;
   }
 }
 

@@ -6,6 +6,9 @@
   display: flex;
   flex-direction: column;
   @include conteneur;
+  .conteneur {
+    background-color: #A2ADAF;
+  }
 
   .titre {
     display: flex;
@@ -57,21 +60,30 @@
     z-index: 100;
   }
 
-  .bouton-navigation-situation {
-    @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
-    border-radius: 3.125rem;
-  }
-
-  .bouton-et-etiquette {
-    &:not(.desactivee) {
-      &:hover {
-        .bouton-navigation-situation {
-          background-color: $couleur-fond-bouton-bleu-focus;
+  .fleche-navigation-situation {
+    display: flex;
+    background: none;
+    &.desactivee {
+      svg {
+        path {
+          fill: $bleu-gris;
         }
       }
     }
+  }
+
+  .bouton-et-etiquette {
     &.desactivee {
       pointer-events: none;
+      span {
+        opacity: 1;
+        color: $bleu-gris;
+      }
+    }
+    .bouton-arrondi {
+      font-size: 1rem;
+      line-height: 1.188rem;
+      padding: 0.5rem 1.5rem;
     }
   }
 
@@ -88,6 +100,22 @@
       font-size: 0.875rem;
       font-weight: bold;
       color: $couleur-fond;
+    }
+  }
+
+  .actions-accueil {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+
+    .bouton-commence-situation {
+      border: 2px solid $eva-light;
+      font-size: 1.125rem;
     }
   }
 }
