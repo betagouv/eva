@@ -59,20 +59,20 @@
     margin-left: 0;
   }
 
-  &-rouge {
+  &--rouge {
     @include bouton-couleur($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
   }
 
-  &-vert {
+  &--vert {
     @include bouton-couleur($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
     color: $couleur-texte;
   }
 
-  &-orange {
+  &--orange {
     @include bouton-couleur($couleur-fond-bouton-orange, $couleur-fond-bouton-orange-focus);
   }
 
-  &-blanc {
+  &--blanc {
     @include bouton-couleur($couleur-fond-bouton-blanc, $couleur-fond-bouton-blanc-focus);
     color: $couleur-texte;
   }

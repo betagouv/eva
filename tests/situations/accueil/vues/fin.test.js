@@ -105,7 +105,7 @@ describe('La vue de fin', function () {
 
       wrapper.vm.$nextTick(() => {
         expect(wrapper.findAll('.mon-avis').length).toBe(1);
-        wrapper.find('.actions-avis .bouton-arrondi-orange').trigger('click');
+        wrapper.find('.actions-avis .bouton-arrondi--orange').trigger('click');
 
         wrapper.vm.$nextTick(() => {
           expect(wrapper.find('.actions-fin .confirmation-deconnexion').isVisible()).toBe(true);
