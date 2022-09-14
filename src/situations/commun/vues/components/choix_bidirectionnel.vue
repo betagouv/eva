@@ -5,7 +5,7 @@
     >
     <button
       :class="{ 'actions-fleches--animation': choixFait === choixGauche }"
-       class="bouton-arrondi bouton-arrondi-vert"
+       class="bouton-arrondi bouton-arrondi--vert"
       @click="selectionne(choixGauche)"
     >
       <img
@@ -16,7 +16,7 @@
     </button>
     <button
       :class="{ 'actions-fleches--animation': choixFait === choixDroit }"
-      class="bouton-arrondi bouton-arrondi-rouge"
+      class="bouton-arrondi bouton-arrondi--rouge"
       @click="selectionne(choixDroit)"
     >
       <img
