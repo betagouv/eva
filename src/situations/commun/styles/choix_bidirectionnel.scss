@@ -15,17 +15,17 @@
   position: absolute;
   padding: 1.5rem;
   display: flex;
-  width: 60%;
+  width: 26.25rem;
   line-height: normal;
+  border-radius: 2rem;
 
   &.clavier {
-    padding: 0.5rem;
+    padding: .75rem;
     width: 42%;
   }
 
   > button {
     flex: 50%;
-    margin: 0 0.5rem;
   }
 
   &--animation {
@@ -63,7 +63,8 @@
   }
 
   &.mobile {
-    width: 26.25rem;
+    gap: 6px;
+    padding: 1.5rem 2.5rem;
 
     .bouton-arrondi {
       padding: 0.375rem 0;
