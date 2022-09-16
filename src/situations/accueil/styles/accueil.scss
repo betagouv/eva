@@ -63,6 +63,12 @@
   .fleche-navigation-situation {
     display: flex;
     background: none;
+    svg {
+      fill: $blanc;
+      path {
+        fill: $bleu;
+      }
+    }
     &.desactivee {
       svg {
         path {
