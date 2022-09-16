@@ -89,9 +89,13 @@
 
 .bouton-et-etiquette {
   display: flex;
-  gap: .625rem;
+  gap: .5rem;
   align-items: center;
   color: $couleur-texte;
+
+  button {
+    padding: 0;
+  }
 
   &.gauche {
     flex-direction: row-reverse;
