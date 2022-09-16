@@ -58,13 +58,11 @@
           {{ $traduction('accueil.precedent') }}
         </span>
       </div>
-      <div>
         <acces-situation
           v-if="afficheBoutonSituation"
           :situation="batiments[indexBatiment]"
           class="bouton-arrondi bouton-commence-situation"
         />
-      </div>
       <div
         :class="{ desactivee: suivantDesactivee }"
         class="bouton-et-etiquette gauche"
