@@ -24,7 +24,7 @@ const audiosReponsesContext = require.context(
 const messagesAudios = {};
 extraitDictionnaire(audiosConsignesContext, /\.\/(.+)\.mp3/, messagesAudios);
 extraitDictionnaire(audiosQuestionsContext, /\.\/(.+)\.mp3/, messagesAudios);
-extraitDictionnaire(audiosReponsesContext, /\.\/.*\/(.+)\.mp3/, messagesAudios);
+extraitDictionnaire(audiosReponsesContext, /\.\/(.+\/.+)\.mp3/, messagesAudios);
 
 const messagesVideos = {};
 

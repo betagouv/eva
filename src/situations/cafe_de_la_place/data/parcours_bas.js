@@ -41,17 +41,17 @@ const titre1 = {
   choix: [
     {
       id: 'bax',
-      nom_technique: 'bax',
+      nom_technique: 'ALrd/bax',
       bonneReponse: false
     },
     {
       id: 'masse',
-      nom_technique: 'masse',
+      nom_technique: 'ALrd/masse',
       bonneReponse: false
     },
     {
       id: 'max',
-      nom_technique: 'max',
+      nom_technique: 'ALrd/max',
       score: 1,
       bonneReponse: true
     }
@@ -68,18 +68,18 @@ const titre2 = {
   choix: [
     {
       id: 'jazzABimoudon',
-      nom_technique: 'jazz_a_bimoudon',
+      nom_technique: 'ALrd/jazz_a_bimoudon',
       bonneReponse: false
     },
     {
       id: 'jazzADimoudon',
-      nom_technique: 'jazz_a_dimoudon',
+      nom_technique: 'ALrd/jazz_a_dimoudon',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'jazzADiboudon',
-      nom_technique: 'jazz_a_diboudon',
+      nom_technique: 'ALrd/jazz_a_diboudon',
       bonneReponse: false
     }
   ]
@@ -95,17 +95,17 @@ const titre10 = {
   choix: [
     {
       id: 'unAmiEnAmont',
-      nom_technique: 'un_ami_en_amont',
+      nom_technique: 'ALrd/un_ami_en_amont',
       bonneReponse: false
     },
     {
       id: 'unAmiAmant',
-      nom_technique: 'un_ami_amant',
+      nom_technique: 'ALrd/un_ami_amant',
       bonneReponse: false
     },
     {
       id: 'unAmiUnAmant',
-      nom_technique: 'un_ami_un_amant',
+      nom_technique: 'ALrd/un_ami_un_amant',
       score: 1,
       bonneReponse: true
     }
@@ -122,17 +122,17 @@ const titre3 = {
   choix: [
     {
       id: 'balleEtTalle',
-      nom_technique: 'balle_et_talle',
+      nom_technique: 'ALrd/balle_et_talle',
       bonneReponse: false
     },
     {
       id: 'pailleEtDaille',
-      nom_technique: 'paille_et_daille',
+      nom_technique: 'ALrd/paille_et_daille',
       bonneReponse: false
     },
     {
       id: 'bailleEtTaille',
-      nom_technique: 'baille_et_taille',
+      nom_technique: 'ALrd/baille_et_taille',
       score: 1,
       bonneReponse: true
     }
@@ -149,18 +149,18 @@ const titre11 = {
   choix: [
     {
       id: 'dussoEtMatura',
-      nom_technique: 'dusso_et_matura',
+      nom_technique: 'ALrd/dusso_et_matura',
       bonneReponse: false
     },
     {
       id: 'duxoEtMatura',
-      nom_technique: 'duxo_et_matura',
+      nom_technique: 'ALrd/duxo_et_matura',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'duxoEtMadura',
-      nom_technique: 'duxo_et_madura',
+      nom_technique: 'ALrd/duxo_et_madura',
       bonneReponse: false
     }
   ]
@@ -176,18 +176,18 @@ const titre6 = {
   choix: [
     {
       id: 'amourSugulent',
-      nom_technique: 'amour_sugulent',
+      nom_technique: 'ALrd/amour_sugulent',
       bonneReponse: false
     },
     {
       id: 'amourSucculent',
-      nom_technique: 'amour_succulent',
+      nom_technique: 'ALrd/amour_succulent',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'amourSuccule',
-      nom_technique: 'amour_succule',
+      nom_technique: 'ALrd/amour_succule',
       bonneReponse: false
     }
   ]
@@ -203,17 +203,17 @@ const titre8 = {
   choix: [
     {
       id: 'anguilEtDouceMer',
-      nom_technique: 'anguil_et_douce_mer',
+      nom_technique: 'ALrd/anguil_et_douce_mer',
       bonneReponse: false
     },
     {
       id: 'anquilleEtDouceMer',
-      nom_technique: 'anquille_et_douce_mer',
+      nom_technique: 'ALrd/anquille_et_douce_mer',
       bonneReponse: false
     },
     {
       id: 'anguilleEtDouceMer',
-      nom_technique: 'anguille_et_douce_mer',
+      nom_technique: 'ALrd/anguille_et_douce_mer',
       score: 1,
       bonneReponse: true
     }
@@ -230,18 +230,18 @@ const titre5 = {
   choix: [
     {
       id: 'exerciceDeStyle',
-      nom_technique: 'exercice_de_style',
+      nom_technique: 'ALrd/exercice_de_style',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'ezerciceDeStyle',
-      nom_technique: 'ezercice_de_style',
+      nom_technique: 'ALrd/ezercice_de_style',
       bonneReponse: false
     },
     {
       id: 'esserciceDeStyle',
-      nom_technique: 'essercice_de_style',
+      nom_technique: 'ALrd/essercice_de_style',
       bonneReponse: false
     }
   ]
@@ -257,17 +257,17 @@ const titre4 = {
   choix: [
     {
       id: 'leVilDuTemps',
-      nom_technique: 'le_vil_du_temps',
+      nom_technique: 'ALrd/le_vil_du_temps',
       bonneReponse: false
     },
     {
       id: 'leFilsDuTemps',
-      nom_technique: 'le_fils_du_temps',
+      nom_technique: 'ALrd/le_fils_du_temps',
       bonneReponse: false
     },
     {
       id: 'leFilDuTemps',
-      nom_technique: 'le_fil_du_temps',
+      nom_technique: 'ALrd/le_fil_du_temps',
       score: 1,
       bonneReponse: true
     }
@@ -284,18 +284,18 @@ const titre7 = {
   choix: [
     {
       id: 'soupconDAmertume',
-      nom_technique: 'soupcon_d_amertume',
+      nom_technique: 'ALrd/soupcon_d_amertume',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'souponDAmertume',
-      nom_technique: 'soupon_d_amertume',
+      nom_technique: 'ALrd/soupon_d_amertume',
       bonneReponse: false
     },
     {
       id: 'soupconDAbertube',
-      nom_technique: 'soupcon_d_abertube',
+      nom_technique: 'ALrd/soupcon_d_abertube',
       bonneReponse: false
     }
   ]
@@ -311,7 +311,7 @@ const alrd11 = {
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Exercice',
-    nom_technique: 'exercice',
+    nom_technique: 'ALrd/exercice',
     score: 1
   }
 };
@@ -325,7 +325,7 @@ const alrd12 = {
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Anguille',
-    nom_technique: 'anguille',
+    nom_technique: 'ALrd/anguille',
     score: 1
   }
 };
@@ -339,7 +339,7 @@ const alrd13 = {
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Dimoudon',
-    nom_technique: 'dimoudon',
+    nom_technique: 'ALrd/dimoudon',
     score: 1
   }
 };
@@ -353,7 +353,7 @@ const alrd14 = {
   zone_cliquable: 'liste-chansons',
   reponse: {
     texte: 'Soupçon',
-    nom_technique: 'soupcon',
+    nom_technique: 'ALrd/soupcon',
     score: 1
   }
 };
@@ -452,19 +452,19 @@ const ACrd6 = {
   choix: [
     {
       id: 'membreDuGroupe',
-      nom_technique: 'membre_du_groupe',
+      nom_technique: 'ACrd/membre_du_groupe',
       bonneReponse: false,
       intitule: 'Un membre du groupe Rick Duxol et Mori Morino'
     },
     {
       id: 'producteur',
-      nom_technique: 'producteur',
+      nom_technique: 'ACrd/producteur',
       bonneReponse: false,
       intitule: 'Un producteur de disque'
     },
     {
       id: 'critiqueMusical',
-      nom_technique: 'critique_musical',
+      nom_technique: 'ACrd/critique_musical',
       bonneReponse: true,
       score: 1,
       intitule: 'Un critique musical'
@@ -484,20 +484,20 @@ const ACrd7 = {
   choix: [
     {
       id: 'reggae',
-      nom_technique: 'reggae',
+      nom_technique: 'ACrd/reggae',
       bonneReponse: false,
       intitule: 'Reggae'
     },
     {
       id: 'jazz',
-      nom_technique: 'jazz',
+      nom_technique: 'ACrd/jazz',
       bonneReponse: true,
       score: 1,
       intitule: 'Jazz'
     },
     {
       id: 'rockFrancais',
-      nom_technique: 'rock_francais',
+      nom_technique: 'ACrd/rock_francais',
       bonneReponse: false,
       intitule: 'Rock français'
     }
@@ -515,20 +515,20 @@ const ACrd8 = {
   choix: [
     {
       id: 'ntm',
-      nom_technique: 'ntm',
+      nom_technique: 'ACrd/ntm',
       bonneReponse: false,
       intitule: 'NTM'
     },
     {
       id: 'jazzBandDeLondres',
-      nom_technique: 'jazz_band_de_londres',
+      nom_technique: 'ACrd/jazz_band_de_londres',
       bonneReponse: true,
       score: 1,
       intitule: 'Jazz band de Londres'
     },
     {
       id: 'rockerset',
-      nom_technique: 'rockerset',
+      nom_technique: 'ACrd/rockerset',
       bonneReponse: false,
       intitule: 'Rockerset'
     }
@@ -547,19 +547,19 @@ const ACrd9 = {
   choix: [
     {
       id: 'inventif',
-      nom_technique: 'inventif',
+      nom_technique: 'ACrd/inventif',
       bonneReponse: false,
       intitule: 'Inventif'
     },
     {
       id: 'drole',
-      nom_technique: 'drole',
+      nom_technique: 'ACrd/drole',
       bonneReponse: false,
       intitule: 'Drôle'
     },
     {
       id: 'neuf',
-      nom_technique: 'neuf',
+      nom_technique: 'ACrd/neuf',
       bonneReponse: true,
       score: 1,
       intitule: 'Neuf'
@@ -579,20 +579,20 @@ const ACrd10 = {
   choix: [
     {
       id: 'tempsPresent',
-      nom_technique: 'le_temps_present',
+      nom_technique: 'ACrd/le_temps_present',
       bonneReponse: false,
       intitule: 'Le temps présent'
     },
     {
       id: 'tempsFutur',
-      nom_technique: 'le_temps_futur',
+      nom_technique: 'ACrd/le_temps_futur',
       bonneReponse: true,
       score: 1,
       intitule: 'Le temps futur'
     },
     {
       id: 'tempsPasse',
-      nom_technique: 'le_temps_passe',
+      nom_technique: 'ACrd/le_temps_passe',
       bonneReponse: false,
       intitule: 'Le temps passé'
     }
@@ -651,7 +651,7 @@ const APlc1 = {
   modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'cuisine',
+    nom_technique: 'APlc/cuisine',
     textes: ['cuisine', 'cuisines'],
     scores: [1, 0.75]
   }
@@ -666,7 +666,7 @@ const APlc2 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'saladiers',
+    nom_technique: 'APlc/saladiers',
     textes: ['saladier', 'saladiers'],
     scores: [1, 1.25]
   }
@@ -681,7 +681,7 @@ const APlc3 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'verre',
+    nom_technique: 'APlc/verre',
     textes: ['verre', 'verres'],
     scores: [1, 0.75]
   }
@@ -696,7 +696,7 @@ const APlc4 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'mayonnaise',
+    nom_technique: 'APlc/mayonnaise',
     textes: ['mayonnaise', 'mayonnaises'],
     scores: [1, 0.75]
   }
@@ -711,7 +711,7 @@ const APlc5 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'sel',
+    nom_technique: 'APlc/sel',
     textes: ['sel', 'sels'],
     scores: [1, 0.75]
   }
@@ -726,7 +726,7 @@ const APlc6 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'tomates',
+    nom_technique: 'APlc/tomates',
     textes: ['tomate', 'tomates'],
     scores: [1, 1.25]
   }
@@ -741,7 +741,7 @@ const APlc7 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'pays',
+    nom_technique: 'APlc/pays',
     textes: ['pays'],
     scores: [1]
   }
@@ -756,7 +756,7 @@ const APlc8 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'poivrons',
+    nom_technique: 'APlc/poivrons',
     textes: ['poivron', 'poivrons'],
     scores: [1, 1.25]
   }
@@ -771,7 +771,7 @@ const APlc9 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'epices',
+    nom_technique: 'APlc/epices',
     textes: ['épice', 'epice', 'èpice', 'êpice', 'ëpice',
       'épices', 'epices', 'èpices', 'êpices', 'ëpices'],
     scores: [1, 0.75, 0.75, 0.75, 0.75,
@@ -788,7 +788,7 @@ const APlc10 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'donnent',
+    nom_technique: 'APlc/donnent',
     textes: ['donne', 'donnent'],
     scores: [1, 1.25]
   }
@@ -803,7 +803,7 @@ const APlc11 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'douzaines',
+    nom_technique: 'APlc/douzaines',
     textes: ['douzaine', 'douzaines'],
     scores: [1, 1.25]
   }
@@ -818,7 +818,7 @@ const APlc12 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'assiettes',
+    nom_technique: 'APlc/assiettes',
     textes: ['assiette', 'assiettes'],
     scores: [1, 1.25]
   }
@@ -833,7 +833,7 @@ const APlc13 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'fouets',
+    nom_technique: 'APlc/fouets',
     textes: ['fouet', 'fouets'],
     scores: [1, 1.25]
   }
@@ -848,7 +848,7 @@ const APlc14 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'louche',
+    nom_technique: 'APlc/louche',
     textes: ['louche', 'louches'],
     scores: [1, 0.75]
   }
@@ -863,7 +863,7 @@ const APlc15 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'passoire',
+    nom_technique: 'APlc/passoire',
     textes: ['passoire', 'passoires'],
     scores: [1, 0.75]
   }
@@ -878,7 +878,7 @@ const APlc16 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'poele',
+    nom_technique: 'APlc/poele',
     textes: ['poêle', 'poele', 'poéle', 'poèle', 'poële',
       'poêles', 'poeles', 'poéles', 'poèles', 'poëles'],
     scores: [1, 0.75, 0.75, 0.75, 0.75,
@@ -895,7 +895,7 @@ const APlc17 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'luxe',
+    nom_technique: 'APlc/luxe',
     textes: ['luxe', 'luxes'],
     scores: [1, 0.75]
   }
@@ -910,7 +910,7 @@ const APlc18 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'casserole',
+    nom_technique: 'APlc/casserole',
     textes: ['casserole', 'casseroles'],
     scores: [1, 0.75]
   }
@@ -925,7 +925,7 @@ const APlc19 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'adhere',
+    nom_technique: 'APlc/adhere',
     textes: ['adhère', 'adhere', 'adhére', 'adhêre', 'adhëre'],
     scores: [1, 0.75, 0.75, 0.75, 0.75]
   }
@@ -940,7 +940,7 @@ const APlc20 = {
   extensionVue: 'liste_courses_a_trous',
   illustration: listeDeCourse,
   reponse: {
-    nom_technique: 'alcoolique',
+    nom_technique: 'APlc/alcoolique',
     textes: ['alcoolique', 'alcooliques'],
     scores: [1, 0.75]
   }
