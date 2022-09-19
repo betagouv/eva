@@ -29,17 +29,17 @@ const LOdi1 = {
   choix: [
     {
       id: 'couverture',
-      nom_technique: 'couverture',
+      nom_technique: 'LOdi/couverture',
       bonneReponse: false
     },
     {
       id: 'programmeTele',
-      nom_technique: 'programme_tele',
+      nom_technique: 'LOdi/programme_tele',
       bonneReponse: true
     },
     {
       id: 'motsCroises',
-      nom_technique: 'mots_croises',
+      nom_technique: 'LOdi/mots_croises',
       bonneReponse: false
     }
   ]
@@ -55,22 +55,22 @@ const LOdi2 = {
   choix: [
     {
       id: 'cirqueEtClown',
-      nom_technique: 'cirque_et_clown',
+      nom_technique: 'LOdi/cirque_et_clown',
       bonneReponse: false
     },
     {
       id: 'cercleDicotino',
-      nom_technique: 'cercle_dicotino',
+      nom_technique: 'LOdi/cercle_dicotino',
       bonneReponse: false
     },
     {
       id: 'cirqueTino',
-      nom_technique: 'cirque_tino',
+      nom_technique: 'LOdi/cirque_tino',
       bonneReponse: false
     },
     {
       id: 'cirqueDicotino',
-      nom_technique: 'cirque_dicotino',
+      nom_technique: 'LOdi/cirque_dicotino',
       score: 1,
       bonneReponse: true
     }
@@ -86,18 +86,18 @@ const LOdi3 = {
   choix: [
     {
       id: 'mode_chapeau',
-      nom_technique: 'mode_chapeau',
+      nom_technique: 'LOdi/mode_chapeau',
       bonneReponse: false
     },
     {
       id: 'livre',
-      nom_technique: 'livre',
+      nom_technique: 'LOdi/livre',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'confection_chapeau',
-      nom_technique: 'confection_chapeau',
+      nom_technique: 'LOdi/confection_chapeau',
       bonneReponse: false
     }
   ]
@@ -113,23 +113,23 @@ const LOdi4 = {
   choix: [
     {
       id: 'chatMadameCoupin',
-      nom_technique: 'chat_madame_coupin',
+      nom_technique: 'LOdi/chat_madame_coupin',
       bonneReponse: false
     },
     {
       id: 'chapeauMadameCoupin',
-      nom_technique: 'chapeau_madame_coupin',
+      nom_technique: 'LOdi/chapeau_madame_coupin',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'chapeauMadameCoutin',
-      nom_technique: 'chapeau_madame_coutin',
+      nom_technique: 'LOdi/chapeau_madame_coutin',
       bonneReponse: false
     },
     {
       id: 'chapeauMadameGoubin ',
-      nom_technique: 'chapeau_madame_goubin',
+      nom_technique: 'LOdi/chapeau_madame_goubin',
       bonneReponse: false
     }
   ]
@@ -145,23 +145,23 @@ const LOdi5 = {
   choix: [
     {
       id: 'dinoDepianto',
-      nom_technique: 'dino_depianto',
+      nom_technique: 'LOdi/dino_depianto',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'dinoDepanto',
-      nom_technique: 'dino_depanto',
+      nom_technique: 'LOdi/dino_depanto',
       bonneReponse: false
     },
     {
       id: 'binoBepanto',
-      nom_technique: 'bino_bepanto',
+      nom_technique: 'LOdi/bino_bepanto',
       bonneReponse: false
     },
     {
       id: 'binoBepianto',
-      nom_technique: 'bino_bepianto',
+      nom_technique: 'LOdi/bino_bepianto',
       bonneReponse: false
     }
   ]
@@ -176,23 +176,23 @@ const LOdi6 = {
   choix: [
     {
       id: 'belgique',
-      nom_technique: 'belgique',
+      nom_technique: 'LOdi/belgique',
       bonneReponse: false
     },
     {
       id: 'brousse',
-      nom_technique: 'brousse',
+      nom_technique: 'LOdi/brousse',
       bonneReponse: false
     },
     {
       id: 'bruges',
-      nom_technique: 'bruges',
+      nom_technique: 'LOdi/bruges',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'bresse',
-      nom_technique: 'bresse',
+      nom_technique: 'LOdi/bresse',
       bonneReponse: false
     }
   ]
@@ -207,18 +207,18 @@ const LOdi7 = {
   choix: [
     {
       id: '17ans',
-      nom_technique: '17_ans',
+      nom_technique: 'LOdi/17_ans',
       bonneReponse: false
     },
     {
       id: '24ans',
-      nom_technique: '24_ans',
+      nom_technique: 'LOdi/24_ans',
       score: 1,
       bonneReponse: true
     },
     {
       id: '18ans',
-      nom_technique: '18_ans',
+      nom_technique: 'LOdi/18_ans',
       bonneReponse: false
     }
   ]
@@ -233,18 +233,18 @@ const LOdi8 = {
   choix: [
     {
       id: 'plusAge',
-      nom_technique: 'plus_age',
+      nom_technique: 'LOdi/plus_age',
       bonneReponse: false
     },
     {
       id: 'plusJeune',
-      nom_technique: 'plus_jeune',
+      nom_technique: 'LOdi/plus_jeune',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'memeAge',
-      nom_technique: 'meme_age',
+      nom_technique: 'LOdi/meme_age',
       bonneReponse: false
     }
   ]
@@ -259,13 +259,13 @@ const LOdi9 = {
   choix: [
     {
       id: 'dramatique',
-      nom_technique: 'dramatique',
+      nom_technique: 'LOdi/dramatique',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'drole',
-      nom_technique: 'drole',
+      nom_technique: 'ACrd/drole',
       bonneReponse: false
     }
   ]
@@ -280,18 +280,18 @@ const LOdi10 = {
   choix: [
     {
       id: 'poetique',
-      nom_technique: 'poetique',
+      nom_technique: 'LOdi/poetique',
       score: 1,
       bonneReponse: true
     },
     {
       id: 'choquant',
-      nom_technique: 'choquant',
+      nom_technique: 'LOdi/choquant',
       bonneReponse: false
     },
     {
       id: 'erotique',
-      nom_technique: 'erotique',
+      nom_technique: 'LOdi/erotique',
       bonneReponse: false
     }
   ]
@@ -306,13 +306,13 @@ const LOdi11 = {
   choix: [
     {
       id: 'debutFilm',
-      nom_technique: 'debut_film',
+      nom_technique: 'LOdi/debut_film',
       bonneReponse: false,
       intitule: 'Au début du film'
     },
     {
       id: 'finFilm',
-      nom_technique: 'fin_film',
+      nom_technique: 'LOdi/fin_film',
       score: 1,
       bonneReponse: true,
       intitule: 'À la fin du film'
@@ -329,20 +329,20 @@ const LOdi12 = {
   choix: [
     {
       id: 'sautPerilleux',
-      nom_technique: 'saut_perilleux',
+      nom_technique: 'LOdi/saut_perilleux',
       score: 1,
       bonneReponse: true,
       intitule: 'Parce qu’il a été accidenté en faisant un saut périlleux'
     },
     {
       id: 'trapeze',
-      nom_technique: 'trapeze',
+      nom_technique: 'LOdi/trapeze',
       bonneReponse: false,
       intitule: 'Parce qu’il n’aime plus faire du trapèze'
     },
     {
       id: 'numerosDangereux',
-      nom_technique: 'numeros_dangeureux',
+      nom_technique: 'LOdi/numeros_dangeureux',
       bonneReponse: false,
       intitule: 'Pour faire des numéros de plus en plus dangereux'
     }
@@ -358,20 +358,20 @@ const LOdi13 = {
   choix: [
     {
       id: 'trapezisteTombe',
-      nom_technique: 'trapeziste_tombe',
+      nom_technique: 'LOdi/trapeziste_tombe',
       score: 1,
       bonneReponse: true,
       intitule: 'Un trapéziste tombe et se blesse'
     },
     {
       id: 'vide',
-      nom_technique: 'vide',
+      nom_technique: 'LOdi/vide',
       bonneReponse: false,
       intitule: 'Bruno a jeté Charles dans le vide'
     },
     {
       id: 'aventuresHandicape',
-      nom_technique: 'aventures_handicape',
+      nom_technique: 'LOdi/aventures_handicape',
       bonneReponse: false,
       intitule: 'Les aventures d’un handicapé'
     }
