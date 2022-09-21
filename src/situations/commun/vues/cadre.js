@@ -58,8 +58,8 @@ export default class VueCadre {
 
     afficheEtat(this.situation.etat());
     this.situation.on(CHANGEMENT_ETAT, afficheEtat);
-    this.previensLaFermetureDeLaSituation($);
-    this.previensLeClickDroit($);
+    this.empecheLaFermetureDeLaSituation($);
+    this.empecheLeClickDroit($);
 
     const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.registreUtilisateur);
     return this.depotRessources.chargement().then(() => {
@@ -74,7 +74,7 @@ export default class VueCadre {
     });
   }
 
-  previensLaFermetureDeLaSituation ($) {
+  empecheLaFermetureDeLaSituation ($) {
     $(window).on('beforeunload', (e) => {
       if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE].includes(this.situation.etat())) {
         e.preventDefault();
@@ -94,7 +94,7 @@ export default class VueCadre {
     });
   }
 
-  previensLeClickDroit ($) {
+  empecheLeClickDroit ($) {
     $('#cadre').on('contextmenu', (e) => {
       e.preventDefault();
     });
