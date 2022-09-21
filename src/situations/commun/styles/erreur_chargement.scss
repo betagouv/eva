@@ -3,4 +3,6 @@
 
 .bouton-erreur-chargement {
   @include bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus, $blanc, 30px);
+  height: 3rem;
+  width: 3rem;
 }
