@@ -41,6 +41,8 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
 
 export function synchroniseStoreEtModeleSituation (situation, store) {
   situation.on(CHANGEMENT_ETAT, (etat) => {
+    if (store.state.etat == etat) return;
+
     store.commit('modifieEtat', etat);
   });
   situation.on(ACTIVATION_AIDE, () => {
@@ -52,10 +54,9 @@ export function synchroniseStoreEtModeleSituation (situation, store) {
       situation.modifieEtat(mutation.payload);
       break;
     case 'activeAide':
-      if (situation.aideActivee) {
-        return;
+      if (!situation.aideActivee) {
+        situation.activeAide();
       }
-      situation.activeAide();
       break;
     }
   });

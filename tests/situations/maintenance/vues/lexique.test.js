@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Lexique, { choixFrancais } from 'maintenance/vues/lexique';
+import Lexique from 'maintenance/vues/lexique';
 import { traduction } from 'commun/infra/internationalisation';
 import EvenementIdentificationMot from 'maintenance/modeles/evenement_identification_mot';
 import EvenementApparitionMot from 'maintenance/modeles/evenement_apparition_mot';
@@ -48,21 +48,21 @@ describe('La vue lexique de la Maintenance', function () {
     wrapper.trigger('keydown.left');
     wrapper.vm.$nextTick(() => {
       expect(wrapper.findAll('.croix').length).toEqual(1);
-      expect(wrapper.vm.choixFait).toBe(null);
       done();
     });
   });
 
-  it("terminer est à true lorsque l'on a vu tout les mots", function () {
+  it("emet terminer lorsque l'on a vu tout les mots", function (done) {
     expect(wrapper.vm.termine).toBe(false);
-    wrapper.vm.afficheMot();
-    wrapper.vm.afficheMot();
+    wrapper.vm.prepareMotSuivant();
+    wrapper.vm.prepareMotSuivant();
     expect(wrapper.emitted('terminer')).toBe(undefined);
-    wrapper.vm.afficheMot();
+    wrapper.vm.prepareMotSuivant();
     expect(wrapper.vm.termine).toBe(true);
-    expect(wrapper.emitted('terminer')).toBe(undefined);
-    wrapper.vm.enregistreReponse(choixFrancais);
-    expect(wrapper.emitted('terminer').length).toEqual(1);
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.emitted('terminer').length).toEqual(1);
+      done();
+    });
   });
 
   it('affiche le composant de choix', function () {
@@ -75,10 +75,10 @@ describe('La vue lexique de la Maintenance', function () {
     wrapper.vm.$nextTick(() => {
       journal.enregistre = (evenement) => {
         expect(evenement).toBeInstanceOf(EvenementIdentificationMot);
-        expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: choixFrancais });
+        expect(evenement.donnees()).toEqual({ mot: 'premiermot', type: 'neutre', reponse: 'reponse' });
         done();
       };
-      wrapper.vm.enregistreReponse(choixFrancais);
+      wrapper.vm.enregistreReponse('reponse');
     });
   });
 

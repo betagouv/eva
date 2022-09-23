@@ -19,6 +19,8 @@ import 'maintenance/styles/acte.scss';
 
 export default {
   components: { Lexique },
+  emits: ['terminer'],
+
   computed: {
     ...mapState(['lexique', 'etat', 'fondSituation']),
     afficheLexique () {
