@@ -15,8 +15,8 @@
     <choix-bidirectionnel
       :labelGauche="$traduction('maintenance.francais')"
       :labelDroit="$traduction('maintenance.pas_francais')"
-      @actionGauche="enregistreReponse(choixFrancais)"
-      @actionDroite="enregistreReponse(choixPasFrancais)"
+      @actionGauche="enregistreReponse('francais')"
+      @actionDroite="enregistreReponse('pasfrancais')"
     />
   </div>
 </template>
@@ -29,13 +29,11 @@ import EvenementApparitionMot from '../modeles/evenement_apparition_mot';
 
 import ChoixBidirectionnel from 'commun/vues/components/choix_bidirectionnel';
 
-const DELAI_CROIX = 500;
-
-export const choixFrancais = 'francais';
-export const choixPasFrancais = 'pasfrancais';
+const DELAI_POINT_FIXATION = 500;
 
 export default {
   components: { ChoixBidirectionnel },
+  emits: ['terminer'],
 
   props: {
     lexique: {
@@ -44,20 +42,17 @@ export default {
     }
   },
 
-  data: function () {
+  data () {
     return {
       index: -1,
       croix: false,
-      mot: false,
-      choixFait: null,
-      choixFrancais,
-      choixPasFrancais
+      mot: false
     };
   },
 
   computed: {
     termine () {
-      return this.index === (this.lexique.length - 1);
+      return this.index === this.lexique.length;
     }
   },
 
@@ -65,43 +60,43 @@ export default {
     this.prepareMotSuivant();
   },
 
+  watch: {
+    termine(termine) {
+      if (termine) {
+        this.$emit('terminer');
+      }
+    }
+  },
+
   methods: {
     enregistreReponse (reponse) {
-      if (this.croix) return;
-
-      this.choixFait = reponse;
-      this.enregistreJournal(this.choixFait);
-      if (this.termine) {
-        this.$emit('terminer');
-        return;
-      }
+      this.enregistreJournal(
+        new EvenementIdentificationMot({
+          ...this.lexique[this.index],
+          reponse
+        })
+      );
       this.prepareMotSuivant();
     },
 
-    enregistreJournal (choix) {
-      this.$journal.enregistre(
-        new EvenementIdentificationMot({
-          ...this.lexique[this.index],
-          reponse: choix
-        })
-      );
+    enregistreJournal (evenement) {
+      if(!this.termine) this.$journal.enregistre(evenement);
     },
 
     prepareMotSuivant () {
-      this.affichePointDeFixation();
-      setTimeout(() => {
-        this.choixFait = null;
-        this.afficheMot();
-      }, DELAI_CROIX);
-    },
-    afficheMot () {
       this.index++;
+      this.affichePointDeFixation();
+      setTimeout(this.afficheMot, DELAI_POINT_FIXATION);
+    },
+
+    afficheMot () {
       this.croix = false;
       this.mot = true;
-      this.$journal.enregistre(
+      this.enregistreJournal(
         new EvenementApparitionMot({ ...this.lexique[this.index] })
       );
     },
+
     affichePointDeFixation () {
       this.croix = true;
       this.mot = false;

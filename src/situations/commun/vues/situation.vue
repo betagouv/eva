@@ -56,6 +56,8 @@ export default {
 
   methods: {
     termineActe () {
+      if(this.etat == ENTRAINEMENT_FINI) return;
+
       if (this.etat === ENTRAINEMENT_DEMARRE) {
         this.$store.commit('modifieEtat', ENTRAINEMENT_FINI);
       } else {
