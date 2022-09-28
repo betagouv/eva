@@ -5,7 +5,7 @@
     <div
       v-if="mot"
       class="mot">
-      {{ lexique[index].mot }}
+      {{ motCourant.mot }}
     </div>
     <img
       v-if="croix"
@@ -15,6 +15,7 @@
     <choix-bidirectionnel
       :labelGauche="$traduction('maintenance.francais')"
       :labelDroit="$traduction('maintenance.pas_francais')"
+      :desactive="termine"
       @actionGauche="enregistreReponse('francais')"
       @actionDroite="enregistreReponse('pasfrancais')"
     />
@@ -53,6 +54,10 @@ export default {
   computed: {
     termine () {
       return this.index === this.lexique.length;
+    },
+
+    motCourant () {
+      return this.lexique[this.index];
     }
   },
 
@@ -72,7 +77,7 @@ export default {
     enregistreReponse (reponse) {
       this.enregistreJournal(
         new EvenementIdentificationMot({
-          ...this.lexique[this.index],
+          ...this.motCourant,
           reponse
         })
       );
@@ -93,7 +98,7 @@ export default {
       this.croix = false;
       this.mot = true;
       this.enregistreJournal(
-        new EvenementApparitionMot({ ...this.lexique[this.index] })
+        new EvenementApparitionMot(this.motCourant)
       );
     },
 
