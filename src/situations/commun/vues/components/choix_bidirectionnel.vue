@@ -64,6 +64,7 @@ export const flecheDroite = 39;
 
 export default {
   components: { Touche },
+  emits: ['actionGauche', 'actionDroite', 'animationGaucheTerminee', 'animationDroiteTerminee'],
 
   props: {
     labelGauche: {
@@ -76,21 +77,10 @@ export default {
       required: false,
       default: 'Vers la droite'
     },
-    actionGauche: {
-      type: Function,
-      required: false
-    },
-    actionDroite: {
-      type: Function,
-      required: false
-    },
-    animationGaucheTerminee: {
-      type: Function,
-      required: false
-    },
-    animationDroiteTerminee: {
-      type: Function,
-      required: false
+    desactive: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     dureeAnimation: {
       type: Number,
@@ -101,10 +91,11 @@ export default {
 
   setup(props) {
     const choixFait = ref(null);
-    const choixGauche = 'gauche';
-    const choixDroit = 'droite';
+    const choixGauche = 'Gauche';
+    const choixDroit = 'Droite';
 
     function selectionne (reponse) {
+      if (props.desactive) { return; }
       if (choixFait.value !== null) { return; }
 
       choixFait.value = reponse;
@@ -127,7 +118,8 @@ export default {
     return {
       choixFait,
       choixGauche,
-      choixDroit
+      choixDroit,
+      selectionne
     };
   },
 
@@ -137,19 +129,13 @@ export default {
     };
   },
 
-  methods: {
-    capitalize (string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-  },
-
   watch: {
     choixFait (nouveauChoix, ancienChoix) {
       if(nouveauChoix == null) {
-        this.$emit(`animation${this.capitalize(ancienChoix)}Terminee`, ancienChoix);
+        this.$emit(`animation${ancienChoix}Terminee`);
       }
       else {
-        this.$emit(`action${this.capitalize(nouveauChoix)}`, nouveauChoix);
+        this.$emit(`action${nouveauChoix}`);
       }
     }
   }
