@@ -1,10 +1,11 @@
 <template>
   <div :class="{'icone--desactivee':desactivee}">
-    <div
+    <button
       class="icone"
       :class="classIcone"
       :style="{ 'background-image': `url(${urlIcone(app)})` }"
-    ></div>
+      @click="$emit('ouvrirApp')"
+    ></button>
     <span class="label">{{ $traduction(`objets_trouves.accueil.${app}`) }}</span>
   </div>
 </template>
@@ -12,6 +13,8 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  emits: ["ouvrirApp"],
+
   props: {
     app: {
       type: String,

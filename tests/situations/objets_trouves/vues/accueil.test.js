@@ -27,12 +27,20 @@ describe("La vue de l'accueil", function () {
     expect(wrapper.attributes('style')).toBe('background-image: url(fond);');
   });
 
-  it('affiche les icones', function (done) {
-    store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
-    wrapper.vm.$nextTick(() => {
+  describe("permet d'ouvrir une app", function () {
+    beforeEach(function () {
+      store.commit('configureActe', { apps: { photos: {}, agenda: {} } });
+    });
+
+    it('affiche les icones', function () {
       expect(wrapper.findAllComponents(IconeApp).length).toEqual(2);
       expect(wrapper.findAll('.ecran-verrouille-conteneur').length).toEqual(0);
-      done();
+    });
+
+    it("ouvre une app quand on clique sur l'icone", function () {
+      const premiereApp = wrapper.findComponent(IconeApp);
+      premiereApp.vm.$emit('ouvrirApp');
+      expect(store.state.appActive).toEqual('photos');
     });
   });
 
