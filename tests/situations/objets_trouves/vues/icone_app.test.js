@@ -29,4 +29,10 @@ describe("Les propriétés d'une app", function () {
     expect(icone.classes('icone--agenda')).toBe(true);
     expect(icone.attributes('style')).toBe('background-image: url(icon-agenda);');
   });
+
+  it("emet ouvrirApp quand on clique sur l'icone", function () {
+    const icone = wrapper.find('.icone');
+    icone.trigger('click');
+    expect(wrapper.emitted('ouvrirApp').length).toBe(1);
+  });
 });

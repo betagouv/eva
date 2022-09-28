@@ -16,7 +16,7 @@
               key="deverrouillage"
               app="deverrouillage"
               :desactivee="appDesactivee('deverrouillage')"
-              @click="afficheApp('deverrouillage')"
+              @ouvrirApp="afficheApp('deverrouillage')"
             />
           </div>
         </div>
@@ -32,7 +32,7 @@
             :key="app"
             :app="app"
             :desactivee="appDesactivee(app)"
-            @click="afficheApp(app)"
+            @ouvrirApp="afficheApp(app)"
           />
         </div>
       </div>
