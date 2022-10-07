@@ -5,6 +5,7 @@ import ErreurCampagne from 'commun/infra/erreur_campagne';
 import { traduction } from 'commun/infra/internationalisation';
 
 export const DECONNECTE = 'déconnecté';
+export const DONNEES = 'donnees';
 export const DEMARRE = 'démarré';
 
 Vue.use(Vuex);
@@ -29,6 +30,10 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         return state.etat === DEMARRE;
       },
 
+      collecteDonnees (state) {
+        return state.etat === DONNEES;
+      },
+
       estTermine (state) {
         return state.situations.length > 0 &&
           state.situationsFaites.length >= state.situations.length;
@@ -40,7 +45,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         state.estConnecte = true;
         state.nom = nom;
         state.situationsFaites = [];
-        state.etat = DEMARRE;
+        state.etat = DONNEES;
       },
 
       deconnecte (state) {
@@ -67,6 +72,10 @@ export function creeStore (registreUtilisateur, registreCampagne) {
       metsAJourConditionsDePassation (state, { conditionsDePassation }) {
         state.conditionsDePassation = conditionsDePassation;
       },
+
+      demarre (state) {
+        state.etat = DEMARRE;
+      }
     },
     actions: {
       inscris (pasUtile, { nom, campagne }) {
@@ -110,6 +119,13 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         });
       },
 
+      enregistreDonneesComplementaires ({ commit }, donneesSociodemographiques) {
+        const idEvaluation = registreUtilisateur.idEvaluation();
+        return registreUtilisateur.enregistreDonneesComplementaires(idEvaluation, donneesSociodemographiques)
+          .then(() => {
+            commit('demarre');
+          });
+      },
       deconnecte () {
         return registreUtilisateur.deconnecte();
       },

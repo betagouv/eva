@@ -43,7 +43,7 @@
                 type="text"
                 class="champ champ-texte champ-texte-accueil"
                 :disabled="champCodeEstDesactive"
-                :class="{ erreur_champ: erreurFormulaireIdentification.code }"
+                :class="{ 'erreur-champ': erreurFormulaireIdentification.code }"
                 @focusout="forceMajuscule">
               <div
                 v-if="erreurFormulaireIdentification.code"

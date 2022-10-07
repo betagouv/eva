@@ -11,6 +11,9 @@
     color: $bleu-gris-fonce;
     opacity: 0.5;
   }
+  &:disabled {
+    background-color: $bleu-gris;
+  }
 
   &-texte {
     width: 100%;
@@ -26,6 +29,35 @@
     font-size: 1.5rem;
     font-weight: 500;
     font-family: $font-roboto-mono;
+  }
+
+  &-texte-accueil {
+    border-radius: .75rem;
+    padding: .625rem 1rem;
+    font-size: 1.125rem;
+    background: white;
+    transition: border .3s;
+    outline: none;
+
+    &:active, &:focus, &:hover {
+      border-color: darken($bleu-gris, 10%);
+    }
+  }
+
+  &-selection {
+    cursor: pointer;
+
+    &--vide {
+      color: $bleu-gris-fonce;
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+
+
+  &-age {
+    width: 7rem;
+    font-size: 1.5rem;
   }
 }
 

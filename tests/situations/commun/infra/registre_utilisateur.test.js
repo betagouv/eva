@@ -303,6 +303,49 @@ describe('le registre utilisateur', function () {
     });
   });
 
+  describe('#enregistreDonneesComplementaires()', function () {
+    describe('quand on est en ligne', function () {
+      it("met à jour les informations de l'évaluation", function () {
+        const data = {age: '35', genre: 'Femme'};
+        const registre = unRegistre({ id: 1, nom: 'test', age: data.age, genre: data.genre });
+        return registre.enregistreDonneesComplementaires(1, data).then((utilisateur) => {
+          expect(utilisateur.age).toEqual(data.age);
+          expect(utilisateur.genre).toEqual(data.genre);
+          expect(requetes[0].data).toEqual(JSON.stringify(data));
+        });
+      });
+    });
+
+    describe('quand on est pas en ligne', function () {
+      let registre;
+
+      beforeEach(function () {
+        registre = unRegistre(
+          {},
+          'https://serveur.com/',
+          false
+        );
+        registre.enregistreModeHorsLigne(true);
+      });
+
+      it("enregistre les informations de l'évaluation en local", function () {
+        const data = { id: 1, nom: 'test' };
+        registre.enregistreIdClient('identifiant_client');
+        registre.enregistreUtilisateurEnLocal(data);
+
+        const donneesSociodemographiques = {
+          "age": 12,
+          "genre": "Homme"
+        };
+        return registre.enregistreDonneesComplementaires(1, donneesSociodemographiques).then((utilisateur) => {
+          expect(utilisateur.age).toEqual(12);
+          expect(utilisateur.genre).toEqual('Homme');
+          expect(registre.evaluationCourante()).toEqual({ id: 1, nom: 'test', age: 12, genre: 'Homme' });
+        });
+      });
+    });
+  });
+
   describe('#termineEvaluation()', function () {
     let registre;
 

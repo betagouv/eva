@@ -4,12 +4,14 @@ import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECAL
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
+import FormulaireDonneesComplementaires from 'accueil/vues/formulaire_donnees_complementaires';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import { traduction } from 'commun/infra/internationalisation';
 
 describe('La vue accueil', function () {
   let depotRessources;
   let store;
+
   let localVue;
   let mockEstTermine;
   let mockDeconnecte;
@@ -41,11 +43,13 @@ describe('La vue accueil', function () {
         situations: [{}, {}],
         estConnecte: false,
         situationsFaites: [],
-        estDemarre : false
+        estDemarre: false,
+        collecteDonnees: false
       },
 
       getters: {
         estDemarre: (state) => state.estDemarre,
+        collecteDonnees: (state) => state.collecteDonnees,
         estTermine: mockEstTermine
       },
       actions: {
@@ -280,6 +284,16 @@ describe('La vue accueil', function () {
     wrapper.vm.$nextTick(() => {
       expect(wrapper.vm.ecranFinAfficher).toBe(false);
       expect(wrapper.vm.indexBatiment).toBe(-0.5);
+      done();
+    });
+  });
+
+  it('affiche le formulaire de collecte de données complémentaires', function(done) {
+    const wrapper = accueil();
+    expect(wrapper.findComponent(FormulaireDonneesComplementaires).exists()).toBe(false);
+    store.state.collecteDonnees = true;
+    wrapper.vm.$nextTick(() => {
+      expect(wrapper.findComponent(FormulaireDonneesComplementaires).exists()).toBe(true);
       done();
     });
   });
