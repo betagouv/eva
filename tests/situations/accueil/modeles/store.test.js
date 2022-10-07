@@ -1,4 +1,4 @@
-import { creeStore, DECONNECTE, DEMARRE } from 'accueil/modeles/store';
+import { creeStore, DECONNECTE, DONNEES, DEMARRE } from 'accueil/modeles/store';
 import ErreurCampagne from 'commun/infra/erreur_campagne';
 
 describe("Le store de l'accueil", function () {
@@ -10,7 +10,10 @@ describe("Le store de l'accueil", function () {
       estConnecte () {},
       nom () {},
       on () {},
-      situationsFaites () {}
+      situationsFaites () {},
+      enregistreDonneesComplementaires () {
+        return Promise.resolve();
+      }
     };
     registreCampagne = {};
   });
@@ -53,7 +56,7 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.situationsFaites = () => [1];
     const store = creeStore(registreUtilisateur);
     store.commit('connecte', 'nom évalué');
-    expect(store.state.etat).toEqual(DEMARRE);
+    expect(store.state.etat).toEqual(DONNEES);
     expect(store.state.nom).toBe('nom évalué');
     expect(store.state.situationsFaites.length).toEqual(0);
   });
@@ -75,6 +78,14 @@ describe("Le store de l'accueil", function () {
     callback();
     expect(store.state.estConnecte).toEqual(false);
     expect(store.state.nom).toEqual('');
+  });
+
+  it('mets à jour les informations de contact', function () {
+    const store = creeStore(registreUtilisateur);
+    registreUtilisateur.idEvaluation = () => { return 1; };
+    return store.dispatch('enregistreDonneesComplementaires', 'mail@entreprise.fr', '0987654321').then(() => {
+      expect(store.state.etat).toEqual(DEMARRE);
+    });
   });
 
   describe('Action : recupereSituations', function () {

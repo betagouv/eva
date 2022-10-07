@@ -44,6 +44,10 @@
 
   .scene {
     transition: background-position-x 1s;
+
+    &-titre {
+      font-size: 2.25rem;
+    }
   }
 
   .acces-situations {

@@ -11,6 +11,27 @@
     margin-bottom: 4rem;
 }
 
+.formulaire-sociodemographique {
+  &-description {
+    margin-bottom: 0.5rem;
+  }
+  &-avertissement {
+    margin-bottom: 3rem;
+    color: $bleu;
+
+    p {
+      margin-top: 0;
+    }
+  }
+  &-description, &-avertissement {
+    width: 60%;
+    margin-top: 0;
+  }
+  &-vous, &-votre-parcours {
+    font-size: 1.5rem;
+  }
+}
+
 .elements-formulaire {
   display: flex;
   flex-wrap: wrap;
@@ -22,41 +43,23 @@
   }
 }
 
-.champ-texte {
-  &-accueil {
-  border-radius: .75rem;
-  width: 18.4rem;
-  padding: 1rem;
-  font-size: 1.1rem;
-  background: white;
-  transition: border .3s;
-  outline: none;
-  color: $bleu-fonce;
-
-    &:active, &:focus, &:hover {
-      border-color: darken($bleu-gris, 10%);
-    }
-    &:disabled {
-      background-color: $bleu-gris;
-    }
-  }
-}
-
 .modale-formulaire {
   .erreur-generale {
-      color: $couleur-accent-et-erreur;
-      margin-bottom: 1rem;
+    color: $couleur-accent-et-erreur;
+    margin-bottom: 1rem;
   }
 }
 
 .element-formulaire {
-  margin: .5rem auto;
+  margin: .5rem 0 1rem 0;
+  width: 18.5rem;
+
   ::placeholder {
     color: $bleu-gris;
   }
 
   .erreur {
-    &_champ {
+    &-champ {
       border: solid $couleur-accent-et-erreur 1px
     }
 
@@ -72,7 +75,7 @@
   align-items: flex-start;
   max-width: 70%;
   padding: .8rem .6rem 1.3rem 1rem;
-  margin: 1.5rem 0;
+  margin: 0.5rem 0;
   border-radius: .75rem;
   border: 1px solid $bleu-gris;
   background-color: $blanc;
@@ -89,5 +92,16 @@
   > a {
     color: $bleu;
     text-decoration: none;
+  }
+}
+
+.bouton-sociodemographique {
+  margin-top: 2rem;
+}
+
+.champ-texte {
+  &:focus {
+    border: 3px solid $bleu;
+    outline: none; // outline sur des bords arrondis n'est pas suporté par Safari
   }
 }
