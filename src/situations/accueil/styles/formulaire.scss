@@ -98,10 +98,3 @@
 .bouton-sociodemographique {
   margin-top: 2rem;
 }
-
-.champ-texte {
-  &:focus {
-    border: 3px solid $bleu;
-    outline: none; // outline sur des bords arrondis n'est pas suporté par Safari
-  }
-}
