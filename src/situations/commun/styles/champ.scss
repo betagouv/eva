@@ -7,6 +7,15 @@
   border-radius: 0.5rem;
   color: $bleu;
 
+  &:active, &:hover {
+    border-color: darken($bleu-gris, 10%);
+  }
+
+  &:focus {
+    border: 3px solid $bleu;
+    outline: none; // outline sur des bords arrondis n'est pas suporté par Safari
+  }
+
   &::placeholder {
     color: $bleu-gris-fonce;
     opacity: 0.5;
@@ -38,10 +47,6 @@
     background: white;
     transition: border .3s;
     outline: none;
-
-    &:active, &:focus, &:hover {
-      border-color: darken($bleu-gris, 10%);
-    }
   }
 
   &-selection {

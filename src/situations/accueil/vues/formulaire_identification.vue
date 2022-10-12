@@ -67,8 +67,8 @@
 
 <script>
 import { mapState } from 'vuex';
-import 'commun/styles/champ.scss';
 import 'accueil/styles/formulaire.scss';
+import 'commun/styles/champ.scss';
 import 'commun/styles/boutons.scss';
 import TransitionFade from 'commun/vues/transition_fade';
 
