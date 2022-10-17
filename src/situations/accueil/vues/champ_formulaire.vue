@@ -29,7 +29,8 @@
           :value="value"
           :type="typeInput"
           class="champ champ-texte champ-texte-accueil"
-          :class="classSpecifique">
+          :class="classSpecifique"
+          :min="min">
       <span v-if="postLabel">{{ postLabel }}</span>
       <span
           v-if="erreurs[nom]"
@@ -68,6 +69,9 @@ export default {
     classSpecifique: {
       type: String,
       default: ''
+    },
+    min: {
+      type: Boolean
     }
   },
 
