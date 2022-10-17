@@ -32,8 +32,8 @@
     },
     "donnee_sociodemographique": {
       "titre": "Bienvenue {{ nom }} !",
-      "description": "L’équipe eva s’intéresse à votre parcours.<br>Pouvez-vous nous en dire plus sur vous ?",
-      "avertissement": "Vos informations ne seront pas communiquées à des tiers.<br>Elles nous serviront à améliorer le service eva et à produire des statistiques **anonymes**.",
+      "description": "L’équipe eva s’intéresse à votre parcours. Pouvez-vous nous en dire plus sur vous ?",
+      "avertissement": "Vos informations ne seront pas communiquées à des tiers. Elles nous serviront à améliorer le service eva et à produire des statistiques **anonymes**.",
       "age": "Âge",
       "unite_age": "ans",
       "genre": "Genre",

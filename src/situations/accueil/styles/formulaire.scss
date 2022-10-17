@@ -1,14 +1,14 @@
 @import 'commun/styles/variables.scss';
 
 .modale-formulaire {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   > div {
     width: 100%;
   }
 }
 
 .formulaire-identification-titre {
-    margin-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 
 .formulaire-sociodemographique {
@@ -18,13 +18,14 @@
   &-avertissement {
     margin-bottom: 3rem;
     color: $bleu;
+    font-size: 1rem;
 
     p {
       margin-top: 0;
     }
   }
   &-description, &-avertissement {
-    width: 60%;
+    width: 49rem;
     margin-top: 0;
   }
   &-vous, &-votre-parcours {
