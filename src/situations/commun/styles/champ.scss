@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'typography';
 
 .champ {
   border: 1px solid $bleu-gris;
@@ -50,6 +51,7 @@
   }
 
   &-selection {
+    @include typo-s();
     cursor: pointer;
     padding: 0 6px;
 
