@@ -71,14 +71,14 @@ export default {
       default: ''
     },
     min: {
-      type: Boolean
+      type: Number
     }
   },
 
   computed: {
     id () {
       return `formulaire-${this.nom}`;
-    },
+    }
   },
 
   methods: {
