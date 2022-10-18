@@ -15,7 +15,7 @@
           :post-label="$traduction('accueil.donnee_sociodemographique.unite_age')"
           :erreurs="erreurs"
           typeInput="number"
-          min="0"
+          :min="0"
           classSpecifique="champ-age"
         />
         <champ-formulaire
