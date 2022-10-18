@@ -1,0 +1,17 @@
+// Typographies eva
+@mixin typo-xs {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+@mixin typo-s {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+// Customisation
+@mixin typo($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
