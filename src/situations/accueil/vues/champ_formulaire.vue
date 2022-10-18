@@ -5,23 +5,19 @@
       {{ $traduction(`accueil.${nom}`) }}
     </label>
     <div class="element-formulaire">
-      <select
+      <v-select
         v-if="typeInput == 'select'"
         :id="id"
-        v-on:change="emetReponse($event.target.value)"
+        :options="options"
+        @input="emetReponse"
         :value="value"
+        placeholder="Selectionner"
         class="champ champ-texte champ-texte-accueil champ-selection"
         :class="[
-                 vide ? 'champ-selection--vide': '',
                  erreurs[nom] ? 'erreur-champ': '',
                  classSpecifique
                 ]">
-        <option v-if="vide" value="" disabled selected hidden>Sélection</option>
-        <option
-          v-for="option in options"
-          :key="option"
-          :value="option">{{ option }}</option>
-      </select>
+      </v-select>
       <input
           v-else
           :id="id"
@@ -42,8 +38,12 @@
 
 <script>
 import 'commun/styles/champ.scss';
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
 
 export default {
+  components: { vSelect },
+
   props: {
     nom: {
       type: String,
@@ -75,12 +75,6 @@ export default {
     }
   },
 
-  data () {
-    return {
-      vide: true
-    };
-  },
-
   computed: {
     id () {
       return `formulaire-${this.nom}`;
@@ -89,7 +83,6 @@ export default {
 
   methods: {
     emetReponse (valeur) {
-      this.vide = false;
       this.$emit('input', valeur);
     },
   },

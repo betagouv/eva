@@ -11,7 +11,7 @@
     border-color: darken($bleu-gris, 10%);
   }
 
-  &:focus {
+  &:focus, &.vs--open {
     border: 3px solid $bleu;
     outline: none; // outline sur des bords arrondis n'est pas suporté par Safari
   }
@@ -51,14 +51,29 @@
 
   &-selection {
     cursor: pointer;
+    padding: 0 6px;
 
-    &--vide {
-      color: $bleu-gris-fonce;
-      font-size: 1rem;
-      font-weight: normal;
+    .vs {
+      &__dropdown-toggle {
+        height: 100%;
+        padding: 0;
+        border: none;
+      }
+
+      &__search::placeholder {
+        color: $bleu-gris-fonce;
+      }
+
+      &__selected {
+        min-height: 2.5rem;
+        color: $bleu;
+      }
+    }
+
+    svg {
+      fill: $bleu;
     }
   }
-
 
   &-age {
     width: 7rem;
