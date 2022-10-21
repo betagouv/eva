@@ -43,40 +43,40 @@ describe("Le formulaire des données complementaires", function () {
   });
 
   it('Les options doivent être mis à jour coté serveur si elles sont modifiées', function() {
-    expect(wrapper.vm.genres).toEqual([
-      'Homme',
-      'Femme',
-      'Autre genre'
+    expect(wrapper.vm.genres.map(g => g.nom_technique)).toEqual([
+      'homme',
+      'femme',
+      'autre'
     ]);
-    expect(wrapper.vm.niveaux_etude).toEqual([
-      'Niveau Collège',
-      'Niveau CFG / DNB (BEPC)',
-      'Niveau CAP / BEP',
-      'Niveau Bac',
-      'Niveau Bac +2',
-      'Supérieur Bac +2'
+    expect(wrapper.vm.niveaux_etude.map(n => n.nom_technique)).toEqual([
+      'college',
+      'cfg_dnb_bepc',
+      'cap_bep',
+      'bac',
+      'bac_plus2',
+      'superieur_bac_plus2'
     ]);
-    expect(wrapper.vm.situations).toEqual([
-      'Scolarisation',
-      'Formation professionnelle',
-      'Alternance',
-      'Emploi',
-      'Sans emploi'
+    expect(wrapper.vm.situations.map(s => s.nom_technique)).toEqual([
+      'scolarisation',
+      'formation_professionnelle',
+      'alternance',
+      'emploi',
+      'sans_emploi'
     ]);
   });
 
   it("peut selectionner une valeur dans un select", function (done) {
     const inputGenre = wrapper.find("[id='formulaire-donnee_sociodemographique.genre']");
     derouleMenu('genre');
-    wrapper.vm.$nextTick(() => {  
+    wrapper.vm.$nextTick(() => {
       inputGenre
         .findAll('.vs__dropdown-option')
         .at(0)
         .trigger('click');
-      wrapper.vm.$nextTick(() => {  
+      wrapper.vm.$nextTick(() => {
         expect(inputGenre
           .find('.vs__selected').text()).toBe('Homme');
-        expect(wrapper.vm.genre).toEqual('Homme');
+        expect(wrapper.vm.genre).toEqual({ label: "Homme", nom_technique: "homme" });
         done();
       });
     });
@@ -116,9 +116,9 @@ describe("Le formulaire des données complementaires", function () {
     expect(storeDispatch).toHaveBeenNthCalledWith(1, 'enregistreDonneesComplementaires', {
       "donnee_sociodemographique_attributes": {
         "age": "30",
-        "genre": 'Homme',
-        "dernier_niveau_etude": 'Niveau Collège',
-        "derniere_situation": 'Scolarisation'
+        "genre": 'homme',
+        "dernier_niveau_etude": 'college',
+        "derniere_situation": 'scolarisation'
       }
     });
   });

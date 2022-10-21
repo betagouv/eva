@@ -67,24 +67,24 @@ export default {
       derniere_situation: null,
       enCours: false,
       genres: [
-        'Homme',
-        'Femme',
-        'Autre genre'
+        { label: 'Homme', nom_technique: 'homme' },
+        { label: 'Femme', nom_technique: 'femme' },
+        { label:'Autre', nom_technique: 'autre' },
       ],
       niveaux_etude: [
-        'Niveau Collège',
-        'Niveau CFG / DNB (BEPC)',
-        'Niveau CAP / BEP',
-        'Niveau Bac',
-        'Niveau Bac +2',
-        'Supérieur Bac +2'
+        { label: 'Collège', nom_technique: 'college' },
+        { label: 'CFG / DNB (BEPC)', nom_technique: 'cfg_dnb_bepc' },
+        { label: 'CAP / BEP', nom_technique: 'cap_bep' },
+        { label: 'Bac', nom_technique: 'bac' },
+        { label: 'Bac+2', nom_technique: 'bac_plus2' },
+        { label: 'supérieur à Bac+2', nom_technique: 'superieur_bac_plus2' },
       ],
       situations: [
-        'Scolarisation',
-        'Formation professionnelle',
-        'Alternance',
-        'Emploi',
-        'Sans emploi'
+        { label: 'Scolarisation', nom_technique: 'scolarisation' },
+        { label: 'Formation professionnelle', nom_technique: 'formation_professionnelle' },
+        { label: 'Alternance', nom_technique: 'alternance' },
+        { label: 'Emploi', nom_technique: 'emploi' },
+        { label: 'Sans emploi', nom_technique: 'sans_emploi' },
       ],
       erreurs: {}
     };
@@ -104,9 +104,9 @@ export default {
       return this.$store.dispatch('enregistreDonneesComplementaires', {
         donnee_sociodemographique_attributes: {
           age: this.age,
-          genre: this.genre,
-          dernier_niveau_etude: this.dernier_niveau_etude,
-          derniere_situation: this.derniere_situation
+          genre: this.genre.nom_technique,
+          dernier_niveau_etude: this.dernier_niveau_etude.nom_technique,
+          derniere_situation: this.derniere_situation.nom_technique
         }
       })
         .catch((xhr) => {
