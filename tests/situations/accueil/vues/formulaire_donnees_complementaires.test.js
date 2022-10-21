@@ -65,20 +65,33 @@ describe("Le formulaire des données complementaires", function () {
     ]);
   });
 
-  it("peut selectionner une valeur dans un select", function (done) {
+  it("peut selectionner une valeur dans un select", async function () {
     const inputGenre = wrapper.find("[id='formulaire-donnee_sociodemographique.genre']");
     derouleMenu('genre');
-    wrapper.vm.$nextTick(() => {
-      inputGenre
-        .findAll('.vs__dropdown-option')
-        .at(0)
-        .trigger('click');
-      wrapper.vm.$nextTick(() => {
-        expect(inputGenre
-          .find('.vs__selected').text()).toBe('Homme');
-        expect(wrapper.vm.genre).toEqual({ label: "Homme", nom_technique: "homme" });
-        done();
-      });
+
+    await wrapper.vm.$nextTick();
+
+    inputGenre
+      .findAll('.vs__dropdown-option')
+      .at(0)
+      .trigger('click');
+
+    await wrapper.vm.$nextTick();
+
+    expect(inputGenre.find('.vs__selected').text()).toBe('Homme');
+    expect(wrapper.vm.genre).toEqual({ label: "Homme", nom_technique: "homme" });
+  });
+
+  it("peut valider un formulaire vide", () => {
+    wrapper.vm.envoieFormulaire();
+
+    expect(storeDispatch).toHaveBeenNthCalledWith(1, 'enregistreDonneesComplementaires', {
+      "donnee_sociodemographique_attributes": {
+        age: null,
+        genre: null,
+        dernier_niveau_etude: null,
+        derniere_situation: null
+      }
     });
   });
 
@@ -112,13 +125,15 @@ describe("Le formulaire des données complementaires", function () {
       .at(0)
       .trigger('click');
     wrapper.vm.envoieFormulaire();
+
     await wrapper.vm.$nextTick();
+
     expect(storeDispatch).toHaveBeenNthCalledWith(1, 'enregistreDonneesComplementaires', {
       "donnee_sociodemographique_attributes": {
-        "age": "30",
-        "genre": 'homme',
-        "dernier_niveau_etude": 'college',
-        "derniere_situation": 'scolarisation'
+        age: "30",
+        genre: 'homme',
+        dernier_niveau_etude: 'college',
+        derniere_situation: 'scolarisation'
       }
     });
   });
