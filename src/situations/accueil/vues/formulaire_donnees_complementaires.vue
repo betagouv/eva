@@ -99,14 +99,18 @@ export default {
   },
 
   methods: {
+    nom_technique(valeur) {
+      return valeur ? valeur.nom_technique : null;
+    },
+
     envoieFormulaire () {
       this.erreurs = {};
       return this.$store.dispatch('enregistreDonneesComplementaires', {
         donnee_sociodemographique_attributes: {
           age: this.age,
-          genre: this.genre.nom_technique,
-          dernier_niveau_etude: this.dernier_niveau_etude.nom_technique,
-          derniere_situation: this.derniere_situation.nom_technique
+          genre: this.nom_technique(this.genre),
+          dernier_niveau_etude: this.nom_technique(this.dernier_niveau_etude),
+          derniere_situation: this.nom_technique(this.derniere_situation)
         }
       })
         .catch((xhr) => {
