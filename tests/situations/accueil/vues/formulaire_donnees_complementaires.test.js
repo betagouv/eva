@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Formulaire from 'accueil/vues/formulaire_donnees_complementaires';
 import { traduction } from 'commun/infra/internationalisation';
@@ -6,12 +6,9 @@ import { traduction } from 'commun/infra/internationalisation';
 describe("Le formulaire des données complementaires", function () {
   let wrapper;
   let store;
-  let localVue;
   let storeDispatch;
 
   beforeEach(function () {
-    localVue = createLocalVue();
-    localVue.prototype.$traduction = traduction;
     store = new Vuex.Store({
       state: {
         nom: 'un nom'
@@ -20,8 +17,12 @@ describe("Le formulaire des données complementaires", function () {
     storeDispatch = jest.spyOn(store, 'dispatch')
       .mockImplementation(() => { return Promise.resolve(); });
     wrapper = mount(Formulaire, {
-      store,
-      localVue
+      global: {
+        plugins: [store],
+        mocks: {
+          $traduction: traduction
+        }
+      }
     });
   });
 
@@ -30,6 +31,16 @@ describe("Le formulaire des données complementaires", function () {
       .find(`[id='formulaire-donnee_sociodemographique.${donnee}']`)
       .find('.vs__dropdown-toggle')
       .trigger('mousedown');
+  }
+
+  async function selectionPremiereValeur (donnee) {
+    derouleMenu(donnee);
+    await wrapper.vm.$nextTick();
+    wrapper
+      .find(`[id='formulaire-donnee_sociodemographique.${donnee}']`)
+      .findAll('.vs__dropdown-option')
+      .at(0)
+      .trigger('click');
   }
 
   it("s'affiche", function () {
@@ -67,14 +78,8 @@ describe("Le formulaire des données complementaires", function () {
 
   it("peut selectionner une valeur dans un select", async function () {
     const inputGenre = wrapper.find("[id='formulaire-donnee_sociodemographique.genre']");
-    derouleMenu('genre');
 
-    await wrapper.vm.$nextTick();
-
-    inputGenre
-      .findAll('.vs__dropdown-option')
-      .at(0)
-      .trigger('click');
+    await selectionPremiereValeur('genre');
 
     await wrapper.vm.$nextTick();
 
@@ -97,35 +102,12 @@ describe("Le formulaire des données complementaires", function () {
 
   it("enregistre les données saisies", async () => {
     wrapper.find('.champ-age').setValue(30);
-    derouleMenu('dernier_niveau_etude');
 
-    await wrapper.vm.$nextTick();
+    await selectionPremiereValeur('dernier_niveau_etude');
+    await selectionPremiereValeur('genre');
+    await selectionPremiereValeur('derniere_situation');
 
-    wrapper
-      .find("[id='formulaire-donnee_sociodemographique.dernier_niveau_etude']")
-      .findAll('.vs__dropdown-option')
-      .at(0)
-      .trigger('click');
-    derouleMenu('genre');
-
-    await wrapper.vm.$nextTick();
-
-    wrapper
-      .find("[id='formulaire-donnee_sociodemographique.genre']")
-      .findAll('.vs__dropdown-option')
-      .at(0)
-      .trigger('click');
-    derouleMenu('derniere_situation');
-
-    await wrapper.vm.$nextTick();
-
-    wrapper
-      .find("[id='formulaire-donnee_sociodemographique.derniere_situation']")
-      .findAll('.vs__dropdown-option')
-      .at(0)
-      .trigger('click');
     wrapper.vm.envoieFormulaire();
-
     await wrapper.vm.$nextTick();
 
     expect(storeDispatch).toHaveBeenNthCalledWith(1, 'enregistreDonneesComplementaires', {

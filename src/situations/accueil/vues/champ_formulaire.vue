@@ -9,8 +9,7 @@
         v-if="typeInput == 'select'"
         :id="id"
         :options="options"
-        @input="emetReponse"
-        :value="value"
+        v-model="selection"
         placeholder="Selectionner"
         class="champ champ-texte champ-texte-accueil champ-selection"
         :class="[
@@ -21,8 +20,8 @@
       <input
           v-else
           :id="id"
-          v-on:input="emetReponse($event.target.value)"
-          :value="value"
+          @input="emetReponse($event.target.value)"
+          :value="modelValue"
           :type="typeInput"
           class="champ champ-texte champ-texte-accueil"
           :class="classSpecifique"
@@ -42,6 +41,10 @@ import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 
 export default {
+  compatConfig: {
+    MODE: 3
+  },
+  emits: ['update:modelValue'],
   components: { vSelect },
 
   props: {
@@ -52,8 +55,8 @@ export default {
     postLabel: {
       type: String,
     },
-    value: {
-      required: true
+    modelValue: {
+      required: false
     },
     options: {
       type: Array
@@ -75,15 +78,25 @@ export default {
     }
   },
 
+  data () {
+    return { selection: this.modelValue };
+  },
+
   computed: {
     id () {
       return `formulaire-${this.nom}`;
     }
   },
 
+  watch: {
+    selection(valeur) {
+      this.emetReponse(valeur);
+    }
+  },
+
   methods: {
     emetReponse (valeur) {
-      this.$emit('input', valeur);
+      this.$emit('update:modelValue', valeur);
     },
   },
 };
