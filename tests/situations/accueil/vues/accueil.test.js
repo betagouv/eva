@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECALAGE_INITIAL } from 'accueil/vues/accueil';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
@@ -69,8 +69,9 @@ describe('La vue accueil', function () {
     });
   });
 
-  function accueil (props = {}) {
-    return shallowMount(Accueil, {
+  function accueil (props = {}, shallow = true) {
+    return mount(Accueil, {
+      shallow: shallow,
       global: {
         plugins: [store],
         mocks: {
@@ -305,27 +306,21 @@ describe('La vue accueil', function () {
     });
   });
 
-  it('affiche le formulaire de collecte de données complémentaires', function(done) {
-    const wrapper = accueil();
+  it('affiche le formulaire de collecte de données complémentaires', async function() {
+    const wrapper = accueil({}, false);
+
     expect(wrapper.findComponent(FormulaireDonneesComplementaires).exists()).toBe(false);
     store.state.collecteDonnees = true;
-    wrapper.vm.$nextTick(() => {
-      expect(wrapper.findComponent(FormulaireDonneesComplementaires).exists()).toBe(true);
-      done();
-    });
+
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.findComponent(FormulaireDonneesComplementaires).exists()).toBe(true);
   });
 
   describe('#afficheConsigne', function () {
     it('affiche la consigne une fois démarré puis la masque', function (done) {
-      const wrapper = mount(Accueil, {
-        global: {
-          plugins: [store],
-          mocks: {
-            $depotRessources: depotRessources,
-            $traduction: traduction
-          }
-        }
-      });
+      const wrapper = accueil({}, false);
+
       expect(wrapper.findComponent(IntroConsigne).exists()).toBe(false);
       store.state.estDemarre = true;
       wrapper.vm.indexBatiment = 0;
