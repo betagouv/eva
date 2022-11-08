@@ -14,12 +14,6 @@
   flex-direction: column;
   height: 100%;
   padding-bottom: 3rem;
-
-  .puzzle-item.invisible {
-    padding: 0;
-    margin: 0;
-    border: none;
-  }
 }
 
 .puzzle-droite {
@@ -77,4 +71,6 @@
   font-size: 0.75rem;
   font-weight: 600;
   color: $bleu-gris-fonce;
+  // pour s'assurer que la zone de dépôt se mette toujours en desnière position dans la div
+  order: 100;
 }
