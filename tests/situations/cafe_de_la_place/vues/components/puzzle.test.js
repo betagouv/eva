@@ -15,7 +15,6 @@ describe('Le composant Puzzle', function () {
 
   function genereVue(fragmentsNonClasses) {
     wrapper = mount(puzzle, {
-      shallow: true,
       global: {
         mocks: {
           $traduction: () => {}
@@ -48,24 +47,6 @@ describe('Le composant Puzzle', function () {
     });
   });
 
-  describe("Évite que le premier ghost n'apparaisse en dessous du footer", function () {
-    beforeEach(function () {
-      genereVue([]);
-    });
-
-    it("affiche un puzzle-item invisible au démarrage", function () {
-      expect(wrapper.find('.puzzle-item.invisible').exists()).toBe(true);
-    });
-
-    it("n'affiche plus le puzzle-item invisible après avoir classé une première nouvelle", function (done) {
-      wrapper.vm.fragmentsClasses.push({ id: 'nouvelle_1', contenu: 'Ma super nouvelle !' });
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.find('.puzzle-item.entete-invisible').exists()).toBe(false);
-        done();
-      });
-    });
-  });
-
   describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
     beforeEach(function () {
       genereVue([2, 1]);
@@ -87,8 +68,8 @@ describe('Le composant Puzzle', function () {
   describe("quand on a envoyé un ensemble de réponse complet", function () {
     beforeEach(function () {
       genereVue([2, 1]);
-      wrapper.vm.fragmentsClasses.push({ id: 1 });
-      wrapper.vm.fragmentsClasses.push({ id: 2 });
+      wrapper.vm.fragmentsClasses.push({ position: 1 });
+      wrapper.vm.fragmentsClasses.push({ position: 2 });
       wrapper.vm.envoiReponse();
     });
 
@@ -105,8 +86,8 @@ describe('Le composant Puzzle', function () {
   describe("envoie la réponse au serveur", function() {
     it('envoie le score, le sucess et la réponse', function () {
       genereVue([1, 0, 2, 3, 4, 5, 6]);
-      for(const id of bonOrdre) {
-        wrapper.vm.fragmentsClasses.push({ id });
+      for(const position of bonOrdre) {
+        wrapper.vm.fragmentsClasses.push({ position });
       }
       wrapper.vm.envoiReponse();
       expect(wrapper.emitted('reponse').length).toEqual(1);
