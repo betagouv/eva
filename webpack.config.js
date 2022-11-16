@@ -56,7 +56,6 @@ module.exports = {
     extensions: ['.js', '.vue'],
     fallback: { path: require.resolve('path-browserify') },
     alias: {
-      vue: '@vue/compat',
       accueil: path.resolve(__dirname, 'src/situations/accueil/'),
       commun: path.resolve(__dirname, 'src/situations/commun/'),
       src: path.resolve(__dirname, 'src/'),
@@ -109,14 +108,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          compilerOptions: {
-            compatConfig: {
-              MODE: 2
-            }
-          }
-        }
+        loader: 'vue-loader'
       }
     ]
   },

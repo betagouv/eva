@@ -22,7 +22,6 @@ import EvenementReponse from 'questions/modeles/evenement_reponse';
 import Defi from 'commun/vues/defi';
 import TransitionFade from 'commun/vues/transition_fade';
 import Pagination from 'commun/vues/components/pagination';
-import configureDraggable from 'commun/composants/draggable';
 
 export default {
   components: { Defi, TransitionFade, Pagination },
@@ -56,10 +55,6 @@ export default {
       }
       this.$store.commit('carteSuivante');
     }
-  },
-
-  mounted() {
-    configureDraggable();
   }
 };
 </script>
