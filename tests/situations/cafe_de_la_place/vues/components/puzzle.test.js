@@ -6,11 +6,11 @@ describe('Le composant Puzzle', function () {
   const bonOrdre = [0, 1, 2, 3, 4, 5, 6];
 
   beforeAll(() => {
-    config.renderStubDefaultSlot = true;
+    config.global.renderStubDefaultSlot = true;
   });
 
   afterAll(() => {
-    config.renderStubDefaultSlot = false;
+    config.global.renderStubDefaultSlot = false;
   });
 
   function genereVue(fragmentsNonClasses) {
