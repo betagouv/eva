@@ -6,13 +6,13 @@ import MockAudioNode from '../aides/mock_audio_node';
 
 describe("L'adaptateur de la vue Consigne", function () {
   let situation;
-  let vue;
+  let depotRessources;
 
   beforeEach(function () {
     $('body').append('<div id="pointInsertion"></div>');
     situation = new Situation();
     situation.identifiant = 'accueil';
-    const depotRessources = new class {
+    depotRessources = new class {
       casque () {
         return { src: 'chemin casque' };
       }
@@ -45,11 +45,11 @@ describe("L'adaptateur de la vue Consigne", function () {
         return new MockAudioNode();
       }
     }();
-    vue = new AdaptateurConsigne(situation, depotRessources);
   });
 
   it("affiche l'introduction si l'état de la situation est ATTENTE_DEMARRAGE", function () {
     situation.modifieEtat(ATTENTE_DEMARRAGE);
+    const vue = new AdaptateurConsigne(situation, depotRessources);
     vue.affiche('#pointInsertion', $);
     expect($('#pointInsertion .overlay').length).toEqual(1);
     expect($('#pointInsertion .bouton-arrondi').text()).toEqual('accueil.intro_consigne.bouton');
@@ -57,12 +57,14 @@ describe("L'adaptateur de la vue Consigne", function () {
 
   it("affiche directement la consigne si l'état de la situation est ENTRAINEMENT_FINI", function () {
     situation.modifieEtat(ENTRAINEMENT_FINI);
+    const vue = new AdaptateurConsigne(situation, depotRessources);
     vue.affiche('#pointInsertion', $);
     expect($('#pointInsertion .overlay').length).toEqual(1);
     expect($('#pointInsertion .bouton-arrondi').text()).toEqual('accueil.intro_contexte.bouton');
   });
 
   it("calcul l'état suivant", function () {
+    const vue = new AdaptateurConsigne(situation, depotRessources);
     vue.affiche('#pointInsertion', $);
     situation.etat = () => ATTENTE_DEMARRAGE;
     situation.entrainementDisponible = () => true;
