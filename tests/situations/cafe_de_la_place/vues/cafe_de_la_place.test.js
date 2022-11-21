@@ -14,11 +14,11 @@ describe('La vue café de la place', function () {
 
 
   beforeAll(() => {
-    config.renderStubDefaultSlot = true;
+    config.global.renderStubDefaultSlot = true;
   });
 
   afterAll(() => {
-    config.renderStubDefaultSlot = false;
+    config.global.renderStubDefaultSlot = false;
   });
 
   beforeEach(function () {
