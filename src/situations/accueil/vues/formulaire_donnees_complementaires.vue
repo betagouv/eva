@@ -104,7 +104,6 @@ export default {
     },
 
     envoieFormulaire () {
-      this.erreurs = {};
       return this.$store.dispatch('enregistreDonneesComplementaires', {
         donnee_sociodemographique_attributes: {
           age: this.age,
@@ -112,10 +111,7 @@ export default {
           dernier_niveau_etude: this.nom_technique(this.dernier_niveau_etude),
           derniere_situation: this.nom_technique(this.derniere_situation)
         }
-      })
-        .catch((xhr) => {
-          this.erreurs = xhr.responseJSON;
-        });
+      });
     }
   }
 };

@@ -14,8 +14,7 @@ describe("Le formulaire des données complementaires", function () {
         nom: 'un nom'
       }
     });
-    storeDispatch = jest.spyOn(store, 'dispatch')
-      .mockImplementation(() => { return Promise.resolve(); });
+    storeDispatch = jest.spyOn(store, 'dispatch');
     wrapper = mount(Formulaire, {
       global: {
         plugins: [store],
@@ -87,36 +86,49 @@ describe("Le formulaire des données complementaires", function () {
     expect(wrapper.vm.genre).toEqual({ label: "Homme", nom_technique: "homme" });
   });
 
-  it("peut valider un formulaire vide", () => {
-    wrapper.vm.envoieFormulaire();
+  describe("quand l'enregistrement des données se déroule bien", function() {
+    beforeEach(function() {
+      storeDispatch.mockImplementation(() => { return Promise.resolve(); });
+    });
 
-    expect(storeDispatch).toHaveBeenNthCalledWith(1, 'enregistreDonneesComplementaires', {
-      "donnee_sociodemographique_attributes": {
-        age: null,
-        genre: null,
-        dernier_niveau_etude: null,
-        derniere_situation: null
-      }
+    it("peut valider un formulaire vide", () => {
+      wrapper.vm.envoieFormulaire();
+
+      expect(storeDispatch).toHaveBeenNthCalledWith(1, 'enregistreDonneesComplementaires', {
+        "donnee_sociodemographique_attributes": {
+          age: null,
+          genre: null,
+          dernier_niveau_etude: null,
+          derniere_situation: null
+        }
+      });
+    });
+
+    it("enregistre les données saisies", async () => {
+      wrapper.find('.champ-age').setValue(30);
+
+      await selectionPremiereValeur('dernier_niveau_etude');
+      await selectionPremiereValeur('genre');
+      await selectionPremiereValeur('derniere_situation');
+
+      wrapper.vm.envoieFormulaire();
+      await wrapper.vm.$nextTick();
+
+      expect(storeDispatch).toHaveBeenNthCalledWith(1, 'enregistreDonneesComplementaires', {
+        "donnee_sociodemographique_attributes": {
+          age: "30",
+          genre: 'homme',
+          dernier_niveau_etude: 'college',
+          derniere_situation: 'scolarisation'
+        }
+      });
     });
   });
 
-  it("enregistre les données saisies", async () => {
-    wrapper.find('.champ-age').setValue(30);
-
-    await selectionPremiereValeur('dernier_niveau_etude');
-    await selectionPremiereValeur('genre');
-    await selectionPremiereValeur('derniere_situation');
-
-    wrapper.vm.envoieFormulaire();
-    await wrapper.vm.$nextTick();
-
-    expect(storeDispatch).toHaveBeenNthCalledWith(1, 'enregistreDonneesComplementaires', {
-      "donnee_sociodemographique_attributes": {
-        age: "30",
-        genre: 'homme',
-        dernier_niveau_etude: 'college',
-        derniere_situation: 'scolarisation'
-      }
+  describe("quand l'enregistrement des données échoue", function() {
+    it("ne catch pas l'erreur", function() {
+      storeDispatch.mockImplementation(() => { return Promise.reject({ error: 'erreur' }); });
+      return expect(wrapper.vm.envoieFormulaire()).rejects.toEqual({ error: 'erreur' });
     });
   });
 });
