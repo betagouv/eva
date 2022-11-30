@@ -7,9 +7,9 @@ import DepotRessourcesInventaire from 'inventaire/infra/depot_ressources_inventa
 import Situation from 'inventaire/modeles/situation';
 import VueSituation from 'inventaire/vues/situation';
 
-import { contenants, contenus } from 'inventaire/data/stock';
+import { contenants, contenus, version } from 'inventaire/data/stock';
 
-const situation = new Situation({ contenants, contenus });
+const situation = new Situation({ contenants, contenus }, version);
 
 const depotRessources = new DepotRessourcesInventaire();
 afficheSituation('inventaire', situation, VueSituation, depotRessources);
