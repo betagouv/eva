@@ -108,7 +108,9 @@ export default class VueCadre {
         this.journal.enregistreSituationFaite();
         break;
       case DEMARRE:
-        this.journal.enregistre(new EvenementDemarrage());
+        this.journal.enregistre(new EvenementDemarrage({
+          version: this.situation.version
+        }));
         this.journal.enregistreSituationFaite();
         break;
       }

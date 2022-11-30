@@ -1,3 +1,5 @@
+const version = '2';
+
 const scene = {
   hauteur: 1536,
   largeur: 2736,
@@ -57,4 +59,4 @@ const formes = {
   petitCarton: { largeur: 170, hauteur: 90, profondeur: 75, courbe: 0, dimensionsOuvert: { largeur: 587, hauteur: 391 } }
 };
 
-export { scene, contenants, contenus, formes };
+export { scene, contenants, contenus, version, formes };

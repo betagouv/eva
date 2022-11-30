@@ -146,8 +146,20 @@ describe('Une vue du cadre', function () {
   it("enregistre l'événement de démarrage", function (done) {
     journal.enregistre = (evenement) => {
       expect(evenement).toBeInstanceOf(EvenementDemarrage);
+      expect(evenement.donnees()).toEqual({});
       done();
     };
+    const vueCadre = uneVueCadre();
+    vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
+  });
+
+  it("enregistre l'événement de démarrage avec une version s'il y en a une", function (done) {
+    journal.enregistre = (evenement) => {
+      expect(evenement).toBeInstanceOf(EvenementDemarrage);
+      expect(evenement.donnees()).toEqual({ version: 'une version'});
+      done();
+    };
+    situation.version = 'une version';
     const vueCadre = uneVueCadre();
     vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
