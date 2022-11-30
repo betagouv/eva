@@ -14,41 +14,27 @@ const couleurs = {
 };
 
 const contenants = [
-
   { id: '0', idContenu: '0', type: 'ContenantVrac', forme: 'grandBaril', quantite: 25, posX: 105, posY: 365, imageOuvert: require('inventaire/assets/vrac-sky-25.png'), couleur: couleurs.bleu },
-  { id: '1', idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 3, posX: 353, posY: 377, imageOuvert: require('inventaire/assets/caisse-1.png'), couleur: couleurs.noir },
   { id: '2', idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 8, posX: 353, posY: 293, imageOuvert: require('inventaire/assets/caisse-2.png'), couleur: couleurs.noir },
   { id: '3', idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, posX: 615, posY: 387, imageOuvert: require('inventaire/assets/gros-carton-1.png'), couleur: couleurs.marron },
   { id: '4', idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, posX: 911, posY: 383, imageOuvert: require('inventaire/assets/petit-carton-1.png'), couleur: couleurs.marron },
-  { id: '5', idContenu: '4', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, posX: 1096, posY: 386, imageOuvert: require('inventaire/assets/gros-carton-1.png'), couleur: couleurs.marron },
 
   { id: '6', idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 6, posX: 107, posY: 680, imageOuvert: require('inventaire/assets/caisse-3.png'), couleur: couleurs.noir },
   { id: '7', idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 3, posX: 346, posY: 690, imageOuvert: require('inventaire/assets/caisse-5.png'), couleur: couleurs.rouge },
-  { id: '8', idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 7, posX: 381, posY: 600, imageOuvert: require('inventaire/assets/caisse-4.png'), couleur: couleurs.bleu },
   { id: '9', idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 1, posX: 701, posY: 686, imageOuvert: require('inventaire/assets/caisse-6.png'), couleur: couleurs.noir },
   { id: '10', idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 5, posX: 701, posY: 605, imageOuvert: require('inventaire/assets/caisse-7.png'), couleur: couleurs.noir },
-  { id: '11', idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 5, posX: 1094, posY: 686, imageOuvert: require('inventaire/assets/caisse-8.png'), couleur: couleurs.bleu },
 
   { id: '12', idContenu: '1', type: 'ContenantVrac', forme: 'grandBaril', quantite: 33, posX: 4, posY: 1075, imageOuvert: require('inventaire/assets/vrac-terra-33.png'), couleur: couleurs.vert },
   { id: '13', idContenu: '7', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 3, posX: 201, posY: 1100, imageOuvert: require('inventaire/assets/gros-carton-3.png'), couleur: couleurs.marron },
   { id: '14', idContenu: '5', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 4, posX: 201, posY: 940, imageOuvert: require('inventaire/assets/gros-carton-4.png'), couleur: couleurs.marron },
-  { id: '15', idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, posX: 401, posY: 1110, imageOuvert: require('inventaire/assets/caisse-9.png'), couleur: couleurs.noir },
   { id: '16', idContenu: '5', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 2, posX: 616, posY: 1100, imageOuvert: require('inventaire/assets/gros-carton-2.png'), couleur: couleurs.marron },
   { id: '17', idContenu: '7', type: 'ContenantUnitaire', forme: 'grandCarton', quantite: 2, posX: 901, posY: 1100, imageOuvert: require('inventaire/assets/gros-carton-5.png'), couleur: couleurs.marron },
-  { id: '18', idContenu: '3', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, posX: 1176, posY: 1095, imageOuvert: require('inventaire/assets/caisse-12.png'), couleur: couleurs.vert },
   { id: '19', idContenu: '2', type: 'ContenantUnitaire', forme: 'caisse', quantite: 1, posX: 1176, posY: 1010, imageOuvert: require('inventaire/assets/caisse-11.png'), couleur: couleurs.jaune },
-  { id: '20', idContenu: '6', type: 'ContenantUnitaire', forme: 'caisse', quantite: 4, posX: 1176, posY: 930, imageOuvert: require('inventaire/assets/caisse-10.png'), couleur: couleurs.bleu },
 
-  { id: '20', idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 2, posX: -19, posY: 1420, imageOuvert: require('inventaire/assets/petit-carton-2.png'), couleur: couleurs.marron },
   { id: '21', idContenu: '4', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 1, posX: 171, posY: 1420, imageOuvert: require('inventaire/assets/petit-carton-3.png'), couleur: couleurs.marron },
   { id: '22', idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 4, posX: 351, posY: 1420, imageOuvert: require('inventaire/assets/petit-carton-4.png'), couleur: couleurs.marron },
-  { id: '23', idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 3, posX: 541, posY: 1420, imageOuvert: require('inventaire/assets/petit-carton-5.png'), couleur: couleurs.marron },
-  { id: '24', idContenu: '7', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 0, posX: 531, posY: 1330, imageOuvert: require('inventaire/assets/petit-carton-vide.png'), couleur: couleurs.marron },
-  { id: '25', idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 8, posX: 711, posY: 1420, imageOuvert: require('inventaire/assets/vrac-sky-8.png'), couleur: couleurs.bleu },
   { id: '26', idContenu: '0', type: 'ContenantVrac', forme: 'petitBaril', quantite: 13, posX: 821, posY: 1380, imageOuvert: require('inventaire/assets/vrac-sky-13.png'), couleur: couleurs.bleu },
-  { id: '27', idContenu: '5', type: 'ContenantUnitaire', forme: 'petitCarton', quantite: 2, posX: 896, posY: 1405, imageOuvert: require('inventaire/assets/petit-carton-6.png'), couleur: couleurs.marron },
   { id: '28', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 7, posX: 1096, posY: 1395, imageOuvert: require('inventaire/assets/vrac-terra-7.png'), couleur: couleurs.vert },
-  { id: '29', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 3, posX: 1191, posY: 1417, imageOuvert: require('inventaire/assets/vrac-terra-3.png'), couleur: couleurs.vert },
   { id: '30', idContenu: '1', type: 'ContenantVrac', forme: 'petitBaril', quantite: 4, posX: 1329, posY: 1365, imageOuvert: require('inventaire/assets/vrac-terra-4.png'), couleur: couleurs.vert }
 ];
 
