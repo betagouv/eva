@@ -80,11 +80,24 @@ describe("Le store de l'accueil", function () {
     expect(store.state.nom).toEqual('');
   });
 
-  it('mets à jour les informations de contact', function () {
-    const store = creeStore(registreUtilisateur);
-    registreUtilisateur.idEvaluation = () => { return 1; };
-    return store.dispatch('enregistreDonneesComplementaires', 'mail@entreprise.fr', '0987654321').then(() => {
-      expect(store.state.etat).toEqual(DEMARRE);
+  describe('Action : enregistreDonneesComplementaires', function () {
+    let data = { age: '35', genre: 'Femme' };
+
+    it('démarre après avoir enregistré les données', function () {
+      const store = creeStore(registreUtilisateur);
+      registreUtilisateur.idEvaluation = () => { return 1; };
+      return store.dispatch('enregistreDonneesComplementaires', data).then(() => {
+        expect(store.state.etat).toEqual(DEMARRE);
+      });
+    });
+
+    it("déconnecte si l'id évaluation n'est pas connu", function () {
+      const store = creeStore(registreUtilisateur);
+      store.commit('connecte', 'test');
+      registreUtilisateur.idEvaluation = () => { return undefined; };
+      return store.dispatch('enregistreDonneesComplementaires', data).then(() => {
+        expect(store.state.estConnecte).toEqual(false);
+      });
     });
   });
 
