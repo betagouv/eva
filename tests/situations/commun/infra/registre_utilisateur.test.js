@@ -306,7 +306,7 @@ describe('le registre utilisateur', function () {
   describe('#enregistreDonneesComplementaires()', function () {
     describe('quand on est en ligne', function () {
       it("met à jour les informations de l'évaluation", function () {
-        const data = {age: '35', genre: 'Femme'};
+        const data = { age: '35', genre: 'Femme' };
         const registre = unRegistre({ id: 1, nom: 'test', age: data.age, genre: data.genre });
         return registre.enregistreDonneesComplementaires(1, data).then((utilisateur) => {
           expect(utilisateur.age).toEqual(data.age);
