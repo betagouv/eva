@@ -15,6 +15,7 @@ describe("Le formulaire des données complementaires", function () {
       }
     });
     storeDispatch = jest.spyOn(store, 'dispatch');
+    storeDispatch.mockImplementation(() => { return Promise.resolve(); });
     wrapper = mount(Formulaire, {
       global: {
         plugins: [store],
@@ -86,11 +87,20 @@ describe("Le formulaire des données complementaires", function () {
     expect(wrapper.vm.genre).toEqual({ label: "Homme", nom_technique: "homme" });
   });
 
-  describe("quand l'enregistrement des données se déroule bien", function() {
-    beforeEach(function() {
-      storeDispatch.mockImplementation(() => { return Promise.resolve(); });
-    });
+  it("est désactivé lorsque l'inscription est en cours", async function () {
+    await selectionPremiereValeur('genre');
 
+    wrapper.vm.envoieFormulaire();
+    expect(wrapper.vm.enCours).toBe(true);
+  });
+
+  it("réinitialise l'état en cours lorsque l'inscription est terminé", function () {
+    return wrapper.vm.envoieFormulaire().then(() => {
+      expect(wrapper.vm.enCours).toBe(false);
+    });
+  });
+
+  describe("quand l'enregistrement des données se déroule bien", function() {
     it("peut valider un formulaire vide", () => {
       wrapper.vm.envoieFormulaire();
 
@@ -126,8 +136,11 @@ describe("Le formulaire des données complementaires", function () {
   });
 
   describe("quand l'enregistrement des données échoue", function() {
-    it("ne catch pas l'erreur", function() {
+    beforeEach(function () {
       storeDispatch.mockImplementation(() => { return Promise.reject({ error: 'erreur' }); });
+    });
+
+    it("ne catch pas l'erreur", function() {
       return expect(wrapper.vm.envoieFormulaire()).rejects.toEqual({ error: 'erreur' });
     });
   });
