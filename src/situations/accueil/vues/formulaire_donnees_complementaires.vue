@@ -41,7 +41,9 @@
         />
       </div>
       <div class="element-formulaire">
-        <button class="bouton-arrondi bouton-sociodemographique">
+        <button
+          :disabled="enCours"
+          class="bouton-arrondi bouton-sociodemographique">
           {{ $traduction('accueil.donnee_sociodemographique.bouton') }}
         </button>
       </div>
@@ -104,6 +106,8 @@ export default {
     },
 
     envoieFormulaire () {
+      this.enCours = true;
+
       return this.$store.dispatch('enregistreDonneesComplementaires', {
         donnee_sociodemographique_attributes: {
           age: this.age,
@@ -111,6 +115,8 @@ export default {
           dernier_niveau_etude: this.nom_technique(this.dernier_niveau_etude),
           derniere_situation: this.nom_technique(this.derniere_situation)
         }
+      }).finally(() => {
+        this.enCours = false;
       });
     }
   }

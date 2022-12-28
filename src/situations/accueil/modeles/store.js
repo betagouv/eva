@@ -127,6 +127,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
             commit('demarre');
           });
       },
+
       deconnecte () {
         return registreUtilisateur.deconnecte();
       },
