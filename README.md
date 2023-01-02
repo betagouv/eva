@@ -112,11 +112,11 @@ Certaines dépendences sont définies globalement dans webpack (ex. jQuery, moch
 
 ```
 "semistandard": {
-     "globals": [
-       "jQuery",
-       // etc.
-     ]
-   }
+  "globals": [
+    "jQuery",
+    // etc.
+  ]
+}
 ```
 
 Il est également possible de demander au linter d'accepter les dépendances définies globalement en les déclarant en commentaire au début du fichier source :
