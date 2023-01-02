@@ -8,6 +8,7 @@
     "build-dev": "webpack --watch --progress --mode development",
     "dev": "npm run start & npm run build-dev",
     "test": "jest",
+    "test:watch": "jest --watch --unhandled-rejections=strict",
     "lint": "eslint --cache --ext .js,.vue src tests",
     "start": "node server.js"
   },
