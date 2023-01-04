@@ -18,18 +18,20 @@ Anciens dépôts que nous n'utilisons plus aujourd'hui :
 
 ## Configuration de l'environnement
 
-### Installer node version 16
+### Dépendences
 
-Sur mac, si vous avez déjà une autre version de node installée,
+* node.js (dont la version est spécifié dans le fichier `.tool-version`)
 
-```
-$> brew install node@16
-$> export CPPFLAGS="-I/usr/local/opt/node@16/include"
-$> export LDFLAGS="-L/usr/local/opt/node@16/lib"
-$> export PATH="/usr/local/opt/node@16/bin:$PATH"
-```
+pour le développement :
+* OptiPNG version 0.7.7 ou supérieur
 
-Ajouter ces 3 variables dans votre fichier .env (voir ci dessous)
+Cette utilitaire doit être installé au niveau système.
+
+### Installer node
+
+Nous recommandons l'utilisation d'`asdf` pour installer node.
+* https://asdf-vm.com/
+* https://github.com/asdf-vm/asdf-nodejs
 
 ### Assigner les variables d'environnement
 
