@@ -149,10 +149,6 @@ describe('le registre campagne', function () {
 
       beforeEach(function () {
         const campagne = {
-          questions: [
-            { id: 'question-campagne-1' },
-            { id: 'question-campagne-2' }
-          ],
           situations: [
             {
               id: 'situations-1',
@@ -164,10 +160,6 @@ describe('le registre campagne', function () {
               questions_entrainement: [
                 { id: 'question-entrainement-1' }
               ]
-            },
-            {
-              id: 'situations-1',
-              nom_technique: 'bureau'
             }
           ]
         };
@@ -185,12 +177,6 @@ describe('le registre campagne', function () {
         expect(registre.questionsEntrainement('livraison').length).toEqual(1);
         expect(registre.questionsEntrainement('livraison')[0].id)
           .toEqual('question-entrainement-1');
-      });
-
-      it('retoure les questions de la campagne si aucune sur la situation', function () {
-        expect(registre.questions('bureau').length).toEqual(2);
-        expect(registre.questions('bureau')[0].id).toEqual('question-campagne-1');
-        expect(registre.questions('bureau')[1].id).toEqual('question-campagne-2');
       });
     });
   });

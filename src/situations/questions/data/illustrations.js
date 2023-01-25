@@ -10,7 +10,6 @@ import CetC8 from '../assets/illustration_questions/CetC8.jpg';
 import CetC9 from '../assets/illustration_questions/CetC9.jpg';
 import entrainementLivraison1 from '../assets/illustration_questions/entrainement_livraison_1.jpg';
 import entrainementLivraison2 from '../assets/illustration_questions/entrainement_livraison_2.jpg';
-import multiplication from '../assets/illustration_questions/multiplication.jpg';
 import multiplicationNiveau2 from '../assets/illustration_questions/multiplication_niveau2.jpg';
 import numeratieDivision from '../assets/illustration_questions/numeratie_division.jpg';
 import numeratieMultiplication from '../assets/illustration_questions/numeratie_multiplication.jpg';
@@ -51,7 +50,6 @@ const illustrationsQuestions = {
   connaissance_et_comprehension_7: CetC7,
   connaissance_et_comprehension_8: CetC8,
   connaissance_et_comprehension_9: CetC9,
-  multiplication: multiplication,
   multiplication_niveau2: multiplicationNiveau2,
   numeratie_division: numeratieDivision,
   numeratie_multiplication: numeratieMultiplication,
