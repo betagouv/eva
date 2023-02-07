@@ -87,11 +87,14 @@ describe('glisser déposer', function () {
         expect(wrapper.vm.piece.estSelectionnee()).toBe(false);
       });
 
-      it("entoure d'un cercle bleu l'emplacement de l'église lorsque la maison est selectionnée", function () {
+      it("entoure d'un cercle bleu l'emplacement de l'église lorsque la maison est selectionnée", async function () {
         const cercleBleu = wrapper.find('.cercle-bleu');
         expect(cercleBleu.classes('cercle-bleu--cache')).toBe(true);
         expect(cercleBleu.classes('cercle-bleu--visible')).toBe(false);
         wrapper.find('.eglise-maison--a-placer').trigger('mousedown', { clientX: 95, clientY: 55 });
+
+        await wrapper.vm.$nextTick();
+
         expect(wrapper.vm.piece.estSelectionnee()).toBe(true);
         expect(cercleBleu.classes('cercle-bleu--cache')).toBe(false);
         expect(cercleBleu.classes('cercle-bleu--visible')).toBe(true);
