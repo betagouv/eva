@@ -20,7 +20,8 @@ export default class VueContenu {
 
   ferme (contenant) {
     this.calque.addEventListener('click', () => {
-      this.element.classList.replace('ouvrir', 'fermer');
+      this.element.classList.remove('ouvrir');
+      this.element.classList.add('fermer');
       this.journal.enregistre(new EvenementFermetureContenant({ contenant: contenant.id }));
       setTimeout(() => {
         this.element.remove();
@@ -49,7 +50,8 @@ export default class VueContenu {
     this.pointInsertion.appendChild(this.calque);
 
     setTimeout(() => {
-      this.element.classList.replace('fermer', 'ouvrir');
+      this.element.classList.remove('fermer');
+      this.element.classList.add('ouvrir');
     }, 50);
     this.ferme(contenant);
   }

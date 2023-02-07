@@ -6,7 +6,11 @@
     <img
         :src="emplacementEglise"
         class="emplacement-eglise">
-    <svg ref="cercleBleu" class="cercle-bleu cercle-bleu--cache" width="222" height="222" viewBox="0 0 222 222" fill="none">
+    <svg
+      class="cercle-bleu"
+      :class="{ 'cercle-bleu--cache': !piece.selectionnee,
+                'cercle-bleu--visible': piece.selectionnee }"
+      width="222" height="222" viewBox="0 0 222 222" fill="none">
       <circle cx="111" cy="111" r="109.5" fill-opacity="0.8" stroke-width="3"/>
     </svg>
     <img
@@ -72,7 +76,6 @@ export default {
     },
 
     debuteSelection (event) {
-      this.$refs.cercleBleu.classList.replace('cercle-bleu--cache', 'cercle-bleu--visible');
       this.deplaceur.debuteSelection(this.piece, event);
     },
 
@@ -85,7 +88,6 @@ export default {
     },
 
     termineSelection () {
-      this.$refs.cercleBleu.classList.replace('cercle-bleu--visible', 'cercle-bleu--cache');
       this.deplaceur.termineSelection();
       this.reinitialisePositionPiece();
     },
