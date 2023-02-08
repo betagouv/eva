@@ -48,7 +48,7 @@
     },
     "intro_contexte": {
       "bouton": "Commencer",
-      "message": "<p>Bonjour et bienvenue,</p><p>Nous allons identifier ensemble vos compétences au travers de mini-jeux.</p><p>Tout au long du parcours, vous prendrez le rôle d’un employé d’un parc d’attraction et vous aurez plusieurs missions à réaliser. Si ces jeux reproduisent des activités particulières, les compétences mesurées s'appliquent à tous les métiers et tous les secteurs d'activité.</p><p>Lorsque vous aurez terminé, vous pourrez découvrir vos compétences fortes et les métiers associés qui vous serviront pour échanger avec votre accompagnant sur votre parcours professionnel.</p>"
+      "message": "<p>Bonjour et bienvenue sur eva,</p><p>Nous allons identifier ensemble vos compétences au travers de mini-jeux et d’activités.</p><p>Tout au long du parcours, vous aurez plusieurs missions à réaliser.</p><p>Eva propose des activités qui se déroulent dans un cadre particulier. Parfois, vous prendrez le rôle d’une personne qui travaille dans un parc d’attraction, parfois vous devrez vous imaginer dans une situation quotidienne. Cependant, les compétences qu’eva mesure sont utilisables dans tous les métiers et tous les secteurs d’activité.</p><p>Lorsque vous aurez terminé, vous pourrez discuter de vos compétences fortes et de celles à renforcer avec la personne qui vous accompagne.</p><p>Bon parcours !</p>"
     },
     "fin": {
       "bravo": {
