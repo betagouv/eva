@@ -18,6 +18,11 @@ import difficultesOrdinateur from 'bienvenue/assets/audio_questions/difficultes_
 import difficultesTablette from 'bienvenue/assets/audio_questions/difficultes_tablette.mp3';
 import suiviDys from 'bienvenue/assets/audio_questions/suivi_dys.mp3';
 import alleEcole from 'bienvenue/assets/audio_questions/alle_ecole.mp3';
+import genre from 'bienvenue/assets/audio_questions/genre.mp3';
+import langue_maternelle from 'bienvenue/assets/audio_questions/francais_langue_maternelle.mp3';
+import lieu_scolarite from 'bienvenue/assets/audio_questions/lieu_scolarite.mp3';
+import niveau_etude from 'bienvenue/assets/audio_questions/niveau_etude.mp3';
+import derniere_situation from 'bienvenue/assets/audio_questions/derniere_situation.mp3';
 
 // REPONSES
 import lunettes from 'bienvenue/assets/audio_reponses/lunette.mp3';
@@ -50,7 +55,30 @@ import toutAFaitDaccord from 'bienvenue/assets/audio_reponses/tout_a_fait_d_acco
 import tresALAise from 'bienvenue/assets/audio_reponses/tres_a_l_aise.mp3';
 import tresFacile from 'bienvenue/assets/audio_reponses/tres_facile.mp3';
 
+import homme from 'bienvenue/assets/audio_reponses/un_homme.mp3';
+import femme from 'bienvenue/assets/audio_reponses/une_femme.mp3';
+import autre from 'bienvenue/assets/audio_reponses/autre.mp3';
+import france from 'bienvenue/assets/audio_reponses/Oui_en_france.mp3';
+import etranger from 'bienvenue/assets/audio_reponses/oui_dans_un_autre_pays.mp3';
+import pas_etudie from 'bienvenue/assets/audio_reponses/je_ne_suis_pas_alle_a_l_ecole.mp3';
+import college from 'bienvenue/assets/audio_reponses/niveau_college.mp3';
+import cfg_dnb from 'bienvenue/assets/audio_reponses/niveau_certificat_de_formation_generale_ou_diplome_national_du_brevet.mp3';
+import cap_bep from 'bienvenue/assets/audio_reponses/Niveau_CAP_BEP.mp3';
+import bac from 'bienvenue/assets/audio_reponses/niveau_bac.mp3';
+import bac_plus2 from 'bienvenue/assets/audio_reponses/Niveau_bac_plus2.mp3';
+import superieur_bac_plus2 from 'bienvenue/assets/audio_reponses/Niveau_superieu_a_bac_plus2.mp3';
+import scolarisation from 'bienvenue/assets/audio_reponses/scolarisation.mp3';
+import formation_professionnelle from 'bienvenue/assets/audio_reponses/Formation_professionnelle.mp3';
+import alternance from 'bienvenue/assets/audio_reponses/Alternance.mp3';
+import en_emploi from 'bienvenue/assets/audio_reponses/en_emploi.mp3';
+import sans_emploi from 'bienvenue/assets/audio_reponses/sans_emploi.mp3';
+
 const AUDIOS_QUESTIONS = {
+  genre: genre,
+  langue_maternelle: langue_maternelle,
+  lieu_scolarite: lieu_scolarite,
+  niveau_etude: niveau_etude,
+  derniere_situtation: derniere_situation,
   bienvenue_1: concentrationQuestion,
   bienvenue_2: comprendreVite,
   bienvenue_3: confondreObjets,
@@ -70,6 +98,26 @@ const AUDIOS_QUESTIONS = {
 };
 
 const AUDIOS_REPONSES = {
+  homme: homme,
+  femme: femme,
+  autre: autre,
+  oui: oui,
+  non: non,
+  france: france,
+  etranger: etranger,
+  non_scolarise: non,
+  pas_etudie: pas_etudie,
+  college: college,
+  cfg_dnb: cfg_dnb,
+  cap_bep: cap_bep,
+  bac: bac,
+  bac_plus2: bac_plus2,
+  superieur_bac_plus2: superieur_bac_plus2,
+  scolarisation: scolarisation,
+  en_emploi: en_emploi,
+  formation_professionnelle: formation_professionnelle,
+  alternance: alternance,
+  sans_emploi: sans_emploi,
   bienvenue_8_reponse_1: lunettes,
   bienvenue_8_reponse_2: nonCorrige,
   bienvenue_8_reponse_3: lunettesInefficaces,
