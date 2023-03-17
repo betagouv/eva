@@ -26,7 +26,6 @@
             :is="composantContenu"
             :question="question"
             @reponse="valeur => reponse = valeur"
-            ref="composantContenu"
           />
         </div>
       </div>
@@ -110,16 +109,23 @@ export default {
     ...mapGetters(['acteEnCours']),
 
     composantContenu () {
-      if (this.question.type === 'redaction_note') return RedactionNote;
-      if (this.question.type === 'action' || this.question.type === 'sous-consigne') return undefined;
-      if (this.question.type === 'qcm') {
+      switch(this.question.type) {
+      case 'action':
+      case 'sous-consigne':
+        return undefined;
+      case 'qcm':
         return this.question.type_qcm === 'jauge' ? Jauge : Qcm;
+      case 'saisie':
+        return this.question.sous_type == 'redaction' ? RedactionNote : 'champ-saisie';
+      default:
+        return this.question.type;
       }
-      return this.question.type;
     },
 
     contenuSansChoix () {
-      return !this.question.type || this.question.type === 'champ-saisie';
+      return !this.question.type || this.question.type === 'champ-saisie' ||
+        this.question.type === 'saisie';
+
     },
 
     reponsesPossibles () {

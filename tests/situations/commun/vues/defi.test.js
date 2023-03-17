@@ -56,16 +56,29 @@ describe("La vue d'un défi", function () {
     });
   });
 
-  describe('quand le défi est de type rédaction note', function () {
-    let vue;
-
+  describe('quand le défit est de type saisie', function () {
     beforeEach(function () {
-      question.type = 'redaction_note';
-      vue = composant(question);
+      question.type = 'saisie';
     });
 
-    it('affiche le composant rédaction note', function () {
-      expect(vue.findComponent(RedactionNote).exists()).toBe(true);
+    describe('rédaction', function () {
+      beforeEach(function () {
+        question.sous_type = 'redaction';
+      });
+
+      it('affiche le composant rédaction note', function () {
+        expect(composant(question).findComponent(RedactionNote).exists()).toBe(true);
+      });
+    });
+
+    describe('numerique', function () {
+      beforeEach(function () {
+        question.sous_type = 'numerique';
+      });
+
+      it('affiche le composant champ de saisie', function () {
+        expect(composant(question).findComponent(ChampSaisie).exists()).toBe(true);
+      });
     });
   });
 
@@ -118,6 +131,21 @@ describe("La vue d'un défi", function () {
       expect(vue.emitted().reponse.length).toEqual(1);
       expect(vue.emitted().reponse[0][0]).toEqual({ question: 154, metacompetence: 'lecture' });
       done();
+    });
+  });
+
+  describe('quand le defi est de type saisie', function () {
+    let vue;
+
+    beforeEach(function () {
+      question.type = 'saisie';
+      vue = composant(question);
+    });
+
+    describe('#disabled', function () {
+      it("désactive le bouton quand aucune réponse n'est donnée", function () {
+        expect(vue.find('.question-bouton').attributes('disabled')).toEqual('');
+      });
     });
   });
 

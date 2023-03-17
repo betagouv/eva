@@ -54,36 +54,51 @@ describe('Le composant champ de saisie', function () {
   });
 
   describe('#emetReponse', function() {
-    beforeEach(function() {
-      vue = composant({ question: { reponse: {
-        textes: ['boulangerie', 'boulangeries'],
-        scores: [1, 1.5]
-      } } });
-    });
+    describe('quand on attend pas de réponse particulière', function() {
+      beforeEach(function() {
+        vue = composant({ question: { } });
+      });
 
-    it("echoue si la réponse n'est pas dans la liste", function() {
-      vue.vm.emetReponse('boulangery');
-      expect(vue.emitted('reponse')[0][0]).toEqual({
-        reponse: 'boulangery',
-        succes: false
+      it("emet la réponse", function() {
+        vue.vm.emetReponse('texte saisi');
+        expect(vue.emitted('reponse')[0][0]).toEqual({
+          reponse: 'texte saisi'
+        });
       });
     });
 
-    it("accepte la première réponse", function() {
-      vue.vm.emetReponse('boulangerie');
-      expect(vue.emitted('reponse')[0][0]).toEqual({
-        reponse: 'boulangerie',
-        succes: true,
-        score: 1
+    describe('quand on attend une réponse particulière', function() {
+      beforeEach(function() {
+        vue = composant({ question: { reponse: {
+          textes: ['boulangerie', 'boulangeries'],
+          scores: [1, 1.5]
+        } } });
       });
-    });
 
-    it("accepte la seconde réponse", function() {
-      vue.vm.emetReponse('boulangeries');
-      expect(vue.emitted('reponse')[0][0]).toEqual({
-        reponse: 'boulangeries',
-        succes: true,
-        score: 1.5
+      it("retourne un echec si la réponse n'est pas dans la liste", function() {
+        vue.vm.emetReponse('boulangery');
+        expect(vue.emitted('reponse')[0][0]).toEqual({
+          reponse: 'boulangery',
+          succes: false
+        });
+      });
+
+      it("retourne un succès pour la première réponse", function() {
+        vue.vm.emetReponse('boulangerie');
+        expect(vue.emitted('reponse')[0][0]).toEqual({
+          reponse: 'boulangerie',
+          succes: true,
+          score: 1
+        });
+      });
+
+      it("retourne un succès pour la seconde réponse", function() {
+        vue.vm.emetReponse('boulangeries');
+        expect(vue.emitted('reponse')[0][0]).toEqual({
+          reponse: 'boulangeries',
+          succes: true,
+          score: 1.5
+        });
       });
     });
   });
