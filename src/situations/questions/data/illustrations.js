@@ -23,6 +23,7 @@ import SetO6 from '../assets/illustration_questions/SetO6.jpg';
 import SetO7 from '../assets/illustration_questions/SetO7.jpg';
 
 const illustrationsQuestions = {
+  quel_age: bienvenueBackground,
   genre: bienvenueBackground,
   langue_maternelle: bienvenueBackground,
   lieu_scolarite: bienvenueBackground,
