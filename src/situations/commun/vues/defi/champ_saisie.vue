@@ -11,10 +11,10 @@
         <span></span>
         <span></span>
         <span></span>
-    </div>
+      </div>
       <input
           v-on:input="emetReponse($event.target.value)"
-          ref="reponseCafeDeLaPlace"
+          ref="reponseChampSaisie"
           class="champ"
           :spellcheck="false"
           autocomplete="off"
@@ -27,6 +27,9 @@
           :placeholder="placeholder"
           type='text'
           />
+      <span v-if="question.suffix_reponse" class="suffix">
+        {{ question.suffix_reponse }}
+      </span>
     </div>
   </div>
 </template>
@@ -76,16 +79,20 @@ export default {
   methods: {
     emetReponse (valeur) {
       const reponse = valeur.trim();
-      const indexReponse = this.question.reponse.textes.indexOf(reponse.toLowerCase());
-      const succes = indexReponse != -1;
-      const score = this.question.reponse.scores && this.question.reponse.scores[indexReponse];
+      let succes;
+      let score;
+      if(this.question.reponse) {
+        const indexReponse = this.question.reponse.textes.indexOf(reponse.toLowerCase());
+        succes = indexReponse != -1;
+        score = this.question.reponse.scores && this.question.reponse.scores[indexReponse];
+      }
       this.$emit('reponse', { reponse, succes, score });
     },
   },
 
   mounted: function () {
     if (this.estFirefox) {
-      this.$refs.reponseCafeDeLaPlace.focus({ preventScroll: true });
+      this.$refs.reponseChampSaisie.focus({ preventScroll: true });
     }
   }
 };
