@@ -18,6 +18,7 @@ import difficultesOrdinateur from 'bienvenue/assets/audio_questions/difficultes_
 import difficultesTablette from 'bienvenue/assets/audio_questions/difficultes_tablette.mp3';
 import suiviDys from 'bienvenue/assets/audio_questions/suivi_dys.mp3';
 import alleEcole from 'bienvenue/assets/audio_questions/alle_ecole.mp3';
+import quel_age from 'bienvenue/assets/audio_questions/quel_age.mp3';
 import genre from 'bienvenue/assets/audio_questions/genre.mp3';
 import langue_maternelle from 'bienvenue/assets/audio_questions/francais_langue_maternelle.mp3';
 import lieu_scolarite from 'bienvenue/assets/audio_questions/lieu_scolarite.mp3';
@@ -74,6 +75,7 @@ import en_emploi from 'bienvenue/assets/audio_reponses/en_emploi.mp3';
 import sans_emploi from 'bienvenue/assets/audio_reponses/sans_emploi.mp3';
 
 const AUDIOS_QUESTIONS = {
+  quel_age: quel_age,
   genre: genre,
   langue_maternelle: langue_maternelle,
   lieu_scolarite: lieu_scolarite,
