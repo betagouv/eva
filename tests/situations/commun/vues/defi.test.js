@@ -153,7 +153,7 @@ describe("La vue d'un défi", function () {
     let vue;
 
     beforeEach(function () {
-      question.type = 'champ-saisie';
+      question.type = 'saisie';
       question.choix = undefined;
       question.reponse = { texte: '1800' };
       vue = composant(question);

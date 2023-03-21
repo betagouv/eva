@@ -116,16 +116,14 @@ export default {
       case 'qcm':
         return this.question.type_qcm === 'jauge' ? Jauge : Qcm;
       case 'saisie':
-        return this.question.sous_type == 'redaction' ? RedactionNote : 'champ-saisie';
+        return this.question.sous_type == 'redaction' ? RedactionNote : ChampSaisie;
       default:
         return this.question.type;
       }
     },
 
     contenuSansChoix () {
-      return !this.question.type || this.question.type === 'champ-saisie' ||
-        this.question.type === 'saisie';
-
+      return !this.question.type || this.question.type === 'saisie';
     },
 
     reponsesPossibles () {

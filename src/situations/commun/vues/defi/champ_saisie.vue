@@ -1,6 +1,6 @@
 <template>
-  <div class="defi-champ-saisie"
-       :class="{'defi-champ-saisie--decale': afficheLectureQuestion }">
+  <div class="champ-saisie"
+       :class="{'champ-saisie--decale': afficheLectureQuestion }">
     <div class="champ-saisie-conteneur"
          :class="{ 'chiffres-espaces' : question.espacerChiffres }">
       <div
