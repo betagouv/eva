@@ -338,7 +338,7 @@ const sousConsigneHPfb2 = {
 const HPfb1 = {
   id: 'HPfb1',
   nom_technique: 'hpfb_1',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -354,7 +354,7 @@ const HPfb1 = {
 const HPfb2 = {
   id: 'HPfb2',
   nom_technique: 'hpfb_2',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -369,7 +369,7 @@ const HPfb2 = {
 const HPfb3 = {
   id: 'HPfb3',
   nom_technique: 'hpfb_3',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -384,7 +384,7 @@ const HPfb3 = {
 const HPfb4 = {
   id: 'HPfb4',
   nom_technique: 'hpfb_4',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -399,7 +399,7 @@ const HPfb4 = {
 const HPfb5 = {
   id: 'HPfb5',
   nom_technique: 'hpfb_5',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -414,7 +414,7 @@ const HPfb5 = {
 const HPfb6 = {
   id: 'HPfb6',
   nom_technique: 'hpfb_6',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -429,7 +429,7 @@ const HPfb6 = {
 const HPfb7 = {
   id: 'HPfb7',
   nom_technique: 'hpfb_7',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -444,7 +444,7 @@ const HPfb7 = {
 const HPfb8 = {
   id: 'HPfb8',
   nom_technique: 'hpfb_8',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -459,7 +459,7 @@ const HPfb8 = {
 const HPfb9 = {
   id: 'HPfb9',
   nom_technique: 'hpfb_9',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -474,7 +474,7 @@ const HPfb9 = {
 const HPfb10 = {
   id: 'HPfb10',
   nom_technique: 'hpfb_10',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -489,7 +489,7 @@ const HPfb10 = {
 const HPfb11 = {
   id: 'HPfb11',
   nom_technique: 'hpfb_11',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -504,7 +504,7 @@ const HPfb11 = {
 const HPfb12 = {
   id: 'HPfb12',
   nom_technique: 'hpfb_12',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -519,7 +519,7 @@ const HPfb12 = {
 const HPfb13 = {
   id: 'HPfb13',
   nom_technique: 'hpfb_13',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -534,7 +534,7 @@ const HPfb13 = {
 const HPfb14 = {
   id: 'HPfb14',
   nom_technique: 'hpfb_14',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -549,7 +549,7 @@ const HPfb14 = {
 const HPfb15 = {
   id: 'HPfb15',
   nom_technique: 'hpfb_15',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -564,7 +564,7 @@ const HPfb15 = {
 const HPfb16 = {
   id: 'HPfb16',
   nom_technique: 'hpfb_16',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -579,7 +579,7 @@ const HPfb16 = {
 const HPfb17 = {
   id: 'HPfb17',
   nom_technique: 'hpfb_17',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -594,7 +594,7 @@ const HPfb17 = {
 const HPfb18 = {
   id: 'HPfb18',
   nom_technique: 'hpfb_18',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -609,7 +609,7 @@ const HPfb18 = {
 const HPfb19 = {
   id: 'HPfb19',
   nom_technique: 'hpfb_19',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -624,7 +624,7 @@ const HPfb19 = {
 const HPfb20 = {
   id: 'HPfb20',
   nom_technique: 'hpfb_20',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,

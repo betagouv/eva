@@ -91,7 +91,7 @@ const questionPhoto = {
 
 const questionDeverrouillage = {
   id: 'deverrouillage',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'numerique',
   espacerChiffres: true,
   illustration: AppDeverrouillage,
@@ -442,7 +442,7 @@ const questionRepondeur1 = {
 
 const questionRepondeur2 = {
   id: 'nombre-tours-de-manege',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'numerique',
   espacerChiffres: false,
   audioRepondeur: 'nombre-tours-de-manege',

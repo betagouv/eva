@@ -173,12 +173,12 @@ describe('Le composant champ de saisie', function () {
 
     it("décale l'affichage de la réponse", function () {
       vue = composant({ question: { nom_technique: 'question-avec-audio' } });
-      expect(vue.find('.defi-champ-saisie--decale').exists()).toBe(true);
+      expect(vue.find('.champ-saisie--decale').exists()).toBe(true);
     });
 
     it("ne décale pas l'affichage de la réponse", function () {
       vue = composant({ question: { nom_technique: 'question-sans-audio' } });
-      expect(vue.find('.defi-champ-saisie--decale').exists()).toBe(false);
+      expect(vue.find('.champ-saisie--decale').exists()).toBe(false);
     });
   });
 

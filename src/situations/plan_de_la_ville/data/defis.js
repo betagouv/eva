@@ -74,7 +74,7 @@ const questionCouleur = {
 const saisieBoulangerie = {
   id: 'saisie-boulangerie',
   nom_technique: 'saisie_boulangerie',
-  type: 'champ-saisie',
+  type: 'saisie',
   sous_type: 'texte',
   reponse: {
     textes: ['boulangerie']
