@@ -94,4 +94,8 @@ export default class DepotRessourcesCommunes extends DepotRessources {
   chargeIllustrationsConfigurations(configurations) {
     this.charge(this.trouveIllustrations(configurations));
   }
+
+  illustrationQuestion(question) {
+    return { src: question.illustration };
+  }
 }

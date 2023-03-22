@@ -8,7 +8,6 @@ import Defi from 'commun/vues/defi';
 describe("La vue de l'acte « Question »", function () {
   let journal;
   let store;
-  let depotRessources;
 
   beforeEach(function () {
     store = creeStore();
@@ -19,13 +18,6 @@ describe("La vue de l'acte « Question »", function () {
       ]
     });
     journal = { enregistre () {} };
-    depotRessources = {
-      illustrationQuestion: () => {
-        return { src: 'chemin-illustration' };
-      },
-      existeMessageAudio: () => false,
-      existeMessageVideo: () => false
-    };
   });
 
   function composant (shallow = true) {
@@ -34,7 +26,6 @@ describe("La vue de l'acte « Question »", function () {
       global: {
         plugins: [store],
         mocks: {
-          $depotRessources: depotRessources,
           $traduction: () => {},
           $journal: journal
         },

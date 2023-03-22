@@ -26,10 +26,6 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       ...mutations
     },
     getters: {
-      illustrationQuestion: () => (question) => {
-        return question.illustration;
-      },
-
       acteEnCours: (state) => {
         return state.etat === DEMARRE || state.etat === ENTRAINEMENT_DEMARRE;
       },
