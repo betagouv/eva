@@ -1,12 +1,13 @@
-import chargeurs, { chargeurDefaut } from '../../commun/aides/mock_chargeurs';
+import chargeurs from '../../commun/aides/mock_chargeurs';
 import DepotRessourcesQuestions from 'questions/infra/depot_ressources_questions';
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
+import bienvenueBackground from 'questions/assets/illustration_questions/bienvenue_background.jpg';
 
 describe('Le dépot ressource de la situation Question', function () {
   let depot;
 
   beforeEach(function () {
-    depot = new DepotRessourcesQuestions(chargeurs({ mp3: chargeurDefaut }));
+    depot = new DepotRessourcesQuestions(chargeurs());
   });
 
   it('étend DépotRessourcesCommune', function () {
@@ -15,5 +16,26 @@ describe('Le dépot ressource de la situation Question', function () {
 
   it('fourni une aide complementaire', function () {
     expect(depot.imageAideComplementaire()).toEqual(depot.calculatrice());
+  });
+
+  describe("#illustrationQuestion", function() {
+    it("Retourne l'illustration d'une question", function () {
+      expect(depot.illustrationQuestion({ nom_technique: 'concentration' }))
+        .toEqual(bienvenueBackground);
+    });
+
+    it("Retourne une erreur si une question n'a pas d'illustration", function () {
+      expect(() => {
+        depot.illustrationQuestion({ id: 'id1', nom_technique: 'inconnu' });
+      })
+        .toThrow('La question id1 avec le nom technique "inconnu" ne possède pas d\'illustration');
+    });
+
+    it("Retourne une erreur si une question n'a pas de nom technique", function () {
+      expect(() => {
+        depot.illustrationQuestion({ id: 'id1' });
+      })
+        .toThrow('La question id1 avec le nom technique "undefined" ne possède pas d\'illustration');
+    });
   });
 });

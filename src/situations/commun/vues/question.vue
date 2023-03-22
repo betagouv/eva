@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -21,8 +20,10 @@ export default {
       required: true
     }
   },
-  computed: {
-    ...mapGetters(['illustrationQuestion'])
+  methods: {
+    illustrationQuestion(question) {
+      return this.$depotRessources.illustrationQuestion(question).src;
+    }
   }
 };
 </script>

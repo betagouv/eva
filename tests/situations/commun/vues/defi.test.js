@@ -20,6 +20,7 @@ describe("La vue d'un défi", function () {
     store = creeStore();
     question = { id: 154, nom_technique: 'question1', intitule: 'quelle couleur ?'};
     depotRessources = {
+      illustrationQuestion: () => { return {}; },
       existeMessageAudio: () => false,
       existeMessageVideo: () => false
     };

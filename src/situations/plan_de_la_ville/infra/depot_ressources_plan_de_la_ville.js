@@ -53,14 +53,6 @@ export default class DepotRessourcesPlanDeLaVille extends DepotRessourcesCommune
     this.charge([fondSituation, egliseMaisonAPlacer, emplacementEglise, personnage, flecheGauche, flecheDroite]);
   }
 
-  chargeRessourcesQuestions (questions) {
-    this.charge(questions.map(question => question.illustration));
-  }
-
-  chargeConfigurations (configurationNormale) {
-    this.chargeRessourcesQuestions(configurationNormale.questions);
-  }
-
   fondSituation () {
     return this.ressource(fondSituation);
   }

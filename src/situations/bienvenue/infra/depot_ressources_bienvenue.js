@@ -1,4 +1,4 @@
-import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
+import DepotRessourcesQuestion from 'questions/infra/depot_ressources_questions';
 
 // QUESTIONS
 import sonConsigne from 'bienvenue/assets/consigne_demarrage_bienvenue.mp3';
@@ -156,8 +156,12 @@ const AUDIOS_REPONSES = {
 const messagesVideos = {};
 const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
-export default class DepotRessourcesBienvenue extends DepotRessourcesCommunes {
+export default class DepotRessourcesBienvenue extends DepotRessourcesQuestion {
   constructor (chargeurs) {
     super(chargeurs, messagesVideos, messagesAudios, null, sonConsigne);
+  }
+
+  imageAideComplementaire () {
+    return;
   }
 }

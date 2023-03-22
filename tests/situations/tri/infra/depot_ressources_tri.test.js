@@ -15,14 +15,14 @@ describe('Le dépôt de ressources de la situation tri', function () {
   });
 
   it('retourne les bonbons', function () {
-    expect(depot.piece('bonbon1')).not.toEqual(undefined);
+    expect(depot.piece('bonbon1')).toBeDefined();
   });
 
   it('retourne le son de bon bac', function () {
-    expect(depot.sonBonBac()).not.toEqual(undefined);
+    expect(depot.sonBonBac()).toBeDefined();
   });
 
   it('retourne le son de mauvais bac', function () {
-    expect(depot.sonMauvaisBac()).not.toEqual(undefined);
+    expect(depot.sonMauvaisBac()).toBeDefined();
   });
 });
