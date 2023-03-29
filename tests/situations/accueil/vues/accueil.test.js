@@ -306,7 +306,7 @@ describe('La vue accueil', function () {
     });
   });
 
-  it('affiche le formulaire de collecte de données complémentaires', async function() {
+  it('affiche ou non le formulaire de collecte de données complémentaires', async function() {
     const wrapper = accueil({}, false);
 
     expect(wrapper.findComponent(FormulaireDonneesComplementaires).exists()).toBe(false);

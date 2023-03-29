@@ -42,7 +42,9 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         state.estConnecte = true;
         state.nom = nom;
         state.situationsFaites = [];
-        state.etat = DONNEES;
+        const questionAgeBienvenue = registreCampagne.questions('bienvenue')
+          .find(({ nom_technique }) => nom_technique === 'age');
+        state.etat = questionAgeBienvenue ? DEMARRE : DONNEES;
       },
 
       deconnecte (state) {
@@ -74,6 +76,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         state.etat = DEMARRE;
       }
     },
+
     actions: {
       inscris (pasUtile, { nom, campagne }) {
         this.state.erreurFormulaireIdentification = '';
