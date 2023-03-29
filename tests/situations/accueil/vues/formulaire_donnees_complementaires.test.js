@@ -61,7 +61,7 @@ describe("Le formulaire des données complementaires", function () {
     ]);
     expect(wrapper.vm.niveaux_etude.map(n => n.nom_technique)).toEqual([
       'college',
-      'cfg_dnb_bepc',
+      'cfg_dnb',
       'cap_bep',
       'bac',
       'bac_plus2',
@@ -71,7 +71,7 @@ describe("Le formulaire des données complementaires", function () {
       'scolarisation',
       'formation_professionnelle',
       'alternance',
-      'emploi',
+      'en_emploi',
       'sans_emploi'
     ]);
   });
