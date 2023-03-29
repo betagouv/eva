@@ -15,13 +15,15 @@ describe("Le store de l'accueil", function () {
         return Promise.resolve();
       }
     };
-    registreCampagne = {};
+    registreCampagne = {
+      questions: () => { return []; }
+    };
   });
 
   it("s'initialise a partir du registre utilisateur", function () {
     registreUtilisateur.estConnecte = () => false;
     registreUtilisateur.nom = () => undefined;
-    const store = creeStore(registreUtilisateur);
+    const store = creeStore(registreUtilisateur, registreCampagne);
     expect(store.state.estConnecte).toEqual(false);
     expect(store.state.etat).toEqual(DECONNECTE);
     expect(store.state.nom).toEqual(undefined);
@@ -31,7 +33,7 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.estConnecte = () => true;
     registreUtilisateur.nom = () => 'Mon nom';
     registreUtilisateur.situationsFaites = () => [1];
-    const store = creeStore(registreUtilisateur);
+    const store = creeStore(registreUtilisateur, registreCampagne);
     expect(store.state.estConnecte).toEqual(true);
     expect(store.state.etat).toEqual(DEMARRE);
     expect(store.state.nom).toEqual('Mon nom');
@@ -42,7 +44,7 @@ describe("Le store de l'accueil", function () {
     registreUtilisateur.estConnecte = () => true;
     registreUtilisateur.nom = () => 'Mon nom';
     registreUtilisateur.situationsFaites = () => [1];
-    const store = creeStore(registreUtilisateur);
+    const store = creeStore(registreUtilisateur, registreCampagne);
     store.commit('metsAJourSituations', [1, 2]);
     store.commit('deconnecte');
     expect(store.state.estConnecte).toEqual(false);
@@ -52,17 +54,37 @@ describe("Le store de l'accueil", function () {
     expect(store.state.situations.length).toEqual(0);
   });
 
-  it('initialise à la connexion', function () {
-    registreUtilisateur.situationsFaites = () => [1];
-    const store = creeStore(registreUtilisateur);
-    store.commit('connecte', 'nom évalué');
-    expect(store.state.etat).toEqual(DONNEES);
-    expect(store.state.nom).toBe('nom évalué');
-    expect(store.state.situationsFaites.length).toEqual(0);
+  describe('initialise à la connexion', function() {
+    let store;
+
+    beforeEach(function() {
+      registreUtilisateur.situationsFaites = () => [1];
+      store = creeStore(registreUtilisateur, registreCampagne);
+    });
+
+    it("initalise le nom et le nombre de situationsFaites", function() {
+      store.commit('connecte', 'nom évalué');
+      expect(store.state.nom).toBe('nom évalué');
+      expect(store.state.situationsFaites.length).toEqual(0);
+    });
+
+    it("quand la question de l'âge n'est pas présente ouvre le formulaire de saisie des données", function() {
+      store.commit('connecte', 'nom évalué');
+      expect(store.state.etat).toEqual(DONNEES);
+    });
+
+    it("quand la question de l'âge est présente dans bienvenue, démarre", function() {
+      const questions = {
+        'bienvenue': [{ nom_technique: "age" }]
+      };
+      registreCampagne.questions = (situation) => { return questions[situation]; };
+      store.commit('connecte', 'nom évalué');
+      expect(store.state.etat).toEqual(DEMARRE);
+    });
   });
 
   it('mets à jour les situations accessible', function () {
-    const store = creeStore(registreUtilisateur);
+    const store = creeStore(registreUtilisateur, registreCampagne);
     store.commit('metsAJourSituations', [1, 2]);
     expect(store.state.situations.length).toEqual(2);
   });
@@ -70,7 +92,7 @@ describe("Le store de l'accueil", function () {
   it("mets à jour l'état connecte lorsque le registre change d'état", function () {
     let callback;
     registreUtilisateur.on = (_, cb) => { callback = cb; };
-    const store = creeStore(registreUtilisateur);
+    const store = creeStore(registreUtilisateur, registreCampagne);
     registreUtilisateur.estConnecte = () => true;
     callback();
     expect(store.state.estConnecte).toEqual(true);
@@ -84,7 +106,7 @@ describe("Le store de l'accueil", function () {
     let data = { age: '35', genre: 'Femme' };
 
     it('démarre après avoir enregistré les données', function () {
-      const store = creeStore(registreUtilisateur);
+      const store = creeStore(registreUtilisateur, registreCampagne);
       registreUtilisateur.idEvaluation = () => { return 1; };
       return store.dispatch('enregistreDonneesComplementaires', data).then(() => {
         expect(store.state.etat).toEqual(DEMARRE);
@@ -92,7 +114,7 @@ describe("Le store de l'accueil", function () {
     });
 
     it("déconnecte si l'id évaluation n'est pas connu", function () {
-      const store = creeStore(registreUtilisateur);
+      const store = creeStore(registreUtilisateur, registreCampagne);
       store.commit('connecte', 'test');
       registreUtilisateur.idEvaluation = () => { return undefined; };
       return store.dispatch('enregistreDonneesComplementaires', data).then(() => {
@@ -294,36 +316,36 @@ describe("Le store de l'accueil", function () {
         expect(erreur.message).toEqual('non gérée');
       });
     });
+  });
 
-    describe('#estTermine', function () {
-      const situation = { nom_technique: 'inventaire' };
+  describe('Getter: estTermine', function () {
+    const situation = { nom_technique: 'inventaire' };
 
-      it("n'indique pas l'évaluation terminée tant que les situations n'ont pas été mise à jour", function () {
-        registreUtilisateur.situationsFaites = () => ['inventaire'];
-        const store = creeStore(registreUtilisateur);
-        expect(store.getters.estTermine).toBe(false);
-      });
+    it("n'indique pas l'évaluation terminée tant que les situations n'ont pas été mise à jour", function () {
+      registreUtilisateur.situationsFaites = () => ['inventaire'];
+      const store = creeStore(registreUtilisateur);
+      expect(store.getters.estTermine).toBe(false);
+    });
 
-      it("faux lorsque toute les situations n'ont pas été faites", function () {
-        registreUtilisateur.situationsFaites = () => [];
-        const store = creeStore(registreUtilisateur);
-        store.commit('metsAJourSituations', [situation]);
-        expect(store.getters.estTermine).toBe(false);
-      });
+    it("faux lorsque toute les situations n'ont pas été faites", function () {
+      registreUtilisateur.situationsFaites = () => [];
+      const store = creeStore(registreUtilisateur);
+      store.commit('metsAJourSituations', [situation]);
+      expect(store.getters.estTermine).toBe(false);
+    });
 
-      it('vraie lorsque toute les situations ont été faites', function () {
-        registreUtilisateur.situationsFaites = () => ['inventaire'];
-        const store = creeStore(registreUtilisateur);
-        store.commit('metsAJourSituations', [situation]);
-        expect(store.getters.estTermine).toBe(true);
-      });
+    it('vraie lorsque toute les situations ont été faites', function () {
+      registreUtilisateur.situationsFaites = () => ['inventaire'];
+      const store = creeStore(registreUtilisateur);
+      store.commit('metsAJourSituations', [situation]);
+      expect(store.getters.estTermine).toBe(true);
+    });
 
-      it("toujours vraie lorsque qu'on dépasse le nombre de situations à faire", function () {
-        registreUtilisateur.situationsFaites = () => ['inventaire', 'tri'];
-        const store = creeStore(registreUtilisateur);
-        store.commit('metsAJourSituations', [situation]);
-        expect(store.getters.estTermine).toBe(true);
-      });
+    it("toujours vraie lorsque qu'on dépasse le nombre de situations à faire", function () {
+      registreUtilisateur.situationsFaites = () => ['inventaire', 'tri'];
+      const store = creeStore(registreUtilisateur);
+      store.commit('metsAJourSituations', [situation]);
+      expect(store.getters.estTermine).toBe(true);
     });
   });
 });

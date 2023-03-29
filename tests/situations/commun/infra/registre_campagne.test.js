@@ -160,6 +160,10 @@ describe('le registre campagne', function () {
               questions_entrainement: [
                 { id: 'question-entrainement-1' }
               ]
+            },
+            {
+              id: 'situations-2',
+              nom_technique: 'maintenance',
             }
           ]
         };
@@ -171,6 +175,14 @@ describe('le registre campagne', function () {
       it("retoure les questions d'une situation", function () {
         expect(registre.questions('livraison').length).toEqual(2);
         expect(registre.questions('livraison')[0].id).toEqual('question-1');
+      });
+
+      it("retoure un tableau vide si la situation n'a pas de question", function () {
+        expect(registre.questions('maintenance').length).toEqual(0);
+      });
+
+      it("retoure un tableau vide si la situation n'est pas présente", function () {
+        expect(registre.questions('bienvenue').length).toEqual(0);
       });
 
       it("retoure les questions d'entrainement d'une situation", function () {

@@ -57,9 +57,7 @@ export default class RegistreCampagne extends BaseRegistre {
 
   questions (identifiantSituation) {
     const situation = this.situation(identifiantSituation);
-    if (situation.questions) {
-      return situation.questions;
-    }
+    return situation && situation.questions ? situation.questions : [];
   }
 
   questionsEntrainement (identifiantSituation) {
