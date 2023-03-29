@@ -75,7 +75,7 @@ export default {
       ],
       niveaux_etude: [
         { label: 'Collège', nom_technique: 'college' },
-        { label: 'CFG / DNB (BEPC)', nom_technique: 'cfg_dnb_bepc' },
+        { label: 'CFG / DNB (BEPC)', nom_technique: 'cfg_dnb' },
         { label: 'CAP / BEP', nom_technique: 'cap_bep' },
         { label: 'Bac', nom_technique: 'bac' },
         { label: 'Bac+2', nom_technique: 'bac_plus2' },
@@ -85,7 +85,7 @@ export default {
         { label: 'Scolarisation', nom_technique: 'scolarisation' },
         { label: 'Formation professionnelle', nom_technique: 'formation_professionnelle' },
         { label: 'Alternance', nom_technique: 'alternance' },
-        { label: 'Emploi', nom_technique: 'emploi' },
+        { label: 'En emploi', nom_technique: 'en_emploi' },
         { label: 'Sans emploi', nom_technique: 'sans_emploi' },
       ],
       erreurs: {}
