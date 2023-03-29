@@ -75,12 +75,12 @@ import en_emploi from 'bienvenue/assets/audio_reponses/en_emploi.mp3';
 import sans_emploi from 'bienvenue/assets/audio_reponses/sans_emploi.mp3';
 
 const AUDIOS_QUESTIONS = {
-  quel_age: quel_age,
+  age: quel_age,
   genre: genre,
   langue_maternelle: langue_maternelle,
   lieu_scolarite: lieu_scolarite,
-  niveau_etude: niveau_etude,
-  derniere_situtation: derniere_situation,
+  dernier_niveau_etude: niveau_etude,
+  derniere_situation: derniere_situation,
   bienvenue_1: concentrationQuestion,
   bienvenue_2: comprendreVite,
   bienvenue_3: confondreObjets,
