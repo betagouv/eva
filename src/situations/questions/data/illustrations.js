@@ -32,6 +32,7 @@ const illustrationsQuestions = {
   concentration: bienvenueBackground,
   comprehension: bienvenueBackground,
   differencier_objets: bienvenueBackground,
+  difficultes_informatique: bienvenueBackground,
   analyse_travail: bienvenueBackground,
   tache_longue_et_difficile: bienvenueBackground,
   travail_sans_erreur: bienvenueBackground,
