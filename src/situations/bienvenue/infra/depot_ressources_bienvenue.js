@@ -17,11 +17,10 @@ import ecransMalTete from 'bienvenue/assets/audio_questions/ecrans_mal_tete.mp3'
 import difficultesOrdinateur from 'bienvenue/assets/audio_questions/difficultes_ordinateur.mp3';
 import difficultesTablette from 'bienvenue/assets/audio_questions/difficultes_tablette.mp3';
 import suiviDys from 'bienvenue/assets/audio_questions/suivi_dys.mp3';
-import alleEcole from 'bienvenue/assets/audio_questions/alle_ecole.mp3';
+import lieu_scolarite from 'bienvenue/assets/audio_questions/alle_ecole.mp3';
 import quel_age from 'bienvenue/assets/audio_questions/quel_age.mp3';
 import genre from 'bienvenue/assets/audio_questions/genre.mp3';
 import langue_maternelle from 'bienvenue/assets/audio_questions/francais_langue_maternelle.mp3';
-import lieu_scolarite from 'bienvenue/assets/audio_questions/lieu_scolarite.mp3';
 import niveau_etude from 'bienvenue/assets/audio_questions/niveau_etude.mp3';
 import derniere_situation from 'bienvenue/assets/audio_questions/derniere_situation.mp3';
 
@@ -30,8 +29,6 @@ import lunettes from 'bienvenue/assets/audio_reponses/lunette.mp3';
 import nonCorrige from 'bienvenue/assets/audio_reponses/non_corrige.mp3';
 import lunettesInefficaces from 'bienvenue/assets/audio_reponses/vous_avez_des_lunettes.mp3';
 import pasDeProblemes from 'bienvenue/assets/audio_reponses/pas_de_problemes.mp3';
-import ouiEtranger from 'bienvenue/assets/audio_reponses/oui_etranger.mp3';
-import ouiFrance from 'bienvenue/assets/audio_reponses/oui_france.mp3';
 import oui from 'bienvenue/assets/audio_reponses/oui.mp3';
 import non from 'bienvenue/assets/audio_reponses/non.mp3';
 import aLAise from 'bienvenue/assets/audio_reponses/a_l_aise.mp3';
@@ -95,8 +92,7 @@ const AUDIOS_QUESTIONS = {
   bienvenue_12: ecransMalTete,
   bienvenue_13: difficultesOrdinateur,
   bienvenue_14: difficultesTablette,
-  bienvenue_15: suiviDys,
-  bienvenue_16: alleEcole
+  bienvenue_15: suiviDys
 };
 
 const AUDIOS_REPONSES = {
@@ -124,8 +120,6 @@ const AUDIOS_REPONSES = {
   bienvenue_8_reponse_2: nonCorrige,
   bienvenue_8_reponse_3: lunettesInefficaces,
   bienvenue_8_reponse_4: pasDeProblemes,
-  bienvenue_16_reponse_1: ouiFrance,
-  bienvenue_16_reponse_2: ouiEtranger,
   bienvenue_oui: oui,
   bienvenue_non: non,
   bienvenue_pas_du_tout_facile: pasDuToutFacile,
