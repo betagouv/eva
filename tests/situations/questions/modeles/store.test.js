@@ -60,7 +60,7 @@ describe('Le store de la situation questions', function () {
 
   it("Retourne l'illustration d'une question", function () {
     const store = creeStore();
-    expect(store.getters.illustrationQuestion({ nom_technique: 'bienvenue_1' }))
+    expect(store.getters.illustrationQuestion({ nom_technique: 'concentration' }))
       .toEqual('bienvenue_background.jpg');
   });
 
