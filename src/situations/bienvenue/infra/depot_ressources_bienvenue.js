@@ -16,6 +16,7 @@ import malAConcentrer from 'bienvenue/assets/audio_questions/mal_a_concentrer.mp
 import ecransMalTete from 'bienvenue/assets/audio_questions/ecrans_mal_tete.mp3';
 import difficultesOrdinateur from 'bienvenue/assets/audio_questions/difficultes_ordinateur.mp3';
 import difficultesTablette from 'bienvenue/assets/audio_questions/difficultes_tablette.mp3';
+import difficultesInformatique from 'bienvenue/assets/audio_questions/difficultes_informatique.mp3';
 import suiviDys from 'bienvenue/assets/audio_questions/suivi_dys.mp3';
 import lieu_scolarite from 'bienvenue/assets/audio_questions/alle_ecole.mp3';
 import quel_age from 'bienvenue/assets/audio_questions/quel_age.mp3';
@@ -73,21 +74,23 @@ import sans_emploi from 'bienvenue/assets/audio_reponses/sans_emploi.mp3';
 
 const AUDIOS_QUESTIONS = {
   age: quel_age,
+  analyse_travail: voirCeQuiVaPas,
+  comprehension: comprendreVite,
+  concentration: concentrationQuestion,
+  dangers: voirLesDangers,
+  dernier_niveau_etude: niveau_etude,
+  derniere_situation: derniere_situation,
+  differencier_objets: confondreObjets,
+  difficultes_informatique: difficultesInformatique,
+  entendre: bienEntendre,
   genre: genre,
   langue_maternelle: langue_maternelle,
   lieu_scolarite: lieu_scolarite,
-  dernier_niveau_etude: niveau_etude,
-  derniere_situation: derniere_situation,
-  concentration: concentrationQuestion,
-  comprehension: comprendreVite,
-  differencier_objets: confondreObjets,
-  analyse_travail: voirCeQuiVaPas,
   tache_longue_et_difficile: decouperTache,
   travail_sans_erreur: sansFaireErreur,
-  dangers: voirLesDangers,
+  trouble_dys: suiviDys,
   vue: problemeVue,
   bienvenue_9: differencierCouleurs,
-  entendre: bienEntendre,
   bienvenue_11: malAConcentrer,
   bienvenue_12: ecransMalTete,
   bienvenue_13: difficultesOrdinateur,
