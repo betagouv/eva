@@ -24,6 +24,8 @@ import genre from 'bienvenue/assets/audio_questions/genre.mp3';
 import langue_maternelle from 'bienvenue/assets/audio_questions/francais_langue_maternelle.mp3';
 import niveau_etude from 'bienvenue/assets/audio_questions/niveau_etude.mp3';
 import derniere_situation from 'bienvenue/assets/audio_questions/derniere_situation.mp3';
+import consigneAutopositionnement from 'bienvenue/assets/audio_questions/consigne_autopositionnement.mp3';
+import consigneSante from 'bienvenue/assets/audio_questions/consigne_sante.mp3';
 
 // REPONSES
 import lunettes from 'bienvenue/assets/audio_reponses/lunette.mp3';
@@ -95,7 +97,9 @@ const AUDIOS_QUESTIONS = {
   bienvenue_12: ecransMalTete,
   bienvenue_13: difficultesOrdinateur,
   bienvenue_14: difficultesTablette,
-  bienvenue_15: suiviDys
+  bienvenue_15: suiviDys,
+  sous_consigne_autopositionnement: consigneAutopositionnement,
+  sous_consigne_sante: consigneSante
 };
 
 const AUDIOS_REPONSES = {
