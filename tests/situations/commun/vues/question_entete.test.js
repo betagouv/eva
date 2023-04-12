@@ -37,6 +37,14 @@ describe('la vue du composant entête', function () {
     return composant;
   }
 
+  it("affiche le libellé en markdown", function() {
+    question.intitule = "**intitulé en gras**";
+    const vue = composant(question);
+    const htmlAttendu = '<p><strong>intitulé en gras</strong></p>';
+
+    expect(vue.vm.intitule_markdownifie.trim()).toEqual(htmlAttendu);
+  });
+
   describe('#afficheLectureTexteEntete', function () {
     it("Quand la question à un son, affiche le bouton lecture texte entete", function () {
       depotRessources.existeMessageAudio = () => true;

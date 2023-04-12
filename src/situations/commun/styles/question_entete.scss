@@ -9,8 +9,8 @@
     margin: 0;
   }
 
-  p + p {
-    margin-top: 20px;
+  p + p, div + p {
+    margin-top: 1.25rem;
   }
 
   .question-avec-son {
