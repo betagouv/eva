@@ -23,7 +23,7 @@
     </div>
     <div class="entete-questions">
       <p v-if="question.description" v-html="question.description"></p>
-      <p v-if="question.intitule" v-html="question.intitule"></p>
+      <div v-if="question.intitule" v-html="intitule_markdownifie"></div>
       <p v-if="question.modalite_reponse" class="question-modalite-reponse"><span v-html="question.modalite_reponse"></span></p>
       <bouton-lecture
         v-if="afficheLectureQuestionAudio"
@@ -37,6 +37,7 @@
 
 <script>
 import 'commun/styles/question_entete.scss';
+import { marked } from 'marked';
 import BoutonLecture from 'commun/vues/bouton_lecture';
 
 export default {
@@ -52,6 +53,10 @@ export default {
   computed: {
     afficheLectureTexteEntete () {
       return this.$depotRessources.existeMessageAudio(this.question.nom_technique);
+    },
+
+    intitule_markdownifie() {
+      return marked(this.question.intitule);
     },
 
     afficheLectureQuestionAudio () {
