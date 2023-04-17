@@ -9,7 +9,7 @@ import voirCeQuiVaPas from 'bienvenue/assets/audio_questions/voir_ce_qui_va_pas.
 import decouperTache from 'bienvenue/assets/audio_questions/decouper_tache.mp3';
 import sansFaireErreur from 'bienvenue/assets/audio_questions/sans_faire_erreur.mp3';
 import voirLesDangers from 'bienvenue/assets/audio_questions/voir_les_dangers.mp3';
-import problemeVue from 'bienvenue/assets/audio_questions/probleme_vue.mp3';
+import problemesVue from 'bienvenue/assets/audio_questions/problemes_vue.mp3';
 import differencierCouleurs from 'bienvenue/assets/audio_questions/differencier_couleurs.mp3';
 import bienEntendre from 'bienvenue/assets/audio_questions/bien_entendre.mp3';
 import malAConcentrer from 'bienvenue/assets/audio_questions/mal_a_concentrer.mp3';
@@ -91,13 +91,12 @@ const AUDIOS_QUESTIONS = {
   tache_longue_et_difficile: decouperTache,
   travail_sans_erreur: sansFaireErreur,
   trouble_dys: suiviDys,
-  vue: problemeVue,
+  vue: problemesVue,
   bienvenue_9: differencierCouleurs,
   bienvenue_11: malAConcentrer,
   bienvenue_12: ecransMalTete,
   bienvenue_13: difficultesOrdinateur,
   bienvenue_14: difficultesTablette,
-  bienvenue_15: suiviDys,
   sous_consigne_autopositionnement: consigneAutopositionnement,
   sous_consigne_sante: consigneSante
 };
