@@ -6,13 +6,14 @@ import { traduction } from 'commun/infra/internationalisation';
 describe('La vue de la question', function () {
   let question;
   let store;
-  let wrapper;
 
   beforeEach(function () {
     question = { choix: [] };
     store = creeStore();
-    question.illustration = 'bienvenue_background.jpg';
-    wrapper = shallowMount(VueQuestion, {
+  });
+
+  function composant (question) {
+    return shallowMount(VueQuestion, {
       props: { question },
       global: {
         plugins: [store]
@@ -21,10 +22,26 @@ describe('La vue de la question', function () {
         $traduction: traduction
       }
     });
+  }
+
+  describe("lorsque la question a une illustration", function () {
+    beforeEach(function () {
+      question.illustration = 'bienvenue_background.jpg';
+    });
+
+    it("affiche l'image", function () {
+      const wrapper = composant(question);
+      expect(wrapper.find('.question-illustration').exists()).toBe(true);
+      expect(wrapper.find('.question-illustration').attributes('src')).toBe('bienvenue_background.jpg');
+    });
   });
 
-  it("affiche l'image", function () {
-    expect(wrapper.find('.question-illustration').exists()).toBe(true);
-    expect(wrapper.find('.question-illustration').attributes('src')).toBe('bienvenue_background.jpg');
+  describe("lorsque la question n'a pas d'illustration", function () {
+    it("affiche la question sans image", function () {
+      const wrapper = composant(question);
+      expect(wrapper.find('.question-barre').exists()).toBe(true);
+      expect(wrapper.find('.question-illustration').exists()).toBe(true);
+      expect(wrapper.find('.question-illustration').attributes("src")).toBe(undefined);
+    });
   });
 });

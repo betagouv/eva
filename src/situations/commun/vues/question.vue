@@ -1,7 +1,7 @@
 <template>
   <div class="question">
     <img
-      :src="illustrationQuestion(question)"
+      :src="illustration"
       class="question-illustration"
     />
 
@@ -22,7 +22,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['illustrationQuestion'])
-  }
+    ...mapGetters(['illustrationQuestion']),
+
+    illustration(){
+      try {
+        return this.illustrationQuestion(this.question);
+      } catch (erreur) {
+        if (erreur.name === "illustrationIntrouvable") {
+          console.error(erreur);
+          return undefined;
+        } else {
+          throw erreur;
+        }
+      }
+    }
+  },
 };
 </script>

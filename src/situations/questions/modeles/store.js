@@ -26,7 +26,9 @@ export function creeStore () {
         if (question.nom_technique && illustrationsQuestions[question.nom_technique]) {
           return illustrationsQuestions[question.nom_technique];
         } else {
-          throw new Error(`La question ${question.id} avec le nom technique "${question.nom_technique}" ne possède pas d'illustration`);
+          const erreur = new Error(`La question ${question.id} avec le nom technique "${question.nom_technique}" ne possède pas d'illustration`);
+          erreur.name = 'illustrationIntrouvable';
+          throw erreur;
         }
       }
     },
