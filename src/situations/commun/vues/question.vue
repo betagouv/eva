@@ -22,15 +22,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['illustrationQuestion']),
+    ...mapGetters(['illustrationQuestion', 'fondSituation']),
 
     illustration(){
       try {
         return this.illustrationQuestion(this.question);
-      } catch (erreur) {
+      } catch(erreur) {
         if (erreur.name === "illustrationIntrouvable") {
           console.error(erreur);
-          return undefined;
+          return this.fondSituation;
         } else {
           throw erreur;
         }

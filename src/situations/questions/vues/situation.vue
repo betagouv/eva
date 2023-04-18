@@ -7,14 +7,6 @@ export default {
   extends: Situation,
 
   props: {
-    configurationEntrainement: {
-      type: Object,
-      required: false
-    },
-    configurationNormale: {
-      type: Object,
-      required: false
-    },
     idSituation: {
       type: String,
       required: true
@@ -23,13 +15,15 @@ export default {
 
   computed: {
     acte () {
+      let questions = {};
       if ([DEMARRE, FINI].includes(this.etat)) {
-        return {
-          questions: new RegistreCampagne().questions(this.idSituation)
-        };
+        questions = new RegistreCampagne().questions(this.idSituation);
+      } else {
+        questions = new RegistreCampagne().questionsEntrainement(this.idSituation);
       }
       return {
-        questions: new RegistreCampagne().questionsEntrainement(this.idSituation)
+        questions: questions,
+        fondSituation: this.$depotRessources.fondSituation().src
       };
     }
   }

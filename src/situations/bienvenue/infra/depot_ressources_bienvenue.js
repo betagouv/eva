@@ -1,4 +1,5 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
+import fondSituation from 'questions/assets/illustration_questions/bienvenue_background.jpg';
 
 // QUESTIONS
 import sonConsigne from 'bienvenue/assets/consigne_demarrage_bienvenue.mp3';
@@ -157,6 +158,11 @@ const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 
 export default class DepotRessourcesBienvenue extends DepotRessourcesCommunes {
   constructor (chargeurs) {
-    super(chargeurs, messagesVideos, messagesAudios, null, sonConsigne);
+    super(chargeurs, messagesVideos, messagesAudios, fondSituation, sonConsigne);
+    this.charge([fondSituation]);
+  }
+
+  fondSituation () {
+    return this.ressource(fondSituation);
   }
 }

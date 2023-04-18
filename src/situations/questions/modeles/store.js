@@ -13,11 +13,15 @@ export function creeStore () {
     state: {
       questions: [],
       indexQuestion: 0,
-      fini: false
+      fini: false,
+      fondSituation: '',
     },
     getters: {
       nombreQuestions (state) {
         return state.questions.length;
+      },
+      fondSituation(state) {
+        return state.fondSituation;
       },
       questionCourante (state) {
         return state.questions[state.indexQuestion];
@@ -33,7 +37,8 @@ export function creeStore () {
       }
     },
     mutations: {
-      configureActe (state, { questions }) {
+      configureActe (state, { questions, fondSituation }) {
+        state.fondSituation = fondSituation,
         state.questions = questions || [];
         state.indexQuestion = 0;
         state.fini = false;
