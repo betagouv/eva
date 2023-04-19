@@ -144,6 +144,9 @@ describe('le registre campagne', function () {
       });
     });
 
+    describe('#situation', function () {
+    });
+
     describe('recupère les questions', function () {
       let registre;
 
@@ -183,6 +186,19 @@ describe('le registre campagne', function () {
 
       it("retoure un tableau vide si la situation n'est pas présente", function () {
         expect(registre.questions('bienvenue').length).toEqual(0);
+      });
+
+      it("retoure un tableau vide si la campagne n'est pas dans le localstorage", function () {
+        registre.assigneCampagneCourante('inconnue');
+        expect(registre.questions('livraison').length).toEqual(0);
+      });
+
+      it("retourne un tableau vide si la campagne est corrompue avec null", function() {
+        const campagneCorrompue = null;
+        window.localStorage.setItem('campagne_CORROMPUE', JSON.stringify(campagneCorrompue));
+        registre = new RegistreCampagne();
+        registre.assigneCampagneCourante('corrompue');
+        expect(registre.questions('livraison').length).toEqual(0);
       });
 
       it("retoure les questions d'entrainement d'une situation", function () {
