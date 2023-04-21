@@ -5,6 +5,7 @@ import sonConsigne from 'bienvenue/assets/consigne_demarrage_bienvenue.mp3';
 import concentrationQuestion from 'bienvenue/assets/audio_questions/concentration_question.mp3';
 import comprendreVite from 'bienvenue/assets/audio_questions/comprendre_vite.mp3';
 import confondreObjets from 'bienvenue/assets/audio_questions/confondre_objets.mp3';
+import differencierObjets from 'bienvenue/assets/audio_questions/differencier_objets.mp3';
 import voirCeQuiVaPas from 'bienvenue/assets/audio_questions/voir_ce_qui_va_pas.mp3';
 import decouperTache from 'bienvenue/assets/audio_questions/decouper_tache.mp3';
 import sansFaireErreur from 'bienvenue/assets/audio_questions/sans_faire_erreur.mp3';
@@ -82,7 +83,8 @@ const AUDIOS_QUESTIONS = {
   dangers: voirLesDangers,
   dernier_niveau_etude: niveau_etude,
   derniere_situation: derniere_situation,
-  differencier_objets: confondreObjets,
+  confondre_objets: confondreObjets,
+  differencier_objets: differencierObjets,
   difficultes_informatique: difficultesInformatique,
   entendre: bienEntendre,
   genre: genre,
