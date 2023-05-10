@@ -1,5 +1,7 @@
 import DepotRessourcesQuestion from 'questions/infra/depot_ressources_questions';
 
+import bienvenueBackground from '../assets/bienvenue_background.jpg';
+
 // QUESTIONS
 import sonConsigne from 'bienvenue/assets/consigne_demarrage_bienvenue.mp3';
 import concentrationQuestion from 'bienvenue/assets/audio_questions/concentration_question.mp3';
@@ -159,9 +161,14 @@ const messagesAudios = { ...AUDIOS_QUESTIONS, ...AUDIOS_REPONSES };
 export default class DepotRessourcesBienvenue extends DepotRessourcesQuestion {
   constructor (chargeurs) {
     super(chargeurs, messagesVideos, messagesAudios, null, sonConsigne);
+    this.charge([bienvenueBackground]);
   }
 
   imageAideComplementaire () {
     return;
+  }
+
+  illustrationQuestion () {
+    return this.ressource(bienvenueBackground);
   }
 }

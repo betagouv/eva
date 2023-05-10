@@ -1,7 +1,7 @@
 import chargeurs from '../../commun/aides/mock_chargeurs';
 import DepotRessourcesQuestions from 'questions/infra/depot_ressources_questions';
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
-import bienvenueBackground from 'questions/assets/illustration_questions/bienvenue_background.jpg';
+import CetC1 from 'questions/assets/illustration_questions/CetC1.jpg';
 
 describe('Le dépot ressource de la situation Question', function () {
   let depot;
@@ -20,8 +20,8 @@ describe('Le dépot ressource de la situation Question', function () {
 
   describe("#illustrationQuestion", function() {
     it("Retourne l'illustration d'une question", function () {
-      expect(depot.illustrationQuestion({ nom_technique: 'concentration' }))
-        .toEqual(bienvenueBackground);
+      expect(depot.illustrationQuestion({ nom_technique: 'connaissance_et_comprehension_1' }))
+        .toEqual(CetC1);
     });
 
     it("Retourne une erreur si une question n'a pas d'illustration", function () {
