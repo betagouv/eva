@@ -1,4 +1,3 @@
-import bienvenueBackground from '../assets/illustration_questions/bienvenue_background.jpg';
 import CetC1 from '../assets/illustration_questions/CetC1.jpg';
 import CetC2 from '../assets/illustration_questions/CetC2.jpg';
 import CetC3 from '../assets/illustration_questions/CetC3.jpg';
@@ -23,31 +22,6 @@ import SetO6 from '../assets/illustration_questions/SetO6.jpg';
 import SetO7 from '../assets/illustration_questions/SetO7.jpg';
 
 const illustrationsQuestions = {
-  sous_consigne_autopositionnement: bienvenueBackground,
-  sous_consigne_sante: bienvenueBackground,
-  age: bienvenueBackground,
-  genre: bienvenueBackground,
-  langue_maternelle: bienvenueBackground,
-  lieu_scolarite: bienvenueBackground,
-  dernier_niveau_etude: bienvenueBackground,
-  derniere_situation: bienvenueBackground,
-  concentration: bienvenueBackground,
-  comprehension: bienvenueBackground,
-  differencier_objets: bienvenueBackground,
-  difficultes_informatique: bienvenueBackground,
-  analyse_travail: bienvenueBackground,
-  tache_longue_et_difficile: bienvenueBackground,
-  travail_sans_erreur: bienvenueBackground,
-  dangers: bienvenueBackground,
-  vue: bienvenueBackground,
-  bienvenue_9: bienvenueBackground,
-  entendre: bienvenueBackground,
-  bienvenue_11: bienvenueBackground,
-  bienvenue_12: bienvenueBackground,
-  bienvenue_13: bienvenueBackground,
-  bienvenue_14: bienvenueBackground,
-  trouble_dys: bienvenueBackground,
-  bienvenue_16: bienvenueBackground,
   entrainement_livraison_1: entrainementLivraison1,
   entrainement_livraison_2: entrainementLivraison2,
   connaissance_et_comprehension_1: CetC1,
