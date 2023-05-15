@@ -4,7 +4,6 @@ import ErreurCampagne from 'commun/infra/erreur_campagne';
 import { traduction } from 'commun/infra/internationalisation';
 
 export const DECONNECTE = 'déconnecté';
-export const DONNEES = 'donnees';
 export const DEMARRE = 'démarré';
 
 export function creeStore (registreUtilisateur, registreCampagne) {
@@ -27,10 +26,6 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         return state.etat === DEMARRE;
       },
 
-      collecteDonnees (state) {
-        return state.etat === DONNEES;
-      },
-
       estTermine (state) {
         return state.situations.length > 0 &&
           state.situationsFaites.length >= state.situations.length;
@@ -42,9 +37,7 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         state.estConnecte = true;
         state.nom = nom;
         state.situationsFaites = [];
-        const questionAgeBienvenue = registreCampagne.questions('bienvenue')
-          .find(({ nom_technique }) => nom_technique === 'age');
-        state.etat = questionAgeBienvenue ? DEMARRE : DONNEES;
+        state.etat = DEMARRE;
       },
 
       deconnecte (state) {

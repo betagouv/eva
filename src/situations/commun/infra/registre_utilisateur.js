@@ -58,26 +58,6 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  enregistreDonneesComplementaires (id, data) {
-    return new Promise((resolve, reject) => {
-      this.metsAJourEvaluation(id, data)
-        .then((utilisateur) => {
-          this.enregistreUtilisateurEnLocal(utilisateur);
-          resolve(utilisateur);
-        })
-        .catch((xhr) => {
-          if (this.activeModeHorsLigne(xhr)) {
-            let utilisateur = this.evaluationCourante();
-            utilisateur = Object.assign(utilisateur, data);
-            this.enregistreUtilisateurEnLocal(utilisateur);
-            resolve(utilisateur);
-          } else {
-            reject(xhr);
-          }
-        });
-    });
-  }
-
   termineEvaluation (id = this.idClient(), dateFin = new Date()) {
     const utilisateur = this.evaluation(id);
     utilisateur.terminee_le = dateFin;

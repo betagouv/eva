@@ -4,7 +4,6 @@ import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECAL
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
-import FormulaireDonneesComplementaires from 'accueil/vues/formulaire_donnees_complementaires';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import { traduction } from 'commun/infra/internationalisation';
 
@@ -54,13 +53,11 @@ describe('La vue accueil', function () {
         estConnecte: false,
         situationsFaites: [],
         estDemarre: false,
-        collecteDonnees: false,
         erreurFormulaireIdentification: false
       },
 
       getters: {
         estDemarre: (state) => state.estDemarre,
-        collecteDonnees: (state) => state.collecteDonnees,
         estTermine: mockEstTermine
       },
       actions: {
@@ -304,17 +301,6 @@ describe('La vue accueil', function () {
       expect(wrapper.vm.indexBatiment).toBe(-0.5);
       done();
     });
-  });
-
-  it('affiche ou non le formulaire de collecte de données complémentaires', async function() {
-    const wrapper = accueil({}, false);
-
-    expect(wrapper.findComponent(FormulaireDonneesComplementaires).exists()).toBe(false);
-    store.state.collecteDonnees = true;
-
-    await wrapper.vm.$nextTick();
-
-    expect(wrapper.findComponent(FormulaireDonneesComplementaires).exists()).toBe(true);
   });
 
   describe('#afficheConsigne', function () {

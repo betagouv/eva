@@ -1,4 +1,4 @@
-import { creeStore, DECONNECTE, DONNEES, DEMARRE } from 'accueil/modeles/store';
+import { creeStore, DECONNECTE, DEMARRE } from 'accueil/modeles/store';
 import ErreurCampagne from 'commun/infra/erreur_campagne';
 
 describe("Le store de l'accueil", function () {
@@ -10,10 +10,7 @@ describe("Le store de l'accueil", function () {
       estConnecte () {},
       nom () {},
       on () {},
-      situationsFaites () {},
-      enregistreDonneesComplementaires () {
-        return Promise.resolve();
-      }
+      situationsFaites () {}
     };
     registreCampagne = {
       questions: () => { return []; }
@@ -62,23 +59,10 @@ describe("Le store de l'accueil", function () {
       store = creeStore(registreUtilisateur, registreCampagne);
     });
 
-    it("initalise le nom et le nombre de situationsFaites", function() {
+    it("initalise le nom et le nombre de situationsFaites et demarre", function() {
       store.commit('connecte', 'nom évalué');
       expect(store.state.nom).toBe('nom évalué');
       expect(store.state.situationsFaites.length).toEqual(0);
-    });
-
-    it("quand la question de l'âge n'est pas présente ouvre le formulaire de saisie des données", function() {
-      store.commit('connecte', 'nom évalué');
-      expect(store.state.etat).toEqual(DONNEES);
-    });
-
-    it("quand la question de l'âge est présente dans bienvenue, démarre", function() {
-      const questions = {
-        'bienvenue': [{ nom_technique: "age" }]
-      };
-      registreCampagne.questions = (situation) => { return questions[situation]; };
-      store.commit('connecte', 'nom évalué');
       expect(store.state.etat).toEqual(DEMARRE);
     });
   });
@@ -100,27 +84,6 @@ describe("Le store de l'accueil", function () {
     callback();
     expect(store.state.estConnecte).toEqual(false);
     expect(store.state.nom).toEqual('');
-  });
-
-  describe('Action : enregistreDonneesComplementaires', function () {
-    let data = { age: '35', genre: 'Femme' };
-
-    it('démarre après avoir enregistré les données', function () {
-      const store = creeStore(registreUtilisateur, registreCampagne);
-      registreUtilisateur.idEvaluation = () => { return 1; };
-      return store.dispatch('enregistreDonneesComplementaires', data).then(() => {
-        expect(store.state.etat).toEqual(DEMARRE);
-      });
-    });
-
-    it("déconnecte si l'id évaluation n'est pas connu", function () {
-      const store = creeStore(registreUtilisateur, registreCampagne);
-      store.commit('connecte', 'test');
-      registreUtilisateur.idEvaluation = () => { return undefined; };
-      return store.dispatch('enregistreDonneesComplementaires', data).then(() => {
-        expect(store.state.estConnecte).toEqual(false);
-      });
-    });
   });
 
   describe('Action : recupereSituations', function () {

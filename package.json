@@ -80,7 +80,6 @@
     "rollbar": "^2.24.0",
     "uuid": "^8.3.2",
     "vue": "^3.2.38",
-    "vue-select": "^4.0.0-beta.5",
     "vue3-jest": "^27.0.0-alpha.1",
     "vue3-keypress": "^4.0.1",
     "vuedraggable": "^4.1.0",
