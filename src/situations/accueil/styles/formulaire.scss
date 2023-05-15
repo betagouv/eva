@@ -11,28 +11,6 @@
   margin-bottom: 4rem;
 }
 
-.formulaire-sociodemographique {
-  &-description {
-    margin-bottom: 0.5rem;
-  }
-  &-avertissement {
-    margin-bottom: 3rem;
-    color: $bleu;
-    font-size: 1rem;
-
-    p {
-      margin-top: 0;
-    }
-  }
-  &-description, &-avertissement {
-    width: 49rem;
-    margin-top: 0;
-  }
-  &-vous, &-votre-parcours {
-    font-size: 1.5rem;
-  }
-}
-
 .elements-formulaire {
   display: flex;
   flex-wrap: wrap;
@@ -94,8 +72,4 @@
     color: $bleu;
     text-decoration: none;
   }
-}
-
-.bouton-sociodemographique {
-  margin-top: 2rem;
 }

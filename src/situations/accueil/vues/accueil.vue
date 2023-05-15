@@ -87,9 +87,6 @@
     </div>
     <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom" />
     <transition-fade>
-      <formulaire-donnees-complementaires v-if="collecteDonnees" />
-    </transition-fade>
-    <transition-fade>
       <intro-consigne
         v-if="afficheConsigne"
         :titre="$traduction('accueil.intro_consigne.titre')"
@@ -114,7 +111,6 @@ import 'commun/styles/modale.scss';
 import logo from '../../../public/logo-blanc.svg';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import FormulaireIdentification from './formulaire_identification';
-import FormulaireDonneesComplementaires from './formulaire_donnees_complementaires';
 import AccesSituation from 'accueil/vues/acces_situation';
 import Fin from 'accueil/vues/fin';
 import IntroConsigne from 'commun/vues/intro_consigne';
@@ -129,7 +125,7 @@ export const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 
 export default {
-  components: { BoiteUtilisateur, FormulaireIdentification, FormulaireDonneesComplementaires, AccesSituation, IntroConsigne, Fin, TransitionFade },
+  components: { BoiteUtilisateur, FormulaireIdentification, AccesSituation, IntroConsigne, Fin, TransitionFade },
 
   props: {
     forceCampagne: {
@@ -158,7 +154,7 @@ export default {
 
   computed: {
     ...mapState(['situations', 'estConnecte', 'situationsFaites', 'nomCampagne']),
-    ...mapGetters(['estDemarre', 'collecteDonnees', 'estTermine']),
+    ...mapGetters(['estDemarre', 'estTermine']),
 
     afficheConsigne () {
       return this.estDemarre && this.indexBatiment === 0;
