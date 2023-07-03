@@ -77,7 +77,7 @@
     "marked": "^4.0.12",
     "mobile-device-detect": "^0.4.3",
     "query-string": "^6.14.1",
-    "rollbar": "^2.24.0",
+    "rollbar": "^2.26.0",
     "uuid": "^8.3.2",
     "vue": "^3.2.38",
     "vue3-jest": "^27.0.0-alpha.1",
