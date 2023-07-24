@@ -12,18 +12,17 @@
         <div class="elements-formulaire">
           <div>
             <label
-              v-if="!nomForce"
               for="formulaire-identification-champ-nom">
               {{ $traduction('accueil.identification.label') }}
             </label>
             <div
-              class="element-formulaire"
-              v-if="!nomForce">
+              class="element-formulaire">
               <input
                 id="formulaire-identification-champ-nom"
                 v-model.trim="nom"
                 type="text"
                 class="champ champ-texte champ-texte-accueil"
+                :disabled="nomForce"
                 autofocus>
               <span
                 v-if="erreurFormulaireIdentification.nom"

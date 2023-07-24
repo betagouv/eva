@@ -220,15 +220,17 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.vm.campagne).toEqual('ETE-2019');
     expect(wrapper.findAll('label').length).toBe(3);
     const champs = wrapper.findAll('.champ-texte-accueil');
-    expect(champs.at(1).attributes('disabled')).toBe('');
+    expect(champs.at(1).attributes('disabled')).not.toBeUndefined();
   });
 
-  it('cache le champ nom/prénom si il y a une propriété forceNom', function () {
+  it('disable le champ nom/prénom si il y a une propriété forceNom', function () {
     expect(wrapper.findAll('.champ-texte-accueil').length).toBe(2);
     wrapper = composant({ forceNom: 'franck-poulain' });
     expect(wrapper.vm.nom).toEqual('franck-poulain');
-    expect(wrapper.findAll('label').length).toBe(2);
-    expect(wrapper.findAll('.champ-texte-accueil').length).toBe(1);
+    expect(wrapper.findAll('label').length).toBe(3);
+    const champs = wrapper.findAll('.champ-texte-accueil');
+    expect(champs.length).toBe(2);
+    expect(champs.at(0).attributes('disabled')).not.toBeUndefined();
   });
 
   describe('#champCodeEstDesactive', function () {
