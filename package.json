@@ -15,8 +15,8 @@
     "prepare": "husky install"
   },
   "engines": {
-    "node": "16.15.x",
-    "npm": "8.11.x"
+    "node": "21.6.x",
+    "npm": "10.2.x"
   },
   "repository": {
     "type": "git",
@@ -63,6 +63,7 @@
     "sass-loader": "^12.x",
     "style-loader": "^2.0",
     "vue-loader": "^16.0.0",
+    "vue3-jest": "^27.0.0-alpha.1",
     "webpack-dev-server": "^4.7",
     "webpack-node-externals": "^2.5",
     "workbox-webpack-plugin": "^6.4"
@@ -80,7 +81,6 @@
     "rollbar": "^2.26.0",
     "uuid": "^8.3.2",
     "vue": "^3.2.38",
-    "vue3-jest": "^27.0.0-alpha.1",
     "vue3-keypress": "^4.0.1",
     "vuedraggable": "^4.1.0",
     "vuex": "^4.0.2",

@@ -1,5 +1,4 @@
 /public
-bin/config.sh
 node_modules/
 .DS_Store
 .eslintcache
