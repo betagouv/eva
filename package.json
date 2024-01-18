@@ -33,9 +33,9 @@
     "@babel/preset-env": "^7.16.0",
     "@vue/compiler-sfc": "^3.1.0",
     "@vue/test-utils": "^2.0.2",
+    "@vue/vue3-jest": "^27.0.0",
     "acorn": "^8.6.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.2",
     "babel-plugin-require-context-hook": "^1.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
@@ -63,7 +63,6 @@
     "sass-loader": "^12.x",
     "style-loader": "^2.0",
     "vue-loader": "^16.0.0",
-    "vue3-jest": "^27.0.0-alpha.1",
     "webpack-dev-server": "^4.7",
     "webpack-node-externals": "^2.5",
     "workbox-webpack-plugin": "^6.4"

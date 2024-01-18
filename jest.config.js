@@ -23,7 +23,7 @@ module.exports = {
   ],
   transform: {
     '^.+\\.js$': 'babel-jest',
-    '^.+\\.vue$': 'vue3-jest',
+    '^.+\\.vue$': '@vue/vue3-jest',
     '\\.(mp3|mp4|png|jpg|jpeg|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileTransformer.js'
   },
   moduleNameMapper: {
