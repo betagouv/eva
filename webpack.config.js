@@ -7,8 +7,6 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const RollbarSourceMapPlugin = require('rollbar-sourcemap-webpack-plugin');
-const GitRevPlugin = require('git-rev-webpack-plugin');
-const gitRevPlugin = new GitRevPlugin();
 
 const devMode = process.env.NODE_ENV !== 'production';
 const situations = ['controle', 'inventaire', 'tri', 'questions', 'securite', 'prevention', 'maintenance', 'livraison', 'objets_trouves', 'bienvenue', 'plan_de_la_ville', 'cafe_de_la_place'];
@@ -117,7 +115,6 @@ module.exports = {
   plugins: [
     ...rollbarSourceMapPlugin,
     new CleanWebpackPlugin(),
-    gitRevPlugin,
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
@@ -134,7 +131,7 @@ module.exports = {
       JETON_CLIENT_ROLLBAR: null, // valeur par défaut null quand la variable est facultative
       ROLLBAR_ENV: null,
       SOURCE_VERSION: undefined,
-      SOURCE_VERSION_COURTE: gitRevPlugin.tag(),
+      SOURCE_VERSION_COURTE: devMode ? 'HEAD' : process.env.SOURCE_VERSION.substring(0, 8),
       ANNONCE_GENERALE: null,
       HOTJAR_ID: null,
       MATOMO_ID: null
