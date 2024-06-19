@@ -13,8 +13,8 @@ const sousConsigneHPar1 = {
   nom_technique: 'sous_consigne_HPar_1',
   type: 'sous-consigne',
   illustration: hParConsigne,
-  intitule: "Après le programme télé, vous lisez les « Nouvelles du jour ».<br><br>Un accident de la route a eu lieu dans votre ville ! Mais le texte est un peu bizarre, les phrases sont mélangées.",
-  modalite_reponse: "Déplacez les blocs de texte sur la page du journal à gauche en remettant l'article dans l'ordre.<br>Vous pouvez modifier l'ordre autant de fois que vous le souhaitez. Une fois que l’ordre des phrases vous convient, cliquez sur « Valider ».<br><br>Pour commencer, cliquez sur « Suivant »."
+  intitule: "Après le programme télé, vous lisez les « Nouvelles du jour ».\n\nUn accident de la route a eu lieu dans votre ville ! Mais le texte est un peu bizarre, les phrases sont mélangées.",
+  modalite_reponse: "Déplacez les blocs de texte sur la page du journal à gauche en remettant l'article dans l'ordre.\nVous pouvez modifier l'ordre autant de fois que vous le souhaitez. Une fois que l’ordre des phrases vous convient, cliquez sur « Valider ».\n\nPour commencer, cliquez sur « Suivant »."
 };
 
 const fragmentsNouvelleDuJour = [
@@ -54,7 +54,7 @@ const HPar1 = {
   nom_technique: 'hpar_1',
   illustration: journalVide,
   extensionVue: 'puzzle',
-  description: "Vous avez placé tous les blocs de texte !<br>Vous pouvez toujours modifier leur ordre directement dans la page du journal.",
+  description: "Vous avez placé tous les blocs de texte !\nVous pouvez toujours modifier leur ordre directement dans la page du journal.",
   intitule: "Si l’ordre vous convient, cliquez sur « Valider ».",
   fragmentsNonClasses: fragmentsNouvelleDuJour
 };
@@ -145,7 +145,7 @@ const HGac1 = {
   illustration: graphique,
   extensionVue: 'graphique',
   intitule: "D'après ce graphique, dans quel pays trouve-t-on le plus de foyers qui accueillent des chats ?",
-  modalite_reponse: "Pour répondre, cliquez sur les barres du graphique.<br>Attention, il peut y avoir plusieurs bonnes réponses. Quand votre choix vous convient, cliquez sur « Valider ».",
+  modalite_reponse: "Pour répondre, cliquez sur les barres du graphique.\nAttention, il peut y avoir plusieurs bonnes réponses. Quand votre choix vous convient, cliquez sur « Valider ».",
   reponse: {
     bonne_reponse: ['allemagne'],
     score: 1
@@ -195,7 +195,7 @@ const sousConsigneHCvf1 = {
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
-  intitule: "A la page suivante vous tombez sur la rubrique « La minute environnement ». Un article parle du concours des villes fleuries.<br><br>J'ai quelques questions à vous poser sur cet article, lisez-le avec attention. Quand vous avez fini de lire, cliquez sur « Suivant »."
+  intitule: "A la page suivante vous tombez sur la rubrique « La minute environnement ». Un article parle du concours des villes fleuries.\n\nJ'ai quelques questions à vous poser sur cet article, lisez-le avec attention. Quand vous avez fini de lire, cliquez sur « Suivant »."
 };
 
 const HCvf1 = {
@@ -331,7 +331,7 @@ const sousConsigneHPfb2 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Vous avez commencé à écrire un message un peu plus tôt, vous devez maintenant le compléter. Je vais vous lire les mots qui manquent, alors écoutez bien !<br><br>Soyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
+  intitule: "Vous avez commencé à écrire un message un peu plus tôt, vous devez maintenant le compléter. Je vais vous lire les mots qui manquent, alors écoutez bien !\n\nSoyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.\n\nSi vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
   modalite_reponse: "Pour commencer, cliquez sur « Suivant »."
 };
 
@@ -343,11 +343,11 @@ const HPfb1 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Bonjour mon ami ! \
+  retranscription_audio: "Bonjour mon ami ! \
     J'espère que tu vas bien.\
     Comme convenu, je vais te décrire les problèmes que j'ai eus hier, le 10 août, quand je t'ai remplacé à la boutique.\
     Ecrivez « août »",
-  modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
+  modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.\n\nVous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
   reponse: {
     nom_technique: 'HPfb/aout',
     textes: ['août', 'aoút', 'aoùt', 'aout', 'aoüt', 'aôut'],
@@ -363,7 +363,7 @@ const HPfb2 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Une commande est arrivée et elle ne correspondait pas à ta demande.\
+  retranscription_audio: "Une commande est arrivée et elle ne correspondait pas à ta demande.\
     Ecrivez « demande »",
   reponse: {
     nom_technique: 'HPfb/demande',
@@ -380,7 +380,7 @@ const HPfb3 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Le nombre d'articles était en accord avec la commande.\
+  retranscription_audio: "Le nombre d'articles était en accord avec la commande.\
     Ecrivez « nombre »",
   reponse: {
     nom_technique: 'HPfb/nombre',
@@ -397,7 +397,7 @@ const HPfb4 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « articles »",
+  retranscription_audio: "Ecrivez « articles »",
   reponse: {
     nom_technique: 'HPfb/articles',
     textes: ['articles', 'article'],
@@ -413,7 +413,7 @@ const HPfb5 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « accord »",
+  retranscription_audio: "Ecrivez « accord »",
   reponse: {
     nom_technique: 'HPfb/accord',
     textes: ['accord', 'accords'],
@@ -429,7 +429,7 @@ const HPfb6 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Mais certains étaient dans un mauvais état ou ne correspondaient pas à ce qu'on attendait.\
+  retranscription_audio: "Mais certains étaient dans un mauvais état ou ne correspondaient pas à ce qu'on attendait.\
     Ecrivez « état »",
   reponse: {
     nom_technique: 'HPfb/etat',
@@ -446,7 +446,7 @@ const HPfb7 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « correspondaient »",
+  retranscription_audio: "Ecrivez « correspondaient »",
   reponse: {
     nom_technique: 'HPfb/correspondaient',
     textes: ['correspondaient', 'correspondait'],
@@ -462,7 +462,7 @@ const HPfb8 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
-  intitule: "Les dahlias, couleur bleu azuré, étaient en fait de couleur rouge.\
+  retranscription_audio: "Les dahlias, couleur bleu azuré, étaient en fait de couleur rouge.\
     Ecrivez « rouge »",
   reponse: {
     nom_technique: 'HPfb/rouge',
@@ -479,7 +479,7 @@ const HPfb9 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Les roses de Chine ne sentaient aucun parfum contrairement à ce qui était annoncé dans le catalogue.\
+  retranscription_audio: "Les roses de Chine ne sentaient aucun parfum contrairement à ce qui était annoncé dans le catalogue.\
     Ecrivez « roses »",
   reponse: {
     nom_technique: 'HPfb/roses',
@@ -496,7 +496,7 @@ const HPfb10 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « sentaient »",
+  retranscription_audio: "Ecrivez « sentaient »",
   reponse: {
     nom_technique: 'HPfb/sentaient',
     textes: ['sentaient', 'sentait'],
@@ -512,7 +512,7 @@ const HPfb11 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « parfum »",
+  retranscription_audio: "Ecrivez « parfum »",
   reponse: {
     nom_technique: 'HPfb/parfum',
     textes: ['parfum', 'parfums'],
@@ -528,7 +528,7 @@ const HPfb12 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « catalogue »",
+  retranscription_audio: "Ecrivez « catalogue »",
   reponse: {
     nom_technique: 'HPfb/catalogue',
     textes: ['catalogue', 'catalogues'],
@@ -544,7 +544,7 @@ const HPfb13 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "En plus, il manquait un bras à toutes les figurines des cyclistes faites en feuilles de bananier.\
+  retranscription_audio: "En plus, il manquait un bras à toutes les figurines des cyclistes faites en feuilles de bananier.\
     Ecrivez « bras »",
   reponse: {
     nom_technique: 'HPfb/bras',
@@ -561,7 +561,7 @@ const HPfb14 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « cyclistes »",
+  retranscription_audio: "Ecrivez « cyclistes »",
   reponse: {
     nom_technique: 'HPfb/cyclistes',
     textes: ['cyclistes', 'cycliste'],
@@ -577,7 +577,7 @@ const HPfb15 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « bananier »",
+  retranscription_audio: "Ecrivez « bananier »",
   reponse: {
     nom_technique: 'HPfb/bananier',
     textes: ['bananier', 'bananiers'],
@@ -593,7 +593,7 @@ const HPfb16 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Enfin, cinq bouteilles de solution alcoolique pour nettoyer les barbecues fuyaient par le bouchon.\
+  retranscription_audio: "Enfin, cinq bouteilles de solution alcoolique pour nettoyer les barbecues fuyaient par le bouchon.\
     Ecrivez « alcoolique »",
   reponse: {
     nom_technique: 'HPfb/alcoolique',
@@ -610,7 +610,7 @@ const HPfb17 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Si tu en parles à ton fournisseur, je suis sûr qu'il y aura une intervention et sans doute un remboursement de tes marchandises.\
+  retranscription_audio: "Si tu en parles à ton fournisseur, je suis sûr qu'il y aura une intervention et sans doute un remboursement de tes marchandises.\
     Ecrivez « intervention »",
   reponse: {
     nom_technique: 'HPfb/intervention',
@@ -627,7 +627,7 @@ const HPfb18 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « remboursement »",
+  retranscription_audio: "Ecrivez « remboursement »",
   reponse: {
     nom_technique: 'HPfb/remboursement',
     textes: ['remboursement', 'remboursements'],
@@ -643,7 +643,7 @@ const HPfb19 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "Ecrivez « marchandises »",
+  retranscription_audio: "Ecrivez « marchandises »",
   reponse: {
     nom_technique: 'HPfb/marchandises',
     textes: ['marchandises', 'marchandise'],
@@ -659,7 +659,7 @@ const HPfb20 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
-  intitule: "La commande a probablement été préparée à la hâte.\
+  retranscription_audio: "La commande a probablement été préparée à la hâte.\
     Bon courage et à très vite !\
     Ecrivez « hâte »",
   reponse: {

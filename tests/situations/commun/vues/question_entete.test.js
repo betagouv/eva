@@ -37,12 +37,22 @@ describe('la vue du composant entête', function () {
     return composant;
   }
 
-  it("affiche le libellé en markdown", function() {
-    question.intitule = "**intitulé en gras**";
-    const vue = composant(question);
-    const htmlAttendu = '<p><strong>intitulé en gras</strong></p>';
+  describe('#intitule_markdownifie', function () {
+    it("affiche le libellé en markdown", function() {
+      question.intitule = "**intitulé en gras**";
+      const vue = composant(question);
+      const htmlAttendu = '<p><strong>intitulé en gras</strong></p>';
 
-    expect(vue.vm.intitule_markdownifie.trim()).toEqual(htmlAttendu);
+      expect(vue.vm.intitule_markdownifie.trim()).toEqual(htmlAttendu);
+    });
+
+    it("remplace les sauts de ligne \n par un <br>", function() {
+      question.intitule = "18 h 55\n« Les livres ont la parole ».";
+      const vue = composant(question);
+      const htmlAttendu = '<p>18 h 55<br>« Les livres ont la parole ».</p>';
+
+      expect(vue.vm.intitule_markdownifie.trim()).toEqual(htmlAttendu);
+    });
   });
 
   describe('#afficheLectureTexteEntete', function () {
