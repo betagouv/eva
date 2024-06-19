@@ -148,7 +148,7 @@ export default {
       this.envoyer = true;
       this.$emit('reponse', {
         question: this.question.id,
-        intitule: this.question.intitule,
+        intitule: this.question.intitule ?? this.question.retranscription_audio,
         scoreMax: this.scoreMax(),
         metacompetence: this.question.metacompetence,
         ...this.reponse

@@ -8,7 +8,7 @@ const sousConsigneLOdi1 = {
   type: 'sous-consigne',
   illustration: programmeTele,
   nom_technique: 'sous_consigne_LOdi_1',
-  intitule: "Vous prenez le magazine qui se trouve sur la table devant vous. Regardez attentivement cette page. Je vais vous poser quelques questions.<br><br>Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
+  intitule: "Vous prenez le magazine qui se trouve sur la table devant vous. Regardez attentivement cette page. Je vais vous poser quelques questions.\n\nFaites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
 };
 
 const sousConsigneLOdi2 = {
@@ -16,7 +16,7 @@ const sousConsigneLOdi2 = {
   type: 'sous-consigne',
   illustration: programmeTeleZoom,
   nom_technique: 'sous_consigne_LOdi_2',
-  intitule: "Regardons plus en détail le film de 20 h 45.<br><br>Prenez le temps de lire ce texte, je vous poserai ensuite quelques questions. Rassurez-vous, le texte restera à l'écran et vous pourrez toujours le consulter quand je vous poserai des questions.<br><br>Pour commencer, cliquez sur « Suivant »"
+  intitule: "Regardons plus en détail le film de 20 h 45.\n\nPrenez le temps de lire ce texte, je vous poserai ensuite quelques questions. Rassurez-vous, le texte restera à l'écran et vous pourrez toujours le consulter quand je vous poserai des questions.\n\nPour commencer, cliquez sur « Suivant »"
 };
 
 const LOdi1 = {
@@ -82,7 +82,7 @@ const LOdi3 = {
   nom_technique: 'lodi_3',
   type: 'qcm',
   illustration: programmeTele18h55,
-  intitule: "18 h 55<br>« Les livres ont la parole ». Quel est le sujet de l’émission ?",
+  intitule: "18 h 55\n« Les livres ont la parole ». Quel est le sujet de l’émission ?",
   choix: [
     {
       id: 'mode_chapeau',
