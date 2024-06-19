@@ -475,7 +475,7 @@ const configurationNormale = {
     messages: [questionMessage3, questionMessage1, questionMessage2]
   },
   consignesEcranAccueil: [
-    'Pour commencer à explorer le téléphone vous devez le déverrouiller.</br>Cliquez sur le bouton “Déverrouiller”.',
+    'Pour commencer à explorer le téléphone vous devez le déverrouiller.</br>Cliquez sur le bouton « Déverrouiller ».',
     'Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.'
   ],
   questionsFin: [questionFin1, questionFin2, questionFin3]
