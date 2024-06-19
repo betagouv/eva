@@ -343,6 +343,10 @@ const HPfb1 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
+  intitule: "Bonjour mon ami ! \
+    J'espère que tu vas bien.\
+    Comme convenu, je vais te décrire les problèmes que j'ai eus hier, le 10 août, quand je t'ai remplacé à la boutique.\
+    Ecrivez « août »",
   modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
   reponse: {
     nom_technique: 'HPfb/aout',
@@ -359,6 +363,8 @@ const HPfb2 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
+  intitule: "Une commande est arrivée et elle ne correspondait pas à ta demande.\
+    Ecrivez « demande »",
   reponse: {
     nom_technique: 'HPfb/demande',
     textes: ['demande', 'demandes'],
@@ -374,6 +380,8 @@ const HPfb3 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
+  intitule: "Le nombre d'articles était en accord avec la commande.\
+    Ecrivez « nombre »",
   reponse: {
     nom_technique: 'HPfb/nombre',
     textes: ['nombre', 'nombres'],
@@ -389,6 +397,7 @@ const HPfb4 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « articles »",
   reponse: {
     nom_technique: 'HPfb/articles',
     textes: ['articles', 'article'],
@@ -404,6 +413,7 @@ const HPfb5 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « accord »",
   reponse: {
     nom_technique: 'HPfb/accord',
     textes: ['accord', 'accords'],
@@ -419,6 +429,8 @@ const HPfb6 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
+  intitule: "Mais certains étaient dans un mauvais état ou ne correspondaient pas à ce qu'on attendait.\
+    Ecrivez « état »",
   reponse: {
     nom_technique: 'HPfb/etat',
     textes: ['état', 'etat', 'ètat', 'états', 'etats', 'ètats'],
@@ -434,6 +446,7 @@ const HPfb7 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « correspondaient »",
   reponse: {
     nom_technique: 'HPfb/correspondaient',
     textes: ['correspondaient', 'correspondait'],
@@ -449,6 +462,8 @@ const HPfb8 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
+  intitule: "Les dahlias, couleur bleu azuré, étaient en fait de couleur rouge.\
+    Ecrivez « rouge »",
   reponse: {
     nom_technique: 'HPfb/rouge',
     textes: ['rouge', 'rouges'],
@@ -464,6 +479,8 @@ const HPfb9 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Les roses de Chine ne sentaient aucun parfum contrairement à ce qui était annoncé dans le catalogue.\
+    Ecrivez « roses »",
   reponse: {
     nom_technique: 'HPfb/roses',
     textes: ['roses', 'rose'],
@@ -479,6 +496,7 @@ const HPfb10 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « sentaient »",
   reponse: {
     nom_technique: 'HPfb/sentaient',
     textes: ['sentaient', 'sentait'],
@@ -494,6 +512,7 @@ const HPfb11 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « parfum »",
   reponse: {
     nom_technique: 'HPfb/parfum',
     textes: ['parfum', 'parfums'],
@@ -509,6 +528,7 @@ const HPfb12 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « catalogue »",
   reponse: {
     nom_technique: 'HPfb/catalogue',
     textes: ['catalogue', 'catalogues'],
@@ -524,6 +544,8 @@ const HPfb13 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "En plus, il manquait un bras à toutes les figurines des cyclistes faites en feuilles de bananier.\
+    Ecrivez « bras »",
   reponse: {
     nom_technique: 'HPfb/bras',
     textes: ['bras'],
@@ -539,6 +561,7 @@ const HPfb14 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « cyclistes »",
   reponse: {
     nom_technique: 'HPfb/cyclistes',
     textes: ['cyclistes', 'cycliste'],
@@ -554,6 +577,7 @@ const HPfb15 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « bananier »",
   reponse: {
     nom_technique: 'HPfb/bananier',
     textes: ['bananier', 'bananiers'],
@@ -569,6 +593,8 @@ const HPfb16 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Enfin, cinq bouteilles de solution alcoolique pour nettoyer les barbecues fuyaient par le bouchon.\
+    Ecrivez « alcoolique »",
   reponse: {
     nom_technique: 'HPfb/alcoolique',
     textes: ['alcoolique', 'alcooliques'],
@@ -584,6 +610,8 @@ const HPfb17 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Si tu en parles à ton fournisseur, je suis sûr qu'il y aura une intervention et sans doute un remboursement de tes marchandises.\
+    Ecrivez « intervention »",
   reponse: {
     nom_technique: 'HPfb/intervention',
     textes: ['intervention', 'interventions'],
@@ -599,6 +627,7 @@ const HPfb18 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « remboursement »",
   reponse: {
     nom_technique: 'HPfb/remboursement',
     textes: ['remboursement', 'remboursements'],
@@ -614,6 +643,7 @@ const HPfb19 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "Ecrivez « marchandises »",
   reponse: {
     nom_technique: 'HPfb/marchandises',
     textes: ['marchandises', 'marchandise'],
@@ -629,6 +659,9 @@ const HPfb20 = {
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
+  intitule: "La commande a probablement été préparée à la hâte.\
+    Bon courage et à très vite !\
+    Ecrivez « hâte »",
   reponse: {
     nom_technique: 'HPfb/hate',
     textes: ['hâte', 'hate', 'häte', 'hàte', 'hâtes', 'hates', 'hätes', 'hàtes'],

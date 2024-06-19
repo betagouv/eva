@@ -309,6 +309,7 @@ const alrd11 = {
   modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  intitule: 'Sélectionnez le mot Exercice',
   reponse: {
     texte: 'Exercice',
     nom_technique: 'ALrd/exercice',
@@ -323,6 +324,7 @@ const alrd12 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  intitule: 'Sélectionnez le mot Anguille',
   reponse: {
     texte: 'Anguille',
     nom_technique: 'ALrd/anguille',
@@ -337,6 +339,7 @@ const alrd13 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  intitule: 'Sélectionnez le mot Dimoudon',
   reponse: {
     texte: 'Dimoudon',
     nom_technique: 'ALrd/dimoudon',
@@ -351,6 +354,7 @@ const alrd14 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  intitule: 'Sélectionnez le mot Soupçons',
   reponse: {
     texte: 'Soupçon',
     nom_technique: 'ALrd/soupcon',
@@ -650,6 +654,7 @@ const APlc1 = {
   extensionVue: 'liste-courses-a-trous',
   modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
+  intitule: 'Pour commencer, donnez un nom à votre liste : « Courses pour la cuisine ». Écrivez « cuisine ».',
   reponse: {
     nom_technique: 'APlc/cuisine',
     textes: ['cuisine', 'cuisines'],
@@ -665,6 +670,7 @@ const APlc2 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: 'Vous voulez faire une salade de légumes en entrée, il vous faut donc deux saladiers en verre. Ecrivez « saladiers »',
   reponse: {
     nom_technique: 'APlc/saladiers',
     textes: ['saladier', 'saladiers'],
@@ -680,6 +686,7 @@ const APlc3 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: 'Ecrivez « verre »',
   reponse: {
     nom_technique: 'APlc/verre',
     textes: ['verre', 'verres'],
@@ -695,6 +702,7 @@ const APlc4 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: '"Pour votre salade de légumes, il vous faudra un pot de mayonnaise. Ecrivez « mayonnaise »"',
   reponse: {
     nom_technique: 'APlc/mayonnaise',
     textes: ['mayonnaise', 'mayonnaises'],
@@ -710,6 +718,7 @@ const APlc5 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: 'Vous devez également acheter du sel. Ecrivez « sel »',
   reponse: {
     nom_technique: 'APlc/sel',
     textes: ['sel', 'sels'],
@@ -725,6 +734,7 @@ const APlc6 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: 'Pour les légumes, vous aurez besoin de deux kilos de tomate de pays et de quatre poivrons. Ecrivez « tomates »',
   reponse: {
     nom_technique: 'APlc/tomates',
     textes: ['tomate', 'tomates'],
@@ -740,6 +750,7 @@ const APlc7 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: 'Ecrivez « pays »',
   reponse: {
     nom_technique: 'APlc/pays',
     textes: ['pays'],
@@ -755,6 +766,7 @@ const APlc8 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: 'Ecrivez « poivrons »',
   reponse: {
     nom_technique: 'APlc/poivrons',
     textes: ['poivron', 'poivrons'],
@@ -770,6 +782,7 @@ const APlc9 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: 'Enfin, vous utiliserez des épices qui donnent du goût. Ecrivez « épices »',
   reponse: {
     nom_technique: 'APlc/epices',
     textes: ['épice', 'epice', 'èpice', 'êpice', 'ëpice',
@@ -787,6 +800,7 @@ const APlc10 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: 'Ecrivez « donnent »',
   reponse: {
     nom_technique: 'APlc/donnent',
     textes: ['donne', 'donnent'],
@@ -802,6 +816,7 @@ const APlc11 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Ce n'est pas tout, vous devez acheter un peu de matériel de cuisine. Vous souhaitez acheter de belles assiettes. Il vous en faudrait deux douzaines. Ecrivez « douzaines »",
   reponse: {
     nom_technique: 'APlc/douzaines',
     textes: ['douzaine', 'douzaines'],
@@ -817,6 +832,7 @@ const APlc12 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Ecrivez « assiettes »",
   reponse: {
     nom_technique: 'APlc/assiettes',
     textes: ['assiette', 'assiettes'],
@@ -832,6 +848,7 @@ const APlc13 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Pour cuisiner, vous aurez besoin de deux fouets, d'une louche et d'une passoire. Ecrivez « fouets »",
   reponse: {
     nom_technique: 'APlc/fouets',
     textes: ['fouet', 'fouets'],
@@ -847,6 +864,7 @@ const APlc14 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Ecrivez « louche »",
   reponse: {
     nom_technique: 'APlc/louche',
     textes: ['louche', 'louches'],
@@ -862,6 +880,7 @@ const APlc15 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Ecrivez « passoire »",
   reponse: {
     nom_technique: 'APlc/passoire',
     textes: ['passoire', 'passoires'],
@@ -877,6 +896,7 @@ const APlc16 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Il vous faudra une poêle de luxe et une casserole qui n’adhère pas. Ecrivez « poêle »",
   reponse: {
     nom_technique: 'APlc/poele',
     textes: ['poêle', 'poele', 'poéle', 'poèle', 'poële',
@@ -894,6 +914,7 @@ const APlc17 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Ecrivez « luxe »",
   reponse: {
     nom_technique: 'APlc/luxe',
     textes: ['luxe', 'luxes'],
@@ -909,6 +930,7 @@ const APlc18 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Ecrivez « casserole »",
   reponse: {
     nom_technique: 'APlc/casserole',
     textes: ['casserole', 'casseroles'],
@@ -924,6 +946,7 @@ const APlc19 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Ecrivez « adhère »",
   reponse: {
     nom_technique: 'APlc/adhere',
     textes: ['adhère', 'adhere', 'adhére', 'adhêre', 'adhëre'],
@@ -939,6 +962,7 @@ const APlc20 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  intitule: "Enfin, pour respecter les règles d'hygiène, il vous faudra une solution alcoolique pour nettoyer votre plan de travail. Ecrivez « alcoolique »",
   reponse: {
     nom_technique: 'APlc/alcoolique',
     textes: ['alcoolique', 'alcooliques'],

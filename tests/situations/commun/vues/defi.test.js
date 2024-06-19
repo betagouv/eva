@@ -18,7 +18,7 @@ describe("La vue d'un défi", function () {
 
   beforeEach(function () {
     store = creeStore();
-    question = { id: 154, nom_technique: 'question1', intitule: 'quelle couleur ?'};
+    question = { id: 154, nom_technique: 'question1', intitule: 'quelle couleur ?' };
     depotRessources = {
       illustrationQuestion: () => { return {}; },
       existeMessageAudio: () => false,
@@ -87,7 +87,10 @@ describe("La vue d'un défi", function () {
     let vue;
 
     beforeEach(function () {
-      question.choix = [{ id: 'uid-32', bonneReponse: true }, { id: 'uid-32-2', bonneReponse: false }];
+      question.choix = [
+        { id: 'uid-32', bonneReponse: true, score: 1 },
+        { id: 'uid-32-2', bonneReponse: false }
+      ];
       question.type = 'qcm';
       vue = composant(question);
     });
@@ -97,7 +100,14 @@ describe("La vue d'un défi", function () {
     });
 
     it('emet un événement réponse quand on appuie sur le bouton envoi', function (done) {
-      const reponse = { question: 154, reponse: 'uid-32', succes: true };
+      const reponse = {
+        question: question.id,
+        intitule: question.intitule,
+        metacompetence: undefined,
+        scoreMax: 1,
+        reponse: 'uid-32',
+        succes: true
+      };
       vue.findComponent(Qcm).vm.$emit('reponse', reponse);
       vue.vm.$nextTick(() => {
         vue.find('.question-bouton').trigger('click');
@@ -118,7 +128,12 @@ describe("La vue d'un défi", function () {
     vue.find('.question-bouton').trigger('click');
     vue.vm.$nextTick(() => {
       expect(vue.emitted().reponse.length).toEqual(1);
-      expect(vue.emitted().reponse[0][0]).toEqual({ question: 154 });
+      expect(vue.emitted().reponse[0][0]).toEqual({
+        question: 154,
+        intitule: "quelle couleur ?",
+        metacompetence: undefined,
+        scoreMax: undefined,
+      });
       done();
     });
   });
@@ -130,7 +145,12 @@ describe("La vue d'un défi", function () {
     vue.find('.question-bouton').trigger('click');
     vue.vm.$nextTick(() => {
       expect(vue.emitted().reponse.length).toEqual(1);
-      expect(vue.emitted().reponse[0][0]).toEqual({ question: 154, metacompetence: 'lecture' });
+      expect(vue.emitted().reponse[0][0]).toEqual({
+        question: 154,
+        intitule: "quelle couleur ?",
+        metacompetence: 'lecture',
+        scoreMax: undefined,
+      });
       done();
     });
   });
@@ -199,7 +219,13 @@ describe("La vue d'un défi", function () {
       vue.findComponent(MockExtension).vm.$emit('action');
       expect(vue.emitted().reponse.length).toEqual(1);
 
-      expect(vue.emitted().reponse[0][0]).toEqual({ question: 154, succes: true });
+      expect(vue.emitted().reponse[0][0]).toEqual({
+        question: 154,
+        intitule: "quelle couleur ?",
+        metacompetence: undefined,
+        scoreMax: undefined,
+        succes: true
+      });
     });
   });
 
@@ -338,6 +364,87 @@ describe("La vue d'un défi", function () {
       it("Ne démarre pas la lecture du son de l'entête question", function() {
         vue.vm.demarreSon();
         expect(composantEnteteQuestion.vm.demarreSon).not.toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('#scoreMax', function () {
+    describe('quand la question contient une réponse avec une liste de score', function () {
+      beforeEach(function () {
+        question.reponse = {
+          nom_technique: 'APlc/cuisine',
+          textes: ['cuisine', 'cuisines'],
+          scores: [1, 0.75]
+        };
+        question.choix = undefined;
+      });
+
+      it("retourne le score le plus élevé", function () {
+        const vue = composant(question);
+        expect(vue.vm.scoreMax()).toEqual(1);
+      });
+    });
+
+    describe('quand la question contient une réponse avec un score', function () {
+      beforeEach(function () {
+        question.reponse =  {
+          texte: 'Exercice',
+          nom_technique: 'ALrd/exercice',
+          score: 1
+        };
+        question.choix = undefined;
+      });
+
+      it("retourne le score", function () {
+        const vue = composant(question);
+        expect(vue.vm.scoreMax()).toEqual(1);
+      });
+    });
+
+    describe('quand la question contient des choix', function () {
+      beforeEach(function () {
+        question.reponse =  undefined;
+        question.choix = [
+          {
+            id: 'bax',
+            nom_technique: 'ALrd/bax',
+            bonneReponse: false
+          },
+          {
+            id: 'max',
+            nom_technique: 'ALrd/max',
+            score: 1,
+            bonneReponse: true
+          }
+        ];
+      });
+
+      it("retourne le score", function () {
+        const vue = composant(question);
+        expect(vue.vm.scoreMax()).toEqual(1);
+      });
+    });
+
+    describe('quand la question contient des choix sans aucun score', function () {
+      beforeEach(function () {
+        question.reponse =  undefined;
+        question.choix = [
+          {
+            id: 'bax',
+            nom_technique: 'ALrd/bax',
+            bonneReponse: false
+          },
+          {
+            id: 'max',
+            nom_technique: 'ALrd/max',
+            bonneReponse: true
+          }
+        ];
+      });
+
+      it("retourne le score", function () {
+        const vue = composant(question);
+        expect(vue.vm.scoreMax()).toEqual(undefined);
       });
     });
   });

@@ -148,6 +148,8 @@ export default {
       this.envoyer = true;
       this.$emit('reponse', {
         question: this.question.id,
+        intitule: this.question.intitule,
+        scoreMax: this.scoreMax(),
         metacompetence: this.question.metacompetence,
         ...this.reponse
       });
@@ -171,6 +173,43 @@ export default {
       if (this.acteEnCours) {
         this.$refs.questionEntete.demarreSon();
       }
+    },
+
+    scoreMax () {
+      let scoreMax = undefined;
+
+      if (this.question.choix) {
+        scoreMax = this.scoreMaxDepuisChoix(this.question.choix);
+      }
+
+      if (this.question.reponse) {
+        scoreMax = this.scoreMaxDepuisReponse(this.question.reponse);
+      }
+
+      return scoreMax;
+    },
+
+    scoreMaxDepuisChoix(choix) {
+      return choix.reduce((max, choix) => {
+        if (!max) return choix.score;
+        return (choix.score > max) ? choix.score : max;
+      }, undefined);
+    },
+
+    scoreMaxDepuisReponse(reponse) {
+      let scoreMax = undefined;
+
+      if (reponse.score) {
+        scoreMax = reponse.score;
+      }
+
+      if (reponse.scores) {
+        scoreMax = reponse.scores.reduce((max, score) => {
+          if (!max) return score;
+          return (score > max) ? score : max;
+        }, undefined);
+      }
+      return scoreMax;
     }
   }
 };
