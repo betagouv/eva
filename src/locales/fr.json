@@ -258,6 +258,9 @@
       "texte_zone_depot": "DÉPOSER ICI"
     }
   },
+  "place_du_marche": {
+    "titre": "Place du marché"
+  },
   "bouton_lecture": {
     "lecture": "Lecture",
     "pause": "Pause"
