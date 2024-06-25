@@ -1,5 +1,7 @@
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
 
+export const NUMERATIE = 'numeratie';
+
 export function creeStore () {
   return creeStoreCommun({
     state: {
@@ -10,7 +12,8 @@ export function creeStore () {
       series: [],
       termine: false,
       reponses: {},
-      parcours: 'numeratie',
+      parcours: NUMERATIE,
+      pourcentageDeReussite: 0,
     },
 
     getters: {
@@ -22,9 +25,9 @@ export function creeStore () {
         return (idQuestion) => state.reponses[idQuestion];
       },
 
-      estCarteActive(state) {
-        return (idCarte) => state.carteActive.id == idCarte;
-      }
+      maxScoreNiveauEnCours(state) {
+        return state.series[state.indexSerie].cartes.reduce((total, carte) => total + carte.score, 0);
+      },
     },
 
     mutations: {
@@ -41,8 +44,10 @@ export function creeStore () {
         else {
           state.indexCarte = 0;
           state.indexSerie++;
-          if (state.indexSerie < state.series.length) {
+
+          if (state.indexSerie < state.series.length && state.pourcentageDeReussite > 70) {
             state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+            state.pourcentageDeReussite = 0;
           }
           else {
             state.indexSerie--;
@@ -68,7 +73,11 @@ export function creeStore () {
 
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
+        state.reponses[reponse.question].score = state.carteActive.score;
+        if(reponse.succes) {
+          state.pourcentageDeReussite += Math.round(state.carteActive.score / this.getters.maxScoreNiveauEnCours * 100);
+        }
       },
-    }
+    },
   });
 }
