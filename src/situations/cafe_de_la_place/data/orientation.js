@@ -30,17 +30,20 @@ const LOdi1 = {
     {
       id: 'couverture',
       nom_technique: 'LOdi/couverture',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "La couverture"
     },
     {
       id: 'programmeTele',
       nom_technique: 'LOdi/programme_tele',
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "Un programme télé"
     },
     {
       id: 'motsCroises',
       nom_technique: 'LOdi/mots_croises',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Une page de mots croisés"
     }
   ]
 };
@@ -56,23 +59,27 @@ const LOdi2 = {
     {
       id: 'cirqueEtClown',
       nom_technique: 'LOdi/cirque_et_clown',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Le cirque et le clown"
     },
     {
       id: 'cercleDicotino',
       nom_technique: 'LOdi/cercle_dicotino',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Le cercle Dicotino"
     },
     {
       id: 'cirqueTino',
       nom_technique: 'LOdi/cirque_tino',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Le cirque de Tino"
     },
     {
       id: 'cirqueDicotino',
       nom_technique: 'LOdi/cirque_dicotino',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "Le cirque Dicotino"
     }
   ]
 };
@@ -87,18 +94,21 @@ const LOdi3 = {
     {
       id: 'mode_chapeau',
       nom_technique: 'LOdi/mode_chapeau',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "On parlera de la mode du chapeau"
     },
     {
       id: 'livre',
       nom_technique: 'LOdi/livre',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "On parlera d’un livre"
     },
     {
       id: 'confection_chapeau',
       nom_technique: 'LOdi/confection_chapeau',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "On parlera de la confection des chapeaux"
     }
   ]
 };
@@ -114,23 +124,27 @@ const LOdi4 = {
     {
       id: 'chatMadameCoupin',
       nom_technique: 'LOdi/chat_madame_coupin',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Le chat de Mme Coupin"
     },
     {
       id: 'chapeauMadameCoupin',
       nom_technique: 'LOdi/chapeau_madame_coupin',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "Le chapeau de Mme Coupin"
     },
     {
       id: 'chapeauMadameCoutin',
       nom_technique: 'LOdi/chapeau_madame_coutin',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Le chapeau de Mme Coutin"
     },
     {
       id: 'chapeauMadameGoubin ',
       nom_technique: 'LOdi/chapeau_madame_goubin',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Le chapeau de Mme Goubin"
     }
   ]
 };
@@ -147,22 +161,26 @@ const LOdi5 = {
       id: 'dinoDepianto',
       nom_technique: 'LOdi/dino_depianto',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "Dino Dépianto"
     },
     {
       id: 'dinoDepanto',
       nom_technique: 'LOdi/dino_depanto',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Dino Dépanto"
     },
     {
       id: 'binoBepanto',
       nom_technique: 'LOdi/bino_bepanto',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Bino Bépanto"
     },
     {
       id: 'binoBepianto',
       nom_technique: 'LOdi/bino_bepianto',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Bino Bépianto"
     }
   ]
 };
@@ -177,23 +195,27 @@ const LOdi6 = {
     {
       id: 'belgique',
       nom_technique: 'LOdi/belgique',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Belgique"
     },
     {
       id: 'brousse',
       nom_technique: 'LOdi/brousse',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Brousse"
     },
     {
       id: 'bruges',
       nom_technique: 'LOdi/bruges',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "Bruges"
     },
     {
       id: 'bresse',
       nom_technique: 'LOdi/bresse',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Bresse"
     }
   ]
 };
@@ -208,18 +230,21 @@ const LOdi7 = {
     {
       id: '17ans',
       nom_technique: 'LOdi/17_ans',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "17 ans"
     },
     {
       id: '24ans',
       nom_technique: 'LOdi/24_ans',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "24 ans"
     },
     {
       id: '18ans',
       nom_technique: 'LOdi/18_ans',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "18 ans"
     }
   ]
 };
@@ -234,18 +259,21 @@ const LOdi8 = {
     {
       id: 'plusAge',
       nom_technique: 'LOdi/plus_age',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Plus âgé que Bruno"
     },
     {
       id: 'plusJeune',
       nom_technique: 'LOdi/plus_jeune',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "Plus jeune que Bruno"
     },
     {
       id: 'memeAge',
       nom_technique: 'LOdi/meme_age',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Le même âge que Bruno"
     }
   ]
 };
@@ -261,12 +289,14 @@ const LOdi9 = {
       id: 'dramatique',
       nom_technique: 'LOdi/dramatique',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "Dramatique"
     },
     {
       id: 'drole',
       nom_technique: 'ACrd/drole',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Drôle"
     }
   ]
 };
@@ -282,17 +312,20 @@ const LOdi10 = {
       id: 'poetique',
       nom_technique: 'LOdi/poetique',
       score: 1,
-      bonneReponse: true
+      bonneReponse: true,
+      intitule: "Poétique"
     },
     {
       id: 'choquant',
       nom_technique: 'LOdi/choquant',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Choquant"
     },
     {
       id: 'erotique',
       nom_technique: 'LOdi/erotique',
-      bonneReponse: false
+      bonneReponse: false,
+      intitule: "Érotique"
     }
   ]
 };
