@@ -149,6 +149,7 @@ export default {
       this.$emit('reponse', {
         question: this.question.id,
         metacompetence: this.question.metacompetence,
+        reponseIntitule: this.reponseIntitule(),
         ...this.reponse
       });
     },
@@ -171,7 +172,18 @@ export default {
       if (this.acteEnCours) {
         this.$refs.questionEntete.demarreSon();
       }
-    }
+    },
+
+    reponseIntitule () {
+      const reponseId = this.reponse;
+
+      if (this.question.choix) {
+        const reponse = this.question.choix.find(choix => choix.id === reponseId);
+        return reponse.intitule;
+      }
+
+      return undefined;
+    },
   }
 };
 </script>
