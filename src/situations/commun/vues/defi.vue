@@ -151,6 +151,7 @@ export default {
         intitule: this.question.intitule ?? this.question.retranscription_audio,
         scoreMax: this.scoreMax(),
         metacompetence: this.question.metacompetence,
+        reponseIntitule: this.reponseIntitule(),
         ...this.reponse
       });
     },
@@ -210,7 +211,18 @@ export default {
         }, undefined);
       }
       return scoreMax;
-    }
+    },
+
+    reponseIntitule () {
+      const reponseId = this.reponse;
+
+      if (this.question.choix) {
+        const reponse = this.question.choix.find(choix => choix.id === reponseId);
+        if (reponse) return reponse.intitule;
+      }
+
+      return undefined;
+    },
   }
 };
 </script>

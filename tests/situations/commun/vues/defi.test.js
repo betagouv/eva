@@ -448,4 +448,52 @@ describe("La vue d'un défi", function () {
       });
     });
   });
+
+  describe('#reponseIntitule', function() {
+    let vue;
+
+    beforeEach(function () {
+      question.type = 'saisie';
+      vue = composant(question);
+    });
+
+    describe("quand il n'y a pas d'intitulé", function () {
+      it("retourne undefined", function () {
+        expect(vue.vm.reponseIntitule()).toEqual(undefined);
+      });
+    });
+
+    describe("quand il y a un intitulé", function () {
+      beforeEach(function () {
+        question.choix = [
+          {
+            id: 'tempsPresent',
+            nom_technique: 'ACrd/le_temps_present',
+            bonneReponse: false,
+            intitule: 'Le temps présent'
+          },
+          {
+            id: 'tempsFutur',
+            nom_technique: 'ACrd/le_temps_futur',
+            bonneReponse: true,
+            score: 1,
+            intitule: 'Le temps futur'
+          },
+          {
+            id: 'tempsPasse',
+            nom_technique: 'ACrd/le_temps_passe',
+            bonneReponse: false,
+            intitule: 'Le temps passé'
+          }
+        ];
+        vue = composant(question);
+        const reponse = 'tempsFutur';
+        vue.vm.attribueReponse(reponse);
+      });
+
+      it("retourne l'intitulé Le temps futur »", function () {
+        expect(vue.vm.reponseIntitule()).toEqual('Le temps futur');
+      });
+    });
+  });
 });
