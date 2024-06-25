@@ -3,12 +3,12 @@ const niveau_1_1 = {
   nom_technique: 'numeratie_n1_q1',
   type: 'qcm',
   intitule: 'Niveau 1 Question 1',
+  score: 0.5,
   choix: [
     {
       id: 'NumeratieN1Q1R1',
       nom_technique: 'numeratie_n1_q1_r1',
       bonneReponse: true,
-      score: 0.5,
       intitule: "Bonne Réponse",
     },
     {
@@ -25,12 +25,12 @@ const niveau_1_2 = {
   nom_technique: 'numeratie_n1_q2',
   type: 'qcm',
   intitule: 'Niveau 1 Question 2',
+  score: 1,
   choix: [
     {
       id: 'NumeratieN1Q2R1',
       nom_technique: 'numeratie_n1_q2_r1',
       bonneReponse: true,
-      score: 1,
       intitule: "Bonne Réponse",
     },
     {
@@ -47,12 +47,12 @@ const niveau_2_1 = {
   nom_technique: 'numeratie_n2_q1',
   type: 'qcm',
   intitule: 'Niveau 2 Question 1',
+  score: 0.5,
   choix: [
     {
       id: 'NumeratieN2Q1R1',
       nom_technique: 'numeratie_n2_q1_r1',
       bonneReponse: true,
-      score: 0.5,
       intitule: "Bonne Réponse",
     },
     {
@@ -69,12 +69,12 @@ const niveau_3_1 = {
   nom_technique: 'numeratie_n3_q1',
   type: 'qcm',
   intitule: 'Niveau 3 Question 1',
+  score: 0.5,
   choix: [
     {
       id: 'NumeratieN3Q1R1',
       nom_technique: 'numeratie_n3_q1_r1',
       bonneReponse: true,
-      score: 0.5,
       intitule: "Bonne Réponse",
     },
     {
@@ -88,7 +88,9 @@ const niveau_3_1 = {
 
 const numeratie = {
   series: [
-    { cartes: [ niveau_1_1 , niveau_1_2, niveau_2_1, niveau_3_1] },
+    { cartes: [ niveau_1_1 , niveau_1_2] },
+    { cartes: [ niveau_2_1] },
+    { cartes: [ niveau_3_1] }
   ]
 };
 
