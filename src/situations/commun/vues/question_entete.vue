@@ -56,7 +56,7 @@ export default {
     },
 
     intitule_markdownifie() {
-      return marked(this.question.intitule);
+      return marked.parse(this.question.intitule, { breaks: true });
     },
 
     afficheLectureQuestionAudio () {

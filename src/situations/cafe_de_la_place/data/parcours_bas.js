@@ -17,7 +17,7 @@ const sousConsigneALrd2 = {
   type: 'sous-consigne',
   illustration: listeTitresMusique,
   nom_technique: 'sous_consigne_ALrd_2',
-  intitule: "Voici la liste des titres. J'ai quelques questions pour vous.<br><br>Faites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
+  intitule: "Voici la liste des titres. J'ai quelques questions pour vous.\n\nFaites-moi signe en cliquant sur « Suivant » lorsque vous voulez vous lancer !"
 };
 
 const sousConsigneACrd1 = {
@@ -27,7 +27,7 @@ const sousConsigneACrd1 = {
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
   nom_technique: 'sous_consigne_ACrd_1',
-  intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
+  intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.\n\nPour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
 const titre1 = {
@@ -336,9 +336,10 @@ const alrd11 = {
   nom_technique: 'alrd_11',
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
-  modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».<br>Pour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
+  modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».\nPour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  retranscription_audio: 'Sélectionnez le mot Exercice',
   reponse: {
     texte: 'Exercice',
     nom_technique: 'ALrd/exercice',
@@ -353,6 +354,7 @@ const alrd12 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  retranscription_audio: 'Sélectionnez le mot Anguille',
   reponse: {
     texte: 'Anguille',
     nom_technique: 'ALrd/anguille',
@@ -367,6 +369,7 @@ const alrd13 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  retranscription_audio: 'Sélectionnez le mot Dimoudon',
   reponse: {
     texte: 'Dimoudon',
     nom_technique: 'ALrd/dimoudon',
@@ -381,6 +384,7 @@ const alrd14 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  retranscription_audio: 'Sélectionnez le mot Soupçons',
   reponse: {
     texte: 'Soupçon',
     nom_technique: 'ALrd/soupcon',
@@ -466,7 +470,7 @@ const sousConsigneACrd2 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
-  intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.<br><br>Pour commencer à répondre aux questions, cliquez sur « Suivant ».'
+  intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.\n\nPour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
 const ACrd6 = {
@@ -644,7 +648,7 @@ const listeChansons = `* [Max]()
 
 const texteMagazineColonne1 = `<span>C'est encore une très belle [production]() que nous propose le groupe [Rick Duxol & Mori Morino]() avec [«Jazz impressions»](), leur dernier [album](), créé en [2013]() et enregistré à [New-York]().</span><span>Ils avaient déjà séduit la presse et le public à leurs débuts en [2011](), au moment du [Festival international de jazz de Londres](). Très influencés par le «[Jazz Band]() de [Londres]()», ils ont pourtant un style nouveau bien à eux, qui évoque l'avenir dans tous les morceaux.</span><span>Le saxophoniste américain [Rick Duxol]() nous enchante avec ses solos qui ne manquent pas de souffle&nbsp;! Quant au contrebassiste [Georges Tiporanet](), il est excellent sur cet album.</span>`;
 const texteMagazineColonne2 = `<span>Les différents morceaux se font sur un ton énergique mais aussi très intime parfois. Le pianiste, [Mori Morino]() crée une ambiance [«cocon»](), dont la sensibilité nous rappelle les ambiances nocturnes de [«Taxi Konnera»](), un autre orchestre de [jazz]() célèbre.</span><span>Jusqu'à la fin, c'est en mesure et en finesse que l'orchestre met en valeur la voix étonnante de [Lily Molli](), jeune femme de [30]() ans, arrivée dans le groupe en [2012](), au moment où le groupe est devenu célèbre...</span><span>Le groupe [Rick Duxol & Mori Morino]() démontre de belle manière avec ce disque que cet orchestre venu de [Bulgarie]() n'a rien à envier au Jazz des [américains]().</span>`;
-const legende = `<span class="legende">[Ivano Karanadoff]()<br>Critique d'art musical à [Paris]() Jazz [Janvier 2015]()</span>`;
+const legende = `<span class="legende">[Ivano Karanadoff]()\nCritique d'art musical à [Paris]() Jazz [Janvier 2015]()</span>`;
 
 const texteMagazine =
 `
@@ -667,7 +671,7 @@ const sousConsigneAPlc2 = {
   type: 'sous-consigne',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
-  intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Soyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.<br><br>Si vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
+  intitule: "Voici la liste de courses à compléter. Je vais vous dire ce qu'il faut acheter. Pour répondre, écrivez les mots dans le cadre de texte.\n\nSoyez attentifs, certains mots doivent être mis au pluriel, et les verbes doivent être conjugués.\n\nSi vous ne savez pas comment écrire certains mots, écrivez-les comme vous le pensez et continuez.",
   modalite_reponse: 'Pour commencer, cliquez sur « Suivant ».'
 };
 
@@ -678,8 +682,9 @@ const APlc1 = {
   type: 'saisie',
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
-  modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.<br><br>Vous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
+  modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.\n\nVous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
+  retranscription_audio: 'Pour commencer, donnez un nom à votre liste : « Courses pour la cuisine ». Écrivez « cuisine ».',
   reponse: {
     nom_technique: 'APlc/cuisine',
     textes: ['cuisine', 'cuisines'],
@@ -695,6 +700,7 @@ const APlc2 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: 'Vous voulez faire une salade de légumes en entrée, il vous faut donc deux saladiers en verre. Ecrivez « saladiers »',
   reponse: {
     nom_technique: 'APlc/saladiers',
     textes: ['saladier', 'saladiers'],
@@ -710,6 +716,7 @@ const APlc3 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: 'Ecrivez « verre »',
   reponse: {
     nom_technique: 'APlc/verre',
     textes: ['verre', 'verres'],
@@ -725,6 +732,7 @@ const APlc4 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: '"Pour votre salade de légumes, il vous faudra un pot de mayonnaise. Ecrivez « mayonnaise »"',
   reponse: {
     nom_technique: 'APlc/mayonnaise',
     textes: ['mayonnaise', 'mayonnaises'],
@@ -740,6 +748,7 @@ const APlc5 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: 'Vous devez également acheter du sel. Ecrivez « sel »',
   reponse: {
     nom_technique: 'APlc/sel',
     textes: ['sel', 'sels'],
@@ -755,6 +764,7 @@ const APlc6 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: 'Pour les légumes, vous aurez besoin de deux kilos de tomate de pays et de quatre poivrons. Ecrivez « tomates »',
   reponse: {
     nom_technique: 'APlc/tomates',
     textes: ['tomate', 'tomates'],
@@ -770,6 +780,7 @@ const APlc7 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: 'Ecrivez « pays »',
   reponse: {
     nom_technique: 'APlc/pays',
     textes: ['pays'],
@@ -785,6 +796,7 @@ const APlc8 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: 'Ecrivez « poivrons »',
   reponse: {
     nom_technique: 'APlc/poivrons',
     textes: ['poivron', 'poivrons'],
@@ -800,6 +812,7 @@ const APlc9 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: 'Enfin, vous utiliserez des épices qui donnent du goût. Ecrivez « épices »',
   reponse: {
     nom_technique: 'APlc/epices',
     textes: ['épice', 'epice', 'èpice', 'êpice', 'ëpice',
@@ -817,6 +830,7 @@ const APlc10 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: 'Ecrivez « donnent »',
   reponse: {
     nom_technique: 'APlc/donnent',
     textes: ['donne', 'donnent'],
@@ -832,6 +846,7 @@ const APlc11 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Ce n'est pas tout, vous devez acheter un peu de matériel de cuisine. Vous souhaitez acheter de belles assiettes. Il vous en faudrait deux douzaines. Ecrivez « douzaines »",
   reponse: {
     nom_technique: 'APlc/douzaines',
     textes: ['douzaine', 'douzaines'],
@@ -847,6 +862,7 @@ const APlc12 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Ecrivez « assiettes »",
   reponse: {
     nom_technique: 'APlc/assiettes',
     textes: ['assiette', 'assiettes'],
@@ -862,6 +878,7 @@ const APlc13 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Pour cuisiner, vous aurez besoin de deux fouets, d'une louche et d'une passoire. Ecrivez « fouets »",
   reponse: {
     nom_technique: 'APlc/fouets',
     textes: ['fouet', 'fouets'],
@@ -877,6 +894,7 @@ const APlc14 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Ecrivez « louche »",
   reponse: {
     nom_technique: 'APlc/louche',
     textes: ['louche', 'louches'],
@@ -892,6 +910,7 @@ const APlc15 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Ecrivez « passoire »",
   reponse: {
     nom_technique: 'APlc/passoire',
     textes: ['passoire', 'passoires'],
@@ -907,6 +926,7 @@ const APlc16 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Il vous faudra une poêle de luxe et une casserole qui n’adhère pas. Ecrivez « poêle »",
   reponse: {
     nom_technique: 'APlc/poele',
     textes: ['poêle', 'poele', 'poéle', 'poèle', 'poële',
@@ -924,6 +944,7 @@ const APlc17 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Ecrivez « luxe »",
   reponse: {
     nom_technique: 'APlc/luxe',
     textes: ['luxe', 'luxes'],
@@ -939,6 +960,7 @@ const APlc18 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Ecrivez « casserole »",
   reponse: {
     nom_technique: 'APlc/casserole',
     textes: ['casserole', 'casseroles'],
@@ -954,6 +976,7 @@ const APlc19 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Ecrivez « adhère »",
   reponse: {
     nom_technique: 'APlc/adhere',
     textes: ['adhère', 'adhere', 'adhére', 'adhêre', 'adhëre'],
@@ -969,6 +992,7 @@ const APlc20 = {
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
+  retranscription_audio: "Enfin, pour respecter les règles d'hygiène, il vous faudra une solution alcoolique pour nettoyer votre plan de travail. Ecrivez « alcoolique »",
   reponse: {
     nom_technique: 'APlc/alcoolique',
     textes: ['alcoolique', 'alcooliques'],
