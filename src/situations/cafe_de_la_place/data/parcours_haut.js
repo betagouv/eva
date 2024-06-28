@@ -63,6 +63,7 @@ const HPar2 = {
   id: 'HPar2',
   nom_technique: 'hpar_2',
   type: 'qcm',
+  score: 1,
   illustration: journalAvecNouvelle,
   intitule: "C'est plus clair comme ça ! Mais quel pourrait être le titre de cet article ?",
   modalite_reponse: "Choisissez le titre qui résume le mieux le texte. Pour confirmer votre réponse, cliquez sur « Valider »",
@@ -70,7 +71,6 @@ const HPar2 = {
     {
       id: 'deux_blesses_ecole',
       nom_technique: 'HPar/deux_blesses_ecole',
-      score: 1,
       bonneReponse: true,
       intitule: "Deux enfants blessés sur la route de l'école"
     },
@@ -100,6 +100,7 @@ const HPar3 = {
   nom_technique: 'hpar_3',
   illustration: journalAvecNouvelleZoom,
   type: 'qcm',
+  score: 1,
   intitule: "L'article utilise le mot « frayeur ». Si on voulait le remplacer par un autre mot qui a un sens proche, lequel pourrait-on choisir ?",
   choix: [
     {
@@ -111,7 +112,6 @@ const HPar3 = {
     {
       id: 'peur',
       nom_technique: 'HPar/peur',
-      score: 1,
       bonneReponse: true,
       intitule: 'Peur'
     },
@@ -144,11 +144,11 @@ const HGac1 = {
   nom_technique: 'hgac_1',
   illustration: graphique,
   extensionVue: 'graphique',
+  score: 1,
   intitule: "D'après ce graphique, dans quel pays trouve-t-on le plus de foyers qui accueillent des chats ?",
   modalite_reponse: "Pour répondre, cliquez sur les barres du graphique.\nAttention, il peut y avoir plusieurs bonnes réponses. Quand votre choix vous convient, cliquez sur « Valider ».",
   reponse: {
     bonne_reponse: ['allemagne'],
-    score: 1
   }
 };
 
@@ -157,10 +157,10 @@ const HGac2 = {
   nom_technique: 'hgac_2',
   illustration: graphique,
   extensionVue: 'graphique',
+  score: 1,
   intitule: "Quels sont les pays qui ont le même pourcentage de foyers qui accueillent des chats ?",
   reponse: {
     bonne_reponse: ['danemark', 'italie'],
-    score: 1
   }
 };
 
@@ -169,10 +169,10 @@ const HGac3 = {
   nom_technique: 'hgac_3',
   illustration: graphique,
   extensionVue: 'graphique',
+  score: 1,
   intitule: "Quels pays ont plus de foyers qui accueillent des chats que la moyenne en Europe ?",
   reponse: {
     bonne_reponse: ['allemagne', 'pologne', 'grece'],
-    score: 1
   }
 };
 
@@ -181,10 +181,10 @@ const HGac4 = {
   nom_technique: 'hgac_4',
   illustration: graphique,
   extensionVue: 'graphique',
+  score: 1,
   intitule: "D’après ce graphique, dans quel pays y a-t-il le moins de foyers qui accueillent des chats ?",
   reponse: {
     bonne_reponse: ['roumanie'],
-    score: 1
   }
 };
 
@@ -204,11 +204,11 @@ const HCvf1 = {
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
+  score: 1,
   intitule: "« Pour le concours des villes fleuries, ils ont sillonné la ville ». Mais de qui parle-t-on ?",
   modalite_reponse: "Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous êtes sûr, cliquez sur « Valider ».",
   reponse: {
     texte: 'les membres du jury du concours régional des villes fleuries',
-    score: 1
   }
 };
 
@@ -219,6 +219,7 @@ const HCvf2 = {
   reponses_multiples: true,
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
+  score: 1,
   intitule: "Choisissez la phrase ou les phrases qui montrent que la commune permet à la nature de reprendre ses droits dans les espaces verts.",
   reponse: {
     bonne_reponse: [
@@ -226,7 +227,6 @@ const HCvf2 = {
       "« Dans le centre, où l'on tond moins",
       "par exemple, nous travaillons avec des graminées, qui sont fauchées deux fois par an seulement »"
     ],
-    score: 1
   }
 };
 
@@ -237,13 +237,13 @@ const HCvf3 = {
   illustration: rubriqueEnvironnement,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--villes-fleuries',
+  score: 1,
   intitule: "Combien de fois la ville s’est-elle inscrite au concours régional des villes fleuries ?",
   modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
   choix: [
     {
       id: 'une_fois',
       nom_technique: 'HCvf/une_fois',
-      score: 1,
       bonneReponse: true,
       intitule: "Une fois"
     },
@@ -263,6 +263,7 @@ const HCvf4 = {
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
+  score: 1,
   intitule: "Lequel de ces quatre mots ne peut en aucun cas remplacer le mot « bichonner » ?",
   choix: [
     {
@@ -280,7 +281,6 @@ const HCvf4 = {
     {
       id: 'maltraiter',
       nom_technique: 'HCvf/maltraiter',
-      score: 1,
       bonneReponse: true,
       intitule: 'Maltraiter'
     },

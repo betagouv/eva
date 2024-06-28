@@ -48,7 +48,7 @@ export default {
     envoiReponse(lien) {
       const reponse = lien.textContent.trim();
       const succes = this.question.reponse.texte === reponse;
-      const score = succes ? this.question.reponse.score : 0;
+      const score = succes ? this.question.score : 0;
       this.$emit('reponse', { reponse, succes, score } );
     },
 

@@ -212,55 +212,74 @@ describe('Le store de la situation café de la place', function () {
       expect(store.getters.reponse('id1')).toEqual(laReponse);
     });
 
-    describe("enregistre le score d'orientation", function() {
+    describe("parcours orientation", function() {
       beforeEach(function() {
         store.state.parcours = ORIENTATION;
       });
 
-      it("quand une réponse correcte n'a pas de score", function() {
-        const laReponse = { succes: true };
-        store.commit('enregistreReponse', laReponse);
-        expect(store.state.scoreOrientation).toEqual(0);
+      describe("quand la question n'a pas de score", function() {
+        it("n'ajoute pas de score", function() {
+          const laReponse = { succes: true };
+          store.commit('enregistreReponse', laReponse);
+          expect(store.state.scoreOrientation).toEqual(0);
+        });
       });
 
-      it("Ajoute le score d'une réponse", function() {
-        const laReponse = { score: 1, score_max: 2 };
-        store.commit('enregistreReponse', laReponse);
-        expect(store.state.scoreOrientation).toEqual(1);
-      });
+      describe("quand la question a un score", function() {
+        it("Ajoute le score d'une réponse en cas de succès", function() {
+          const laReponse = { succes: true };
+          store.state.carteActive = { score: 1 };
+          store.commit('enregistreReponse', laReponse);
+          expect(store.state.scoreOrientation).toEqual(1);
+        });
 
-      it("accumule les scores au fur et à mesure des reponses", function() {
-        const reponse1 = { score: 1 };
-        store.commit('enregistreReponse', reponse1);
-        const reponse2 = { score: 2 };
-        store.commit('enregistreReponse', reponse2);
-        expect(store.state.scoreOrientation).toEqual(3);
+        it("accumule les scores au fur et à mesure des reponses", function() {
+          store.state.carteActive = { score: 2 };
+
+          store.commit('enregistreReponse', { succes: true });
+          expect(store.state.scoreOrientation).toEqual(2);
+
+          store.commit('enregistreReponse', { succes: false });
+          expect(store.state.scoreOrientation).toEqual(2);
+
+          store.commit('enregistreReponse', { succes: true });
+          expect(store.state.scoreOrientation).toEqual(4);
+        });
       });
     });
 
-    describe("enregistre le score de la première partie du parcours haut", function() {
+    describe("pour le parcours haut", function() {
       beforeEach(function() {
         store.state.parcours = PARCOURS_HAUT_1;
       });
 
-      it("quand une réponse correcte n'a pas de score", function() {
-        const laReponse = { succes: true };
-        store.commit('enregistreReponse', laReponse);
-        expect(store.state.scoreHaut1).toEqual(0);
+      describe("quand la question n'a pas de score", function() {
+        it("n'ajoute rien", function() {
+          const laReponse = { succes: true };
+          store.commit('enregistreReponse', laReponse);
+          expect(store.state.scoreHaut1).toEqual(0);
+        });
       });
 
-      it("Ajoute le score d'une réponse", function() {
-        const laReponse = { score: 1, score_max: 2 };
-        store.commit('enregistreReponse', laReponse);
-        expect(store.state.scoreHaut1).toEqual(1);
-      });
+      describe("quand la question a un score", function() {
+        beforeEach(function() {
+          store.state.carteActive = { score: 1 };
+        });
 
-      it("accumule les scores au fur et à mesure des reponses", function() {
-        const reponse1 = { score: 1 };
-        store.commit('enregistreReponse', reponse1);
-        const reponse2 = { score: 2 };
-        store.commit('enregistreReponse', reponse2);
-        expect(store.state.scoreHaut1).toEqual(3);
+        it("Ajoute le score d'une réponse", function() {
+          store.commit('enregistreReponse', { succes: true });
+          expect(store.state.scoreHaut1).toEqual(1);
+        });
+
+        it("accumule les scores au fur et à mesure des reponses", function() {
+          store.commit('enregistreReponse', { succes: true });
+          expect(store.state.scoreHaut1).toEqual(1);
+
+          store.state.carteActive = { score: 2 };
+
+          store.commit('enregistreReponse', { succes: true });
+          expect(store.state.scoreHaut1).toEqual(3);
+        });
       });
     });
   });

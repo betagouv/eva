@@ -54,6 +54,7 @@ const LOdi2 = {
   metacompetence: 'lecture',
   type: 'qcm',
   illustration: programmeTeleCirque,
+  score: 1,
   intitule: "Il s'agit d'un programme télé ! Il y a un film à 20 h 45. Quel est son titre ?",
   choix: [
     {
@@ -77,7 +78,6 @@ const LOdi2 = {
     {
       id: 'cirqueDicotino',
       nom_technique: 'LOdi/cirque_dicotino',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Le cirque Dicotino"
     }
@@ -88,6 +88,7 @@ const LOdi3 = {
   id: 'LOdi3',
   nom_technique: 'lodi_3',
   type: 'qcm',
+  score: 1,
   illustration: programmeTele18h55,
   intitule: "18 h 55\n« Les livres ont la parole ». Quel est le sujet de l’émission ?",
   choix: [
@@ -100,7 +101,6 @@ const LOdi3 = {
     {
       id: 'livre',
       nom_technique: 'LOdi/livre',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "On parlera d’un livre"
     },
@@ -118,6 +118,7 @@ const LOdi4 = {
   nom_technique: 'lodi_4',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: programmeTele18h55,
   intitule: "Donc, c’est une émission sur les livres. Quel est le nom du livre dont on parle ?",
   choix: [
@@ -130,7 +131,6 @@ const LOdi4 = {
     {
       id: 'chapeauMadameCoupin',
       nom_technique: 'LOdi/chapeau_madame_coupin',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Le chapeau de Mme Coupin"
     },
@@ -154,13 +154,13 @@ const LOdi5 = {
   nom_technique: 'lodi_5',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: programmeTele18h55,
   intitule: "Comment s’appelle le premier invité de cette émission ?",
   choix: [
     {
       id: 'dinoDepianto',
       nom_technique: 'LOdi/dino_depianto',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Dino Dépianto"
     },
@@ -189,6 +189,7 @@ const LOdi6 = {
   id: 'LOdi6',
   nom_technique: 'lodi_6',
   type: 'qcm',
+  score: 1,
   illustration: programmeTeleZoom,
   intitule: "Dans quelle ville a été créé le cirque ?",
   choix: [
@@ -207,7 +208,6 @@ const LOdi6 = {
     {
       id: 'bruges',
       nom_technique: 'LOdi/bruges',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Bruges"
     },
@@ -224,6 +224,7 @@ const LOdi7 = {
   id: 'LOdi7',
   nom_technique: 'lodi_7',
   type: 'qcm',
+  score: 1,
   illustration: programmeTeleZoom,
   intitule: "Quel âge a la personne accidentée ?",
   choix: [
@@ -236,7 +237,6 @@ const LOdi7 = {
     {
       id: '24ans',
       nom_technique: 'LOdi/24_ans',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "24 ans"
     },
@@ -253,6 +253,7 @@ const LOdi8 = {
   id: 'LOdi8',
   nom_technique: 'lodi_8',
   type: 'qcm',
+  score: 1,
   illustration: programmeTeleZoom,
   intitule: "Charles est-il plus âgé ou plus jeune que Bruno ?",
   choix: [
@@ -265,7 +266,6 @@ const LOdi8 = {
     {
       id: 'plusJeune',
       nom_technique: 'LOdi/plus_jeune',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Plus jeune que Bruno"
     },
@@ -282,13 +282,13 @@ const LOdi9 = {
   id: 'LOdi9',
   nom_technique: 'lodi_9',
   type: 'qcm',
+  score: 1,
   illustration: programmeTeleZoom,
   intitule: "D’après l’avis du programme télé, s’agit-il d’un film dramatique ou d’un film drôle ?",
   choix: [
     {
       id: 'dramatique',
       nom_technique: 'LOdi/dramatique',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Dramatique"
     },
@@ -305,13 +305,13 @@ const LOdi10 = {
   id: 'LOdi10',
   nom_technique: 'lodi_10',
   type: 'qcm',
+  score: 1,
   illustration: programmeTeleZoom,
   intitule: "Ce film est-il poétique, choquant ou érotique ?",
   choix: [
     {
       id: 'poetique',
       nom_technique: 'LOdi/poetique',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Poétique"
     },
@@ -334,6 +334,7 @@ const LOdi11 = {
   id: 'LOdi11',
   nom_technique: 'lodi_11',
   type: 'qcm',
+  score: 1,
   illustration: programmeTeleZoom,
   intitule: "À votre avis, l’image représente-t-elle Charles au début du film ou à la fin du film ?",
   choix: [
@@ -346,7 +347,6 @@ const LOdi11 = {
     {
       id: 'finFilm',
       nom_technique: 'LOdi/fin_film',
-      score: 1,
       bonneReponse: true,
       intitule: 'À la fin du film'
     }
@@ -357,13 +357,13 @@ const LOdi12 = {
   id: 'LOdi12',
   nom_technique: 'lodi_12',
   type: 'qcm',
+  score: 1,
   illustration: programmeTeleZoom,
   intitule: "Pourquoi Charles est-il devenu clown dans le cirque ?",
   choix: [
     {
       id: 'sautPerilleux',
       nom_technique: 'LOdi/saut_perilleux',
-      score: 1,
       bonneReponse: true,
       intitule: 'Parce qu’il a été accidenté en faisant un saut périlleux'
     },
@@ -386,13 +386,13 @@ const LOdi13 = {
   id: 'LOdi13',
   nom_technique: 'lodi_13',
   type: 'qcm',
+  score: 1,
   illustration: programmeTeleZoom,
   intitule: "Lisez ces affirmations. Laquelle correspond à l’histoire du film ?",
   choix: [
     {
       id: 'trapezisteTombe',
       nom_technique: 'LOdi/trapeziste_tombe',
-      score: 1,
       bonneReponse: true,
       intitule: 'Un trapéziste tombe et se blesse'
     },

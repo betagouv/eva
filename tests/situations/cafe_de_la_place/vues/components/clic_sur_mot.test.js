@@ -38,7 +38,7 @@ describe('Le composant Clic Sur Mots', function () {
   describe("quand il n'y a qu'une seule réponse possible", function () {
     beforeEach(function () {
       store = new Vuex.Store({ getters: { texteCliquable () { return '* [invalide]()\n* [exercice]()';}}});
-      question = { id: 1, reponse: { texte: 'exercice', score: 1 }, nom_technique: 'question1' };
+      question = { id: 1, reponse: { texte: 'exercice' }, score: 1, nom_technique: 'question1' };
       wrapper = composant({ question });
     });
 
@@ -87,8 +87,9 @@ describe('Le composant Clic Sur Mots', function () {
       question = {
         id: 1,
         reponses_multiples: true,
-        reponse: { bonne_reponse: ['reponse2'], score: 1 },
-        nom_technique: 'question1'
+        reponse: { bonne_reponse: ['reponse2']},
+        nom_technique: 'question1',
+        score: 1
       };
       wrapper = composant({ question });
     });

@@ -88,9 +88,10 @@ describe("La vue d'un défi", function () {
 
     beforeEach(function () {
       question.choix = [
-        { id: 'uid-32', bonneReponse: true, score: 1 },
+        { id: 'uid-32', bonneReponse: true },
         { id: 'uid-32-2', bonneReponse: false }
       ];
+      question.score = 1;
       question.type = 'qcm';
       vue = composant(question);
     });
@@ -390,8 +391,8 @@ describe("La vue d'un défi", function () {
         question.reponse =  {
           texte: 'Exercice',
           nom_technique: 'ALrd/exercice',
-          score: 1
         };
+        question.score = 1;
         question.choix = undefined;
       });
 
@@ -404,6 +405,7 @@ describe("La vue d'un défi", function () {
     describe('quand la question contient des choix', function () {
       beforeEach(function () {
         question.reponse =  undefined;
+        question.score = 1;
         question.choix = [
           {
             id: 'bax',
@@ -413,7 +415,6 @@ describe("La vue d'un défi", function () {
           {
             id: 'max',
             nom_technique: 'ALrd/max',
-            score: 1,
             bonneReponse: true
           }
         ];
@@ -476,7 +477,6 @@ describe("La vue d'un défi", function () {
             id: 'tempsFutur',
             nom_technique: 'ACrd/le_temps_futur',
             bonneReponse: true,
-            score: 1,
             retranscription_audio: 'Le temps futur'
           },
           {
@@ -486,6 +486,7 @@ describe("La vue d'un défi", function () {
             retranscription_audio: 'Le temps passé'
           }
         ];
+        question.score = 1;
         vue = composant(question);
         const reponse = 'tempsFutur';
         vue.vm.attribueReponse(reponse);
