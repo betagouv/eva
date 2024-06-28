@@ -463,27 +463,27 @@ describe("La vue d'un défi", function () {
       });
     });
 
-    describe("quand il y a un intitulé", function () {
+    describe("quand il y a une retranscription audio", function () {
       beforeEach(function () {
         question.choix = [
           {
             id: 'tempsPresent',
             nom_technique: 'ACrd/le_temps_present',
             bonneReponse: false,
-            intitule: 'Le temps présent'
+            retranscription_audio: 'Le temps présent'
           },
           {
             id: 'tempsFutur',
             nom_technique: 'ACrd/le_temps_futur',
             bonneReponse: true,
             score: 1,
-            intitule: 'Le temps futur'
+            retranscription_audio: 'Le temps futur'
           },
           {
             id: 'tempsPasse',
             nom_technique: 'ACrd/le_temps_passe',
             bonneReponse: false,
-            intitule: 'Le temps passé'
+            retranscription_audio: 'Le temps passé'
           }
         ];
         vue = composant(question);

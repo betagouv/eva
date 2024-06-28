@@ -43,20 +43,20 @@ const titre1 = {
       id: 'bax',
       nom_technique: 'ALrd/bax',
       bonneReponse: false,
-      intitule: "Bax"
+      retranscription_audio: "Bax"
     },
     {
       id: 'masse',
       nom_technique: 'ALrd/masse',
       bonneReponse: false,
-      intitule: "Masse"
+      retranscription_audio: "Masse"
     },
     {
       id: 'max',
       nom_technique: 'ALrd/max',
       score: 1,
       bonneReponse: true,
-      intitule: "Max"
+      retranscription_audio: "Max"
     }
   ]
 };
@@ -73,20 +73,20 @@ const titre2 = {
       id: 'jazzABimoudon',
       nom_technique: 'ALrd/jazz_a_bimoudon',
       bonneReponse: false,
-      intitule: "Jazz à Bimoudon"
+      retranscription_audio: "Jazz à Bimoudon"
     },
     {
       id: 'jazzADimoudon',
       nom_technique: 'ALrd/jazz_a_dimoudon',
       score: 1,
       bonneReponse: true,
-      intitule: "Jazz à Dimoudon"
+      retranscription_audio: "Jazz à Dimoudon"
     },
     {
       id: 'jazzADiboudon',
       nom_technique: 'ALrd/jazz_a_diboudon',
       bonneReponse: false,
-      intitule: "Jazz à Diboudon"
+      retranscription_audio: "Jazz à Diboudon"
     }
   ]
 };
@@ -103,20 +103,20 @@ const titre10 = {
       id: 'unAmiEnAmont',
       nom_technique: 'ALrd/un_ami_en_amont',
       bonneReponse: false,
-      intitule: "Un ami en amont"
+      retranscription_audio: "Un ami en amont"
     },
     {
       id: 'unAmiAmant',
       nom_technique: 'ALrd/un_ami_amant',
       bonneReponse: false,
-      intitule: "Un ami amant"
+      retranscription_audio: "Un ami amant"
     },
     {
       id: 'unAmiUnAmant',
       nom_technique: 'ALrd/un_ami_un_amant',
       score: 1,
       bonneReponse: true,
-      intitule: "Un ami un amant"
+      retranscription_audio: "Un ami un amant"
     }
   ]
 };
@@ -133,20 +133,20 @@ const titre3 = {
       id: 'balleEtTalle',
       nom_technique: 'ALrd/balle_et_talle',
       bonneReponse: false,
-      intitule: "Balle et talle"
+      retranscription_audio: "Balle et talle"
     },
     {
       id: 'pailleEtDaille',
       nom_technique: 'ALrd/paille_et_daille',
       bonneReponse: false,
-      intitule: "Paille et daille"
+      retranscription_audio: "Paille et daille"
     },
     {
       id: 'bailleEtTaille',
       nom_technique: 'ALrd/baille_et_taille',
       score: 1,
       bonneReponse: true,
-      intitule: "Baille et taille"
+      retranscription_audio: "Baille et taille"
     }
   ]
 };
@@ -163,20 +163,20 @@ const titre11 = {
       id: 'dussoEtMatura',
       nom_technique: 'ALrd/dusso_et_matura',
       bonneReponse: false,
-      intitule: "Dusso et matura"
+      retranscription_audio: "Dusso et matura"
     },
     {
       id: 'duxoEtMatura',
       nom_technique: 'ALrd/duxo_et_matura',
       score: 1,
       bonneReponse: true,
-      intitule: "Duxo et matura"
+      retranscription_audio: "Duxo et matura"
     },
     {
       id: 'duxoEtMadura',
       nom_technique: 'ALrd/duxo_et_madura',
       bonneReponse: false,
-      intitule: "Duxo et madura"
+      retranscription_audio: "Duxo et madura"
     }
   ]
 };
@@ -193,20 +193,20 @@ const titre6 = {
       id: 'amourSugulent',
       nom_technique: 'ALrd/amour_sugulent',
       bonneReponse: false,
-      intitule: "Amour sugulent"
+      retranscription_audio: "Amour sugulent"
     },
     {
       id: 'amourSucculent',
       nom_technique: 'ALrd/amour_succulent',
       score: 1,
       bonneReponse: true,
-      intitule: "Amour succulent"
+      retranscription_audio: "Amour succulent"
     },
     {
       id: 'amourSuccule',
       nom_technique: 'ALrd/amour_succule',
       bonneReponse: false,
-      intitule: "Amour succule"
+      retranscription_audio: "Amour succule"
     }
   ]
 };
@@ -223,20 +223,20 @@ const titre8 = {
       id: 'anguilEtDouceMer',
       nom_technique: 'ALrd/anguil_et_douce_mer',
       bonneReponse: false,
-      intitule: "Anguil et douce mer"
+      retranscription_audio: "Anguil et douce mer"
     },
     {
       id: 'anquilleEtDouceMer',
       nom_technique: 'ALrd/anquille_et_douce_mer',
       bonneReponse: false,
-      intitule: "Anquille et douce mer"
+      retranscription_audio: "Anquille et douce mer"
     },
     {
       id: 'anguilleEtDouceMer',
       nom_technique: 'ALrd/anguille_et_douce_mer',
       score: 1,
       bonneReponse: true,
-      intitule: "Anguille et douce mer"
+      retranscription_audio: "Anguille et douce mer"
     }
   ]
 };
@@ -254,19 +254,19 @@ const titre5 = {
       nom_technique: 'ALrd/exercice_de_style',
       score: 1,
       bonneReponse: true,
-      intitule: "Exercice de style"
+      retranscription_audio: "Exercice de style"
     },
     {
       id: 'ezerciceDeStyle',
       nom_technique: 'ALrd/ezercice_de_style',
       bonneReponse: false,
-      intitule: "Ezercice de style"
+      retranscription_audio: "Ezercice de style"
     },
     {
       id: 'esserciceDeStyle',
       nom_technique: 'ALrd/essercice_de_style',
       bonneReponse: false,
-      intitule: "Essercice de style"
+      retranscription_audio: "Essercice de style"
     }
   ]
 };
@@ -283,20 +283,20 @@ const titre4 = {
       id: 'leVilDuTemps',
       nom_technique: 'ALrd/le_vil_du_temps',
       bonneReponse: false,
-      intitule: "Le vil du temps"
+      retranscription_audio: "Le vil du temps"
     },
     {
       id: 'leFilsDuTemps',
       nom_technique: 'ALrd/le_fils_du_temps',
       bonneReponse: false,
-      intitule: "Le fils du temps"
+      retranscription_audio: "Le fils du temps"
     },
     {
       id: 'leFilDuTemps',
       nom_technique: 'ALrd/le_fil_du_temps',
       score: 1,
       bonneReponse: true,
-      intitule: "Le fil du temps"
+      retranscription_audio: "Le fil du temps"
     }
   ]
 };
@@ -314,19 +314,19 @@ const titre7 = {
       nom_technique: 'ALrd/soupcon_d_amertume',
       score: 1,
       bonneReponse: true,
-      intitule: "Soupcon d'amertume"
+      retranscription_audio: "Soupcon d'amertume"
     },
     {
       id: 'souponDAmertume',
       nom_technique: 'ALrd/soupon_d_amertume',
       bonneReponse: false,
-      intitule: "Soupon d'amertume"
+      retranscription_audio: "Soupon d'amertume"
     },
     {
       id: 'soupconDAbertube',
       nom_technique: 'ALrd/soupcon_d_abertube',
       bonneReponse: false,
-      intitule: "Soupcon d'abertube"
+      retranscription_audio: "Soupcon d'abertube"
     }
   ]
 };

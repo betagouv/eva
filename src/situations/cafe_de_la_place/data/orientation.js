@@ -31,19 +31,19 @@ const LOdi1 = {
       id: 'couverture',
       nom_technique: 'LOdi/couverture',
       bonneReponse: false,
-      intitule: "La couverture"
+      retranscription_audio: "La couverture"
     },
     {
       id: 'programmeTele',
       nom_technique: 'LOdi/programme_tele',
       bonneReponse: true,
-      intitule: "Un programme télé"
+      retranscription_audio: "Un programme télé"
     },
     {
       id: 'motsCroises',
       nom_technique: 'LOdi/mots_croises',
       bonneReponse: false,
-      intitule: "Une page de mots croisés"
+      retranscription_audio: "Une page de mots croisés"
     }
   ]
 };
@@ -60,26 +60,26 @@ const LOdi2 = {
       id: 'cirqueEtClown',
       nom_technique: 'LOdi/cirque_et_clown',
       bonneReponse: false,
-      intitule: "Le cirque et le clown"
+      retranscription_audio: "Le cirque et le clown"
     },
     {
       id: 'cercleDicotino',
       nom_technique: 'LOdi/cercle_dicotino',
       bonneReponse: false,
-      intitule: "Le cercle Dicotino"
+      retranscription_audio: "Le cercle Dicotino"
     },
     {
       id: 'cirqueTino',
       nom_technique: 'LOdi/cirque_tino',
       bonneReponse: false,
-      intitule: "Le cirque de Tino"
+      retranscription_audio: "Le cirque de Tino"
     },
     {
       id: 'cirqueDicotino',
       nom_technique: 'LOdi/cirque_dicotino',
       score: 1,
       bonneReponse: true,
-      intitule: "Le cirque Dicotino"
+      retranscription_audio: "Le cirque Dicotino"
     }
   ]
 };
@@ -95,20 +95,20 @@ const LOdi3 = {
       id: 'mode_chapeau',
       nom_technique: 'LOdi/mode_chapeau',
       bonneReponse: false,
-      intitule: "On parlera de la mode du chapeau"
+      retranscription_audio: "On parlera de la mode du chapeau"
     },
     {
       id: 'livre',
       nom_technique: 'LOdi/livre',
       score: 1,
       bonneReponse: true,
-      intitule: "On parlera d’un livre"
+      retranscription_audio: "On parlera d’un livre"
     },
     {
       id: 'confection_chapeau',
       nom_technique: 'LOdi/confection_chapeau',
       bonneReponse: false,
-      intitule: "On parlera de la confection des chapeaux"
+      retranscription_audio: "On parlera de la confection des chapeaux"
     }
   ]
 };
@@ -125,26 +125,26 @@ const LOdi4 = {
       id: 'chatMadameCoupin',
       nom_technique: 'LOdi/chat_madame_coupin',
       bonneReponse: false,
-      intitule: "Le chat de Mme Coupin"
+      retranscription_audio: "Le chat de Mme Coupin"
     },
     {
       id: 'chapeauMadameCoupin',
       nom_technique: 'LOdi/chapeau_madame_coupin',
       score: 1,
       bonneReponse: true,
-      intitule: "Le chapeau de Mme Coupin"
+      retranscription_audio: "Le chapeau de Mme Coupin"
     },
     {
       id: 'chapeauMadameCoutin',
       nom_technique: 'LOdi/chapeau_madame_coutin',
       bonneReponse: false,
-      intitule: "Le chapeau de Mme Coutin"
+      retranscription_audio: "Le chapeau de Mme Coutin"
     },
     {
       id: 'chapeauMadameGoubin ',
       nom_technique: 'LOdi/chapeau_madame_goubin',
       bonneReponse: false,
-      intitule: "Le chapeau de Mme Goubin"
+      retranscription_audio: "Le chapeau de Mme Goubin"
     }
   ]
 };
@@ -162,25 +162,25 @@ const LOdi5 = {
       nom_technique: 'LOdi/dino_depianto',
       score: 1,
       bonneReponse: true,
-      intitule: "Dino Dépianto"
+      retranscription_audio: "Dino Dépianto"
     },
     {
       id: 'dinoDepanto',
       nom_technique: 'LOdi/dino_depanto',
       bonneReponse: false,
-      intitule: "Dino Dépanto"
+      retranscription_audio: "Dino Dépanto"
     },
     {
       id: 'binoBepanto',
       nom_technique: 'LOdi/bino_bepanto',
       bonneReponse: false,
-      intitule: "Bino Bépanto"
+      retranscription_audio: "Bino Bépanto"
     },
     {
       id: 'binoBepianto',
       nom_technique: 'LOdi/bino_bepianto',
       bonneReponse: false,
-      intitule: "Bino Bépianto"
+      retranscription_audio: "Bino Bépianto"
     }
   ]
 };
@@ -196,26 +196,26 @@ const LOdi6 = {
       id: 'belgique',
       nom_technique: 'LOdi/belgique',
       bonneReponse: false,
-      intitule: "Belgique"
+      retranscription_audio: "Belgique"
     },
     {
       id: 'brousse',
       nom_technique: 'LOdi/brousse',
       bonneReponse: false,
-      intitule: "Brousse"
+      retranscription_audio: "Brousse"
     },
     {
       id: 'bruges',
       nom_technique: 'LOdi/bruges',
       score: 1,
       bonneReponse: true,
-      intitule: "Bruges"
+      retranscription_audio: "Bruges"
     },
     {
       id: 'bresse',
       nom_technique: 'LOdi/bresse',
       bonneReponse: false,
-      intitule: "Bresse"
+      retranscription_audio: "Bresse"
     }
   ]
 };
@@ -231,20 +231,20 @@ const LOdi7 = {
       id: '17ans',
       nom_technique: 'LOdi/17_ans',
       bonneReponse: false,
-      intitule: "17 ans"
+      retranscription_audio: "17 ans"
     },
     {
       id: '24ans',
       nom_technique: 'LOdi/24_ans',
       score: 1,
       bonneReponse: true,
-      intitule: "24 ans"
+      retranscription_audio: "24 ans"
     },
     {
       id: '18ans',
       nom_technique: 'LOdi/18_ans',
       bonneReponse: false,
-      intitule: "18 ans"
+      retranscription_audio: "18 ans"
     }
   ]
 };
@@ -260,20 +260,20 @@ const LOdi8 = {
       id: 'plusAge',
       nom_technique: 'LOdi/plus_age',
       bonneReponse: false,
-      intitule: "Plus âgé que Bruno"
+      retranscription_audio: "Plus âgé que Bruno"
     },
     {
       id: 'plusJeune',
       nom_technique: 'LOdi/plus_jeune',
       score: 1,
       bonneReponse: true,
-      intitule: "Plus jeune que Bruno"
+      retranscription_audio: "Plus jeune que Bruno"
     },
     {
       id: 'memeAge',
       nom_technique: 'LOdi/meme_age',
       bonneReponse: false,
-      intitule: "Le même âge que Bruno"
+      retranscription_audio: "Le même âge que Bruno"
     }
   ]
 };
@@ -290,13 +290,13 @@ const LOdi9 = {
       nom_technique: 'LOdi/dramatique',
       score: 1,
       bonneReponse: true,
-      intitule: "Dramatique"
+      retranscription_audio: "Dramatique"
     },
     {
       id: 'drole',
       nom_technique: 'ACrd/drole',
       bonneReponse: false,
-      intitule: "Drôle"
+      retranscription_audio: "Drôle"
     }
   ]
 };
@@ -313,19 +313,19 @@ const LOdi10 = {
       nom_technique: 'LOdi/poetique',
       score: 1,
       bonneReponse: true,
-      intitule: "Poétique"
+      retranscription_audio: "Poétique"
     },
     {
       id: 'choquant',
       nom_technique: 'LOdi/choquant',
       bonneReponse: false,
-      intitule: "Choquant"
+      retranscription_audio: "Choquant"
     },
     {
       id: 'erotique',
       nom_technique: 'LOdi/erotique',
       bonneReponse: false,
-      intitule: "Érotique"
+      retranscription_audio: "Érotique"
     }
   ]
 };
