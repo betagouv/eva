@@ -184,28 +184,30 @@ export default {
       }
 
       if (this.question.reponse) {
-        scoreMax = this.scoreMaxDepuisReponse(this.question.reponse);
+        scoreMax = this.scoreMaxDepuisReponse();
       }
 
       return scoreMax;
     },
 
     scoreMaxDepuisChoix(choix) {
-      return choix.reduce((max, choix) => {
-        if (!max) return choix.score;
-        return (choix.score > max) ? choix.score : max;
+      return choix.reduce((max) => {
+        if (!max) return this.question.score;
+        return (this.question.score > max) ? this.question.score : max;
       }, undefined);
     },
 
-    scoreMaxDepuisReponse(reponse) {
+    scoreMaxDepuisReponse() {
       let scoreMax = undefined;
+      const scores = this.question.reponse.scores;
+      const score = this.question.score;
 
-      if (reponse.score) {
-        scoreMax = reponse.score;
+      if (score) {
+        scoreMax = score;
       }
 
-      if (reponse.scores) {
-        scoreMax = reponse.scores.reduce((max, score) => {
+      if (scores) {
+        scoreMax = scores.reduce((max, score) => {
           if (!max) return score;
           return (score > max) ? score : max;
         }, undefined);

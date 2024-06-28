@@ -93,12 +93,16 @@ export function creeStore () {
 
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
-        if(reponse.score) {
+        if (state.carteActive.score) {
+          state.reponses[reponse.question].score = state.carteActive.score;
+
+        }
+        if(reponse.succes && state.carteActive.score) {
           if(state.parcours == ORIENTATION) {
-            state.scoreOrientation += reponse.score;
+            state.scoreOrientation += state.carteActive.score;
           }
           if(state.parcours == PARCOURS_HAUT_1) {
-            state.scoreHaut1 += reponse.score;
+            state.scoreHaut1 += state.carteActive.score;
           }
         }
       },

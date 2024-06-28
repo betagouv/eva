@@ -10,8 +10,8 @@ describe('Le mixin multi-select', function () {
       const question = {
         reponse: {
           bonne_reponse: ['allemagne', 'france'],
-          score: 1
-        }
+        },
+        score: 1
       };
       const Composant = {
         render() {},

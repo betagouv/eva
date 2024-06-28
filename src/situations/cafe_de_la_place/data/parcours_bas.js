@@ -35,6 +35,7 @@ const titre1 = {
   nom_technique: 'titre_1',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 1, quelle est la bonne lecture ?',
   modalite_reponse: 'Dès que vous aurez reconnu la bonne lecture, choisissez une des réponses ci-dessous. Pour confirmer votre réponse, cliquez sur « Valider ».',
@@ -54,7 +55,6 @@ const titre1 = {
     {
       id: 'max',
       nom_technique: 'ALrd/max',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Max"
     }
@@ -66,6 +66,7 @@ const titre2 = {
   nom_technique: 'titre_2',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 2, quelle est la bonne lecture ?',
   choix: [
@@ -78,7 +79,6 @@ const titre2 = {
     {
       id: 'jazzADimoudon',
       nom_technique: 'ALrd/jazz_a_dimoudon',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Jazz à Dimoudon"
     },
@@ -96,6 +96,7 @@ const titre10 = {
   nom_technique: 'titre_10',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 10, quelle est la bonne lecture ?',
   choix: [
@@ -114,7 +115,6 @@ const titre10 = {
     {
       id: 'unAmiUnAmant',
       nom_technique: 'ALrd/un_ami_un_amant',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Un ami un amant"
     }
@@ -126,6 +126,7 @@ const titre3 = {
   nom_technique: 'titre_3',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 3, quelle est la bonne lecture ?',
   choix: [
@@ -144,7 +145,6 @@ const titre3 = {
     {
       id: 'bailleEtTaille',
       nom_technique: 'ALrd/baille_et_taille',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Baille et taille"
     }
@@ -156,6 +156,7 @@ const titre11 = {
   nom_technique: 'titre_11',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 11, quelle est la bonne lecture ?',
   choix: [
@@ -168,7 +169,6 @@ const titre11 = {
     {
       id: 'duxoEtMatura',
       nom_technique: 'ALrd/duxo_et_matura',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Duxo et matura"
     },
@@ -186,6 +186,7 @@ const titre6 = {
   nom_technique: 'titre_6',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 6, quelle est la bonne lecture ?',
   choix: [
@@ -198,7 +199,6 @@ const titre6 = {
     {
       id: 'amourSucculent',
       nom_technique: 'ALrd/amour_succulent',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Amour succulent"
     },
@@ -216,6 +216,7 @@ const titre8 = {
   nom_technique: 'titre_8',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 8, quelle est la bonne lecture ?',
   choix: [
@@ -234,7 +235,6 @@ const titre8 = {
     {
       id: 'anguilleEtDouceMer',
       nom_technique: 'ALrd/anguille_et_douce_mer',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Anguille et douce mer"
     }
@@ -246,13 +246,13 @@ const titre5 = {
   nom_technique: 'titre_5',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 5, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'exerciceDeStyle',
       nom_technique: 'ALrd/exercice_de_style',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Exercice de style"
     },
@@ -276,6 +276,7 @@ const titre4 = {
   nom_technique: 'titre_4',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 4, quelle est la bonne lecture ?',
   choix: [
@@ -294,7 +295,6 @@ const titre4 = {
     {
       id: 'leFilDuTemps',
       nom_technique: 'ALrd/le_fil_du_temps',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Le fil du temps"
     }
@@ -306,13 +306,13 @@ const titre7 = {
   nom_technique: 'titre_7',
   metacompetence: 'lecture',
   type: 'qcm',
+  score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 7, quelle est la bonne lecture ?',
   choix: [
     {
       id: 'soupconDAmertume',
       nom_technique: 'ALrd/soupcon_d_amertume',
-      score: 1,
       bonneReponse: true,
       retranscription_audio: "Soupcon d'amertume"
     },
@@ -338,12 +338,12 @@ const alrd11 = {
   illustration: telephoneSansTitres,
   modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».\nPour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic-sur-mots',
+  score: 1,
   zone_cliquable: 'liste-chansons',
   retranscription_audio: 'Sélectionnez le mot Exercice',
   reponse: {
     texte: 'Exercice',
     nom_technique: 'ALrd/exercice',
-    score: 1
   }
 };
 
@@ -354,11 +354,11 @@ const alrd12 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  score: 1,
   retranscription_audio: 'Sélectionnez le mot Anguille',
   reponse: {
     texte: 'Anguille',
     nom_technique: 'ALrd/anguille',
-    score: 1
   }
 };
 
@@ -369,11 +369,11 @@ const alrd13 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  score: 1,
   retranscription_audio: 'Sélectionnez le mot Dimoudon',
   reponse: {
     texte: 'Dimoudon',
     nom_technique: 'ALrd/dimoudon',
-    score: 1
   }
 };
 
@@ -384,11 +384,11 @@ const alrd14 = {
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'liste-chansons',
+  score: 1,
   retranscription_audio: 'Sélectionnez le mot Soupçons',
   reponse: {
     texte: 'Soupçon',
     nom_technique: 'ALrd/soupcon',
-    score: 1
   }
 };
 
@@ -398,12 +398,12 @@ const ACrd1 = {
   metacompetence: 'comprehension',
   intitule: 'Comment s’appelle le groupe ?',
   zone_cliquable: 'article article--disque',
+  score: 1,
   illustration: magazineSansTexte,
   modalite_reponse: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
   extensionVue: 'clic-sur-mots',
   reponse: {
     texte: 'Rick Duxol & Mori Morino',
-    score: 1
   }
 };
 
@@ -413,11 +413,11 @@ const ACrd2 = {
   metacompetence: 'comprehension',
   intitule: 'Comment s’appelle le joueur de contrebasse ?',
   zone_cliquable: 'article article--disque',
+  score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
     texte: 'Georges Tiporanet',
-    score: 1
   }
 };
 
@@ -427,11 +427,11 @@ const ACrd3 = {
   metacompetence: 'comprehension',
   intitule: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
   zone_cliquable: 'article article--disque',
+  score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
     texte: 'New-York',
-    score: 1
   }
 };
 
@@ -441,11 +441,11 @@ const ACrd4 = {
   metacompetence: 'comprehension',
   intitule: 'De quel pays le groupe vient-il ?',
   zone_cliquable: 'article article--disque',
+  score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
     texte: 'Bulgarie',
-    score: 1
   }
 };
 
@@ -455,11 +455,11 @@ const ACrd5 = {
   metacompetence: 'comprehension',
   intitule: 'En quelle année le groupe a-t-il débuté ?',
   zone_cliquable: 'article article--disque',
+  score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
     texte: '2011',
-    score: 1
   }
 };
 
@@ -481,6 +481,7 @@ const ACrd6 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
+  score: 1,
   type: 'qcm',
   modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
   choix: [
@@ -500,7 +501,6 @@ const ACrd6 = {
       id: 'critiqueMusical',
       nom_technique: 'ACrd/critique_musical',
       bonneReponse: true,
-      score: 1,
       intitule: 'Un critique musical'
     }
   ]
@@ -513,6 +513,7 @@ const ACrd7 = {
   intitule: 'Quel est le genre de musique que produit ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  score: 1,
   zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
@@ -526,7 +527,6 @@ const ACrd7 = {
       id: 'jazz',
       nom_technique: 'ACrd/jazz',
       bonneReponse: true,
-      score: 1,
       intitule: 'Jazz'
     },
     {
@@ -545,6 +545,7 @@ const ACrd8 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
+  score: 1,
   type: 'qcm',
   choix: [
     {
@@ -557,7 +558,6 @@ const ACrd8 = {
       id: 'jazzBandDeLondres',
       nom_technique: 'ACrd/jazz_band_de_londres',
       bonneReponse: true,
-      score: 1,
       intitule: 'Jazz band de Londres'
     },
     {
@@ -576,6 +576,7 @@ const ACrd9 = {
   intitule: 'Que pense la critique de ce style musical ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  score: 1,
   zone_cliquable: 'article article--disque',
   type: 'qcm',
   choix: [
@@ -595,7 +596,6 @@ const ACrd9 = {
       id: 'neuf',
       nom_technique: 'ACrd/neuf',
       bonneReponse: true,
-      score: 1,
       intitule: 'Neuf'
     }
   ]
@@ -609,6 +609,7 @@ const ACrd10 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   zone_cliquable: 'article article--disque',
+  score: 1,
   type: 'qcm',
   choix: [
     {
@@ -621,7 +622,6 @@ const ACrd10 = {
       id: 'tempsFutur',
       nom_technique: 'ACrd/le_temps_futur',
       bonneReponse: true,
-      score: 1,
       intitule: 'Le temps futur'
     },
     {
