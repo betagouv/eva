@@ -488,7 +488,7 @@ describe("La vue d'un défi", function () {
         ];
         question.score = 1;
         vue = composant(question);
-        const reponse = 'tempsFutur';
+        const reponse = { reponse: 'tempsFutur', succes: true, score: undefined };
         vue.vm.attribueReponse(reponse);
       });
 
