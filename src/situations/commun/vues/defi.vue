@@ -209,7 +209,7 @@ export default {
     },
 
     reponseIntitule () {
-      const reponseId = this.reponse;
+      const reponseId = this.reponse.reponse;
 
       if (this.question.choix) {
         const reponse = this.question.choix.find(choix => choix.id === reponseId);
