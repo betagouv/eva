@@ -218,7 +218,7 @@ export default {
 
       if (this.question.choix) {
         const reponse = this.question.choix.find(choix => choix.id === reponseId);
-        if (reponse) return reponse.intitule;
+        if (reponse) return (reponse.intitule ?? reponse.retranscription_audio);
       }
 
       return undefined;
