@@ -74,8 +74,8 @@ export default {
   methods: {
     envoiReponse() {
       const reponse = this.fragmentsClasses.map((fragment) => fragment.position);
-      const score = this.calculeScore(reponse);
       const succes = this.succes(reponse);
+      const score = succes ? this.calculeScore(reponse) : 0;
       this.affichePuzzleDroite = reponse.length < this.nombreFragment;
       this.$emit('reponse', { score, succes, reponse });
     },

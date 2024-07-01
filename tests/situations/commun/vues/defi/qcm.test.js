@@ -63,7 +63,8 @@ describe('Le componsant defi QCM', function () {
 
   describe('envoie la réponse dans un événement input', function () {
     it('quand il y a une bonne réponse', function () {
-      question.choix = [{ id: 'uid-32', score: 1, bonneReponse: true }];
+      question.score = 1;
+      question.choix = [{ id: 'uid-32', bonneReponse: true }];
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
       expect(vue.emitted('reponse').length).toEqual(1);
@@ -75,15 +76,16 @@ describe('Le componsant defi QCM', function () {
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
       expect(vue.emitted('reponse').length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false });
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0 });
     });
 
     it('quand il y a une mauvaise réponse avec un score', function () {
-      question.choix = [{ id: 'uid-32', score: 0.5, bonneReponse: false }];
+      question.score = 0.5;
+      question.choix = [{ id: 'uid-32', bonneReponse: false }];
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
       expect(vue.emitted('reponse').length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0.5 });
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0 });
     });
 
     it("quand il n'y a pas de bonne réponse", function () {
@@ -91,7 +93,7 @@ describe('Le componsant defi QCM', function () {
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
       expect(vue.emitted('reponse').length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32' });
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', score: 0 });
     });
   });
 });

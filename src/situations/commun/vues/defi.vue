@@ -180,7 +180,7 @@ export default {
       let scoreMax = undefined;
 
       if (this.question.choix) {
-        scoreMax = this.scoreMaxDepuisChoix(this.question.choix);
+        scoreMax = this.question.score;
       }
 
       if (this.question.reponse) {
@@ -188,13 +188,6 @@ export default {
       }
 
       return scoreMax;
-    },
-
-    scoreMaxDepuisChoix(choix) {
-      return choix.reduce((max) => {
-        if (!max) return this.question.score;
-        return (this.question.score > max) ? this.question.score : max;
-      }, undefined);
     },
 
     scoreMaxDepuisReponse() {
