@@ -136,7 +136,7 @@ describe('Le composant Clic Sur Mots', function () {
           liens.at(0).trigger('click');
           wrapper.vm.$nextTick(() => {
             expect(wrapper.emitted().reponse.length).toEqual(1);
-            expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: ['reponse1'], succes: false });
+            expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: ['reponse1'], succes: false, score: 0 });
             done();
           });
         });

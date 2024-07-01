@@ -73,7 +73,7 @@ export function creeStore () {
 
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
-        state.reponses[reponse.question].score = state.carteActive.score;
+        state.reponses[reponse.question].score = reponse.succes ? state.carteActive.score : 0;
         if(reponse.succes) {
           state.pourcentageDeReussite += Math.round(state.carteActive.score / this.getters.maxScoreNiveauEnCours * 100);
         }

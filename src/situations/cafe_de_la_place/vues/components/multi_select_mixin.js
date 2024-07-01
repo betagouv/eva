@@ -19,10 +19,7 @@ export default {
         this.$emit('reponse');
       } else {
         const succes = estSucces(reponse, this.question.reponse.bonne_reponse);
-        let score;
-        if(succes) {
-          score = this.question.score;
-        }
+        const score = succes ? this.question.score : 0;
         this.$emit('reponse', { score, succes, reponse });
       }
     }

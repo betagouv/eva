@@ -121,7 +121,7 @@ describe('Le store de la situation place du marché', function () {
       store.state.carteActive = questionNiveau1Question1;
       let laReponse = { question: 'id1', reponse: 'ma reponse' };
       store.commit('enregistreReponse', laReponse);
-      laReponse = {...laReponse, score: 0.5};
+      laReponse = {...laReponse, score: 0};
       expect(store.getters.reponse('id1')).toEqual(laReponse);
     });
 
