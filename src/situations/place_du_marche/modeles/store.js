@@ -19,7 +19,14 @@ export function creeStore () {
       termine: false,
       reponses: {},
       pourcentageDeReussiteGlobal: 0,
-      pourcentageDeReussiteCompetence: { 'N1Prn': 100 },
+      pourcentageDeReussiteCompetence: {
+        'N1Prn': 100,
+        'N1Pde': 100,
+        'N1Pes': 100,
+        'N1Pon': 100,
+        'N1Poa': 100,
+        'N1Pos': 100,
+      },
     },
 
     getters: {
