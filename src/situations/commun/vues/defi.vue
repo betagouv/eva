@@ -25,7 +25,7 @@
             v-if="composantContenu"
             :is="composantContenu"
             :question="question"
-            @reponse="valeur => reponse = valeur"
+            @reponse="attribueReponse"
           />
         </div>
       </div>
