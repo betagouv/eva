@@ -66,7 +66,7 @@ describe('Le composant Clic Sur Mots', function () {
           const lien = wrapper.findAll('.mot-cliquable').at(1);
           wrapper.vm.envoiReponse(lien.element);
           expect(wrapper.emitted().reponse.length).toEqual(1);
-          expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'exercice', succes: true, score: 1 });
+          expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'exercice', succes: true, score: 1, scoreMax: 1 });
         });
       });
 
@@ -75,7 +75,7 @@ describe('Le composant Clic Sur Mots', function () {
           const lien = wrapper.findAll('.mot-cliquable').at(0);
           wrapper.vm.envoiReponse(lien.element);
           expect(wrapper.emitted().reponse.length).toEqual(1);
-          expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'invalide', succes: false, score: 0 });
+          expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: 'invalide', succes: false, score: 0, scoreMax: 1 });
         });
       });
     });
@@ -124,7 +124,7 @@ describe('Le composant Clic Sur Mots', function () {
           liens.at(1).trigger('click');
           wrapper.vm.$nextTick(() => {
             expect(wrapper.emitted().reponse.length).toEqual(1);
-            expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: ['reponse2'], succes: true, score: 1 });
+            expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: ['reponse2'], succes: true, score: 1, scoreMax: 1 });
             done();
           });
         });
@@ -136,7 +136,7 @@ describe('Le composant Clic Sur Mots', function () {
           liens.at(0).trigger('click');
           wrapper.vm.$nextTick(() => {
             expect(wrapper.emitted().reponse.length).toEqual(1);
-            expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: ['reponse1'], succes: false, score: 0 });
+            expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: ['reponse1'], succes: false, score: 0, scoreMax: 1 });
             done();
           });
         });

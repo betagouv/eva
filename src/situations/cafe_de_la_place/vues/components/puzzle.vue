@@ -76,8 +76,9 @@ export default {
       const reponse = this.fragmentsClasses.map((fragment) => fragment.position);
       const succes = this.succes(reponse);
       const score = succes ? this.calculeScore(reponse) : 0;
+      const scoreMax = this.nombreFragment + 1;
       this.affichePuzzleDroite = reponse.length < this.nombreFragment;
-      this.$emit('reponse', { score, succes, reponse });
+      this.$emit('reponse', { reponse, succes, score, scoreMax });
     },
 
     calculeScore(reponse) {

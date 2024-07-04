@@ -149,9 +149,7 @@ export default {
       this.$emit('reponse', {
         question: this.question.id,
         intitule: this.question.intitule ?? this.question.retranscription_audio,
-        scoreMax: this.scoreMax(),
         metacompetence: this.question.metacompetence,
-        reponseIntitule: this.reponseIntitule(),
         ...this.reponse
       });
     },
@@ -174,49 +172,6 @@ export default {
       if (this.acteEnCours) {
         this.$refs.questionEntete.demarreSon();
       }
-    },
-
-    scoreMax () {
-      let scoreMax = undefined;
-
-      if (this.question.choix) {
-        scoreMax = this.question.score;
-      }
-
-      if (this.question.reponse) {
-        scoreMax = this.scoreMaxDepuisReponse();
-      }
-
-      return scoreMax;
-    },
-
-    scoreMaxDepuisReponse() {
-      let scoreMax = undefined;
-      const scores = this.question.reponse.scores;
-      const score = this.question.score;
-
-      if (score) {
-        scoreMax = score;
-      }
-
-      if (scores) {
-        scoreMax = scores.reduce((max, score) => {
-          if (!max) return score;
-          return (score > max) ? score : max;
-        }, undefined);
-      }
-      return scoreMax;
-    },
-
-    reponseIntitule () {
-      const reponseId = this.reponse.reponse;
-
-      if (this.question.choix) {
-        const reponse = this.question.choix.find(choix => choix.id === reponseId);
-        if (reponse) return (reponse.intitule ?? reponse.retranscription_audio);
-      }
-
-      return undefined;
     },
   }
 };

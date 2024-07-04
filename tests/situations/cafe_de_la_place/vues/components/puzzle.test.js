@@ -93,6 +93,7 @@ describe('Le composant Puzzle', function () {
       expect(wrapper.emitted('reponse').length).toEqual(1);
       expect(wrapper.emitted('reponse')[0][0]).toEqual({
         score: 8,
+        scoreMax: 8,
         succes: true,
         reponse: bonOrdre
       });
