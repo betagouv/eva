@@ -79,7 +79,9 @@ describe('Le composant champ de saisie', function () {
         vue.vm.emetReponse('boulangery');
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangery',
-          succes: false
+          succes: false,
+          score: 0,
+          scoreMax: 1.5
         });
       });
 
@@ -88,7 +90,8 @@ describe('Le composant champ de saisie', function () {
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangerie',
           succes: true,
-          score: 1
+          score: 1,
+          scoreMax: 1.5
         });
       });
 
@@ -97,7 +100,8 @@ describe('Le composant champ de saisie', function () {
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangeries',
           succes: true,
-          score: 1.5
+          score: 1.5,
+          scoreMax: 1.5
         });
       });
     });

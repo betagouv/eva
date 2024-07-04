@@ -27,7 +27,8 @@ describe('Le mixin multi-select', function () {
       expect(wrapper.emitted().reponse[0][0]).toEqual({
         reponse: ['allemagne', 'france'],
         succes: true,
-        score: 1
+        score: 1,
+        scoreMax: 1
       });
     });
 
@@ -36,16 +37,17 @@ describe('Le mixin multi-select', function () {
       expect(wrapper.emitted().reponse[0][0]).toEqual({
         reponse: ['france', 'allemagne'],
         succes: true,
-        score: 1
+        score: 1,
+        scoreMax: 1
       });
     });
-
 
     it("quand la réponse est fausse", function() {
       wrapper.vm.emetReponseMultiple(['belgique']);
       expect(wrapper.emitted().reponse[0][0]).toEqual({
         reponse: ['belgique'],
         score: 0,
+        scoreMax: 1,
         succes: false
       });
     });
@@ -55,6 +57,7 @@ describe('Le mixin multi-select', function () {
       expect(wrapper.emitted().reponse[0][0]).toEqual({
         reponse: ['allemagne', 'belgique'],
         score: 0,
+        scoreMax: 1,
         succes: false
       });
     });
@@ -64,6 +67,7 @@ describe('Le mixin multi-select', function () {
       expect(wrapper.emitted().reponse[0][0]).toEqual({
         reponse: ['allemagne', 'france', 'belgique'],
         score: 0,
+        scoreMax: 1,
         succes: false
       });
     });

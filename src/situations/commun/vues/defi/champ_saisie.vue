@@ -81,12 +81,20 @@ export default {
       const reponse = valeur.trim();
       let succes;
       let score;
+      let scoreMax;
       if(this.question.reponse) {
         const indexReponse = this.question.reponse.textes.indexOf(reponse.toLowerCase());
         succes = indexReponse != -1;
-        score = this.question.reponse.scores && this.question.reponse.scores[indexReponse];
+        const scores = this.question.reponse.scores;
+        if (scores) {
+          score = scores[indexReponse] ?? 0;
+          scoreMax = scores.reduce((max, score) => {
+            if (!max) return score;
+            return (score > max) ? score : max;
+          });
+        }
       }
-      this.$emit('reponse', { reponse, succes, score });
+      this.$emit('reponse', { reponse, succes, score, scoreMax });
     },
   },
 

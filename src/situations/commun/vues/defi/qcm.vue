@@ -66,9 +66,20 @@ export default {
     selectReponse (valeur) {
       this.reponse = valeur;
       const choix = this.question.choix.find((choix) => choix.id === this.reponse);
-      const score = choix.bonneReponse ? this.question.score : 0;
-      this.$emit('reponse', { reponse: choix.id, succes: choix.bonneReponse, score: score });
+      let reponseIntitule;
+      if (choix) reponseIntitule = choix.intitule ?? choix.retranscription_audio;
+
+      let reponseData;
+      if (this.question.score) {
+        const score = choix.bonneReponse ? this.question.score : 0;
+        const scoreMax = this.question.score;
+        reponseData = { reponse: choix.id, succes: choix.bonneReponse, reponseIntitule: reponseIntitule, score: score, scoreMax: scoreMax };
+      } else {
+        reponseData = { reponse: choix.id, succes: choix.bonneReponse, reponseIntitule: reponseIntitule };
+      }
+      this.$emit('reponse', reponseData);
     }
   }
 };
 </script>
+

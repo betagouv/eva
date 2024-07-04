@@ -77,7 +77,7 @@ describe('La vue jauge', function () {
     wrapper.find('.label-libelle').trigger('click');
     wrapper.vm.$nextTick(() => {
       expect(wrapper.emitted('reponse')[0])
-        .toEqual([{ reponse: '3c178015-a7c1-4ff8-a344-8553a61e754a' }]);
+        .toEqual([{ reponse: '3c178015-a7c1-4ff8-a344-8553a61e754a', reponseIntitule: '3 : facile' }]);
       done();
     });
   });
@@ -86,7 +86,7 @@ describe('La vue jauge', function () {
     wrapper.find('.jauge input').setValue(2);
     wrapper.vm.$nextTick(() => {
       expect(wrapper.emitted('reponse')[0])
-        .toEqual([{ reponse: '3c178015-a7c1-4ff8-a344-8553a61e754a' }]);
+        .toEqual([{ reponse: '3c178015-a7c1-4ff8-a344-8553a61e754a', reponseIntitule: '3 : facile' }]);
       done();
     });
   });

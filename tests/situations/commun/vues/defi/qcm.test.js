@@ -68,15 +68,19 @@ describe('Le componsant defi QCM', function () {
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
       expect(vue.emitted('reponse').length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: true, score: 1 });
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: true, score: 1, scoreMax: 1 });
     });
 
     it('quand il y a une mauvaise réponse', function () {
+      question.score = 1;
       question.choix = [{ id: 'uid-32', bonneReponse: false }];
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
+
       expect(vue.emitted('reponse').length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0 });
+      expect(vue.emitted('reponse')[0][0]).toEqual(
+        { reponse: 'uid-32', succes: false, score: 0, scoreMax: 1 }
+      );
     });
 
     it('quand il y a une mauvaise réponse avec un score', function () {
@@ -85,7 +89,7 @@ describe('Le componsant defi QCM', function () {
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
       expect(vue.emitted('reponse').length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0 });
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', succes: false, score: 0, scoreMax: 0.5 });
     });
 
     it("quand il n'y a pas de bonne réponse", function () {
@@ -93,7 +97,23 @@ describe('Le componsant defi QCM', function () {
       const vue = composant(question);
       vue.find('input[type=radio][value=uid-32]').setChecked();
       expect(vue.emitted('reponse').length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', score: 0 });
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32' });
+    });
+
+    it("quand la réponse a un intitulé", function () {
+      question.choix = [{ id: 'uid-32', intitule: "l'intitulé de ma réponse" }];
+      const vue = composant(question);
+      vue.find('input[type=radio][value=uid-32]').setChecked();
+      expect(vue.emitted('reponse').length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', reponseIntitule: "l'intitulé de ma réponse" });
+    });
+
+    it("quand la réponse a une retranscription audio de l'intitulé", function () {
+      question.choix = [{ id: 'uid-32', retranscription_audio: "l'intitulé audio de ma réponse" }];
+      const vue = composant(question);
+      vue.find('input[type=radio][value=uid-32]').setChecked();
+      expect(vue.emitted('reponse').length).toEqual(1);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'uid-32', reponseIntitule: "l'intitulé audio de ma réponse" });
     });
   });
 });

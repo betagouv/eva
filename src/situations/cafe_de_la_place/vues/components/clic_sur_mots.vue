@@ -49,7 +49,8 @@ export default {
       const reponse = lien.textContent.trim();
       const succes = this.question.reponse.texte === reponse;
       const score = succes ? this.question.score : 0;
-      this.$emit('reponse', { reponse, succes, score } );
+      const scoreMax = this.question.score;
+      this.$emit('reponse', { reponse, succes, score, scoreMax } );
     },
 
     envoiReponseMultiple(listeLiens) {
