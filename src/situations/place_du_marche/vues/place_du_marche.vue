@@ -40,6 +40,7 @@ export default {
     reponse (reponse) {
       this.$store.commit('enregistreReponse', reponse);
       this.$journal.enregistre(new EvenementReponse(reponse));
+      this.$store.commit('recalculePourcentageReussiteGlobal');
       this.$store.commit('carteSuivante');
     }
   }

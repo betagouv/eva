@@ -2,7 +2,12 @@ import {
   NIVEAU1,
   NIVEAU2,
   NIVEAU3,
-  creeStore
+  creeStore,
+  additionneScores,
+  calculPourcentage,
+  recupereReponsesMeilleursScores,
+  calculeScoreParMetrique,
+  filtreMeilleursScores
 } from 'place_du_marche/modeles/store';
 
 describe('Le store de la situation place du marché', function () {
@@ -70,6 +75,19 @@ describe('Le store de la situation place du marché', function () {
         store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
 
         expect(store.getters.rattrapagesAPasser).toEqual(['N1Prn']);
+      });
+    });
+
+    describe("#estDerniereQuestionRattrapage", function() {
+      it("retourne si c'est la derniere question du rattrapage", function() {
+        expect(store.getters.estDerniereQuestionRattrapage).toEqual(false);
+
+        store.state.parcours = 'N1Rrn';
+        store.state.carteActive = { nom_technique: 'N1Roa2' };
+        store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
+        store.state.pourcentageDeReussiteCompetence['N1Poa'] = 50;
+
+        expect(store.getters.estDerniereQuestionRattrapage).toEqual(true);
       });
     });
 
@@ -178,10 +196,10 @@ describe('Le store de la situation place du marché', function () {
       });
     });
 
-    describe("#maxScoreNiveauEnCours", function() {
+    describe("#maxScoreSerieEnCours", function() {
       it('retourne le score maximum du niveau en cours', function() {
         store.state.parcours = NIVEAU1;
-        expect(store.getters.maxScoreNiveauEnCours).toEqual(2.5);
+        expect(store.getters.maxScoreSerieEnCours).toEqual(2.5);
       });
     });
 
@@ -246,7 +264,7 @@ describe('Le store de la situation place du marché', function () {
         });
 
         it("accumule le pourcentage au fur et à mesure des reponses", function() {
-          expect(store.getters.maxScoreNiveauEnCours).toEqual(2.5);
+          expect(store.getters.maxScoreSerieEnCours).toEqual(2.5);
           store.commit('enregistreReponse', { succes: true });
           expect(store.state.pourcentageDeReussiteGlobal).toEqual(20);
 
@@ -265,7 +283,7 @@ describe('Le store de la situation place du marché', function () {
         });
       });
 
-      describe("quand la réponse estfausse et fait partie d'une compétence à rattraper", function() {
+      describe("quand la réponse est fausse et fait partie d'une compétence à rattraper", function() {
         it("décompte du pourcentage de réussite de la compétence", function() {
           questionAvecRattrapage.nom_technique = 'N1Prn1';
           store.state.carteActive = questionAvecRattrapage;
@@ -275,6 +293,120 @@ describe('Le store de la situation place du marché', function () {
           store.commit('enregistreReponse', { succes: false });
           expect(store.state.pourcentageDeReussiteCompetence['N1Prn']).toEqual(50);
         });
+      });
+    });
+  });
+
+  describe("#recalculePourcentageReussiteGlobal", function() {
+    describe("si ce n'est pas la dernière question du rattrapage", function() {
+      it("ne change rien", function() {
+        store.state.parcours = NIVEAU1;
+        store.state.carteActive = questionNiveau1Question1;
+        store.state.pourcentageDeReussiteGlobal = 60;
+
+        store.commit('recalculePourcentageReussiteGlobal');
+
+        expect(store.state.pourcentageDeReussiteGlobal).toEqual(60);
+      });
+    });
+
+    describe("si c'est la dernière question du rattrapage", function() {
+      it('retourne le nouveau pourcentage de réussite global', function() {
+        store.state.parcours = 'N1Rrn';
+        store.state.reponses = {
+          'N1Prn1': { question: 'N1Prn1', succes: true, score: 0 },
+          'N1Rrn1': { question: 'N1Rrn1', succes: true, score: 1 },
+        };
+        store.state.carteActive = { nom_technique: 'N1Rrn2' };
+        store.state.pourcentageDeReussiteCompetence = {
+          'N1Prn': 40,
+        };
+        store.state.maxScoreNiveauEnCours = 2;
+
+        expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
+
+        store.commit('recalculePourcentageReussiteGlobal');
+
+        expect(store.state.pourcentageDeReussiteGlobal).toEqual(50);
+      });
+    });
+  });
+
+  describe('Helper Functions', () => {
+    const mockReponses = [
+      { question: 'N1Pse1', score: 0.5 },
+      { question: 'N1Pde1', score: 0 },
+      { question: 'N1Pde2', score: 1 },
+      { question: 'N1Rde1', score: 1 },
+      { question: 'N1Rde2', score: 1 }
+    ];
+
+    describe('#additionneScores', function() {
+      it('additionne les scores', () => {
+        const result = additionneScores(mockReponses);
+        expect(result).toBe(3.5);
+      });
+    });
+
+    describe('#calculPourcentage', function() {
+      it('calcul le pourcentage', () => {
+        const result = calculPourcentage(4, 20);
+        expect(result).toBe(20);
+      });
+    });
+
+    describe('#calculeScoreParMetrique', function() {
+      it('filtre les réponses avec les scores', () => {
+        const result = calculeScoreParMetrique(mockReponses);
+        expect(result).toEqual({
+          "N1Pde": 1,
+          "N1Pes": 0,
+          "N1Poa": 0,
+          "N1Pon": 0,
+          "N1Pos": 0,
+          "N1Prn": 0,
+          "N1Pse": 0.5,
+          "N1Pvn": 0,
+          "N1Rde": 2,
+          "N1Res": 0,
+          "N1Roa": 0,
+          "N1Ron": 0,
+          "N1Ros": 0,
+          "N1Rrn": 0});
+      });
+    });
+
+    describe('#filtreMeilleursScores', function() {
+      it('filtre les meilleurs scores', () => {
+        const scoresParMetrique = {
+          "N1Pde": 1,
+          "N1Pes": 0,
+          "N1Poa": 0,
+          "N1Pon": 0,
+          "N1Pos": 0,
+          "N1Prn": 0,
+          "N1Pse": 0.5,
+          "N1Pvn": 0,
+          "N1Rde": 2,
+          "N1Res": 0,
+          "N1Roa": 0,
+          "N1Ron": 0,
+          "N1Ros": 0,
+          "N1Rrn": 0};
+        const result = filtreMeilleursScores(scoresParMetrique);
+        expect(result).toEqual(["N1Pse", "N1Rrn", "N1Rde", "N1Res", "N1Ron", "N1Roa", "N1Ros", "N1Pvn"]);
+      });
+    });
+
+    describe('#recupereReponsesMeilleursScores', function() {
+      it('recupère les réponses des meilleurs scores', () => {
+        const meilleursScores = ["N1Pse", "N1Rrn", "N1Rde", "N1Res", "N1Ron", "N1Roa", "N1Ros", "N1Pvn"];
+        const result = recupereReponsesMeilleursScores(meilleursScores, mockReponses);
+        expect(result).toEqual([
+          { question: 'N1Pse1', score: 0.5 },
+          { question: 'N1Rde1', score: 1 },
+          { question: 'N1Rde2', score: 1 }
+        ]);
       });
     });
   });

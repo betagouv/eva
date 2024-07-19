@@ -5,6 +5,16 @@ export const NIVEAU1 = 'niveau1';
 export const NIVEAU2 = 'niveau2';
 export const NIVEAU3 = 'niveau3';
 export const NIVEAUX = [NIVEAU1, NIVEAU2, NIVEAU3];
+export const numeratieMetriques = {
+  'N1Pse': null,
+  'N1Prn': 'N1Rrn',
+  'N1Pde': 'N1Rde',
+  'N1Pes': 'N1Res',
+  'N1Pon': 'N1Ron',
+  'N1Poa': 'N1Roa',
+  'N1Pos': 'N1Ros',
+  'N1Pvn': null
+};
 
 export function creeStore () {
   return creeStoreCommun({
@@ -27,6 +37,7 @@ export function creeStore () {
         'N1Poa': 100,
         'N1Pos': 100,
       },
+      maxScoreNiveauEnCours: 0,
     },
 
     getters: {
@@ -38,7 +49,7 @@ export function creeStore () {
         return (idQuestion) => state.reponses[idQuestion];
       },
 
-      maxScoreNiveauEnCours(state) {
+      maxScoreSerieEnCours(state) {
         let totalScore = 0;
 
         state.series.forEach(item => {
@@ -67,6 +78,11 @@ export function creeStore () {
 
       rattrapageEnCours(state) {
         return !NIVEAUX.includes(state.parcours);
+      },
+
+      estDerniereQuestionRattrapage(state, getters) {
+        if(!getters.rattrapageEnCours) return false;
+        return state.carteActive.nom_technique.replace('R', 'P') === `${getters.rattrapagesAPasser[getters.rattrapagesAPasser.length - 1]}2` ?? false;
       }
     },
 
@@ -103,6 +119,9 @@ export function creeStore () {
         state.pourcentageDeReussiteGlobal = 0;
         state.series = state.configuration[state.parcours].series;
         state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+        if(!this.getters.rattrapageEnCours) {
+          state.maxScoreNiveauEnCours = this.getters.maxScoreSerieEnCours;
+        }
       },
 
       carteSuivante(state) {
@@ -138,17 +157,69 @@ export function creeStore () {
       enregistreReponse(state, reponse) {
         const { question, succes } = reponse;
         const { carteActive, pourcentageDeReussiteCompetence, reponses } = state;
-        const { rattrapageEnCours, estCompetenceARattraper, codeCompetenceEnCours, maxScoreNiveauEnCours } = this.getters;
+        const { rattrapageEnCours, estCompetenceARattraper, codeCompetenceEnCours, maxScoreSerieEnCours } = this.getters;
 
         reponses[question] = reponse;
         reponses[question].score = succes ? carteActive.score : 0;
 
         if (succes && !rattrapageEnCours) {
-          state.pourcentageDeReussiteGlobal += Math.round(carteActive.score / maxScoreNiveauEnCours * 100);
+          state.pourcentageDeReussiteGlobal += calculPourcentage(carteActive.score, maxScoreSerieEnCours);
         } else if (!succes && estCompetenceARattraper) {
-          pourcentageDeReussiteCompetence[codeCompetenceEnCours] = Math.round(carteActive.score / 2 * 100);
+          pourcentageDeReussiteCompetence[codeCompetenceEnCours] = calculPourcentage(carteActive.score, 2);
         }
       },
-    }
+
+      recalculePourcentageReussiteGlobal(state) {
+        if(!this.getters.estDerniereQuestionRattrapage) {
+          return;
+        }
+
+        const scoresParMetrique = calculeScoreParMetrique(state.reponses);
+        const meilleursScores = filtreMeilleursScores(scoresParMetrique);
+        const reponses = recupereReponsesMeilleursScores(meilleursScores, state.reponses);
+        const scoreTotal = additionneScores(reponses);
+
+        state.pourcentageDeReussiteGlobal =  calculPourcentage(scoreTotal, state.maxScoreNiveauEnCours);
+      },
+    },
   });
+}
+
+export function additionneScores(reponses) {
+  return reponses.reduce((acc, reponse) => acc + reponse.score, 0);
+}
+
+export function calculPourcentage(valeur, total) {
+  return Math.round(valeur / total * 100);
+}
+
+export function calculeScoreParMetrique(reponses) {
+  const scoresTotaux = {};
+
+  for (const [questionInitiale, rattrapage] of Object.entries(numeratieMetriques)) {
+    scoresTotaux[questionInitiale] = Object.values(reponses)
+      .filter(e => e.question.startsWith(questionInitiale))
+      .reduce((total, e) => total + e.score, 0);
+    if (rattrapage) {
+      scoresTotaux[rattrapage] = Object.values(reponses)
+        .filter(e => e.question.startsWith(rattrapage))
+        .reduce((total, e) => total + e.score, 0);
+    }
+  }
+
+  return scoresTotaux;
+}
+
+export function filtreMeilleursScores(scoresParMetrique) {
+  return Object.keys(numeratieMetriques).map(question => {
+    const rattrapage = numeratieMetriques[question];
+    if (!rattrapage) return question;
+    return scoresParMetrique[question] > scoresParMetrique[rattrapage] ? question : rattrapage;
+  });
+}
+
+export function recupereReponsesMeilleursScores(meilleursScores, reponses) {
+  return meilleursScores.flatMap(metrique =>
+    Object.values(reponses).filter(e => e.question.startsWith(metrique))
+  );
 }
