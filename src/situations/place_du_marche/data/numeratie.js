@@ -457,22 +457,22 @@ const N1Pvn4 = {
 
 // NUMERATIE NIVEAU 2
 
-const niveau_2_1 = {
-  id: 'NumeratieN2Q1',
-  nom_technique: 'numeratie_n2_q1',
+const N2PQ1 = {
+  id: 'N2PQ1',
+  nom_technique: 'N2PQ1',
   type: 'qcm',
   intitule: 'Niveau 2 Question 1',
-  score: 0.5,
+  score: 1,
   choix: [
     {
-      id: 'NumeratieN2Q1R1',
-      nom_technique: 'numeratie_n2_q1_r1',
+      id: 'N2PQ1R1',
+      nom_technique: 'N2PQ1R1',
       bonneReponse: true,
       intitule: "Bonne Réponse",
     },
     {
-      id: 'NumeratieN2Q1R2',
-      nom_technique: 'numeratie_n2_q1_r2',
+      id: 'N2PQ1R2',
+      nom_technique: 'N2PQ1R2',
       bonneReponse: false,
       intitule: "Mauvaise Réponse",
     }
@@ -481,22 +481,22 @@ const niveau_2_1 = {
 
 // NUMERATIE NIVEAU 3
 
-const niveau_3_1 = {
-  id: 'NumeratieN3Q1',
-  nom_technique: 'numeratie_n3_q1',
+const N3PQ1 = {
+  id: 'N3PQ1',
+  nom_technique: 'N3PQ1',
   type: 'qcm',
   intitule: 'Niveau 3 Question 1',
-  score: 0.5,
+  score: 1,
   choix: [
     {
-      id: 'NumeratieN3Q1R1',
-      nom_technique: 'numeratie_n3_q1_r1',
+      id: 'N3PQ1R1',
+      nom_technique: 'N3PQ1R1',
       bonneReponse: true,
       intitule: "Bonne Réponse",
     },
     {
-      id: 'NumeratieN3Q1R2',
-      nom_technique: 'numeratie_n3_q1_r2',
+      id: 'N3PQ1R2',
+      nom_technique: 'N3PQ1R2',
       bonneReponse: false,
       intitule: "Mauvaise Réponse",
     }
@@ -518,13 +518,13 @@ const niveau1 = {
 
 const niveau2 = {
   series: [
-    { cartes: [ niveau_2_1] },
+    { cartes: [ N2PQ1] },
   ]
 };
 
 const niveau3 = {
   series: [
-    { cartes: [ niveau_3_1] }
+    { cartes: [ N3PQ1] }
   ]
 };
 
