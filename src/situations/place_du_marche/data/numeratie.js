@@ -5,6 +5,7 @@ const N1Pse1 = {
   id: 'N1Pse1',
   nom_technique: 'N1Pse1',
   type: 'qcm',
+  metacompetence: 'situation_dans_lespace',
   intitule: "Situation dans l'espace : Niveau 1 Question 1",
   score: 0.5,
   choix: [
@@ -27,6 +28,7 @@ const N1Pse2 = {
   id: 'N1Pse2',
   nom_technique: 'N1Pse2',
   type: 'qcm',
+  metacompetence: 'situation_dans_lespace',
   intitule: "Situation dans l'espace : Niveau 1 Question 2",
   score: 0.5,
   choix: [
@@ -49,6 +51,7 @@ const N1Pse3 = {
   id: 'N1Pse3',
   nom_technique: 'N1Pse3',
   type: 'qcm',
+  metacompetence: 'situation_dans_lespace',
   intitule: "Situation dans l'espace : Niveau 1 Question 3",
   score: 0.5,
   choix: [
@@ -71,6 +74,7 @@ const N1Pse4 = {
   id: 'N1Pse4',
   nom_technique: 'N1Pse4',
   type: 'qcm',
+  metacompetence: 'situation_dans_lespace',
   intitule: "Situation dans l'espace : Niveau 1 Question 4",
   score: 0.5,
   choix: [
@@ -95,6 +99,7 @@ const N1Prn1 = {
   id: 'N1Prn1',
   nom_technique: 'N1Prn1',
   type: 'qcm',
+  metacompetence: 'reconaitre_les_nombres',
   intitule: 'Reconnaître les nombres : Niveau 1 Question 1',
   score: 1,
   choix: [
@@ -117,6 +122,7 @@ const N1Prn2 = {
   id: 'N1Prn2',
   nom_technique: 'N1Prn2',
   type: 'qcm',
+  metacompetence: 'reconaitre_les_nombres',
   intitule: 'Reconnaître les nombres : Niveau 1 Question 2',
   score: 1,
   choix: [
@@ -141,6 +147,7 @@ const N1Pde1 = {
   id: 'N1Pde1',
   nom_technique: 'N1Pde1',
   type: 'qcm',
+  metacompetence: 'denombrement',
   intitule: 'Dénombrement : Niveau 1 Question 1',
   score: 1,
   choix: [
@@ -163,6 +170,7 @@ const N1Pde2 = {
   id: 'N1Pde2',
   nom_technique: 'N1Pde2',
   type: 'qcm',
+  metacompetence: 'denombrement',
   intitule: 'Dénombrement : Niveau 1 Question 2',
   score: 1,
   choix: [
@@ -187,6 +195,7 @@ const N1Pes1 = {
   id: 'N1Pes1',
   nom_technique: 'N1Pes1',
   type: 'qcm',
+  metacompetence: 'estimation',
   intitule: 'Estimation : Niveau 1 Question 1',
   score: 1,
   choix: [
@@ -209,6 +218,7 @@ const N1Pes2 = {
   id: 'N1Pes2',
   nom_technique: 'N1Pes2',
   type: 'qcm',
+  metacompetence: 'estimation',
   intitule: 'Estimation : Niveau 1 Question 2',
   score: 1,
   choix: [
@@ -233,6 +243,7 @@ const N1Pon1 = {
   id: 'N1Pon1',
   nom_technique: 'N1Pon1',
   type: 'qcm',
+  metacompetence: 'ordonner_nombres_entiers',
   intitule: 'Ordonner des nombres entiers : Niveau 1 Question 1',
   score: 1,
   choix: [
@@ -255,6 +266,7 @@ const N1Pon2 = {
   id: 'N1Pon2',
   nom_technique: 'N1Pon2',
   type: 'qcm',
+  metacompetence: 'ordonner_nombres_entiers',
   intitule: 'Ordonner des nombres entiers : Niveau 1 Question 2',
   score: 1,
   choix: [
@@ -279,6 +291,7 @@ const N1Poa1 = {
   id: 'N1Poa1',
   nom_technique: 'N1Poa1',
   type: 'qcm',
+  metacompetence: 'operations_addition',
   intitule: 'Opération Addition : Niveau 1 Question 1',
   score: 1,
   choix: [
@@ -301,6 +314,7 @@ const N1Poa2 = {
   id: 'N1Poa2',
   nom_technique: 'N1Poa2',
   type: 'qcm',
+  metacompetence: 'operations_addition',
   intitule: 'Opération Addition : Niveau 1 Question 2',
   score: 1,
   choix: [
@@ -325,6 +339,7 @@ const N1Pos1 = {
   id: 'N1Pos1',
   nom_technique: 'N1Pos1',
   type: 'qcm',
+  metacompetence: 'operations_soustraction',
   intitule: 'Opération Soustraction : Niveau 1 Question 1',
   score: 1,
   choix: [
@@ -347,6 +362,7 @@ const N1Pos2 = {
   id: 'N1Pos2',
   nom_technique: 'N1Pos2',
   type: 'qcm',
+  metacompetence: 'operations_soustraction',
   intitule: 'Opération Soustraction : Niveau 1 Question 2',
   score: 1,
   choix: [
@@ -371,6 +387,7 @@ const N1Pvn1 = {
   id: 'N1Pvn1',
   nom_technique: 'N1Pvn1',
   type: 'qcm',
+  metacompetence: 'vocabulaire_numeracie',
   intitule: 'Vocabulaire numéracie : Niveau 1 Question 1',
   score: 0.5,
   choix: [
@@ -393,6 +410,7 @@ const N1Pvn2 = {
   id: 'N1Pvn2',
   nom_technique: 'N1Pvn2',
   type: 'qcm',
+  metacompetence: 'vocabulaire_numeracie',
   intitule: 'Vocabulaire numéracie : Niveau 1 Question 2',
   score: 0.5,
   choix: [
@@ -415,6 +433,7 @@ const N1Pvn3 = {
   id: 'N1Pvn3',
   nom_technique: 'N1Pvn3',
   type: 'qcm',
+  metacompetence: 'vocabulaire_numeracie',
   intitule: 'Vocabulaire numéracie : Niveau 1 Question 3',
   score: 0.5,
   choix: [
@@ -437,6 +456,7 @@ const N1Pvn4 = {
   id: 'N1Pvn4',
   nom_technique: 'N1Pvn4',
   type: 'qcm',
+  metacompetence: 'vocabulaire_numeracie',
   intitule: 'Vocabulaire numéracie : Niveau 1 Question 4',
   score: 0.5,
   choix: [
