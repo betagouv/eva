@@ -182,6 +182,18 @@ describe('Le store de la situation place du marché', function () {
             });
           });
         });
+
+        it('réinitialise les rattrapages à passer avant de passer au niveau suivant', function() {
+          store.state.pourcentageDeReussiteGlobal = 71;
+          store.state.pourcentageDeReussiteCompetence = {
+            'N1Prn': 69,
+          };
+          expect(store.getters.rattrapagesAPasser).toEqual(['N1Prn']);
+
+          store.commit('carteSuivante');
+
+          expect(store.getters.rattrapagesAPasser).toEqual([]);
+        });
       });
 
       describe('à la dernière question tu rattrapage', function() {
