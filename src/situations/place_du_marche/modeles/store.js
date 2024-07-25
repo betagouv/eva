@@ -137,6 +137,7 @@ export function creeStore () {
         if (pourcentageDeReussiteGlobal > 70) {
           if (!estDernierNiveau) {
             state.indexNiveau += 1;
+            reinitialiseRattrapagesAPasser(state);
             this.commit('demarreParcours', NIVEAUX[state.indexNiveau]);
           } else {
             state.termine = true;
@@ -222,4 +223,15 @@ export function recupereReponsesMeilleursScores(meilleursScores, reponses) {
   return meilleursScores.flatMap(metrique =>
     Object.values(reponses).filter(e => e.question.startsWith(metrique))
   );
+}
+
+export function reinitialiseRattrapagesAPasser(state) {
+  state.pourcentageDeReussiteCompetence = {
+    'N1Prn': 100,
+    'N1Pde': 100,
+    'N1Pes': 100,
+    'N1Pon': 100,
+    'N1Poa': 100,
+    'N1Pos': 100,
+  };
 }
