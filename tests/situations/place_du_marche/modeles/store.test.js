@@ -251,95 +251,106 @@ describe('Le store de la situation place du marché', function () {
     });
   });
 
-  describe("#enregistreReponse", function() {
-    it('peut enregistrer une réponse et la restituer', function() {
-      store.state.questionActive = questionNiveau1Question1;
-      let laReponse = { question: 'id1', reponse: 'ma reponse' };
-      store.commit('enregistreReponse', laReponse);
-      laReponse = {...laReponse, score: 0};
-      expect(store.getters.reponse('id1')).toEqual(laReponse);
-    });
-
-    describe("enregistre le score d'un niveau", function() {
-      beforeEach(function() {
-        store.state.parcours = NIVEAU1;
-        store.state.series = configuration[NIVEAU1].series;
-        store.state.indexSerie = 0;
+  describe('Mutations', function() {
+    describe("#enregistreReponse", function() {
+      it('peut enregistrer une réponse et la restituer', function() {
         store.state.questionActive = questionNiveau1Question1;
+        let laReponse = { question: 'id1', reponse: 'ma reponse' };
+        store.commit('enregistreReponse', laReponse);
+        laReponse = {...laReponse, score: 0};
+        expect(store.getters.reponse('id1')).toEqual(laReponse);
       });
 
-      describe("quand la réponse est bonne et qu'aucun rattrapage n'est en cours", function() {
-        it("met à jour le pourcentage de réussite globale", function() {
-          expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
-          store.commit('enregistreReponse', { succes: true });
-          expect(store.state.pourcentageDeReussiteGlobal).toEqual(20);
+      describe("enregistre le score d'un niveau", function() {
+        beforeEach(function() {
+          store.state.parcours = NIVEAU1;
+          store.state.series = configuration[NIVEAU1].series;
+          store.state.indexSerie = 0;
+          store.state.questionActive = questionNiveau1Question1;
         });
 
-        it("accumule le pourcentage au fur et à mesure des reponses", function() {
-          expect(store.getters.maxScoreSerieEnCours).toEqual(2.5);
-          store.commit('enregistreReponse', { succes: true });
-          expect(store.state.pourcentageDeReussiteGlobal).toEqual(20);
+        describe("quand la réponse est bonne et qu'aucun rattrapage n'est en cours", function() {
+          it("met à jour le pourcentage de réussite globale", function() {
+            expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
+            store.commit('enregistreReponse', { succes: true });
+            expect(store.state.pourcentageDeReussiteGlobal).toEqual(20);
+          });
 
-          store.state.questionActive = questionNiveau1Question2;
-          store.commit('enregistreReponse', { succes: true });
+          it("accumule le pourcentage au fur et à mesure des reponses", function() {
+            expect(store.getters.maxScoreSerieEnCours).toEqual(2.5);
+            store.commit('enregistreReponse', { succes: true });
+            expect(store.state.pourcentageDeReussiteGlobal).toEqual(20);
+
+            store.state.questionActive = questionNiveau1Question2;
+            store.commit('enregistreReponse', { succes: true });
+            expect(store.state.pourcentageDeReussiteGlobal).toEqual(60);
+          });
+        });
+
+        describe("quand la réponse est bonne et qu'un rattrapage est en cours", function() {
+          it("n'ajoute rien", function() {
+            store.state.parcours = 'N1Prn';
+            expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
+            store.commit('enregistreReponse', { succes: true });
+            expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
+          });
+        });
+
+        describe("quand la réponse est fausse et fait partie d'une compétence à rattraper", function() {
+          it("décompte du pourcentage de réussite de la compétence", function() {
+            questionAvecRattrapage.nom_technique = 'N1Prn1';
+            store.state.questionActive = questionAvecRattrapage;
+            store.commit('enregistreReponse', { succes: true });
+            expect(store.state.pourcentageDeReussiteCompetence['N1Prn']).toEqual(100);
+
+            store.commit('enregistreReponse', { succes: false });
+            expect(store.state.pourcentageDeReussiteCompetence['N1Prn']).toEqual(50);
+          });
+        });
+      });
+    });
+
+    describe("#recalculePourcentageReussiteGlobal", function() {
+      describe("si ce n'est pas la dernière question du rattrapage", function() {
+        it("ne change rien", function() {
+          store.state.parcours = NIVEAU1;
+          store.state.questionActive = questionNiveau1Question1;
+          store.state.pourcentageDeReussiteGlobal = 60;
+
+          store.commit('recalculePourcentageReussiteGlobal');
+
           expect(store.state.pourcentageDeReussiteGlobal).toEqual(60);
         });
       });
 
-      describe("quand la réponse est bonne et qu'un rattrapage est en cours", function() {
-        it("n'ajoute rien", function() {
-          store.state.parcours = 'N1Prn';
-          expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
-          store.commit('enregistreReponse', { succes: true });
-          expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
-        });
-      });
+      describe("si c'est la dernière question du rattrapage", function() {
+        it('retourne le nouveau pourcentage de réussite global', function() {
+          store.state.parcours = 'N1Rrn';
+          store.state.reponses = {
+            'N1Prn1': { question: 'N1Prn1', succes: true, score: 0 },
+            'N1Rrn1': { question: 'N1Rrn1', succes: true, score: 1 },
+          };
+          store.state.questionActive = { nom_technique: 'N1Rrn2' };
+          store.state.pourcentageDeReussiteCompetence = {
+            'N1Prn': 40,
+          };
+          store.state.maxScoreNiveauEnCours = 2;
 
-      describe("quand la réponse est fausse et fait partie d'une compétence à rattraper", function() {
-        it("décompte du pourcentage de réussite de la compétence", function() {
-          questionAvecRattrapage.nom_technique = 'N1Prn1';
-          store.state.questionActive = questionAvecRattrapage;
-          store.commit('enregistreReponse', { succes: true });
-          expect(store.state.pourcentageDeReussiteCompetence['N1Prn']).toEqual(100);
+          expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
 
-          store.commit('enregistreReponse', { succes: false });
-          expect(store.state.pourcentageDeReussiteCompetence['N1Prn']).toEqual(50);
+          store.commit('recalculePourcentageReussiteGlobal');
+
+          expect(store.state.pourcentageDeReussiteGlobal).toEqual(50);
         });
       });
     });
-  });
 
-  describe("#recalculePourcentageReussiteGlobal", function() {
-    describe("si ce n'est pas la dernière question du rattrapage", function() {
-      it("ne change rien", function() {
-        store.state.parcours = NIVEAU1;
-        store.state.questionActive = questionNiveau1Question1;
-        store.state.pourcentageDeReussiteGlobal = 60;
+    describe('#recupereQuestionsServeur', function() {
+      it('met à jour les questions avec les questions serveur', function() {
+        const questions = [{ nom_technique: 'N1Pse1' }, { nom_technique: 'N1Pse2' }];
+        store.commit('recupereQuestionsServeur', questions);
 
-        store.commit('recalculePourcentageReussiteGlobal');
-
-        expect(store.state.pourcentageDeReussiteGlobal).toEqual(60);
-      });
-    });
-
-    describe("si c'est la dernière question du rattrapage", function() {
-      it('retourne le nouveau pourcentage de réussite global', function() {
-        store.state.parcours = 'N1Rrn';
-        store.state.reponses = {
-          'N1Prn1': { question: 'N1Prn1', succes: true, score: 0 },
-          'N1Rrn1': { question: 'N1Rrn1', succes: true, score: 1 },
-        };
-        store.state.questionActive = { nom_technique: 'N1Rrn2' };
-        store.state.pourcentageDeReussiteCompetence = {
-          'N1Prn': 40,
-        };
-        store.state.maxScoreNiveauEnCours = 2;
-
-        expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
-
-        store.commit('recalculePourcentageReussiteGlobal');
-
-        expect(store.state.pourcentageDeReussiteGlobal).toEqual(50);
+        expect(store.state.questions).toEqual(questions);
       });
     });
   });

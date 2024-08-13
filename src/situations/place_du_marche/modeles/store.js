@@ -1,6 +1,4 @@
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
-import RegistreCampagne from 'commun/infra/registre_campagne';
-
 
 export const NUMERATIE = 'numeratie';
 export const NIVEAU1 = 'niveau1';
@@ -104,7 +102,6 @@ export function creeStore () {
 
     mutations: {
       configureActe (state, configuration) {
-        state.questions = new RegistreCampagne().questions('place_du_marche');
         state.configuration = configuration;
         this.commit('demarreParcours', NIVEAU1);
       },
@@ -199,6 +196,10 @@ export function creeStore () {
 
         state.pourcentageDeReussiteGlobal =  calculPourcentage(scoreTotal, state.maxScoreNiveauEnCours);
       },
+
+      recupereQuestionsServeur(state, questions) {
+        state.questions = questions;
+      }
     },
   });
 }
