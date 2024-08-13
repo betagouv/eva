@@ -26,7 +26,7 @@ export default {
   components: { Defi, TransitionFade, Pagination },
 
   computed: {
-    ...mapState(['indexCarte', 'carteActive', 'termine']),
+    ...mapState(['indexCarte', 'questionActive', 'termine']),
     ...mapGetters(['nombreCartes']),
   },
 
