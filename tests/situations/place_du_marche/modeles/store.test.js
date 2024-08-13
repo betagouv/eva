@@ -6,6 +6,7 @@ import {
   additionneScores,
   calculPourcentage,
   recupereReponsesMeilleursScores,
+  reinitialiseRattrapagesAPasser,
   calculeScoreParMetrique,
   filtreMeilleursScores
 } from 'place_du_marche/modeles/store';
@@ -455,6 +456,24 @@ describe('Le store de la situation place du marché', function () {
           { question: 'N1Rde1', score: 1 },
           { question: 'N1Rde2', score: 1 }
         ]);
+      });
+    });
+
+    describe('#reinitialiseRattrapagesAPasser', function() {
+      it('réinitialise rattrapages à passer', () => {
+        store.state.pourcentageDeReussiteCompetence = {
+          'N1Pde': 70,
+          'N1Pes': 100,
+        };
+        expect(store.getters.rattrapagesAPasser).toEqual(['N1Pde']);
+
+        reinitialiseRattrapagesAPasser(store.state);
+
+        expect(store.getters.rattrapagesAPasser).toEqual([]);
+        expect(store.state.pourcentageDeReussiteCompetence).toEqual({
+          'N1Pde': 100,
+          'N1Pes': 100,
+        });
       });
     });
   });
