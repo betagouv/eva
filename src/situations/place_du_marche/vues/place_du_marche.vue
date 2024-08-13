@@ -1,9 +1,9 @@
 <template>
   <transition-fade>
     <defi
-      v-if="carteActive.id"
-      :key="carteActive.id"
-      :question="carteActive"
+      v-if="question.id"
+      :key="question.id"
+      :question="question"
       @reponse="reponse"
     >
       <pagination
@@ -25,14 +25,23 @@ import Pagination from 'commun/vues/components/pagination';
 export default {
   components: { Defi, TransitionFade, Pagination },
 
+  data () {
+    return {
+      question: {}
+    };
+  },
+
   computed: {
     ...mapState(['indexCarte', 'questionActive', 'termine']),
-    ...mapGetters(['nombreCartes']),
+    ...mapGetters(['nombreCartes', 'questionServeur']),
   },
 
   watch: {
     termine () {
       this.$emit('terminer');
+    },
+    questionActive() {
+      this.question = this.questionServeur ?? this.questionActive;
     }
   },
 
