@@ -55,7 +55,7 @@ describe('Le store de la situation place du marché', function () {
 
     it("s'initialise avec le premier chapitre et la première carte du chapitre", function () {
       expect(store.state.indexCarte).toEqual(0);
-      expect(store.state.carteActive).toEqual(questionNiveau1Question1);
+      expect(store.state.questionActive).toEqual(questionNiveau1Question1);
     });
 
     describe("#nombreCartes", function() {
@@ -83,7 +83,7 @@ describe('Le store de la situation place du marché', function () {
         expect(store.getters.estDerniereQuestionRattrapage).toEqual(false);
 
         store.state.parcours = 'N1Rrn';
-        store.state.carteActive = { nom_technique: 'N1Roa2' };
+        store.state.questionActive = { nom_technique: 'N1Roa2' };
         store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
         store.state.pourcentageDeReussiteCompetence['N1Poa'] = 50;
 
@@ -95,23 +95,23 @@ describe('Le store de la situation place du marché', function () {
       it("passe à la question suivante", function() {
         store.commit('carteSuivanteParcours');
 
-        expect(store.state.carteActive).toEqual(questionNiveau1Question2);
+        expect(store.state.questionActive).toEqual(questionNiveau1Question2);
       });
 
       it("passe de la dernière question du jeu de cartes en cours à la première question du jeu suivant", function() {
         store.state.indexCarte = 1;
         store.commit('carteSuivanteParcours');
 
-        expect(store.state.carteActive).toEqual(questionNiveau1Question3);
+        expect(store.state.questionActive).toEqual(questionNiveau1Question3);
       });
 
       it("termine le parcours après la dernière question", function() {
         store.state.indexCarte = 0;
         store.state.indexSerie = 1;
-        store.state.carteActive = questionNiveau2;
+        store.state.questionActive = questionNiveau2;
         store.commit('carteSuivanteParcours');
         expect(store.state.parcoursTermine).toBe(true);
-        expect(store.state.carteActive).toEqual(questionNiveau2);
+        expect(store.state.questionActive).toEqual(questionNiveau2);
         expect(store.getters.nombreCartes).toEqual(1);
       });
     });
@@ -121,14 +121,14 @@ describe('Le store de la situation place du marché', function () {
         beforeEach(function() {
           store.state.indexCarte = 0;
           store.state.indexSerie = 1;
-          store.state.carteActive = questionNiveau2;
+          store.state.questionActive = questionNiveau2;
         });
 
         it("termine la situation après la dernière question du dernier niveau", function () {
-          expect(store.state.carteActive).toEqual(questionNiveau2);
+          expect(store.state.questionActive).toEqual(questionNiveau2);
           expect(store.state.termine).toBe(false);
           store.commit('carteSuivante');
-          expect(store.state.carteActive).toEqual(questionNiveau2);
+          expect(store.state.questionActive).toEqual(questionNiveau2);
           expect(store.state.termine).toBe(true);
         });
       });
@@ -225,7 +225,7 @@ describe('Le store de la situation place du marché', function () {
       it('retourne vrai si la compétence de la question en cours est à rattraper', function() {
         expect(store.getters.estCompetenceARattraper).toBe(false);
         questionAvecRattrapage.nom_technique = 'N1Prn1';
-        store.state.carteActive = questionAvecRattrapage;
+        store.state.questionActive = questionAvecRattrapage;
         expect(store.getters.estCompetenceARattraper).toBe(true);
       });
     });
@@ -253,7 +253,7 @@ describe('Le store de la situation place du marché', function () {
 
   describe("#enregistreReponse", function() {
     it('peut enregistrer une réponse et la restituer', function() {
-      store.state.carteActive = questionNiveau1Question1;
+      store.state.questionActive = questionNiveau1Question1;
       let laReponse = { question: 'id1', reponse: 'ma reponse' };
       store.commit('enregistreReponse', laReponse);
       laReponse = {...laReponse, score: 0};
@@ -265,7 +265,7 @@ describe('Le store de la situation place du marché', function () {
         store.state.parcours = NIVEAU1;
         store.state.series = configuration[NIVEAU1].series;
         store.state.indexSerie = 0;
-        store.state.carteActive = questionNiveau1Question1;
+        store.state.questionActive = questionNiveau1Question1;
       });
 
       describe("quand la réponse est bonne et qu'aucun rattrapage n'est en cours", function() {
@@ -280,7 +280,7 @@ describe('Le store de la situation place du marché', function () {
           store.commit('enregistreReponse', { succes: true });
           expect(store.state.pourcentageDeReussiteGlobal).toEqual(20);
 
-          store.state.carteActive = questionNiveau1Question2;
+          store.state.questionActive = questionNiveau1Question2;
           store.commit('enregistreReponse', { succes: true });
           expect(store.state.pourcentageDeReussiteGlobal).toEqual(60);
         });
@@ -298,7 +298,7 @@ describe('Le store de la situation place du marché', function () {
       describe("quand la réponse est fausse et fait partie d'une compétence à rattraper", function() {
         it("décompte du pourcentage de réussite de la compétence", function() {
           questionAvecRattrapage.nom_technique = 'N1Prn1';
-          store.state.carteActive = questionAvecRattrapage;
+          store.state.questionActive = questionAvecRattrapage;
           store.commit('enregistreReponse', { succes: true });
           expect(store.state.pourcentageDeReussiteCompetence['N1Prn']).toEqual(100);
 
@@ -313,7 +313,7 @@ describe('Le store de la situation place du marché', function () {
     describe("si ce n'est pas la dernière question du rattrapage", function() {
       it("ne change rien", function() {
         store.state.parcours = NIVEAU1;
-        store.state.carteActive = questionNiveau1Question1;
+        store.state.questionActive = questionNiveau1Question1;
         store.state.pourcentageDeReussiteGlobal = 60;
 
         store.commit('recalculePourcentageReussiteGlobal');
@@ -329,7 +329,7 @@ describe('Le store de la situation place du marché', function () {
           'N1Prn1': { question: 'N1Prn1', succes: true, score: 0 },
           'N1Rrn1': { question: 'N1Rrn1', succes: true, score: 1 },
         };
-        store.state.carteActive = { nom_technique: 'N1Rrn2' };
+        store.state.questionActive = { nom_technique: 'N1Rrn2' };
         store.state.pourcentageDeReussiteCompetence = {
           'N1Prn': 40,
         };

@@ -26,7 +26,7 @@ export function creeStore () {
       indexSerie: 0,
       indexNiveau: 0,
       indexRattrapage: 0,
-      carteActive: {},
+      questionActive: {},
       series: [],
       termine: false,
       reponses: {},
@@ -63,11 +63,11 @@ export function creeStore () {
       },
 
       codeCompetenceEnCours(state) {
-        return state.carteActive.nom_technique.substring(0, 5);
+        return state.questionActive.nom_technique.substring(0, 5);
       },
 
       estCompetenceARattraper(state) {
-        return state.carteActive.nom_technique.substring(0, 5) in state.pourcentageDeReussiteCompetence;
+        return state.questionActive.nom_technique.substring(0, 5) in state.pourcentageDeReussiteCompetence;
       },
 
       rattrapagesAPasser(state) {
@@ -84,8 +84,8 @@ export function creeStore () {
 
       estDerniereQuestionRattrapage(state, getters) {
         if(!getters.rattrapageEnCours) return false;
-        return state.carteActive.nom_technique.replace('R', 'P') === `${getters.rattrapagesAPasser[getters.rattrapagesAPasser.length - 1]}2` ?? false;
-      }
+        return state.questionActive.nom_technique.replace('R', 'P') === `${getters.rattrapagesAPasser[getters.rattrapagesAPasser.length - 1]}2` ?? false;
+      },
     },
 
     mutations: {
@@ -98,13 +98,13 @@ export function creeStore () {
       carteSuivanteParcours(state) {
         state.indexCarte++;
         if (state.indexCarte < state.series[state.indexSerie].cartes.length) {
-          state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+          state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
         }
         else {
           state.indexCarte = 0;
           state.indexSerie++;
           if (state.indexSerie < state.series.length) {
-            state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+            state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
           }
           else {
             state.indexSerie--;
@@ -121,7 +121,7 @@ export function creeStore () {
         state.indexCarte = 0;
         state.pourcentageDeReussiteGlobal = 0;
         state.series = state.configuration[state.parcours].series;
-        state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+        state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
         if(!this.getters.rattrapageEnCours) {
           state.maxScoreNiveauEnCours = this.getters.maxScoreSerieEnCours;
         }
@@ -160,16 +160,16 @@ export function creeStore () {
 
       enregistreReponse(state, reponse) {
         const { question, succes } = reponse;
-        const { carteActive, pourcentageDeReussiteCompetence, reponses } = state;
+        const { questionActive, pourcentageDeReussiteCompetence, reponses } = state;
         const { rattrapageEnCours, estCompetenceARattraper, codeCompetenceEnCours, maxScoreSerieEnCours } = this.getters;
 
         reponses[question] = reponse;
-        reponses[question].score = succes ? carteActive.score : 0;
+        reponses[question].score = succes ? questionActive.score : 0;
 
         if (succes && !rattrapageEnCours) {
-          state.pourcentageDeReussiteGlobal += calculPourcentage(carteActive.score, maxScoreSerieEnCours);
+          state.pourcentageDeReussiteGlobal += calculPourcentage(questionActive.score, maxScoreSerieEnCours);
         } else if (!succes && estCompetenceARattraper) {
-          pourcentageDeReussiteCompetence[codeCompetenceEnCours] = calculPourcentage(carteActive.score, 2);
+          pourcentageDeReussiteCompetence[codeCompetenceEnCours] = calculPourcentage(questionActive.score, 2);
         }
       },
 
