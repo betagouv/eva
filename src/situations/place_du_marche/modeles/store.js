@@ -244,12 +244,7 @@ export function recupereReponsesMeilleursScores(meilleursScores, reponses) {
 }
 
 export function reinitialiseRattrapagesAPasser(state) {
-  state.pourcentageDeReussiteCompetence = {
-    'N1Prn': 100,
-    'N1Pde': 100,
-    'N1Pes': 100,
-    'N1Pon': 100,
-    'N1Poa': 100,
-    'N1Pos': 100,
-  };
+  Object.keys(state.pourcentageDeReussiteCompetence).forEach(competence => {
+    state.pourcentageDeReussiteCompetence[competence] = 100;
+  });
 }
