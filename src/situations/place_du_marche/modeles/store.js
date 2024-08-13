@@ -86,6 +86,20 @@ export function creeStore () {
         if(!getters.rattrapageEnCours) return false;
         return state.questionActive.nom_technique.replace('R', 'P') === `${getters.rattrapagesAPasser[getters.rattrapagesAPasser.length - 1]}2` ?? false;
       },
+
+      questionServeur(state) {
+        const question = state.questions.filter(q => {
+          return q.nom_technique === state.questionActive.nom_technique;
+        })[0];
+        if(question) {
+          question.id = question.nom_technique;
+          question.score = state.questionActive.score;
+          question.choix.forEach(choix => {
+            choix.bonneReponse = choix.type_choix === 'bon';
+          });
+        }
+        return question;
+      }
     },
 
     mutations: {

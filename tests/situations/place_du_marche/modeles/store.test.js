@@ -344,6 +344,31 @@ describe('Le store de la situation place du marché', function () {
     });
   });
 
+  describe('#questionServeur', function() {
+    beforeEach(function() {
+      store.state.questionActive = { nom_technique: 'N1Prn1', score: 0.5 };
+    });
+
+    describe("si la question active a une question serveur avec le même nom technique", function() {
+      it("retourne la question serveur", function() {
+        const question = { nom_technique: 'N1Prn1', choix: [{ type_choix: 'bon' }, { type_choix: 'mauvaise' }] };
+        store.state.questions = [question];
+
+        expect(store.getters.questionServeur.id).toEqual('N1Prn1');
+        expect(store.getters.questionServeur.score).toEqual(0.5);
+        expect(store.getters.questionServeur.choix[0].bonneReponse).toBe(true);
+        expect(store.getters.questionServeur.choix[1].bonneReponse).toBe(false);
+      });
+    });
+
+    describe("si la question active n'a pas de question serveur avec le même nom technique", function() {
+      it('ne retourne rien', function() {
+        store.state.questions= [];
+        expect(store.getters.questionServeur).toBeUndefined();
+      });
+    });
+  });
+
   describe('Helper Functions', () => {
     const mockReponses = [
       { question: 'N1Pse1', score: 0.5 },
