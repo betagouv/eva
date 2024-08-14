@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     illustrationQuestion(question) {
-      return this.$depotRessources.illustrationQuestion(question).src;
+      return question.illustration ?? this.$depotRessources.illustrationQuestion(question).src;
     }
   }
 };
