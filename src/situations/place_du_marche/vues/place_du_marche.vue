@@ -17,7 +17,6 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import EvenementReponse from 'questions/modeles/evenement_reponse';
-import RegistreCampagne from 'commun/infra/registre_campagne';
 
 import Defi from 'commun/vues/defi';
 import TransitionFade from 'commun/vues/transition_fade';
@@ -33,8 +32,7 @@ export default {
   },
 
   mounted () {
-    const questions = new RegistreCampagne().questions('place_du_marche');
-    this.$store.commit('recupereQuestionsServeur', questions);
+    this.$store.commit('recupereQuestionsServeur', this.$depotRessources.questions());
   },
 
   computed: {

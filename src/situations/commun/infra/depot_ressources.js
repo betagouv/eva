@@ -148,4 +148,18 @@ function extraitDictionnaire (webpackContext, regExp, dictionnaire = {}) {
   }, dictionnaire);
 }
 
-export { chargeurJSON, extraitDictionnaire };
+function extraitQuestionsReponsesAudios(questions) {
+  return questions.reduce((acc, question) => {
+    if (question.audio_url) {
+      acc[question.nom_technique] = question.audio_url;
+      question.choix.forEach(choix => {
+        if (choix.audio_url) {
+          acc[choix.nom_technique] = choix.audio_url;
+        }
+      });
+    }
+    return acc;
+  }, {});
+}
+
+export { chargeurJSON, extraitDictionnaire, extraitQuestionsReponsesAudios };
