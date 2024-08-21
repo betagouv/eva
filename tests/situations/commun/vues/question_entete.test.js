@@ -72,18 +72,23 @@ describe('la vue du composant entête', function () {
   });
 
   describe('#afficheLectureQuestionAudio', function () {
-    beforeEach(function () {
-      depotRessources.existeMessageAudio =
-        (nom_technique) => nom_technique == 'cuisine';
-    });
-
     it('affiche un bouton lecture lorsque la réponse a un audio associé', function () {
+      depotRessources.existeMessageAudio =
+      (nom_technique) => nom_technique == 'cuisine';
       const vue = composant({ reponse: { nom_technique: 'cuisine' } });
       expect(vue.vm.afficheLectureQuestionAudio).toBe(true);
       expect(vue.vm.$refs.boutonLectureQuestionAudio).toBeDefined();
     });
 
-    it("n'affiche pas de bouton lecture lorsque la réponse n'a pas d'audio associé", function () {
+    it("affiche un bouton lecture lorsque l'intitulé a un audio associé", function () {
+      depotRessources.existeMessageAudio =
+      (nom_technique) => nom_technique == 'question1_intitule_audio';
+      const vue = composant({ nom_technique: 'question1', intitule_audio: 'audio.mp3' });
+      expect(vue.vm.afficheLectureQuestionAudio).toBe(true);
+      expect(vue.vm.$refs.boutonLectureQuestionAudio).toBeDefined();
+    });
+
+    it("n'affiche pas de bouton lecture lorsque la réponse n'a pas d'audio associé ni d'intitulé", function () {
       const vue = composant({ reponse: { } });
       expect(vue.vm.afficheLectureQuestionAudio).toBe(false);
       expect(vue.vm.$refs.boutonLectureQuestionAudio).not.toBeDefined();

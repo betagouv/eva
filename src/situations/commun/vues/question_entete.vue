@@ -27,7 +27,7 @@
       <p v-if="question.modalite_reponse" class="question-modalite-reponse"><span v-html="question.modalite_reponse"></span></p>
       <bouton-lecture
         v-if="afficheLectureQuestionAudio"
-        :nomTechnique="question.reponse.nom_technique"
+        :nomTechnique="nomTechniqueLectureQuestionAudio"
         :avecTexte="true"
         ref="boutonLectureQuestionAudio"
       />
@@ -60,7 +60,23 @@ export default {
     },
 
     afficheLectureQuestionAudio () {
+      return this.existeReponseAudio || !!this.existeIntituleAudioSansEcrit;
+    },
+
+    existeReponseAudio () {
       return this.question.reponse && this.$depotRessources.existeMessageAudio(this.question.reponse.nom_technique);
+    },
+
+    existeIntituleAudioSansEcrit () {
+      return this.question.intitule_audio && this.$depotRessources.existeMessageAudio(`${this.question.nom_technique}_intitule_audio`);
+    },
+
+    nomTechniqueLectureQuestionAudio() {
+      return this.existeReponseAudio
+        ? this.question.reponse.nom_technique
+        : this.existeIntituleAudioSansEcrit
+          ? `${this.question.nom_technique}_intitule_audio`
+          : '';
     }
   },
 
