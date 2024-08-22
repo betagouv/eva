@@ -86,16 +86,23 @@ export function creeStore () {
       },
 
       questionServeur(state) {
-        const question = state.questions.filter(q => {
-          return q.nom_technique === state.questionActive.nom_technique;
-        })[0];
-        if(question) {
-          question.id = question.nom_technique;
-          question.score = state.questionActive.score;
+        const question = state.questions.find(q => q.nom_technique === state.questionActive.nom_technique);
+
+        if (!question) return undefined;
+
+        const { nom_technique, score, metacompetence } = state.questionActive;
+        Object.assign(question, {
+          id: nom_technique,
+          score,
+          metacompetence,
+        });
+
+        if (question.choix) {
           question.choix.forEach(choix => {
             choix.bonneReponse = choix.type_choix === 'bon';
           });
         }
+
         return question;
       }
     },

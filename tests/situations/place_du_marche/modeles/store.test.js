@@ -362,14 +362,20 @@ describe('Le store de la situation place du marché', function () {
     });
 
     describe("si la question active a une question serveur avec le même nom technique", function() {
-      it("retourne la question serveur", function() {
-        const question = { nom_technique: 'N1Prn1', choix: [{ type_choix: 'bon' }, { type_choix: 'mauvaise' }] };
+      it("retourne la question serveur et recupère le score", function() {
+        const question = { nom_technique: 'N1Prn1' };
         store.state.questions = [question];
-
         expect(store.getters.questionServeur.id).toEqual('N1Prn1');
         expect(store.getters.questionServeur.score).toEqual(0.5);
-        expect(store.getters.questionServeur.choix[0].bonneReponse).toBe(true);
-        expect(store.getters.questionServeur.choix[1].bonneReponse).toBe(false);
+      });
+
+      describe("pour une question avec des choix", function() {
+        it("retourne les choix", function() {
+          const question = { nom_technique: 'N1Prn1', choix: [{ type_choix: 'bon' }, { type_choix: 'mauvaise' }] };
+          store.state.questions = [question];
+          expect(store.getters.questionServeur.choix[0].bonneReponse).toBe(true);
+          expect(store.getters.questionServeur.choix[1].bonneReponse).toBe(false);
+        });
       });
     });
 
