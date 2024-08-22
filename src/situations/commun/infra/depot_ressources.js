@@ -156,11 +156,13 @@ function extraitQuestionsReponsesAudios(questions) {
     if (question.intitule_audio) {
       acc[`${question.nom_technique}_intitule_audio`] = question.intitule_audio;
     }
-    question.choix.forEach(choix => {
-      if (choix.audio_url) {
-        acc[choix.nom_technique] = choix.audio_url;
-      }
-    });
+    if(question.choix) {
+      question.choix.forEach(choix => {
+        if (choix.audio_url) {
+          acc[choix.nom_technique] = choix.audio_url;
+        }
+      });
+    }
     return acc;
   }, {});
 }
