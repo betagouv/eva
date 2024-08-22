@@ -146,47 +146,21 @@ const N1Prn2 = {
 const N1Pde1 = {
   id: 'N1Pde1',
   nom_technique: 'N1Pde1',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'denombrement',
   intitule: 'Dénombrement : Niveau 1 Question 1',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Pde1R1',
-      nom_technique: 'N1Pde1R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Pde1R2',
-      nom_technique: 'N1Pde1R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Pde2 = {
   id: 'N1Pde2',
   nom_technique: 'N1Pde2',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'denombrement',
   intitule: 'Dénombrement : Niveau 1 Question 2',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Pde2R1',
-      nom_technique: 'N1Pde2R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Pde2R2',
-      nom_technique: 'N1Pde2R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 // Estimation
@@ -290,47 +264,21 @@ const N1Pon2 = {
 const N1Poa1 = {
   id: 'N1Poa1',
   nom_technique: 'N1Poa1',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'operations_addition',
   intitule: 'Opération Addition : Niveau 1 Question 1',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Poa1R1',
-      nom_technique: 'N1Poa1R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Poa1R2',
-      nom_technique: 'N1Poa1R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Poa2 = {
   id: 'N1Poa2',
   nom_technique: 'N1Poa2',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'operations_addition',
   intitule: 'Opération Addition : Niveau 1 Question 2',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Poa2R1',
-      nom_technique: 'N1Poa2R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Poa2R2',
-      nom_technique: 'N1Poa2R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 // Opérations Soustraction
@@ -338,47 +286,21 @@ const N1Poa2 = {
 const N1Pos1 = {
   id: 'N1Pos1',
   nom_technique: 'N1Pos1',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'operations_soustraction',
   intitule: 'Opération Soustraction : Niveau 1 Question 1',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Pos1R1',
-      nom_technique: 'N1Pos1R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Pos1R2',
-      nom_technique: 'N1Pos1R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Pos2 = {
   id: 'N1Pos2',
   nom_technique: 'N1Pos2',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'operations_soustraction',
   intitule: 'Opération Soustraction : Niveau 1 Question 2',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Pos2R1',
-      nom_technique: 'N1Pos2R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Pos2R2',
-      nom_technique: 'N1Pos2R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 // Vocabulaire numéracie

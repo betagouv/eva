@@ -47,47 +47,21 @@ const N1Rrn2 = {
 const N1Rde1 = {
   id: 'N1Rde1',
   nom_technique: 'N1Rde1',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'denombrement',
   intitule: 'Rattrapage Dénombrement : Niveau 1 Question 1',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Rde1R1',
-      nom_technique: 'N1Rde1R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Rde1R2',
-      nom_technique: 'N1Rde1R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Rde2 = {
   id: 'N1Rde2',
   nom_technique: 'N1Rde2',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'denombrement',
   intitule: 'Rattrapage Dénombrement : Niveau 1 Question 2',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Rde2R1',
-      nom_technique: 'N1Rde2R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Rde2R2',
-      nom_technique: 'N1Rde2R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Res1 = {
@@ -185,93 +159,41 @@ const N1Ron2 = {
 const N1Roa1 = {
   id: 'N1Roa1',
   nom_technique: 'N1Roa1',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'operations_addition',
   intitule: 'Rattrapage Opération addition : Niveau 1 Question 1',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Roa1R1',
-      nom_technique: 'N1Roa1R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Roa1R2',
-      nom_technique: 'N1Roa1R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Roa2 = {
   id: 'N1Roa2',
   nom_technique: 'N1Roa2',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'operations_addition',
   intitule: 'Rattrapage Opération addition : Niveau 1 Question 2',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Roa2R1',
-      nom_technique: 'N1Roa2R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Roa2R2',
-      nom_technique: 'N1Roa2R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Ros1 = {
   id: 'N1Ros1',
   nom_technique: 'N1Ros1',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'operations_soustraction',
   intitule: 'Rattrapage Opération Soustraction : Niveau 1 Question 1',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Ros1R1',
-      nom_technique: 'N1Ros1R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Ros1R2',
-      nom_technique: 'N1Ros1R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Ros2 = {
   id: 'N1Ros2',
   nom_technique: 'N1Ros2',
-  type: 'qcm',
+  type: 'saisie',
+  sous_type: 'numerique',
   metacompetence: 'operations_soustraction',
   intitule: 'Rattrapage Opération Soustraction : Niveau 1 Question 2',
-  score: 1,
-  choix: [
-    {
-      id: 'N1Ros2R1',
-      nom_technique: 'N1Ros2R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Ros2R2',
-      nom_technique: 'N1Ros2R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  score: 1
 };
 
 const N1Rrn = {
