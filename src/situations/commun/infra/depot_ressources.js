@@ -150,19 +150,15 @@ function extraitDictionnaire (webpackContext, regExp, dictionnaire = {}) {
 
 function extraitQuestionsReponsesAudios(questions) {
   return questions.reduce((acc, question) => {
-    if (question.audio_url) {
-      acc[question.nom_technique] = question.audio_url;
-    }
-    if (question.intitule_audio) {
-      acc[`${question.nom_technique}_intitule_audio`] = question.intitule_audio;
-    }
-    if(question.choix) {
-      question.choix.forEach(choix => {
-        if (choix.audio_url) {
-          acc[choix.nom_technique] = choix.audio_url;
-        }
-      });
-    }
+    const { nom_technique, audio_url, intitule_audio, choix } = question;
+
+    if (audio_url) acc[nom_technique] = audio_url;
+    if (intitule_audio) acc[`${nom_technique}_intitule_audio`] = intitule_audio;
+
+    choix?.forEach(({ nom_technique: choixNom, audio_url: choixAudio }) => {
+      if (choixAudio) acc[choixNom] = choixAudio;
+    });
+
     return acc;
   }, {});
 }
