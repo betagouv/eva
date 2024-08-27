@@ -90,9 +90,14 @@ export function creeStore () {
         return !NIVEAUX.includes(state.parcours);
       },
 
+      derniereQuestionRattrapage(state, getters) {
+        const dernierRattrapageAPasser = getters.rattrapagesAPasser[getters.rattrapagesAPasser.length - 1];
+        return `${numeratieMetriques[dernierRattrapageAPasser]}2`;
+      },
+
       estDerniereQuestionRattrapage(state, getters) {
         if(!getters.rattrapageEnCours) return false;
-        return state.questionActive.nom_technique.replace('R', 'P') === `${getters.rattrapagesAPasser[getters.rattrapagesAPasser.length - 1]}2` ?? false;
+        return state.questionActive.nom_technique === getters.derniereQuestionRattrapage;
       },
 
       questionServeur(state) {
