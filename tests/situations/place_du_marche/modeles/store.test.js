@@ -81,15 +81,27 @@ describe('Le store de la situation place du marché', function () {
     });
 
     describe("#estDerniereQuestionRattrapage", function() {
-      it("retourne si c'est la derniere question du rattrapage", function() {
-        expect(store.getters.estDerniereQuestionRattrapage).toEqual(false);
-
-        store.state.parcours = 'N1Rrn';
-        store.state.questionActive = { nom_technique: 'N1Roa2' };
+      beforeEach(function() {
         store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
         store.state.pourcentageDeReussiteCompetence['N1Poa'] = 50;
+      });
 
+      it("retourne true si c'est la derniere question du rattrapage", function() {
+        store.state.questionActive = { nom_technique: 'N1Roa2' };
         expect(store.getters.estDerniereQuestionRattrapage).toEqual(true);
+      });
+
+      it("retourne false si ce n'est pas la derniere question du rattrapage", function() {
+        store.state.questionActive = { nom_technique: 'N1Roa1' };
+        expect(store.getters.estDerniereQuestionRattrapage).toEqual(false);
+      });
+    });
+
+    describe("#derniereQuestionRattrapage", function() {
+      it("retourne le nom technique de la dernière question du rattrapage", function() {
+        store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
+        store.state.pourcentageDeReussiteCompetence['N1Poa'] = 50;
+        expect(store.getters.derniereQuestionRattrapage).toEqual('N1Roa2');
       });
     });
 
