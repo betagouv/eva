@@ -92,6 +92,14 @@ describe('Le store de la situation place du marché', function () {
       });
     });
 
+    describe("#derniereQuestionRattrapage", function() {
+      it("retourne le nom technique de la dernière question du rattrapage", function() {
+        store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
+        store.state.pourcentageDeReussiteCompetence['N1Poa'] = 50;
+        expect(store.getters.derniereQuestionRattrapage).toEqual('N1Roa2');
+      });
+    });
+
     describe('#carteSuivanteParcours', function () {
       it("passe à la question suivante", function() {
         store.commit('carteSuivanteParcours');
