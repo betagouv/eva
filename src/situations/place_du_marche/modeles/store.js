@@ -90,17 +90,22 @@ export function creeStore () {
 
         if (!question) return undefined;
 
-        const { nom_technique, score, metacompetence } = state.questionActive;
+        const { nom_technique, score, metacompetence, extensionVue } = state.questionActive;
         Object.assign(question, {
           id: nom_technique,
           score,
           metacompetence,
+          extensionVue,
         });
 
         if (question.choix) {
           question.choix.forEach(choix => {
             choix.bonneReponse = choix.type_choix === 'bon';
           });
+        }
+
+        if (question.type === 'clic_dans_image') {
+          question.type = 'action';
         }
 
         return question;

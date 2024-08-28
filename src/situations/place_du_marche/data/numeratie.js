@@ -73,8 +73,9 @@ const N1Pse3 = {
 const N1Pse4 = {
   id: 'N1Pse4',
   nom_technique: 'N1Pse4',
-  type: 'qcm',
+  type: 'action',
   metacompetence: 'situation_dans_lespace',
+  extensionVue: 'clic-dans-image',
   intitule: "Situation dans l'espace : Niveau 1 Question 4",
   score: 0.5,
   choix: [
