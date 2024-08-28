@@ -103,9 +103,13 @@ export function creeStore () {
             choix.bonneReponse = choix.type_choix === 'bon';
           });
         }
-
-        if (question.type === 'clic_dans_image') {
-          question.type = 'action';
+        if(question.zone_cliquable) {
+          fetch(question.zone_cliquable)
+            .then(response => response.text())
+            .then(data => {
+              question.zone_cliquable = data;
+            })
+            .catch(error => console.error('Error loading SVG:', error));
         }
 
         return question;
