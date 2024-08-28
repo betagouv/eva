@@ -56,6 +56,7 @@ import QuestionEntete from 'commun/vues/question_entete';
 import RedactionNote from 'commun/vues/defi/redaction_note';
 import VideoQuestion from 'commun/vues/video_question';
 import EvenementAffichageQuestionQCM from 'commun/modeles/evenement_affichage_question_qcm';
+import ClicDansImage from 'commun/vues/components/clic_dans_image';
 
 import LectureMessage from 'objets_trouves/vues/lecture-message';
 import EcranTelephoneDeverrouillage from 'objets_trouves/vues/ecran-telephone-deverrouillage';
@@ -76,7 +77,8 @@ export default {
     Question, QuestionEntete, RedactionNote, VideoQuestion,
     LectureMessage, EcranTelephoneDeverrouillage,
     ClicSurMots, ListeCoursesATrous, EmailHPfbATrous, Puzzle, Graphique,
-    ModeEmploi, ClicMaisonBleue, DragAndDrop, DeplacementDroiteMaisonVerte
+    ModeEmploi, ClicMaisonBleue, DragAndDrop, DeplacementDroiteMaisonVerte,
+    ClicDansImage
   },
 
   props: {

@@ -1,0 +1,28 @@
+.zone-cliquable {
+  width: 1008px;
+  height: 566px;
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+  svg > * {
+      cursor: pointer;
+  }
+
+  svg > *:hover {
+      fill: white;
+      fill-opacity: 0.25;
+      stroke-opacity: 0.8;
+      stroke: white;
+      stroke-width: 3px;
+    }
+
+  .reponse--selectionnee {
+    stroke: white;
+    stroke-width: 3px;
+  }
+}

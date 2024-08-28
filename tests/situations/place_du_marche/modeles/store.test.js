@@ -47,6 +47,12 @@ describe('Le store de la situation place du marché', function () {
 
   beforeEach(function() {
     store = creeStore();
+
+    window.fetch = jest.fn(() =>
+      Promise.resolve({
+        text: () => Promise.resolve('<svg><circle cx="50" cy="50" r="40"></circle><path class="bonne-reponse"></path></svg>'),
+      })
+    );
   });
 
   describe('quand un acte est configuré', function() {
@@ -375,6 +381,19 @@ describe('Le store de la situation place du marché', function () {
           store.state.questions = [question];
           expect(store.getters.questionServeur.choix[0].bonneReponse).toBe(true);
           expect(store.getters.questionServeur.choix[1].bonneReponse).toBe(false);
+        });
+      });
+
+      describe("pour une question avec une zone cliquable", function() {
+        it("retourne le svg en html", async function() {
+          const question = { nom_technique: 'N1Prn1', zone_cliquable: 'http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs1Tm1GaE5EY3pOUzFqWVRaaUxUUTNZV0l0WVRjME5DMHlNRGd5WlRobE9XSmtNekFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--8b0cff7dcfabfc99284c07f5607744eefff142f3/accessibilite-avec-reponse.svg' };
+          store.state.questions = [question];
+          await store.getters.questionServeur;
+          expect(fetch).toHaveBeenCalledWith(question.zone_cliquable);
+
+          await new Promise(resolve => setTimeout(resolve, 100));
+
+          expect(store.getters.questionServeur.zone_cliquable).toEqual('<svg><circle cx="50" cy="50" r="40"></circle><path class="bonne-reponse"></path></svg>');
         });
       });
     });
