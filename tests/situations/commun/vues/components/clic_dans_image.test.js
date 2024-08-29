@@ -23,14 +23,14 @@ describe('Le composant Clic Dans Image', function () {
     });
   }
 
-  it("Affiche le svg", async function () {
+  it("Affiche le svg", function () {
     const wrapper = composant(question);
 
     expect(wrapper.find('svg').exists()).toBe(true);
   });
 
   describe('quand je clique sur un element du svg', function () {
-    it("ajoute la classe reponse--selectionnee", async function () {
+    it("ajoute la classe reponse--selectionnee", function () {
       const wrapper = composant(question);
 
       const reponse = wrapper.find('circle');
@@ -41,7 +41,7 @@ describe('Le composant Clic Dans Image', function () {
 
   describe("l'envoi de la réponse", function() {
     describe('quand je sélectionne une bonne réponse', function () {
-      it('émet la bonne réponse', async function () {
+      it('émet la bonne réponse', function () {
         const reponse = wrapper.find('.bonne-reponse');
         reponse.trigger('click');
         expect(wrapper.emitted().reponse.length).toEqual(1);
@@ -50,7 +50,7 @@ describe('Le composant Clic Dans Image', function () {
     });
 
     describe('quand je sélectionne une mauvaise réponse', function () {
-      it("émet la mauvaise réponse", async function () {
+      it("émet la mauvaise réponse", function () {
         const reponse = wrapper.find('path');
         reponse.trigger('click');
         expect(wrapper.emitted().reponse.length).toEqual(1);

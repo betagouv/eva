@@ -4,16 +4,14 @@ import fondSituation from 'bienvenue/assets/bienvenue_background.jpg';
 import RegistreCampagne from 'commun/infra/registre_campagne';
 import { extraitQuestionsReponsesAudios } from 'commun/infra/depot_ressources';
 
-const questionsServeur = new RegistreCampagne().questions('place_du_marche');
-const AUDIOS_QUESTIONS_REPONSES = extraitQuestionsReponsesAudios(questionsServeur);
-
-const messagesAudios = { ...AUDIOS_QUESTIONS_REPONSES };
-
 const messagesVideos = {};
 
 export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommunes {
-  constructor (chargeurs) {
+  constructor (chargeurs, registreCampagne = new RegistreCampagne()) {
+    const questionsServeur = registreCampagne.questions('place_du_marche');
+    const messagesAudios = extraitQuestionsReponsesAudios(questionsServeur);
     super(chargeurs, messagesVideos, messagesAudios, null, sonConsigne);
+    this.questionsServeur = questionsServeur;
     this.charge([fondSituation]);
   }
 
@@ -26,6 +24,14 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
   }
 
   questions () {
-    return questionsServeur;
+    this.questionsServeur?.forEach(question => {
+      if (question.choix) {
+        question.choix.forEach(choix => {
+          choix.bonneReponse = choix.type_choix === 'bon';
+          delete choix.type_choix;
+        });
+      }
+    });
+    return this.questionsServeur;
   }
 }
