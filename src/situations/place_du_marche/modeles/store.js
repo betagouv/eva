@@ -98,20 +98,6 @@ export function creeStore () {
           extensionVue,
         });
 
-        if (question.choix) {
-          question.choix.forEach(choix => {
-            choix.bonneReponse = choix.type_choix === 'bon';
-          });
-        }
-        if(question.zone_cliquable) {
-          fetch(question.zone_cliquable)
-            .then(response => response.text())
-            .then(data => {
-              question.zone_cliquable = data;
-            })
-            .catch(error => console.error('Error loading SVG:', error));
-        }
-
         return question;
       }
     },

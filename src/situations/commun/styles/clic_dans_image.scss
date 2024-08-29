@@ -7,19 +7,19 @@
     left: 0;
     height: 100%;
     width: 100%;
-}
+  }
 
   svg > * {
-      cursor: pointer;
+    cursor: pointer;
   }
 
   svg > *:hover {
-      fill: white;
-      fill-opacity: 0.25;
-      stroke-opacity: 0.8;
-      stroke: white;
-      stroke-width: 3px;
-    }
+    fill: white;
+    fill-opacity: 0.25;
+    stroke-opacity: 0.8;
+    stroke: white;
+    stroke-width: 3px;
+  }
 
   .reponse--selectionnee {
     stroke: white;
