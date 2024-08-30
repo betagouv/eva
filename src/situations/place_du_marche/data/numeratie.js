@@ -1,4 +1,4 @@
-import programmeTele from '../assets/programme_tele.png';
+import programmeTele from 'cafe_de_la_place/assets/programme_tele.png';
 // NUMERATIE NIVEAU 1
 
 // Module Situation dans l'espace

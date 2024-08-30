@@ -1,59 +1,12 @@
 <template>
-  <div class="puzzle-container">
-    <draggable
-      class="puzzle-gauche"
-      :list="fragmentsClasses"
-      item-key="id"
-      group="puzzle"
-      draggable=".puzzle-item"
-      @end="envoiReponse"
-      :sort="true"
-    >
-      <template #item="{ element }">
-        <div
-          :key="element.id"
-          class="puzzle-item"
-        >
-          <!-- <poignee-puzzle/> -->
-          <span>{{element.contenu}}</span>
-        </div>
-      </template>
-      <template #footer>
-        <div v-if="affichePuzzleDroite"
-            class="zone-de-depot">
-            {{ $traduction('cafe_de_la_place.puzzle.texte_zone_depot') }}
-        </div>
-      </template>
-    </draggable>
-    <draggable
-      v-if="affichePuzzleDroite"
-      class="puzzle-droite"
-      :list="fragmentsNonClasses"
-      item-key="id"
-      group="puzzle"
-      @end="envoiReponse"
-      :sort="false"
-    >
-      <template #item="{ element }">
-        <div
-          :key="element.id"
-          class="puzzle-item"
-        >
-          <!-- <poignee-puzzle/> -->
-          <span>{{element.contenu}}</span>
-        </div>
-      </template>
-    </draggable>
-  </div>
+  <glisser-deposer :question="question"/>
 </template>
 
 <script>
-import 'cafe_de_la_place/styles/puzzle.scss';
-import Draggable from 'vuedraggable';
-// import PoigneePuzzle from './poignee_puzzle';
+import GlisserDeposer from 'commun/vues/components/glisser_deposer';
 
 export default {
-  components: { Draggable },
+  components: { GlisserDeposer },
 
   props: {
     question: {
