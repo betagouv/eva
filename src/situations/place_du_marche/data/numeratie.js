@@ -1,3 +1,4 @@
+import programmeTele from '../assets/programme_tele.png';
 // NUMERATIE NIVEAU 1
 
 // Module Situation dans l'espace
@@ -217,24 +218,24 @@ const N1Pes2 = {
 const N1Pon1 = {
   id: 'N1Pon1',
   nom_technique: 'N1Pon1',
-  type: 'qcm',
+  type: 'action',
   metacompetence: 'ordonner_nombres_entiers',
   intitule: 'Ordonner des nombres entiers : Niveau 1 Question 1',
   score: 1,
-  choix: [
-    {
-      id: 'N1Pon1R1',
-      nom_technique: 'N1Pon1R1',
-      bonneReponse: true,
-      intitule: "Bonne Réponse",
-    },
-    {
-      id: 'N1Pon1R2',
-      nom_technique: 'N1Pon1R2',
-      bonneReponse: false,
-      intitule: "Mauvaise Réponse",
-    }
-  ]
+  extensionVue: 'puzzle-billets',
+  fragmentsNonClasses : [{
+    id: 'id_0',
+    illustration: programmeTele,
+    position: 2
+  }, {
+    id: 'id_1',
+    illustration: programmeTele,
+    position: 3
+  }, {
+    id: 'id_2',
+    illustration: programmeTele,
+    position: 1
+  }]
 };
 
 const N1Pon2 = {
