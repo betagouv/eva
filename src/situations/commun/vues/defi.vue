@@ -64,8 +64,10 @@ import EcranTelephoneDeverrouillage from 'objets_trouves/vues/ecran-telephone-de
 import ClicSurMots from 'cafe_de_la_place/vues/components/clic_sur_mots';
 import ListeCoursesATrous from 'cafe_de_la_place/vues/components/liste_courses_a_trous';
 import EmailHPfbATrous from 'cafe_de_la_place/vues/components/email_HPfb_a_trous';
-import Puzzle from 'cafe_de_la_place/vues/components/puzzle';
+import PuzzleJournal from 'cafe_de_la_place/vues/components/puzzle_journal';
 import Graphique from 'cafe_de_la_place/vues/components/graphique';
+
+import PuzzleBillets from 'place_du_marche/vues/components/puzzle_billets';
 
 import ModeEmploi from 'plan_de_la_ville/vues/components/mode_emploi';
 import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic_maison_bleue';
@@ -76,7 +78,7 @@ export default {
   components: { ChampSaisie, Jauge, Qcm,
     Question, QuestionEntete, RedactionNote, VideoQuestion,
     LectureMessage, EcranTelephoneDeverrouillage,
-    ClicSurMots, ListeCoursesATrous, EmailHPfbATrous, Puzzle, Graphique,
+    ClicSurMots, ListeCoursesATrous, EmailHPfbATrous, PuzzleJournal, PuzzleBillets, Graphique,
     ModeEmploi, ClicMaisonBleue, DragAndDrop, DeplacementDroiteMaisonVerte,
     ClicDansImage
   },

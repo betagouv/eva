@@ -1,7 +1,7 @@
-import puzzle from 'cafe_de_la_place/vues/components/puzzle.vue';
+import puzzle from 'cafe_de_la_place/vues/components/puzzle_journal.vue';
 import { config, mount } from '@vue/test-utils';
 
-describe('Le composant Puzzle', function () {
+describe('Le composant Puzzle Journal', function () {
   let wrapper;
   const bonOrdre = [0, 1, 2, 3, 4, 5, 6];
 
