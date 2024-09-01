@@ -1,54 +1,53 @@
 <template>
-  <div class="puzzle-container">
-    <draggable
-      class="puzzle-gauche"
+  <div class="glisser-deposer">
+    <div class="container-arrivee">
+      <draggable
+      class="zone-depot"
       :list="fragmentsClasses"
       item-key="id"
-      group="puzzle"
-      draggable=".puzzle-item"
+      group="items"
+      draggable=".glisser-deposer__item"
       @end="envoiReponse"
       :sort="true"
     >
       <template #item="{ element }">
         <div
           :key="element.id"
-          class="puzzle-item"
+          class="glisser-deposer__item"
         >
-          <span v-if="element.contenu">{{element.contenu}}</span>
-          <img v-else :src="element.illustration"/>
+        <slot name="item" :item="element" />
         </div>
       </template>
       <template #footer>
-        <div v-if="affichePuzzleDroite"
-            class="zone-de-depot">
-            {{ $traduction('cafe_de_la_place.puzzle.texte_zone_depot') }}
-        </div>
+        <slot name="footer" :nombreFragment="nombreFragment"/>
       </template>
     </draggable>
-    <draggable
-      v-if="affichePuzzleDroite"
-      class="puzzle-droite"
+    </div>
+    <div class="container-depart">
+      <draggable
+      v-if="afficheZoneDepotDepart"
       :list="fragmentsNonClasses"
+      class="zone-depot"
       item-key="id"
-      group="puzzle"
+      group="items"
       @end="envoiReponse"
       :sort="false"
     >
       <template #item="{ element }">
         <div
           :key="element.id"
-          class="puzzle-item"
+          class="glisser-deposer__item"
         >
-          <span v-if="element.contenu">{{element.contenu}}</span>
-          <img v-else :src="element.illustration"/>
+        <slot name="item" :item="element" />
         </div>
       </template>
     </draggable>
+    </div>
   </div>
 </template>
 
 <script>
-import 'cafe_de_la_place/styles/puzzle.scss';
+import 'commun/styles/glisser_deposer.scss';
 import Draggable from 'vuedraggable';
 
 export default {
@@ -66,7 +65,7 @@ export default {
       fragmentsClasses: [],
       fragmentsNonClasses: [...this.question.fragmentsNonClasses],
       nombreFragment: this.question.fragmentsNonClasses.length,
-      affichePuzzleDroite: true
+      afficheZoneDepotDepart: true
     };
   },
 
@@ -75,8 +74,8 @@ export default {
       const reponse = this.fragmentsClasses.map((fragment) => fragment.position);
       const succes = this.succes(reponse);
       const score = succes ? this.calculeScore(reponse) : 0;
-      const scoreMax = this.nombreFragment + 1;
-      this.affichePuzzleDroite = reponse.length < this.nombreFragment;
+      const scoreMax = this.question.score;
+      this.afficheZoneDepotDepart = reponse.length < this.nombreFragment;
       this.$emit('reponse', { reponse, succes, score, scoreMax });
     },
 

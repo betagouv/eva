@@ -1,5 +1,5 @@
 <template>
-  <div class="puzzle-container">
+  <div class="puzzle-container puzzle-journal">
     <draggable
       class="puzzle-gauche"
       :list="fragmentsClasses"

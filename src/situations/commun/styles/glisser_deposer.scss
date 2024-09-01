@@ -1,0 +1,10 @@
+@import 'commun/styles/variables.scss';
+
+.glisser-deposer {
+  .glisser-deposer__item {
+    cursor: grab;
+    &.sortable-chosen {
+      cursor: grabbing;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@import 'commun/styles/variables.scss';
+
+.puzzle-billets {
+  .glisser-deposer__item {
+    width: 100px;
+    min-width: 100px;
+    height: 60px;
+    z-index: 1;
+  }
+  img  {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .container-depart, .container-arrivee {
+    position: absolute;
+    left: 0;
+    right: 380px;
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .container-depart {
+    top: 100px;
+    bottom: 50%;
+    align-items: flex-start;
+    .zone-depot {
+      height: 100%;
+    }
+  }
+  .container-arrivee {
+    bottom: 0;
+    top: 50%;
+  }
+  .zone-depot, .glisser-deposer__footer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .zone-depot {
+    align-items: flex-start;
+  }
+  .glisser-deposer__footer {
+    position: absolute;
+  }
+  .zone-vide {
+    width: 100px;
+    height: 60px;
+    opacity: 0.8;
+    background-color: $bleu-gris-fonce;
+  }
+}
