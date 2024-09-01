@@ -1,4 +1,5 @@
-import programmeTele from 'cafe_de_la_place/assets/programme_tele.png';
+import billet500 from 'place_du_marche/assets/billet_500.png';
+import billet50 from 'place_du_marche/assets/billet_50.png';
 // NUMERATIE NIVEAU 1
 
 // Module Situation dans l'espace
@@ -218,23 +219,34 @@ const N1Pes2 = {
 const N1Pon1 = {
   id: 'N1Pon1',
   nom_technique: 'N1Pon1',
-  type: 'action',
   metacompetence: 'ordonner_nombres_entiers',
   intitule: 'Ordonner des nombres entiers : Niveau 1 Question 1',
   score: 1,
   extensionVue: 'puzzle-billets',
   fragmentsNonClasses : [{
     id: 'id_0',
-    illustration: programmeTele,
-    position: 2
+    illustration: billet500,
+    position: 0
   }, {
     id: 'id_1',
-    illustration: programmeTele,
-    position: 3
+    illustration: billet50,
+    position: 1
   }, {
     id: 'id_2',
-    illustration: programmeTele,
-    position: 1
+    illustration: billet500,
+    position: 2
+  }, {
+    id: 'id_3',
+    illustration: billet500,
+    position: 3
+  }, {
+    id: 'id_4',
+    illustration: billet500,
+    position: 4
+  }, {
+    id: 'id_5',
+    illustration: billet500,
+    position: 5
   }]
 };
 

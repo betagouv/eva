@@ -7,70 +7,72 @@
   padding: 4.25rem 1.5rem;
 }
 
-.puzzle-gauche {
-  @include puzzle();
-  left: 32px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding-bottom: 3rem;
-}
-
-.puzzle-droite {
-  @include puzzle();
-  right: 32px;
-  padding: 1.5rem;
-  min-height: 494px;
-  z-index: 1;
-  background: $couleur-fond;
-  border-radius: 1rem;
-}
-
-.puzzle-item {
-  display: flex;
-  font-size: .875rem;
-  line-height: 1.125rem;
-  padding: .25rem .625rem;
-  background: $couleur-fond;
-  border: 1px solid $bleu-gris;
-  box-shadow: 0px 0px 8px rgba(30, 65, 106, 0.25);
-  border-radius: .25rem;
-  margin-bottom: 0.5rem;
-  cursor: grab;
-  flex-grow:0;
-
-  &.sortable-chosen {
-    cursor: grabbing;
-    background: $bleu-fonce;
-    color: $blanc;
+.puzzle-journal {
+  .puzzle-gauche {
+    @include puzzle();
+    left: 32px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 3rem;
   }
 
-  &:last-child {
-    margin-bottom: 0;
+  .puzzle-droite {
+    @include puzzle();
+    right: 32px;
+    padding: 1.5rem;
+    min-height: 494px;
+    z-index: 1;
+    background: $couleur-fond;
+    border-radius: 1rem;
   }
-}
 
-.puzzle-icone {
-  display: flex;
-  align-items: center;
-  margin-right: .625rem;
-  svg circle {
-    fill: $bleu-gris;
+  .puzzle-item {
+    display: flex;
+    font-size: .875rem;
+    line-height: 1.125rem;
+    padding: .25rem .625rem;
+    background: $couleur-fond;
+    border: 1px solid $bleu-gris;
+    box-shadow: 0px 0px 8px rgba(30, 65, 106, 0.25);
+    border-radius: .25rem;
+    margin-bottom: 0.5rem;
+    cursor: grab;
+    flex-grow:0;
+
+    &.sortable-chosen {
+      cursor: grabbing;
+      background: $bleu-fonce;
+      color: $blanc;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
-}
 
-.zone-de-depot {
-  background: $bleu-gris;
-  border: 1px solid $couleur-fond;
-  box-shadow: inset 0px 0px 8px rgba(30, 65, 106, 0.25);
-  border-radius: .5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: $bleu-gris-fonce;
-  // pour s'assurer que la zone de dépôt se mette toujours en desnière position dans la div
-  order: 100;
+  .puzzle-icone {
+    display: flex;
+    align-items: center;
+    margin-right: .625rem;
+    svg circle {
+      fill: $bleu-gris;
+    }
+  }
+
+  .zone-de-depot {
+    background: $bleu-gris;
+    border: 1px solid $couleur-fond;
+    box-shadow: inset 0px 0px 8px rgba(30, 65, 106, 0.25);
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $bleu-gris-fonce;
+    // pour s'assurer que la zone de dépôt se mette toujours en desnière position dans la div
+    order: 100;
+  }
 }

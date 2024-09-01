@@ -1,9 +1,23 @@
 <template>
-  <glisser-deposer :question="question"/>
+  <glisser-deposer
+    :question="question"
+    class="puzzle-billets"
+    @reponse="envoiReponse"
+    >
+    <template #item="{ item }">
+      <img :src="item.illustration"/>
+    </template>
+    <template #footer="{ nombreFragment }">
+      <div class="glisser-deposer__footer">
+        <div v-for="element in nombreFragment" :key="element" class="zone-vide"/>
+      </div>
+    </template>
+  </glisser-deposer>
 </template>
 
 <script>
 import GlisserDeposer from 'commun/vues/components/glisser_deposer';
+import 'place_du_marche/styles/puzzle_billets.scss';
 
 export default {
   components: { GlisserDeposer },
@@ -15,37 +29,9 @@ export default {
     },
   },
 
-  data() {
-    return {
-      fragmentsClasses: [],
-      fragmentsNonClasses: [...this.question.fragmentsNonClasses],
-      nombreFragment: this.question.fragmentsNonClasses.length,
-      affichePuzzleDroite: true
-    };
-  },
-
   methods: {
-    envoiReponse() {
-      const reponse = this.fragmentsClasses.map((fragment) => fragment.position);
-      const succes = this.succes(reponse);
-      const score = succes ? this.calculeScore(reponse) : 0;
-      const scoreMax = this.nombreFragment + 1;
-      this.affichePuzzleDroite = reponse.length < this.nombreFragment;
-      this.$emit('reponse', { reponse, succes, score, scoreMax });
-    },
-
-    calculeScore(reponse) {
-      const nombre_biens_places = reponse
-        .map((position, i) => position === i ? 1 : 0)
-        .reduce((somme, element) => somme + element, 0);
-
-      let score = nombre_biens_places;
-      if(nombre_biens_places >= 5) score++;
-      return score;
-    },
-
-    succes(reponse) {
-      return reponse.every((position, index) => position === index);
+    envoiReponse(reponse) {
+      this.$emit('reponse', reponse );
     }
   }
 };
