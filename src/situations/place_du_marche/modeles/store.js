@@ -99,6 +99,10 @@ export function creeStore () {
         });
 
         return question;
+      },
+
+      estCarteActive(state) {
+        return (idCarte) => state.questionActive.id == idCarte;
       }
     },
 
@@ -201,6 +205,21 @@ export function creeStore () {
 
       recupereQuestionsServeur(state, questions) {
         state.questions = questions;
+      },
+
+      sauteALaCarteDansUnParcours(state, { idCarte, parcours }) {
+        this.commit('demarreParcours', parcours);
+        while(!state.parcoursTermine) {
+          if(this.getters.estCarteActive(idCarte)) return;
+          this.commit('carteSuivante');
+        }
+      },
+
+      sauteALaCarte(state, idCarte) {
+        for(const parcours of NIVEAUX) {
+          this.commit('sauteALaCarteDansUnParcours', { idCarte, parcours });
+          if(this.getters.estCarteActive(idCarte)) return;
+        }
       }
     },
   });

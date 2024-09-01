@@ -37,7 +37,7 @@ export default {
 
   computed: {
     ...mapState(['indexCarte', 'questionActive', 'termine']),
-    ...mapGetters(['nombreCartes', 'questionServeur']),
+    ...mapGetters(['nombreCartes', 'questionServeur', 'acteEnCours']),
   },
 
   watch: {
@@ -46,7 +46,12 @@ export default {
     },
     questionActive() {
       this.question = this.questionServeur ?? this.questionActive;
-    }
+    },
+    acteEnCours (actEnCours) {
+      if(actEnCours && location.hash){
+        this.$store.commit('sauteALaCarte', location.hash.substring(1));
+      }
+    },
   },
 
   methods: {
