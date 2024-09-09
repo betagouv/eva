@@ -8,7 +8,7 @@
 }
 
 .puzzle-journal {
-  .puzzle-gauche {
+  .container-arrivee .zone-depot {
     @include puzzle();
     left: 32px;
     display: flex;
@@ -17,7 +17,7 @@
     padding-bottom: 3rem;
   }
 
-  .puzzle-droite {
+  .container-depart .zone-depot {
     @include puzzle();
     right: 32px;
     padding: 1.5rem;
@@ -27,7 +27,7 @@
     border-radius: 1rem;
   }
 
-  .puzzle-item {
+  .glisser-deposer__item {
     display: flex;
     font-size: .875rem;
     line-height: 1.125rem;
@@ -37,11 +37,9 @@
     box-shadow: 0px 0px 8px rgba(30, 65, 106, 0.25);
     border-radius: .25rem;
     margin-bottom: 0.5rem;
-    cursor: grab;
     flex-grow:0;
 
     &.sortable-chosen {
-      cursor: grabbing;
       background: $bleu-fonce;
       color: $blanc;
     }
@@ -60,7 +58,7 @@
     }
   }
 
-  .zone-de-depot {
+  .aide-depot {
     background: $bleu-gris;
     border: 1px solid $couleur-fond;
     box-shadow: inset 0px 0px 8px rgba(30, 65, 106, 0.25);
