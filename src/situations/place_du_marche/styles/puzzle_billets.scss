@@ -22,8 +22,8 @@
     padding: 20px;
   }
   .container-depart {
-    top: 100px;
-    bottom: 50%;
+    top: 120px;
+    bottom: 40%;
     align-items: flex-start;
     .zone-depot {
       height: 100%;
@@ -31,7 +31,7 @@
   }
   .container-arrivee {
     bottom: 0;
-    top: 50%;
+    top: 60%;
   }
   .zone-depot, .glisser-deposer__footer {
     display: flex;
