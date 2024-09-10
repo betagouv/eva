@@ -33,13 +33,13 @@ describe('Le composant Glisser Deposer', function () {
     it("la zone de dépot d'arrivée emet ses réponses", function() {
       genereVue([1, 2]);
       wrapper.findComponent('.container-arrivee .zone-depot').vm.$emit('end');
-      expect(wrapper.emitted('reponse').length).toEqual(1);
+      expect(wrapper.emitted('deplace-item').length).toEqual(1);
     });
 
     it("la zone de dépot de départ emet ses réponses", function() {
       genereVue([1, 2]);
       wrapper.findComponent('.container-depart .zone-depot').vm.$emit('end');
-      expect(wrapper.emitted('reponse').length).toEqual(1);
+      expect(wrapper.emitted('deplace-item').length).toEqual(1);
     });
   });
 
@@ -82,8 +82,8 @@ describe('Le composant Glisser Deposer', function () {
         wrapper.vm.fragmentsClasses.push({ position });
       }
       wrapper.vm.envoiReponse();
-      expect(wrapper.emitted('reponse').length).toEqual(1);
-      expect(wrapper.emitted('reponse')[0][0]).toEqual({
+      expect(wrapper.emitted('deplace-item').length).toEqual(1);
+      expect(wrapper.emitted('deplace-item')[0][0]).toEqual({
         score: 8,
         scoreMax: 8,
         succes: true,

@@ -2,7 +2,7 @@
   <glisser-deposer
     :question="question"
     class="puzzle-container puzzle-journal"
-    @reponse="envoiReponse"
+    @deplace-item="envoiReponse"
     >
     <template #item="{ item }">
       <poignee-puzzle/>

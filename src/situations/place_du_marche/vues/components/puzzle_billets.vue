@@ -2,7 +2,7 @@
   <glisser-deposer
     :question="question"
     class="puzzle-billets"
-    @reponse="envoiReponse"
+    @deplace-item="envoiReponse"
     >
     <template #item="{ item }">
       <img :src="item.illustration"/>
@@ -31,7 +31,9 @@ export default {
 
   methods: {
     envoiReponse(reponse) {
-      this.$emit('reponse', reponse );
+      if(reponse.reponse.length === this.question.fragmentsNonClasses.length) {
+        this.$emit('reponse', reponse );
+      }
     }
   }
 };
