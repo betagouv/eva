@@ -26,7 +26,7 @@
     <div class="container-depart">
       <draggable
       v-if="afficheZoneDepotDepart"
-      :list="fragmentsNonClasses"
+      :list="reponsesNonClassees"
       class="zone-depot"
       item-key="id"
       group="items"
@@ -63,8 +63,8 @@ export default {
   data() {
     return {
       fragmentsClasses: [],
-      fragmentsNonClasses: [...this.question.fragmentsNonClasses],
-      nombreFragment: this.question.fragmentsNonClasses.length,
+      reponsesNonClassees: [...this.question.reponsesNonClassees],
+      nombreFragment: this.question.reponsesNonClassees.length,
       afficheZoneDepotDepart: true
     };
   },

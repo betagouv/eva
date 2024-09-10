@@ -223,7 +223,7 @@ const N1Pon1 = {
   intitule: 'Ordonner des nombres entiers : Niveau 1 Question 1',
   score: 1,
   extensionVue: 'puzzle-billets',
-  fragmentsNonClasses : [{
+  reponsesNonClassees : [{
     id: 'id_0',
     illustration: billet500,
     position: 0

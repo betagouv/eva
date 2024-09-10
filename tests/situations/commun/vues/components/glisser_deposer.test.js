@@ -13,11 +13,11 @@ describe('Le composant Glisser Deposer', function () {
     config.global.renderStubDefaultSlot = false;
   });
 
-  function genereVue(fragmentsNonClasses) {
+  function genereVue(reponsesNonClassees) {
     wrapper = mount(glisserDeposer, {
       props: {
         question: {
-          fragmentsNonClasses,
+          reponsesNonClassees,
           score: 8
         }
       }
