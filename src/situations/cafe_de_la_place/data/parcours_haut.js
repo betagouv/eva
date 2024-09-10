@@ -57,7 +57,7 @@ const HPar1 = {
   extensionVue: 'puzzle-journal',
   description: "Vous avez placé tous les blocs de texte !\nVous pouvez toujours modifier leur ordre directement dans la page du journal.",
   intitule: "Si l’ordre vous convient, cliquez sur « Valider ».",
-  fragmentsNonClasses: fragmentsNouvelleDuJour
+  reponsesNonClassees: fragmentsNouvelleDuJour
 };
 
 const HPar2 = {

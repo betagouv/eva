@@ -31,7 +31,7 @@ export default {
 
   methods: {
     envoiReponse(reponse) {
-      if(reponse.reponse.length === this.question.fragmentsNonClasses.length) {
+      if(reponse.reponse.length === this.question.reponsesNonClassees.length) {
         this.$emit('reponse', reponse );
       }
     }

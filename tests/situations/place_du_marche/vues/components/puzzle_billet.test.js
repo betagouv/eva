@@ -13,7 +13,7 @@ describe('Le composant Puzzle Billets', function () {
     config.global.renderStubDefaultSlot = false;
   });
 
-  function genereVue(fragmentsNonClasses) {
+  function genereVue(reponsesNonClassees) {
     wrapper = mount(puzzle, {
       global: {
         mocks: {
@@ -22,7 +22,7 @@ describe('Le composant Puzzle Billets', function () {
       },
       props: {
         question: {
-          fragmentsNonClasses
+          reponsesNonClassees
         }
       }
     });

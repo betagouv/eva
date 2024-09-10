@@ -41,7 +41,7 @@ export default {
   methods: {
     envoiReponse(reponse) {
       if(reponse) {
-        this.afficheAideDepot = reponse.reponse.length < this.question.fragmentsNonClasses.length;
+        this.afficheAideDepot = reponse.reponse.length < this.question.reponsesNonClassees.length;
       }
       this.$emit('reponse', reponse );
     }

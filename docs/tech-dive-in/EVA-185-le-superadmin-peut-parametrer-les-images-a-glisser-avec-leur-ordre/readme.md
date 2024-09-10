@@ -45,7 +45,7 @@
     <draggable
       v-if="affichePuzzleDroite"
       class="puzzle-droite"
-      :list="fragmentsNonClasses"
+      :list="reponsesNonClassees"
       item-key="id"
       group="puzzle"
       @end="envoiReponse"
