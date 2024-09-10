@@ -76,7 +76,7 @@ export default {
       const score = succes ? this.calculeScore(reponse) : 0;
       const scoreMax = this.question.score;
       this.afficheZoneDepotDepart = reponse.length < this.nombreFragment;
-      this.$emit('reponse', { reponse, succes, score, scoreMax });
+      this.$emit('deplace-item', { reponse, succes, score, scoreMax });
     },
 
     calculeScore(reponse) {
