@@ -1,7 +1,7 @@
 <template>
   <glisser-deposer
     :question="question"
-    class="puzzle-billets"
+    class="glisser-deposer-billets"
     @deplace-item="envoiReponse"
     >
     <template #item="{ item }">
@@ -17,7 +17,7 @@
 
 <script>
 import GlisserDeposer from 'commun/vues/components/glisser_deposer';
-import 'place_du_marche/styles/puzzle_billets.scss';
+import 'place_du_marche/styles/glisser_deposer_billets.scss';
 
 export default {
   components: { GlisserDeposer },
