@@ -219,7 +219,7 @@ const N1Pon1 = {
   nom_technique: 'N1Pon1',
   metacompetence: 'ordonner_nombres_entiers',
   score: 1,
-  extensionVue: 'puzzle-billets',
+  extensionVue: 'glisser-deposer-billets',
   reponsesNonClassees: []
 };
 

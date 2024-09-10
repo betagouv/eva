@@ -1,7 +1,7 @@
-import puzzle from 'place_du_marche/vues/components/puzzle_billets.vue';
+import glisserDeposer from 'place_du_marche/vues/components/glisser_deposer_billets.vue';
 import { config, mount } from '@vue/test-utils';
 
-describe('Le composant Puzzle Billets', function () {
+describe('Le composant Glisser Déposer Billets', function () {
   let wrapper;
   const bonOrdre = [0, 1, 2, 3, 4, 5, 6];
 
@@ -14,7 +14,7 @@ describe('Le composant Puzzle Billets', function () {
   });
 
   function genereVue(reponsesNonClassees) {
-    wrapper = mount(puzzle, {
+    wrapper = mount(glisserDeposer, {
       global: {
         mocks: {
           $traduction: () => {}
