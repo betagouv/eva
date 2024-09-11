@@ -358,7 +358,7 @@ describe('Le store de la situation place du marché', function () {
 
   describe('#questionServeur', function() {
     beforeEach(function() {
-      store.state.questionActive = { nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul', extensionVue: 'clic_dans_image' };
+      store.state.questionActive = { nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul' };
     });
 
     describe("si la question active a une question serveur avec le même nom technique", function() {
@@ -376,7 +376,6 @@ describe('Le store de la situation place du marché', function () {
       it("recupere les attributs de la question client", function() {
         expect(store.getters.questionServeur.score).toEqual(0.5);
         expect(store.getters.questionServeur.metacompetence).toEqual('calcul');
-        expect(store.getters.questionServeur.extensionVue).toEqual('clic_dans_image');
       });
     });
 
