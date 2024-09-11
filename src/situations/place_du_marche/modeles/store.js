@@ -90,12 +90,11 @@ export function creeStore () {
 
         if (!question) return undefined;
 
-        const { nom_technique, score, metacompetence, extensionVue } = state.questionActive;
+        const { nom_technique, score, metacompetence } = state.questionActive;
         Object.assign(question, {
           id: nom_technique,
           score,
           metacompetence,
-          extensionVue,
         });
 
         return question;
