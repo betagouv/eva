@@ -31,6 +31,10 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
           delete choix.type_choix;
         });
       }
+      if (question.type === 'glisser-deposer-billets') {
+        question.extensionVue = question.type;
+        delete question.type;
+      }
     });
     return this.questionsServeur;
   }
