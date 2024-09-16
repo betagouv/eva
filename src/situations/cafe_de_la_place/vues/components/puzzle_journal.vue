@@ -42,9 +42,20 @@ export default {
     envoiReponse(reponse) {
       if(reponse) {
         this.afficheAideDepot = reponse.reponse.length < this.question.reponsesNonClassees.length;
+        reponse.score = this.calculeScore(reponse.reponse);
       }
       this.$emit('reponse', reponse );
-    }
+    },
+
+    calculeScore(reponse) {
+      const nombre_biens_places = reponse
+        .map((position, i) => (position === (i + 1)) ? 1 : 0)
+        .reduce((somme, element) => somme + element, 0);
+
+      let score = nombre_biens_places;
+      if(nombre_biens_places >= 5) score++;
+      return score;
+    },
   },
 };
 </script>

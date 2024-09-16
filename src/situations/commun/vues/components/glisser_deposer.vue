@@ -73,24 +73,13 @@ export default {
     envoiReponse() {
       const reponse = this.fragmentsClasses.map((fragment) => fragment.position);
       const succes = this.succes(reponse);
-      const score = succes ? this.calculeScore(reponse) : 0;
       const scoreMax = this.question.score;
       this.afficheZoneDepotDepart = reponse.length < this.nombreFragment;
-      this.$emit('deplace-item', { reponse, succes, score, scoreMax });
-    },
-
-    calculeScore(reponse) {
-      const nombre_biens_places = reponse
-        .map((position, i) => position === i ? 1 : 0)
-        .reduce((somme, element) => somme + element, 0);
-
-      let score = nombre_biens_places;
-      if(nombre_biens_places >= 5) score++;
-      return score;
+      this.$emit('deplace-item', { reponse, succes, scoreMax });
     },
 
     succes(reponse) {
-      return reponse.every((position, index) => position === index);
+      return reponse.every((position, index) => position === index + 1);
     }
   }
 };

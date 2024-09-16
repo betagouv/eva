@@ -3,7 +3,7 @@ import { config, mount } from '@vue/test-utils';
 
 describe('Le composant Glisser Deposer', function () {
   let wrapper;
-  const bonOrdre = [0, 1, 2, 3, 4, 5, 6];
+  const bonOrdre = [1, 2, 3, 4, 5, 6, 7];
 
   beforeAll(() => {
     config.global.renderStubDefaultSlot = true;
@@ -84,32 +84,9 @@ describe('Le composant Glisser Deposer', function () {
       wrapper.vm.envoiReponse();
       expect(wrapper.emitted('deplace-item').length).toEqual(1);
       expect(wrapper.emitted('deplace-item')[0][0]).toEqual({
-        score: 8,
         scoreMax: 8,
         succes: true,
         reponse: bonOrdre
-      });
-    });
-
-    describe("#score", function() {
-      beforeEach(function() {
-        genereVue([1, 2, 3, 4, 5, 6, 0]);
-      });
-
-      it('avec aucun fragment à la bonne place', function() {
-        expect(wrapper.vm.calculeScore([1, 2, 3, 4, 5, 6, 0])).toEqual(0);
-      });
-
-      it('avec 1 fragment à la bonne place', function() {
-        expect(wrapper.vm.calculeScore([0, 2, 3, 4, 5, 6, 1])).toEqual(1);
-      });
-
-      it('avec 5 fragments à la bonne place', function() {
-        expect(wrapper.vm.calculeScore([0, 1, 2, 3, 4, 6, 5])).toEqual(6);
-      });
-
-      it('avec tout bien placé', function() {
-        expect(wrapper.vm.calculeScore(bonOrdre)).toEqual(8);
       });
     });
 
