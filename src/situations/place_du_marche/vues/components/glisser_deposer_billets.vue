@@ -7,11 +7,6 @@
     <template #item="{ item }">
       <img :src="item.illustration"/>
     </template>
-    <template #footer="{ nombreFragment }">
-      <div class="glisser-deposer__footer">
-        <div v-for="element in nombreFragment" :key="element" class="zone-vide"/>
-      </div>
-    </template>
   </glisser-deposer>
 </template>
 

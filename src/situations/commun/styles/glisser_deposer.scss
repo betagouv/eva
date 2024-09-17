@@ -7,4 +7,26 @@
       cursor: grabbing;
     }
   }
+
+  .container-depart .zone-depot {
+    padding: 1.5rem;
+    z-index: 1;
+    background: $couleur-fond;
+    border-radius: 1rem;
+  }
+  .aide-depot {
+    background: $bleu-gris;
+    border: 1px solid $couleur-fond;
+    box-shadow: inset 0px 0px 8px rgba(30, 65, 106, 0.25);
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $bleu-gris-fonce;
+    // pour s'assurer que la zone de dépôt se mette toujours en desnière position dans la div
+    order: 100;
+  }
 }
