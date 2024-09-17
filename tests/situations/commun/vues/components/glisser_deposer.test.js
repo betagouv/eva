@@ -15,6 +15,11 @@ describe('Le composant Glisser Deposer', function () {
 
   function genereVue(reponsesNonClassees) {
     wrapper = mount(glisserDeposer, {
+      global: {
+        mocks: {
+          $traduction: () => {}
+        }
+      },
       props: {
         question: {
           reponsesNonClassees,
@@ -127,6 +132,33 @@ describe('Le composant Glisser Deposer', function () {
       it("quand ce n'est pas le bon ordre", function() {
         expect(wrapper.vm.succes([1, 2, 3, 4, 5, 7, 6])).toBe(false);
       });
+    });
+  });
+
+  describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
+    beforeEach(function () {
+      genereVue(bonOrdre);
+      wrapper.vm.envoiReponse({ reponse: [1, 2, 3, 4, 5, 6] });
+    });
+
+    it("affiche l'aide dépot", function () {
+      expect(wrapper.vm.afficheAideDepot).toEqual(true);
+      expect(wrapper.find('.aide-depot').exists()).toBe(true);
+    });
+  });
+
+  describe("quand on a envoyé un ensemble de reponse complet", function () {
+    beforeEach(function () {
+      genereVue(bonOrdre);
+      for(const position of bonOrdre) {
+        wrapper.vm.fragmentsClasses.push({ position });
+      }
+      wrapper.vm.envoiReponse();
+    });
+
+    it("n'affiche plus l'aide dépot", function () {
+      expect(wrapper.vm.afficheAideDepot).toEqual(false);
+      expect(wrapper.find('.aide-depot').exists()).toBe(false);
     });
   });
 });
