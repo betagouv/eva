@@ -63,10 +63,20 @@ export default {
   data() {
     return {
       fragmentsClasses: [],
-      reponsesNonClassees: [...this.question.reponsesNonClassees],
       nombreFragment: this.question.reponsesNonClassees.length,
       afficheZoneDepotDepart: true
     };
+  },
+
+  computed: {
+    reponsesNonClassees() {
+      const reponses = [...this.question.reponsesNonClassees];
+      return reponses.sort((a, b) => {
+        if (a.position_client === undefined) return 1;
+        if (b.position_client === undefined) return -1;
+        return a.position_client - b.position_client;
+      });
+    }
   },
 
   methods: {

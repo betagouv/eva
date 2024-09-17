@@ -29,6 +29,35 @@ describe('Le composant Glisser Deposer', function () {
     expect(wrapper.find('.container-arrivee .zone-depot').exists()).toBe(true);
   });
 
+  describe('ordre des réponses non classés', function() {
+    describe("lorsqu'elles ont un ordre prédéfini", function () {
+      beforeEach(function () {
+        genereVue([{ position_client: 3 }, { position_client: 1 }, { position_client: 2 }]);
+      });
+
+      it("trie les réponses dans l'ordre prédéfini", function () {
+        const reponses = wrapper.findAll('.container-depart .glisser-deposer__item');
+        expect(reponses.length).toEqual(3);
+        expect(wrapper.vm.reponsesNonClassees[0]).toEqual({"position_client": 1});
+        expect(wrapper.vm.reponsesNonClassees[1]).toEqual({"position_client": 2});
+        expect(wrapper.vm.reponsesNonClassees[2]).toEqual({"position_client": 3});
+      });
+    });
+
+    describe("lorsqu'elles n'ont pas d'ordre prédéfini", function () {
+      beforeEach(function () {
+        genereVue([2, 1]);
+      });
+
+      it("affiche les réponses telles qu'elles", function () {
+        const reponses = wrapper.findAll('.container-depart .glisser-deposer__item');
+        expect(reponses.length).toEqual(2);
+        expect(wrapper.vm.reponsesNonClassees[0]).toEqual(2);
+        expect(wrapper.vm.reponsesNonClassees[1]).toEqual(1);
+      });
+    });
+  });
+
   describe("les composants draggable envoie une réponse à chaque fois qu'on pose un fragement", function() {
     it("la zone de dépot d'arrivée emet ses réponses", function() {
       genereVue([1, 2]);
