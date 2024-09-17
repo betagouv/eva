@@ -105,6 +105,17 @@ describe('Le composant champ de saisie', function () {
         });
       });
     });
+
+    describe('quand la question a un score', function() {
+      beforeEach(function() {
+        vue = composant({ question: { score: 1.5, reponse: { textes: ['99']} } });
+      });
+
+      it("retourne le score maximum dans la réponse", function() {
+        vue.vm.emetReponse('6');
+        expect(vue.emitted('reponse')[0][0].scoreMax).toEqual(1.5);
+      });
+    });
   });
 
   describe("quand il est d'un sous-type numérique", function () {

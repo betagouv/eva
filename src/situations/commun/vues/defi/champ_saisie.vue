@@ -92,6 +92,8 @@ export default {
             if (!max) return score;
             return (score > max) ? score : max;
           });
+        } else if (this.question.score) {
+          scoreMax = this.question.score;
         }
       }
       this.$emit('reponse', { reponse, succes, score, scoreMax });
