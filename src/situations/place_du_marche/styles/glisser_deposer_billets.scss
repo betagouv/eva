@@ -20,35 +20,34 @@
     display: flex;
     align-items: flex-start;
     padding: 20px;
+    .zone-depot {
+      min-height: 108px;
+      border-radius: 1rem;
+    }
   }
   .container-depart {
     top: 120px;
     bottom: 40%;
     align-items: flex-start;
     .zone-depot {
-      height: 100%;
+      justify-content: center;
     }
   }
   .container-arrivee {
     bottom: 0;
     top: 60%;
+    .zone-depot {
+      background: $couleur-fond;
+      display: flex;
+      align-items: stretch;
+      padding: 1.5rem;
+    }
   }
-  .zone-depot, .glisser-deposer__footer {
+  .zone-depot {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    width: 100%;
-  }
-  .zone-depot {
     align-items: flex-start;
-  }
-  .glisser-deposer__footer {
-    position: absolute;
-  }
-  .zone-vide {
-    width: 100px;
-    height: 60px;
-    opacity: 0.7;
-    background-color: $bleu-gris;
+    width: 100%;
   }
 }

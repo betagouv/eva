@@ -19,7 +19,10 @@
         </div>
       </template>
       <template #footer>
-        <slot name="footer" :nombreFragment="nombreFragment"/>
+        <div v-if="afficheAideDepot"
+            class="aide-depot">
+            {{ $traduction('cafe_de_la_place.puzzle.texte_zone_depot') }}
+        </div>
       </template>
     </draggable>
     </div>
@@ -64,7 +67,8 @@ export default {
     return {
       fragmentsClasses: [],
       nombreFragment: this.question.reponsesNonClassees.length,
-      afficheZoneDepotDepart: true
+      afficheZoneDepotDepart: true,
+      afficheAideDepot: true
     };
   },
 
@@ -82,6 +86,7 @@ export default {
   methods: {
     envoiReponse() {
       const reponse = this.fragmentsClasses.map((fragment) => fragment.position);
+      this.afficheAideDepot = reponse.length < this.question.reponsesNonClassees.length;
       const succes = this.succes(reponse);
       const scoreMax = this.question.score;
       this.afficheZoneDepotDepart = reponse.length < this.nombreFragment;

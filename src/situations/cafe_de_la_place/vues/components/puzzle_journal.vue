@@ -8,12 +8,6 @@
       <poignee-puzzle/>
       <span>{{ item.contenu }}</span>
     </template>
-    <template #footer>
-      <div v-if="afficheAideDepot"
-            class="aide-depot">
-            {{ $traduction('cafe_de_la_place.puzzle.texte_zone_depot') }}
-        </div>
-    </template>
   </glisser-deposer>
 </template>
 
@@ -32,16 +26,9 @@ export default {
     },
   },
 
-  data() {
-    return {
-      afficheAideDepot: true
-    };
-  },
-
   methods: {
     envoiReponse(reponse) {
       if(reponse) {
-        this.afficheAideDepot = reponse.reponse.length < this.question.reponsesNonClassees.length;
         reponse.score = this.calculeScore(reponse.reponse);
       }
       this.$emit('reponse', reponse );
