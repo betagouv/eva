@@ -66,21 +66,15 @@ export default {
   data() {
     return {
       fragmentsClasses: [],
+      reponsesNonClassees: [],
       nombreFragment: this.question.reponsesNonClassees.length,
       afficheZoneDepotDepart: true,
       afficheAideDepot: true
     };
   },
 
-  computed: {
-    reponsesNonClassees() {
-      const reponses = [...this.question.reponsesNonClassees];
-      return reponses.sort((a, b) => {
-        if (a.position_client === undefined) return 1;
-        if (b.position_client === undefined) return -1;
-        return a.position_client - b.position_client;
-      });
-    }
+  mounted() {
+    this.attribueReponsesNonClassees();
   },
 
   methods: {
@@ -95,6 +89,15 @@ export default {
 
     succes(reponse) {
       return reponse.every((position, index) => position === index + 1);
+    },
+
+    attribueReponsesNonClassees() {
+      this.reponsesNonClassees = [...this.question.reponsesNonClassees];
+      this.reponsesNonClassees.sort((a, b) => {
+        if (a.position_client === undefined) return 1;
+        if (b.position_client === undefined) return -1;
+        return a.position_client - b.position_client;
+      });
     }
   }
 };
