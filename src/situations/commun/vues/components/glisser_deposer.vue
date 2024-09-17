@@ -21,7 +21,7 @@
       <template #footer>
         <div v-if="afficheAideDepot"
             class="aide-depot">
-            {{ $traduction('cafe_de_la_place.puzzle.texte_zone_depot') }}
+            {{ $traduction('commun.glisser_deposer.texte_zone_depot') }}
         </div>
       </template>
     </draggable>
