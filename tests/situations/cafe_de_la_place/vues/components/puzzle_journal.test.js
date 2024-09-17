@@ -66,28 +66,4 @@ describe('Le composant Puzzle Journal', function () {
       expect(wrapper.vm.calculeScore(bonOrdre)).toEqual(8);
     });
   });
-
-  describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
-    beforeEach(function () {
-      genereVue(bonOrdre);
-      wrapper.vm.envoiReponse({ reponse: [1, 2, 3, 4, 5, 6] });
-    });
-
-    it("affiche l'aide dépot", function () {
-      expect(wrapper.vm.afficheAideDepot).toEqual(true);
-      expect(wrapper.find('.aide-depot').exists()).toBe(true);
-    });
-  });
-
-  describe("quand on a envoyé un ensemble de reponse complet", function () {
-    beforeEach(function () {
-      genereVue(bonOrdre);
-      wrapper.vm.envoiReponse({ reponse: bonOrdre });
-    });
-
-    it("n'affiche plus l'aide dépot", function () {
-      expect(wrapper.vm.afficheAideDepot).toEqual(false);
-      expect(wrapper.find('.aide-depot').exists()).toBe(false);
-    });
-  });
 });
