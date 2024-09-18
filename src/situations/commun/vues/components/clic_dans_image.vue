@@ -50,6 +50,9 @@ export default {
   },
   computed: {
     svgDecode() {
+      if (!this.question.zone_cliquable) {
+        return '';
+      }
       return atob(this.question.zone_cliquable.split(',')[1]);
     }
   }
