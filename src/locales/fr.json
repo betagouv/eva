@@ -256,7 +256,10 @@
     }
   },
   "place_du_marche": {
-    "titre": "Place du marché"
+    "titre": "Place du marché",
+    "intro_contexte": {
+      "message": "<p>Aujourd’hui, c’est le jour du marché. Vous décidez d’aller vous promener sur la place.</p>"
+    }
   },
   "commun": {
     "glisser_deposer": {
