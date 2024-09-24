@@ -1,13 +1,17 @@
 <template>
   <div class="glisser-deposer">
-    <div class="container-arrivee">
+    <div v-for="(zone, index) in zonesDepot"
+      :key="index"
+      class="container-arrivee" :style="styleZoneDepot(zone)"
+    >
       <draggable
       class="zone-depot"
-      :list="fragmentsClasses"
+      :list="fragmentsClasses[index]"
       item-key="id"
       group="items"
       draggable=".glisser-deposer__item"
-      @end="envoiReponse"
+      @add="bonneReponse = zone.bonneReponse"
+      @end="envoiReponse(zone.bonneReponse)"
       :sort="true"
     >
       <template #item="{ element }">
@@ -61,27 +65,50 @@ export default {
       type: Object,
       required: true
     },
+
+    aideDepot: {
+      type: Boolean,
+      default: true
+    },
+
+    zonesDepot: {
+      type: Array,
+      default() {
+        return [{ left: 0 }];
+      }
+    }
   },
 
   data() {
     return {
-      fragmentsClasses: [],
+      fragmentsClasses: [[]],
       reponsesNonClassees: [],
+      bonneReponse: undefined,
       nombreFragment: this.question.reponsesNonClassees.length,
       afficheZoneDepotDepart: true,
-      afficheAideDepot: true
     };
   },
 
   mounted() {
     this.attribueReponsesNonClassees();
+    this.$nextTick(() => {
+      if (this.zonesDepot.length > 1) {
+        this.fragmentsClasses = Array.from({ length: this.zonesDepot.length }, () => []);
+      }
+    });
+  },
+
+  computed: {
+    afficheAideDepot() {
+      return this.aideDepot && this.reponsesNonClassees.length > 0;
+    }
   },
 
   methods: {
     envoiReponse() {
-      const reponse = this.fragmentsClasses.map((fragment) => fragment.position);
-      this.afficheAideDepot = reponse.length < this.question.reponsesNonClassees.length;
-      const succes = this.succes(reponse);
+      const nonEmptyArray = this.fragmentsClasses.find(arr => arr.length !== 0);
+      const reponse = nonEmptyArray ? nonEmptyArray.map((fragment) => fragment.position) : [];
+      const succes = this.bonneReponse ?? this.succes(reponse);
       const scoreMax = this.question.score;
       this.afficheZoneDepotDepart = reponse.length < this.nombreFragment;
       this.$emit('deplace-item', { reponse, succes, scoreMax });
@@ -98,6 +125,15 @@ export default {
         if (b.position_client === undefined) return -1;
         return a.position_client - b.position_client;
       });
+    },
+
+    styleZoneDepot (zone) {
+      return {
+        top: `${zone.top}px`,
+        left: `${zone.left}px`,
+        width: `${zone.width}px`,
+        height: `${zone.height}px`
+      };
     }
   }
 };
