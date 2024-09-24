@@ -102,11 +102,10 @@ export default {
 
   mounted() {
     this.attribueReponsesNonClassees();
-    this.$nextTick(() => {
-      if (this.zonesDepot.length > 1) {
-        this.zonesDeClassement = Array.from({ length: this.zonesDepot.length }, () => []);
-      }
-    });
+
+    if (this.zonesDepot.length > 1) {
+      this.zonesDeClassement = Array.from({ length: this.zonesDepot.length }, () => []);
+    }
   },
 
   computed: {
