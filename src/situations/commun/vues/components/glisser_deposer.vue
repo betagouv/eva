@@ -6,7 +6,7 @@
     >
       <draggable
       class="zone-depot"
-      :list="fragmentsClasses[index]"
+      :list="zonesDeClassement[index]"
       item-key="id"
       group="items"
       draggable=".glisser-deposer__item"
@@ -91,7 +91,7 @@ export default {
 
   data() {
     return {
-      fragmentsClasses: [[]],
+      zonesDeClassement: [[]],
       reponsesNonClassees: [],
       bonneReponse: undefined,
       elementGlisse: false,
@@ -104,7 +104,7 @@ export default {
     this.attribueReponsesNonClassees();
     this.$nextTick(() => {
       if (this.zonesDepot.length > 1) {
-        this.fragmentsClasses = Array.from({ length: this.zonesDepot.length }, () => []);
+        this.zonesDeClassement = Array.from({ length: this.zonesDepot.length }, () => []);
       }
     });
   },
@@ -118,8 +118,8 @@ export default {
   methods: {
     envoiReponse() {
       this.elementGlisse = false;
-      const nonEmptyArray = this.fragmentsClasses.find(arr => arr.length !== 0);
-      const reponse = nonEmptyArray ? nonEmptyArray.map((fragment) => fragment.position) : [];
+      const reponsesClassees = this.zonesDeClassement.find(arr => arr.length !== 0);
+      const reponse = reponsesClassees ? reponsesClassees.map((reponse) => reponse.position) : [];
       const succes = this.bonneReponse ?? this.succes(reponse);
       const scoreMax = this.question.score;
       this.afficheZoneDepotDepart = reponse.length < this.nombreFragment;

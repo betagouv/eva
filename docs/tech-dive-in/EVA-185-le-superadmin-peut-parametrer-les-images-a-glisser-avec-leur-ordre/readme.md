@@ -19,7 +19,7 @@
   <div class="puzzle-container">
     <draggable
       class="puzzle-gauche"
-      :list="fragmentsClasses"
+      :list="zonesDeClassement"
       item-key="id"
       group="puzzle"
       draggable=".puzzle-item"

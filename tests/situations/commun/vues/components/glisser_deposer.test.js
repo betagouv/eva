@@ -91,7 +91,7 @@ describe('Le composant Glisser Deposer', function () {
   describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
     beforeEach(function () {
       genereVue([2, 1]);
-      wrapper.vm.fragmentsClasses[0].push({ id: 1 });
+      wrapper.vm.zonesDeClassement[0].push({ id: 1 });
       wrapper.vm.envoiReponse();
     });
 
@@ -109,8 +109,8 @@ describe('Le composant Glisser Deposer', function () {
   describe("quand on a envoyé un ensemble de réponse complet", function () {
     beforeEach(function () {
       genereVue([2, 1]);
-      wrapper.vm.fragmentsClasses[0].push({ position: 1 });
-      wrapper.vm.fragmentsClasses[0].push({ position: 2 });
+      wrapper.vm.zonesDeClassement[0].push({ position: 1 });
+      wrapper.vm.zonesDeClassement[0].push({ position: 2 });
       wrapper.vm.envoiReponse();
     });
 
@@ -124,7 +124,7 @@ describe('Le composant Glisser Deposer', function () {
     it('envoie le score, le sucess et la réponse', function () {
       genereVue([1, 0, 2, 3, 4, 5, 6]);
       for(const position of bonOrdre) {
-        wrapper.vm.fragmentsClasses[0].push({ position });
+        wrapper.vm.zonesDeClassement[0].push({ position });
       }
       wrapper.vm.envoiReponse();
       expect(wrapper.emitted('deplace-item').length).toEqual(1);
