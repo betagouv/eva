@@ -147,7 +147,7 @@ const N1Pvn4 = {
 const N2PQ1 = {
   id: 'N2PQ1',
   nom_technique: 'N2PQ1',
-  extensionVue: 'glisser-deposer-non-ordonnable',
+  extensionVue: 'glisser-deposer-depot-multiple',
   reponsesNonClassees: [{illustration: personnage}],
   intitule: 'Niveau 2 Question 1',
   zones_depot_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4OCIgaGVpZ2h0PSI1NjYiIHZpZXdCb3g9IjAgMCAxMDg4IDU2NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3QgYm9ubmUtcmVwb25zZSIgeD0iMjQwIiB5PSI3NCIgd2lkdGg9IjI1MSIgaGVpZ2h0PSIxNjEiIGZpbGw9IiMyMDAwOUYiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8cmVjdCBjbGFzcz0iem9uZS1kZXBvdCIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K",
