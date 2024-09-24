@@ -13,7 +13,7 @@ describe('Le composant Glisser Deposer', function () {
     config.global.renderStubDefaultSlot = false;
   });
 
-  function genereVue(reponsesNonClassees) {
+  function genereVue(reponsesNonClassees, aideDepot = true, zonesDepot = null) {
     wrapper = mount(glisserDeposer, {
       global: {
         mocks: {
@@ -24,14 +24,25 @@ describe('Le composant Glisser Deposer', function () {
         question: {
           reponsesNonClassees,
           score: 8
-        }
+        },
+        aideDepot: aideDepot,
+        ...(zonesDepot?.length && { zonesDepot })
       }
     });
   }
 
-  it("affiche la zone de dépot d'arrivée", function () {
-    genereVue([]);
-    expect(wrapper.find('.container-arrivee .zone-depot').exists()).toBe(true);
+  describe("zones de dépôt d'arrivée", function () {
+    it("affiche une seule zone de dépot d'arrivée par défaut", function () {
+      genereVue([]);
+      expect(wrapper.findAll('.container-arrivee .zone-depot').length).toBe(1);
+    });
+
+    describe("quand on a plusieurs zones de dépôt d'arrivée", function () {
+      it("affiche plusieurs zones de dépot d'arrivée", function () {
+        genereVue([], false, [{}, {}]);
+        expect(wrapper.findAll('.container-arrivee .zone-depot').length).toBe(2);
+      });
+    });
   });
 
   describe('ordre des réponses non classés', function() {
@@ -80,7 +91,7 @@ describe('Le composant Glisser Deposer', function () {
   describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
     beforeEach(function () {
       genereVue([2, 1]);
-      wrapper.vm.fragmentsClasses.push({ id: 1 });
+      wrapper.vm.fragmentsClasses[0].push({ id: 1 });
       wrapper.vm.envoiReponse();
     });
 
@@ -98,8 +109,8 @@ describe('Le composant Glisser Deposer', function () {
   describe("quand on a envoyé un ensemble de réponse complet", function () {
     beforeEach(function () {
       genereVue([2, 1]);
-      wrapper.vm.fragmentsClasses.push({ position: 1 });
-      wrapper.vm.fragmentsClasses.push({ position: 2 });
+      wrapper.vm.fragmentsClasses[0].push({ position: 1 });
+      wrapper.vm.fragmentsClasses[0].push({ position: 2 });
       wrapper.vm.envoiReponse();
     });
 
@@ -113,7 +124,7 @@ describe('Le composant Glisser Deposer', function () {
     it('envoie le score, le sucess et la réponse', function () {
       genereVue([1, 0, 2, 3, 4, 5, 6]);
       for(const position of bonOrdre) {
-        wrapper.vm.fragmentsClasses.push({ position });
+        wrapper.vm.fragmentsClasses[0].push({ position });
       }
       wrapper.vm.envoiReponse();
       expect(wrapper.emitted('deplace-item').length).toEqual(1);
@@ -135,30 +146,41 @@ describe('Le composant Glisser Deposer', function () {
     });
   });
 
-  describe("quand on a pas encore envoyé un ensemble de reponse complet", function () {
-    beforeEach(function () {
-      genereVue(bonOrdre);
-      wrapper.vm.envoiReponse({ reponse: [1, 2, 3, 4, 5, 6] });
+  describe("affichage de l'aide dépot", function () {
+    describe("quand il reste des élèments à placer", function () {
+      beforeEach(function () {
+        genereVue(bonOrdre);
+        wrapper.vm.reponsesNonClassees = [1];
+      });
+
+      it("affiche l'aide dépot", function () {
+        expect(wrapper.vm.afficheAideDepot).toEqual(true);
+        expect(wrapper.find('.aide-depot').exists()).toBe(true);
+      });
     });
 
-    it("affiche l'aide dépot", function () {
-      expect(wrapper.vm.afficheAideDepot).toEqual(true);
-      expect(wrapper.find('.aide-depot').exists()).toBe(true);
-    });
-  });
+    describe("quand il n'y a plus d'èlements à placer", function () {
+      beforeEach(function () {
+        genereVue(bonOrdre);
+        wrapper.vm.reponsesNonClassees = [];
+      });
 
-  describe("quand on a envoyé un ensemble de reponse complet", function () {
-    beforeEach(function () {
-      genereVue(bonOrdre);
-      for(const position of bonOrdre) {
-        wrapper.vm.fragmentsClasses.push({ position });
-      }
-      wrapper.vm.envoiReponse();
+      it("n'affiche plus l'aide dépot", function () {
+        expect(wrapper.vm.afficheAideDepot).toEqual(false);
+        expect(wrapper.find('.aide-depot').exists()).toBe(false);
+      });
     });
 
-    it("n'affiche plus l'aide dépot", function () {
-      expect(wrapper.vm.afficheAideDepot).toEqual(false);
-      expect(wrapper.find('.aide-depot').exists()).toBe(false);
+    describe("quand l'animation est sans aide dépot", function () {
+      beforeEach(function () {
+        genereVue(bonOrdre, false);
+        wrapper.vm.reponsesNonClassees = [1];
+      });
+
+      it("n'affiche pas l'aide dépot", function () {
+        expect(wrapper.vm.afficheAideDepot).toEqual(false);
+        expect(wrapper.find('.aide-depot').exists()).toBe(false);
+      });
     });
   });
 });
