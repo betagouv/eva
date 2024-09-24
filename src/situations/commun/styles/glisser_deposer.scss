@@ -8,9 +8,12 @@
     }
   }
 
+  .zone-depot {
+    z-index: 1;
+  }
+
   .container-depart .zone-depot {
     padding: 1.5rem;
-    z-index: 1;
     background: $couleur-fond;
     border-radius: 1rem;
   }

@@ -11,6 +11,7 @@
       group="items"
       draggable=".glisser-deposer__item"
       @add="bonneReponse = zone.bonneReponse"
+      @start="elementGlisse = true"
       @end="envoiReponse(zone.bonneReponse)"
       :sort="true"
     >
@@ -19,7 +20,7 @@
           :key="element.id"
           class="glisser-deposer__item"
         >
-        <slot name="item" :item="element" />
+          <slot name="item" :item="element" />
         </div>
       </template>
       <template #footer>
@@ -29,6 +30,13 @@
         </div>
       </template>
     </draggable>
+    <svg
+      v-if="!aideDepot"
+      class="rectangle-bleu"
+      :class="{ 'rectangle-bleu--cache': !elementGlisse,
+                'rectangle-bleu--visible': elementGlisse }"
+      viewBox="0 0 222 222" fill="none">
+    </svg>
     </div>
     <div class="container-depart">
       <draggable
@@ -37,6 +45,7 @@
       class="zone-depot"
       item-key="id"
       group="items"
+      @start="elementGlisse = true"
       @end="envoiReponse"
       :sort="false"
     >
@@ -44,6 +53,7 @@
         <div
           :key="element.id"
           class="glisser-deposer__item"
+          :class="{'glisser-deposer__item--flottant': !elementGlisse }"
         >
         <slot name="item" :item="element" />
         </div>
@@ -84,6 +94,7 @@ export default {
       fragmentsClasses: [[]],
       reponsesNonClassees: [],
       bonneReponse: undefined,
+      elementGlisse: false,
       nombreFragment: this.question.reponsesNonClassees.length,
       afficheZoneDepotDepart: true,
     };
@@ -106,6 +117,7 @@ export default {
 
   methods: {
     envoiReponse() {
+      this.elementGlisse = false;
       const nonEmptyArray = this.fragmentsClasses.find(arr => arr.length !== 0);
       const reponse = nonEmptyArray ? nonEmptyArray.map((fragment) => fragment.position) : [];
       const succes = this.bonneReponse ?? this.succes(reponse);

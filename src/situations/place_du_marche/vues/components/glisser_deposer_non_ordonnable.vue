@@ -1,7 +1,7 @@
 <template>
   <glisser-deposer
     :question="question"
-    class="glisser-deposer-billets"
+    class="glisser-deposer-non-ordonnable"
     :zones-depot="zonesDepotPositions"
     :aide-depot="false"
     @deplace-item="envoiReponse"
@@ -14,7 +14,7 @@
 
 <script>
 import GlisserDeposer from 'commun/vues/components/glisser_deposer';
-import 'place_du_marche/styles/glisser_deposer_billets.scss';
+import 'place_du_marche/styles/glisser_deposer_non_ordonnable.scss';
 
 export default {
   components: { GlisserDeposer },

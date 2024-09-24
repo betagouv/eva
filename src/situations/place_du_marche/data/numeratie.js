@@ -1,3 +1,5 @@
+import personnage from 'accueil/assets/personnage.png';
+
 // NUMERATIE NIVEAU 1
 
 const N1Pse1 = {
@@ -146,9 +148,9 @@ const N2PQ1 = {
   id: 'N2PQ1',
   nom_technique: 'N2PQ1',
   extensionVue: 'glisser-deposer-non-ordonnable',
-  reponsesNonClassees: [{id: 0}],
+  reponsesNonClassees: [{illustration: personnage}],
   intitule: 'Niveau 2 Question 1',
-  zones_depot_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4OCIgaGVpZ2h0PSI1NjYiIHZpZXdCb3g9IjAgMCAxMDg4IDU2NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgY2xhc3M9ImJvbm5lLXJlcG9uc2Ugem9uZS1kZXBvdCIgeD0iMzg4IiB5PSI4MiIgd2lkdGg9IjEzNiIgaGVpZ2h0PSIyODIiIGZpbGw9IiMyMDAwOUYiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8cmVjdCBjbGFzcz0iem9uZS1kZXBvdCIgeD0iMTA2IiB5PSI0NzQiIHdpZHRoPSI2OSIgaGVpZ2h0PSIyODIiIHRyYW5zZm9ybT0icm90YXRlKC05MCAxMDYgNDc0KSIgZmlsbD0iIzIwMDA5RiIgZmlsbC1vcGFjaXR5PSIwLjI1Ii8+Cjwvc3ZnPgo=",
+  zones_depot_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4OCIgaGVpZ2h0PSI1NjYiIHZpZXdCb3g9IjAgMCAxMDg4IDU2NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3QgYm9ubmUtcmVwb25zZSIgeD0iMjQwIiB5PSI3NCIgd2lkdGg9IjI1MSIgaGVpZ2h0PSIxNjEiIGZpbGw9IiMyMDAwOUYiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8cmVjdCBjbGFzcz0iem9uZS1kZXBvdCIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K",
   score: 1
 };
 
