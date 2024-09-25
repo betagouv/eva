@@ -1,5 +1,5 @@
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
-import sonConsigne from 'commun/assets/consigne_blanche.mp3';
+import sonConsigne from 'place_du_marche/assets/consigne_place_du_marche.mp3';
 import fondSituation from 'bienvenue/assets/bienvenue_background.jpg';
 import RegistreCampagne from 'commun/infra/registre_campagne';
 import { extraitQuestionsReponsesAudios } from 'commun/infra/depot_ressources';
