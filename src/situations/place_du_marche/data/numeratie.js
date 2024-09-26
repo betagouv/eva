@@ -144,14 +144,144 @@ const N1Pvn4 = {
 
 // NUMERATIE NIVEAU 2
 
-const N2PQ1 = {
-  id: 'N2PQ1',
-  nom_technique: 'N2PQ1',
-  extensionVue: 'glisser-deposer-depot-multiple',
-  reponsesNonClassees: [{illustration: personnage}],
-  intitule: 'Niveau 2 Question 1',
-  zones_depot_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4OCIgaGVpZ2h0PSI1NjYiIHZpZXdCb3g9IjAgMCAxMDg4IDU2NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3QgYm9ubmUtcmVwb25zZSIgeD0iMjQwIiB5PSI3NCIgd2lkdGg9IjI1MSIgaGVpZ2h0PSIxNjEiIGZpbGw9IiMyMDAwOUYiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8cmVjdCBjbGFzcz0iem9uZS1kZXBvdCIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K",
-  score: 1
+const N2Plp1 = {
+  id: 'N2Plp1',
+  nom_technique: 'N2Plp1',
+  metacompetence: 'lecture_plan',
+  score: 1,
+};
+
+const N2Plp2 = {
+  id: 'N2Plp2',
+  nom_technique: 'N2Plp2',
+  metacompetence: 'lecture_plan',
+  score: 1,
+};
+
+const N2Ppe1 = {
+  id: 'N2Ppe1',
+  nom_technique: 'N2Ppe1',
+  metacompetence: 'perimetres',
+  score: 1,
+};
+
+const N2Ppe2 = {
+  id: 'N2Ppe2',
+  nom_technique: 'N2Ppe2',
+  metacompetence: 'perimetres',
+  score: 1,
+};
+
+const N2Psu1 = {
+  id: 'N2Psu1',
+  nom_technique: 'N2Psu1',
+  metacompetence: 'surfaces',
+  score: 1,
+};
+
+const N2Psu2 = {
+  id: 'N2Psu2',
+  nom_technique: 'N2Psu2',
+  metacompetence: 'surfaces',
+  score: 1,
+};
+
+const N2Pom1 = {
+  id: 'N2Pom1',
+  nom_technique: 'N2Pom1',
+  metacompetence: 'operations_multiplication',
+  score: 1,
+};
+
+const N2Pom2 = {
+  id: 'N2Pom2',
+  nom_technique: 'N2Pom2',
+  metacompetence: 'operations_multiplication',
+  score: 1,
+};
+
+const N2Pon1 = {
+  id: 'N2Pon1',
+  nom_technique: 'N2Pon1',
+  metacompetence: 'ordonner_nombres_decimaux',
+  score: 1,
+};
+
+const N2Pon2 = {
+  id: 'N2Pon2',
+  nom_technique: 'N2Pon2',
+  metacompetence: 'ordonner_nombres_decimaux',
+  score: 1,
+};
+
+const N2Pod1 = {
+  id: 'N2Pod1',
+  nom_technique: 'N2Pod1',
+  metacompetence: 'operations_division',
+  score: 1,
+};
+
+const N2Pod2 = {
+  id: 'N2Pod2',
+  nom_technique: 'N2Pod2',
+  metacompetence: 'operations_division',
+  score: 1,
+};
+
+const N2Put1 = {
+  id: 'N2Put1',
+  nom_technique: 'N2Put1',
+  metacompetence: 'unites_temps',
+  score: 1,
+};
+
+const N2Put2 = {
+  id: 'N2Put2',
+  nom_technique: 'N2Put2',
+  metacompetence: 'unites_temps',
+  score: 1,
+};
+
+const N2Prh1 = {
+  id: 'N2Prh1',
+  nom_technique: 'N2Prh1',
+  metacompetence: 'renseigner_horaires',
+  score: 1,
+};
+
+const N2Prh2 = {
+  id: 'N2Prh2',
+  nom_technique: 'N2Prh2',
+  metacompetence: 'renseigner_horaires',
+  score: 1,
+};
+
+const N2Ptg1 = {
+  id: 'N2Ptg1',
+  nom_technique: 'N2Ptg1',
+  metacompetence: 'tableaux_graphiques',
+  score: 1,
+};
+
+const N2Ptg2 = {
+  id: 'N2Ptg2',
+  nom_technique: 'N2Ptg2',
+  metacompetence: 'tableaux_graphiques',
+  score: 1,
+};
+
+const N2Ppl1 = {
+  id: 'N2Ppl1',
+  nom_technique: 'N2Ppl1',
+  metacompetence: 'plannings',
+  score: 1,
+};
+
+const N2Ppl2 = {
+  id: 'N2Ppl2',
+  nom_technique: 'N2Ppl2',
+  metacompetence: 'plannings',
+  score: 1,
 };
 
 // NUMERATIE NIVEAU 3
@@ -178,7 +308,16 @@ const niveau1 = {
 
 const niveau2 = {
   series: [
-    { cartes: [ N2PQ1] },
+    { cartes: [ N2Plp1, N2Plp2 ] },
+    { cartes: [ N2Ppe1, N2Ppe2 ] },
+    { cartes: [ N2Psu1, N2Psu2 ] },
+    { cartes: [ N2Pom1, N2Pom2 ] },
+    { cartes: [ N2Pon1, N2Pon2 ] },
+    { cartes: [ N2Pod1, N2Pod2 ] },
+    { cartes: [ N2Put1, N2Put2 ] },
+    { cartes: [ N2Prh1, N2Prh2 ] },
+    { cartes: [ N2Ptg1, N2Ptg2 ] },
+    { cartes: [ N2Ppl1, N2Ppl2 ] },
   ]
 };
 
