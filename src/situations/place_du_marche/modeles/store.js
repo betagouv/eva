@@ -80,9 +80,15 @@ export function creeStore () {
         return !NIVEAUX.includes(state.parcours);
       },
 
+      derniereQuestionRattrapage(state, getters) {
+        const dernierRattrapageAPasser = getters.rattrapagesAPasser[getters.rattrapagesAPasser.length - 1];
+        const nomTechnique = retrouveQuestionConfiguration(state.configuration, numeratieMetriques[dernierRattrapageAPasser]);
+        return nomTechnique;
+      },
+
       estDerniereQuestionRattrapage(state, getters) {
         if(!getters.rattrapageEnCours) return false;
-        return state.questionActive.nom_technique.replace('R', 'P') === `${getters.rattrapagesAPasser[getters.rattrapagesAPasser.length - 1]}2` ?? false;
+        return state.questionActive.nom_technique === getters.derniereQuestionRattrapage ?? false;
       },
 
       questionServeur(state) {
@@ -267,4 +273,22 @@ export function reinitialiseRattrapagesAPasser(state) {
   Object.keys(state.pourcentageDeReussiteCompetence).forEach(competence => {
     state.pourcentageDeReussiteCompetence[competence] = 100;
   });
+}
+
+export function retrouveQuestionConfiguration(config, nomTechnique) {
+  let derniereCorrespondance = null;
+
+  for (const niveau in config) {
+    for (const series of config[niveau].series) {
+      if (series.cartes) {
+        for (const question of series.cartes) {
+          if (question && question.nom_technique.startsWith(nomTechnique)) {
+            derniereCorrespondance = question;
+          }
+        }
+      }
+    }
+  }
+
+  return derniereCorrespondance.nom_technique;
 }

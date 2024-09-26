@@ -40,7 +40,12 @@ describe('Le store de la situation place du marché', function () {
     },
     ['N1Prn']: {
       series: [
-        { cartes: [questionRattrapage]},
+        { cartes: [questionRattrapage] },
+      ],
+    },
+    ['N1Roa']: {
+      series: [
+        { cartes: [{ nom_technique: 'N1Roa1' }, { nom_technique: 'N1Roa2' }] },
       ],
     }
   };
@@ -89,6 +94,14 @@ describe('Le store de la situation place du marché', function () {
         store.state.pourcentageDeReussiteCompetence['N1Poa'] = 50;
 
         expect(store.getters.estDerniereQuestionRattrapage).toEqual(true);
+      });
+    });
+
+    describe("#derniereQuestionRattrapage", function() {
+      it("retourne le nom technique de la dernière question du rattrapage", function() {
+        store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
+        store.state.pourcentageDeReussiteCompetence['N1Poa'] = 50;
+        expect(store.getters.derniereQuestionRattrapage).toEqual('N1Roa2');
       });
     });
 
@@ -326,12 +339,13 @@ describe('Le store de la situation place du marché', function () {
 
       describe("si c'est la dernière question du rattrapage", function() {
         it('retourne le nouveau pourcentage de réussite global', function() {
+          store.state.configuration = configuration;
           store.state.parcours = 'N1Rrn';
           store.state.reponses = {
             'N1Prn1': { question: 'N1Prn1', succes: true, score: 0 },
             'N1Rrn1': { question: 'N1Rrn1', succes: true, score: 1 },
           };
-          store.state.questionActive = { nom_technique: 'N1Rrn2' };
+          store.state.questionActive = { nom_technique: 'N1Rrn1' };
           store.state.pourcentageDeReussiteCompetence = {
             'N1Prn': 40,
           };
