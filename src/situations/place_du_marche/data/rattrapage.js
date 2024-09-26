@@ -1,3 +1,5 @@
+import personnage from 'accueil/assets/personnage.png';
+
 // RATTRAPAGE NUMERATIE NIVEAU 1
 
 const N1Rrn1 = {
@@ -188,14 +190,21 @@ const N2Rrh1 = {
   id: 'N2Rrh1',
   nom_technique: 'N2Rrh1',
   metacompetence: 'renseigner_horaires',
-  score: 1,
+  extensionVue: 'glisser-deposer-depot-multiple',
+  reponsesNonClassees: [{illustration: personnage}],
+  modalite_reponse: 'Vous devez mettre les horloges dans les bonnes cases, en fonction des horaires affichés. Pour confirmer votre réponse, cliquez sur le bouton "Valider" ,',
+  zones_depot_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4OCIgaGVpZ2h0PSI1NjYiIHZpZXdCb3g9IjAgMCAxMDg4IDU2NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3QgYm9ubmUtcmVwb25zZSIgeD0iMjQwIiB5PSI3NCIgd2lkdGg9IjI1MSIgaGVpZ2h0PSIxNjEiIGZpbGw9IiMyMDAwOUYiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8cmVjdCBjbGFzcz0iem9uZS1kZXBvdCIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K",
+  score: 1
 };
 
 const N2Rrh2 = {
   id: 'N2Rrh2',
   nom_technique: 'N2Rrh2',
   metacompetence: 'renseigner_horaires',
-  score: 1,
+  extensionVue: 'glisser-deposer-depot-multiple',
+  reponsesNonClassees: [{illustration: personnage}],
+  zones_depot_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4OCIgaGVpZ2h0PSI1NjYiIHZpZXdCb3g9IjAgMCAxMDg4IDU2NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3QgYm9ubmUtcmVwb25zZSIgeD0iMjQwIiB5PSI3NCIgd2lkdGg9IjI1MSIgaGVpZ2h0PSIxNjEiIGZpbGw9IiMyMDAwOUYiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8cmVjdCBjbGFzcz0iem9uZS1kZXBvdCIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K",
+  score: 1
 };
 
 const N2Rtg1 = {
