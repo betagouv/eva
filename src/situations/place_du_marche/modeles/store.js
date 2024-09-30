@@ -38,6 +38,7 @@ export function creeStore () {
         'N1Pos': 100,
       },
       maxScoreNiveauEnCours: 0,
+      niveaux: NIVEAUX
     },
 
     getters: {
@@ -101,7 +102,7 @@ export function creeStore () {
       },
 
       estCarteActive(state) {
-        return (idCarte) => state.questionActive.id == idCarte;
+        return (idCarte) => state.questionActive.nom_technique == idCarte;
       }
     },
 
@@ -205,21 +206,6 @@ export function creeStore () {
       recupereQuestionsServeur(state, questions) {
         state.questions = questions;
       },
-
-      sauteALaCarteDansUnParcours(state, { idCarte, parcours }) {
-        this.commit('demarreParcours', parcours);
-        while(!state.parcoursTermine) {
-          if(this.getters.estCarteActive(idCarte)) return;
-          this.commit('carteSuivante');
-        }
-      },
-
-      sauteALaCarte(state, idCarte) {
-        for(const parcours of NIVEAUX) {
-          this.commit('sauteALaCarteDansUnParcours', { idCarte, parcours });
-          if(this.getters.estCarteActive(idCarte)) return;
-        }
-      }
     },
   });
 }

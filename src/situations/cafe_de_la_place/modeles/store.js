@@ -4,6 +4,7 @@ export const ORIENTATION = 'orientation';
 export const PARCOURS_BAS = 'parcoursBas';
 export const PARCOURS_HAUT_1 = 'parcoursHaut1';
 export const PARCOURS_HAUT_2 = 'parcoursHaut2';
+export const NIVEAUX = [ORIENTATION, PARCOURS_HAUT_1, PARCOURS_HAUT_2];
 
 export function creeStore () {
   return creeStoreCommun({
@@ -16,7 +17,8 @@ export function creeStore () {
       termine: false,
       reponses: {},
       scoreOrientation: 0,
-      scoreHaut1: 0
+      scoreHaut1: 0,
+      niveaux: NIVEAUX,
     },
 
     getters: {
@@ -105,21 +107,6 @@ export function creeStore () {
           }
         }
       },
-
-      sauteALaCarteDansUnParcours(state, { idCarte, parcours }) {
-        this.commit('demarreParcours', parcours);
-        while(!state.parcoursTermine) {
-          if(this.getters.estCarteActive(idCarte)) return;
-          this.commit('carteSuivante');
-        }
-      },
-
-      sauteALaCarte(state, idCarte) {
-        for(const parcours of [ORIENTATION, PARCOURS_HAUT_1, PARCOURS_HAUT_2]) {
-          this.commit('sauteALaCarteDansUnParcours', { idCarte, parcours });
-          if(this.getters.estCarteActive(idCarte)) return;
-        }
-      }
-    }
+    },
   });
 }

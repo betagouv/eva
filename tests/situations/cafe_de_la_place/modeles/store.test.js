@@ -181,25 +181,25 @@ describe('Le store de la situation café de la place', function () {
 
     describe("#sauteALaCarte", function () {
       it("peut sauter à une carte", function () {
-        store.commit('sauteALaCarte', 'question2');
+        store.dispatch('sauteALaCarte', 'question2');
         expect(store.state.carteActive).toEqual(question2);
         expect(store.state.termine).toBe(false);
       });
 
       it("peut sauter à une carte de la première partie du parcours haut", function () {
-        store.commit('sauteALaCarte', 'question1Haut');
+        store.dispatch('sauteALaCarte', 'question1Haut');
         expect(store.state.carteActive).toEqual(question1Haut);
         expect(store.state.termine).toBe(false);
       });
 
       it("peut sauter à une carte de la deuxième partie du parcours haut", function () {
-        store.commit('sauteALaCarte', 'question1Haut2');
+        store.dispatch('sauteALaCarte', 'question1Haut2');
         expect(store.state.carteActive).toEqual(question1Haut2);
         expect(store.state.termine).toBe(false);
       });
 
       it("saute jusqu'a la fin si la carte n'est pas connue", function () {
-        store.commit('sauteALaCarte', 'inconnue');
+        store.dispatch('sauteALaCarte', 'inconnue' );
         expect(store.state.termine).toBe(true);
       });
     });

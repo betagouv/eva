@@ -38,7 +38,7 @@ export default {
   watch: {
     acteEnCours (actEnCours) {
       if(actEnCours && location.hash){
-        this.$store.commit('sauteALaCarte', location.hash.substring(1));
+        this.$store.dispatch('sauteALaCarte', location.hash.substring(1));
       }
     },
 

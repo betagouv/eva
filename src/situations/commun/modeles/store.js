@@ -8,6 +8,19 @@ import {
   ENTRAINEMENT_DEMARRE
 } from 'commun/modeles/situation';
 
+const actionsCommunes = {
+  sauteALaCarte({ state, getters, commit }, idCarte) {
+    for (const parcours of state.niveaux) {
+      commit('demarreParcours', parcours);
+      while (!state.parcoursTermine) {
+        if (getters.estCarteActive(idCarte)) return;
+        commit('carteSuivante');
+      }
+      if (getters.estCarteActive(idCarte)) return;
+    }
+  }
+};
+
 export function creeStore ({ state, mutations, getters, actions } = {}) {
   return createStore({
     state: {
@@ -31,7 +44,10 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       },
       ...getters
     },
-    actions
+    actions: {
+      ...actionsCommunes,
+      ...actions
+    }
   });
 }
 
