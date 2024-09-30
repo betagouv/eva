@@ -263,6 +263,12 @@ describe('Le store de la situation place du marché', function () {
         expect(store.state.questionActive).toEqual(questionNiveau2);
         expect(store.state.termine).toBe(false);
       });
+
+      it("peut sauter à une carte du rattrapage", function () {
+        store.dispatch('sauteALaCarte', 'N1Rrn1');
+        expect(store.state.questionActive).toEqual(questionRattrapage);
+        expect(store.state.termine).toBe(false);
+      });
     });
   });
 
