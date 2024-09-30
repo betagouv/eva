@@ -5,7 +5,6 @@ export const NIVEAU1 = 'niveau1';
 export const NIVEAU2 = 'niveau2';
 export const NIVEAU3 = 'niveau3';
 export const NIVEAUX = [NIVEAU1, NIVEAU2, NIVEAU3];
-export const RATTRAPAGE = ['N1Prn', 'N1Pde', 'N1Pes', 'N1Pon', 'N1Poa', 'N1Pos', 'N2Plp', 'N2Ppe', 'N2Psu', 'N2Pom', 'N2Pon', 'N2Pod', 'N2Put', 'N2Prh', 'N2Ptg', 'N2Ppl'];
 export const numeratieMetriques = {
   'N1Pse': null,
   'N1Prn': 'N1Rrn',
@@ -37,9 +36,18 @@ export function creeStore () {
         'N1Pon': 100,
         'N1Poa': 100,
         'N1Pos': 100,
+        'N2Plp': 100,
+        'N2Ppe': 100,
+        'N2Psu': 100,
+        'N2Pom': 100,
+        'N2Pon': 100,
+        'N2Pod': 100,
+        'N2Put': 100,
+        'N2Prh': 100,
+        'N2Ptg': 100,
+        'N2Ppl': 100,
       },
-      maxScoreNiveauEnCours: 0,
-      niveaux: [...NIVEAUX, ...RATTRAPAGE]
+      maxScoreNiveauEnCours: 0
     },
 
     getters: {
@@ -104,6 +112,10 @@ export function creeStore () {
 
       estCarteActive(state) {
         return (idCarte) => state.questionActive.nom_technique == idCarte;
+      },
+
+      tousLesParcours(state) {
+        return Object.keys(state.configuration).filter(p => p != 'fondSituation');
       }
     },
 

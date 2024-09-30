@@ -10,7 +10,7 @@ import {
 
 const actionsCommunes = {
   sauteALaCarte({ state, getters, commit }, idCarte) {
-    for (const parcours of state.niveaux) {
+    for (const parcours of getters.tousLesParcours) {
       commit('demarreParcours', parcours);
       while (!state.parcoursTermine) {
         if (getters.estCarteActive(idCarte)) return;

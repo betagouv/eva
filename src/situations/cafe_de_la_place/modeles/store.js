@@ -4,7 +4,6 @@ export const ORIENTATION = 'orientation';
 export const PARCOURS_BAS = 'parcoursBas';
 export const PARCOURS_HAUT_1 = 'parcoursHaut1';
 export const PARCOURS_HAUT_2 = 'parcoursHaut2';
-export const NIVEAUX = [ORIENTATION, PARCOURS_HAUT_1, PARCOURS_HAUT_2];
 
 export function creeStore () {
   return creeStoreCommun({
@@ -17,8 +16,7 @@ export function creeStore () {
       termine: false,
       reponses: {},
       scoreOrientation: 0,
-      scoreHaut1: 0,
-      niveaux: NIVEAUX,
+      scoreHaut1: 0
     },
 
     getters: {
@@ -40,6 +38,10 @@ export function creeStore () {
 
       estCarteActive(state) {
         return (idCarte) => state.carteActive.id == idCarte;
+      },
+
+      tousLesParcours(state) {
+        return Object.keys(state.configuration).filter(p => p != 'fondSituation');
       }
     },
 
