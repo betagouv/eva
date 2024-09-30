@@ -250,6 +250,20 @@ describe('Le store de la situation place du marché', function () {
         expect(store.getters.estDernierNiveau).toEqual(true);
       });
     });
+
+    describe("#sauteALaCarte", function () {
+      it("peut sauter à une carte du niveau 1", function () {
+        store.dispatch('sauteALaCarte', 'N1Pse2');
+        expect(store.state.questionActive).toEqual(questionNiveau1Question2);
+        expect(store.state.termine).toBe(false);
+      });
+
+      it("peut sauter à une carte d'un autre niveau", function () {
+        store.dispatch('sauteALaCarte', 'N2Pse1');
+        expect(store.state.questionActive).toEqual(questionNiveau2);
+        expect(store.state.termine).toBe(false);
+      });
+    });
   });
 
   describe('Mutations', function() {
