@@ -48,7 +48,6 @@ export default {
 
   methods: {
     envoiReponse(reponse) {
-      console.log('reponse:', reponse);
       if(reponse.reponse.length === this.question.reponsesNonClassees.length) {
         this.$emit('reponse', reponse );
       }

@@ -5,6 +5,7 @@ export const NIVEAU1 = 'niveau1';
 export const NIVEAU2 = 'niveau2';
 export const NIVEAU3 = 'niveau3';
 export const NIVEAUX = [NIVEAU1, NIVEAU2, NIVEAU3];
+export const RATTRAPAGE = ['N1Prn', 'N1Pde', 'N1Pes', 'N1Pon', 'N1Poa', 'N1Pos', 'N2Plp', 'N2Ppe', 'N2Psu', 'N2Pom', 'N2Pon', 'N2Pod', 'N2Put', 'N2Prh', 'N2Ptg', 'N2Ppl'];
 export const numeratieMetriques = {
   'N1Pse': null,
   'N1Prn': 'N1Rrn',
@@ -38,7 +39,7 @@ export function creeStore () {
         'N1Pos': 100,
       },
       maxScoreNiveauEnCours: 0,
-      niveaux: NIVEAUX
+      niveaux: [...NIVEAUX, ...RATTRAPAGE]
     },
 
     getters: {
