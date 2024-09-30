@@ -251,6 +251,12 @@ describe('Le store de la situation place du marché', function () {
       });
     });
 
+    describe('#tousLesParcours', function() {
+      it('retourne tous les parcours', function() {
+        expect(store.getters.tousLesParcours).toEqual(['niveau1', 'niveau2', 'niveau3', 'N1Prn']);
+      });
+    });
+
     describe("#sauteALaCarte", function () {
       it("peut sauter à une carte du niveau 1", function () {
         store.dispatch('sauteALaCarte', 'N1Pse2');
