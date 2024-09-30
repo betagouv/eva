@@ -115,13 +115,14 @@ export function creeStore () {
       },
 
       tousLesParcours(state) {
-        return Object.keys(state.configuration).filter(p => p != 'fondSituation');
+        return Object.keys(state.configuration);
       }
     },
 
     mutations: {
-      configureActe (state, configuration) {
-        state.configuration = configuration;
+      configureActe (state, { questions, fondSituation }) {
+        state.configuration = questions;
+        state.fondSituation = fondSituation;
         this.commit('demarreParcours', NIVEAU1);
       },
 

@@ -22,28 +22,29 @@ describe('Le store de la situation place du marché', function () {
   const questionRattrapage = { nom_technique: 'N1Rrn1' };
 
   let configuration = {
-    [NIVEAU1]: {
-      series: [
-        { cartes: [questionNiveau1Question1, questionNiveau1Question2]},
-        { cartes: [questionNiveau1Question3]},
-      ],
-    },
-    [NIVEAU2]: {
-      series: [
-        { cartes: [questionNiveau2]},
-      ],
-    },
-    [NIVEAU3]: {
-      series: [
-        { cartes: [questionNiveau3]},
-      ],
-    },
-    ['N1Prn']: {
-      series: [
-        { cartes: [questionRattrapage]},
-      ],
-    }
-  };
+    questions: {
+      [NIVEAU1]: {
+        series: [
+          { cartes: [questionNiveau1Question1, questionNiveau1Question2]},
+          { cartes: [questionNiveau1Question3]},
+        ],
+      },
+      [NIVEAU2]: {
+        series: [
+          { cartes: [questionNiveau2]},
+        ],
+      },
+      [NIVEAU3]: {
+        series: [
+          { cartes: [questionNiveau3]},
+        ],
+      },
+      ['N1Prn']: {
+        series: [
+          { cartes: [questionRattrapage]},
+        ],
+      }
+    }};
 
   beforeEach(function() {
     store = creeStore();
@@ -291,7 +292,7 @@ describe('Le store de la situation place du marché', function () {
       describe("enregistre le score d'un niveau", function() {
         beforeEach(function() {
           store.state.parcours = NIVEAU1;
-          store.state.series = configuration[NIVEAU1].series;
+          store.state.series = configuration.questions[NIVEAU1].series;
           store.state.indexSerie = 0;
           store.state.questionActive = questionNiveau1Question1;
         });
