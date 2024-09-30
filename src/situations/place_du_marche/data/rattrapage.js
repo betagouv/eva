@@ -2,6 +2,11 @@ import personnage from 'accueil/assets/personnage.png';
 
 // RATTRAPAGE NUMERATIE NIVEAU 1
 
+const N1RrnSousConsigne = {
+  id: 'N1Rrn-sousConsigne',
+  nom_technique: 'N1Rrn-sous-consigne',
+};
+
 const N1Rrn1 = {
   id: 'N1Rrn1',
   nom_technique: 'N1Rrn1',
@@ -237,6 +242,7 @@ const N2Rpl2 = {
 
 const N1Rrn = {
   series: [
+    { cartes: [ N1RrnSousConsigne ]},
     { cartes: [ N1Rrn1, N1Rrn2 ] },
   ]
 };
