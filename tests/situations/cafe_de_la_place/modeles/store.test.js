@@ -21,35 +21,37 @@ describe('Le store de la situation café de la place', function () {
   const question1Haut2 = { id: 'question1Haut2'};
 
   const configuration = {
-    [ORIENTATION]: {
-      series: [
-        {
-          cartes: [premiereSousConsigne, deuxiemeSousConsigne],
-          texte: 'un texte [cliquable]()'
-        },
-        {
-          cartes: [premiereQuestion, question2],
-          texte: 'un texte [cliquable]()',
-          texteNonCliquable: true
-        },
-        { cartes: [sousConsigne3] },
-        { cartes: [question3, question4] }
-      ]
-    },
-    [PARCOURS_BAS]: {
-      series: [
-        { cartes: [question1Bas, question2Bas] }
-      ]
-    },
-    [PARCOURS_HAUT_1]: {
-      series: [
-        { cartes: [question1Haut] }
-      ]
-    },
-    [PARCOURS_HAUT_2]: {
-      series: [
-        { cartes: [question1Haut2] }
-      ]
+    questions: {
+      [ORIENTATION]: {
+        series: [
+          {
+            cartes: [premiereSousConsigne, deuxiemeSousConsigne],
+            texte: 'un texte [cliquable]()'
+          },
+          {
+            cartes: [premiereQuestion, question2],
+            texte: 'un texte [cliquable]()',
+            texteNonCliquable: true
+          },
+          { cartes: [sousConsigne3] },
+          { cartes: [question3, question4] }
+        ]
+      },
+      [PARCOURS_BAS]: {
+        series: [
+          { cartes: [question1Bas, question2Bas] }
+        ]
+      },
+      [PARCOURS_HAUT_1]: {
+        series: [
+          { cartes: [question1Haut] }
+        ]
+      },
+      [PARCOURS_HAUT_2]: {
+        series: [
+          { cartes: [question1Haut2] }
+        ]
+      }
     }
   };
 

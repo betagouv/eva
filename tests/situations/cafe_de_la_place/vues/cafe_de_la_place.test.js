@@ -45,14 +45,17 @@ describe('La vue café de la place', function () {
 
   describe('quand elle est configurée', function () {
     beforeEach(function() {
-      store.commit('configureActe', {
-        [ORIENTATION]: {
-          series: [
-            { cartes: [sousConsigne] },
-            { cartes: [question] }
-          ]
+      const configuration = {
+        questions: {
+          [ORIENTATION]: {
+            series: [
+              { cartes: [sousConsigne] },
+              { cartes: [question] }
+            ]
+          }
         }
-      });
+      };
+      store.commit('configureActe', configuration);
     });
 
     it('Affiche un défi', function () {
