@@ -1,5 +1,5 @@
 <template>
-    <div v-html="svgDecode" class="zone-cliquable" @click="selectionneReponse" />
+    <div v-html="svgDecode" class="zone-cliquable" @click="cliqueDansImage" />
 </template>
 
 <script>
@@ -16,46 +16,81 @@ export default {
 
   data() {
     return {
-      bonneReponse: false,
+      reponsesSelectionnees: [],
+      selectionEnCours: null
     };
   },
 
-  methods: {
-    selectionneReponse(event) {
-      if (event.target.tagName !== 'svg') {
-        this.deselectionneAncienneReponse();
-        this.selectionneNouvelleReponse(event.target);
-      }
-    },
-
-    deselectionneAncienneReponse() {
-      const reponseDejaSelectionnee = document.querySelector('.reponse--selectionnee');
-      if (reponseDejaSelectionnee) {
-        reponseDejaSelectionnee.classList.remove('reponse--selectionnee');
-      }
-    },
-
-    selectionneNouvelleReponse(reponse) {
-      reponse.classList.add('reponse--selectionnee');
-      this.bonneReponse = reponse.classList.contains('bonne-reponse');
-      this.envoiReponse(this.bonneReponse);
-    },
-
-    envoiReponse(succes) {
-      const reponse = reponse;
-      const score = succes ? this.question.score : 0;
-      const scoreMax = this.question.score;
-      this.$emit('reponse', { reponse, succes, score, scoreMax } );
-    },
-
-  },
   computed: {
     svgDecode() {
-      if (!this.question.zone_cliquable) {
-        return '';
-      }
-      return atob(this.question.zone_cliquable.split(',')[1]);
+      return decodeBase64FromDataUrl(this.question.zone_cliquable);
+    },
+
+    nombreBonnesReponses() {
+      const svgDocument = parseSvgFromBase64Url(this.question.zone_cliquable);
+      return svgDocument.querySelectorAll(".bonne-reponse").length;
+    },
+
+    selectionMultiple() {
+      return this.nombreBonnesReponses > 1;
     }
+  },
+
+  methods: {
+    cliqueDansImage(event) {
+      if (event.target.tagName === 'svg') return;
+      this.selectionEnCours = event.target;
+      this.selectionMultiple ? this.gereSelectionMultiple() : this.gereSelectionSimple();
+    },
+
+    gereSelectionSimple() {
+      const ancienneSelection = document.querySelector('.reponse--selectionnee');
+      if (ancienneSelection) {
+        this.deselectionne(ancienneSelection);
+      }
+      this.selectionne();
+    },
+
+    gereSelectionMultiple() {
+      const estDejaSelectionnee = this.selectionEnCours.classList.contains('reponse--selectionnee');
+      if (!estDejaSelectionnee && this.reponsesSelectionnees.length < this.nombreBonnesReponses) {
+        this.selectionne();
+      } else if (estDejaSelectionnee) {
+        this.deselectionne(this.selectionEnCours);
+      }
+    },
+
+    selectionne() {
+      this.reponsesSelectionnees = [...this.reponsesSelectionnees, this.selectionEnCours];
+      this.selectionEnCours.classList.add('reponse--selectionnee');
+      this.envoiReponse();
+    },
+
+    deselectionne(selection) {
+      this.reponsesSelectionnees = this.reponsesSelectionnees.filter(reponse => reponse !== selection);
+      selection.classList.remove('reponse--selectionnee');
+    },
+
+    envoiReponse() {
+      const score = this.calculeScore();
+      const scoreMax = this.question.score;
+      const succes = score === scoreMax;
+      this.$emit('reponse', { reponse: '', succes, score, scoreMax } );
+    },
+
+    calculeScore() {
+      const scoreParReponse = this.selectionMultiple ? (this.question.score / this.nombreBonnesReponses) : this.question.score;
+
+      let score = 0;
+      this.reponsesSelectionnees.forEach(reponse => {
+        if (reponse.classList.contains('bonne-reponse')) {
+          score += scoreParReponse;
+        }
+      });
+
+      return score;
+    }
+
   }
 };
 </script>
