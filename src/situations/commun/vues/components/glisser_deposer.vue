@@ -1,6 +1,6 @@
 <template>
   <div class="glisser-deposer">
-    <div v-for="(zone, index) in zonesDepot"
+    <div v-for="(zone, index) in zoneDepot"
       :key="index"
       class="container-arrivee" :style="styleZoneDepot(zone)"
     >
@@ -81,7 +81,7 @@ export default {
       default: true
     },
 
-    zonesDepot: {
+    zoneDepot: {
       type: Array,
       default() {
         return [{ left: 0 }];
@@ -103,8 +103,8 @@ export default {
   mounted() {
     this.attribueReponsesNonClassees();
 
-    if (this.zonesDepot.length > 1) {
-      this.zonesDeClassement = Array.from({ length: this.zonesDepot.length }, () => []);
+    if (this.zoneDepot.length > 1) {
+      this.zonesDeClassement = Array.from({ length: this.zoneDepot.length }, () => []);
     }
   },
 
