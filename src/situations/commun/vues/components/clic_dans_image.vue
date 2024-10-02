@@ -4,6 +4,7 @@
 
 <script>
 import 'commun/styles/clic_dans_image.scss';
+import { decodeBase64FromDataUrl, parseSvgFromBase64Url } from 'commun/helpers/decoders';
 
 export default {
   props: {
