@@ -13,7 +13,7 @@ describe('Le composant Glisser Deposer', function () {
     config.global.renderStubDefaultSlot = false;
   });
 
-  function genereVue(reponsesNonClassees, aideDepot = true, zonesDepot = null) {
+  function genereVue(reponsesNonClassees, aideDepot = true, zoneDepot = null) {
     wrapper = mount(glisserDeposer, {
       global: {
         mocks: {
@@ -26,7 +26,7 @@ describe('Le composant Glisser Deposer', function () {
           score: 8
         },
         aideDepot: aideDepot,
-        ...(zonesDepot?.length && { zonesDepot })
+        ...(zoneDepot?.length && { zoneDepot })
       }
     });
   }

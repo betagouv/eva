@@ -54,8 +54,8 @@ export default {
     },
 
     recupereZonesDeDepot() {
-      if (!this.question.zones_depot_url) return;
-      const svgContent = atob(this.question.zones_depot_url.split(',')[1]);
+      if (!this.question.zone_depot_url) return;
+      const svgContent = atob(this.question.zone_depot_url.split(',')[1]);
       const parser = new DOMParser();
       const svgDoc = parser.parseFromString(svgContent, 'image/svg+xml');
       return svgDoc.querySelectorAll('.zone-depot');
