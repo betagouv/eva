@@ -190,12 +190,14 @@ export function creeStore () {
 
 
       enregistreReponse(state, reponse) {
-        const { question, succes } = reponse;
+        const { question, succes, score } = reponse;
         const { questionActive, pourcentageDeReussiteCompetence, reponses } = state;
         const { rattrapageEnCours, estCompetenceARattraper, codeCompetenceEnCours, maxScoreSerieEnCours } = this.getters;
 
-        reponses[question] = reponse;
-        reponses[question].score = succes ? questionActive.score : 0;
+        reponses[question] = {
+          ...reponse,
+          score: score ?? (succes ? questionActive.score : 0)
+        };
 
         if (succes && !rattrapageEnCours) {
           state.pourcentageDeReussiteGlobal += calculPourcentage(questionActive.score, maxScoreSerieEnCours);

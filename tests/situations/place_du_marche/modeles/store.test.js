@@ -281,15 +281,40 @@ describe('Le store de la situation place du marché', function () {
 
   describe('Mutations', function() {
     describe("#enregistreReponse", function() {
-      it('peut enregistrer une réponse et la restituer', function() {
-        store.state.questionActive = questionNiveau1Question1;
-        let laReponse = { question: 'id1', reponse: 'ma reponse' };
-        store.commit('enregistreReponse', laReponse);
-        laReponse = {...laReponse, score: 0};
-        expect(store.getters.reponse('id1')).toEqual(laReponse);
+      beforeEach(function() {
+        store.state.questionActive = questionNiveau1Question2;
       });
 
-      describe("enregistre le score d'un niveau", function() {
+      it('restitue une réponse avec score, question id et succes', function() {
+        store.commit('enregistreReponse', { question: 'id1', reponse: 'ma reponse', succes: true });
+        const reponse = {"question": "id1", "reponse": "ma reponse", "score": 1, "succes": true};
+        expect(store.getters.reponse('id1')).toEqual(reponse);
+      });
+
+      describe("quand le succes est false", function() {
+        it("envoie un score de 0 si la réponse n'a pas de score", function() {
+          store.commit('enregistreReponse', { question: 'id1', succes: false });
+          expect(store.getters.reponse('id1').score).toEqual(0);
+        });
+
+        it("envoie le score de la réponse", function() {
+          store.commit('enregistreReponse', { question: 'id1', succes: false, score: 0.5 });
+
+          expect(store.state.questionActive.score).toEqual(1);
+          expect(store.getters.reponse('id1').score).toEqual(0.5);
+        });
+      });
+
+      describe("quand le succes est true", function() {
+        it("envoie le score de la question", function() {
+          store.commit('enregistreReponse', { question: 'id1', succes: true });
+
+          expect(store.state.questionActive.score).toEqual(1);
+          expect(store.getters.reponse('id1').score).toEqual(1);
+        });
+      });
+
+      describe("mise à jour du poucentage de réussite d'un niveau", function() {
         beforeEach(function() {
           store.state.parcours = NIVEAU1;
           store.state.series = configuration.questions[NIVEAU1].series;
