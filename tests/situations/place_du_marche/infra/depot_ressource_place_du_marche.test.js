@@ -44,8 +44,8 @@ describe('Le dépot ressource de la situation Place du marché', function () {
 
 
     it("definie l'extension vue pour le type glisser déposer", function() {
-      const questions = mockQuestions({ id: 1, nom_technique: 'N1Prn1', type: 'glisser-deposer-billets' });
-      expect(questions[0].extensionVue).toEqual('glisser-deposer-billets' );
+      const questions = mockQuestions({ id: 1, nom_technique: 'N1Prn1', type: 'glisser-deposer' });
+      expect(questions[0].extensionVue).toEqual('glisser-deposer' );
     });
   });
 });

@@ -1,5 +1,3 @@
-import personnage from 'accueil/assets/personnage.png';
-
 // NUMERATIE NIVEAU 1
 
 const N1Pse1 = {
@@ -251,9 +249,6 @@ const N2Prh1 = {
   id: 'N2Prh1',
   nom_technique: 'N2Prh1',
   metacompetence: 'renseigner_horaires',
-  extensionVue: 'glisser-deposer-depot-multiple',
-  reponsesNonClassees: [{illustration: personnage}],
-  zone_depot_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4OCIgaGVpZ2h0PSI1NjYiIHZpZXdCb3g9IjAgMCAxMDg4IDU2NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3QgYm9ubmUtcmVwb25zZSIgeD0iMjQwIiB5PSI3NCIgd2lkdGg9IjI1MSIgaGVpZ2h0PSIxNjEiIGZpbGw9IiMyMDAwOUYiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8cmVjdCBjbGFzcz0iem9uZS1kZXBvdCIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K",
   score: 1
 };
 
@@ -261,9 +256,6 @@ const N2Prh2 = {
   id: 'N2Prh2',
   nom_technique: 'N2Prh2',
   metacompetence: 'renseigner_horaires',
-  extensionVue: 'glisser-deposer-depot-multiple',
-  reponsesNonClassees: [{illustration: personnage}],
-  zone_depot_url: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4OCIgaGVpZ2h0PSI1NjYiIHZpZXdCb3g9IjAgMCAxMDg4IDU2NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3QgYm9ubmUtcmVwb25zZSIgeD0iMjQwIiB5PSI3NCIgd2lkdGg9IjI1MSIgaGVpZ2h0PSIxNjEiIGZpbGw9IiMyMDAwOUYiIGZpbGwtb3BhY2l0eT0iMC4yNSIvPgo8cmVjdCBjbGFzcz0iem9uZS1kZXBvdCIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K",
   score: 1
 };
 

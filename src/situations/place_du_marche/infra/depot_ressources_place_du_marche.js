@@ -31,7 +31,7 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
           delete choix.type_choix;
         });
       }
-      if(question.type === 'glisser-deposer-billets' || question.type === 'clic-dans-image') {
+      if(question.type === 'clic-dans-image' || question.type === 'glisser-deposer') {
         question.extensionVue = question.type;
         delete question.type;
       }
