@@ -67,8 +67,7 @@ import EmailHPfbATrous from 'cafe_de_la_place/vues/components/email_HPfb_a_trous
 import PuzzleJournal from 'cafe_de_la_place/vues/components/puzzle_journal';
 import Graphique from 'cafe_de_la_place/vues/components/graphique';
 
-import GlisserDeposerBillets from 'place_du_marche/vues/components/glisser_deposer_billets';
-import GlisserDeposerDepotMultiple from 'place_du_marche/vues/components/glisser_deposer_depot_multiple';
+import GlisserDeposer from 'place_du_marche/vues/components/glisser_deposer';
 
 import ModeEmploi from 'plan_de_la_ville/vues/components/mode_emploi';
 import ClicMaisonBleue from 'plan_de_la_ville/vues/components/clic_maison_bleue';
@@ -79,9 +78,8 @@ export default {
   components: { ChampSaisie, Jauge, Qcm,
     Question, QuestionEntete, RedactionNote, VideoQuestion,
     LectureMessage, EcranTelephoneDeverrouillage,
-    ClicSurMots, ListeCoursesATrous, EmailHPfbATrous, PuzzleJournal, GlisserDeposerBillets, Graphique,
+    ClicSurMots, ListeCoursesATrous, EmailHPfbATrous, PuzzleJournal, GlisserDeposer, Graphique,
     ModeEmploi, ClicMaisonBleue, DragAndDrop, DeplacementDroiteMaisonVerte,
-    GlisserDeposerDepotMultiple,
     ClicDansImage
   },
 

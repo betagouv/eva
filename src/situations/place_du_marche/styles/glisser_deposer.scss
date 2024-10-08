@@ -1,10 +1,10 @@
 @import './variables.scss';
 @import 'commun/styles/variables.scss';
 
-.glisser-deposer-billets {
+.glisser-deposer--default {
   .glisser-deposer__item {
-    width: $largeur_billet;
-    min-width: $largeur_billet;
+    width: $largeur_item;
+    min-width: $largeur_item;
     height: 60px;
     z-index: 1;
   }
@@ -52,3 +52,4 @@
     width: 100%;
   }
 }
+
