@@ -3,7 +3,8 @@
     :question="question"
     :zones-depot="zonesDepotPositions"
     :aide-depot="!this.question.zone_depot_url"
-    @deplace-item="envoiReponse"
+    @ordonne-item="envoiReponsesOrdonnees"
+    @deplace-item="envoiReponsesPlacees"
     >
     <template #item="{ item }">
       <img :src="item.illustration"/>
@@ -26,13 +27,16 @@ export default {
     },
   },
 
-  data: () => ({
-    scoreTotal: 0,
-  }),
+  data() {
+    return {
+      reponsesPlacees: [],
+      nombreReponsesAPlacer: this.question.reponsesNonClassees.length
+    };
+  },
 
   computed: {
     zonesDepotPositions() {
-      if (this.zoneDeDepots.length === 0) return;
+      if (!this.zoneDeDepots.length) return;
 
       return Array.from(this.zoneDeDepots).map(zone => {
         const nomTechnique = zone.getAttribute('class').match(/zone-depot--(\w+)/)[1];
@@ -52,26 +56,47 @@ export default {
       return svgDoc.querySelectorAll('.zone-depot');
     },
 
-    zoneDepotMultiple() {
-      return this.zoneDeDepots.length > 1;
+    sontToutesPlacees() {
+      return this.reponsesPlacees.length === this.nombreReponsesAPlacer;
     }
   },
 
   methods: {
-    envoiReponse(reponse) {
-      if(this.zoneDepotMultiple) {
-        this.calculeScore(reponse);
-        reponse.score = this.scoreTotal;
-      }
-      if(reponse.reponse.length === this.question.reponsesNonClassees.length) {
+    envoiReponsesOrdonnees(reponse) {
+      this.reponsesPlacees = reponse.reponse;
+      if (this.sontToutesPlacees) {
         reponse.scoreMax = this.question.score;
-        this.$emit('reponse', reponse );
+        this.$emit('reponse', reponse);
       }
     },
 
-    calculeScore(reponse) {
-      const scoreParReponse = reponse.scoreMax / this.question.reponsesNonClassees.length;
-      this.scoreTotal += reponse.succes ? scoreParReponse : 0;
+    envoiReponsesPlacees(reponse) {
+      this.ajouteNouvelleReponse(reponse);
+
+      if (this.sontToutesPlacees) {
+        const score = this.calculeScore();
+        const reponseFinale = {
+          score,
+          scoreMax: this.question.score,
+          succes: score === this.question.score,
+          reponse: this.reponsesPlacees.map(reponse => reponse.reponse)
+        };
+        this.$emit('reponse', reponseFinale);
+      }
+    },
+
+    ajouteNouvelleReponse(reponse) {
+      this.reponsesPlacees = this.reponsesPlacees
+        .filter(r => r.reponse !== reponse.reponse)
+        .concat(reponse);
+    },
+
+    calculeScore() {
+      const scoreParReponse = this.question.score / this.nombreReponsesAPlacer;
+
+      return this.reponsesPlacees.reduce((total, reponse) => {
+        return total + (reponse.succes ? scoreParReponse : 0);
+      }, 0);
     }
   }
 };

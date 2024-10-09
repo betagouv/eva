@@ -99,7 +99,8 @@ export default {
       const nomTechniqueReponse = this.extraitNomTechnique(event.item, 'item--');
       const nomTechniqueZone = this.extraitNomTechnique(event.to, 'zone-depot--');
       const succes = nomTechniqueReponse === nomTechniqueZone;
-      this.envoiReponse(succes);
+      this.afficheZoneDepotDepart = this.reponsesNonClassees.length > 0;
+      this.$emit('deplace-item', { reponse: nomTechniqueReponse, succes });
     },
 
     extraitNomTechnique(element, prefix) {
@@ -112,7 +113,7 @@ export default {
       const reponse = reponsesClassees ? reponsesClassees.map(reponse => reponse.position) : [];
       const finalSucces = succes !== undefined ? succes : this.succes(reponse);
       this.afficheZoneDepotDepart = this.reponsesNonClassees.length > 0;
-      this.$emit('deplace-item', { reponse, succes: finalSucces });
+      this.$emit('ordonne-item', { reponse, succes: finalSucces });
     },
 
     succes(reponse) {
