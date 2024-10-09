@@ -1,5 +1,5 @@
 <template>
-  <div :class="`glisser-deposer glisser-deposer--${statut}`">
+  <div class="glisser-deposer">
     <div v-for="(zone, index) in zonesDepot" :key="index" class="container-arrivee" :style="positionZoneDepot(zone)">
       <draggable
         :class="`zone-depot zone-depot--${zone.nomTechnique}`"
@@ -74,8 +74,7 @@ export default {
       reponsesNonClassees: [],
       elementGlisse: false,
       afficheZoneDepotDepart: true,
-      zoneDepotMultiple: this.zonesDepot.length > 1,
-      statut: this.question.zone_depot_url ? 'personnalise' : 'default'
+      zoneDepotMultiple: this.zonesDepot.length > 1
     };
   },
 
