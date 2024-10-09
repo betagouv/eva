@@ -150,4 +150,15 @@ describe('Le composant Clic Dans Image', function () {
       });
     });
   });
+
+  describe('quand il y a une image au clic', function () {
+    beforeEach(function () {
+      question.image_au_clic = 'data:image/svg+xml;base64,PHN2Zz4KPGNpcmNsZSBjbGFzcz0iYm9uZS1yZXBlc2Npb25uZWUiPjwvY2lyY2xlPjwvc3ZnPg==';
+      wrapper = composant(question);
+    });
+
+    it('affiche le curseur', function () {
+      expect(wrapper.find('.curseur').exists()).toBe(true);
+    });
+  });
 });

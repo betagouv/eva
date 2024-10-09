@@ -1,6 +1,9 @@
 <template>
-    <div v-html="svgDecode" class="zone-cliquable" @click="cliqueDansImage" />
-</template>
+  <div class="zone-cliquable">
+    <div v-html="reponses" class="reponses" @click="cliqueDansImage"/>
+    <div v-if="curseur" v-html="curseur" class="curseur"/>
+  </div>
+</template>class="zone-cliquable"
 
 <script>
 import 'commun/styles/clic_dans_image.scss';
@@ -22,8 +25,12 @@ export default {
   },
 
   computed: {
-    svgDecode() {
+    reponses() {
       return decodeBase64FromDataUrl(this.question.zone_cliquable);
+    },
+
+    curseur() {
+      return decodeBase64FromDataUrl(this.question.image_au_clic);
     },
 
     nombreBonnesReponses() {
@@ -38,6 +45,7 @@ export default {
 
   methods: {
     cliqueDansImage(event) {
+      if(this.question.image_au_clic) this.placeCurseur(event);
       if (event.target.tagName === 'svg') return;
       this.selectionEnCours = event.target;
       this.selectionMultiple ? this.gereSelectionMultiple() : this.gereSelectionSimple();
@@ -89,8 +97,17 @@ export default {
       });
 
       return score;
-    }
+    },
 
+    placeCurseur(event) {
+      const sizeCurseur = 50;
+      const zoneCliquable = document.querySelector('.zone-cliquable');
+      const zoneCliquableRect = zoneCliquable.getBoundingClientRect();
+      const curseur = document.querySelector('.curseur');
+      curseur.style.display = 'block';
+      curseur.style.left = `${event.clientX - zoneCliquableRect.left - (sizeCurseur / 2)}px`;
+      curseur.style.top = `${event.clientY - zoneCliquableRect.top - sizeCurseur}px`;
+    }
   }
 };
 </script>
