@@ -1,6 +1,7 @@
 <template>
   <glisser-deposer
     :question="question"
+    :class="`glisser-deposer--${statut}`"
     :zones-depot="zonesDepotPositions"
     :aide-depot="!this.question.zone_depot_url"
     @ordonne-item="envoiReponsesOrdonnees"
@@ -30,7 +31,8 @@ export default {
   data() {
     return {
       reponsesPlacees: [],
-      nombreReponsesAPlacer: this.question.reponsesNonClassees.length
+      nombreReponsesAPlacer: this.question.reponsesNonClassees.length,
+      statut: this.question.zone_depot_url ? 'personnalise' : 'default'
     };
   },
 
