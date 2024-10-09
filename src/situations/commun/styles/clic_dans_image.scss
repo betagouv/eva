@@ -1,28 +1,45 @@
-.zone-cliquable {
+.zone-cliquable, .reponses {
   width: 1008px;
   height: 566px;
-  svg {
+}
+
+.zone-cliquable {
+  .curseur {
+    display: none;
     position: absolute;
     top: 0;
-    left: 0;
+    width: 50px;
+    height: 50px;
+  }
+
+  svg {
+    position: absolute;
     height: 100%;
     width: 100%;
   }
 
-  svg > * {
-    cursor: pointer;
-  }
+  .reponses {
+    svg {
+      top: 0;
+      left: 0;
+    }
 
-  svg > *:hover {
-    fill: white;
-    fill-opacity: 0.25;
-    stroke-opacity: 0.8;
-    stroke: white;
-    stroke-width: 3px;
-  }
+    svg > * {
+      cursor: pointer;
+    }
 
-  .reponse--selectionnee {
-    stroke: white;
-    stroke-width: 3px;
+    svg > *:hover {
+      fill: white;
+      fill-opacity: 0.25;
+      stroke-opacity: 0.8;
+      stroke: white;
+      stroke-width: 3px;
+    }
+
+    .reponse--selectionnee {
+      stroke: white;
+      stroke-width: 3px;
+      position: relative;
+    }
   }
 }
