@@ -132,9 +132,15 @@ describe('Le composant champ de saisie', function () {
       expect(vue.find('.conteneur-traits-saisie').exists()).toBe(true);
     });
 
-    it("limite la taille de l'input à 4", function () {
+    it("pas de limite de taille par défaut", function () {
       const input = vue.find('input[type=text]');
-      expect(input.element.getAttribute('maxlength')).toEqual('4');
+      expect(input.element.getAttribute('maxlength')).toEqual(null);
+    });
+
+    it("limite la taille de l'input lorsque la question a une max length", function () {
+      vue = composant({ question: { sous_type: 'numerique', max_length: 5 } });
+      const input = vue.find('input[type=text]');
+      expect(input.element.getAttribute('maxlength')).toEqual('5');
     });
 
     describe("l'espacement des chiffres peut-être configuré", function () {

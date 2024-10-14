@@ -59,7 +59,7 @@ export default {
       return this.question.sous_type === 'numerique';
     },
     maxLength () {
-      return this.estNumerique ? 4 : 15;
+      return this.question.max_length ?? (this.estNumerique ? null : 15);
     },
     afficheLectureQuestion () {
       return this.$depotRessources.existeMessageAudio(this.question.nom_technique);
