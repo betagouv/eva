@@ -103,7 +103,7 @@ export default {
     },
 
     extraitNomTechnique(element, prefix) {
-      const match = element.getAttribute('class').match(new RegExp(`${prefix}(\\w+)`));
+      const match = element.getAttribute('class').match(new RegExp(`${prefix}([\\w-]+)`));
       return match ? match[1] : null;
     },
 
