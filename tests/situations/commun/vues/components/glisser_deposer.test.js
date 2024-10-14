@@ -210,4 +210,12 @@ describe('Le composant Glisser Deposer', function () {
       expect(wrapper.emitted('deplace-item')[0][0].succes).toEqual(false);
     });
   });
+
+  describe("extraitNomTechnique", function () {
+    it('extrait le nom technique de la réponse', function () {
+      genereVue([]);
+      const mockElement = Object.assign(document.createElement('div'), { className: 'glisser-deposer__item item--horloge-9h30' });
+      expect(wrapper.vm.extraitNomTechnique(mockElement, 'item--')).toEqual('horloge-9h30');
+    });
+  });
 });
