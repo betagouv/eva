@@ -99,7 +99,6 @@ export default {
       const nomTechniqueReponse = this.extraitNomTechnique(event.item, 'item--');
       const nomTechniqueZone = this.extraitNomTechnique(event.to, 'zone-depot--');
       const succes = nomTechniqueReponse === nomTechniqueZone;
-      this.afficheZoneDepotDepart = this.reponsesNonClassees.length > 0;
       this.$emit('deplace-item', { reponse: nomTechniqueReponse, succes });
     },
 
