@@ -9,6 +9,7 @@
         draggable=".glisser-deposer__item"
         @start="elementGlisse = true"
         @end="deplaceElement($event)"
+        @add="remplaceElement($event, index)"
         :sort="true"
       >
         <template #item="{ element }">
@@ -134,6 +135,14 @@ export default {
         width: `${zone.width}px`,
         height: `${zone.height}px`
       };
+    },
+
+    remplaceElement(event, indexZone) {
+      if (this.zoneDepotMultiple && this.zonesDeClassement[indexZone].length > 1) {
+        const elementAremplacer = this.zonesDeClassement[indexZone].find((item, i) => i !== event.newIndex);
+        this.zonesDeClassement[indexZone] = this.zonesDeClassement[indexZone].filter((item, i) => i === event.newIndex);
+        this.reponsesNonClassees = [...this.reponsesNonClassees, elementAremplacer];
+      }
     }
   }
 };

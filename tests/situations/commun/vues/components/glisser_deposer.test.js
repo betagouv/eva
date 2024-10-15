@@ -173,6 +173,15 @@ describe('Le composant Glisser Deposer', function () {
         expect(wrapper.vm.succes([1, 2, 3, 4, 5, 7, 6])).toBe(false);
       });
     });
+
+    it("ne remplace pas l'élément déjà présent à l'ajout", function() {
+      genereVue([1, 2, 3]);
+      wrapper.vm.reponsesNonClassees = [1];
+      wrapper.vm.zonesDeClassement = [[2, 3]];
+      wrapper.findComponent('.container-arrivee .zone-depot').vm.$emit('add', { newIndex: 0 });
+      expect(wrapper.vm.reponsesNonClassees).toEqual([1]);
+      expect(wrapper.vm.zonesDeClassement[0]).toEqual([2, 3]);
+    });
   });
 
   describe("Avec des zones de dépôt multiples", function() {
@@ -208,6 +217,16 @@ describe('Le composant Glisser Deposer', function () {
       wrapper.vm.envoiReponseMultiple(mockEvent);
       expect(wrapper.emitted('deplace-item').length).toEqual(1);
       expect(wrapper.emitted('deplace-item')[0][0].succes).toEqual(false);
+    });
+
+    it("remplace l'élèment déjà présent à l'ajout", function() {
+      genereVue([1, 2, 3]);
+      wrapper.vm.zoneDepotMultiple = true;
+      wrapper.vm.reponsesNonClassees = [1];
+      wrapper.vm.zonesDeClassement = [[2, 3]];
+      wrapper.findComponent('.container-arrivee .zone-depot').vm.$emit('add', { newIndex: 1 });
+      expect(wrapper.vm.reponsesNonClassees).toEqual([1, 2]);
+      expect(wrapper.vm.zonesDeClassement[0]).toEqual([3]);
     });
   });
 
