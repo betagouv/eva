@@ -31,6 +31,19 @@ describe('Le composant Glisser Deposer', function () {
     });
   }
 
+  function mockDragEvent(itemClass, zoneClass) {
+    const mockItem = document.createElement('div');
+    mockItem.setAttribute('class', itemClass);
+
+    const mockZone = document.createElement('div');
+    mockZone.setAttribute('class', zoneClass);
+
+    return {
+      item: mockItem,
+      to: mockZone
+    };
+  }
+
   describe("Affichage de l'aide dépot", function () {
     describe("quand il reste des élèments à placer", function () {
       beforeEach(function () {
@@ -90,12 +103,26 @@ describe('Le composant Glisser Deposer', function () {
       beforeEach(function () {
         genereVue([2, 1]);
         wrapper.vm.reponsesNonClassees = [];
-        wrapper.vm.envoiReponse();
       });
 
-      it("n'affiche plus la zone de dépot de départ", function () {
-        expect(wrapper.vm.afficheZoneDepotDepart).toEqual(false);
-        expect(wrapper.find('.container-depart .zone-depot').exists()).toBe(false);
+      it("n'affiche plus la zone de dépot de départ par défaut", function (done) {
+        wrapper.vm.envoiReponse();
+
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.vm.afficheZoneDepotDepart).toEqual(false);
+          expect(wrapper.find('.container-depart .zone-depot').exists()).toBe(false);
+          done();
+        });
+      });
+
+      it("continue d'afficher la zone de dépot de départ quand le depot est multiple", function (done) {
+        const mockEvent = mockDragEvent('1', '2');
+        wrapper.vm.envoiReponseMultiple(mockEvent);
+        wrapper.vm.$nextTick(() => {
+          expect(wrapper.vm.afficheZoneDepotDepart).toEqual(true);
+          expect(wrapper.find('.container-depart .zone-depot').exists()).toBe(true);
+          done();
+        });
       });
     });
 
@@ -185,19 +212,6 @@ describe('Le composant Glisser Deposer', function () {
   });
 
   describe("Avec des zones de dépôt multiples", function() {
-    function mockDragEvent(itemClass, zoneClass) {
-      const mockItem = document.createElement('div');
-      mockItem.setAttribute('class', itemClass);
-
-      const mockZone = document.createElement('div');
-      mockZone.setAttribute('class', zoneClass);
-
-      return {
-        item: mockItem,
-        to: mockZone
-      };
-    }
-
     it('envoie le succes et la réponse correcte au parent', function () {
       genereVue([]);
       const mockEvent = mockDragEvent('item--reponse1', 'zone-depot--reponse1');
