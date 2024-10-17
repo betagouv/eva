@@ -36,6 +36,10 @@ export default {
     };
   },
 
+  mouted() {
+    this.calculeLargeurContainerDepart();
+  },
+
   computed: {
     zonesDepotPositions() {
       if (!this.zoneDeDepots.length) return;
@@ -99,6 +103,14 @@ export default {
       return this.reponsesPlacees.reduce((total, reponse) => {
         return total + (reponse.succes ? scoreParReponse : 0);
       }, 0);
+    },
+
+    calculeLargeurContainerDepart() {
+      const containerDepart = document.querySelector('.container-depart .zone-depot');
+      if (containerDepart) {
+        const itemCount = this.reponsesNonClassees.length;
+        containerDepart.style.width = `calc(var(--largeur-item-glisse) * ${itemCount} + var(--gap-depot) * (${itemCount - 1}) + var(--padding-depot) * 2)`;
+      }
     }
   }
 };

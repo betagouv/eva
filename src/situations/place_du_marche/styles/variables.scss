@@ -1,1 +1,9 @@
-$largeur_item: 124px;
+$largeur-item-glisse: 124px;
+$gap-depot: 14px;
+$padding-depot: 24px;
+
+:root {
+  --largeur-item-glisse: #{$largeur-item-glisse};
+  --gap-depot: #{$gap-depot};
+  --padding-depot: #{$padding-depot};
+}

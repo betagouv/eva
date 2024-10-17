@@ -3,8 +3,8 @@
 
 .glisser-deposer--default {
   .glisser-deposer__item {
-    width: $largeur_item;
-    min-width: $largeur_item;
+    width: $largeur-item-glisse;
+    min-width: $largeur-item-glisse;
     height: 60px;
     z-index: 1;
   }
@@ -46,7 +46,7 @@
   }
   .zone-depot {
     display: flex;
-    gap: 14px;
+    gap: $gap-depot;
     flex-wrap: wrap;
     align-items: flex-start;
     width: 100%;
@@ -55,8 +55,8 @@
 
 .glisser-deposer--personnalise {
   .glisser-deposer__item {
-    width: $largeur_item;
-    min-width: $largeur_item;
+    width: $largeur-item-glisse;
+    min-width: $largeur-item-glisse;
     height: 60px;
     z-index: 1;
     &--flottant {
@@ -82,6 +82,7 @@
     padding: 20px;
     min-width: 212px;
     .zone-depot {
+      padding: $padding-depot;
       justify-content: center;
       min-height: 108px;
     }
