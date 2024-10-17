@@ -1,7 +1,7 @@
 <template>
   <glisser-deposer
     :question="question"
-    :class="`glisser-deposer--${statut}`"
+    :class="`glisser-deposer--marche glisser-deposer--${statut}`"
     :zones-depot="zonesDepotPositions"
     :aide-depot="!this.question.zone_depot_url"
     @ordonne-item="envoiReponsesOrdonnees"

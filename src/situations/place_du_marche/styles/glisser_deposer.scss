@@ -1,25 +1,51 @@
 @import './variables.scss';
 @import 'commun/styles/variables.scss';
 
-.glisser-deposer--default {
+.glisser-deposer--marche {
   .glisser-deposer__item {
     width: $largeur-item-glisse;
     min-width: $largeur-item-glisse;
     height: 60px;
     z-index: 1;
   }
-  img  {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
+
   .container-depart, .container-arrivee {
     position: absolute;
-    left: 0;
     right: 380px;
     bottom: 0;
     display: flex;
     align-items: flex-start;
+  }
+
+  .zone-depot {
+    display: flex;
+    gap: $gap-depot;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  img  {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .container-depart {
+    align-items: flex-start;
+    .zone-depot {
+      padding: $padding-depot;
+      justify-content: center;
+    }
+  }
+}
+
+.glisser-deposer--default {
+  img  {
+    width: 100%;
+  }
+  .container-depart, .container-arrivee {
+    position: absolute;
+    left: 0;
     padding: 20px;
     .zone-depot {
       min-height: 108px;
@@ -29,10 +55,6 @@
   .container-depart {
     top: 120px;
     bottom: 40%;
-    align-items: flex-start;
-    .zone-depot {
-      justify-content: center;
-    }
   }
   .container-arrivee {
     bottom: 0;
@@ -44,46 +66,23 @@
       padding: 1.5rem;
     }
   }
-  .zone-depot {
-    display: flex;
-    gap: $gap-depot;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    width: 100%;
-  }
 }
 
 .glisser-deposer--personnalise {
   .glisser-deposer__item {
-    width: $largeur-item-glisse;
-    min-width: $largeur-item-glisse;
-    height: 60px;
-    z-index: 1;
     &--flottant {
       animation: flottement 3s ease-in-out infinite;
     }
   }
   img  {
-    object-fit: cover;
-    height: 100%;
-    display:block;
+    display: block;
     margin: auto;
-  }
-  .container-depart, .container-arrivee {
-    position: absolute;
-    right: 380px;
-    bottom: 0;
-    display: flex;
-    align-items: flex-start;
   }
   .container-depart {
     bottom: 10%;
-    align-items: flex-start;
     padding: 20px;
-    min-width: 212px;
     .zone-depot {
       padding: $padding-depot;
-      justify-content: center;
       min-height: 108px;
     }
   }
@@ -98,14 +97,8 @@
   }
   .zone-depot {
     position: relative;
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    width: 100%;
     border-radius: 8px;
   }
-
   .rectangle-bleu {
     position: absolute;
     top: 50%;
