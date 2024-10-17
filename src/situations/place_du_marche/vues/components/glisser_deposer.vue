@@ -4,6 +4,7 @@
     :class="`glisser-deposer--marche glisser-deposer--${statut}`"
     :zones-depot="zonesDepotPositions"
     :aide-depot="!this.question.zone_depot_url"
+    :style-container-depart="styleContainerDepart"
     @ordonne-item="envoiReponsesOrdonnees"
     @deplace-item="envoiReponsesPlacees"
     >
@@ -36,10 +37,6 @@ export default {
     };
   },
 
-  mounted() {
-    this.calculeLargeurContainerDepart();
-  },
-
   computed: {
     zonesDepotPositions() {
       if (!this.zoneDeDepots.length) return;
@@ -64,6 +61,12 @@ export default {
 
     sontToutesPlacees() {
       return this.reponsesPlacees.length === this.nombreReponsesAPlacer;
+    },
+
+    styleContainerDepart() {
+      return {
+        width: `calc(var(--largeur-item-glisse) * ${this.nombreReponsesAPlacer} + var(--gap-depot) * (${this.nombreReponsesAPlacer - 1}) + var(--padding-depot) * 2)`
+      };
     }
   },
 
@@ -103,13 +106,6 @@ export default {
       return this.reponsesPlacees.reduce((total, reponse) => {
         return total + (reponse.succes ? scoreParReponse : 0);
       }, 0);
-    },
-
-    calculeLargeurContainerDepart() {
-      const containerDepart = document.querySelector('.container-depart .zone-depot');
-      if (containerDepart) {
-        containerDepart.style.width = `calc(var(--largeur-item-glisse) * ${this.nombreReponsesAPlacer} + var(--gap-depot) * (${this.nombreReponsesAPlacer - 1}) + var(--padding-depot) * 2)`;
-      }
     }
   }
 };
