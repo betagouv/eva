@@ -30,6 +30,7 @@
         v-if="afficheZoneDepotDepart"
         :list="reponsesNonClassees"
         class="zone-depot"
+        :style="styleContainerDepart"
         item-key="id"
         group="items"
         @start="elementGlisse = true"
@@ -66,6 +67,9 @@ export default {
     zonesDepot: {
       type: Array,
       default: () => [{ left: 0 }]
+    },
+    styleContainerDepart: {
+      type: Object,
     }
   },
 
