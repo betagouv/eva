@@ -36,7 +36,7 @@ export default {
     };
   },
 
-  mouted() {
+  mounted() {
     this.calculeLargeurContainerDepart();
   },
 
@@ -108,8 +108,7 @@ export default {
     calculeLargeurContainerDepart() {
       const containerDepart = document.querySelector('.container-depart .zone-depot');
       if (containerDepart) {
-        const itemCount = this.reponsesNonClassees.length;
-        containerDepart.style.width = `calc(var(--largeur-item-glisse) * ${itemCount} + var(--gap-depot) * (${itemCount - 1}) + var(--padding-depot) * 2)`;
+        containerDepart.style.width = `calc(var(--largeur-item-glisse) * ${this.nombreReponsesAPlacer} + var(--gap-depot) * (${this.nombreReponsesAPlacer - 1}) + var(--padding-depot) * 2)`;
       }
     }
   }
