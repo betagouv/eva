@@ -46,6 +46,7 @@ export default {
     },
     questionActive() {
       this.question = this.questionServeur ?? this.questionActive;
+      this.$depotRessources.questionEnCours = this.question.nom_technique;
     },
     acteEnCours (actEnCours) {
       if(actEnCours && location.hash){

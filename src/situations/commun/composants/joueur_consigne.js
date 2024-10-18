@@ -8,6 +8,7 @@ export default class JoueurConsigne extends JoueurAudioBuffer {
   }
 
   joue (lectureTerminee) {
-    this.start(this.depot[this.ressourceConsigne](), lectureTerminee);
+    const nomTechnique = this.depot['questionEnCours'];
+    this.start(this.depot[this.ressourceConsigne](nomTechnique), lectureTerminee);
   }
 }
