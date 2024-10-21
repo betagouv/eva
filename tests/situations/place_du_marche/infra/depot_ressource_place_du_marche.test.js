@@ -48,4 +48,32 @@ describe('Le dépot ressource de la situation Place du marché', function () {
       expect(questions[0].extensionVue).toEqual('glisser-deposer' );
     });
   });
+
+  describe("#consigneDemarrage", function() {
+    let depot;
+    let messagesAudios;
+    let sonConsigne;
+    let consigneEnCours;
+
+    beforeEach(function() {
+      const registre = mockRegistreCampagne({ id: 1, nom_technique: 'N1Prn1'});
+      messagesAudios = { consigneEnCours: 'N1Prn1_consigne.mp3' };
+      sonConsigne = 'consigne_place_du_marche.mp3';
+      depot = new DepotRessourcesPlaceDuMarche(chargeurs(), registre);
+      depot.messagesAudios = messagesAudios;
+      depot.sonConsigne = sonConsigne;
+      depot.ressource = jest.fn((src) => src);
+    });
+
+    it("retourne la consigne audio d'une consgine s'il y en a une", function() {
+      depot.consigneEnCours = consigneEnCours;
+      depot.existeMessageAudio = jest.fn(() => true);
+      expect(depot.consigneDemarrage()).toEqual(messagesAudios[0]);
+    });
+
+    it("retourne la consigne audio du démarrage par défaut", function() {
+      depot.existeMessageAudio = jest.fn(() => false);
+      expect(depot.consigneDemarrage()).toEqual(sonConsigne);
+    });
+  });
 });

@@ -68,14 +68,14 @@ export default {
     },
 
     existeIntituleAudioSansEcrit () {
-      return this.question.intitule_audio && this.$depotRessources.existeMessageAudio(`${this.question.nom_technique}_intitule_audio`);
+      return this.question.intitule_audio && this.$depotRessources.existeMessageAudio(`${this.question.nom_technique}_intitule`);
     },
 
     nomTechniqueLectureQuestionAudio() {
       return this.existeReponseAudio
         ? this.question.reponse.nom_technique
         : this.existeIntituleAudioSansEcrit
-          ? `${this.question.nom_technique}_intitule_audio`
+          ? `${this.question.nom_technique}_intitule`
           : '';
     }
   },

@@ -46,9 +46,10 @@ export default {
     },
     questionActive() {
       this.question = this.questionServeur ?? this.questionActive;
+      this.enregistreConsigneEnCours();
     },
-    acteEnCours (actEnCours) {
-      if(actEnCours && location.hash){
+    acteEnCours (acteEnCours) {
+      if(acteEnCours && location.hash){
         this.$store.dispatch('sauteALaCarte', location.hash.substring(1));
       }
     },
@@ -60,6 +61,10 @@ export default {
       this.$journal.enregistre(new EvenementReponse(reponse));
       this.$store.commit('recalculePourcentageReussiteGlobal');
       this.$store.commit('carteSuivante');
+    },
+
+    enregistreConsigneEnCours() {
+      this.$depotRessources.consigneEnCours = `${this.question.nom_technique}_consigne`;
     }
   }
 };

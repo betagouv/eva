@@ -82,7 +82,7 @@ describe('la vue du composant entête', function () {
 
     it("affiche un bouton lecture lorsque l'intitulé a un audio associé", function () {
       depotRessources.existeMessageAudio =
-      (nom_technique) => nom_technique == 'question1_intitule_audio';
+      (nom_technique) => nom_technique == 'question1_intitule';
       const vue = composant({ nom_technique: 'question1', intitule_audio: 'audio.mp3' });
       expect(vue.vm.afficheLectureQuestionAudio).toBe(true);
       expect(vue.vm.$refs.boutonLectureQuestionAudio).toBeDefined();
