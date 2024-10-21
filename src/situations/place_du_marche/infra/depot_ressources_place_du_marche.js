@@ -12,7 +12,15 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
     const messagesAudios = extraitQuestionsReponsesAudios(questionsServeur);
     super(chargeurs, messagesVideos, messagesAudios, null, sonConsigne);
     this.questionsServeur = questionsServeur;
+    this.consigneEnCours = null;
     this.charge([fondSituation]);
+  }
+
+  consigneDemarrage () {
+    if (this.existeMessageAudio(this.consigneEnCours)) {
+      return this.ressource(this.messagesAudios[this.consigneEnCours]);
+    }
+    return this.ressource(sonConsigne);
   }
 
   illustrationQuestion () {

@@ -150,10 +150,11 @@ function extraitDictionnaire (webpackContext, regExp, dictionnaire = {}) {
 
 function extraitQuestionsReponsesAudios(questions) {
   return questions.reduce((acc, question) => {
-    const { nom_technique, audio_url, intitule_audio, choix } = question;
+    const { nom_technique, audio_url, intitule_audio, choix, consigne_audio } = question;
 
     if (audio_url) acc[nom_technique] = audio_url;
-    if (intitule_audio) acc[`${nom_technique}_intitule_audio`] = intitule_audio;
+    if (intitule_audio) acc[`${nom_technique}_intitule`] = intitule_audio;
+    if (consigne_audio) acc[`${nom_technique}_consigne`] = consigne_audio;
 
     choix?.forEach(({ nom_technique: choixNom, audio_url: choixAudio }) => {
       if (choixAudio) acc[choixNom] = choixAudio;
