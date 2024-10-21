@@ -1,4 +1,7 @@
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
+import {
+  DEMARRE,
+} from 'commun/modeles/situation';
 
 export const NUMERATIE = 'numeratie';
 export const NIVEAU1 = 'niveau1';
@@ -157,7 +160,9 @@ export function creeStore () {
         state.indexCarte = 0;
         state.pourcentageDeReussiteGlobal = 0;
         state.series = state.configuration[state.parcours].series;
-        state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
+        if(state.etat === DEMARRE) {
+          state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
+        }
         if(!this.getters.rattrapageEnCours) {
           state.maxScoreNiveauEnCours = this.getters.maxScoreSerieEnCours;
         }

@@ -11,6 +11,9 @@ import {
   calculeScoreParMetrique,
   filtreMeilleursScores
 } from 'place_du_marche/modeles/store';
+import {
+  DEMARRE,
+} from 'commun/modeles/situation';
 
 describe('Le store de la situation place du marché', function () {
   let store;
@@ -59,6 +62,7 @@ describe('Le store de la situation place du marché', function () {
 
   describe('quand un acte est configuré', function() {
     beforeEach(function() {
+      store.state.etat = DEMARRE;
       store.commit('configureActe', configuration);
     });
 
