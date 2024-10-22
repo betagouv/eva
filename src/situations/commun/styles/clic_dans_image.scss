@@ -23,7 +23,8 @@
       top: 0;
       left: 0;
     }
-
+  }
+  &--sans-curseur {
     svg > * {
       cursor: pointer;
     }
