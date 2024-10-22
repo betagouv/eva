@@ -35,13 +35,36 @@ describe('Le composant Clic Dans Image', function () {
     expect(wrapper.find('svg').exists()).toBe(true);
   });
 
-  describe('quand je clique sur le svg directement', function () {
-    it("n'ajoute pas la classe reponse--selectionnee", function () {
-      const wrapper = composant(question);
+  describe('sans cuseur', function () {
+    beforeEach(function () {
+      wrapper = composant(question);
+    });
 
-      const svg = wrapper.find('svg');
-      svg.trigger('click');
-      expect(svg.classes()).not.toContain('reponse--selectionnee');
+    describe('quand je clique sur le svg directement', function () {
+      it("n'ajoute pas la classe reponse--selectionnee", function () {
+        const svg = wrapper.find('svg');
+        svg.trigger('click');
+        expect(svg.classes()).not.toContain('reponse--selectionnee');
+      });
+
+      it("affiche la réponse sélectionnée en surbrillance", function () {
+        expect(wrapper.find('.curseur').exists()).toBe(false);
+        const zoneCliquable = wrapper.find('.zone-cliquable');
+        expect(zoneCliquable.classes()).toContain('zone-cliquable--sans-curseur');
+      });
+    });
+  });
+
+  describe('avec curseur', function () {
+    beforeEach(function () {
+      question.image_au_clic = 'data:image/svg+xml;base64,PHN2Zz4KPGNpcmNsZSBjbGFzcz0iYm9uZS1yZXBlc2Npb25uZWUiPjwvY2lyY2xlPjwvc3ZnPg==';
+      wrapper = composant(question);
+    });
+
+    it('affiche le curseur sans mettre la réponse sélectionnée en surbrillance', function () {
+      expect(wrapper.find('.curseur').exists()).toBe(true);
+      const zoneCliquable = wrapper.find('.zone-cliquable');
+      expect(zoneCliquable.classes()).not.toContain('zone-cliquable--sans-curseur');
     });
   });
 
@@ -148,17 +171,6 @@ describe('Le composant Clic Dans Image', function () {
         expect(wrapper.emitted().reponse[1][0].succes).toEqual(true);
         expect(wrapper.emitted().reponse[1][0].score).toEqual(1);
       });
-    });
-  });
-
-  describe('quand il y a une image au clic', function () {
-    beforeEach(function () {
-      question.image_au_clic = 'data:image/svg+xml;base64,PHN2Zz4KPGNpcmNsZSBjbGFzcz0iYm9uZS1yZXBlc2Npb25uZWUiPjwvY2lyY2xlPjwvc3ZnPg==';
-      wrapper = composant(question);
-    });
-
-    it('affiche le curseur', function () {
-      expect(wrapper.find('.curseur').exists()).toBe(true);
     });
   });
 });

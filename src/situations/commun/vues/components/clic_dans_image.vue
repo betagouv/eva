@@ -1,9 +1,9 @@
 <template>
-  <div class="zone-cliquable">
+  <div :class="['zone-cliquable', { 'zone-cliquable--sans-curseur': !curseur }]">
     <div v-html="reponses" class="reponses" @click="cliqueDansImage"/>
     <div v-if="curseur" v-html="curseur" class="curseur"/>
   </div>
-</template>class="zone-cliquable"
+</template>
 
 <script>
 import 'commun/styles/clic_dans_image.scss';
@@ -45,8 +45,11 @@ export default {
 
   methods: {
     cliqueDansImage(event) {
-      if(this.question.image_au_clic) this.placeCurseur(event);
-      if (event.target.tagName === 'svg') return;
+      if(this.question.image_au_clic) {
+        this.placeCurseur(event);
+      } else {
+        if (event.target.tagName === 'svg') return;
+      }
       this.selectionEnCours = event.target;
       this.selectionMultiple ? this.gereSelectionMultiple() : this.gereSelectionSimple();
     },
