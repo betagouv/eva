@@ -5,12 +5,7 @@
       :key="question.id"
       :question="question"
       @reponse="reponse"
-    >
-      <pagination
-        :indexQuestion="indexCarte"
-        :nombreQuestions="nombreCartes"
-      />
-    </defi>
+    />
   </transition-fade>
 </template>
 
@@ -20,10 +15,9 @@ import EvenementReponse from 'questions/modeles/evenement_reponse';
 
 import Defi from 'commun/vues/defi';
 import TransitionFade from 'commun/vues/transition_fade';
-import Pagination from 'commun/vues/components/pagination';
 
 export default {
-  components: { Defi, TransitionFade, Pagination },
+  components: { Defi, TransitionFade },
 
   data () {
     return {
@@ -36,8 +30,8 @@ export default {
   },
 
   computed: {
-    ...mapState(['indexCarte', 'questionActive', 'termine']),
-    ...mapGetters(['nombreCartes', 'questionServeur', 'acteEnCours']),
+    ...mapState(['questionActive', 'termine']),
+    ...mapGetters(['questionServeur', 'acteEnCours']),
   },
 
   watch: {
