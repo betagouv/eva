@@ -104,7 +104,7 @@ export function creeStore () {
       },
 
       questionServeur(state) {
-        const question = state.questions.find(q => q.nom_technique === state.questionActive.nom_technique);
+        const question = state.questions.find(q => q.nom_technique.startsWith(state.questionActive.nom_technique));
 
         if (!question) return undefined;
 

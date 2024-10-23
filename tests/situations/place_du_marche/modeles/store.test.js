@@ -438,11 +438,11 @@ describe('Le store de la situation place du marché', function () {
       store.state.questionActive = { nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul' };
     });
 
-    describe("si la question active a une question serveur avec le même nom technique", function() {
+    describe("si la question active a une question serveur avec le même suffixe", function() {
       let question;
 
       beforeEach(function() {
-        question = { nom_technique: 'N1Prn1' };
+        question = { nom_technique: 'N1Prn1_variant' };
         store.state.questions = [question];
       });
 
@@ -456,7 +456,7 @@ describe('Le store de la situation place du marché', function () {
       });
     });
 
-    describe("si la question active n'a pas de question serveur avec le même nom technique", function() {
+    describe("si la question active n'a pas de question serveur avec le même suffixe", function() {
       it('ne retourne rien', function() {
         store.state.questions= [];
         expect(store.getters.questionServeur).toBeUndefined();
