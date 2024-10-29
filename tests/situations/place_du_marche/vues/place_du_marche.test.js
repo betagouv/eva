@@ -11,6 +11,7 @@ describe('La vue place du marché', function () {
   let depotRessources;
   let store;
   let journal;
+  const sousConsigne = { type: 'sous-consigne', nom_technique: 'sous-consigne' };
   const question = { id: 'N1Pse1', nom_technique: "N1Pse1" };
 
   const configuration = {
@@ -93,6 +94,41 @@ describe('La vue place du marché', function () {
         wrapper.vm.$nextTick(() => {
           expect(depotRessources.consigneEnCours).toEqual('N1Pse2_consigne');
           done();
+        });
+      });
+    });
+
+    describe('#reponse', function () {
+      describe('quand la question est de type sous consigne', function () {
+        it('passes à la carte suivante sans envoyé la réponse', function () {
+          store.state.questionActive = sousConsigne;
+          wrapper.vm.reponse({});
+          expect(wrapper.vm.question).not.toEqual(sousConsigne);
+        });
+      });
+
+      describe("quand la carte active n'est pas de type sous consigne", function () {
+        beforeEach(function () {
+          store.state.questionActive = question;
+        });
+
+        it('enregistre les réponses dans le store', function () {
+          wrapper.vm.reponse({ question: 'question1', reponse: '100ml', score: 1 });
+          expect(store.state.reponses['question1'])
+            .toEqual({ question: 'question1', reponse: '100ml', score: 1 });
+        });
+
+        it("attribut un score de 0 si la réponse n'a pas de score", function() {
+          wrapper.vm.reponse({ question: 'question1', reponse: '100ml' });
+          expect(store.state.reponses['question1'].score)
+            .toEqual(0);
+        });
+
+        it('enregistre les réponses dans le journal', function (done) {
+          journal.enregistre = () => {
+            done();
+          };
+          wrapper.vm.reponse({});
         });
       });
     });
