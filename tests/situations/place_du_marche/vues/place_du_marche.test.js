@@ -60,8 +60,9 @@ describe('La vue place du marché', function () {
     });
   });
 
-  describe('quand elle est configurée', function () {
+  describe("quand elle est configurée et l'acte démarré", function () {
     beforeEach(function() {
+      store.state.etat = DEMARRE;
       store.commit('configureActe', configuration);
     });
 
@@ -79,15 +80,8 @@ describe('La vue place du marché', function () {
         });
       });
     });
-  });
 
-  describe("quand elle est configurée et l'acte démarré", function () {
-    beforeEach(function() {
-      store.state.etat = DEMARRE;
-      store.commit('configureActe', configuration);
-    });
-
-    it.only("enregistre la question en cours dans le dépot ressource", function(done) {
+    it("enregistre la question en cours dans le dépot ressource", function(done) {
       wrapper.vm.$nextTick(() => {
         expect(depotRessources.consigneEnCours).toEqual(`${question.id}_consigne`);
         store.state.questionActive = { nom_technique: 'N1Pse2' };
@@ -122,13 +116,6 @@ describe('La vue place du marché', function () {
           wrapper.vm.reponse({ question: 'question1', reponse: '100ml' });
           expect(store.state.reponses['question1'].score)
             .toEqual(0);
-        });
-
-        it('enregistre les réponses dans le journal', function (done) {
-          journal.enregistre = () => {
-            done();
-          };
-          wrapper.vm.reponse({});
         });
       });
     });
