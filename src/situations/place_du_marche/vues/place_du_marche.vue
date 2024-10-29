@@ -51,9 +51,12 @@ export default {
 
   methods: {
     reponse (reponse) {
-      this.$store.commit('enregistreReponse', reponse);
-      this.$journal.enregistre(new EvenementReponse(reponse));
-      this.$store.commit('recalculePourcentageReussiteGlobal');
+      if(this.question.type !== 'sous-consigne') {
+        reponse.score = reponse.score ?? 0;
+        this.$store.commit('enregistreReponse', reponse);
+        this.$journal.enregistre(new EvenementReponse(reponse));
+        this.$store.commit('recalculePourcentageReussiteGlobal');
+      }
       this.$store.commit('carteSuivante');
     },
 
