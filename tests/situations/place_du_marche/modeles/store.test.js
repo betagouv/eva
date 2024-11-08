@@ -422,46 +422,6 @@ describe('Le store de la situation place du marché', function () {
         });
       });
     });
-
-    describe('#recupereQuestionsServeur', function() {
-      it('met à jour les questions avec les questions serveur', function() {
-        const questions = [{ nom_technique: 'N1Pse1' }, { nom_technique: 'N1Pse2' }];
-        store.commit('recupereQuestionsServeur', questions);
-
-        expect(store.state.questions).toEqual(questions);
-      });
-    });
-  });
-
-  describe('#questionServeur', function() {
-    beforeEach(function() {
-      store.state.questionActive = { nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul' };
-    });
-
-    describe("si la question active a une question serveur avec le même suffixe", function() {
-      let question;
-
-      beforeEach(function() {
-        question = { nom_technique: 'N1Prn1_variant' };
-        store.state.questions = [question];
-      });
-
-      it("retourne la question serveur", function() {
-        expect(store.getters.questionServeur.id).toEqual('N1Prn1');
-      });
-
-      it("recupere les attributs de la question client", function() {
-        expect(store.getters.questionServeur.score).toEqual(0.5);
-        expect(store.getters.questionServeur.metacompetence).toEqual('calcul');
-      });
-    });
-
-    describe("si la question active n'a pas de question serveur avec le même suffixe", function() {
-      it('ne retourne rien', function() {
-        store.state.questions= [];
-        expect(store.getters.questionServeur).toBeUndefined();
-      });
-    });
   });
 
   describe('Helper Functions', () => {

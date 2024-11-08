@@ -103,21 +103,6 @@ export function creeStore () {
         return state.questionActive.nom_technique === getters.derniereQuestionRattrapage;
       },
 
-      questionServeur(state) {
-        const question = state.questions.find(q => q.nom_technique.startsWith(state.questionActive.nom_technique));
-
-        if (!question) return undefined;
-
-        const { nom_technique, score, metacompetence } = state.questionActive;
-        Object.assign(question, {
-          id: nom_technique,
-          score,
-          metacompetence,
-        });
-
-        return question;
-      },
-
       estCarteActive(state) {
         return (idCarte) => state.questionActive.nom_technique == idCarte;
       },
@@ -227,10 +212,6 @@ export function creeStore () {
         const scoreTotal = additionneScores(reponses);
 
         state.pourcentageDeReussiteGlobal =  calculPourcentage(scoreTotal, state.maxScoreNiveauEnCours);
-      },
-
-      recupereQuestionsServeur(state, questions) {
-        state.questions = questions;
       },
     },
   });

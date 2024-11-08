@@ -52,12 +52,20 @@ export default class RegistreCampagne extends BaseRegistre {
 
   situation (identifiantSituation) {
     const campagne = this.recupereCampagneCourante();
-    return campagne.situations.find(situation => situation.nom_technique === identifiantSituation);
+    return campagne.situations?.find(situation => situation.nom_technique === identifiantSituation);
   }
 
-  questions (identifiantSituation) {
-    const situation = this.situation(identifiantSituation);
-    return situation && situation.questions ? situation.questions : [];
+  questions (identifiantsSituation) {
+    if (!Array.isArray(identifiantsSituation)) {
+      identifiantsSituation = [identifiantsSituation];
+    }
+    return identifiantsSituation.reduce((acc, identifiantSituation) => {
+      const situation = this.situation(identifiantSituation);
+      if (situation && situation.questions) {
+        acc.push(...situation.questions);
+      }
+      return acc;
+    }, []);
   }
 
   questionsEntrainement (identifiantSituation) {

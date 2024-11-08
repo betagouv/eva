@@ -39,7 +39,7 @@ export default {
       this.$emit('terminer');
     },
     questionActive() {
-      this.question = this.questionServeur ?? this.questionActive;
+      this.question = this.questionServeur(this.questionActive) ?? this.questionActive;
       this.enregistreConsigneEnCours();
     },
     acteEnCours (acteEnCours) {

@@ -7,6 +7,8 @@ import Situation, {
 } from 'commun/modeles/situation';
 
 describe('Le store en commun pour les situations', function () {
+  let store;
+
   it("initialise l'état a CHARGEMENT", function () {
     const store = creeStore();
     expect(store.state.etat).toEqual(CHARGEMENT);
@@ -73,25 +75,77 @@ describe('Le store en commun pour les situations', function () {
     expect(store.state.aide).toBe(true);
   });
 
-  describe('#acteEnCours', function () {
-    let store;
-
+  describe('Getters', function () {
     beforeEach(function () {
       store = creeStore();
     });
 
-    it("Quand l'acte n'est pas demarré", function () {
-      expect(store.getters.acteEnCours).toBe(false);
+    describe('#acteEnCours', function () {
+      beforeEach(function () {
+        store = creeStore();
+      });
+
+      it("Quand l'acte n'est pas demarré", function () {
+        expect(store.getters.acteEnCours).toBe(false);
+      });
+
+      it("Quand l'acte principal est demarré", function () {
+        store.state.etat = DEMARRE;
+        expect(store.getters.acteEnCours).toBe(true);
+      });
+
+      it("Quand l'acte d'entrainement est demarré", function () {
+        store.state.etat = ENTRAINEMENT_DEMARRE;
+        expect(store.getters.acteEnCours).toBe(true);
+      });
     });
 
-    it("Quand l'acte principal est demarré", function () {
-      store.state.etat = DEMARRE;
-      expect(store.getters.acteEnCours).toBe(true);
+    describe('#questionServeur', function() {
+      beforeEach(function () {
+        store = creeStore();
+        store.state.questionActive = { nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul' };
+      });
+
+      describe("si la question active a une question serveur avec le même suffixe", function() {
+        let question;
+        let questionServeur;
+
+        beforeEach(function() {
+          question = { nom_technique: 'N1Prn1_variant', intitule: 'intitulé serveur' };
+          store.state.questions = [question];
+          questionServeur = store.getters.questionServeur(store.state.questionActive);
+        });
+
+        it("retourne la question serveur", function() {
+          expect(questionServeur.id).toEqual('N1Prn1');
+          expect(questionServeur.intitule).toEqual('intitulé serveur' );
+        });
+
+        it("recupere les données du client", function() {
+          expect(questionServeur.score).toEqual(0.5);
+          expect(questionServeur.metacompetence).toEqual('calcul');
+        });
+      });
+
+      describe("si la question active n'a pas de question serveur avec le même suffixe", function() {
+        it('ne retourne rien', function() {
+          store.state.questions = [];
+          expect(store.getters.questionServeur(store.state.questionActive)).toBeUndefined();
+        });
+      });
     });
 
-    it("Quand l'acte d'entrainement est demarré", function () {
-      store.state.etat = ENTRAINEMENT_DEMARRE;
-      expect(store.getters.acteEnCours).toBe(true);
+    describe('#recupereQuestionsServeur', function() {
+      beforeEach(function () {
+        store = creeStore();
+      });
+
+      it('met à jour les questions avec les questions serveur', function() {
+        const questions = [{ nom_technique: 'N1Pse1' }, { nom_technique: 'N1Pse2' }];
+        store.commit('recupereQuestionsServeur', questions);
+
+        expect(store.state.questions).toEqual(questions);
+      });
     });
   });
 });

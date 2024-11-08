@@ -26,6 +26,7 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
     state: {
       etat: CHARGEMENT,
       aide: false,
+      questions: [],
       ...state
     },
     mutations: {
@@ -36,11 +37,30 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       activeAide (state) {
         state.aide = true;
       },
+
+      recupereQuestionsServeur(state, questions) {
+        state.questions = questions;
+      },
       ...mutations
     },
     getters: {
       acteEnCours: (state) => {
         return state.etat === DEMARRE || state.etat === ENTRAINEMENT_DEMARRE;
+      },
+
+      questionServeur: (state) => (questionActive) => {
+        const question = state.questions.find(q => q.nom_technique.startsWith(questionActive.nom_technique));
+
+        if (!question) return undefined;
+
+        const { nom_technique, score, metacompetence } = questionActive;
+        Object.assign(question, {
+          id: nom_technique,
+          score,
+          metacompetence,
+        });
+
+        return question;
       },
       ...getters
     },

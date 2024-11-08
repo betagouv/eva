@@ -42,7 +42,7 @@ export function creeStore () {
 
       tousLesParcours(state) {
         return Object.keys(state.configuration);
-      }
+      },
     },
 
     mutations: {

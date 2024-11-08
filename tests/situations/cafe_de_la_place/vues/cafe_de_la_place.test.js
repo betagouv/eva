@@ -8,6 +8,7 @@ import { DEMARRE } from 'commun/modeles/situation';
 describe('La vue café de la place', function () {
   let wrapper;
   let store;
+  let depotRessources;
   let journal;
   const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne' };
   const question = { id: 'question1' };
@@ -24,11 +25,15 @@ describe('La vue café de la place', function () {
   beforeEach(function () {
     store = creeStore();
     journal = { enregistre () {} };
+    depotRessources = {
+      questions: () => { return []; },
+    };
     wrapper = shallowMount(CafeDeLaPlace, {
       global: {
         plugins: [store],
         mocks: {
-          $journal: journal
+          $journal: journal,
+          $depotRessources: depotRessources,
         },
         stubs: {
           TransitionFade: false
