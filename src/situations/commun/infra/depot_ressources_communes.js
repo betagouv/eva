@@ -8,8 +8,8 @@ import RegistreCampagne from 'commun/infra/registre_campagne';
 import { extraitQuestionsReponsesAudios } from 'commun/infra/depot_ressources';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
-  constructor (chargeurs, messagesVideos, messagesAudios, fondConsigne, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche, registreCampagne = new RegistreCampagne()) {
-    const questionsServeur = registreCampagne.questions(['cafe_de_la_place', 'place_du_marche']);
+  constructor (chargeurs, messagesVideos, messagesAudios, fondConsigne, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
+    const questionsServeur = new RegistreCampagne().questions(['cafe_de_la_place', 'place_du_marche']);
     const messagesAudiosServeur = extraitQuestionsReponsesAudios(questionsServeur);
     super(chargeurs);
     this.charge([casque, son, calculatrice, sonConsigneDemarrage, sonConsigneTransition, iconeDeconnexion]);

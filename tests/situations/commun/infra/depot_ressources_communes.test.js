@@ -2,6 +2,20 @@ import chargeurs from '../aides/mock_chargeurs';
 import DepotRessources from 'commun/infra/depot_ressources';
 import DepotRessourcesCommunes from 'commun/infra/depot_ressources_communes';
 
+const questionsServeur = [
+  { id: 1, nom_technique: 'N1Prn1', choix: [{ type_choix: 'bon' }] },
+  { id: 1, nom_technique: 'N1Prn2', type: 'clic-dans-image' },
+  { id: 1, nom_technique: 'N1Prn1', type: 'glisser-deposer' }
+];
+
+jest.mock('commun/infra/registre_campagne', () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      questions: jest.fn().mockReturnValue(questionsServeur)
+    };
+  });
+});
+
 describe('Le dépot de ressources communes', function () {
   const imgFondConsigne = 'fondConsigne.png';
   const sonConsigneDemarrage = 'consigneDemarrage.mp3';
@@ -12,15 +26,11 @@ describe('Le dépot de ressources communes', function () {
   let sonsCharges;
   let imgCharges;
   let videosCharges;
-  let registreCampagne;
 
   beforeEach(function () {
     sonsCharges = [];
     imgCharges = [];
     videosCharges = [];
-    registreCampagne = {
-      questions: () => { return []; }
-    };
     const _chargeurs = chargeurs({
       mp3: (_son) => {
         sonsCharges.push(_son);
@@ -35,7 +45,7 @@ describe('Le dépot de ressources communes', function () {
         return Promise.resolve(() => _video);
       }
     });
-    depot = new DepotRessourcesCommunes(_chargeurs, { videoQuestion1: videoQuestion1 }, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition, registreCampagne);
+    depot = new DepotRessourcesCommunes(_chargeurs, { videoQuestion1: videoQuestion1 }, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition);
   });
 
   it('étend DépotRessources', function () {
@@ -129,6 +139,29 @@ describe('Le dépot de ressources communes', function () {
         expect(depot.ressource('chemin_illustration_deverouillage.png')).toBeDefined();
         expect(depot.ressource('chemin_icone_deverrouillage.png')).toBeDefined();
       });
+    });
+  });
+
+
+  describe('#questions', function() {
+    let result;
+
+    beforeEach(function() {
+      result = depot.questions();
+    });
+
+    it('retourne les questions du serveur', function() {
+      expect(result).toEqual(questionsServeur);
+    });
+
+    it("definie l'extension vue pour le type clic dans image", function() {
+      console.log('result:', result);
+      expect(result[1]['extensionVue']).toEqual('clic-dans-image' );
+    });
+
+
+    it("definie l'extension vue pour le type glisser déposer", function() {
+      expect(result[2].extensionVue).toEqual('glisser-deposer' );
     });
   });
 });
