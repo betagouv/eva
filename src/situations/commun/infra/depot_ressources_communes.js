@@ -4,9 +4,13 @@ import calculatrice from 'commun/assets/calculatrice.svg';
 import iconeDeconnexion from 'commun/assets/sign_out.svg';
 import son from 'commun/assets/son.svg';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.mp3';
+import RegistreCampagne from 'commun/infra/registre_campagne';
+import { extraitQuestionsReponsesAudios } from 'commun/infra/depot_ressources';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
-  constructor (chargeurs, messagesVideos, messagesAudios, fondConsigne, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
+  constructor (chargeurs, messagesVideos, messagesAudios, fondConsigne, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche, registreCampagne = new RegistreCampagne()) {
+    const questionsServeur = registreCampagne.questions(['cafe_de_la_place', 'place_du_marche']);
+    const messagesAudiosServeur = extraitQuestionsReponsesAudios(questionsServeur);
     super(chargeurs);
     this.charge([casque, son, calculatrice, sonConsigneDemarrage, sonConsigneTransition, iconeDeconnexion]);
     this.charge(Object.values(messagesVideos));
@@ -18,7 +22,8 @@ export default class DepotRessourcesCommunes extends DepotRessources {
     this.sonConsigneDemarrage = sonConsigneDemarrage;
     this.sonConsigneTransition = sonConsigneTransition;
     this.messagesVideos = messagesVideos;
-    this.messagesAudios = messagesAudios;
+    this.messagesAudios = { ...messagesAudios, ...messagesAudiosServeur };
+    this.questionsServeur = questionsServeur;
   }
 
   fondConsigne () {
@@ -97,5 +102,21 @@ export default class DepotRessourcesCommunes extends DepotRessources {
 
   illustrationQuestion(question) {
     return { src: question.illustration };
+  }
+
+  questions () {
+    this.questionsServeur?.forEach(question => {
+      if (question.choix) {
+        question.choix.forEach(choix => {
+          choix.bonneReponse = choix.type_choix === 'bon';
+          delete choix.type_choix;
+        });
+      }
+      if(question.type === 'clic-dans-image' || question.type === 'glisser-deposer') {
+        question.extensionVue = question.type;
+        delete question.type;
+      }
+    });
+    return this.questionsServeur;
   }
 }

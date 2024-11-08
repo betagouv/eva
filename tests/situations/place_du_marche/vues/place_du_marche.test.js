@@ -38,7 +38,6 @@ describe('La vue place du marché', function () {
     journal = { enregistre () {} };
     depotRessources = {
       questions: () => { return []; },
-      questionEnCours: () => { return null; },
     };
     wrapper = shallowMount(PlaceDuMarche, {
       global: {

@@ -12,11 +12,15 @@ describe('Le dépot de ressources communes', function () {
   let sonsCharges;
   let imgCharges;
   let videosCharges;
+  let registreCampagne;
 
   beforeEach(function () {
     sonsCharges = [];
     imgCharges = [];
     videosCharges = [];
+    registreCampagne = {
+      questions: () => { return []; }
+    };
     const _chargeurs = chargeurs({
       mp3: (_son) => {
         sonsCharges.push(_son);
@@ -31,7 +35,7 @@ describe('Le dépot de ressources communes', function () {
         return Promise.resolve(() => _video);
       }
     });
-    depot = new DepotRessourcesCommunes(_chargeurs, { videoQuestion1: videoQuestion1 }, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition);
+    depot = new DepotRessourcesCommunes(_chargeurs, { videoQuestion1: videoQuestion1 }, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition, registreCampagne);
   });
 
   it('étend DépotRessources', function () {
