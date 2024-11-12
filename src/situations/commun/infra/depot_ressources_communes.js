@@ -15,6 +15,7 @@ export default class DepotRessourcesCommunes extends DepotRessources {
     this.charge([casque, son, calculatrice, sonConsigneDemarrage, sonConsigneTransition, iconeDeconnexion]);
     this.charge(Object.values(messagesVideos));
     this.charge(Object.values(messagesAudios));
+    this.charge(Object.values(messagesAudiosServeur));
     if (fondConsigne) {
       this.charge([fondConsigne]);
       this.imgFondConsigne = fondConsigne;
