@@ -6,7 +6,7 @@
     >
     <template #item="{ item }">
       <poignee-puzzle/>
-      <span>{{ item.contenu }}</span>
+      <span>{{ item.intitule }}</span>
     </template>
   </glisser-deposer>
 </template>

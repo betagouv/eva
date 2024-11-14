@@ -112,6 +112,16 @@ describe('La vue café de la place', function () {
       });
     });
 
+    it("reaffecte l'extensionVue puzzle-journal si elle est de type glisser-deposer", function (done) {
+      question.extensionVue = 'glisser-deposer';
+      store.state.carteActive = question;
+
+      wrapper.vm.$nextTick(() => {
+        expect(wrapper.vm.question.extensionVue).toBe('puzzle-journal');
+        done();
+      });
+    });
+
     describe('#reponse', function () {
       describe('quand la carte active est de type sous consigne', function () {
         it('passes à la carte suivante', function () {
