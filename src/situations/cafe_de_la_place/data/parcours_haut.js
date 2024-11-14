@@ -21,31 +21,31 @@ const fragmentsNouvelleDuJour = [
   {
     id: 'id_0',
     position: 7,
-    contenu: "Durant leur séjour à l'hôpital, ils auront tout loisir de se raconter leurs petites histoires..."
+    intitule: "Durant leur séjour à l'hôpital, ils auront tout loisir de se raconter leurs petites histoires..."
   }, {
     id: 'id_1',
     position: 2,
-    contenu: "En effet, il est 8 h 45 quand le jeune David G. s'apprête à traverser la chaussée."
+    intitule: "En effet, il est 8 h 45 quand le jeune David G. s'apprête à traverser la chaussée."
   }, {
     id: 'id_2',
     position: 3,
-    contenu: "Un de ses copains de classe, Rémi P. qui était déjà devant l'école, se met lui aussi à traverser la chaussée pour aller à sa rencontre."
+    intitule: "Un de ses copains de classe, Rémi P. qui était déjà devant l'école, se met lui aussi à traverser la chaussée pour aller à sa rencontre."
   }, {
     id: 'id_3',
     position: 6,
-    contenu: "Les deux amis, blessés au visage pour l'un et à la jambe pour l'autre, ont été transportés à l'hôpital tout proche."
+    intitule: "Les deux amis, blessés au visage pour l'un et à la jambe pour l'autre, ont été transportés à l'hôpital tout proche."
   }, {
     id: 'id_4',
     position: 4,
-    contenu: "Les deux garçons se dirigent l'un vers l'autre sans regarder la circulation."
+    intitule: "Les deux garçons se dirigent l'un vers l'autre sans regarder la circulation."
   }, {
     id: 'id_5',
     position: 1,
-    contenu: "Ce matin, alors que les enfants arrivaient à proximité de l'école, deux garçons particulièrement distraits ont provoqué un accident sur la voie publique près de l'école Jules Ferry."
+    intitule: "Ce matin, alors que les enfants arrivaient à proximité de l'école, deux garçons particulièrement distraits ont provoqué un accident sur la voie publique près de l'école Jules Ferry."
   }, {
     id: 'id_6',
     position: 5,
-    contenu: "Deux voitures qui arrivaient en sens contraire, ont chacune projeté violemment un garçon à terre provoquant la frayeur des témoins."
+    intitule: "Deux voitures qui arrivaient en sens contraire, ont chacune projeté violemment un garçon à terre provoquant la frayeur des témoins."
   }
 ];
 

@@ -58,6 +58,9 @@ export default {
 
     carteActive() {
       this.question = this.questionServeur(this.carteActive) ?? this.carteActive;
+      if(this.question.extensionVue === 'glisser-deposer') {
+        this.question.extensionVue = 'puzzle-journal';
+      }
     },
   },
 
