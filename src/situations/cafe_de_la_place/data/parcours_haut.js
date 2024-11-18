@@ -340,6 +340,9 @@ const HPfb1 = {
   id: 'HPfb1',
   nom_technique: 'hpfb_1',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
@@ -349,313 +352,539 @@ const HPfb1 = {
     Comme convenu, je vais te décrire les problèmes que j'ai eus hier, le 10 août, quand je t'ai remplacé à la boutique.\
     Ecrivez « août »",
   modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.\n\nVous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
-  reponse: {
-    nom_technique: 'HPfb/aout',
-    textes: ['août', 'aoút', 'aoùt', 'aout', 'aoüt', 'aôut'],
-    scores: [1, 0.75, 0.75, 0.75, 0.75, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/aout1',
+      intitule: 'août',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/aout2',
+      intitule: 'aoút',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/aout3',
+      intitule: 'aoùt',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/aout4',
+      intitule: 'aout',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/aout5',
+      intitule: 'aoüt',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/aout6',
+      intitule: 'aôut',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb2 = {
   id: 'HPfb2',
   nom_technique: 'hpfb_2',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   retranscription_audio: "Une commande est arrivée et elle ne correspondait pas à ta demande.\
     Ecrivez « demande »",
-  reponse: {
-    nom_technique: 'HPfb/demande',
-    textes: ['demande', 'demandes'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/demande',
+      intitule: 'demande',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/demandes',
+      intitule: 'demandes',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb3 = {
   id: 'HPfb3',
   nom_technique: 'hpfb_3',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   retranscription_audio: "Le nombre d'articles était en accord avec la commande.\
     Ecrivez « nombre »",
-  reponse: {
-    nom_technique: 'HPfb/nombre',
-    textes: ['nombre', 'nombres'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/nombre',
+      intitule: 'nombre',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/nombres',
+      intitule: 'nombres',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb4 = {
   id: 'HPfb4',
   nom_technique: 'hpfb_4',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « articles »",
-  reponse: {
-    nom_technique: 'HPfb/articles',
-    textes: ['articles', 'article'],
-    scores: [1.25, 1]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/articles',
+      intitule: 'articles',
+      type_choix: 'bonus'
+    },
+    {
+      nom_technique: 'HPfb/article',
+      intitule: 'article',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const HPfb5 = {
   id: 'HPfb5',
   nom_technique: 'hpfb_5',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « accord »",
-  reponse: {
-    nom_technique: 'HPfb/accord',
-    textes: ['accord', 'accords'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/accord',
+      intitule: 'accord',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/accords',
+      intitule: 'accords',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb6 = {
   id: 'HPfb6',
   nom_technique: 'hpfb_6',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   retranscription_audio: "Mais certains étaient dans un mauvais état ou ne correspondaient pas à ce qu'on attendait.\
     Ecrivez « état »",
-  reponse: {
-    nom_technique: 'HPfb/etat',
-    textes: ['état', 'etat', 'ètat', 'états', 'etats', 'ètats'],
-    scores: [1, 0.75, 0.75, 0.75, 0.75, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/etat',
+      intitule: 'état',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/etat2',
+      intitule: 'etat',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/etat3',
+      intitule: 'ètat',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/etat4',
+      intitule: 'états',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/etat5',
+      intitule: 'etats',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/etat6',
+      intitule: 'ètats',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb7 = {
   id: 'HPfb7',
   nom_technique: 'hpfb_7',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.5,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « correspondaient »",
-  reponse: {
-    nom_technique: 'HPfb/correspondaient',
-    textes: ['correspondaient', 'correspondait'],
-    scores: [1.5, 1]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/correspondaient',
+      intitule: 'correspondaient',
+      type_choix: 'bonus'
+    },
+    {
+      nom_technique: 'HPfb/correspondait',
+      intitule: 'correspondait',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const HPfb8 = {
   id: 'HPfb8',
   nom_technique: 'hpfb_8',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 1,
   illustration: telephoneEMail,
   retranscription_audio: "Les dahlias, couleur bleu azuré, étaient en fait de couleur rouge.\
     Ecrivez « rouge »",
-  reponse: {
-    nom_technique: 'HPfb/rouge',
-    textes: ['rouge', 'rouges'],
-    scores: [1, 0.75]
-  }
+  reponses:  [
+    {
+      nom_technique: 'HPfb/rouge',
+      intitule: 'rouge',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/rouges',
+      intitule: 'rouges',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb9 = {
   id: 'HPfb9',
   nom_technique: 'hpfb_9',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Les roses de Chine ne sentaient aucun parfum contrairement à ce qui était annoncé dans le catalogue.\
     Ecrivez « roses »",
-  reponse: {
-    nom_technique: 'HPfb/roses',
-    textes: ['roses', 'rose'],
-    scores: [1.25, 1]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/roses',
+      intitule: 'roses',
+      type_choix: 'bonus'
+    },
+    {
+      nom_technique: 'HPfb/rose',
+      intitule: 'rose',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const HPfb10 = {
   id: 'HPfb10',
   nom_technique: 'hpfb_10',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.5,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « sentaient »",
-  reponse: {
-    nom_technique: 'HPfb/sentaient',
-    textes: ['sentaient', 'sentait'],
-    scores: [1.5, 1]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/sentaient',
+      intitule: 'sentaient',
+      type_choix: 'bonus'
+    },
+    {
+      nom_technique: 'HPfb/sentait',
+      intitule: 'sentait',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const HPfb11 = {
   id: 'HPfb11',
   nom_technique: 'hpfb_11',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « parfum »",
-  reponse: {
-    nom_technique: 'HPfb/parfum',
-    textes: ['parfum', 'parfums'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/parfum',
+      intitule: 'parfum',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/parfums',
+      intitule: 'parfums',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb12 = {
   id: 'HPfb12',
   nom_technique: 'hpfb_12',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « catalogue »",
-  reponse: {
-    nom_technique: 'HPfb/catalogue',
-    textes: ['catalogue', 'catalogues'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/catalogue',
+      intitule: 'catalogue',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/catalogues',
+      intitule: 'catalogues',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb13 = {
   id: 'HPfb13',
   nom_technique: 'hpfb_13',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "En plus, il manquait un bras à toutes les figurines des cyclistes faites en feuilles de bananier.\
     Ecrivez « bras »",
-  reponse: {
-    nom_technique: 'HPfb/bras',
-    textes: ['bras'],
-    scores: [1]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/bras',
+      intitule: 'bras',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const HPfb14 = {
   id: 'HPfb14',
   nom_technique: 'hpfb_14',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « cyclistes »",
-  reponse: {
-    nom_technique: 'HPfb/cyclistes',
-    textes: ['cyclistes', 'cycliste'],
-    scores: [1.25, 1]
-  }
+  reponses:
+  [
+    {
+      nom_technique: 'HPfb/cyclistes',
+      intitule: 'cyclistes',
+      type_choix: 'bonus'
+    },
+    {
+      nom_technique: 'HPfb/cycliste',
+      intitule: 'cycliste',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const HPfb15 = {
   id: 'HPfb15',
   nom_technique: 'hpfb_15',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « bananier »",
-  reponse: {
-    nom_technique: 'HPfb/bananier',
-    textes: ['bananier', 'bananiers'],
-    scores: [1, 1]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/bananier',
+      intitule: 'bananier',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/bananiers',
+      intitule: 'bananiers',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const HPfb16 = {
   id: 'HPfb16',
   nom_technique: 'hpfb_16',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Enfin, cinq bouteilles de solution alcoolique pour nettoyer les barbecues fuyaient par le bouchon.\
     Ecrivez « alcoolique »",
-  reponse: {
-    nom_technique: 'HPfb/alcoolique',
-    textes: ['alcoolique', 'alcooliques'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/alcoolique',
+      intitule: 'alcoolique',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/alcooliques',
+      intitule: 'alcooliques',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb17 = {
   id: 'HPfb17',
   nom_technique: 'hpfb_17',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Si tu en parles à ton fournisseur, je suis sûr qu'il y aura une intervention et sans doute un remboursement de tes marchandises.\
     Ecrivez « intervention »",
-  reponse: {
-    nom_technique: 'HPfb/intervention',
-    textes: ['intervention', 'interventions'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/intervention',
+      intitule: 'intervention',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/interventions',
+      intitule: 'interventions',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb18 = {
   id: 'HPfb18',
   nom_technique: 'hpfb_18',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « remboursement »",
-  reponse: {
-    nom_technique: 'HPfb/remboursement',
-    textes: ['remboursement', 'remboursements'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/remboursement',
+      intitule: 'remboursement',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/remboursements',
+      intitule: 'remboursements',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const HPfb19 = {
   id: 'HPfb19',
   nom_technique: 'hpfb_19',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « marchandises »",
-  reponse: {
-    nom_technique: 'HPfb/marchandises',
-    textes: ['marchandises', 'marchandise'],
-    scores: [1.25, 1]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/marchandises',
+      intitule: 'marchandises',
+      type_choix: 'bonus'
+    },
+    {
+      nom_technique: 'HPfb/marchandise',
+      intitule: 'marchandise',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const HPfb20 = {
   id: 'HPfb20',
   nom_technique: 'hpfb_20',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'email-HPfb-a-trous',
   numero_page: 2,
@@ -663,11 +892,48 @@ const HPfb20 = {
   retranscription_audio: "La commande a probablement été préparée à la hâte.\
     Bon courage et à très vite !\
     Ecrivez « hâte »",
-  reponse: {
-    nom_technique: 'HPfb/hate',
-    textes: ['hâte', 'hate', 'häte', 'hàte', 'hâtes', 'hates', 'hätes', 'hàtes'],
-    scores: [1, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'HPfb/hate1',
+      intitule: 'hâte',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'HPfb/hate2',
+      intitule: 'hate',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/hate3',
+      intitule: 'häte',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/hate4',
+      intitule: 'hàte',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/hate5',
+      intitule: 'hâtes',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/hate6',
+      intitule: 'hates',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/hate7',
+      intitule: 'hätes',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'HPfb/hate8',
+      intitule: 'hàtes',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const parcoursHaut1 = {

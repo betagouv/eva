@@ -76,9 +76,12 @@ const saisieBoulangerie = {
   nom_technique: 'saisie_boulangerie',
   type: 'saisie',
   sous_type: 'texte',
-  reponse: {
-    textes: ['boulangerie']
-  },
+  reponses: [
+    {
+      nom_technique: 'APlc/boulangerie',
+      intitule: 'boulangerie',
+    }
+  ],
   illustration: SaisieBoulangerie,
   intitule: 'Recopiez le nom « Boulangerie » dans le cadre de texte ci-dessous, puis cliquez sur « Valider »'
 };

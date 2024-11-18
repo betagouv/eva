@@ -100,9 +100,12 @@ const questionDeverrouillage = {
   description: 'Le téléphone de Sophie est verrouillé. Entrez le code de déverrouillage en utilisant l’indice laissé par Sophie pour lui permettre de ne pas oublier son mot de passe.',
   intitule: 'Quel est le mot de passe ?',
   extensionVue: 'ecran-telephone-deverrouillage',
-  reponse: {
-    textes: ['1800']
-  },
+  reponses: [
+    {
+      nom_technique: '1800',
+      intitule: '1800',
+    }
+  ],
   metacompetence: 'numeratie'
 };
 
@@ -453,9 +456,12 @@ const questionRepondeur2 = {
   description: 'Vous savez que Sophie lance un tour de manège pour 7 enfants.',
   intitule: 'Que sophie devrait-elle répondre ?',
   extensionVue: 'lecture-message',
-  reponse: {
-    textes: ['21']
-  },
+  reponses: [
+    {
+      nom_technique: '21',
+      intitule: '21',
+    }
+  ],
   metacompetence: 'numeratie'
 };
 
