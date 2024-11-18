@@ -680,16 +680,24 @@ const APlc1 = {
   nom_technique: 'aplc_1',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   modalite_reponse: 'Pour répondre, écrivez les mots dans le cadre de texte.\n\nVous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».',
   illustration: listeDeCourse,
   retranscription_audio: 'Pour commencer, donnez un nom à votre liste : « Courses pour la cuisine ». Écrivez « cuisine ».',
-  reponse: {
+  reponses: [{
     nom_technique: 'APlc/cuisine',
-    textes: ['cuisine', 'cuisines'],
-    scores: [1, 0.75]
-  }
+    intitule: 'cuisine',
+    type_choix: 'bon'
+  },
+  {
+    nom_technique: 'APlc/cuisines',
+    intitule: 'cuisines',
+    type_choix: 'acceptable'
+  }]
 };
 
 const APlc2 = {
@@ -697,15 +705,23 @@ const APlc2 = {
   nom_technique: 'aplc_2',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: 'Vous voulez faire une salade de légumes en entrée, il vous faut donc deux saladiers en verre. Ecrivez « saladiers »',
-  reponse: {
+  reponses: [{
+    nom_technique: 'APlc/saladier',
+    intitule: 'saladier',
+    type_choix: 'bon'
+  },
+  {
     nom_technique: 'APlc/saladiers',
-    textes: ['saladier', 'saladiers'],
-    scores: [1, 1.25]
-  }
+    intitule: 'saladiers',
+    type_choix: 'bonus'
+  }]
 };
 
 const APlc3 = {
@@ -713,15 +729,25 @@ const APlc3 = {
   nom_technique: 'aplc_3',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: 'Ecrivez « verre »',
-  reponse: {
-    nom_technique: 'APlc/verre',
-    textes: ['verre', 'verres'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/verre',
+      intitule: 'verre',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/verres',
+      intitule: 'verres',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc4 = {
@@ -729,15 +755,25 @@ const APlc4 = {
   nom_technique: 'aplc_4',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: '"Pour votre salade de légumes, il vous faudra un pot de mayonnaise. Ecrivez « mayonnaise »"',
-  reponse: {
-    nom_technique: 'APlc/mayonnaise',
-    textes: ['mayonnaise', 'mayonnaises'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/mayonnaise',
+      intitule: 'mayonnaise',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/mayonnaises',
+      intitule: 'mayonnaises',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc5 = {
@@ -745,15 +781,25 @@ const APlc5 = {
   nom_technique: 'aplc_5',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: 'Vous devez également acheter du sel. Ecrivez « sel »',
-  reponse: {
-    nom_technique: 'APlc/sel',
-    textes: ['sel', 'sels'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/sel',
+      intitule: 'sel',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/sels',
+      intitule: 'sels',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc6 = {
@@ -761,15 +807,25 @@ const APlc6 = {
   nom_technique: 'aplc_6',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: 'Pour les légumes, vous aurez besoin de deux kilos de tomate de pays et de quatre poivrons. Ecrivez « tomates »',
-  reponse: {
-    nom_technique: 'APlc/tomates',
-    textes: ['tomate', 'tomates'],
-    scores: [1, 1.25]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/tomate',
+      intitule: 'tomate',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/tomates',
+      intitule: 'tomates',
+      type_choix: 'bonus'
+    }
+  ]
 };
 
 const APlc7 = {
@@ -777,15 +833,20 @@ const APlc7 = {
   nom_technique: 'aplc_7',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: 'Ecrivez « pays »',
-  reponse: {
-    nom_technique: 'APlc/pays',
-    textes: ['pays'],
-    scores: [1]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/pays',
+      intitule: 'pays',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const APlc8 = {
@@ -793,15 +854,25 @@ const APlc8 = {
   nom_technique: 'aplc_8',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: 'Ecrivez « poivrons »',
-  reponse: {
-    nom_technique: 'APlc/poivrons',
-    textes: ['poivron', 'poivrons'],
-    scores: [1, 1.25]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/poivron',
+      intitule: 'poivron',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/poivrons',
+      intitule: 'poivrons',
+      type_choix: 'bonus'
+    }
+  ]
 };
 
 const APlc9 = {
@@ -809,17 +880,65 @@ const APlc9 = {
   nom_technique: 'aplc_9',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: 'Enfin, vous utiliserez des épices qui donnent du goût. Ecrivez « épices »',
-  reponse: {
-    nom_technique: 'APlc/epices',
-    textes: ['épice', 'epice', 'èpice', 'êpice', 'ëpice',
-      'épices', 'epices', 'èpices', 'êpices', 'ëpices'],
-    scores: [1, 0.75, 0.75, 0.75, 0.75,
-      1.25, 1, 1, 1, 1]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/epice1',
+      intitule: 'épice',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/epice2',
+      intitule: 'epice',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/epices3',
+      intitule: 'èpice',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/epice4',
+      intitule: 'êpice',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/epices5',
+      intitule: 'ëpice',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/epices',
+      intitule: 'épices',
+      type_choix: 'bonus'
+    },
+    {
+      nom_technique: 'APlc/epices',
+      intitule: 'epices',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/epices',
+      intitule: 'èpices',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/epices',
+      intitule: 'êpices',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/epices',
+      intitule: 'ëpices',
+      type_choix: 'bon'
+    }
+  ]
 };
 
 const APlc10 = {
@@ -827,15 +946,25 @@ const APlc10 = {
   nom_technique: 'aplc_10',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: 'Ecrivez « donnent »',
-  reponse: {
-    nom_technique: 'APlc/donnent',
-    textes: ['donne', 'donnent'],
-    scores: [1, 1.25]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/donne',
+      intitule: 'donne',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/donnent',
+      intitule: 'donnent',
+      type_choix: 'bonus'
+    }
+  ]
 };
 
 const APlc11 = {
@@ -843,15 +972,25 @@ const APlc11 = {
   nom_technique: 'aplc_11',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Ce n'est pas tout, vous devez acheter un peu de matériel de cuisine. Vous souhaitez acheter de belles assiettes. Il vous en faudrait deux douzaines. Ecrivez « douzaines »",
-  reponse: {
-    nom_technique: 'APlc/douzaines',
-    textes: ['douzaine', 'douzaines'],
-    scores: [1, 1.25]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/douzaine',
+      intitule: 'douzaine',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/douzaines',
+      intitule: 'douzaines',
+      type_choix: 'bonus'
+    }
+  ]
 };
 
 const APlc12 = {
@@ -859,15 +998,25 @@ const APlc12 = {
   nom_technique: 'aplc_12',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Ecrivez « assiettes »",
-  reponse: {
-    nom_technique: 'APlc/assiettes',
-    textes: ['assiette', 'assiettes'],
-    scores: [1, 1.25]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/assiette',
+      intitule: 'assiette',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/assiettes',
+      intitule: 'assiettes',
+      type_choix: 'bonus'
+    }
+  ]
 };
 
 const APlc13 = {
@@ -875,15 +1024,25 @@ const APlc13 = {
   nom_technique: 'aplc_13',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Pour cuisiner, vous aurez besoin de deux fouets, d'une louche et d'une passoire. Ecrivez « fouets »",
-  reponse: {
-    nom_technique: 'APlc/fouets',
-    textes: ['fouet', 'fouets'],
-    scores: [1, 1.25]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/fouet',
+      intitule: 'fouet',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/fouets',
+      intitule: 'fouets',
+      type_choix: 'bonus'
+    }
+  ]
 };
 
 const APlc14 = {
@@ -891,15 +1050,25 @@ const APlc14 = {
   nom_technique: 'aplc_14',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Ecrivez « louche »",
-  reponse: {
-    nom_technique: 'APlc/louche',
-    textes: ['louche', 'louches'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/louche',
+      intitule: 'louche',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/louches',
+      intitule: 'louches',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc15 = {
@@ -907,15 +1076,25 @@ const APlc15 = {
   nom_technique: 'aplc_15',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Ecrivez « passoire »",
-  reponse: {
-    nom_technique: 'APlc/passoire',
-    textes: ['passoire', 'passoires'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/passoire',
+      intitule: 'passoire',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/passoires',
+      intitule: 'passoires',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc16 = {
@@ -923,17 +1102,65 @@ const APlc16 = {
   nom_technique: 'aplc_16',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Il vous faudra une poêle de luxe et une casserole qui n’adhère pas. Ecrivez « poêle »",
-  reponse: {
-    nom_technique: 'APlc/poele',
-    textes: ['poêle', 'poele', 'poéle', 'poèle', 'poële',
-      'poêles', 'poeles', 'poéles', 'poèles', 'poëles'],
-    scores: [1, 0.75, 0.75, 0.75, 0.75,
-      0.75, 0.75, 0.75, 0.75, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/poele1',
+      intitule: 'poêle',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/poele2',
+      intitule: 'poele',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/poele3',
+      intitule: 'poéle',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/poele4',
+      intitule: 'poèle',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/poele5',
+      intitule: 'poële',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/poeles1',
+      intitule: 'poêles',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/poeles2',
+      intitule: 'poeles',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/poeles3',
+      intitule: 'poéles',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/poeles4',
+      intitule: 'poèles',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/poeles5',
+      intitule: 'poëles',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc17 = {
@@ -941,15 +1168,25 @@ const APlc17 = {
   nom_technique: 'aplc_17',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Ecrivez « luxe »",
-  reponse: {
-    nom_technique: 'APlc/luxe',
-    textes: ['luxe', 'luxes'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/luxe',
+      intitule: 'luxe',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/luxes',
+      intitule: 'luxes',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc18 = {
@@ -957,15 +1194,25 @@ const APlc18 = {
   nom_technique: 'aplc_18',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Ecrivez « casserole »",
-  reponse: {
-    nom_technique: 'APlc/casserole',
-    textes: ['casserole', 'casseroles'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/casserole',
+      intitule: 'casserole',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/casseroles',
+      intitule: 'casseroles',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc19 = {
@@ -973,15 +1220,40 @@ const APlc19 = {
   nom_technique: 'aplc_19',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Ecrivez « adhère »",
-  reponse: {
-    nom_technique: 'APlc/adhere',
-    textes: ['adhère', 'adhere', 'adhére', 'adhêre', 'adhëre'],
-    scores: [1, 0.75, 0.75, 0.75, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/adhere1',
+      intitule: 'adhère',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/adhere2',
+      intitule: 'adhere',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/adhere3',
+      intitule: 'adhére',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/adhere4',
+      intitule: 'adhêre',
+      type_choix: 'acceptable'
+    },
+    {
+      nom_technique: 'APlc/adhere5',
+      intitule: 'adhëre',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const APlc20 = {
@@ -989,15 +1261,25 @@ const APlc20 = {
   nom_technique: 'aplc_20',
   metacompetence: 'production',
   type: 'saisie',
+  score: 1,
+  score_acceptable: 0.75,
+  score_bonus: 1.25,
   sous_type: 'texte',
   extensionVue: 'liste-courses-a-trous',
   illustration: listeDeCourse,
   retranscription_audio: "Enfin, pour respecter les règles d'hygiène, il vous faudra une solution alcoolique pour nettoyer votre plan de travail. Ecrivez « alcoolique »",
-  reponse: {
-    nom_technique: 'APlc/alcoolique',
-    textes: ['alcoolique', 'alcooliques'],
-    scores: [1, 0.75]
-  }
+  reponses: [
+    {
+      nom_technique: 'APlc/alcoolique',
+      intitule: 'alcoolique',
+      type_choix: 'bon'
+    },
+    {
+      nom_technique: 'APlc/alcooliques',
+      intitule: 'alcooliques',
+      type_choix: 'acceptable'
+    }
+  ]
 };
 
 const parcoursBas = {
