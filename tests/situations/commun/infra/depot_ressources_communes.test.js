@@ -155,7 +155,6 @@ describe('Le dépot de ressources communes', function () {
     });
 
     it("definie l'extension vue pour le type clic dans image", function() {
-      console.log('result:', result);
       expect(result[1]['extensionVue']).toEqual('clic-dans-image' );
     });
 
