@@ -75,7 +75,7 @@ describe('la vue du composant entête', function () {
     it('affiche un bouton lecture lorsque la réponse a un audio associé', function () {
       depotRessources.existeMessageAudio =
       (nom_technique) => nom_technique == 'cuisine';
-      const vue = composant({ reponse: { nom_technique: 'cuisine' } });
+      const vue = composant({ retranscription_audio: 'audio de la réponse', reponses: [{ nom_technique: 'cuisine', type_choix: 'bon' } ]});
       expect(vue.vm.afficheLectureQuestionAudio).toBe(true);
       expect(vue.vm.$refs.boutonLectureQuestionAudio).toBeDefined();
     });
@@ -98,7 +98,8 @@ describe('la vue du composant entête', function () {
   describe('#demarreSon', function (){
     it("démarre le son quand il y a une question audio uniquement", function () {
       const question = {
-        reponse: { nom_technique: 'reponse1'}
+        retranscription_audio: 'audio de la réponse',
+        reponses: [{ nom_technique: 'reponse1', type_choix: 'bon'}]
       };
       depotRessources.existeMessageAudio =
         (nom_technique) => nom_technique == 'reponse1';
@@ -113,7 +114,8 @@ describe('la vue du composant entête', function () {
     it("enchaîne le son de la question audio puis celui du son du texte entête quand il y a des sons", function () {
       const question = {
         nom_technique: 'question1',
-        reponse: { nom_technique: 'reponse1'}
+        retranscription_audio: 'audio de la réponse',
+        reponses: [{ nom_technique: 'reponse1', type_choix: 'bon'}]
       };
       depotRessources.existeMessageAudio = () => true;
       const vue = composant(question);

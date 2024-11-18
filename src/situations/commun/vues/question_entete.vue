@@ -64,7 +64,12 @@ export default {
     },
 
     existeReponseAudio () {
-      return this.question.reponse && this.$depotRessources.existeMessageAudio(this.question.reponse.nom_technique);
+      return this.question.retranscription_audio && this.$depotRessources.existeMessageAudio(this.reponseAudioNonTechnique);
+    },
+
+    reponseAudioNonTechnique() {
+      const reponse = this.question.reponses.find(r => r.type_choix === 'bonus') || this.question.reponses.find(r => r.type_choix === 'bon');
+      return reponse?.nom_technique;
     },
 
     existeIntituleAudioSansEcrit () {
@@ -73,7 +78,7 @@ export default {
 
     nomTechniqueLectureQuestionAudio() {
       return this.existeReponseAudio
-        ? this.question.reponse.nom_technique
+        ? this.reponseAudioNonTechnique
         : this.existeIntituleAudioSansEcrit
           ? `${this.question.nom_technique}_intitule`
           : '';
