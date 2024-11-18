@@ -78,26 +78,27 @@ export default {
 
   methods: {
     emetReponse (valeur) {
-      const reponse = valeur.trim();
+      const reponseSaisie = valeur.trim();
       let succes;
       let score;
       let scoreMax;
-      if(this.question.reponse) {
-        const indexReponse = this.question.reponse.textes.indexOf(reponse.toLowerCase());
-        succes = indexReponse != -1;
-        const scores = this.question.reponse.scores;
-        if (scores) {
-          score = scores[indexReponse] ?? 0;
-          scoreMax = scores.reduce((max, score) => {
-            if (!max) return score;
-            return (score > max) ? score : max;
-          });
-        } else if (this.question.score) {
-          scoreMax = this.question.score;
-        }
+      if(this.question.reponses) {
+        const reponse = this.question.reponses?.find(r => r.intitule === reponseSaisie.toLowerCase());
+        succes = !!reponse;
+        score = reponse ? this.recupereScore(reponse.type_choix) : 0;
+        scoreMax = this.question.score_bonus ?? this.question.score;
       }
-      this.$emit('reponse', { reponse, succes, score, scoreMax });
+      this.$emit('reponse', { reponse: reponseSaisie, succes, score, scoreMax });
     },
+
+    recupereScore(type) {
+      switch(type) {
+      case 'bon': return this.question.score;
+      case 'acceptable': return this.question.score_acceptable;
+      case 'bonus': return this.question.score_bonus;
+      default: return 0;
+      }
+    }
   },
 
   mounted: function () {

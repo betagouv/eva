@@ -45,11 +45,11 @@ describe('Le composant champ de saisie', function () {
 
   describe('peut être utilisé avec la propriété v-model', function () {
     it('envoie la réponse dans un événement input', function () {
-      vue = composant({ question: { reponse: { textes: ['boulangerie'] } } });
+      vue = composant({ question: { reponses: [{ intitule: 'boulangerie' }] } });
       const input = vue.find('input[type=text]');
       input.setValue('Boulangerie ');
       expect(vue.emitted('reponse')[0].length).toEqual(1);
-      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'Boulangerie', succes: true });
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: 'Boulangerie', succes: true, score: 0 });
     });
   });
 
@@ -69,10 +69,20 @@ describe('Le composant champ de saisie', function () {
 
     describe('quand on attend une réponse particulière', function() {
       beforeEach(function() {
-        vue = composant({ question: { reponse: {
-          textes: ['boulangerie', 'boulangeries'],
-          scores: [1, 1.5]
-        } } });
+        vue = composant({ question: { score: 1, score_bonus: 1.5, score_acceptable: 0.75, reponses: [
+          {
+            intitule: 'boulangerie',
+            type_choix: 'bon'
+          },
+          {
+            intitule: 'boulangeries',
+            type_choix: 'bonus'
+          },
+          {
+            intitule: 'boulangeri',
+            type_choix: 'acceptable'
+          }
+        ]}});
       });
 
       it("retourne un echec si la réponse n'est pas dans la liste", function() {
@@ -85,7 +95,7 @@ describe('Le composant champ de saisie', function () {
         });
       });
 
-      it("retourne un succès pour la première réponse", function() {
+      it("retourne un succès si la réponse est de type 'bon' avec son score", function() {
         vue.vm.emetReponse('boulangerie');
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangerie',
@@ -95,7 +105,7 @@ describe('Le composant champ de saisie', function () {
         });
       });
 
-      it("retourne un succès pour la seconde réponse", function() {
+      it("retourne un succès si la réponse est de type 'bonus' avec son score", function() {
         vue.vm.emetReponse('boulangeries');
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangeries',
@@ -104,11 +114,32 @@ describe('Le composant champ de saisie', function () {
           scoreMax: 1.5
         });
       });
+
+      it("retourne un succès si la réponse est de type 'acceptable' avec son score", function() {
+        vue.vm.emetReponse('boulangeri');
+        expect(vue.emitted('reponse')[0][0]).toEqual({
+          reponse: 'boulangeri',
+          succes: true,
+          score: 0.75,
+          scoreMax: 1.5
+        });
+      });
     });
 
-    describe('quand la question a un score', function() {
+    describe("quand la question n'a pas de score bonus", function() {
       beforeEach(function() {
-        vue = composant({ question: { score: 1.5, reponse: { textes: ['99']} } });
+        vue = composant({ question: { score: 1, reponses: [ { intitule: '99'}] } });
+      });
+
+      it("retourne le score maximum dans la réponse", function() {
+        vue.vm.emetReponse('6');
+        expect(vue.emitted('reponse')[0][0].scoreMax).toEqual(1);
+      });
+    });
+
+    describe("quand la question a un score bonus", function() {
+      beforeEach(function() {
+        vue = composant({ question: { score: 1, score_bonus: 1.5, reponses: [ { intitule: '99'}] } });
       });
 
       it("retourne le score maximum dans la réponse", function() {
