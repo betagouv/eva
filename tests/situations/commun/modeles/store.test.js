@@ -103,7 +103,7 @@ describe('Le store en commun pour les situations', function () {
     describe('#questionServeur', function() {
       beforeEach(function () {
         store = creeStore();
-        store.state.questionActive = { nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul' };
+        store.state.questionActive = { id: 'N1Prn1', nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul' };
       });
 
       describe("si la question active a une question serveur avec le même suffixe", function() {
