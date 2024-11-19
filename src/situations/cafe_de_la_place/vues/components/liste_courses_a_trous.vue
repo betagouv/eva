@@ -1,5 +1,8 @@
 <template>
-  <div class="liste-de-courses">
+  <div v-if="question.texte_a_trous" class="liste-de-courses">
+    <component :is="texteATrous" />
+  </div>
+  <div v-else class="liste-de-courses">
     <h1 class="liste-de-courses__titre">Courses pour la <trou-a-completer idQuestion="APlc1"/></h1>
     <ul class="liste-de-courses__liste">
       <li>2 <trou-a-completer idQuestion="APlc2"/> en <trou-a-completer idQuestion="APlc3"/></li>
@@ -25,5 +28,21 @@ import TrouACompleter from 'cafe_de_la_place/vues/components/trou_a_completer.vu
 
 export default {
   components: { TrouACompleter },
+  props: {
+    question: {
+      type: Object,
+    },
+  },
+
+  computed: {
+    texteATrous() {
+      return {
+        template: `${this.question.texte_a_trous}`,
+        components: {
+          'trou-a-completer': TrouACompleter
+        }
+      };
+    }
+  }
 };
 </script>
