@@ -98,8 +98,8 @@ export function creeStore () {
 
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
-        if (state.carteActive.score) {
-          state.reponses[reponse.question].score = reponse.succes ? state.carteActive.score : 0;
+        if(!reponse.score) {
+          state.reponses[reponse.question].score = 0;
         }
         if(reponse.succes && state.carteActive.score) {
           if(state.parcours == ORIENTATION) {

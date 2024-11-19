@@ -140,7 +140,7 @@ describe('La vue café de la place', function () {
         it('enregistre les réponses dans le store', function () {
           wrapper.vm.reponse({ question: 'question1', reponse: 'cuisine' });
           expect(store.state.reponses['question1'])
-            .toEqual({ question: 'question1', reponse: 'cuisine' });
+            .toEqual({ question: 'question1', reponse: 'cuisine', score: 0 });
         });
 
         it('enregistre les réponses dans le journal', function (done) {
