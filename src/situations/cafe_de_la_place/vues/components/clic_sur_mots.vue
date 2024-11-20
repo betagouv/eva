@@ -18,6 +18,9 @@ export default {
     ...mapGetters(['texteCliquable']),
 
     htmlTexteCliquable() {
+      if(this.question.texte_cliquable) {
+        return marked(this.question.texte_cliquable);
+      }
       return marked(this.texteCliquable);
     },
 
