@@ -209,7 +209,7 @@ const HCvf1 = {
   intitule: "« Pour le concours des villes fleuries, ils ont sillonné la ville ». Mais de qui parle-t-on ?",
   modalite_reponse: "Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous êtes sûr, cliquez sur « Valider ».",
   reponse: {
-    texte: 'les membres du jury du concours régional des villes fleuries',
+    bonne_reponse: ['les membres du jury du concours régional des villes fleuries']
   }
 };
 
@@ -217,7 +217,6 @@ const HCvf2 = {
   id: 'HCvf2',
   nom_technique: 'hcvf_2',
   extensionVue: 'clic-sur-mots',
-  reponses_multiples: true,
   zone_cliquable: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
   score: 1,
