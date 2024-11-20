@@ -342,7 +342,7 @@ const alrd11 = {
   zone_cliquable: 'liste-chansons',
   retranscription_audio: 'Sélectionnez le mot Exercice',
   reponse: {
-    texte: 'Exercice',
+    bonne_reponse: ['Exercice'],
     nom_technique: 'ALrd/exercice',
   }
 };
@@ -357,7 +357,7 @@ const alrd12 = {
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Anguille',
   reponse: {
-    texte: 'Anguille',
+    bonne_reponse: ['Anguille'],
     nom_technique: 'ALrd/anguille',
   }
 };
@@ -372,7 +372,7 @@ const alrd13 = {
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Dimoudon',
   reponse: {
-    texte: 'Dimoudon',
+    bonne_reponse: ['Dimoudon'],
     nom_technique: 'ALrd/dimoudon',
   }
 };
@@ -387,7 +387,7 @@ const alrd14 = {
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Soupçons',
   reponse: {
-    texte: 'Soupçon',
+    bonne_reponse: ['Soupçon'],
     nom_technique: 'ALrd/soupcon',
   }
 };
@@ -403,7 +403,7 @@ const ACrd1 = {
   modalite_reponse: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
   extensionVue: 'clic-sur-mots',
   reponse: {
-    texte: 'Rick Duxol & Mori Morino',
+    bonne_reponse: ['Rick Duxol & Mori Morino'],
   }
 };
 
@@ -417,7 +417,7 @@ const ACrd2 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
-    texte: 'Georges Tiporanet',
+    bonne_reponse: ['Georges Tiporanet'],
   }
 };
 
@@ -431,7 +431,7 @@ const ACrd3 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
-    texte: 'New-York',
+    bonne_reponse:['New-York'],
   }
 };
 
@@ -445,7 +445,7 @@ const ACrd4 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
-    texte: 'Bulgarie',
+    bonne_reponse: ['Bulgarie'],
   }
 };
 
@@ -459,7 +459,7 @@ const ACrd5 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
-    texte: '2011',
+    bonne_reponse: ['2011'],
   }
 };
 

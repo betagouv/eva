@@ -38,7 +38,7 @@ describe('Le composant Clic Sur Mots', function () {
   describe("quand il n'y a qu'une seule réponse possible", function () {
     beforeEach(function () {
       store = new Vuex.Store({ getters: { texteCliquable () { return '* [invalide]()\n* [exercice]()';}}});
-      question = { id: 1, reponse: { texte: 'exercice' }, score: 1, nom_technique: 'question1' };
+      question = { id: 1, reponse: { bonne_reponse: ['exercice'] }, score: 1, nom_technique: 'question1' };
       wrapper = composant({ question });
     });
 
@@ -83,11 +83,10 @@ describe('Le composant Clic Sur Mots', function () {
 
   describe("quand il y a plusieurs réponses possibles", function () {
     beforeEach(function () {
-      store = new Vuex.Store({ getters: { texteCliquable () { return '* [reponse1]()\n* [reponse2]()';}}});
+      store = new Vuex.Store({ getters: { texteCliquable () { return '* [reponse1]()\n* [reponse2]() [reponse3]()';}}});
       question = {
         id: 1,
-        reponses_multiples: true,
-        reponse: { bonne_reponse: ['reponse2']},
+        reponse: { bonne_reponse: [ 'reponse1', 'reponse2']},
         nom_technique: 'question1',
         score: 1
       };
@@ -121,10 +120,11 @@ describe('Le composant Clic Sur Mots', function () {
       describe('quand je sélectionne les bons mots', function () {
         it('emet une réponse valide', function (done) {
           const liens = wrapper.findAll('.mot-cliquable');
+          liens.at(0).trigger('click');
           liens.at(1).trigger('click');
           wrapper.vm.$nextTick(() => {
-            expect(wrapper.emitted().reponse.length).toEqual(1);
-            expect(wrapper.emitted().reponse[0][0]).toEqual({ reponse: ['reponse2'], succes: true, score: 1, scoreMax: 1 });
+            expect(wrapper.emitted().reponse.length).toEqual(2);
+            expect(wrapper.emitted().reponse[1][0]).toEqual({ reponse: ['reponse1', 'reponse2'], succes: true, score: 1, scoreMax: 1 });
             done();
           });
         });
@@ -151,6 +151,5 @@ describe('Le composant Clic Sur Mots', function () {
         });
       });
     });
-
   });
 });

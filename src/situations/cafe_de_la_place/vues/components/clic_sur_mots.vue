@@ -35,7 +35,7 @@ export default {
       lien.classList.add('mot-cliquable');
       lien.addEventListener('click', (event) => {
         event.preventDefault(); // empêche le comportement par défaut du lien
-        if(this.question.reponses_multiples) {
+        if(this.question.reponse.bonne_reponse.length > 1) {
           this.metAJourSelectionMultiple(lien);
           this.envoiReponseMultiple(listeLiens);
         }
@@ -50,7 +50,7 @@ export default {
   methods: {
     envoiReponse(lien) {
       const reponse = lien.textContent.trim();
-      const succes = this.question.reponse.texte === reponse;
+      const succes = this.question.reponse.bonne_reponse[0] === reponse;
       const score = succes ? this.question.score : 0;
       const scoreMax = this.question.score;
       this.$emit('reponse', { reponse, succes, score, scoreMax } );
