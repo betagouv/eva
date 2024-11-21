@@ -1,4 +1,5 @@
 import { creeStore, synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
+import { fakeQuestionServeurClicSurMots, fakeQuestionServeurDansImage, fakeQuestionServeurGlisserDeposer, fakeQuestionServeurSaisie } from '../../../fixtures/questions';
 import Situation, {
   CHARGEMENT,
   FINI,
@@ -101,29 +102,29 @@ describe('Le store en commun pour les situations', function () {
     });
 
     describe('#questionServeur', function() {
+      let questionServeur;
+      let questionClient;
+      let question;
+
       beforeEach(function () {
         store = creeStore();
-        store.state.questionActive = { id: 'N1Prn1', nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul' };
+        questionClient = { id: 'N1Prn1', nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul', retranscription_audio: 'audio' };
+        store.state.questionActive = questionClient;
+        store.state.questions = [fakeQuestionServeurClicSurMots, fakeQuestionServeurDansImage, fakeQuestionServeurGlisserDeposer, fakeQuestionServeurSaisie];
       });
 
       describe("si la question active a une question serveur avec le même suffixe", function() {
-        let question;
-        let questionServeur;
-
         beforeEach(function() {
-          question = { nom_technique: 'N1Prn1_variant', intitule: 'intitulé serveur' };
-          store.state.questions = [question];
+          fakeQuestionServeurClicSurMots.nom_technique = 'N1Prn1_variant';
           questionServeur = store.getters.questionServeur(store.state.questionActive);
         });
 
-        it("retourne la question serveur", function() {
-          expect(questionServeur.id).toEqual('N1Prn1');
-          expect(questionServeur.intitule).toEqual('intitulé serveur' );
-        });
-
-        it("recupere les données du client", function() {
-          expect(questionServeur.score).toEqual(0.5);
-          expect(questionServeur.metacompetence).toEqual('calcul');
+        it("retourne les données du serveur", function() {
+          expect(questionServeur.id).toEqual(fakeQuestionServeurClicSurMots.id);
+          expect(questionServeur.intitule).toEqual(fakeQuestionServeurClicSurMots.intitule);
+          expect(questionServeur.nom_technique).toEqual(fakeQuestionServeurClicSurMots.nom_technique);
+          expect(questionServeur.modalite_reponse).toEqual(fakeQuestionServeurClicSurMots.modalite_reponse);
+          expect(questionServeur.illustration).toEqual(fakeQuestionServeurClicSurMots.illustration);
         });
       });
 
@@ -131,6 +132,96 @@ describe('Le store en commun pour les situations', function () {
         it('ne retourne rien', function() {
           store.state.questions = [];
           expect(store.getters.questionServeur(store.state.questionActive)).toBeUndefined();
+        });
+      });
+
+      describe("pour tous les types de questions", function() {
+        beforeEach(function() {
+          questionClient.nom_technique = fakeQuestionServeurClicSurMots.nom_technique;
+          questionServeur = store.getters.questionServeur(questionClient);
+        });
+
+        it("recupere le paramétrage commun du client", function() {
+          expect(questionServeur.score).toEqual(0.5);
+          expect(questionServeur.metacompetence).toEqual('calcul');
+          expect(questionServeur.id).toEqual('N1Prn1');
+          expect(questionServeur.retranscription_audio).toEqual('audio');
+        });
+      });
+
+      describe("pour les questions de type clic-sur-mots", function() {
+        beforeEach(function() {
+          question = { ...questionClient, ...{
+            nom_technique: fakeQuestionServeurClicSurMots.nom_technique,
+            template: "article article--disque",
+            extensionVue: "clic-sur-mots",
+          }};
+          questionServeur = store.getters.questionServeur(question);
+        });
+
+        it("recupere le paramétrage du serveur", function() {
+          expect(questionServeur.reponse).toEqual(fakeQuestionServeurClicSurMots.reponse);
+        });
+
+        it("recupere le paramétrage du client", function() {
+          expect(questionServeur.extensionVue).toEqual('clic-sur-mots');
+          expect(questionServeur.template).toEqual('article article--disque');
+        });
+      });
+
+      describe("pour les questions de type clic-dans-image", function() {
+        beforeEach(function() {
+          question = { ...questionClient, ...{
+            nom_technique: fakeQuestionServeurDansImage.nom_technique,
+          }};
+          questionServeur = store.getters.questionServeur(question);
+        });
+
+        it("recupere le paramétrage du client", function() {
+          expect(questionServeur.extensionVue).toEqual('clic-dans-image');
+        });
+
+        it("recupere le paramétrage du serveur", function() {
+          expect(questionServeur.zone_cliquable).toEqual(fakeQuestionServeurDansImage.zone_cliquable);
+        });
+      });
+
+      describe("pour les questions de type glisser-deposer", function() {
+        beforeEach(function() {
+          question = { ...questionClient, ...{
+            nom_technique: fakeQuestionServeurGlisserDeposer.nom_technique,
+          }};
+          questionServeur = store.getters.questionServeur(question);
+        });
+
+        it("recupere le paramétrage du client", function() {
+          expect(questionServeur.extensionVue).toEqual('glisser-deposer');
+        });
+
+        it("recupere le paramétrage du serveur", function() {
+          expect(questionServeur.zone_depot).toEqual(fakeQuestionServeurGlisserDeposer.zone_depot);
+        });
+      });
+
+      describe("pour les questions de type saisie", function() {
+        beforeEach(function() {
+          question = { ...questionClient, ...{
+            nom_technique: fakeQuestionServeurSaisie.nom_technique,
+            score_bonus: 1.5,
+            score_acceptable: 0.5,
+            extensionVue: 'liste-courses-a-trous',
+          }};
+          questionServeur = store.getters.questionServeur(question);
+        });
+
+        it("recupere le paramétrage du client", function() {
+          expect(questionServeur.extensionVue).toEqual('liste-courses-a-trous');
+          expect(questionServeur.score_acceptable).toEqual(0.5);
+          expect(questionServeur.score_bonus).toEqual(1.5);
+        });
+
+        it("recupere le paramétrage du serveur", function() {
+          expect(questionServeur.reponses).toEqual(fakeQuestionServeurSaisie.reponses);
         });
       });
     });
