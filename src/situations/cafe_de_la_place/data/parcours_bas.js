@@ -25,7 +25,7 @@ const sousConsigneACrd1 = {
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   nom_technique: 'sous_consigne_ACrd_1',
   intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.\n\nPour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
@@ -339,7 +339,7 @@ const alrd11 = {
   modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».\nPour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic-sur-mots',
   score: 1,
-  zone_cliquable: 'liste-chansons',
+  template: 'liste-chansons',
   retranscription_audio: 'Sélectionnez le mot Exercice',
   reponse: {
     bonne_reponse: ['Exercice'],
@@ -353,7 +353,7 @@ const alrd12 = {
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
-  zone_cliquable: 'liste-chansons',
+  template: 'liste-chansons',
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Anguille',
   reponse: {
@@ -368,7 +368,7 @@ const alrd13 = {
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
-  zone_cliquable: 'liste-chansons',
+  template: 'liste-chansons',
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Dimoudon',
   reponse: {
@@ -383,7 +383,7 @@ const alrd14 = {
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
-  zone_cliquable: 'liste-chansons',
+  template: 'liste-chansons',
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Soupçons',
   reponse: {
@@ -397,7 +397,7 @@ const ACrd1 = {
   nom_technique: 'acrd_1',
   metacompetence: 'comprehension',
   intitule: 'Comment s’appelle le groupe ?',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   score: 1,
   illustration: magazineSansTexte,
   modalite_reponse: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
@@ -412,7 +412,7 @@ const ACrd2 = {
   nom_technique: 'acrd_2',
   metacompetence: 'comprehension',
   intitule: 'Comment s’appelle le joueur de contrebasse ?',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
@@ -426,7 +426,7 @@ const ACrd3 = {
   nom_technique: 'acrd_3',
   metacompetence: 'comprehension',
   intitule: 'Dans quelle ville a eu lieu l’enregistrement de ce disque ?',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
@@ -440,7 +440,7 @@ const ACrd4 = {
   nom_technique: 'acrd_4',
   metacompetence: 'comprehension',
   intitule: 'De quel pays le groupe vient-il ?',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
@@ -454,7 +454,7 @@ const ACrd5 = {
   nom_technique: 'acrd_5',
   metacompetence: 'comprehension',
   intitule: 'En quelle année le groupe a-t-il débuté ?',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
@@ -469,7 +469,7 @@ const sousConsigneACrd2 = {
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.\n\nPour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
 
@@ -480,7 +480,7 @@ const ACrd6 = {
   intitule: 'Qui est Ivano Karanadoff ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   score: 1,
   type: 'qcm',
   modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
@@ -514,7 +514,7 @@ const ACrd7 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   score: 1,
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   type: 'qcm',
   choix: [
     {
@@ -544,7 +544,7 @@ const ACrd8 = {
   intitule: 'Qui a influencé ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   score: 1,
   type: 'qcm',
   choix: [
@@ -577,7 +577,7 @@ const ACrd9 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   score: 1,
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   type: 'qcm',
   choix: [
     {
@@ -608,7 +608,7 @@ const ACrd10 = {
   intitule: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
-  zone_cliquable: 'article article--disque',
+  template: 'article article--disque',
   score: 1,
   type: 'qcm',
   choix: [
