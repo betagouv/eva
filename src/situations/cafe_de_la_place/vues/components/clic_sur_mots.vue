@@ -25,7 +25,7 @@ export default {
     },
 
     presentationZoneCliquable() {
-      return 'zone-cliquable ' + this.question.zone_cliquable;
+      return 'zone-cliquable ' + this.question.template;
     }
   },
 
