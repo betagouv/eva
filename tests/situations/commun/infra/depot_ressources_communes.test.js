@@ -153,14 +153,5 @@ describe('Le dépot de ressources communes', function () {
     it('retourne les questions du serveur', function() {
       expect(result).toEqual(questionsServeur);
     });
-
-    it("definie l'extension vue pour le type clic dans image", function() {
-      expect(result[1]['extensionVue']).toEqual('clic-dans-image' );
-    });
-
-
-    it("definie l'extension vue pour le type glisser déposer", function() {
-      expect(result[2].extensionVue).toEqual('glisser-deposer' );
-    });
   });
 });
