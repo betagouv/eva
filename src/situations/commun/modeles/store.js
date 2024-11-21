@@ -65,6 +65,11 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
           retranscription_audio,
         });
 
+        if(question.type === 'clic-dans-image' || question.type === 'glisser-deposer' || question.type === 'clic-sur-mots') {
+          question.extensionVue = question.type;
+          delete question.type;
+        }
+
         return question;
       },
       ...getters

@@ -113,10 +113,6 @@ export default class DepotRessourcesCommunes extends DepotRessources {
           delete choix.type_choix;
         });
       }
-      if(question.type === 'clic-dans-image' || question.type === 'glisser-deposer' || question.type === 'clic-sur-mots') {
-        question.extensionVue = question.type;
-        delete question.type;
-      }
     });
     return this.questionsServeur;
   }
