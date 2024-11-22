@@ -49,6 +49,13 @@ export function creeStore () {
         'N2Prh': 100,
         'N2Ptg': 100,
         'N2Ppl': 100,
+        'N3Ppl': 100,
+        'N3Put': 100,
+        'N3Ppo': 100,
+        'N3Ppr': 100,
+        'N3Pps': 100,
+        'N3Pvo': 100,
+        'N3Prp': 100
       },
       maxScoreNiveauEnCours: 0
     },
