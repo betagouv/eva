@@ -7,26 +7,36 @@ function chargeurAudio (src) {
   request.open('GET', src, true);
   request.responseType = 'arraybuffer';
 
-  const promesse = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     request.onload = function () {
-      audioCtx.decodeAudioData(request.response,
-        function (buffer) {
-          resolve(() => {
-            const source = audioCtx.createBufferSource();
-            source.buffer = buffer;
-            source.connect(audioCtx.destination);
-            return source;
-          });
-        },
-        function (erreur) {
-          const message = `Erreur au décodage de ${src} : ${erreur}`;
-          reject(new Error(message));
-        });
+      if (request.status >= 200 && request.status < 300) {
+        audioCtx.decodeAudioData(
+          request.response,
+          function (buffer) {
+            resolve(() => {
+              const source = audioCtx.createBufferSource();
+              source.buffer = buffer;
+              source.connect(audioCtx.destination);
+              return source;
+            });
+          },
+          function (erreur) {
+            reject(new Error(`Erreur au décodage de ${src} : ${erreur.message}`));
+          }
+        );
+      } else {
+        reject(new Error(`Échec de la requête : HTTP ${request.status}`));
+      }
     };
-  });
 
-  request.send();
-  return promesse;
+    // Gestion des erreurs réseau (CORS ou autres)
+    request.onerror = function () {
+      reject(new Error(`Erreur réseau ou problème CORS lors de l'accès à ${src}`));
+    };
+
+    // Envoi de la requête
+    request.send();
+  });
 }
 
 function chargeurVideo (src) {
