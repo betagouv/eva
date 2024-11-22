@@ -20,8 +20,9 @@ describe('Le store de la situation place du marché', function () {
   const questionNiveau1Question1 = { nom_technique: 'N1Pse1', score: 0.5 };
   const questionNiveau1Question2 = { nom_technique: 'N1Pse2', score: 1 };
   const questionNiveau1Question3 = { nom_technique: 'N1Pse3', score: 1 };
+  const N1PrnSousConsigne = { nom_technique: 'Sous-consigne-sans-score' };
   const questionNiveau2 = { nom_technique: 'N2Pse1'};
-  const questionNiveau3 = { nom_technique: 'N3Pse1'};
+  const questionNiveau3 = { nom_technique: 'N3Pse1', score: 1.5};
   const questionAvecRattrapage = { score: 1 };
   const questionRattrapage = { nom_technique: 'N1Rrn1' };
 
@@ -41,6 +42,7 @@ describe('Le store de la situation place du marché', function () {
       [NIVEAU3]: {
         series: [
           { cartes: [questionNiveau3]},
+          { cartes: [ N1PrnSousConsigne ] },
         ],
       },
       ['N1Prn']: {
@@ -143,82 +145,87 @@ describe('Le store de la situation place du marché', function () {
     });
 
     describe("#carteSuivante", function() {
-      describe('quand la série est terminée', function() {
+      describe("si le parcours n'est pas terminé", function() {
         beforeEach(function() {
-          store.state.indexCarte = 0;
-          store.state.indexSerie = 1;
-          store.state.questionActive = questionNiveau2;
+          store.state.parcoursTermine = false;
         });
 
-        it("termine la situation après la dernière question du dernier niveau", function () {
-          expect(store.state.questionActive).toEqual(questionNiveau2);
-          expect(store.state.termine).toBe(false);
-          store.commit('carteSuivante');
-          expect(store.state.questionActive).toEqual(questionNiveau2);
-          expect(store.state.termine).toBe(true);
+        it("ne change pas de niveau", function() {
+          expect(store.state.indexNiveau).toEqual(0);
         });
       });
 
-      describe('quand un niveau est terminé', function() {
+      describe("si le parcours est terminé", function() {
         beforeEach(function() {
           store.state.parcoursTermine = true;
         });
 
-        describe('si le pourcentage de réussite du parcours est supérieur à 70', function() {
+        describe('quand le pourcentage de réussite est supérieur à 70', function() {
           beforeEach(function() {
             store.state.pourcentageDeReussiteGlobal = 71;
           });
 
-          it("démarre le niveau suivant", function () {
-            expect(store.state.parcours).toBe(NIVEAU1);
+          describe("et que ce n'est pas le dernier niveau", function(){
+            it("démarre le niveau suivant", function () {
+              expect(store.state.parcours).toBe(NIVEAU1);
 
-            store.commit('carteSuivante');
-            expect(store.state.parcours).toBe(NIVEAU2);
-            expect(store.state.termine).toBe(false);
-          });
+              store.commit('carteSuivante');
+              expect(store.state.parcours).toBe(NIVEAU2);
+              expect(store.state.indexNiveau).toEqual(1);
+              expect(store.state.termine).toBe(false);
+            });
 
-          it("termine la situation à la fin du dernier niveau", function () {
-            store.state.parcours = NIVEAU3;
-            expect(store.getters.estDernierNiveau).toBe(true);
-
-            store.commit('carteSuivante');
-            expect(store.state.termine).toBe(true);
-          });
-        });
-
-        describe('si le pourcentage de réussite du parcours est inférieur à 70', function() {
-          beforeEach(function() {
-            store.state.pourcentageDeReussiteGlobal = 69;
-          });
-
-          describe('quand il y a des compétences à rattraper', function() {
-            it("démarre le parcours de rattrapage", function () {
+            it("réinitialise les rattrapages à passer", function () {
               store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
               store.commit('carteSuivante');
-              expect(store.state.parcours).toEqual('N1Prn');
-              expect(store.state.termine).toBe(false);
+              expect(store.state.pourcentageDeReussiteCompetence['N1Prn']).toEqual(100);
+              expect(store.getters.rattrapagesAPasser).toEqual([]);
             });
           });
 
-          describe("quand il n'y a pas des compétences à rattraper", function() {
+          describe("et que c'est le dernier niveau", function(){
             it("termine la situation", function () {
-              store.state.pourcentageDeReussiteCompetence['N1Prn'] = 100;
+              store.state.parcours = NIVEAU3;
+              expect(store.getters.estDernierNiveau).toBe(true);
+
               store.commit('carteSuivante');
               expect(store.state.termine).toBe(true);
             });
           });
         });
 
-        it('réinitialise les rattrapages à passer avant de passer au niveau suivant', function() {
-          store.state.pourcentageDeReussiteGlobal = 71;
-          store.state.pourcentageDeReussiteCompetence = {
-            'N1Prn': 69,
-          };
-          expect(store.getters.rattrapagesAPasser).toEqual(['N1Prn']);
+        describe('quand le pourcentage de réussite est inférieur à 70', function() {
+          beforeEach(function() {
+            store.state.pourcentageDeReussiteGlobal = 69;
+          });
 
-          store.commit('carteSuivante');
+          describe('si il y a des compétences à rattraper', function() {
+            beforeEach(function() {
+              store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
+            });
 
-          expect(store.getters.rattrapagesAPasser).toEqual([]);
+            it("termine si ils ont déjà été passés", function () {
+              store.state.indexRattrapage = 1;
+              store.commit('carteSuivante');
+              expect(store.state.termine).toEqual(true);
+            });
+
+            it("démarre le parcours de rattrapage", function () {
+              expect(store.getters.rattrapagesAPasser).toEqual(['N1Prn']);
+              expect(store.state.indexRattrapage).toEqual(0);
+              store.commit('carteSuivante');
+              expect(store.state.parcours).toEqual('N1Prn');
+              expect(store.state.indexRattrapage).toEqual(1);
+            });
+          });
+
+          describe("si il n'y a pas des compétences à rattraper", function() {
+            it("termine la situation", function () {
+              store.state.pourcentageDeReussiteCompetence['N1Prn'] = 100;
+              store.commit('carteSuivante');
+              expect(store.state.termine).toBe(true);
+            });
+          });
         });
       });
 
@@ -236,8 +243,8 @@ describe('Le store de la situation place du marché', function () {
 
     describe("#maxScoreSerieEnCours", function() {
       it('retourne le score maximum du niveau en cours', function() {
-        store.state.parcours = NIVEAU1;
-        expect(store.getters.maxScoreSerieEnCours).toEqual(2.5);
+        store.state.series = configuration.questions[NIVEAU3].series;
+        expect(store.getters.maxScoreSerieEnCours).toEqual(1.5);
       });
     });
 
