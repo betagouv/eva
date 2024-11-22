@@ -28,6 +28,11 @@ const N1Pse4 = {
   score: 0.5,
 };
 
+const N1PrnSousConsigne = {
+  id: 'N1Prn-sous-consigne',
+  nom_technique: 'N1Prn-sous-consigne',
+};
+
 const N1Prn1 = {
   id: 'N1Prn1',
   nom_technique: 'N1Prn1',
@@ -138,11 +143,6 @@ const N1Pvn4 = {
   nom_technique: 'N1Pvn4',
   metacompetence: 'vocabulaire_numeracie',
   score: 0.5,
-};
-
-const N1PrnSousConsigne = {
-  id: 'N1Prn-sous-consigne',
-  nom_technique: 'N1Prn-sous-consigne',
 };
 
 // NUMERATIE NIVEAU 2
@@ -289,10 +289,157 @@ const N2Ppl2 = {
 
 // NUMERATIE NIVEAU 3
 
-const N3PQ1 = {
-  id: 'N3PQ1',
-  nom_technique: 'N3PQ1',
-  intitule: 'Niveau 3 Question 1',
+const N3Ppl1 = {
+  id: 'N3Ppl1',
+  nom_technique: 'N3Ppl1',
+  intitule: 'planning_calculs',
+  score: 1
+};
+
+const N3Ppl2 = {
+  id: 'N3Ppl2',
+  nom_technique: 'N3Ppl2',
+  intitule: 'planning_calculs',
+  score: 1
+};
+
+const N3Put1 = {
+  id: 'N3Put1',
+  nom_technique: 'N3Put1',
+  intitule: 'unites_de_temps_conversions',
+  score: 1
+};
+
+const N3Put2 = {
+  id: 'N3Put2',
+  nom_technique: 'N3Put2',
+  intitule: 'unites_de_temps_conversions',
+  score: 1
+};
+
+const N3Pum1 = {
+  id: 'N3Pum1',
+  nom_technique: 'N3Pum1',
+  intitule: 'unites_de_mesure',
+  score: 0.5
+};
+
+const N3Pum2 = {
+  id: 'N3Pum2',
+  nom_technique: 'N3Pum2',
+  intitule: 'unites_de_mesure',
+  score: 0.5
+};
+
+const N3Pum3 = {
+  id: 'N3Pum3',
+  nom_technique: 'N3Pum3',
+  intitule: 'unites_de_mesure',
+  score: 0.5
+};
+
+const N3Pum4 = {
+  id: 'N3Pum4',
+  nom_technique: 'N3Pum4',
+  intitule: 'unites_de_mesure',
+  score: 0.5
+};
+
+const N3Pim1 = {
+  id: 'N3Pim1',
+  nom_technique: 'N3Pim1',
+  intitule: 'instruments_de_mesure',
+  score: 0.5
+};
+
+const N3Pim2 = {
+  id: 'N3Pim2',
+  nom_technique: 'N3Pim2',
+  intitule: 'instruments_de_mesure',
+  score: 0.5
+};
+
+const N3Pim3 = {
+  id: 'N3Pim3',
+  nom_technique: 'N3Pim3',
+  intitule: 'instruments_de_mesure',
+  score: 0.5
+};
+
+const N3Pim4 = {
+  id: 'N3Pim4',
+  nom_technique: 'N3Pim4',
+  intitule: 'instruments_de_mesure',
+  score: 0.5
+};
+
+const N3Ppo1 = {
+  id: 'N3Ppo1',
+  nom_technique: 'N3Ppo1',
+  intitule: 'pourcentages',
+  score: 1
+};
+
+const N3Ppo2 = {
+  id: 'N3Ppo2',
+  nom_technique: 'N3Ppo2',
+  intitule: 'pourcentages',
+  score: 1
+};
+
+const N3Ppr1 = {
+  id: 'N3Ppr1',
+  nom_technique: 'N3Ppr1',
+  intitule: 'proportionnalite',
+  score: 1
+};
+
+const N3Ppr2 = {
+  id: 'N3Ppr2',
+  nom_technique: 'N3Ppr2',
+  intitule: 'proportionnalite',
+  score: 1
+};
+
+const N3Pps1 = {
+  id: 'N3Pps1',
+  nom_technique: 'N3Pps1',
+  intitule: 'perimetres_surfaces',
+  score: 1
+};
+
+const N3Pps2 = {
+  id: 'N3Pps2',
+  nom_technique: 'N3Pps2',
+  intitule: 'perimetres_surfaces',
+  score: 1
+};
+
+const N3Pvo1 = {
+  id: 'N3Pvo1',
+  nom_technique: 'N3Pvo1',
+  intitule: 'volumes',
+  score: 1
+};
+
+const N3Pvo2 = {
+  id: 'N3Pvo2',
+  nom_technique: 'N3Pvo2',
+  intitule: 'volumes',
+  score: 1
+};
+
+const N3Prp1 = {
+  id: 'N3Prp1',
+  nom_technique: 'N3Prp1',
+  intitule: 'resolution_de_probleme',
+  score: 1
+};
+
+const N3Prp2 = {
+  id: 'N3Prp2',
+  nom_technique: 'N3Prp2',
+  intitule: 'resolution_de_probleme',
   score: 1
 };
 
@@ -327,7 +474,15 @@ const niveau2 = {
 
 const niveau3 = {
   series: [
-    { cartes: [ N3PQ1] }
+    { cartes: [ N3Ppl1, N3Ppl2 ] },
+    { cartes: [ N3Put1, N3Put2 ] },
+    { cartes: [ N3Pum1, N3Pum2, N3Pum3, N3Pum4 ] },
+    { cartes: [ N3Pim1, N3Pim2, N3Pim3, N3Pim4 ] },
+    { cartes: [ N3Ppo1, N3Ppo2 ] },
+    { cartes: [ N3Ppr1, N3Ppr2 ] },
+    { cartes: [ N3Pps1, N3Pps2 ] },
+    { cartes: [ N3Pvo1, N3Pvo2 ] },
+    { cartes: [ N3Prp1, N3Prp2 ] }
   ]
 };
 

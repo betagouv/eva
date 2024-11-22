@@ -232,6 +232,93 @@ const N2Rpl2 = {
   score: 1,
 };
 
+// RATTRAPAGE NUMERATIE NIVEAU 3
+
+const N3Rpl1 = {
+  id: 'N3Rpl1',
+  nom_technique: 'N3Rpl1',
+  intitule: 'planning_calculs',
+  score: 1
+};
+const N3Rpl2 = {
+  id: 'N3Rpl2',
+  nom_technique: 'N3Rpl2',
+  intitule: 'planning_calculs',
+  score: 1
+};
+const N3Rut1 = {
+  id: 'N3Rut1',
+  nom_technique: 'N3Rut1',
+  intitule: 'unites_de_temps_conversions',
+  score: 1
+};
+const N3Rut2 = {
+  id: 'N3Rut2',
+  nom_technique: 'N3Rut2',
+  intitule: 'unites_de_temps_conversions',
+  score: 1
+};
+const N3Rpo1 = {
+  id: 'N3Rpo1',
+  nom_technique: 'N3Rpo1',
+  intitule: 'pourcentages',
+  score: 1
+};
+const N3Rpo2 = {
+  id: 'N3Rpo2',
+  nom_technique: 'N3Rpo2',
+  intitule: 'pourcentages',
+  score: 1
+};
+const N3Rpr1 = {
+  id: 'N3Rpr1',
+  nom_technique: 'N3Rpr1',
+  intitule: 'proportionnalite',
+  score: 1
+};
+const N3Rpr2 = {
+  id: 'N3Rpr2',
+  nom_technique: 'N3Rpr2',
+  intitule: 'proportionnalite',
+  score: 1
+};
+const N3Rps1 = {
+  id: 'N3Rps1',
+  nom_technique: 'N3Rps1',
+  intitule: 'perimetres_surfaces',
+  score: 1
+};
+const N3Rps2 = {
+  id: 'N3Rps2',
+  nom_technique: 'N3Rps2',
+  intitule: 'perimetres_surfaces',
+  score: 1
+};
+const N3Rvo1 = {
+  id: 'N3Rvo1',
+  nom_technique: 'N3Rvo1',
+  intitule: 'volumes',
+  score: 1
+};
+const N3Rvo2 = {
+  id: 'N3Rvo2',
+  nom_technique: 'N3Rvo2',
+  intitule: 'volumes',
+  score: 1
+};
+const N3Rrp1 = {
+  id: 'N3Rrp1',
+  nom_technique: 'N3Rrp1',
+  intitule: 'resolution_de_probleme',
+  score: 1
+};
+const N3Rrp2 = {
+  id: 'N3Rrp2',
+  nom_technique: 'N3Rrp2',
+  intitule: 'resolution_de_probleme',
+  score: 1
+};
+
 const N1Rrn = {
   series: [
     { cartes: [ N1RrnSousConsigne ]},
@@ -330,4 +417,46 @@ const N2Rpl = {
   ]
 };
 
-export { N1Rrn, N1Rde, N1Res, N1Ron, N1Roa, N1Ros, N2Rlp, N2Rpe, N2Rsu, N2Rom, N2Ron, N2Rod, N2Rut, N2Rrh, N2Rtg, N2Rpl };
+const N3Rpl = {
+  series: [
+    { cartes: [ N3Rpl1, N3Rpl2 ] },
+  ]
+};
+
+const N3Rut = {
+  series: [
+    { cartes: [ N3Rut1, N3Rut2 ] },
+  ]
+};
+
+const N3Rpo = {
+  series: [
+    { cartes: [ N3Rpo1, N3Rpo2 ] },
+  ]
+};
+
+const N3Rpr = {
+  series: [
+    { cartes: [ N3Rpr1, N3Rpr2 ] },
+  ]
+};
+
+const N3Rps = {
+  series: [
+    { cartes: [ N3Rps1, N3Rps2 ] },
+  ]
+};
+
+const N3Rvo = {
+  series: [
+    { cartes: [ N3Rvo1, N3Rvo2 ] },
+  ]
+};
+
+const N3Rrp = {
+  series: [
+    { cartes: [ N3Rrp1, N3Rrp2 ] },
+  ]
+};
+
+export { N1Rrn, N1Rde, N1Res, N1Ron, N1Roa, N1Ros, N2Rlp, N2Rpe, N2Rsu, N2Rom, N2Ron, N2Rod, N2Rut, N2Rrh, N2Rtg, N2Rpl, N3Rpl, N3Rut, N3Rpo, N3Rpr, N3Rps, N3Rvo, N3Rrp };
