@@ -74,7 +74,8 @@ export function creeStore () {
 
         state.series.forEach(item => {
           item.cartes.forEach(carte => {
-            totalScore += carte.score;
+            if (carte.score)
+              totalScore += carte.score;
           });
         });
         return totalScore;
