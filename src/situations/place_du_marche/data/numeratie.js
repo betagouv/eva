@@ -292,154 +292,154 @@ const N2Ppl2 = {
 const N3Ppl1 = {
   id: 'N3Ppl1',
   nom_technique: 'N3Ppl1',
-  intitule: 'planning_calculs',
+  metacompetence: 'planning_calculs',
   score: 1
 };
 
 const N3Ppl2 = {
   id: 'N3Ppl2',
   nom_technique: 'N3Ppl2',
-  intitule: 'planning_calculs',
+  metacompetence: 'planning_calculs',
   score: 1
 };
 
 const N3Put1 = {
   id: 'N3Put1',
   nom_technique: 'N3Put1',
-  intitule: 'unites_de_temps_conversions',
+  metacompetence: 'unites_de_temps_conversions',
   score: 1
 };
 
 const N3Put2 = {
   id: 'N3Put2',
   nom_technique: 'N3Put2',
-  intitule: 'unites_de_temps_conversions',
+  metacompetence: 'unites_de_temps_conversions',
   score: 1
 };
 
 const N3Pum1 = {
   id: 'N3Pum1',
   nom_technique: 'N3Pum1',
-  intitule: 'unites_de_mesure',
+  metacompetence: 'unites_de_mesure',
   score: 0.5
 };
 
 const N3Pum2 = {
   id: 'N3Pum2',
   nom_technique: 'N3Pum2',
-  intitule: 'unites_de_mesure',
+  metacompetence: 'unites_de_mesure',
   score: 0.5
 };
 
 const N3Pum3 = {
   id: 'N3Pum3',
   nom_technique: 'N3Pum3',
-  intitule: 'unites_de_mesure',
+  metacompetence: 'unites_de_mesure',
   score: 0.5
 };
 
 const N3Pum4 = {
   id: 'N3Pum4',
   nom_technique: 'N3Pum4',
-  intitule: 'unites_de_mesure',
+  metacompetence: 'unites_de_mesure',
   score: 0.5
 };
 
 const N3Pim1 = {
   id: 'N3Pim1',
   nom_technique: 'N3Pim1',
-  intitule: 'instruments_de_mesure',
+  metacompetence: 'instruments_de_mesure',
   score: 0.5
 };
 
 const N3Pim2 = {
   id: 'N3Pim2',
   nom_technique: 'N3Pim2',
-  intitule: 'instruments_de_mesure',
+  metacompetence: 'instruments_de_mesure',
   score: 0.5
 };
 
 const N3Pim3 = {
   id: 'N3Pim3',
   nom_technique: 'N3Pim3',
-  intitule: 'instruments_de_mesure',
+  metacompetence: 'instruments_de_mesure',
   score: 0.5
 };
 
 const N3Pim4 = {
   id: 'N3Pim4',
   nom_technique: 'N3Pim4',
-  intitule: 'instruments_de_mesure',
+  metacompetence: 'instruments_de_mesure',
   score: 0.5
 };
 
 const N3Ppo1 = {
   id: 'N3Ppo1',
   nom_technique: 'N3Ppo1',
-  intitule: 'pourcentages',
+  metacompetence: 'pourcentages',
   score: 1
 };
 
 const N3Ppo2 = {
   id: 'N3Ppo2',
   nom_technique: 'N3Ppo2',
-  intitule: 'pourcentages',
+  metacompetence: 'pourcentages',
   score: 1
 };
 
 const N3Ppr1 = {
   id: 'N3Ppr1',
   nom_technique: 'N3Ppr1',
-  intitule: 'proportionnalite',
+  metacompetence: 'proportionnalite',
   score: 1
 };
 
 const N3Ppr2 = {
   id: 'N3Ppr2',
   nom_technique: 'N3Ppr2',
-  intitule: 'proportionnalite',
+  metacompetence: 'proportionnalite',
   score: 1
 };
 
 const N3Pps1 = {
   id: 'N3Pps1',
   nom_technique: 'N3Pps1',
-  intitule: 'perimetres_surfaces',
+  metacompetence: 'perimetres_surfaces',
   score: 1
 };
 
 const N3Pps2 = {
   id: 'N3Pps2',
   nom_technique: 'N3Pps2',
-  intitule: 'perimetres_surfaces',
+  metacompetence: 'perimetres_surfaces',
   score: 1
 };
 
 const N3Pvo1 = {
   id: 'N3Pvo1',
   nom_technique: 'N3Pvo1',
-  intitule: 'volumes',
+  metacompetence: 'volumes',
   score: 1
 };
 
 const N3Pvo2 = {
   id: 'N3Pvo2',
   nom_technique: 'N3Pvo2',
-  intitule: 'volumes',
+  metacompetence: 'volumes',
   score: 1
 };
 
 const N3Prp1 = {
   id: 'N3Prp1',
   nom_technique: 'N3Prp1',
-  intitule: 'resolution_de_probleme',
+  metacompetence: 'resolution_de_probleme',
   score: 1
 };
 
 const N3Prp2 = {
   id: 'N3Prp2',
   nom_technique: 'N3Prp2',
-  intitule: 'resolution_de_probleme',
+  metacompetence: 'resolution_de_probleme',
   score: 1
 };
 
