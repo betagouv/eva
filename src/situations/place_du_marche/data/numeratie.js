@@ -292,14 +292,14 @@ const N2Ppl2 = {
 const N3Ppl1 = {
   id: 'N3Ppl1',
   nom_technique: 'N3Ppl1',
-  metacompetence: 'planning_calculs',
+  metacompetence: 'plannings_calculs',
   score: 1
 };
 
 const N3Ppl2 = {
   id: 'N3Ppl2',
   nom_technique: 'N3Ppl2',
-  metacompetence: 'planning_calculs',
+  metacompetence: 'plannings_calculs',
   score: 1
 };
 

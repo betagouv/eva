@@ -237,13 +237,13 @@ const N2Rpl2 = {
 const N3Rpl1 = {
   id: 'N3Rpl1',
   nom_technique: 'N3Rpl1',
-  metacompetence: 'planning_calculs',
+  metacompetence: 'plannings_calculs',
   score: 1
 };
 const N3Rpl2 = {
   id: 'N3Rpl2',
   nom_technique: 'N3Rpl2',
-  metacompetence: 'planning_calculs',
+  metacompetence: 'plannings_calculs',
   score: 1
 };
 const N3Rut1 = {
