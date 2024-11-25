@@ -237,85 +237,85 @@ const N2Rpl2 = {
 const N3Rpl1 = {
   id: 'N3Rpl1',
   nom_technique: 'N3Rpl1',
-  intitule: 'planning_calculs',
+  metacompetence: 'planning_calculs',
   score: 1
 };
 const N3Rpl2 = {
   id: 'N3Rpl2',
   nom_technique: 'N3Rpl2',
-  intitule: 'planning_calculs',
+  metacompetence: 'planning_calculs',
   score: 1
 };
 const N3Rut1 = {
   id: 'N3Rut1',
   nom_technique: 'N3Rut1',
-  intitule: 'unites_de_temps_conversions',
+  metacompetence: 'unites_de_temps_conversions',
   score: 1
 };
 const N3Rut2 = {
   id: 'N3Rut2',
   nom_technique: 'N3Rut2',
-  intitule: 'unites_de_temps_conversions',
+  metacompetence: 'unites_de_temps_conversions',
   score: 1
 };
 const N3Rpo1 = {
   id: 'N3Rpo1',
   nom_technique: 'N3Rpo1',
-  intitule: 'pourcentages',
+  metacompetence: 'pourcentages',
   score: 1
 };
 const N3Rpo2 = {
   id: 'N3Rpo2',
   nom_technique: 'N3Rpo2',
-  intitule: 'pourcentages',
+  metacompetence: 'pourcentages',
   score: 1
 };
 const N3Rpr1 = {
   id: 'N3Rpr1',
   nom_technique: 'N3Rpr1',
-  intitule: 'proportionnalite',
+  metacompetence: 'proportionnalite',
   score: 1
 };
 const N3Rpr2 = {
   id: 'N3Rpr2',
   nom_technique: 'N3Rpr2',
-  intitule: 'proportionnalite',
+  metacompetence: 'proportionnalite',
   score: 1
 };
 const N3Rps1 = {
   id: 'N3Rps1',
   nom_technique: 'N3Rps1',
-  intitule: 'perimetres_surfaces',
+  metacompetence: 'perimetres_surfaces',
   score: 1
 };
 const N3Rps2 = {
   id: 'N3Rps2',
   nom_technique: 'N3Rps2',
-  intitule: 'perimetres_surfaces',
+  metacompetence: 'perimetres_surfaces',
   score: 1
 };
 const N3Rvo1 = {
   id: 'N3Rvo1',
   nom_technique: 'N3Rvo1',
-  intitule: 'volumes',
+  metacompetence: 'volumes',
   score: 1
 };
 const N3Rvo2 = {
   id: 'N3Rvo2',
   nom_technique: 'N3Rvo2',
-  intitule: 'volumes',
+  metacompetence: 'volumes',
   score: 1
 };
 const N3Rrp1 = {
   id: 'N3Rrp1',
   nom_technique: 'N3Rrp1',
-  intitule: 'resolution_de_probleme',
+  metacompetence: 'resolution_de_probleme',
   score: 1
 };
 const N3Rrp2 = {
   id: 'N3Rrp2',
   nom_technique: 'N3Rrp2',
-  intitule: 'resolution_de_probleme',
+  metacompetence: 'resolution_de_probleme',
   score: 1
 };
 
