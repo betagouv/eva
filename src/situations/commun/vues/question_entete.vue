@@ -85,6 +85,10 @@ export default {
         : this.existeIntituleAudioSansEcrit
           ? `${this.question.nom_technique}_intitule`
           : '';
+    },
+
+    demarreModaliteReponseEnPremier() {
+      return this.question.demarrage_audio_modalite_reponse;
     }
   },
 
@@ -97,9 +101,15 @@ export default {
 
     demarreSon () {
       if (!this.question.intitule && this.afficheLectureQuestionAudio) {
-        this.demarreSonBouton('boutonLectureQuestionAudio', () => {
-          this.demarreSonBouton('boutonLectureTexteEntete');
-        });
+        if (this.demarreModaliteReponseEnPremier && this.afficheLectureTexteEntete) {
+          this.demarreSonBouton('boutonLectureTexteEntete', () => {
+            this.demarreSonBouton('boutonLectureQuestionAudio');
+          });
+        } else {
+          this.demarreSonBouton('boutonLectureQuestionAudio', () => {
+            this.demarreSonBouton('boutonLectureTexteEntete');
+          });
+        }
       } else {
         this.demarreSonBouton('boutonLectureTexteEntete');
       }

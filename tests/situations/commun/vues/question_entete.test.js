@@ -28,7 +28,7 @@ describe('la vue du composant entête', function () {
       },
       props: { question }
     });
-    mockDemarreSonTexteEntete = jest.fn();
+    mockDemarreSonTexteEntete = jest.fn((cb) => { callbackFinQuestionAudio = cb; });
     mockDemarreSonQuestionAudio = jest.fn((cb) => { callbackFinQuestionAudio = cb; });
     if(composant.vm.$refs.boutonLectureTexteEntete)
       composant.vm.$refs.boutonLectureTexteEntete.demarreSon = mockDemarreSonTexteEntete;
@@ -124,6 +124,38 @@ describe('la vue du composant entête', function () {
       expect(mockDemarreSonTexteEntete).not.toHaveBeenCalled();
       callbackFinQuestionAudio();
       expect(mockDemarreSonTexteEntete).toHaveBeenCalled();
+    });
+
+    describe("quand la consigne est paramétré pour se lire en premier", function () {
+      let question;
+
+      beforeEach(function () {
+        question = {
+          nom_technique: 'question1',
+          retranscription_audio: 'audio de la réponse',
+          demarrage_audio_modalite_reponse: true,
+          reponses: [{ nom_technique: 'reponse1', type_choix: 'bon'}]
+        };
+      });
+
+      it("enchaîne le son du texte entête puis celui de la question audio quand il y a des sons pour les deux", function () {
+        depotRessources.existeMessageAudio = () => true;
+        const vue = composant(question);
+        vue.vm.demarreSon();
+        expect(mockDemarreSonTexteEntete).toHaveBeenCalled();
+        expect(mockDemarreSonQuestionAudio).not.toHaveBeenCalled();
+        callbackFinQuestionAudio();
+        expect(mockDemarreSonQuestionAudio).toHaveBeenCalled();
+      });
+
+      it("ne démarre pas le son de la consigne si il n'y a pas d'audio", function() {
+        depotRessources.existeMessageAudio =
+          (nom_technique) => nom_technique == 'reponse1';
+        const vue = composant(question);
+        vue.vm.demarreSon();
+        expect(mockDemarreSonTexteEntete).not.toHaveBeenCalled();
+        expect(mockDemarreSonQuestionAudio).toHaveBeenCalled();
+      });
     });
 
     it("ne démarre pas le son quand il n'y a aucun son", function () {
