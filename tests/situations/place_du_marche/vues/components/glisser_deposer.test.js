@@ -35,14 +35,27 @@ describe('Le composant Glisser Déposer de place du marché', function () {
   });
 
   describe('#envoiReponsesOrdonnees', function () {
-    it('envoi la réponse avec son ordre', function () {
+    it('envoi la réponse avec son ordre, son score et son succès en cas de succès', function () {
       genereVue([1, 4]);
-      wrapper.vm.envoiReponsesOrdonnees( { scoreMax: 1, succes: true, reponse: [1, 4] });
+      wrapper.vm.envoiReponsesOrdonnees( { scoreMax: 1, succes: true, reponse: [1, 2] });
       expect(wrapper.emitted('reponse').length).toEqual(1);
       expect(wrapper.emitted('reponse')[0][0]).toEqual({
         scoreMax: 1,
         succes: true,
-        reponse: [1, 4]
+        score: 1,
+        reponse: [1, 2]
+      });
+    });
+
+    it("envoi la réponse avec son ordre, son score et son succès en cas d'échec", function () {
+      genereVue([1, 4]);
+      wrapper.vm.envoiReponsesOrdonnees( { scoreMax: 1, succes: false, reponse: [2, 1] });
+      expect(wrapper.emitted('reponse').length).toEqual(1);
+      expect(wrapper.emitted('reponse')[0][0]).toEqual({
+        scoreMax: 1,
+        succes: false,
+        score: 0,
+        reponse: [2, 1]
       });
     });
   });

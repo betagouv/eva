@@ -74,8 +74,14 @@ export default {
     envoiReponsesOrdonnees(reponse) {
       this.reponsesPlacees = reponse.reponse;
       if (this.sontToutesPlacees) {
-        reponse.scoreMax = this.question.score;
-        this.$emit('reponse', reponse);
+        const score = reponse.succes ? this.question.score : 0;
+        const reponseFinale = {
+          score,
+          scoreMax: this.question.score,
+          succes: reponse.succes,
+          reponse: this.reponsesPlacees
+        };
+        this.$emit('reponse', reponseFinale);
       }
     },
 
