@@ -38,7 +38,7 @@
         :sort="false"
       >
         <template #item="{ element }">
-          <div :key="element.id" :class="[`glisser-deposer__item item--${element.nom_technique}`, { 'glisser-deposer__item--flottant': !elementGlisse }]">
+          <div :key="element.id" :class="`glisser-deposer__item item--${element.nom_technique}`">
             <slot name="item" :item="element" />
           </div>
         </template>
