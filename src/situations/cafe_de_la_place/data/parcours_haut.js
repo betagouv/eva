@@ -352,7 +352,7 @@ const HPfb1 = {
   modalite_reponse: "Pour répondre, écrivez les mots dans le cadre de texte.\n\nVous pouvez utiliser le bouton Lecture pour ré-écouter les mots. Pour confirmer votre réponse, cliquez sur « Valider ».",
   reponses: [
     {
-      nom_technique: 'HPfb/aout1',
+      nom_technique: 'HPfb/aout',
       intitule: 'août',
       type_choix: 'bon'
     },
@@ -879,7 +879,7 @@ const HPfb20 = {
     Ecrivez « hâte »",
   reponses: [
     {
-      nom_technique: 'HPfb/hate1',
+      nom_technique: 'HPfb/hate',
       intitule: 'hâte',
       type_choix: 'bon'
     },
