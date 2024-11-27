@@ -69,11 +69,6 @@
 }
 
 .glisser-deposer--personnalise {
-  .glisser-deposer__item {
-    &--flottant {
-      animation: flottement 3s ease-in-out infinite;
-    }
-  }
   img  {
     display: block;
     margin: auto;
