@@ -63,6 +63,10 @@ export default {
       return this.reponsesPlacees.length === this.nombreReponsesAPlacer;
     },
 
+    auMoinsUneReponsePlacee() {
+      return this.reponsesPlacees.length > 0;
+    },
+
     styleContainerDepart() {
       return {
         width: `calc(var(--largeur-item-glisse) * ${this.nombreReponsesAPlacer} + var(--gap-depot) * (${this.nombreReponsesAPlacer - 1}) + var(--padding-depot) * 2)`
@@ -73,7 +77,7 @@ export default {
   methods: {
     envoiReponsesOrdonnees(reponse) {
       this.reponsesPlacees = reponse.reponse;
-      if (this.sontToutesPlacees) {
+      if (this.auMoinsUneReponsePlacee) {
         const score = reponse.succes ? this.question.score : 0;
         const reponseFinale = {
           score,
