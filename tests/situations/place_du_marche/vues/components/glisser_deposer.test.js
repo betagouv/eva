@@ -65,22 +65,37 @@ describe('Le composant Glisser Déposer de place du marché', function () {
       wrapper.vm.envoiReponsesPlacees({ reponse, succes });
     }
 
-    it('envoie la réponse avec son score en fonction du succes de chaque réponse', function () {
+    beforeEach(function () {
+      jest.restoreAllMocks();
+    });
+
+    it('émet un événement avec au moins une réponse placée', function () {
       const zone = "data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iYm9ubmUtcmVwb25zZSIgd2lkdGg9IjEwODgiIGhlaWdodD0iNTY2IiB2aWV3Qm94PSIwIDAgMTA4OCA1NjYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IGNsYXNzPSJ6b25lLWRlcG90IHpvbmUtZGVwb3QtLU4yUFExUjEiIHg9IjI0MCIgeT0iNzQiIHdpZHRoPSIyNTEiIGhlaWdodD0iMTYxIiBmaWxsPSIjMjAwMDlGIiBmaWxsLW9wYWNpdHk9IjAuMjUiLz4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3Qgem9uZS1kZXBvdC0tTjJQUTFSMiIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K";
-      genereVue([1, 2, 7, 8], zone);
+      genereVue([1, 2, 3, 4], zone);
       expect(wrapper.vm.zoneDeDepots.length > 0).toEqual(true);
-      envoyerReponse(false, 'N1Pse1');
-      envoyerReponse(true, 'N1Pse2');
-      envoyerReponse(true, 'N1Pse3');
-      envoyerReponse(false, 'N1Pse3');
-      envoyerReponse(true, 'N1Pse4');
+
+      envoyerReponse(true, 'N1Pse1');
 
       expect(wrapper.emitted('reponse')[0][0]).toEqual({
         scoreMax: 1,
         succes: false,
-        score: 0.5,
-        reponse: ['N1Pse1', 'N1Pse2', 'N1Pse3', 'N1Pse4']
+        score: 0.25,         reponse: ['N1Pse1']
       });
+    });
+
+    it('émet un événement avec toutes les réponses placées', function () {
+      const zone = "data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iYm9ubmUtcmVwb25zZSIgd2lkdGg9IjEwODgiIGhlaWdodD0iNTY2IiB2aWV3Qm94PSIwIDAgMTA4OCA1NjYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IGNsYXNzPSJ6b25lLWRlcG90IHpvbmUtZGVwb3QtLU4yUFExUjEiIHg9IjI0MCIgeT0iNzQiIHdpZHRoPSIyNTEiIGhlaWdodD0iMTYxIiBmaWxsPSIjMjAwMDlGIiBmaWxsLW9wYWNpdHk9IjAuMjUiLz4KPHJlY3QgY2xhc3M9InpvbmUtZGVwb3Qgem9uZS1kZXBvdC0tTjJQUTFSMiIgeD0iNjMiIHk9IjMyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMjMiIGZpbGw9IiNGRjAwMDAiIGZpbGwtb3BhY2l0eT0iMC4zNCIvPgo8L3N2Zz4K";
+      genereVue([1, 2, 3, 4], zone);
+      expect(wrapper.vm.zoneDeDepots.length > 0).toEqual(true);
+
+      envoyerReponse(true, 'N1Pse1');
+      envoyerReponse(true, 'N1Pse2');
+      envoyerReponse(true, 'N1Pse3');
+      envoyerReponse(true, 'N1Pse4');
+
+      expect(wrapper.emitted('reponse')).toEqual(
+        expect.arrayContaining([[{ "reponse": ["N1Pse1", "N1Pse2", "N1Pse3", "N1Pse4"], "score": 1, "scoreMax": 1, "succes": true }]])
+      );
     });
   });
 });

@@ -92,7 +92,7 @@ export default {
     envoiReponsesPlacees(reponse) {
       this.ajouteNouvelleReponse(reponse);
 
-      if (this.sontToutesPlacees) {
+      if (this.auMoinsUneReponsePlacee) {
         const score = this.calculeScore();
         const reponseFinale = {
           score,
