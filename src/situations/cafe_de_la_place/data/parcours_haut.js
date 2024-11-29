@@ -49,12 +49,13 @@ const fragmentsNouvelleDuJour = [
   }
 ];
 
+const POINT_BONUS_5_FRAGMENTS_BIEN_PLACES = 1;
+
 const HPar1 = {
   id: 'HPar1',
   nom_technique: 'hpar_1',
   illustration: journalVide,
-  // chaque fragement rapport 1 point, plus 1 point bonus au delà de 5 fragmeents bien placés
-  score: fragmentsNouvelleDuJour.length + 1,
+  score: fragmentsNouvelleDuJour.length + POINT_BONUS_5_FRAGMENTS_BIEN_PLACES,
   extensionVue: 'puzzle-journal',
   description: "Vous avez placé tous les blocs de texte !\nVous pouvez toujours modifier leur ordre directement dans la page du journal.",
   intitule: "Si l’ordre vous convient, cliquez sur « Valider ».",
