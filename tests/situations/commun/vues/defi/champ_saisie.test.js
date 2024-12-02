@@ -53,14 +53,15 @@ describe('Le composant champ de saisie', function () {
     });
   });
 
-  describe('#emetReponse', function() {
+  describe('#saisieReponse', function() {
     describe('quand on attend pas de réponse particulière', function() {
       beforeEach(function() {
         vue = composant({ question: { } });
       });
 
       it("emet la réponse", function() {
-        vue.vm.emetReponse('texte saisi');
+        const event = { target: { value: 'texte saisi' } };
+        vue.vm.saisieReponse(event);
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'texte saisi'
         });
@@ -86,7 +87,8 @@ describe('Le composant champ de saisie', function () {
       });
 
       it("retourne un echec si la réponse n'est pas dans la liste", function() {
-        vue.vm.emetReponse('boulangery');
+        const event = { target: { value: 'boulangery' } };
+        vue.vm.saisieReponse(event);
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangery',
           succes: false,
@@ -96,7 +98,8 @@ describe('Le composant champ de saisie', function () {
       });
 
       it("retourne un succès si la réponse est de type 'bon' avec son score", function() {
-        vue.vm.emetReponse('boulangerie');
+        const event = { target: { value: 'boulangerie' } };
+        vue.vm.saisieReponse(event);
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangerie',
           succes: true,
@@ -106,7 +109,8 @@ describe('Le composant champ de saisie', function () {
       });
 
       it("retourne un succès si la réponse est de type 'bonus' avec son score", function() {
-        vue.vm.emetReponse('boulangeries');
+        const event = { target: { value: 'boulangeries' } };
+        vue.vm.saisieReponse(event);
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangeries',
           succes: true,
@@ -116,7 +120,8 @@ describe('Le composant champ de saisie', function () {
       });
 
       it("retourne un succès si la réponse est de type 'acceptable' avec son score", function() {
-        vue.vm.emetReponse('boulangeri');
+        const event = { target: { value: 'boulangeri' } };
+        vue.vm.saisieReponse(event);
         expect(vue.emitted('reponse')[0][0]).toEqual({
           reponse: 'boulangeri',
           succes: true,
@@ -132,7 +137,8 @@ describe('Le composant champ de saisie', function () {
       });
 
       it("retourne le score maximum dans la réponse", function() {
-        vue.vm.emetReponse('6');
+        const event = { target: { value: '6' } };
+        vue.vm.saisieReponse(event);
         expect(vue.emitted('reponse')[0][0].scoreMax).toEqual(1);
       });
     });
@@ -143,9 +149,69 @@ describe('Le composant champ de saisie', function () {
       });
 
       it("retourne le score maximum dans la réponse", function() {
-        vue.vm.emetReponse('6');
+        const event = { target: { value: '6' } };
+        vue.vm.saisieReponse(event);
         expect(vue.emitted('reponse')[0][0].scoreMax).toEqual(1.5);
       });
+    });
+
+    describe('quand on attend une réponse prix avec centimes', function() {
+      beforeEach(function() {
+        vue = composant({ question: { score: 1, sous_type: 'prix_avec_centimes', reponses: [
+          {
+            intitule: '1,99',
+            type_choix: 'bon'
+          }
+        ]}});
+      });
+
+      it("n'envoie pas de réponse si l'utilisateur saisie des lettres", function() {
+        const event = { target: { value: 'e' } };
+        vue.vm.saisieReponse(event);
+        expect(vue.emitted('reponse')).toBe(undefined);
+      });
+    });
+  });
+
+  describe('#formateReponse', function() {
+    beforeEach(function() {
+      vue = composant({ question: { score: 1, sous_type: 'prix_avec_centimes', reponses: [
+        {
+          intitule: '1,99',
+          type_choix: 'bon'
+        }
+      ]}});
+    });
+
+    it('ne formatte pas la réponse si ce n\'est pas un prix avec centimes', function() {
+      vue = composant({ question: { sous_type: 'numerique' } });
+      const event = { target: { value: 'texte saisi' } };
+      vue.vm.formateReponse(event);
+      expect(vue.emitted('reponse')).toBe(undefined);
+    });
+
+    it("envoie la réponse formattée", function() {
+      const event = { target: { value: '1,99' } };
+      vue.vm.formateReponse(event);
+      expect(vue.emitted('reponse')[0][0]).toEqual({ reponse: '1,99', succes: true, score: 1, scoreMax: 1 });
+    });
+
+    it("transforme le point en virgule", function() {
+      const event = { target: { value: '1.99' } };
+      vue.vm.formateReponse(event);
+      expect(vue.emitted('reponse')[0][0].reponse).toEqual('1,99');
+    });
+
+    it("ajoute les 0 des décimaux", function() {
+      const event = { target: { value: '1' } };
+      vue.vm.formateReponse(event);
+      expect(vue.emitted('reponse')[0][0].reponse).toEqual('1,00');
+    });
+
+    it("enlève le 0 du début", function() {
+      const event = { target: { value: '01,7' } };
+      vue.vm.formateReponse(event);
+      expect(vue.emitted('reponse')[0][0].reponse).toEqual('1,70');
     });
   });
 
@@ -211,6 +277,36 @@ describe('Le composant champ de saisie', function () {
     it("limite la taille de l'input à 15", function () {
       const input = vue.find('input[type=text]');
       expect(input.element.getAttribute('maxlength')).toEqual("15");
+    });
+
+    it("a l'attribut inputmode défini sur null", function () {
+      const input = vue.find('input[type=text]');
+      expect(input.element.getAttribute('inputmode')).toEqual(null);
+    });
+  });
+
+  describe("quand il est d'un sous-type prix_avec_centimes", function () {
+    beforeEach(function () {
+      vue = composant({ question: { sous_type: 'prix_avec_centimes' } });
+    });
+
+    it("limite la taille de l'input à 4", function () {
+      const input = vue.find('input[type=text]');
+      expect(input.element.getAttribute('maxlength')).toEqual("4");
+    });
+
+    it('affiche le placeholder par défaut', function () {
+      const input = vue.find('input[type=text]');
+      expect(input.element.getAttribute('placeholder')).toEqual('0,00');
+    });
+
+    it("a l'attribut inputmode défini sur 'décimal'", function () {
+      const input = vue.find('input[type=text]');
+      expect(input.element.getAttribute('inputmode')).toEqual('decimal');
+    });
+
+    it("affiche le suffix €", function () {
+      expect(vue.find('.suffix').text()).toEqual('€');
     });
   });
 
