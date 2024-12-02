@@ -13,23 +13,23 @@
         <span></span>
       </div>
       <input
-          v-on:input="emetReponse($event.target.value)"
-          ref="reponseChampSaisie"
-          class="champ"
-          :spellcheck="false"
-          autocomplete="off"
-          autocapitalize="off"
-          autocorrect="off"
-          autofocus
-          :class="{ 'champ-texte' : estTexte,
-                    'champ-numerique' : estNumerique }"
-          :maxlength="maxLength"
-          :placeholder="placeholder"
-          type='text'
-          />
-      <span v-if="question.suffix_reponse" class="suffix">
-        {{ question.suffix_reponse }}
-      </span>
+        v-on:input="saisieReponse($event)"
+        @blur="formateReponse($event)"
+        ref="reponseChampSaisie"
+        class="champ"
+        :spellcheck="false"
+        autocomplete="off"
+        autocapitalize="off"
+        autofocus
+        type="text"
+        autocorrect="off"
+        :class="inputClass"
+        :maxlength="maxLength"
+        :placeholder="placeholder"
+        :inputmode="inputMode"
+      />
+      <span v-if="estPrixAvecCentimes" class="suffix">€</span>
+      <span v-else-if="question.suffix_reponse" class="suffix">{{ question.suffix_reponse }}</span>
     </div>
   </div>
 </template>
@@ -52,52 +52,75 @@ export default {
   },
 
   computed: {
-    estTexte () {
-      return this.question.sous_type === 'texte';
-    },
-    estNumerique () {
-      return this.question.sous_type === 'numerique';
-    },
-    maxLength () {
-      return this.question.max_length ?? (this.estNumerique ? null : 15);
+    estTexte() { return this.question.sous_type === 'texte'; },
+    estNumerique() { return this.question.sous_type === 'numerique'; },
+    estPrixAvecCentimes() { return this.question.sous_type === 'prix_avec_centimes'; },
+    maxLength() {
+      return this.estPrixAvecCentimes ? 4 : this.question.max_length ?? (this.estNumerique ? null : 15);
     },
     afficheLectureQuestion () {
       return this.$depotRessources.existeMessageAudio(this.question.nom_technique);
     },
-    placeholder () {
-      if (this.question.placeholder) {
-        return this.question.placeholder;
-      }
-      if (this.estTexte) {
-        return 'Réponse';
-      }
+    placeholder() {
+      if (this.estPrixAvecCentimes) return '0,00';
+      return this.question.placeholder || (this.estTexte ? 'Réponse' : null);
+    },
 
-      return null;
+    inputMode() { return this.estPrixAvecCentimes ? 'decimal' : null; },
+
+    inputClass() {
+      return {
+        'champ-texte': this.estTexte,
+        'champ-numerique': this.estNumerique || this.estPrixAvecCentimes
+      };
     }
   },
 
   methods: {
-    emetReponse (valeur) {
-      const reponseSaisie = valeur.trim();
+    saisieReponse(event) {
+      let valeur = event.target.value.trim();
+      if (this.estNumerique || this.estPrixAvecCentimes) {
+        valeur = valeur.replace(/[^0-9.,]/g, '');
+        event.target.value = valeur;
+      }
+      if(valeur)
+        this.emetReponse(valeur);
+    },
+
+    emetReponse(reponseSaisie) {
       let succes;
       let score;
       let scoreMax;
-      if(this.question.reponses) {
-        const reponse = this.question.reponses?.find(r => r.intitule === reponseSaisie.toLowerCase());
+
+      if (this.question.reponses) {
+        const reponse = this.question.reponses.find(r => r.intitule === reponseSaisie.toLowerCase());
         succes = !!reponse;
         score = reponse ? this.recupereScore(reponse.type_choix) : 0;
         scoreMax = this.question.score_bonus ?? this.question.score;
       }
-      this.$emit('reponse', { reponse: reponseSaisie, succes, score, scoreMax });
+
+      this.$emit('reponse', { reponse: reponseSaisie, succes, score, scoreMax});
+    },
+
+    formateReponse(event) {
+      if (!this.estPrixAvecCentimes) {
+        return;
+      }
+      let [entiers, decimaux = '00'] = event.target.value.trim().replace('.', ',').split(',');
+      entiers = entiers.replace(/^0+/, '') || '0';
+      decimaux = decimaux.padEnd(2, '0').slice(0, 2);
+      event.target.value = `${entiers},${decimaux}`;
+
+      this.emetReponse(`${entiers},${decimaux}`);
     },
 
     recupereScore(type) {
-      switch(type) {
-      case 'bon': return this.question.score;
-      case 'acceptable': return this.question.score_acceptable;
-      case 'bonus': return this.question.score_bonus;
-      default: return 0;
-      }
+      const scores = {
+        bon: this.question.score,
+        acceptable: this.question.score_acceptable,
+        bonus: this.question.score_bonus
+      };
+      return scores[type] || 0;
     }
   },
 
