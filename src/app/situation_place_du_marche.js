@@ -7,7 +7,7 @@ import DepotRessourcesPlaceDuMarche from 'place_du_marche/infra/depot_ressources
 import Situation from 'commun/modeles/situation';
 import VueSituation from 'place_du_marche/vues/situation';
 
-const situation = new Situation();
+const situation = new Situation({ modeEntrainement: false, aideDisponible: true });
 
 const depotRessources = new DepotRessourcesPlaceDuMarche();
 afficheSituation('place_du_marche', situation, VueSituation, depotRessources);
