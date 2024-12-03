@@ -1,7 +1,7 @@
 <template>
   <transition-fade>
     <div class="fenetre fenetre-aide-presentation">
-      <div>{{ texteAide }}</div>
+      <div v-html="texteAide"/>
 
       <button
         class="bouton-arrondi bouton-arrondi--petit fenetre-aide-presentation-bouton"
@@ -16,6 +16,7 @@ import 'commun/styles/fenetre.scss';
 import 'commun/styles/fenetre_aide.scss';
 import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
+import { marked } from 'marked';
 
 export const FERME = 'ferme';
 
@@ -31,7 +32,8 @@ export default {
 
   computed: {
     texteAide() {
-      return this.$depotRessources.texteAide ?? traduction(`${this.contexte}.texte_aide`);
+      const texte = this.$depotRessources.texteAide ?? traduction(`${this.contexte}.texte_aide`);
+      return marked(texte);
     }
   },
 

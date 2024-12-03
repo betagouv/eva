@@ -38,4 +38,9 @@ describe("La fenêtre d'aide", function () {
       expect(wrapper.text()).toContain(traduction('inventaire.texte_aide'));
     });
   });
+
+  it('retoune le texte en markdown', function () {
+    wrapper = vue('**texte**');
+    expect(wrapper.find('strong').exists()).toBe(true);
+  });
 });
