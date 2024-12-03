@@ -80,12 +80,23 @@ describe('La vue place du marché', function () {
       });
     });
 
-    it("enregistre la question en cours dans le dépot ressource", function(done) {
+    it("enregistre la consigne en cours dans le dépot ressource", function(done) {
       wrapper.vm.$nextTick(() => {
         expect(depotRessources.consigneEnCours).toEqual(`${question.id}_consigne`);
         store.state.questionActive = { nom_technique: 'N1Pse2' };
         wrapper.vm.$nextTick(() => {
           expect(depotRessources.consigneEnCours).toEqual('N1Pse2_consigne');
+          done();
+        });
+      });
+    });
+
+    it("enregistre le texte d'aide dans le dépot ressource", function(done) {
+      wrapper.vm.$nextTick(() => {
+        expect(depotRessources.texteAide).toBeUndefined();
+        store.state.questionActive = { nom_technique: 'N1Pse2', aide: "texte d'aide" };
+        wrapper.vm.$nextTick(() => {
+          expect(depotRessources.texteAide).toEqual("texte d'aide");
           done();
         });
       });
