@@ -91,14 +91,39 @@ describe('La vue place du marché', function () {
       });
     });
 
-    it("enregistre le texte d'aide dans le dépot ressource", function(done) {
-      wrapper.vm.$nextTick(() => {
-        expect(depotRessources.texteAide).toBeUndefined();
-        store.state.questionActive = { nom_technique: 'N1Pse2', aide: "texte d'aide" };
-        wrapper.vm.$nextTick(() => {
-          expect(depotRessources.texteAide).toEqual("texte d'aide");
-          done();
+    describe('quand il y a une aide', function () {
+      function mockAfficheAide() {
+        jest.spyOn(wrapper.vm, 'afficheAide').mockImplementation(function() {
+          const bouton = document.createElement('button');
+          bouton.className = 'actions-aide';
+          document.body.appendChild(bouton);
+          bouton.style.display = this.question.aide ? '' : 'none';
         });
+      }
+
+      beforeEach(function() {
+        store.state.questionActive = { nom_technique: 'N1Pse2', aide: "texte d'aide" };
+        mockAfficheAide();
+      });
+
+      it("enregistre le texte d'aide dans le dépot ressource", function(done) {
+        wrapper.vm.$nextTick(() => {
+          store.state.questionActive = { nom_technique: 'N1Pse2', aide: "texte d'aide" };
+          wrapper.vm.$nextTick(() => {
+            expect(depotRessources.texteAide).toEqual("texte d'aide");
+            done();
+          });
+        });
+      });
+
+      it('affiche le bouton d\'aide', function () {
+        expect(document.querySelector('.actions-aide')).not.toBeNull();
+      });
+    });
+
+    describe("quand il n'y a pas d'aide", function() {
+      it('ne pas afficher le bouton d\'aide', function () {
+        expect(document.querySelector('.actions-aide')).toBeNull();
       });
     });
 

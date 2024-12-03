@@ -41,7 +41,8 @@ export default {
     questionActive() {
       this.question = this.questionServeur(this.questionActive) ?? this.questionActive;
       this.enregistreConsigneEnCours();
-      this.recupereTexteAide();
+      this.$depotRessources.texteAide = this.question.aide;
+      this.afficheAide();
     },
     acteEnCours (acteEnCours) {
       if(acteEnCours && location.hash){
@@ -65,8 +66,10 @@ export default {
       this.$depotRessources.consigneEnCours = `${this.question.nom_technique}_consigne`;
     },
 
-    recupereTexteAide() {
-      this.$depotRessources.texteAide = this.question.aide;
+    afficheAide() {
+      const bouton = document.querySelector('.actions-aide');
+      if(bouton)
+        bouton.style = this.question.aide ? '' : 'display: none';
     }
   }
 };
