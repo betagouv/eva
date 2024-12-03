@@ -162,6 +162,7 @@ export function creeStore () {
       },
 
       carteSuivante(state) {
+        state.aide = false;
         this.commit('carteSuivanteParcours');
 
         if (!state.parcoursTermine) {
