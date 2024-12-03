@@ -145,6 +145,12 @@ describe('Le store de la situation place du marché', function () {
     });
 
     describe("#carteSuivante", function() {
+      it("reinitialise l'activation de l'aide", function() {
+        store.state.aide = true;
+        store.commit('carteSuivante');
+        expect(store.state.aide).toBe(false);
+      });
+
       describe("si le parcours n'est pas terminé", function() {
         beforeEach(function() {
           store.state.parcoursTermine = false;
