@@ -54,7 +54,6 @@ export default {
   methods: {
     reponse (reponse) {
       if(this.question.type !== 'sous-consigne') {
-        reponse.score = reponse.score ?? 0;
         this.penaliseActivationAide(reponse);
         this.$store.commit('enregistreReponse', reponse);
         this.$journal.enregistre(new EvenementReponse(reponse));
