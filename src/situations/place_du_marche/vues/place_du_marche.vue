@@ -30,7 +30,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['questionActive', 'termine']),
+    ...mapState(['questionActive', 'termine', 'aide']),
     ...mapGetters(['questionServeur', 'acteEnCours']),
   },
 
@@ -55,6 +55,7 @@ export default {
     reponse (reponse) {
       if(this.question.type !== 'sous-consigne') {
         reponse.score = reponse.score ?? 0;
+        this.penaliseActivationAide(reponse);
         this.$store.commit('enregistreReponse', reponse);
         this.$journal.enregistre(new EvenementReponse(reponse));
         this.$store.commit('recalculePourcentageReussiteGlobal');
@@ -70,6 +71,11 @@ export default {
       const bouton = document.querySelector('.actions-aide');
       if(bouton)
         bouton.style = this.question.aide ? '' : 'display: none';
+    },
+
+    penaliseActivationAide(reponse) {
+      if(this.aide && reponse.score >= 0.5)
+        reponse.score = reponse.score - 0.5;
     }
   }
 };

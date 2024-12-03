@@ -142,15 +142,17 @@ describe('La vue place du marché', function () {
         });
 
         it('enregistre les réponses dans le store', function () {
+          expect(store.state.aide).toBe(false);
           wrapper.vm.reponse({ question: 'question1', reponse: '100ml', score: 1 });
           expect(store.state.reponses['question1'])
             .toEqual({ question: 'question1', reponse: '100ml', score: 1 });
         });
 
-        it("attribut un score de 0 si la réponse n'a pas de score", function() {
-          wrapper.vm.reponse({ question: 'question1', reponse: '100ml' });
+        it("retire 0.5 si l'aide a été activée", function() {
+          store.state.aide = true;
+          wrapper.vm.reponse({ question: 'question1', reponse: '100ml', score: 1, scoreMax: 1 });
           expect(store.state.reponses['question1'].score)
-            .toEqual(0);
+            .toEqual(0.5);
         });
       });
     });
