@@ -4,22 +4,38 @@ import { traduction } from 'commun/infra/internationalisation';
 
 describe("La fenêtre d'aide", function () {
   let wrapper;
+  let depot;
 
-  beforeEach(function () {
-    wrapper = mount(FenetreAide, {
-      props: {
-        contexte: ''
-      },
+  const vue = (texteAide = undefined, contexte = '') => {
+    depot = { texteAide };
+    return mount(FenetreAide, {
+      props: { contexte },
       global: {
         mocks: {
-          $traduction: traduction
+          $traduction: traduction,
+          $depotRessources: depot
         }
       }
     });
-  });
+  };
 
   it('au click sur le bouton, envoi un événement', function () {
+    wrapper = vue();
     wrapper.find('button').trigger('click');
     expect(wrapper.emitted(FERME).length).toEqual(1);
+  });
+
+  describe('quand le texte d\'aide est défini', function () {
+    it("affiche le texte d'aide", function () {
+      wrapper = vue('texte aide', 'inventaire');
+      expect(wrapper.text()).toContain('texte aide');
+    });
+  });
+
+  describe('quand le texte d\'aide est vide', function () {
+    it("affiche un message par défaut lorsque texteAide est undefined", function () {
+      wrapper = vue(undefined, 'inventaire');
+      expect(wrapper.text()).toContain(traduction('inventaire.texte_aide'));
+    });
   });
 });

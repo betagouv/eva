@@ -9,6 +9,7 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
   constructor (chargeurs) {
     super(chargeurs, messagesVideos, messagesAudios, null, sonConsigne);
     this.consigneEnCours = null;
+    this.texteAide = null;
     this.charge([fondSituation]);
   }
 

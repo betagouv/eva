@@ -12,7 +12,7 @@ describe('vue bouton aide', function () {
     $('body').append('<div id="point-insertion"></div>');
     situation = new Situation();
     journal = { situation: 'test', enregistre () { } };
-    vue = new VueAide(situation, null, journal);
+    vue = new VueAide(situation, {}, journal);
   });
 
   it("sait s'insérer dans une page web", function () {
