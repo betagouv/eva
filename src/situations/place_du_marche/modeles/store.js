@@ -4,9 +4,9 @@ import {
 } from 'commun/modeles/situation';
 
 export const NUMERATIE = 'numeratie';
-export const NIVEAU1 = 'niveau1';
-export const NIVEAU2 = 'niveau2';
-export const NIVEAU3 = 'niveau3';
+export const NIVEAU1 = 'N1';
+export const NIVEAU2 = 'N2';
+export const NIVEAU3 = 'N3';
 export const NIVEAUX = [NIVEAU1, NIVEAU2, NIVEAU3];
 export const numeratieMetriques = {
   'N1Pse': null,
@@ -16,7 +16,26 @@ export const numeratieMetriques = {
   'N1Pon': 'N1Ron',
   'N1Poa': 'N1Roa',
   'N1Pos': 'N1Ros',
-  'N1Pvn': null
+  'N1Pvn': null,
+  'N2Plp': 'N2Rlp',
+  'N2Ppe': 'N2Rpe',
+  'N2Psu': 'N2Rsu',
+  'N2Pom': 'N2Rom',
+  'N2Pon': 'N2Ron',
+  'N2Pod': 'N2Rod',
+  'N2Put': 'N2Rut',
+  'N2Prh': 'N2Rrh',
+  'N2Ptg': 'N2Rtg',
+  'N2Ppl': 'N2Rpl',
+  'N3Ppl': 'N3Rpl',
+  'N3Put': 'N3Rut',
+  'N3Pum': null,
+  'N3Pim': null,
+  'N3Ppo': 'N3Rpo',
+  'N3Ppr': 'N3Rpr',
+  'N3Pps': 'N3Rps',
+  'N3Pvo': 'N3Rvo',
+  'N3Prp': 'N3Rrp'
 };
 
 export function creeStore () {
@@ -215,8 +234,8 @@ export function creeStore () {
           return;
         }
 
-        const scoresParMetrique = calculeScoreParMetrique(state.reponses);
-        const meilleursScores = filtreMeilleursScores(scoresParMetrique);
+        const scoresParMetrique = calculeScoreParMetrique(state.reponses, NIVEAUX[state.indexNiveau]);
+        const meilleursScores = filtreMeilleursScores(scoresParMetrique, NIVEAUX[state.indexNiveau]);
         const reponses = recupereReponsesMeilleursScores(meilleursScores, state.reponses);
         const scoreTotal = additionneScores(reponses);
 
@@ -234,29 +253,33 @@ export function calculPourcentage(valeur, total) {
   return Math.round(valeur / total * 100);
 }
 
-export function calculeScoreParMetrique(reponses) {
+export function calculeScoreParMetrique(reponses, niveau) {
   const scoresTotaux = {};
 
   for (const [questionInitiale, rattrapage] of Object.entries(numeratieMetriques)) {
-    scoresTotaux[questionInitiale] = Object.values(reponses)
-      .filter(e => e.question.startsWith(questionInitiale))
-      .reduce((total, e) => total + e.score, 0);
-    if (rattrapage) {
-      scoresTotaux[rattrapage] = Object.values(reponses)
-        .filter(e => e.question.startsWith(rattrapage))
+    if (questionInitiale.startsWith(niveau)) {
+      scoresTotaux[questionInitiale] = Object.values(reponses)
+        .filter(e => e.question.startsWith(questionInitiale))
         .reduce((total, e) => total + e.score, 0);
+      if (rattrapage) {
+        scoresTotaux[rattrapage] = Object.values(reponses)
+          .filter(e => e.question.startsWith(rattrapage))
+          .reduce((total, e) => total + e.score, 0);
+      }
     }
   }
 
   return scoresTotaux;
 }
 
-export function filtreMeilleursScores(scoresParMetrique) {
-  return Object.keys(numeratieMetriques).map(question => {
-    const rattrapage = numeratieMetriques[question];
-    if (!rattrapage) return question;
-    return scoresParMetrique[question] > scoresParMetrique[rattrapage] ? question : rattrapage;
-  });
+export function filtreMeilleursScores(scoresParMetrique, niveau) {
+  return Object.keys(numeratieMetriques)
+    .filter(question => question.startsWith(niveau))
+    .map(question => {
+      const rattrapage = numeratieMetriques[question];
+      if (!rattrapage) return question;
+      return scoresParMetrique[question] > scoresParMetrique[rattrapage] ? question : rattrapage;
+    });
 }
 
 export function recupereReponsesMeilleursScores(meilleursScores, reponses) {
