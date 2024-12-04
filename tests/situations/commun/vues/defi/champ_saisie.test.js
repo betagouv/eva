@@ -290,9 +290,9 @@ describe('Le composant champ de saisie', function () {
       vue = composant({ question: { sous_type: 'prix_avec_centimes' } });
     });
 
-    it("limite la taille de l'input à 4", function () {
+    it("limite la taille de l'input à 6", function () {
       const input = vue.find('input[type=text]');
-      expect(input.element.getAttribute('maxlength')).toEqual("4");
+      expect(input.element.getAttribute('maxlength')).toEqual("6");
     });
 
     it('affiche le placeholder par défaut', function () {
