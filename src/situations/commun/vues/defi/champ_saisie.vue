@@ -28,8 +28,7 @@
         :placeholder="placeholder"
         :inputmode="inputMode"
       />
-      <span v-if="estPrixAvecCentimes" class="suffix">€</span>
-      <span v-else-if="question.suffix_reponse" class="suffix">{{ question.suffix_reponse }}</span>
+      <span v-if="question.suffix_reponse" class="suffix">{{ question.suffix_reponse }}</span>
     </div>
   </div>
 </template>
@@ -56,13 +55,12 @@ export default {
     estNumerique() { return this.question.sous_type === 'numerique'; },
     estPrixAvecCentimes() { return this.question.sous_type === 'prix_avec_centimes'; },
     maxLength() {
-      return this.estPrixAvecCentimes ? 4 : this.question.max_length ?? (this.estNumerique ? null : 15);
+      return this.question.max_length ?? (this.estNumerique ? null : 15);
     },
     afficheLectureQuestion () {
       return this.$depotRessources.existeMessageAudio(this.question.nom_technique);
     },
     placeholder() {
-      if (this.estPrixAvecCentimes) return '0,00';
       return this.question.placeholder || (this.estTexte ? 'Réponse' : null);
     },
 
@@ -71,7 +69,8 @@ export default {
     inputClass() {
       return {
         'champ-texte': this.estTexte,
-        'champ-numerique': this.estNumerique || this.estPrixAvecCentimes
+        'champ-numerique': this.estNumerique || this.estPrixAvecCentimes,
+        'champ-prix': this.estPrixAvecCentimes
       };
     }
   },
