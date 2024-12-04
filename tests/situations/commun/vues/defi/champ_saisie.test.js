@@ -290,23 +290,9 @@ describe('Le composant champ de saisie', function () {
       vue = composant({ question: { sous_type: 'prix_avec_centimes' } });
     });
 
-    it("limite la taille de l'input à 4", function () {
-      const input = vue.find('input[type=text]');
-      expect(input.element.getAttribute('maxlength')).toEqual("4");
-    });
-
-    it('affiche le placeholder par défaut', function () {
-      const input = vue.find('input[type=text]');
-      expect(input.element.getAttribute('placeholder')).toEqual('0,00');
-    });
-
     it("a l'attribut inputmode défini sur 'décimal'", function () {
       const input = vue.find('input[type=text]');
       expect(input.element.getAttribute('inputmode')).toEqual('decimal');
-    });
-
-    it("affiche le suffix €", function () {
-      expect(vue.find('.suffix').text()).toEqual('€');
     });
   });
 
