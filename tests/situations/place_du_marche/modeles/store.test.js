@@ -283,7 +283,7 @@ describe('Le store de la situation place du marché', function () {
       it('retourne vrai si le parcours en cours est le dernier niveau', function() {
         expect(store.getters.estDernierNiveau).toEqual(false);
 
-        store.state.parcours = 'niveau3';
+        store.state.parcours = NIVEAU3;
 
         expect(store.getters.estDernierNiveau).toEqual(true);
       });
@@ -291,7 +291,7 @@ describe('Le store de la situation place du marché', function () {
 
     describe('#tousLesParcours', function() {
       it('retourne tous les parcours', function() {
-        expect(store.getters.tousLesParcours).toEqual(['niveau1', 'niveau2', 'niveau3', 'N1Prn', 'N1Roa']);
+        expect(store.getters.tousLesParcours).toEqual([NIVEAU1, NIVEAU2, NIVEAU3, 'N1Prn', 'N1Roa']);
       });
     });
 
@@ -462,7 +462,7 @@ describe('Le store de la situation place du marché', function () {
 
     describe('#calculeScoreParMetrique', function() {
       it('filtre les réponses avec les scores', () => {
-        const result = calculeScoreParMetrique(mockReponses);
+        const result = calculeScoreParMetrique(mockReponses, NIVEAU1);
         expect(result).toEqual({
           "N1Pde": 1,
           "N1Pes": 0,
@@ -477,43 +477,7 @@ describe('Le store de la situation place du marché', function () {
           "N1Roa": 0,
           "N1Ron": 0,
           "N1Ros": 0,
-          "N1Rrn": 0,
-          "N2Plp": 0,
-          "N2Pod": 0,
-          "N2Pom": 0,
-          "N2Pon": 0,
-          "N2Ppe": 0,
-          "N2Ppl": 0,
-          "N2Prh": 0,
-          "N2Psu": 0,
-          "N2Ptg": 0,
-          "N2Put": 0,
-          "N2Rlp": 0,
-          "N2Rod": 0,
-          "N2Rom": 0,
-          "N2Ron": 0,
-          "N2Rpe": 0,
-          "N2Rpl": 0,
-          "N2Rrh": 0,
-          "N2Rsu": 0,
-          "N2Rtg": 0,
-          "N2Rut": 0,
-          "N3Pim": 0,
-          "N3Ppl": 0,
-          "N3Ppo": 0,
-          "N3Ppr": 0,
-          "N3Pps": 0,
-          "N3Prp": 0,
-          "N3Pum": 0,
-          "N3Put": 0,
-          "N3Pvo": 0,
-          "N3Rpl": 0,
-          "N3Rpo": 0,
-          "N3Rpr": 0,
-          "N3Rps": 0,
-          "N3Rrp": 0,
-          "N3Rut": 0,
-          "N3Rvo": 0,
+          "N1Rrn": 0
         });
       });
     });
@@ -535,36 +499,8 @@ describe('Le store de la situation place du marché', function () {
           "N1Ron": 0,
           "N1Ros": 0,
           "N1Rrn": 0};
-        const result = filtreMeilleursScores(scoresParMetrique);
-        expect(result).toEqual([
-          "N1Pse",
-          "N1Rrn",
-          "N1Rde",
-          "N1Res",
-          "N1Ron",
-          "N1Roa",
-          "N1Ros",
-          "N1Pvn",
-          "N2Rlp",
-          "N2Rpe",
-          "N2Rsu",
-          "N2Rom",
-          "N2Ron",
-          "N2Rod",
-          "N2Rut",
-          "N2Rrh",
-          "N2Rtg",
-          "N2Rpl",
-          "N3Rpl",
-          "N3Rut",
-          "N3Pum",
-          "N3Pim",
-          "N3Rpo",
-          "N3Rpr",
-          "N3Rps",
-          "N3Rvo",
-          "N3Rrp",
-        ]);
+        const result = filtreMeilleursScores(scoresParMetrique, NIVEAU1);
+        expect(result).toEqual(["N1Pse", "N1Rrn", "N1Rde", "N1Res", "N1Ron", "N1Roa", "N1Ros", "N1Pvn"]);
       });
     });
 

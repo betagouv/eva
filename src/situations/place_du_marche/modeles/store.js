@@ -4,9 +4,9 @@ import {
 } from 'commun/modeles/situation';
 
 export const NUMERATIE = 'numeratie';
-export const NIVEAU1 = 'niveau1';
-export const NIVEAU2 = 'niveau2';
-export const NIVEAU3 = 'niveau3';
+export const NIVEAU1 = 'N1';
+export const NIVEAU2 = 'N2';
+export const NIVEAU3 = 'N3';
 export const NIVEAUX = [NIVEAU1, NIVEAU2, NIVEAU3];
 
 // Le tableau suivant correspond au tableau NUMERATIE_METRIQUES de app/models/restitution/evacob/score_module.rb dans eva-serveur
@@ -236,8 +236,8 @@ export function creeStore () {
           return;
         }
 
-        const scoresParMetrique = calculeScoreParMetrique(state.reponses);
-        const meilleursScores = filtreMeilleursScores(scoresParMetrique);
+        const scoresParMetrique = calculeScoreParMetrique(state.reponses, NIVEAUX[state.indexNiveau]);
+        const meilleursScores = filtreMeilleursScores(scoresParMetrique, NIVEAUX[state.indexNiveau]);
         const reponses = recupereReponsesMeilleursScores(meilleursScores, state.reponses);
         const scoreTotal = additionneScores(reponses);
 
@@ -255,29 +255,33 @@ export function calculPourcentage(valeur, total) {
   return Math.round(valeur / total * 100);
 }
 
-export function calculeScoreParMetrique(reponses) {
+export function calculeScoreParMetrique(reponses, niveau) {
   const scoresTotaux = {};
 
   for (const [questionInitiale, rattrapage] of Object.entries(numeratieMetriques)) {
-    scoresTotaux[questionInitiale] = Object.values(reponses)
-      .filter(e => e.question.startsWith(questionInitiale))
-      .reduce((total, e) => total + e.score, 0);
-    if (rattrapage) {
-      scoresTotaux[rattrapage] = Object.values(reponses)
-        .filter(e => e.question.startsWith(rattrapage))
+    if (questionInitiale.startsWith(niveau)) {
+      scoresTotaux[questionInitiale] = Object.values(reponses)
+        .filter(e => e.question.startsWith(questionInitiale))
         .reduce((total, e) => total + e.score, 0);
+      if (rattrapage) {
+        scoresTotaux[rattrapage] = Object.values(reponses)
+          .filter(e => e.question.startsWith(rattrapage))
+          .reduce((total, e) => total + e.score, 0);
+      }
     }
   }
 
   return scoresTotaux;
 }
 
-export function filtreMeilleursScores(scoresParMetrique) {
-  return Object.keys(numeratieMetriques).map(question => {
-    const rattrapage = numeratieMetriques[question];
-    if (!rattrapage) return question;
-    return scoresParMetrique[question] > scoresParMetrique[rattrapage] ? question : rattrapage;
-  });
+export function filtreMeilleursScores(scoresParMetrique, niveau) {
+  return Object.keys(numeratieMetriques)
+    .filter(question => question.startsWith(niveau))
+    .map(question => {
+      const rattrapage = numeratieMetriques[question];
+      if (!rattrapage) return question;
+      return scoresParMetrique[question] > scoresParMetrique[rattrapage] ? question : rattrapage;
+    });
 }
 
 export function recupereReponsesMeilleursScores(meilleursScores, reponses) {
