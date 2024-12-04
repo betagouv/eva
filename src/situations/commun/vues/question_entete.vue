@@ -87,8 +87,9 @@ export default {
           : '';
     },
 
-    demarreModaliteReponseEnPremier() {
-      return this.question.demarrage_audio_modalite_reponse;
+    demarreTexteEnteteEnPremier() {
+      return this.question.intitule || !this.afficheLectureQuestionAudio ||
+            this.question.demarrage_audio_modalite_reponse && this.afficheLectureTexteEntete;
     }
   },
 
@@ -100,18 +101,14 @@ export default {
     },
 
     demarreSon () {
-      if (!this.question.intitule && this.afficheLectureQuestionAudio) {
-        if (this.demarreModaliteReponseEnPremier && this.afficheLectureTexteEntete) {
-          this.demarreSonBouton('boutonLectureTexteEntete', () => {
-            this.demarreSonBouton('boutonLectureQuestionAudio');
-          });
-        } else {
-          this.demarreSonBouton('boutonLectureQuestionAudio', () => {
-            this.demarreSonBouton('boutonLectureTexteEntete');
-          });
-        }
+      if (this.demarreTexteEnteteEnPremier) {
+        this.demarreSonBouton('boutonLectureTexteEntete', () => {
+          this.demarreSonBouton('boutonLectureQuestionAudio');
+        });
       } else {
-        this.demarreSonBouton('boutonLectureTexteEntete');
+        this.demarreSonBouton('boutonLectureQuestionAudio', () => {
+          this.demarreSonBouton('boutonLectureTexteEntete');
+        });
       }
     }
   }
