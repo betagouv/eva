@@ -56,7 +56,7 @@ export default {
     estNumerique() { return this.question.sous_type === 'numerique'; },
     estPrixAvecCentimes() { return this.question.sous_type === 'prix_avec_centimes'; },
     maxLength() {
-      return this.estPrixAvecCentimes ? 4 : this.question.max_length ?? (this.estNumerique ? null : 15);
+      return this.estPrixAvecCentimes ? 6 : this.question.max_length ?? (this.estNumerique ? null : 15);
     },
     afficheLectureQuestion () {
       return this.$depotRessources.existeMessageAudio(this.question.nom_technique);
@@ -71,7 +71,8 @@ export default {
     inputClass() {
       return {
         'champ-texte': this.estTexte,
-        'champ-numerique': this.estNumerique || this.estPrixAvecCentimes
+        'champ-numerique': this.estNumerique || this.estPrixAvecCentimes,
+        'champ-prix': this.estPrixAvecCentimes
       };
     }
   },
