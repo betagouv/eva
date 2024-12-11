@@ -39,7 +39,7 @@ export default {
 
   computed: {
     zonesDepotPositions() {
-      if (!this.zoneDeDepots.length) return;
+      if (!this.nombreZonesDeDepot) return;
 
       return Array.from(this.zoneDeDepots).map(zone => {
         const nomTechnique = zone.getAttribute('class').match(/zone-depot--(\w+)/)[1];
@@ -57,6 +57,10 @@ export default {
     zoneDeDepots() {
       const svgDoc = parseSvgFromBase64Url(this.question.zone_depot_url);
       return svgDoc.querySelectorAll('.zone-depot');
+    },
+
+    nombreZonesDeDepot() {
+      return this.zoneDeDepots.length;
     },
 
     sontToutesPlacees() {
@@ -92,16 +96,18 @@ export default {
     envoiReponsesPlacees(reponse) {
       this.ajouteNouvelleReponse(reponse);
 
-      if (this.auMoinsUneReponsePlacee) {
-        const score = this.calculeScore();
-        const reponseFinale = {
-          score,
-          scoreMax: this.question.score,
-          succes: score === this.question.score,
-          reponse: this.reponsesPlacees.map(reponse => reponse.reponse)
-        };
-        this.$emit('reponse', reponseFinale);
-      }
+      if (!this.auMoinsUneReponsePlacee) return;
+
+      const score = this.nombreReponsesAPlacer > this.nombreZonesDeDepot
+        ? this.calculeScoreUneFauteAutorisee()
+        : this.calculeScorePointParBonneReponse();
+
+      this.$emit('reponse', {
+        score,
+        scoreMax: this.question.score,
+        succes: score === this.question.score,
+        reponse: this.reponsesPlacees.map(r => r.reponse)
+      });
     },
 
     ajouteNouvelleReponse(reponse) {
@@ -110,12 +116,24 @@ export default {
         .concat(reponse);
     },
 
-    calculeScore() {
+    calculeScorePointParBonneReponse() {
       const scoreParReponse = this.question.score / this.nombreReponsesAPlacer;
 
       return this.reponsesPlacees.reduce((total, reponse) => {
         return total + (reponse.succes ? scoreParReponse : 0);
       }, 0);
+    },
+
+    calculeScoreUneFauteAutorisee() {
+      const nombreBonnesReponses = this.reponsesPlacees.filter(reponse => reponse.succes).length;
+      switch (nombreBonnesReponses) {
+      case this.nombreZonesDeDepot:
+        return this.question.score;
+      case this.nombreZonesDeDepot - 1:
+        return this.question.score / 2;
+      default:
+        return 0;
+      }
     }
   }
 };
