@@ -53,7 +53,7 @@ export default {
   computed: {
     estTexte() { return this.question.sous_type === 'texte'; },
     estNumerique() { return this.question.sous_type === 'numerique'; },
-    estPrixAvecCentimes() { return this.question.sous_type === 'prix_avec_centimes'; },
+    estNombreAvecVirgule() { return this.question.sous_type === 'nombre_avec_virgule'; },
     maxLength() {
       return this.question.max_length ?? (this.estNumerique ? null : 15);
     },
@@ -64,13 +64,13 @@ export default {
       return this.question.placeholder || (this.estTexte ? 'Réponse' : null);
     },
 
-    inputMode() { return this.estPrixAvecCentimes ? 'decimal' : null; },
+    inputMode() { return this.estNombreAvecVirgule ? 'decimal' : null; },
 
     inputClass() {
       return {
         'champ-texte': this.estTexte,
-        'champ-numerique': this.estNumerique || this.estPrixAvecCentimes,
-        'champ-prix': this.estPrixAvecCentimes
+        'champ-numerique': this.estNumerique || this.estNombreAvecVirgule,
+        'champ-nombre-avec-virgule': this.estNombreAvecVirgule
       };
     }
   },
@@ -78,7 +78,7 @@ export default {
   methods: {
     saisieReponse(event) {
       let valeur = event.target.value.trim();
-      if (this.estNumerique || this.estPrixAvecCentimes) {
+      if (this.estNumerique || this.estNombreAvecVirgule) {
         valeur = valeur.replace(/[^0-9.,]/g, '');
         event.target.value = valeur;
       }
@@ -102,7 +102,7 @@ export default {
     },
 
     formateReponse(event) {
-      if (!this.estPrixAvecCentimes) {
+      if (!this.estNombreAvecVirgule) {
         return;
       }
       let [entiers, decimaux = '00'] = event.target.value.trim().replace('.', ',').split(',');

@@ -157,7 +157,7 @@ describe('Le composant champ de saisie', function () {
 
     describe('quand on attend une réponse prix avec centimes', function() {
       beforeEach(function() {
-        vue = composant({ question: { score: 1, sous_type: 'prix_avec_centimes', reponses: [
+        vue = composant({ question: { score: 1, sous_type: 'nombre_avec_virgule', suffix_reponse: "€", reponses: [
           {
             intitule: '1,99',
             type_choix: 'bon'
@@ -175,7 +175,7 @@ describe('Le composant champ de saisie', function () {
 
   describe('#formateReponse', function() {
     beforeEach(function() {
-      vue = composant({ question: { score: 1, sous_type: 'prix_avec_centimes', reponses: [
+      vue = composant({ question: { score: 1, sous_type: 'nombre_avec_virgule', suffix_reponse: "€", reponses: [
         {
           intitule: '1,99',
           type_choix: 'bon'
@@ -285,9 +285,9 @@ describe('Le composant champ de saisie', function () {
     });
   });
 
-  describe("quand il est d'un sous-type prix_avec_centimes", function () {
+  describe("quand il est d'un sous-type nombre_avec_virgule", function () {
     beforeEach(function () {
-      vue = composant({ question: { sous_type: 'prix_avec_centimes' } });
+      vue = composant({ question: { sous_type: 'nombre_avec_virgule', suffix_reponse: "€" } });
     });
 
     it("a l'attribut inputmode défini sur 'décimal'", function () {
