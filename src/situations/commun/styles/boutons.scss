@@ -82,9 +82,8 @@
   @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
 }
 
-.bouton-lecture-en-cours {
-  @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu);
-  cursor: default;
+.bouton-en-pause {
+  @include bouton($couleur-fond-bouton-orange, $couleur-fond-bouton-orange-focus);
 }
 
 .bouton-et-etiquette {
@@ -109,6 +108,10 @@
   &:hover {
     .bouton-lire-consigne {
       background-color: $couleur-fond-bouton-bleu-focus;
+    }
+
+    .bouton-en-pause {
+      background-color: $couleur-fond-bouton-orange-focus;
     }
   }
 

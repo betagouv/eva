@@ -35,14 +35,14 @@ describe('vue Rejoue Consigne', function () {
     vue.affiche('#pointInsertion', $);
     vue.cache();
     expect($('#pointInsertion .bouton-lire-consigne').length).toEqual(0);
-    expect($('#pointInsertion .bouton-lecture-en-cours').length).toEqual(0);
+    expect($('#pointInsertion .bouton-en-pause').length).toEqual(0);
   });
 
   it('passe en état lecture en cours', function () {
     vue.affiche('#pointInsertion', $);
     vue.litConsigne($);
     expect($('#pointInsertion .bouton-lire-consigne').length).toEqual(0);
-    expect($('#pointInsertion .bouton-lecture-en-cours').length).toEqual(1);
+    expect($('#pointInsertion .bouton-en-pause').length).toEqual(1);
   });
 
   it("à la fin de la lecture, repasse à l'état initial", function () {
@@ -50,7 +50,7 @@ describe('vue Rejoue Consigne', function () {
     vue.litConsigne($);
     mockJoueurConsigne.finConsigne();
     expect($('#pointInsertion .bouton-lire-consigne').length).toEqual(1);
-    expect($('#pointInsertion .bouton-lecture-en-cours').length).toEqual(0);
+    expect($('#pointInsertion .bouton-en-pause').length).toEqual(0);
   });
 
   it('on peut lire la consigne plusieurs fois', function () {
@@ -60,7 +60,7 @@ describe('vue Rejoue Consigne', function () {
     vue.litConsigne($);
     mockJoueurConsigne.finConsigne();
     expect($('#pointInsertion .bouton-lire-consigne').length).toEqual(1);
-    expect($('#pointInsertion .bouton-lecture-en-cours').length).toEqual(0);
+    expect($('#pointInsertion .bouton-en-pause').length).toEqual(0);
   });
 
   it('journalise un événement RejoueConsigne', function (done) {
