@@ -3,7 +3,7 @@ import VueBouton from './bouton';
 import EvenementRejoueConsigne from '../modeles/evenement_rejoue_consigne';
 
 import play from 'commun/assets/play.svg';
-import lectureEnCours from 'commun/assets/lecture-en-cours.svg';
+import enPause from 'commun/assets/en-pause.svg';
 import 'commun/styles/boutons.scss';
 
 export default class VueRejoueConsigne {
@@ -11,9 +11,11 @@ export default class VueRejoueConsigne {
     this.situation = situation;
     this.joueurConsigne = joueurConsigne;
     this.journal = journal;
+
     this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.litConsigne(this.$));
     this.vueBoutonLire.ajouteUneEtiquette(traduction('situation.repeter_consigne'));
-    this.vueBoutonLectureEnCours = new VueBouton('bouton-lecture-en-cours', lectureEnCours);
+
+    this.vueBoutonArret = new VueBouton('bouton-en-pause', enPause, () => this.arreteConsigne());
   }
 
   affiche (pointInsertion, $) {
@@ -26,19 +28,24 @@ export default class VueRejoueConsigne {
 
   cache () {
     this.vueBoutonLire.cache();
-    this.vueBoutonLectureEnCours.cache();
+    this.vueBoutonArret.cache();
   }
 
   litConsigne ($) {
     this.journal.enregistre(new EvenementRejoueConsigne());
     this.vueBoutonLire.cache();
-
-    this.vueBoutonLectureEnCours.affiche(this.$boutonRejoueConsigne, $);
+    this.vueBoutonArret.affiche(this.$boutonRejoueConsigne, $);
     this.joueurConsigne.joue(this.lectureTerminee.bind(this));
   }
 
+  arreteConsigne () {
+    this.joueurConsigne.stop();
+    this.vueBoutonArret.cache();
+    this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, this.$);
+  }
+
   lectureTerminee () {
-    this.vueBoutonLectureEnCours.cache();
+    this.vueBoutonArret.cache();
     this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, this.$);
   }
 }
