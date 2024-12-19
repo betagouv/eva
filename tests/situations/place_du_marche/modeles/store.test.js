@@ -283,7 +283,7 @@ describe('Le store de la situation place du marché', function () {
       it('retourne vrai si le parcours en cours est le dernier niveau', function() {
         expect(store.getters.estDernierNiveau).toEqual(false);
 
-        store.state.parcours = 'niveau3';
+        store.state.parcours = NIVEAU3;
 
         expect(store.getters.estDernierNiveau).toEqual(true);
       });
@@ -291,7 +291,7 @@ describe('Le store de la situation place du marché', function () {
 
     describe('#tousLesParcours', function() {
       it('retourne tous les parcours', function() {
-        expect(store.getters.tousLesParcours).toEqual(['niveau1', 'niveau2', 'niveau3', 'N1Prn', 'N1Roa']);
+        expect(store.getters.tousLesParcours).toEqual([NIVEAU1, NIVEAU2, NIVEAU3, 'N1Prn', 'N1Roa']);
       });
     });
 
@@ -402,35 +402,34 @@ describe('Le store de la situation place du marché', function () {
 
     describe("#recalculePourcentageReussiteGlobal", function() {
       describe("si ce n'est pas la dernière question du rattrapage", function() {
-        it("ne change rien", function() {
+        beforeEach(function() {
           store.state.parcours = NIVEAU1;
           store.state.questionActive = questionNiveau1Question1;
           store.state.pourcentageDeReussiteGlobal = 60;
+        });
 
+        it("ne change rien", function() {
           store.commit('recalculePourcentageReussiteGlobal');
-
           expect(store.state.pourcentageDeReussiteGlobal).toEqual(60);
         });
       });
 
       describe("si c'est la dernière question du rattrapage", function() {
-        it('retourne le nouveau pourcentage de réussite global', function() {
+        beforeEach(function() {
           store.state.configuration = configuration.questions;
           store.state.parcours = 'N1Rrn';
           store.state.reponses = {
-            'N1Prn1': { question: 'N1Prn1', succes: true, score: 0 },
-            'N1Rrn1': { question: 'N1Rrn1', succes: true, score: 1 },
+            'N1Prn1': { question: 'N1Prn1', score: 0 },
+            'N1Rrn1': { question: 'N1Rrn1', score: 1 },
           };
           store.state.questionActive = { nom_technique: 'N1Rrn1' };
-          store.state.pourcentageDeReussiteCompetence = {
-            'N1Prn': 40,
-          };
+          store.state.pourcentageDeReussiteCompetence = { 'N1Prn': 40 };
           store.state.maxScoreNiveauEnCours = 2;
+        });
 
+        it('retourne le nouveau pourcentage de réussite global', function() {
           expect(store.state.pourcentageDeReussiteGlobal).toEqual(0);
-
           store.commit('recalculePourcentageReussiteGlobal');
-
           expect(store.state.pourcentageDeReussiteGlobal).toEqual(50);
         });
       });
@@ -462,7 +461,7 @@ describe('Le store de la situation place du marché', function () {
 
     describe('#calculeScoreParMetrique', function() {
       it('filtre les réponses avec les scores', () => {
-        const result = calculeScoreParMetrique(mockReponses);
+        const result = calculeScoreParMetrique(mockReponses, NIVEAU1);
         expect(result).toEqual({
           "N1Pde": 1,
           "N1Pes": 0,
@@ -498,7 +497,7 @@ describe('Le store de la situation place du marché', function () {
           "N1Ron": 0,
           "N1Ros": 0,
           "N1Rrn": 0};
-        const result = filtreMeilleursScores(scoresParMetrique);
+        const result = filtreMeilleursScores(scoresParMetrique, NIVEAU1);
         expect(result).toEqual(["N1Pse", "N1Rrn", "N1Rde", "N1Res", "N1Ron", "N1Roa", "N1Ros", "N1Pvn"]);
       });
     });
