@@ -143,7 +143,16 @@ module.exports = {
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true,
-      maximumFileSizeToCacheInBytes: 50000000
+      maximumFileSizeToCacheInBytes: 50000000,
+      // Permet de définir un comportement "crossorigin"
+      manifestTransforms: [
+        async (manifestEntries) => {
+          return manifestEntries.map((entry) => {
+            entry.crossorigin = 'use-credentials';
+            return entry;
+          });
+        },
+      ],
     }),
     new webpack.DefinePlugin({
       __VUE_OPTIONS_API__: true,
