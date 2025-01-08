@@ -28,11 +28,6 @@ const N1Pse4 = {
   score: 0.5,
 };
 
-const N1PrnSousConsigne = {
-  id: 'N1Prn-sous-consigne',
-  nom_technique: 'N1Prn-sous-consigne',
-};
-
 const N1Prn1 = {
   id: 'N1Prn1',
   nom_technique: 'N1Prn1',
@@ -446,7 +441,6 @@ const N3Prp2 = {
 const niveau1 = {
   series: [
     { cartes: [ N1Pse1, N1Pse2, N1Pse3, N1Pse4] },
-    { cartes: [ N1PrnSousConsigne ] },
     { cartes: [ N1Prn1, N1Prn2] },
     { cartes: [ N1Pde1, N1Pde2] },
     { cartes: [ N1Pes1, N1Pes2] },
