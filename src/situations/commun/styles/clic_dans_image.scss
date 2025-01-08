@@ -1,3 +1,5 @@
+@import 'commun/styles/variables.scss';
+
 .zone-cliquable, .reponses {
   width: 1008px;
   height: 566px;
@@ -27,18 +29,21 @@
   &--sans-curseur {
     svg > * {
       cursor: pointer;
+      transition: all 100ms;
     }
 
     svg > *:hover {
       fill: white;
       fill-opacity: 0.25;
-      stroke-opacity: 0.8;
       stroke: white;
+      stroke-opacity: 0.8;
       stroke-width: 3px;
     }
 
     .reponse--selectionnee {
-      stroke: white;
+      fill: $bleu;;
+      fill-opacity: 0.25;
+      stroke: $bleu;
       stroke-width: 3px;
       position: relative;
     }
