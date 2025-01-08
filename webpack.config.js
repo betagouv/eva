@@ -146,10 +146,16 @@ module.exports = {
       maximumFileSizeToCacheInBytes: 50000000,
       // Permet de définir un comportement "crossorigin"
       manifestTransforms: [
-        (manifestEntries) => manifestEntries.map((entry) => {
-          entry.crossorigin = 'use-credentials';
-          return entry;
-        })
+        async (manifestEntries) => {
+          const updatedManifest = manifestEntries.map((entry) => {
+            // Ajoutez le paramètre crossorigin
+            entry.crossorigin = 'use-credentials';
+            return entry;
+          });
+
+          // Retournez l'objet attendu par Workbox
+          return { manifest: updatedManifest, warnings: [] };
+        },
       ],
     }),
     new webpack.DefinePlugin({
