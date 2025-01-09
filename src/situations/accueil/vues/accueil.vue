@@ -207,6 +207,7 @@ export default {
   mounted () {
     if (this.forceCampagne) {
       this.deconnecte();
+      return;
     }
     this.recupereSituations();
   },
