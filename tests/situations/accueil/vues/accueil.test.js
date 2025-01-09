@@ -12,10 +12,12 @@ describe('La vue accueil', function () {
   let store;
   let mockEstTermine;
   let mockDeconnecte;
+  let mockRecupereSituation;
 
   beforeEach(function () {
     mockEstTermine = jest.fn();
     mockDeconnecte = jest.fn();
+    mockRecupereSituation = jest.fn();
     window.localStorage.removeItem(CLE_ETAT_ACCUEIL);
     depotRessources = new class {
       fondAccueil () {
@@ -61,7 +63,8 @@ describe('La vue accueil', function () {
         estTermine: mockEstTermine
       },
       actions: {
-        deconnecte: mockDeconnecte
+        deconnecte: mockDeconnecte,
+        recupereSituations: mockRecupereSituation
       }
     });
   });
@@ -117,8 +120,10 @@ describe('La vue accueil', function () {
   });
 
   it('déconnecte si un code campagne est passé en propsData', function () {
+    store.state.estConnecte = true;
     accueil({ forceCampagne: 'CODECAMPAGNE' });
     expect(mockDeconnecte).toHaveBeenCalled();
+    expect(mockRecupereSituation).not.toHaveBeenCalled();
   });
 
   describe('#recupereSituations', function () {
