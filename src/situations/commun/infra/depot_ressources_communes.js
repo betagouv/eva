@@ -4,17 +4,15 @@ import calculatrice from 'commun/assets/calculatrice.svg';
 import iconeDeconnexion from 'commun/assets/sign_out.svg';
 import son from 'commun/assets/son.svg';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.mp3';
-import RegistreCampagne from 'commun/infra/registre_campagne';
 import { extraitQuestionsReponsesAudios } from 'commun/infra/depot_ressources';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
-  constructor (chargeurs, messagesVideos, messagesAudios, fondConsigne, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche) {
-    const questionsServeur = new RegistreCampagne().questions(['cafe_de_la_place', 'place_du_marche']);
-    const messagesAudiosServeur = extraitQuestionsReponsesAudios(questionsServeur);
+  constructor (chargeurs, messagesVideos, messagesAudios, fondConsigne, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche, questionsServeur = []) {
     super(chargeurs);
     this.charge([casque, son, calculatrice, sonConsigneDemarrage, sonConsigneTransition, iconeDeconnexion]);
     this.charge(Object.values(messagesVideos));
     this.charge(Object.values(messagesAudios));
+    const messagesAudiosServeur = extraitQuestionsReponsesAudios(questionsServeur);
     this.charge(Object.values(messagesAudiosServeur));
     if (fondConsigne) {
       this.charge([fondConsigne]);
