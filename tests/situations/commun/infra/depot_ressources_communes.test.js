@@ -8,14 +8,6 @@ const questionsServeur = [
   { id: 1, nom_technique: 'N1Prn1', type: 'glisser-deposer' }
 ];
 
-jest.mock('commun/infra/registre_campagne', () => {
-  return jest.fn().mockImplementation(() => {
-    return {
-      questions: jest.fn().mockReturnValue(questionsServeur)
-    };
-  });
-});
-
 describe('Le dépot de ressources communes', function () {
   const imgFondConsigne = 'fondConsigne.png';
   const sonConsigneDemarrage = 'consigneDemarrage.mp3';
@@ -45,7 +37,7 @@ describe('Le dépot de ressources communes', function () {
         return Promise.resolve(() => _video);
       }
     });
-    depot = new DepotRessourcesCommunes(_chargeurs, { videoQuestion1: videoQuestion1 }, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition);
+    depot = new DepotRessourcesCommunes(_chargeurs, { videoQuestion1: videoQuestion1 }, { audioQuestion1: sonAudioQuestion1 }, imgFondConsigne, sonConsigneDemarrage, sonConsigneTransition, questionsServeur);
   });
 
   it('étend DépotRessources', function () {
@@ -150,8 +142,9 @@ describe('Le dépot de ressources communes', function () {
       result = depot.questions();
     });
 
-    it('retourne les questions du serveur', function() {
+    it('retourne les questions du serveur en convertisant le champ type_choix en bonneReponse', function() {
       expect(result).toEqual(questionsServeur);
+      expect(result[0].choix).toEqual([{ bonneReponse: true }]);
     });
   });
 });
