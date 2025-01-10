@@ -62,6 +62,7 @@
     "sass": "^1.45",
     "sass-loader": "^12.x",
     "style-loader": "^2.0",
+    "vscode-langservers-extracted": "^4.10.0",
     "vue-loader": "^16.0.0",
     "webpack-dev-server": "^4.7",
     "webpack-node-externals": "^2.5",
