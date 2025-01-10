@@ -30,8 +30,8 @@ function chargeurAudio (src) {
     };
 
     // Gestion des erreurs réseau (CORS ou autres)
-    request.onerror = function () {
-      reject(new Error(`Erreur réseau ou problème CORS lors de l'accès à ${src}`));
+    request.onerror = function (event) {
+      reject(new Error(`Erreur au chargement de ${src} : ${event.type}: ${event.loaded} octets transférés`));
     };
 
     // Envoi de la requête
@@ -52,8 +52,8 @@ function chargeurVideo (src) {
         });
       }
     };
-    request.onerror = function() {
-      reject(new Error(`Erreur au chargement de ${src}`));
+    request.onerror = function(event) {
+      reject(new Error(`Erreur au chargement de ${src} : ${event.type}: ${event.loaded} octets transférés`));
     };
     request.onprogress = function(e){
       if(e.lengthComputable) {
@@ -77,7 +77,9 @@ function chargeurImage (src) {
       });
     };
 
-    img.onerror = reject;
+    img.onerror = function(event) {
+      reject(new Error(`Erreur au chargement de ${src} : ${event.type}: ${event.loaded} octets transférés`));
+    };
   });
   img.src = src;
   return promesse;
