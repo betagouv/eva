@@ -93,8 +93,8 @@ export default {
       }
     },
 
-    envoiReponsesPlacees(reponse) {
-      this.ajouteNouvelleReponse(reponse);
+    envoiReponsesPlacees(reponses) {
+      this.reponsesPlacees = reponses;
 
       if (!this.auMoinsUneReponsePlacee) return;
 
@@ -102,18 +102,13 @@ export default {
         ? this.calculeScoreUneFauteAutorisee()
         : this.calculeScorePointParBonneReponse();
 
-      this.$emit('reponse', {
+      const reponseFinale = {
         score,
         scoreMax: this.question.score,
         succes: score === this.question.score,
         reponse: this.reponsesPlacees.map(r => r.reponse)
-      });
-    },
-
-    ajouteNouvelleReponse(reponse) {
-      this.reponsesPlacees = this.reponsesPlacees
-        .filter(r => r.reponse !== reponse.reponse)
-        .concat(reponse);
+      };
+      this.$emit('reponse', reponseFinale);
     },
 
     calculeScorePointParBonneReponse() {

@@ -4,6 +4,7 @@
       <draggable
         :class="`zone-depot zone-depot--${zone.nomTechnique}`"
         :data-nom-technique="zone.nomTechnique"
+        :data-index="index"
         :list="zonesDeClassement[index]"
         item-key="id"
         group="items"
@@ -78,6 +79,7 @@ export default {
     return {
       zonesDeClassement: this.zonesDepot.length > 1 ? Array.from({ length: this.zonesDepot.length }, () => []) : [[]],
       reponsesNonClassees: [],
+      reponsesPlacees: this.zonesDepot.length > 1 ? Array.from({ length: this.zonesDepot.length }, () => ({ reponse: null, succes: false })) : [{}],
       elementGlisse: false,
       afficheZoneDepotDepart: true,
       zoneDepotMultiple: this.zonesDepot.length > 1
@@ -101,10 +103,13 @@ export default {
     },
 
     envoiReponseMultiple(event) {
+      const index = event.to.dataset.index;
       const nomTechniqueReponse = event.item.dataset.nomTechnique;
       const nomTechniqueZone = event.to.dataset.nomTechnique;
       const succes = nomTechniqueReponse === nomTechniqueZone;
-      this.$emit('deplace-item', { reponse: nomTechniqueReponse, succes, zonesDeClassement: this.zonesDeClassement });
+      const reponse = { reponse: nomTechniqueReponse, succes };
+      this.reponsesPlacees[index] = reponse;
+      this.$emit('deplace-item', this.reponsesPlacees);
     },
 
     envoiReponse() {
