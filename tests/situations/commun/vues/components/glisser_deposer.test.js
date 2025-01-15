@@ -31,12 +31,15 @@ describe('Le composant Glisser Deposer', function () {
     });
   }
 
-  function mockDragEvent(itemClass, zoneClass) {
+  function mockDragEvent(item, zone) {
     const mockItem = document.createElement('div');
-    mockItem.setAttribute('class', itemClass);
+    mockItem.setAttribute('class', `item--${item}`);
+    mockItem.setAttribute('data-nom-technique', item);
 
     const mockZone = document.createElement('div');
-    mockZone.setAttribute('class', zoneClass);
+    mockZone.setAttribute('class', `zone-depot--${zone}`);
+    mockZone.setAttribute('data-nom-technique', zone);
+    mockZone.setAttribute('data-index', 0);
 
     return {
       item: mockItem,
@@ -214,23 +217,23 @@ describe('Le composant Glisser Deposer', function () {
   describe("Avec des zones de dépôt multiples", function() {
     it('envoie le succes et la réponse correcte au parent', function () {
       genereVue([]);
-      const mockEvent = mockDragEvent('item--reponse1', 'zone-depot--reponse1');
+      const mockEvent = mockDragEvent('reponse1', 'reponse1');
 
       wrapper.vm.envoiReponseMultiple(mockEvent);
       expect(wrapper.emitted('deplace-item').length).toEqual(1);
-      expect(wrapper.emitted('deplace-item')[0][0]).toEqual({
+      expect(wrapper.emitted('deplace-item')[0][0]).toEqual([{
         succes: true,
         reponse: "reponse1"
-      });
+      }]);
     });
 
     it('envoie l\'échec et la réponse', function () {
       genereVue([]);
-      const mockEvent = mockDragEvent('item--reponse1', 'zone-depot--reponse2');
+      const mockEvent = mockDragEvent('reponse1', 'reponse2');
 
       wrapper.vm.envoiReponseMultiple(mockEvent);
       expect(wrapper.emitted('deplace-item').length).toEqual(1);
-      expect(wrapper.emitted('deplace-item')[0][0].succes).toEqual(false);
+      expect(wrapper.emitted('deplace-item')[0][0][0]["succes"]).toEqual(false);
     });
 
     it("remplace l'élèment déjà présent à l'ajout", function() {
@@ -241,14 +244,6 @@ describe('Le composant Glisser Deposer', function () {
       wrapper.findComponent('.container-arrivee .zone-depot').vm.$emit('add', { newIndex: 1 });
       expect(wrapper.vm.reponsesNonClassees).toEqual([1, 2]);
       expect(wrapper.vm.zonesDeClassement[0]).toEqual([3]);
-    });
-  });
-
-  describe("extraitNomTechnique", function () {
-    it('extrait le nom technique de la réponse', function () {
-      genereVue([]);
-      const mockElement = Object.assign(document.createElement('div'), { className: 'glisser-deposer__item item--horloge-9h30' });
-      expect(wrapper.vm.extraitNomTechnique(mockElement, 'item--')).toEqual('horloge-9h30');
     });
   });
 });

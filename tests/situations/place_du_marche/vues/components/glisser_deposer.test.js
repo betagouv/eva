@@ -66,10 +66,6 @@ describe('Le composant Glisser Déposer de place du marché', function () {
   });
 
   describe('#envoiReponsesPlacees', function () {
-    function envoyerReponse(succes, reponse) {
-      wrapper.vm.envoiReponsesPlacees({ reponse, succes });
-    }
-
     describe("quand il y a autant d'éléments à placer que de zones de dépôt", function () {
       beforeEach(function () {
         genereVue([1, 2, 3, 4]);
@@ -77,7 +73,7 @@ describe('Le composant Glisser Déposer de place du marché', function () {
       });
 
       it('émet un événement avec au moins une réponse placée', function () {
-        envoyerReponse(true, 'N1Pse1');
+        wrapper.vm.envoiReponsesPlacees([{ reponse: 'N1Pse1', succes: true }]);
 
         expect(wrapper.vm.auMoinsUneReponsePlacee).toBe(true);
         expect(wrapper.emitted('reponse')[0][0]).toEqual({
@@ -89,10 +85,12 @@ describe('Le composant Glisser Déposer de place du marché', function () {
       });
 
       it('émet un événement avec toutes les réponses placées', function () {
-        envoyerReponse(true, 'N1Pse1');
-        envoyerReponse(true, 'N1Pse2');
-        envoyerReponse(true, 'N1Pse3');
-        envoyerReponse(true, 'N1Pse4');
+        wrapper.vm.envoiReponsesPlacees([
+          { reponse: 'N1Pse1', succes: true },
+          { reponse: 'N1Pse2', succes: true },
+          { reponse: 'N1Pse3', succes: true },
+          { reponse: 'N1Pse4', succes: true }
+        ]);
 
         expect(wrapper.emitted('reponse')).toEqual(
           expect.arrayContaining([[{ "reponse": ["N1Pse1", "N1Pse2", "N1Pse3", "N1Pse4"], "score": 1, "scoreMax": 1, "succes": true }]])
@@ -107,9 +105,11 @@ describe('Le composant Glisser Déposer de place du marché', function () {
       });
 
       it('émet un événement avec la moitié du score si une seule réponse est mal placée', function () {
-        envoyerReponse(true, 'N1Pse1');
-        envoyerReponse(false, 'N1Pse2');
-        envoyerReponse(true, 'N1Pse3');
+        wrapper.vm.envoiReponsesPlacees([
+          { reponse: "N1Pse1", succes: true },
+          { reponse: "N1Pse2", succes: false },
+          { reponse: "N1Pse3", succes: true },
+        ]);
 
         expect(wrapper.emitted('reponse')).toEqual(
           expect.arrayContaining([[{ "reponse": ["N1Pse1", "N1Pse2", 'N1Pse3'], "score": 0.5, "scoreMax": 1, "succes": false }]])
