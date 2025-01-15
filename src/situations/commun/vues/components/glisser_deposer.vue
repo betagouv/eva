@@ -3,6 +3,7 @@
     <div v-for="(zone, index) in zonesDepot" :key="index" class="container-arrivee" :style="positionZoneDepot(zone)">
       <draggable
         :class="`zone-depot zone-depot--${zone.nomTechnique}`"
+        :data-nom-technique="zone.nomTechnique"
         :list="zonesDeClassement[index]"
         item-key="id"
         group="items"
@@ -13,7 +14,7 @@
         :sort="true"
       >
         <template #item="{ element }">
-          <div :key="element.id" :class="`glisser-deposer__item item--${element.nom_technique}`">
+          <div :key="element.id" :class="`glisser-deposer__item item--${element.nom_technique}`" :data-nom-technique="element.nom_technique">
             <slot name="item" :item="element" />
           </div>
         </template>
@@ -38,7 +39,7 @@
         :sort="false"
       >
         <template #item="{ element }">
-          <div :key="element.id" :class="`glisser-deposer__item item--${element.nom_technique}`">
+          <div :key="element.id" :class="`glisser-deposer__item item--${element.nom_technique}`" :data-nom-technique="element.nom_technique">
             <slot name="item" :item="element" />
           </div>
         </template>
@@ -100,23 +101,18 @@ export default {
     },
 
     envoiReponseMultiple(event) {
-      const nomTechniqueReponse = this.extraitNomTechnique(event.item, 'item--');
-      const nomTechniqueZone = this.extraitNomTechnique(event.to, 'zone-depot--');
+      const nomTechniqueReponse = event.item.dataset.nomTechnique;
+      const nomTechniqueZone = event.to.dataset.nomTechnique;
       const succes = nomTechniqueReponse === nomTechniqueZone;
-      this.$emit('deplace-item', { reponse: nomTechniqueReponse, succes });
+      this.$emit('deplace-item', { reponse: nomTechniqueReponse, succes, zonesDeClassement: this.zonesDeClassement });
     },
 
-    extraitNomTechnique(element, prefix) {
-      const match = element.getAttribute('class').match(new RegExp(`${prefix}([\\w-]+)`));
-      return match ? match[1] : null;
-    },
-
-    envoiReponse(succes) {
+    envoiReponse() {
       const reponsesClassees = this.zonesDeClassement.flat();
       const reponse = reponsesClassees ? reponsesClassees.map(reponse => reponse.position) : [];
-      const finalSucces = succes !== undefined ? succes : this.succes(reponse);
+      const succes = this.succes(reponse);
       this.afficheZoneDepotDepart = this.reponsesNonClassees.length > 0;
-      this.$emit('ordonne-item', { reponse, succes: finalSucces });
+      this.$emit('ordonne-item', { reponse, succes: succes });
     },
 
     succes(reponse) {
