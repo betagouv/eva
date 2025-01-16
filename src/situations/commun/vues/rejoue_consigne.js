@@ -13,9 +13,10 @@ export default class VueRejoueConsigne {
     this.journal = journal;
 
     this.vueBoutonLire = new VueBouton('bouton-lire-consigne', play, () => this.litConsigne(this.$));
-    this.vueBoutonLire.ajouteUneEtiquette(traduction('situation.repeter_consigne'));
-
     this.vueBoutonArret = new VueBouton('bouton-en-pause', enPause, () => this.arreteConsigne());
+    
+    this.ajouterEtiquette(this.vueBoutonArret, 'situation.repeter_consigne');
+    this.ajouterEtiquette(this.vueBoutonLire, 'situation.repeter_consigne');
   }
 
   affiche (pointInsertion, $) {
@@ -47,5 +48,9 @@ export default class VueRejoueConsigne {
   lectureTerminee () {
     this.vueBoutonArret.cache();
     this.vueBoutonLire.affiche(this.$boutonRejoueConsigne, this.$);
+  }
+
+  ajouterEtiquette(bouton, cleTraduction) {
+    bouton.ajouteUneEtiquette(traduction(cleTraduction));
   }
 }
