@@ -83,6 +83,24 @@ function chargeurImage (src) {
   return promesse;
 }
 
+function chargeurInlineSvg (src) {
+  return window.fetch(src)
+    .then(res => {
+      if (res.ok) {
+        return res;
+      } else {
+        throw Error(`Le chargement de la ressource ${src} a échoué avec le code ${res.status}`);
+      }
+    })
+    .then((response) => response.text())
+    .then((svgText) => {
+      const parser = new DOMParser();
+      const svgDocument = parser.parseFromString(svgText, 'image/svg+xml');
+      const svgElement = svgDocument.documentElement;
+      return () => svgElement;
+    });
+}
+
 function chargeurJSON (src) {
   return window.fetch(src)
     .then(res => {
@@ -101,6 +119,7 @@ const CHARGEURS = {
   mp4: chargeurVideo,
   png: chargeurImage,
   svg: chargeurImage,
+  inlineSvg: chargeurInlineSvg,
   jpg: chargeurImage,
   json: chargeurJSON
 };
@@ -112,18 +131,20 @@ export default class DepotRessources {
     this.cloneursRessource = {};
   }
 
-  charge (ressources) {
-    const promesses = ressources.map(ressource => this.promesseRessource(ressource));
+  charge (ressources, identifiantChargeur = null) {
+    const promesses = ressources.map((ressource) => {
+      const idChargeur = identifiantChargeur ?? ressource.match(/\.([^.]+)$/)[1];
+      return this.promesseRessource(ressource, idChargeur);
+    });
 
     this.promesses.push(...promesses);
   }
 
-  promesseRessource (ressource) {
-    const extension = ressource.match(/\.([^.]+)$/)[1];
-    const chargeur = this.chargeurs[extension];
+  promesseRessource (ressource, idChargeur) {
+    const chargeur = this.chargeurs[idChargeur];
     if (chargeur === undefined) {
       throw new Error(
-        `Aucun chargeur disponible pour l'extension '${extension}'. Impossible de charger la ressource '${ressource}'`
+        `Aucun chargeur disponible pour '${idChargeur}'. Impossible de charger la ressource '${ressource}'`
       );
     }
     return chargeur(ressource).then((cloneur) => {
@@ -158,6 +179,18 @@ function extraitDictionnaire (webpackContext, regExp, dictionnaire = {}) {
   }, dictionnaire);
 }
 
+function extraitQuestionsServeurImages(questions) {
+  return questions.reduce((acc, question) => {
+    const { nom_technique, zone_depot_url, zone_cliquable_url, image_au_clic_url } = question;
+
+    if (zone_depot_url) acc[`${nom_technique}_zone_depot`] = zone_depot_url;
+    if (zone_cliquable_url) acc[`${nom_technique}_zone_cliquable`] = zone_cliquable_url;
+    if (image_au_clic_url) acc[`${nom_technique}_image_au_clic`] = image_au_clic_url;
+
+    return acc;
+  }, {});
+}
+
 function extraitQuestionsReponsesAudios(questions) {
   return questions.reduce((acc, question) => {
     const { nom_technique, audio_url, intitule_audio, choix, consigne_audio } = question;
@@ -174,4 +207,4 @@ function extraitQuestionsReponsesAudios(questions) {
   }, {});
 }
 
-export { chargeurJSON, extraitDictionnaire, extraitQuestionsReponsesAudios };
+export { chargeurJSON, chargeurInlineSvg, extraitDictionnaire, extraitQuestionsReponsesAudios, extraitQuestionsServeurImages };

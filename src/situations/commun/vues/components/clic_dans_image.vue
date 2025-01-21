@@ -7,7 +7,6 @@
 
 <script>
 import 'commun/styles/clic_dans_image.scss';
-import { decodeBase64FromDataUrl, parseSvgFromBase64Url } from 'commun/helpers/decoders';
 
 export default {
   props: {
@@ -26,16 +25,18 @@ export default {
 
   computed: {
     reponses() {
-      return decodeBase64FromDataUrl(this.question.zone_cliquable);
+      const svgDoc = this.$depotRessources.zoneCliquable(this.question.nom_technique);
+      return svgDoc.outerHTML;
     },
 
     curseur() {
-      return decodeBase64FromDataUrl(this.question.image_au_clic);
+      const svgDoc = this.$depotRessources.imageAuClic(this.question.nom_technique);
+      return svgDoc;
     },
 
     nombreBonnesReponses() {
-      const svgDocument = parseSvgFromBase64Url(this.question.zone_cliquable);
-      return svgDocument.querySelectorAll(".bonne-reponse").length;
+      const svgDoc = this.$depotRessources.zoneCliquable(this.question.nom_technique);
+      return svgDoc.querySelectorAll(".bonne-reponse").length;
     },
 
     selectionMultiple() {

@@ -10,6 +10,7 @@ const messagesAudios = {};
 export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommunes {
   constructor (chargeurs) {
     const questionsServeur = new RegistreCampagne().questions(['place_du_marche']);
+
     super(chargeurs, messagesVideos, messagesAudios, null, sonConsigne, sonConsigneBlanche, questionsServeur);
     this.consigneEnCours = null;
     this.texteAide = null;
@@ -29,5 +30,12 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
 
   fondSituation () {
     return this.ressource(fondSituation);
+  }
+
+  zoneDepot (nomTechnique) {
+    const nomTechniqueResource = `${nomTechnique}_zone_depot`;
+    if (this.existeSvg(nomTechniqueResource)) {
+      return this.ressource(this.SVGs[nomTechniqueResource]);
+    }
   }
 }

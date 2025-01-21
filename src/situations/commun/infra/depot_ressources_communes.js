@@ -4,7 +4,7 @@ import calculatrice from 'commun/assets/calculatrice.svg';
 import iconeDeconnexion from 'commun/assets/sign_out.svg';
 import son from 'commun/assets/son.svg';
 import sonConsigneBlanche from 'commun/assets/consigne_blanche.mp3';
-import { extraitQuestionsReponsesAudios } from 'commun/infra/depot_ressources';
+import { extraitQuestionsReponsesAudios, extraitQuestionsServeurImages } from 'commun/infra/depot_ressources';
 
 export default class DepotRessourcesCommunes extends DepotRessources {
   constructor (chargeurs, messagesVideos, messagesAudios, fondConsigne, sonConsigneDemarrage, sonConsigneTransition = sonConsigneBlanche, questionsServeur = []) {
@@ -14,6 +14,8 @@ export default class DepotRessourcesCommunes extends DepotRessources {
     this.charge(Object.values(messagesAudios));
     const messagesAudiosServeur = extraitQuestionsReponsesAudios(questionsServeur);
     this.charge(Object.values(messagesAudiosServeur));
+    const SVGs = extraitQuestionsServeurImages(questionsServeur);
+    this.charge(Object.values(SVGs), 'inlineSvg');
     if (fondConsigne) {
       this.charge([fondConsigne]);
       this.imgFondConsigne = fondConsigne;
@@ -22,6 +24,7 @@ export default class DepotRessourcesCommunes extends DepotRessources {
     this.sonConsigneTransition = sonConsigneTransition;
     this.messagesVideos = messagesVideos;
     this.messagesAudios = { ...messagesAudios, ...messagesAudiosServeur };
+    this.SVGs = SVGs;
     this.questionsServeur = questionsServeur;
   }
 
@@ -73,6 +76,10 @@ export default class DepotRessourcesCommunes extends DepotRessources {
     return nomTechnique in this.messagesAudios;
   }
 
+  existeSvg(nomTechnique) {
+    return nomTechnique in this.SVGs;
+  }
+
   trouveIllustrations(configuration) {
     if (! (configuration instanceof Object)) {
       return [];
@@ -101,6 +108,20 @@ export default class DepotRessourcesCommunes extends DepotRessources {
 
   illustrationQuestion(question) {
     return { src: question.illustration };
+  }
+
+  zoneCliquable (nomTechnique) {
+    const nomTechniqueResource = `${nomTechnique}_zone_cliquable`;
+    if (this.existeSvg(nomTechniqueResource)) {
+      return this.ressource(this.SVGs[nomTechniqueResource]);
+    }
+  }
+
+  imageAuClic (nomTechnique) {
+    const nomTechniqueResource = `${nomTechnique}_image_au_clic`;
+    if (this.existeSvg(nomTechniqueResource)) {
+      return this.ressource(this.SVGs[nomTechniqueResource]);
+    }
   }
 
   questions () {
