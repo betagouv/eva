@@ -182,7 +182,7 @@ describe('Le store en commun pour les situations', function () {
         });
 
         it("recupere le paramétrage du serveur", function() {
-          expect(questionServeur.zone_cliquable).toEqual(fakeQuestionServeurDansImage.zone_cliquable);
+          expect(questionServeur.zone_cliquable_url).toEqual(fakeQuestionServeurDansImage.zone_cliquable_url);
         });
       });
 
@@ -199,7 +199,7 @@ describe('Le store en commun pour les situations', function () {
         });
 
         it("recupere le paramétrage du serveur", function() {
-          expect(questionServeur.zone_depot).toEqual(fakeQuestionServeurGlisserDeposer.zone_depot);
+          expect(questionServeur.zone_depot_url).toEqual(fakeQuestionServeurGlisserDeposer.zone_depot_url);
         });
       });
 

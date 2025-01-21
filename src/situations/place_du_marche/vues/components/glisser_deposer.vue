@@ -17,7 +17,6 @@
 <script>
 import GlisserDeposer from 'commun/vues/components/glisser_deposer';
 import 'place_du_marche/styles/glisser_deposer.scss';
-import { parseSvgFromBase64Url } from 'commun/helpers/decoders';
 
 export default {
   components: { GlisserDeposer },
@@ -55,7 +54,7 @@ export default {
     },
 
     zoneDeDepots() {
-      const svgDoc = parseSvgFromBase64Url(this.question.zone_depot_url);
+      const svgDoc = this.$depotRessources.zoneDepot(this.question.nom_technique);
       return svgDoc.querySelectorAll('.zone-depot');
     },
 

@@ -3,6 +3,7 @@ import { config, mount } from '@vue/test-utils';
 
 describe('Le composant Glisser Déposer de place du marché', function () {
   let wrapper;
+  let depotRessources;
 
   beforeAll(() => {
     config.global.renderStubDefaultSlot = true;
@@ -13,10 +14,17 @@ describe('Le composant Glisser Déposer de place du marché', function () {
   });
 
   function genereVue(reponsesNonClassees = []) {
+    depotRessources = {
+      questions: () => { return []; },
+      zoneDepot: () => {
+        return document.createElement("svg");
+      }
+    };
     wrapper = mount(glisserDeposer, {
       global: {
         mocks: {
-          $traduction: () => {}
+          $traduction: () => {},
+          $depotRessources: depotRessources,
         }
       },
       props: {
