@@ -19,7 +19,7 @@ export const fakeQuestionServeurDansImage = {
   "id": "N1Pse1",
   "nom_technique": "N1Pse1v3",
   "description": "description du baaaaack",
-  "zone_cliquable": "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjbGFzcz0iYm9ubmUtcmVwb25zZSIgY3g9IjI1NiIgY3k9IjU2IiByPSI0MCIvPgo8cGF0aCBkPSJtMjA0LjIzIDI3NC40NGMyLjktMTguMDYgNC4yLTM1LjUyLS41LTQ3LjU5LTQtMTAuMzgtMTIuNy0xNi4xOS0yMy4yLTIwLjE1bC05Mi41My0yOS45NGMtMTItNC0yMy4yMS0xMC43LTI0LTIzLjk0LTEtMTcgMTQtMjggMjktMjQgMCAwIDg4IDMxLjE0IDE2MyAzMS4xNHMxNjItMzEgMTYyLTMxYzE4LTUgMzAgOSAzMCAyMy43OSAwIDE0LjIxLTExIDE5LjIxLTI0IDIzLjk0bC04OCAzMS45MWMtOCAzLTIxIDktMjYgMTguMTgtNiAxMC43NS01IDI5LjUzLTIuMSA0Ny41OWw1LjkgMjkuNjMgMzcuNDEgMTYzLjljMi44IDEzLjE1LTYuMyAyNS40NC0xOS40IDI3Ljc0cy0yMy44MS02LjY0LTI3LjY5LTE5LjM2bC0zNy41Ni0xMTUuOTNxLTIuNzEtOC4zNC00LjgtMTYuODdsLTUuNzYtMjMuNDgtNS4zIDIxLjY1cS0yLjUyIDEwLjM1LTUuOCAyMC40OGwtMzYuOSAxMTQuMDVjLTQgMTIuODUtMTQuNSAyMS43NS0yNy42IDE5LjQ2cy0yMi40LTE1LjU5LTE5LjQ2LTI3Ljc0bDM3LjM5LTE2My44M3oiLz4KPC9zdmc+Cg==",
+  "zone_cliquable_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJB",
   "consigne_audio": null,
   "audio_url": null,
   "intitule_audio": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs0WW1SaE1qaGpNUzB6TUdGaUxUUXdZemd0WWpFek1pMHdNVGsxWmpNelpEazFNVFFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--a4088baf10755c89169056214df794be67f1face/bras.mp3",
@@ -36,7 +36,7 @@ export const fakeQuestionServeurGlisserDeposer = {
   "audio_url": null,
   "intitule_audio": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs0WW1SaE1qaGpNUzB6TUdGaUxUUXdZemd0WWpFek1pMHdNVGsxWmpNelpEazFNVFFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--a4088baf10755c89169056214df794be67f1face/bras.mp3",
   "intitule": "",
-  "zone_depot": "data/svg",
+  "zone_depot_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJB",
   "modalite_reponse": null,
 };
 

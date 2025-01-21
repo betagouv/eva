@@ -1,4 +1,4 @@
-import DepotRessources, { chargeurJSON } from 'commun/infra/depot_ressources';
+import DepotRessources, { chargeurJSON, chargeurInlineSvg } from 'commun/infra/depot_ressources';
 import chargeurs from '../../commun/aides/mock_chargeurs';
 
 describe('le dépôt de ressources', function () {
@@ -53,7 +53,7 @@ describe('le dépôt de ressources', function () {
     });
 
     expect(() => depot.charge(['./etageres.png']))
-      .toThrow(new Error("Aucun chargeur disponible pour l'extension 'png'. Impossible de charger la ressource './etageres.png'"));
+      .toThrow(new Error("Aucun chargeur disponible pour 'png'. Impossible de charger la ressource './etageres.png'"));
   });
 
   it('lance une exception explicite si le nom de la ressource est undefined', function () {
@@ -110,6 +110,23 @@ describe('le dépôt de ressources', function () {
     return chargeurJSON('./evaluations/134.json').catch((e) => {
       expect(e).toBeInstanceOf(Error);
       expect(e.message).toBe('Le chargement de la resources ./evaluations/134.json a échoué avec le code 404');
+    });
+  });
+
+  describe('#chargeurInlineSvg', function () {
+    it("charge le contenu SVG depuis une URL et retourne l'Element SVG", function () {
+      const svgString = `<svg><circle class="bonne-reponse"/><path/></svg>`;
+      window.fetch = () => {
+        return new Promise((resolve) => {
+          resolve({
+            ok: true,
+            text: () => svgString
+          });
+        });
+      };
+      return chargeurInlineSvg('http://localhost/assets/question1.svg').then((cloneur) => {
+        expect(cloneur().outerHTML).toBe(svgString);
+      });
     });
   });
 });

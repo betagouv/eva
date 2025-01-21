@@ -34,4 +34,28 @@ describe('Le dépot ressource de la situation Place du marché', function () {
       expect(depot.consigneDemarrage()).toEqual(sonConsigne);
     });
   });
+
+  describe("#zoneDepot", function() {
+    let depot;
+    let nomTechnique;
+    let SVGs;
+
+    beforeEach(function() {
+      nomTechnique = 'N1Prn1';
+      SVGs = { N1Prn1_zone_depot: document.createElementNS('http://www.w3.org/2000/svg', 'svg') };
+      depot = new DepotRessourcesPlaceDuMarche(chargeurs());
+      depot.SVGs = SVGs;
+      depot.ressource = jest.fn((src) => src);
+    });
+
+    it("quand le svg existe, retourne l'Element SVG", function() {
+      depot.existeSvg = jest.fn(() => true);
+      expect(depot.zoneDepot(nomTechnique)).toEqual(SVGs["N1Prn1_zone_depot"]);
+    });
+
+    it("quand le svg n'existe pas, retourne null", function() {
+      depot.existeSvg = jest.fn(() => false);
+      expect(depot.zoneDepot(nomTechnique)).toEqual(undefined);
+    });
+  });
 });

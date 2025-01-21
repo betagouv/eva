@@ -2,31 +2,42 @@ import { shallowMount } from '@vue/test-utils';
 
 import ClicDansImage from 'commun/vues/components/clic_dans_image.vue';
 
-const svgUneReponse = `<svg><circle class="bonne-reponse"></circle><path></path></svg">`;
+const svgUneReponse = `<svg><circle class="bonne-reponse"></circle><path></path></svg>`;
 const svgDeuxReponses = `<svg><path class="bonne-reponse"></path><path class="bonne-reponse"></path><path></path></svg>`;
 
 describe('Le composant Clic Dans Image', function () {
   let question;
   let wrapper;
+  let depotRessources = {
+    questions: () => { return [question]; },
+    zoneCliquable: () => { return svgDOMParser(svgUneReponse); },
+    imageAuClic: () => { return; },
+  };
 
   beforeEach(function () {
     question = {
       id: 1,
       score: 1,
-      zone_cliquable: svgToBase64(svgUneReponse)
+      zone_cliquable_url: "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJB"
     };
   });
 
   function composant (question) {
     return shallowMount(ClicDansImage, {
+      global: {
+        mocks: {
+          $depotRessources: depotRessources,
+        }
+      },
       props: { question }
     });
   }
 
-  function svgToBase64(svgString) {
-    const base64Svg = btoa(svgString);
-    const dataUri = `data:image/svg+xml;base64,${base64Svg}`;
-    return dataUri;
+  function svgDOMParser(svgContent) {
+    const parser = new DOMParser();
+    const svgDoc = parser.parseFromString(svgContent, 'image/svg+xml');
+
+    return svgDoc.documentElement;
   }
 
   it("Affiche le svg", function () {
@@ -37,12 +48,18 @@ describe('Le composant Clic Dans Image', function () {
 
   describe('sans cuseur', function () {
     beforeEach(function () {
+      depotRessources = {
+        questions: () => { return []; },
+        zoneCliquable: () => { return svgDOMParser(svgUneReponse); },
+        imageAuClic: () => { return; },
+      };
       wrapper = composant(question);
     });
 
     describe('quand je clique sur le svg directement', function () {
       it("n'ajoute pas la classe reponse--selectionnee", function () {
         const svg = wrapper.find('svg');
+
         svg.trigger('click');
         expect(svg.classes()).not.toContain('reponse--selectionnee');
       });
@@ -57,7 +74,8 @@ describe('Le composant Clic Dans Image', function () {
 
   describe('avec curseur', function () {
     beforeEach(function () {
-      question.image_au_clic = 'data:image/svg+xml;base64,PHN2Zz4KPGNpcmNsZSBjbGFzcz0iYm9uZS1yZXBlc2Npb25uZWUiPjwvY2lyY2xlPjwvc3ZnPg==';
+      question.image_au_clic_url = "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJB";
+      depotRessources['imageAuClic'] = () => { return svgDOMParser(svgDeuxReponses); };
       wrapper = composant(question);
     });
 
@@ -130,7 +148,11 @@ describe('Le composant Clic Dans Image', function () {
 
   describe('pour une selection multiple', function () {
     beforeEach(function(){
-      question.zone_cliquable = svgToBase64(svgDeuxReponses);
+      depotRessources = {
+        questions: () => { return []; },
+        zoneCliquable: () => { return svgDOMParser(svgDeuxReponses); },
+        imageAuClic: () => { return svgDOMParser("svg"); },
+      },
       wrapper = composant(question);
     });
 
