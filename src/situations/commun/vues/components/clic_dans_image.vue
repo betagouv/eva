@@ -26,12 +26,16 @@ export default {
   computed: {
     reponses() {
       const svgDoc = this.$depotRessources.zoneCliquable(this.question.nom_technique);
-      return svgDoc.outerHTML;
+      if (svgDoc) { return svgDoc.outerHTML; }
+
+      return undefined;
     },
 
     curseur() {
       const svgDoc = this.$depotRessources.imageAuClic(this.question.nom_technique);
-      return svgDoc;
+      if (svgDoc) { return svgDoc.outerHTML; }
+
+      return undefined;
     },
 
     nombreBonnesReponses() {

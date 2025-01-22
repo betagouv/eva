@@ -80,13 +80,6 @@ export default class DepotRessourcesCommunes extends DepotRessources {
     return nomTechnique in this.SVGs;
   }
 
-  resourceSVG (nomTechniqueQuestion, suffixNomTechnique) {
-    const nomTechniqueResource = `${nomTechniqueQuestion}_${suffixNomTechnique}`;
-    if (this.existeSvg(nomTechniqueResource)) {
-      return this.ressource(this.SVGs[nomTechniqueResource]);
-    }
-  }
-
   trouveIllustrations(configuration) {
     if (! (configuration instanceof Object)) {
       return [];
@@ -117,12 +110,23 @@ export default class DepotRessourcesCommunes extends DepotRessources {
     return { src: question.illustration };
   }
 
+  resourceSVG (nomTechniqueQuestion, suffixNomTechnique) {
+    const nomTechniqueResource = `${nomTechniqueQuestion}_${suffixNomTechnique}`;
+    if (this.existeSvg(nomTechniqueResource)) {
+      return this.ressource(this.SVGs[nomTechniqueResource]);
+    }
+  }
+
   zoneCliquable (nomTechnique) {
     return this.resourceSVG(nomTechnique, "zone_cliquable");
   }
 
   imageAuClic (nomTechnique) {
     return this.resourceSVG(nomTechnique, "image_au_clic");
+  }
+
+  zoneDepot (nomTechnique) {
+    return this.resourceSVG(nomTechnique, "zone_depot");
   }
 
   questions () {

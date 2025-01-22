@@ -31,8 +31,4 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
   fondSituation () {
     return this.ressource(fondSituation);
   }
-
-  zoneDepot (nomTechnique) {
-    return this.resourceSVG(nomTechnique, "zone_depot");
-  }
 }

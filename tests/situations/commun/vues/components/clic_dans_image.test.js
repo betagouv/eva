@@ -80,7 +80,7 @@ describe('Le composant Clic Dans Image', function () {
     });
 
     it('affiche le curseur sans mettre la réponse sélectionnée en surbrillance', function () {
-      expect(wrapper.find('.curseur').exists()).toBe(true);
+      expect(wrapper.find('.curseur svg').exists()).toBe(true);
       const zoneCliquable = wrapper.find('.zone-cliquable');
       expect(zoneCliquable.classes()).not.toContain('zone-cliquable--sans-curseur');
     });
