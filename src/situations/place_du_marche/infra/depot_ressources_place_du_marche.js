@@ -33,9 +33,6 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
   }
 
   zoneDepot (nomTechnique) {
-    const nomTechniqueResource = `${nomTechnique}_zone_depot`;
-    if (this.existeSvg(nomTechniqueResource)) {
-      return this.ressource(this.SVGs[nomTechniqueResource]);
-    }
+    return this.resourceSVG(nomTechnique, "zone_depot");
   }
 }
