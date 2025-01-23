@@ -3,9 +3,9 @@ import { N1Rrn, N1Rde, N1Res, N1Ron, N1Roa, N1Ros, N2Rlp, N2Rpe, N2Rsu, N2Rom, N
 
 const configurationNormale = {
   questions: {
-    'niveau1': niveau1,
-    'niveau2': niveau2,
-    'niveau3': niveau3,
+    'N1': niveau1,
+    'N2': niveau2,
+    'N3': niveau3,
     'N1Prn': N1Rrn,
     'N1Pde': N1Rde,
     'N1Pes': N1Res,
