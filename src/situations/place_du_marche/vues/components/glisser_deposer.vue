@@ -55,7 +55,11 @@ export default {
 
     zoneDeDepots() {
       const svgDoc = this.$depotRessources.zoneDepot(this.question.nom_technique);
-      return svgDoc.querySelectorAll('.zone-depot');
+      if (svgDoc) {
+        return svgDoc.querySelectorAll('.zone-depot');
+      } else {
+        return [];
+      }
     },
 
     nombreZonesDeDepot() {
