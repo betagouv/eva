@@ -5,6 +5,7 @@
     :zones-depot="zonesDepotPositions"
     :aide-depot="!this.question.zone_depot_url"
     :style-container-depart="styleContainerDepart"
+    :orientation="orientationReponses"
     @ordonne-item="envoiReponsesOrdonnees"
     @deplace-item="envoiReponsesPlacees"
     >
@@ -78,6 +79,10 @@ export default {
       return {
         width: `calc(var(--largeur-item-glisse) * ${this.nombreReponsesAPlacer} + var(--gap-depot) * (${this.nombreReponsesAPlacer - 1}) + var(--padding-depot) * 2)`
       };
+    },
+
+    orientationReponses() {
+      return this.nombreReponsesAPlacer > 4 ? 'horizontal' : 'vertical';
     }
   },
 
