@@ -18,6 +18,14 @@
     border-radius: 1rem;
   }
 
+  &.glisser-deposer--horizontal {
+    .container-depart .zone-depot {
+      padding: 0 0 15px 0;
+      background: none;
+      border-radius: 0;
+    }
+  }
+
   .aide-depot {
     background: $bleu-gris;
     border: 1px solid $couleur-fond;
