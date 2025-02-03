@@ -124,20 +124,43 @@
 .glisser-deposer--horizontal {
   .container-depart {
     bottom: 0;
-    padding: 20px;
+    padding: 1.25rem;
 
     .zone-depot {
-      width: 600px;
+      width: 37.5rem;
       min-height: auto;
-      gap: 20px;
+      gap: 1.25rem;
       justify-content: center;
       flex-direction: row;
     }
   }
   .glisser-deposer__item {
-    max-width: 80px;
-    height: 48px;
+    max-width: 5rem;
+    height: 3rem;
     z-index: 1;
+  }
+}
+
+.glisser-deposer--vertical {
+  .container-depart {
+    padding: 0;
+    right: 23.75rem ;
+    bottom: 4.6875rem ;
+
+    .zone-depot {
+      width: 6.875rem !important;
+      height: 26.0625rem;
+      gap: 1.5rem;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .glisser-deposer__item, img {
+        width: 5.625rem;
+        height: auto;
+        z-index: 1;
+      }
+    }
   }
 }
 
