@@ -1,5 +1,5 @@
 <template>
-  <div class="glisser-deposer">
+  <div class="glisser-deposer" :class="`glisser-deposer--${orientation}`">
     <div v-for="(zone, index) in zonesDepot" :key="index" class="container-arrivee" :style="positionZoneDepot(zone)">
       <draggable
         :class="`zone-depot zone-depot--${zone.nomTechnique}`"
@@ -72,6 +72,10 @@ export default {
     },
     styleContainerDepart: {
       type: Object,
+    },
+    orientation: {
+      type: String,
+      default: 'vertical'
     }
   },
 
