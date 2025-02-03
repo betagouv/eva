@@ -121,3 +121,23 @@
   }
 }
 
+.glisser-deposer--horizontal {
+  .container-depart {
+    bottom: 0;
+    padding: 20px;
+
+    .zone-depot {
+      width: 600px;
+      min-height: auto;
+      gap: 20px;
+      justify-content: center;
+      flex-direction: row;
+    }
+  }
+  .glisser-deposer__item {
+    max-width: 80px;
+    height: 48px;
+    z-index: 1;
+  }
+}
+
