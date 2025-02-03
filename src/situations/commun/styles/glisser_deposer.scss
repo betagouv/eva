@@ -18,11 +18,23 @@
     border-radius: 1rem;
   }
 
-  &.glisser-deposer--horizontal {
+  &.glisser-deposer--horizontal,
+  &.glisser-deposer--vertical {
     .container-depart .zone-depot {
-      padding: 0 0 15px 0;
       background: none;
       border-radius: 0;
+    }
+  }
+
+  &.glisser-deposer--vertical {
+    .container-depart .zone-depot {
+      padding: 0;
+    }
+  }
+
+  &.glisser-deposer--horizontal {
+    .container-depart .zone-depot {
+      padding: 0 0 1rem 0;
     }
   }
 
