@@ -50,7 +50,7 @@ export default {
 
   methods: {
     cliqueDansImage(event) {
-      if(this.question.image_au_clic) {
+      if(this.question.image_au_clic_url) {
         this.placeCurseur(event);
       } else {
         if (event.target.tagName === 'svg') return;
