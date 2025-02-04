@@ -1,11 +1,10 @@
 <template>
   <glisser-deposer
     :question="question"
-    :class="`glisser-deposer--marche glisser-deposer--${statut}`"
+    :class="`glisser-deposer--marche glisser-deposer--${statut} ${orientationReponses}`"
     :zones-depot="zonesDepotPositions"
     :aide-depot="!this.question.zone_depot_url"
     :style-container-depart="styleContainerDepart"
-    :orientation="orientationReponses"
     @ordonne-item="envoiReponsesOrdonnees"
     @deplace-item="envoiReponsesPlacees"
     >
@@ -82,7 +81,7 @@ export default {
     },
 
     orientationReponses() {
-      return this.nombreReponsesAPlacer > 4 ? 'horizontal' : 'vertical';
+      return this.question.orientation ? `glisser-deposer--${this.question.orientation}` : '';
     }
   },
 
