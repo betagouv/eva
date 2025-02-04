@@ -92,6 +92,10 @@ body {
   position: relative;
   color: $couleur-texte;
   background-color: $couleur-fond;
+
+  -webkit-font-smoothing: antialiased; /* Améliore le rendu sur WebKit (Chrome, Safari) */
+  -moz-osx-font-smoothing: grayscale;  /* Pour Firefox sur macOS */
+  text-rendering: optimizeLegibility;  /* Meilleur rendu des polices */
 }
 
 body:after {
