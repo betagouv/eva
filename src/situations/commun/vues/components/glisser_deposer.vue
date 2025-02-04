@@ -25,7 +25,7 @@
           </div>
         </template>
       </draggable>
-      <glisser-deposer-ombre :aide-depot="this.type == 'trie'" :element-glisse="elementGlisse"/>
+      <glisser-deposer-ombre :aide-depot="this.type === 'trie'" :element-glisse="elementGlisse"/>
     </div>
     <div class="container-depart">
       <draggable
