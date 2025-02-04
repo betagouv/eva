@@ -3,8 +3,8 @@
     :question="question"
     :class="`glisser-deposer--marche glisser-deposer--${statut} ${orientationReponses}`"
     :zones-depot="zonesDepotPositions"
-    :aide-depot="!this.question.zone_depot_url"
     :style-container-depart="styleContainerDepart"
+    :type="type"
     @ordonne-item="envoiReponsesOrdonnees"
     @deplace-item="envoiReponsesPlacees"
     >
@@ -82,6 +82,14 @@ export default {
 
     orientationReponses() {
       return this.question.orientation ? `glisser-deposer--${this.question.orientation}` : '';
+    },
+
+    type() {
+      if (this.question.zone_depot_url) {
+        return 'depot';
+      } else {
+        return 'tri';
+      }
     }
   },
 
