@@ -13,7 +13,7 @@ describe('Le composant Glisser Deposer', function () {
     config.global.renderStubDefaultSlot = false;
   });
 
-  function genereVue(reponsesNonClassees, aideDepot = true, zonesDepot = null) {
+  function genereVue(reponsesNonClassees, type = 'tri', zonesDepot = null) {
     wrapper = mount(glisserDeposer, {
       global: {
         mocks: {
@@ -25,7 +25,7 @@ describe('Le composant Glisser Deposer', function () {
           reponsesNonClassees,
           score: 8
         },
-        aideDepot: aideDepot,
+        type: type,
         ...(zonesDepot?.length && { zonesDepot })
       }
     });
@@ -60,7 +60,7 @@ describe('Le composant Glisser Deposer', function () {
       });
     });
 
-    describe("quand il n'y a plus d'èlements à placer", function () {
+    describe("quand il n'y a plus d'éléments à placer", function () {
       beforeEach(function () {
         genereVue(bonOrdre);
         wrapper.vm.reponsesNonClassees = [];
@@ -72,9 +72,9 @@ describe('Le composant Glisser Deposer', function () {
       });
     });
 
-    describe("quand l'animation est sans aide dépot", function () {
+    describe("quand le composant est pour le 'depot'", function () {
       beforeEach(function () {
-        genereVue(bonOrdre, false);
+        genereVue(bonOrdre, 'depot');
         wrapper.vm.reponsesNonClassees = [1];
       });
 

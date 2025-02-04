@@ -1,5 +1,5 @@
 <template>
-  <div class="glisser-deposer">
+  <div class="glisser-deposer" :class="`glisser-deposer--${type}`">
     <div v-for="(zone, index) in zonesDepot" :key="index" class="container-arrivee" :style="positionZoneDepot(zone)">
       <draggable
         :class="`zone-depot zone-depot--${zone.nomTechnique}`"
@@ -25,7 +25,7 @@
           </div>
         </template>
       </draggable>
-      <glisser-deposer-ombre :aide-depot="aideDepot" :element-glisse="elementGlisse"/>
+      <glisser-deposer-ombre :aide-depot="this.type == 'trie'" :element-glisse="elementGlisse"/>
     </div>
     <div class="container-depart">
       <draggable
@@ -62,10 +62,6 @@ export default {
       type: Object,
       required: true
     },
-    aideDepot: {
-      type: Boolean,
-      default: true
-    },
     zonesDepot: {
       type: Array,
       default: () => [{ left: 0 }]
@@ -73,6 +69,11 @@ export default {
     styleContainerDepart: {
       type: Object,
     },
+    type: {
+      type: String,
+      default: 'tri',
+      validator: (value) => ['tri', 'depot'].includes(value)
+    }
   },
 
   data() {
@@ -88,7 +89,7 @@ export default {
 
   computed: {
     afficheAideDepot() {
-      return this.aideDepot && this.reponsesNonClassees.length > 0;
+      return this.type == 'tri' && this.reponsesNonClassees.length > 0;
     }
   },
 
