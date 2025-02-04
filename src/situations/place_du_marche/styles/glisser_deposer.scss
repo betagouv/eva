@@ -132,34 +132,28 @@
       gap: 1.25rem;
       justify-content: center;
       flex-direction: row;
+      flex-wrap: nowrap;
     }
   }
   .glisser-deposer__item {
-    max-width: 5rem;
-    height: 3rem;
-    z-index: 1;
+    max-width: 3.875rem;
+    max-height: 2rem;
   }
 }
 
 .glisser-deposer--vertical {
   .container-depart {
     padding: 0;
-    right: 23.75rem ;
-    bottom: 4.6875rem ;
+    right: 23.75rem;
+    bottom: 0;
 
     .zone-depot {
       width: 6.875rem !important;
-      height: 26.0625rem;
+      height: 35.375rem;
       gap: 1.5rem;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
-      .glisser-deposer__item, img {
-        width: 5.625rem;
-        height: auto;
-        z-index: 1;
-      }
     }
   }
 }
