@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 .question {
+  position: absolute;
+  top: 0;
+  left: 0;
   background-color: $couleur-fond-module;
   display: flex;
   align-items: center;
