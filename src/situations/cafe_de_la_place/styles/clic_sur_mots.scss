@@ -2,6 +2,8 @@
 
 .zone-cliquable {
   position: absolute;
+  z-index: 1;
+
   .mot-cliquable {
     padding: 0 2px;
     cursor: pointer;
