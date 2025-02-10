@@ -2,7 +2,6 @@
   <svg
     class="rectangle-bleu"
     :class="{ 'rectangle-bleu--cache': !elementGlisse, 'rectangle-bleu--visible': elementGlisse }"
-    viewBox="0 0 222 222"
     fill="none">
   </svg>
 </template>
