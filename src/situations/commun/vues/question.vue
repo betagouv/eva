@@ -3,6 +3,7 @@
     <img
       :src="illustrationQuestion(question)"
       class="question-illustration"
+      draggable="false"
     />
 
     <div class="question-barre">
