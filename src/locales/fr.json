@@ -263,7 +263,7 @@
   },
   "commun": {
     "glisser_deposer": {
-      "texte_zone_depot": "DÉPOSER ICI"
+      "placeholder": "DÉPOSER ICI"
     }
   },
   "bouton_lecture": {

@@ -47,16 +47,16 @@ describe('Le composant Glisser Deposer', function () {
     };
   }
 
-  describe("Affichage de l'aide dépot", function () {
+  describe("Affichage du placeholder pour la zone de dépot dans le cas du 'tri'", function () {
     describe("quand il reste des élèments à placer", function () {
       beforeEach(function () {
         genereVue(bonOrdre);
         wrapper.vm.reponsesNonClassees = [1];
       });
 
-      it("affiche l'aide dépot", function () {
-        expect(wrapper.vm.afficheAideDepot).toEqual(true);
-        expect(wrapper.find('.aide-depot').exists()).toBe(true);
+      it("affiche le placeholder", function () {
+        expect(wrapper.vm.affichePlaceholderZoneTri).toEqual(true);
+        expect(wrapper.find('.glisser-deposer__placeholder').exists()).toBe(true);
       });
     });
 
@@ -66,21 +66,36 @@ describe('Le composant Glisser Deposer', function () {
         wrapper.vm.reponsesNonClassees = [];
       });
 
-      it("n'affiche plus l'aide dépot", function () {
-        expect(wrapper.vm.afficheAideDepot).toEqual(false);
-        expect(wrapper.find('.aide-depot').exists()).toBe(false);
+      it("n'affiche plus le placeholder", function () {
+        expect(wrapper.vm.affichePlaceholderZoneTri).toEqual(false);
+        expect(wrapper.find('.glisser-deposer__placeholder').exists()).toBe(false);
       });
     });
 
-    describe("quand le composant est pour le 'depot'", function () {
+    describe("quand le composant est de type : 'depot'", function () {
       beforeEach(function () {
         genereVue(bonOrdre, 'depot');
         wrapper.vm.reponsesNonClassees = [1];
       });
 
-      it("n'affiche pas l'aide dépot", function () {
-        expect(wrapper.vm.afficheAideDepot).toEqual(false);
-        expect(wrapper.find('.aide-depot').exists()).toBe(false);
+      it("n'affiche pas le placeholder", function () {
+        expect(wrapper.vm.affichePlaceholderZoneTri).toEqual(false);
+        expect(wrapper.find('.glisser-deposer__placeholder').exists()).toBe(false);
+      });
+
+      it("affiche le composant GlisserDeposerOmbre", function () {
+        expect(wrapper.find('svg.rectangle-bleu').exists()).toBe(true);
+      });
+    });
+
+    describe("quand le composant est de type : 'tri'", function () {
+      beforeEach(function () {
+        genereVue(bonOrdre, 'tri');
+        wrapper.vm.reponsesNonClassees = [1];
+      });
+
+      it("n'affiche pas le composant GlisserDeposerOmbre", function () {
+        expect(wrapper.find('svg.rectangle-bleu').exists()).toBe(false);
       });
     });
   });
@@ -131,7 +146,7 @@ describe('Le composant Glisser Deposer', function () {
 
     describe("lorsqu'il y a plusieurs zones de dépôt d'arrivée", function () {
       it("affiche plusieurs zones de dépot d'arrivée", function () {
-        genereVue([], false, [{}, {}]);
+        genereVue([], 'depot', [{}, {}]);
         expect(wrapper.findAll('.container-arrivee .zone-depot').length).toBe(2);
       });
     });

@@ -20,12 +20,12 @@
           </div>
         </template>
         <template #footer>
-          <div v-if="afficheAideDepot" class="aide-depot">
-            {{ $traduction('commun.glisser_deposer.texte_zone_depot') }}
+          <div v-if="affichePlaceholderZoneTri" class="glisser-deposer__placeholder">
+            {{ $traduction('commun.glisser_deposer.placeholder') }}
           </div>
         </template>
       </draggable>
-      <glisser-deposer-ombre :aide-depot="this.type === 'trie'" :element-glisse="elementGlisse"/>
+      <glisser-deposer-ombre v-if="metEnEvidenceZonesDepot" :element-glisse="elementGlisse"/>
     </div>
     <div class="container-depart">
       <draggable
@@ -88,8 +88,11 @@ export default {
   },
 
   computed: {
-    afficheAideDepot() {
+    affichePlaceholderZoneTri() {
       return this.type == 'tri' && this.reponsesNonClassees.length > 0;
+    },
+    metEnEvidenceZonesDepot() {
+      return this.type === 'depot';
     }
   },
 
