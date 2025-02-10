@@ -1,9 +1,7 @@
 <template>
   <svg
-    v-if="!aideDepot"
     class="rectangle-bleu"
     :class="{ 'rectangle-bleu--cache': !elementGlisse, 'rectangle-bleu--visible': elementGlisse }"
-    viewBox="0 0 222 222"
     fill="none">
   </svg>
 </template>
@@ -16,10 +14,6 @@ export default {
     elementGlisse: {
       type: Boolean,
       required: true
-    },
-    aideDepot: {
-      type: Boolean,
-      default: true
     }
   }
 };
