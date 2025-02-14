@@ -172,7 +172,7 @@ export function creeStore () {
         const { pourcentageDeReussiteGlobal, indexRattrapage } = state;
         const { estDernierNiveau, rattrapagesAPasser } = this.getters;
 
-        if (pourcentageDeReussiteGlobal > 70) {
+        if (pourcentageDeReussiteGlobal >= 70) {
           if (!estDernierNiveau) {
             state.indexNiveau += 1;
             reinitialiseRattrapagesAPasser(state);

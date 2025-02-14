@@ -166,9 +166,9 @@ describe('Le store de la situation place du marché', function () {
           store.state.parcoursTermine = true;
         });
 
-        describe('quand le pourcentage de réussite est supérieur à 70', function() {
+        describe('quand le pourcentage de réussite est 70%', function() {
           beforeEach(function() {
-            store.state.pourcentageDeReussiteGlobal = 71;
+            store.state.pourcentageDeReussiteGlobal = 70;
           });
 
           describe("et que ce n'est pas le dernier niveau", function(){
@@ -200,7 +200,7 @@ describe('Le store de la situation place du marché', function () {
           });
         });
 
-        describe('quand le pourcentage de réussite est inférieur à 70', function() {
+        describe('quand le pourcentage de réussite est 69%', function() {
           beforeEach(function() {
             store.state.pourcentageDeReussiteGlobal = 69;
           });
