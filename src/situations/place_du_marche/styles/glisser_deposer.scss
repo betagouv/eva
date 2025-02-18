@@ -1,15 +1,29 @@
 @import './variables.scss';
 @import 'commun/styles/variables.scss';
 
+$height-item: 60px;
+$padding-item: 1.5rem;
+
 @mixin dimensions-zone-depot {
   min-height: 108px;
   max-width: 586px;
 }
 
+// Pas de padding au dessus pour éviter des glitchs durant le drag&drop
+// https://captive-team.atlassian.net/browse/EVA-337
+@mixin container-zone-depot {
+  display: flex;
+  padding: 0 $padding-item;
+  align-items: stretch;
+  height: 100%;
+}
+
 .glisser-deposer--marche {
   .glisser-deposer__item {
+    display: flex;
+    align-items: center;
+
     max-width: $largeur-item-glisse;
-    height: 60px;
     z-index: 1;
   }
 
@@ -68,10 +82,8 @@
     bottom: 0;
     top: 60%;
     .zone-depot {
+      @include container-zone-depot();
       background: $couleur-fond;
-      display: flex;
-      align-items: stretch;
-      padding: 1.5rem;
     }
   }
 }
@@ -191,12 +203,14 @@
     }
   }
 
-  .glisser-deposer__item {
+  .glisser-deposer__item img {
     max-width: 100px;
-    height: 60px;
+    height: $height-item;
   }
 
   .glisser-deposer__placeholder {
+    margin: $padding-item 0;
+    height: $height-item;
     border: 1px solid $bleu-gris;
     background: $blanc;
     box-shadow: none;
