@@ -201,6 +201,7 @@ describe('Le composant Glisser Deposer', function () {
       for(const position of bonOrdre) {
         wrapper.vm.zonesDeClassement[0].push({ position });
       }
+      wrapper.vm.reponsesNonClassees = [];
       wrapper.vm.envoiReponse();
       expect(wrapper.emitted('ordonne-item').length).toEqual(1);
       expect(wrapper.emitted('ordonne-item')[0][0]).toEqual({
@@ -210,12 +211,30 @@ describe('Le composant Glisser Deposer', function () {
     });
 
     describe('#succes', function() {
-      it("quand tout est à la bonne place", function() {
-        expect(wrapper.vm.succes(bonOrdre)).toBe(true);
+      beforeEach(function () {
+        genereVue([1, 0, 2, 3, 4, 5, 6]);
       });
 
-      it("quand ce n'est pas le bon ordre", function() {
-        expect(wrapper.vm.succes([1, 2, 3, 4, 5, 7, 6])).toBe(false);
+      describe("quand tous les éléments sont placés", function() {
+        beforeEach(function () {
+          wrapper.vm.reponsesNonClassees = [];
+        });
+
+        it("et dans le bon ordre", function() {
+          expect(wrapper.vm.succes(bonOrdre)).toBe(true);
+        });
+
+        it("et dans le mauvais ordre", function() {
+          expect(wrapper.vm.succes([1, 2, 3, 4, 5, 7, 6])).toBe(false);
+        });
+      });
+
+      it("quand tous les éléments ne sont pas placés", function() {
+        let dernierElement = bonOrdre[bonOrdre.length - 1];
+        let reponsesIncompletes = bonOrdre.slice(0, -1);
+
+        wrapper.vm.reponsesNonClassees = [dernierElement];
+        expect(wrapper.vm.succes(reponsesIncompletes)).toBe(false);
       });
     });
 

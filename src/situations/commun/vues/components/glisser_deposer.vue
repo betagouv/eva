@@ -125,7 +125,10 @@ export default {
     },
 
     succes(reponse) {
-      return reponse.every((position, index) => position === index + 1);
+      const reponsesNonClasseesVide = this.reponsesNonClassees.length == 0;
+      const reponsesDansLeBonOrdre = reponse.every((position, index) => position === index + 1);
+
+      return reponsesNonClasseesVide && reponsesDansLeBonOrdre;
     },
 
     ordonneReponsesNonClassees() {
