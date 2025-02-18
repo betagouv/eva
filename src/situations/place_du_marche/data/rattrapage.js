@@ -87,14 +87,14 @@ const N1Ros2 = {
 // RATTRAPAGE NUMERATIE NIVEAU 2
 
 const N2Rlp1  = {
-  id: 'N2Rlp1 ',
+  id: 'N2Rlp1',
   nom_technique: 'N2Rlp1',
   metacompetence: 'lecture_plan',
   score: 1,
 };
 
 const N2Rlp2  = {
-  id: 'N2Rlp2 ',
+  id: 'N2Rlp2',
   nom_technique: 'N2Rlp2',
   metacompetence: 'lecture_plan',
   score: 1,
