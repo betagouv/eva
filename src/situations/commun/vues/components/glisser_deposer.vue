@@ -107,12 +107,17 @@ export default {
     },
 
     envoiReponseMultiple(event) {
+      const fromIndex = event.from.dataset.index;
+      this.reponsesPlacees[fromIndex] = { reponse: null, succes: false };
+
       const index = event.to.dataset.index;
       const nomTechniqueReponse = event.item.dataset.nomTechnique;
       const nomTechniqueZone = event.to.dataset.nomTechnique;
       const succes = nomTechniqueReponse === nomTechniqueZone;
       const reponse = { reponse: nomTechniqueReponse, succes };
-      this.reponsesPlacees[index] = reponse;
+      if (index !== undefined) {
+        this.reponsesPlacees[index] = reponse;
+      }
       this.$emit('deplace-item', this.reponsesPlacees);
     },
 

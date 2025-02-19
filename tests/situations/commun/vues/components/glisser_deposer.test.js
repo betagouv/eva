@@ -31,19 +31,29 @@ describe('Le composant Glisser Deposer', function () {
     });
   }
 
-  function mockDragEvent(item, zone) {
+  function mockDragElement(zone, index) {
+    const mockDragElement = document.createElement('div');
+    mockDragElement.setAttribute('class', `zone-depot--${zone}`);
+    mockDragElement.setAttribute('data-nom-technique', zone);
+    mockDragElement.setAttribute('data-index', index);
+    return mockDragElement;
+  }
+
+  function mockDragEvent(item, zone, from = undefined) {
     const mockItem = document.createElement('div');
     mockItem.setAttribute('class', `item--${item}`);
     mockItem.setAttribute('data-nom-technique', item);
 
-    const mockZone = document.createElement('div');
-    mockZone.setAttribute('class', `zone-depot--${zone}`);
-    mockZone.setAttribute('data-nom-technique', zone);
-    mockZone.setAttribute('data-index', 0);
+    const to = mockDragElement(zone, 0);
+
+    if (from === undefined) {
+      from = mockDragElement(zone, 1);
+    }
 
     return {
       item: mockItem,
-      to: mockZone
+      to: to,
+      from: from
     };
   }
 
@@ -255,10 +265,16 @@ describe('Le composant Glisser Deposer', function () {
 
       wrapper.vm.envoiReponseMultiple(mockEvent);
       expect(wrapper.emitted('deplace-item').length).toEqual(1);
-      expect(wrapper.emitted('deplace-item')[0][0]).toEqual([{
-        succes: true,
-        reponse: "reponse1"
-      }]);
+      expect(wrapper.emitted('deplace-item')[0][0]).toEqual([
+        {
+          succes: true,
+          reponse: "reponse1"
+        },
+        {
+          reponse: null,
+          succes: false,
+        }
+      ]);
     });
 
     it('envoie l\'échec et la réponse', function () {
@@ -270,6 +286,25 @@ describe('Le composant Glisser Deposer', function () {
       expect(wrapper.emitted('deplace-item')[0][0][0]["succes"]).toEqual(false);
     });
 
+    it('déplace un element déjà présent', function () {
+      const reponsesPlacees = [
+        {reponse: null, succes: false},
+        {reponse: null, succes: false},
+        {reponse: 'reponse1', succes: false},
+        {reponse: null, succes: false}
+      ];
+      genereVue([]);
+      wrapper.vm.reponsesPlacees = reponsesPlacees;
+
+      const fromElement = mockDragElement('reponse1', 2);
+      const mockEvent = mockDragEvent('reponse1', 'reponse2', fromElement);
+
+      wrapper.vm.envoiReponseMultiple(mockEvent);
+
+      expect(wrapper.emitted('deplace-item')[0][0][0].reponse).toEqual('reponse1');
+      expect(wrapper.emitted('deplace-item')[0][0][2].reponse).toEqual(null);
+    });
+
     it("remplace l'élèment déjà présent à l'ajout", function() {
       genereVue([1, 2, 3]);
       wrapper.vm.zoneDepotMultiple = true;
@@ -277,6 +312,7 @@ describe('Le composant Glisser Deposer', function () {
       wrapper.vm.zonesDeClassement = [[2, 3]];
       wrapper.findComponent('.container-arrivee .zone-depot').vm.$emit('add', { newIndex: 1 });
       expect(wrapper.vm.reponsesNonClassees).toEqual([1, 2]);
+
       expect(wrapper.vm.zonesDeClassement[0]).toEqual([3]);
     });
   });
