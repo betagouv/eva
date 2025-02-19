@@ -52,5 +52,8 @@
     color: $bleu-gris-fonce;
     // pour s'assurer que la zone de dépôt se mette toujours en desnière position dans la div
     order: 100;
+    flex: 1; /* Permet de s'adapter à l'espace disponible */
+    min-width: 0; /* IMPORTANT : Permet à l'élément de se rétrécir en flexbox */
+    overflow: hidden;
   }
 }
