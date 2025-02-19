@@ -13,6 +13,7 @@ $padding-item: 1.5rem;
 // https://captive-team.atlassian.net/browse/EVA-337
 @mixin container-zone-depot {
   display: flex;
+  flex-wrap: nowrap;
   padding: 0 $padding-item;
   align-items: stretch;
   height: 100%;
