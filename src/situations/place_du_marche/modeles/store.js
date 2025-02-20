@@ -78,6 +78,7 @@ export function creeStore () {
         'N3Pvo': 100,
         'N3Prp': 100
       },
+      scoreTotalNiveauEnCours: 0,
       maxScoreNiveauEnCours: 0
     },
 
@@ -173,6 +174,7 @@ export function creeStore () {
         state.indexSerie = 0;
         state.indexCarte = 0;
         state.pourcentageDeReussiteGlobal = 0;
+        state.scoreTotalNiveauEnCours = 0;
         state.series = state.configuration[state.parcours].series;
         if(state.etat === DEMARRE) {
           state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
@@ -225,7 +227,8 @@ export function creeStore () {
         };
 
         if (succes && !rattrapageEnCours) {
-          state.pourcentageDeReussiteGlobal += calculPourcentage(questionActive.score, maxScoreSerieEnCours);
+          state.scoreTotalNiveauEnCours += questionActive.score;
+          state.pourcentageDeReussiteGlobal = calculPourcentage(state.scoreTotalNiveauEnCours, maxScoreSerieEnCours);
         } else if (!succes && estCompetenceARattraper) {
           pourcentageDeReussiteCompetence[codeCompetenceEnCours] = calculPourcentage(questionActive.score, 2);
         }
@@ -241,7 +244,7 @@ export function creeStore () {
         const reponses = recupereReponsesMeilleursScores(meilleursScores, state.reponses);
         const scoreTotal = additionneScores(reponses);
 
-        state.pourcentageDeReussiteGlobal =  calculPourcentage(scoreTotal, state.maxScoreNiveauEnCours);
+        state.pourcentageDeReussiteGlobal = calculPourcentage(scoreTotal, state.maxScoreNiveauEnCours);
       },
     },
   });
