@@ -291,6 +291,7 @@ export function recupereReponsesMeilleursScores(meilleursScores, reponses) {
 }
 
 export function reinitialiseRattrapagesAPasser(state) {
+  state.indexRattrapage = 0;
   Object.keys(state.pourcentageDeReussiteCompetence).forEach(competence => {
     state.pourcentageDeReussiteCompetence[competence] = 100;
   });
