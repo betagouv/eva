@@ -532,6 +532,13 @@ describe('Le store de la situation place du marché', function () {
           'N1Pes': 100,
         });
       });
+
+      it("Réinialise l'indexRattrapage", function() {
+        store.state.indexRattrapage = 9;
+        reinitialiseRattrapagesAPasser(store.state);
+
+        expect(store.state.indexRattrapage).toEqual(0);
+      });
     });
 
     describe('#retrouveQuestionConfiguration', function() {
