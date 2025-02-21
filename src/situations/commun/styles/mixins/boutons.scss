@@ -6,6 +6,7 @@
   background-color: $couleur-fond;
   display: flex;
   align-items: center;
+  transition: all 150ms;
 
   &:hover {
     background-color: $couleur-fond-focus;
