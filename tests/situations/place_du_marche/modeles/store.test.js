@@ -191,7 +191,8 @@ describe('Le store de la situation place du marché', function () {
 
           describe("et que c'est le dernier niveau", function(){
             it("termine la situation", function () {
-              store.state.parcours = NIVEAU3;
+              const indexNiveau3 = 2;
+              store.state.indexNiveau = indexNiveau3;
               expect(store.getters.estDernierNiveau).toBe(true);
 
               store.commit('carteSuivante');
@@ -283,7 +284,8 @@ describe('Le store de la situation place du marché', function () {
       it('retourne vrai si le parcours en cours est le dernier niveau', function() {
         expect(store.getters.estDernierNiveau).toEqual(false);
 
-        store.state.parcours = NIVEAU3;
+        const indexNiveau3 = 2;
+        store.state.indexNiveau = indexNiveau3;
 
         expect(store.getters.estDernierNiveau).toEqual(true);
       });
