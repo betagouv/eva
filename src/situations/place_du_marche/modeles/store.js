@@ -116,7 +116,7 @@ export function creeStore () {
       },
 
       estDernierNiveau(state) {
-        return state.parcours == NIVEAUX[NIVEAUX.length -1];
+        return NIVEAUX[state.indexNiveau] == NIVEAUX[NIVEAUX.length -1];
       },
 
       rattrapageEnCours(state) {
