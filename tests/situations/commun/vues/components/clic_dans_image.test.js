@@ -180,6 +180,19 @@ describe('Le composant Clic Dans Image', function () {
       });
     });
 
+    describe('quand je déselectionne un element', function () {
+      it("recalcule le score", function () {
+        const reponses = wrapper.findAll('.bonne-reponse');
+        reponses[0].trigger('click');
+        expect(wrapper.emitted().reponse.length).toEqual(1);
+        expect(wrapper.emitted().reponse[0][0].score).toEqual(0.5);
+
+        reponses[0].trigger('click');
+        expect(wrapper.emitted().reponse.length).toEqual(2);
+        expect(wrapper.emitted().reponse[1][0].score).toEqual(0);
+      });
+    });
+
     describe('envoie des réponses', function () {
       it('émet une partie ou la totalité du score en fonction du nombre de bonnes réponses sélectionnées', function () {
         const reponses = wrapper.findAll('.bonne-reponse');

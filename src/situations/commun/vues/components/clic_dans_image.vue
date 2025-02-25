@@ -85,6 +85,7 @@ export default {
     deselectionne(selection) {
       this.reponsesSelectionnees = this.reponsesSelectionnees.filter(reponse => reponse !== selection);
       selection.classList.remove('reponse--selectionnee');
+      this.envoiReponse();
     },
 
     envoiReponse() {
