@@ -47,10 +47,15 @@ describe('vue bouton aide', function () {
       expect(evenement).toBeInstanceOf(EvenementActivationAide);
       compteEnregistrementEvenement++;
     };
+
+    const spyActiveAide = jest.spyOn(vue.situation, 'activeAide');
+
     vue.affiche('#point-insertion', $);
+
     $('#point-insertion .bouton-aide').click();
     $('#point-insertion .bouton-aide').click();
     expect(compteEnregistrementEvenement).toEqual(1);
+    expect(spyActiveAide).toHaveBeenCalledTimes(2);
   });
 
   it("au click, affiche une seule fois la fenetre d'aide", function () {
