@@ -30,9 +30,9 @@ export default class VueAide {
 
   activeAide (pointInsertion, $) {
     if (!this.situation.aideActivee) {
-      this.situation.activeAide();
       this.journal.enregistre(new EvenementActivationAide());
     }
+    this.situation.activeAide();
     this.fenetreAide.affiche(pointInsertion, $);
   }
 }
