@@ -54,7 +54,7 @@ export default {
   methods: {
     reponse (reponse) {
       if(this.question.type !== 'sous-consigne') {
-        this.penaliseActivationAide(reponse);
+        this.appliqueMalus(reponse);
         this.$store.commit('enregistreReponse', reponse);
         this.$journal.enregistre(new EvenementReponse(reponse));
         this.$store.commit('recalculePourcentageReussiteGlobal');
@@ -72,9 +72,11 @@ export default {
         bouton.style = this.question.aide ? '' : 'display: none';
     },
 
-    penaliseActivationAide(reponse) {
-      if(this.aide && reponse.score >= 0.5)
-        reponse.score = reponse.score - 0.5;
+    appliqueMalus(reponse) {
+      const malus = 0.5;
+      if(this.aide && reponse.score >= malus) {
+        reponse.score = reponse.score - malus;
+      }
     }
   }
 };
