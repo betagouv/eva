@@ -42,7 +42,7 @@ export default {
       this.question = this.questionServeur(this.questionActive) ?? this.questionActive;
       this.enregistreConsigneEnCours();
       this.$depotRessources.texteAide = this.question.aide;
-      this.afficheAide();
+      this.afficheBoutonDemandeAide();
     },
     acteEnCours (acteEnCours) {
       if(acteEnCours && location.hash){
@@ -67,7 +67,7 @@ export default {
       this.$depotRessources.consigneEnCours = `${this.question.nom_technique}_consigne`;
     },
 
-    afficheAide() {
+    afficheBoutonDemandeAide() {
       const bouton = document.querySelector('.actions-aide');
       if(bouton)
         bouton.style = this.question.aide ? '' : 'display: none';

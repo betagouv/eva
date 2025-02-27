@@ -93,7 +93,7 @@ describe('La vue place du marché', function () {
 
     describe('quand il y a une aide', function () {
       function mockAfficheAide() {
-        jest.spyOn(wrapper.vm, 'afficheAide').mockImplementation(function() {
+        jest.spyOn(wrapper.vm, 'afficheBoutonDemandeAide').mockImplementation(function() {
           const bouton = document.createElement('button');
           bouton.className = 'actions-aide';
           document.body.appendChild(bouton);
