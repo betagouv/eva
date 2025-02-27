@@ -53,6 +53,7 @@ export default {
 
   methods: {
     reponse (reponse) {
+      this.fermeFenetreAide();
       if(this.question.type !== 'sous-consigne') {
         this.appliqueMalus(reponse);
         this.$store.commit('enregistreReponse', reponse);
@@ -70,6 +71,12 @@ export default {
       const bouton = document.querySelector('.actions-aide');
       if(bouton)
         bouton.style = this.question.aide ? '' : 'display: none';
+    },
+
+    fermeFenetreAide() {
+      const fenetre = document.querySelector('.fenetre-aide-presentation .fenetre-aide-presentation-bouton');
+      if(fenetre)
+        fenetre.click();
     },
 
     appliqueMalus(reponse) {
