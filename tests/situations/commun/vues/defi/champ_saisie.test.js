@@ -213,6 +213,12 @@ describe('Le composant champ de saisie', function () {
       vue.vm.formateReponse(event);
       expect(vue.emitted('reponse')[0][0].reponse).toEqual('1,70');
     });
+
+    it("quand l'input est vide, ne formatte pas la réponse", function() {
+      const event = { target: { value: '' } };
+      vue.vm.formateReponse(event);
+      expect(vue.emitted('reponse')).toBe(undefined);
+    });
   });
 
   describe("quand il est d'un sous-type numérique", function () {

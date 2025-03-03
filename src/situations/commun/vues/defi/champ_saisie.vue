@@ -105,10 +105,14 @@ export default {
       if (!this.estNombreAvecVirgule) {
         return;
       }
+      if (event.target.value.trim() === '') {
+        return;
+      }
       let [entiers, decimaux = '00'] = event.target.value.trim().replace('.', ',').split(',');
       entiers = entiers.replace(/^0+/, '') || '0';
       decimaux = decimaux.padEnd(2, '0').slice(0, 2);
       event.target.value = `${entiers},${decimaux}`;
+
 
       this.emetReponse(`${entiers},${decimaux}`);
     },
