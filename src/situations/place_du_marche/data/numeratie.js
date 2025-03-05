@@ -31,14 +31,14 @@ const N1Pse4 = {
 const N1Prn1 = {
   id: 'N1Prn1',
   nom_technique: 'N1Prn1',
-  metacompetence: 'reconaitre_les_nombres',
+  metacompetence: 'reconnaitre_les_nombres',
   score: 1,
 };
 
 const N1Prn2 = {
   id: 'N1Prn2',
   nom_technique: 'N1Prn2',
-  metacompetence: 'reconaitre_les_nombres',
+  metacompetence: 'reconnaitre_les_nombres',
   score: 1,
 };
 
@@ -73,14 +73,14 @@ const N1Pes2 = {
 const N1Pon1 = {
   id: 'N1Pon1',
   nom_technique: 'N1Pon1',
-  metacompetence: 'ordonner_nombres_entiers',
+  metacompetence: 'ordonner_nombres_decimaux',
   score: 1,
 };
 
 const N1Pon2 = {
   id: 'N1Pon2',
   nom_technique: 'N1Pon2',
-  metacompetence: 'ordonner_nombres_entiers',
+  metacompetence: 'ordonner_nombres_decimaux',
   score: 1,
 };
 
@@ -229,14 +229,14 @@ const N2Pod2 = {
 const N2Put1 = {
   id: 'N2Put1',
   nom_technique: 'N2Put1',
-  metacompetence: 'unites_temps',
+  metacompetence: 'unites_de_temps',
   score: 1,
 };
 
 const N2Put2 = {
   id: 'N2Put2',
   nom_technique: 'N2Put2',
-  metacompetence: 'unites_temps',
+  metacompetence: 'unites_de_temps',
   score: 1,
 };
 
@@ -271,14 +271,14 @@ const N2Ptg2 = {
 const N2Ppl1 = {
   id: 'N2Ppl1',
   nom_technique: 'N2Ppl1',
-  metacompetence: 'plannings',
+  metacompetence: 'plannings_lecture',
   score: 1,
 };
 
 const N2Ppl2 = {
   id: 'N2Ppl2',
   nom_technique: 'N2Ppl2',
-  metacompetence: 'plannings',
+  metacompetence: 'plannings_lecture',
   score: 1,
 };
 
@@ -399,14 +399,14 @@ const N3Ppr2 = {
 const N3Pps1 = {
   id: 'N3Pps1',
   nom_technique: 'N3Pps1',
-  metacompetence: 'perimetres_surfaces',
+  metacompetence: 'perimetres',
   score: 1
 };
 
 const N3Pps2 = {
   id: 'N3Pps2',
   nom_technique: 'N3Pps2',
-  metacompetence: 'perimetres_surfaces',
+  metacompetence: 'perimetres',
   score: 1
 };
 
