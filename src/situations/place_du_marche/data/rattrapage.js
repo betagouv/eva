@@ -45,14 +45,14 @@ const N1Res2 = {
 const N1Ron1 = {
   id: 'N1Ron1',
   nom_technique: 'N1Ron1',
-  metacompetence: 'ordonner_nombres_entiers',
+  metacompetence: 'ordonner_nombres_decimaux',
   score: 1,
 };
 
 const N1Ron2 = {
   id: 'N1Ron2',
   nom_technique: 'N1Ron2',
-  metacompetence: 'ordonner_nombres_entiers',
+  metacompetence: 'ordonner_nombres_decimaux',
   score: 1,
 };
 
@@ -173,14 +173,14 @@ const N2Rod2 = {
 const N2Rut1 = {
   id: 'N2Rut1',
   nom_technique: 'N2Rut1',
-  metacompetence: 'unites_temps',
+  metacompetence: 'unites_de_temps',
   score: 1,
 };
 
 const N2Rut2 = {
   id: 'N2Rut2',
   nom_technique: 'N2Rut2',
-  metacompetence: 'unites_temps',
+  metacompetence: 'unites_de_temps',
   score: 1,
 };
 
@@ -216,14 +216,14 @@ const N2Rtg2 = {
 const N2Rpl1 = {
   id: 'N2Rpl1',
   nom_technique: 'N2Rpl1',
-  metacompetence: 'plannings',
+  metacompetence: 'plannings_lecture',
   score: 1,
 };
 
 const N2Rpl2 = {
   id: 'N2Rpl2',
   nom_technique: 'N2Rpl2',
-  metacompetence: 'plannings',
+  metacompetence: 'plannings_lecture',
   score: 1,
 };
 
@@ -280,13 +280,13 @@ const N3Rpr2 = {
 const N3Rps1 = {
   id: 'N3Rps1',
   nom_technique: 'N3Rps1',
-  metacompetence: 'perimetres_surfaces',
+  metacompetence: 'perimetres',
   score: 1
 };
 const N3Rps2 = {
   id: 'N3Rps2',
   nom_technique: 'N3Rps2',
-  metacompetence: 'perimetres_surfaces',
+  metacompetence: 'perimetres',
   score: 1
 };
 const N3Rvo1 = {
