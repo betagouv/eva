@@ -73,14 +73,14 @@ const N1Pes2 = {
 const N1Pon1 = {
   id: 'N1Pon1',
   nom_technique: 'N1Pon1',
-  metacompetence: 'ordonner_nombres_decimaux',
+  metacompetence: 'ordonner_nombres_entiers',
   score: 1,
 };
 
 const N1Pon2 = {
   id: 'N1Pon2',
   nom_technique: 'N1Pon2',
-  metacompetence: 'ordonner_nombres_decimaux',
+  metacompetence: 'ordonner_nombres_entiers',
   score: 1,
 };
 
@@ -399,7 +399,7 @@ const N3Ppr2 = {
 const N3Pps1 = {
   id: 'N3Pps1',
   nom_technique: 'N3Pps1',
-  metacompetence: 'perimetres',
+  metacompetence: 'surfaces',
   score: 1
 };
 

@@ -145,14 +145,14 @@ const N2Rom2 = {
 const N2Ron1 = {
   id: 'N2Ron1',
   nom_technique: 'N2Ron1',
-  metacompetence: 'operations_nombres_entiers',
+  metacompetence: 'ordonner_nombres_decimaux',
   score: 1,
 };
 
 const N2Ron2 = {
   id: 'N2Ron2',
   nom_technique: 'N2Ron2',
-  metacompetence: 'operations_nombres_entiers',
+  metacompetence: 'ordonner_nombres_decimaux',
   score: 1,
 };
 
@@ -286,7 +286,7 @@ const N3Rps1 = {
 const N3Rps2 = {
   id: 'N3Rps2',
   nom_technique: 'N3Rps2',
-  metacompetence: 'perimetres',
+  metacompetence: 'surfaces',
   score: 1
 };
 const N3Rvo1 = {
