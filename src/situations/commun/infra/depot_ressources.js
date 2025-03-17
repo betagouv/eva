@@ -21,7 +21,10 @@ function chargeurAudio (src) {
             });
           },
           function (erreur) {
-            reject(new Error(`Erreur au décodage de ${src} : ${erreur.message}`));
+            const message = erreur && erreur.message
+              ? erreur.message
+              : 'Erreur inconnue lors du décodage audio';
+            reject(new Error(`Erreur au décodage de ${src} : ${message}`));
           }
         );
       } else {
