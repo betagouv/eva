@@ -48,7 +48,7 @@ export default {
       type: Boolean,
       default: false,
       required: false
-    }
+    },
   },
 
   data () {
@@ -74,12 +74,13 @@ export default {
 
     audioBuffer (nomTechnique) {
       return this.$depotRessources.messageAudio(nomTechnique);
-    }
+    },
   },
 
   watch: {
     joueSon (joue) {
-      if (joue) {
+      if (joue === true) {
+        this.$store.commit('modifieAudioIdEnCours', this.nomTechnique);
         this.joueurSon.start(this.audioBuffer(this.nomTechnique), () => {
           this.coupeSon();
           if(this.callbackFin) {
@@ -96,10 +97,20 @@ export default {
       if(!acteEnCours) {
         this.coupeSon();
       }
+    },
+
+    audioIdEnCours(newID) {
+      if (newID !== this.nomTechnique) {
+        this.coupeSon();
+      }
     }
   },
 
   computed: {
+    audioIdEnCours () {
+      return this.$store.getters.audioIdEnCours;
+    },
+
     acteEnCours () {
       return this.$store.getters.acteEnCours;
     },

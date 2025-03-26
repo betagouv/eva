@@ -27,9 +27,14 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       etat: CHARGEMENT,
       aide: false,
       questions: [],
+      audioIdEnCours: null,
       ...state
     },
     mutations: {
+      modifieAudioIdEnCours (state, audioId) {
+        state.audioIdEnCours = audioId;
+      },
+
       modifieEtat (state, etat) {
         state.etat = etat;
       },
@@ -44,6 +49,10 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       ...mutations
     },
     getters: {
+      audioIdEnCours: (state) => {
+        return state.audioIdEnCours;
+      },
+
       acteEnCours: (state) => {
         return state.etat === DEMARRE || state.etat === ENTRAINEMENT_DEMARRE;
       },

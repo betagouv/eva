@@ -80,6 +80,15 @@ describe('Le store en commun pour les situations', function () {
         expect(store.state.aide).toBe(true);
       });
     });
+
+    describe('#modifieAudioIdEnCours', function () {
+      it("permet de changer l'audio ID en cours", function () {
+        const nomTechniqueAudio = 'nomTechniqueAudio';
+        store.commit('modifieAudioIdEnCours', nomTechniqueAudio);
+
+        expect(store.state.audioIdEnCours).toEqual(nomTechniqueAudio);
+      });
+    });
   });
 
   describe('Getters', function () {
@@ -104,6 +113,21 @@ describe('Le store en commun pour les situations', function () {
       it("Quand l'acte d'entrainement est demarré", function () {
         store.state.etat = ENTRAINEMENT_DEMARRE;
         expect(store.getters.acteEnCours).toBe(true);
+      });
+    });
+
+    describe('#audioIdEnCours', function () {
+      beforeEach(function () {
+        store = creeStore();
+      });
+
+      it("Quand il n'y a pas d'audio en cours, retourne null", function () {
+        expect(store.getters.audioIdEnCours).toBe(null);
+      });
+
+      it("Quand il y a un audio en cours, retourne l'audio", function () {
+        store.state.audioIdEnCours = 'nomTechniqueAudio';
+        expect(store.getters.audioIdEnCours).toBe('nomTechniqueAudio');
       });
     });
 

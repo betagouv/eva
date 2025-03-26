@@ -12,6 +12,48 @@ describe('Le bouton de lecture de message audio', function () {
     store = creeStore();
   });
 
+  describe("changement de lecture audio entre composants", function () {
+    it("arrête le son sur le premier composant quand le son est lancé sur un second composant", function (done) {
+      depotRessources = {
+        messageAudio: () => {
+          // Retourne un mock de buffer audio
+          return new ArrayBuffer(10);
+        }
+      };
+
+      // Crée le premier composant avec un mock de JoueurAudioBuffer
+      const premierWrapper = composant({ nomTechnique: 'premiereQuestion' });
+      let sonCoupeSurPremier = false;
+      premierWrapper.vm.joueurSon = {
+        start: jest.fn(),
+        stop: () => {
+          sonCoupeSurPremier = true;
+        }
+      };
+
+      // Démarre l'audio sur le premier composant
+      premierWrapper.vm.demarreSon(() => {});
+
+      // Crée le second composant avec son propre mock de JoueurAudioBuffer
+      const secondWrapper = composant({ nomTechnique: 'secondeQuestion' });
+      secondWrapper.vm.joueurSon = {
+        start: (buffer, callback) => {
+          callback();
+        },
+        stop: jest.fn()
+      };
+
+      // Démarre l'audio sur le second composant
+      secondWrapper.vm.demarreSon(() => {});
+
+      // Attend la prochaine tick de Vue pour vérifier les changements
+      premierWrapper.vm.$nextTick(() => {
+        expect(sonCoupeSurPremier).toBe(true);
+        done();
+      });
+    });
+  });
+
   function composant(question) {
     return shallowMount(BoutonLecture, {
       global: {
@@ -35,6 +77,7 @@ describe('Le bouton de lecture de message audio', function () {
       depotRessources = {
         messageAudio: (nomTechnique) => {
           expect(nomTechnique).toEqual('question1');
+          return new ArrayBuffer(10);
         }
       };
     });
@@ -51,6 +94,27 @@ describe('Le bouton de lecture de message audio', function () {
       wrapper.vm.$nextTick(() => {
         expect(wrapper.find('.icone-pause').exists()).toBe(true);
         expect(sonJoue).toBe(true);
+        done();
+      });
+    });
+
+    it("quand le son commence, commit 'modifieAudioIdEnCours' avec le nomTechnique", function (done) {
+      const commitSpy = jest.spyOn(store, 'commit');
+      depotRessources = {
+        messageAudio: () => {
+          return new ArrayBuffer(10);
+        }
+      };
+      const wrapper = composant({ nomTechnique: 'question1' });
+      wrapper.vm.joueurSon = {
+        start: (buffer, callback) => {
+          callback();
+        },
+        stop: jest.fn()
+      };
+      wrapper.vm.demarreSon(() => {});
+      wrapper.vm.$nextTick(() => {
+        expect(commitSpy).toHaveBeenCalledWith('modifieAudioIdEnCours', 'question1');
         done();
       });
     });
