@@ -10,70 +10,76 @@ import Situation, {
 describe('Le store en commun pour les situations', function () {
   let store;
 
-  it("initialise l'état a CHARGEMENT", function () {
-    const store = creeStore();
-    expect(store.state.etat).toEqual(CHARGEMENT);
+  describe('States', function () {
+    it("initialise l'état a CHARGEMENT", function () {
+      const store = creeStore();
+      expect(store.state.etat).toEqual(CHARGEMENT);
+    });
   });
 
-  it("permet de changer l'état", function () {
-    const store = creeStore();
-    store.commit('modifieEtat', FINI);
-    expect(store.state.etat).toEqual(FINI);
-  });
+  describe('#synchroniseStoreEtModeleSituation', function () {
+    let situation;
+    beforeEach(function () {
+      store = creeStore();
+      situation = new Situation();
+    });
 
-  it("permet de synchroniser l'état du modèle situation avec le store", function () {
-    const store = creeStore();
-    const situation = new Situation();
-    synchroniseStoreEtModeleSituation(situation, store);
-    situation.modifieEtat(FINI);
-    expect(store.state.etat).toEqual(FINI);
-  });
+    it("permet de synchroniser l'état du modèle situation avec le store", function () {
+      synchroniseStoreEtModeleSituation(situation, store);
+      situation.modifieEtat(FINI);
+      expect(store.state.etat).toEqual(FINI);
+    });
 
-  it('permet de synchroniser le store avec le modèle situation', function () {
-    const store = creeStore();
-    const situation = new Situation();
-    synchroniseStoreEtModeleSituation(situation, store);
-    store.commit('modifieEtat', FINI);
-    expect(situation.etat()).toEqual(FINI);
-  });
+    it('permet de synchroniser le store avec le modèle situation', function () {
+      synchroniseStoreEtModeleSituation(situation, store);
+      store.commit('modifieEtat', FINI);
+      expect(situation.etat()).toEqual(FINI);
+    });
 
-  it("synchronise seulement les changements d'état du store avec le modèle situation", function () {
-    const store = creeStore();
-    const situation = new Situation();
-    synchroniseStoreEtModeleSituation(situation, store);
-    store.commit('activeAide');
-    expect(situation.etat()).toEqual(CHARGEMENT);
-  });
+    it("synchronise seulement les changements d'état du store avec le modèle situation", function () {
+      synchroniseStoreEtModeleSituation(situation, store);
+      store.commit('activeAide');
+      expect(situation.etat()).toEqual(CHARGEMENT);
+    });
 
-  it("synchronise l'état initial du modèle situation", function () {
-    const store = creeStore();
-    const situation = new Situation();
-    situation.modifieEtat(FINI);
-    synchroniseStoreEtModeleSituation(situation, store);
-    expect(store.state.etat).toEqual(FINI);
-  });
+    it("synchronise l'état initial du modèle situation", function () {
+      situation.modifieEtat(FINI);
+      synchroniseStoreEtModeleSituation(situation, store);
+      expect(store.state.etat).toEqual(FINI);
+    });
 
-  it("permet de synchroniser l'aide entre le modèle situation et le store", function () {
-    const store = creeStore();
-    const situation = new Situation();
-    synchroniseStoreEtModeleSituation(situation, store);
-    situation.activeAide();
-    expect(store.state.aide).toBe(true);
-  });
+    it("permet de synchroniser l'aide entre le modèle situation et le store", function () {
+      synchroniseStoreEtModeleSituation(situation, store);
+      situation.activeAide();
+      expect(store.state.aide).toBe(true);
+    });
 
-  it("permet de synchroniser l'aide entre le store et le modèle situation", function () {
-    const store = creeStore();
-    const situation = new Situation();
-    synchroniseStoreEtModeleSituation(situation, store);
-    store.commit('activeAide');
-    expect(situation.aideActivee).toBe(true);
+    it("permet de synchroniser l'aide entre le store et le modèle situation", function () {
+      synchroniseStoreEtModeleSituation(situation, store);
+      store.commit('activeAide');
+      expect(situation.aideActivee).toBe(true);
+    });
   });
+  
+  describe('Mutations', function () {
+    beforeEach(function () {
+      store = creeStore();
+    });
 
-  it("active l'aide", function () {
-    const store = creeStore();
-    expect(store.state.aide).toBe(false);
-    store.commit('activeAide');
-    expect(store.state.aide).toBe(true);
+    describe('#modifieEtat', function () {
+      it("permet de changer l'état", function () {
+        store.commit('modifieEtat', FINI);
+        expect(store.state.etat).toEqual(FINI);
+      });
+    });
+
+    describe('#activeAide', function () {
+      it("active l'aide", function () {
+        expect(store.state.aide).toBe(false);
+        store.commit('activeAide');
+        expect(store.state.aide).toBe(true);
+      });
+    });
   });
 
   describe('Getters', function () {
