@@ -110,7 +110,7 @@ export default {
           this.demarreSonBouton('boutonLectureTexteEntete');
         });
       }
-    }
+    },
   }
 };
 </script>
