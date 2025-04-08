@@ -42,28 +42,6 @@ export default {
     };
   },
   methods: {
-    affiche(pointInsertion) {
-      this.$boutonRejoueConsigne = this.$refs.boutonRejoueConsigne;
-      this.pointInsertion = pointInsertion;
-      this.$el.append(this.$boutonRejoueConsigne);
-      this.$refs.vueBoutonLire.affiche(this.$boutonRejoueConsigne);
-    },
-    cache() {
-      this.$refs.vueBoutonLire.cache();
-      this.$refs.vueBoutonArret.cache();
-    },
-    litConsigne() {
-      this.journal.enregistre(new EvenementRejoueConsigne());
-      this.joueSon = true;
-      this.joueurConsigne.joue(this.lectureTerminee);
-    },
-    arreteConsigne() {
-      this.joueurConsigne.stop();
-      this.joueSon = false;
-    },
-    lectureTerminee() {
-      this.joueSon = false;
-    },
     definiNomTechnique () {
       this.nomTechnique = this.$depotRessources.consigneEnCours;
     },
