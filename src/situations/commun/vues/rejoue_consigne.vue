@@ -3,7 +3,7 @@
     <BoutonLecture 
       :nomTechnique="nomTechnique"
       @click="definiNomTechnique()"
-      @son-en-cours="enregistrerEvenement"
+      :callbackDebut="enregistrerEvenement"
       :avecEtiquette="true"
       :sonAJouer="sonAJouer"
     />
