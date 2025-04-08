@@ -2,7 +2,7 @@ import { traduction } from 'commun/infra/internationalisation';
 import EvenementAbandon from 'commun/modeles/evenement_abandon';
 import { STOPPEE } from 'commun/modeles/situation';
 import stop from 'commun/assets/stop.svg';
-import VueBouton from './bouton.js';
+import VueBouton from './bouton';
 import { afficheFenetreModale } from 'commun/vues/modale';
 import { SCOPE_URL } from 'commun/vues/affiche_situation';
 
