@@ -35,11 +35,11 @@ export default class VueActions {
     this.rejoueConsigne = new AdapteurRejoueConsigne(
       this.situation,
       this.depotRessources,
-      this.store,
       { 
         joueurConsigne: this.joueurConsigne, 
         journal: this.journal
-      }
+      },
+      this.store
     );
     this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
 
