@@ -5,6 +5,7 @@
       @click="definiNomTechnique()"
       @son-en-cours="enregistrerEvenement"
       :avecEtiquette="true"
+      :sonAJouer="sonAJouer"
     />
   </div>
 </template>
@@ -38,7 +39,7 @@ export default {
       enPause,
       $boutonRejoueConsigne: null,
       joueSon: false,
-      nomTechnique: null,
+      nomTechnique: 'consigneDemarrage',
     };
   },
   methods: {
@@ -47,6 +48,9 @@ export default {
     },
     enregistrerEvenement() {
       this.journal.enregistre(new EvenementRejoueConsigne());
+    },
+    sonAJouer () {
+      return this.$depotRessources.consigneDemarrage();
     }
   },
 };
