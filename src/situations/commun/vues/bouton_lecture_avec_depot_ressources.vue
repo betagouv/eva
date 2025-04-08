@@ -3,6 +3,7 @@
     ref="boutonLecture"
     :avecTexte="avecTexte"
     :nomTechnique="nomTechnique"
+    :sonAJouer="sonAJouer"
   />
 </template>
 
@@ -35,6 +36,9 @@ export default {
     demarreSon(callbackFin) {
       this.$refs.boutonLecture.demarreSon(callbackFin);
     },
+    sonAJouer() {
+      return this.$depotRessources.messageAudio(this.nomTechnique);
+    }
   },
 };
 </script>

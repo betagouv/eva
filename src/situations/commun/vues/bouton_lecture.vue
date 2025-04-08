@@ -51,10 +51,6 @@ export default {
       type: String,
       required: true
     },
-    texte: {
-      type: String,
-      default: '' // Optionally set a default empty string
-    },
     avecTexte: {
       type: Boolean,
       default: false
@@ -62,6 +58,10 @@ export default {
     avecEtiquette: {
       type: Boolean,
       default: false
+    },
+    sonAJouer: {
+      type: Function,
+      required: true
     }
   },
 
@@ -85,15 +85,11 @@ export default {
     coupeSon() {
       this.joueSon = false;
     },
-
-    sonAJouer () {
-      return this.$depotRessources.messageAudio(this.nomTechnique);
-    },
   },
 
   watch: {
     joueSon(joue) {
-      if (joue) {
+      if (joue === true) {
         this.$store.commit('modifieAudioIdEnCours', this.nomTechnique);
         this.joueurSon.start(this.sonAJouer(), () => {
           this.coupeSon();
