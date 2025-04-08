@@ -68,7 +68,6 @@ export default {
       this.nomTechnique = this.$depotRessources.consigneEnCours;
     },
     enregistrerEvenement() {
-      console.log("enregistrerEvenement");
       this.journal.enregistre(new EvenementRejoueConsigne());
     }
   },

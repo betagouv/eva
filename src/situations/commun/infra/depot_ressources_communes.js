@@ -69,8 +69,6 @@ export default class DepotRessourcesCommunes extends DepotRessources {
   }
 
   messageAudio (nomTechnique) {
-    console.log("nomTechnique", nomTechnique);
-    console.log("this.messagesAudios", this.messagesAudios);
     return this.ressource(this.messagesAudios[nomTechnique]);
   }
 
