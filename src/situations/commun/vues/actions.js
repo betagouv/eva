@@ -1,21 +1,25 @@
+import RejoueConsigne from 'commun/vues/rejoue_consigne.vue'; // Composant Vue.js
+import JoueurConsigne from 'commun/composants/joueur_consigne';
+import VueStop from 'commun/vues/stop'; // Typiquement une classe traditionnelle
+import VueAide from 'commun/vues/aide'; // Typiquement une classe traditionnelle
 import 'commun/styles/actions.scss';
 import 'commun/styles/boutons.scss';
 import { CHANGEMENT_ETAT, DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
-
-import VueStop from 'commun/vues/stop';
-import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
-import VueAide from 'commun/vues/aide';
-import JoueurConsigne from 'commun/composants/joueur_consigne';
-
+import { creeAdaptateur } from './adaptateur_vue'; // Importer l'adaptateur
 export default class VueActions {
-  constructor (situation, journal, depotRessources) {
+  constructor(situation, journal, depotRessources, store) {
     this.situation = situation;
     this.journal = journal;
     this.joueurConsigne = new JoueurConsigne(depotRessources, 'consigneDemarrage');
     this.depotRessources = depotRessources;
+    this.store = store;
+    this.AdapteurRejoueConsigne = creeAdaptateur(RejoueConsigne, { 
+      joueurConsigne: this.joueurConsigne, 
+      journal: this.journal
+    });
   }
 
-  affiche (pointInsertion, $) {
+  affiche(pointInsertion, $) {
     const $actions = $(`
       <div class="actions">
         <div class="actions-rejoue-consigne"></div>
@@ -26,18 +30,35 @@ export default class VueActions {
     this.$rejoueConsigne = $actions.find('.actions-rejoue-consigne');
     this.$aide = $actions.find('.actions-aide');
     this.$stop = $actions.find('.actions-stop');
+
+    this.rejoueConsigne = new this.AdapteurRejoueConsigne(
+      this.situation,
+      this.depotRessources,
+      this.store,
+      { 
+        joueurConsigne: this.joueurConsigne, 
+        journal: this.journal
+      }
+    );
+    this.rejoueConsigne.affiche($actions.find('.actions-rejoue-consigne')[0], $);
+
+    console.log('VueStop');
+    // Instantiate other classes as they are not converted to Vue yet
     this.stop = new VueStop(this.situation, this.journal);
-    this.rejoueConsigne = new VueRejoueConsigne(this.situation, this.joueurConsigne, this.journal);
+    console.log('VueAide');
     this.aide = new VueAide(this.situation, this.depotRessources, this.journal);
+
+    console.log('changement etat');
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
+    console.log('afficheBoutons');
     this.afficheBoutons(this.situation.etat(), $);
     $(pointInsertion).append($actions);
   }
 
-  afficheBoutons (etat, $) {
+  afficheBoutons(etat, $) {
     const actionsEtat = new Map();
     actionsEtat.set(ENTRAINEMENT_DEMARRE, () => {
-      this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
+      this.rejoueConsigne.affiche(this.$rejoueConsigne[0], $);
       this.stop.affiche(this.$stop, $);
     });
     actionsEtat.set(ENTRAINEMENT_FINI, () => {
@@ -45,7 +66,7 @@ export default class VueActions {
     });
     actionsEtat.set(DEMARRE, () => {
       if (!this.situation.entrainementDisponible()) {
-        this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
+        this.rejoueConsigne.affiche(this.$rejoueConsigne[0], $);
         this.stop.affiche(this.$stop, $);
       }
       if (this.situation.aideDisponible()) {

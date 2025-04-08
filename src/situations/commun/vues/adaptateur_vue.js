@@ -4,8 +4,9 @@ import { traduction } from 'commun/infra/internationalisation';
 
 export function creeAdaptateur (component, proprietes = {}) {
   return class AdaptateurVue {
-    constructor (situation, depotRessources, props = proprietes) {
+    constructor (situation, depotRessources, store, props = proprietes) {
       this.depotRessources = depotRessources;
+      this.store = store;
       this.props = props;
     }
 
@@ -21,6 +22,10 @@ export function creeAdaptateur (component, proprietes = {}) {
           this.cache();
         }
       });
+      if (this.store) {
+        this.app.use(this.store);
+        this.app.config.globalProperties.$store = this.store;
+      }
       this.app.config.globalProperties.$depotRessources = this.depotRessources;
       this.app.config.globalProperties.$traduction = traduction;
       this.app.mount(div);

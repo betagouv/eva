@@ -1,6 +1,6 @@
 import { traduction } from 'commun/infra/internationalisation';
 import aide from 'commun/assets/aide.svg';
-import VueBouton from './bouton';
+import VueBouton from './bouton.js';
 import { creeAdaptateur } from './adaptateur_vue';
 import EvenementActivationAide from 'commun/modeles/evenement_activation_aide';
 import VueFenetreAide from 'commun/vues/fenetre_aide';
@@ -18,9 +18,15 @@ export default class VueAide {
   }
 
   affiche (pointInsertion, $) {
-    this.fenetreAide = new AdapteurFenetreAide(this.situation, this.depotRessources, {
-      contexte: this.journal.situation
-    });
+    const store = null;
+    this.fenetreAide = new AdapteurFenetreAide(
+      this.situation,
+      this.depotRessources,
+      store,
+      {
+        contexte: this.journal.situation
+      }
+    );
     const boutonAide = new VueBouton('bouton-aide', aide, () => {
       this.activeAide(pointInsertion, $);
     });

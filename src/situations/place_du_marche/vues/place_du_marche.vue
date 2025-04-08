@@ -64,6 +64,7 @@ export default {
     },
 
     enregistreConsigneEnCours() {
+      console.log("enregistreConsigneEnCours");
       this.$depotRessources.consigneEnCours = `${this.question.nom_technique}_consigne`;
     },
 

@@ -1,5 +1,5 @@
 import { traduction } from 'commun/infra/internationalisation';
-import VueBouton from './bouton';
+import VueBouton from './bouton.js';
 import EvenementRejoueConsigne from '../modeles/evenement_rejoue_consigne';
 
 import play from 'commun/assets/play.svg';

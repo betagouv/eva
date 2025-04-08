@@ -32,6 +32,7 @@ function afficheAccueil (pointInsertion) {
   }
 
   const store = creeStore(registreUtilisateur, registreCampagne);
+  console.log('--- configure le store ---');
 
   const app = createApp(Index);
   app.config.globalProperties.$depotRessources = depotRessources;

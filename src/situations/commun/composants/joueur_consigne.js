@@ -4,10 +4,11 @@ export default class JoueurConsigne extends JoueurAudioBuffer {
   constructor (depot, ressourceConsigne) {
     super();
     this.depot = depot;
+    console.log('ressourceConsigne', ressourceConsigne);
     this.ressourceConsigne = ressourceConsigne;
   }
 
-  joue (lectureTerminee) {
-    this.start(this.depot[this.ressourceConsigne](), lectureTerminee);
+  joue (callbackFin = () => {}) {
+    this.start(this.depot[this.ressourceConsigne](), callbackFin);
   }
 }

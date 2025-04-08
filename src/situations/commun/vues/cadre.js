@@ -21,8 +21,9 @@ import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
 
 export default class VueCadre {
-  constructor (VueSituation, situation, journal, depotRessources) {
+  constructor(VueSituation, situation, journal, depotRessources) {
     this.VueSituation = VueSituation;
+    console.log('this.VueSituation', this.VueSituation);
     this.journal = journal;
     this.situation = situation;
     this.depotRessources = depotRessources;
@@ -38,7 +39,7 @@ export default class VueCadre {
     this.envoiEvenementFinSituationUneFoisTermine();
   }
 
-  affiche (pointInsertion, $) {
+  affiche(pointInsertion, $) {
     const $cadre = $('<div id="cadre" class="conteneur"></div>');
     $(pointInsertion).prepend($cadre);
     $cadre.append($('<div class="scene"></div>'));
@@ -62,19 +63,28 @@ export default class VueCadre {
     this.empecheLeClickDroit($);
 
     const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.registreUtilisateur);
+    console.log('vueSituation.store', vueSituation.store);
+    console.log('0');
     return this.depotRessources.chargement().then(() => {
+      console.log('1');
       this.situation.modifieEtat(ATTENTE_DEMARRAGE);
+      console.log('2');
       vueSituation.affiche('.scene', $);
+      console.log('3');
 
-      this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources);
+      // Instanciation correcte de VueActions
+      this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources, vueSituation.store);
+      console.log('4');
+      console.log('this.vueActions', this.vueActions);
       this.vueActions.affiche(selecteurCadre, $);
+      console.log('5');
     }).catch((err) => {
       console.error(err);
       this.situation.modifieEtat(ERREUR_CHARGEMENT);
     });
   }
 
-  empecheLaFermetureDeLaSituation ($) {
+  empecheLaFermetureDeLaSituation($) {
     $(window).on('beforeunload', (e) => {
       if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE].includes(this.situation.etat())) {
         e.preventDefault();
@@ -83,7 +93,7 @@ export default class VueCadre {
     });
   }
 
-  envoiEvenementFinSituationUneFoisTermine () {
+  envoiEvenementFinSituationUneFoisTermine() {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === FINI) {
         this.journal.enregistre(new EvenementFinSituation());
@@ -94,13 +104,13 @@ export default class VueCadre {
     });
   }
 
-  empecheLeClickDroit ($) {
+  empecheLeClickDroit($) {
     $('#cadre').on('contextmenu', (e) => {
       e.preventDefault();
     });
   }
 
-  envoiEvenementDemarrageUneFoisDemarre () {
+  envoiEvenementDemarrageUneFoisDemarre() {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       switch (etat) {
       case ENTRAINEMENT_DEMARRE:
