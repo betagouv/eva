@@ -37,7 +37,7 @@
         </svg>
         <h2>{{ $traduction('accueil.fin.resultat.titre') }}</h2>
         <div class="message-competences-fortes">
-          <BoutonLectureAvecDepotRessources
+          <bouton-lecture-avec-depot-ressources
             class="bouton-lecture"
             nomTechnique='introduction'
           />
@@ -49,7 +49,7 @@
             :key="competence.nom_technique"
             class="competences-fortes"
             >
-            <BoutonLectureAvecDepotRessources
+            <bouton-lecture-avec-depot-ressources
               class="bouton-lecture"
               :nomTechnique="competence.nom_technique"
             />

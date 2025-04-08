@@ -1,6 +1,6 @@
 <template>
   <div class="telephone-conteneur">
-    <BoutonLectureAvecDepotRessources
+    <bouton-lecture-avec-depot-ressources
        class="bouton-lecture"
        :nomTechnique="question.audioRepondeur"
        :class="classPositionBoutonLecture"
