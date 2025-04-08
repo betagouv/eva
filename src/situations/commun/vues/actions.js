@@ -41,11 +41,10 @@ export default class VueActions {
         journal: this.journal
       }
     );
-    this.rejoueConsigne.affiche($actions.find('.actions-rejoue-consigne')[0], $);
+    this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
 
     this.stop = new VueStop(this.situation, this.journal);
     this.aide = new VueAide(this.situation, this.depotRessources, this.journal);
-
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
     this.afficheBoutons(this.situation.etat(), $);
     $(pointInsertion).append($actions);
@@ -54,7 +53,7 @@ export default class VueActions {
   afficheBoutons(etat, $) {
     const actionsEtat = new Map();
     actionsEtat.set(ENTRAINEMENT_DEMARRE, () => {
-      this.rejoueConsigne.affiche(this.$rejoueConsigne[0], $);
+      this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
       this.stop.affiche(this.$stop, $);
     });
     actionsEtat.set(ENTRAINEMENT_FINI, () => {
@@ -62,7 +61,7 @@ export default class VueActions {
     });
     actionsEtat.set(DEMARRE, () => {
       if (!this.situation.entrainementDisponible()) {
-        this.rejoueConsigne.affiche(this.$rejoueConsigne[0], $);
+        this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
         this.stop.affiche(this.$stop, $);
       }
       if (this.situation.aideDisponible()) {
