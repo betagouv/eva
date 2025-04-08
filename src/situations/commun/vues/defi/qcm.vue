@@ -5,7 +5,7 @@
       :key="choix.id"
       class="defi-qcm defi-qcm-reponses-multiples"
     >
-      <BoutonLectureAvecDepotRessources
+      <bouton-lecture-avec-depot-ressources
         v-if="afficheLectureReponse(choix.nom_technique)"
         class="bouton-lecture"
         :nomTechnique="choix.nom_technique"

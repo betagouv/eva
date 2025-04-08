@@ -19,7 +19,7 @@
         class="label"
         :class="{ 'selected': choixFait === (question.choix.length - 1) - index }"
       >
-        <BoutonLectureAvecDepotRessources
+        <bouton-lecture-avec-depot-ressources
           v-if="afficheLectureReponse(element.nom_technique)"
           class="bouton-lecture--jauge"
           :nomTechnique="element.nom_technique"
