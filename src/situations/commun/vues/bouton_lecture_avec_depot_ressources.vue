@@ -1,7 +1,6 @@
 <template>
   <BoutonLecture
     ref="boutonLecture"
-    :audioSource="audioSource"
     :avecTexte="avecTexte"
     :nomTechnique="nomTechnique"
   />
@@ -35,9 +34,6 @@ export default {
   methods: {
     demarreSon(callbackFin) {
       this.$refs.boutonLecture.demarreSon(callbackFin);
-    },
-    audioSource() {
-      return this.$depotRessources.messageAudio(this.nomTechnique);
     },
   },
 };
