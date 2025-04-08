@@ -21,7 +21,7 @@ import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
 
 export default class VueCadre {
-  constructor(VueSituation, situation, journal, depotRessources) {
+  constructor (VueSituation, situation, journal, depotRessources) {
     this.VueSituation = VueSituation;
     this.journal = journal;
     this.situation = situation;
@@ -38,7 +38,7 @@ export default class VueCadre {
     this.envoiEvenementFinSituationUneFoisTermine();
   }
 
-  affiche(pointInsertion, $) {
+  affiche (pointInsertion, $) {
     const $cadre = $('<div id="cadre" class="conteneur"></div>');
     $(pointInsertion).prepend($cadre);
     $cadre.append($('<div class="scene"></div>'));
@@ -56,7 +56,7 @@ export default class VueCadre {
       }
     };
 
-    afficheEtat(this.situation.etat());
+    afficheEtat (this.situation.etat());
     this.situation.on(CHANGEMENT_ETAT, afficheEtat);
     this.empecheLaFermetureDeLaSituation($);
     this.empecheLeClickDroit($);
@@ -75,7 +75,7 @@ export default class VueCadre {
     });
   }
 
-  empecheLaFermetureDeLaSituation($) {
+  empecheLaFermetureDeLaSituation ($) {
     $(window).on('beforeunload', (e) => {
       if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE].includes(this.situation.etat())) {
         e.preventDefault();
@@ -84,7 +84,7 @@ export default class VueCadre {
     });
   }
 
-  envoiEvenementFinSituationUneFoisTermine() {
+  envoiEvenementFinSituationUneFoisTermine () {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === FINI) {
         this.journal.enregistre(new EvenementFinSituation());
@@ -95,13 +95,13 @@ export default class VueCadre {
     });
   }
 
-  empecheLeClickDroit($) {
+  empecheLeClickDroit ($) {
     $('#cadre').on('contextmenu', (e) => {
       e.preventDefault();
     });
   }
 
-  envoiEvenementDemarrageUneFoisDemarre() {
+  envoiEvenementDemarrageUneFoisDemarre () {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       switch (etat) {
       case ENTRAINEMENT_DEMARRE:
