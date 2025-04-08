@@ -23,7 +23,6 @@ export function creeAdaptateur (component, proprietes = {}) {
         }
       });
       if (this.store) {
-        this.app.use(this.store);
         this.app.config.globalProperties.$store = this.store;
       }
       this.app.config.globalProperties.$depotRessources = this.depotRessources;
