@@ -42,15 +42,11 @@ export default class VueActions {
     );
     this.rejoueConsigne.affiche($actions.find('.actions-rejoue-consigne')[0], $);
 
-    console.log('VueStop');
     // Instantiate other classes as they are not converted to Vue yet
     this.stop = new VueStop(this.situation, this.journal);
-    console.log('VueAide');
     this.aide = new VueAide(this.situation, this.depotRessources, this.journal);
 
-    console.log('changement etat');
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
-    console.log('afficheBoutons');
     this.afficheBoutons(this.situation.etat(), $);
     $(pointInsertion).append($actions);
   }

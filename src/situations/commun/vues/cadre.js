@@ -23,7 +23,6 @@ import VueTerminer from 'commun/vues/terminer';
 export default class VueCadre {
   constructor(VueSituation, situation, journal, depotRessources) {
     this.VueSituation = VueSituation;
-    console.log('this.VueSituation', this.VueSituation);
     this.journal = journal;
     this.situation = situation;
     this.depotRessources = depotRessources;
@@ -63,21 +62,13 @@ export default class VueCadre {
     this.empecheLeClickDroit($);
 
     const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.registreUtilisateur);
-    console.log('vueSituation.store', vueSituation.store);
-    console.log('0');
     return this.depotRessources.chargement().then(() => {
-      console.log('1');
       this.situation.modifieEtat(ATTENTE_DEMARRAGE);
-      console.log('2');
       vueSituation.affiche('.scene', $);
-      console.log('3');
 
       // Instanciation correcte de VueActions
       this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources, vueSituation.store);
-      console.log('4');
-      console.log('this.vueActions', this.vueActions);
       this.vueActions.affiche(selecteurCadre, $);
-      console.log('5');
     }).catch((err) => {
       console.error(err);
       this.situation.modifieEtat(ERREUR_CHARGEMENT);

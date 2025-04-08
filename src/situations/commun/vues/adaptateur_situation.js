@@ -7,7 +7,6 @@ import { erreurVue } from '../infra/report_erreurs';
 
 export default class AdaptateurCommunVueSituation {
   constructor (situation, journal, depotRessources, creeStore, ComposantActe, configurationEntrainement, configurationNormale) {
-    console.log("instancie AdaptateurCommunVueSituation");
     this.situation = situation;
     this.creeStore = creeStore;
     this.store = this.creeStore();

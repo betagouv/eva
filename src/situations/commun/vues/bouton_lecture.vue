@@ -87,7 +87,6 @@ export default {
     },
 
     sonAJouer () {
-      console.log('sonAJouer', this.nomTechnique);
       return this.$depotRessources.messageAudio(this.nomTechnique);
     },
   },
