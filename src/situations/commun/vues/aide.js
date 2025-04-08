@@ -18,11 +18,9 @@ export default class VueAide {
   }
 
   affiche (pointInsertion, $) {
-    const store = null;
     this.fenetreAide = new AdapteurFenetreAide(
       this.situation,
       this.depotRessources,
-      store,
       {
         contexte: this.journal.situation
       }

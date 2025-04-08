@@ -4,7 +4,7 @@ import { traduction } from 'commun/infra/internationalisation';
 
 export function creeAdaptateur (component, proprietes = {}) {
   return class AdaptateurVue {
-    constructor (situation, depotRessources, store, props = proprietes) {
+    constructor (situation, depotRessources, props = proprietes, store = null) {
       this.depotRessources = depotRessources;
       this.store = store;
       this.props = props;
