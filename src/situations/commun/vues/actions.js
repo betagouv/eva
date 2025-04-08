@@ -12,7 +12,7 @@ import { creeAdaptateur } from './adaptateur_vue';
 const AdapteurRejoueConsigne = creeAdaptateur(VueRejoueConsigne);
 
 export default class VueActions {
-  constructor(situation, journal, depotRessources, store) {
+  constructor (situation, journal, depotRessources, store) {
     this.situation = situation;
     this.journal = journal;
     this.joueurConsigne = new JoueurConsigne(depotRessources, 'consigneDemarrage');
@@ -20,7 +20,7 @@ export default class VueActions {
     this.store = store;
   }
 
-  affiche(pointInsertion, $) {
+  affiche (pointInsertion, $) {
     const $actions = $(`
       <div class="actions">
         <div class="actions-rejoue-consigne"></div>
@@ -50,7 +50,7 @@ export default class VueActions {
     $(pointInsertion).append($actions);
   }
 
-  afficheBoutons(etat, $) {
+  afficheBoutons (etat, $) {
     const actionsEtat = new Map();
     actionsEtat.set(ENTRAINEMENT_DEMARRE, () => {
       this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
