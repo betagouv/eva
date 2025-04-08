@@ -62,6 +62,11 @@ export default {
     sonAJouer: {
       type: Function,
       required: true
+    },
+    callbackDebut: {
+      type: Function,
+      required: false,
+      default: () => {}
     }
   },
 
@@ -90,6 +95,7 @@ export default {
   watch: {
     joueSon(joue) {
       if (joue === true) {
+        this.callbackDebut();
         this.$store.commit('modifieAudioIdEnCours', this.nomTechnique);
         this.joueurSon.start(this.sonAJouer(), () => {
           this.coupeSon();
@@ -98,7 +104,6 @@ export default {
             delete this.callbackFin;
           }
         });
-        this.$emit('son-en-cours');
       } else {
         this.joueurSon.stop();
       }
