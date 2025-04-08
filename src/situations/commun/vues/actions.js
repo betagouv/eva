@@ -1,11 +1,11 @@
-import RejoueConsigne from 'commun/vues/rejoue_consigne.vue'; // Composant Vue.js
+import RejoueConsigne from 'commun/vues/rejoue_consigne.vue';
 import JoueurConsigne from 'commun/composants/joueur_consigne';
-import VueStop from 'commun/vues/stop'; // Typiquement une classe traditionnelle
-import VueAide from 'commun/vues/aide'; // Typiquement une classe traditionnelle
+import VueStop from 'commun/vues/stop';
+import VueAide from 'commun/vues/aide';
 import 'commun/styles/actions.scss';
 import 'commun/styles/boutons.scss';
 import { CHANGEMENT_ETAT, DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
-import { creeAdaptateur } from './adaptateur_vue'; // Importer l'adaptateur
+import { creeAdaptateur } from './adaptateur_vue';
 export default class VueActions {
   constructor(situation, journal, depotRessources, store) {
     this.situation = situation;
@@ -42,7 +42,6 @@ export default class VueActions {
     );
     this.rejoueConsigne.affiche($actions.find('.actions-rejoue-consigne')[0], $);
 
-    // Instantiate other classes as they are not converted to Vue yet
     this.stop = new VueStop(this.situation, this.journal);
     this.aide = new VueAide(this.situation, this.depotRessources, this.journal);
 
