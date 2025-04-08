@@ -16,7 +16,6 @@ export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation
   affiche (pointInsertion, $) {
     const div = document.createElement('div');
     $(pointInsertion).append(div);
-    this.store = this.creeStore();
     synchroniseStoreEtModeleSituation(this.situation, this.store);
     const app = createApp(VueSituation, {
       composantActe: this.ComposantActe,
