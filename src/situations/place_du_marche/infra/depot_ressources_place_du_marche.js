@@ -18,6 +18,7 @@ export default class DepotRessourcesPlaceDuMarche extends DepotRessourcesCommune
   }
 
   consigneDemarrage () {
+    console.log("this.consigneEnCours", this.consigneEnCours);
     if (this.existeMessageAudio(this.consigneEnCours)) {
       return this.ressource(this.messagesAudios[this.consigneEnCours]);
     }

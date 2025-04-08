@@ -16,8 +16,8 @@ export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation
   affiche (pointInsertion, $) {
     const div = document.createElement('div');
     $(pointInsertion).append(div);
-    const store = this.creeStore();
-    synchroniseStoreEtModeleSituation(this.situation, store);
+    this.store = this.creeStore();
+    synchroniseStoreEtModeleSituation(this.situation, this.store);
     const app = createApp(VueSituation, {
       composantActe: this.ComposantActe,
       idSituation: this.situation.identifiant
@@ -25,7 +25,7 @@ export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation
     app.config.globalProperties.$depotRessources = this.depotRessources;
     app.config.globalProperties.$traduction = traduction;
     app.config.globalProperties.$journal = this.journal;
-    app.use(store);
+    app.use(this.store);
     app.mount(div);
   }
 }

@@ -19,7 +19,7 @@
         class="label"
         :class="{ 'selected': choixFait === (question.choix.length - 1) - index }"
       >
-        <bouton-lecture
+        <BoutonLectureAvecDepotRessources
           v-if="afficheLectureReponse(element.nom_technique)"
           class="bouton-lecture--jauge"
           :nomTechnique="element.nom_technique"
@@ -39,10 +39,10 @@
 
 <script>
 import 'commun/styles/defi/jauge.scss';
-import BoutonLecture from 'commun/vues/bouton_lecture';
+import BoutonLectureAvecDepotRessources from 'commun/vues/bouton_lecture_avec_depot_ressources';
 
 export default ({
-  components: { BoutonLecture },
+  components: { BoutonLectureAvecDepotRessources },
 
   props: {
     question: {

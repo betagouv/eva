@@ -7,6 +7,7 @@ import DepotRessourcesPlaceDuMarche from 'place_du_marche/infra/depot_ressources
 import Situation from 'commun/modeles/situation';
 import VueSituation from 'place_du_marche/vues/situation';
 
+console.log('--- situation_place_du_marche ---');
 const situation = new Situation({ modeEntrainement: false, aideDisponible: true });
 
 const depotRessources = new DepotRessourcesPlaceDuMarche();
