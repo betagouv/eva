@@ -66,7 +66,6 @@ export default class VueCadre {
       this.situation.modifieEtat(ATTENTE_DEMARRAGE);
       vueSituation.affiche('.scene', $);
 
-      // Instanciation correcte de VueActions
       this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources, vueSituation.store);
       this.vueActions.affiche(selecteurCadre, $);
     }).catch((err) => {
