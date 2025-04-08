@@ -1,9 +1,10 @@
 <template>
-  <div ref="boutonRejoueConsigne" style="display: flex;">
+  <div ref="boutonRejoueConsigne">
     <BoutonLecture 
       :nomTechnique="nomTechnique"
       @click="definiNomTechnique()"
       @son-en-cours="enregistrerEvenement"
+      :avecEtiquette="true"
     />
   </div>
 </template>
