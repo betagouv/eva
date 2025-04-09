@@ -37,7 +37,7 @@
         </svg>
         <h2>{{ $traduction('accueil.fin.resultat.titre') }}</h2>
         <div class="message-competences-fortes">
-          <bouton-lecture-avec-depot-ressources
+          <bouton-lecture
             class="bouton-lecture"
             nomTechnique='introduction'
           />
@@ -49,7 +49,7 @@
             :key="competence.nom_technique"
             class="competences-fortes"
             >
-            <bouton-lecture-avec-depot-ressources
+            <bouton-lecture
               class="bouton-lecture"
               :nomTechnique="competence.nom_technique"
             />
@@ -72,10 +72,10 @@ import { mapState } from 'vuex';
 import 'accueil/styles/fin.scss';
 import 'commun/styles/boutons.scss';
 import BoutonDeconnexion from 'accueil/vues/bouton_deconnexion';
-import BoutonLectureAvecDepotRessources from 'commun/vues/bouton_lecture_avec_depot_ressources';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 
 export default {
-  components: { BoutonDeconnexion, BoutonLectureAvecDepotRessources },
+  components: { BoutonDeconnexion, BoutonLecture },
   computed: mapState(['competencesFortes', 'evaluationTerminee', 'nom']),
 
   data () {

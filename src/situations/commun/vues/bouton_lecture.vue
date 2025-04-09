@@ -59,9 +59,9 @@ export default {
       type: Boolean,
       default: false
     },
-    sonAJouer: {
+    surchargeSonAJouer: {
       type: Function,
-      required: true
+      required: false
     },
     callbackDebut: {
       type: Function,
@@ -90,6 +90,14 @@ export default {
     coupeSon() {
       this.joueSon = false;
     },
+
+    sonAJouer() {
+      if (this.surchargeSonAJouer) {
+        return this.surchargeSonAJouer();
+      } else {
+        return this.$depotRessources.messageAudio(this.nomTechnique);
+      }
+    }
   },
 
   watch: {

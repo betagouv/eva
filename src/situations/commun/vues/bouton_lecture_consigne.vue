@@ -4,7 +4,7 @@
     @click="definiNomTechnique()"
     :callbackDebut="enregistrerEvenement"
     :avecEtiquette="true"
-    :sonAJouer="sonAJouer"
+    :SurchargeSonAJouer="sonAJouer"
   />
 </template>
 
