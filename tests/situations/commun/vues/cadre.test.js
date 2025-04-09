@@ -12,9 +12,13 @@ import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainemen
 import VueCadre from 'commun/vues/cadre';
 import DepotRessourcesCommune from 'commun/infra/depot_ressources_communes';
 import chargeurs from '../../commun/aides/mock_chargeurs';
+import { creeStore } from 'commun/modeles/store';
 
-function uneClasseVue (callbackAffichage = () => {}) {
+function uneClasseVue (store, callbackAffichage = () => {}) {
   return class {
+    constructor() {
+      this.store = store;
+    }
     affiche (pointInsertion, jQuery) {
       callbackAffichage(pointInsertion, jQuery);
     }
@@ -26,8 +30,10 @@ describe('Une vue du cadre', function () {
   let depotRessources;
   let journal;
   let uneVueCadre;
+  let store;
 
   beforeEach(function () {
+    store = creeStore();
     $(window).off();
     $('body').append('<div id="point-insertion"></div>');
     depotRessources = new DepotRessourcesCommune(chargeurs(), {}, {}, 'sonConsigne.mp3', 'sonConsigneTransition.mp3');
@@ -39,10 +45,9 @@ describe('Une vue du cadre', function () {
       attendFinEnregistrement () { return { finally () {} }; }
     };
 
-    uneVueCadre = function (classeVue = uneClasseVue()) {
+    uneVueCadre = function (classeVue = uneClasseVue(store)) {
       return new VueCadre(classeVue, situation, journal, depotRessources);
     };
-
     return depotRessources.chargement();
   });
 
@@ -63,7 +68,7 @@ describe('Une vue du cadre', function () {
   });
 
   it('affiche une situation donnée', function (done) {
-    const VueSituation = uneClasseVue(function (pointInsertion, jQuery) {
+    const VueSituation = uneClasseVue(store, function (pointInsertion, jQuery) {
       expect(pointInsertion).toBe('.scene');
       expect(jQuery).toBe($);
       done();
