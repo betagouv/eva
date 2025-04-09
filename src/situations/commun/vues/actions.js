@@ -3,9 +3,8 @@ import 'commun/styles/boutons.scss';
 import { CHANGEMENT_ETAT, DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
 
 import VueStop from 'commun/vues/stop';
-import VueRejoueConsigne from 'commun/vues/rejoue_consigne.vue';
+import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
 import VueAide from 'commun/vues/aide';
-import JoueurConsigne from 'commun/composants/joueur_consigne';
 
 import { creeAdaptateur } from './adaptateur_vue';
 
@@ -15,7 +14,6 @@ export default class VueActions {
   constructor (situation, journal, depotRessources, store) {
     this.situation = situation;
     this.journal = journal;
-    this.joueurConsigne = new JoueurConsigne(depotRessources, 'consigneDemarrage');
     this.depotRessources = depotRessources;
     this.store = store;
   }
@@ -35,8 +33,7 @@ export default class VueActions {
     this.rejoueConsigne = new AdapteurRejoueConsigne(
       this.situation,
       this.depotRessources,
-      { 
-        joueurConsigne: this.joueurConsigne, 
+      {
         journal: this.journal
       },
       this.store
