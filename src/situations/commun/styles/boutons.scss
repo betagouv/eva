@@ -82,7 +82,7 @@
   @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
 }
 
-.bouton-en-pause {
+.bouton-lecture--pause {
   @include bouton($couleur-fond-bouton-orange, $couleur-fond-bouton-orange-focus);
 }
 
@@ -110,7 +110,7 @@
       background-color: $couleur-fond-bouton-bleu-focus;
     }
 
-    .bouton-en-pause {
+    .bouton-lecture--pause {
       background-color: $couleur-fond-bouton-orange-focus;
     }
   }
