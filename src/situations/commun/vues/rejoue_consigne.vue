@@ -23,10 +23,6 @@ export default {
     BoutonLecture,
   },
   props: {
-    joueurConsigne: {
-      type: Object,
-      required: true
-    },
     journal: {
       type: Object,
       required: true
@@ -44,7 +40,7 @@ export default {
   },
   methods: {
     definiNomTechnique () {
-      this.nomTechnique = this.$depotRessources.consigneEnCours;
+      this.nomTechnique = this.$depotRessources.consigneEnCours || 'consigneDemarrage';
     },
     enregistrerEvenement() {
       this.journal.enregistre(new EvenementRejoueConsigne());
