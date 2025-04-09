@@ -101,13 +101,13 @@ export default {
   },
 
   watch: {
-    joueSon(joue) {
+    joueSon (joue) {
       if (joue === true) {
         this.callbackDebut();
         this.$store.commit('modifieAudioIdEnCours', this.nomTechnique);
         this.joueurSon.start(this.sonAJouer(), () => {
           this.coupeSon();
-          if (this.callbackFin) {
+          if(this.callbackFin) {
             this.callbackFin();
             delete this.callbackFin;
           }
@@ -120,7 +120,12 @@ export default {
       if (newID !== this.nomTechnique) {
         this.coupeSon();
       }
-    }
+    },
+    acteEnCours (acteEnCours) {
+      if(!acteEnCours) {
+        this.coupeSon();
+      }
+    },
   },
 
   computed: {
@@ -130,7 +135,10 @@ export default {
 
     texteBouton () {
       return this.joueSon ? 'bouton_lecture.pause' : 'bouton_lecture.lecture';
-    }
+    },
+    acteEnCours () {
+      return this.$store.getters.acteEnCours;
+    },
   },
 
   beforeUnmount() {
