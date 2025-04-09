@@ -5,7 +5,7 @@
       :key="choix.id"
       class="defi-qcm defi-qcm-reponses-multiples"
     >
-      <bouton-lecture-avec-depot-ressources
+      <bouton-lecture
         v-if="afficheLectureReponse(choix.nom_technique)"
         class="bouton-lecture"
         :nomTechnique="choix.nom_technique"
@@ -40,11 +40,11 @@
 
 <script>
 import ReponseAudioQcm from 'commun/vues/reponse_audio_qcm';
-import BoutonLectureAvecDepotRessources from 'commun/vues/bouton_lecture_avec_depot_ressources';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 import 'commun/styles/defi/qcm.scss';
 
 export default {
-  components: { ReponseAudioQcm, BoutonLectureAvecDepotRessources },
+  components: { ReponseAudioQcm, BoutonLecture },
 
   props: {
     question: {

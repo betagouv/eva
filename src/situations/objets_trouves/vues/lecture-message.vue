@@ -1,6 +1,6 @@
 <template>
   <div class="telephone-conteneur">
-    <bouton-lecture-avec-depot-ressources
+    <bouton-lecture
        class="bouton-lecture"
        :nomTechnique="question.audioRepondeur"
        :class="classPositionBoutonLecture"
@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import BoutonLectureAvecDepotRessources from 'commun/vues/bouton_lecture_avec_depot_ressources';
+import BoutonLecture from 'commun/vues/bouton_lecture';
 import 'objets_trouves/styles/lecture-message.scss';
 
 export default {
-  components: { BoutonLectureAvecDepotRessources },
+  components: { BoutonLecture },
 
   props: {
     question: {
