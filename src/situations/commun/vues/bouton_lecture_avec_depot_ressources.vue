@@ -26,12 +26,6 @@ export default {
     }
   },
 
-  data() {
-    return {
-      joueSon: false
-    };
-  },
-
   methods: {
     demarreSon(callbackFin) {
       this.$refs.boutonLecture.demarreSon(callbackFin);
