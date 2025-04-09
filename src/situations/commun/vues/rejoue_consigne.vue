@@ -1,22 +1,16 @@
 <template>
-  <div ref="boutonRejoueConsigne">
-    <BoutonLecture 
-      :nomTechnique="nomTechnique"
-      @click="definiNomTechnique()"
-      :callbackDebut="enregistrerEvenement"
-      :avecEtiquette="true"
-      :sonAJouer="sonAJouer"
-    />
-  </div>
+  <BoutonLecture 
+    :nomTechnique="nomTechnique"
+    @click="definiNomTechnique()"
+    :callbackDebut="enregistrerEvenement"
+    :avecEtiquette="true"
+    :sonAJouer="sonAJouer"
+  />
 </template>
 
 <script>
 import BoutonLecture from 'commun/vues/bouton_lecture';
-import { traduction } from 'commun/infra/internationalisation';
 import EvenementRejoueConsigne from '../modeles/evenement_rejoue_consigne';
-import play from 'commun/assets/play.svg';
-import enPause from 'commun/assets/en-pause.svg';
-import 'commun/styles/boutons.scss';
 
 export default {
   components: {
@@ -30,11 +24,6 @@ export default {
   },
   data() {
     return {
-      traduction,
-      play,
-      enPause,
-      $boutonRejoueConsigne: null,
-      joueSon: false,
       nomTechnique: 'consigneDemarrage',
     };
   },
