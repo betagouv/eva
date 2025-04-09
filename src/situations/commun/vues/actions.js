@@ -38,7 +38,6 @@ export default class VueActions {
       },
       this.store
     );
-    this.boutonLectureConsigne.affiche(this.$conteneurBoutonLectureConsigne, $);
 
     this.stop = new VueStop(this.situation, this.journal);
     this.aide = new VueAide(this.situation, this.depotRessources, this.journal);

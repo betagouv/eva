@@ -1,10 +1,9 @@
 <template>
   <BoutonLecture 
     :nomTechnique="nomTechnique"
-    @click="definiNomTechnique()"
     :callbackDebut="enregistrerEvenement"
     :avecEtiquette="true"
-    :SurchargeSonAJouer="sonAJouer"
+    :surchargeSonAJouer="sonAJouer"
   />
 </template>
 
@@ -28,14 +27,11 @@ export default {
     };
   },
   methods: {
-    definiNomTechnique () {
-      this.nomTechnique = this.$depotRessources.consigneEnCours || 'consigneDemarrage';
-    },
     enregistrerEvenement() {
       this.journal.enregistre(new EvenementRejoueConsigne());
     },
     sonAJouer () {
-      return this.$depotRessources.consigneDemarrage();
+      return this.$depotRessources[this.nomTechnique]();
     }
   },
 };
