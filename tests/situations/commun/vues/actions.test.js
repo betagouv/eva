@@ -1,17 +1,20 @@
 import $ from 'jquery';
 
 import VueActions from 'commun/vues/actions';
+import { creeStore } from 'commun/modeles/store';
 import SituationCommune, { DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
 
 describe('Affiche les éléments communs aux situations', function () {
   let vueActions;
   let situation;
+  let store;
 
   beforeEach(function () {
+    store = creeStore();
     $('body').append('<div id="magasin"></div>');
     situation = new SituationCommune();
 
-    vueActions = new VueActions(situation, {}, new class {}());
+    vueActions = new VueActions(situation, {}, new class {}(), store);
   });
 
   it('regroupe les éléments dans un conteneur', function () {
