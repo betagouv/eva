@@ -1,7 +1,13 @@
 <template>
   <div :class="['zone-cliquable', { 'zone-cliquable--sans-curseur': !curseur }]">
     <div v-html="reponses" class="reponses" @click="cliqueDansImage"/>
-    <div v-if="curseur" v-html="curseur" class="curseur"/>
+        <div v-if="curseur" v-html="curseur"
+            class="curseur"
+            :style="{
+              'width': `${taille_curseur}px`,
+              'height': `${taille_curseur}px`
+            }">
+        </div>
   </div>
 </template>
 
@@ -19,7 +25,8 @@ export default {
   data() {
     return {
       reponsesSelectionnees: [],
-      selectionEnCours: null
+      selectionEnCours: null,
+      taille_curseur: 50,
     };
   },
 
@@ -109,13 +116,12 @@ export default {
     },
 
     placeCurseur(event) {
-      const sizeCurseur = 50;
       const zoneCliquable = document.querySelector('.zone-cliquable');
       const zoneCliquableRect = zoneCliquable.getBoundingClientRect();
       const curseur = document.querySelector('.curseur');
       curseur.style.display = 'block';
-      curseur.style.left = `${event.clientX - zoneCliquableRect.left - (sizeCurseur / 2)}px`;
-      curseur.style.top = `${event.clientY - zoneCliquableRect.top - sizeCurseur}px`;
+      curseur.style.left = `${event.clientX - zoneCliquableRect.left - (this.taille_curseur / 2)}px`;
+      curseur.style.top = `${event.clientY - zoneCliquableRect.top - this.taille_curseur}px`;
     }
   }
 };
