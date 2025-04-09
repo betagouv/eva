@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils';
-import VueRejoueConsigne from 'commun/vues/rejoue_consigne.vue';
+import VueBoutonLectureConsigne from 'commun/vues/bouton_lecture_consigne';
 import EvenementRejoueConsigne from 'commun/modeles/evenement_rejoue_consigne';
 import { traduction } from 'commun/infra/internationalisation';
 import { creeStore } from 'commun/modeles/store';
 
-describe('Le composant VueRejoueConsigne', () => {
+describe('Le composant VueBoutonLectureConsigne', () => {
   let mockJournal;
   let wrapper;
 
@@ -18,7 +18,7 @@ describe('Le composant VueRejoueConsigne', () => {
     store = creeStore();
     mockJournal = { enregistre: jest.fn() };
     
-    wrapper = mount(VueRejoueConsigne, {
+    wrapper = mount(VueBoutonLectureConsigne, {
       props: {
         journal: mockJournal
       },

@@ -3,12 +3,12 @@ import 'commun/styles/boutons.scss';
 import { CHANGEMENT_ETAT, DEMARRE, ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI } from 'commun/modeles/situation';
 
 import VueStop from 'commun/vues/stop';
-import VueRejoueConsigne from 'commun/vues/rejoue_consigne';
+import VueBoutonLectureConsigne from 'commun/vues/bouton_lecture_consigne';
 import VueAide from 'commun/vues/aide';
 
 import { creeAdaptateur } from './adaptateur_vue';
 
-const AdapteurRejoueConsigne = creeAdaptateur(VueRejoueConsigne);
+const AdapteurBoutonLectureConsigne = creeAdaptateur(VueBoutonLectureConsigne);
 
 export default class VueActions {
   constructor (situation, journal, depotRessources, store) {
@@ -26,11 +26,11 @@ export default class VueActions {
         <div class="actions-stop"></div>
       </div>
     `);
-    this.$rejoueConsigne = $actions.find('.actions-rejoue-consigne');
+    this.$conteneurBoutonLectureConsigne = $actions.find('.actions-rejoue-consigne');
     this.$aide = $actions.find('.actions-aide');
     this.$stop = $actions.find('.actions-stop');
 
-    this.rejoueConsigne = new AdapteurRejoueConsigne(
+    this.boutonLectureConsigne = new AdapteurBoutonLectureConsigne(
       this.situation,
       this.depotRessources,
       {
@@ -38,7 +38,7 @@ export default class VueActions {
       },
       this.store
     );
-    this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
+    this.boutonLectureConsigne.affiche(this.$conteneurBoutonLectureConsigne, $);
 
     this.stop = new VueStop(this.situation, this.journal);
     this.aide = new VueAide(this.situation, this.depotRessources, this.journal);
@@ -50,15 +50,15 @@ export default class VueActions {
   afficheBoutons (etat, $) {
     const actionsEtat = new Map();
     actionsEtat.set(ENTRAINEMENT_DEMARRE, () => {
-      this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
+      this.boutonLectureConsigne.affiche(this.$conteneurBoutonLectureConsigne, $);
       this.stop.affiche(this.$stop, $);
     });
     actionsEtat.set(ENTRAINEMENT_FINI, () => {
-      this.rejoueConsigne.cache();
+      this.boutonLectureConsigne.cache();
     });
     actionsEtat.set(DEMARRE, () => {
       if (!this.situation.entrainementDisponible()) {
-        this.rejoueConsigne.affiche(this.$rejoueConsigne, $);
+        this.boutonLectureConsigne.affiche(this.$conteneurBoutonLectureConsigne, $);
         this.stop.affiche(this.$stop, $);
       }
       if (this.situation.aideDisponible()) {
