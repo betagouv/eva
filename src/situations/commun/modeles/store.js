@@ -21,20 +21,32 @@ const actionsCommunes = {
   }
 };
 
+export const storeAvecAudio = {
+  state: {
+    audioIdEnCours: null
+  },
+  mutations: {
+    modifieAudioIdEnCours (state, audioId) {
+      state.audioIdEnCours = audioId;
+    }
+  },
+  getters: {
+    audioIdEnCours: (state) => {
+      return state.audioIdEnCours;
+    }
+  }
+};
+
 export function creeStore ({ state, mutations, getters, actions } = {}) {
   return createStore({
     state: {
       etat: CHARGEMENT,
       aide: false,
       questions: [],
-      audioIdEnCours: null,
-      ...state
+      ...state,
+      ...storeAvecAudio.state
     },
     mutations: {
-      modifieAudioIdEnCours (state, audioId) {
-        state.audioIdEnCours = audioId;
-      },
-
       modifieEtat (state, etat) {
         state.etat = etat;
       },
@@ -46,13 +58,10 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       recupereQuestionsServeur(state, questions) {
         state.questions = questions;
       },
-      ...mutations
+      ...mutations,
+      ...storeAvecAudio.mutations
     },
     getters: {
-      audioIdEnCours: (state) => {
-        return state.audioIdEnCours;
-      },
-
       acteEnCours: (state) => {
         return state.etat === DEMARRE || state.etat === ENTRAINEMENT_DEMARRE;
       },
@@ -81,7 +90,8 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
 
         return question;
       },
-      ...getters
+      ...getters,
+      ...storeAvecAudio.getters
     },
     actions: {
       ...actionsCommunes,
