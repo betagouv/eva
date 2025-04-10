@@ -21,14 +21,12 @@ import VueTapis from 'controle/vues/tapis';
 import VueFondSonore from 'controle/vues/fond_sonore';
 import activeDeplacementPieces from 'commun/vues/deplacement_pieces';
 import DeplaceurPieces from 'commun/modeles/deplaceur_pieces';
-import { creeStore } from 'commun/modeles/store';
 
 export default class VueSituation {
-  constructor (situation, journal, depotRessources) {
+  constructor (situation, journal, depotRessources, _store) {
     this.situation = situation;
     this.journal = journal;
     this.depotRessources = depotRessources;
-    this.store = creeStore();
     this.tapis = new VueTapis(situation, depotRessources);
     this.deplaceurPieces = new DeplaceurPieces();
   }

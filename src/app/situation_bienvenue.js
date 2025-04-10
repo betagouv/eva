@@ -6,8 +6,10 @@ import { afficheSituation } from 'commun/vues/affiche_situation';
 import DepotRessourcesBienvenue from 'bienvenue/infra/depot_ressources_bienvenue';
 import Situation from 'commun/modeles/situation';
 import AdaptateurVueSituation from 'questions/vues/situation';
+import { creeStore } from 'questions/modeles/store';
 
 const situation = new Situation();
 
 const depotRessources = new DepotRessourcesBienvenue();
-afficheSituation('bienvenue', situation, AdaptateurVueSituation, depotRessources);
+const store = creeStore();
+afficheSituation('bienvenue', situation, AdaptateurVueSituation, depotRessources, store);

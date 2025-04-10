@@ -21,12 +21,12 @@ import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
 
 export default class VueCadre {
-  constructor (VueSituation, situation, journal, depotRessources) {
+  constructor (VueSituation, situation, journal, depotRessources, store) {
     this.VueSituation = VueSituation;
     this.journal = journal;
     this.situation = situation;
     this.depotRessources = depotRessources;
-    this.registreUtilisateur = this.journal.registreUtilisateur;
+    this.store = store;
     this.vuesEtats = new Map();
     this.vuesEtats.set(CHARGEMENT, creeAdaptateur(OverlayAttente, { raison: 'chargement' }));
     this.vuesEtats.set(ERREUR_CHARGEMENT, creeAdaptateur(OverlayErreurChargement));
@@ -61,12 +61,12 @@ export default class VueCadre {
     this.empecheLaFermetureDeLaSituation($);
     this.empecheLeClickDroit($);
 
-    const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.registreUtilisateur);
+    const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.store);
     return this.depotRessources.chargement().then(() => {
       this.situation.modifieEtat(ATTENTE_DEMARRAGE);
       vueSituation.affiche('.scene', $);
 
-      this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources, vueSituation.store);
+      this.vueActions = new VueActions(this.situation, this.journal, this.depotRessources, this.store);
       this.vueActions.affiche(selecteurCadre, $);
     }).catch((err) => {
       console.error(err);

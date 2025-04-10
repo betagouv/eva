@@ -6,8 +6,10 @@ import { afficheSituation } from 'commun/vues/affiche_situation';
 import DepotRessourcesMaintenance from 'maintenance/infra/depot_ressources_maintenance';
 import Situation from 'commun/modeles/situation';
 import VueSituation from 'maintenance/vues/situation';
+import { creeStore } from 'maintenance/modeles/store';
 
 const situation = new Situation({ modeEntrainement: true });
 
 const depotRessources = new DepotRessourcesMaintenance();
-afficheSituation('maintenance', situation, VueSituation, depotRessources);
+const store = creeStore();
+afficheSituation('maintenance', situation, VueSituation, depotRessources, store);

@@ -14,11 +14,8 @@ import DepotRessourcesCommune from 'commun/infra/depot_ressources_communes';
 import chargeurs from '../../commun/aides/mock_chargeurs';
 import { creeStore } from 'commun/modeles/store';
 
-function uneClasseVue (store, callbackAffichage = () => {}) {
+function uneClasseVue (callbackAffichage = () => {}) {
   return class {
-    constructor() {
-      this.store = store;
-    }
     affiche (pointInsertion, jQuery) {
       callbackAffichage(pointInsertion, jQuery);
     }
@@ -45,8 +42,8 @@ describe('Une vue du cadre', function () {
       attendFinEnregistrement () { return { finally () {} }; }
     };
 
-    uneVueCadre = function (classeVue = uneClasseVue(store)) {
-      return new VueCadre(classeVue, situation, journal, depotRessources);
+    uneVueCadre = function (classeVue = uneClasseVue()) {
+      return new VueCadre(classeVue, situation, journal, depotRessources, store);
     };
     return depotRessources.chargement();
   });
@@ -68,7 +65,7 @@ describe('Une vue du cadre', function () {
   });
 
   it('affiche une situation donnée', function (done) {
-    const VueSituation = uneClasseVue(store, function (pointInsertion, jQuery) {
+    const VueSituation = uneClasseVue(function (pointInsertion, jQuery) {
       expect(pointInsertion).toBe('.scene');
       expect(jQuery).toBe($);
       done();
