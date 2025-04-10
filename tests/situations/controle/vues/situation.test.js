@@ -8,6 +8,8 @@ import EvenementPieceDeposeHorsBacs from 'commun/modeles/evenement_piece_depose_
 import EvenementPieceRatee from 'controle/modeles/evenement_piece_ratee';
 import EvenementPieceApparition from 'controle/modeles/evenement_piece_apparition';
 import EvenementPieceDeposeDansBac from 'controle/modeles/evenement_piece_depose_dans_bac';
+import { creeStore } from 'commun/modeles/store';
+jest.mock('commun/modeles/store');
 import Situation, { PIECE_RATEE, NOUVELLE_PIECE } from 'controle/modeles/situation';
 import { CHANGEMENT_ETAT, DEMARRE } from 'commun/modeles/situation';
 import Piece, {
@@ -27,6 +29,11 @@ function vueSituationMinimaliste (journal) {
 describe('La vue de la situation « Contrôle »', function () {
   beforeEach(function () {
     $('body').append('<div id="point-insertion"></div>');
+  });
+
+  it("crée un store à l'initialisation", function () {
+    vueSituationMinimaliste();
+    expect(creeStore).toHaveBeenCalledTimes(1);
   });
 
   it('affiche le fond', function () {
