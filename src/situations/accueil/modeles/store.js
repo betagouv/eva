@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import { CHANGEMENT_CONNEXION } from 'commun/infra/registre_utilisateur';
 import ErreurCampagne from 'commun/infra/erreur_campagne';
 import { traduction } from 'commun/infra/internationalisation';
+import { storeAvecAudio } from 'commun/modeles/store';
 
 export const DECONNECTE = 'déconnecté';
 export const DEMARRE = 'démarré';
@@ -18,7 +19,8 @@ export function creeStore (registreUtilisateur, registreCampagne) {
       competencesFortes: [],
       evaluationTerminee: false,
       situationsFaites: registreUtilisateur.situationsFaites(),
-      etat: registreUtilisateur.estConnecte() ? DEMARRE : DECONNECTE
+      etat: registreUtilisateur.estConnecte() ? DEMARRE : DECONNECTE,
+      ...storeAvecAudio.state
     },
 
     getters: {
@@ -29,7 +31,9 @@ export function creeStore (registreUtilisateur, registreCampagne) {
       estTermine (state) {
         return state.situations.length > 0 &&
           state.situationsFaites.length >= state.situations.length;
-      }
+      },
+
+      ...storeAvecAudio.getters
     },
 
     mutations: {
@@ -67,7 +71,9 @@ export function creeStore (registreUtilisateur, registreCampagne) {
 
       demarre (state) {
         state.etat = DEMARRE;
-      }
+      },
+
+      ...storeAvecAudio.mutations
     },
 
     actions: {
