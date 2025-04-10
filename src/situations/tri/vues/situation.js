@@ -14,10 +14,12 @@ import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
 import EvenementPieceDeposeHorsBacs from 'commun/modeles/evenement_piece_depose_hors_bacs';
+import { creeStore } from 'commun/modeles/store';
 
 export default class VueSituationTri {
   constructor (situation, journal, depotRessources) {
     this.depotRessources = depotRessources;
+    this.store = creeStore();
     this.chronometre = new VueChronometre(situation, depotRessources);
     this.situation = situation;
     this.deplaceurPieces = new DeplaceurPieces();

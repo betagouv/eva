@@ -8,6 +8,8 @@ import EvenementPieceBienPlacee from 'commun/modeles/evenement_piece_bien_placee
 import EvenementPieceMalPlacee from 'commun/modeles/evenement_piece_mal_placee';
 import EvenementPiecePrise from 'commun/modeles/evenement_piece_prise';
 import EvenementPieceDeposeHorsBacs from 'commun/modeles/evenement_piece_depose_hors_bacs';
+import { creeStore } from 'commun/modeles/store';
+jest.mock('commun/modeles/store');
 
 import MockDepotRessourcesTri from '../aides/mock_depot_ressources_tri';
 
@@ -23,6 +25,10 @@ describe('La situation « Tri »', function () {
     journal = { enregistre () {} };
     situation = new Situation({ pieces: [], bacs: [] });
     vueSituation = new VueSituation(situation, journal, mockDepotRessources);
+  });
+
+  it("crée un store à l'initialisation", function () {
+    expect(creeStore).toHaveBeenCalledTimes(1);
   });
 
   it('affiche le fond', function () {
