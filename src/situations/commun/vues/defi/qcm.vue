@@ -7,7 +7,6 @@
     >
       <bouton-lecture
         v-if="afficheLectureReponse(choix.nom_technique)"
-        class="bouton-lecture"
         :nomTechnique="choix.nom_technique"
       />
       <input

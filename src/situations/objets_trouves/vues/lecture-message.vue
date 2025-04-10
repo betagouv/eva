@@ -1,7 +1,6 @@
 <template>
   <div class="telephone-conteneur">
     <bouton-lecture
-       class="bouton-lecture"
        :nomTechnique="question.audioRepondeur"
        :class="classPositionBoutonLecture"
     />
@@ -24,7 +23,7 @@ export default {
 
   computed: {
     classPositionBoutonLecture () {
-      return `bouton-lecture--${this.question.audioRepondeur}`;
+      return `bouton-lecture-conteneur--${this.question.audioRepondeur}`;
     }
   }
 };

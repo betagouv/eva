@@ -25,6 +25,6 @@ describe('La lecture de message pour objets trouvés', function () {
 
   it('affiche le bouton à la bonne position en fonction de la question', function () {
     const boutonLecture = wrapper.findComponent(BoutonLecture);
-    expect(boutonLecture.classes('bouton-lecture--message-bureau-mickael')).toBe(true);
+    expect(boutonLecture.classes('bouton-lecture-conteneur--message-bureau-mickael')).toBe(true);
   });
 });

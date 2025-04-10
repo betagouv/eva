@@ -1,5 +1,6 @@
 <template>
   <div 
+    class="bouton-lecture-conteneur"
     :class="{
       'bouton-et-etiquette': this.avecEtiquette
     }"
