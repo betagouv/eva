@@ -82,10 +82,6 @@
   @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
 }
 
-.bouton-lecture--pause {
-  @include bouton($couleur-fond-bouton-orange, $couleur-fond-bouton-orange-focus);
-}
-
 .bouton-et-etiquette {
   display: flex;
   gap: .5rem;
