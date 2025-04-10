@@ -6,9 +6,9 @@ import VueSituation from './situation';
 import { erreurVue } from '../infra/report_erreurs';
 
 export default class AdaptateurCommunVueSituation {
-  constructor (situation, journal, depotRessources, creeStore, ComposantActe, configurationEntrainement, configurationNormale) {
+  constructor (situation, journal, depotRessources, store, ComposantActe, configurationEntrainement, configurationNormale) {
     this.situation = situation;
-    this.store = creeStore();
+    this.store = store;
     this.ComposantActe = ComposantActe;
     this.configurationEntrainement = configurationEntrainement;
     this.configurationNormale = configurationNormale;

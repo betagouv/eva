@@ -3,14 +3,13 @@ import { createApp } from 'vue';
 import AdaptateurCommunVueSituation from 'commun/vues/adaptateur_situation';
 import { synchroniseStoreEtModeleSituation } from 'commun/modeles/store';
 
-import { creeStore } from '../modeles/store';
 import VueSituation from './situation.vue';
 import ActeQuestions from './acte';
 import { traduction } from 'commun/infra/internationalisation';
 
 export default class AdaptateurVueSituation extends AdaptateurCommunVueSituation {
-  constructor (situation, journal, depotRessources) {
-    super(situation, journal, depotRessources, creeStore, ActeQuestions);
+  constructor (situation, journal, depotRessources, store) {
+    super(situation, journal, depotRessources, store, ActeQuestions);
   }
 
   affiche (pointInsertion, $) {
