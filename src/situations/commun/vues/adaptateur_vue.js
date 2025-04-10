@@ -22,9 +22,7 @@ export function creeAdaptateur (component, proprietes = {}) {
           this.cache();
         }
       });
-      if (this.store) {
-        this.app.config.globalProperties.$store = this.store;
-      }
+      this.app.config.globalProperties.$store = this.store;
       this.app.config.globalProperties.$depotRessources = this.depotRessources;
       this.app.config.globalProperties.$traduction = traduction;
       this.app.mount(div);
