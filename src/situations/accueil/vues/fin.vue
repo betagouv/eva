@@ -38,7 +38,6 @@
         <h2>{{ $traduction('accueil.fin.resultat.titre') }}</h2>
         <div class="message-competences-fortes">
           <bouton-lecture
-            class="bouton-lecture"
             nomTechnique='introduction'
           />
           <p v-html="$traduction('accueil.fin.resultat.competences')"></p>
@@ -50,7 +49,6 @@
             class="competences-fortes"
             >
             <bouton-lecture
-              class="bouton-lecture"
               :nomTechnique="competence.nom_technique"
             />
             <div class="competences-fortes-informations">

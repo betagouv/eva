@@ -16,7 +16,6 @@
         </svg>
       </div>
       <bouton-lecture
-        class="bouton-lecture"
         :nomTechnique="question.nom_technique"
         ref="boutonLectureTexteEntete"
       />
