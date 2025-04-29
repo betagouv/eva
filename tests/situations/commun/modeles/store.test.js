@@ -145,7 +145,7 @@ describe('Le store en commun pour les situations', function () {
 
       describe("si la question active a une question serveur avec le même suffixe", function() {
         beforeEach(function() {
-          fakeQuestionServeurClicSurMots.nom_technique = 'N1Prn1_variant';
+          fakeQuestionServeurClicSurMots.nom_technique = 'N1Prn1__variant';
           questionServeur = store.getters.questionServeur(store.state.questionActive);
         });
 
