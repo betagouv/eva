@@ -17,7 +17,7 @@ export const fakeQuestionServeurClicSurMots = {
 export const fakeQuestionServeurDansImage = {
   "type": "clic-dans-image",
   "id": "N1Pse1",
-  "nom_technique": "N1Pse1v3",
+  "nom_technique": "N1Pse1__v3",
   "description": "description du baaaaack",
   "zone_cliquable_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJB",
   "consigne_audio": null,
@@ -42,8 +42,8 @@ export const fakeQuestionServeurGlisserDeposer = {
 
 export const fakeQuestionServeurSaisie = {
   "type": "saisie",
-  "id": "N1Poa",
-  "nom_technique": "N1Poa",
+  "id": "N1Poa1",
+  "nom_technique": "N1Poa1",
   "description": "description",
   "consigne_audio": null,
   "audio_url": null,

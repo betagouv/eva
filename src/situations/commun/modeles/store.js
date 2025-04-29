@@ -7,6 +7,7 @@ import {
   DEMARRE,
   ENTRAINEMENT_DEMARRE
 } from 'commun/modeles/situation';
+import { nomTechniqueSansVariant } from './question';
 
 const actionsCommunes = {
   sauteALaCarte({ state, getters, commit }, idCarte) {
@@ -67,7 +68,9 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       },
 
       questionServeur: (state) => (questionActive) => {
-        const question = state.questions.find(q => q.nom_technique.startsWith(questionActive.nom_technique));
+        const nomTechnique = nomTechniqueSansVariant(questionActive.nom_technique);
+
+        const question = state.questions.find(q => q.nom_technique.startsWith(nomTechnique));
 
         if (!question) return undefined;
 
