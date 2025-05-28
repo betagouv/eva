@@ -97,6 +97,23 @@ describe('le registre campagne', function () {
           expect(erreur).toEqual(uneErreur);
         });
       });
+
+      it('retourne une erreur spécifique si la campagne est inactive', function () {
+        const message = 'Cette campagne a été désactivée. Rapprochez vous de la personne qui vous accompagne pour obtenir un code campagne actif';
+        const registre = new RegistreCampagne({
+          ajax (options) {
+            options.error({
+              status: 403,
+              responseJSON: { error: message }
+            });
+          }
+        }, 'any url', { onLine: true });
+
+        return registre.recupereCampagne('campagneInactive').catch((erreur) => {
+          expect(erreur.message).toEqual(message);
+          expect(erreur.name).toEqual('ErreurCampagne');
+        });
+      });
     });
 
     describe('quand on est pas en ligne', function () {
