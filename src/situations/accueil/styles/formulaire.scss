@@ -32,6 +32,9 @@
 .element-formulaire {
   margin: .5rem 0 1rem 0;
   width: 18.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
   ::placeholder {
     color: $bleu-gris;
@@ -44,7 +47,7 @@
 
     &-message {
       color: $couleur-accent-et-erreur;
-      margin-left: 1rem;
+      font-size: .75rem;
     }
   }
 }

@@ -21,12 +21,12 @@ export default class RegistreCampagne extends BaseRegistre {
             } else {
               reject(new ErreurCampagne(traduction('accueil.erreurs.code_campagne_inconnu')));
             }
+          } else if (xhr.status === 403 && xhr.responseJSON && xhr.responseJSON.error) {
+            reject(new ErreurCampagne(xhr.responseJSON.error));
+          } else if (xhr.status === 404) {
+            reject(new ErreurCampagne(traduction('accueil.erreurs.code_campagne_inconnu')));
           } else {
-            if (xhr.status === 404) {
-              reject(new ErreurCampagne(traduction('accueil.erreurs.code_campagne_inconnu')));
-            } else {
-              reject(xhr);
-            }
+            reject(xhr);
           }
         }
       });
