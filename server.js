@@ -6,8 +6,8 @@ var app = express();
 var directory = path.join('/', (process.env.STATIC_DIR || 'public'));
 var router = express.Router();
 
-router.get('/', function (req, res, next) {
-  res.redirect('/jeu');
+router.get('/jeu', function (req, res, next) {
+  res.redirect(process.env.URL_JEUX);
 });
 app.use('/', router);
 app.use(express.static(path.join(__dirname, directory)));

@@ -8,7 +8,7 @@ import VueCadre from 'commun/vues/cadre';
 import { initialise as initialiseInternationalisation, traduction } from 'commun/infra/internationalisation';
 import { creeStore } from 'commun/modeles/store';
 
-export const SCOPE_URL = '/jeu/';
+export const SCOPE_URL = '/';
 
 export function afficheSituation (identifiantSituation, modeleSituation, VueSituation, depotRessources, store = creeStore()) {
   function affiche (pointInsertion, $) {

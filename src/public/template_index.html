@@ -40,8 +40,17 @@
     <% } %>
     <script type="text/javascript">
       if (window.navigator && 'serviceWorker' in window.navigator) {
-        window.addEventListener('load', () => {
-          window.navigator.serviceWorker.register('/jeu/service-worker.js').then(registration => {
+        window.addEventListener('load', async () => {
+          // Supprimer l'ancien service worker
+          const registrations = await window.navigator.serviceWorker.getRegistrations();
+          for (let registration of registrations) {
+            if (registration.scope.includes('/jeu/')) {
+              console.log('Unregistering old SW:', registration.scope);
+              await registration.unregister();
+            }
+          }
+
+          window.navigator.serviceWorker.register('/service-worker.js').then(registration => {
             console.log('SW registered: ', registration);
           }).catch(registrationError => {
             console.log('SW registration failed: ', registrationError);

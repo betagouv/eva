@@ -30,7 +30,7 @@ const templatesSituations = situations.map(function (situation) {
   });
 });
 
-const PUBLIC_PATH = '/jeu/';
+const PUBLIC_PATH = '/';
 
 let rollbarSourceMapPlugin = [];
 if (process.env.JETON_SERVEUR_ROLLBAR) {
@@ -47,7 +47,7 @@ module.exports = {
     ...entriesSituations
   },
   output: {
-    path: path.resolve(__dirname, 'public/jeu/'),
+    path: path.resolve(__dirname, 'public/'),
     filename: 'js/[name]_[contenthash].js',
     publicPath: PUBLIC_PATH // public URL of the output directory when referenced in a browser
   },
