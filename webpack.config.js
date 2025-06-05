@@ -128,6 +128,7 @@ module.exports = {
     ...templatesSituations,
     new webpack.EnvironmentPlugin({
       URL_API: undefined, // valeur par défaut undefined quand la variable est obligatoire
+      URL_COMPETENCES: undefined, // valeur par défaut undefined quand la variable est obligatoire
       JETON_CLIENT_ROLLBAR: null, // valeur par défaut null quand la variable est facultative
       ROLLBAR_ENV: null,
       SOURCE_VERSION: undefined,
