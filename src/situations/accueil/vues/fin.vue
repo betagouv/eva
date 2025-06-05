@@ -85,7 +85,7 @@ export default {
 
   methods: {
     lienSiteVitrine (competence) {
-      return `https://eva.beta.gouv.fr/competences/${competence}`;
+      return `${process.env.URL_COMPETENCES}/${competence}`;
     },
 
     suivant () {
