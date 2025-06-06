@@ -229,6 +229,60 @@ describe('le registre utilisateur', function () {
     });
   });
 
+  describe('#connexionParIdentifiant()', function () {
+    it('permet de connecter un utilisateur avec identifiant', function () {
+      const utilisateur = { id: 1, nom: 'Jean' };
+      const registre = unRegistre(utilisateur, 'https://serveur.com/');
+      jest.spyOn(registre, 'enregistreIdClient');
+      jest.spyOn(registre, 'enregistreUtilisateurEnLocal');
+      jest.spyOn(registre, 'emit');
+  
+      return registre.connexionParIdentifiant('ABC123').then((resultat) => {
+        expect(resultat).toEqual(utilisateur);
+        expect(requetes.length).toEqual(1);
+        expect(requetes[0].type).toBe('POST');
+        expect(JSON.parse(requetes[0].data)).toEqual({ identifiant: 'ABC123' });
+        expect(registre.enregistreIdClient).toHaveBeenCalled();
+        expect(registre.enregistreUtilisateurEnLocal).toHaveBeenCalledWith(utilisateur);
+        expect(registre.emit).toHaveBeenCalledWith(CHANGEMENT_CONNEXION);
+      });
+    });
+  
+    it('remonte une erreur identifiant_inconnu en cas de 404', function () {
+      const registre = unRegistre(null, 'https://serveur.com/');
+      requetes.length = 0;
+      registre.$.ajax = (options) => {
+        requetes.push(options);
+        options.error({ status: 404 });
+      };
+  
+      return registre.connexionParIdentifiant('UNKNOWN').catch((erreur) => {
+        expect(erreur.message).toEqual('identifiant_inconnu');
+      });
+    });
+  
+    it('remonte une erreur erreur_reseau en cas de status 0', function () {
+      const registre = unRegistre(null, 'https://serveur.com/', false);
+  
+      return registre.connexionParIdentifiant('DISCONNECTED').catch((erreur) => {
+        expect(erreur.message).toEqual('erreur_reseau');
+      });
+    });
+  
+    it("remonte l'objet d'erreur brut pour d'autres statuts", function () {
+      const registre = unRegistre(null, 'https://serveur.com/');
+      const erreurServeur = { status: 500, message: 'Erreur serveur' };
+  
+      registre.$.ajax = (options) => {
+        options.error(erreurServeur);
+      };
+  
+      return registre.connexionParIdentifiant('BUG').catch((erreur) => {
+        expect(erreur).toBe(erreurServeur);
+      });
+    });
+  });
+
   describe('#estConnecte()', function () {
     it("retourne true lorsque l'utilisateur a rempli un nom", function () {
       const registre = unRegistre({ id: 1, nom: 'test' });

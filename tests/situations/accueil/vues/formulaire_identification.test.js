@@ -258,4 +258,56 @@ describe("Le formulaire d'identification", function () {
       });
     });
   });
+
+  describe('mode identifiant', function () {
+    let wrapperIdentifiant;
+  
+    beforeEach(() => {
+      store.dispatch = jest.fn(() => Promise.resolve({ id: '1' }));
+      wrapperIdentifiant = mount(FormulaireIdentification, {
+        global: {
+          plugins: [store],
+          mocks: { $traduction: traduction }
+        }
+      });
+      wrapperIdentifiant.vm.modeConnexion = 'identifiant';
+    });
+  
+    it("n'affiche que le champ identifiant", () => {
+      const champs = wrapperIdentifiant.findAll('.champ-texte-accueil');
+      expect(champs.length).toBe(2);
+      expect(wrapperIdentifiant.find('#formulaire-identification-champ-identifiant').exists()).toBe(true);
+      expect(wrapperIdentifiant.find('#formulaire-identification-champ-nom').exists()).toBe(false);
+    });
+  
+    it("appelle connexionParIdentifiant avec les bonnes valeurs", function (done) {
+      wrapperIdentifiant.vm.identifiant = 'ABCD1234';
+      wrapperIdentifiant.vm.campagne = 'ETE2025';
+      wrapperIdentifiant.vm.cgu = true;
+  
+      store.dispatch = jest.fn((action, payload) => {
+        if (action === 'recupereCampagne') return Promise.resolve({ id: 1 });
+  
+        if (action === 'connexionParIdentifiant') {
+          expect(payload.identifiant).toBe('ABCD1234');
+          expect(payload.campagne).toBe('ETE2025');
+          done();
+        }
+  
+        return Promise.resolve();
+      });
+  
+      wrapperIdentifiant.vm.envoieFormulaire();
+    });
+  
+    it("affiche l'erreur identifiant si présente", async () => {
+      store.state.erreurFormulaireIdentification = { identifiant: 'Non reconnu' };
+      wrapperIdentifiant.vm.modeConnexion = 'identifiant';
+      await wrapperIdentifiant.vm.$nextTick();
+  
+      const erreur = wrapperIdentifiant.find('.erreur-message');
+      expect(erreur.exists()).toBe(true);
+      expect(erreur.text()).toBe('Non reconnu');
+    });
+  });
 });

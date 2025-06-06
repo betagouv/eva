@@ -130,4 +130,13 @@
       padding: 0.375rem 1.5rem;
     }
   }
+
+  .texte-lien {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .texte-lien:hover {
+    text-decoration: none;
+  }
 }
