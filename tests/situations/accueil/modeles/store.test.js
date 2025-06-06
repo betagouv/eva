@@ -311,4 +311,61 @@ describe("Le store de l'accueil", function () {
       expect(store.getters.estTermine).toBe(true);
     });
   });
+
+  describe('Action : connexionParIdentifiant', function () {
+    it('connecte un utilisateur avec un identifiant valide', function (done) {
+      registreUtilisateur.connexionParIdentifiant = () => Promise.resolve({ nom: 'Valide' });
+      const store = creeStore(registreUtilisateur, registreCampagne);
+  
+      store.dispatch('connexionParIdentifiant', {
+        identifiant: 'ABC123'
+      }).then((utilisateur) => {
+        expect(utilisateur).toEqual({ nom: 'Valide' });
+        done();
+      });
+    });
+  
+    it('affiche une erreur si identifiant inconnu', function (done) {
+      registreUtilisateur.connexionParIdentifiant = () =>
+        Promise.reject(new Error('identifiant_inconnu'));
+      const store = creeStore(registreUtilisateur, registreCampagne);
+  
+      store.dispatch('connexionParIdentifiant', {
+        identifiant: 'XYZ999'
+      }).then((utilisateur) => {
+        expect(utilisateur).toBeNull();
+        expect(store.state.erreurFormulaireIdentification.identifiant)
+          .toEqual('accueil.erreurs.code_identifiant_inconnu');
+        done();
+      });
+    });
+  
+    it('gère une erreur réseau', function (done) {
+      registreUtilisateur.connexionParIdentifiant = () =>
+        Promise.reject(new Error('erreur_reseau'));
+      const store = creeStore(registreUtilisateur, registreCampagne);
+  
+      store.dispatch('connexionParIdentifiant', {
+        identifiant: 'ABC123'
+      }).then((utilisateur) => {
+        expect(utilisateur).toBeNull();
+        expect(store.state.erreurFormulaireIdentification.generale)
+          .toEqual('accueil.erreurs.reseau');
+        done();
+      });
+    });
+  
+    it('propage une erreur non typée', function (done) {
+      registreUtilisateur.connexionParIdentifiant = () =>
+        Promise.reject(new Error('Erreur serveur'));
+      const store = creeStore(registreUtilisateur, registreCampagne);
+  
+      store.dispatch('connexionParIdentifiant', {
+        identifiant: 'ABC123'
+      }).catch((erreur) => {
+        expect(erreur.message).toEqual('Erreur serveur');
+        done();
+      });
+    });
+  });
 });

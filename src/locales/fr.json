@@ -21,13 +21,17 @@
     "suivant": "Situation suivante",
     "erreurs": {
       "reseau": "Impossible de contacter le serveur, Vérifiez votre connexion réseau",
-      "code_campagne_inconnu": "Code inconnu"
+      "code_campagne_inconnu": "Code inconnu",
+      "code_identifiant_inconnu": "Identifiant inconnu. Vérifiez que vous avez entré le bon identifiant."
     },
     "identification": {
       "bouton": "Démarrer",
       "campagne": "Code de la campagne",
       "cgu": "Eva traite les données recueillies pour détecter et positionner vos compétences transversales. Ces données ne seront pas exploitées commercialement. Elles peuvent être transmises à l'entreprise ou à l’opérateur de service public partenaire. Vous pouvez en savoir plus en consultant nos <a href=\"https://eva.anlci.gouv.fr/condition-generales-dutilisation/\" target=\"_blank\">Conditions générales d'utilisation</a> et exercer votre droit de suppression de données personnelles en nous écrivant à l'adresse email <a href=\"mailto:eva@anlci.gouv.fr\">eva@anlci.gouv.fr</a>",
       "label": "Entrez votre nom et prénom",
+      "avec_identifiant": "J'ai un identifiant",
+      "label_identifiant": "Entrez votre identifiant",
+      "sans_identifiant": "Je n'ai pas d'identifiant",
       "titre": "Bienvenue !"
     },
     "intro_consigne": {

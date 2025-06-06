@@ -96,6 +96,28 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         });
       },
 
+      connexionParIdentifiant(pasUtile, { identifiant }) {
+        this.state.erreurFormulaireIdentification = '';
+      
+        return registreUtilisateur.connexionParIdentifiant(identifiant)
+          .then((utilisateur) => utilisateur)
+          .catch((erreur) => {
+            if (erreur.message === 'identifiant_inconnu') {
+              this.state.erreurFormulaireIdentification = {
+                identifiant: traduction('accueil.erreurs.code_identifiant_inconnu')
+              };
+              return null;
+            } else if (erreur.message === 'erreur_reseau') {
+              this.state.erreurFormulaireIdentification = {
+                generale: traduction('accueil.erreurs.reseau')
+              };
+              return null;
+            } else {
+              throw erreur;
+            }
+          });
+      },
+
       recupereCampagne (pasUtile, { codeCampagne }) {
         this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
