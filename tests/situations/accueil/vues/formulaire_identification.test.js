@@ -74,7 +74,7 @@ describe("Le formulaire d'identification", function () {
         };
         return Promise.resolve({ id: '1' });
       };
-      wrapper.find('#formulaire-identification-champ-nom').setValue('  Mon pseudo  ');
+      wrapper.find('#formulaire-identification-champ').setValue('  Mon pseudo  ');
       wrapper.find('#formulaire-identification-champ-campagne').setValue('Mon code campagne');
       wrapper.find('input[type=checkbox]').setChecked();
       wrapper.vm.$nextTick(() => {
@@ -261,7 +261,7 @@ describe("Le formulaire d'identification", function () {
 
   describe('mode identifiant', function () {
     let wrapperIdentifiant;
-  
+
     beforeEach(() => {
       store.dispatch = jest.fn(() => Promise.resolve({ id: '1' }));
       wrapperIdentifiant = mount(FormulaireIdentification, {
@@ -272,39 +272,44 @@ describe("Le formulaire d'identification", function () {
       });
       wrapperIdentifiant.vm.modeConnexion = 'identifiant';
     });
-  
+
     it("n'affiche que le champ identifiant", () => {
-      const champs = wrapperIdentifiant.findAll('.champ-texte-accueil');
-      expect(champs.length).toBe(2);
-      expect(wrapperIdentifiant.find('#formulaire-identification-champ-identifiant').exists()).toBe(true);
-      expect(wrapperIdentifiant.find('#formulaire-identification-champ-nom').exists()).toBe(false);
+      const champ = wrapperIdentifiant.find('#formulaire-identification-champ');
+      expect(champ.exists()).toBe(true);
     });
-  
-    it("appelle connexionParIdentifiant avec les bonnes valeurs", function (done) {
-      wrapperIdentifiant.vm.identifiant = 'ABCD1234';
+
+    it("appelle 'inscris' avec codePersonnel et campagne en mode identifiant", function (done) {
+      wrapperIdentifiant.vm.modeConnexion = 'identifiant';
+      wrapperIdentifiant.vm.champIdentifiant = 'ABCD1234';
       wrapperIdentifiant.vm.campagne = 'ETE2025';
       wrapperIdentifiant.vm.cgu = true;
-  
+    
       store.dispatch = jest.fn((action, payload) => {
-        if (action === 'recupereCampagne') return Promise.resolve({ id: 1 });
-  
-        if (action === 'connexionParIdentifiant') {
-          expect(payload.identifiant).toBe('ABCD1234');
-          expect(payload.campagne).toBe('ETE2025');
-          done();
+        if (action === 'recupereCampagne') {
+          return Promise.resolve({ id: 1 });
         }
-  
+    
+        if (action === 'inscris') {
+          try {
+            expect(payload.codePersonnel).toBe('ABCD1234');
+            expect(payload.campagne).toBe('ETE2025');
+            done();
+          } catch (e) {
+            done(e);
+          }
+        }
+    
         return Promise.resolve();
       });
-  
+    
       wrapperIdentifiant.vm.envoieFormulaire();
     });
-  
-    it("affiche l'erreur identifiant si présente", async () => {
+
+    it("affiche l'erreur identifiant si presente", async () => {
       store.state.erreurFormulaireIdentification = { identifiant: 'Non reconnu' };
       wrapperIdentifiant.vm.modeConnexion = 'identifiant';
       await wrapperIdentifiant.vm.$nextTick();
-  
+
       const erreur = wrapperIdentifiant.find('.erreur-message');
       expect(erreur.exists()).toBe(true);
       expect(erreur.text()).toBe('Non reconnu');

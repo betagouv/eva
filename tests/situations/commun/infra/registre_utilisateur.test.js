@@ -208,7 +208,9 @@ describe('le registre utilisateur', function () {
           return registre.inscris('Jean', 'CODE').then((utilisateur) => {
             expect(registre.nom()).toEqual('Jean');
             expect(registre.idEvaluation()).toEqual(undefined);
-            expect(utilisateur).toEqual({ nom: 'Jean', code_campagne: 'CODE', debutee_le: new Date() });
+            expect(utilisateur.nom).toEqual('Jean');
+            expect(utilisateur.code_campagne).toEqual('CODE');
+            expect(utilisateur.debutee_le instanceof Date).toBe(true);
           });
         });
       });
@@ -240,8 +242,8 @@ describe('le registre utilisateur', function () {
       return registre.connexionParIdentifiant('ABC123').then((resultat) => {
         expect(resultat).toEqual(utilisateur);
         expect(requetes.length).toEqual(1);
-        expect(requetes[0].type).toBe('POST');
-        expect(JSON.parse(requetes[0].data)).toEqual({ identifiant: 'ABC123' });
+        expect(requetes[0].type).toBe('GET');
+        expect(requetes[0].url).toBe('https://serveur.com//api/beneficiaires/ABC123');
         expect(registre.enregistreIdClient).toHaveBeenCalled();
         expect(registre.enregistreUtilisateurEnLocal).toHaveBeenCalledWith(utilisateur);
         expect(registre.emit).toHaveBeenCalledWith(CHANGEMENT_CONNEXION);

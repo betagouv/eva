@@ -77,10 +77,10 @@ export function creeStore (registreUtilisateur, registreCampagne) {
     },
 
     actions: {
-      inscris (pasUtile, { nom, campagne }) {
+      inscris (pasUtile, { nom, campagne, codePersonnel }) {
         this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
-          registreUtilisateur.inscris(nom, campagne, this.state.conditionsDePassation)
+          registreUtilisateur.inscris(nom, campagne, this.state.conditionsDePassation, codePersonnel)
             .then(resolve)
             .catch((xhr) => {
               if (xhr.status === 422) {

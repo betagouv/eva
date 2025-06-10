@@ -13,36 +13,26 @@
 
         <div class="elements-formulaire">
           <div>
-            <label v-if="modeConnexion === 'nom'" for="formulaire-identification-champ-nom">
-              {{ $traduction('accueil.identification.label') }}
-            </label>
-            <label v-else for="formulaire-identification-champ-identifiant">
-              {{ $traduction('accueil.identification.label_identifiant') }}
+            <label for="formulaire-identification-champ">
+              {{ modeConnexion === 'nom'
+                ? $traduction('accueil.identification.label')
+                : $traduction('accueil.identification.label_identifiant') }}
             </label>
 
             <div class="element-formulaire">
               <input
-                v-if="modeConnexion === 'nom'"
-                id="formulaire-identification-champ-nom"
-                v-model.trim="nom"
+                id="formulaire-identification-champ"
+                v-model.trim="champIdentifiant"
                 type="text"
                 class="champ champ-texte champ-texte-accueil"
-                :disabled="nomForce"
-                autofocus>
-              <input
-                v-else
-                id="formulaire-identification-champ-identifiant"
-                v-model.trim="identifiant"
-                type="text"
-                class="champ champ-texte champ-texte-accueil"
-                autofocus>
+                :disabled="nomForce && modeConnexion === 'nom'"
+                autofocus
+              />
 
-              <span v-if="erreurFormulaireIdentification.nom" class="erreur-message">
-                {{ erreurFormulaireIdentification.nom }}
+              <span v-if="champErreur" class="erreur-message">
+                {{ champErreur }}
               </span>
-              <span v-if="erreurFormulaireIdentification.identifiant" class="erreur-message">
-                {{ erreurFormulaireIdentification.identifiant }}
-              </span>
+
               <p class="texte-lien" @click="toggleMode">
                 {{ modeConnexion === 'nom'
                     ? $traduction('accueil.identification.avec_identifiant')
@@ -106,6 +96,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    forceCodePersonnel: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
 
@@ -113,7 +108,7 @@ export default {
     return {
       modeConnexion: 'nom',
       nom: this.forceNom,
-      identifiant: '',
+      codePersonnel: this.forceCodePersonnel,
       campagne: this.forceCampagne.toUpperCase(),
       enCours: false,
       cgu: false
@@ -123,11 +118,28 @@ export default {
   computed: {
     ...mapState(['estConnecte', 'erreurFormulaireIdentification']),
 
+    champIdentifiant: {
+      get () {
+        return this.modeConnexion === 'nom' ? this.nom : this.codePersonnel;
+      },
+      set (val) {
+        if (this.modeConnexion === 'nom') {
+          this.nom = val;
+        } else {
+          this.codePersonnel = val;
+        }
+      }
+    },
+
+    champErreur () {
+      return this.modeConnexion === 'nom'
+        ? this.erreurFormulaireIdentification.nom
+        : this.erreurFormulaireIdentification.identifiant;
+    },
+
     estDesactive () {
       if (!this.cgu || this.enCours || this.campagne === '') return true;
-      return this.modeConnexion === 'nom'
-        ? this.nom === ''
-        : this.identifiant === '';
+      return this.champIdentifiant === '';
     },
 
     campagneForcee () {
@@ -154,11 +166,7 @@ export default {
         .then((campagne) => {
           if (!campagne) return;
 
-          if (this.modeConnexion === 'nom') {
-            return this.envoieFormulaireInscription();
-          } else {
-            return this.envoieFormulaireIdentifiant();
-          }
+          return this.envoieFormulaireInscription();
         })
         .finally(() => {
           this.enCours = false;
@@ -168,26 +176,18 @@ export default {
     envoieFormulaireInscription () {
       const conditionsDePassation = this.recupereConditions();
       this.$store.commit('metsAJourConditionsDePassation', { conditionsDePassation });
-
       return this.$store.dispatch('inscris', {
         nom: this.nom,
-        campagne: this.campagne
+        campagne: this.campagne,
+        conditionsDePassation,
+        codePersonnel: this.codePersonnel
       }).then((utilisateur) => {
         if (utilisateur) {
           this.nom = this.forceNom;
+          this.codePersonnel = this.forceCodePersonnel;
           this.cgu = false;
           this.campagne = this.forceCampagne;
         }
-      });
-    },
-
-    envoieFormulaireIdentifiant () {
-      const conditionsDePassation = this.recupereConditions();
-      this.$store.commit('metsAJourConditionsDePassation', { conditionsDePassation });
-
-      return this.$store.dispatch('connexionParIdentifiant', {
-        identifiant: this.identifiant,
-        campagne: this.campagne
       });
     },
 
