@@ -21,14 +21,11 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  connexionParIdentifiant(identifiant) {
-    const data = { identifiant };
-  
+  connexionParIdentifiant(codePersonnel) {  
     return new Promise((resolve, reject) => {
       this.$.ajax({
-        type: 'POST',
-        url: `${this.urlServeur}/api/identifiant_login`,
-        data: JSON.stringify(data),
+        type: 'GET',
+        url: `${this.urlServeur}/api/beneficiaires/${encodeURI(codePersonnel)}`,
         contentType: 'application/json; charset=utf-8',
         success: (utilisateur) => {
           this.enregistreIdClient();
@@ -62,8 +59,18 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  inscris (nom, codeCampagne, conditionsDePassation) {
-    const data = { nom: nom, code_campagne: codeCampagne, debutee_le: new Date(), conditions_passation_attributes: conditionsDePassation };
+  inscris (nom, codeCampagne, conditionsDePassation, codePersonnel) {
+    console.log('codePersonnel1', codePersonnel);
+    const data = {
+      code_campagne: codeCampagne,
+      debutee_le: new Date(),
+      conditions_passation_attributes: conditionsDePassation,
+      nom: nom,
+      code_personnel: codePersonnel
+    };
+    console.log('codePersonnel2', codePersonnel);
+    console.log('data', data);
+
     return new Promise((resolve, reject) => {
       this.creeEvaluation(data)
         .then((utilisateur) => {
