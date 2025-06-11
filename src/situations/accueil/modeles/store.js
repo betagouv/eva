@@ -96,15 +96,15 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         });
       },
 
-      connexionParIdentifiant(pasUtile, { identifiant }) {
+      connexionParCodePersonnel(pasUtile, { code_personnel }) {
         this.state.erreurFormulaireIdentification = '';
       
-        return registreUtilisateur.connexionParIdentifiant(identifiant)
+        return registreUtilisateur.connexionParCodePersonnel(code_personnel)
           .then((utilisateur) => utilisateur)
           .catch((erreur) => {
-            if (erreur.message === 'identifiant_inconnu') {
+            if (erreur.message === 'code_personnel_inconnu') {
               this.state.erreurFormulaireIdentification = {
-                identifiant: traduction('accueil.erreurs.code_identifiant_inconnu')
+                code_personnel: traduction('accueil.erreurs.code_personnel_inconnu')
               };
               return null;
             } else if (erreur.message === 'erreur_reseau') {

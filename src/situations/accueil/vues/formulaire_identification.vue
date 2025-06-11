@@ -16,13 +16,13 @@
             <label for="formulaire-identification-champ">
               {{ modeConnexion === 'nom'
                 ? $traduction('accueil.identification.label')
-                : $traduction('accueil.identification.label_identifiant') }}
+                : $traduction('accueil.identification.label_code_personnel') }}
             </label>
 
             <div class="element-formulaire">
               <input
                 id="formulaire-identification-champ"
-                v-model.trim="champIdentifiant"
+                v-model.trim="champCodePersonnel"
                 type="text"
                 class="champ champ-texte champ-texte-accueil"
                 :disabled="nomForce && modeConnexion === 'nom'"
@@ -35,8 +35,8 @@
 
               <p class="texte-lien" @click="toggleMode">
                 {{ modeConnexion === 'nom'
-                    ? $traduction('accueil.identification.avec_identifiant')
-                    : $traduction('accueil.identification.sans_identifiant') }}
+                    ? $traduction('accueil.identification.avec_code_personnel')
+                    : $traduction('accueil.identification.sans_code_personnel') }}
               </p>
             </div>
           </div>
@@ -118,7 +118,7 @@ export default {
   computed: {
     ...mapState(['estConnecte', 'erreurFormulaireIdentification']),
 
-    champIdentifiant: {
+    champCodePersonnel: {
       get () {
         return this.modeConnexion === 'nom' ? this.nom : this.codePersonnel;
       },
@@ -134,12 +134,12 @@ export default {
     champErreur () {
       return this.modeConnexion === 'nom'
         ? this.erreurFormulaireIdentification.nom
-        : this.erreurFormulaireIdentification.identifiant;
+        : this.erreurFormulaireIdentification.code_personnel;
     },
 
     estDesactive () {
       if (!this.cgu || this.enCours || this.campagne === '') return true;
-      return this.champIdentifiant === '';
+      return this.champCodePersonnel === '';
     },
 
     campagneForcee () {
@@ -192,7 +192,7 @@ export default {
     },
 
     toggleMode () {
-      this.modeConnexion = this.modeConnexion === 'nom' ? 'identifiant' : 'nom';
+      this.modeConnexion = this.modeConnexion === 'nom' ? 'code_personnel' : 'nom';
     },
 
     forceMajuscule () {

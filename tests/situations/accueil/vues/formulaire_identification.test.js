@@ -259,30 +259,30 @@ describe("Le formulaire d'identification", function () {
     });
   });
 
-  describe('mode identifiant', function () {
-    let wrapperIdentifiant;
+  describe('mode code_personnel', function () {
+    let wrapperCodePersonnel;
 
     beforeEach(() => {
       store.dispatch = jest.fn(() => Promise.resolve({ id: '1' }));
-      wrapperIdentifiant = mount(FormulaireIdentification, {
+      wrapperCodePersonnel = mount(FormulaireIdentification, {
         global: {
           plugins: [store],
           mocks: { $traduction: traduction }
         }
       });
-      wrapperIdentifiant.vm.modeConnexion = 'identifiant';
+      wrapperCodePersonnel.vm.modeConnexion = 'code_personnel';
     });
 
-    it("n'affiche que le champ identifiant", () => {
-      const champ = wrapperIdentifiant.find('#formulaire-identification-champ');
+    it("n'affiche que le champ code_personnel", () => {
+      const champ = wrapperCodePersonnel.find('#formulaire-identification-champ');
       expect(champ.exists()).toBe(true);
     });
 
-    it("appelle 'inscris' avec codePersonnel et campagne en mode identifiant", function (done) {
-      wrapperIdentifiant.vm.modeConnexion = 'identifiant';
-      wrapperIdentifiant.vm.champIdentifiant = 'ABCD1234';
-      wrapperIdentifiant.vm.campagne = 'ETE2025';
-      wrapperIdentifiant.vm.cgu = true;
+    it("appelle 'inscris' avec codePersonnel et campagne en mode code_personnel", function (done) {
+      wrapperCodePersonnel.vm.modeConnexion = 'code_personnel';
+      wrapperCodePersonnel.vm.champCodePersonnel = 'ABCD1234';
+      wrapperCodePersonnel.vm.campagne = 'ETE2025';
+      wrapperCodePersonnel.vm.cgu = true;
     
       store.dispatch = jest.fn((action, payload) => {
         if (action === 'recupereCampagne') {
@@ -302,15 +302,15 @@ describe("Le formulaire d'identification", function () {
         return Promise.resolve();
       });
     
-      wrapperIdentifiant.vm.envoieFormulaire();
+      wrapperCodePersonnel.vm.envoieFormulaire();
     });
 
-    it("affiche l'erreur identifiant si presente", async () => {
-      store.state.erreurFormulaireIdentification = { identifiant: 'Non reconnu' };
-      wrapperIdentifiant.vm.modeConnexion = 'identifiant';
-      await wrapperIdentifiant.vm.$nextTick();
+    it("affiche l'erreur code_personnel si presente", async () => {
+      store.state.erreurFormulaireIdentification = { code_personnel: 'Non reconnu' };
+      wrapperCodePersonnel.vm.modeConnexion = 'code_personnel';
+      await wrapperCodePersonnel.vm.$nextTick();
 
-      const erreur = wrapperIdentifiant.find('.erreur-message');
+      const erreur = wrapperCodePersonnel.find('.erreur-message');
       expect(erreur.exists()).toBe(true);
       expect(erreur.text()).toBe('Non reconnu');
     });
