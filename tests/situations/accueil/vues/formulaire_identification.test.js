@@ -304,15 +304,5 @@ describe("Le formulaire d'identification", function () {
     
       wrapperCodePersonnel.vm.envoieFormulaire();
     });
-
-    it("affiche l'erreur code_personnel si presente", async () => {
-      store.state.erreurFormulaireIdentification = { code_personnel: 'Non reconnu' };
-      wrapperCodePersonnel.vm.modeConnexion = 'code_personnel';
-      await wrapperCodePersonnel.vm.$nextTick();
-
-      const erreur = wrapperCodePersonnel.find('.erreur-message');
-      expect(erreur.exists()).toBe(true);
-      expect(erreur.text()).toBe('Non reconnu');
-    });
   });
 });

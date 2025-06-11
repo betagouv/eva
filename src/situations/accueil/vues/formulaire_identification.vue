@@ -29,7 +29,10 @@
                 autofocus
               />
 
-              <span v-if="champErreur" class="erreur-message">
+              <span v-if="champErreur && modeConnexion === 'nom'" class="erreur-message">
+                {{ champErreur }}
+              </span>
+              <span v-if="champErreur && modeConnexion === 'code_personnel'" class="erreur-message">
                 {{ champErreur }}
               </span>
 
@@ -134,7 +137,7 @@ export default {
     champErreur () {
       return this.modeConnexion === 'nom'
         ? this.erreurFormulaireIdentification.nom
-        : this.erreurFormulaireIdentification.code_personnel;
+        : this.erreurFormulaireIdentification.beneficiaire;
     },
 
     estDesactive () {

@@ -84,7 +84,11 @@ export function creeStore (registreUtilisateur, registreCampagne) {
             .then(resolve)
             .catch((xhr) => {
               if (xhr.status === 422) {
-                this.state.erreurFormulaireIdentification = xhr.responseJSON;
+                let erreurs = xhr.responseJSON;
+                if (Array.isArray(erreurs.beneficiaire) && erreurs.beneficiaire.includes("doit exister")) {
+                  erreurs.beneficiaire = traduction('accueil.erreurs.code_personnel_inconnu');
+                }
+                this.state.erreurFormulaireIdentification = erreurs;
                 resolve();
               } else if (xhr.status === 0) {
                 this.state.erreurFormulaireIdentification = { generale: traduction('accueil.erreurs.reseau') };
