@@ -231,15 +231,15 @@ describe('le registre utilisateur', function () {
     });
   });
 
-  describe('#connexionParIdentifiant()', function () {
-    it('permet de connecter un utilisateur avec identifiant', function () {
+  describe('#connexionParCodePersonnel()', function () {
+    it('permet de connecter un utilisateur avec code_personnel', function () {
       const utilisateur = { id: 1, nom: 'Jean' };
       const registre = unRegistre(utilisateur, 'https://serveur.com/');
       jest.spyOn(registre, 'enregistreIdClient');
       jest.spyOn(registre, 'enregistreUtilisateurEnLocal');
       jest.spyOn(registre, 'emit');
   
-      return registre.connexionParIdentifiant('ABC123').then((resultat) => {
+      return registre.connexionParCodePersonnel('ABC123').then((resultat) => {
         expect(resultat).toEqual(utilisateur);
         expect(requetes.length).toEqual(1);
         expect(requetes[0].type).toBe('GET');
@@ -250,7 +250,7 @@ describe('le registre utilisateur', function () {
       });
     });
   
-    it('remonte une erreur identifiant_inconnu en cas de 404', function () {
+    it('remonte une erreur code_personnel_inconnu en cas de 404', function () {
       const registre = unRegistre(null, 'https://serveur.com/');
       requetes.length = 0;
       registre.$.ajax = (options) => {
@@ -258,15 +258,15 @@ describe('le registre utilisateur', function () {
         options.error({ status: 404 });
       };
   
-      return registre.connexionParIdentifiant('UNKNOWN').catch((erreur) => {
-        expect(erreur.message).toEqual('identifiant_inconnu');
+      return registre.connexionParCodePersonnel('UNKNOWN').catch((erreur) => {
+        expect(erreur.message).toEqual('code_personnel_inconnu');
       });
     });
   
     it('remonte une erreur erreur_reseau en cas de status 0', function () {
       const registre = unRegistre(null, 'https://serveur.com/', false);
   
-      return registre.connexionParIdentifiant('DISCONNECTED').catch((erreur) => {
+      return registre.connexionParCodePersonnel('DISCONNECTED').catch((erreur) => {
         expect(erreur.message).toEqual('erreur_reseau');
       });
     });
@@ -279,7 +279,7 @@ describe('le registre utilisateur', function () {
         options.error(erreurServeur);
       };
   
-      return registre.connexionParIdentifiant('BUG').catch((erreur) => {
+      return registre.connexionParCodePersonnel('BUG').catch((erreur) => {
         expect(erreur).toBe(erreurServeur);
       });
     });
