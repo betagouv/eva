@@ -24,7 +24,7 @@
       <overlay-erreur-chargement v-else-if="erreurChargement" />
       <overlay-attente v-else raison='chargement' />
     </div>
-    <accueil :force-campagne="forceCampagne" :force-nom="forceNom" v-else style="z-index: 0;"/>
+    <accueil :force-campagne="forceCampagne" :force-nom="forceNom" :force-code-personnel="forceCodePersonnel" v-else style="z-index: 0;"/>
   </div>
 </template>
 
@@ -57,6 +57,7 @@ export default {
       erreurLectureSon: false,
       forceCampagne: parametresUrl.code || '',
       forceNom: parametresUrl.nom || '',
+      forceCodePersonnel: parametresUrl.codePersonnel || '',
       afficheErreurSmartphone: false
     };
   },
