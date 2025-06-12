@@ -25,7 +25,7 @@
                 v-model.trim="champCodePersonnel"
                 type="text"
                 class="champ champ-texte champ-texte-accueil"
-                :disabled="nomForce && modeConnexion === 'nom'"
+                :disabled="(nomForce && modeConnexion === 'nom' || codePersonnelForce && modeConnexion === 'code_personnel')"
                 autofocus
               />
 
@@ -132,6 +132,10 @@ export default {
           this.codePersonnel = val;
         }
       }
+    },
+
+    codePersonnelForce () {
+      return this.forceCodePersonnel !== '';
     },
 
     champErreur () {
