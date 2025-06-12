@@ -85,7 +85,7 @@
         </span>
       </div>
     </div>
-    <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom" />
+    <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom"  :force-code-personnel="forceCodePersonnel" />
     <transition-fade>
       <intro-consigne
         v-if="afficheConsigne"
@@ -133,6 +133,10 @@ export default {
       required: false
     },
     forceNom: {
+      type: String,
+      required: false
+    },
+    forceCodePersonnel: {
       type: String,
       required: false
     }
