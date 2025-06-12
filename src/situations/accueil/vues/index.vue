@@ -57,7 +57,7 @@ export default {
       erreurLectureSon: false,
       forceCampagne: parametresUrl.code || '',
       forceNom: parametresUrl.nom || '',
-      forceCodePersonnel: parametresUrl.codePersonnel || '',
+      forceCodePersonnel: parametresUrl.code_personnel || '',
       afficheErreurSmartphone: false
     };
   },
