@@ -110,7 +110,7 @@ export default {
   data () {
     return {
       nom: this.forceNom,
-      modeConnexion: this.forceCodePersonnel ? 'identifiant' : 'nom',
+      modeConnexion: this.forceCodePersonnel ? 'code_personnel' : 'nom',
       codePersonnel: this.forceCodePersonnel,
       campagne: this.forceCampagne.toUpperCase(),
       enCours: false,
