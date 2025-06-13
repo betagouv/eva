@@ -126,6 +126,13 @@ describe('La vue accueil', function () {
     expect(mockRecupereSituation).not.toHaveBeenCalled();
   });
 
+  it('déconnecte si un code personnel est passé en propsData', function () {
+    store.state.estConnecte = true;
+    accueil({ forceCodePersonnel: 'CODE1234' });
+    expect(mockDeconnecte).toHaveBeenCalled();
+    expect(mockRecupereSituation).not.toHaveBeenCalled();
+  });
+
   describe('#recupereSituations', function () {
     afterAll(function () {
       jest.useRealTimers();
