@@ -209,7 +209,7 @@ export default {
   },
 
   mounted () {
-    if (this.forceCampagne) {
+    if (this.forceCampagne || this.forceCodePersonnel) {
       this.deconnecte();
       return;
     }
