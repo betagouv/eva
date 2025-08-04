@@ -312,41 +312,41 @@ describe("Le store de l'accueil", function () {
     });
   });
 
-  describe('Action : connexionParCodePersonnel', function () {
-    it('connecte un utilisateur avec un code_personnel valide', function (done) {
-      registreUtilisateur.connexionParCodePersonnel = () => Promise.resolve({ nom: 'Valide' });
+  describe('Action : connexionParCodeBeneficiaire', function () {
+    it('connecte un utilisateur avec un code_beneficiaire valide', function (done) {
+      registreUtilisateur.connexionParCodeBeneficiaire = () => Promise.resolve({ nom: 'Valide' });
       const store = creeStore(registreUtilisateur, registreCampagne);
   
-      store.dispatch('connexionParCodePersonnel', {
-        code_personnel: 'ABC123'
+      store.dispatch('connexionParCodeBeneficiaire', {
+        code_beneficiaire: 'ABC123'
       }).then((utilisateur) => {
         expect(utilisateur).toEqual({ nom: 'Valide' });
         done();
       });
     });
   
-    it('affiche une erreur si code_personnel inconnu', function (done) {
-      registreUtilisateur.connexionParCodePersonnel = () =>
-        Promise.reject(new Error('code_personnel_inconnu'));
+    it('affiche une erreur si code_beneficiaire inconnu', function (done) {
+      registreUtilisateur.connexionParCodeBeneficiaire = () =>
+        Promise.reject(new Error('code_beneficiaire_inconnu'));
       const store = creeStore(registreUtilisateur, registreCampagne);
   
-      store.dispatch('connexionParCodePersonnel', {
-        code_personnel: 'XYZ999'
+      store.dispatch('connexionParCodeBeneficiaire', {
+        code_beneficiaire: 'XYZ999'
       }).then((utilisateur) => {
         expect(utilisateur).toBeNull();
-        expect(store.state.erreurFormulaireIdentification.code_personnel)
-          .toEqual('accueil.erreurs.code_personnel_inconnu');
+        expect(store.state.erreurFormulaireIdentification.code_beneficiaire)
+          .toEqual('accueil.erreurs.code_beneficiaire_inconnu');
         done();
       });
     });
   
     it('gère une erreur réseau', function (done) {
-      registreUtilisateur.connexionParCodePersonnel = () =>
+      registreUtilisateur.connexionParCodeBeneficiaire = () =>
         Promise.reject(new Error('erreur_reseau'));
       const store = creeStore(registreUtilisateur, registreCampagne);
   
-      store.dispatch('connexionParCodePersonnel', {
-        code_personnel: 'ABC123'
+      store.dispatch('connexionParCodeBeneficiaire', {
+        code_beneficiaire: 'ABC123'
       }).then((utilisateur) => {
         expect(utilisateur).toBeNull();
         expect(store.state.erreurFormulaireIdentification.generale)
@@ -356,12 +356,12 @@ describe("Le store de l'accueil", function () {
     });
   
     it('propage une erreur non typée', function (done) {
-      registreUtilisateur.connexionParCodePersonnel = () =>
+      registreUtilisateur.connexionParCodeBeneficiaire = () =>
         Promise.reject(new Error('Erreur serveur'));
       const store = creeStore(registreUtilisateur, registreCampagne);
   
-      store.dispatch('connexionParCodePersonnel', {
-        code_personnel: 'ABC123'
+      store.dispatch('connexionParCodeBeneficiaire', {
+        code_beneficiaire: 'ABC123'
       }).catch((erreur) => {
         expect(erreur.message).toEqual('Erreur serveur');
         done();

@@ -259,30 +259,30 @@ describe("Le formulaire d'identification", function () {
     });
   });
 
-  describe('mode code_personnel', function () {
-    let wrapperCodePersonnel;
+  describe('mode code_beneficiaire', function () {
+    let wrapperCodeBeneficiaire;
 
     beforeEach(() => {
       store.dispatch = jest.fn(() => Promise.resolve({ id: '1' }));
-      wrapperCodePersonnel = mount(FormulaireIdentification, {
+      wrapperCodeBeneficiaire = mount(FormulaireIdentification, {
         global: {
           plugins: [store],
           mocks: { $traduction: traduction }
         }
       });
-      wrapperCodePersonnel.vm.modeConnexion = 'code_personnel';
+      wrapperCodeBeneficiaire.vm.modeConnexion = 'code_beneficiaire';
     });
 
-    it("n'affiche que le champ code_personnel", () => {
-      const champ = wrapperCodePersonnel.find('#formulaire-identification-champ');
+    it("n'affiche que le champ code_beneficiaire", () => {
+      const champ = wrapperCodeBeneficiaire.find('#formulaire-identification-champ');
       expect(champ.exists()).toBe(true);
     });
 
-    it("appelle 'inscris' avec codePersonnel et campagne en mode code_personnel", function (done) {
-      wrapperCodePersonnel.vm.modeConnexion = 'code_personnel';
-      wrapperCodePersonnel.vm.champCodePersonnel = 'ABCD1234';
-      wrapperCodePersonnel.vm.campagne = 'ETE2025';
-      wrapperCodePersonnel.vm.cgu = true;
+    it("appelle 'inscris' avec CodeBeneficiaire et campagne en mode code_beneficiaire", function (done) {
+      wrapperCodeBeneficiaire.vm.modeConnexion = 'code_beneficiaire';
+      wrapperCodeBeneficiaire.vm.champCodeBeneficiaire = 'ABCD1234';
+      wrapperCodeBeneficiaire.vm.campagne = 'ETE2025';
+      wrapperCodeBeneficiaire.vm.cgu = true;
     
       store.dispatch = jest.fn((action, payload) => {
         if (action === 'recupereCampagne') {
@@ -291,7 +291,7 @@ describe("Le formulaire d'identification", function () {
     
         if (action === 'inscris') {
           try {
-            expect(payload.codePersonnel).toBe('ABCD1234');
+            expect(payload.CodeBeneficiaire).toBe('ABCD1234');
             expect(payload.campagne).toBe('ETE2025');
             done();
           } catch (e) {
@@ -302,7 +302,7 @@ describe("Le formulaire d'identification", function () {
         return Promise.resolve();
       });
     
-      wrapperCodePersonnel.vm.envoieFormulaire();
+      wrapperCodeBeneficiaire.vm.envoieFormulaire();
     });
   });
 });

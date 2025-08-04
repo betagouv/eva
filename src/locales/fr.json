@@ -22,16 +22,16 @@
     "erreurs": {
       "reseau": "Impossible de contacter le serveur, Vérifiez votre connexion réseau",
       "code_campagne_inconnu": "Code inconnu",
-      "code_personnel_inconnu": "Code personnel inconnu. Vérifiez que vous avez entré le bon code personnel."
+      "code_beneficiaire_inconnu": "Code bénéficiaire inconnu. Vérifiez que vous avez entré le bon code bénéficiaire."
     },
     "identification": {
       "bouton": "Démarrer",
       "campagne": "Code de la campagne",
       "cgu": "Eva traite les données recueillies pour détecter et positionner vos compétences transversales. Ces données ne seront pas exploitées commercialement. Elles peuvent être transmises à l'entreprise ou à l’opérateur de service public partenaire. Vous pouvez en savoir plus en consultant nos <a href=\"https://eva.anlci.gouv.fr/condition-generales-dutilisation/\" target=\"_blank\">Conditions générales d'utilisation</a> et exercer votre droit de suppression de données personnelles en nous écrivant à l'adresse email <a href=\"mailto:eva@anlci.gouv.fr\">eva@anlci.gouv.fr</a>",
       "label": "Entrez votre nom et prénom",
-      "avec_code_personnel": "J'ai un code personnel",
-      "label_code_personnel": "Entrez votre code personnel",
-      "sans_code_personnel": "Je n'ai pas de code personnel",
+      "avec_code_beneficiaire": "J'ai un code bénéficiaire",
+      "label_code_beneficiaire": "Entrez votre code bénéficiaire",
+      "sans_code_beneficiaire": "Je n'ai pas de code bénéficiaire",
       "titre": "Bienvenue !"
     },
     "intro_consigne": {
