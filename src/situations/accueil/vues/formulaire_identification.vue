@@ -16,30 +16,30 @@
             <label for="formulaire-identification-champ">
               {{ modeConnexion === 'nom'
                 ? $traduction('accueil.identification.label')
-                : $traduction('accueil.identification.label_code_personnel') }}
+                : $traduction('accueil.identification.label_code_beneficiaire') }}
             </label>
 
             <div class="element-formulaire">
               <input
                 id="formulaire-identification-champ"
-                v-model.trim="champCodePersonnel"
+                v-model.trim="champCodeBeneficiaire"
                 type="text"
                 class="champ champ-texte champ-texte-accueil"
-                :disabled="(nomForce && modeConnexion === 'nom' || codePersonnelForce && modeConnexion === 'code_personnel')"
+                :disabled="(nomForce && modeConnexion === 'nom' || CodeBeneficiaireForce && modeConnexion === 'code_beneficiaire')"
                 autofocus
               />
 
               <span v-if="champErreur && modeConnexion === 'nom'" class="erreur-message">
                 {{ champErreur }}
               </span>
-              <span v-if="champErreur && modeConnexion === 'code_personnel'" class="erreur-message">
+              <span v-if="champErreur && modeConnexion === 'code_beneficiaire'" class="erreur-message">
                 {{ champErreur }}
               </span>
 
               <p class="texte-lien" @click="toggleMode">
                 {{ modeConnexion === 'nom'
-                    ? $traduction('accueil.identification.avec_code_personnel')
-                    : $traduction('accueil.identification.sans_code_personnel') }}
+                    ? $traduction('accueil.identification.avec_code_beneficiaire')
+                    : $traduction('accueil.identification.sans_code_beneficiaire') }}
               </p>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default {
       required: false,
       default: ''
     },
-    forceCodePersonnel: {
+    forceCodeBeneficiaire: {
       type: String,
       required: false,
       default: ''
@@ -110,8 +110,8 @@ export default {
   data () {
     return {
       nom: this.forceNom,
-      modeConnexion: this.forceCodePersonnel ? 'code_personnel' : 'nom',
-      codePersonnel: this.forceCodePersonnel,
+      modeConnexion: this.forceCodeBeneficiaire ? 'code_beneficiaire' : 'nom',
+      CodeBeneficiaire: this.forceCodeBeneficiaire,
       campagne: this.forceCampagne.toUpperCase(),
       enCours: false,
       cgu: false
@@ -121,21 +121,21 @@ export default {
   computed: {
     ...mapState(['estConnecte', 'erreurFormulaireIdentification']),
 
-    champCodePersonnel: {
+    champCodeBeneficiaire: {
       get () {
-        return this.modeConnexion === 'nom' ? this.nom : this.codePersonnel;
+        return this.modeConnexion === 'nom' ? this.nom : this.CodeBeneficiaire;
       },
       set (val) {
         if (this.modeConnexion === 'nom') {
           this.nom = val;
         } else {
-          this.codePersonnel = val;
+          this.CodeBeneficiaire = val;
         }
       }
     },
 
-    codePersonnelForce () {
-      return this.forceCodePersonnel !== '';
+    CodeBeneficiaireForce () {
+      return this.forceCodeBeneficiaire !== '';
     },
 
     champErreur () {
@@ -146,7 +146,7 @@ export default {
 
     estDesactive () {
       if (!this.cgu || this.enCours || this.campagne === '') return true;
-      return this.champCodePersonnel === '';
+      return this.champCodeBeneficiaire === '';
     },
 
     campagneForcee () {
@@ -187,11 +187,11 @@ export default {
         nom: this.nom,
         campagne: this.campagne,
         conditionsDePassation,
-        codePersonnel: this.codePersonnel
+        CodeBeneficiaire: this.CodeBeneficiaire
       }).then((utilisateur) => {
         if (utilisateur) {
           this.nom = this.forceNom;
-          this.codePersonnel = this.forceCodePersonnel;
+          this.CodeBeneficiaire = this.forceCodeBeneficiaire;
           this.cgu = false;
           this.campagne = this.forceCampagne;
         }
@@ -199,7 +199,7 @@ export default {
     },
 
     toggleMode () {
-      this.modeConnexion = this.modeConnexion === 'nom' ? 'code_personnel' : 'nom';
+      this.modeConnexion = this.modeConnexion === 'nom' ? 'code_beneficiaire' : 'nom';
     },
 
     forceMajuscule () {

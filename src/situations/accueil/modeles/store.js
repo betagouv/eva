@@ -77,16 +77,16 @@ export function creeStore (registreUtilisateur, registreCampagne) {
     },
 
     actions: {
-      inscris (pasUtile, { nom, campagne, codePersonnel }) {
+      inscris (pasUtile, { nom, campagne, CodeBeneficiaire }) {
         this.state.erreurFormulaireIdentification = '';
         return new Promise((resolve, reject) => {
-          registreUtilisateur.inscris(nom, campagne, this.state.conditionsDePassation, codePersonnel)
+          registreUtilisateur.inscris(nom, campagne, this.state.conditionsDePassation, CodeBeneficiaire)
             .then(resolve)
             .catch((xhr) => {
               if (xhr.status === 422) {
                 let erreurs = xhr.responseJSON;
                 if (Array.isArray(erreurs.beneficiaire) && erreurs.beneficiaire.includes("doit exister")) {
-                  erreurs.beneficiaire = traduction('accueil.erreurs.code_personnel_inconnu');
+                  erreurs.beneficiaire = traduction('accueil.erreurs.code_beneficiaire_inconnu');
                 }
                 this.state.erreurFormulaireIdentification = erreurs;
                 resolve();
@@ -100,15 +100,15 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         });
       },
 
-      connexionParCodePersonnel(pasUtile, { code_personnel }) {
+      connexionParCodeBeneficiaire(pasUtile, { code_beneficiaire }) {
         this.state.erreurFormulaireIdentification = '';
       
-        return registreUtilisateur.connexionParCodePersonnel(code_personnel)
+        return registreUtilisateur.connexionParCodeBeneficiaire(code_beneficiaire)
           .then((utilisateur) => utilisateur)
           .catch((erreur) => {
-            if (erreur.message === 'code_personnel_inconnu') {
+            if (erreur.message === 'code_beneficiaire_inconnu') {
               this.state.erreurFormulaireIdentification = {
-                code_personnel: traduction('accueil.erreurs.code_personnel_inconnu')
+                code_beneficiaire: traduction('accueil.erreurs.code_beneficiaire_inconnu')
               };
               return null;
             } else if (erreur.message === 'erreur_reseau') {

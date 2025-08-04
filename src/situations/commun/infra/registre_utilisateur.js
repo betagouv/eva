@@ -21,11 +21,11 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  connexionParCodePersonnel(codePersonnel) {  
+  connexionParCodeBeneficiaire(CodeBeneficiaire) {  
     return new Promise((resolve, reject) => {
       this.$.ajax({
         type: 'GET',
-        url: `${this.urlServeur}/api/beneficiaires/${encodeURI(codePersonnel)}`,
+        url: `${this.urlServeur}/api/beneficiaires/${encodeURI(CodeBeneficiaire)}`,
         contentType: 'application/json; charset=utf-8',
         success: (utilisateur) => {
           this.enregistreIdClient();
@@ -35,7 +35,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
         },
         error: (xhr) => {
           if (xhr.status === 404) {
-            reject(new Error('code_personnel_inconnu'));
+            reject(new Error('code_beneficiaire_inconnu'));
           } else if (xhr.status === 0) {
             reject(new Error('erreur_reseau'));
           } else {
@@ -59,13 +59,13 @@ export default class RegistreUtilisateur extends BaseRegistre {
     });
   }
 
-  inscris (nom, codeCampagne, conditionsDePassation, codePersonnel) {
+  inscris (nom, codeCampagne, conditionsDePassation, CodeBeneficiaire) {
     const data = {
       code_campagne: codeCampagne,
       debutee_le: new Date(),
       conditions_passation_attributes: conditionsDePassation,
       nom: nom,
-      code_personnel: codePersonnel
+      code_beneficiaire: CodeBeneficiaire
     };
 
     return new Promise((resolve, reject) => {

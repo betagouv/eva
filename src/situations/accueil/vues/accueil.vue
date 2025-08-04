@@ -85,7 +85,7 @@
         </span>
       </div>
     </div>
-    <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom"  :force-code-personnel="forceCodePersonnel" />
+    <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom"  :force-code-personnel="forceCodeBeneficiaire" />
     <transition-fade>
       <intro-consigne
         v-if="afficheConsigne"
@@ -136,7 +136,7 @@ export default {
       type: String,
       required: false
     },
-    forceCodePersonnel: {
+    forceCodeBeneficiaire: {
       type: String,
       required: false
     }
@@ -209,7 +209,7 @@ export default {
   },
 
   mounted () {
-    if (this.forceCampagne || this.forceCodePersonnel) {
+    if (this.forceCampagne || this.forceCodeBeneficiaire) {
       this.deconnecte();
       return;
     }

@@ -1,6 +1,6 @@
-export default class ErreurConnexionCodePersonnel extends Error {
+export default class ErreurConnexionCodeBeneficiaire extends Error {
   constructor (...params) {
     super(...params);
-    this.name = 'ErreurConnexionCodePersonnel';
+    this.name = 'ErreurConnexionCodeBeneficiaire';
   }
 }
