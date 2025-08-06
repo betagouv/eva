@@ -85,7 +85,7 @@
         </span>
       </div>
     </div>
-    <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom"  :force-code-personnel="forceCodeBeneficiaire" />
+    <formulaire-identification :force-campagne="forceCampagne" :force-nom="forceNom"  :force-code-beneficiaire="forceCodeBeneficiaire" />
     <transition-fade>
       <intro-consigne
         v-if="afficheConsigne"
