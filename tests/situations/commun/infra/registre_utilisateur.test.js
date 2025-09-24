@@ -376,6 +376,7 @@ describe('le registre utilisateur', function () {
           expect(requetes.length).toBe(1);
           expect(requetes[0].type).toBe('POST');
           expect(requetes[0].url).toBe('https://url_serveur/api/evaluations/id_evaluation/fin');
+          expect(requetes[0].data).toEqual(JSON.stringify({ terminee_le: '2021-10-08T08:45:50.084Z' }));
           expect(window.localStorage.getItem('evaluation_identifiant_client'))
             .toBe('{"id":"id_evaluation","terminee_le":"2021-10-08T08:45:50.084Z"}');
         });

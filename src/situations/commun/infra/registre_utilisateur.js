@@ -99,6 +99,7 @@ export default class RegistreUtilisateur extends BaseRegistre {
       this.$.ajax({
         type: 'POST',
         url: `${this.urlServeur}/api/evaluations/${utilisateur.id}/fin`,
+        data: JSON.stringify({ terminee_le: dateFin }),
         contentType: 'application/json; charset=utf-8',
         success: (reponse) => {
           resolve(reponse.competences_fortes);
