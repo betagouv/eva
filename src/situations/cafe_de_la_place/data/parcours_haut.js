@@ -66,6 +66,7 @@ const HPar2 = {
   id: 'HPar2',
   nom_technique: 'hpar_2',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: journalAvecNouvelle,
   intitule: "C'est plus clair comme ça ! Mais quel pourrait être le titre de cet article ?",
@@ -103,6 +104,7 @@ const HPar3 = {
   nom_technique: 'hpar_3',
   illustration: journalAvecNouvelleZoom,
   type: 'qcm',
+  passable: true,
   score: 1,
   intitule: "L'article utilise le mot « frayeur ». Si on voulait le remplacer par un autre mot qui a un sens proche, lequel pourrait-on choisir ?",
   choix: [
@@ -236,6 +238,7 @@ const HCvf3 = {
   id: 'HCvf3',
   nom_technique: 'hcvf_3',
   type: 'qcm',
+  passable: true,
   illustration: rubriqueEnvironnement,
   extensionVue: 'clic-sur-mots',
   template: 'article article--villes-fleuries',
@@ -262,6 +265,7 @@ const HCvf4 = {
   id: 'HCvf4',
   nom_technique: 'hcvf_4',
   type: 'qcm',
+  passable: true,
   extensionVue: 'clic-sur-mots',
   template: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
@@ -573,7 +577,7 @@ const HPfb8 = {
   illustration: telephoneEMail,
   retranscription_audio: "Les dahlias, couleur bleu azuré, étaient en fait de couleur rouge.\
     Ecrivez « rouge »",
-  reponses:  [
+  reponses: [
     {
       nom_technique: 'HPfb/rouge',
       intitule: 'rouge',
@@ -724,18 +728,18 @@ const HPfb14 = {
   illustration: telephoneEMail,
   retranscription_audio: "Ecrivez « cyclistes »",
   reponses:
-  [
-    {
-      nom_technique: 'HPfb/cyclistes',
-      intitule: 'cyclistes',
-      type_choix: 'bonus'
-    },
-    {
-      nom_technique: 'HPfb/cycliste',
-      intitule: 'cycliste',
-      type_choix: 'bon'
-    }
-  ]
+    [
+      {
+        nom_technique: 'HPfb/cyclistes',
+        intitule: 'cyclistes',
+        type_choix: 'bonus'
+      },
+      {
+        nom_technique: 'HPfb/cycliste',
+        intitule: 'cycliste',
+        type_choix: 'bon'
+      }
+    ]
 };
 
 const HPfb15 = {

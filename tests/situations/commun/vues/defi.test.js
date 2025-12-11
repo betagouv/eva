@@ -10,30 +10,30 @@ import ChampSaisie from 'commun/vues/defi/champ_saisie';
 
 import { DEMARRE } from 'commun/modeles/situation';
 
-describe("La vue d'un défi", function () {
+describe("La vue d'un défi", function() {
   let question;
   let store;
   let depotRessources;
   let journal;
 
-  beforeEach(function () {
+  beforeEach(function() {
     store = creeStore();
-    question = { id: 154, nom_technique: 'question1', intitule: 'quelle couleur ?' };
+    question = { id: 154, nom_technique: 'question1', intitule: 'quelle couleur ?', score: 1 };
     depotRessources = {
       illustrationQuestion: () => { return {}; },
       existeMessageAudio: () => false,
       existeMessageVideo: () => false
     };
-    journal = { enregistre: () => {} };
+    journal = { enregistre: () => { } };
   });
 
-  function composant (question) {
+  function composant(question) {
     return mount(Defi, {
       global: {
         plugins: [store],
         mocks: {
           $depotRessources: depotRessources,
-          $traduction: () => {},
+          $traduction: () => { },
           $journal: journal
         },
         stubs: {
@@ -44,49 +44,99 @@ describe("La vue d'un défi", function () {
     });
   }
 
-  it("affiche l'entête de la question", function () {
+  it("affiche l'entête de la question", function() {
     const vue = composant(question);
 
     expect(vue.findComponent(QuestionEntete).exists()).toBe(true);
   });
 
-  describe('#texteBouton', function () {
-    it("renvoie le texte 'valider'", function () {
+  describe('#texteBouton', function() {
+    it("renvoie le texte 'valider'", function() {
       const vue = composant(question);
       expect(vue.vm.texteBouton).toEqual('defi.valider');
     });
   });
 
-  describe('quand le défit est de type saisie', function () {
-    beforeEach(function () {
+  describe('quand le défit est de type saisie', function() {
+    beforeEach(function() {
       question.type = 'saisie';
     });
 
-    describe('rédaction', function () {
-      beforeEach(function () {
+    describe('rédaction', function() {
+      beforeEach(function() {
         question.sous_type = 'redaction';
       });
 
-      it('affiche le composant rédaction note', function () {
+      it('affiche le composant rédaction note', function() {
         expect(composant(question).findComponent(RedactionNote).exists()).toBe(true);
       });
     });
 
-    describe('numerique', function () {
-      beforeEach(function () {
+    describe('numerique', function() {
+      beforeEach(function() {
         question.sous_type = 'numerique';
       });
 
-      it('affiche le composant champ de saisie', function () {
+      it('affiche le composant champ de saisie', function() {
         expect(composant(question).findComponent(ChampSaisie).exists()).toBe(true);
       });
     });
   });
 
-  describe('quand le défi est de type qcm', function () {
+  describe('quand le défi ne peut pas être passé', function() {
     let vue;
 
-    beforeEach(function () {
+    beforeEach(function() {
+      question.type = 'qcm';
+      question.passable = false;
+      vue = composant(question);
+    });
+
+    it('affiche le bouton "je ne sais pas"', function() {
+      expect(vue.find('#bouton-passer').exists()).toBe(false);
+    });
+  });
+
+  describe('quand le défi peut être passé', function() {
+    let vue;
+
+    beforeEach(function() {
+      question.type = 'qcm';
+      question.passable = true;
+      vue = composant(question);
+    });
+
+    it('affiche le bouton "je ne sais pas"', function() {
+      expect(vue.find('#bouton-passer').exists()).toBe(true);
+    });
+
+    it('emet un événement réponse quand on appuie sur le bouton passer', function(done) {
+      const reponse = {
+        question: question.id,
+        intitule: question.intitule,
+        metacompetence: undefined,
+        scoreMax: 1,
+        reponse: undefined,
+        neSaisPas: true,
+        succes: false
+      };
+      vue.vm.$nextTick(() => {
+        vue.find('#bouton-passer').trigger('click');
+        vue.vm.$nextTick(() => {
+          expect(vue.vm.envoyer).toBe(true);
+          expect(vue.emitted().reponse.length).toEqual(1);
+          expect(vue.emitted().reponse[0][0]).toEqual(reponse);
+          done();
+        });
+      });
+    });
+
+  });
+
+  describe('quand le défi est de type qcm', function() {
+    let vue;
+
+    beforeEach(function() {
       question.choix = [
         { id: 'uid-32', bonneReponse: true },
         { id: 'uid-32-2', bonneReponse: false }
@@ -96,11 +146,11 @@ describe("La vue d'un défi", function () {
       vue = composant(question);
     });
 
-    it('affiche le composant qcm', function () {
+    it('affiche le composant qcm', function() {
       expect(vue.findComponent(Qcm).exists()).toBe(true);
     });
 
-    it('emet un événement réponse quand on appuie sur le bouton envoi', function (done) {
+    it('emet un événement réponse quand on appuie sur le bouton envoie', function(done) {
       const reponse = {
         question: question.id,
         intitule: question.intitule,
@@ -111,7 +161,7 @@ describe("La vue d'un défi", function () {
       };
       vue.findComponent(Qcm).vm.$emit('reponse', reponse);
       vue.vm.$nextTick(() => {
-        vue.find('.question-bouton').trigger('click');
+        vue.find('#bouton-envoie').trigger('click');
         vue.vm.$nextTick(() => {
           expect(vue.vm.envoyer).toBe(true);
           expect(vue.emitted().reponse.length).toEqual(1);
@@ -122,11 +172,11 @@ describe("La vue d'un défi", function () {
     });
   });
 
-  it("emet un événement réponse vide quand il n'y a pas de choix de réponse", function (done) {
+  it("emet un événement réponse vide quand il n'y a pas de choix de réponse", function(done) {
     question.choix = [];
-    question.type= 'qcm';
+    question.type = 'qcm';
     const vue = composant(question);
-    vue.find('.question-bouton').trigger('click');
+    vue.find('#bouton-envoie').trigger('click');
     vue.vm.$nextTick(() => {
       expect(vue.emitted().reponse.length).toEqual(1);
       expect(vue.emitted().reponse[0][0]).toEqual({
@@ -139,11 +189,11 @@ describe("La vue d'un défi", function () {
     });
   });
 
-  it("emet la métacompétence quand il y en a une sur la question", function (done) {
-    question.type= 'qcm';
+  it("emet la métacompétence quand il y en a une sur la question", function(done) {
+    question.type = 'qcm';
     question.metacompetence = 'lecture';
     const vue = composant(question);
-    vue.find('.question-bouton').trigger('click');
+    vue.find('#bouton-envoie').trigger('click');
     vue.vm.$nextTick(() => {
       expect(vue.emitted().reponse.length).toEqual(1);
       expect(vue.emitted().reponse[0][0]).toEqual({
@@ -156,67 +206,67 @@ describe("La vue d'un défi", function () {
     });
   });
 
-  describe('quand le defi est de type saisie', function () {
+  describe('quand le defi est de type saisie', function() {
     let vue;
 
-    beforeEach(function () {
+    beforeEach(function() {
       question.type = 'saisie';
       vue = composant(question);
     });
 
-    describe('#disabled', function () {
-      it("désactive le bouton quand aucune réponse n'est donnée", function () {
-        expect(vue.find('.question-bouton').attributes('disabled')).toEqual('');
+    describe('#disabled', function() {
+      it("désactive le bouton quand aucune réponse n'est donnée", function() {
+        expect(vue.find('#bouton-envoie').attributes('disabled')).toEqual('');
       });
     });
   });
 
-  describe('quand le defi est de type champ de saisie', function () {
+  describe('quand le defi est de type champ de saisie', function() {
     let vue;
 
-    beforeEach(function () {
+    beforeEach(function() {
       question.type = 'saisie';
       question.choix = undefined;
       question.reponse = { texte: '1800' };
       vue = composant(question);
     });
 
-    it('affiche le composant champ de saisie', function () {
+    it('affiche le composant champ de saisie', function() {
       expect(vue.findComponent(ChampSaisie).exists()).toBe(true);
     });
 
-    it('quand les chiffres doivent être espacés', function () {
+    it('quand les chiffres doivent être espacés', function() {
       question.espacerChiffres = true;
       vue = composant(question);
       expect(vue.findComponent(ChampSaisie).vm.question.espacerChiffres).toBe(true);
     });
 
-    describe('#disabled', function () {
-      it("désactive le bouton quand aucune réponse numérique n'est donnée", function () {
-        expect(vue.find('.question-bouton').attributes('disabled')).toEqual('');
+    describe('#disabled', function() {
+      it("désactive le bouton quand aucune réponse numérique n'est donnée", function() {
+        expect(vue.find('#bouton-envoie').attributes('disabled')).toEqual('');
       });
     });
   });
 
-  describe('quand le défi est de type action', function () {
+  describe('quand le défi est de type action', function() {
     let vue;
 
-    beforeEach(function () {
+    beforeEach(function() {
       question.type = 'action';
       question.extensionVue = 'mock-extension';
       vue = composant(question);
     });
 
-    it("n'affiche pas le bouton 'valider'", function () {
-      const conteneur = vue.find('.question-bouton');
+    it("n'affiche pas le bouton 'valider'", function() {
+      const conteneur = vue.find('#bouton-envoie');
       expect(conteneur.exists()).toBe(false);
     });
 
-    it("n'a pas de composant contenu", function () {
+    it("n'a pas de composant contenu", function() {
       expect(vue.vm.composantContenu).not.toBeDefined();
     });
 
-    it('émet un évenement réponse réussi quand une extention envoie un evenement action', function () {
+    it('émet un évenement réponse réussi quand une extention envoie un evenement action', function() {
       vue.findComponent(MockExtension).vm.$emit('action');
       expect(vue.emitted().reponse.length).toEqual(1);
 
@@ -230,50 +280,50 @@ describe("La vue d'un défi", function () {
     });
   });
 
-  describe('quand le défi est de type sous consigne', function () {
+  describe('quand le défi est de type sous consigne', function() {
     let vue;
 
-    beforeEach(function () {
+    beforeEach(function() {
       question.type = 'sous-consigne';
       vue = composant(question);
     });
 
-    it("n'a pas de composant contenu", function () {
+    it("n'a pas de composant contenu", function() {
       expect(vue.vm.composantContenu).not.toBeDefined();
     });
 
-    describe('#texteBouton', function () {
-      it("renvoie le texte 'suivant'", function () {
+    describe('#texteBouton', function() {
+      it("renvoie le texte 'suivant'", function() {
         expect(vue.vm.texteBouton).toEqual('defi.suivant');
       });
     });
   });
 
-  describe('quand le défi contient une extention', function () {
-    beforeEach(function () {
+  describe('quand le défi contient une extention', function() {
+    beforeEach(function() {
       question.extensionVue = 'mock-extension';
     });
 
-    it("sait afficher l'extention", function () {
+    it("sait afficher l'extention", function() {
       const vue = composant(question);
       expect(vue.findComponent(MockExtension).exists()).toBe(true);
     });
   });
 
-  it("affiche un bouton d'envoi de réponse", function () {
+  it("affiche un bouton d'envoie de réponse", function() {
     const vue = composant(question);
-    expect(vue.find('.question-bouton').exists()).toBe(true);
+    expect(vue.find('#bouton-envoie').exists()).toBe(true);
   });
 
-  describe("rapporte l'affichage d'une question au journal", function () {
-    it("ne journalise pas l'affichage si aucun acte n'est en cours", function () {
+  describe("rapporte l'affichage d'une question au journal", function() {
+    it("ne journalise pas l'affichage si aucun acte n'est en cours", function() {
       const journalEnregistre = jest.spyOn(journal, 'enregistre');
       composant(question);
 
       expect(journalEnregistre).not.toHaveBeenCalled();
     });
 
-    it('quand la situation est déja démarrée', function (done) {
+    it('quand la situation est déja démarrée', function(done) {
       journal.enregistre = (evenement) => {
         expect(evenement).toBeInstanceOf(EvenementAffichageQuestionQCM);
         expect(evenement.donnees()).toEqual({ question: question.id });
@@ -284,7 +334,7 @@ describe("La vue d'un défi", function () {
       composant(question);
     });
 
-    it('quand la situation démarre après coup', function (done) {
+    it('quand la situation démarre après coup', function(done) {
       journal.enregistre = (evenement) => {
         expect(evenement).toBeInstanceOf(EvenementAffichageQuestionQCM);
         done();
@@ -295,7 +345,7 @@ describe("La vue d'un défi", function () {
       store.state.etat = DEMARRE;
     });
 
-    it('quand il y a une métacompétence', function (done) {
+    it('quand il y a une métacompétence', function(done) {
       question.metacompetence = 'ma métacompétence';
       journal.enregistre = (evenement) => {
         expect(evenement.donnees()).toEqual({ question: question.id, metacompetence: 'ma métacompétence' });
@@ -307,39 +357,39 @@ describe("La vue d'un défi", function () {
     });
   });
 
-  describe('#disabled', function () {
-    it("désactive le bouton lorsqu'aucune réponse n'est sélectionnée", function (done) {
+  describe('#disabled', function() {
+    it("désactive le bouton lorsqu'aucune réponse n'est sélectionnée", function(done) {
       question.choix = [{ id: 'uid-32' }];
       question.type = 'qcm';
       const vue = composant(question);
-      expect(vue.find('.question-bouton').attributes('disabled')).toEqual('');
+      expect(vue.find('#bouton-envoie').attributes('disabled')).toEqual('');
       vue.findComponent(Qcm).vm.$emit('reponse', 'uid-32');
 
       vue.vm.$nextTick(() => {
-        expect(vue.find('.question-bouton').attributes('disabled')).not.toBeDefined();
+        expect(vue.find('#bouton-envoie').attributes('disabled')).not.toBeDefined();
         done();
       });
     });
 
-    it('désactive le bouton une fois cliqué pour éviter le double click', function (done) {
+    it('désactive le bouton une fois cliqué pour éviter le double click', function(done) {
       question.choix = [{ id: 'uid-32' }];
       question.type = 'qcm';
       const vue = composant(question);
       vue.findComponent(Qcm).vm.$emit('reponse', 'uid-32');
       vue.vm.$nextTick(() => {
-        vue.find('.question-bouton').trigger('click');
+        vue.find('#bouton-envoie').trigger('click');
         vue.vm.$nextTick(() => {
-          expect(vue.find('.question-bouton').attributes('disabled')).toEqual('');
+          expect(vue.find('#bouton-envoie').attributes('disabled')).toEqual('');
           done();
         });
       });
     });
 
-    it("active le bouton quand il n'y a pas de choix", function () {
+    it("active le bouton quand il n'y a pas de choix", function() {
       question.choix = [];
       question.type = 'qcm';
       const vue = composant(question);
-      expect(vue.find('.question-bouton').attributes('disabled')).not.toEqual('');
+      expect(vue.find('#bouton-envoie').attributes('disabled')).not.toEqual('');
     });
   });
 
@@ -347,7 +397,7 @@ describe("La vue d'un défi", function () {
     let vue;
     let composantEnteteQuestion;
 
-    beforeEach(function () {
+    beforeEach(function() {
       vue = composant(question);
       composantEnteteQuestion = vue.findComponent(QuestionEntete);
       composantEnteteQuestion.vm.demarreSon = jest.fn();
