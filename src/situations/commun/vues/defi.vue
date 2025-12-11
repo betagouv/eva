@@ -5,7 +5,7 @@
       :is="question.extensionVue"
       :question="question"
       @reponse="attribueReponse"
-      @action="envoi"
+      @action="envoie"
     />
     <question
       :question="question"
@@ -30,14 +30,25 @@
         </div>
       </div>
       <video-question :nomTechnique="question.nom_technique_mini_tuto"/>
-      <button
-        v-if="question.type != 'action'"
-        :disabled="disabled"
-        class="question-bouton bouton-arrondi bouton-arrondi--petit"
-        @click="envoi"
-      >
-      {{$traduction(texteBouton)}}
-      </button>
+      <div class="question-boutons">
+        <button
+          v-if="question.passable"
+          id="bouton-passer"
+          class="question-bouton bouton-arrondi bouton-arrondi--petit bouton-arrondi--blanc"
+          @click="passer"
+        >
+        {{$traduction('defi.passer')}}
+        </button>
+        <button
+          v-if="question.type != 'action'"
+          id="bouton-envoie"
+          :disabled="disabled"
+          class="question-bouton bouton-arrondi bouton-arrondi--petit"
+          @click="envoie"
+        >
+        {{$traduction(texteBouton)}}
+        </button>
+      </div>
     </question>
   </div>
 </template>
@@ -147,13 +158,25 @@ export default {
   },
 
   methods: {
-    envoi () {
+    envoie () {
       this.envoyer = true;
       this.$emit('reponse', {
         question: this.question.id,
         intitule: this.question.intitule ?? this.question.retranscription_audio,
         metacompetence: this.question.metacompetence,
         ...this.reponse
+      });
+    },
+
+    passer () {
+      this.envoyer = true;
+      this.$emit('reponse', {
+        question: this.question.id,
+        intitule: this.question.intitule ?? this.question.retranscription_audio,
+        metacompetence: this.question.metacompetence,
+        scoreMax: this.question.score,
+        neSaisPas: true,
+        succes: false
       });
     },
 

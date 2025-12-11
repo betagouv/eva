@@ -3,10 +3,12 @@
 
 @mixin bouton-couleur($couleur, $couleur-focus) {
   background-color: $couleur;
+  border: 1px solid $couleur;
 
   &:hover,
   &:focus {
     background-color: $couleur-focus;
+    border-color: $couleur-focus;
   }
 }
 
@@ -27,6 +29,7 @@
   &:active {
     border-color: $couleur-fond-bouton-bleu;
   }
+
   &[disabled] {
     background-color: grayscale($couleur-fond-bouton-bleu);
     border-color: grayscale($couleur-fond-bouton-bleu-focus);
@@ -143,7 +146,8 @@
     padding: .5rem 1rem;
   }
 
-  &--pause, &--pause:focus {
-    background-color: $orange
+  &--pause,
+  &--pause:focus {
+    @include bouton-couleur($couleur-fond-bouton-orange, $couleur-fond-bouton-orange-focus);
   }
 }

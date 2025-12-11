@@ -35,6 +35,7 @@ const titre1 = {
   nom_technique: 'titre_1',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 1, quelle est la bonne lecture ?',
@@ -66,6 +67,7 @@ const titre2 = {
   nom_technique: 'titre_2',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 2, quelle est la bonne lecture ?',
@@ -96,6 +98,7 @@ const titre10 = {
   nom_technique: 'titre_10',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 10, quelle est la bonne lecture ?',
@@ -126,6 +129,7 @@ const titre3 = {
   nom_technique: 'titre_3',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 3, quelle est la bonne lecture ?',
@@ -156,6 +160,7 @@ const titre11 = {
   nom_technique: 'titre_11',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 11, quelle est la bonne lecture ?',
@@ -186,6 +191,7 @@ const titre6 = {
   nom_technique: 'titre_6',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 6, quelle est la bonne lecture ?',
@@ -216,6 +222,7 @@ const titre8 = {
   nom_technique: 'titre_8',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 8, quelle est la bonne lecture ?',
@@ -246,6 +253,7 @@ const titre5 = {
   nom_technique: 'titre_5',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 5, quelle est la bonne lecture ?',
@@ -276,6 +284,7 @@ const titre4 = {
   nom_technique: 'titre_4',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 4, quelle est la bonne lecture ?',
@@ -306,6 +315,7 @@ const titre7 = {
   nom_technique: 'titre_7',
   metacompetence: 'lecture',
   type: 'qcm',
+  passable: true,
   score: 1,
   illustration: listeTitresMusique,
   intitule: 'Pour le titre 7, quelle est la bonne lecture ?',
@@ -431,7 +441,7 @@ const ACrd3 = {
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
   reponse: {
-    bonne_reponse:['New-York'],
+    bonne_reponse: ['New-York'],
   }
 };
 
@@ -483,6 +493,7 @@ const ACrd6 = {
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
+  passable: true,
   modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
   choix: [
     {
@@ -516,6 +527,7 @@ const ACrd7 = {
   score: 1,
   template: 'article article--disque',
   type: 'qcm',
+  passable: true,
   choix: [
     {
       id: 'reggae',
@@ -547,6 +559,7 @@ const ACrd8 = {
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
+  passable: true,
   choix: [
     {
       id: 'ntm',
@@ -579,6 +592,7 @@ const ACrd9 = {
   score: 1,
   template: 'article article--disque',
   type: 'qcm',
+  passable: true,
   choix: [
     {
       id: 'inventif',
@@ -611,6 +625,7 @@ const ACrd10 = {
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
+  passable: true,
   choix: [
     {
       id: 'tempsPresent',

@@ -54,11 +54,25 @@
     margin-left: 2.25rem;
   }
 
+  &-boutons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+
   &-bouton {
     align-self: flex-end;
     float: right;
     margin-top: 1rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
   }
+
+  .bouton-arrondi--blanc {
+    color: $bleu;
+    border-color: $bleu;
+  }
+
 
   &-modalite-reponse {
     color: $couleur-principale-marque-et-interaction;
