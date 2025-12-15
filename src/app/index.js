@@ -1,6 +1,8 @@
 import 'core-js/stable';
 import queryString from 'query-string';
 import { createApp } from 'vue';
+import '@gouvfr/dsfr/dist/dsfr.min.css';
+import '@gouvfr/dsfr/dist/dsfr.module.min.js';
 import 'commun/styles/conteneur.scss';
 import 'commun/styles/commun.scss';
 
