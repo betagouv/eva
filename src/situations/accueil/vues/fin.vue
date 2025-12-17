@@ -13,7 +13,7 @@
             </p>
           </div>
           <button
-            class="bouton-arrondi"
+            class="fr-btn"
             @click="suivant"
             >{{ $traduction('accueil.fin.bravo.bouton') }}</button>
         </div>
@@ -54,7 +54,7 @@
             <div class="competences-fortes-informations">
               <p class="competences-fortes-nom">{{ competence.nom }}</p>
               <p class="competences-fortes-description">{{ competence.description }}</p>
-              <a target="_blank" class="competences-fortes-lien bouton-arrondi bouton-arrondi--petit" :href="lienSiteVitrine(competence.nom_technique)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
+              <a target="_blank" class="competences-fortes-lien fr-btn fr-btn--petit" :href="lienSiteVitrine(competence.nom_technique)">{{ $traduction('accueil.fin.resultat.en-savoir-plus') }}</a>
             </div>
             <img :src="competence.picto" />
           </div>

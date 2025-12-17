@@ -4,7 +4,7 @@
       <div v-html="texteAide"/>
 
       <button
-        class="bouton-arrondi bouton-arrondi--petit fenetre-aide-presentation-bouton"
+        class="fr-btn fr-btn--petit fenetre-aide-presentation-bouton"
         @click="cacheAide"
       >{{ $traduction('situation.bouton_aide') }}</button>
     </div>

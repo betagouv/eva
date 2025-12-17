@@ -83,7 +83,7 @@ export function initialiseFormulaireSaisieInventaire (situation, pointInsertion,
   }
 
   function creeBouton (icone, texte) {
-    return $(`<button type="button" class="bouton-arrondi"><img class="bouton-arrondi-icone" src="${icone}" /> <span class="bouton-arrondi-texte">${texte}</span></button>`);
+    return $(`<button type="button" class="fr-btn"><img class="fr-btn-icone" src="${icone}" /> <span class="fr-btn-texte">${texte}</span></button>`);
   }
 
   function creeBoutonValidation () {

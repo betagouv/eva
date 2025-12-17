@@ -8,9 +8,9 @@
     <button
       class="bouton-lecture"
       :class="{
-        'bouton-arrondi bouton-lecture--avec-texte': this.avecTexte,
+        'fr-btn bouton-lecture--avec-texte': this.avecTexte,
         'bouton-lecture--sans-texte': !this.avecTexte && !this.avecEtiquette,
-        'bouton-lire-consigne': this.avecEtiquette, 
+        'bouton-lire-consigne': this.avecEtiquette,
         'bouton-lecture--pause': this.joueSon
       }"
     >

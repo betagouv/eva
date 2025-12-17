@@ -25,7 +25,7 @@
         />
       </div>
       <button
-        class="bouton-arrondi"
+        class="fr-btn"
         @click="fini"
       >{{ $traduction('accueil.intro_contexte.bouton') }}</button>
     </div>

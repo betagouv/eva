@@ -5,7 +5,7 @@
       <img :src="pictoResultatIdentification"/>
     </div>
     <button
-      class="bouton-arrondi bouton-arrondi--petit"
+      class="fr-btn fr-btn--petit"
       @click="termine()"
       >{{ texteBouton }}</button>
   </div>

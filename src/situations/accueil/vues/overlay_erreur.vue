@@ -9,7 +9,7 @@
       <div class="overlay-recommandation">{{ action }}</div>
       <button
         v-if="boutonIgnorer"
-        class="bouton-arrondi"
+        class="fr-btn"
         style="margin-top: 32px;"
         @click="$emit('ignoreErreur')">
         {{ $traduction('situation.erreur_utilisation_smartphone.bouton') }}

@@ -70,7 +70,7 @@
         </label>
 
         <div class="element-formulaire">
-          <button :disabled="estDesactive" class="bouton-arrondi">
+          <button :disabled="estDesactive" class="fr-btn">
             {{ $traduction('accueil.identification.bouton') }}
           </button>
         </div>

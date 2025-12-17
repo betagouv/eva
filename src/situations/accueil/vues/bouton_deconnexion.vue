@@ -16,7 +16,7 @@
             @click="fermeDonnerAvis">
             <img style="height:40px;" :src="boutonAvis" alt="Je donne mon avis" title="Je donne mon avis sur cette démarche" />
           </a>
-          <a class="bouton-arrondi bouton-arrondi--petit bouton-arrondi--orange"
+          <a class="fr-btn fr-btn--petit fr-btn--orange"
              @click="fermeDonnerAvis"
           >
             {{ $traduction('accueil.fin.avis.fermer') }}
@@ -39,7 +39,7 @@
           </div>
           <div class="actions-deconnexion">
             <a
-              class="bouton-arrondi bouton-arrondi--petit bouton-arrondi--orange"
+              class="fr-btn fr-btn--petit fr-btn--orange"
               @click="deconnecte"
             >{{ $traduction('accueil.fin.confirmation_deconnexion.bouton') }}</a>
           </div>
@@ -57,7 +57,7 @@
           <img style="height:40px;" :src="boutonAvis" alt="Je donne mon avis" title="Je donne mon avis sur cette démarche" />
         </a>
         <a
-          class="bouton-deconnexion bouton-arrondi"
+          class="bouton-deconnexion fr-btn"
           @click="deconnecte"
         >{{ $traduction('deconnexion.titre') }}</a>
     </div>
@@ -68,7 +68,7 @@
        class='actions-fin'
       >
       <a
-        class="bouton-deconnexion bouton-arrondi"
+        class="bouton-deconnexion fr-btn"
         @click="afficheJeDonneMonAvis"
       >{{ $traduction('deconnexion.titre') }}</a>
     </div>

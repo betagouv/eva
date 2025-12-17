@@ -12,7 +12,7 @@
     </div>
     <button
       :disabled="desactivee"
-      class="bouton-arrondi bouton-arrondi--petit">{{ question.bouton }}</button>
+      class="fr-btn fr-btn--petit">{{ question.bouton }}</button>
   </form>
 </template>
 

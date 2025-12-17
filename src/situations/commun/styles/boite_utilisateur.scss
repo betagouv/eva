@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+
   .progression-conteneur {
     overflow: hidden;
     position: relative;
@@ -51,6 +52,7 @@
     border: 2px solid $blanc;
     border-radius: 50%;
     background-color: $orange;
+    background-image: none;
 
     img {
       width: 20px;

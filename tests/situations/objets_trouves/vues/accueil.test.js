@@ -92,7 +92,7 @@ describe("La vue de l'accueil", function () {
     store.commit('ajouteAppVisitee', 'photos');
     store.commit('modifieEtatTelephone', TRANSITION);
     wrapper.vm.$nextTick(() => {
-      wrapper.find('.bouton-arrondi--petit').trigger('click');
+      wrapper.find('.fr-btn--petit').trigger('click');
       wrapper.vm.$nextTick(() => {
         expect(store.state.etatTelephone).toEqual('questionsFin');
         done();

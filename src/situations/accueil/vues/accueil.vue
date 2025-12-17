@@ -53,14 +53,14 @@
             />
           </svg>
         </button>
-        <span class="bouton-arrondi bouton-arrondi--blanc">
+        <span class="fr-btn fr-btn--blanc">
           {{ $traduction('accueil.precedent') }}
         </span>
       </div>
         <acces-situation
           v-if="afficheBoutonSituation"
           :situation="batiments[indexBatiment]"
-          class="bouton-arrondi bouton-commence-situation"
+          class="fr-btn bouton-commence-situation"
         />
       <div
         :class="{ desactivee: suivantDesactivee }"
@@ -80,7 +80,7 @@
             />
           </svg>
         </button>
-        <span class="bouton-arrondi bouton-arrondi--blanc">
+        <span class="fr-btn fr-btn--blanc">
           {{ $traduction('accueil.suivant') }}
         </span>
       </div>

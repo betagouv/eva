@@ -6,7 +6,7 @@
     <div v-if="etat === 'deja-identifie'">
       <p>{{ $traduction('securite.danger.deja-identifie.texte') }}</p>
       <button
-        class="bouton-arrondi bouton-arrondi--petit"
+        class="fr-btn fr-btn--petit"
         @click="ferme"
         >{{ $traduction('securite.danger.deja-identifie.bouton') }}</button>
     </div>

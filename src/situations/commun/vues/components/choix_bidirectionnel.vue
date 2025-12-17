@@ -5,25 +5,25 @@
     >
     <button
       :class="{ 'actions-fleches--animation': choixFait === choixGauche }"
-       class="bouton-arrondi bouton-arrondi--vert"
+       class="fr-btn fr-btn--vert"
       @click="selectionne(choixGauche)"
     >
       <img
         :src="$depotRessources.flecheGauche().src"
-        class="bouton-arrondi-icone bouton-arrondi-icone--droite"
+        class="fr-btn-icone fr-btn-icone--droite"
       />
-      <span class="bouton-arrondi-texte">{{ labelGauche }}</span>
+      <span class="fr-btn-texte">{{ labelGauche }}</span>
     </button>
     <button
       :class="{ 'actions-fleches--animation': choixFait === choixDroit }"
-      class="bouton-arrondi bouton-arrondi--rouge"
+      class="fr-btn fr-btn--rouge"
       @click="selectionne(choixDroit)"
     >
       <img
         :src="$depotRessources.flecheDroite().src"
-        class="bouton-arrondi-icone bouton-arrondi-icone--gauche"
+        class="fr-btn-icone fr-btn-icone--gauche"
       />
-      <span class="bouton-arrondi-texte">{{ labelDroit }}</span>
+      <span class="fr-btn-texte">{{ labelDroit }}</span>
     </button>
   </div>
   <div
