@@ -30,7 +30,7 @@
   >
     {{ $traduction('deconnexion.confirmation') }}
     <button
-      class="bouton-arrondi bouton-arrondi--petit confirme-bouton"
+      class="fr-btn fr-btn--petit confirme-bouton"
       @click="deconnexion"
     >
      {{ $traduction('deconnexion.oui') }}

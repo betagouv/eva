@@ -162,7 +162,7 @@ describe('Le bouton de lecture de message audio', function () {
     });
 
     it("ajoute la classe", function () {
-      expect(wrapper.find('.bouton-lecture').classes('bouton-arrondi')).toBe(false);
+      expect(wrapper.find('.bouton-lecture').classes('fr-btn')).toBe(false);
       expect(wrapper.find('.bouton-lecture').classes('bouton-lecture--sans-texte')).toBe(true);
     });
 
@@ -179,7 +179,7 @@ describe('Le bouton de lecture de message audio', function () {
     });
 
     it("ajoute la classe", function () {
-      expect(wrapper.find('.bouton-lecture').classes('bouton-arrondi')).toBe(true);
+      expect(wrapper.find('.bouton-lecture').classes('fr-btn')).toBe(true);
       expect(wrapper.find('.bouton-lecture').classes('bouton-lecture--sans-texte')).toBe(false);
     });
 

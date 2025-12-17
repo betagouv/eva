@@ -34,7 +34,8 @@
         <button
           v-if="question.passable"
           id="bouton-passer"
-          class="question-bouton bouton-arrondi bouton-arrondi--petit bouton-arrondi--blanc"
+          type="button"
+          class="question-bouton fr-btn fr-btn--tertiary-no-outline fr-btn--petit"
           @click="passer"
         >
         {{$traduction('defi.passer')}}
@@ -43,7 +44,7 @@
           v-if="question.type != 'action'"
           id="bouton-envoie"
           :disabled="disabled"
-          class="question-bouton bouton-arrondi bouton-arrondi--petit"
+          class="question-bouton fr-btn fr-btn--petit"
           @click="envoie"
         >
         {{$traduction(texteBouton)}}

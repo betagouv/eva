@@ -65,24 +65,24 @@
     gap: 6px;
     padding: 1.5rem 2.5rem;
 
-    .bouton-arrondi {
+    .fr-btn {
       padding: 0.375rem 0;
       font-size: 0.875rem;
     }
 
-    .bouton-arrondi--vert {
+    .fr-btn--vert {
       text-align: right;
     }
 
-    .bouton-arrondi--rouge {
+    .fr-btn--rouge {
       text-align: left;
     }
 
-    .bouton-arrondi-icone--droite + .bouton-arrondi-texte {
+    .fr-btn-icone--droite + .fr-btn-texte {
       margin-right: 2.875rem;
     }
 
-    .bouton-arrondi-icone--gauche + .bouton-arrondi-texte {
+    .fr-btn-icone--gauche + .fr-btn-texte {
       margin-left: 2.875rem;
     }
   }

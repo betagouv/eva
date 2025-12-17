@@ -7,6 +7,14 @@
   display: flex;
   align-items: center;
 
+  p {
+    font-size: 0.875rem;
+  }
+
+  label {
+    line-height: 1rem;
+  }
+
   &-defi {
     flex-grow: 2;
 
@@ -58,21 +66,13 @@
     display: flex;
     gap: 0.5rem;
     justify-content: flex-end;
+    margin-top: 1rem;
   }
 
   &-bouton {
-    align-self: flex-end;
-    float: right;
-    margin-top: 1rem;
     padding-right: 1.5rem;
     padding-left: 1.5rem;
   }
-
-  .bouton-arrondi--blanc {
-    color: $bleu;
-    border-color: $bleu;
-  }
-
 
   &-modalite-reponse {
     color: $couleur-principale-marque-et-interaction;

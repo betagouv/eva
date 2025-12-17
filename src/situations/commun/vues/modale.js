@@ -12,14 +12,14 @@ export function afficheFenetreModale (pointInsertion, $,
     boutonAnnuler = traduction('situation.modale.annuler'),
     actionOk
   }) {
-  const htmlAnnuler = boutonAnnuler ? `<button id="annuler-modale" class='bouton-arrondi bouton-arrondi--rouge'>${boutonAnnuler}</button>` : '';
+  const htmlAnnuler = boutonAnnuler ? `<button id="annuler-modale" class='fr-btn fr-btn--rouge'>${boutonAnnuler}</button>` : '';
 
   const $modale = $(`<div id="fenetre-modale" class="overlay modale">
     <div class="modale-interieur">
       <h2>${titre}</h2>
       <p>${message}</p>
       <div class="buttons">
-        <button id="OK-modale" class='bouton-arrondi'>${boutonOk}</button>
+        <button id="OK-modale" class='fr-btn'>${boutonOk}</button>
         ${htmlAnnuler}
       </div>
     </div>

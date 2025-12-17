@@ -82,20 +82,20 @@ describe('La vue flèches clavier', function () {
       });
 
       it("rajoute la classe action-fleches--animation sur le bouton de gauche pour le choix 'gauche'", function (done) {
-        expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-fleches--animation')).toBe(false);
+        expect(wrapper.find('.fr-btn:first-child').classes('actions-fleches--animation')).toBe(false);
         wrapper.vm.choixFait = 'Gauche';
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.find('.bouton-arrondi:first-child').classes('actions-fleches--animation')).toBe(true);
+          expect(wrapper.find('.fr-btn:first-child').classes('actions-fleches--animation')).toBe(true);
           done();
         });
       });
 
       it("rajoute la classe action-fleches--animation sur le bouton de droite pour le choix 'droite' ", function (done) {
-        expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-fleches--animation')).toBe(false);
+        expect(wrapper.find('.fr-btn:last-child').classes('actions-fleches--animation')).toBe(false);
         wrapper.vm.choixFait = 'Droite';
 
         wrapper.vm.$nextTick(() => {
-          expect(wrapper.find('.bouton-arrondi:last-child').classes('actions-fleches--animation')).toBe(true);
+          expect(wrapper.find('.fr-btn:last-child').classes('actions-fleches--animation')).toBe(true);
           done();
         });
       });

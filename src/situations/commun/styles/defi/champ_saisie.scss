@@ -7,11 +7,13 @@
 
   .champ-saisie-conteneur {
     position: relative;
+
     .conteneur-traits-saisie {
       position: absolute;
       left: 1.8rem;
-      bottom: 0.6rem;
+      bottom: -0.2rem;
       font-size: 0;
+
       span {
         display: inline-block;
         width: 1.5rem;
@@ -19,9 +21,11 @@
         background-color: $bleu;
       }
     }
+
     .champ {
       margin-top: 1rem;
     }
+
     .suffix {
       margin-left: 0.5rem;
       font-size: 1.125rem;

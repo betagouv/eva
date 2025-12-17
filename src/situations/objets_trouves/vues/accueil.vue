@@ -46,7 +46,7 @@
         <div v-html="$traduction('objets_trouves.intro_contexte.message_transition_fin')" >
         </div>
         <button
-          class="bouton-arrondi bouton-arrondi--petit"
+          class="fr-btn fr-btn--petit"
           @click="afficheQuestionsFin"
         >
           {{ $traduction('objets_trouves.intro_contexte.suivant') }}

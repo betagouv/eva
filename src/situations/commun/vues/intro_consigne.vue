@@ -23,7 +23,7 @@
           <span>{{ $traduction('accueil.intro_consigne.message') }}</span>
         </p>
         <button
-          class="bouton-arrondi"
+          class="fr-btn"
           @click="afficheContexte"
         >{{ $traduction('accueil.intro_consigne.bouton') }}</button>
       </div>

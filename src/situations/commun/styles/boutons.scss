@@ -12,31 +12,15 @@
   }
 }
 
-.bouton-arrondi {
-  @include bouton-couleur($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
-  padding: .5rem 2.5rem;
-  text-decoration: none;
+.fr-btn {
   border-radius: 2rem;
-  cursor: pointer;
-  color: $blanc;
-  transition: border, background .3s;
-  outline: none;
-  line-height: 1.8;
-  font-size: 1.1rem;
-  position: relative;
-  transition: background-color .3 ease;
+  padding: .5rem 2.5rem;
 
   &:active {
     border-color: $couleur-fond-bouton-bleu;
   }
 
-  &[disabled] {
-    background-color: grayscale($couleur-fond-bouton-bleu);
-    border-color: grayscale($couleur-fond-bouton-bleu-focus);
-    cursor: auto;
-  }
-
-  &.bouton-arrondi--petit {
+  &.fr-btn--petit {
     line-height: 1.1;
     font-size: 0.9rem;
   }
@@ -53,11 +37,11 @@
     }
   }
 
-  &-icone + .bouton-arrondi-texte {
+  &-icone+.fr-btn-texte {
     margin-left: 1rem;
   }
 
-  &-icone--droite + .bouton-arrondi-texte {
+  &-icone--droite+.fr-btn-texte {
     margin-right: 1rem;
     margin-left: 0;
   }
@@ -119,11 +103,12 @@
   }
 }
 
-.bouton-lecture {
+button.bouton-lecture {
   display: flex;
   align-items: center;
 
-  .icone-lecture, .icone-pause {
+  .icone-lecture,
+  .icone-pause {
     width: 1.25rem;
   }
 
@@ -139,6 +124,10 @@
     height: 1.25rem;
     justify-content: center;
     background-color: $couleur-principale-marque-et-interaction;
+
+    &:hover {
+      background-color: $couleur-principale-marque-et-interaction;
+    }
   }
 
   &--avec-texte {

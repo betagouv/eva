@@ -52,7 +52,7 @@ describe("L'adaptateur de la vue Consigne", function () {
     const vue = new AdaptateurConsigne(situation, depotRessources);
     vue.affiche('#pointInsertion', $);
     expect($('#pointInsertion .overlay').length).toEqual(1);
-    expect($('#pointInsertion .bouton-arrondi').text()).toEqual('accueil.intro_consigne.bouton');
+    expect($('#pointInsertion .fr-btn').text()).toEqual('accueil.intro_consigne.bouton');
   });
 
   it("affiche directement la consigne si l'état de la situation est ENTRAINEMENT_FINI", function () {
@@ -60,7 +60,7 @@ describe("L'adaptateur de la vue Consigne", function () {
     const vue = new AdaptateurConsigne(situation, depotRessources);
     vue.affiche('#pointInsertion', $);
     expect($('#pointInsertion .overlay').length).toEqual(1);
-    expect($('#pointInsertion .bouton-arrondi').text()).toEqual('accueil.intro_contexte.bouton');
+    expect($('#pointInsertion .fr-btn').text()).toEqual('accueil.intro_contexte.bouton');
   });
 
   it("calcul l'état suivant", function () {
