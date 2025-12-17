@@ -29,6 +29,7 @@ module.exports = {
   moduleNameMapper: {
     i18next: '<rootDir>/__mocks__/i18nextMock.js',
     'vue3-keypress': '<rootDir>/__mocks__/keypressMock.js',
+    '@gouvfr/dsfr/dist/dsfr\\.module\\.min\\.js$': '<rootDir>/__mocks__/dsfrMock.js',
     '\\.(css|less|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '^(commun|controle|inventaire|maintenance|objets_trouves|prevention|tri)/(.*)$': '<rootDir>/src/situations/$1/$2'
   }
