@@ -25,6 +25,7 @@ const sousConsigneACrd1 = {
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   template: 'article article--disque',
   nom_technique: 'sous_consigne_ACrd_1',
   intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.\n\nPour commencer à répondre aux questions, cliquez sur « Suivant ».'
@@ -348,6 +349,7 @@ const alrd11 = {
   illustration: telephoneSansTitres,
   modalite_reponse: 'Écoutez ou réécoutez le mot en cliquant sur le bouton « Lecture ».\nPour répondre, cliquez directement sur le mot. Pour confirmer, cliquez sur « Valider ».',
   extensionVue: 'clic-sur-mots',
+  passable: true,
   score: 1,
   template: 'liste-chansons',
   retranscription_audio: 'Sélectionnez le mot Exercice',
@@ -363,6 +365,7 @@ const alrd12 = {
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   template: 'liste-chansons',
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Anguille',
@@ -378,6 +381,7 @@ const alrd13 = {
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   template: 'liste-chansons',
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Dimoudon',
@@ -393,6 +397,7 @@ const alrd14 = {
   metacompetence: 'lecture',
   illustration: telephoneSansTitres,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   template: 'liste-chansons',
   score: 1,
   retranscription_audio: 'Sélectionnez le mot Soupçons',
@@ -412,6 +417,7 @@ const ACrd1 = {
   illustration: magazineSansTexte,
   modalite_reponse: 'Pour répondre aux questions, cliquez sur la réponse directement dans le texte. Quand vous avez fait votre choix, cliquez sur « Valider ».',
   extensionVue: 'clic-sur-mots',
+  passable: true,
   reponse: {
     bonne_reponse: ['Rick Duxol & Mori Morino'],
   }
@@ -426,6 +432,7 @@ const ACrd2 = {
   score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   reponse: {
     bonne_reponse: ['Georges Tiporanet'],
   }
@@ -440,6 +447,7 @@ const ACrd3 = {
   score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   reponse: {
     bonne_reponse: ['New-York'],
   }
@@ -454,6 +462,7 @@ const ACrd4 = {
   score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   reponse: {
     bonne_reponse: ['Bulgarie'],
   }
@@ -468,6 +477,7 @@ const ACrd5 = {
   score: 1,
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   reponse: {
     bonne_reponse: ['2011'],
   }
@@ -479,6 +489,7 @@ const sousConsigneACrd2 = {
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   template: 'article article--disque',
   intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.\n\nPour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
@@ -490,6 +501,7 @@ const ACrd6 = {
   intitule: 'Qui est Ivano Karanadoff ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
@@ -524,6 +536,7 @@ const ACrd7 = {
   intitule: 'Quel est le genre de musique que produit ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   score: 1,
   template: 'article article--disque',
   type: 'qcm',
@@ -556,6 +569,7 @@ const ACrd8 = {
   intitule: 'Qui a influencé ce groupe ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
@@ -589,6 +603,7 @@ const ACrd9 = {
   intitule: 'Que pense la critique de ce style musical ?',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   score: 1,
   template: 'article article--disque',
   type: 'qcm',
@@ -622,6 +637,7 @@ const ACrd10 = {
   intitule: 'Ivano Karanadoff pense que les paroles des chansons évoquent :',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
+  passable: true,
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
