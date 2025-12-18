@@ -30,10 +30,6 @@
     .modale-interieur {
       max-width: 70%;
 
-      h2 {
-        margin-bottom: 0.44rem;
-      }
-
       p {
         font-size: 1.1rem;
       }
@@ -56,6 +52,7 @@
     margin-right: 2rem;
     flex-shrink: 0;
   }
+
   &-titre {
     position: relative;
     right: -0.5rem;
