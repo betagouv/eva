@@ -11,10 +11,6 @@
     font-size: 0.875rem;
   }
 
-  label {
-    line-height: 1rem;
-  }
-
   &-defi {
     flex-grow: 2;
 
@@ -64,9 +60,10 @@
 
   &-boutons {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     justify-content: flex-end;
     margin-top: 1rem;
+    align-items: center;
   }
 
   &-bouton {
