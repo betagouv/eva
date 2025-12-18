@@ -31,15 +31,19 @@
       </div>
       <video-question :nomTechnique="question.nom_technique_mini_tuto"/>
       <div class="question-boutons">
-        <button
-          v-if="question.passable"
-          id="bouton-passer"
-          type="button"
-          class="question-bouton fr-btn fr-btn--tertiary-no-outline fr-btn--petit"
-          @click="passer"
-        >
-        {{$traduction('defi.passer')}}
-        </button>
+        <div
+          class="fr-checkbox-group fr-checkbox-group--sm"
+          v-if="question.passable">
+          <input name="checkbox"
+            id="coche-passer"
+            ref="cochePasser"
+            type="checkbox"
+            aria-describedby="coche-passer-messages"
+            @click="jeNeSaisPas">
+          <label class="fr-label" for="coche-passer">{{$traduction('defi.passer')}}</label>
+          <div class="fr-messages-group" id="coche-passer-messages" aria-live="polite">
+          </div>
+        </div>
         <button
           v-if="question.type != 'action'"
           id="bouton-envoie"
@@ -169,16 +173,18 @@ export default {
       });
     },
 
-    passer () {
-      this.envoyer = true;
-      this.$emit('reponse', {
-        question: this.question.id,
-        intitule: this.question.intitule ?? this.question.retranscription_audio,
-        metacompetence: this.question.metacompetence,
-        scoreMax: this.question.score,
-        neSaisPas: true,
-        succes: false
-      });
+    jeNeSaisPas () {
+      if (this.$refs.cochePasser.checked) {
+        this.reponse_memorisee = this.reponse;
+        this.reponse = {
+          scoreMax: this.question.score,
+          neSaisPas: true,
+          succes: false
+        };
+      }
+      else {
+        this.reponse = this.reponse_memorisee;
+      }
     },
 
     attribueReponse (reponse) {

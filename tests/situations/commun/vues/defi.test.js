@@ -93,7 +93,7 @@ describe("La vue d'un défi", function() {
     });
 
     it('affiche le bouton "je ne sais pas"', function() {
-      expect(vue.find('#bouton-passer').exists()).toBe(false);
+      expect(vue.find('#coche-passer').exists()).toBe(false);
     });
   });
 
@@ -107,10 +107,10 @@ describe("La vue d'un défi", function() {
     });
 
     it('affiche le bouton "je ne sais pas"', function() {
-      expect(vue.find('#bouton-passer').exists()).toBe(true);
+      expect(vue.find('#coche-passer').exists()).toBe(true);
     });
 
-    it('emet un événement réponse quand on appuie sur le bouton passer', function(done) {
+    it("emet un événement réponse quand on coche 'je ne sais pas' et qu'on valide", function(done) {
       const reponse = {
         question: question.id,
         intitule: question.intitule,
@@ -121,7 +121,32 @@ describe("La vue d'un défi", function() {
         succes: false
       };
       vue.vm.$nextTick(() => {
-        vue.find('#bouton-passer').trigger('click');
+        vue.find('#coche-passer').trigger('click');
+        vue.find('#bouton-envoie').trigger('click');
+        vue.vm.$nextTick(() => {
+          expect(vue.vm.envoyer).toBe(true);
+          expect(vue.emitted().reponse.length).toEqual(1);
+          expect(vue.emitted().reponse[0][0]).toEqual(reponse);
+          done();
+        });
+      });
+    });
+
+    it("emet le choix quand on coche puis décoche 'je ne sais pas' et qu'on valide", function(done) {
+      const reponse = {
+        question: question.id,
+        intitule: question.intitule,
+        metacompetence: undefined,
+        scoreMax: 1,
+        reponse: 'uid-32',
+        succes: true
+      };
+
+      vue.vm.$nextTick(() => {
+        vue.findComponent(Qcm).vm.$emit('reponse', reponse);
+        vue.find('#coche-passer').trigger('click');
+        vue.find('#coche-passer').trigger('click');
+        vue.find('#bouton-envoie').trigger('click');
         vue.vm.$nextTick(() => {
           expect(vue.vm.envoyer).toBe(true);
           expect(vue.emitted().reponse.length).toEqual(1);
