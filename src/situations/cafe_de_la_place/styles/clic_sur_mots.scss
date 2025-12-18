@@ -2,6 +2,7 @@
 
 .zone-cliquable {
   position: absolute;
+
   .mot-cliquable {
     padding: 0 2px;
     cursor: pointer;
@@ -10,9 +11,10 @@
     border-radius: 0.25rem;
     background: rgba(251, 249, 250, 0.1);
 
-    &--selectionne {
-      border: 1px solid $bleu;
-      background: $bleu;
+    &--selectionne,
+    &--selectionne:hover {
+      border: 1px solid var(--info-425-625);
+      background: var(--info-425-625);
     }
   }
 }
@@ -30,6 +32,7 @@
 
   .mot-cliquable {
     color: $couleur-fond;
+
     &--selectionne {
       mix-blend-mode: lighten;
     }
@@ -54,9 +57,12 @@
   }
 
   .legende {
-    &, a {
-      color:#2F80ED;
+
+    &,
+    a {
+      color: #2F80ED;
     }
+
     .mot-cliquable--selectionne {
       color: $couleur-fond;
     }
@@ -71,6 +77,7 @@
     color: $noir;
     border-color: $bleu-gris-fonce;
     mix-blend-mode: multiply;
+
     &--selectionne {
       color: $couleur-fond;
     }
@@ -88,6 +95,7 @@
       td:first-child {
         width: 15.125rem;
       }
+
       td:last-child {
         width: auto;
         padding-left: 2rem;
@@ -109,10 +117,10 @@
       td:first-child {
         width: 15.2rem;
       }
+
       td:last-child {
         padding-left: 1.23rem;
       }
     }
   }
 }
-

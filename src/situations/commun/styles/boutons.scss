@@ -3,7 +3,6 @@
 
 @mixin bouton-couleur($couleur, $couleur-focus) {
   background-color: $couleur;
-  border: 1px solid $couleur;
 
   &:hover,
   &:focus {

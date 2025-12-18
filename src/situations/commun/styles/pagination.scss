@@ -4,9 +4,10 @@
   position: absolute;
   top: -0.8rem;
   right: 1.5rem;
-  background: $couleur-sombre;
+  background: var(--info-425-625);
   border-radius: 1rem;
   padding: 0.28rem 0.8rem;
   color: $blanc;
   font-size: 1rem;
+  line-height: 1.2rem;
 }

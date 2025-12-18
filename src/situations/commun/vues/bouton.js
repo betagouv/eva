@@ -9,8 +9,8 @@ export default class VueBouton {
     this.etiquette = etiquette;
   }
 
-  affiche (pointInsertion, $) {
-    const $bouton = $(`<a class="${this.classe}"><img src="${this.image}"></a>`);
+  affiche(pointInsertion, $) {
+    const $bouton = $(`<bouton class="${this.classe}"><img src="${this.image}"></bouton>`);
     if (this.etiquette) {
       const $boutonEtEtiquette = $('<div class="bouton-et-etiquette"></div>');
       $boutonEtEtiquette.append($bouton);
