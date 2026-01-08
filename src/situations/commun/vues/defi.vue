@@ -189,6 +189,9 @@ export default {
 
     attribueReponse (reponse) {
       this.reponse = reponse;
+      if (this.$refs.cochePasser) {
+        this.$refs.cochePasser.checked = false;
+      }
     },
 
     journaliserEvenementAffichage () {
