@@ -156,6 +156,32 @@ describe("La vue d'un défi", function() {
       });
     });
 
+    it("Décoche 'je ne sais pas' quand on fait un choix", function(done) {
+      const reponse = {
+        question: question.id,
+        intitule: question.intitule,
+        metacompetence: undefined,
+        scoreMax: 1,
+        reponse: 'uid-32',
+        succes: true
+      };
+
+      vue.vm.$nextTick(() => {
+        vue.find('#coche-passer').trigger('click');
+        vue.findComponent(Qcm).vm.$emit('reponse', reponse);
+        vue.vm.$nextTick(() => {
+          expect(vue.find('#coche-passer').element.checked).toBe(false);
+          vue.find('#bouton-envoie').trigger('click');
+          vue.vm.$nextTick(() => {
+            expect(vue.vm.envoyer).toBe(true);
+            expect(vue.emitted().reponse.length).toEqual(1);
+            expect(vue.emitted().reponse[0][0]).toEqual(reponse);
+            done();
+          });
+        });
+      });
+    });
+
   });
 
   describe('quand le défi est de type qcm', function() {
