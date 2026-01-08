@@ -25,7 +25,6 @@ const sousConsigneACrd1 = {
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
-  passable: true,
   template: 'article article--disque',
   nom_technique: 'sous_consigne_ACrd_1',
   intitule: 'Dans le magazine, il y a une présentation de ce disque. Je vais maintenant vous poser des questions sur ce texte. Prenez connaissance du texte.\n\nPour commencer à répondre aux questions, cliquez sur « Suivant ».'
@@ -489,7 +488,6 @@ const sousConsigneACrd2 = {
   type: 'sous-consigne',
   illustration: magazineSansTexte,
   extensionVue: 'clic-sur-mots',
-  passable: true,
   template: 'article article--disque',
   intitule: 'Maintenant, pour répondre aux questions suivantes, cliquez sur le bouton correspondant à la réponse.\n\nPour commencer à répondre aux questions, cliquez sur « Suivant ».'
 };
