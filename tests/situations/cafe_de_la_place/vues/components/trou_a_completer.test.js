@@ -22,7 +22,7 @@ describe('Le composant Trou A completer', function () {
 
   describe('#trouEnCours', function () {
     it("ajoute la classe reponse--en-cours quand il s'agit de la réponse à compléter", function () {
-      store.state.carteActive = { id: question1 };
+      store.state.questionActive = { id: question1 };
       wrapper = composant(question1);
       const trou = wrapper.find('span');
       expect(trou.classes('reponse--en-cours')).toBe(true);
