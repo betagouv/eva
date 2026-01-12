@@ -37,11 +37,11 @@ export default {
   },
 
   computed: {
-    ...mapState(['indexCarte', 'carteActive', 'termine']),
+    ...mapState(['indexCarte', 'questionActive', 'termine']),
     ...mapGetters(['questionServeur', 'nombreCartes', 'acteEnCours']),
 
     affichePagination () {
-      return this.carteActive.type !== 'sous-consigne';
+      return this.questionActive.type !== 'sous-consigne';
     }
   },
 
@@ -56,8 +56,8 @@ export default {
       this.$emit('terminer');
     },
 
-    carteActive() {
-      this.question = this.questionServeur(this.carteActive) ?? this.carteActive;
+    questionActive() {
+      this.question = this.questionServeur(this.questionActive) ?? this.questionActive;
       if(this.question.extensionVue === 'glisser-deposer') {
         this.question.extensionVue = 'puzzle-journal';
       }
@@ -66,7 +66,7 @@ export default {
 
   methods: {
     reponse (reponse) {
-      if(this.carteActive.type !== 'sous-consigne') {
+      if(this.questionActive.type !== 'sous-consigne') {
         this.$store.commit('enregistreReponse', reponse);
         this.$journal.enregistre(new EvenementReponse(reponse));
       }

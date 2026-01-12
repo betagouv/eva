@@ -11,7 +11,7 @@ export function creeStore () {
       fondSituation: '',
       indexCarte: 0,
       indexSerie: 0,
-      carteActive: {},
+      questionActive: {},
       series: [],
       termine: false,
       reponses: {},
@@ -37,7 +37,7 @@ export function creeStore () {
       },
 
       estCarteActive(state) {
-        return (idCarte) => state.carteActive.id == idCarte;
+        return (idCarte) => state.questionActive.id == idCarte;
       },
 
       tousLesParcours(state) {
@@ -55,13 +55,13 @@ export function creeStore () {
       carteSuivanteParcours(state) {
         state.indexCarte++;
         if (state.indexCarte < state.series[state.indexSerie].cartes.length) {
-          state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+          state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
         }
         else {
           state.indexCarte = 0;
           state.indexSerie++;
           if (state.indexSerie < state.series.length) {
-            state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+            state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
           }
           else {
             state.indexSerie--;
@@ -77,7 +77,7 @@ export function creeStore () {
         state.indexSerie = 0;
         state.indexCarte = 0;
         state.series = state.configuration[state.parcours].series;
-        state.carteActive = state.series[state.indexSerie].cartes[state.indexCarte];
+        state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
       },
 
       carteSuivante(state) {
@@ -101,12 +101,12 @@ export function creeStore () {
         if(!reponse.score) {
           state.reponses[reponse.question].score = 0;
         }
-        if(reponse.succes && state.carteActive.score) {
+        if(reponse.succes && state.questionActive.score) {
           if(state.parcours == ORIENTATION) {
-            state.scoreOrientation += state.carteActive.score;
+            state.scoreOrientation += state.questionActive.score;
           }
           if(state.parcours == PARCOURS_HAUT_1) {
-            state.scoreHaut1 += state.carteActive.score;
+            state.scoreHaut1 += state.questionActive.score;
           }
         }
       },

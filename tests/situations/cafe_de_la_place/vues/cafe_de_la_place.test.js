@@ -67,12 +67,12 @@ describe('La vue café de la place', function () {
       expect(wrapper.findComponent(Defi).exists()).toBe(true);
     });
 
-    it("n'affiche pas la pagination si la carte active est une sous consigne", function (done) {
-      store.state.carteActive = sousConsigne;
+    it("n'affiche pas la pagination si la question active est une sous consigne", function (done) {
+      store.state.questionActive = sousConsigne;
       expect(wrapper.vm.affichePagination).toBe(false);
       expect(wrapper.findComponent(Pagination).exists()).toBe(false);
 
-      store.state.carteActive = question;
+      store.state.questionActive = question;
       expect(wrapper.vm.affichePagination).toBe(true);
       wrapper.vm.$nextTick(() => {
         expect(wrapper.vm.nombreCartes).toBe(1);
@@ -97,24 +97,24 @@ describe('La vue café de la place', function () {
       store.state.etat = DEMARRE;
 
       wrapper.vm.$nextTick(() => {
-        expect(store.state.carteActive).toEqual(question);
+        expect(store.state.questionActive).toEqual(question);
         done();
       });
     });
 
-    it("A la configuration, démarre avec la première carte s'il n'y a pas d'ancre", function(done) {
+    it("A la configuration, démarre avec la première question s'il n'y a pas d'ancre", function(done) {
       location.hash = '';
       store.state.etat = DEMARRE;
 
       wrapper.vm.$nextTick(() => {
-        expect(store.state.carteActive).toEqual(sousConsigne);
+        expect(store.state.questionActive).toEqual(sousConsigne);
         done();
       });
     });
 
     it("reaffecte l'extensionVue puzzle-journal si elle est de type glisser-deposer", function (done) {
       question.extensionVue = 'glisser-deposer';
-      store.state.carteActive = question;
+      store.state.questionActive = question;
 
       wrapper.vm.$nextTick(() => {
         expect(wrapper.vm.question.extensionVue).toBe('puzzle-journal');
@@ -123,18 +123,18 @@ describe('La vue café de la place', function () {
     });
 
     describe('#reponse', function () {
-      describe('quand la carte active est de type sous consigne', function () {
-        it('passes à la carte suivante', function () {
-          store.state.carteActive = sousConsigne;
-          const question_courante = wrapper.vm.carteActive.id;
+      describe('quand la question active est de type sous consigne', function () {
+        it('passe à la question suivante', function () {
+          store.state.questionActive = sousConsigne;
+          const question_courante = wrapper.vm.questionActive.id;
           wrapper.vm.reponse({});
-          expect(wrapper.vm.carteActive.id).not.toEqual(question_courante);
+          expect(wrapper.vm.questionActive.id).not.toEqual(question_courante);
         });
       });
 
-      describe("quand la carte active n'est pas de type sous consigne", function () {
+      describe("quand la question active n'est pas de type sous consigne", function () {
         beforeEach(function () {
-          store.state.carteActive = question;
+          store.state.questionActive = question;
         });
 
         it('enregistre les réponses dans le store', function () {

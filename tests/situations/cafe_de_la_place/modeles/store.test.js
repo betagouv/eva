@@ -64,13 +64,13 @@ describe('Le store de la situation café de la place', function () {
       store.commit('configureActe', configuration);
     });
 
-    it("s'initialise avec le premier chapitre et la première carte du chapitre", function () {
+    it("s'initialise avec le premier chapitre et la première question du chapitre", function () {
       expect(store.state.indexCarte).toEqual(0);
-      expect(store.state.carteActive).toEqual(premiereSousConsigne);
+      expect(store.state.questionActive).toEqual(premiereSousConsigne);
     });
 
     describe("#nombreCarte", function() {
-      it('retourne le nombre de carte de la série en cours', function() {
+      it('retourne le nombre de questions de la série en cours', function() {
         expect(store.getters.nombreCartes).toEqual(2);
 
         store.state.indexSerie = 2;
@@ -93,33 +93,33 @@ describe('Le store de la situation café de la place', function () {
       it("passe à la consigne suivante", function() {
         store.commit('carteSuivanteParcours');
 
-        expect(store.state.carteActive).toEqual(deuxiemeSousConsigne);
+        expect(store.state.questionActive).toEqual(deuxiemeSousConsigne);
       });
 
       it("passe de la dernière consigne à la première question", function() {
         store.state.indexCarte = 1;
-        store.carteActive = deuxiemeSousConsigne;
+        store.questionActive = deuxiemeSousConsigne;
         store.commit('carteSuivanteParcours');
 
-        expect(store.state.carteActive).toEqual(premiereQuestion);
+        expect(store.state.questionActive).toEqual(premiereQuestion);
       });
 
       it("passe à la deuxième question", function () {
         store.state.indexCarte = 0;
         store.state.indexSerie = 1;
-        store.state.carteActive = premiereQuestion;
+        store.state.questionActive = premiereQuestion;
         store.commit('carteSuivanteParcours');
 
-        expect(store.state.carteActive).toEqual(question2);
+        expect(store.state.questionActive).toEqual(question2);
       });
 
       it("termine le parcours après la dernière question", function() {
         store.state.indexCarte = 1;
         store.state.indexSerie = 3;
-        store.state.carteActive = question4;
+        store.state.questionActive = question4;
         store.commit('carteSuivanteParcours');
         expect(store.state.parcoursTermine).toBe(true);
-        expect(store.state.carteActive).toEqual(question4);
+        expect(store.state.questionActive).toEqual(question4);
         expect(store.getters.nombreCartes).toEqual(2);
       });
     });
@@ -129,7 +129,7 @@ describe('Le store de la situation café de la place', function () {
         beforeEach(function() {
           store.state.indexCarte = 1;
           store.state.indexSerie = 3;
-          store.state.carteActive = question4;
+          store.state.questionActive = question4;
         });
 
         it("passe au parcours bas pour le score < 10", function() {
@@ -137,7 +137,7 @@ describe('Le store de la situation café de la place', function () {
           store.commit('carteSuivante');
           expect(store.state.parcours).toEqual(PARCOURS_BAS);
           expect(store.state.termine).toBe(false);
-          expect(store.state.carteActive).toEqual(question1Bas);
+          expect(store.state.questionActive).toEqual(question1Bas);
         });
 
         it("passe au parcours haut si le score est >= 10", function() {
@@ -145,17 +145,17 @@ describe('Le store de la situation café de la place', function () {
           store.commit('carteSuivante');
           expect(store.state.parcours).toEqual(PARCOURS_HAUT_1);
           expect(store.state.termine).toBe(false);
-          expect(store.state.carteActive).toEqual(question1Haut);
+          expect(store.state.questionActive).toEqual(question1Haut);
         });
 
         it("termine après la dernière question du parcours suivant orientation", function () {
           store.state.scoreOrientation = 9;
           store.commit('carteSuivante'); // dernière question d'orientation
           store.commit('carteSuivante'); // passe la première question
-          expect(store.state.carteActive).toEqual(question2Bas);
+          expect(store.state.questionActive).toEqual(question2Bas);
           expect(store.state.termine).toBe(false);
           store.commit('carteSuivante');
-          expect(store.state.carteActive).toEqual(question2Bas);
+          expect(store.state.questionActive).toEqual(question2Bas);
           expect(store.state.termine).toBe(true);
         });
       });
@@ -169,38 +169,38 @@ describe('Le store de la situation café de la place', function () {
           store.state.scoreHaut1 = 6;
           store.commit('carteSuivante'); // dernière question du parcours haut 1
           expect(store.state.termine).toBe(false);
-          expect(store.state.carteActive).toEqual(question1Haut2);
+          expect(store.state.questionActive).toEqual(question1Haut2);
         });
 
         it("démarre le parcours bas si le score est inférieur ou égal à 5", function () {
           store.state.scoreHaut1 = 5;
           store.commit('carteSuivante'); // dernière question du parcours haut 1
           expect(store.state.termine).toBe(false);
-          expect(store.state.carteActive).toEqual(question1Bas);
+          expect(store.state.questionActive).toEqual(question1Bas);
         });
       });
     });
 
     describe("#sauteALaCarte", function () {
-      it("peut sauter à une carte", function () {
+      it("peut sauter à une question", function () {
         store.dispatch('sauteALaCarte', 'question2');
-        expect(store.state.carteActive).toEqual(question2);
+        expect(store.state.questionActive).toEqual(question2);
         expect(store.state.termine).toBe(false);
       });
 
-      it("peut sauter à une carte de la première partie du parcours haut", function () {
+      it("peut sauter à une question de la première partie du parcours haut", function () {
         store.dispatch('sauteALaCarte', 'question1Haut');
-        expect(store.state.carteActive).toEqual(question1Haut);
+        expect(store.state.questionActive).toEqual(question1Haut);
         expect(store.state.termine).toBe(false);
       });
 
-      it("peut sauter à une carte de la deuxième partie du parcours haut", function () {
+      it("peut sauter à une question de la deuxième partie du parcours haut", function () {
         store.dispatch('sauteALaCarte', 'question1Haut2');
-        expect(store.state.carteActive).toEqual(question1Haut2);
+        expect(store.state.questionActive).toEqual(question1Haut2);
         expect(store.state.termine).toBe(false);
       });
 
-      it("saute jusqu'a la fin si la carte n'est pas connue", function () {
+      it("saute jusqu'a la fin si la question n'est pas connue", function () {
         store.dispatch('sauteALaCarte', 'inconnue' );
         expect(store.state.termine).toBe(true);
       });
@@ -230,13 +230,13 @@ describe('Le store de la situation café de la place', function () {
       describe("quand la question a un score", function() {
         it("Ajoute le score d'une réponse en cas de succès", function() {
           const laReponse = { succes: true };
-          store.state.carteActive = { score: 1 };
+          store.state.questionActive = { score: 1 };
           store.commit('enregistreReponse', laReponse);
           expect(store.state.scoreOrientation).toEqual(1);
         });
 
         it("accumule les scores au fur et à mesure des reponses", function() {
-          store.state.carteActive = { score: 2 };
+          store.state.questionActive = { score: 2 };
 
           store.commit('enregistreReponse', { succes: true });
           expect(store.state.scoreOrientation).toEqual(2);
@@ -265,7 +265,7 @@ describe('Le store de la situation café de la place', function () {
 
       describe("quand la question a un score", function() {
         beforeEach(function() {
-          store.state.carteActive = { score: 1 };
+          store.state.questionActive = { score: 1 };
         });
 
         it("Ajoute le score d'une réponse", function() {
@@ -277,7 +277,7 @@ describe('Le store de la situation café de la place', function () {
           store.commit('enregistreReponse', { succes: true });
           expect(store.state.scoreHaut1).toEqual(1);
 
-          store.state.carteActive = { score: 2 };
+          store.state.questionActive = { score: 2 };
 
           store.commit('enregistreReponse', { succes: true });
           expect(store.state.scoreHaut1).toEqual(3);

@@ -15,11 +15,11 @@ export default {
   },
 
   computed: {
-    ...mapState(['carteActive']),
+    ...mapState(['questionActive']),
     ...mapGetters(['reponse']),
 
     trouEnCours() {
-      return this.idQuestion === this.carteActive.id;
+      return this.idQuestion === this.questionActive.id;
     },
 
     valeur() {
