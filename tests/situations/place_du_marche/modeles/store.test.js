@@ -119,31 +119,6 @@ describe('Le store de la situation place du marché', function() {
       });
     });
 
-    describe('#carteSuivanteParcours', function() {
-      it("passe à la question suivante", function() {
-        store.commit('carteSuivanteParcours');
-
-        expect(store.state.questionActive).toEqual(questionNiveau1Question2);
-      });
-
-      it("passe de la dernière question du jeu de cartes en cours à la première question du jeu suivant", function() {
-        store.state.indexCarte = 1;
-        store.commit('carteSuivanteParcours');
-
-        expect(store.state.questionActive).toEqual(questionNiveau1Question3);
-      });
-
-      it("termine le parcours après la dernière question", function() {
-        store.state.indexCarte = 0;
-        store.state.indexSerie = 1;
-        store.state.questionActive = questionNiveau2;
-        store.commit('carteSuivanteParcours');
-        expect(store.state.parcoursTermine).toBe(true);
-        expect(store.state.questionActive).toEqual(questionNiveau2);
-        expect(store.getters.nombreCartes).toEqual(1);
-      });
-    });
-
     describe("#carteSuivante", function() {
       it("reinitialise l'activation de l'aide", function() {
         store.state.aide = true;

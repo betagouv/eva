@@ -149,24 +149,6 @@ export function creeStore () {
         this.commit('demarreParcours', NIVEAU1);
       },
 
-      carteSuivanteParcours(state) {
-        state.indexCarte++;
-        if (state.indexCarte < state.series[state.indexSerie].cartes.length) {
-          state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
-        }
-        else {
-          state.indexCarte = 0;
-          state.indexSerie++;
-          if (state.indexSerie < state.series.length) {
-            state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
-          }
-          else {
-            state.indexSerie--;
-            state.parcoursTermine = true;
-          }
-        }
-      },
-
       demarreParcours(state, parcours) {
         state.parcours = parcours;
         state.termine = false;

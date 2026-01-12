@@ -89,41 +89,6 @@ describe('Le store de la situation café de la place', function () {
       });
     });
 
-    describe('#carteSuivanteParcours', function () {
-      it("passe à la consigne suivante", function() {
-        store.commit('carteSuivanteParcours');
-
-        expect(store.state.questionActive).toEqual(deuxiemeSousConsigne);
-      });
-
-      it("passe de la dernière consigne à la première question", function() {
-        store.state.indexCarte = 1;
-        store.questionActive = deuxiemeSousConsigne;
-        store.commit('carteSuivanteParcours');
-
-        expect(store.state.questionActive).toEqual(premiereQuestion);
-      });
-
-      it("passe à la deuxième question", function () {
-        store.state.indexCarte = 0;
-        store.state.indexSerie = 1;
-        store.state.questionActive = premiereQuestion;
-        store.commit('carteSuivanteParcours');
-
-        expect(store.state.questionActive).toEqual(question2);
-      });
-
-      it("termine le parcours après la dernière question", function() {
-        store.state.indexCarte = 1;
-        store.state.indexSerie = 3;
-        store.state.questionActive = question4;
-        store.commit('carteSuivanteParcours');
-        expect(store.state.parcoursTermine).toBe(true);
-        expect(store.state.questionActive).toEqual(question4);
-        expect(store.getters.nombreCartes).toEqual(2);
-      });
-    });
-
     describe("#carteSuivante", function() {
       describe('quand orientation est terminée', function() {
         beforeEach(function() {

@@ -89,6 +89,65 @@ describe('Le store en commun pour les situations', function () {
         expect(store.state.audioIdEnCours).toEqual(nomTechniqueAudio);
       });
     });
+
+    describe('#carteSuivanteParcours', function () {
+      const carte1 = { id: 'carte1' };
+      const carte2 = { id: 'carte2' };
+      const carte3 = { id: 'carte3' };
+      const carte4 = { id: 'carte4' };
+
+      beforeEach(function () {
+        store = creeStore();
+        store.state.series = [
+          { cartes: [carte1, carte2] },
+          { cartes: [carte3, carte4] }
+        ];
+        store.state.indexSerie = 0;
+        store.state.indexCarte = 0;
+        store.state.questionActive = carte1;
+      });
+
+      it("passe à la carte suivante dans la même série", function () {
+        store.commit('carteSuivanteParcours');
+
+        expect(store.state.indexCarte).toEqual(1);
+        expect(store.state.questionActive).toEqual(carte2);
+      });
+
+      it("passe de la dernière carte d'une série à la première carte de la série suivante", function () {
+        store.state.indexCarte = 1;
+        store.state.questionActive = carte2;
+
+        store.commit('carteSuivanteParcours');
+
+        expect(store.state.indexSerie).toEqual(1);
+        expect(store.state.indexCarte).toEqual(0);
+        expect(store.state.questionActive).toEqual(carte3);
+      });
+
+      it("passe à la carte suivante dans la deuxième série", function () {
+        store.state.indexSerie = 1;
+        store.state.indexCarte = 0;
+        store.state.questionActive = carte3;
+
+        store.commit('carteSuivanteParcours');
+
+        expect(store.state.indexCarte).toEqual(1);
+        expect(store.state.questionActive).toEqual(carte4);
+      });
+
+      it("termine le parcours après la dernière carte", function () {
+        store.state.indexSerie = 1;
+        store.state.indexCarte = 1;
+        store.state.questionActive = carte4;
+
+        store.commit('carteSuivanteParcours');
+
+        expect(store.state.parcoursTermine).toBe(true);
+        expect(store.state.questionActive).toEqual(carte4);
+        expect(store.state.indexSerie).toEqual(1);
+      });
+    });
   });
 
   describe('Getters', function () {
