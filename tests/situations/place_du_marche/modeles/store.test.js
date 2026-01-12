@@ -15,14 +15,14 @@ import {
   DEMARRE,
 } from 'commun/modeles/situation';
 
-describe('Le store de la situation place du marché', function () {
+describe('Le store de la situation place du marché', function() {
   let store;
   const questionNiveau1Question1 = { nom_technique: 'N1Pse1', score: 0.5 };
   const questionNiveau1Question2 = { nom_technique: 'N1Pse2', score: 1 };
   const questionNiveau1Question3 = { nom_technique: 'N1Pse3', score: 1 };
   const N1PrnSousConsigne = { nom_technique: 'Sous-consigne-sans-score' };
-  const questionNiveau2 = { nom_technique: 'N2Pse1'};
-  const questionNiveau3 = { nom_technique: 'N3Pse1', score: 1.5};
+  const questionNiveau2 = { nom_technique: 'N2Pse1' };
+  const questionNiveau3 = { nom_technique: 'N3Pse1', score: 1.5 };
   const questionAvecRattrapage = { score: 1 };
   const questionRattrapage = { nom_technique: 'N1Rrn1' };
 
@@ -30,19 +30,19 @@ describe('Le store de la situation place du marché', function () {
     questions: {
       [NIVEAU1]: {
         series: [
-          { cartes: [questionNiveau1Question1, questionNiveau1Question2]},
-          { cartes: [questionNiveau1Question3]},
+          { cartes: [questionNiveau1Question1, questionNiveau1Question2] },
+          { cartes: [questionNiveau1Question3] },
         ],
       },
       [NIVEAU2]: {
         series: [
-          { cartes: [questionNiveau2]},
+          { cartes: [questionNiveau2] },
         ],
       },
       [NIVEAU3]: {
         series: [
-          { cartes: [questionNiveau3]},
-          { cartes: [ N1PrnSousConsigne ] },
+          { cartes: [questionNiveau3] },
+          { cartes: [N1PrnSousConsigne] },
         ],
       },
       ['N1Prn']: {
@@ -68,7 +68,7 @@ describe('Le store de la situation place du marché', function () {
       store.commit('configureActe', configuration);
     });
 
-    it("s'initialise avec le premier chapitre et la première carte du chapitre", function () {
+    it("s'initialise avec le premier chapitre et la première carte du chapitre", function() {
       expect(store.state.indexCarte).toEqual(0);
       expect(store.state.questionActive).toEqual(questionNiveau1Question1);
     });
@@ -119,7 +119,7 @@ describe('Le store de la situation place du marché', function () {
       });
     });
 
-    describe('#carteSuivanteParcours', function () {
+    describe('#carteSuivanteParcours', function() {
       it("passe à la question suivante", function() {
         store.commit('carteSuivanteParcours');
 
@@ -171,8 +171,8 @@ describe('Le store de la situation place du marché', function () {
             store.state.pourcentageDeReussiteGlobal = 70;
           });
 
-          describe("et que ce n'est pas le dernier niveau", function(){
-            it("démarre le niveau suivant", function () {
+          describe("et que ce n'est pas le dernier niveau", function() {
+            it("démarre le niveau suivant", function() {
               expect(store.state.parcours).toBe(NIVEAU1);
 
               store.commit('carteSuivante');
@@ -181,7 +181,7 @@ describe('Le store de la situation place du marché', function () {
               expect(store.state.termine).toBe(false);
             });
 
-            it("réinitialise les rattrapages à passer", function () {
+            it("réinitialise les rattrapages à passer", function() {
               store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
               store.commit('carteSuivante');
               expect(store.state.pourcentageDeReussiteCompetence['N1Prn']).toEqual(100);
@@ -189,8 +189,8 @@ describe('Le store de la situation place du marché', function () {
             });
           });
 
-          describe("et que c'est le dernier niveau", function(){
-            it("termine la situation", function () {
+          describe("et que c'est le dernier niveau", function() {
+            it("termine la situation", function() {
               const indexNiveau3 = 2;
               store.state.indexNiveau = indexNiveau3;
               expect(store.getters.estDernierNiveau).toBe(true);
@@ -211,13 +211,13 @@ describe('Le store de la situation place du marché', function () {
               store.state.pourcentageDeReussiteCompetence['N1Prn'] = 50;
             });
 
-            it("termine si ils ont déjà été passés", function () {
+            it("termine si ils ont déjà été passés", function() {
               store.state.indexRattrapage = 1;
               store.commit('carteSuivante');
               expect(store.state.termine).toEqual(true);
             });
 
-            it("démarre le parcours de rattrapage", function () {
+            it("démarre le parcours de rattrapage", function() {
               expect(store.getters.rattrapagesAPasser).toEqual(['N1Prn']);
               expect(store.state.indexRattrapage).toEqual(0);
               store.commit('carteSuivante');
@@ -227,7 +227,7 @@ describe('Le store de la situation place du marché', function () {
           });
 
           describe("si il n'y a pas des compétences à rattraper", function() {
-            it("termine la situation", function () {
+            it("termine la situation", function() {
               store.state.pourcentageDeReussiteCompetence['N1Prn'] = 100;
               store.commit('carteSuivante');
               expect(store.state.termine).toBe(true);
@@ -236,8 +236,8 @@ describe('Le store de la situation place du marché', function () {
         });
       });
 
-      describe('à la dernière question tu rattrapage', function() {
-        it("termine la situation", function () {
+      describe('à la dernière question du rattrapage', function() {
+        it("termine la situation", function() {
           store.state.parcoursTermine = true;
           store.state.parcours = 'N1Prn';
           expect(store.state.termine).toBe(false);
@@ -297,20 +297,20 @@ describe('Le store de la situation place du marché', function () {
       });
     });
 
-    describe("#sauteALaCarte", function () {
-      it("peut sauter à une carte du niveau 1", function () {
+    describe("#sauteALaCarte", function() {
+      it("peut sauter à une carte du niveau 1", function() {
         store.dispatch('sauteALaCarte', 'N1Pse2');
         expect(store.state.questionActive).toEqual(questionNiveau1Question2);
         expect(store.state.termine).toBe(false);
       });
 
-      it("peut sauter à une carte d'un autre niveau", function () {
+      it("peut sauter à une carte d'un autre niveau", function() {
         store.dispatch('sauteALaCarte', 'N2Pse1');
         expect(store.state.questionActive).toEqual(questionNiveau2);
         expect(store.state.termine).toBe(false);
       });
 
-      it("peut sauter à une carte du rattrapage", function () {
+      it("peut sauter à une carte du rattrapage", function() {
         store.dispatch('sauteALaCarte', 'N1Rrn1');
         expect(store.state.questionActive).toEqual(questionRattrapage);
         expect(store.state.termine).toBe(false);
@@ -326,7 +326,7 @@ describe('Le store de la situation place du marché', function () {
 
       it('restitue une réponse avec score, question id et succes', function() {
         store.commit('enregistreReponse', { question: 'id1', reponse: 'ma reponse', succes: true });
-        const reponse = {"question": "id1", "reponse": "ma reponse", "score": 1, "succes": true};
+        const reponse = { "question": "id1", "reponse": "ma reponse", "score": 1, "succes": true };
         expect(store.getters.reponse('id1')).toEqual(reponse);
       });
 
@@ -500,7 +500,8 @@ describe('Le store de la situation place du marché', function () {
           "N1Roa": 0,
           "N1Ron": 0,
           "N1Ros": 0,
-          "N1Rrn": 0};
+          "N1Rrn": 0
+        };
         const result = filtreMeilleursScores(scoresParMetrique, NIVEAU1);
         expect(result).toEqual(["N1Pse", "N1Rrn", "N1Rde", "N1Res", "N1Ron", "N1Roa", "N1Ros", "N1Pvn"]);
       });
