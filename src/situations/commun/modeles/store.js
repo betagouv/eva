@@ -27,7 +27,7 @@ export const storeAvecAudio = {
     audioIdEnCours: null
   },
   mutations: {
-    modifieAudioIdEnCours (state, audioId) {
+    modifieAudioIdEnCours(state, audioId) {
       state.audioIdEnCours = audioId;
     }
   },
@@ -38,7 +38,7 @@ export const storeAvecAudio = {
   }
 };
 
-export function creeStore ({ state, mutations, getters, actions } = {}) {
+export function creeStore({ state, mutations, getters, actions } = {}) {
   return createStore({
     state: {
       etat: CHARGEMENT,
@@ -48,17 +48,36 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
       ...storeAvecAudio.state
     },
     mutations: {
-      modifieEtat (state, etat) {
+      modifieEtat(state, etat) {
         state.etat = etat;
       },
 
-      activeAide (state) {
+      activeAide(state) {
         state.aide = true;
       },
 
       recupereQuestionsServeur(state, questions) {
         state.questions = questions;
       },
+
+      carteSuivanteParcours(state) {
+        state.indexCarte++;
+        if (state.indexCarte < state.series[state.indexSerie].cartes.length) {
+          state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
+        }
+        else {
+          state.indexCarte = 0;
+          state.indexSerie++;
+          if (state.indexSerie < state.series.length) {
+            state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
+          }
+          else {
+            state.indexSerie--;
+            state.parcoursTermine = true;
+          }
+        }
+      },
+
       ...mutations,
       ...storeAvecAudio.mutations
     },
@@ -86,7 +105,7 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
           retranscription_audio,
         });
 
-        if(question.type === 'clic-dans-image' || question.type === 'glisser-deposer' || question.type === 'clic-sur-mots') {
+        if (question.type === 'clic-dans-image' || question.type === 'glisser-deposer' || question.type === 'clic-sur-mots') {
           question.extensionVue = question.type;
           delete question.type;
         }
@@ -103,7 +122,7 @@ export function creeStore ({ state, mutations, getters, actions } = {}) {
   });
 }
 
-export function synchroniseStoreEtModeleSituation (situation, store) {
+export function synchroniseStoreEtModeleSituation(situation, store) {
   situation.on(CHANGEMENT_ETAT, (etat) => {
     if (store.state.etat == etat) return;
 
@@ -114,14 +133,14 @@ export function synchroniseStoreEtModeleSituation (situation, store) {
   });
   store.subscribe((mutation) => {
     switch (mutation.type) {
-    case 'modifieEtat':
-      situation.modifieEtat(mutation.payload);
-      break;
-    case 'activeAide':
-      if (!situation.aideActivee) {
-        situation.activeAide();
-      }
-      break;
+      case 'modifieEtat':
+        situation.modifieEtat(mutation.payload);
+        break;
+      case 'activeAide':
+        if (!situation.aideActivee) {
+          situation.activeAide();
+        }
+        break;
     }
   });
   store.commit('modifieEtat', situation.etat());
