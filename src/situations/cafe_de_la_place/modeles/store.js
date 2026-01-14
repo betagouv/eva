@@ -60,10 +60,7 @@ export function creeStore() {
 
       carteSuivante(state) {
         this.commit('carteSuivanteParcours');
-        if (state.parcoursTermine && state.parcours == TOUTES_QUESTIONS) {
-          state.termine = true;
-        }
-        else if (state.parcoursTermine) {
+        if (state.parcoursTermine) {
           if (state.parcours == ORIENTATION) {
             this.commit('demarreParcours', state.scoreOrientation < 10 ? PARCOURS_BAS : PARCOURS_HAUT_1);
           }

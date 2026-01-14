@@ -149,6 +149,7 @@ const HGac1 = {
   nom_technique: 'hgac_1',
   illustration: graphique,
   extensionVue: 'graphique',
+  passable: true,
   score: 1,
   intitule: "D'après ce graphique, dans quel pays trouve-t-on le plus de foyers qui accueillent des chats ?",
   modalite_reponse: "Pour répondre, cliquez sur les barres du graphique.\nAttention, il peut y avoir plusieurs bonnes réponses. Quand votre choix vous convient, cliquez sur « Valider ».",
@@ -162,6 +163,7 @@ const HGac2 = {
   nom_technique: 'hgac_2',
   illustration: graphique,
   extensionVue: 'graphique',
+  passable: true,
   score: 1,
   intitule: "Quels sont les pays qui ont le même pourcentage de foyers qui accueillent des chats ?",
   reponse: {
@@ -174,6 +176,7 @@ const HGac3 = {
   nom_technique: 'hgac_3',
   illustration: graphique,
   extensionVue: 'graphique',
+  passable: true,
   score: 1,
   intitule: "Quels pays ont plus de foyers qui accueillent des chats que la moyenne en Europe ?",
   reponse: {
@@ -186,6 +189,7 @@ const HGac4 = {
   nom_technique: 'hgac_4',
   illustration: graphique,
   extensionVue: 'graphique',
+  passable: true,
   score: 1,
   intitule: "D’après ce graphique, dans quel pays y a-t-il le moins de foyers qui accueillent des chats ?",
   reponse: {
@@ -198,7 +202,6 @@ const sousConsigneHCvf1 = {
   nom_technique: 'sous_consigne_HCvf_1',
   type: 'sous-consigne',
   extensionVue: 'clic-sur-mots',
-  passable: true,
   template: 'article article--villes-fleuries',
   illustration: rubriqueEnvironnement,
   intitule: "A la page suivante vous tombez sur la rubrique « La minute environnement ». Un article parle du concours des villes fleuries.\n\nJ'ai quelques questions à vous poser sur cet article, lisez-le avec attention. Quand vous avez fini de lire, cliquez sur « Suivant »."
@@ -241,7 +244,6 @@ const HCvf3 = {
   id: 'HCvf3',
   nom_technique: 'hcvf_3',
   type: 'qcm',
-  passable: true,
   illustration: rubriqueEnvironnement,
   extensionVue: 'clic-sur-mots',
   passable: true,
@@ -269,7 +271,6 @@ const HCvf4 = {
   id: 'HCvf4',
   nom_technique: 'hcvf_4',
   type: 'qcm',
-  passable: true,
   extensionVue: 'clic-sur-mots',
   passable: true,
   template: 'article article--villes-fleuries',
@@ -313,14 +314,14 @@ const texteHCvf2Colonne1 = "<span>Hier après-midi, [les membres du jury du conc
 const texteHCvf2Colonne2 = "<span>[Cette technique, qui permet à la nature de se réapproprier l'espace en ville](), est visible à plusieurs endroits, *[« Dans le centre, où l'on tond moins](), nous privilégions les graines qui permettent d'avoir des fleurs en permanence »*, résume l'élu.</span><span>*« A l'extérieur de la ville, le long de la Route nationale ou du boulevard Clémenceau, [par exemple, nous travaillons avec des graminées, qui sont fauchées deux fois par an seulement »]()*.</span><span>Au cœur de la ville, le plus gros du travail a concerné les ronds-points. Les agents des espaces verts les ont bichonnés dès cet hiver pour préparer leur floraison printanière.</span><span>Résultat, bien avant le 14 Juillet, les habitants ont droit à un feu d'artifice de couleurs. Aura-t-il séduit le jury ? Réponse à l'automne.</span>";
 
 const texteHCvf1 =
-`
+  `
 |||
 |:---|:---|
 |${texteHCvf1Colonne1}|${texteHCvf1Colonne2}|
 `;
 
 const texteHCvf2 =
-`
+  `
 |||
 |:---|:---|
 |${texteHCvf2Colonne1}|${texteHCvf2Colonne2}|
@@ -934,10 +935,10 @@ const HPfb20 = {
 
 const parcoursHaut1 = {
   series: [
-    { cartes: [ sousConsigneHPar1 ] },
-    { cartes: [ HPar1, HPar2, HPar3 ] },
-    { cartes: [ sousConsigneHGac1 ] },
-    { cartes: [ HGac1, HGac2, HGac3, HGac4 ] }
+    { cartes: [sousConsigneHPar1] },
+    { cartes: [HPar1, HPar2, HPar3] },
+    { cartes: [sousConsigneHGac1] },
+    { cartes: [HGac1, HGac2, HGac3, HGac4] }
   ]
 };
 
@@ -946,25 +947,25 @@ const parcoursHaut2 = {
     {
       texte: texteHCvf1,
       texteNonCliquable: true,
-      cartes: [ sousConsigneHCvf1 ]
+      cartes: [sousConsigneHCvf1]
     },
     {
       texte: texteHCvf1,
-      cartes: [ HCvf1 ]
+      cartes: [HCvf1]
     },
     {
       texte: texteHCvf2,
-      cartes: [ HCvf2 ]
+      cartes: [HCvf2]
     },
     {
       texte: texteHCvf1,
       texteNonCliquable: true,
-      cartes: [ HCvf3, HCvf4 ]
+      cartes: [HCvf3, HCvf4]
     },
     {
-      cartes: [ sousConsigneHPfb1, sousConsigneHPfb2 ]
+      cartes: [sousConsigneHPfb1, sousConsigneHPfb2]
     },
-    { cartes: [ HPfb1, HPfb2, HPfb3, HPfb4, HPfb5, HPfb6, HPfb7, HPfb8, HPfb9, HPfb10, HPfb11, HPfb12, HPfb13, HPfb14, HPfb15, HPfb16, HPfb17, HPfb18, HPfb19, HPfb20 ] }
+    { cartes: [HPfb1, HPfb2, HPfb3, HPfb4, HPfb5, HPfb6, HPfb7, HPfb8, HPfb9, HPfb10, HPfb11, HPfb12, HPfb13, HPfb14, HPfb15, HPfb16, HPfb17, HPfb18, HPfb19, HPfb20] }
   ]
 };
 
