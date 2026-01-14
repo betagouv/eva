@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   @include conteneur;
+
   .conteneur {
     background-color: #A2ADAF;
   }
@@ -21,15 +22,19 @@
     .logo {
       height: 3.5rem;
     }
+
     .titre-campagne {
       margin-left: 2.8rem;
       color: $blanc;
-      > span {
+
+      >span {
         color: $bleu-fonce;
       }
     }
+
     .confirmation-deconnexion {
       margin-left: auto;
+
       .confirme-bouton {
         margin-left: 1rem;
       }
@@ -67,12 +72,15 @@
   .fleche-navigation-situation {
     display: flex;
     background: none;
+
     svg {
       fill: $blanc;
+
       path {
         fill: $bleu;
       }
     }
+
     &.desactivee {
       svg {
         path {
@@ -85,11 +93,13 @@
   .bouton-et-etiquette {
     &.desactivee {
       pointer-events: none;
+
       span {
         opacity: 1;
         color: $bleu-gris;
       }
     }
+
     .fr-btn {
       font-size: 1rem;
       line-height: 1.188rem;
@@ -105,6 +115,7 @@
     z-index: 101;
     text-align: center;
     background-color: $rouge;
+
     &-description {
       font-family: $font-quicksand;
       font-size: 0.875rem;
