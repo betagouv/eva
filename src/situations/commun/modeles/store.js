@@ -49,7 +49,7 @@ export const storeAvecAudio = {
 };
 
 export function creeStore({ state, mutations, getters, actions } = {}) {
-  return createStore({
+  const store = createStore({
     state: {
       etat: CHARGEMENT,
       aide: false,
@@ -142,13 +142,19 @@ export function creeStore({ state, mutations, getters, actions } = {}) {
     actions: {
       ...actionsCommunes,
       ...actions
-    },
-    watch: {
-      questionActive(question) {
-        console.log(question.nomTechnique);
-      }
     }
   });
+
+  store.watch(
+    (state) => state.questionActive,
+    (question) => {
+      if (question?.id) {
+        console.info(question.id);
+      }
+    }
+  );
+
+  return store;
 }
 
 export function synchroniseStoreEtModeleSituation(situation, store) {

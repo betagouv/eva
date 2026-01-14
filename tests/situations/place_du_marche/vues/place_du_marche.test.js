@@ -11,6 +11,7 @@ describe('La vue place du marché', function () {
   let depotRessources;
   let store;
   let journal;
+  let consoleInfoSpy;
   const sousConsigne = { type: 'sous-consigne', nom_technique: 'sous-consigne' };
   const question = { id: 'N1Pse1', nom_technique: "N1Pse1" };
 
@@ -34,6 +35,7 @@ describe('La vue place du marché', function () {
   });
 
   beforeEach(function () {
+    consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation();
     store = creeStore();
     journal = { enregistre () {} };
     depotRessources = {
@@ -51,6 +53,10 @@ describe('La vue place du marché', function () {
         }
       }
     });
+  });
+
+  afterEach(function () {
+    consoleInfoSpy.mockRestore();
   });
 
   describe("quand elle n'est pas configurée", function () {

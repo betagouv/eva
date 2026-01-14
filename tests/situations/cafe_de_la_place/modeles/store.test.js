@@ -8,6 +8,7 @@ import {
 
 describe('Le store de la situation café de la place', function () {
   let store;
+  let consoleInfoSpy;
   const premiereSousConsigne = { id: 'sous-consigne1', type: 'sous-consigne' };
   const deuxiemeSousConsigne = { id: 'sous-consigne2', type: 'sous-consigne' };
   const sousConsigne3 = { id: 'sous-consigne3', type: 'sous-consigne' };
@@ -56,7 +57,12 @@ describe('Le store de la situation café de la place', function () {
   };
 
   beforeEach(function() {
+    consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation();
     store = creeStore();
+  });
+
+  afterEach(function() {
+    consoleInfoSpy.mockRestore();
   });
 
   describe('quand un acte est configuré', function() {
