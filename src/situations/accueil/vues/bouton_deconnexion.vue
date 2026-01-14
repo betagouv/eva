@@ -16,11 +16,11 @@
             @click="fermeDonnerAvis">
             <img style="height:40px;" :src="boutonAvis" alt="Je donne mon avis" title="Je donne mon avis sur cette démarche" />
           </a>
-          <a class="fr-btn fr-btn--petit fr-btn--orange"
+          <button class="fr-btn fr-btn--petit fr-btn--orange"
              @click="fermeDonnerAvis"
           >
             {{ $traduction('accueil.fin.avis.fermer') }}
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -38,10 +38,10 @@
             <span class="texte" v-html="$traduction('accueil.fin.confirmation_deconnexion.label')" />
           </div>
           <div class="actions-deconnexion">
-            <a
+            <button
               class="fr-btn fr-btn--petit fr-btn--orange"
               @click="deconnecte"
-            >{{ $traduction('accueil.fin.confirmation_deconnexion.bouton') }}</a>
+            >{{ $traduction('accueil.fin.confirmation_deconnexion.bouton') }}</button>
           </div>
         </div>
     </div>
@@ -56,10 +56,10 @@
           @click="deconnecte">
           <img style="height:40px;" :src="boutonAvis" alt="Je donne mon avis" title="Je donne mon avis sur cette démarche" />
         </a>
-        <a
+        <button
           class="bouton-deconnexion fr-btn"
           @click="deconnecte"
-        >{{ $traduction('deconnexion.titre') }}</a>
+        >{{ $traduction('deconnexion.titre') }}</button>
     </div>
 
     <div
@@ -67,10 +67,10 @@
        key="buton-deconnexion"
        class='actions-fin'
       >
-      <a
+      <button
         class="bouton-deconnexion fr-btn"
         @click="afficheJeDonneMonAvis"
-      >{{ $traduction('deconnexion.titre') }}</a>
+      >{{ $traduction('deconnexion.titre') }}</button>
     </div>
   </transition-fade>
 </template>

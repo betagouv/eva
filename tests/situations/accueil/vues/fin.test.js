@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import Fin from 'accueil/vues/fin';
 import { traduction } from 'commun/infra/internationalisation';
 
-describe('La vue de fin', function () {
+describe('La vue de fin', function() {
   let wrapper;
   let store;
   let depotRessources;
@@ -18,25 +18,25 @@ describe('La vue de fin', function () {
     description: 'description comprehentsion consigne'
   };
 
-  beforeEach(function () {
+  beforeEach(function() {
     depotRessources = new (class {
-      comprehensionConsigne () {
+      comprehensionConsigne() {
         return { src: '' };
       }
 
-      avatarFin () {
+      avatarFin() {
         return { src: '' };
       }
 
-      avatarAvis () {
+      avatarAvis() {
         return { src: '' };
       }
 
-      avatarDeconnexion () {
+      avatarDeconnexion() {
         return { src: '' };
       }
 
-      boutonAvis () {
+      boutonAvis() {
         return { src: '' };
       }
     })();
@@ -47,12 +47,12 @@ describe('La vue de fin', function () {
         evaluationTerminee: true
       },
       actions: {
-        deconnecte () {}
+        deconnecte() { }
       }
     });
   });
 
-  function composant (props = {}) {
+  function composant(props = {}) {
     return mount(Fin, {
       global: {
         plugins: [store],
@@ -65,22 +65,22 @@ describe('La vue de fin', function () {
     });
   }
 
-  it("sait s'afficher", function () {
+  it("sait s'afficher", function() {
     wrapper = composant();
     expect(wrapper.find('h2').text()).toEqual('accueil.fin.bravo.titre{"nom":"Alexandre Legrand"}');
     expect(wrapper.find('button').text()).toEqual('accueil.fin.bravo.bouton');
   });
 
-  it("affiche le bouton de deconnexion s'il n'y a pas de compétences fortes", function () {
+  it("affiche le bouton de deconnexion s'il n'y a pas de compétences fortes", function() {
     store.state.competencesFortes = [];
     store.state.evaluationTerminee = true;
     wrapper = composant();
     expect(wrapper.findAll('.contenu').length).toBe(0);
-    expect(wrapper.findAll('button').length).toBe(0);
+    expect(wrapper.findAll('button').length).toBe(1);
     expect(wrapper.findAll('.bouton-deconnexion').length).toBe(1);
   });
 
-  it("Attend que l'on sache s'il y a des compétences fortes avant d'afficher les boutons", function () {
+  it("Attend que l'on sache s'il y a des compétences fortes avant d'afficher les boutons", function() {
     store.state.evaluationTerminee = false;
     wrapper = composant();
 
@@ -90,7 +90,7 @@ describe('La vue de fin', function () {
   });
 
 
-  it('affiche les compétences fortes', function (done) {
+  it('affiche les compétences fortes', function(done) {
     wrapper = composant();
 
     wrapper.find('button').trigger('click');
@@ -104,7 +104,7 @@ describe('La vue de fin', function () {
     });
   });
 
-  it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function (done) {
+  it('affiche le module de collecte des avis si compétences ainsi que le module de déconnexion', function(done) {
     wrapper = composant();
     wrapper.find('button').trigger('click');
     wrapper.vm.$nextTick(() => {
