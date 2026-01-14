@@ -1,4 +1,5 @@
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
+import { TOUTES_QUESTIONS } from '../../commun/modeles/store';
 import {
   DEMARRE,
 } from 'commun/modeles/situation';
@@ -166,6 +167,11 @@ export function creeStore() {
         this.commit('carteSuivanteParcours');
 
         if (!state.parcoursTermine) {
+          return;
+        }
+
+        if (state.parcours == TOUTES_QUESTIONS) {
+          state.termine = true;
           return;
         }
 

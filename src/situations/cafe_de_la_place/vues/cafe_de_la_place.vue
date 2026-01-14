@@ -22,10 +22,11 @@ import EvenementReponse from 'questions/modeles/evenement_reponse';
 import Defi from 'commun/vues/defi';
 import TransitionFade from 'commun/vues/transition_fade';
 import Pagination from 'commun/vues/components/pagination';
-import { TOUTES_QUESTIONS } from 'commun/modeles/store';
+import PositionnementMixin from 'commun/mixins/positionnement_mixin';
 
 export default {
   components: { Defi, TransitionFade, Pagination },
+  mixins: [PositionnementMixin],
 
   data () {
     return {
@@ -46,32 +47,13 @@ export default {
     }
   },
 
-  watch: {
-    acteEnCours (actEnCours) {
-      if(actEnCours && location.hash){
-        const hash = location.hash.substring(1);
-        if(hash == 'toutes') {
-          this.$store.commit('demarreParcours', TOUTES_QUESTIONS);
-        }
-        else {
-          this.$store.dispatch('sauteALaCarte', hash);
-        }
-      }
-    },
-
-    termine () {
-      this.$emit('terminer');
-    },
-
-    questionActive() {
-      this.question = this.questionServeur(this.questionActive) ?? this.questionActive;
-      if(this.question.extensionVue === 'glisser-deposer') {
+  methods: {
+    onQuestionActiveChange() {
+      if (this.question.extensionVue === 'glisser-deposer') {
         this.question.extensionVue = 'puzzle-journal';
       }
     },
-  },
 
-  methods: {
     reponse (reponse) {
       if(this.questionActive.type !== 'sous-consigne') {
         this.$store.commit('enregistreReponse', reponse);

@@ -15,9 +15,11 @@ import EvenementReponse from 'questions/modeles/evenement_reponse';
 
 import Defi from 'commun/vues/defi';
 import TransitionFade from 'commun/vues/transition_fade';
+import PositionnementMixin from 'commun/mixins/positionnement_mixin';
 
 export default {
   components: { Defi, TransitionFade },
+  mixins: [PositionnementMixin],
 
   data () {
     return {
@@ -34,24 +36,13 @@ export default {
     ...mapGetters(['questionServeur', 'acteEnCours']),
   },
 
-  watch: {
-    termine () {
-      this.$emit('terminer');
-    },
-    questionActive() {
-      this.question = this.questionServeur(this.questionActive) ?? this.questionActive;
+  methods: {
+    onQuestionActiveChange() {
       this.enregistreConsigneEnCours();
       this.$depotRessources.texteAide = this.question.aide;
       this.afficheBoutonDemandeAide();
     },
-    acteEnCours (acteEnCours) {
-      if(acteEnCours && location.hash){
-        this.$store.dispatch('sauteALaCarte', location.hash.substring(1));
-      }
-    },
-  },
 
-  methods: {
     reponse (reponse) {
       this.fermeFenetreAide();
       if(this.question.type !== 'sous-consigne') {

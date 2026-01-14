@@ -14,6 +14,7 @@ import {
 import {
   DEMARRE,
 } from 'commun/modeles/situation';
+import { TOUTES_QUESTIONS } from 'commun/modeles/store';
 
 describe('Le store de la situation place du marché', function() {
   let store;
@@ -219,6 +220,26 @@ describe('Le store de la situation place du marché', function() {
 
           store.commit('carteSuivante');
           expect(store.state.termine).toBe(true);
+        });
+      });
+
+      describe('quand le parcours TOUTES_QUESTIONS est terminé', function() {
+        beforeEach(function() {
+          store.commit('demarreParcours', TOUTES_QUESTIONS);
+          store.state.parcoursTermine = true;
+          store.state.pourcentageDeReussiteCompetence["N1Pon"] = 10;
+        });
+
+        it("termine la situation", function() {
+          expect(store.state.termine).toBe(false);
+
+          store.commit('carteSuivante');
+          expect(store.state.termine).toBe(true);
+        });
+
+        it("ne démarre pas un autre parcours", function() {
+          store.commit('carteSuivante');
+          expect(store.state.parcours).toBe(TOUTES_QUESTIONS);
         });
       });
     });
