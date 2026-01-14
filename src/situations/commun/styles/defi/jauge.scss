@@ -73,9 +73,10 @@
       cursor: pointer;
       color: $bleu-fonce;
       display: flex;
+      line-height: 1.2;
 
       .bouton-lecture--jauge {
-        margin-right:4.25rem; // pour les tablettes pour prendre suffisament de place pour le doigt
+        margin-right: 4.25rem; // pour les tablettes pour prendre suffisament de place pour le doigt
       }
 
       &::before {
