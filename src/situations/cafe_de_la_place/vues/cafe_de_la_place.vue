@@ -22,6 +22,7 @@ import EvenementReponse from 'questions/modeles/evenement_reponse';
 import Defi from 'commun/vues/defi';
 import TransitionFade from 'commun/vues/transition_fade';
 import Pagination from 'commun/vues/components/pagination';
+import { TOUTES_QUESTIONS } from 'commun/modeles/store';
 
 export default {
   components: { Defi, TransitionFade, Pagination },
@@ -48,7 +49,13 @@ export default {
   watch: {
     acteEnCours (actEnCours) {
       if(actEnCours && location.hash){
-        this.$store.dispatch('sauteALaCarte', location.hash.substring(1));
+        const hash = location.hash.substring(1);
+        if(hash == 'toutes') {
+          this.$store.commit('demarreParcours', TOUTES_QUESTIONS);
+        }
+        else {
+          this.$store.dispatch('sauteALaCarte', hash);
+        }
       }
     },
 
