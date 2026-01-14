@@ -14,6 +14,7 @@
 .fr-btn {
   border-radius: 2rem;
   padding: .5rem 2.5rem;
+  position: relative;
 
   &:active {
     border-color: $couleur-fond-bouton-bleu;

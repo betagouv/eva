@@ -10,12 +10,14 @@
 
   &.transition {
     flex-wrap: wrap;
-    > div {
+
+    >div {
       display: flex;
       flex-grow: 2;
       flex-direction: column;
       justify-content: center;
     }
+
     .fr-btn {
       align-self: flex-end;
     }
@@ -30,6 +32,7 @@
   top: 2.9rem;
   font-family: $font-quicksand;
   border-radius: 12px;
+
   &--fond {
     background: linear-gradient(180deg, rgba($couleur-sombre, 0) 0%, $couleur-fond 150%);
   }
@@ -53,8 +56,10 @@
   bottom: 2rem;
   left: 0;
   z-index: 2;
+
   &--deverrouiller {
     bottom: 0.5rem;
+
     .icones {
       justify-content: center;
       color: $blanc;
@@ -66,6 +71,7 @@
   height: 100%;
   position: relative;
   z-index: 1;
+
   &:after {
     content: '';
     height: 100%;
@@ -92,10 +98,12 @@
   border-radius: 1rem;
   color: $bleu-fonce;
   background-color: $couleur-fond;
+
   &-titre {
     font-size: 1.06rem;
     font-weight: 500;
   }
+
   &-texte {
     margin: 0.5rem 0 0 0;
     font-size: 0.75rem;
@@ -108,8 +116,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   text-align: center;
+
   &:first-of-type {
     padding: 0.5rem;
+
     .icone:not(.icone--deverrouillage) {
       margin: 0.5rem 0.25rem 0;
     }
@@ -117,74 +127,93 @@
 }
 
 .icone {
-  cursor: pointer;
-  text-align: center;
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin: 0 auto;
-  border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50px;
+  height: 50px;
   background-repeat: no-repeat;
   background-position: center;
-  transition: background-color 0.4s ease;
-  &--photos {
-    background-color: $couleur-app-photos;
-    &:hover {
-      background-color: darken($couleur-app-photos, 10%);
-    }
-  }
-  &--agenda {
-    background-color: $couleur-app-agenda;
-    &:hover {
-      background-color: darken($couleur-app-agenda, 10%);
-    }
-  }
-  &--repondeur {
-    background-color: $couleur-app-repondeur;
-    &:hover {
-      background-color: darken($couleur-app-repondeur, 10%);
-    }
-  }
-  &--notes {
-    background-color: $couleur-app-notes;
-    &:hover {
-      background-color: darken($couleur-app-notes, 10%);
-    }
-  }
-  &--messages {
-    background-color: $couleur-app-messages;
-    &:hover {
-      background-color: darken($couleur-app-messages, 10%);
-    }
-  }
-  &--deverrouillage {
-    background-color: $bleu;
-    &:hover {
-      background-color: darken($bleu, 10%);
-    }
-  }
-  &--deverrouillee {
-    pointer-events: none;
-  }
-  &--desactivee {
-    pointer-events: none;
-    .icone {
-      background-color: $gris-clair;
-    }
-  }
-  + .label {
+  margin: 0 auto;
+
+  +.label {
     margin: 0.3rem 0 0;
     font-size: 12px;
   }
+
   &-conteneur {
     position: absolute;
     top: 4.7rem;
     right: 24.5rem;
     text-align: center;
     color: $blanc;
+    pointer-events: none;
+  }
+
+  &--desactivee {
+    pointer-events: none;
+
+    .icone {
+      background-color: $gris-clair;
+    }
+  }
+}
+
+button.icone {
+  cursor: pointer;
+  text-align: center;
+  border-radius: 16px;
+  transition: background-color 0.4s ease;
+
+  &--photos {
+    background-color: $couleur-app-photos;
+
+    &:hover {
+      background-color: darken($couleur-app-photos, 10%);
+    }
+  }
+
+  &--agenda {
+    background-color: $couleur-app-agenda;
+
+    &:hover {
+      background-color: darken($couleur-app-agenda, 10%);
+    }
+  }
+
+  &--repondeur {
+    background-color: $couleur-app-repondeur;
+
+    &:hover {
+      background-color: darken($couleur-app-repondeur, 10%);
+    }
+  }
+
+  &--notes {
+    background-color: $couleur-app-notes;
+
+    &:hover {
+      background-color: darken($couleur-app-notes, 10%);
+    }
+  }
+
+  &--messages {
+    background-color: $couleur-app-messages;
+
+    &:hover {
+      background-color: darken($couleur-app-messages, 10%);
+    }
+  }
+
+  &--deverrouillage {
+    background-color: $ancien-bleu;
+
+    &:hover {
+      background-color: darken($ancien-bleu, 10%);
+    }
+  }
+
+  &--deverrouillee {
     pointer-events: none;
   }
 }
