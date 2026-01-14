@@ -7,82 +7,87 @@ import Situation, {
   ENTRAINEMENT_DEMARRE
 } from 'commun/modeles/situation';
 
-describe('Le store en commun pour les situations', function () {
+describe('Le store en commun pour les situations', function() {
   let store;
+  let consoleInfoSpy;
 
-  describe('States', function () {
-    it("initialise l'état a CHARGEMENT", function () {
-      const store = creeStore();
+  beforeEach(function() {
+    // Mock console.info pour éviter la pollution des tests par le watcher
+    consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation();
+    store = creeStore();
+  });
+
+  afterEach(function() {
+    consoleInfoSpy.mockRestore();
+  });
+
+  describe('States', function() {
+    it("initialise l'état a CHARGEMENT", function() {
       expect(store.state.etat).toEqual(CHARGEMENT);
     });
   });
 
-  describe('#synchroniseStoreEtModeleSituation', function () {
+  describe('#synchroniseStoreEtModeleSituation', function() {
     let situation;
-    beforeEach(function () {
-      store = creeStore();
+    beforeEach(function() {
       situation = new Situation();
     });
 
-    it("permet de synchroniser l'état du modèle situation avec le store", function () {
+    it("permet de synchroniser l'état du modèle situation avec le store", function() {
       synchroniseStoreEtModeleSituation(situation, store);
       situation.modifieEtat(FINI);
       expect(store.state.etat).toEqual(FINI);
     });
 
-    it('permet de synchroniser le store avec le modèle situation', function () {
+    it('permet de synchroniser le store avec le modèle situation', function() {
       synchroniseStoreEtModeleSituation(situation, store);
       store.commit('modifieEtat', FINI);
       expect(situation.etat()).toEqual(FINI);
     });
 
-    it("synchronise seulement les changements d'état du store avec le modèle situation", function () {
+    it("synchronise seulement les changements d'état du store avec le modèle situation", function() {
       synchroniseStoreEtModeleSituation(situation, store);
       store.commit('activeAide');
       expect(situation.etat()).toEqual(CHARGEMENT);
     });
 
-    it("synchronise l'état initial du modèle situation", function () {
+    it("synchronise l'état initial du modèle situation", function() {
       situation.modifieEtat(FINI);
       synchroniseStoreEtModeleSituation(situation, store);
       expect(store.state.etat).toEqual(FINI);
     });
 
-    it("permet de synchroniser l'aide entre le modèle situation et le store", function () {
+    it("permet de synchroniser l'aide entre le modèle situation et le store", function() {
       synchroniseStoreEtModeleSituation(situation, store);
       situation.activeAide();
       expect(store.state.aide).toBe(true);
     });
 
-    it("permet de synchroniser l'aide entre le store et le modèle situation", function () {
+    it("permet de synchroniser l'aide entre le store et le modèle situation", function() {
       synchroniseStoreEtModeleSituation(situation, store);
       store.commit('activeAide');
       expect(situation.aideActivee).toBe(true);
     });
   });
-  
-  describe('Mutations', function () {
-    beforeEach(function () {
-      store = creeStore();
-    });
 
-    describe('#modifieEtat', function () {
-      it("permet de changer l'état", function () {
+  describe('Mutations', function() {
+    describe('#modifieEtat', function() {
+      it("permet de changer l'état", function() {
         store.commit('modifieEtat', FINI);
         expect(store.state.etat).toEqual(FINI);
       });
     });
 
-    describe('#activeAide', function () {
-      it("active l'aide", function () {
+    describe('#activeAide', function() {
+      it("active l'aide", function() {
         expect(store.state.aide).toBe(false);
         store.commit('activeAide');
         expect(store.state.aide).toBe(true);
       });
     });
 
-    describe('#modifieAudioIdEnCours', function () {
-      it("permet de changer l'audio ID en cours", function () {
+    describe('#modifieAudioIdEnCours', function() {
+      it("permet de changer l'audio ID en cours", function() {
         const nomTechniqueAudio = 'nomTechniqueAudio';
         store.commit('modifieAudioIdEnCours', nomTechniqueAudio);
 
@@ -90,14 +95,13 @@ describe('Le store en commun pour les situations', function () {
       });
     });
 
-    describe('#carteSuivanteParcours', function () {
+    describe('#carteSuivanteParcours', function() {
       const carte1 = { id: 'carte1' };
       const carte2 = { id: 'carte2' };
       const carte3 = { id: 'carte3' };
       const carte4 = { id: 'carte4' };
 
-      beforeEach(function () {
-        store = creeStore();
+      beforeEach(function() {
         store.state.series = [
           { cartes: [carte1, carte2] },
           { cartes: [carte3, carte4] }
@@ -107,14 +111,14 @@ describe('Le store en commun pour les situations', function () {
         store.state.questionActive = carte1;
       });
 
-      it("passe à la carte suivante dans la même série", function () {
+      it("passe à la carte suivante dans la même série", function() {
         store.commit('carteSuivanteParcours');
 
         expect(store.state.indexCarte).toEqual(1);
         expect(store.state.questionActive).toEqual(carte2);
       });
 
-      it("passe de la dernière carte d'une série à la première carte de la série suivante", function () {
+      it("passe de la dernière carte d'une série à la première carte de la série suivante", function() {
         store.state.indexCarte = 1;
         store.state.questionActive = carte2;
 
@@ -125,7 +129,7 @@ describe('Le store en commun pour les situations', function () {
         expect(store.state.questionActive).toEqual(carte3);
       });
 
-      it("passe à la carte suivante dans la deuxième série", function () {
+      it("passe à la carte suivante dans la deuxième série", function() {
         store.state.indexSerie = 1;
         store.state.indexCarte = 0;
         store.state.questionActive = carte3;
@@ -136,7 +140,7 @@ describe('Le store en commun pour les situations', function () {
         expect(store.state.questionActive).toEqual(carte4);
       });
 
-      it("termine le parcours après la dernière carte", function () {
+      it("termine le parcours après la dernière carte", function() {
         store.state.indexSerie = 1;
         store.state.indexCarte = 1;
         store.state.questionActive = carte4;
@@ -150,41 +154,29 @@ describe('Le store en commun pour les situations', function () {
     });
   });
 
-  describe('Getters', function () {
-    beforeEach(function () {
-      store = creeStore();
-    });
-
-    describe('#acteEnCours', function () {
-      beforeEach(function () {
-        store = creeStore();
-      });
-
-      it("Quand l'acte n'est pas demarré", function () {
+  describe('Getters', function() {
+    describe('#acteEnCours', function() {
+      it("Quand l'acte n'est pas demarré", function() {
         expect(store.getters.acteEnCours).toBe(false);
       });
 
-      it("Quand l'acte principal est demarré", function () {
+      it("Quand l'acte principal est demarré", function() {
         store.state.etat = DEMARRE;
         expect(store.getters.acteEnCours).toBe(true);
       });
 
-      it("Quand l'acte d'entrainement est demarré", function () {
+      it("Quand l'acte d'entrainement est demarré", function() {
         store.state.etat = ENTRAINEMENT_DEMARRE;
         expect(store.getters.acteEnCours).toBe(true);
       });
     });
 
-    describe('#audioIdEnCours', function () {
-      beforeEach(function () {
-        store = creeStore();
-      });
-
-      it("Quand il n'y a pas d'audio en cours, retourne null", function () {
+    describe('#audioIdEnCours', function() {
+      it("Quand il n'y a pas d'audio en cours, retourne null", function() {
         expect(store.getters.audioIdEnCours).toBe(null);
       });
 
-      it("Quand il y a un audio en cours, retourne l'audio", function () {
+      it("Quand il y a un audio en cours, retourne l'audio", function() {
         store.state.audioIdEnCours = 'nomTechniqueAudio';
         expect(store.getters.audioIdEnCours).toBe('nomTechniqueAudio');
       });
@@ -195,8 +187,7 @@ describe('Le store en commun pour les situations', function () {
       let questionClient;
       let question;
 
-      beforeEach(function () {
-        store = creeStore();
+      beforeEach(function() {
         questionClient = { id: 'N1Prn1', nom_technique: 'N1Prn1', score: 0.5, metacompetence: 'calcul', retranscription_audio: 'audio' };
         store.state.questionActive = questionClient;
         store.state.questions = [fakeQuestionServeurClicSurMots, fakeQuestionServeurDansImage, fakeQuestionServeurGlisserDeposer, fakeQuestionServeurSaisie];
@@ -240,11 +231,13 @@ describe('Le store en commun pour les situations', function () {
 
       describe("pour les questions de type clic-sur-mots", function() {
         beforeEach(function() {
-          question = { ...questionClient, ...{
-            nom_technique: fakeQuestionServeurClicSurMots.nom_technique,
-            template: "article article--disque",
-            extensionVue: "clic-sur-mots",
-          }};
+          question = {
+            ...questionClient, ...{
+              nom_technique: fakeQuestionServeurClicSurMots.nom_technique,
+              template: "article article--disque",
+              extensionVue: "clic-sur-mots",
+            }
+          };
           questionServeur = store.getters.questionServeur(question);
         });
 
@@ -260,9 +253,11 @@ describe('Le store en commun pour les situations', function () {
 
       describe("pour les questions de type clic-dans-image", function() {
         beforeEach(function() {
-          question = { ...questionClient, ...{
-            nom_technique: fakeQuestionServeurDansImage.nom_technique,
-          }};
+          question = {
+            ...questionClient, ...{
+              nom_technique: fakeQuestionServeurDansImage.nom_technique,
+            }
+          };
           questionServeur = store.getters.questionServeur(question);
         });
 
@@ -277,9 +272,11 @@ describe('Le store en commun pour les situations', function () {
 
       describe("pour les questions de type glisser-deposer", function() {
         beforeEach(function() {
-          question = { ...questionClient, ...{
-            nom_technique: fakeQuestionServeurGlisserDeposer.nom_technique,
-          }};
+          question = {
+            ...questionClient, ...{
+              nom_technique: fakeQuestionServeurGlisserDeposer.nom_technique,
+            }
+          };
           questionServeur = store.getters.questionServeur(question);
         });
 
@@ -294,12 +291,14 @@ describe('Le store en commun pour les situations', function () {
 
       describe("pour les questions de type saisie", function() {
         beforeEach(function() {
-          question = { ...questionClient, ...{
-            nom_technique: fakeQuestionServeurSaisie.nom_technique,
-            score_bonus: 1.5,
-            score_acceptable: 0.5,
-            extensionVue: 'liste-courses-a-trous',
-          }};
+          question = {
+            ...questionClient, ...{
+              nom_technique: fakeQuestionServeurSaisie.nom_technique,
+              score_bonus: 1.5,
+              score_acceptable: 0.5,
+              extensionVue: 'liste-courses-a-trous',
+            }
+          };
           questionServeur = store.getters.questionServeur(question);
         });
 
@@ -316,15 +315,35 @@ describe('Le store en commun pour les situations', function () {
     });
 
     describe('#recupereQuestionsServeur', function() {
-      beforeEach(function () {
-        store = creeStore();
-      });
-
       it('met à jour les questions avec les questions serveur', function() {
         const questions = [{ nom_technique: 'N1Pse1' }, { nom_technique: 'N1Pse2' }];
         store.commit('recupereQuestionsServeur', questions);
 
         expect(store.state.questions).toEqual(questions);
+      });
+    });
+  });
+
+  describe("Watchers", function() {
+    describe("questionActive", function() {
+      it("affiche question.id dans la console quand questionActive change", async function() {
+        const question = { id: 'N1Prn1', nom_technique: 'n1_prn1' };
+        store.state.questionActive = question;
+
+        // Attendre que le watcher se déclenche
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        expect(consoleInfoSpy).toHaveBeenCalledWith('N1Prn1');
+      });
+
+      it("n'affiche rien si la question n'a pas d'id", async function() {
+        const question = {};
+        store.state.questionActive = question;
+
+        // Attendre que le watcher se déclenche
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        expect(consoleInfoSpy).not.toHaveBeenCalled();
       });
     });
   });

@@ -5,10 +5,16 @@ import { creeStore } from 'cafe_de_la_place/modeles/store';
 describe('Le composant Trou A completer', function () {
   let wrapper;
   let store;
+  let consoleInfoSpy;
   const question1 = 'aplc1';
 
   beforeEach(function () {
+    consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation();
     store = creeStore();
+  });
+
+  afterEach(function () {
+    consoleInfoSpy.mockRestore();
   });
 
   function composant(idQuestion) {

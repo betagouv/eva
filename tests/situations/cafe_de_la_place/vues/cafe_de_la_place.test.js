@@ -11,6 +11,7 @@ describe('La vue café de la place', function () {
   let store;
   let depotRessources;
   let journal;
+  let consoleInfoSpy;
   const sousConsigne = { id: 'sous-consigne', type: 'sous-consigne' };
   const question = { id: 'question1' };
 
@@ -24,6 +25,7 @@ describe('La vue café de la place', function () {
   });
 
   beforeEach(function () {
+    consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation();
     store = creeStore();
     journal = { enregistre () {} };
     depotRessources = {
@@ -41,6 +43,10 @@ describe('La vue café de la place', function () {
         }
       }
     });
+  });
+
+  afterEach(function () {
+    consoleInfoSpy.mockRestore();
   });
 
   describe("quand elle n'est pas configurée", function () {
