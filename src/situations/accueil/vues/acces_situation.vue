@@ -1,13 +1,14 @@
 <template>
-  <a
+  <component
+    :is="situation.action ? 'button' : 'a'"
     :href="cheminSituation"
+    @click="situation.action"
     :class="{ desactivee: desactivee }"
     :style="{ 'background-image': afficheBatiment ? backgroundImage : null }"
-    v-on="situation.action ? { click: situation.action } : {}"
     @dragstart.prevent
   >
     {{ situation.nom }}
-  </a>
+  </component>
 </template>
 
 <script>

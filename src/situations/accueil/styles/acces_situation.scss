@@ -1,4 +1,5 @@
 a[href].acces-situation,
+button:not(:disabled).acces-situation,
 .acces-situation {
   display: block;
   position: absolute;

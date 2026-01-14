@@ -1,19 +1,19 @@
 import { mount } from '@vue/test-utils';
 import AccesSituation from 'accueil/vues/acces_situation.vue';
 
-describe('La vue pour accéder à une situation', function () {
+describe('La vue pour accéder à une situation', function() {
   let depotRessources;
   let wrapper;
   let existeBatiment;
   let optionsMount;
 
-  beforeEach(function () {
+  beforeEach(function() {
     depotRessources = new class {
-      existeBatimentSituation () {
+      existeBatimentSituation() {
         return existeBatiment;
       }
 
-      batimentSituation (identifiant) {
+      batimentSituation(identifiant) {
         return { src: identifiant };
       }
     }();
@@ -29,14 +29,14 @@ describe('La vue pour accéder à une situation', function () {
           chemin: 'abc.html',
           identifiant: 'identifiant-abc',
           niveauMinimum: 2,
-          action: () => {}
+          action: () => { }
         },
         desactivee: false
       }
     };
   });
 
-  it("sait s'afficher avec un fond", function () {
+  it("sait s'afficher avec un fond", function() {
     existeBatiment = true;
     optionsMount.props.afficheFond = true;
     wrapper = mount(AccesSituation, optionsMount);
@@ -45,7 +45,7 @@ describe('La vue pour accéder à une situation', function () {
     expect(wrapper.attributes('style')).toBe('background-image: url(identifiant-abc);');
   });
 
-  it("N'affiche pas le fond s'il n'existe pas, même s'il est demandé", function () {
+  it("N'affiche pas le fond s'il n'existe pas, même s'il est demandé", function() {
     existeBatiment = false;
     optionsMount.props.afficheFond = true;
     wrapper = mount(AccesSituation, optionsMount);
@@ -55,7 +55,7 @@ describe('La vue pour accéder à une situation', function () {
     expect(wrapper.attributes('style')).toBe(undefined);
   });
 
-  it("sait s'afficher sans fond", function () {
+  it("sait s'afficher sans fond", function() {
     existeBatiment = true;
     optionsMount.props.afficheFond = false;
     wrapper = mount(AccesSituation, optionsMount);
@@ -64,9 +64,17 @@ describe('La vue pour accéder à une situation', function () {
     expect(wrapper.attributes('style')).toBe(undefined);
   });
 
-  it("N'a pas d'href pour le batiment Resultat", function () {
+  it("s'affiche comme un bouton quand il y a une action", function() {
     optionsMount.props.situation.chemin = undefined;
     wrapper = mount(AccesSituation, optionsMount);
+    expect(wrapper.element.tagName).toBe('BUTTON');
     expect(wrapper.attributes('href')).toBe(undefined);
+  });
+
+  it("s'affiche comme un lien quand il n'y a pas d'action", function() {
+    optionsMount.props.situation.action = undefined;
+    wrapper = mount(AccesSituation, optionsMount);
+    expect(wrapper.element.tagName).toBe('A');
+    expect(wrapper.attributes('href')).toBe('/abc.html');
   });
 });
