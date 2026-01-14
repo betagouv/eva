@@ -1,5 +1,4 @@
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
-import { TOUTES_QUESTIONS } from '../../commun/modeles/store';
 
 export const ORIENTATION = 'orientation';
 export const PARCOURS_BAS = 'parcoursBas';
