@@ -11,36 +11,36 @@ export const NIVEAUX = [NIVEAU1, NIVEAU2, NIVEAU3];
 
 // Le tableau suivant correspond au tableau NUMERATIE_METRIQUES de app/models/restitution/evacob/score_module.rb dans eva-serveur
 export const numeratieMetriques = {
-  'N1Pse' : null,
-  'N1Prn' : 'N1Rrn',
-  'N1Pde' : 'N1Rde',
-  'N1Pes' : 'N1Res',
-  'N1Pon' : 'N1Ron',
-  'N1Poa' : 'N1Roa',
-  'N1Pos' : 'N1Ros',
-  'N1Pvn' : null,
-  'N2Plp' : 'N2Rlp',
-  'N2Ppe' : 'N2Rpe',
-  'N2Psu' : 'N2Rsu',
-  'N2Pom' : 'N2Rom',
-  'N2Pon' : 'N2Ron',
-  'N2Pod' : 'N2Rod',
-  'N2Put' : 'N2Rut',
-  'N2Prh' : 'N2Rrh',
-  'N2Ptg' : 'N2Rtg',
-  'N2Ppl' : 'N2Rpl',
-  'N3Ppl' : 'N3Rpl',
-  'N3Put' : 'N3Rut',
-  'N3Pum' : null,
-  'N3Pim' : null,
-  'N3Ppo' : 'N3Rpo',
-  'N3Ppr' : 'N3Rpr',
-  'N3Pps' : 'N3Rps',
-  'N3Pvo' : 'N3Rvo',
-  'N3Prp' : 'N3Rrp',
+  'N1Pse': null,
+  'N1Prn': 'N1Rrn',
+  'N1Pde': 'N1Rde',
+  'N1Pes': 'N1Res',
+  'N1Pon': 'N1Ron',
+  'N1Poa': 'N1Roa',
+  'N1Pos': 'N1Ros',
+  'N1Pvn': null,
+  'N2Plp': 'N2Rlp',
+  'N2Ppe': 'N2Rpe',
+  'N2Psu': 'N2Rsu',
+  'N2Pom': 'N2Rom',
+  'N2Pon': 'N2Ron',
+  'N2Pod': 'N2Rod',
+  'N2Put': 'N2Rut',
+  'N2Prh': 'N2Rrh',
+  'N2Ptg': 'N2Rtg',
+  'N2Ppl': 'N2Rpl',
+  'N3Ppl': 'N3Rpl',
+  'N3Put': 'N3Rut',
+  'N3Pum': null,
+  'N3Pim': null,
+  'N3Ppo': 'N3Rpo',
+  'N3Ppr': 'N3Rpr',
+  'N3Pps': 'N3Rps',
+  'N3Pvo': 'N3Rvo',
+  'N3Prp': 'N3Rrp',
 };
 
-export function creeStore () {
+export function creeStore() {
   return creeStoreCommun({
     state: {
       fondSituation: '',
@@ -83,7 +83,7 @@ export function creeStore () {
     },
 
     getters: {
-      nombreCartes (state) {
+      nombreCartes(state) {
         return state.series[state.indexSerie].cartes.length;
       },
 
@@ -116,7 +116,7 @@ export function creeStore () {
       },
 
       estDernierNiveau(state) {
-        return NIVEAUX[state.indexNiveau] == NIVEAUX[NIVEAUX.length -1];
+        return NIVEAUX[state.indexNiveau] == NIVEAUX[NIVEAUX.length - 1];
       },
 
       rattrapageEnCours(state) {
@@ -129,7 +129,7 @@ export function creeStore () {
       },
 
       estDerniereQuestionRattrapage(state, getters) {
-        if(!getters.rattrapageEnCours) return false;
+        if (!getters.rattrapageEnCours) return false;
         return state.questionActive.nom_technique === getters.derniereQuestionRattrapage;
       },
 
@@ -143,25 +143,20 @@ export function creeStore () {
     },
 
     mutations: {
-      configureActe (state, { questions, fondSituation }) {
+      configureActe(state, { questions, fondSituation }) {
         state.configuration = questions;
         state.fondSituation = fondSituation;
         this.commit('demarreParcours', NIVEAU1);
       },
 
       demarreParcours(state, parcours) {
-        state.parcours = parcours;
-        state.termine = false;
-        state.parcoursTermine = false;
-        state.indexSerie = 0;
-        state.indexCarte = 0;
-        state.pourcentageDeReussiteGlobal = 0;
+        this.commit('initialiseParcours', parcours);
         state.scoreTotalNiveauEnCours = 0;
-        state.series = state.configuration[state.parcours].series;
-        if(state.etat === DEMARRE) {
+        state.pourcentageDeReussiteGlobal = 0;
+        if (state.etat === DEMARRE) {
           state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
         }
-        if(!this.getters.rattrapageEnCours) {
+        if (!this.getters.rattrapageEnCours) {
           state.maxScoreNiveauEnCours = this.getters.maxScoreSerieEnCours;
         }
       },
@@ -217,7 +212,7 @@ export function creeStore () {
       },
 
       recalculePourcentageReussiteGlobal(state) {
-        if(!this.getters.estDerniereQuestionRattrapage) {
+        if (!this.getters.estDerniereQuestionRattrapage) {
           return;
         }
 

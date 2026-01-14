@@ -9,6 +9,16 @@ import {
 } from 'commun/modeles/situation';
 import { nomTechniqueSansVariant } from './question';
 
+export const TOUTES_QUESTIONS = 'toutes_questions';
+
+function toutesLesSeries(configuration) {
+  const series = [];
+  for (const nomParcours in configuration) {
+    series.push(...configuration[nomParcours].series);
+  }
+  return series;
+}
+
 const actionsCommunes = {
   sauteALaCarte({ state, getters, commit }, idCarte) {
     for (const parcours of getters.tousLesParcours) {
@@ -58,6 +68,20 @@ export function creeStore({ state, mutations, getters, actions } = {}) {
 
       recupereQuestionsServeur(state, questions) {
         state.questions = questions;
+      },
+
+      initialiseParcours(state, parcours) {
+        state.parcours = parcours;
+        state.parcoursTermine = false;
+        state.termine = false;
+        state.indexSerie = 0;
+        state.indexCarte = 0;
+
+        if (parcours === TOUTES_QUESTIONS) {
+          state.series = toutesLesSeries(state.configuration);
+        } else {
+          state.series = state.configuration[state.parcours].series;
+        }
       },
 
       carteSuivanteParcours(state) {
@@ -118,6 +142,11 @@ export function creeStore({ state, mutations, getters, actions } = {}) {
     actions: {
       ...actionsCommunes,
       ...actions
+    },
+    watch: {
+      questionActive(question) {
+        console.log(question.nomTechnique);
+      }
     }
   });
 }

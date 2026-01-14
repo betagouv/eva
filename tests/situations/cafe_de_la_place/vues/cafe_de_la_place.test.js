@@ -1,5 +1,6 @@
 import { shallowMount, config } from '@vue/test-utils';
 import { creeStore, ORIENTATION } from 'cafe_de_la_place/modeles/store';
+import { TOUTES_QUESTIONS } from 'commun/modeles/store';
 import Defi from 'commun/vues/defi';
 import CafeDeLaPlace from 'cafe_de_la_place/vues/cafe_de_la_place';
 import Pagination from 'commun/vues/components/pagination';
@@ -108,6 +109,17 @@ describe('La vue café de la place', function () {
 
       wrapper.vm.$nextTick(() => {
         expect(store.state.questionActive).toEqual(sousConsigne);
+        done();
+      });
+    });
+
+    it("A la configuration avec le hash '#toutes', démarre le parcours TOUTES_QUESTIONS", function(done) {
+      location.hash = '#toutes';
+      const commitSpy = jest.spyOn(store, 'commit');
+      store.state.etat = DEMARRE;
+
+      wrapper.vm.$nextTick(() => {
+        expect(commitSpy).toHaveBeenCalledWith('demarreParcours', TOUTES_QUESTIONS);
         done();
       });
     });

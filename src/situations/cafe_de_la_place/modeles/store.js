@@ -1,11 +1,12 @@
 import { creeStore as creeStoreCommun } from 'commun/modeles/store';
+import { TOUTES_QUESTIONS } from '../../commun/modeles/store';
 
 export const ORIENTATION = 'orientation';
 export const PARCOURS_BAS = 'parcoursBas';
 export const PARCOURS_HAUT_1 = 'parcoursHaut1';
 export const PARCOURS_HAUT_2 = 'parcoursHaut2';
 
-export function creeStore () {
+export function creeStore() {
   return creeStoreCommun({
     state: {
       fondSituation: '',
@@ -20,14 +21,14 @@ export function creeStore () {
     },
 
     getters: {
-      nombreCartes (state) {
+      nombreCartes(state) {
         return state.series[state.indexSerie].cartes.length;
       },
 
       texteCliquable(state) {
         const serie = state.series[state.indexSerie];
-        if(serie.texteNonCliquable) {
-          return serie.texte.replaceAll('[','').replaceAll(']()', '');
+        if (serie.texteNonCliquable) {
+          return serie.texte.replaceAll('[', '').replaceAll(']()', '');
         }
         return serie.texte;
       },
@@ -46,29 +47,27 @@ export function creeStore () {
     },
 
     mutations: {
-      configureActe (state,  { questions, fondSituation }) {
+      configureActe(state, { questions, fondSituation }) {
         state.configuration = questions;
         state.fondSituation = fondSituation;
         this.commit('demarreParcours', ORIENTATION);
       },
 
       demarreParcours(state, parcours) {
-        state.parcours = parcours;
-        state.parcoursTermine = false;
-        state.termine = false;
-        state.indexSerie = 0;
-        state.indexCarte = 0;
-        state.series = state.configuration[state.parcours].series;
+        this.commit('initialiseParcours', parcours);
         state.questionActive = state.series[state.indexSerie].cartes[state.indexCarte];
       },
 
       carteSuivante(state) {
         this.commit('carteSuivanteParcours');
-        if(state.parcoursTermine) {
-          if(state.parcours == ORIENTATION) {
+        if (state.parcoursTermine && state.parcours == TOUTES_QUESTIONS) {
+          state.termine = true;
+        }
+        else if (state.parcoursTermine) {
+          if (state.parcours == ORIENTATION) {
             this.commit('demarreParcours', state.scoreOrientation < 10 ? PARCOURS_BAS : PARCOURS_HAUT_1);
           }
-          else if(state.parcours == PARCOURS_HAUT_1) {
+          else if (state.parcours == PARCOURS_HAUT_1) {
             const parcoursSuivant = state.scoreHaut1 <= 5 ? PARCOURS_BAS : PARCOURS_HAUT_2;
             this.commit('demarreParcours', parcoursSuivant);
           }
@@ -80,14 +79,14 @@ export function creeStore () {
 
       enregistreReponse(state, reponse) {
         state.reponses[reponse.question] = reponse;
-        if(!reponse.score) {
+        if (!reponse.score) {
           state.reponses[reponse.question].score = 0;
         }
-        if(reponse.succes && state.questionActive.score) {
-          if(state.parcours == ORIENTATION) {
+        if (reponse.succes && state.questionActive.score) {
+          if (state.parcours == ORIENTATION) {
             state.scoreOrientation += state.questionActive.score;
           }
-          if(state.parcours == PARCOURS_HAUT_1) {
+          if (state.parcours == PARCOURS_HAUT_1) {
             state.scoreHaut1 += state.questionActive.score;
           }
         }
