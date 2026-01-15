@@ -132,7 +132,7 @@ describe("La vue d'un défi", function() {
       });
     });
 
-    it("emet le choix quand on coche puis décoche 'je ne sais pas' et qu'on valide", function(done) {
+    it("perd le choix quand on coche puis décoche 'je ne sais pas'", function(done) {
       const reponse = {
         question: question.id,
         intitule: question.intitule,
@@ -146,11 +146,8 @@ describe("La vue d'un défi", function() {
         vue.findComponent(Qcm).vm.$emit('reponse', reponse);
         vue.find('#coche-passer').trigger('click');
         vue.find('#coche-passer').trigger('click');
-        vue.find('#bouton-envoie').trigger('click');
         vue.vm.$nextTick(() => {
-          expect(vue.vm.envoyer).toBe(true);
-          expect(vue.emitted().reponse.length).toEqual(1);
-          expect(vue.emitted().reponse[0][0]).toEqual(reponse);
+          expect(vue.vm.reponse).toBe(undefined);
           done();
         });
       });
@@ -180,6 +177,45 @@ describe("La vue d'un défi", function() {
           });
         });
       });
+    });
+
+    it("désélectionne le qcm quand on coche 'je ne sais pas'", async function() {
+      question.choix = [
+        { id: 'uid-32', bonneReponse: true },
+        { id: 'uid-32-2', bonneReponse: false }
+      ];
+      vue = composant(question);
+      await vue.vm.$nextTick();
+
+      const qcm = vue.findComponent(Qcm);
+      const radioInput = qcm.find('input[value="uid-32"]');
+      await radioInput.setValue(true);
+
+      expect(radioInput.element.checked).toBe(true);
+
+      await vue.find('#coche-passer').trigger('click');
+      await vue.vm.$nextTick();
+
+      const nouveauQcm = vue.findComponent(Qcm);
+      const nouveauRadioInput = nouveauQcm.find('input[value="uid-32"]');
+      expect(nouveauRadioInput.element.checked).toBe(false);
+    });
+
+    it("réinitialise l'extension quand on coche 'je ne sais pas'", async function() {
+      question.extensionVue = 'mock-extension';
+      vue = composant(question);
+      await vue.vm.$nextTick();
+
+      const extension = vue.findComponent(MockExtension);
+      extension.vm.reponseSelectionnee = 'une-reponse';
+
+      expect(extension.vm.reponseSelectionnee).toBe('une-reponse');
+
+      await vue.find('#coche-passer').trigger('click');
+      await vue.vm.$nextTick();
+
+      const nouvelleExtension = vue.findComponent(MockExtension);
+      expect(nouvelleExtension.vm.reponseSelectionnee).toBe(null);
     });
 
   });
