@@ -17,6 +17,7 @@
 
     .fr-btn--petit {
       height: 2rem;
+      min-height: unset;
     }
 
     .mon-avis,
@@ -30,19 +31,23 @@
       border-radius: 4rem;
       padding: 1rem 0.5rem;
       font-size: 0.875rem;
+
       .actions-avis,
       .actions-deconnexion,
       .information {
         display: flex;
       }
+
       .information {
         flex-grow: 1;
         align-items: center;
         text-align: left;
+
         .texte {
           margin-left: 1rem;
         }
       }
+
       .fr-btn--orange {
         padding-left: 1rem;
         padding-right: 1rem;
