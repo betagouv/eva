@@ -3,8 +3,9 @@
 .conteneur-message-aide {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
+
 .message-aide {
   width: 24rem;
   margin-right: 0.3rem;
@@ -12,13 +13,16 @@
   border-radius: 1.2rem;
   border: 3px solid $orange;
   background-color: $couleur-fond;
+
   strong {
     font-size: 1.125rem;
     text-transform: uppercase;
   }
 }
+
 .image-aide {
   width: 8.75rem;
+
   img {
     width: 100%;
   }
