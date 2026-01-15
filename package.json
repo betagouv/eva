@@ -10,6 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch --unhandled-rejections=strict",
     "lint": "eslint --cache --ext .js,.vue src tests",
+    "lint--fix": "eslint --cache --fix --ext .js,.vue src tests",
     "start": "node server.js",
     "optimisation-png": "find src -name '*.png' -exec optipng {} \\;",
     "prepare": "husky install"
