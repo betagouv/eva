@@ -26,7 +26,7 @@ const LOdi1 = {
   passable: true,
   illustration: programmeTele,
   intitule: 'De quoi s’agit-il ?',
-  modalite_reponse: 'Choisissez une des réponses ci-dessous. Pour écouter ou réécouter les questions ou les réponses, cliquez sur le bouton « Lecture » ( <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="#000091" r="10"/><path d="M14 8.701c1 .577 1 2.02 0 2.598l-5.813 3.356a1.5 1.5 0 0 1-2.25-1.3v-6.71a1.5 1.5 0 0 1 2.25-1.3z" fill="#fff"/></svg> ) à gauche de la phrase que vous souhaitez entendre. Pour confirmer votre réponse, cliquez sur « Valider ».',
+  modalite_reponse: 'Choisissez une des réponses ci-dessous. Pour écouter les questions ou les réponses, cliquez sur le bouton « Lecture » ( <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" fill="var(--blue-france-sun-113-625)" r="10"/><path d="M14 8.701c1 .577 1 2.02 0 2.598l-5.813 3.356a1.5 1.5 0 0 1-2.25-1.3v-6.71a1.5 1.5 0 0 1 2.25-1.3z" fill="#fff"/></svg> ). Pour confirmer votre réponse, cliquez sur « Valider ». Si vous ne savez pas répondre, cochez la case « Je ne sais pas » et validez.',
   choix: [
     {
       id: 'couverture',
@@ -426,10 +426,10 @@ const LOdi13 = {
 
 const orientation = {
   series: [
-    { cartes: [ sousConsigneLOdi1 ] },
-    { cartes: [ LOdi1, LOdi2, LOdi3, LOdi4, LOdi5 ] },
-    { cartes: [ sousConsigneLOdi2 ] },
-    { cartes: [ LOdi6, LOdi7, LOdi8, LOdi9, LOdi10, LOdi11, LOdi12, LOdi13 ] },
+    { cartes: [sousConsigneLOdi1] },
+    { cartes: [LOdi1, LOdi2, LOdi3, LOdi4, LOdi5] },
+    { cartes: [sousConsigneLOdi2] },
+    { cartes: [LOdi6, LOdi7, LOdi8, LOdi9, LOdi10, LOdi11, LOdi12, LOdi13] },
   ]
 };
 
