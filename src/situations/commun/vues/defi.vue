@@ -3,6 +3,7 @@
     <component
       v-if="question.extensionVue"
       :is="question.extensionVue"
+      :key="cleComposantContenu"
       :question="question"
       @reponse="attribueReponse"
       @action="envoie"
@@ -24,6 +25,7 @@
           <component
             v-if="composantContenu"
             :is="composantContenu"
+            :key="cleComposantContenu"
             :question="question"
             @reponse="attribueReponse"
           />
@@ -113,7 +115,8 @@ export default {
   data () {
     return {
       envoyer: false,
-      reponse: this.question.type === 'action' ? { succes: true } : ''
+      reponse: this.question.type === 'action' ? { succes: true } : '',
+      cleComposantContenu: 0
     };
   },
 
@@ -175,15 +178,15 @@ export default {
 
     jeNeSaisPas () {
       if (this.$refs.cochePasser.checked) {
-        this.reponse_memorisee = this.reponse;
         this.reponse = {
           scoreMax: this.question.score,
           neSaisPas: true,
           succes: false
         };
+        this.cleComposantContenu++;
       }
       else {
-        this.reponse = this.reponse_memorisee;
+        this.reponse = undefined;
       }
     },
 
