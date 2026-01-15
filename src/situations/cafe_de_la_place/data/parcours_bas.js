@@ -503,7 +503,6 @@ const ACrd6 = {
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
-  passable: true,
   modalite_reponse: "Choisissez votre réponse en cliquant sur l'un des ronds ci-dessous. Quand vous avez fait votre choix, cliquez sur « Valider ».",
   choix: [
     {
@@ -538,7 +537,6 @@ const ACrd7 = {
   score: 1,
   template: 'article article--disque',
   type: 'qcm',
-  passable: true,
   choix: [
     {
       id: 'reggae',
@@ -571,7 +569,6 @@ const ACrd8 = {
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
-  passable: true,
   choix: [
     {
       id: 'ntm',
@@ -605,7 +602,6 @@ const ACrd9 = {
   score: 1,
   template: 'article article--disque',
   type: 'qcm',
-  passable: true,
   choix: [
     {
       id: 'inventif',
@@ -639,7 +635,6 @@ const ACrd10 = {
   template: 'article article--disque',
   score: 1,
   type: 'qcm',
-  passable: true,
   choix: [
     {
       id: 'tempsPresent',
@@ -680,7 +675,7 @@ const texteMagazineColonne2 = `<span>Les différents morceaux se font sur un ton
 const legende = `<span class="legende">[Ivano Karanadoff]()<br>Critique d'art musical à [Paris]() Jazz [Janvier 2015]()</span>`;
 
 const texteMagazine =
-`
+  `
 |||
 |:---|:---|
 |${texteMagazineColonne1}|${texteMagazineColonne2}${legende}|
@@ -1301,32 +1296,32 @@ const APlc20 = {
 
 const parcoursBas = {
   series: [
-    { cartes: [ sousConsigneALrd1, sousConsigneALrd2 ] },
+    { cartes: [sousConsigneALrd1, sousConsigneALrd2] },
     {
       texte: listeChansons,
-      cartes: [ titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14 ]
+      cartes: [titre1, titre2, titre10, titre3, titre11, titre6, titre8, titre5, titre4, titre7, alrd11, alrd12, alrd13, alrd14]
     },
     {
       texte: texteMagazine,
       texteNonCliquable: true,
-      cartes: [ sousConsigneACrd1 ]
+      cartes: [sousConsigneACrd1]
     },
     {
       texte: texteMagazine,
-      cartes: [ ACrd1, ACrd2, ACrd3, ACrd4, ACrd5 ]
-    },
-    {
-      texte: texteMagazine,
-      texteNonCliquable: true,
-      cartes: [ sousConsigneACrd2 ]
+      cartes: [ACrd1, ACrd2, ACrd3, ACrd4, ACrd5]
     },
     {
       texte: texteMagazine,
       texteNonCliquable: true,
-      cartes: [ ACrd6, ACrd7, ACrd8, ACrd9, ACrd10 ]
+      cartes: [sousConsigneACrd2]
     },
-    { cartes: [ sousConsigneAPlc1, sousConsigneAPlc2 ] },
-    { cartes: [ APlc1, APlc2, APlc3, APlc4, APlc5, APlc6, APlc7, APlc8, APlc9, APlc10, APlc11, APlc12, APlc13, APlc14, APlc15, APlc16, APlc17, APlc18, APlc19, APlc20 ] }
+    {
+      texte: texteMagazine,
+      texteNonCliquable: true,
+      cartes: [ACrd6, ACrd7, ACrd8, ACrd9, ACrd10]
+    },
+    { cartes: [sousConsigneAPlc1, sousConsigneAPlc2] },
+    { cartes: [APlc1, APlc2, APlc3, APlc4, APlc5, APlc6, APlc7, APlc8, APlc9, APlc10, APlc11, APlc12, APlc13, APlc14, APlc15, APlc16, APlc17, APlc18, APlc19, APlc20] }
   ]
 };
 
