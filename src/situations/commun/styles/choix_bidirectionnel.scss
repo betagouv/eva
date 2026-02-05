@@ -23,7 +23,7 @@
     padding: .75rem;
   }
 
-  > button {
+  >button {
     flex: 50%;
   }
 
@@ -35,7 +35,9 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
+
     svg {
+
       rect,
       path {
         stroke: $bleu-gris;
@@ -71,18 +73,18 @@
     }
 
     .fr-btn--vert {
-      text-align: right;
+      justify-content: flex-end;
     }
 
     .fr-btn--rouge {
-      text-align: left;
+      justify-content: flex-start;
     }
 
-    .fr-btn-icone--droite + .fr-btn-texte {
+    .fr-btn-icone--droite+.fr-btn-texte {
       margin-right: 2.875rem;
     }
 
-    .fr-btn-icone--gauche + .fr-btn-texte {
+    .fr-btn-icone--gauche+.fr-btn-texte {
       margin-left: 2.875rem;
     }
   }
