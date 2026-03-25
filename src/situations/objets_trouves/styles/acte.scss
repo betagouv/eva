@@ -1,5 +1,6 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/acte.scss';
+@use "sass:color";
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/acte.scss';
 
 .question-barre {
   &.accueil {
@@ -169,7 +170,7 @@ button.icone {
     background-color: $couleur-app-photos;
 
     &:hover {
-      background-color: darken($couleur-app-photos, 10%);
+      background-color: color.adjust($couleur-app-photos, $lightness: -10%);
     }
   }
 
@@ -177,7 +178,7 @@ button.icone {
     background-color: $couleur-app-agenda;
 
     &:hover {
-      background-color: darken($couleur-app-agenda, 10%);
+      background-color: color.adjust($couleur-app-agenda, $lightness: -10%);
     }
   }
 
@@ -185,7 +186,7 @@ button.icone {
     background-color: $couleur-app-repondeur;
 
     &:hover {
-      background-color: darken($couleur-app-repondeur, 10%);
+      background-color: color.adjust($couleur-app-repondeur, $lightness: -10%);
     }
   }
 
@@ -193,7 +194,7 @@ button.icone {
     background-color: $couleur-app-notes;
 
     &:hover {
-      background-color: darken($couleur-app-notes, 10%);
+      background-color: color.adjust($couleur-app-notes, $lightness: -10%);
     }
   }
 
@@ -201,7 +202,7 @@ button.icone {
     background-color: $couleur-app-messages;
 
     &:hover {
-      background-color: darken($couleur-app-messages, 10%);
+      background-color: color.adjust($couleur-app-messages, $lightness: -10%);
     }
   }
 
@@ -209,7 +210,7 @@ button.icone {
     background-color: $ancien-bleu;
 
     &:hover {
-      background-color: darken($ancien-bleu, 10%);
+      background-color: color.adjust($ancien-bleu, $lightness: -10%);
     }
   }
 

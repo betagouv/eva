@@ -1,4 +1,5 @@
-@import 'commun/styles/variables.scss';
+@use "sass:color";
+@use 'commun/styles/variables.scss' as *;
 
 .conteneur-prevention {
   height:100%;
@@ -27,7 +28,7 @@
 
   &-traitee {
     stroke: $blanc;
-    fill: transparentize($orange, 0.2);
+    fill: color.adjust($orange, $alpha: -0.2);
     pointer-events: none;
   }
 }
@@ -49,7 +50,7 @@
 }
 
 .overlay-zone {
-  fill: transparentize($orange, 0.2);
+  fill: color.adjust($orange, $alpha: -0.2);
 }
 
 .transition-transform {

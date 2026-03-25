@@ -1,5 +1,4 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/mixins/boutons.scss';
+@use 'commun/styles/variables.scss' as *;
 
 .affiche-saisie {
   position: absolute;

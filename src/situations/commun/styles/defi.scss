@@ -1,5 +1,5 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/dimensions.scss';
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/dimensions.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 .question {
@@ -22,7 +22,7 @@
   }
 
   &-illustration {
-    height: $hauteur-scene;
+    height: dimensions.$hauteur-scene;
   }
 
   &-barre {

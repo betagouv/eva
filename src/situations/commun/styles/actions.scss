@@ -1,4 +1,4 @@
-@import "commun/styles/variables.scss";
+@use "commun/styles/variables.scss" as *;
 
 .actions {
   background: $couleur-fond-actions;

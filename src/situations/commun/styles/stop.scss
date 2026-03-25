@@ -1,8 +1,8 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/mixins/boutons.scss';
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/mixins/boutons.scss';
 
 .bouton-stop {
-  @include bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
+  @include boutons.bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus);
 }
 
 .bouton-et-etiquette {

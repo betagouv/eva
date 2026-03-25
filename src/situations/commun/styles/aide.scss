@@ -1,8 +1,8 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/mixins/boutons.scss';
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/mixins/boutons.scss';
 
 .bouton-aide {
-  @include bouton($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
+  @include boutons.bouton($couleur-fond-bouton-vert, $couleur-fond-bouton-vert-focus);
 }
 .bouton-et-etiquette {
   &:hover {

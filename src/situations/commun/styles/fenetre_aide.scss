@@ -1,4 +1,4 @@
-@import 'commun/styles/variables.scss';
+@use 'commun/styles/variables.scss' as *;
 
 .fenetre-aide-presentation {
   z-index: 101;

@@ -1,9 +1,9 @@
-@import 'commun/styles/dimensions.scss';
+@use 'commun/styles/dimensions.scss';
 
 .scene {
   position: relative;
   width: 100%;
-  height: $hauteur-scene;
+  height: dimensions.$hauteur-scene;
   background: ivory;
   overflow: hidden;
 

@@ -1,3 +1,5 @@
+@use '../variables.scss' as *;
+
 @mixin bouton($couleur-fond, $couleur-fond-focus, $couleur-bordure: $blanc, $hauteur-image: .625rem) {
   border-radius: 3.125rem;
   cursor: pointer;

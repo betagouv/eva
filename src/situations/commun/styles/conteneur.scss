@@ -1,6 +1,6 @@
-@import 'commun/styles/mixins/bords_arrondis.scss';
-@import 'commun/styles/mixins/conteneur.scss';
-@import 'commun/styles/mixins/ombre.scss';
+@use 'commun/styles/mixins/bords_arrondis.scss' as *;
+@use 'commun/styles/mixins/conteneur.scss' as *;
+@use 'commun/styles/mixins/ombre.scss' as *;
 
 .conteneur {
   @include bords-arrondis;
