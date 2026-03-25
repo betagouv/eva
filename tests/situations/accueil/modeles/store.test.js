@@ -160,7 +160,7 @@ describe("Le store de l'accueil", function () {
     describe('quand la requete se termine avec une erreur', function () {
       beforeEach(function () {
         registreUtilisateur.termineEvaluation = () => {
-          return Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+          return Promise.reject({
             status: 422
           });
         };
@@ -198,7 +198,7 @@ describe("Le store de l'accueil", function () {
     describe("quand l'inscription se passe mal", function () {
       it('traite les erreurs de validation', function () {
         registreUtilisateur.inscris = () => {
-          return Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+          return Promise.reject({
             status: 422,
             responseJSON: { nom: 'doit être rempli' }
           });
@@ -212,7 +212,7 @@ describe("Le store de l'accueil", function () {
 
       it('traite une erreur réseau', function () {
         registreUtilisateur.inscris = () => {
-          return Promise.reject({ // eslint-disable-line prefer-promise-reject-errors
+          return Promise.reject({
             status: 0
           });
         };

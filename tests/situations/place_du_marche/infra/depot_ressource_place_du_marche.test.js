@@ -12,7 +12,6 @@ describe('Le dépot ressource de la situation Place du marché', function () {
     let depot;
     let messagesAudios;
     let sonConsigne;
-    let consigneEnCours;
 
     beforeEach(function() {
       messagesAudios = { consigneEnCours: 'N1Prn1_consigne.mp3' };
@@ -24,7 +23,6 @@ describe('Le dépot ressource de la situation Place du marché', function () {
     });
 
     it("retourne la consigne audio d'une consgine s'il y en a une", function() {
-      depot.consigneEnCours = consigneEnCours;
       depot.existeMessageAudio = jest.fn(() => true);
       expect(depot.consigneDemarrage()).toEqual(messagesAudios[0]);
     });

@@ -36,7 +36,7 @@ export default class BaseRegistre extends EventEmitter {
     const valeur = window.localStorage.getItem(clef) || JSON.stringify(defaut);
     try {
       return JSON.parse(valeur);
-    } catch (ex) {
+    } catch {
       return defaut;
     }
   }
