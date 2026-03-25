@@ -1,8 +1,8 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/mixins/boutons.scss';
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/mixins/boutons.scss';
 
 .bouton-erreur-chargement {
-  @include bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus, $blanc, 30px);
+  @include boutons.bouton($couleur-fond-bouton-rouge, $couleur-fond-bouton-rouge-focus, $blanc, 30px);
   height: 3rem;
   width: 3rem;
 }

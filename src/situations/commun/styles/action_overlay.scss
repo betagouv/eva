@@ -1,13 +1,13 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/mixins/boutons.scss';
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/mixins/boutons.scss';
 
 .overlay-action {
    .bouton-centre-visible {
-     @include bouton-centre(rgba(255, 255, 255, 0.8));
+     @include boutons.bouton-centre(rgba(255, 255, 255, 0.8));
    }
 
    .bouton-centre-invisible {
-      @include bouton-centre(transparent);
+      @include boutons.bouton-centre(transparent);
    }
 
   &-message {

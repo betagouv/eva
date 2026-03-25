@@ -1,5 +1,6 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/acte.scss';
+@use "sass:color";
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/acte.scss';
 
 .zone {
   fill: transparent;
@@ -10,7 +11,7 @@
   }
 
   &-qualifiee {
-    fill: transparentize($vert-clair, .25);
+    fill: color.adjust($vert-clair, $alpha: -.25);
     stroke: $blanc;
     stroke-width: 6px;
   }

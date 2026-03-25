@@ -1,6 +1,5 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/mixins/conteneur.scss';
-@import 'commun/styles/mixins/boutons.scss';
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/mixins/conteneur.scss' as *;
 
 #accueil {
   display: flex;

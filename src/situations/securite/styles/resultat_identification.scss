@@ -1,4 +1,4 @@
-@import 'commun/styles/variables';
+@use 'commun/styles/variables' as *;
 
 .resultat-identification {
   &-reponse {

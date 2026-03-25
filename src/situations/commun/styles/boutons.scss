@@ -1,5 +1,5 @@
-@import 'commun/styles/variables.scss';
-@import 'commun/styles/mixins/boutons.scss';
+@use 'commun/styles/variables.scss' as *;
+@use 'commun/styles/mixins/boutons.scss';
 
 @mixin bouton-couleur($couleur, $couleur-focus) {
   background-color: $couleur;
@@ -66,7 +66,7 @@
 }
 
 .bouton-lire-consigne {
-  @include bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
+  @include boutons.bouton($couleur-fond-bouton-bleu, $couleur-fond-bouton-bleu-focus);
 }
 
 .bouton-et-etiquette {

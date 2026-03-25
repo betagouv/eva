@@ -1,5 +1,6 @@
-@import 'variables';
-@import 'typography';
+@use "sass:color";
+@use 'variables' as *;
+@use 'typography';
 
 .champ {
   border: 1px solid $bleu-gris;
@@ -9,7 +10,7 @@
   color: $bleu;
 
   &:active, &:hover {
-    border-color: darken($bleu-gris, 10%);
+    border-color: color.adjust($bleu-gris, $lightness: -10%);
   }
 
   &:focus, &.vs--open {
@@ -55,7 +56,7 @@
   }
 
   &-selection {
-    @include typo-s();
+    @include typography.typo-s();
     cursor: pointer;
     padding: 0 6px;
 

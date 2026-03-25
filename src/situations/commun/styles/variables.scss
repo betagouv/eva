@@ -1,3 +1,4 @@
+@use "sass:color";
 // couleurs
 $blanc: #ffffff;
 $noir: #000000;
@@ -28,16 +29,16 @@ $couleur-texte: $couleur-sombre;
 // boutons
 $couleur-texte-bouton-retour: #414141;
 $couleur-fond-bouton-vert: $vert-clair;
-$couleur-fond-bouton-vert-focus: darken($vert-clair, 10%);
+$couleur-fond-bouton-vert-focus: color.adjust($vert-clair, $lightness: -10%);
 $couleur-fond-bouton-bleu: $bleu;
-$couleur-fond-bouton-bleu-focus: darken($bleu, 10%);
+$couleur-fond-bouton-bleu-focus: color.adjust($bleu, $lightness: -10%);
 $couleur-fond-bouton-blanc: $blanc;
-$couleur-fond-bouton-blanc-focus: darken($blanc, 10%);
+$couleur-fond-bouton-blanc-focus: color.adjust($blanc, $lightness: -10%);
 $couleur-ombre: rgba(0, 0, 0, 0.31);
 $couleur-fond-bouton-rouge: $rouge;
-$couleur-fond-bouton-rouge-focus: darken($rouge, 10%);
+$couleur-fond-bouton-rouge-focus: color.adjust($rouge, $lightness: -10%);
 $couleur-fond-bouton-orange: $orange;
-$couleur-fond-bouton-orange-focus: darken($orange, 10%);
+$couleur-fond-bouton-orange-focus: color.adjust($orange, $lightness: -10%);
 // actions
 $couleur-fond-actions: $couleur-fond;
 

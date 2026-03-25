@@ -1,5 +1,5 @@
-@import './variables.scss';
-@import 'commun/styles/variables.scss';
+@use 'variables.scss' as *;
+@use 'commun/styles/variables.scss' as *;
 
 $height-item: 60px;
 $padding-item: 1.5rem;
