@@ -65,7 +65,7 @@
     "vscode-langservers-extracted": "^4.10.0",
     "vue-eslint-parser": "^10.4.0",
     "vue-loader": "^16.0.0",
-    "webpack-dev-server": "^4.7",
+    "webpack-dev-server": "^5.2",
     "webpack-node-externals": "^3.0.0",
     "workbox-webpack-plugin": "^7.4.0"
   },
