@@ -34,7 +34,7 @@ describe('joueur de consigne', function () {
   });
 
   it('peut stoper la consigne en cours', () => {
-    jest.useFakeTimers('legacy');
+    const clearTimeoutSpy = jest.spyOn(globalThis, 'clearTimeout');
     let consigneStopee = false;
     uneConsigne.stop = () => {
       consigneStopee = true;
@@ -42,6 +42,6 @@ describe('joueur de consigne', function () {
     joueur.joue(false, () => { });
     joueur.stop();
     expect(consigneStopee).toBe(true);
-    expect(clearTimeout).toHaveBeenCalledTimes(1);
+    expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
   });
 });
