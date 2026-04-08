@@ -29,7 +29,7 @@ describe('La situation « Tri »', function () {
     mockDepotRessources.fondSituation = () => { return { src: 'image-de-fond' }; };
     vueSituation.affiche('#point-insertion', $);
     expect($('#point-insertion').hasClass('tri')).toBe(true);
-    expect($('#point-insertion').css('background-image')).toBe('url(image-de-fond)');
+    expect($('#point-insertion').css('background-image')).toBe('url("image-de-fond")');
   });
 
   it('affiche les pièces', function () {

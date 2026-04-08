@@ -24,7 +24,7 @@ describe('La vue du tapis', function () {
     vue.affiche('#pointInsertion', $);
 
     expect($('#pointInsertion .tapis').length).toBe(1);
-    expect($('#pointInsertion .tapis').css('background-image')).toBe('url(image-tapis)');
+    expect($('#pointInsertion .tapis').css('background-image')).toBe('url("image-tapis")');
     expect($('#pointInsertion .tapis').hasClass('en-marche')).toBe(false);
   });
 

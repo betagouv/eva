@@ -42,7 +42,7 @@ describe('La vue pour accéder à une situation', function() {
     wrapper = mount(AccesSituation, optionsMount);
     expect(wrapper.text()).toEqual('ABC');
     expect(wrapper.attributes('href')).toBe('/abc.html');
-    expect(wrapper.attributes('style')).toBe('background-image: url(identifiant-abc);');
+    expect(wrapper.attributes('style')).toBe('background-image: url("identifiant-abc");');
   });
 
   it("N'affiche pas le fond s'il n'existe pas, même s'il est demandé", function() {

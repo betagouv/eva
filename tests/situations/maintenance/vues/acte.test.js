@@ -19,7 +19,7 @@ describe("La vue de l'acte", function () {
   it('affiche le fond', function (done) {
     store.commit('configureActe', { fondSituation: 'test', zones: [] });
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.attributes('style')).toBe('background-image: url(test);');
+      expect(wrapper.attributes('style')).toBe('background-image: url("test");');
       done();
     });
   });

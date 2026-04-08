@@ -32,6 +32,6 @@ describe("L'écran du telephone quand on veut le déverrouiller", function () {
     const icone = wrapper.find('.icone');
     expect(icone.classes('icone--deverrouillee')).toBe(true);
     expect(icone.classes('icone--deverrouillage')).toBe(true);
-    expect(icone.attributes('style')).toBe('background-image: url(chemin-icone);');
+    expect(icone.attributes('style')).toBe('background-image: url("chemin-icone");');
   });
 });
