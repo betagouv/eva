@@ -33,7 +33,7 @@ describe('La vue de la situation « Contrôle »', function () {
     const vueSituation = vueSituationMinimaliste();
     vueSituation.depotRessources.fondSituation = () => { return { src: 'image-de-fond' }; };
     vueSituation.affiche('#point-insertion', $);
-    expect($('#point-insertion').css('background-image')).toBe('url(image-de-fond)');
+    expect($('#point-insertion').css('background-image')).toBe('url("image-de-fond")');
   });
 
   it('affiche les bacs et le tapis', function () {

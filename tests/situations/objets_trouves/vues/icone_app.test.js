@@ -27,7 +27,7 @@ describe("Les propriétés d'une app", function () {
   it("affiche la couleur et l'icone", function () {
     const icone = wrapper.find('.icone');
     expect(icone.classes('icone--agenda')).toBe(true);
-    expect(icone.attributes('style')).toBe('background-image: url(icon-agenda);');
+    expect(icone.attributes('style')).toBe('background-image: url("icon-agenda");');
   });
 
   it("emet ouvrirApp quand on clique sur l'icone", function () {

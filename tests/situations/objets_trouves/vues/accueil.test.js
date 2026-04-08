@@ -24,7 +24,7 @@ describe("La vue de l'accueil", function () {
   });
 
   it('affiche le fond', function () {
-    expect(wrapper.attributes('style')).toBe('background-image: url(fond);');
+    expect(wrapper.attributes('style')).toBe('background-image: url("fond");');
   });
 
   describe("permet d'ouvrir une app", function () {
