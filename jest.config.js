@@ -24,6 +24,7 @@ module.exports = {
     'shared',
     'src/situations'
   ],
+  transformIgnorePatterns: ['/node_modules/(?!(uuid)/)'],
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.vue$': '@vue/vue3-jest',
@@ -34,6 +35,7 @@ module.exports = {
     'vue3-keypress': '<rootDir>/__mocks__/keypressMock.js',
     '@gouvfr/dsfr/dist/dsfr\\.module\\.min\\.js$': '<rootDir>/__mocks__/dsfrMock.js',
     '\\.(css|less|scss)$': '<rootDir>/__mocks__/styleMock.js',
+    '^uuid$': '<rootDir>/__mocks__/uuidMock.js',
     '^(commun|controle|inventaire|maintenance|objets_trouves|prevention|tri)/(.*)$': '<rootDir>/src/situations/$1/$2'
   }
 };
