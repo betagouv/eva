@@ -82,7 +82,7 @@
     "mobile-device-detect": "^0.4.3",
     "query-string": "^6.14.1",
     "rollbar": "^3.1.0",
-    "uuid": "^8.3.2",
+    "uuid": "^14.0.0",
     "vue": "^3.2.38",
     "vue3-keypress": "^4.0.1",
     "vuedraggable": "^4.1.0",
