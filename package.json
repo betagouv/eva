@@ -90,6 +90,9 @@
     "webpack": "^5.x",
     "webpack-cli": "^4.9"
   },
+  "overrides": {
+    "sharp": "~0.33"
+  },
   "lint-staged": {
     "*.png": "optipng"
   }
