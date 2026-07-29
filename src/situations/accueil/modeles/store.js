@@ -144,18 +144,6 @@ export function creeStore (registreUtilisateur, registreCampagne) {
         });
       },
 
-      enregistreDonneesComplementaires ({ commit }, donneesSociodemographiques) {
-        const idEvaluation = registreUtilisateur.idEvaluation();
-        if (!idEvaluation) {
-          commit('deconnecte');
-          return;
-        }
-        return registreUtilisateur.enregistreDonneesComplementaires(idEvaluation, donneesSociodemographiques)
-          .then(() => {
-            commit('demarre');
-          });
-      },
-
       deconnecte () {
         return registreUtilisateur.deconnecte();
       },
