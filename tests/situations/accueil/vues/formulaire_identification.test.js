@@ -43,10 +43,29 @@ describe("Le formulaire d'identification", function () {
     });
   });
 
-  it('écris un code de campagne en majuscule', function () {
-    wrapper.vm.campagne = 'Mon code campagne';
-    wrapper.vm.forceMajuscule();
-    expect(wrapper.vm.campagne).toEqual('MON CODE CAMPAGNE');
+  describe('#normaliseCodeCampagne', function () {
+    it('passe le code de campagne en majuscule', function () {
+      wrapper.vm.campagne = 'cgh46500';
+      wrapper.vm.normaliseCodeCampagneSaisie();
+      expect(wrapper.vm.campagne).toEqual('CGH46500');
+    });
+
+    it('retire le point final du code de campagne', function () {
+      wrapper.vm.campagne = 'REELCOMPLET.';
+      wrapper.vm.normaliseCodeCampagneSaisie();
+      expect(wrapper.vm.campagne).toEqual('REELCOMPLET');
+    });
+
+    it('retire les espaces du code de campagne', function () {
+      wrapper.vm.campagne = 'REEL COMPLET';
+      wrapper.vm.normaliseCodeCampagneSaisie();
+      expect(wrapper.vm.campagne).toEqual('REELCOMPLET');
+    });
+
+    it('normalise le code de campagne forcé', function () {
+      wrapper = composant({ forceCampagne: 'reel complet.' });
+      expect(wrapper.vm.campagne).toEqual('REELCOMPLET');
+    });
   });
 
   describe('#envoieFormulaire', function () {
@@ -283,12 +302,12 @@ describe("Le formulaire d'identification", function () {
       wrapperCodeBeneficiaire.vm.champCodeBeneficiaire = 'ABCD1234';
       wrapperCodeBeneficiaire.vm.campagne = 'ETE2025';
       wrapperCodeBeneficiaire.vm.cgu = true;
-    
+
       store.dispatch = jest.fn((action, payload) => {
         if (action === 'recupereCampagne') {
           return Promise.resolve({ id: 1 });
         }
-    
+
         if (action === 'inscris') {
           try {
             expect(payload.CodeBeneficiaire).toBe('ABCD1234');
@@ -298,10 +317,10 @@ describe("Le formulaire d'identification", function () {
             done(e);
           }
         }
-    
+
         return Promise.resolve();
       });
-    
+
       wrapperCodeBeneficiaire.vm.envoieFormulaire();
     });
   });

@@ -56,7 +56,7 @@
                 class="champ champ-texte champ-texte-accueil"
                 :disabled="champCodeEstDesactive"
                 :class="{ 'erreur-champ': erreurFormulaireIdentification.code }"
-                @focusout="forceMajuscule">
+                @focusout="normaliseCodeCampagneSaisie">
               <div v-if="erreurFormulaireIdentification.code" class="erreur-message">
                 {{ erreurFormulaireIdentification.code }}
               </div>
@@ -86,6 +86,10 @@ import 'commun/styles/champ.scss';
 import 'commun/styles/boutons.scss';
 import TransitionFade from 'commun/vues/transition_fade';
 
+function normaliseCodeCampagne (code) {
+  return code.toUpperCase().replace(/\.$/, '').replace(/ /, '');
+}
+
 export default {
   components: { TransitionFade },
 
@@ -112,7 +116,7 @@ export default {
       nom: this.forceNom,
       modeConnexion: this.forceCodeBeneficiaire ? 'code_beneficiaire' : 'nom',
       CodeBeneficiaire: this.forceCodeBeneficiaire,
-      campagne: this.forceCampagne.toUpperCase(),
+      campagne: normaliseCodeCampagne(this.forceCampagne),
       enCours: false,
       cgu: false
     };
@@ -202,8 +206,8 @@ export default {
       this.modeConnexion = this.modeConnexion === 'nom' ? 'code_beneficiaire' : 'nom';
     },
 
-    forceMajuscule () {
-      this.campagne = this.campagne.toUpperCase();
+    normaliseCodeCampagneSaisie () {
+      this.campagne = normaliseCodeCampagne(this.campagne);
     },
 
     recupereConditions () {
