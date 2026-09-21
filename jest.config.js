@@ -24,7 +24,7 @@ module.exports = {
     'shared',
     'src/situations'
   ],
-  transformIgnorePatterns: ['/node_modules/(?!(uuid)/)'],
+  transformIgnorePatterns: ['/node_modules/(?!(uuid|query-string|decode-uri-component|filter-obj|split-on-first)/)'],
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.vue$': '@vue/vue3-jest',
