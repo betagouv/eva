@@ -15,8 +15,6 @@ import EvenementFinSituation from 'commun/modeles/evenement_fin_situation';
 import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
 import VueActions from 'commun/vues/actions';
 import VueStop from 'commun/vues/stop';
-import { afficheFenetreModale } from 'commun/vues/modale';
-import { traduction } from 'commun/infra/internationalisation';
 import { creeAdaptateur } from './adaptateur_vue';
 import OverlayAttente from './overlay_attente';
 import OverlayErreurChargement from './overlay_erreur_chargement';
@@ -110,10 +108,7 @@ export default class VueCadre {
       if (!piegeActif) return;
       piegeHistorique();
       if ($('#fenetre-modale').length) return;
-      afficheFenetreModale('#cadre', $, {
-        titre: traduction('situation.stop'),
-        actionOk: () => vueStop.clickSurOk()
-      });
+      vueStop.clickSurStop('#cadre', $);
     });
   }
 
