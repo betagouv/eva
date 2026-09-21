@@ -14,6 +14,9 @@ import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementFinSituation from 'commun/modeles/evenement_fin_situation';
 import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
 import VueActions from 'commun/vues/actions';
+import VueStop from 'commun/vues/stop';
+import { afficheFenetreModale } from 'commun/vues/modale';
+import { traduction } from 'commun/infra/internationalisation';
 import { creeAdaptateur } from './adaptateur_vue';
 import OverlayAttente from './overlay_attente';
 import OverlayErreurChargement from './overlay_erreur_chargement';
@@ -59,6 +62,7 @@ export default class VueCadre {
     afficheEtat(this.situation.etat());
     this.situation.on(CHANGEMENT_ETAT, afficheEtat);
     this.empecheLaFermetureDeLaSituation($);
+    this.empecheLeRetourArriereDuNavigateur($);
     this.empecheLeClickDroit($);
 
     const vueSituation = new this.VueSituation(this.situation, this.journal, this.depotRessources, this.store);
@@ -80,6 +84,36 @@ export default class VueCadre {
         e.preventDefault();
         return '';
       }
+    });
+  }
+
+  empecheLeRetourArriereDuNavigateur($) {
+    const etatsProteges = [ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE];
+    const vueStop = new VueStop(this.situation, this.journal);
+    const piegeHistorique = () => window.history.pushState({ piegeRetourArriere: true }, '');
+    let piegeActif = false;
+
+    this.situation.on(CHANGEMENT_ETAT, (etat) => {
+      const etaitProtege = piegeActif;
+      piegeActif = etatsProteges.includes(etat);
+      if (piegeActif && !etaitProtege) {
+        piegeHistorique();
+      }
+    });
+
+    if (etatsProteges.includes(this.situation.etat())) {
+      piegeActif = true;
+      piegeHistorique();
+    }
+
+    $(window).on('popstate', () => {
+      if (!piegeActif) return;
+      piegeHistorique();
+      if ($('#fenetre-modale').length) return;
+      afficheFenetreModale('#cadre', $, {
+        titre: traduction('situation.stop'),
+        actionOk: () => vueStop.clickSurOk()
+      });
     });
   }
 

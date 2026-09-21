@@ -9,6 +9,7 @@ import SituationCommune, {
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementFinSituation from 'commun/modeles/evenement_fin_situation';
 import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
+import EvenementAbandon from 'commun/modeles/evenement_abandon';
 import VueCadre from 'commun/vues/cadre';
 import DepotRessourcesCommune from 'commun/infra/depot_ressources_communes';
 import chargeurs from '../../commun/aides/mock_chargeurs';
@@ -125,6 +126,61 @@ describe('Une vue du cadre', function () {
         $(window).trigger(event);
         expect(event.isDefaultPrevented()).toBe(false);
       });
+    });
+  });
+
+  it('affiche une fenêtre de confirmation lors du retour arrière du navigateur pendant que la situation est en cours', function () {
+    const vueCadre = uneVueCadre();
+    return vueCadre.affiche('#point-insertion', $).then(() => {
+      situation.modifieEtat(DEMARRE);
+      $(window).trigger($.Event('popstate'));
+      expect($('#fenetre-modale').length).toBe(1);
+      expect($('h2').text()).toBe('situation.stop');
+    });
+  });
+
+  it("n'affiche pas de fenêtre de confirmation lors du retour arrière du navigateur si la situation n'a pas démarré", function () {
+    const vueCadre = uneVueCadre();
+    return vueCadre.affiche('#point-insertion', $).then(() => {
+      $(window).trigger($.Event('popstate'));
+      expect($('#fenetre-modale').length).toBe(0);
+    });
+  });
+
+  it("n'affiche pas de fenêtre de confirmation lors du retour arrière du navigateur pendant l'enregistrement de fin de situation", function () {
+    const vueCadre = uneVueCadre();
+    return vueCadre.affiche('#point-insertion', $).then(() => {
+      situation.modifieEtat(FINI);
+      $(window).trigger($.Event('popstate'));
+      expect($('#fenetre-modale').length).toBe(0);
+    });
+  });
+
+  it("n'empile pas une deuxième fenêtre de confirmation lors de retours arrière successifs", function () {
+    const vueCadre = uneVueCadre();
+    return vueCadre.affiche('#point-insertion', $).then(() => {
+      situation.modifieEtat(DEMARRE);
+      $(window).trigger($.Event('popstate'));
+      $(window).trigger($.Event('popstate'));
+      $(window).trigger($.Event('popstate'));
+      expect($('.modale-interieur').length).toBe(1);
+      expect($('#OK-modale').length).toBe(1);
+    });
+  });
+
+  it('abandonne la situation quand on confirme la fenêtre affichée lors du retour arrière du navigateur', function () {
+    let dernierEvenement;
+    journal.enregistre = (evenement) => {
+      dernierEvenement = evenement;
+      return Promise.resolve();
+    };
+    const vueCadre = uneVueCadre();
+    return vueCadre.affiche('#point-insertion', $).then(() => {
+      situation.modifieEtat(DEMARRE);
+      $(window).trigger($.Event('popstate'));
+      $('#OK-modale').trigger('click');
+      expect(situation.etat()).toEqual(STOPPEE);
+      expect(dernierEvenement).toBeInstanceOf(EvenementAbandon);
     });
   });
 
