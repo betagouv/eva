@@ -20,7 +20,7 @@ Anciens dépôts que nous n'utilisons plus aujourd'hui :
 
 ### Dépendences
 
-* node.js (dont la version est spécifié dans le fichier `.tool-version`)
+* node.js (dont la version est spécifié dans le fichier `.tool-versions`)
 
 pour le développement :
 * OptiPNG version 0.7.7 ou supérieur
@@ -77,16 +77,6 @@ $> npm install && npm run dev
 ```
 
 Et se rendre sur l'adresse affichée dans la sortie standard (http://localhost:7700 par défaut)
-
-## Démarrer l'application avec docker (mode production)
-
-Installer `docker` si nécessaire, et exécuter la commande suivante.
-
-```
-$> docker build -t eva . && docker run --rm -ti -p 3000:80 eva
-```
-
-Une fois le message `Successfully tagged eva:latest` affiché, se rendre à l'adresse http://localhost:3000
 
 ## Lancer les tests
 
