@@ -80,7 +80,9 @@ export default class VueCadre {
     $(window).on('beforeunload', (e) => {
       if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE].includes(this.situation.etat())) {
         e.preventDefault();
-        return '';
+        if (e.originalEvent) {
+          e.originalEvent.returnValue = true;
+        }
       }
     });
   }
