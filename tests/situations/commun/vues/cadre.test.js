@@ -117,6 +117,17 @@ describe('Une vue du cadre', function () {
     });
   });
 
+  it('renseigne returnValue pour les navigateurs qui ignorent preventDefault', function () {
+    const vueCadre = uneVueCadre();
+    return vueCadre.affiche('#point-insertion', $).then(() => {
+      situation.modifieEtat(DEMARRE);
+      const evenementNatif = { type: 'beforeunload', preventDefault: jest.fn() };
+      $(window).trigger($.Event(evenementNatif));
+      expect(evenementNatif.preventDefault).toHaveBeenCalled();
+      expect(evenementNatif.returnValue).toBe(true);
+    });
+  });
+
   it("ne demande pas une confirmation pour quitter la page lorsque la situation n'a pas démarré", function () {
     const vueCadre = uneVueCadre();
     return vueCadre.affiche('#point-insertion', $).then(() => {
