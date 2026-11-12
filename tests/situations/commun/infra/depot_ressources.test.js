@@ -1,4 +1,4 @@
-import DepotRessources, { chargeurJSON, chargeurInlineSvg } from 'commun/infra/depot_ressources';
+import DepotRessources, { chargeurAudio, chargeurJSON, chargeurInlineSvg } from 'commun/infra/depot_ressources';
 import chargeurs from '../../commun/aides/mock_chargeurs';
 
 describe('le dépôt de ressources', function () {
@@ -109,7 +109,213 @@ describe('le dépôt de ressources', function () {
     };
     return chargeurJSON('./evaluations/134.json').catch((e) => {
       expect(e).toBeInstanceOf(Error);
-      expect(e.message).toBe('Le chargement de la resources ./evaluations/134.json a échoué avec le code 404');
+      expect(e.message).toBe('Le chargement de la ressource ./evaluations/134.json a échoué avec le code 404');
+    });
+  });
+
+  describe('limite les téléchargements simultanés', function () {
+    function chargeurControle () {
+      const enAttente = [];
+      let enCours = 0;
+      let maxEnCours = 0;
+      const chargeur = (src) => {
+        enCours++;
+        maxEnCours = Math.max(maxEnCours, enCours);
+        return new Promise((resolve) => {
+          enAttente.push(() => {
+            enCours--;
+            resolve(() => src);
+          });
+        });
+      };
+      const termineTout = () => {
+        if (enAttente.length === 0) return Promise.resolve();
+        while (enAttente.length) enAttente.shift()();
+        return new Promise((resolve) => setTimeout(resolve, 0)).then(termineTout);
+      };
+      return { chargeur, enAttente, maxEnCours: () => maxEnCours, termineTout };
+    }
+
+    it('ne lance pas plus de téléchargements que la limite', function () {
+      const controle = chargeurControle();
+      const depot = new DepotRessources({ png: controle.chargeur }, { maxSimultanes: 3 });
+      depot.charge(['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']);
+
+      return Promise.resolve()
+        .then(() => {
+          expect(controle.enAttente.length).toBe(3);
+          return controle.termineTout();
+        })
+        .then(() => depot.chargement())
+        .then(() => {
+          expect(controle.maxEnCours()).toBe(3);
+          expect(depot.ressource('7.png')).toBe('7.png');
+        });
+    });
+
+    it('applique la limite sur plusieurs appels à charge', function () {
+      const controle = chargeurControle();
+      const depot = new DepotRessources({ png: controle.chargeur }, { maxSimultanes: 2 });
+      depot.charge(['1.png', '2.png']);
+      depot.charge(['3.png', '4.png']);
+
+      return Promise.resolve().then(() => {
+        expect(controle.enAttente.length).toBe(2);
+      });
+    });
+
+    it("lance la ressource suivante lorsqu'une ressource échoue", function () {
+      const depot = new DepotRessources({
+        png: (src) => src === '1.png' ? Promise.reject(new Error('échec')) : Promise.resolve(() => src)
+      }, { maxSimultanes: 1 });
+      depot.charge(['1.png', '2.png']);
+      depot.promesses[0].catch(() => {});
+
+      return depot.promesses[1].then(() => {
+        expect(depot.ressource('2.png')).toBe('2.png');
+      });
+    });
+  });
+
+  describe('réessaie les ressources en échec temporaire', function () {
+    function erreurReessayable () {
+      const erreur = new Error('HTTP 503');
+      erreur.reessayable = true;
+      return erreur;
+    }
+
+    function depotAvecEchecs (nombreEchecs, erreur, options = {}) {
+      const appels = [];
+      const attentes = [];
+      const depot = new DepotRessources({
+        mp3: (src) => {
+          appels.push(src);
+          if (appels.length <= nombreEchecs) return Promise.reject(erreur());
+          return Promise.resolve(() => src);
+        }
+      }, {
+        attendre: (ms) => { attentes.push(ms); return Promise.resolve(); },
+        ...options
+      });
+      return { depot, appels, attentes };
+    }
+
+    it("réessaie une ressource en erreur réessayable jusqu'à la réussite", function () {
+      const { depot, appels } = depotAvecEchecs(2, erreurReessayable);
+      depot.charge(['son.mp3']);
+
+      return depot.chargement().then(() => {
+        expect(appels.length).toBe(3);
+        expect(depot.ressource('son.mp3')).toBe('son.mp3');
+      });
+    });
+
+    it('attend de plus en plus longtemps entre chaque essai', function () {
+      const { depot, attentes } = depotAvecEchecs(3, erreurReessayable, { delaiInitial: 100, nombreEssais: 4 });
+      depot.charge(['son.mp3']);
+
+      return depot.chargement().then(() => {
+        expect(attentes).toEqual([100, 200, 400]);
+      });
+    });
+
+    it("abandonne après le nombre maximal d'essais", function () {
+      const { depot, appels } = depotAvecEchecs(10, erreurReessayable, { nombreEssais: 3 });
+      depot.charge(['son.mp3']);
+
+      return depot.chargement().then(
+        () => { throw new Error('aurait dû échouer'); },
+        (erreur) => {
+          expect(erreur.message).toBe('HTTP 503');
+          expect(appels.length).toBe(3);
+        }
+      );
+    });
+
+    it('ne réessaie pas une erreur définitive', function () {
+      const { depot, appels } = depotAvecEchecs(1, () => new Error('HTTP 404'));
+      depot.charge(['son.mp3']);
+
+      return depot.chargement().then(
+        () => { throw new Error('aurait dû échouer'); },
+        (erreur) => {
+          expect(erreur.message).toBe('HTTP 404');
+          expect(appels.length).toBe(1);
+        }
+      );
+    });
+  });
+
+  describe('#chargeurAudio', function () {
+    let xhrOriginal;
+    let audioContextOriginal;
+
+    beforeEach(function () {
+      xhrOriginal = window.XMLHttpRequest;
+      audioContextOriginal = window.AudioContext;
+      window.AudioContext = class { decodeAudioData () {} };
+    });
+
+    afterEach(function () {
+      window.XMLHttpRequest = xhrOriginal;
+      window.AudioContext = audioContextOriginal;
+    });
+
+    function simuleXhr (comportement) {
+      window.XMLHttpRequest = class {
+        open () {}
+        send () { comportement(this); }
+      };
+    }
+
+    it('rejette avec une erreur réessayable sur un 503', function () {
+      simuleXhr((xhr) => { xhr.status = 503; xhr.onload(); });
+      expect.assertions(2);
+      return chargeurAudio('son.mp3').catch((erreur) => {
+        expect(erreur.status).toBe(503);
+        expect(erreur.reessayable).toBe(true);
+      });
+    });
+
+    it('rejette avec une erreur définitive sur un 404', function () {
+      simuleXhr((xhr) => { xhr.status = 404; xhr.onload(); });
+      expect.assertions(2);
+      return chargeurAudio('son.mp3').catch((erreur) => {
+        expect(erreur.status).toBe(404);
+        expect(erreur.reessayable).toBe(false);
+      });
+    });
+
+    it('rejette avec une erreur réessayable sur une erreur réseau', function () {
+      simuleXhr((xhr) => { xhr.onerror(); });
+      expect.assertions(1);
+      return chargeurAudio('son.mp3').catch((erreur) => {
+        expect(erreur.reessayable).toBe(true);
+      });
+    });
+  });
+
+  it('marque comme réessayable un 503 sur une ressource json', function () {
+    window.fetch = () => Promise.resolve({ ok: false, status: 503 });
+    expect.assertions(1);
+    return chargeurJSON('./evaluations/134.json').catch((e) => {
+      expect(e.reessayable).toBe(true);
+    });
+  });
+
+  it('marque comme réessayable une erreur réseau sur une ressource json', function () {
+    window.fetch = () => Promise.reject(new TypeError('Failed to fetch'));
+    expect.assertions(1);
+    return chargeurJSON('./evaluations/134.json').catch((e) => {
+      expect(e.reessayable).toBe(true);
+    });
+  });
+
+  it('marque comme réessayable un 503 sur un svg inline', function () {
+    window.fetch = () => Promise.resolve({ ok: false, status: 503 });
+    expect.assertions(1);
+    return chargeurInlineSvg('question.svg').catch((e) => {
+      expect(e.reessayable).toBe(true);
     });
   });
 

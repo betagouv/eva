@@ -1,5 +1,33 @@
 let audioCtx;
 
+const STATUTS_REESSAYABLES = [429, 502, 503, 504];
+
+function erreurHttp (message, status) {
+  const erreur = new Error(message);
+  erreur.status = status;
+  erreur.reessayable = STATUTS_REESSAYABLES.includes(status);
+  return erreur;
+}
+
+function erreurReseau (message) {
+  const erreur = new Error(message);
+  erreur.reessayable = true;
+  return erreur;
+}
+
+function fetchAvecErreurs (src) {
+  return window.fetch(src)
+    .catch((erreur) => {
+      throw erreurReseau(`Erreur réseau lors de l'accès à ${src} : ${erreur.message}`);
+    })
+    .then(res => {
+      if (res.ok) {
+        return res;
+      }
+      throw erreurHttp(`Le chargement de la ressource ${src} a échoué avec le code ${res.status}`, res.status);
+    });
+}
+
 function chargeurAudio (src) {
   audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
   const request = new window.XMLHttpRequest();
@@ -28,13 +56,13 @@ function chargeurAudio (src) {
           }
         );
       } else {
-        reject(new Error(`Échec de la requête : HTTP ${request.status}`));
+        reject(erreurHttp(`Échec de la requête : HTTP ${request.status}`, request.status));
       }
     };
 
     // Gestion des erreurs réseau (CORS ou autres)
     request.onerror = function () {
-      reject(new Error(`Erreur réseau ou problème CORS lors de l'accès à ${src}`));
+      reject(erreurReseau(`Erreur réseau ou problème CORS lors de l'accès à ${src}`));
     };
 
     // Envoi de la requête
@@ -53,10 +81,12 @@ function chargeurVideo (src) {
         resolve(() => {
           return request.response;
         });
+      } else {
+        reject(erreurHttp(`Échec du chargement de ${src} : HTTP ${request.status}`, request.status));
       }
     };
     request.onerror = function() {
-      reject(new Error(`Erreur au chargement de ${src}`));
+      reject(erreurReseau(`Erreur au chargement de ${src}`));
     };
     request.onprogress = function(e){
       if(e.lengthComputable) {
@@ -80,21 +110,15 @@ function chargeurImage (src) {
       });
     };
 
-    img.onerror = reject;
+    // L'élément image ne donne pas le statut HTTP : on considère l'erreur comme temporaire.
+    img.onerror = () => reject(erreurReseau(`Erreur au chargement de ${src}`));
   });
   img.src = src;
   return promesse;
 }
 
 function chargeurInlineSvg (src) {
-  return window.fetch(src)
-    .then(res => {
-      if (res.ok) {
-        return res;
-      } else {
-        throw Error(`Le chargement de la ressource ${src} a échoué avec le code ${res.status}`);
-      }
-    })
+  return fetchAvecErreurs(src)
     .then((response) => response.text())
     .then((svgText) => {
       const parser = new DOMParser();
@@ -105,14 +129,7 @@ function chargeurInlineSvg (src) {
 }
 
 function chargeurJSON (src) {
-  return window.fetch(src)
-    .then(res => {
-      if (res.ok) {
-        return res;
-      } else {
-        throw Error(`Le chargement de la resources ${src} a échoué avec le code ${res.status}`);
-      }
-    })
+  return fetchAvecErreurs(src)
     .then((response) => response.json())
     .then((json) => { return () => json; });
 }
@@ -127,11 +144,21 @@ const CHARGEURS = {
   json: chargeurJSON
 };
 
+const OPTIONS_PAR_DEFAUT = {
+  maxSimultanes: 6,
+  nombreEssais: 5,
+  delaiInitial: 1000,
+  attendre: (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+};
+
 export default class DepotRessources {
-  constructor (chargeurs = CHARGEURS) {
+  constructor (chargeurs = CHARGEURS, options = {}) {
     this.chargeurs = chargeurs;
+    this.options = { ...OPTIONS_PAR_DEFAUT, ...options };
     this.promesses = [];
     this.cloneursRessource = {};
+    this.fileAttente = [];
+    this.nombreEnCours = 0;
   }
 
   charge (ressources, identifiantChargeur = null) {
@@ -150,8 +177,40 @@ export default class DepotRessources {
         `Aucun chargeur disponible pour '${idChargeur}'. Impossible de charger la ressource '${ressource}'`
       );
     }
-    return chargeur(ressource).then((cloneur) => {
-      this.cloneursRessource[ressource] = cloneur;
+    return this.planifie(() => this.chargeAvecReessais(chargeur, ressource))
+      .then((cloneur) => {
+        this.cloneursRessource[ressource] = cloneur;
+      });
+  }
+
+  planifie (tache) {
+    return new Promise((resolve, reject) => {
+      this.fileAttente.push({ tache, resolve, reject });
+      this.lanceTachesEnAttente();
+    });
+  }
+
+  lanceTachesEnAttente () {
+    while (this.nombreEnCours < this.options.maxSimultanes && this.fileAttente.length > 0) {
+      const { tache, resolve, reject } = this.fileAttente.shift();
+      this.nombreEnCours++;
+      new Promise((resolveTache) => resolveTache(tache()))
+        .then(resolve, reject)
+        .then(() => {
+          this.nombreEnCours--;
+          this.lanceTachesEnAttente();
+        });
+    }
+  }
+
+  chargeAvecReessais (chargeur, ressource, essai = 1) {
+    return chargeur(ressource).catch((erreur) => {
+      if (essai >= this.options.nombreEssais || !erreur?.reessayable) {
+        throw erreur;
+      }
+      const delai = this.options.delaiInitial * 2 ** (essai - 1);
+      return this.options.attendre(delai)
+        .then(() => this.chargeAvecReessais(chargeur, ressource, essai + 1));
     });
   }
 
@@ -210,4 +269,4 @@ function extraitQuestionsReponsesAudios(questions) {
   }, {});
 }
 
-export { chargeurJSON, chargeurInlineSvg, extraitDictionnaire, extraitQuestionsReponsesAudios, extraitQuestionsServeurImages };
+export { chargeurAudio, chargeurJSON, chargeurInlineSvg, extraitDictionnaire, extraitQuestionsReponsesAudios, extraitQuestionsServeurImages };
