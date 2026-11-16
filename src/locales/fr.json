@@ -5,10 +5,12 @@
   "minute_plural": "{{count}} minutes",
   "seconde": "{{count}} seconde",
   "seconde_plural": "{{count}} secondes",
-  "deconnexion": {
-    "confirmation": "Se déconnecter ?",
+  "abandon": {
+    "confirmation": "Attention, vous n'avez pas terminé.<br>Votre résultat sera impacté.<br>Voulez-vous vraiment abandonner ?",
     "oui": "Oui",
-    "non": "non",
+    "non": "Non"
+  },
+  "deconnexion": {
     "titre": "Se déconnecter"
   },
   "messages_communs": {
@@ -197,11 +199,6 @@
     "chargement": "Chargement en cours",
     "enregistrement": "Enregistrement en cours",
     "go": "Vous pouvez commencer",
-    "modale": {
-      "annuler": "Non",
-      "ok": "Oui"
-    },
-    "stop": "Attention, vous n'avez pas terminé.<br>Votre résultat sera impacté.<br>Voulez-vous vraiment abandonner ?",
     "reussite": "C'est terminé, bravo !",
     "retour_accueil": "Retour au parc",
     "repeter_consigne": "Répéter la consigne",

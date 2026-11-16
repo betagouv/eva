@@ -146,7 +146,7 @@ describe('Une vue du cadre', function () {
       situation.modifieEtat(DEMARRE);
       $(window).trigger($.Event('popstate'));
       expect($('#fenetre-modale').length).toBe(1);
-      expect($('h2').text()).toBe('situation.stop');
+      expect($('h2').text()).toBe('abandon.confirmation');
     });
   });
 
