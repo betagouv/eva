@@ -5,7 +5,7 @@
       class="titre">
       <img class="logo" :alt="altLogo" :src="logo"/>
       <div class="titre-campagne"><span>Campagne :</span> {{ nomCampagne }}</div>
-      <boite-utilisateur />
+      <boite-utilisateur @demande-deconnexion="demandeDeconnexion" />
     </div>
     <div class="annonce">
       <p class="annonce-description" v-if="annonceGenerale">{{ annonceGenerale }}</p>
@@ -97,6 +97,11 @@
     <transition-fade>
       <fin v-if="ecranFinAfficher" />
     </transition-fade>
+    <confirmation-abandon
+      v-if="confirmationAbandonAffichee"
+      @confirme="confirmeDeconnexion"
+      @annule="confirmationAbandonAffichee = false"
+    />
   </div>
 </template>
 
@@ -113,6 +118,7 @@ import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
 import Fin from 'accueil/vues/fin';
+import ConfirmationAbandon from 'accueil/vues/confirmation_abandon';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
@@ -123,9 +129,10 @@ export const DECALAGE_INITIAL = LARGEUR_SCENE / 2 - LARGEUR_BATIMENT / 2;
 export const ESPACEMENT_BATIMENT = (LARGEUR_SCENE - 1.5 * LARGEUR_BATIMENT) / 2;
 
 export const CLE_ETAT_ACCUEIL = 'etatAccueil';
+export const IDENTIFIANT_BATIMENT_FIN = 'fin';
 
 export default {
-  components: { BoiteUtilisateur, FormulaireIdentification, AccesSituation, IntroConsigne, Fin, TransitionFade },
+  components: { BoiteUtilisateur, FormulaireIdentification, AccesSituation, IntroConsigne, Fin, ConfirmationAbandon, TransitionFade },
 
   props: {
     forceCampagne: {
@@ -152,6 +159,7 @@ export default {
       personnage: this.$depotRessources.personnage().src,
       indexBatiment: indexPrecedent,
       ecranFinAfficher: false,
+      confirmationAbandonAffichee: false,
       annonceGenerale: process.env.ANNONCE_GENERALE
     };
   },
@@ -191,7 +199,7 @@ export default {
         },
         ...situations,
         {
-          identifiant: 'fin',
+          identifiant: IDENTIFIANT_BATIMENT_FIN,
           nom: traduction('accueil.conclure'),
           action: this.afficheEcranFin
         }
@@ -200,6 +208,10 @@ export default {
 
     niveauMax () {
       return this.situationsFaites.length + 1;
+    },
+
+    surBatimentFin () {
+      return this.batiments[this.indexBatiment]?.identifiant === IDENTIFIANT_BATIMENT_FIN;
     },
 
     afficheBoutonSituation () {
@@ -283,6 +295,19 @@ export default {
 
     afficheEcranFin () {
       this.ecranFinAfficher = true;
+    },
+
+    demandeDeconnexion () {
+      if (this.surBatimentFin) {
+        this.afficheEcranFin();
+      } else {
+        this.confirmationAbandonAffichee = true;
+      }
+    },
+
+    confirmeDeconnexion () {
+      this.confirmationAbandonAffichee = false;
+      this.deconnecte();
     }
   }
 };
