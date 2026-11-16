@@ -19,7 +19,6 @@ describe('La boite utilisateur', function () {
     wrapper = mount(BoiteUtilisateur, {
       global: {
         plugins: [store],
-        stubs: { teleport: true },
         mocks: {
           $depotRessources: depotRessources,
           $traduction: (cle) => cle
@@ -32,30 +31,9 @@ describe('La boite utilisateur', function () {
     expect(wrapper.find('.deconnexion').exists()).toBe(true);
   });
 
-  it("n'affiche pas la modale de confirmation par défaut", function () {
-    expect(wrapper.find('.confirmation-deconnexion').exists()).toBe(false);
-  });
-
-  it('affiche une modale de confirmation de déconnexion', async function () {
+  it('signale la demande de déconnexion au clic', async function () {
     await wrapper.find('.deconnexion').trigger('click');
-    const modale = wrapper.find('.overlay.modale.confirmation-deconnexion');
-    expect(modale.exists()).toBe(true);
-    expect(modale.find('h2').html()).toContain('abandon.confirmation');
-    expect(wrapper.find('.boite-utilisateur').exists()).toBe(true);
-  });
-
-  it("permet d'annuler la demande de déconnexion", async function () {
-    await wrapper.find('.deconnexion').trigger('click');
-    await wrapper.find('.annulation-deconnexion').trigger('click');
-    expect(wrapper.find('.confirmation-deconnexion').exists()).toBe(false);
-  });
-
-  it('permet de se déconnecter', async function () {
-    store.dispatch = jest.fn();
-    await wrapper.find('.deconnexion').trigger('click');
-    await wrapper.find('.confirme-bouton').trigger('click');
-    expect(store.dispatch).toHaveBeenCalledWith('deconnecte');
-    expect(wrapper.find('.confirmation-deconnexion').exists()).toBe(false);
+    expect(wrapper.emitted('demande-deconnexion')).toHaveLength(1);
   });
 
   it("la boîte est cachée lorsque l'évalué·e est déconnecté·e", async function () {
