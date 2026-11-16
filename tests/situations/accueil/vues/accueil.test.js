@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECALAGE_INITIAL, IDENTIFIANT_BATIMENT_FIN } from 'accueil/vues/accueil';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
-import ConfirmationAbandon from 'accueil/vues/confirmation_abandon';
+import FenetreModale from 'commun/vues/fenetre_modale';
 import AccesSituation from 'accueil/vues/acces_situation';
 import FormulaireIdentification from 'accueil/vues/formulaire_identification';
 import IntroConsigne from 'commun/vues/intro_consigne';
@@ -313,7 +313,7 @@ describe('La vue accueil', function () {
       wrapper.findComponent(BoiteUtilisateur).vm.$emit('demande-deconnexion');
       await wrapper.vm.$nextTick();
       expect(wrapper.vm.ecranFinAfficher).toBe(true);
-      expect(wrapper.findComponent(ConfirmationAbandon).exists()).toBe(false);
+      expect(wrapper.findComponent(FenetreModale).exists()).toBe(false);
     });
 
     it("demande confirmation d'abandon sur les autres bâtiments", async function () {
@@ -322,7 +322,7 @@ describe('La vue accueil', function () {
       wrapper.findComponent(BoiteUtilisateur).vm.$emit('demande-deconnexion');
       await wrapper.vm.$nextTick();
       expect(wrapper.vm.ecranFinAfficher).toBe(false);
-      expect(wrapper.findComponent(ConfirmationAbandon).exists()).toBe(true);
+      expect(wrapper.findComponent(FenetreModale).exists()).toBe(true);
     });
 
     it("déconnecte quand l'abandon est confirmé", async function () {
@@ -330,10 +330,10 @@ describe('La vue accueil', function () {
       wrapper.vm.indexBatiment = 1;
       wrapper.findComponent(BoiteUtilisateur).vm.$emit('demande-deconnexion');
       await wrapper.vm.$nextTick();
-      wrapper.findComponent(ConfirmationAbandon).vm.$emit('confirme');
+      wrapper.findComponent(FenetreModale).vm.$emit('ok');
       await wrapper.vm.$nextTick();
       expect(mockDeconnecte).toHaveBeenCalled();
-      expect(wrapper.findComponent(ConfirmationAbandon).exists()).toBe(false);
+      expect(wrapper.findComponent(FenetreModale).exists()).toBe(false);
     });
 
     it("ferme la confirmation quand l'abandon est annulé", async function () {
@@ -341,10 +341,10 @@ describe('La vue accueil', function () {
       wrapper.vm.indexBatiment = 1;
       wrapper.findComponent(BoiteUtilisateur).vm.$emit('demande-deconnexion');
       await wrapper.vm.$nextTick();
-      wrapper.findComponent(ConfirmationAbandon).vm.$emit('annule');
+      wrapper.findComponent(FenetreModale).vm.$emit('annule');
       await wrapper.vm.$nextTick();
       expect(mockDeconnecte).not.toHaveBeenCalled();
-      expect(wrapper.findComponent(ConfirmationAbandon).exists()).toBe(false);
+      expect(wrapper.findComponent(FenetreModale).exists()).toBe(false);
     });
   });
 
