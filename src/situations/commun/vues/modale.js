@@ -1,5 +1,3 @@
-import { traduction } from 'commun/infra/internationalisation';
-
 import 'commun/styles/overlay.scss';
 import 'commun/styles/boutons.scss';
 import 'commun/styles/modale.scss';
@@ -8,8 +6,8 @@ export function afficheFenetreModale (pointInsertion, $,
   {
     titre,
     message = '',
-    boutonOk = traduction('situation.modale.ok'),
-    boutonAnnuler = traduction('situation.modale.annuler'),
+    boutonOk,
+    boutonAnnuler,
     actionOk
   }) {
   const htmlAnnuler = boutonAnnuler ? `<button id="annuler-modale" class='fr-btn fr-btn--rouge'>${boutonAnnuler}</button>` : '';

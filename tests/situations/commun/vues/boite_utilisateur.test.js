@@ -19,54 +19,49 @@ describe('La boite utilisateur', function () {
     wrapper = mount(BoiteUtilisateur, {
       global: {
         plugins: [store],
+        stubs: { teleport: true },
         mocks: {
           $depotRessources: depotRessources,
-          $traduction: () => {}
+          $traduction: (cle) => cle
         }
       }
     });
   });
 
   it('affiche le bouton de déconnexion', function () {
-    expect(wrapper.exists('.deconnexion')).toBe(true);
+    expect(wrapper.find('.deconnexion').exists()).toBe(true);
   });
 
-  it('affiche une confirmation de déconnexion', function () {
-    expect(wrapper.vm.confirmationDeconnexion).toBe(false);
-    wrapper.find('.deconnexion').trigger('click');
-    expect(wrapper.vm.confirmationDeconnexion).toBe(true);
+  it("n'affiche pas la modale de confirmation par défaut", function () {
+    expect(wrapper.find('.confirmation-deconnexion').exists()).toBe(false);
   });
 
-  it("permet d'annuler la demande de déconnexion", function (done) {
-    wrapper.find('.deconnexion').trigger('click');
-    wrapper.vm.$nextTick(() => {
-      expect(wrapper.vm.confirmationDeconnexion).toBe(true);
-      wrapper.find('a').trigger('click');
-      wrapper.vm.$nextTick(() => {
-        expect(wrapper.vm.confirmationDeconnexion).toBe(false);
-        done();
-      });
-    });
+  it('affiche une modale de confirmation de déconnexion', async function () {
+    await wrapper.find('.deconnexion').trigger('click');
+    const modale = wrapper.find('.overlay.modale.confirmation-deconnexion');
+    expect(modale.exists()).toBe(true);
+    expect(modale.find('h2').html()).toContain('abandon.confirmation');
+    expect(wrapper.find('.boite-utilisateur').exists()).toBe(true);
   });
 
-  it('permet de se déconnecter', function (done) {
-    store.dispatch = (nom) => {
-      expect(nom).toEqual('deconnecte');
-      expect(wrapper.vm.confirmationDeconnexion).toBe(false);
-      done();
-    };
-    wrapper.find('.deconnexion').trigger('click');
-    wrapper.vm.$nextTick(() => {
-      wrapper.find('button').trigger('click');
-    });
+  it("permet d'annuler la demande de déconnexion", async function () {
+    await wrapper.find('.deconnexion').trigger('click');
+    await wrapper.find('.annulation-deconnexion').trigger('click');
+    expect(wrapper.find('.confirmation-deconnexion').exists()).toBe(false);
   });
 
-  it("la boîte est cachée lorsque l'évalué·e est déconnecté·e", function (done) {
+  it('permet de se déconnecter', async function () {
+    store.dispatch = jest.fn();
+    await wrapper.find('.deconnexion').trigger('click');
+    await wrapper.find('.confirme-bouton').trigger('click');
+    expect(store.dispatch).toHaveBeenCalledWith('deconnecte');
+    expect(wrapper.find('.confirmation-deconnexion').exists()).toBe(false);
+  });
+
+  it("la boîte est cachée lorsque l'évalué·e est déconnecté·e", async function () {
     store.state.estConnecte = false;
-    wrapper.vm.$nextTick(() => {
-      expect(wrapper.find('.boite-utilisateur').exists()).toBe(false);
-      done();
-    });
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find('.boite-utilisateur').exists()).toBe(false);
   });
 
   it("affiche la progression de l'évalué·e", function () {

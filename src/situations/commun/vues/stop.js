@@ -27,7 +27,9 @@ export default class VueStop {
       pointInsertion,
       $,
       {
-        titre: traduction('situation.stop'),
+        titre: traduction('abandon.confirmation'),
+        boutonOk: traduction('abandon.oui'),
+        boutonAnnuler: traduction('abandon.non'),
         actionOk: this.clickSurOk.bind(this)
       }
     );

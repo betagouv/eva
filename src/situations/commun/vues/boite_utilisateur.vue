@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="estConnecte && !confirmationDeconnexion"
+    v-if="estConnecte"
     class="boite-utilisateur"
   >
     <div class="progression-conteneur">
@@ -23,29 +23,34 @@
     >
       <img :src="iconeDeconnexion" />
     </a>
-  </div>
-  <div
-    v-else-if="confirmationDeconnexion"
-    class="confirmation-deconnexion"
-  >
-    {{ $traduction('deconnexion.confirmation') }}
-    <button
-      class="fr-btn fr-btn--petit confirme-bouton"
-      @click="deconnexion"
-    >
-     {{ $traduction('deconnexion.oui') }}
-    </button>
-    <a
-      class="annulation-deconnexion"
-      href="#"
-      @click.prevent="annuleDeconnexion"
-    >{{ $traduction('deconnexion.non') }}</a>
+    <teleport to="#accueil">
+      <div
+        v-if="confirmationDeconnexion"
+        class="overlay modale confirmation-deconnexion"
+      >
+        <div class="modale-interieur">
+          <h2 v-html="$traduction('abandon.confirmation')" />
+          <div class="buttons">
+            <button
+              class="fr-btn confirme-bouton"
+              @click="deconnexion"
+            >{{ $traduction('abandon.oui') }}</button>
+            <button
+              class="fr-btn fr-btn--rouge annulation-deconnexion"
+              @click="annuleDeconnexion"
+            >{{ $traduction('abandon.non') }}</button>
+          </div>
+        </div>
+      </div>
+    </teleport>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 import 'commun/styles/boite_utilisateur.scss';
+import 'commun/styles/overlay.scss';
+import 'commun/styles/modale.scss';
 
 export default {
   data () {
