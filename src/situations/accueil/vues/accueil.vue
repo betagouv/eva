@@ -97,9 +97,12 @@
     <transition-fade>
       <fin v-if="ecranFinAfficher" />
     </transition-fade>
-    <confirmation-abandon
+    <fenetre-modale
       v-if="confirmationAbandonAffichee"
-      @confirme="confirmeDeconnexion"
+      :titre="$traduction('abandon.confirmation')"
+      :bouton-ok="$traduction('abandon.oui')"
+      :bouton-annuler="$traduction('abandon.non')"
+      @ok="confirmeDeconnexion"
       @annule="confirmationAbandonAffichee = false"
     />
   </div>
@@ -118,7 +121,7 @@ import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
 import FormulaireIdentification from './formulaire_identification';
 import AccesSituation from 'accueil/vues/acces_situation';
 import Fin from 'accueil/vues/fin';
-import ConfirmationAbandon from 'accueil/vues/confirmation_abandon';
+import FenetreModale from 'commun/vues/fenetre_modale';
 import IntroConsigne from 'commun/vues/intro_consigne';
 import TransitionFade from 'commun/vues/transition_fade';
 import { traduction } from 'commun/infra/internationalisation';
@@ -132,7 +135,7 @@ export const CLE_ETAT_ACCUEIL = 'etatAccueil';
 export const IDENTIFIANT_BATIMENT_FIN = 'fin';
 
 export default {
-  components: { BoiteUtilisateur, FormulaireIdentification, AccesSituation, IntroConsigne, Fin, ConfirmationAbandon, TransitionFade },
+  components: { BoiteUtilisateur, FormulaireIdentification, AccesSituation, IntroConsigne, Fin, FenetreModale, TransitionFade },
 
   props: {
     forceCampagne: {
