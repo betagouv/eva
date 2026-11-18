@@ -168,6 +168,16 @@ describe("Le formulaire d'identification", function () {
     expect(wrapper.vm.estDesactive).toBe(true);
   });
 
+  it("désactive le champ nom pendant que l'inscription est en cours", async function () {
+    store.dispatch = () => new Promise(() => {});
+    wrapper.vm.nom = 'Pseudo';
+    wrapper.vm.campagne = 'Campagne';
+    wrapper.vm.envoieFormulaire();
+    await wrapper.vm.$nextTick();
+    const champ = wrapper.find('#formulaire-identification-champ');
+    expect(champ.attributes('disabled')).not.toBeUndefined();
+  });
+
   it("réinitialise l'état en cours lorsque l'inscription est terminé", function () {
     return wrapper.vm.envoieFormulaire().then(() => {
       expect(wrapper.vm.enCours).toBe(false);
