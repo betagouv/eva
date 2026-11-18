@@ -25,7 +25,7 @@
                 v-model.trim="champCodeBeneficiaire"
                 type="text"
                 class="champ champ-texte champ-texte-accueil"
-                :disabled="(nomForce && modeConnexion === 'nom' || CodeBeneficiaireForce && modeConnexion === 'code_beneficiaire')"
+                :disabled="enCours || nomForce && modeConnexion === 'nom' || CodeBeneficiaireForce && modeConnexion === 'code_beneficiaire'"
                 autofocus
               />
 
