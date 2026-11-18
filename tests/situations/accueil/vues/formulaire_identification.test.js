@@ -302,6 +302,28 @@ describe("Le formulaire d'identification", function () {
       wrapperCodeBeneficiaire.vm.modeConnexion = 'code_beneficiaire';
     });
 
+    it('vide le code bénéficiaire quand on bascule en mode nom', () => {
+      wrapperCodeBeneficiaire.vm.champCodeBeneficiaire = 'INCONNU';
+      wrapperCodeBeneficiaire.vm.toggleMode();
+      expect(wrapperCodeBeneficiaire.vm.modeConnexion).toBe('nom');
+      expect(wrapperCodeBeneficiaire.vm.CodeBeneficiaire).toBe('');
+    });
+
+    it('restaure le code bénéficiaire forcé quand on revient en mode code bénéficiaire', () => {
+      const wrapperForce = mount(FormulaireIdentification, {
+        props: { forceCodeBeneficiaire: 'FORCE123' },
+        global: {
+          plugins: [store],
+          mocks: { $traduction: traduction }
+        }
+      });
+      wrapperForce.vm.toggleMode();
+      expect(wrapperForce.vm.CodeBeneficiaire).toBe('');
+      wrapperForce.vm.toggleMode();
+      expect(wrapperForce.vm.modeConnexion).toBe('code_beneficiaire');
+      expect(wrapperForce.vm.CodeBeneficiaire).toBe('FORCE123');
+    });
+
     it("n'affiche que le champ code_beneficiaire", () => {
       const champ = wrapperCodeBeneficiaire.find('#formulaire-identification-champ');
       expect(champ.exists()).toBe(true);

@@ -203,7 +203,13 @@ export default {
     },
 
     toggleMode () {
-      this.modeConnexion = this.modeConnexion === 'nom' ? 'code_beneficiaire' : 'nom';
+      if (this.modeConnexion === 'nom') {
+        this.modeConnexion = 'code_beneficiaire';
+        this.CodeBeneficiaire = this.forceCodeBeneficiaire;
+      } else {
+        this.modeConnexion = 'nom';
+        this.CodeBeneficiaire = '';
+      }
     },
 
     normaliseCodeCampagneSaisie () {
