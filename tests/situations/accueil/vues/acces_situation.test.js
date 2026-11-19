@@ -71,6 +71,30 @@ describe('La vue pour accéder à une situation', function() {
     expect(wrapper.attributes('href')).toBe(undefined);
   });
 
+  it("ne signale pas de navigation au clic sur un bouton d'action (bâtiment Résultat)", async function() {
+    optionsMount.props.situation.action = jest.fn();
+    wrapper = mount(AccesSituation, optionsMount);
+    await wrapper.trigger('click');
+    expect(optionsMount.props.situation.action).toHaveBeenCalled();
+    expect(wrapper.emitted('navigue-vers-situation')).toBe(undefined);
+  });
+
+  it("signale la navigation au clic sur le lien d'une situation", async function() {
+    optionsMount.props.situation.action = undefined;
+    wrapper = mount(AccesSituation, optionsMount);
+    await wrapper.trigger('click');
+    expect(wrapper.emitted('navigue-vers-situation')).toHaveLength(1);
+  });
+
+  it("ne signale pas de navigation quand la situation s'ouvre dans un autre onglet", async function() {
+    optionsMount.props.situation.action = undefined;
+    wrapper = mount(AccesSituation, optionsMount);
+    await wrapper.trigger('click', { ctrlKey: true });
+    await wrapper.trigger('click', { metaKey: true });
+    await wrapper.trigger('click', { button: 1 });
+    expect(wrapper.emitted('navigue-vers-situation')).toBe(undefined);
+  });
+
   it("s'affiche comme un lien quand il n'y a pas d'action", function() {
     optionsMount.props.situation.action = undefined;
     wrapper = mount(AccesSituation, optionsMount);

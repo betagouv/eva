@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils';
+import { mount, enableAutoUnmount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import Accueil, { CLE_ETAT_ACCUEIL, LARGEUR_BATIMENT, ESPACEMENT_BATIMENT, DECALAGE_INITIAL, IDENTIFIANT_BATIMENT_FIN } from 'accueil/vues/accueil';
 import BoiteUtilisateur from 'commun/vues/boite_utilisateur';
@@ -9,6 +9,8 @@ import IntroConsigne from 'commun/vues/intro_consigne';
 import { traduction } from 'commun/infra/internationalisation';
 
 describe('La vue accueil', function () {
+  enableAutoUnmount(afterEach);
+
   let depotRessources;
   let store;
   let mockEstTermine;
@@ -345,6 +347,60 @@ describe('La vue accueil', function () {
       await wrapper.vm.$nextTick();
       expect(mockDeconnecte).not.toHaveBeenCalled();
       expect(wrapper.findComponent(FenetreModale).exists()).toBe(false);
+    });
+  });
+
+  describe("protection de l'évaluation en cours", function () {
+    let wrapper;
+
+    beforeEach(function () {
+      store.state.situations = [{ nom: 'Inventaire', chemin: 'inventaire.html' }];
+      store.state.estConnecte = true;
+      store.state.evaluationTerminee = false;
+    });
+
+    function declencheFermeture () {
+      const evenement = new Event('beforeunload', { cancelable: true });
+      window.dispatchEvent(evenement);
+      return evenement;
+    }
+
+    it("demande une confirmation à la fermeture de l'onglet pendant l'évaluation", function () {
+      wrapper = accueil();
+      expect(declencheFermeture().defaultPrevented).toBe(true);
+    });
+
+    it("ne demande pas de confirmation à la fermeture quand l'utilisateur n'est pas connecté", function () {
+      store.state.estConnecte = false;
+      wrapper = accueil();
+      expect(declencheFermeture().defaultPrevented).toBe(false);
+    });
+
+    it("ne demande pas de confirmation à la fermeture quand l'évaluation est terminée", function () {
+      store.state.evaluationTerminee = true;
+      wrapper = accueil();
+      expect(declencheFermeture().defaultPrevented).toBe(false);
+    });
+
+    it('ne demande pas de confirmation quand on lance une situation', async function () {
+      wrapper = accueil();
+      wrapper.findComponent(AccesSituation).vm.$emit('navigue-vers-situation');
+      await wrapper.vm.$nextTick();
+      expect(declencheFermeture().defaultPrevented).toBe(false);
+    });
+
+    it('protège à nouveau quand la page est réaffichée depuis le cache du navigateur', async function () {
+      wrapper = accueil();
+      wrapper.findComponent(AccesSituation).vm.$emit('navigue-vers-situation');
+      window.dispatchEvent(new Event('pageshow'));
+      await wrapper.vm.$nextTick();
+      expect(declencheFermeture().defaultPrevented).toBe(true);
+    });
+
+    it('arrête de protéger après démontage', function () {
+      wrapper = accueil();
+      wrapper.unmount();
+      expect(declencheFermeture().defaultPrevented).toBe(false);
     });
   });
 
