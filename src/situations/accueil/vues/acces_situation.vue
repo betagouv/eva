@@ -2,7 +2,7 @@
   <component
     :is="situation.action ? 'button' : 'a'"
     :href="cheminSituation"
-    @click="situation.action"
+    @click="clic"
     :class="{ desactivee: desactivee }"
     :style="{ 'background-image': afficheBatiment ? backgroundImage : null }"
     @dragstart.prevent
@@ -49,6 +49,21 @@ export default {
       return path.join(SCOPE_URL, this.situation.chemin);
     }
 
+  },
+
+  emits: ['navigue-vers-situation'],
+
+  methods: {
+    clic (evenement) {
+      if (this.situation.action) {
+        this.situation.action(evenement);
+        return;
+      }
+      const ouvreAilleurs = evenement.button !== 0 || evenement.ctrlKey || evenement.metaKey || evenement.shiftKey || evenement.altKey;
+      if (!ouvreAilleurs) {
+        this.$emit('navigue-vers-situation');
+      }
+    }
   }
 };
 </script>

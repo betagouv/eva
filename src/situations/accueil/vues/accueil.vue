@@ -32,6 +32,7 @@
           :desactivee="indexBatiment !== index"
           :affiche-fond="true"
           class="acces-situation"
+          @navigue-vers-situation="navigationVersSituation = true"
          />
       </div>
     </div>
@@ -61,6 +62,7 @@
           v-if="afficheBoutonSituation"
           :situation="batiments[indexBatiment]"
           class="fr-btn bouton-commence-situation"
+          @navigue-vers-situation="navigationVersSituation = true"
         />
       <div
         :class="{ desactivee: suivantDesactivee }"
@@ -163,12 +165,13 @@ export default {
       indexBatiment: indexPrecedent,
       ecranFinAfficher: false,
       confirmationAbandonAffichee: false,
+      navigationVersSituation: false,
       annonceGenerale: process.env.ANNONCE_GENERALE
     };
   },
 
   computed: {
-    ...mapState(['situations', 'estConnecte', 'situationsFaites', 'nomCampagne']),
+    ...mapState(['situations', 'estConnecte', 'situationsFaites', 'nomCampagne', 'evaluationTerminee']),
     ...mapGetters(['estDemarre', 'estTermine']),
 
     afficheConsigne () {
@@ -221,14 +224,26 @@ export default {
       const batiment = this.batiments[this.indexBatiment];
       return batiment && (batiment.action || batiment.chemin);
     },
+
+    evaluationEnCours () {
+      return this.estConnecte && !this.evaluationTerminee;
+    },
   },
 
   mounted () {
+    window.addEventListener('beforeunload', this.empecheLaFermeture);
+    window.addEventListener('pageshow', this.reinitialiseNavigationVersSituation);
+
     if (this.forceCampagne || this.forceCodeBeneficiaire) {
       this.deconnecte();
       return;
     }
     this.recupereSituations();
+  },
+
+  beforeUnmount () {
+    window.removeEventListener('beforeunload', this.empecheLaFermeture);
+    window.removeEventListener('pageshow', this.reinitialiseNavigationVersSituation);
   },
 
   watch: {
@@ -311,6 +326,16 @@ export default {
     confirmeDeconnexion () {
       this.confirmationAbandonAffichee = false;
       this.deconnecte();
+    },
+
+    empecheLaFermeture (evenement) {
+      if (!this.evaluationEnCours || this.navigationVersSituation) return;
+      evenement.preventDefault();
+      evenement.returnValue = true;
+    },
+
+    reinitialiseNavigationVersSituation () {
+      this.navigationVersSituation = false;
     }
   }
 };
