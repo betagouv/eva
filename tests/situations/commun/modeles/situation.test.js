@@ -32,6 +32,15 @@ describe('une situation', function () {
     expect(compteurChangementEtat).toEqual(0);
   });
 
+  it("considère par défaut que l'abandon impacte le résultat", function () {
+    expect(new Situation().abandonImpacteResultat()).toBe(true);
+  });
+
+  it("permet d'indiquer que l'abandon n'impacte pas le résultat", function () {
+    const uneSituation = new Situation({ abandonImpacteResultat: false });
+    expect(uneSituation.abandonImpacteResultat()).toBe(false);
+  });
+
   it("retourne l'information si le mode entrainement est disponible", function () {
     const uneSituation = new Situation();
     expect(uneSituation.entrainementDisponible()).toBe(false);

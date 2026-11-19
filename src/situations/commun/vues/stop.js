@@ -27,12 +27,19 @@ export default class VueStop {
       pointInsertion,
       $,
       {
-        titre: traduction('abandon.confirmation'),
+        titre: traduction(this.cleMessageConfirmation()),
         boutonOk: traduction('abandon.oui'),
         boutonAnnuler: traduction('abandon.non'),
         actionOk: this.clickSurOk.bind(this)
       }
     );
+  }
+
+  cleMessageConfirmation () {
+    if (this.situation.abandonImpacteResultat()) {
+      return 'abandon.confirmation';
+    }
+    return 'abandon.confirmation_sans_impact';
   }
 
   clickSurOk () {
