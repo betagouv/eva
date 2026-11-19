@@ -8,7 +8,7 @@ import Situation from 'commun/modeles/situation';
 import VueSituation from 'plan_de_la_ville/vues/situation';
 import { creeStore } from 'plan_de_la_ville/modeles/store';
 
-const situation = new Situation();
+const situation = new Situation({ abandonImpacteResultat: false });
 
 const depotRessources = new DepotRessourcesPlanDeLaVille();
 const store = creeStore();

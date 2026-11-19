@@ -33,6 +33,15 @@ describe('vue Stop', function () {
     expect($('h2').text()).toBe('abandon.confirmation');
   });
 
+  it("n'annonce pas d'impact sur le résultat quand l'abandon n'en a pas", function () {
+    situation = new Situation({ abandonImpacteResultat: false });
+    vue = new VueStop(situation, mockJournal, () => {});
+    vue.affiche('#point-insertion', $);
+
+    $('#point-insertion .bouton-stop').trigger('click');
+    expect($('h2').text()).toBe('abandon.confirmation_sans_impact');
+  });
+
   it("enregistre l'événement et redirige vers l'accueil quand on confirme la modale", function () {
     mockJournal.enregistre = (evenement) => {
       expect(evenement).toBeInstanceOf(EvenementAbandon);

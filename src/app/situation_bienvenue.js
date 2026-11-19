@@ -8,7 +8,7 @@ import Situation from 'commun/modeles/situation';
 import AdaptateurVueSituation from 'questions/vues/situation';
 import { creeStore } from 'questions/modeles/store';
 
-const situation = new Situation();
+const situation = new Situation({ abandonImpacteResultat: false });
 
 const depotRessources = new DepotRessourcesBienvenue();
 const store = creeStore();

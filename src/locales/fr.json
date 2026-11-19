@@ -7,6 +7,7 @@
   "seconde_plural": "{{count}} secondes",
   "abandon": {
     "confirmation": "Attention, vous n'avez pas terminé.<br>Votre résultat sera impacté.<br>Voulez-vous vraiment abandonner ?",
+    "confirmation_sans_impact": "Attention, vous n'avez pas terminé.<br>Voulez-vous vraiment abandonner ?",
     "oui": "Oui",
     "non": "Non"
   },
