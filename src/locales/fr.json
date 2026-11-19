@@ -7,7 +7,7 @@
   "seconde_plural": "{{count}} secondes",
   "abandon": {
     "confirmation": "Attention, vous n'avez pas terminé.<br>Votre résultat sera impacté.<br>Voulez-vous vraiment abandonner ?",
-    "confirmation_sans_impact": "Attention, vous n'avez pas terminé.<br>Voulez-vous vraiment abandonner ?",
+    "confirmation_sans_impact": "Attention, vous n'avez pas terminé.<br>Voulez-vous vraiment abandonner ?",
     "oui": "Oui",
     "non": "Non"
   },
@@ -35,7 +35,7 @@
       "avec_code_beneficiaire": "J'ai un code bénéficiaire",
       "label_code_beneficiaire": "Entrez votre code bénéficiaire",
       "sans_code_beneficiaire": "Je n'ai pas de code bénéficiaire",
-      "titre": "Bienvenue !"
+      "titre": "Bienvenue !"
     },
     "intro_consigne": {
       "bouton": "Lancer la consigne",
@@ -44,12 +44,12 @@
     },
     "intro_contexte": {
       "bouton": "Commencer",
-      "message": "<p>Bonjour et bienvenue sur eva,</p><p>Nous allons identifier ensemble vos compétences au travers de mini-jeux et d’activités.</p><p>Tout au long du parcours, vous aurez plusieurs missions à réaliser.</p><p>Eva propose des activités qui se déroulent dans un cadre particulier. Parfois, vous prendrez le rôle d’une personne qui travaille dans un parc d’attraction, parfois vous devrez vous imaginer dans une situation quotidienne. Cependant, les compétences qu’eva mesure sont utilisables dans tous les métiers et tous les secteurs d’activité.</p><p>Lorsque vous aurez terminé, vous pourrez discuter de vos compétences fortes et de celles à renforcer avec la personne qui vous accompagne.</p><p>Bon parcours !</p>"
+      "message": "<p>Bonjour et bienvenue sur eva,</p><p>Nous allons identifier ensemble vos compétences au travers de mini-jeux et d’activités.</p><p>Tout au long du parcours, vous aurez plusieurs missions à réaliser.</p><p>Eva propose des activités qui se déroulent dans un cadre particulier. Parfois, vous prendrez le rôle d’une personne qui travaille dans un parc d’attraction, parfois vous devrez vous imaginer dans une situation quotidienne. Cependant, les compétences qu’eva mesure sont utilisables dans tous les métiers et tous les secteurs d’activité.</p><p>Lorsque vous aurez terminé, vous pourrez discuter de vos compétences fortes et de celles à renforcer avec la personne qui vous accompagne.</p><p>Bon parcours !</p>"
     },
     "fin": {
       "bravo": {
-        "titre": "Merci et bravo<br>{{nom}} !",
-        "message": "Allez sur la page suivante pour consulter vos résultats :",
+        "titre": "Merci et bravo<br>{{nom}} !",
+        "message": "Allez sur la page suivante pour consulter vos résultats :",
         "bouton": "Suivant"
       },
       "resultat": {
@@ -62,7 +62,7 @@
         "fermer": "Passer"
       },
       "confirmation_deconnexion": {
-        "label": "Avez-vous bien pris connaissance<br>de vos potentiels ?",
+        "label": "Avez-vous bien pris connaissance<br>de vos potentiels ?",
         "bouton": "Oui, me déconnecter"
       }
     },
@@ -71,18 +71,18 @@
   "controle": {
     "titre": "Chaîne de fabrication",
     "intro_contexte": {
-      "message": "<p>Vous devez contrôler la production des biscuits en forme de bonhommes.</p><p>Le modèle conforme est présent en haut, au milieu de l’écran.</p><p>À l'arrivée des biscuits sur le tapis, cliquez sur le biscuit et glissez le en maintenant la pression dans la zone verte «&nbsp;conforme&nbsp;» ou la zone rouge «&nbsp;non conforme&nbsp;».</p><p>Ne soyez pas étonné·e, l'exercice peut paraître long. Il prendra fin lorsque vous aurez contrôlé tous les biscuits.</p>"
+      "message": "<p>Vous devez contrôler la production des biscuits en forme de bonhommes.</p><p>Le modèle conforme est présent en haut, au milieu de l’écran.</p><p>À l'arrivée des biscuits sur le tapis, cliquez sur le biscuit et glissez le en maintenant la pression dans la zone verte « conforme » ou la zone rouge « non conforme ».</p><p>Ne soyez pas étonné·e, l'exercice peut paraître long. Il prendra fin lorsque vous aurez contrôlé tous les biscuits.</p>"
     },
     "resultat": {
-      "bien_placees": "Réussis : {{nombre}}",
-      "mal_placees": "Erreurs : {{nombre}}",
-      "ratees": "Non triés : {{nombre}}"
+      "bien_placees": "Réussis : {{nombre}}",
+      "mal_placees": "Erreurs : {{nombre}}",
+      "ratees": "Non triés : {{nombre}}"
     }
   },
   "livraison": {
     "intro_contexte": {
-      "message": "<p>Pour assurer les livraisons dont vous êtes responsable, retrouvez les informations qui manquent sur les colis, les pancartes, ou les portes. Vous devez aussi parfois résoudre des calculs pour suivre l’avancement de votre livraison. N’hésitez pas à utiliser votre calculatrice !</p><p>Commençons par un entraînement.</p>",
-      "message_transition": "<p>Bravo, vous avez terminé l'entraînement. A vous de jouer ! Retrouvez les mots manquants et répondez aux questions de votre responsable.</p>"
+      "message": "<p>Pour assurer les livraisons dont vous êtes responsable, retrouvez les informations qui manquent sur les colis, les pancartes, ou les portes. Vous devez aussi parfois résoudre des calculs pour suivre l’avancement de votre livraison. N’hésitez pas à utiliser votre calculatrice !</p><p>Commençons par un entraînement.</p>",
+      "message_transition": "<p>Bravo, vous avez terminé l'entraînement. A vous de jouer ! Retrouvez les mots manquants et répondez aux questions de votre responsable.</p>"
     },
     "aide_complementaire": {
       "message": "$t(messages_communs.aide_calculatrice)"
@@ -114,32 +114,32 @@
   "questions": {
     "titre": "Bureau",
     "intro_contexte": {
-      "message": "<p>Bienvenu·e,<p></p>Pour cette série de questions vous n'êtes pas chronometré·e·s et vous pouvez utiliser une calculatrice si vous le souhaitez. Si vous ne savez pas comment faire le calcul, selectionnez dans les choix multiples « je ne sais pas faire ce calcul ».</p>"
+      "message": "<p>Bienvenu·e,<p></p>Pour cette série de questions vous n'êtes pas chronometré·e·s et vous pouvez utiliser une calculatrice si vous le souhaitez. Si vous ne savez pas comment faire le calcul, selectionnez dans les choix multiples « je ne sais pas faire ce calcul ».</p>"
     },
     "aide_complementaire": {
       "message": "$t(messages_communs.aide_calculatrice)"
     },
     "resultat": {
-      "bon": "Bonnes réponses : {{nombre}}",
-      "mauvais": "Mauvaises réponses : {{nombre}}",
-      "abstention": "Ne sait pas : {{nombre}}"
+      "bon": "Bonnes réponses : {{nombre}}",
+      "mauvais": "Mauvaises réponses : {{nombre}}",
+      "abstention": "Ne sait pas : {{nombre}}"
     }
   },
   "securite": {
     "intro_contexte": {
-      "message": "<p>Vous allez devoir observer une scène et détecter des dangers. Pour cela, il vous faudra cliquer sur les dangers et les décrire en choisissant parmi une liste de propositions.</p><p>Commençons tout d’abord par un entraînement : cliquez sur le danger que vous voyez sur cette image.</p>",
-      "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer&nbsp;! Trouvez 5 dangers sur la scène suivante.</p>"
+      "message": "<p>Vous allez devoir observer une scène et détecter des dangers. Pour cela, il vous faudra cliquer sur les dangers et les décrire en choisissant parmi une liste de propositions.</p><p>Commençons tout d’abord par un entraînement : cliquez sur le danger que vous voyez sur cette image.</p>",
+      "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer ! Trouvez 5 dangers sur la scène suivante.</p>"
     },
-    "texte_aide": "Vous avez activé l’aide. Grâce à celle-ci, le curseur de la souris se transforme en main. Ces endroits sont peut-être des dangers que vous devez identifier. Faites-en bon usage !",
+    "texte_aide": "Vous avez activé l’aide. Grâce à celle-ci, le curseur de la souris se transforme en main. Ces endroits sont peut-être des dangers que vous devez identifier. Faites-en bon usage !",
     "danger": {
       "identification": {
         "bouton": "Suivant",
         "non": "Non",
         "oui": "Oui",
-        "titre": "Y-a-t’il un danger ?",
+        "titre": "Y-a-t’il un danger ?",
         "danger": {
-          "succes": "Bravo, maintenant pouvez-vous dire quel est ce danger ?",
-          "echec": "Et si, il y a bien un danger. Maintenant pouvez-vous dire quel est ce danger ?",
+          "succes": "Bravo, maintenant pouvez-vous dire quel est ce danger ?",
+          "echec": "Et si, il y a bien un danger. Maintenant pouvez-vous dire quel est ce danger ?",
           "bouton": "Suivant"
         },
         "non-danger": {
@@ -150,7 +150,7 @@
       },
       "qualification": {
         "bouton": "Valider",
-        "titre": "Quel est le risque ?"
+        "titre": "Quel est le risque ?"
       },
       "deja-identifie": {
         "texte": "Vous avez déjà regardé ici. Il n'y a pas de danger.",
@@ -162,8 +162,8 @@
   },
   "prevention": {
     "intro_contexte": {
-      "message": "<p>Vous allez observer une scène sur laquelle des situations sont entourées.</p><p>Cliquez sur chaque situation entourée et choisissez un niveau de risque correspondant.</p><p>S’agit-il d’une situation pas du tout risquée (dans laquelle tout va bien), d’une situation un peu risquée (dans laquelle il n’y a pas de danger immédiat) ou une situation très risquée (dans laquelle une ou plusieurs personnes sont en danger) ? <br>Vous devrez ensuite choisir comment agir face à chaque situation.</p><p>Commençons tout d’abord par un entraînement : cliquez sur la situation entourée sur cette image.</p>",
-      "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer&nbsp;!</br>Déterminez si les cinq situations entourées sont risquées ou non et comment agir.</p>"
+      "message": "<p>Vous allez observer une scène sur laquelle des situations sont entourées.</p><p>Cliquez sur chaque situation entourée et choisissez un niveau de risque correspondant.</p><p>S’agit-il d’une situation pas du tout risquée (dans laquelle tout va bien), d’une situation un peu risquée (dans laquelle il n’y a pas de danger immédiat) ou une situation très risquée (dans laquelle une ou plusieurs personnes sont en danger) ? <br>Vous devrez ensuite choisir comment agir face à chaque situation.</p><p>Commençons tout d’abord par un entraînement : cliquez sur la situation entourée sur cette image.</p>",
+      "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer !</br>Déterminez si les cinq situations entourées sont risquées ou non et comment agir.</p>"
     },
     "titre": "Prévention"
   },
@@ -171,8 +171,8 @@
     "francais": "Mot français",
     "pas_francais": "Mot pas français",
     "intro_contexte": {
-      "message": "<p>Vous devez apprendre à un robot à parler français. Pour cela, le robot va vous montrer des mots, et vous devrez dire si les mots existent en français ou s'ils n'existent pas en appuyant sur les flèches de votre clavier.</p><p>Appuyez sur la flèche gauche si le mot est français et sur la flèche droite si il n’est pas français. Prenez le temps de bien repérer les touches sur le clavier avant de commencer !</p><p>Si vous êtes sur tablette, appuyez sur la flèche verte si le mot est français et sur la flèche rouge si le mot n’est pas français.</p><p>Commençons par un entraînement.</p>",
-      "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer&nbsp;! Pour information, vous êtes chronométré·e.</p>"
+      "message": "<p>Vous devez apprendre à un robot à parler français. Pour cela, le robot va vous montrer des mots, et vous devrez dire si les mots existent en français ou s'ils n'existent pas en appuyant sur les flèches de votre clavier.</p><p>Appuyez sur la flèche gauche si le mot est français et sur la flèche droite si il n’est pas français. Prenez le temps de bien repérer les touches sur le clavier avant de commencer !</p><p>Si vous êtes sur tablette, appuyez sur la flèche verte si le mot est français et sur la flèche rouge si le mot n’est pas français.</p><p>Commençons par un entraînement.</p>",
+      "message_transition": "<p>Bravo, vous venez de réussir l’entraînement. A vous de jouer ! Pour information, vous êtes chronométré·e.</p>"
     },
     "aide_complementaire": {
       "message": "<strong>Attention</strong><p>Veuillez utiliser les flèches ← et → de votre clavier pour cet exercice.</p>"
@@ -184,15 +184,15 @@
     "ecouter-consigne": "Commencez par écouter la consigne",
     "consigne": "Consigne",
     "bouton_aide": "Continuer",
-    "titre_transition": "Bravo !",
+    "titre_transition": "Bravo !",
     "erreur_chargement": "Erreur de chargement. Veuillez rééssayer.",
     "erreur_lecture_son": {
-      "titre": "Attention : la passation d'eva n'est pas possible !",
+      "titre": "Attention : la passation d'eva n'est pas possible !",
       "description": "Votre navigateur ou votre appareil ne semble pas compatible avec la lecture des sons au format mp3.",
       "action": "Veuillez contacter la personne qui vous accompagne."
     },
     "erreur_utilisation_smartphone": {
-      "titre": "Attention, eva ne doit pas être utilisé sur smartphone !",
+      "titre": "Attention, eva ne doit pas être utilisé sur smartphone !",
       "description": "Si vous utilisez eva sur un smartphone, vos résultats pourront être faussés.",
       "action": "Utilisez plutôt un ordinateur ou une tablette.",
       "bouton": "Ignorer"
@@ -200,7 +200,7 @@
     "chargement": "Chargement en cours",
     "enregistrement": "Enregistrement en cours",
     "go": "Vous pouvez commencer",
-    "reussite": "C'est terminé, bravo !",
+    "reussite": "C'est terminé, bravo !",
     "retour_accueil": "Retour au parc",
     "repeter_consigne": "Répéter la consigne",
     "abandonner_situation": "Arrêter la situation"
@@ -212,13 +212,13 @@
     },
     "resultat": {
       "temps_passe": "Temps: {{nombre, duree}}",
-      "erreurs": "Erreurs : {{nombre}}"
+      "erreurs": "Erreurs : {{nombre}}"
     }
   },
   "bienvenue": {
     "titre": "Bienvenue",
     "intro_contexte": {
-      "message": "<p>Avant de commencer, pouvez-vous nous en dire plus sur vous ?</p><p>Vos informations nous serviront uniquement à produire des statistiques anonymes et à améliorer le service eva.</p>"
+      "message": "<p>Avant de commencer, pouvez-vous nous en dire plus sur vous ?</p><p>Vos informations nous serviront uniquement à produire des statistiques anonymes et à améliorer le service eva.</p>"
     }
   },
   "objets_trouves": {
@@ -233,13 +233,13 @@
     },
     "verrouillage": {
       "indice_titre": "Indice",
-      "indice_texte": "Si j'ai 150 paquets de 12 mouchoirs, combien ai-je de mouchoirs ?",
+      "indice_texte": "Si j'ai 150 paquets de 12 mouchoirs, combien ai-je de mouchoirs ?",
       "valider": "Valider"
     },
     "intro_contexte": {
       "message": "<p>Vous venez de retrouver le téléphone de Sophie au restaurant. Sophie est une de vos collègues et vous devez la retrouver afin de lui transmettre une information importante : le planning a été modifié, et elle doit prendre votre poste cet après-midi.</p><p>Vous décidez de chercher dans son téléphone des informations pour la retrouver. Vous avez accès à ses sms, ses messages vocaux, ses photographies, ainsi que son agenda.</p><p>Commençons par un entraînement.</p>",
       "message_transition": "<p>Continuez à chercher Sophie en utilisant les indices que vous trouverez dans les différentes applications de son téléphone.</p>",
-      "message_transition_fin": "<p>Bravo, vous avez retrouvé Sophie !</p><p>Allons la rejoindre !</p>",
+      "message_transition_fin": "<p>Bravo, vous avez retrouvé Sophie !</p><p>Allons la rejoindre !</p>",
       "suivant": "Suivant"
     },
     "aide_complementaire": {
