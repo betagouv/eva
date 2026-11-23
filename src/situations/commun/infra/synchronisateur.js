@@ -27,14 +27,14 @@ export default class Synchronisateur {
     const promesses = [];
 
     Object.entries(evaluations).forEach(([idClient, evaluation]) => {
-      if (this.supprimeDuLocalSiObsolete(idClient, evaluation)) {
+      if (this.supprimeDuLocalStorageSi(idClient, this.estObsolete(evaluation))) {
         return;
       }
       let promesse = this.creeOuMetsAJourEvaluation(evaluation, idClient)
         .then((evaluationServeur) => {
           if (!evaluationServeur) return;
           return this.synchroniseEvenements(idClient, evaluationServeur).then(() => {
-            this.supprimeDuLocalSiTerminee(idClient, evaluation);
+            this.supprimeDuLocalStorageSi(idClient, this.estTerminee(idClient, evaluation));
           });
         });
 
@@ -48,7 +48,7 @@ export default class Synchronisateur {
     if (evaluation.id) {
       promesse = this.registreUtilisateur.metsAJourEvaluation(evaluation.id, evaluation)
         .catch((erreur) => {
-          if (this.supprimeDuLocalSiAbsenteDuServeur(idClient, erreur)) {
+          if (this.supprimeDuLocalStorageSi(idClient, this.estAbsenteDuServeur(idClient, erreur))) {
             return null;
           }
           throw erreur;
@@ -67,37 +67,31 @@ export default class Synchronisateur {
     return this.registreEvenements.creeEvenements(idClient, evaluationServeur.id);
   }
 
-  supprimeDuLocalSiTerminee (idClient, evaluation) {
-    if (evaluation.terminee_le && !this.estEvaluationEnCours(idClient)) {
-      this.supprimeDuLocalStorage(idClient);
-    }
+  estTerminee (idClient, evaluation) {
+    return !!evaluation.terminee_le && !this.estEvaluationUtilisateurConnecte(idClient);
   }
 
-  supprimeDuLocalSiAbsenteDuServeur (idClient, erreur) {
-    if (erreur.status === 404 && !this.estEvaluationEnCours(idClient)) {
-      this.supprimeDuLocalStorage(idClient);
-      return true;
-    }
-    return false;
+  estAbsenteDuServeur (idClient, erreur) {
+    return erreur.status === 404 && !this.estEvaluationUtilisateurConnecte(idClient);
   }
 
-  supprimeDuLocalSiObsolete (idClient, evaluation, aujourdhui = new Date()) {
+  estObsolete (evaluation, aujourdhui = new Date()) {
     const unMoisAvant = new Date(aujourdhui);
     unMoisAvant.setMonth(unMoisAvant.getMonth() - 1);
 
-    if (new Date(evaluation.debutee_le) < unMoisAvant) {
-      this.supprimeDuLocalStorage(idClient);
-      return true;
-    }
-    return false;
+    return new Date(evaluation.debutee_le) < unMoisAvant;
   }
 
-  estEvaluationEnCours (idClient) {
+  estEvaluationUtilisateurConnecte (idClient) {
     return this.registreUtilisateur.idClient() === idClient;
   }
 
-  supprimeDuLocalStorage (idClient) {
-    this.registreEvenements.supprimeDuLocalStorage(idClient);
-    this.registreUtilisateur.supprimeDuLocalStorage(idClient);
+  supprimeDuLocalStorageSi (idClient, condition) {
+    if (condition) {
+      this.registreEvenements.supprimeDuLocalStorage(idClient);
+      this.registreUtilisateur.supprimeDuLocalStorage(idClient);
+      return true;
+    }
+    return false;
   }
 }
