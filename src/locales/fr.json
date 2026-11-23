@@ -25,6 +25,7 @@
     "erreurs": {
       "reseau": "Impossible de contacter le serveur, Vérifiez votre connexion réseau",
       "code_campagne_inconnu": "Code inconnu",
+      "stockage_plein": "La mémoire du navigateur est pleine. Rapprochez-vous de la personne qui vous accompagne.",
       "code_beneficiaire_inconnu": "Code bénéficiaire inconnu. Vérifiez que vous avez entré le bon code bénéficiaire."
     },
     "identification": {

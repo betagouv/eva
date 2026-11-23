@@ -10,7 +10,12 @@ export default class RegistreCampagne extends BaseRegistre {
         url: `${this.urlServeur}/api/campagnes/${encodeURI(codeCampagne)}`,
         contentType: 'application/json; charset=utf-8',
         success: (campagne) => {
-          this.enregistreEnLocale(this.cleCampagnePourLocalStorage(codeCampagne), campagne);
+          try {
+            this.enregistreCampagneEnLocale(codeCampagne, campagne);
+          } catch {
+            reject(new ErreurCampagne(traduction('accueil.erreurs.stockage_plein')));
+            return;
+          }
           resolve(campagne);
         },
         error: (xhr) => {
@@ -31,6 +36,23 @@ export default class RegistreCampagne extends BaseRegistre {
         }
       });
     });
+  }
+
+  enregistreCampagneEnLocale (codeCampagne, campagne) {
+    const cle = this.cleCampagnePourLocalStorage(codeCampagne);
+    try {
+      this.enregistreEnLocale(cle, campagne);
+    } catch (erreur) {
+      if (this.estModeHorsLigne()) throw erreur;
+      this.supprimeCampagnesEnLocale();
+      this.enregistreEnLocale(cle, campagne);
+    }
+  }
+
+  supprimeCampagnesEnLocale () {
+    Object.keys(window.localStorage)
+      .filter((cle) => cle.startsWith('campagne_'))
+      .forEach((cle) => window.localStorage.removeItem(cle));
   }
 
   assigneCampagneCourante (codeCampagne) {
