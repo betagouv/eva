@@ -75,6 +75,66 @@ describe('le registre campagne', function () {
         });
       });
 
+      describe('quand le localStorage est plein', function () {
+        let setItemOriginal;
+
+        beforeEach(function () {
+          setItemOriginal = Storage.prototype.setItem;
+        });
+
+        afterEach(function () {
+          Storage.prototype.setItem = setItemOriginal;
+        });
+
+        function quotaDepasseTantQue (condition) {
+          Storage.prototype.setItem = function (cle, valeur) {
+            if (condition()) {
+              throw new DOMException('The quota has been exceeded.', 'QuotaExceededError');
+            }
+            return setItemOriginal.call(this, cle, valeur);
+          };
+        }
+
+        it("supprime les campagnes en cache et réessaie l'enregistrement", function () {
+          window.localStorage.setItem('campagne_ANCIENNE', '{"id":2}');
+          window.localStorage.setItem('campagne_CAMPAGNE1', '{"id":1,"nom":"ancienne version"}');
+          window.localStorage.setItem('evaluation_123', '{"id":3}');
+          quotaDepasseTantQue(() => window.localStorage.getItem('campagne_ANCIENNE') !== null);
+
+          const registre = unRegistre(1, 'autre test');
+          return registre.recupereCampagne('campagne1').then((campagne) => {
+            expect(campagne).toEqual({ id: 1, nom: 'autre test' });
+            expect(window.localStorage.getItem('campagne_CAMPAGNE1')).toEqual('{"id":1,"nom":"autre test"}');
+            expect(window.localStorage.getItem('campagne_ANCIENNE')).toBeNull();
+            expect(window.localStorage.getItem('evaluation_123')).toEqual('{"id":3}');
+          });
+        });
+
+        it('conserve les campagnes en cache en mode hors ligne', function () {
+          expect.assertions(3);
+          window.localStorage.setItem('campagne_ANCIENNE', '{"id":2}');
+          const registre = unRegistre(1, 'autre test');
+          registre.enregistreModeHorsLigne(true);
+          quotaDepasseTantQue(() => window.localStorage.getItem('campagne_ANCIENNE') !== null);
+
+          return registre.recupereCampagne('campagne1').catch((erreur) => {
+            expect(erreur.name).toEqual('ErreurCampagne');
+            expect(erreur.message).toEqual('accueil.erreurs.stockage_plein');
+            expect(window.localStorage.getItem('campagne_ANCIENNE')).toEqual('{"id":2}');
+          });
+        });
+
+        it("rejette avec une erreur de campagne si l'enregistrement échoue toujours", function () {
+          quotaDepasseTantQue(() => true);
+
+          const registre = unRegistre(1, 'autre test');
+          return expect(registre.recupereCampagne('campagne1')).rejects.toMatchObject({
+            name: 'ErreurCampagne',
+            message: 'accueil.erreurs.stockage_plein'
+          });
+        });
+      });
+
       it('retourne une erreur si le code campagne est inconnu', function () {
         const registre = new RegistreCampagne({
           ajax (options) {
