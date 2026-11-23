@@ -160,7 +160,7 @@ describe('Synchronisateur', function () {
         });
       });
 
-      it('conserve les évaluations en cas d\'autre erreur', function (done) {
+      it("conserve les évaluations en cas d'autre erreur", function (done) {
         jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
         registreUtilisateur.metsAJourEvaluation.mockImplementation(() => Promise.reject({ status: 500 }));
         synchronisateur.recupereReseau();
@@ -276,87 +276,89 @@ describe('Synchronisateur', function () {
     });
   });
 
-  describe('supprime les évaluations du local', function () {
-    let evaluation;
-    let supprimeEvaluationLocale;
-    let supprimeEvenementsLocale;
+  describe('#supprimeDuLocalStorageSi()', function () {
     const idClient = 'id_client';
-    const idClient2 = 'id_client2';
 
     beforeEach(function () {
-      supprimeEvaluationLocale = jest.spyOn(registreUtilisateur, 'supprimeDuLocalStorage');
-      supprimeEvenementsLocale = jest.spyOn(registreEvenements, 'supprimeDuLocalStorage');
+      window.localStorage.clear();
+      window.localStorage.setItem('evaluation_id_client', JSON.stringify({ id: 1 }));
+      window.localStorage.setItem('evenements_id_client', JSON.stringify([{ nom: 'demarrage' }]));
     });
 
-    describe('#supprimeDuLocalSiTerminee()', function () {
-      describe("quand l'évaluation est terminée et que l'utilisateur n'est pas connecté", function () {
-        beforeEach(function () {
-          evaluation = { terminee_le: new Date() };
-          window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
-          jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
-        });
+    it("supprime l'évaluation et ses évènements quand la condition est vraie", function () {
+      expect(synchronisateur.supprimeDuLocalStorageSi(idClient, true)).toBe(true);
 
-        it("supprime l'évaluation et ses évènements du localStorage", function () {
-          synchronisateur.supprimeDuLocalSiTerminee(idClient, evaluation);
+      expect(window.localStorage.getItem('evaluation_id_client')).toBeNull();
+      expect(window.localStorage.getItem('evenements_id_client')).toBeNull();
+    });
 
-          expect(supprimeEvaluationLocale).toHaveBeenCalledWith(idClient);
-          expect(supprimeEvenementsLocale).toHaveBeenCalledWith(idClient);
-        });
+    it('ne supprime rien quand la condition est fausse', function () {
+      expect(synchronisateur.supprimeDuLocalStorageSi(idClient, false)).toBe(false);
+
+      expect(window.localStorage.getItem('evaluation_id_client')).not.toBeNull();
+      expect(window.localStorage.getItem('evenements_id_client')).not.toBeNull();
+    });
+  });
+
+  describe('conditions de suppression du local', function () {
+    const idClient = 'id_client';
+
+    describe('#estTerminee()', function () {
+      it("est vrai quand l'évaluation est terminée et n'est pas en cours", function () {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
+
+        expect(synchronisateur.estTerminee(idClient, { terminee_le: new Date() })).toBe(true);
       });
 
-      describe("quand l'évaluation est terminée et que l'utilisateur est connecté", function () {
-        beforeEach(function () {
-          evaluation = { terminee_le: new Date() };
-          window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
-          jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => idClient);
-        });
+      it("est faux quand l'évaluation terminée est en cours", function () {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => idClient);
 
-        it("ne supprime pas l'évaluation du localStorage", function () {
-          synchronisateur.supprimeDuLocalSiTerminee(idClient, evaluation);
-
-          expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(0);
-        });
+        expect(synchronisateur.estTerminee(idClient, { terminee_le: new Date() })).toBe(false);
       });
 
-      describe("quand l'évaluation n'est pas terminée", function () {
-        beforeEach(function () {
-          evaluation = { id: 1 };
-          window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluation));
-        });
+      it("est faux quand l'évaluation n'est pas terminée", function () {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
 
-        it('ne fais rien', function () {
-          synchronisateur.supprimeDuLocalSiTerminee(idClient, evaluation);
-
-          expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(0);
-        });
+        expect(synchronisateur.estTerminee(idClient, { id: 1 })).toBe(false);
       });
     });
 
-    describe('#supprimeDuLocalSiObsolete()', function () {
-      let evaluationObsolette;
-      let evaluationValide;
-      let aujourdhui;
-      beforeEach(function () {
-        aujourdhui = new Date('December 17, 1995 03:24:00');
-        const debuteeUnMoisAvant = new Date(aujourdhui);
-        debuteeUnMoisAvant.setMonth(aujourdhui.getMonth() - 1);
-        debuteeUnMoisAvant.setSeconds(aujourdhui.getSeconds() - 1);
+    describe('#estAbsenteDuServeur()', function () {
+      it("est vrai quand le serveur répond 404 et que l'évaluation n'est pas en cours", function () {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
 
-        const debuteeIlYAMoinsDUnMois = new Date(aujourdhui);
-        debuteeIlYAMoinsDUnMois.setMonth(aujourdhui.getMonth() - 1);
-
-        evaluationObsolette = { id: 1, debutee_le: debuteeUnMoisAvant };
-        window.localStorage.setItem('evaluation_id_client', JSON.stringify(evaluationObsolette));
-        evaluationValide = { id: 1, debutee_le: debuteeIlYAMoinsDUnMois };
-        window.localStorage.setItem('evaluation_id_client2', JSON.stringify(evaluationValide));
+        expect(synchronisateur.estAbsenteDuServeur(idClient, { status: 404 })).toBe(true);
       });
 
-      it('supprime les évaluation et les évènements obsoletes du localStorage', function () {
-        expect(synchronisateur.supprimeDuLocalSiObsolete(idClient, evaluationObsolette, aujourdhui)).toBe(true);
-        expect(synchronisateur.supprimeDuLocalSiObsolete(idClient2, evaluationValide, aujourdhui)).toBe(false);
+      it("est faux quand l'évaluation est en cours", function () {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => idClient);
 
-        expect(supprimeEvenementsLocale).toHaveBeenNthCalledWith(1, idClient);
-        expect(supprimeEvaluationLocale).toHaveBeenNthCalledWith(1, idClient);
+        expect(synchronisateur.estAbsenteDuServeur(idClient, { status: 404 })).toBe(false);
+      });
+
+      it('est faux pour une autre erreur', function () {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
+
+        expect(synchronisateur.estAbsenteDuServeur(idClient, { status: 500 })).toBe(false);
+      });
+    });
+
+    describe('#estObsolete()', function () {
+      const aujourdhui = new Date('December 17, 1995 03:24:00');
+
+      it("est vrai quand l'évaluation a débuté il y a plus d'un mois", function () {
+        const debuteeIlYAPlusDUnMois = new Date(aujourdhui);
+        debuteeIlYAPlusDUnMois.setMonth(aujourdhui.getMonth() - 1);
+        debuteeIlYAPlusDUnMois.setSeconds(aujourdhui.getSeconds() - 1);
+
+        expect(synchronisateur.estObsolete({ debutee_le: debuteeIlYAPlusDUnMois }, aujourdhui)).toBe(true);
+      });
+
+      it("est faux quand l'évaluation a débuté il y a un mois ou moins", function () {
+        const debuteeIlYAUnMois = new Date(aujourdhui);
+        debuteeIlYAUnMois.setMonth(aujourdhui.getMonth() - 1);
+
+        expect(synchronisateur.estObsolete({ debutee_le: debuteeIlYAUnMois }, aujourdhui)).toBe(false);
       });
     });
   });
