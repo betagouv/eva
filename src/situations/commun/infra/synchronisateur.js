@@ -30,15 +30,13 @@ export default class Synchronisateur {
       if (this.supprimeDuLocalSiObsolete(idClient, evaluation)) {
         return;
       }
-      let promesse = this.creeOuMetsAJourEvaluation(evaluation, idClient);
-
-      promesse = promesse.then((utilisateur) => {
-        return this.synchroniseEvenements(idClient, utilisateur).then(() => {
-          this.supprimeEvaluationTermineDuLocal(idClient, evaluation);
+      let promesse = this.creeOuMetsAJourEvaluation(evaluation, idClient)
+        .then((evaluationServeur) => {
+          if (!evaluationServeur) return;
+          return this.synchroniseEvenements(idClient, evaluationServeur).then(() => {
+            this.supprimeDuLocalSiTerminee(idClient, evaluation);
+          });
         });
-      }).catch((erreur) => {
-        this.supprimeDuLocalSiAbsenteDuServeur(idClient, erreur);
-      });
 
       promesses.push(promesse);
     });
@@ -48,32 +46,39 @@ export default class Synchronisateur {
   creeOuMetsAJourEvaluation (evaluation, idClient) {
     let promesse;
     if (evaluation.id) {
-      promesse = this.registreUtilisateur.metsAJourEvaluation(evaluation.id, evaluation);
+      promesse = this.registreUtilisateur.metsAJourEvaluation(evaluation.id, evaluation)
+        .catch((erreur) => {
+          if (this.supprimeDuLocalSiAbsenteDuServeur(idClient, erreur)) {
+            return null;
+          }
+          throw erreur;
+        });
     } else {
-      promesse = this.registreUtilisateur.creeEvaluation(evaluation).then((utilisateur) => {
-        this.registreUtilisateur.enregistreUtilisateurEnLocal(utilisateur, idClient);
-        return utilisateur;
+      promesse = this.registreUtilisateur.creeEvaluation(evaluation).then((evaluationServeur) => {
+        this.registreUtilisateur.enregistreUtilisateurEnLocal(evaluationServeur, idClient);
+        return evaluationServeur;
       });
     }
 
     return promesse;
   }
 
-  synchroniseEvenements (idClient, utilisateur) {
-    return this.registreEvenements.creeEvenements(idClient, utilisateur.id);
+  synchroniseEvenements (idClient, evaluationServeur) {
+    return this.registreEvenements.creeEvenements(idClient, evaluationServeur.id);
   }
 
-  supprimeEvaluationTermineDuLocal (idClient, evaluation) {
+  supprimeDuLocalSiTerminee (idClient, evaluation) {
     if (evaluation.terminee_le && !this.estEvaluationEnCours(idClient)) {
       this.supprimeDuLocalStorage(idClient);
     }
   }
 
   supprimeDuLocalSiAbsenteDuServeur (idClient, erreur) {
-    if (erreur?.status !== 404 || this.estEvaluationEnCours(idClient)) {
-      throw erreur;
+    if (erreur.status === 404 && !this.estEvaluationEnCours(idClient)) {
+      this.supprimeDuLocalStorage(idClient);
+      return true;
     }
-    this.supprimeDuLocalStorage(idClient);
+    return false;
   }
 
   supprimeDuLocalSiObsolete (idClient, evaluation, aujourdhui = new Date()) {

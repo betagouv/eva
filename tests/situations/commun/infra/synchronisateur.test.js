@@ -142,6 +142,8 @@ describe('Synchronisateur', function () {
           expect(window.localStorage.getItem('evaluation_2')).not.toBeNull();
           expect(window.localStorage.getItem('evenements_2')).not.toBeNull();
           expect(echecSynchronisation).not.toHaveBeenCalled();
+          expect(registreEvenements.creeEvenements).toHaveBeenCalledTimes(1);
+          expect(registreEvenements.creeEvenements).toHaveBeenCalledWith('2', 'presente');
           done();
         });
       });
@@ -286,7 +288,7 @@ describe('Synchronisateur', function () {
       supprimeEvenementsLocale = jest.spyOn(registreEvenements, 'supprimeDuLocalStorage');
     });
 
-    describe('#supprimeEvaluationTermineDuLocal()', function () {
+    describe('#supprimeDuLocalSiTerminee()', function () {
       describe("quand l'évaluation est terminée et que l'utilisateur n'est pas connecté", function () {
         beforeEach(function () {
           evaluation = { terminee_le: new Date() };
@@ -295,7 +297,7 @@ describe('Synchronisateur', function () {
         });
 
         it("supprime l'évaluation et ses évènements du localStorage", function () {
-          synchronisateur.supprimeEvaluationTermineDuLocal(idClient, evaluation);
+          synchronisateur.supprimeDuLocalSiTerminee(idClient, evaluation);
 
           expect(supprimeEvaluationLocale).toHaveBeenCalledWith(idClient);
           expect(supprimeEvenementsLocale).toHaveBeenCalledWith(idClient);
@@ -310,7 +312,7 @@ describe('Synchronisateur', function () {
         });
 
         it("ne supprime pas l'évaluation du localStorage", function () {
-          synchronisateur.supprimeEvaluationTermineDuLocal(idClient, evaluation);
+          synchronisateur.supprimeDuLocalSiTerminee(idClient, evaluation);
 
           expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(0);
         });
@@ -323,7 +325,7 @@ describe('Synchronisateur', function () {
         });
 
         it('ne fais rien', function () {
-          synchronisateur.supprimeEvaluationTermineDuLocal(idClient, evaluation);
+          synchronisateur.supprimeDuLocalSiTerminee(idClient, evaluation);
 
           expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(0);
         });
