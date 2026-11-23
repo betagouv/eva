@@ -29,7 +29,7 @@ describe("La vue de l'acte prévention", function () {
   it('affiche le fond', function (done) {
     store.commit('configureActe', { fondSituation: 'fondSituation', zones: [] });
     wrapper.vm.$nextTick(() => {
-      expect(wrapper.find('image').attributes('href')).toEqual('fondSituation');
+      expect(wrapper.find('image').attributes('xlink:href')).toEqual('fondSituation');
       done();
     });
   });
