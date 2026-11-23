@@ -36,6 +36,8 @@ export default class Synchronisateur {
         return this.synchroniseEvenements(idClient, utilisateur).then(() => {
           this.supprimeEvaluationTermineDuLocal(idClient, evaluation);
         });
+      }).catch((erreur) => {
+        this.supprimeDuLocalSiAbsenteDuServeur(idClient, erreur);
       });
 
       promesses.push(promesse);
@@ -62,9 +64,16 @@ export default class Synchronisateur {
   }
 
   supprimeEvaluationTermineDuLocal (idClient, evaluation) {
-    if (evaluation.terminee_le && this.registreUtilisateur.idClient() !== idClient) {
-      this.registreUtilisateur.supprimeDuLocalStorage(idClient);
+    if (evaluation.terminee_le && !this.estEvaluationEnCours(idClient)) {
+      this.supprimeDuLocalStorage(idClient);
     }
+  }
+
+  supprimeDuLocalSiAbsenteDuServeur (idClient, erreur) {
+    if (erreur?.status !== 404 || this.estEvaluationEnCours(idClient)) {
+      throw erreur;
+    }
+    this.supprimeDuLocalStorage(idClient);
   }
 
   supprimeDuLocalSiObsolete (idClient, evaluation, aujourdhui = new Date()) {
@@ -72,10 +81,18 @@ export default class Synchronisateur {
     unMoisAvant.setMonth(unMoisAvant.getMonth() - 1);
 
     if (new Date(evaluation.debutee_le) < unMoisAvant) {
-      this.registreEvenements.supprimeDuLocalStorage(idClient);
-      this.registreUtilisateur.supprimeDuLocalStorage(idClient);
+      this.supprimeDuLocalStorage(idClient);
       return true;
     }
     return false;
+  }
+
+  estEvaluationEnCours (idClient) {
+    return this.registreUtilisateur.idClient() === idClient;
+  }
+
+  supprimeDuLocalStorage (idClient) {
+    this.registreEvenements.supprimeDuLocalStorage(idClient);
+    this.registreUtilisateur.supprimeDuLocalStorage(idClient);
   }
 }

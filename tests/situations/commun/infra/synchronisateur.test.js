@@ -112,6 +112,66 @@ describe('Synchronisateur', function () {
       });
     });
 
+    describe("quand l'évaluation a été supprimée coté serveur", function () {
+      let echecSynchronisation;
+
+      beforeEach(function () {
+        window.localStorage.setItem('evaluation_1', JSON.stringify({ id: 'absente', nom: 'Marcelle' }));
+        window.localStorage.setItem('evenements_1', JSON.stringify([{ nom: 'demarrage' }]));
+        window.localStorage.setItem('evaluation_2', JSON.stringify({ id: 'presente', nom: 'Clement' }));
+        window.localStorage.setItem('evenements_2', JSON.stringify([{ nom: 'demarrage' }]));
+        creeEvenements.mockRestore();
+
+        jest.spyOn(registreUtilisateur, 'metsAJourEvaluation')
+          .mockImplementation((id, data) => {
+            if (id === 'absente') return Promise.reject({ status: 404 });
+            return Promise.resolve(data);
+          });
+        jest.spyOn(registreEvenements, 'creeEvenements').mockImplementation(() => Promise.resolve());
+        echecSynchronisation = jest.spyOn(synchronisateur, 'echecSynchronisation')
+          .mockImplementation(() => {});
+      });
+
+      it("supprime l'évaluation et ses évènements du localStorage", function (done) {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
+        synchronisateur.recupereReseau();
+
+        setTimeout(() => {
+          expect(window.localStorage.getItem('evaluation_1')).toBeNull();
+          expect(window.localStorage.getItem('evenements_1')).toBeNull();
+          expect(window.localStorage.getItem('evaluation_2')).not.toBeNull();
+          expect(window.localStorage.getItem('evenements_2')).not.toBeNull();
+          expect(echecSynchronisation).not.toHaveBeenCalled();
+          done();
+        });
+      });
+
+      it("conserve l'évaluation en cours", function (done) {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => '1');
+        synchronisateur.recupereReseau();
+
+        setTimeout(() => {
+          expect(window.localStorage.getItem('evaluation_1')).not.toBeNull();
+          expect(window.localStorage.getItem('evenements_1')).not.toBeNull();
+          expect(echecSynchronisation).toHaveBeenCalledWith({ status: 404 });
+          done();
+        });
+      });
+
+      it('conserve les évaluations en cas d\'autre erreur', function (done) {
+        jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
+        registreUtilisateur.metsAJourEvaluation.mockImplementation(() => Promise.reject({ status: 500 }));
+        synchronisateur.recupereReseau();
+
+        setTimeout(() => {
+          expect(window.localStorage.getItem('evaluation_1')).not.toBeNull();
+          expect(window.localStorage.getItem('evaluation_2')).not.toBeNull();
+          expect(echecSynchronisation).toHaveBeenCalledWith({ status: 500 });
+          done();
+        });
+      });
+    });
+
     describe('ne peut être appelé deux fois en même temps', function () {
       let resoudLaPremierePromesse;
       let rejeteLaPremierePromesse;
@@ -234,10 +294,11 @@ describe('Synchronisateur', function () {
           jest.spyOn(registreUtilisateur, 'idClient').mockImplementation(() => {});
         });
 
-        it("supprime l'évaluation du localStorage", function () {
+        it("supprime l'évaluation et ses évènements du localStorage", function () {
           synchronisateur.supprimeEvaluationTermineDuLocal(idClient, evaluation);
 
-          expect(supprimeEvaluationLocale).toHaveBeenCalledTimes(1);
+          expect(supprimeEvaluationLocale).toHaveBeenCalledWith(idClient);
+          expect(supprimeEvenementsLocale).toHaveBeenCalledWith(idClient);
         });
       });
 
