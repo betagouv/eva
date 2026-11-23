@@ -11,13 +11,13 @@ const rollbar = new Rollbar({
     environment: process.env.ROLLBAR_ENV || process.env.NODE_ENV,
     custom: {
       eva_version: process.env.SOURCE_VERSION_COURTE
-    }
-  },
-  client: {
-    javascript: {
-      source_map_enabled: true,
-      code_version: process.env.SOURCE_VERSION,
-      guess_uncaught_frames: true
+    },
+    client: {
+      javascript: {
+        source_map_enabled: true,
+        code_version: process.env.SOURCE_VERSION,
+        guess_uncaught_frames: true
+      }
     }
   }
 });
