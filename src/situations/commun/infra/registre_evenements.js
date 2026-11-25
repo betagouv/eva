@@ -6,6 +6,7 @@ export default class RegistreEvenements extends BaseRegistre {
     super($);
     this.promesses = [];
     this.evenementsEnEchec = [];
+    this.evenementsEnMemoire = [];
     this.registreUtilisateur = registreUtilisateur;
   }
 
@@ -25,37 +26,13 @@ export default class RegistreEvenements extends BaseRegistre {
     return this.attendFinEnregistrement();
   }
 
-  enregistre (payload, timeout = 60000) {
-    let delay = 100;
-    const datePremierAppel = Date.now();
-    const promesseDEnregistrement = new Promise((resolve, reject) => {
-      const settingsAjax = {
-        type: 'POST',
-        url: `${process.env.URL_API}/api/evenements`,
-        data: JSON.stringify(payload),
-        contentType: 'application/json; charset=utf-8',
-        success: resolve,
-        error: (xhr) => {
-          if (this.registreUtilisateur.activeModeHorsLigne(xhr)) {
-            this.enregistreEvenementEnLocale(payload);
-            resolve();
-          } else {
-            if (Date.now() - datePremierAppel < timeout) {
-              setTimeout(() => {
-                delay = Math.min(delay * 2, 2000);
-                this.$.ajax(settingsAjax);
-              }, delay);
-            } else {
-              this.evenementsEnEchec.push(payload);
-              reject(xhr);
-            }
-          }
-        }
-      };
-      this.$.ajax(settingsAjax);
-    });
-    this.promesses.push(promesseDEnregistrement);
-    return promesseDEnregistrement;
+  enregistre (payload) {
+    try {
+      this.enregistreEvenementEnLocale(payload);
+    } catch {
+      this.evenementsEnMemoire.push(payload);
+    }
+    return Promise.resolve();
   }
 
   creeEvenements (idClient, idEvaluation) {
