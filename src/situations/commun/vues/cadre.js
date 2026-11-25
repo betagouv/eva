@@ -9,11 +9,15 @@ import {
   FINI,
   ERREUR_ENREGISTREMENT,
   RELANCE_ENREGISTREMENT,
+  ERREUR_ENREGISTREMENT_ABANDON,
+  RELANCE_ENREGISTREMENT_ABANDON,
   RETOUR_ACCUEIL,
+  STOPPEE,
   CHANGEMENT_ETAT
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementFinSituation from 'commun/modeles/evenement_fin_situation';
+import EvenementAbandon from 'commun/modeles/evenement_abandon';
 import EvenementEntrainementDemarrage from 'commun/modeles/evenement_entrainement_demarrage';
 import VueActions from 'commun/vues/actions';
 import VueStop from 'commun/vues/stop';
@@ -23,9 +27,12 @@ import OverlayErreurChargement from './overlay_erreur_chargement';
 import OverlayErreurEnregistrement from './overlay_erreur_enregistrement';
 import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
+import { SCOPE_URL } from 'commun/vues/affiche_situation';
 
 export default class VueCadre {
-  constructor(VueSituation, situation, journal, depotRessources, store) {
+  constructor(VueSituation, situation, journal, depotRessources, store,
+    retourAccueil = () => window.location.assign(SCOPE_URL)) {
+    this.retourAccueil = retourAccueil;
     this.VueSituation = VueSituation;
     this.journal = journal;
     this.situation = situation;
@@ -41,6 +48,12 @@ export default class VueCadre {
       relance: () => this.situation.modifieEtat(RELANCE_ENREGISTREMENT)
     }));
     this.vuesEtats.set(RELANCE_ENREGISTREMENT, creeAdaptateur(OverlayAttente, { raison: 'test_connexion' }));
+    this.vuesEtats.set(STOPPEE, creeAdaptateur(OverlayAttente, { raison: 'enregistrement' }));
+    this.vuesEtats.set(ERREUR_ENREGISTREMENT_ABANDON, creeAdaptateur(OverlayErreurEnregistrement, {
+      relance: () => this.situation.modifieEtat(RELANCE_ENREGISTREMENT_ABANDON),
+      abandonne: () => this.retourAccueil()
+    }));
+    this.vuesEtats.set(RELANCE_ENREGISTREMENT_ABANDON, creeAdaptateur(OverlayAttente, { raison: 'test_connexion' }));
     this.vuesEtats.set(RETOUR_ACCUEIL, VueTerminer);
     this.envoiEvenementDemarrageUneFoisDemarre();
     this.envoiEvenementFinSituationUneFoisTermine();
@@ -123,21 +136,31 @@ export default class VueCadre {
 
   envoiEvenementFinSituationUneFoisTermine() {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
-      if (etat === FINI) {
+      switch (etat) {
+      case FINI:
         this.journal.enregistre(new EvenementFinSituation());
-        this.passeALaSuiteUneFoisEnregistre(this.journal.envoieEvenements());
-      } else if (etat === RELANCE_ENREGISTREMENT) {
-        this.passeALaSuiteUneFoisEnregistre(this.journal.envoieEvenements());
+        this.envoieEvenements(() => this.situation.modifieEtat(RETOUR_ACCUEIL), ERREUR_ENREGISTREMENT);
+        break;
+      case RELANCE_ENREGISTREMENT:
+        this.envoieEvenements(() => this.situation.modifieEtat(RETOUR_ACCUEIL), ERREUR_ENREGISTREMENT);
+        break;
+      case STOPPEE:
+        this.journal.enregistre(new EvenementAbandon());
+        this.envoieEvenements(() => this.retourAccueil(), ERREUR_ENREGISTREMENT_ABANDON);
+        break;
+      case RELANCE_ENREGISTREMENT_ABANDON:
+        this.envoieEvenements(() => this.retourAccueil(), ERREUR_ENREGISTREMENT_ABANDON);
+        break;
       }
     });
   }
 
-  passeALaSuiteUneFoisEnregistre(promesseEnregistrement) {
-    promesseEnregistrement.then(
-      () => this.situation.modifieEtat(RETOUR_ACCUEIL),
+  envoieEvenements(apresEnvoi, etatEnCasDErreur) {
+    this.journal.envoieEvenements().then(
+      apresEnvoi,
       (erreur) => {
         console.error(erreur);
-        this.situation.modifieEtat(ERREUR_ENREGISTREMENT);
+        this.situation.modifieEtat(etatEnCasDErreur);
       }
     );
   }

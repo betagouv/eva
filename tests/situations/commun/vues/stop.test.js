@@ -1,11 +1,9 @@
 import $ from 'jquery';
 import VueStop from 'commun/vues/stop';
-import EvenementAbandon from 'commun/modeles/evenement_abandon';
 import Situation, { STOPPEE } from 'commun/modeles/situation';
 
 describe('vue Stop', function () {
   let vue;
-  let retourAccueil = false;
   let mockJournal;
   let situation;
 
@@ -15,9 +13,7 @@ describe('vue Stop', function () {
       enregistre () {}
     };
     situation = new Situation();
-    vue = new VueStop(situation, mockJournal, () => {
-      retourAccueil = true;
-    });
+    vue = new VueStop(situation, mockJournal);
   });
 
   it("sait s'insérer dans une page web", function () {
@@ -35,36 +31,16 @@ describe('vue Stop', function () {
 
   it("n'annonce pas d'impact sur le résultat quand l'abandon n'en a pas", function () {
     situation = new Situation({ abandonImpacteResultat: false });
-    vue = new VueStop(situation, mockJournal, () => {});
+    vue = new VueStop(situation, mockJournal);
     vue.affiche('#point-insertion', $);
 
     $('#point-insertion .bouton-stop').trigger('click');
     expect($('h2').text()).toBe('abandon.confirmation_sans_impact');
   });
 
-  it("enregistre l'événement et redirige vers l'accueil quand on confirme la modale", function () {
-    mockJournal.enregistre = (evenement) => {
-      expect(evenement).toBeInstanceOf(EvenementAbandon);
-      return Promise.resolve();
-    };
-    return vue.clickSurOk().then(() => {
-      expect(situation.etat()).toEqual(STOPPEE);
-      expect(retourAccueil).toBe(true);
-    });
-  });
+  it("stoppe la situation quand on confirme la modale", function () {
+    vue.clickSurOk();
 
-  it("Redirige vers l'accueil même si l'enregistrement échoue", function (done) {
-    retourAccueil = false;
-    mockJournal.enregistre = () => {
-      return Promise.reject(new Error('serveur non joignable'));
-    };
-    vue.clickSurOk().catch(() => {
-      try {
-        expect(retourAccueil).toBe(true);
-        done();
-      } catch (e) {
-        done(e);
-      }
-    });
+    expect(situation.etat()).toEqual(STOPPEE);
   });
 });

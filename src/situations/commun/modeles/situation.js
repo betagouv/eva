@@ -9,6 +9,8 @@ export const DEMARRE = 'démarré';
 export const FINI = 'fini';
 export const ERREUR_ENREGISTREMENT = 'erreurEnregistrement';
 export const RELANCE_ENREGISTREMENT = 'relanceEnregistrement';
+export const ERREUR_ENREGISTREMENT_ABANDON = 'erreurEnregistrementAbandon';
+export const RELANCE_ENREGISTREMENT_ABANDON = 'relanceEnregistrementAbandon';
 export const RETOUR_ACCUEIL = 'retourAccueil';
 export const STOPPEE = 'stoppée';
 
