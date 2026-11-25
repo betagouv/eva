@@ -205,8 +205,7 @@
       "description": "Vos réponses n'ont pas pu être enregistrées.",
       "action": "Vérifiez la connexion internet puis cliquez sur le bouton pour réessayer.",
       "action_si_echec": "Si le problème persiste, prévenez la personne qui vous accompagne.",
-      "bouton": "Retester la connexion",
-      "bouton_abandon": "Abandonner"
+      "bouton": "Retester la connexion"
     },
     "go": "Vous pouvez commencer",
     "reussite": "C'est terminé, bravo !",

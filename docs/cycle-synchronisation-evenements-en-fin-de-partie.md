@@ -1,6 +1,6 @@
 # Cycle de synchronisation des événements en fin de partie
 
-Une partie (une situation jouée par le bénéficiaire) ne se termine que lorsque tous ses événements ont été enregistrés sur le serveur. Si la connexion est perdue, le joueur est bloqué sur un écran d'erreur jusqu'à ce que l'envoi réussisse. En cas d'abandon, il peut aussi abandonner sans attendre.
+Une partie (une situation jouée par le bénéficiaire) ne se termine que lorsque tous ses événements ont été enregistrés sur le serveur. Si la connexion est perdue, le joueur est bloqué sur un écran d'erreur jusqu'à ce que l'envoi réussisse. C'est aussi le cas lors d'un abandon.
 
 ## Pendant la partie
 
@@ -36,11 +36,10 @@ FINI                                         STOPPEE
   └─échec                                      └─échec
      ▼                                            ▼
 ERREUR_ENREGISTREMENT ◀─────échec──┐         ERREUR_ENREGISTREMENT_ABANDON ◀──échec──┐
-  │ « Retester la connexion »      │           │ « Retester »                        │
-  ▼                                │           ├─ « Abandonner » ──▶ accueil         │
-RELANCE_ENREGISTREMENT ────────────┘           ▼                                     │
-  └──ok──▶ RETOUR_ACCUEIL (écran de fin)     RELANCE_ENREGISTREMENT_ABANDON ─────────┘
-                                               └──ok──▶ accueil
+  │ « Retester la connexion »      │           │ « Retester la connexion »           │
+  ▼                                │           ▼                                     │
+RELANCE_ENREGISTREMENT ────────────┘         RELANCE_ENREGISTREMENT_ABANDON ─────────┘
+  └──ok──▶ RETOUR_ACCUEIL (écran de fin)       └──ok──▶ accueil
 ```
 
 | État                             | Écran (sablier)             | Si l'envoi réussit | Si l'envoi échoue               |
@@ -52,8 +51,7 @@ RELANCE_ENREGISTREMENT ────────────┘           ▼    
 
 Les écrans d'erreur utilisent `overlay_erreur_enregistrement.vue` (textes : `situation.erreur_enregistrement` dans `src/locales/fr.json`) :
 
-- `ERREUR_ENREGISTREMENT` : bouton « Retester la connexion » ;
-- `ERREUR_ENREGISTREMENT_ABANDON` : boutons « Retester la connexion » et « Abandonner ». « Abandonner » retourne à l'accueil ; les événements restent dans le localStorage pour le `Synchronisateur`.
+Les deux états d'erreur (`ERREUR_ENREGISTREMENT` et `ERREUR_ENREGISTREMENT_ABANDON`) n'ont qu'un bouton, « Retester la connexion » : le joueur doit rétablir la connexion pour continuer.
 
 Dans les états `RELANCE_*`, le sablier « Enregistrement en cours » reste affiché au moins 1,5 s, même si l'envoi échoue tout de suite : sinon le joueur ne voit pas que son clic a été pris en compte.
 
@@ -61,6 +59,6 @@ Dans les états `RELANCE_*`, le sablier « Enregistrement en cours » reste affi
 
 ## Protection contre la fermeture
 
-Dans les états `FINI`, `ERREUR_ENREGISTREMENT` et `RELANCE_ENREGISTREMENT`, le navigateur demande confirmation avant de fermer ou recharger la page. Les états de l'abandon ne sont pas protégés : quitter la page ne perd rien, les événements étant dans le localStorage.
+Dans les états `FINI`, `ERREUR_ENREGISTREMENT`, `RELANCE_ENREGISTREMENT` et `ERREUR_ENREGISTREMENT_ABANDON`, le navigateur demande confirmation avant de fermer ou recharger la page. `STOPPEE` et `RELANCE_ENREGISTREMENT_ABANDON` ne sont pas protégés : en cas de succès, ils redirigent vers l'accueil, et la protection demanderait alors une confirmation à tort.
 
 Si la page est rechargée malgré tout, la partie recommence et les événements de la partie interrompue sont envoyés par le `Synchronisateur` au prochain affichage de l'accueil.

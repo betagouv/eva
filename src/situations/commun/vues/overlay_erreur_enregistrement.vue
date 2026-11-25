@@ -20,13 +20,6 @@
         >
           {{ $traduction('situation.erreur_enregistrement.bouton') }}
         </button>
-        <button
-          v-if="abandonne"
-          class="fr-btn fr-btn--secondary bouton-abandon-enregistrement"
-          @click="abandonne"
-        >
-          {{ $traduction('situation.erreur_enregistrement.bouton_abandon') }}
-        </button>
       </div>
     </div>
   </div>
@@ -41,10 +34,6 @@ export default {
     relance: {
       type: Function,
       required: true
-    },
-    abandonne: {
-      type: Function,
-      default: null
     }
   }
 };

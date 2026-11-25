@@ -280,7 +280,6 @@ describe('Une vue du cadre', function () {
       vueCadre.situation.modifieEtat(FINI);
       await erreurAffichee;
       expect($('.overlay-erreur-enregistrement').length).toBe(1);
-      expect($('.bouton-abandon-enregistrement').length).toBe(0);
     });
 
     it("renvoie les événements au clic et retourne à l'accueil en cas de succès", function (done) {
@@ -379,19 +378,15 @@ describe('Une vue du cadre', function () {
         console.error.mockRestore();
       });
 
-      it("affiche l'écran d'erreur avec un bouton pour abandonner", function () {
+      it("affiche l'écran d'erreur", function () {
         expect($(".overlay-erreur-enregistrement").length).toBe(1);
-        expect($(".bouton-abandon-enregistrement").length).toBe(1);
         expect(retourAccueil).not.toHaveBeenCalled();
       });
 
-      it("retourne à l'accueil sans demander de confirmation quand on clique sur abandonner", function () {
-        $(".bouton-abandon-enregistrement").trigger("click");
-
-        expect(retourAccueil).toHaveBeenCalled();
+      it("demande une confirmation pour quitter la page", function () {
         const event = $.Event("beforeunload");
         $(window).trigger(event);
-        expect(event.isDefaultPrevented()).toBe(false);
+        expect(event.isDefaultPrevented()).toBe(true);
       });
 
       it("revient sur l'écran d'erreur d'abandon quand le renvoi échoue", async function () {

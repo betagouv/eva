@@ -54,8 +54,7 @@ export default class VueCadre {
     this.vuesEtats.set(RELANCE_ENREGISTREMENT, creeAdaptateur(OverlayAttente, { raison: 'enregistrement' }));
     this.vuesEtats.set(STOPPEE, creeAdaptateur(OverlayAttente, { raison: 'enregistrement' }));
     this.vuesEtats.set(ERREUR_ENREGISTREMENT_ABANDON, creeAdaptateur(OverlayErreurEnregistrement, {
-      relance: () => this.situation.modifieEtat(RELANCE_ENREGISTREMENT_ABANDON),
-      abandonne: () => this.retourAccueil()
+      relance: () => this.situation.modifieEtat(RELANCE_ENREGISTREMENT_ABANDON)
     }));
     this.vuesEtats.set(RELANCE_ENREGISTREMENT_ABANDON, creeAdaptateur(OverlayAttente, { raison: 'enregistrement' }));
     this.vuesEtats.set(RETOUR_ACCUEIL, VueTerminer);
@@ -102,7 +101,8 @@ export default class VueCadre {
 
   empecheLaFermetureDeLaSituation($) {
     $(window).on('beforeunload', (e) => {
-      if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE, ERREUR_ENREGISTREMENT, RELANCE_ENREGISTREMENT].includes(this.situation.etat())) {
+      if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE,
+        ERREUR_ENREGISTREMENT, RELANCE_ENREGISTREMENT, ERREUR_ENREGISTREMENT_ABANDON].includes(this.situation.etat())) {
         e.preventDefault();
         if (e.originalEvent) {
           e.originalEvent.returnValue = true;
