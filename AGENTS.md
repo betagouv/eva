@@ -79,6 +79,12 @@ Situations extend EventEmitter with standardized events:
 - **Structure**: Mirror source structure in `tests/`
 - **Audio/Assets**: Always mock external dependencies
 
+### TDD (red → green)
+- Before fixing a bug or changing behavior, write or adapt the test, run it and confirm it **fails**. Only then change the production code and rerun it to confirm it passes.
+- A change in `src/` starts with a Jest test in the mirrored path under `tests/`, run with `npx jest <file>`.
+- If the test already passes before any change, it is not a real TDD cycle: say so instead of silently skipping the red step.
+- When removing a feature (parameter, route, field), do not add a test that only checks it is gone. The red step comes from modifying or deleting the tests that exercised it. When in doubt (e.g. a security hole being closed), suggest the test instead of writing it.
+
 ### Internationalization
 - All text in `src/locales/fr.json`
 - Access via `$traduction` global property
@@ -87,6 +93,9 @@ Situations extend EventEmitter with standardized events:
 ### French Typography
 - Use a narrow non-breaking space (U+202F) before `:` `!` `?` `;`, after `«` and before `»`, in `src/locales/fr.json` and in any French text written in Vue templates. Do not use a regular space, U+00A0 or `&nbsp;`.
 - `tests/locales/typographie.test.js` checks `fr.json` (it runs with `npm test`).
+
+### Strings
+- Prefer double quotes `"` to delimit JavaScript strings (test names included), so French apostrophes need no escaping: `it("affiche l'écran d'erreur")`, not `it('affiche l\'écran d\'erreur')`.
 
 ## Webpack Configuration Notes
 
