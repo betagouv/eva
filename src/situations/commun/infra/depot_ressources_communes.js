@@ -90,7 +90,7 @@ export default class DepotRessourcesCommunes extends DepotRessources {
         illustrations = illustrations.concat(this.trouveIllustrations(objet));
       });
     } else {
-      ['illustration', 'icone'].forEach(key => {
+      ['illustration', 'icone', 'image'].forEach(key => {
         if (key in configuration) {
           illustrations.push(configuration[key]);
         }
