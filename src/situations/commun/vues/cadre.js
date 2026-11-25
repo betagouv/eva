@@ -7,6 +7,8 @@ import {
   ENTRAINEMENT_FINI,
   DEMARRE,
   FINI,
+  ERREUR_ENREGISTREMENT,
+  RELANCE_ENREGISTREMENT,
   RETOUR_ACCUEIL,
   CHANGEMENT_ETAT
 } from 'commun/modeles/situation';
@@ -18,8 +20,11 @@ import VueStop from 'commun/vues/stop';
 import { creeAdaptateur } from './adaptateur_vue';
 import OverlayAttente from './overlay_attente';
 import OverlayErreurChargement from './overlay_erreur_chargement';
+import OverlayErreurEnregistrement from './overlay_erreur_enregistrement';
 import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
+
+const TIMEOUT_RELANCE = 10000;
 
 export default class VueCadre {
   constructor(VueSituation, situation, journal, depotRessources, store) {
@@ -34,6 +39,10 @@ export default class VueCadre {
     this.vuesEtats.set(ATTENTE_DEMARRAGE, AdaptateurConsigne);
     this.vuesEtats.set(ENTRAINEMENT_FINI, AdaptateurConsigne);
     this.vuesEtats.set(FINI, creeAdaptateur(OverlayAttente, { raison: 'enregistrement' }));
+    this.vuesEtats.set(ERREUR_ENREGISTREMENT, creeAdaptateur(OverlayErreurEnregistrement, {
+      relance: () => this.situation.modifieEtat(RELANCE_ENREGISTREMENT)
+    }));
+    this.vuesEtats.set(RELANCE_ENREGISTREMENT, creeAdaptateur(OverlayAttente, { raison: 'test_connexion' }));
     this.vuesEtats.set(RETOUR_ACCUEIL, VueTerminer);
     this.envoiEvenementDemarrageUneFoisDemarre();
     this.envoiEvenementFinSituationUneFoisTermine();
@@ -78,7 +87,7 @@ export default class VueCadre {
 
   empecheLaFermetureDeLaSituation($) {
     $(window).on('beforeunload', (e) => {
-      if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE].includes(this.situation.etat())) {
+      if ([ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, FINI, DEMARRE, ERREUR_ENREGISTREMENT, RELANCE_ENREGISTREMENT].includes(this.situation.etat())) {
         e.preventDefault();
         if (e.originalEvent) {
           e.originalEvent.returnValue = true;
@@ -118,11 +127,24 @@ export default class VueCadre {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === FINI) {
         this.journal.enregistre(new EvenementFinSituation());
-        this.journal.attendFinEnregistrement().finally(() => {
-          this.situation.modifieEtat(RETOUR_ACCUEIL);
-        });
+        this.passeALaSuiteUneFoisEnregistre(
+          this.journal.attendFinEnregistrement()
+            .catch(() => this.journal.relanceEnregistrementsEnEchec(TIMEOUT_RELANCE))
+        );
+      } else if (etat === RELANCE_ENREGISTREMENT) {
+        this.passeALaSuiteUneFoisEnregistre(this.journal.relanceEnregistrementsEnEchec(TIMEOUT_RELANCE));
       }
     });
+  }
+
+  passeALaSuiteUneFoisEnregistre(promesseEnregistrement) {
+    promesseEnregistrement.then(
+      () => this.situation.modifieEtat(RETOUR_ACCUEIL),
+      (erreur) => {
+        console.error(erreur);
+        this.situation.modifieEtat(ERREUR_ENREGISTREMENT);
+      }
+    );
   }
 
   empecheLeClickDroit($) {

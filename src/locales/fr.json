@@ -200,6 +200,13 @@
     },
     "chargement": "Chargement en cours",
     "enregistrement": "Enregistrement en cours",
+    "test_connexion": "Test de la connexion en cours",
+    "erreur_enregistrement": {
+      "titre": "Échec d'enregistrement",
+      "description": "La connexion internet a été perdue et vos réponses n'ont pas encore pu être envoyées.",
+      "action": "Vérifiez la connexion internet puis cliquez sur le bouton pour réessayer. Si le problème persiste, prévenez la personne qui vous accompagne.",
+      "bouton": "Retester la connexion"
+    },
     "go": "Vous pouvez commencer",
     "reussite": "C'est terminé, bravo !",
     "retour_accueil": "Retour au parc",
