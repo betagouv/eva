@@ -8,9 +8,8 @@ import 'commun/styles/boutons.scss';
 import 'commun/styles/stop.scss';
 
 export default class VueStop {
-  constructor (situation, journal) {
+  constructor (situation) {
     this.situation = situation;
-    this.journal = journal;
   }
 
   affiche (pointInsertion, $) {

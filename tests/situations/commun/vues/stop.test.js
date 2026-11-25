@@ -4,16 +4,12 @@ import Situation, { STOPPEE } from 'commun/modeles/situation';
 
 describe('vue Stop', function () {
   let vue;
-  let mockJournal;
   let situation;
 
   beforeEach(function () {
     $('body').append('<div id="cadre"><div id="point-insertion"></div></div>');
-    mockJournal = {
-      enregistre () {}
-    };
     situation = new Situation();
-    vue = new VueStop(situation, mockJournal);
+    vue = new VueStop(situation);
   });
 
   it("sait s'insérer dans une page web", function () {
@@ -31,7 +27,7 @@ describe('vue Stop', function () {
 
   it("n'annonce pas d'impact sur le résultat quand l'abandon n'en a pas", function () {
     situation = new Situation({ abandonImpacteResultat: false });
-    vue = new VueStop(situation, mockJournal);
+    vue = new VueStop(situation);
     vue.affiche('#point-insertion', $);
 
     $('#point-insertion .bouton-stop').trigger('click');

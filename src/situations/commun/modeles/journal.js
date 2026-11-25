@@ -13,19 +13,11 @@ export class Journal {
     this.position = 0;
   }
 
-  attendFinEnregistrement () {
-    return this.registreEvenements.attendFinEnregistrement();
-  }
-
   envoieEvenements () {
     return this.registreEvenements.envoieEvenements();
   }
 
-  relanceEnregistrementsEnEchec (timeout) {
-    return this.registreEvenements.relanceEnregistrementsEnEchec(timeout);
-  }
-
-  enregistre (evenement, timeout) {
+  enregistre (evenement) {
     const payLoad = {
       date: this.maintenant(),
       session_id: this.sessionId,
@@ -35,7 +27,7 @@ export class Journal {
       evaluation_id: this.registreUtilisateur.idEvaluation(),
       position: this.position++
     };
-    return this.registreEvenements.enregistre(payLoad, timeout);
+    return this.registreEvenements.enregistre(payLoad);
   }
 
   enregistreSituationFaite () {

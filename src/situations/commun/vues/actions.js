@@ -39,7 +39,7 @@ export default class VueActions {
       this.store
     );
 
-    this.stop = new VueStop(this.situation, this.journal);
+    this.stop = new VueStop(this.situation);
     this.aide = new VueAide(this.situation, this.depotRessources, this.journal);
     this.situation.on(CHANGEMENT_ETAT, (etat) => this.afficheBoutons(etat, $));
     this.afficheBoutons(this.situation.etat(), $);

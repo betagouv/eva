@@ -1,69 +1,63 @@
 # Cycle de synchronisation des événements en fin de partie
 
-Une partie (une situation jouée par le bénéficiaire) ne se termine que lorsque tous ses événements ont été enregistrés sur le serveur. Si la connexion est perdue, le joueur est bloqué sur un écran d'erreur jusqu'à ce que l'envoi réussisse.
+Une partie (une situation jouée par le bénéficiaire) ne se termine que lorsque tous ses événements ont été enregistrés sur le serveur. Si la connexion est perdue, le joueur est bloqué sur un écran d'erreur jusqu'à ce que l'envoi réussisse. En cas d'abandon, il peut aussi abandonner sans attendre.
 
 ## Pendant la partie
 
-Chaque événement est envoyé par `RegistreEvenements#enregistre` (`src/situations/commun/infra/registre_evenements.js`). En cas d'erreur :
+Aucun événement n'est envoyé au serveur. `RegistreEvenements#enregistre` (`src/situations/commun/infra/registre_evenements.js`) ajoute chaque événement dans le localStorage, sous la clé `evenements_{idClient}`. Si le localStorage est plein, l'événement est gardé en mémoire (`evenementsEnMemoire`).
 
-- l'envoi est retenté avec un délai croissant (100 ms, doublé à chaque essai, plafonné à 2 s), pendant 60 s au plus ;
-- si l'erreur active le mode hors ligne, l'événement est enregistré dans le localStorage et considéré comme réussi ;
-- au-delà de 60 s, l'événement est ajouté à `evenementsEnEchec` et sa promesse est rejetée.
+## Envoi des événements
 
-Rien n'est affiché au joueur pendant la partie.
-
-## À la fin de la partie
-
-Le cycle est piloté par `VueCadre` (`src/situations/commun/vues/cadre.js`).
+`RegistreEvenements#envoieEvenements` envoie en une seule requête les événements du localStorage puis ceux gardés en mémoire :
 
 ```
-┌─ FINI : « Enregistrement en cours » ──────────────────────────┐
-│                                                               │
-│  attente des envois en cours                                  │
-│        │                                                      │
-│  aucun événement en échec ? ──oui──────────────────────────────────▶ RETOUR_ACCUEIL
-│        │                                                      │
-│       non                                                     │
-│        ▼                                                      │
-│  relance automatique ──ok──────────────────────────────────────────▶ RETOUR_ACCUEIL
-│        │                                                      │
-└────────┼──────────────────────────────────────────────────────┘
-       échec
-         ▼
-ERREUR_ENREGISTREMENT : « La passation est interrompue » ◀──échec──┐
-         │ clic « Retester la connexion »                          │
-         ▼                                                         │
-RELANCE_ENREGISTREMENT : « Test de la connexion en cours » ────────┘
-         └──ok─────────────────────────────────────────────────────────▶ RETOUR_ACCUEIL
+POST /api/evaluations/:id/collections_evenements
+{ "evenements": [...], "synchrone": true }
 ```
 
-### 1. `FINI`
+- Avec `synchrone`, le serveur enregistre les événements avant de répondre. Ainsi, `POST /api/evaluations/:id/fin` voit la dernière partie quand il calcule les compétences fortes.
+- Succès : le localStorage et la mémoire sont vidés.
+- Échec : les événements restent stockés et la promesse est rejetée.
+- Mode hors ligne sans réseau, ou évaluation sans `id` serveur : rien n'est vidé et la promesse est résolue. Le `Synchronisateur` enverra les événements du localStorage au retour du réseau, sans `synchrone` (le serveur passe alors par un job). Les événements gardés en mémoire sont perdus dans ce cas.
 
-- Écran : sablier « Enregistrement en cours ».
-- L'événement de fin de situation est envoyé.
-- `Journal#attendFinEnregistrement` attend tous les envois en cours, puis échoue s'il reste des événements en échec, y compris quand tous les envois en cours ont réussi (événements tombés en échec plus tôt dans la partie).
-- Dans ce cas, les événements en échec sont relancés automatiquement (`relanceEnregistrementsEnEchec`, timeout de 10 s), sans afficher d'erreur.
-- Succès → `RETOUR_ACCUEIL` ; nouvel échec → `ERREUR_ENREGISTREMENT`.
+Les événements en double sont ignorés par le serveur (`position` unique par `session_id`) : un renvoi après une réponse perdue est sans risque.
 
-### 2. `ERREUR_ENREGISTREMENT`
+## Cycle des états
 
-- Écran : `overlay_erreur_enregistrement.vue`, qui explique que la passation est interrompue faute de connexion et propose le bouton « Retester la connexion ».
-- Textes : `situation.erreur_enregistrement` dans `src/locales/fr.json`.
+Le cycle est piloté par `VueCadre` (`src/situations/commun/vues/cadre.js`). Les états sont définis dans `src/situations/commun/modeles/situation.js`.
 
-### 3. `RELANCE_ENREGISTREMENT`
+```
+Fin de partie                                Abandon (bouton stop)
 
-- Écran : sablier « Test de la connexion en cours ».
-- Les événements en échec sont renvoyés avec un timeout de 10 s.
-- Succès → `RETOUR_ACCUEIL` ; échec → retour à `ERREUR_ENREGISTREMENT`. Le joueur peut réessayer autant de fois que nécessaire.
+FINI                                         STOPPEE
+  │ enregistre finSituation, envoie            │ enregistre abandon, envoie
+  ├──ok──▶ RETOUR_ACCUEIL (écran de fin)       ├──ok──▶ accueil
+  └─échec                                      └─échec
+     ▼                                            ▼
+ERREUR_ENREGISTREMENT ◀─────échec──┐         ERREUR_ENREGISTREMENT_ABANDON ◀──échec──┐
+  │ « Retester la connexion »      │           │ « Retester »                        │
+  ▼                                │           ├─ « Abandonner » ──▶ accueil         │
+RELANCE_ENREGISTREMENT ────────────┘           ▼                                     │
+  └──ok──▶ RETOUR_ACCUEIL (écran de fin)     RELANCE_ENREGISTREMENT_ABANDON ─────────┘
+                                               └──ok──▶ accueil
+```
 
-### 4. `RETOUR_ACCUEIL`
+| État                             | Écran (sablier)                   | Si l'envoi réussit | Si l'envoi échoue               |
+|----------------------------------|-----------------------------------|--------------------|---------------------------------|
+| `FINI`                           | « Enregistrement en cours »       | `RETOUR_ACCUEIL`   | `ERREUR_ENREGISTREMENT`         |
+| `RELANCE_ENREGISTREMENT`         | « Test de la connexion en cours » | `RETOUR_ACCUEIL`   | `ERREUR_ENREGISTREMENT`         |
+| `STOPPEE`                        | « Enregistrement en cours »       | retour à l'accueil | `ERREUR_ENREGISTREMENT_ABANDON` |
+| `RELANCE_ENREGISTREMENT_ABANDON` | « Test de la connexion en cours » | retour à l'accueil | `ERREUR_ENREGISTREMENT_ABANDON` |
 
-Écran de fin habituel (`VueTerminer`).
+Les écrans d'erreur utilisent `overlay_erreur_enregistrement.vue` (textes : `situation.erreur_enregistrement` dans `src/locales/fr.json`) :
+
+- `ERREUR_ENREGISTREMENT` : bouton « Retester la connexion » ;
+- `ERREUR_ENREGISTREMENT_ABANDON` : boutons « Retester la connexion » et « Abandonner ». « Abandonner » retourne à l'accueil ; les événements restent dans le localStorage pour le `Synchronisateur`.
+
+`RETOUR_ACCUEIL` affiche l'écran de fin habituel (`VueTerminer`).
 
 ## Protection contre la fermeture
 
-Dans les états `FINI`, `ERREUR_ENREGISTREMENT` et `RELANCE_ENREGISTREMENT`, le navigateur demande confirmation avant de fermer ou recharger la page.
+Dans les états `FINI`, `ERREUR_ENREGISTREMENT` et `RELANCE_ENREGISTREMENT`, le navigateur demande confirmation avant de fermer ou recharger la page. Les états de l'abandon ne sont pas protégés : quitter la page ne perd rien, les événements étant dans le localStorage.
 
-## Limite actuelle
-
-Les événements en échec ne sont conservés qu'en mémoire : un rechargement de la page sur l'écran d'erreur les fait perdre. Leur sauvegarde dans le localStorage est prévue dans une étape suivante.
+Si la page est rechargée malgré tout, la partie recommence et les événements de la partie interrompue sont envoyés par le `Synchronisateur` au prochain affichage de l'accueil.
