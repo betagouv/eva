@@ -16,6 +16,7 @@ POST /api/evaluations/:id/collections_evenements
 ```
 
 - Avec `synchrone`, le serveur enregistre les événements avant de répondre. Ainsi, `POST /api/evaluations/:id/fin` voit la dernière partie quand il calcule les compétences fortes.
+- La requête est abandonnée au bout de 15 s et traitée comme un échec, pour ne pas laisser le joueur indéfiniment sur le sablier.
 - Succès : le localStorage et la mémoire sont vidés.
 - Échec : les événements restent stockés et la promesse est rejetée.
 - Mode hors ligne sans réseau, ou évaluation sans `id` serveur : rien n'est vidé et la promesse est résolue. Le `Synchronisateur` enverra les événements du localStorage au retour du réseau, sans `synchrone` (le serveur passe alors par un job). Les événements gardés en mémoire sont perdus dans ce cas.
