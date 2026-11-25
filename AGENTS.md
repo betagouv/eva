@@ -45,6 +45,10 @@ EVA is an educational assessment platform built around "situations" - workplace 
 - **Styles**: `src/situations/{name}/styles/` (SCSS)
 - **Views**: `src/situations/{name}/vues/` (Vue components)
 
+### Vocabulary
+- **Partie**: one situation played by a beneficiary, from its start to its end.
+- **Passation**: all the parties played by a beneficiary during a campaign. Do not use "passation" for a single partie.
+
 ### Current Situations
 `controle`, `inventaire`, `tri`, `questions`, `securite`, `prevention`, `maintenance`, `livraison`, `objets_trouves`, `bienvenue`, `plan_de_la_ville`, `cafe_de_la_place`, `place_du_marche`
 
