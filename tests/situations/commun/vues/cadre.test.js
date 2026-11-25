@@ -32,6 +32,7 @@ describe('Une vue du cadre', function () {
   let uneVueCadre;
   let store;
   let retourAccueil;
+  let dureeMinimaleTestConnexion;
 
   beforeEach(function () {
     store = creeStore();
@@ -47,8 +48,9 @@ describe('Une vue du cadre', function () {
     };
 
     retourAccueil = jest.fn();
+    dureeMinimaleTestConnexion = 0;
     uneVueCadre = function (classeVue = uneClasseVue()) {
-      return new VueCadre(classeVue, situation, journal, depotRessources, store, retourAccueil);
+      return new VueCadre(classeVue, situation, journal, depotRessources, store, retourAccueil, dureeMinimaleTestConnexion);
     };
     return depotRessources.chargement();
   });
@@ -308,6 +310,26 @@ describe('Une vue du cadre', function () {
         else done();
       });
       vueCadre.situation.modifieEtat(FINI);
+    });
+
+    it("laisse le test de connexion affiché une durée minimale avant de revenir sur l'écran d'erreur", async function () {
+      dureeMinimaleTestConnexion = 1500;
+      const vueCadre = uneVueCadre();
+      vueCadre.situation.modifieEtat(FINI);
+      await new Promise(process.nextTick);
+      expect(vueCadre.situation.etat()).toBe(ERREUR_ENREGISTREMENT);
+
+      jest.useFakeTimers();
+      try {
+        vueCadre.situation.modifieEtat(RELANCE_ENREGISTREMENT);
+        await jest.advanceTimersByTimeAsync(1499);
+        expect(vueCadre.situation.etat()).toBe(RELANCE_ENREGISTREMENT);
+
+        await jest.advanceTimersByTimeAsync(1);
+        expect(vueCadre.situation.etat()).toBe(ERREUR_ENREGISTREMENT);
+      } finally {
+        jest.useRealTimers();
+      }
     });
   });
 
