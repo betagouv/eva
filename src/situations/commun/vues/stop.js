@@ -26,7 +26,7 @@ export default class VueStop {
         titre: traduction(this.cleMessageConfirmation()),
         boutonOk: traduction('abandon.oui'),
         boutonAnnuler: traduction('abandon.non'),
-        actionOk: this.clickSurOk.bind(this)
+        actionOk: () => this.clickSurOk($)
       }
     );
   }
@@ -38,7 +38,10 @@ export default class VueStop {
     return 'abandon.confirmation_sans_impact';
   }
 
-  clickSurOk () {
+  clickSurOk ($) {
+    if ($) {
+      $('#fenetre-modale').remove();
+    }
     this.situation.modifieEtat(STOPPEE);
   }
 }
