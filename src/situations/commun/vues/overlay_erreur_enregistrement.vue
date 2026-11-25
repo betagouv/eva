@@ -40,6 +40,13 @@ export default {
 </script>
 
 <style scoped>
+.overlay-erreur-enregistrement .modale-interieur {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.15);
+}
+
 .titre-erreur-enregistrement {
   display: flex;
   align-items: center;
