@@ -17,6 +17,10 @@ export class Journal {
     return this.registreEvenements.attendFinEnregistrement();
   }
 
+  envoieEvenements () {
+    return this.registreEvenements.envoieEvenements();
+  }
+
   relanceEnregistrementsEnEchec (timeout) {
     return this.registreEvenements.relanceEnregistrementsEnEchec(timeout);
   }

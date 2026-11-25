@@ -35,9 +35,29 @@ export default class RegistreEvenements extends BaseRegistre {
     return Promise.resolve();
   }
 
-  creeEvenements (idClient, idEvaluation) {
+  envoieEvenements () {
+    const idEvaluation = this.registreUtilisateur.idEvaluation();
+    if (!idEvaluation) {
+      return Promise.resolve();
+    }
+    const idClient = this.registreUtilisateur.idClient();
+    return this.creeEvenements(idClient, idEvaluation, {
+      synchrone: true,
+      evenementsEnMemoire: this.evenementsEnMemoire
+    })
+      .then(() => {
+        this.evenementsEnMemoire = [];
+      })
+      .catch((xhr) => {
+        if (!this.registreUtilisateur.activeModeHorsLigne(xhr)) {
+          throw xhr;
+        }
+      });
+  }
+
+  creeEvenements (idClient, idEvaluation, { synchrone = false, evenementsEnMemoire = [] } = {}) {
     return new Promise((resolve, reject) => {
-      const evenements = this.evenements(idClient);
+      const evenements = [...this.evenements(idClient), ...evenementsEnMemoire];
 
       if (evenements.length === 0) {
         resolve();
@@ -47,7 +67,7 @@ export default class RegistreEvenements extends BaseRegistre {
       this.$.ajax({
         type: 'POST',
         url: `${this.urlServeur}/api/evaluations/${idEvaluation}/collections_evenements`,
-        data: JSON.stringify({ evenements: evenements }),
+        data: JSON.stringify(synchrone ? { evenements, synchrone } : { evenements }),
         contentType: 'application/json; charset=utf-8',
         success: () => {
           this.supprimeDuLocalStorage(idClient);

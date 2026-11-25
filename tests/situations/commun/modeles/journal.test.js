@@ -12,7 +12,10 @@ describe('le journal', function () {
   beforeEach(function () {
     evenementsEnregistres.length = 0;
     mockMaintenant = () => { return 123; };
-    const registreEvenements = { enregistre: (evenement) => evenementsEnregistres.push(evenement) };
+    const registreEvenements = {
+      enregistre: (evenement) => evenementsEnregistres.push(evenement),
+      envoieEvenements: () => Promise.resolve("envoyés")
+    };
     journal = new Journal(mockMaintenant, sessionId, identifiantSituation,
       registreEvenements, registreUtilisateur);
   });
@@ -51,6 +54,12 @@ describe('le journal', function () {
       };
       journal.situation = 'nom situation';
       journal.enregistreSituationFaite();
+    });
+  });
+
+  describe("#envoieEvenements()", function () {
+    it("délègue l'envoi des événements au registre", async function () {
+      await expect(journal.envoieEvenements()).resolves.toBe("envoyés");
     });
   });
 });

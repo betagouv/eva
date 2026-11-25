@@ -61,6 +61,68 @@ describe('le registre des événements', function () {
     });
   });
 
+  describe("#envoieEvenements()", function () {
+    beforeEach(function () {
+      jest.spyOn(registreUtilisateur, "idEvaluation").mockImplementation(() => "id_evaluation");
+      jest.spyOn(registreUtilisateur, "estModeHorsLigne").mockImplementation(() => false);
+      depot.enregistre({ id: 1 });
+    });
+
+    it("envoie tous les événements en une requête synchrone", function () {
+      depot.envoieEvenements();
+
+      expect(requetes.length).toBe(1);
+      expect(requetes[0].url).toBe(`${process.env.URL_API}/api/evaluations/id_evaluation/collections_evenements`);
+      expect(JSON.parse(requetes[0].data)).toEqual({ evenements: [{ id: 1 }], synchrone: true });
+    });
+
+    it("envoie aussi les événements gardés en mémoire", function () {
+      depot.evenementsEnMemoire.push({ id: 2 });
+
+      depot.envoieEvenements();
+
+      expect(JSON.parse(requetes[0].data).evenements).toEqual([{ id: 1 }, { id: 2 }]);
+    });
+
+    it("vide le localStorage et la mémoire en cas de succès", async function () {
+      depot.evenementsEnMemoire.push({ id: 2 });
+      const envoi = depot.envoieEvenements();
+      requetes[0].success();
+
+      await expect(envoi).resolves.toBeUndefined();
+      expect(window.localStorage.getItem("evenements_id_client")).toBe(null);
+      expect(depot.evenementsEnMemoire).toEqual([]);
+    });
+
+    it("garde les événements et rejette la promesse en cas d'échec", async function () {
+      const envoi = depot.envoieEvenements();
+      requetes[0].error({ status: 0 });
+
+      await expect(envoi).rejects.toEqual({ status: 0 });
+      expect(window.localStorage.getItem("evenements_id_client")).toBe('[{"id":1}]');
+    });
+
+    describe("en mode hors ligne", function () {
+      it("résout la promesse sans vider le localStorage quand le réseau est absent", async function () {
+        registreUtilisateur.estModeHorsLigne.mockImplementation(() => true);
+        const envoi = depot.envoieEvenements();
+        requetes[0].error({ status: 0 });
+
+        await expect(envoi).resolves.toBeUndefined();
+        expect(window.localStorage.getItem("evenements_id_client")).toBe('[{"id":1}]');
+      });
+    });
+
+    describe("quand l'évaluation n'existe pas encore sur le serveur", function () {
+      it("n'envoie rien et résout la promesse", async function () {
+        registreUtilisateur.idEvaluation.mockImplementation(() => undefined);
+
+        await expect(depot.envoieEvenements()).resolves.toBeUndefined();
+        expect(requetes.length).toBe(0);
+      });
+    });
+  });
+
   describe('#creeEvenements()', function () {
     let evenements;
 
