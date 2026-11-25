@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import VueStop from 'commun/vues/stop';
-import Situation, { STOPPEE } from 'commun/modeles/situation';
+import Situation, { STOPPEE, CHANGEMENT_ETAT } from 'commun/modeles/situation';
 
 describe('vue Stop', function () {
   let vue;
@@ -38,5 +38,18 @@ describe('vue Stop', function () {
     vue.clickSurOk();
 
     expect(situation.etat()).toEqual(STOPPEE);
+  });
+
+  it("ferme la modale de confirmation avant de stopper la situation", function () {
+    vue.affiche('#point-insertion', $);
+    $('#point-insertion .bouton-stop').trigger('click');
+    let modaleAuMomentDeStopper;
+    situation.on(CHANGEMENT_ETAT, () => {
+      modaleAuMomentDeStopper = $('#fenetre-modale').length;
+    });
+
+    $('#OK-modale').trigger('click');
+
+    expect(modaleAuMomentDeStopper).toBe(0);
   });
 });
