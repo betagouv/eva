@@ -205,7 +205,8 @@
       "titre": "Échec d'enregistrement",
       "description": "La connexion internet a été perdue et vos réponses n'ont pas encore pu être envoyées.",
       "action": "Vérifiez la connexion internet puis cliquez sur le bouton pour réessayer. Si le problème persiste, prévenez la personne qui vous accompagne.",
-      "bouton": "Retester la connexion"
+      "bouton": "Retester la connexion",
+      "bouton_abandon": "Abandonner"
     },
     "go": "Vous pouvez commencer",
     "reussite": "C'est terminé, bravo !",

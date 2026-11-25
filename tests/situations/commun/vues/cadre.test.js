@@ -5,7 +5,8 @@ import SituationCommune, {
   ATTENTE_DEMARRAGE,
   ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI,
   DEMARRE, FINI, RETOUR_ACCUEIL, STOPPEE,
-  ERREUR_ENREGISTREMENT, RELANCE_ENREGISTREMENT
+  ERREUR_ENREGISTREMENT, RELANCE_ENREGISTREMENT,
+  ERREUR_ENREGISTREMENT_ABANDON, RELANCE_ENREGISTREMENT_ABANDON
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementFinSituation from 'commun/modeles/evenement_fin_situation';
@@ -30,6 +31,7 @@ describe('Une vue du cadre', function () {
   let journal;
   let uneVueCadre;
   let store;
+  let retourAccueil;
 
   beforeEach(function () {
     store = creeStore();
@@ -44,8 +46,9 @@ describe('Une vue du cadre', function () {
       envoieEvenements () { return new Promise(() => {}); }
     };
 
+    retourAccueil = jest.fn();
     uneVueCadre = function (classeVue = uneClasseVue()) {
-      return new VueCadre(classeVue, situation, journal, depotRessources, store);
+      return new VueCadre(classeVue, situation, journal, depotRessources, store, retourAccueil);
     };
     return depotRessources.chargement();
   });
@@ -275,6 +278,7 @@ describe('Une vue du cadre', function () {
       vueCadre.situation.modifieEtat(FINI);
       await erreurAffichee;
       expect($('.overlay-erreur-enregistrement').length).toBe(1);
+      expect($('.bouton-abandon-enregistrement').length).toBe(0);
     });
 
     it("renvoie les événements au clic et retourne à l'accueil en cas de succès", function (done) {
@@ -304,6 +308,87 @@ describe('Une vue du cadre', function () {
         else done();
       });
       vueCadre.situation.modifieEtat(FINI);
+    });
+  });
+
+  describe("quand la situation est abandonnée", function () {
+    function attendEtat (vueCadre, etatAttendu) {
+      return new Promise((resolve) => {
+        vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
+          if (etat === etatAttendu) resolve();
+        });
+      });
+    }
+
+    it("enregistre l'abandon, envoie les événements puis retourne à l'accueil", async function () {
+      const appels = [];
+      journal.enregistre = (evenement) => {
+        expect(evenement).toBeInstanceOf(EvenementAbandon);
+        appels.push("enregistre");
+      };
+      journal.envoieEvenements = () => {
+        appels.push("envoie");
+        return Promise.resolve();
+      };
+      const vueCadre = uneVueCadre();
+
+      vueCadre.situation.modifieEtat(STOPPEE);
+      await new Promise(process.nextTick);
+
+      expect(appels).toEqual(["enregistre", "envoie"]);
+      expect(retourAccueil).toHaveBeenCalled();
+      expect(vueCadre.situation.etat()).toBe(STOPPEE);
+    });
+
+    describe("quand l'envoi échoue", function () {
+      let vueCadre;
+
+      beforeEach(async function () {
+        jest.spyOn(console, "error").mockImplementation(() => {});
+        journal.envoieEvenements = () => Promise.reject(new Error("réseau"));
+        vueCadre = uneVueCadre();
+        await vueCadre.affiche("#point-insertion", $);
+        const erreurAffichee = attendEtat(vueCadre, ERREUR_ENREGISTREMENT_ABANDON);
+        vueCadre.situation.modifieEtat(STOPPEE);
+        await erreurAffichee;
+      });
+
+      afterEach(function () {
+        console.error.mockRestore();
+      });
+
+      it("affiche l'écran d'erreur avec un bouton pour abandonner", function () {
+        expect($(".overlay-erreur-enregistrement").length).toBe(1);
+        expect($(".bouton-abandon-enregistrement").length).toBe(1);
+        expect(retourAccueil).not.toHaveBeenCalled();
+      });
+
+      it("retourne à l'accueil sans demander de confirmation quand on clique sur abandonner", function () {
+        $(".bouton-abandon-enregistrement").trigger("click");
+
+        expect(retourAccueil).toHaveBeenCalled();
+        const event = $.Event("beforeunload");
+        $(window).trigger(event);
+        expect(event.isDefaultPrevented()).toBe(false);
+      });
+
+      it("revient sur l'écran d'erreur d'abandon quand le renvoi échoue", async function () {
+        const erreurAffichee = attendEtat(vueCadre, ERREUR_ENREGISTREMENT_ABANDON);
+
+        vueCadre.situation.modifieEtat(RELANCE_ENREGISTREMENT_ABANDON);
+
+        await erreurAffichee;
+        expect(retourAccueil).not.toHaveBeenCalled();
+      });
+
+      it("retourne à l'accueil quand le renvoi réussit", async function () {
+        journal.envoieEvenements = () => Promise.resolve();
+
+        vueCadre.situation.modifieEtat(RELANCE_ENREGISTREMENT_ABANDON);
+        await new Promise(process.nextTick);
+
+        expect(retourAccueil).toHaveBeenCalled();
+      });
     });
   });
 
