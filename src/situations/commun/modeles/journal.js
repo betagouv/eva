@@ -17,6 +17,10 @@ export class Journal {
     return this.registreEvenements.attendFinEnregistrement();
   }
 
+  relanceEnregistrementsEnEchec (timeout) {
+    return this.registreEvenements.relanceEnregistrementsEnEchec(timeout);
+  }
+
   enregistre (evenement, timeout) {
     const payLoad = {
       date: this.maintenant(),

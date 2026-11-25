@@ -4,7 +4,8 @@ import SituationCommune, {
   CHANGEMENT_ETAT, CHARGEMENT, ERREUR_CHARGEMENT,
   ATTENTE_DEMARRAGE,
   ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI,
-  DEMARRE, FINI, RETOUR_ACCUEIL, STOPPEE
+  DEMARRE, FINI, RETOUR_ACCUEIL, STOPPEE,
+  ERREUR_ENREGISTREMENT, RELANCE_ENREGISTREMENT
 } from 'commun/modeles/situation';
 import EvenementDemarrage from 'commun/modeles/evenement_demarrage';
 import EvenementFinSituation from 'commun/modeles/evenement_fin_situation';
@@ -40,7 +41,7 @@ describe('Une vue du cadre', function () {
     journal = {
       enregistre () {},
       enregistreSituationFaite () {},
-      attendFinEnregistrement () { return { finally () {} }; }
+      attendFinEnregistrement () { return new Promise(() => {}); }
     };
 
     uneVueCadre = function (classeVue = uneClasseVue()) {
@@ -237,17 +238,80 @@ describe('Une vue du cadre', function () {
     journal.enregistre = (evenement) => {
       expect(evenement).toBeInstanceOf(EvenementFinSituation);
     };
-    journal.attendFinEnregistrement = () => {
-      return {
-        finally (cb) {
-          cb.call();
-          expect(vueCadre.situation.etat()).toBe(RETOUR_ACCUEIL);
+    journal.attendFinEnregistrement = () => Promise.resolve();
+    const vueCadre = uneVueCadre();
+    vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
+      if (etat === RETOUR_ACCUEIL) done();
+    });
+    vueCadre.situation.emit(CHANGEMENT_ETAT, FINI);
+  });
+
+  describe("quand l'enregistrement des événements échoue", function () {
+    beforeEach(function () {
+      jest.spyOn(console, 'error').mockImplementation(() => {});
+      journal.attendFinEnregistrement = () => Promise.reject(new Error("réseau"));
+      journal.relanceEnregistrementsEnEchec = () => Promise.reject(new Error("réseau"));
+    });
+
+    afterEach(function () {
+      console.error.mockRestore();
+    });
+
+    it("bloque la passation sur un écran d'erreur", async function () {
+      const vueCadre = uneVueCadre();
+      await vueCadre.affiche('#point-insertion', $);
+      const erreurAffichee = new Promise((resolve) => {
+        vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
+          if (etat === ERREUR_ENREGISTREMENT) resolve();
+        });
+      });
+      vueCadre.situation.modifieEtat(FINI);
+      await erreurAffichee;
+      expect($('.overlay-erreur-enregistrement').length).toBe(1);
+    });
+
+    it("relance automatiquement les enregistrements en échec et retourne à l'accueil sans afficher l'erreur", function (done) {
+      journal.relanceEnregistrementsEnEchec = () => Promise.resolve();
+      const vueCadre = uneVueCadre();
+      const etats = [];
+      vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
+        etats.push(etat);
+        if (etat === RETOUR_ACCUEIL) {
+          expect(etats).not.toContain(ERREUR_ENREGISTREMENT);
           done();
         }
+      });
+      vueCadre.situation.modifieEtat(FINI);
+    });
+
+    it("relance les enregistrements en échec au clic et retourne à l'accueil en cas de succès", function (done) {
+      let relances = 0;
+      journal.relanceEnregistrementsEnEchec = () => {
+        relances++;
+        return relances === 1 ? Promise.reject(new Error("réseau")) : Promise.resolve();
       };
-    };
-    const vueCadre = uneVueCadre();
-    vueCadre.situation.emit(CHANGEMENT_ETAT, FINI);
+      const vueCadre = uneVueCadre();
+      vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
+        if (etat === ERREUR_ENREGISTREMENT) vueCadre.situation.modifieEtat(RELANCE_ENREGISTREMENT);
+        if (etat === RETOUR_ACCUEIL) {
+          expect(relances).toBe(2);
+          done();
+        }
+      });
+      vueCadre.situation.modifieEtat(FINI);
+    });
+
+    it("revient sur l'écran d'erreur si la relance échoue", function (done) {
+      let erreurs = 0;
+      const vueCadre = uneVueCadre();
+      vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
+        if (etat !== ERREUR_ENREGISTREMENT) return;
+        erreurs++;
+        if (erreurs === 1) vueCadre.situation.modifieEtat(RELANCE_ENREGISTREMENT);
+        else done();
+      });
+      vueCadre.situation.modifieEtat(FINI);
+    });
   });
 
   it("enregistre la situation faite au démarrage de l'entrainement", function (done) {

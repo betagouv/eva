@@ -82,6 +82,28 @@ describe('le registre des événements', function () {
 
       requetes.forEach((requete) => { requete.success(); });
     });
+
+    describe("quand un événement n'a pas pu être envoyé avant le timeout", function () {
+      beforeEach(function () {
+        jest.spyOn(registreUtilisateur, 'activeModeHorsLigne').mockImplementation(() => false);
+      });
+
+      it("rejette la promesse et permet de relancer l'enregistrement", async function () {
+        depot.enregistre({ id: 1 }, 0).catch(() => {});
+        depot.enregistre({ id: 2 }, 0);
+        requetes[0].error('xhr');
+        requetes[1].success();
+
+        await expect(depot.attendFinEnregistrement()).rejects.toThrow();
+
+        const relance = depot.relanceEnregistrementsEnEchec();
+        expect(requetes.length).toBe(3);
+        expect(requetes[2].data).toBe('{"id":1}');
+        requetes[2].success();
+
+        await expect(relance).resolves.toBeUndefined();
+      });
+    });
   });
 
   describe('#creeEvenements()', function () {

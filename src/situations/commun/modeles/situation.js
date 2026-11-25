@@ -7,6 +7,8 @@ export const ENTRAINEMENT_DEMARRE = 'entrainementDemarré';
 export const ENTRAINEMENT_FINI = 'entrainementFini';
 export const DEMARRE = 'démarré';
 export const FINI = 'fini';
+export const ERREUR_ENREGISTREMENT = 'erreurEnregistrement';
+export const RELANCE_ENREGISTREMENT = 'relanceEnregistrement';
 export const RETOUR_ACCUEIL = 'retourAccueil';
 export const STOPPEE = 'stoppée';
 
