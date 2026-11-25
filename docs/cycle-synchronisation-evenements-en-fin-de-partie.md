@@ -43,17 +43,19 @@ RELANCE_ENREGISTREMENT ────────────┘           ▼    
                                                └──ok──▶ accueil
 ```
 
-| État                             | Écran (sablier)                   | Si l'envoi réussit | Si l'envoi échoue               |
-|----------------------------------|-----------------------------------|--------------------|---------------------------------|
-| `FINI`                           | « Enregistrement en cours »       | `RETOUR_ACCUEIL`   | `ERREUR_ENREGISTREMENT`         |
-| `RELANCE_ENREGISTREMENT`         | « Test de la connexion en cours » | `RETOUR_ACCUEIL`   | `ERREUR_ENREGISTREMENT`         |
-| `STOPPEE`                        | « Enregistrement en cours »       | retour à l'accueil | `ERREUR_ENREGISTREMENT_ABANDON` |
-| `RELANCE_ENREGISTREMENT_ABANDON` | « Test de la connexion en cours » | retour à l'accueil | `ERREUR_ENREGISTREMENT_ABANDON` |
+| État                             | Écran (sablier)             | Si l'envoi réussit | Si l'envoi échoue               |
+|----------------------------------|-----------------------------|--------------------|---------------------------------|
+| `FINI`                           | « Enregistrement en cours » | `RETOUR_ACCUEIL`   | `ERREUR_ENREGISTREMENT`         |
+| `RELANCE_ENREGISTREMENT`         | « Enregistrement en cours » | `RETOUR_ACCUEIL`   | `ERREUR_ENREGISTREMENT`         |
+| `STOPPEE`                        | « Enregistrement en cours » | retour à l'accueil | `ERREUR_ENREGISTREMENT_ABANDON` |
+| `RELANCE_ENREGISTREMENT_ABANDON` | « Enregistrement en cours » | retour à l'accueil | `ERREUR_ENREGISTREMENT_ABANDON` |
 
 Les écrans d'erreur utilisent `overlay_erreur_enregistrement.vue` (textes : `situation.erreur_enregistrement` dans `src/locales/fr.json`) :
 
 - `ERREUR_ENREGISTREMENT` : bouton « Retester la connexion » ;
 - `ERREUR_ENREGISTREMENT_ABANDON` : boutons « Retester la connexion » et « Abandonner ». « Abandonner » retourne à l'accueil ; les événements restent dans le localStorage pour le `Synchronisateur`.
+
+Dans les états `RELANCE_*`, le sablier « Enregistrement en cours » reste affiché au moins 1,5 s, même si l'envoi échoue tout de suite : sinon le joueur ne voit pas que son clic a été pris en compte.
 
 `RETOUR_ACCUEIL` affiche l'écran de fin habituel (`VueTerminer`).
 

@@ -29,10 +29,14 @@ import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
 import { SCOPE_URL } from 'commun/vues/affiche_situation';
 
+const DUREE_MINIMALE_TEST_CONNEXION = 1500;
+
 export default class VueCadre {
   constructor(VueSituation, situation, journal, depotRessources, store,
-    retourAccueil = () => window.location.assign(SCOPE_URL)) {
+    retourAccueil = () => window.location.assign(SCOPE_URL),
+    dureeMinimaleTestConnexion = DUREE_MINIMALE_TEST_CONNEXION) {
     this.retourAccueil = retourAccueil;
+    this.dureeMinimaleTestConnexion = dureeMinimaleTestConnexion;
     this.VueSituation = VueSituation;
     this.journal = journal;
     this.situation = situation;
@@ -47,13 +51,13 @@ export default class VueCadre {
     this.vuesEtats.set(ERREUR_ENREGISTREMENT, creeAdaptateur(OverlayErreurEnregistrement, {
       relance: () => this.situation.modifieEtat(RELANCE_ENREGISTREMENT)
     }));
-    this.vuesEtats.set(RELANCE_ENREGISTREMENT, creeAdaptateur(OverlayAttente, { raison: 'test_connexion' }));
+    this.vuesEtats.set(RELANCE_ENREGISTREMENT, creeAdaptateur(OverlayAttente, { raison: 'enregistrement' }));
     this.vuesEtats.set(STOPPEE, creeAdaptateur(OverlayAttente, { raison: 'enregistrement' }));
     this.vuesEtats.set(ERREUR_ENREGISTREMENT_ABANDON, creeAdaptateur(OverlayErreurEnregistrement, {
       relance: () => this.situation.modifieEtat(RELANCE_ENREGISTREMENT_ABANDON),
       abandonne: () => this.retourAccueil()
     }));
-    this.vuesEtats.set(RELANCE_ENREGISTREMENT_ABANDON, creeAdaptateur(OverlayAttente, { raison: 'test_connexion' }));
+    this.vuesEtats.set(RELANCE_ENREGISTREMENT_ABANDON, creeAdaptateur(OverlayAttente, { raison: 'enregistrement' }));
     this.vuesEtats.set(RETOUR_ACCUEIL, VueTerminer);
     this.envoiEvenementDemarrageUneFoisDemarre();
     this.envoiEvenementFinSituationUneFoisTermine();
@@ -142,27 +146,32 @@ export default class VueCadre {
         this.envoieEvenements(() => this.situation.modifieEtat(RETOUR_ACCUEIL), ERREUR_ENREGISTREMENT);
         break;
       case RELANCE_ENREGISTREMENT:
-        this.envoieEvenements(() => this.situation.modifieEtat(RETOUR_ACCUEIL), ERREUR_ENREGISTREMENT);
+        this.envoieEvenements(() => this.situation.modifieEtat(RETOUR_ACCUEIL), ERREUR_ENREGISTREMENT, this.dureeMinimaleTestConnexion);
         break;
       case STOPPEE:
         this.journal.enregistre(new EvenementAbandon());
         this.envoieEvenements(() => this.retourAccueil(), ERREUR_ENREGISTREMENT_ABANDON);
         break;
       case RELANCE_ENREGISTREMENT_ABANDON:
-        this.envoieEvenements(() => this.retourAccueil(), ERREUR_ENREGISTREMENT_ABANDON);
+        this.envoieEvenements(() => this.retourAccueil(), ERREUR_ENREGISTREMENT_ABANDON, this.dureeMinimaleTestConnexion);
         break;
       }
     });
   }
 
-  envoieEvenements(apresEnvoi, etatEnCasDErreur) {
-    this.journal.envoieEvenements().then(
-      apresEnvoi,
-      (erreur) => {
-        console.error(erreur);
+  envoieEvenements(apresEnvoi, etatEnCasDErreur, dureeMinimale = 0) {
+    const attente = dureeMinimale > 0
+      ? new Promise((resolve) => setTimeout(resolve, dureeMinimale))
+      : Promise.resolve();
+    const envoi = this.journal.envoieEvenements();
+    Promise.allSettled([envoi, attente]).then(([resultat]) => {
+      if (resultat.status === 'fulfilled') {
+        apresEnvoi();
+      } else {
+        console.error(resultat.reason);
         this.situation.modifieEtat(etatEnCasDErreur);
       }
-    );
+    });
   }
 
   empecheLeClickDroit($) {
