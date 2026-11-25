@@ -109,7 +109,7 @@ export default class VueCadre {
 
   empecheLeRetourArriereDuNavigateur($) {
     const etatsProteges = [ENTRAINEMENT_DEMARRE, ENTRAINEMENT_FINI, DEMARRE];
-    const vueStop = new VueStop(this.situation, this.journal);
+    const vueStop = new VueStop(this.situation);
     const piegeHistorique = () => window.history.pushState({ piegeRetourArriere: true }, '');
     let piegeActif = false;
 

@@ -4,26 +4,8 @@ import BaseRegistre from 'commun/infra/base_registre';
 export default class RegistreEvenements extends BaseRegistre {
   constructor (registreUtilisateur, $ = jQuery) {
     super($);
-    this.promesses = [];
-    this.evenementsEnEchec = [];
     this.evenementsEnMemoire = [];
     this.registreUtilisateur = registreUtilisateur;
-  }
-
-  attendFinEnregistrement () {
-    return Promise.allSettled(this.promesses).then(() => {
-      if (this.evenementsEnEchec.length > 0) {
-        throw new Error(`${this.evenementsEnEchec.length} événement(s) non enregistré(s)`);
-      }
-    });
-  }
-
-  relanceEnregistrementsEnEchec (timeout) {
-    const evenements = this.evenementsEnEchec;
-    this.evenementsEnEchec = [];
-    this.promesses = [];
-    evenements.forEach((payload) => this.enregistre(payload, timeout).catch(() => {}));
-    return this.attendFinEnregistrement();
   }
 
   enregistre (payload) {

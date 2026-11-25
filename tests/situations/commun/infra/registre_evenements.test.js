@@ -50,17 +50,6 @@ describe('le registre des événements', function () {
     });
   });
 
-  describe('#attendFinEnregistrement()', function () {
-    it('peut attendre la fin de tous les enregistrements', function (done) {
-      depot.enregistre({});
-      depot.enregistre({});
-
-      depot.attendFinEnregistrement().finally(done);
-
-      requetes.forEach((requete) => { requete.success(); });
-    });
-  });
-
   describe("#envoieEvenements()", function () {
     beforeEach(function () {
       jest.spyOn(registreUtilisateur, "idEvaluation").mockImplementation(() => "id_evaluation");
