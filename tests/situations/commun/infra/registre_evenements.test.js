@@ -65,6 +65,12 @@ describe('le registre des événements', function () {
       expect(JSON.parse(requetes[0].data)).toEqual({ evenements: [{ id: 1 }], synchrone: true });
     });
 
+    it("abandonne la requête après 15 secondes", function () {
+      depot.envoieEvenements();
+
+      expect(requetes[0].timeout).toBe(15000);
+    });
+
     it("envoie aussi les événements gardés en mémoire", function () {
       depot.evenementsEnMemoire.push({ id: 2 });
 
@@ -128,6 +134,12 @@ describe('le registre des événements', function () {
       expect(requetes[0].url).toBe(`${process.env.URL_API}/api/evaluations/id_evaluation/collections_evenements`);
       expect(requetes[0].data)
         .toEqual('{"evenements":[{"autreCle":"valeur2","description":{"cle":"valeur2"}}]}');
+    });
+
+    it("n'impose pas de délai à la requête", function () {
+      depot.creeEvenements("id_client", "id_evaluation");
+
+      expect(requetes[0].timeout).toBeUndefined();
     });
 
     it("retourne une promesse d'enregistrement", function (done) {

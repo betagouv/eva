@@ -1,6 +1,8 @@
 import jQuery from 'jquery';
 import BaseRegistre from 'commun/infra/base_registre';
 
+const DELAI_ENVOI_SYNCHRONE = 15000;
+
 export default class RegistreEvenements extends BaseRegistre {
   constructor (registreUtilisateur, $ = jQuery) {
     super($);
@@ -51,6 +53,7 @@ export default class RegistreEvenements extends BaseRegistre {
         url: `${this.urlServeur}/api/evaluations/${idEvaluation}/collections_evenements`,
         data: JSON.stringify(synchrone ? { evenements, synchrone } : { evenements }),
         contentType: 'application/json; charset=utf-8',
+        timeout: synchrone ? DELAI_ENVOI_SYNCHRONE : undefined,
         success: () => {
           this.supprimeDuLocalStorage(idClient);
           resolve();
