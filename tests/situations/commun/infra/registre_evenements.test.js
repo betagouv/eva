@@ -18,57 +18,34 @@ describe('le registre des événements', function () {
     depot = new RegistreEvenements(registreUtilisateur, { ajax (params) { requetes.push(params); } });
   });
 
-  describe('#enregistre()', function () {
-    describe('quand on est en ligne', function () {
-      beforeEach(function () {
-        jest.spyOn(registreUtilisateur, 'activeModeHorsLigne').mockImplementation(() => false);
-      });
+  describe("#enregistre()", function () {
+    it("enregistre l'événement dans le localStorage sans requête au serveur", function () {
+      depot.enregistre({ id: 1 });
+      depot.enregistre({ id: 2 });
 
-      afterAll(function () {
-        jest.useRealTimers();
-      });
-
-      it('fait un POST de chaque evenement du journal vers le serveur', function () {
-        depot.enregistre({ autreCle: 'valeur2', description: { cle: 'valeur2' } });
-
-        expect(requetes.length).toBe(1);
-        expect(requetes[0].type).toBe('POST');
-        expect(requetes[0].data)
-          .toEqual('{"autreCle":"valeur2","description":{"cle":"valeur2"}}');
-      });
-
-      it("retourne une promesse d'enregistrement", function (done) {
-        depot.enregistre({}).then(done);
-
-        requetes[0].success();
-      });
-
-      it('re-essaye si le POST échoue', function (done) {
-        jest.useFakeTimers();
-        depot.enregistre({}).then(done);
-
-        expect(requetes.length).toBe(1);
-        requetes[0].error('xhr quelconque');
-
-        jest.advanceTimersByTime(110);
-
-        expect(requetes.length).toBe(2);
-        requetes[1].success();
-      });
+      expect(requetes.length).toBe(0);
+      expect(window.localStorage.getItem("evenements_id_client")).toBe('[{"id":1},{"id":2}]');
     });
 
-    describe('quand on est hors ligne', function () {
+    it("retourne une promesse résolue", async function () {
+      await expect(depot.enregistre({ id: 1 })).resolves.toBeUndefined();
+    });
+
+    describe("quand le localStorage est plein", function () {
       beforeEach(function () {
-        jest.spyOn(registreUtilisateur, 'activeModeHorsLigne').mockImplementation(() => true);
+        jest.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+          throw new DOMException("plein", "QuotaExceededError");
+        });
       });
 
-      it('tente un POST puis enregistre en local', function (done) {
-        depot.enregistre({}).then(done);
+      afterEach(function () {
+        Storage.prototype.setItem.mockRestore();
+      });
 
-        expect(requetes.length).toBe(1);
-        requetes[0].error();
+      it("garde l'événement en mémoire", async function () {
+        await expect(depot.enregistre({ id: 1 })).resolves.toBeUndefined();
 
-        expect(window.localStorage.getItem('evenements_id_client')).toBe('[{}]');
+        expect(depot.evenementsEnMemoire).toEqual([{ id: 1 }]);
       });
     });
   });
@@ -81,28 +58,6 @@ describe('le registre des événements', function () {
       depot.attendFinEnregistrement().finally(done);
 
       requetes.forEach((requete) => { requete.success(); });
-    });
-
-    describe("quand un événement n'a pas pu être envoyé avant le timeout", function () {
-      beforeEach(function () {
-        jest.spyOn(registreUtilisateur, 'activeModeHorsLigne').mockImplementation(() => false);
-      });
-
-      it("rejette la promesse et permet de relancer l'enregistrement", async function () {
-        depot.enregistre({ id: 1 }, 0).catch(() => {});
-        depot.enregistre({ id: 2 }, 0);
-        requetes[0].error('xhr');
-        requetes[1].success();
-
-        await expect(depot.attendFinEnregistrement()).rejects.toThrow();
-
-        const relance = depot.relanceEnregistrementsEnEchec();
-        expect(requetes.length).toBe(3);
-        expect(requetes[2].data).toBe('{"id":1}');
-        requetes[2].success();
-
-        await expect(relance).resolves.toBeUndefined();
-      });
     });
   });
 
