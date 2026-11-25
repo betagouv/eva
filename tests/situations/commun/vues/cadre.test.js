@@ -41,7 +41,7 @@ describe('Une vue du cadre', function () {
     journal = {
       enregistre () {},
       enregistreSituationFaite () {},
-      attendFinEnregistrement () { return new Promise(() => {}); }
+      envoieEvenements () { return new Promise(() => {}); }
     };
 
     uneVueCadre = function (classeVue = uneClasseVue()) {
@@ -234,14 +234,22 @@ describe('Une vue du cadre', function () {
     vueCadre.situation.emit(CHANGEMENT_ETAT, DEMARRE);
   });
 
-  it("enregistre l'événement de fin de situation puis attend la fin de tous les enregistrements", function (done) {
+  it("enregistre l'événement de fin de situation puis envoie les événements", function (done) {
+    const appels = [];
     journal.enregistre = (evenement) => {
       expect(evenement).toBeInstanceOf(EvenementFinSituation);
+      appels.push("enregistre");
     };
-    journal.attendFinEnregistrement = () => Promise.resolve();
+    journal.envoieEvenements = () => {
+      appels.push("envoie");
+      return Promise.resolve();
+    };
     const vueCadre = uneVueCadre();
     vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
-      if (etat === RETOUR_ACCUEIL) done();
+      if (etat === RETOUR_ACCUEIL) {
+        expect(appels).toEqual(["enregistre", "envoie"]);
+        done();
+      }
     });
     vueCadre.situation.emit(CHANGEMENT_ETAT, FINI);
   });
@@ -249,8 +257,7 @@ describe('Une vue du cadre', function () {
   describe("quand l'enregistrement des événements échoue", function () {
     beforeEach(function () {
       jest.spyOn(console, 'error').mockImplementation(() => {});
-      journal.attendFinEnregistrement = () => Promise.reject(new Error("réseau"));
-      journal.relanceEnregistrementsEnEchec = () => Promise.reject(new Error("réseau"));
+      journal.envoieEvenements = () => Promise.reject(new Error("réseau"));
     });
 
     afterEach(function () {
@@ -270,38 +277,24 @@ describe('Une vue du cadre', function () {
       expect($('.overlay-erreur-enregistrement').length).toBe(1);
     });
 
-    it("relance automatiquement les enregistrements en échec et retourne à l'accueil sans afficher l'erreur", function (done) {
-      journal.relanceEnregistrementsEnEchec = () => Promise.resolve();
-      const vueCadre = uneVueCadre();
-      const etats = [];
-      vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
-        etats.push(etat);
-        if (etat === RETOUR_ACCUEIL) {
-          expect(etats).not.toContain(ERREUR_ENREGISTREMENT);
-          done();
-        }
-      });
-      vueCadre.situation.modifieEtat(FINI);
-    });
-
-    it("relance les enregistrements en échec au clic et retourne à l'accueil en cas de succès", function (done) {
-      let relances = 0;
-      journal.relanceEnregistrementsEnEchec = () => {
-        relances++;
-        return relances === 1 ? Promise.reject(new Error("réseau")) : Promise.resolve();
+    it("renvoie les événements au clic et retourne à l'accueil en cas de succès", function (done) {
+      let envois = 0;
+      journal.envoieEvenements = () => {
+        envois++;
+        return envois === 1 ? Promise.reject(new Error("réseau")) : Promise.resolve();
       };
       const vueCadre = uneVueCadre();
       vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {
         if (etat === ERREUR_ENREGISTREMENT) vueCadre.situation.modifieEtat(RELANCE_ENREGISTREMENT);
         if (etat === RETOUR_ACCUEIL) {
-          expect(relances).toBe(2);
+          expect(envois).toBe(2);
           done();
         }
       });
       vueCadre.situation.modifieEtat(FINI);
     });
 
-    it("revient sur l'écran d'erreur si la relance échoue", function (done) {
+    it("revient sur l'écran d'erreur si le renvoi échoue", function (done) {
       let erreurs = 0;
       const vueCadre = uneVueCadre();
       vueCadre.situation.on(CHANGEMENT_ETAT, (etat) => {

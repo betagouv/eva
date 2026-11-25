@@ -24,8 +24,6 @@ import OverlayErreurEnregistrement from './overlay_erreur_enregistrement';
 import AdaptateurConsigne from 'commun/vues/adaptateur_consigne';
 import VueTerminer from 'commun/vues/terminer';
 
-const TIMEOUT_RELANCE = 10000;
-
 export default class VueCadre {
   constructor(VueSituation, situation, journal, depotRessources, store) {
     this.VueSituation = VueSituation;
@@ -127,12 +125,9 @@ export default class VueCadre {
     this.situation.on(CHANGEMENT_ETAT, (etat) => {
       if (etat === FINI) {
         this.journal.enregistre(new EvenementFinSituation());
-        this.passeALaSuiteUneFoisEnregistre(
-          this.journal.attendFinEnregistrement()
-            .catch(() => this.journal.relanceEnregistrementsEnEchec(TIMEOUT_RELANCE))
-        );
+        this.passeALaSuiteUneFoisEnregistre(this.journal.envoieEvenements());
       } else if (etat === RELANCE_ENREGISTREMENT) {
-        this.passeALaSuiteUneFoisEnregistre(this.journal.relanceEnregistrementsEnEchec(TIMEOUT_RELANCE));
+        this.passeALaSuiteUneFoisEnregistre(this.journal.envoieEvenements());
       }
     });
   }
