@@ -2,12 +2,10 @@
   <div class="overlay modale overlay-erreur-enregistrement">
     <div class="modale-interieur">
       <h2 class="titre-erreur-enregistrement">
-        <svg
-          class="icone-alerte"
+        <span
+          class="icone-alerte fr-icon-error-warning-fill"
           aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        ><path d="m12.866 3 9.526 16.5a1 1 0 0 1-.866 1.5H2.474a1 1 0 0 1-.866-1.5L11.134 3a1 1 0 0 1 1.732 0ZM11 16v2h2v-2h-2Zm0-7v5h2V9h-2Z" /></svg>
+        />
         {{ $traduction('situation.erreur_enregistrement.titre') }}
       </h2>
       <p>{{ $traduction('situation.erreur_enregistrement.description') }}</p>
@@ -54,9 +52,10 @@ export default {
 }
 
 .icone-alerte {
-  flex-shrink: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  fill: var(--text-default-warning);
+  color: var(--text-default-warning);
+}
+
+.icone-alerte::before {
+  --icon-size: 2.5rem;
 }
 </style>

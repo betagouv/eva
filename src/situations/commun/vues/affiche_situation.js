@@ -1,6 +1,7 @@
 import jQuery from 'jquery';
 
 import '@gouvfr/dsfr/dist/dsfr.min.css';
+import '@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
 import '@gouvfr/dsfr/dist/dsfr.module.min.js';
 import 'commun/styles/commun.scss';
 import 'commun/styles/conteneur.scss';
