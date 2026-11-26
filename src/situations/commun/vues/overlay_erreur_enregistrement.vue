@@ -13,7 +13,7 @@
       <p>{{ $traduction('situation.erreur_enregistrement.action_si_echec') }}</p>
       <div class="buttons">
         <button
-          class="fr-btn bouton-relance-enregistrement"
+          class="fr-btn fr-btn--icon-left fr-icon-refresh-line bouton-relance-enregistrement"
           @click="relance"
         >
           {{ $traduction('situation.erreur_enregistrement.bouton') }}
